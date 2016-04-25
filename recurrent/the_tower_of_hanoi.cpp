@@ -13,7 +13,7 @@ unsigned long HanoiTower_recursive(const InputType n) {
     if (n == 0) {
         return 0;
     } else {
-        return (HanoiTower_recursive(n-1) << 1) + 1;
+        return (HanoiTower_recursive(n - 1) << 1) + 1;
     }
 }
 

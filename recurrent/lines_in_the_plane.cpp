@@ -14,12 +14,12 @@ unsigned long PlaneLines_recursive(const InputType n) {
     if (n == 0) {
         return 1;
     } else {
-        return PlaneLines_recursive(n-1) + n;
+        return PlaneLines_recursive(n - 1) + n;
     }
 }
 
 unsigned long PlaneLines_closedform(const InputType n) {
-    return n * (n+1) / 2 + 1;
+    return n * (n + 1) / 2 + 1;
 }
 
 /** Bent Lines in The Plane

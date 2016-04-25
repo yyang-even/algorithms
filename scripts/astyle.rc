@@ -32,7 +32,5 @@
 
 --lineend=linux
 
---exclude=debug
---exclude=doc
 --exclude=build
 --exclude=3rdParty
