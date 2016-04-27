@@ -1,3 +1,6 @@
 
 CompileBenchmarkExe(the_tower_of_hanoi)
+CompileTestExe(the_tower_of_hanoi)
+
 CompileBenchmarkExe(lines_in_the_plane)
+CompileTestExe(lines_in_the_plane)
