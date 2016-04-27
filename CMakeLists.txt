@@ -28,7 +28,7 @@ if(WANT_TESTS)
     set(gtest_force_shared_crt ON)
     set(GTEST_VER 1.7.0)
     set(GTEST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/3rdParty/googletest-release-${GTEST_VER}/include)
-    set(GTEST_LIBRARIES gtest)
+    include_directories ("${GTEST_INCLUDE_DIRS}")
 endif(WANT_TESTS)
 
 # pthread
@@ -43,7 +43,6 @@ if(WANT_BENCHMARKS OR WANT_TESTS)
             message(FATAL_ERROR "Unable to find pthread library.")
         endif(NOT PTHREAD_LIBRARY)
         message(STATUS "Pthread library is ${PTHREAD_LIBRARY}")
-        set(GTEST_LIBRARIES ${GTEST_LIBRARIES} -lpthread)
     endif(UNIX)
 endif()
 
@@ -58,6 +57,18 @@ macro(CompileBenchmarkExe name)
         target_link_libraries(${target_name} ${PTHREAD_LIBRARY})
     endif(WANT_BENCHMARKS)
 endmacro(CompileBenchmarkExe)
+
+macro(CompileTestExe name)
+    if(WANT_TESTS)
+        set(target_name ${name}_test)
+        add_executable(${target_name} ${name}.cpp)
+        target_compile_definitions(${target_name} PRIVATE WANT_TESTS)
+        target_link_libraries(${target_name} 
+            gtest_main
+            ${PTHREAD_LIBRARY})
+        add_test(${target_name} ${target_name})
+    endif(WANT_TESTS)
+endmacro(CompileTestExe)
 
 ###################################################
 # Subdirectories
