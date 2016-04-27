@@ -31,3 +31,4 @@ BENCHMARK_SUIT(HanoiTowerClosedform);
 
 SIMPLE_TEST_SUIT(HanoiTowerRecursive, 0, ULONG_MAX, 255);
 SIMPLE_TEST_SUIT(HanoiTowerClosedform, 0, ULONG_MAX, 255);
+MUTUAL_TEST(HanoiTowerRecursive, HanoiTowerClosedform);

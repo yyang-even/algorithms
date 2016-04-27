@@ -45,3 +45,4 @@ BENCHMARK_SUIT(PlaneBentLinesClosedform);
 SIMPLE_TEST_SUIT(PlaneLinesRecursive, 1, UPPER, 105);
 SIMPLE_TEST_SUIT(PlaneLinesClosedform, 1, UPPER, 105);
 SIMPLE_TEST_SUIT(PlaneBentLinesClosedform, 1, UPPER, 105);
+MUTUAL_TEST(PlaneLinesRecursive, PlaneLinesClosedform);
