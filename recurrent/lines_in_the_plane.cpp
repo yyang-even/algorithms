@@ -10,6 +10,11 @@ typedef unsigned InputType;
  * How many slices of pizza can a person obtain by making n straight cuts with a pizza knife?
  * What is the maximum number of regions defined by n lines in the plane?
  */
+
+/**
+ * L(0) = 1;
+ * L(n) = L(n - 1) + n, for n > 0.
+ */
 unsigned long PlaneLinesRecursive(const InputType n) {
     if (n == 0) {
         return 1;
@@ -28,6 +33,10 @@ unsigned long PlaneLinesClosedform(const InputType n) {
  *
  * Suppose that instead of straight lines we use bent lines, each containing one "zig."
  * What is the maximum number of regions determined by n such bent lines in the plane?
+ */
+
+/**
+ * Z(n) = 2n^2 - n + 1, for n >= 0.
  */
 unsigned long PlaneBentLinesClosedform(const InputType n) {
     return ((n * n) << 1) - n + 1;

@@ -9,6 +9,11 @@ typedef unsigned InputType;
  * The objective is to transfer the entire tower to one of the other pegs, moving only one disk
  * at a time and never moving a larger one onto a smaller.
  */
+
+/**
+ * T(0) = 0;
+ * T(n) = 2T(n - 1) + 1, for n > 0.
+ */
 unsigned long HanoiTowerRecursive(const InputType n) {
     if (n == 0) {
         return 0;
@@ -17,6 +22,9 @@ unsigned long HanoiTowerRecursive(const InputType n) {
     }
 }
 
+/**
+ * T(n) = 2^n - 1, for n >= 0.
+ */
 unsigned long HanoiTowerClosedform(const InputType n) {
     return ((unsigned long)1 << n) - 1;
 }

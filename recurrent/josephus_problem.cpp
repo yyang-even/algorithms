@@ -10,6 +10,12 @@ typedef unsigned long InputType;
  * the elimination order is 2, 4, 6, 8, 10, 3, 7, 1, 9, so 5 survives.
  * The problem: Determine the survivor’s number, J(n).
  */
+
+/**
+ * J(1) = 1;
+ * J(2n) = 2J(n) - 1,      for n >= 1;
+ * J(2n + 1) = 2J(n) + 1,  for n >= 1.
+ */
 InputType JosephusProblem2Recursive(const InputType n) {
     if (n == 1) {
         return 1;
@@ -20,6 +26,9 @@ InputType JosephusProblem2Recursive(const InputType n) {
     }
 }
 
+/**
+ * J(2^m + l) = 2l + 1, for m >= 0 and 0 <= l < 2^m.
+ */
 InputType JosephusProblem2Closedform(const InputType n) {
     const auto bit_length = sizeof(n) * CHAR_BIT;
     InputType m = InputType(1) << (bit_length - 1);
