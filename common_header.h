@@ -32,23 +32,24 @@ std::mt19937 generator(rd());
 }
 
 constexpr unsigned LONG_BITS_NUM = (sizeof(unsigned long) * CHAR_BIT);
+const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
 #ifdef WANT_TESTS
-#define SIMPLE_TEST(func_name, input, expectedValue) namespace {    \
-    TEST(func_name##Test, Test##input) {                            \
-        EXPECT_EQ(expectedValue, func_name(input));                 \
-    }                                                               \
+#define SIMPLE_TEST(func_name, input, expectedValue) namespace {            \
+    TEST(func_name##Test, Test##input) {                                    \
+        EXPECT_EQ(expectedValue, func_name(input)) << "Input: " << input;   \
+    }                                                                       \
 }
 #else
 #define SIMPLE_TEST(func_name, input, expectedValue) namespace {}
 #endif
 
 #ifdef WANT_TESTS
-#define MUTUAL_TEST(func1, func2) namespace {   \
-    TEST(MUTUAL_TEST, TestRandomInput) {        \
-        auto input = distribution(generator);   \
-        EXPECT_EQ(func1(input), func2(input));  \
-    }                                           \
+#define MUTUAL_TEST(func1, func2) namespace {                           \
+    TEST(MUTUAL_TEST, TestRandomInput) {                                \
+        auto input = distribution(generator);                           \
+        EXPECT_EQ(func1(input), func2(input)) << "Input: " << input;    \
+    }                                                                   \
 }
 #else
 #define MUTUAL_TEST(func1, func2) namespace {}

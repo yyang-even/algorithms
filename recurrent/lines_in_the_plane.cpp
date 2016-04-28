@@ -34,7 +34,7 @@ unsigned long PlaneBentLinesClosedform(const InputType n) {
 }
 
 const InputType LOWER = 0;
-constexpr InputType UPPER = std::sqrt(static_cast<double>((~InputType(0)) / 2));
+constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 const InputType SAMPLE = 14;
 std::uniform_int_distribution<InputType> distribution(LOWER, UPPER);
 
@@ -42,7 +42,7 @@ BENCHMARK_SUIT(PlaneLinesRecursive);
 BENCHMARK_SUIT(PlaneLinesClosedform);
 BENCHMARK_SUIT(PlaneBentLinesClosedform);
 
-SIMPLE_TEST_SUIT(PlaneLinesRecursive, 1, UPPER, 105);
-SIMPLE_TEST_SUIT(PlaneLinesClosedform, 1, UPPER, 105);
-SIMPLE_TEST_SUIT(PlaneBentLinesClosedform, 1, UPPER, 105);
+SIMPLE_TEST_SUIT(PlaneLinesRecursive, 1, 8390657, 106);
+SIMPLE_TEST_SUIT(PlaneLinesClosedform, 1, 8390657, 106);
+SIMPLE_TEST_SUIT(PlaneBentLinesClosedform, 1, 33550337, 379);
 MUTUAL_TEST(PlaneLinesRecursive, PlaneLinesClosedform);

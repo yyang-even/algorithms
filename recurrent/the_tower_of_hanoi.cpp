@@ -22,13 +22,13 @@ unsigned long HanoiTowerClosedform(const InputType n) {
 }
 
 const InputType LOWER = 0;
-constexpr InputType UPPER = LONG_BITS_NUM;
+constexpr InputType UPPER = LONG_BITS_NUM - 1;
 const InputType SAMPLE = 8;
 std::uniform_int_distribution<InputType> distribution(LOWER, UPPER);
 
 BENCHMARK_SUIT(HanoiTowerRecursive);
 BENCHMARK_SUIT(HanoiTowerClosedform);
 
-SIMPLE_TEST_SUIT(HanoiTowerRecursive, 0, ULONG_MAX, 255);
-SIMPLE_TEST_SUIT(HanoiTowerClosedform, 0, ULONG_MAX, 255);
+SIMPLE_TEST_SUIT(HanoiTowerRecursive, 0, ULONG_MAX / 2, 255);
+SIMPLE_TEST_SUIT(HanoiTowerClosedform, 0, ULONG_MAX / 2, 255);
 MUTUAL_TEST(HanoiTowerRecursive, HanoiTowerClosedform);
