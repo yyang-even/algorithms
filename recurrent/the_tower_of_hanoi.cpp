@@ -42,7 +42,7 @@ unsigned long HanoiTowerClosedform(const InputType n) {
  * T(0) = 0;
  * T(n) = 3T(n - 1) + 2, for n > 0.
  */
-unsigned long long IndirectHanoiTowerRecursive(const InputType n) {
+unsigned long IndirectHanoiTowerRecursive(const InputType n) {
     if (n == 0) {
         return 0;
     } else {
@@ -53,7 +53,7 @@ unsigned long long IndirectHanoiTowerRecursive(const InputType n) {
 /**
  * T(n) = 3^n - 1, for n > 0;
  */
-unsigned long long IndirectHanoiTowerClosedform(const InputType n) {
+unsigned long IndirectHanoiTowerClosedform(const InputType n) {
     return std::pow(double(3.0), n) - 1;
 }
 
