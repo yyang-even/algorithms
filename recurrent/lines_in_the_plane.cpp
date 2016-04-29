@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include <cmath>
-
 typedef unsigned InputType;
 /** Lines in The Plane
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -45,13 +43,32 @@ unsigned long PlaneBentLinesClosedform(const InputType n) {
 const InputType LOWER = 0;
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 const InputType SAMPLE = 14;
-std::uniform_int_distribution<InputType> distribution(LOWER, UPPER);
 
-BENCHMARK_SUIT(PlaneLinesRecursive);
-BENCHMARK_SUIT(PlaneLinesClosedform);
-BENCHMARK_SUIT(PlaneBentLinesClosedform);
+SIMPLE_BENCHMARK(PlaneLinesRecursive, LOWER);
+SIMPLE_BENCHMARK(PlaneLinesRecursive, UPPER);
+SIMPLE_BENCHMARK(PlaneLinesRecursive, SAMPLE);
+RANDOM_BENCHMARK(PlaneLinesRecursive, LOWER, UPPER);
 
-SIMPLE_TEST_SUIT(PlaneLinesRecursive, 1, 8390657, 106);
-SIMPLE_TEST_SUIT(PlaneLinesClosedform, 1, 8390657, 106);
-SIMPLE_TEST_SUIT(PlaneBentLinesClosedform, 1, 33550337, 379);
-MUTUAL_TEST(PlaneLinesRecursive, PlaneLinesClosedform);
+SIMPLE_BENCHMARK(PlaneLinesClosedform, LOWER);
+SIMPLE_BENCHMARK(PlaneLinesClosedform, UPPER);
+SIMPLE_BENCHMARK(PlaneLinesClosedform, SAMPLE);
+RANDOM_BENCHMARK(PlaneLinesClosedform, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(PlaneBentLinesClosedform, LOWER);
+SIMPLE_BENCHMARK(PlaneBentLinesClosedform, UPPER);
+SIMPLE_BENCHMARK(PlaneBentLinesClosedform, SAMPLE);
+RANDOM_BENCHMARK(PlaneBentLinesClosedform, LOWER, UPPER);
+
+SIMPLE_TEST(PlaneLinesRecursive, LOWER, 1);                                         
+SIMPLE_TEST(PlaneLinesRecursive, UPPER, 8390657);                                         
+SIMPLE_TEST(PlaneLinesRecursive, SAMPLE, 106);
+
+SIMPLE_TEST(PlaneLinesClosedform, LOWER, 1);                                         
+SIMPLE_TEST(PlaneLinesClosedform, UPPER, 8390657);                                         
+SIMPLE_TEST(PlaneLinesClosedform, SAMPLE, 106);
+
+SIMPLE_TEST(PlaneBentLinesClosedform, LOWER, 1);                                         
+SIMPLE_TEST(PlaneBentLinesClosedform, UPPER, 33550337);                                         
+SIMPLE_TEST(PlaneBentLinesClosedform, SAMPLE, 379);
+
+MUTUAL_TEST(PlaneLinesRecursive, PlaneLinesClosedform, LOWER, UPPER);

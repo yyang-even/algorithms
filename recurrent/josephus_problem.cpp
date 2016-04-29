@@ -42,11 +42,23 @@ InputType JosephusProblem2Closedform(const InputType n) {
 const InputType LOWER = 1;
 constexpr InputType UPPER = ~InputType(0);
 const InputType SAMPLE = 15;
-std::uniform_int_distribution<InputType> distribution(LOWER, UPPER);
 
-BENCHMARK_SUIT(JosephusProblem2Recursive);
-BENCHMARK_SUIT(JosephusProblem2Closedform);
+SIMPLE_BENCHMARK(JosephusProblem2Recursive, LOWER);
+SIMPLE_BENCHMARK(JosephusProblem2Recursive, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2Recursive, SAMPLE);
+RANDOM_BENCHMARK(JosephusProblem2Recursive, LOWER, UPPER);
 
-SIMPLE_TEST_SUIT(JosephusProblem2Recursive, 1, UPPER, 15);
-SIMPLE_TEST_SUIT(JosephusProblem2Closedform, 1, UPPER, 15);
-MUTUAL_TEST(JosephusProblem2Recursive, JosephusProblem2Closedform);
+SIMPLE_BENCHMARK(JosephusProblem2Closedform, LOWER);
+SIMPLE_BENCHMARK(JosephusProblem2Closedform, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2Closedform, SAMPLE);
+RANDOM_BENCHMARK(JosephusProblem2Closedform, LOWER, UPPER);
+
+SIMPLE_TEST(JosephusProblem2Recursive, LOWER, 1);                                         
+SIMPLE_TEST(JosephusProblem2Recursive, UPPER, UPPER);                                         
+SIMPLE_TEST(JosephusProblem2Recursive, SAMPLE, 15);
+
+SIMPLE_TEST(JosephusProblem2Closedform, LOWER, 1);                                         
+SIMPLE_TEST(JosephusProblem2Closedform, UPPER, UPPER);                                         
+SIMPLE_TEST(JosephusProblem2Closedform, SAMPLE, 15);
+
+MUTUAL_TEST(JosephusProblem2Recursive, JosephusProblem2Closedform, LOWER, UPPER);

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <climits>
+#include <cmath>
+
 #include <random>
 #include <string>
 
@@ -17,18 +19,12 @@
 
 std::random_device rd;
 std::mt19937 generator(rd());
-#define RANDOM_BENCHMARK(func_name) namespace {  \
+#define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {  \
     NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
+        std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);    \
         auto input = distribution(generator);   \
         meter.measure([&input]() { return func_name(input); }); \
     })  \
-}
-
-#define BENCHMARK_SUIT(func_name) namespace {   \
-    SIMPLE_BENCHMARK(func_name, LOWER);         \
-    SIMPLE_BENCHMARK(func_name, UPPER);         \
-    SIMPLE_BENCHMARK(func_name, SAMPLE);        \
-    RANDOM_BENCHMARK(func_name);                \
 }
 
 constexpr unsigned LONG_BITS_NUM = (sizeof(unsigned long) * CHAR_BIT);
@@ -45,18 +41,13 @@ const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 #endif
 
 #ifdef WANT_TESTS
-#define MUTUAL_TEST(func1, func2) namespace {                           \
-    TEST(MUTUAL_TEST, TestRandomInput) {                                \
-        auto input = distribution(generator);                           \
-        EXPECT_EQ(func1(input), func2(input)) << "Input: " << input;    \
-    }                                                                   \
+#define MUTUAL_TEST(func1, func2, lowerBound, upperBound) namespace {                   \
+    TEST(MUTUAL_TEST, func1##vs##func2) {                                               \
+        std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);  \
+        auto input = distribution(generator);                                           \
+        EXPECT_EQ(func1(input), func2(input)) << "Input: " << input;                    \
+    }                                                                                   \
 }
 #else
-#define MUTUAL_TEST(func1, func2) namespace {}
+#define MUTUAL_TEST(func1, func2, lowerBound, upperBound) namespace {}
 #endif
-
-#define SIMPLE_TEST_SUIT(func_name, lowerExpect, upperExpect, sampleExpect) namespace { \
-    SIMPLE_TEST(func_name, LOWER, lowerExpect);                                         \
-    SIMPLE_TEST(func_name, UPPER, upperExpect);                                         \
-    SIMPLE_TEST(func_name, SAMPLE, sampleExpect);                                       \
-}
