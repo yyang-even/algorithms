@@ -57,6 +57,43 @@ unsigned long IndirectHanoiTowerClosedform(const InputType n) {
     return std::pow(double(3.0), n) - 1;
 }
 
+/** Double Hanoi Tower
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 11.
+ *
+ * A Double Tower of Hanoi contains 2n disks of n different sizes, two of each size.
+ * As usual, we’re required to move only one disk at a time, without putting a larger one over a smaller one.
+ *      a. How many moves does it take to transfer a double tower from one peg to another,
+ *      if disks of equal size are indistinguishable from each other?
+ *      b. What if we are required to reproduce the original top-to-bottom order of all
+ *      the equal-size disks in the final arrangement?
+ */
+
+/**
+ * A(0) = 0;
+ * A(n) = 2A(n - 1) + 2
+ */
+unsigned long DoubleHanoiTowerARecursive(const InputType n) {
+    if (n == 0) {
+        return 0;
+    } else {
+        return (DoubleHanoiTowerARecursive(n - 1) << 1) + 2;
+    }
+}
+
+/**
+ * A(n) = 2^(n+1) - 2
+ */
+unsigned long DoubleHanoiTowerAClosedform(const InputType n) {
+    return (long(1) << (n + 1)) - 2;
+}
+
+/**
+ * B(n) = 2^(n+2) - 5
+ */
+unsigned long DoubleHanoiTowerBClosedform(const InputType n) {
+    return (long(1) << (n + 2)) - 5;
+}
 
 const InputType LOWER = 0;
 constexpr InputType UPPER = LONG_BITS_NUM - 1;
@@ -104,3 +141,36 @@ SIMPLE_TEST(IndirectHanoiTowerClosedform, IndirectHanoiTowerUPPER, 10460353202);
 SIMPLE_TEST(IndirectHanoiTowerClosedform, SAMPLE, 6560);
 
 MUTUAL_TEST(IndirectHanoiTowerRecursive, IndirectHanoiTowerClosedform, LOWER, IndirectHanoiTowerUPPER);
+
+const InputType DoubleHanoiTowerUPPER = UPPER - 2;
+
+SIMPLE_BENCHMARK(DoubleHanoiTowerARecursive, LOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerARecursive, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerARecursive, SAMPLE);
+RANDOM_BENCHMARK(DoubleHanoiTowerARecursive, LOWER, DoubleHanoiTowerUPPER);
+
+SIMPLE_BENCHMARK(DoubleHanoiTowerAClosedform, LOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerAClosedform, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerAClosedform, SAMPLE);
+RANDOM_BENCHMARK(DoubleHanoiTowerAClosedform, LOWER, DoubleHanoiTowerUPPER);
+
+const InputType DoubleHanoiTowerBLOWER = 1;
+
+SIMPLE_BENCHMARK(DoubleHanoiTowerBClosedform, DoubleHanoiTowerBLOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerBClosedform, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTowerBClosedform, SAMPLE);
+RANDOM_BENCHMARK(DoubleHanoiTowerBClosedform, LOWER, DoubleHanoiTowerUPPER);
+
+SIMPLE_TEST(DoubleHanoiTowerARecursive, LOWER, 0);                                         
+SIMPLE_TEST(DoubleHanoiTowerARecursive, DoubleHanoiTowerUPPER, 4611686018427387902);                                         
+SIMPLE_TEST(DoubleHanoiTowerARecursive, SAMPLE, 510);
+
+SIMPLE_TEST(DoubleHanoiTowerAClosedform, LOWER, 0);                                         
+SIMPLE_TEST(DoubleHanoiTowerAClosedform, DoubleHanoiTowerUPPER, 4611686018427387902);                                         
+SIMPLE_TEST(DoubleHanoiTowerAClosedform, SAMPLE, 510);
+
+MUTUAL_TEST(DoubleHanoiTowerARecursive, DoubleHanoiTowerAClosedform, LOWER, DoubleHanoiTowerUPPER);
+
+SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerBLOWER, 3);                                         
+SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerUPPER, 9223372036854775803);                                         
+SIMPLE_TEST(DoubleHanoiTowerBClosedform, SAMPLE, 1019);

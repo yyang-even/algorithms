@@ -33,7 +33,7 @@ InputType PlaneLinesClosedform(const InputType n) {
  * What is the maximum number of regions determined by n such bent lines in the plane?
  */
 
-/** 
+/**
  * Z(n) = 2n^2 - n + 1, for n >= 0.
  */
 InputType PlaneBentLinesClosedform(const InputType n) {
@@ -78,7 +78,7 @@ RANDOM_BENCHMARK(PlaneBentLinesClosedform, LOWER, UPPER2);
 
 constexpr InputType BoundedRegionsPlaneLinesLOWER = 1;
 
-SIMPLE_BENCHMARK(BoundedRegionsPlaneLinesClosedform, LOWER);
+SIMPLE_BENCHMARK(BoundedRegionsPlaneLinesClosedform, BoundedRegionsPlaneLinesLOWER);
 SIMPLE_BENCHMARK(BoundedRegionsPlaneLinesClosedform, UPPER2);
 SIMPLE_BENCHMARK(BoundedRegionsPlaneLinesClosedform, SAMPLE);
 RANDOM_BENCHMARK(BoundedRegionsPlaneLinesClosedform, LOWER, UPPER2);
