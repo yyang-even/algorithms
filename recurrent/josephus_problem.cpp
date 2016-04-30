@@ -53,12 +53,12 @@ SIMPLE_BENCHMARK(JosephusProblem2Closedform, UPPER);
 SIMPLE_BENCHMARK(JosephusProblem2Closedform, SAMPLE);
 RANDOM_BENCHMARK(JosephusProblem2Closedform, LOWER, UPPER);
 
-SIMPLE_TEST(JosephusProblem2Recursive, LOWER, 1);                                         
-SIMPLE_TEST(JosephusProblem2Recursive, UPPER, UPPER);                                         
+SIMPLE_TEST(JosephusProblem2Recursive, LOWER, 1);
+SIMPLE_TEST(JosephusProblem2Recursive, UPPER, UPPER);
 SIMPLE_TEST(JosephusProblem2Recursive, SAMPLE, 15);
 
-SIMPLE_TEST(JosephusProblem2Closedform, LOWER, 1);                                         
-SIMPLE_TEST(JosephusProblem2Closedform, UPPER, UPPER);                                         
+SIMPLE_TEST(JosephusProblem2Closedform, LOWER, 1);
+SIMPLE_TEST(JosephusProblem2Closedform, UPPER, UPPER);
 SIMPLE_TEST(JosephusProblem2Closedform, SAMPLE, 15);
 
 MUTUAL_TEST(JosephusProblem2Recursive, JosephusProblem2Closedform, LOWER, UPPER);

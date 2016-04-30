@@ -109,12 +109,12 @@ SIMPLE_BENCHMARK(HanoiTowerClosedform, UPPER);
 SIMPLE_BENCHMARK(HanoiTowerClosedform, SAMPLE);
 RANDOM_BENCHMARK(HanoiTowerClosedform, LOWER, UPPER);
 
-SIMPLE_TEST(HanoiTowerRecursive, LOWER, 0);                                         
-SIMPLE_TEST(HanoiTowerRecursive, UPPER, ULONG_MAX / 2);                                         
+SIMPLE_TEST(HanoiTowerRecursive, LOWER, 0);
+SIMPLE_TEST(HanoiTowerRecursive, UPPER, ULONG_MAX / 2);
 SIMPLE_TEST(HanoiTowerRecursive, SAMPLE, 255);
 
-SIMPLE_TEST(HanoiTowerClosedform, LOWER, 0);                                         
-SIMPLE_TEST(HanoiTowerClosedform, UPPER, ULONG_MAX / 2);                                         
+SIMPLE_TEST(HanoiTowerClosedform, LOWER, 0);
+SIMPLE_TEST(HanoiTowerClosedform, UPPER, ULONG_MAX / 2);
 SIMPLE_TEST(HanoiTowerClosedform, SAMPLE, 255);
 
 MUTUAL_TEST(HanoiTowerRecursive, HanoiTowerClosedform, LOWER, UPPER);
@@ -132,15 +132,16 @@ SIMPLE_BENCHMARK(IndirectHanoiTowerClosedform, IndirectHanoiTowerUPPER);
 SIMPLE_BENCHMARK(IndirectHanoiTowerClosedform, SAMPLE);
 RANDOM_BENCHMARK(IndirectHanoiTowerClosedform, LOWER, IndirectHanoiTowerUPPER);
 
-SIMPLE_TEST(IndirectHanoiTowerRecursive, LOWER, 0);                                         
-SIMPLE_TEST(IndirectHanoiTowerRecursive, IndirectHanoiTowerUPPER, 10460353202);                                         
+SIMPLE_TEST(IndirectHanoiTowerRecursive, LOWER, 0);
+SIMPLE_TEST(IndirectHanoiTowerRecursive, IndirectHanoiTowerUPPER, 10460353202);
 SIMPLE_TEST(IndirectHanoiTowerRecursive, SAMPLE, 6560);
 
-SIMPLE_TEST(IndirectHanoiTowerClosedform, LOWER, 0);                                         
-SIMPLE_TEST(IndirectHanoiTowerClosedform, IndirectHanoiTowerUPPER, 10460353202);                                         
+SIMPLE_TEST(IndirectHanoiTowerClosedform, LOWER, 0);
+SIMPLE_TEST(IndirectHanoiTowerClosedform, IndirectHanoiTowerUPPER, 10460353202);
 SIMPLE_TEST(IndirectHanoiTowerClosedform, SAMPLE, 6560);
 
-MUTUAL_TEST(IndirectHanoiTowerRecursive, IndirectHanoiTowerClosedform, LOWER, IndirectHanoiTowerUPPER);
+MUTUAL_TEST(IndirectHanoiTowerRecursive, IndirectHanoiTowerClosedform, LOWER,
+            IndirectHanoiTowerUPPER);
 
 const InputType DoubleHanoiTowerUPPER = UPPER - 2;
 
@@ -161,16 +162,16 @@ SIMPLE_BENCHMARK(DoubleHanoiTowerBClosedform, DoubleHanoiTowerUPPER);
 SIMPLE_BENCHMARK(DoubleHanoiTowerBClosedform, SAMPLE);
 RANDOM_BENCHMARK(DoubleHanoiTowerBClosedform, LOWER, DoubleHanoiTowerUPPER);
 
-SIMPLE_TEST(DoubleHanoiTowerARecursive, LOWER, 0);                                         
-SIMPLE_TEST(DoubleHanoiTowerARecursive, DoubleHanoiTowerUPPER, 4611686018427387902);                                         
+SIMPLE_TEST(DoubleHanoiTowerARecursive, LOWER, 0);
+SIMPLE_TEST(DoubleHanoiTowerARecursive, DoubleHanoiTowerUPPER, 4611686018427387902);
 SIMPLE_TEST(DoubleHanoiTowerARecursive, SAMPLE, 510);
 
-SIMPLE_TEST(DoubleHanoiTowerAClosedform, LOWER, 0);                                         
-SIMPLE_TEST(DoubleHanoiTowerAClosedform, DoubleHanoiTowerUPPER, 4611686018427387902);                                         
+SIMPLE_TEST(DoubleHanoiTowerAClosedform, LOWER, 0);
+SIMPLE_TEST(DoubleHanoiTowerAClosedform, DoubleHanoiTowerUPPER, 4611686018427387902);
 SIMPLE_TEST(DoubleHanoiTowerAClosedform, SAMPLE, 510);
 
 MUTUAL_TEST(DoubleHanoiTowerARecursive, DoubleHanoiTowerAClosedform, LOWER, DoubleHanoiTowerUPPER);
 
-SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerBLOWER, 3);                                         
-SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerUPPER, 9223372036854775803);                                         
+SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerBLOWER, 3);
+SIMPLE_TEST(DoubleHanoiTowerBClosedform, DoubleHanoiTowerUPPER, 9223372036854775803);
 SIMPLE_TEST(DoubleHanoiTowerBClosedform, SAMPLE, 1019);
