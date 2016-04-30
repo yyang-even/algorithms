@@ -39,6 +39,30 @@ InputType JosephusProblem2Closedform(const InputType n) {
     return ((m ^ n) << 1) + 1;
 }
 
+/** Penultimate Survivor
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 15.
+ *
+ * Josephus had a friend who was saved by getting into the next-to-last position.
+ * What is I(n), the number of the penultimate survivor when every second person is executed?
+ */
+
+/**
+ * I(n) = I(3*2^m + l) = 2l + 1.
+ */
+InputType PenultimateSurvivorClosedform(const InputType n) {
+    if (n == 2) {
+        return 2;
+    }
+    const auto bit_length = sizeof(n) * CHAR_BIT;
+    InputType m = InputType(3) << (bit_length - 2);
+
+    while (n < m) {
+        m /= 2;
+    }
+    return ((n - m) << 1) + 1;
+}
+
 const InputType LOWER = 1;
 constexpr InputType UPPER = ~InputType(0);
 const InputType SAMPLE = 15;
@@ -48,17 +72,28 @@ SIMPLE_BENCHMARK(JosephusProblem2Recursive, UPPER);
 SIMPLE_BENCHMARK(JosephusProblem2Recursive, SAMPLE);
 RANDOM_BENCHMARK(JosephusProblem2Recursive, LOWER, UPPER);
 
+SIMPLE_TEST(JosephusProblem2Recursive, LOWER, 1);
+SIMPLE_TEST(JosephusProblem2Recursive, UPPER, UPPER);
+SIMPLE_TEST(JosephusProblem2Recursive, SAMPLE, 15);
+
 SIMPLE_BENCHMARK(JosephusProblem2Closedform, LOWER);
 SIMPLE_BENCHMARK(JosephusProblem2Closedform, UPPER);
 SIMPLE_BENCHMARK(JosephusProblem2Closedform, SAMPLE);
 RANDOM_BENCHMARK(JosephusProblem2Closedform, LOWER, UPPER);
-
-SIMPLE_TEST(JosephusProblem2Recursive, LOWER, 1);
-SIMPLE_TEST(JosephusProblem2Recursive, UPPER, UPPER);
-SIMPLE_TEST(JosephusProblem2Recursive, SAMPLE, 15);
 
 SIMPLE_TEST(JosephusProblem2Closedform, LOWER, 1);
 SIMPLE_TEST(JosephusProblem2Closedform, UPPER, UPPER);
 SIMPLE_TEST(JosephusProblem2Closedform, SAMPLE, 15);
 
 MUTUAL_TEST(JosephusProblem2Recursive, JosephusProblem2Closedform, LOWER, UPPER);
+
+const InputType LOWER2 = 2;
+
+SIMPLE_BENCHMARK(PenultimateSurvivorClosedform, LOWER2);
+SIMPLE_BENCHMARK(PenultimateSurvivorClosedform, UPPER);
+SIMPLE_BENCHMARK(PenultimateSurvivorClosedform, SAMPLE);
+RANDOM_BENCHMARK(PenultimateSurvivorClosedform, LOWER2, UPPER);
+
+SIMPLE_TEST(PenultimateSurvivorClosedform, LOWER2, 2);
+SIMPLE_TEST(PenultimateSurvivorClosedform, UPPER, UPPER / 2);
+SIMPLE_TEST(PenultimateSurvivorClosedform, SAMPLE, 7);
