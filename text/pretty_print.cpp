@@ -49,9 +49,26 @@ std::string PrettyColumnsPrint(const unsigned n, const unsigned m) {
     }
 }
 
+template <typename T>
+void GetOneInput(T &input, const std::string &inputName) {
+    std::cout << "Enter \"" << inputName << "\": ";
+    std::cin >> input;
+    if (!std::cin) {
+        std::cout << "Invalid input." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
 #ifdef WANT_TERMINAL_APP
 int main(int argc, char **argv) {
-    std::cout << PrettyColumnsPrint(37, 5) << std::endl;
+    std::cout << "PrettyColumnsPrint(const unsigned n, const unsigned m): " << std::endl;
+
+    unsigned n;
+    GetOneInput(n, "n");
+    unsigned m;
+    GetOneInput(m, "m");
+
+    std::cout << PrettyColumnsPrint(n, m) << std::endl;
+    return EXIT_SUCCESS;
 }
 #endif
 
