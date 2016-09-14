@@ -1,0 +1,2 @@
+CompileTerminalApp(pretty_print)
+CompileTestExe(pretty_print)
