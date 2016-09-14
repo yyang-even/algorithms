@@ -14,6 +14,7 @@ include_directories ("${PROJECT_SOURCE_DIR}")
 ###################################################
 # Options
 ###################################################
+option(WANT_TERMINAL_APP "We want terminal based applications" ON)
 option(WANT_BENCHMARKS "We want benchmark executables" ON)
 # Do we want unit tests?
 option(WANT_TESTS "We want unit tests" ON)
@@ -70,8 +71,17 @@ macro(CompileTestExe name)
     endif(WANT_TESTS)
 endmacro(CompileTestExe)
 
+macro(CompileTerminalApp name)
+    if(WANT_TERMINAL_APP)
+        set(target_name ${name}_app)
+        add_executable(${target_name} ${name}.cpp)
+        target_compile_definitions(${target_name} PRIVATE WANT_TERMINAL_APP)
+    endif(WANT_TERMINAL_APP)
+endmacro(CompileTerminalApp)
+
 ###################################################
 # Subdirectories
 ###################################################
 add_subdirectory(3rdParty)
-add_subdirectory(recurrent)
+add_subdirectory(mathematics)
+add_subdirectory(text)
