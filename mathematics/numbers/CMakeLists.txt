@@ -1,0 +1,2 @@
+CompileBenchmarkExe(gcd)
+CompileTestExe(gcd)
