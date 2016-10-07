@@ -1,0 +1,5 @@
+CompileBenchmarkExe(prime_factors_of_n)
+CompileTestExe(prime_factors_of_n)
+
+CompileBenchmarkExe(primes_below_n)
+CompileTestExe(primes_below_n)
