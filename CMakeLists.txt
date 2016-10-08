@@ -55,7 +55,9 @@ macro(CompileBenchmarkExe name)
         set(target_name ${name}_benchmark)
         add_executable(${target_name} ${name}.cpp)
         target_compile_definitions(${target_name} PRIVATE NONIUS_RUNNER)
-        target_link_libraries(${target_name} ${PTHREAD_LIBRARY})
+        target_link_libraries(${target_name} 
+            ${PTHREAD_LIBRARY}
+            ${ARGN})
     endif(WANT_BENCHMARKS)
 endmacro(CompileBenchmarkExe)
 
@@ -66,7 +68,8 @@ macro(CompileTestExe name)
         target_compile_definitions(${target_name} PRIVATE WANT_TESTS)
         target_link_libraries(${target_name}
             gtest_main
-            ${PTHREAD_LIBRARY})
+            ${PTHREAD_LIBRARY}
+            ${ARGN})
         add_test(${target_name} ${target_name})
     endif(WANT_TESTS)
 endmacro(CompileTestExe)
@@ -76,6 +79,8 @@ macro(CompileTerminalApp name)
         set(target_name ${name}_app)
         add_executable(${target_name} ${name}.cpp)
         target_compile_definitions(${target_name} PRIVATE WANT_TERMINAL_APP)
+        target_link_libraries(${target_name}
+            ${ARGN})
     endif(WANT_TERMINAL_APP)
 endmacro(CompileTerminalApp)
 

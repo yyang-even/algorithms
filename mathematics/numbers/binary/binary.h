@@ -1,0 +1,2 @@
+unsigned CountSetBitsBrianKernighan(unsigned n);
+

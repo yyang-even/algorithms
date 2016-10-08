@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/numbers/binary/binary.h"
+
 typedef unsigned InputType;
 
 /**The largest power of p that divides n!
@@ -18,9 +20,19 @@ InputType LargestPowerOfPDividesFactorialN(const InputType p, const InputType n)
     return power;
 }
 
+InputType LargestPowerOf2DividesFactorialN(const InputType n) {
+    return n - CountSetBitsBrianKernighan(n);
+}
+
 SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, 2, 10);
 
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE1, 0, 3, 2);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE2, 8, 2, 10);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE3, 4, 3, 9);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE4, 97, 2, 100);
+
+SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
+
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0, 0);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8, 10);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE3, 97, 100);
