@@ -55,7 +55,7 @@ macro(CompileBenchmarkExe name)
         set(target_name ${name}_benchmark)
         add_executable(${target_name} ${name}.cpp)
         target_compile_definitions(${target_name} PRIVATE NONIUS_RUNNER)
-        target_link_libraries(${target_name} 
+        target_link_libraries(${target_name}
             ${PTHREAD_LIBRARY}
             ${ARGN})
     endif(WANT_BENCHMARKS)
