@@ -11,14 +11,18 @@
 #include "gtest/gtest.h"
 #endif
 
+#if defined(NONIUS_RUNNER) || defined(WANT_TESTS)
+std::random_device rd;
+std::mt19937 generator(rd());
+#endif
+
+#ifdef NONIUS_RUNNER
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
     NONIUS_BENCHMARK((std::string(#func_name) + "(" + #inputs + ")"), []() {    \
         return func_name(inputs);                                               \
     })                                                                          \
 }
 
-std::random_device rd;
-std::mt19937 generator(rd());
 #define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {                         \
     NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
         std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);          \
@@ -26,9 +30,11 @@ std::mt19937 generator(rd());
         meter.measure([&input]() { return func_name(input); });                                 \
     })                                                                                          \
 }
+#else
+#define SIMPLE_BENCHMARK(func_name, inputs...) namespace {}
+#define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {}
+#endif
 
-constexpr unsigned LONG_BITS_NUM = (sizeof(unsigned long) * CHAR_BIT);
-const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
 #ifdef WANT_TESTS
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {  \
@@ -36,11 +42,7 @@ const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
         EXPECT_EQ(expectedValue, func_name(inputs)) << "Input: " << inputs;     \
     }                                                                           \
 }
-#else
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
-#endif
 
-#ifdef WANT_TESTS
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {            \
     TEST(MutualRandomTest, func1##vs##func2) {                                          \
         std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);  \
@@ -49,5 +51,10 @@ const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
     }                                                                                   \
 }
 #else
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}
 #endif
+
+//Constants
+constexpr unsigned LONG_BITS_NUM = (sizeof(unsigned long) * CHAR_BIT);
+const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
