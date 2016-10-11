@@ -20,9 +20,19 @@ InputType LargestPowerOfPDividesFactorialN(const InputType p, const InputType n)
     return power;
 }
 
+/**
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.4.
+ */
 InputType LargestPowerOf2DividesFactorialN(const InputType n) {
     return n - CountSetBitsBrianKernighan(n);
 }
+#ifdef __GNUC__
+InputType LargestPowerOf2DividesFactorialNBuiltIn(const InputType n) {
+    return n - __builtin_popcount(n);
+}
+#endif
+
 
 SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, 2, 10);
 
@@ -36,3 +46,14 @@ SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE3, 97, 100);
+
+#ifdef __GNUC__
+SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialNBuiltIn, 10);
+
+SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE1, 0, 0);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE2, 8, 10);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE3, 97, 100);
+
+MUTUAL_RANDOM_TEST(LargestPowerOf2DividesFactorialN, LargestPowerOf2DividesFactorialNBuiltIn, 0,
+                   96583);
+#endif
