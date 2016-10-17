@@ -1,0 +1,2 @@
+CompileBenchmarkExe(is_divisible_by_3)
+CompileTestExe(is_divisible_by_3)
