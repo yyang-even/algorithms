@@ -11,6 +11,12 @@
 #include "gtest/gtest.h"
 #endif
 
+// Typedefs
+typedef char INT_BOOL;
+#define TRUE 1
+#define FALSE 0
+
+// Macros
 #if defined(NONIUS_RUNNER) || defined(WANT_TESTS)
 std::random_device rd;
 std::mt19937 generator(rd());
