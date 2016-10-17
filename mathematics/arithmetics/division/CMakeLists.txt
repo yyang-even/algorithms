@@ -3,3 +3,6 @@ CompileTestExe(is_divisible_by_3)
 
 CompileBenchmarkExe(is_divisible_by_5)
 CompileTestExe(is_divisible_by_5)
+
+CompileBenchmarkExe(is_divisible_by_7)
+CompileTestExe(is_divisible_by_7)

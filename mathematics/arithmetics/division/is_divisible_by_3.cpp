@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "divisibility.h"
-
 typedef int InputType;
 
 /** Is divisible by 3

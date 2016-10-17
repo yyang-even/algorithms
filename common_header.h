@@ -12,7 +12,7 @@
 #endif
 
 // Typedefs
-typedef char INT_BOOL;
+typedef int INT_BOOL;
 #define TRUE 1
 #define FALSE 0
 
