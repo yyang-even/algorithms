@@ -12,7 +12,7 @@ typedef int InputType;
  * There is a pattern in binary representation of the number that can be used to find if number is a multiple of 3.
  * If difference between count of odd set bits (Bits set at odd positions) and even set bits is multiple of 3 then is the number.
  */
-bool isMultipleOf3(int num) {
+bool isDivisibleBy3(InputType num) {
     if (num < 0) {
         num = -num;
     }
@@ -36,18 +36,21 @@ bool isMultipleOf3(int num) {
         num >>= 1;
     }
 
-    return isMultipleOf3(even_odd_diff);
+    return isDivisibleBy3(even_odd_diff);
 }
 
 
-const int LOWER = 2;
-const int UPPER = INT_MAX;
+const InputType LOWER = 2;
+const InputType UPPER = INT_MAX;
 
-SIMPLE_BENCHMARK(isMultipleOf3, LOWER);
-SIMPLE_BENCHMARK(isMultipleOf3, UPPER);
-RANDOM_BENCHMARK(isMultipleOf3, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy3, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy3, UPPER);
+RANDOM_BENCHMARK(isDivisibleBy3, LOWER, UPPER);
 
-SIMPLE_TEST(isMultipleOf3, TestLOWER, false, LOWER);
-SIMPLE_TEST(isMultipleOf3, TestUPPER, false, UPPER);
-SIMPLE_TEST(isMultipleOf3, TestSAMPLE1, true, 612);
-SIMPLE_TEST(isMultipleOf3, TestSAMPLE2, true, 3);
+SIMPLE_TEST(isDivisibleBy3, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy3, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE1, true, 612);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE2, true, 3);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE3, false, 610);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE4, true, -612);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE5, false, -610);
