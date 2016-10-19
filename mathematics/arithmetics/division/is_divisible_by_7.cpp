@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/modulo/modulo.h"
+
 typedef int InputType;
 
 /** Is divisible by 7
@@ -36,11 +38,11 @@ INT_BOOL isDivisibleBy7(InputType num) {
     if (num == 0 || num == 7) {
         return TRUE;
     }
-    if (num < 10) {
+    if (num < 14) {
         return FALSE;
     }
 
-    return isDivisibleBy7(num / 10 - 2 * (num - num / 10 * 10));
+    return isDivisibleBy7(num / 10 - 2 * Mod10(num));
 }
 
 

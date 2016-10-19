@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/modulo/modulo.h"
+
 typedef int InputType;
 
 INT_BOOL isDivisibleBy5Mod(const InputType n) {
@@ -85,6 +87,10 @@ INT_BOOL isDivisibleBy5Float(const InputType n) {
     }
 }
 
+INT_BOOL isDivisibleBy5LastDigitStrict(const InputType n) {
+    const auto last_digit = Mod10Float(n);
+    return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
+}
 
 const InputType LOWER = INT_MIN;
 const InputType UPPER = INT_MAX;
@@ -165,3 +171,20 @@ SIMPLE_TEST(isDivisibleBy5Float, TestSAMPLE5, TRUE, -1082066345);
 MUTUAL_RANDOM_TEST(isDivisibleBy5Mod, isDivisibleBy5Subtraction, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(isDivisibleBy5Mod, isDivisibleBy5ToString, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(isDivisibleBy5Mod, isDivisibleBy5Float, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(isDivisibleBy5LastDigitStrict, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5LastDigitStrict, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5LastDigitStrict, SAMPLE3);
+SIMPLE_BENCHMARK(isDivisibleBy5LastDigitStrict, SAMPLE4);
+RANDOM_BENCHMARK(isDivisibleBy5LastDigitStrict, LOWER, UPPER);
+
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestLOWER, FALSE, LOWER);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestLOWERPlusOne, FALSE, LOWER + 1);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestUPPER, FALSE, UPPER);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestSAMPLE1, FALSE, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestSAMPLE2, TRUE, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestSAMPLE3, FALSE, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestSAMPLE4, TRUE, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5LastDigitStrict, TestSAMPLE5, TRUE, -1082066345);
+
+MUTUAL_RANDOM_TEST(isDivisibleBy5Mod, isDivisibleBy5LastDigitStrict, LOWER, UPPER);
