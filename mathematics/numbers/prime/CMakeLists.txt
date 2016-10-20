@@ -1,3 +1,8 @@
+add_library(prime
+    largest_power_of_p_divides_factorial_n.cpp)
+target_link_libraries(prime
+    binary)
+
 CompileBenchmarkExe(prime_factors_of_n)
 CompileTestExe(prime_factors_of_n)
 
