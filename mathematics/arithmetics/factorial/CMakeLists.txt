@@ -1,0 +1,2 @@
+CompileBenchmarkExe(factorial)
+CompileTestExe(factorial)
