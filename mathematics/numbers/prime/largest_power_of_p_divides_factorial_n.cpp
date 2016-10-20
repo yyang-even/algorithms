@@ -11,6 +11,8 @@ typedef unsigned InputType;
  *
  * We'd like to determine, for any given prime p, the largest power of p that divides n!; that is,
  * we want the exponent of p in n!'s unique factorization.
+ *
+ * @bug It will fall into infinite loop for large n or p, as which may cause i *= p to overflow
  */
 InputType LargestPowerOfPDividesFactorialN(const InputType p, const InputType n) {
     InputType power = 0;

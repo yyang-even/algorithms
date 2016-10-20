@@ -1,5 +1,6 @@
 add_library(prime
-    largest_power_of_p_divides_factorial_n.cpp)
+    largest_power_of_p_divides_factorial_n.cpp
+    primes_below_n.cpp)
 target_link_libraries(prime
     binary)
 
