@@ -1,6 +1,9 @@
 CompileBenchmarkExe(factorial)
 CompileTestExe(factorial)
 
+CompileBenchmarkExe(count_factorial_numbers_in_range)
+CompileTestExe(count_factorial_numbers_in_range)
+
 CompileBenchmarkExe(trailing_zeros_in_factorial
     prime)
 CompileTestExe(trailing_zeros_in_factorial
