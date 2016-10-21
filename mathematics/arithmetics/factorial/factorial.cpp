@@ -25,6 +25,20 @@ unsigned long FactorialRecursive(const unsigned num) {
     return 1;
 }
 
+/**
+ * @reference   Tail Recursion
+ *              http://www.geeksforgeeks.org/tail-recursion/
+ */
+unsigned long FactorialTailRecursive(const unsigned num, unsigned long factorial) {
+    if (num < 2) {
+        return factorial;
+    }
+
+    FactorialTailRecursive(num - 1, num * factorial);
+}
+unsigned long FactorialTailRecursive(const unsigned num) {
+    return FactorialTailRecursive(num, 1);
+}
 
 const InputType LOWER = 0;
 const InputType UPPER = 12;
@@ -48,3 +62,12 @@ SIMPLE_TEST(FactorialRecursive, TestLOWER, 1, LOWER);
 SIMPLE_TEST(FactorialRecursive, TestUPPER, 479001600, UPPER);
 SIMPLE_TEST(FactorialRecursive, TestSAMPLE1, 1, SAMPLE1);
 SIMPLE_TEST(FactorialRecursive, TestSAMPLE2, 720, SAMPLE2);
+
+SIMPLE_BENCHMARK(FactorialTailRecursive, LOWER);
+SIMPLE_BENCHMARK(FactorialTailRecursive, UPPER);
+RANDOM_BENCHMARK(FactorialTailRecursive, LOWER, UPPER);
+
+SIMPLE_TEST(FactorialTailRecursive, TestLOWER, 1, LOWER);
+SIMPLE_TEST(FactorialTailRecursive, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(FactorialTailRecursive, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(FactorialTailRecursive, TestSAMPLE2, 720, SAMPLE2);
