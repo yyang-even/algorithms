@@ -10,5 +10,8 @@ CompileBenchmarkExe(lcm
 CompileTestExe(lcm
     numbers)
 
+CompileBenchmarkExe(large_integer)
+CompileTestExe(large_integer)
+
 add_subdirectory(binary)
 add_subdirectory(prime)
