@@ -2,6 +2,8 @@
 
 #include "numbers.h"
 
+const LargeInteger::NumData::size_type LargeInteger::BLOCK_SIZE;
+
 LargeInteger::LargeInteger(const std::string &s_num) {
     m_nums.reserve(s_num.size());
     //Number are stored in reverse digit order
@@ -11,6 +13,15 @@ LargeInteger::LargeInteger(const std::string &s_num) {
         } else {
             m_nums.clear();
         }
+    }
+}
+
+LargeInteger::LargeInteger(const LargeInteger &source, const unsigned block_index) {
+    auto lower_bound = block_index * BLOCK_SIZE;
+    if (lower_bound < source.m_nums.size()) {
+        auto size_to_copy = std::min(source.m_nums.size() - lower_bound, BLOCK_SIZE);
+        m_nums.resize(size_to_copy);
+        std::copy_n(source.m_nums.begin() + lower_bound, size_to_copy, m_nums.begin());
     }
 }
 
@@ -32,7 +43,7 @@ LargeInteger LargeInteger::operator+(const LargeInteger &addend) const {
     }
 
     unsigned char carry = 0;
-    std::vector<unsigned char>::size_type i = 0;
+    NumData::size_type i = 0;
     for (; i < smaller->m_nums.size(); ++i) {
         addDigits(result.m_nums[i], smaller->m_nums[i], carry);
     }
@@ -61,12 +72,7 @@ void LargeInteger::addDigits(unsigned char &add_to, const unsigned char addend,
 }
 
 std::ostream &operator<<(std::ostream &os, const LargeInteger &num) {
-    std::string str_num;
-    str_num.reserve(num.m_nums.size());
-    for (auto i_digit = num.m_nums.rbegin(); i_digit != num.m_nums.rend(); ++i_digit) {
-        str_num.push_back(*i_digit + '0');
-    }
-    os << str_num;
+    os << num.ToString();
     return os;
 }
 
@@ -82,45 +88,38 @@ LargeInteger LargeInteger::operator*(const LargeInteger &multiplicand) const {
     }
 
     LargeInteger result;
-
-    for (std::vector<unsigned char>::size_type i = 0; i < smaller->m_nums.size(); ++i) {
-        auto temp = *larger * smaller->m_nums[i];
-        temp.m_nums.insert(temp.m_nums.begin(), i, 0);
+    for (NumData::size_type i = 0; i <= smaller->m_nums.size() / BLOCK_SIZE; ++i) {
+        auto temp = *larger * LargeInteger(*smaller, i).ToInt();
+        temp.m_nums.insert(temp.m_nums.begin(), i * BLOCK_SIZE, 0);
         result = result + temp;
     }
 
     return result;
 }
 
-LargeInteger LargeInteger::operator*(const unsigned char multiplicand) const {
-    if (multiplicand > 9) {
+LargeInteger LargeInteger::operator*(const unsigned multiplicand) const {
+    if (multiplicand > (UINT_MAX >> 4)) {
         return *this * LargeInteger(std::to_string(multiplicand));
     }
 
     if (multiplicand == 1) {
         return *this;
     }
-    LargeInteger result;
     if (multiplicand == 0) {
-        return result;
+        return LargeInteger {};
     }
 
-    unsigned char temp = 0;
-    unsigned char carry = 0;
-
-    for (auto digit : m_nums) {
-        temp = digit * multiplicand + carry;
-
-        if (temp > 10) {
-            carry = temp / 10;
-            temp %= 10;
-        } else {
-            carry = 0;
-        }
-        result.m_nums.emplace_back(temp);
+    LargeInteger result(*this);
+    unsigned carry = 0;
+    unsigned product = 0;
+    for (auto & digit : result.m_nums) {
+        product = digit * multiplicand + carry;
+        digit = product % 10;
+        carry = product / 10;
     }
-    if (carry) {
-        result.m_nums.emplace_back(carry);
+    while (carry) {
+        result.m_nums.emplace_back(carry % 10);
+        carry /= 10;
     }
 
     return result;
