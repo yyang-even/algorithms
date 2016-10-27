@@ -1,6 +1,7 @@
 add_library(numbers
     gcd.cpp
-    lcm.cpp)
+    lcm.cpp
+    large_integer.cpp)
 
 CompileBenchmarkExe(gcd)
 CompileTestExe(gcd)

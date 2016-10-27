@@ -1,5 +1,5 @@
-CompileBenchmarkExe(factorial)
-CompileTestExe(factorial)
+CompileBenchmarkExe(factorial numbers)
+CompileTestExe(factorial numbers)
 
 CompileBenchmarkExe(count_factorial_numbers_in_range)
 CompileTestExe(count_factorial_numbers_in_range)
