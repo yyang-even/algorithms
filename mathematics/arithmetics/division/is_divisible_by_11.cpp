@@ -39,6 +39,39 @@ INT_BOOL isDivisibleBy11(int num) {
     return isDivisibleBy11(even_odd_diff);
 }
 
+/**
+ * @reference   Sub-string Divisibility by 11 Queries
+ *              http://www.geeksforgeeks.org/sub-string-divisibility-11-queries/
+ *
+ * Given a large number, n (having number digits up to 10^6) and various queries of the below form :
+ * Query(l, r) :  find if the sub-string between the indices l and r (Both inclusive) are divisible by 11.
+ */
+struct Query {
+    Query(const std::string::size_type a, const std::string::size_type b): l(a), r(b) {}
+    std::string::size_type l = 0;
+    std::string::size_type r = 0;
+};
+
+std::vector<bool> SubstringDivisibilityBy11(const std::string &test_string,
+        const std::vector<Query> &queries) {
+    //Pre-compute
+    //Diff of even and odd placed digits before this index
+    std::vector<int> diffs(test_string.size() + 1);
+
+    bool isEven = true;
+    for (std::string::size_type i = 0; i < test_string.size(); ++i, isEven = !isEven) {
+        diffs[i + 1] = diffs[i] + ((isEven ? 1 : -1) * (test_string[i] - '0'));
+    }
+
+    //Handle queries
+    std::vector<bool> results(queries.size());
+    for (size_t i = 0; i < queries.size(); ++i) {
+        results[i] = ((diffs[queries[i].r + 1] - diffs[queries[i].l]) % 11) == 0;
+    }
+    return results;
+}
+
+
 const InputType LOWER = INT_MIN;
 const InputType UPPER = INT_MAX;
 const InputType SAMPLE1 = -120;
@@ -59,3 +92,8 @@ SIMPLE_TEST(isDivisibleBy11, TestSAMPLE2, TRUE, SAMPLE2);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE3, FALSE, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE4, TRUE, SAMPLE4);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, TRUE, 0);
+
+const std::vector<bool> EXPECTED_RESULTS {true, true, false, true};
+SIMPLE_BENCHMARK(SubstringDivisibilityBy11, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
+SIMPLE_TEST(SubstringDivisibilityBy11, TestLOWER, EXPECTED_RESULTS,
+"122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
