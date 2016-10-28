@@ -1,0 +1,2 @@
+CompileBenchmarkExe(fibonacci)
+CompileTestExe(fibonacci)

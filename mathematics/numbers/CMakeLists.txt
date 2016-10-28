@@ -15,4 +15,5 @@ CompileBenchmarkExe(large_integer)
 CompileTestExe(large_integer)
 
 add_subdirectory(binary)
+add_subdirectory(fibonacci)
 add_subdirectory(prime)
