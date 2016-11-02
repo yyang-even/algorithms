@@ -14,8 +14,13 @@ include_directories ("${PROJECT_SOURCE_DIR}")
 ###################################################
 # Options
 ###################################################
+# define option explicitly for pretty ccmake/cmake-gui
+option(BUILD_SHARED_LIBS "Build libraries as .dll's/.so's" true)
+mark_as_advanced(CLEAR BUILD_SHARED_LIBS)# mark un-advanced
+
 option(WANT_TERMINAL_APP "We want terminal based applications" ON)
 option(WANT_BENCHMARKS "We want benchmark executables" ON)
+
 # Do we want unit tests?
 option(WANT_TESTS "We want unit tests" ON)
 if(WANT_TESTS)
