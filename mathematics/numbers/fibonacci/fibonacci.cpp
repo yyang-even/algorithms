@@ -26,6 +26,36 @@ typedef unsigned InputType;
  * with seed values
  *      F0 = 0 and F1 = 1.
  */
+/**
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.1.
+ *
+ * How many ways T(n) are there to completely cover a 2*n rectangle with 2*1 dominoes?
+ *
+ *      T(n) = F(n+1)
+ *
+ *  1, 1, 2, 3, 5,...
+ */
+/**
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 6.6.
+ *
+ * How many ways a(n) are there for light rays to pass through or be reflected after changing direction
+ * n times?
+ *
+ *      a(n) = F(n+2)
+ */
+/**
+ * @reference   Count number of possible paths up ladder
+ *              http://stackoverflow.com/questions/12255193/count-number-of-possible-paths-up-ladder
+ *
+ * A ladder has n steps, one can climb the ladder using any combination of steps of 1 or steps of 2.
+ * How many possible ways are there for one to climb the ladder?
+ *
+ *      L(n) = F(n+1)
+ *
+ * 1, 1, 2, 3, 5,...
+ */
 
 /** Golden Ratio
  * @reference   Nature, The Golden Ratio, and Fibonacci too ...
