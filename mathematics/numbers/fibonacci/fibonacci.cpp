@@ -49,6 +49,18 @@ unsigned long FibonacciGoldenRatio(const InputType n) {
     }
 }
 
+/**
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 6.6.
+ */
+unsigned long FibonacciGoldenRatioClosedForm(const InputType n) {
+    constexpr double square_root_of_5 = std::sqrt(5.0);
+    constexpr double phi = (1.0 + square_root_of_5) / 2.0;
+    constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
+
+    return (std::pow(phi, n) - std::pow(phi_hat, n)) / square_root_of_5;
+}
+
 
 const InputType LOWER = 0;
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
@@ -60,3 +72,11 @@ RANDOM_BENCHMARK(FibonacciGoldenRatio, LOWER, UPPER);
 SIMPLE_TEST(FibonacciGoldenRatio, TestLOWER, 0, LOWER);
 SIMPLE_TEST(FibonacciGoldenRatio, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(FibonacciGoldenRatio, TestSAMPLE2, 144, 12);
+
+SIMPLE_BENCHMARK(FibonacciGoldenRatioClosedForm, LOWER);
+SIMPLE_BENCHMARK(FibonacciGoldenRatioClosedForm, UPPER);
+RANDOM_BENCHMARK(FibonacciGoldenRatioClosedForm, LOWER, UPPER);
+
+SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestLOWER, 0, LOWER);
+SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestSAMPLE2, 144, 12);
