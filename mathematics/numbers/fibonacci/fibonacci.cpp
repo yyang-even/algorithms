@@ -56,6 +56,22 @@ typedef unsigned InputType;
  *
  * 1, 1, 2, 3, 5,...
  */
+/**Spans-of-fans
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.3.
+ *              https://en.wikipedia.org/wiki/Spanning_tree
+ *
+ * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as follows: Vertex
+ * 0 is connected by an edge to each of the order n vertices, and vertex k is connected by an edge to
+ * vertex k+1, for 1 <= k < n.
+ * How many spanning trees f(n) are in such a graph?
+ *
+ * f(n) = f(n-1) + f(n-1) + f(n-2) + f(n-3) +...+ f(1) + 1
+ *
+ *      f(n) = F(2n), for n >= 0
+ *
+ * 0, 1, 3, 8,...
+ */
 
 /** Golden Ratio
  * @reference   Nature, The Golden Ratio, and Fibonacci too ...
