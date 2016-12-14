@@ -112,7 +112,7 @@ LargeInteger LargeInteger::operator*(const unsigned multiplicand) const {
     LargeInteger result(*this);
     unsigned carry = 0;
     unsigned product = 0;
-    for (auto &digit : result.m_nums) {
+    for (auto & digit : result.m_nums) {
         product = digit * multiplicand + carry;
         digit = product % 10;
         carry = product / 10;
