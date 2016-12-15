@@ -3,3 +3,6 @@ add_library(binary
 
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
+
+CompileBenchmarkExe(is_negative)
+CompileTestExe(is_negative)
