@@ -4,7 +4,8 @@ typedef int InputType;
 
 /** Compute the sign of an integer
  *
- * @reference   Compute the sign of an integer
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Compute the sign of an integer
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 INT_BOOL IsNegativePortable(const InputType num) {
