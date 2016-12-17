@@ -10,7 +10,7 @@ INT_BOOL isDivisibleBy5Mod(const InputType n) {
 
 INT_BOOL isDivisibleBy5LastDigit(const InputType n) {
     const auto last_digit = n % 10;
-    return (last_digit == 0) or (last_digit == 5);
+    return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
 
 /** Is divisible by 5
@@ -124,6 +124,7 @@ SIMPLE_TEST(isDivisibleBy5LastDigit, TestSAMPLE1, FALSE, SAMPLE1);
 SIMPLE_TEST(isDivisibleBy5LastDigit, TestSAMPLE2, TRUE, SAMPLE2);
 SIMPLE_TEST(isDivisibleBy5LastDigit, TestSAMPLE3, FALSE, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy5LastDigit, TestSAMPLE4, TRUE, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5LastDigit, TestSAMPLE5, TRUE, -970991465);
 
 MUTUAL_RANDOM_TEST(isDivisibleBy5Mod, isDivisibleBy5LastDigit, LOWER, UPPER);
 
