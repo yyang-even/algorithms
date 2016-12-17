@@ -12,3 +12,6 @@ CompileTestExe(count_set_bits)
 
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
+
+CompileBenchmarkExe(min_and_max)
+CompileTestExe(min_and_max)
