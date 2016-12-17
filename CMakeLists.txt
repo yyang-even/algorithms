@@ -23,6 +23,7 @@ option(WANT_BENCHMARKS "We want benchmark executables" ON)
 
 # Do we want unit tests?
 option(WANT_TESTS "We want unit tests" ON)
+option(WANT_RUN_NEWTESTS "We want to run tests that have been changed" OFF)
 if(WANT_TESTS)
     enable_testing()
     include(CTest)
@@ -76,6 +77,11 @@ macro(CompileTestExe name)
             ${PTHREAD_LIBRARY}
             ${ARGN})
         add_test(${target_name} ${target_name})
+
+        if(WANT_RUN_NEWTESTS)
+            add_custom_command(TARGET ${target_name} POST_BUILD
+                COMMAND ctest --output-on-failure -R ${target_name})
+        endif(WANT_RUN_NEWTESTS)
     endif(WANT_TESTS)
 endmacro(CompileTestExe)
 
