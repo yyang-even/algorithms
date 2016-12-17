@@ -80,7 +80,8 @@ macro(CompileTestExe name)
 
         if(WANT_RUN_NEWTESTS)
             add_custom_command(TARGET ${target_name} POST_BUILD
-                COMMAND ctest --output-on-failure -R ${target_name})
+                COMMAND ctest --output-on-failure -R ${target_name}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} VERBATIM)
         endif(WANT_RUN_NEWTESTS)
     endif(WANT_TESTS)
 endmacro(CompileTestExe)
