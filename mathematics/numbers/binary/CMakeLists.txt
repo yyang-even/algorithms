@@ -10,6 +10,9 @@ CompileTestExe(are_opposite_signs)
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
 
+CompileBenchmarkExe(conditionally_set_or_clear)
+CompileTestExe(conditionally_set_or_clear)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 
