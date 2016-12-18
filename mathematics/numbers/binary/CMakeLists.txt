@@ -18,3 +18,6 @@ CompileTestExe(is_power_of_2)
 
 CompileBenchmarkExe(min_and_max)
 CompileTestExe(min_and_max)
+
+CompileBenchmarkExe(sign_extending)
+CompileTestExe(sign_extending)
