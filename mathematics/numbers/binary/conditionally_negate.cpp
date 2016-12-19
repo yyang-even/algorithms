@@ -7,7 +7,7 @@
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 /**
- * b_negate ? -num : num
+ * @param b_negate  b_negate ? -num : num
  */
 int NegateIfTrue(const bool b_negate, const int num) {
     return (num ^ -b_negate) + b_negate;
