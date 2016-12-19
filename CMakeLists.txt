@@ -80,8 +80,9 @@ macro(CompileTestExe name)
 
         if(WANT_AUTO_TESTS)
             add_custom_command(TARGET ${target_name} POST_BUILD
-                COMMAND ctest --output-on-failure -R ${target_name}
-                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} VERBATIM)
+                COMMAND ctest --output-on-failure -R ^${target_name}$
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} 
+                COMMENT "Testing '${target_name}'" VERBATIM)
         endif(WANT_AUTO_TESTS)
     endif(WANT_TESTS)
 endmacro(CompileTestExe)
