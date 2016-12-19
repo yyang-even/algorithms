@@ -13,6 +13,9 @@ CompileTestExe(count_set_bits)
 CompileBenchmarkExe(conditionally_set_or_clear)
 CompileTestExe(conditionally_set_or_clear)
 
+CompileBenchmarkExe(conditionally_negate)
+CompileTestExe(conditionally_negate)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 
