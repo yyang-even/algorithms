@@ -141,7 +141,7 @@ unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
 }
 
 const InputType LOWER = 0;
-constexpr InputType UPPER = UINT_MAX;
+const InputType UPPER = UINT_MAX;
 
 SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, LOWER);
 SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, UPPER);
