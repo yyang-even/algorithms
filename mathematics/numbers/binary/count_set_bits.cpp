@@ -23,9 +23,11 @@ InputType CountSetBitsBrianKernighan(InputType n) {
     return count;
 }
 
-/**
- * @reference   Counting bits set by lookup table
- *              http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetTable
+/** Counting bits set by lookup table
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Counting bits set by lookup table
+ *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 static const unsigned char BitsSetTable256[256] = {
 #define B2(n) n,     n+1,     n+1,     n+2
@@ -43,6 +45,12 @@ InputType CountSetBitsLookupTable(const InputType n) {
     return count;
 }
 
+/** TODO: Counting bits set in 14, 24, or 32-bit words using 64-bit instructions
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Counting bits set in 14, 24, or 32-bit words using 64-bit instructions
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
 
 const InputType LOWER = 0;
 constexpr InputType UPPER = UINT_MAX;
