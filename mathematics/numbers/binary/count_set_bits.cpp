@@ -52,6 +52,17 @@ InputType CountSetBitsLookupTable(const InputType n) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 
+/** Counting bits set, in parallel
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Counting bits set, in parallel
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+uint32_t CountSetBitsMagicBinaries32(uint32_t n) {
+    n = n - ((n >> 1) & 0x55555555);
+    n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
+    return ((n + (n >> 4) & 0xF0F0F0F) * 0x1010101) >> 24;
+}
+
 const InputType LOWER = 0;
 constexpr InputType UPPER = UINT_MAX;
 
@@ -74,3 +85,13 @@ SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE2, 3, 13);
 
 MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, CountSetBitsLookupTable, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, LOWER);
+SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, UPPER);
+
+SIMPLE_TEST(CountSetBitsMagicBinaries32, TestLOWER, 0, LOWER);
+SIMPLE_TEST(CountSetBitsMagicBinaries32, TestUPPER, sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE1, 2, 6);
+SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE2, 3, 13);
+
+MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, CountSetBitsMagicBinaries32, LOWER, UPPER);
