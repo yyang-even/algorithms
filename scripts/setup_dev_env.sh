@@ -27,5 +27,8 @@ Install_or_Update_Packages() {
     return $?
 }
 
-
+# Install third-party libraries
 Install_or_Update_Packages libboost-all-dev
+# Copy git hooks
+SCRIPT_DIR=$(dirname "$0")
+cp --interactive $SCRIPT_DIR/git_hooks/* $SCRIPT_DIR/../.git/hooks/
