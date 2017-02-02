@@ -27,6 +27,7 @@ Install_or_Update_Packages() {
     return $?
 }
 
+
 # Install third-party libraries
 Install_or_Update_Packages libboost-all-dev
 # Copy git hooks
