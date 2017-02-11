@@ -1,9 +1,0 @@
-#!/bin/sh
-
-ASTYLE_CONFIG="scripts/astyle.rc"
-
-# Current directory is set to the top level of the working tree
-if (which astyle &> /dev/null) && [ -f $ASTYLE_CONFIG ]; then
-    echo "Running Astyle..."
-    astyle --recursive --options=$ASTYLE_CONFIG "*.cpp" "*.h"
-fi
