@@ -45,6 +45,16 @@ INT_BOOL ParityLookupTable(const InputType n) {
     return ParityTable256[parity];
 }
 
+/** Compute parity of a byte using 64-bit multiply and modulus division
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Compute parity of a byte using 64-bit multiply and modulus division
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+INT_BOOL ParityOfByte64bit(const unsigned char n) {
+    return (((n * 0x0101010101010101ULL) & 0x8040201008040201ULL) % 0x1FF) & 1;
+}
+
 
 const InputType LOWER = 0;
 const InputType UPPER = UINT_MAX;
@@ -66,3 +76,11 @@ SIMPLE_TEST(ParityLookupTable, TestSAMPLE1, FALSE, 6);
 SIMPLE_TEST(ParityLookupTable, TestSAMPLE2, TRUE, 13);
 
 MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityLookupTable, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(ParityOfByte64bit, LOWER);
+SIMPLE_BENCHMARK(ParityOfByte64bit, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(ParityOfByte64bit, TestLOWER, FALSE, LOWER);
+SIMPLE_TEST(ParityOfByte64bit, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE1, FALSE, 6);
+SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE2, TRUE, 13);
