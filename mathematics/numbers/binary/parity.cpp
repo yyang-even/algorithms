@@ -74,6 +74,20 @@ INT_BOOL ParityMultiply64(uint64_t n) {
     return (n >> 60) & 1;
 }
 
+/** Compute parity in parallel
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Compute parity in parallel
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+INT_BOOL ParityParallel(uint32_t n) {
+    n ^= n >> 16;
+    n ^= n >> 8;
+    n ^= n >> 4;
+    n &= 0xf;
+    return (0x6996 >> n) & 1;
+}
+
 
 const InputType LOWER = 0;
 const InputType UPPER = UINT_MAX;
@@ -122,3 +136,13 @@ SIMPLE_TEST(ParityMultiply64, TestSAMPLE2, TRUE, 13);
 
 MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityMultiply32, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ParityMultiply32, ParityMultiply64, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(ParityParallel, LOWER);
+SIMPLE_BENCHMARK(ParityParallel, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(ParityParallel, TestLOWER, FALSE, LOWER);
+SIMPLE_TEST(ParityParallel, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityParallel, TestSAMPLE1, FALSE, 6);
+SIMPLE_TEST(ParityParallel, TestSAMPLE2, TRUE, 13);
+
+MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityParallel, LOWER, UPPER);
