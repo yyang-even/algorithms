@@ -55,6 +55,25 @@ INT_BOOL ParityOfByte64bit(const unsigned char n) {
     return (((n * 0x0101010101010101ULL) & 0x8040201008040201ULL) % 0x1FF) & 1;
 }
 
+/** Compute parity of word with a multiply
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Compute parity of word with a multiply
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+INT_BOOL ParityMultiply32(uint32_t n) {
+    n ^= n >> 1;
+    n ^= n >> 2;
+    n = (n & 0x11111111U) * 0x11111111U;
+    return (n >> 28) & 1;
+}
+INT_BOOL ParityMultiply64(uint64_t n) {
+    n ^= n >> 1;
+    n ^= n >> 2;
+    n = (n & 0x1111111111111111UL) * 0x1111111111111111UL;
+    return (n >> 60) & 1;
+}
+
 
 const InputType LOWER = 0;
 const InputType UPPER = UINT_MAX;
@@ -84,3 +103,22 @@ SIMPLE_TEST(ParityOfByte64bit, TestLOWER, FALSE, LOWER);
 SIMPLE_TEST(ParityOfByte64bit, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
 SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE1, FALSE, 6);
 SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE2, TRUE, 13);
+
+SIMPLE_BENCHMARK(ParityMultiply32, LOWER);
+SIMPLE_BENCHMARK(ParityMultiply32, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(ParityMultiply32, TestLOWER, FALSE, LOWER);
+SIMPLE_TEST(ParityMultiply32, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityMultiply32, TestSAMPLE1, FALSE, 6);
+SIMPLE_TEST(ParityMultiply32, TestSAMPLE2, TRUE, 13);
+
+SIMPLE_BENCHMARK(ParityMultiply64, LOWER);
+SIMPLE_BENCHMARK(ParityMultiply64, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(ParityMultiply64, TestLOWER, FALSE, LOWER);
+SIMPLE_TEST(ParityMultiply64, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityMultiply64, TestSAMPLE1, FALSE, 6);
+SIMPLE_TEST(ParityMultiply64, TestSAMPLE2, TRUE, 13);
+
+MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityMultiply32, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(ParityMultiply32, ParityMultiply64, LOWER, UPPER);
