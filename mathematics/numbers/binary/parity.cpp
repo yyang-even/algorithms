@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "binary.h"
-
 typedef unsigned InputType;
 
 /** Computing parity the naive way

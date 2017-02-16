@@ -33,3 +33,6 @@ CompileTestExe(parity)
 
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
+
+CompileBenchmarkExe(swap)
+CompileTestExe(swap)
