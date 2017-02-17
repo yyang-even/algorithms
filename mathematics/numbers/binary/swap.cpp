@@ -53,6 +53,14 @@ INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
  */
 InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
                        const unsigned bit_length) {
+    constexpr unsigned NUM_BITS = sizeof(number) * CHAR_BIT;
+    if (i + bit_length >= NUM_BITS or
+        j + bit_length >= NUM_BITS or
+        i == j or
+        (i > j and j + bit_length > i) or
+        (i < j and i + bit_length > j)) {
+        return 0;
+    }
     unsigned int xor_mask = ((number >> i) ^ (number >> j)) & ((1U << bit_length) - 1U);
     return number ^ ((xor_mask << i) | (xor_mask << j));
 }
@@ -82,3 +90,4 @@ SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, TRUE, SwapXor, UPPER, UPPER);
 SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
 
 SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011, 0b00101111, 1, 5, 3);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0, 0b00101111, 0, 4, 5);
