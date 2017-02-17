@@ -32,13 +32,28 @@ void SwapXor(InputType &a, InputType &b) {
     }
 }
 
-
 INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
                   const InputType a, const InputType b) {
     InputType swapped_a = b;
     InputType swapped_b = a;
     swap(swapped_a, swapped_b);
     return swapped_a == a and swapped_b == b;
+}
+
+
+/** Swapping individual bits with XOR
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Swapping individual bits with XOR
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ * As an example of swapping ranges of bits suppose we have have number=00101111 (expressed in binary)
+ * and we want to swap the bit_length=3 consecutive bits starting at i = 1 (the second bit from the right)
+ * with the 3 consecutive bits starting at j = 5; the result would be r=11100011 (binary).
+ */
+InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
+                       const unsigned bit_length) {
+    unsigned int xor_mask = ((number >> i) ^ (number >> j)) & ((1U << bit_length) - 1U);
+    return number ^ ((xor_mask << i) | (xor_mask << j));
 }
 
 
@@ -62,3 +77,7 @@ SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE3, TRUE, SwapXor, LOWER, UPPER);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE4, TRUE, SwapXor, UPPER, LOWER);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, TRUE, SwapXor, 13, 13);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, TRUE, SwapXor, UPPER, UPPER);
+
+SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
+
+SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011, 0b00101111, 1, 5, 3);
