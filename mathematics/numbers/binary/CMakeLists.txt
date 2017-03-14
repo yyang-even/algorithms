@@ -31,6 +31,9 @@ CompileTestExe(masked_bits_merge)
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
+CompileBenchmarkExe(reverse)
+CompileTestExe(reverse)
+
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
