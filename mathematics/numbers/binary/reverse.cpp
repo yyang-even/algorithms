@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-typedef uint32_t InputType;
+typedef unsigned InputType;
 
 /** Reverse bits
  *
@@ -9,6 +9,8 @@ typedef uint32_t InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32Bits(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
     auto size = sizeof(num) * CHAR_BIT - 1;
     InputType ret = num;
     for (num >>= 1; num; num >>= 1) {
@@ -26,6 +28,8 @@ InputType Reverse32Bits(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32BitsLookupTable(const InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
     static const unsigned char BitReverseTable256[256] = {
 #define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
 #define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
@@ -82,6 +86,8 @@ unsigned char ReverseBitsInByte7(const unsigned char byte) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32BitsParallel(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
     // swap odd and even bits
     num = ((num >> 1) & 0x55555555) | ((num & 0x55555555) << 1);
     // swap consecutive pairs
@@ -113,7 +119,9 @@ T ReverseNBitsParallel(T num) {
 
     return num;
 }
-uint32_t ReverseNBitsParallelUint32(uint32_t num) {
+InputType ReverseNBitsParallelUint32(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
     return ReverseNBitsParallel(num);
 }
 

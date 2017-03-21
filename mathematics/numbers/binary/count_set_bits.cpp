@@ -57,7 +57,9 @@ InputType CountSetBitsLookupTable(const InputType n) {
  *              Counting bits set, in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-uint32_t CountSetBitsMagicBinaries32(uint32_t n) {
+uint32_t CountSetBitsMagicBinaries32(InputType n) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
     n = n - ((n >> 1) & 0x55555555);
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
     return ((n + (n >> 4) & 0xF0F0F0F) * 0x1010101) >> 24;
