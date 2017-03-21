@@ -28,6 +28,9 @@ CompileTestExe(min_and_max)
 CompileBenchmarkExe(masked_bits_merge)
 CompileTestExe(masked_bits_merge)
 
+CompileBenchmarkExe(modulus)
+CompileTestExe(modulus)
+
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
