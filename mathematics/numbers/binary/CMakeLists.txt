@@ -22,6 +22,9 @@ CompileTestExe(is_negative)
 CompileBenchmarkExe(is_power_of_2)
 CompileTestExe(is_power_of_2)
 
+CompileBenchmarkExe(log)
+CompileTestExe(log)
+
 CompileBenchmarkExe(min_and_max)
 CompileTestExe(min_and_max)
 
