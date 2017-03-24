@@ -39,6 +39,32 @@ InputType LogBase2Float(const InputType num) {
 }
 
 
+/** Find the log base 2 of an integer with a lookup table
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Find the log base 2 of an integer with a lookup table
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+InputType LogBase2LookupTable(const InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    static const char LogTable256[256] = {
+#define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
+        -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+        LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
+        LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
+    };
+
+    register InputType t, tt; // temporaries
+
+    if (tt = num >> 16) {
+        return (t = tt >> 8) ? 24 + LogTable256[t] : 16 + LogTable256[tt];
+    } else {
+        return (t = num >> 8) ? 8 + LogTable256[t] : LogTable256[num];
+    }
+}
+
+
 const InputType LOWER = 1;
 const InputType UPPER = UINT_MAX;
 
@@ -57,3 +83,12 @@ SIMPLE_TEST(LogBase2Float, TestSAMPLE1, 3, 8);
 SIMPLE_TEST(LogBase2Float, TestSAMPLE2, 4, 17);
 
 MUTUAL_RANDOM_TEST(LogBase2, LogBase2Float, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(LogBase2LookupTable, UPPER);
+
+SIMPLE_TEST(LogBase2LookupTable, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2LookupTable, TestUPPER, 31, UPPER);
+SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE2, 4, 17);
+
+MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2Float, LOWER, UPPER);
