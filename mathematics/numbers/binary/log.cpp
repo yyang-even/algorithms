@@ -65,6 +65,76 @@ InputType LogBase2LookupTable(const InputType num) {
 }
 
 
+/** Find the log base 2 of an N-bit integer in O(lg(N)) operations
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Find the log base 2 of an N-bit integer in O(lg(N)) operations
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+InputType LogBase2LgNBranch(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
+    static const unsigned int S[] = {1, 2, 4, 8, 16};
+
+    register InputType result = 0;
+    for (int i = 4; i >= 0; i--) {
+        if (num & b[i]) {
+            num >>= S[i];
+            result |= S[i];
+        }
+    }
+
+    return result;
+}
+InputType LogBase2LgNNoBranch(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    register InputType result;
+    register InputType shift;
+
+    result = (num > 0xFFFF) << 4;
+    num >>= result;
+    shift = (num > 0xFF) << 3;
+    num >>= shift;
+    result |= shift;
+    shift = (num > 0xF) << 2;
+    num >>= shift;
+    result |= shift;
+    shift = (num > 0x3) << 1;
+    num >>= shift;
+    result |= shift;
+    result |= (num >> 1);
+
+    return result;
+}
+
+
+/** Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+InputType LogBase2LgNMultiplyAndLookup(InputType num) {
+    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
+        0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
+        8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
+    };
+
+    num |= num >> 1; // first round down to one less than a power of 2
+    num |= num >> 2;
+    num |= num >> 4;
+    num |= num >> 8;
+    num |= num >> 16;
+
+    return MultiplyDeBruijnBitPosition[(uint32_t)(num * 0x07C4ACDDU) >> 27];
+}
+
+
+
 const InputType LOWER = 1;
 const InputType UPPER = UINT_MAX;
 
@@ -92,3 +162,30 @@ SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE1, 3, 8);
 SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE2, 4, 17);
 
 MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2Float, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(LogBase2LgNBranch, UPPER);
+
+SIMPLE_TEST(LogBase2LgNBranch, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2LgNBranch, TestUPPER, 31, UPPER);
+SIMPLE_TEST(LogBase2LgNBranch, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2LgNBranch, TestSAMPLE2, 4, 17);
+
+MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNBranch, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(LogBase2LgNNoBranch, UPPER);
+
+SIMPLE_TEST(LogBase2LgNNoBranch, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2LgNNoBranch, TestUPPER, 31, UPPER);
+SIMPLE_TEST(LogBase2LgNNoBranch, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2LgNNoBranch, TestSAMPLE2, 4, 17);
+
+MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNNoBranch, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(LogBase2LgNMultiplyAndLookup, UPPER);
+
+SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestUPPER, 31, UPPER);
+SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE2, 4, 17);
+
+MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNMultiplyAndLookup, LOWER, UPPER);
