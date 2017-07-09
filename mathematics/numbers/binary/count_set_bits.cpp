@@ -142,8 +142,8 @@ unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
     return 65 - s;
 }
 
-const InputType LOWER = 0;
-const InputType UPPER = UINT_MAX;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, LOWER);
 SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, UPPER);

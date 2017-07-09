@@ -15,12 +15,12 @@ InputType CountTrailing0sInFactorialOf(const InputType num) {
 }
 
 
-const InputType LOWER = 0;
-const InputType UPPER = UINT_MAX;
-const InputType SAMPLE1 = 5;
-const InputType SAMPLE2 = 20;
-const InputType SAMPLE3 = 21;
-const InputType SAMPLE4 = 100;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr InputType SAMPLE1 = 5;
+constexpr InputType SAMPLE2 = 20;
+constexpr InputType SAMPLE3 = 21;
+constexpr InputType SAMPLE4 = 100;
 
 SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, LOWER);
 SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, UPPER);

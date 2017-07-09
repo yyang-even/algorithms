@@ -98,7 +98,7 @@ LargeInteger LargeInteger::operator*(const LargeInteger &multiplicand) const {
 }
 
 LargeInteger LargeInteger::operator*(const unsigned multiplicand) const {
-    if (multiplicand > (UINT_MAX >> 4)) {
+    if (multiplicand > (std::numeric_limits<unsigned>::max() >> 4)) {
         return *this * LargeInteger(std::to_string(multiplicand));
     }
 

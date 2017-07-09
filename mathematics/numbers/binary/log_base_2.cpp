@@ -137,8 +137,8 @@ InputType LogBase2LgNMultiplyAndLookup(InputType num) {
 
 
 
-const InputType LOWER = 1;
-const InputType UPPER = UINT_MAX;
+constexpr InputType LOWER = 1;
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(LogBase2, UPPER);
 

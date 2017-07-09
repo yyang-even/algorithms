@@ -121,9 +121,9 @@ InputType JosephusKClosedform(const InputType n, const InputType k) {
 }
 
 
-const InputType LOWER = 1;
-constexpr InputType UPPER = ~InputType(0);
-const InputType SAMPLE = 15;
+constexpr InputType LOWER = 1;
+constexpr InputType UPPER = std::numeric_limits<InputType>::max();
+constexpr InputType SAMPLE = 15;
 
 SIMPLE_BENCHMARK(JosephusProblem2Recursive, LOWER);
 SIMPLE_BENCHMARK(JosephusProblem2Recursive, UPPER);

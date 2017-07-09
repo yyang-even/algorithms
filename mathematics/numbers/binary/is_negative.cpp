@@ -16,13 +16,17 @@ INT_BOOL IsNegative(const InputType num) {
     return num < 0 ? TRUE : FALSE;
 }
 
+
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
 SIMPLE_BENCHMARK(IsNegativePortable, -1);
 SIMPLE_BENCHMARK(IsNegativePortable, 0);
-SIMPLE_BENCHMARK(IsNegativePortable, INT_MIN);
-SIMPLE_BENCHMARK(IsNegativePortable, INT_MAX);
+SIMPLE_BENCHMARK(IsNegativePortable, LOWER);
+SIMPLE_BENCHMARK(IsNegativePortable, UPPER);
 
 SIMPLE_TEST(IsNegativePortable, TestSample1, TRUE, -1);
 SIMPLE_TEST(IsNegativePortable, TestSample2, FALSE, 0);
-SIMPLE_TEST(IsNegativePortable, TestSample3, TRUE, INT_MIN);
-SIMPLE_TEST(IsNegativePortable, TestSample4, FALSE, INT_MAX);
-MUTUAL_RANDOM_TEST(IsNegativePortable, IsNegative, INT_MIN, INT_MAX);
+SIMPLE_TEST(IsNegativePortable, TestSample3, TRUE, LOWER);
+SIMPLE_TEST(IsNegativePortable, TestSample4, FALSE, UPPER);
+MUTUAL_RANDOM_TEST(IsNegativePortable, IsNegative, LOWER, UPPER);

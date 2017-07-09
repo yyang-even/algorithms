@@ -18,34 +18,37 @@ int NegateIfFalse(const bool b_dont_negate, const int num) {
 }
 
 
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
+
 SIMPLE_BENCHMARK(NegateIfTrue, true, -1);
 SIMPLE_BENCHMARK(NegateIfTrue, true, 0);
-SIMPLE_BENCHMARK(NegateIfTrue, false, INT_MIN);
-SIMPLE_BENCHMARK(NegateIfTrue, false, INT_MAX);
+SIMPLE_BENCHMARK(NegateIfTrue, false, LOWER);
+SIMPLE_BENCHMARK(NegateIfTrue, false, UPPER);
 
 SIMPLE_TEST(NegateIfTrue, TestSample1, 1, true, -1);
 SIMPLE_TEST(NegateIfTrue, TestSample2, 0, true, 0);
 SIMPLE_TEST(NegateIfTrue, TestSample3, -1, true, 1);
-SIMPLE_TEST(NegateIfTrue, TestSample4, INT_MIN, true, INT_MIN);
-SIMPLE_TEST(NegateIfTrue, TestSample5, INT_MIN + 1, true, INT_MAX);
+SIMPLE_TEST(NegateIfTrue, TestSample4, LOWER, true, LOWER);
+SIMPLE_TEST(NegateIfTrue, TestSample5, LOWER + 1, true, UPPER);
 SIMPLE_TEST(NegateIfTrue, TestSample6, -1, false, -1);
 SIMPLE_TEST(NegateIfTrue, TestSample7, 0, false, 0);
 SIMPLE_TEST(NegateIfTrue, TestSample8, 1, false, 1);
-SIMPLE_TEST(NegateIfTrue, TestSample9, INT_MIN, false, INT_MIN);
-SIMPLE_TEST(NegateIfTrue, TestSample10, INT_MAX, false, INT_MAX);
+SIMPLE_TEST(NegateIfTrue, TestSample9, LOWER, false, LOWER);
+SIMPLE_TEST(NegateIfTrue, TestSample10, UPPER, false, UPPER);
 
 SIMPLE_BENCHMARK(NegateIfFalse, true, -1);
 SIMPLE_BENCHMARK(NegateIfFalse, true, 0);
-SIMPLE_BENCHMARK(NegateIfFalse, false, INT_MIN);
-SIMPLE_BENCHMARK(NegateIfFalse, false, INT_MAX);
+SIMPLE_BENCHMARK(NegateIfFalse, false, LOWER);
+SIMPLE_BENCHMARK(NegateIfFalse, false, UPPER);
 
 SIMPLE_TEST(NegateIfFalse, TestSample1, 1, false, -1);
 SIMPLE_TEST(NegateIfFalse, TestSample2, 0, false, 0);
 SIMPLE_TEST(NegateIfFalse, TestSample3, -1, false, 1);
-SIMPLE_TEST(NegateIfFalse, TestSample4, INT_MIN, false, INT_MIN);
-SIMPLE_TEST(NegateIfFalse, TestSample5, INT_MIN + 1, false, INT_MAX);
+SIMPLE_TEST(NegateIfFalse, TestSample4, LOWER, false, LOWER);
+SIMPLE_TEST(NegateIfFalse, TestSample5, LOWER + 1, false, UPPER);
 SIMPLE_TEST(NegateIfFalse, TestSample6, -1, true, -1);
 SIMPLE_TEST(NegateIfFalse, TestSample7, 0, true, 0);
 SIMPLE_TEST(NegateIfFalse, TestSample8, 1, true, 1);
-SIMPLE_TEST(NegateIfFalse, TestSample9, INT_MIN, true, INT_MIN);
-SIMPLE_TEST(NegateIfFalse, TestSample10, INT_MAX, true, INT_MAX);
+SIMPLE_TEST(NegateIfFalse, TestSample9, LOWER, true, LOWER);
+SIMPLE_TEST(NegateIfFalse, TestSample10, UPPER, true, UPPER);

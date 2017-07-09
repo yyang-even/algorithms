@@ -92,12 +92,12 @@ INT_BOOL isDivisibleBy5LastDigitStrict(const InputType n) {
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
 
-const InputType LOWER = INT_MIN;
-const InputType UPPER = INT_MAX;
-const InputType SAMPLE1 = -4;
-const InputType SAMPLE2 = -40;
-const InputType SAMPLE3 = 189;
-const InputType SAMPLE4 = 2600;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr InputType SAMPLE1 = -4;
+constexpr InputType SAMPLE2 = -40;
+constexpr InputType SAMPLE3 = 189;
+constexpr InputType SAMPLE4 = 2600;
 
 SIMPLE_BENCHMARK(isDivisibleBy5Mod, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy5Mod, UPPER);

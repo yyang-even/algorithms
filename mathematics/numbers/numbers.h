@@ -1,3 +1,5 @@
+#pragma once
+
 #include "common_header.h"
 
 unsigned gcd(unsigned m, unsigned n);

@@ -72,12 +72,12 @@ std::vector<bool> SubstringDivisibilityBy11(const std::string &test_string,
 }
 
 
-const InputType LOWER = INT_MIN;
-const InputType UPPER = INT_MAX;
-const InputType SAMPLE1 = -120;
-const InputType SAMPLE2 = -121;
-const InputType SAMPLE3 = 60;
-const InputType SAMPLE4 = 6600;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr InputType SAMPLE1 = -120;
+constexpr InputType SAMPLE2 = -121;
+constexpr InputType SAMPLE3 = 60;
+constexpr InputType SAMPLE4 = 6600;
 
 SIMPLE_BENCHMARK(isDivisibleBy11, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy11, UPPER);

@@ -89,8 +89,8 @@ INT_BOOL ParityParallel(InputType n) {
 }
 
 
-const InputType LOWER = 0;
-const InputType UPPER = UINT_MAX;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(ParityBrianKernighan, LOWER);
 SIMPLE_BENCHMARK(ParityBrianKernighan, UPPER);

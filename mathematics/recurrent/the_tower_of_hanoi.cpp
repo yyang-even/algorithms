@@ -95,9 +95,9 @@ unsigned long DoubleHanoiTowerBClosedform(const InputType n) {
     return (long(1) << (n + 2)) - 5;
 }
 
-const InputType LOWER = 0;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = LONG_BITS_NUM - 1;
-const InputType SAMPLE = 8;
+constexpr InputType SAMPLE = 8;
 
 SIMPLE_BENCHMARK(HanoiTowerRecursive, LOWER);
 SIMPLE_BENCHMARK(HanoiTowerRecursive, UPPER);
@@ -110,11 +110,11 @@ SIMPLE_BENCHMARK(HanoiTowerClosedform, SAMPLE);
 RANDOM_BENCHMARK(HanoiTowerClosedform, LOWER, UPPER);
 
 SIMPLE_TEST(HanoiTowerRecursive, TestLOWER, 0, LOWER);
-SIMPLE_TEST(HanoiTowerRecursive, TestUPPER, ULONG_MAX / 2, UPPER);
+SIMPLE_TEST(HanoiTowerRecursive, TestUPPER, std::numeric_limits<unsigned long>::max() / 2, UPPER);
 SIMPLE_TEST(HanoiTowerRecursive, TestSAMPLE, 255, SAMPLE);
 
 SIMPLE_TEST(HanoiTowerClosedform, TestLOWER, 0, LOWER);
-SIMPLE_TEST(HanoiTowerClosedform, TestUPPER, ULONG_MAX / 2, UPPER);
+SIMPLE_TEST(HanoiTowerClosedform, TestUPPER, std::numeric_limits<unsigned long>::max() / 2, UPPER);
 SIMPLE_TEST(HanoiTowerClosedform, TestSAMPLE, 255, SAMPLE);
 
 MUTUAL_RANDOM_TEST(HanoiTowerRecursive, HanoiTowerClosedform, LOWER, UPPER);

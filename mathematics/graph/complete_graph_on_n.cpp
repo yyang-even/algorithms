@@ -18,8 +18,8 @@ unsigned long long CompleteGraphOnN(const unsigned n) {
 
 
 SIMPLE_BENCHMARK(CompleteGraphOnN, 1);
-SIMPLE_BENCHMARK(CompleteGraphOnN, 0);
-SIMPLE_BENCHMARK(CompleteGraphOnN, UINT_MAX);
+SIMPLE_BENCHMARK(CompleteGraphOnN, std::numeric_limits<unsigned>::min());
+SIMPLE_BENCHMARK(CompleteGraphOnN, std::numeric_limits<unsigned>::max());
 
 SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0, 0);
 SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1, 1);

@@ -40,7 +40,7 @@ inline InputType LogBase10Enum(const InputType num) {
 
 
 constexpr InputType LOWER = 1;
-constexpr InputType UPPER = std::numeric_limits<InputType>::max();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(LogBase10, UPPER);
 

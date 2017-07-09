@@ -46,8 +46,8 @@ INT_BOOL isDivisibleBy7(InputType num) {
 }
 
 
-const InputType LOWER = INT_MIN;
-const InputType UPPER = INT_MAX;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy7, UPPER);

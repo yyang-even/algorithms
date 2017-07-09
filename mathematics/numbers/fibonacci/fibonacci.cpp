@@ -108,7 +108,7 @@ unsigned long FibonacciGoldenRatioClosedForm(const InputType n) {
 }
 
 
-const InputType LOWER = 0;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 
 SIMPLE_BENCHMARK(FibonacciGoldenRatio, LOWER);

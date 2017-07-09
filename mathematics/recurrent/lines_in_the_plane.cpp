@@ -93,9 +93,9 @@ InputType PlaneZigzagLinesClosedform(const InputType n) {
     return (9 * n * n - 7 * n) / 2 + 1;
 }
 
-const InputType LOWER = 0;
+constexpr InputType LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
-const InputType SAMPLE = 14;
+constexpr InputType SAMPLE = 14;
 
 constexpr InputType BITS_NUM = (sizeof(InputType) * CHAR_BIT);
 constexpr InputType UPPER2 = InputType(1) << ((LONG_BITS_NUM / 2) - 1);

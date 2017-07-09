@@ -49,13 +49,13 @@ std::string PrintAllPrimeFactors(InputType N) {
 }
 
 
-const InputType LOWER = 1;
-const InputType SAMPLE1 = 12;
-const InputType SAMPLE2 = 315;
+constexpr InputType LOWER = 1;
+constexpr InputType SAMPLE1 = 12;
+constexpr InputType SAMPLE2 = 315;
 
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, LOWER);
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, SAMPLE1);
-RANDOM_BENCHMARK(PrintAllPrimeFactors, LOWER, UINT_MAX);
+RANDOM_BENCHMARK(PrintAllPrimeFactors, LOWER, std::numeric_limits<InputType>::max());
 
 SIMPLE_TEST(PrintAllPrimeFactors, TestLOWER, "", LOWER);
 SIMPLE_TEST(PrintAllPrimeFactors, TestSAMPLE1, "223", SAMPLE1);

@@ -126,8 +126,8 @@ InputType ReverseNBitsParallelUint32(InputType num) {
 }
 
 
-const InputType LOWER = 0;
-const InputType UPPER = UINT_MAX;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(Reverse32Bits, UPPER);
 

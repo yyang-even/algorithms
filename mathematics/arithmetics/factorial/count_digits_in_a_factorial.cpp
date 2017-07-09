@@ -38,7 +38,7 @@ unsigned long long CountDigitsInAFactorialKamenetsky(const InputType n) {
     return std::floor(digits) + 1;
 }
 
-const InputType LOWER = 0;
+constexpr auto LOWER = std::numeric_limits<InputType>::min();
 
 SIMPLE_BENCHMARK(CountDigitsInAFactorial, LOWER);
 SIMPLE_BENCHMARK(CountDigitsInAFactorial, 120);
@@ -49,7 +49,7 @@ SIMPLE_TEST(CountDigitsInAFactorial, TestSAMPLE2, 3, 5);
 SIMPLE_TEST(CountDigitsInAFactorial, TestSAMPLE3, 7, 10);
 SIMPLE_TEST(CountDigitsInAFactorial, TestSAMPLE4, 199, 120);
 
-const InputType UPPER = UINT_MAX;
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(CountDigitsInAFactorialKamenetsky, LOWER);
 SIMPLE_BENCHMARK(CountDigitsInAFactorialKamenetsky, UPPER);

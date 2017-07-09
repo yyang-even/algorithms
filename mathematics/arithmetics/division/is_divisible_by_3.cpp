@@ -38,8 +38,8 @@ INT_BOOL isDivisibleBy3(InputType num) {
 }
 
 
-const InputType LOWER = 2;
-const InputType UPPER = INT_MAX;
+constexpr InputType LOWER = 2;
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(isDivisibleBy3, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy3, UPPER);
