@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "binary.h"
+
 typedef unsigned InputType;
 
 /** Find the log base 2 of an integer with the MSB N set in O(N) operations (the obvious way)
@@ -48,7 +50,7 @@ InputType LogBase2Float(const InputType num) {
 InputType LogBase2LookupTable(const InputType num) {
     static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
 
-    static const char LogTable256[256] = {
+    static constexpr char LogTable256[256] = {
 #define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
         -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
         LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),

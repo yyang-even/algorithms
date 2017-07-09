@@ -1,5 +1,6 @@
 add_library(binary
-    count_set_bits.cpp)
+    count_set_bits.cpp
+    log_base_2.cpp)
 
 CompileBenchmarkExe(abs)
 CompileTestExe(abs)
