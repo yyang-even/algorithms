@@ -36,7 +36,7 @@ unsigned long FactorialTailRecursive(const InputType num, unsigned long factoria
         return factorial;
     }
 
-    FactorialTailRecursive(num - 1, num * factorial);
+    return FactorialTailRecursive(num - 1, num * factorial);
 }
 unsigned long FactorialTailRecursive(const InputType num) {
     return FactorialTailRecursive(num, 1);
