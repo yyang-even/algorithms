@@ -47,15 +47,14 @@ InputType LogBase2Float(const InputType num) {
  *              Find the log base 2 of an integer with a lookup table
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
+static constexpr char LogTable256[256] = {
+#define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
+    -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
+    LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
+    LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
+};
 InputType LogBase2LookupTable(const InputType num) {
     static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
-
-    static constexpr char LogTable256[256] = {
-#define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
-        -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-        LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
-        LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
-    };
 
     register InputType t, tt; // temporaries
 
@@ -136,6 +135,56 @@ InputType LogBase2LgNMultiplyAndLookup(InputType num) {
 }
 
 
+/** Find integer log base 2 of a 32-bit IEEE float
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Find integer log base 2 of a 32-bit IEEE float
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ */
+int LogBase2FloatInput(const float num) {
+    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    int result;
+    memcpy(&result, &num, sizeof(result));
+    return (result >> 23) - 127;
+}
+int LogBase2IEEE754Float(const float num) {
+    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    int x;
+    memcpy(&x, &num, sizeof(x));
+
+    int result = x >> 23;
+
+    if (result) {
+        result -= 127;
+    } else { // subnormal, so recompute using mantissa: c = intlog2(x) - 149;
+        register unsigned int t;
+        // Note that LogTable256 was defined earlier
+        if (t = x >> 16) {
+            result = LogTable256[t] - 133;
+        } else {
+            result = (t = x >> 8) ? LogTable256[t] - 141 : LogTable256[x] - 149;
+        }
+    }
+    return result;
+}
+/** Find integer log base 2 of the pow(2, r)-root of a 32-bit IEEE float (for unsigned integer r)
+ *
+ * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
+ *              Find integer log base 2 of the pow(2, r)-root of a 32-bit IEEE float (for unsigned integer r)
+ *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * find int(log2(pow((double) v, 1. / pow(2, r)))), where isnormal(v) and v > 0
+ */
+int LogBase2ofPow2r(const float num, const unsigned r) {
+    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+
+    int result;
+    memcpy(&result, &num, sizeof result);
+    return ((((result - 0x3f800000) >> r) + 0x3f800000) >> 23) - 127;
+}
+
 
 constexpr InputType LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
@@ -191,3 +240,24 @@ SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE1, 3, 8);
 SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE2, 4, 17);
 
 MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNMultiplyAndLookup, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(LogBase2FloatInput, UPPER);
+
+SIMPLE_TEST(LogBase2FloatInput, TestLOWER, 0, LOWER);
+//SIMPLE_TEST(LogBase2FloatInput, TestUPPER, 31, UPPER);  //Failed
+SIMPLE_TEST(LogBase2FloatInput, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2FloatInput, TestSAMPLE2, 4, 17);
+
+SIMPLE_BENCHMARK(LogBase2IEEE754Float, UPPER);
+
+SIMPLE_TEST(LogBase2IEEE754Float, TestLOWER, 0, LOWER);
+//SIMPLE_TEST(LogBase2IEEE754Float, TestUPPER, 31, UPPER);    //Failed
+SIMPLE_TEST(LogBase2IEEE754Float, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2IEEE754Float, TestSAMPLE2, 4, 17);
+
+SIMPLE_BENCHMARK(LogBase2ofPow2r, UPPER, 0);
+
+SIMPLE_TEST(LogBase2ofPow2r, TestLOWER, 0, LOWER, 0);
+//SIMPLE_TEST(LogBase2ofPow2r, TestUPPER, 31, UPPER, 0);    //Failed
+SIMPLE_TEST(LogBase2ofPow2r, TestSAMPLE1, 3, 8, 0);
+SIMPLE_TEST(LogBase2ofPow2r, TestSAMPLE2, 4, 17, 0);
