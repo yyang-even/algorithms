@@ -4,10 +4,12 @@ project (Algorithms)
 
 ###################################################
 # gcc
-#   1. Using C++11;
+#   1. Using C++14;
 #   2. Enable gdb
 ###################################################
 list(APPEND CMAKE_CXX_FLAGS "-std=c++1y ${CMAKE_CXX_FLAGS} -g")
+# Turn warning about any return statement with no return value in a function whose return type is not void
+#list(APPEND CMAKE_CXX_FLAGS "-Werror=return-type")
 
 include_directories ("${PROJECT_SOURCE_DIR}")
 
