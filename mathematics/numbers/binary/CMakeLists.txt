@@ -17,6 +17,9 @@ CompileTestExe(conditionally_set_or_clear)
 CompileBenchmarkExe(conditionally_negate)
 CompileTestExe(conditionally_negate)
 
+CompileBenchmarkExe(count_trailing_zeros)
+CompileTestExe(count_trailing_zeros)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 
