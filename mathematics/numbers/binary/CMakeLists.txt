@@ -44,6 +44,9 @@ CompileTestExe(parity)
 CompileBenchmarkExe(reverse)
 CompileTestExe(reverse)
 
+CompileBenchmarkExe(round_up_to_power_of_2)
+CompileTestExe(round_up_to_power_of_2)
+
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
