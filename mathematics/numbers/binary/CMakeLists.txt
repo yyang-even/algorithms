@@ -38,6 +38,9 @@ CompileTestExe(masked_bits_merge)
 CompileBenchmarkExe(modulus)
 CompileTestExe(modulus)
 
+CompileBenchmarkExe(morton_number)
+CompileTestExe(morton_number)
+
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
