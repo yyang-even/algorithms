@@ -47,6 +47,9 @@ CompileTestExe(morton_number)
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
+CompileBenchmarkExe(permutation)
+CompileTestExe(permutation)
+
 CompileBenchmarkExe(reverse)
 CompileTestExe(reverse)
 
