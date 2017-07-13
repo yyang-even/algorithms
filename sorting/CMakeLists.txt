@@ -1,0 +1,2 @@
+CompileBenchmarkExe(insertion)
+CompileTestExe(insertion)
