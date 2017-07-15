@@ -6,18 +6,19 @@
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 2.1.
+ *
+ *              http://www.geeksforgeeks.org/insertion-sort/
  */
 template<std::size_t N>
 auto InsertionSort(std::array<int, N> values) {
-    int key;
-    for (int j = 1; j < values.size(); ++j) {
-        key = values[j];
-        auto i = j - 1;
-        while ((i >= 0) and (values[i] > key)) {
+    for (int key_value, i, j = 1; j < values.size(); ++j) {
+        key_value = values[j];
+        i = j - 1;
+        while ((i >= 0) and (values[i] > key_value)) {
             values[i + 1] = values[i];
             --i;
         }
-        values[i + 1] = key;
+        values[i + 1] = key_value;
     }
     return values;
 }
