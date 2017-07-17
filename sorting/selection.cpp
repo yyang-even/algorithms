@@ -2,6 +2,9 @@
 
 #include "3rdParty/prettyprint.hpp"
 
+template <std::size_t N>
+using ArrayType = std::array<int, N>;
+
 /** Selection Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -11,11 +14,11 @@
  *              http://www.geeksforgeeks.org/selection-sort/
  */
 template<std::size_t N>
-auto SelectionSort(std::array<int, N> values) {
+auto SelectionSort(ArrayType<N> values) {
     assert(values.size());
 
     const auto size = values.size();
-    for (typename std::array<int, N>::size_type smallest_index, i, j = 0; j < (size - 1); ++j) {
+    for (typename ArrayType<N>::size_type smallest_index, i, j = 0; j < (size - 1); ++j) {
         smallest_index = j;
         for (i = j + 1; i < size; ++i) {
             if (values[i] < values[smallest_index]) {
@@ -29,12 +32,12 @@ auto SelectionSort(std::array<int, N> values) {
 }
 
 
-constexpr std::array<int, 1> VALUES2 = {1};
-constexpr std::array<int, 2> VALUES3 = {1, 2};
-constexpr std::array<int, 3> VALUES4 = {2, 3, 1};
-constexpr std::array<int, 3> EXPECTED4 = {1, 2, 3};
-constexpr std::array<int, 4> VALUES5 = {4, 3, 2, 1};
-constexpr std::array<int, 4> EXPECTED5 = {1, 2, 3, 4};
+constexpr ArrayType<1> VALUES2 = {1};
+constexpr ArrayType<2> VALUES3 = {1, 2};
+constexpr ArrayType<3> VALUES4 = {2, 3, 1};
+constexpr ArrayType<3> EXPECTED4 = {1, 2, 3};
+constexpr ArrayType<4> VALUES5 = {4, 3, 2, 1};
+constexpr ArrayType<4> EXPECTED5 = {1, 2, 3, 4};
 
 SIMPLE_TEST(SelectionSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(SelectionSort, TestSAMPLE3, VALUES3, VALUES3);
