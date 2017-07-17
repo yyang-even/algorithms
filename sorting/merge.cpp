@@ -2,6 +2,8 @@
 
 #include "3rdParty/prettyprint.hpp"
 
+using ArrayType = std::vector<int>;
+
 /** Merge Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -9,10 +11,10 @@
  *
  *              http://www.geeksforgeeks.org/merge-sort/
  */
-void Merge(const std::vector<int>::iterator begin, const std::vector<int>::iterator middle,
-           const std::vector<int>::iterator end) {
-    const auto L = std::vector<int>(begin, middle);
-    const auto R = std::vector<int>(middle, end);
+void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
+           const ArrayType::iterator end) {
+    const auto L = ArrayType(begin, middle);
+    const auto R = ArrayType(middle, end);
 
     auto iter = begin;
     auto L_iter = L.cbegin();
@@ -34,7 +36,7 @@ void Merge(const std::vector<int>::iterator begin, const std::vector<int>::itera
         *iter++ = *R_iter++;
     }
 }
-void MergeSort(const std::vector<int>::iterator begin, const std::vector<int>::size_type n) {
+void MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n) {
     if (n > 1) {
         const auto middle = n >> 1; //floor(n/2)
         const auto middle_begin = begin + middle;
@@ -43,19 +45,19 @@ void MergeSort(const std::vector<int>::iterator begin, const std::vector<int>::s
         Merge(begin, middle_begin, begin + n);
     }
 }
-auto MergeSort(std::vector<int> values) {
+auto MergeSort(ArrayType values) {
     MergeSort(values.begin(), values.size());
     return values;
 }
 
 
-const std::vector<int> VALUES1 = {};
-const std::vector<int> VALUES2 = {1};
-const std::vector<int> VALUES3 = {1, 2};
-const std::vector<int> VALUES4 = {2, 3, 1};
-const std::vector<int> EXPECTED4 = {1, 2, 3};
-const std::vector<int> VALUES5 = {4, 3, 2, 1};
-const std::vector<int> EXPECTED5 = {1, 2, 3, 4};
+const ArrayType VALUES1 = {};
+const ArrayType VALUES2 = {1};
+const ArrayType VALUES3 = {1, 2};
+const ArrayType VALUES4 = {2, 3, 1};
+const ArrayType EXPECTED4 = {1, 2, 3};
+const ArrayType VALUES5 = {4, 3, 2, 1};
+const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
 SIMPLE_TEST(MergeSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort, TestSAMPLE2, VALUES2, VALUES2);
