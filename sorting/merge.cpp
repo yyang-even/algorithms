@@ -10,6 +10,8 @@ using ArrayType = std::vector<int>;
  *              Introduction to Algorithms, Third Edition. Chapter 2.3.
  *
  *              http://www.geeksforgeeks.org/merge-sort/
+ *
+ * @complexity: O(n*lgn)
  */
 void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
            const ArrayType::iterator end) {

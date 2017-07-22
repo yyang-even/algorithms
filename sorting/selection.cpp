@@ -12,6 +12,8 @@ using ArrayType = std::array<int, N>;
  *              https://mitpress.mit.edu/sites/default/files/titles/content/Intro_to_Algo_Selected_Solutions.pdf
  *
  *              http://www.geeksforgeeks.org/selection-sort/
+ *
+ * @complexity: O(n^2)
  */
 template<std::size_t N>
 auto SelectionSort(ArrayType<N> values) {

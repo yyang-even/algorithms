@@ -2,8 +2,7 @@
 
 #include "3rdParty/prettyprint.hpp"
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+using ArrayType = std::vector<int>;
 
 /** Insertion Sort
  *
@@ -11,9 +10,10 @@ using ArrayType = std::array<int, N>;
  *              Introduction to Algorithms, Third Edition. Chapter 2.1.
  *
  *              http://www.geeksforgeeks.org/insertion-sort/
+ *
+ * @complexity: O(n^2)
  */
-template<std::size_t N>
-auto InsertionSort(ArrayType<N> values) {
+auto InsertionSort(ArrayType values) {
     for (int key_value, i, j = 1; j < values.size(); ++j) {
         key_value = values[j];
         i = j - 1;
@@ -29,9 +29,10 @@ auto InsertionSort(ArrayType<N> values) {
 /** Recursive Insertion Sort
  *
  * @reference   http://www.geeksforgeeks.org/recursive-insertion-sort/
+ *
+ * @complexity: O(n^2)
  */
-template<std::size_t N>
-void InsertionSortRecursive(ArrayType<N> &values, const int n) {
+void InsertionSortRecursive(ArrayType &values, const int n) {
     if (n > 1) {
         const auto key_index = n - 1;
         InsertionSortRecursive(values, key_index);
@@ -43,29 +44,80 @@ void InsertionSortRecursive(ArrayType<N> &values, const int n) {
         values[i + 1] = key_value;
     }
 }
-template<std::size_t N>
-auto InsertionSortRecursive(ArrayType<N> values) {
+auto InsertionSortRecursive(ArrayType values) {
     InsertionSortRecursive(values, values.size());
     return values;
 }
 
 
-constexpr ArrayType<0> VALUES1 = {};
-constexpr ArrayType<1> VALUES2 = {1};
-constexpr ArrayType<2> VALUES3 = {1, 2};
-constexpr ArrayType<3> VALUES4 = {2, 3, 1};
-constexpr ArrayType<3> EXPECTED4 = {1, 2, 3};
-constexpr ArrayType<4> VALUES5 = {4, 3, 2, 1};
-constexpr ArrayType<4> EXPECTED5 = {1, 2, 3, 4};
+/** Binary Insertion Sort
+ *
+ * @reference   http://www.geeksforgeeks.org/binary-insertion-sort/
+ *
+ * @complexity: O(n^2)
+ */
+auto BinarySearch(const int target, const ArrayType::const_iterator begin,
+                  const ArrayType::size_type n) {
+    if (n > 1) {
+        const auto middle = n >> 1;
+        const auto middle_value = *(begin + middle);
+
+        if (target == middle_value) {
+            return begin + middle + 1;
+        } else if (target < middle_value) {
+            return BinarySearch(target, begin, middle);
+        } else {
+            return BinarySearch(target, begin + middle, n - middle);
+        }
+    } else {
+        return (target > *begin) ? begin + 1 : begin;
+    }
+}
+auto BinaryInsertionSort(ArrayType values) {
+    for (int key_value, location, i, j = 1; j < values.size(); ++j) {
+        key_value = values[j];
+        i = j - 1;
+
+        location = BinarySearch(key_value, values.cbegin(), j) - values.cbegin();
+        while (i >= location) {
+            values[i + 1] = values[i];
+            --i;
+        }
+        values[i + 1] = key_value;
+    }
+
+    return values;
+}
+
+
+
+const ArrayType VALUES1 = {};
+const ArrayType VALUES2 = {1};
+const ArrayType VALUES3 = {1, 2};
+const ArrayType VALUES4 = {2, 3, 1};
+const ArrayType EXPECTED4 = {1, 2, 3};
+const ArrayType VALUES5 = {4, 3, 2, 1};
+const ArrayType EXPECTED5 = {1, 2, 3, 4};
+const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
+const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 SIMPLE_TEST(InsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(InsertionSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(InsertionSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(InsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
 SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE6, EXPECTED6, VALUES6);
+
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
