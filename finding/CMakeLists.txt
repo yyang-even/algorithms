@@ -1,0 +1,2 @@
+CompileBenchmarkExe(a_pair_elements_sum_as_n)
+CompileTestExe(a_pair_elements_sum_as_n)
