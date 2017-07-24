@@ -1,3 +1,6 @@
+CompileBenchmarkExe(bubble)
+CompileTestExe(bubble)
+
 CompileBenchmarkExe(insertion)
 CompileTestExe(insertion)
 

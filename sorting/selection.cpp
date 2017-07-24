@@ -14,23 +14,22 @@
  */
 template <typename Container>
 auto SelectionSort(Container values) {
-    assert(values.size());
-
-    const auto size = values.size();
-    for (typename Container::size_type smallest_index, i, j = 0; j < (size - 1); ++j) {
-        smallest_index = j;
-        for (i = j + 1; i < size; ++i) {
-            if (values[i] < values[smallest_index]) {
-                smallest_index = i;
+    for (typename Container::iterator smallest_iter, iter_j, iter_i = values.begin();
+         iter_i != values.end();
+         ++iter_i) {
+        for (iter_j = iter_i + 1, smallest_iter = iter_i; iter_j != values.end(); ++iter_j) {
+            if (*iter_j < *smallest_iter) {
+                smallest_iter = iter_j;
             }
         }
-        std::swap(values[j], values[smallest_index]);
+        std::swap(*iter_i, *smallest_iter);
     }
 
     return values;
 }
 
 
+constexpr std::array<int, 0> VALUES1 = {};
 constexpr std::array<int, 1> VALUES2 = {1};
 constexpr std::array<int, 2> VALUES3 = {1, 2};
 constexpr std::array<int, 3> VALUES4 = {2, 3, 1};
@@ -38,6 +37,7 @@ constexpr std::array<int, 3> EXPECTED4 = {1, 2, 3};
 constexpr std::array<int, 4> VALUES5 = {4, 3, 2, 1};
 constexpr std::array<int, 4> EXPECTED5 = {1, 2, 3, 4};
 
+SIMPLE_TEST(SelectionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(SelectionSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(SelectionSort, TestSAMPLE4, EXPECTED4, VALUES4);
@@ -47,12 +47,14 @@ SIMPLE_TEST(SelectionSort, TestSAMPLE5, EXPECTED5, VALUES5);
  *
  * @reference   http://www.geeksforgeeks.org/c-program-to-sort-an-array-of-strings-using-selection-sort-2/
  */
+const std::vector<std::string> VALUES21 = {};
 const std::vector<std::string> VALUES22 = {"a"};
 const std::vector<std::string> VALUES23 = {"paper", "true", "soap", "floppy", "flower"};
 const std::vector<std::string> EXPECTED23 = {"floppy", "flower", "paper", "soap", "true"};
 const std::vector<std::string> VALUES24 = {"paper", "soap", "floppy", "flower"};
 const std::vector<std::string> EXPECTED24 = {"floppy", "flower", "paper", "soap"};
 
+SIMPLE_TEST(SelectionSort, TestSAMPLE21, VALUES21, VALUES21);
 SIMPLE_TEST(SelectionSort, TestSAMPLE22, VALUES22, VALUES22);
 SIMPLE_TEST(SelectionSort, TestSAMPLE23, EXPECTED23, VALUES23);
 SIMPLE_TEST(SelectionSort, TestSAMPLE24, EXPECTED24, VALUES24);
