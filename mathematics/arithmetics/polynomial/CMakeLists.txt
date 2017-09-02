@@ -1,0 +1,2 @@
+CompileBenchmarkExe(horner_method)
+CompileTestExe(horner_method)
