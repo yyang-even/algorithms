@@ -1,0 +1,2 @@
+CompileBenchmarkExe(power)
+CompileTestExe(power)
