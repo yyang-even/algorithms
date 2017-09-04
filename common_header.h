@@ -50,6 +50,11 @@ std::mt19937 generator(rd());
         EXPECT_EQ(expectedValue, func_name(inputs)) << "Input: " << inputs;     \
     }                                                                           \
 }
+#define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {    \
+    TEST(func_name##Test, testName) {                                   \
+        EXPECT_EQ(expectedValue, func_name());                          \
+    }                                                                   \
+}
 
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {            \
     TEST(MutualRandomTest, func1##vs##func2) {                                          \
@@ -60,6 +65,7 @@ std::mt19937 generator(rd());
 }
 #else
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
+#define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {}
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}
 #endif
 
