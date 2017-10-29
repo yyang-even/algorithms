@@ -1,0 +1,2 @@
+CompileBenchmarkExe(rock_paper_scissors)
+CompileTestExe(rock_paper_scissors)
