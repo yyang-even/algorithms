@@ -15,7 +15,6 @@
  *  56789 -> 67895 -> 68957 -> 68579 -> 68597
  *  and you must return the greatest: 68957.
  */
-
 long long RotateForMax(long long n) {
     auto str_n = std::to_string(n);
     for (auto iter = str_n.begin(); iter != str_n.end(); ++iter) {
