@@ -1,0 +1,2 @@
+CompileBenchmarkExe(largest_sum_contiguous_subarray)
+CompileTestExe(largest_sum_contiguous_subarray)
