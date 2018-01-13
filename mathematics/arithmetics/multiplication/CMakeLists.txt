@@ -1,0 +1,2 @@
+CompileBenchmarkExe(maximum_product_subarray)
+CompileTestExe(maximum_product_subarray)
