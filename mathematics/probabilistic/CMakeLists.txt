@@ -1,0 +1,3 @@
+CompileBenchmarkExe(fair_coin_from_biased_coin)
+CompileTestExe(fair_coin_from_biased_coin)
+
