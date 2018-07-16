@@ -18,7 +18,8 @@ bool foo() {
                                               false, false, false,
                                               true, true, true, true
                                              };
-    static std::default_random_engine generator;
+    const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
+    static std::default_random_engine generator(SEED);
     static std::uniform_int_distribution<int> distribution(0, SAMPLES.size() - 1);
 
     return SAMPLES[distribution(generator)];
