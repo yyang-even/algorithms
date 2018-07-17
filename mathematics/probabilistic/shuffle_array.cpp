@@ -18,18 +18,10 @@ using ArrayType = std::array<int, N>;
  *
  * @complexity  O(n)
  */
-/** A helper function return a random number in range [from, to]
- */
-auto RandomNumber(const int from, const int to) {
-    const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
-    static std::default_random_engine generator(SEED);
-    std::uniform_int_distribution<int> distribution(from, to);
-    return distribution(generator);
-}
 template <std::size_t N>
 void ShuffleArrayInPlace(ArrayType<N> &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
-        auto j = RandomNumber(0, i);
+        auto j = Random_Number<decltype(i)>(0, i);
         std::swap(array[i], array[j]);
     }
 }

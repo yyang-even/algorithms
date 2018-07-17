@@ -18,12 +18,18 @@ typedef int INT_BOOL;
 #define TRUE 1
 #define FALSE 0
 
-// Macros
-#if defined(NONIUS_RUNNER) || defined(WANT_TESTS)
-std::random_device rd;
-std::mt19937 generator(rd());
-#endif
+// Util Functions
+/** A function return a random number in range [from, to]
+ */
+template <typename T>
+inline auto Random_Number(const T from, const T to) {
+    static const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
+    static std::default_random_engine generator(SEED);
+    std::uniform_int_distribution<T> distribution(from, to);
+    return distribution(generator);
+}
 
+// Macros
 #ifdef NONIUS_RUNNER
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
     NONIUS_BENCHMARK((std::string(#func_name) + "(" + #inputs + ")"), []() {    \
@@ -33,8 +39,7 @@ std::mt19937 generator(rd());
 
 #define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {                         \
     NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
-        std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);          \
-        auto input = distribution(generator);                                                   \
+        auto input = Random_Number<InputType>(lowerBound, upperBound);                          \
         meter.measure([&input]() { return func_name(input); });                                 \
     })                                                                                          \
 }
@@ -58,8 +63,7 @@ std::mt19937 generator(rd());
 
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {            \
     TEST(MutualRandomTest, func1##vs##func2) {                                          \
-        std::uniform_int_distribution<InputType> distribution(lowerBound, upperBound);  \
-        auto input = distribution(generator);                                           \
+        auto input = Random_Number<InputType>(lowerBound, upperBound);                  \
         EXPECT_EQ(func1(input), func2(input)) << "Input: " << input;                    \
     }                                                                                   \
 }
