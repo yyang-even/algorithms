@@ -3,3 +3,6 @@ CompileTestExe(fair_coin_from_biased_coin)
 
 CompileBenchmarkExe(shuffle_array)
 CompileTerminalApp(shuffle_array)
+
+CompileBenchmarkExe(reservoir_sampling)
+CompileTerminalApp(reservoir_sampling)
