@@ -1,8 +1,11 @@
+CompileBenchmarkExe(equal_probability_random_number)
+CompileTestExe(equal_probability_random_number)
+
 CompileBenchmarkExe(fair_coin_from_biased_coin)
 CompileTestExe(fair_coin_from_biased_coin)
 
-CompileBenchmarkExe(shuffle_array)
-CompileTerminalApp(shuffle_array)
-
 CompileBenchmarkExe(reservoir_sampling)
 CompileTerminalApp(reservoir_sampling)
+
+CompileBenchmarkExe(shuffle_array)
+CompileTerminalApp(shuffle_array)
