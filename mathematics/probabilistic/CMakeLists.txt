@@ -4,6 +4,9 @@ CompileTestExe(equal_probability_random_number)
 CompileBenchmarkExe(fair_coin_from_biased_coin)
 CompileTestExe(fair_coin_from_biased_coin)
 
+CompileBenchmarkExe(generate_0_1_25_75_probability)
+CompileTestExe(generate_0_1_25_75_probability)
+
 CompileBenchmarkExe(reservoir_sampling)
 CompileTerminalApp(reservoir_sampling)
 
