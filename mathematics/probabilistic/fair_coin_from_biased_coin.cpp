@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "probabilistic.h"
+
 /** Make a fair coin from a biased coin
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -13,16 +15,8 @@
  * and 1 with 50% probability each. Your function should use only
  * foo(), no other library method.
  */
-bool foo() {
-    static const std::vector<bool> SAMPLES = {false, false, false,
-                                              false, false, false,
-                                              true, true, true, true
-                                             };
-    const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
-    static std::default_random_engine generator(SEED);
-    static std::uniform_int_distribution<int> distribution(0, SAMPLES.size() - 1);
-
-    return SAMPLES[distribution(generator)];
+inline bool foo() {
+    return RandomNumberInArbitraryProbabilitySimple({0, 1}, {6, 4});
 }
 bool MakeFairCoinfromBiasedCoin() {
     bool coin1 = foo();
@@ -36,9 +30,9 @@ bool MakeFairCoinfromBiasedCoin() {
 
 
 bool TestMakeFairCoinfromBiasedCoin() {
-    static const int SAMPLE_SIZE = 100000;
+    static const int SAMPLE_SIZE = 2000000;
     static const int HALF_SAMPLE_SIZE = SAMPLE_SIZE / 2;
-    static const double ERROR_RATE = 0.001;
+    static const double ERROR_RATE = 0.01;
     static const int TOLERATION = SAMPLE_SIZE * ERROR_RATE;
 
     int counter = 0;
