@@ -66,7 +66,6 @@ bool testRandomNumberInArbitraryProbability(
 }
 
 
-
 int RandomNumberInArbitraryProbability(const std::vector<int> &numbers,
                                        const std::vector<int> &frequencies) {
     return RandomNumberInArbitraryProbabilityCeil(numbers, frequencies);
