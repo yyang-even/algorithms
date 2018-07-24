@@ -66,6 +66,27 @@ bool testRandomNumberInArbitraryProbability(
 }
 
 
+
+int RandomNumberInArbitraryProbability(const std::vector<int> &numbers,
+                                       const std::vector<int> &frequencies) {
+    return RandomNumberInArbitraryProbabilityCeil(numbers, frequencies);
+}
+
+
+/** Write a function that generates one of 3 numbers according to given probabilities
+ *
+ * @reference   https://www.geeksforgeeks.org/write-a-function-to-generate-3-numbers-according-to-given-probabilities/
+ *
+ * You are given a function rand(a, b) which generates equiprobable random numbers
+ * between [a, b] inclusive. Generate 3 numbers x, y, z with probability P(x), P(y),
+ * P(z) such that P(x) + P(y) + P(z) = 1 using the given rand(a,b) function.
+ */
+inline auto RandomNumber1of3(const int x, const int y, const int z,
+                             const int px, const int py, const int pz) {
+    return RandomNumberInArbitraryProbabilityCeil({x, y, z}, {px, py, pz});
+}
+
+
 SIMPLE_BENCHMARK(RandomNumberInArbitraryProbabilitySimple, NUMBERS, FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestSample, true,
@@ -78,7 +99,4 @@ SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestCeil, true,
             RandomNumberInArbitraryProbabilityCeil);
 
 
-int RandomNumberInArbitraryProbability(const std::vector<int> &numbers,
-                                       const std::vector<int> &frequencies) {
-    return RandomNumberInArbitraryProbabilityCeil(numbers, frequencies);
-}
+SIMPLE_BENCHMARK(RandomNumber1of3, 1, 2, 3, 40, 25, 35);
