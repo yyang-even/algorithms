@@ -64,3 +64,6 @@ CompileTestExe(sign_extending)
 
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
+
+CompileBenchmarkExe(zig_zag_encoding)
+CompileTestExe(zig_zag_encoding)

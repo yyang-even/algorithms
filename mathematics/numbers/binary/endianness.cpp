@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-/* Is Little Endian
+/** Is Little Endian
  *
  * @reference   Little and Big Endian Mystery
  *              http://www.geeksforgeeks.org/little-and-big-endian-mystery/
