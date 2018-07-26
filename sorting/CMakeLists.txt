@@ -4,6 +4,9 @@ CompileTestExe(bubble)
 CompileBenchmarkExe(count_inversions)
 CompileTestExe(count_inversions)
 
+CompileBenchmarkExe(heap_sort)
+CompileTestExe(heap_sort)
+
 CompileBenchmarkExe(insertion)
 CompileTestExe(insertion)
 
