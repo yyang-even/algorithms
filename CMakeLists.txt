@@ -104,6 +104,7 @@ endmacro(CompileTerminalApp)
 ###################################################
 add_subdirectory(3rdParty)
 add_subdirectory(decision)
+add_subdirectory(data_structure)
 add_subdirectory(finding)
 add_subdirectory(mathematics)
 add_subdirectory(text)
