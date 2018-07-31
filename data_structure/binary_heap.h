@@ -8,6 +8,8 @@
  *              https://www.geeksforgeeks.org/binary-heap/
  *              Array Representation Of Binary Heap
  *              https://www.geeksforgeeks.org/array-representation-of-binary-heap/
+ *              Time Complexity of building a heap
+ *              https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
  */
 template <typename Compare = std::less<int> >
 class BinaryHeap {
@@ -16,7 +18,7 @@ public:
 
 private:
     ArrayType heap;
-    const Compare compare{};
+    const Compare compare {};
 
     auto parent(const ArrayType::size_type i) const {
         assert(i);
@@ -31,7 +33,7 @@ private:
         return (2 * i + 2);
     }
 
-    void heapifyRecursive(const ArrayType::size_type i,
+    void heapifyRecursive(ArrayType::size_type i,
                           const ArrayType::size_type heap_size) {
         const auto l = left(i);
         const auto r = right(i);
@@ -49,19 +51,41 @@ private:
             heapifyRecursive(best, heap_size);
         }
     }
+    void heapifyIterative(ArrayType::size_type i,
+                          const ArrayType::size_type heap_size) {
+        while (i < heap_size) {
+            const auto l = left(i);
+            const auto r = right(i);
+            std::vector<int>::size_type best = i;
 
-    void buildHeap() {
+            if (l < heap_size and compare(heap[l], heap[best])) {
+                best = l;
+            }
+            if (r < heap_size and compare(heap[r], heap[best])) {
+                best = r;
+            }
+
+            if (best != i) {
+                std::swap(heap[i], heap[best]);
+                i = best;
+            } else {
+                break;
+            }
+        }
+    }
+
+    void buildHeap(const std::function<void(ArrayType::size_type, const ArrayType::size_type)> heapify) {
         if (not heap.empty()) {
             for (int i = heap.size() / 2; i >= 0; --i) {
-                heapifyRecursive(i, heap.size());
+                heapify(i, heap.size());
             }
         }
     }
 
 public:
     BinaryHeap() = default;
-    BinaryHeap(const ArrayType &array): heap(array) {
-        buildHeap();
+    BinaryHeap(const ArrayType &array, const bool recursive = true): heap(array) {
+        buildHeap(recursive ? heapifyRecursive : heapifyIterative);
     }
 
     auto Top() const {
