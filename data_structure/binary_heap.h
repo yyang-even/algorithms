@@ -83,6 +83,13 @@ private:
         }
     }
 
+    void bubbleUp(ArrayType::size_type i) {
+        while (i and compare(heap[i], heap[parent(i)])) {
+            std::swap(heap[parent(i)], heap[i]);
+            i = parent(i);
+        }
+    }
+
 public:
     BinaryHeap() = default;
     BinaryHeap(const ArrayType &array, const bool recursive = true): heap(array) {
@@ -106,12 +113,7 @@ public:
 
     void Push(const int value) {
         heap.push_back(value);
-
-        auto i = heap.size() - 1;
-        while (i and compare(heap[i], heap[parent(i)])) {
-            std::swap(heap[parent(i)], heap[i]);
-            i = parent(i);
-        }
+        bubbleUp(heap.size() - 1);
     }
 
     bool Empty() const {
@@ -125,6 +127,15 @@ public:
         }
 
         return std::move(heap);
+    }
+
+    void Prioritize(const ArrayType::size_type i, const int new_key) {
+        assert(i < heap.size());
+
+        if (compare(new_key, heap[i])) {
+            heap[i] = new_key;
+            bubbleUp(i);
+        }
     }
 };
 
