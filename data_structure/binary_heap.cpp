@@ -20,6 +20,8 @@ auto testBinaryHeapPushAndPop(const MinHeap::ArrayType &array) {
 
 
 const MinHeap::ArrayType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const MinHeap::ArrayType EXPECTED_ARRAY {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+const MinHeap::ArrayType EXPECTED_ARRAY {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+};
 
 SIMPLE_TEST(testBinaryHeapPushAndPop, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
