@@ -73,6 +73,20 @@ class SinglyLinkedList {
     std::size_t countSizeRecursiveHelper(const SinglyListNode::PointerType node) const {
         return node ? countSizeRecursiveHelper(node->next) + 1 : 0;
     }
+
+    void reverseRecursiveHelper(const SinglyListNode::PointerType current,
+                                const SinglyListNode::PointerType previous) {
+        if (not current->next) {
+            head = current;
+            current->next = previous;
+            return;
+        }
+
+        const auto next = current->next;
+        current->next = previous;
+        reverseRecursiveHelper(next, current);
+    }
+
 public:
     SinglyLinkedList() = default;
     SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
@@ -192,6 +206,36 @@ public:
     auto CountSizeRecursive() const {
         return countSizeRecursiveHelper(head);
     }
+
+    /** Reverse a linked list
+     *
+     * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
+     *
+     * Given pointer to the head node of a linked list, the task is to reverse
+     * the linked list. We need to reverse the list by changing links between nodes.
+     *
+     * @complexity  O(n)
+     */
+    void ReverseIterative() {
+        auto current = head;
+        SinglyListNode::PointerType previous = nullptr;
+
+        while (current) {
+            const auto next = current->next;
+            current->next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+    }
+
+    void ReverseRecursive() {
+        if (not head) {
+            return;
+        }
+
+        reverseRecursiveHelper(head, nullptr);
+    }
 };
 
 
@@ -236,6 +280,19 @@ auto testCountSizeRecursive(const std::vector<int> &array) {
 }
 
 
+auto testReverseIterative(const std::vector<int> &array) {
+    SinglyLinkedList list{array};
+    list.ReverseIterative();
+    return list.CopyToArray();
+}
+
+auto testReverseRecursive(const std::vector<int> &array) {
+    SinglyLinkedList list{array};
+    list.ReverseRecursive();
+    return list.CopyToArray();
+}
+
+
 const std::vector<int> EMPTY_ARRAY {};
 const std::vector<int> SINGLE_ARRAY {
     1
@@ -251,6 +308,7 @@ const std::vector<int> EXPECTED_ARRAY {
     -5, -1, 1, 8, 6, 2, 3, 7, 4, 23, 9, 10, 15
 };
 const auto EXPECTED_SIZE = SAMPLE_ARRAY.size();
+const std::vector<int> EXPECTED_REVERSE_ARRAY {9, 5, 4, 7, 3, 2, 6, 8, 0, 1};
 
 
 SIMPLE_TEST(testLinkedListInsert, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
@@ -268,3 +326,10 @@ SIMPLE_TEST(testCountSizeRecursive, TestSingle, 1, SINGLE_ARRAY);
 SIMPLE_TEST(testCountSizeRecursive, TestEven, 2, EVEN_ARRAY);
 SIMPLE_TEST(testCountSizeRecursive, TestOdd, 3, ODD_ARRAY);
 SIMPLE_TEST(testCountSizeRecursive, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
+
+
+SIMPLE_TEST(testReverseIterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverseIterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
