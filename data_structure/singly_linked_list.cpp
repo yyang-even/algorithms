@@ -90,9 +90,20 @@ class SinglyLinkedList {
         reverseRecursiveHelper(next, current);
     }
 
-    SinglyListNode::ValueType getRecursiveHelper(const SinglyListNode::PointerType node,
+    SinglyListNode::ValueType getNRecursiveHelper(const SinglyListNode::PointerType node,
             const std::size_t index) const {
-        return index == 0 ? node->value : getRecursiveHelper(node->next, index - 1);
+        return index == 0 ? node->value : getNRecursiveHelper(node->next, index - 1);
+    }
+
+    void getReverseNRecursiveHelper(const SinglyListNode::PointerType node, const std::size_t index,
+                                    std::size_t &i, SinglyListNode::ValueType &output) const {
+        if (node) {
+            getReverseNRecursiveHelper(node->next, index, i, output);
+
+            if (i++ == index) {
+                output = node->value;
+            }
+        }
     }
 
 public:
@@ -256,7 +267,7 @@ public:
      * Write a GetNth() function that takes a linked list and an integer index
      * and returns the data value stored in the node at that index position.
      */
-    auto GetIterative(std::size_t index) const {
+    auto GetNIterative(std::size_t index) const {
         assert(index < size);
 
         auto target = head;
@@ -267,9 +278,47 @@ public:
         return target->value;
     }
 
-    auto GetRecursive(const std::size_t index) const {
+    auto GetNRecursive(const std::size_t index) const {
         assert(index < size);
-        return getRecursiveHelper(head, index);
+        return getNRecursiveHelper(head, index);
+    }
+
+    /** Program for n’th node from the end of a Linked List
+     *
+     * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
+     *
+     * Given a Linked List and a number n, write a function that returns the value
+     * at the n’th node from end of the Linked List.
+     */
+    auto GetReverseNIterative(const std::size_t index) const {
+        return GetNIterative(size - index - 1);
+    }
+
+    auto GetReverseNRecursive(const std::size_t index) const {
+        assert(index < size);
+
+        std::size_t i = 0;
+        SinglyListNode::ValueType output{};
+        getReverseNRecursiveHelper(head, index, i, output);
+        return output;
+    }
+
+    auto GetReverseNTwoPointers(std::size_t index) const {
+        assert(index < size);
+
+        auto target = head;
+        auto helper = head;
+
+        while (index--) {
+            helper = helper->next;
+        }
+
+        while (helper->next) {
+            helper = helper->next;
+            target = target->next;
+        }
+
+        return target->value;
     }
 };
 
@@ -328,14 +377,30 @@ auto testReverseRecursive(const std::vector<int> &array) {
 }
 
 
-auto testGetIterative(const std::vector<int> &array, const std::size_t index) {
+auto testGetNIterative(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
-    return list.GetIterative(index);
+    return list.GetNIterative(index);
 }
 
-auto testGetRecursive(const std::vector<int> &array, const std::size_t index) {
+auto testGetNRecursive(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
-    return list.GetRecursive(index);
+    return list.GetNRecursive(index);
+}
+
+
+auto testGetReverseNIterative(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseNIterative(index);
+}
+
+auto testGetReverseNRecursive(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseNRecursive(index);
+}
+
+auto testGetReverseNTwoPointers(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseNTwoPointers(index);
 }
 
 
@@ -381,12 +446,34 @@ SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_TEST(testGetIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+SIMPLE_TEST(testGetNIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetNIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+SIMPLE_TEST(testGetNIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
 
-SIMPLE_TEST(testGetRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+SIMPLE_TEST(testGetNRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+
+
+SIMPLE_TEST(testGetReverseNIterative, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseNIterative, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseNIterative, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetReverseNRecursive, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseNRecursive, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseNRecursive, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseNTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
