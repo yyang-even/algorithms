@@ -38,6 +38,7 @@ class SinglyLinkedList {
 
     SinglyListNode::PointerType head;
     SinglyListNode::PointerType tail;
+    std::size_t size = 0;
 
     void deleteNonhead(SinglyListNode::PointerType previous,
                        const std::function<bool(const SinglyListNode &)> is_same_node) {
@@ -49,6 +50,7 @@ class SinglyLinkedList {
                 if (not previous->next) {
                     tail = previous;
                 }
+                --size;
                 break;
             }
             previous = previous->next;
@@ -59,6 +61,7 @@ class SinglyLinkedList {
         if (head) {
             if (is_same_node(*head)) {
                 head = head->next;
+                --size;
             } else {
                 deleteNonhead(head, is_same_node);
             }
@@ -87,6 +90,11 @@ class SinglyLinkedList {
         reverseRecursiveHelper(next, current);
     }
 
+    SinglyListNode::ValueType getRecursiveHelper(const SinglyListNode::PointerType node,
+            const std::size_t index) const {
+        return index == 0 ? node->value : getRecursiveHelper(node->next, index - 1);
+    }
+
 public:
     SinglyLinkedList() = default;
     SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
@@ -107,6 +115,7 @@ public:
         } else {
             head = tail = new_node;
         }
+        ++size;
     }
 
     void InsertFront(const SinglyListNode::ValueType v) {
@@ -117,6 +126,7 @@ public:
         } else {
             head = tail = new_node;
         }
+        ++size;
     }
 
     void InsertAfter(SinglyListNode &node, const SinglyListNode::ValueType v) {
@@ -127,6 +137,7 @@ public:
             new_node->next = node.next;
         }
         node.next = new_node;
+        ++size;
     }
 
     auto SearchIterative(const SinglyListNode::ValueType key) const {
@@ -184,6 +195,7 @@ public:
                 assert(head->next);
 
                 *head = *(head->next);
+                --size;
             } else {
                 deleteNonhead(head, [&target_node](const SinglyListNode & node) {
                     return &node == &target_node;
@@ -236,11 +248,34 @@ public:
 
         reverseRecursiveHelper(head, nullptr);
     }
+
+    /** Write a function to get Nth node in a Linked List
+     *
+     * @reference   https://www.geeksforgeeks.org/write-a-function-to-get-nth-node-in-a-linked-list/
+     *
+     * Write a GetNth() function that takes a linked list and an integer index
+     * and returns the data value stored in the node at that index position.
+     */
+    auto GetIterative(std::size_t index) const {
+        assert(index < size);
+
+        auto target = head;
+        while (index--) {
+            target = target->next;
+        }
+
+        return target->value;
+    }
+
+    auto GetRecursive(const std::size_t index) const {
+        assert(index < size);
+        return getRecursiveHelper(head, index);
+    }
 };
 
 
 auto testLinkedListInsert(const std::vector<int> &array) {
-    SinglyLinkedList list{array};
+    SinglyLinkedList list {array};
     list.InsertFront(-1);
     list.PushBack(10);
     list.SearchIterative(255);  //non-exist
@@ -270,26 +305,37 @@ auto testLinkedListInsert(const std::vector<int> &array) {
 
 
 auto testCountSizeIterative(const std::vector<int> &array) {
-    SinglyLinkedList list{array};
+    SinglyLinkedList list {array};
     return list.CountSizeIterative();
 }
 
 auto testCountSizeRecursive(const std::vector<int> &array) {
-    SinglyLinkedList list{array};
+    SinglyLinkedList list {array};
     return list.CountSizeRecursive();
 }
 
 
 auto testReverseIterative(const std::vector<int> &array) {
-    SinglyLinkedList list{array};
+    SinglyLinkedList list {array};
     list.ReverseIterative();
     return list.CopyToArray();
 }
 
 auto testReverseRecursive(const std::vector<int> &array) {
-    SinglyLinkedList list{array};
+    SinglyLinkedList list {array};
     list.ReverseRecursive();
     return list.CopyToArray();
+}
+
+
+auto testGetIterative(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetIterative(index);
+}
+
+auto testGetRecursive(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetRecursive(index);
 }
 
 
@@ -333,3 +379,14 @@ SIMPLE_TEST(testReverseIterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARR
 
 SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_TEST(testGetIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
