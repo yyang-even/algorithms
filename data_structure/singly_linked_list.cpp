@@ -95,6 +95,18 @@ class SinglyLinkedList {
         return index == 0 ? node->value : getRecursiveHelper(node->next, index - 1);
     }
 
+    void getReverseRecursiveHelper(const SinglyListNode::PointerType node, const std::size_t index,
+                                   std::size_t &i, SinglyListNode::ValueType &output) const {
+        if (node) {
+            getReverseRecursiveHelper(node->next, index, i, output);
+
+            if (i++ == index) {
+                output = node->value;
+            }
+        }
+    }
+
+
 public:
     SinglyLinkedList() = default;
     SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
@@ -271,6 +283,44 @@ public:
         assert(index < size);
         return getRecursiveHelper(head, index);
     }
+
+    /** Program for n’th node from the end of a Linked List
+     *
+     * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
+     *
+     * Given a Linked List and a number n, write a function that returns the value
+     * at the n’th node from end of the Linked List.
+     */
+    auto GetReverseIterative(const std::size_t index) const {
+        return GetIterative(size - index - 1);
+    }
+
+    auto GetReverseRecursive(const std::size_t index) const {
+        assert(index < size);
+
+        std::size_t i = 0;
+        SinglyListNode::ValueType output{};
+        getReverseRecursiveHelper(head, index, i, output);
+        return output;
+    }
+
+    auto GetReverseTwoPointers(std::size_t index) const {
+        assert(index < size);
+
+        auto target = head;
+        auto helper = head;
+
+        while (index--) {
+            helper = helper->next;
+        }
+
+        while (helper->next) {
+            helper = helper->next;
+            target = target->next;
+        }
+
+        return target->value;
+    }
 };
 
 
@@ -339,6 +389,22 @@ auto testGetRecursive(const std::vector<int> &array, const std::size_t index) {
 }
 
 
+auto testGetReverseIterative(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseIterative(index);
+}
+
+auto testGetReverseRecursive(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseRecursive(index);
+}
+
+auto testGetReverseTwoPointers(const std::vector<int> &array, const std::size_t index) {
+    SinglyLinkedList list {array};
+    return list.GetReverseTwoPointers(index);
+}
+
+
 const std::vector<int> EMPTY_ARRAY {};
 const std::vector<int> SINGLE_ARRAY {
     1
@@ -390,3 +456,25 @@ SIMPLE_TEST(testGetRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
 SIMPLE_TEST(testGetRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
 SIMPLE_TEST(testGetRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+
+
+SIMPLE_TEST(testGetReverseIterative, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseIterative, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseIterative, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetReverseRecursive, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseRecursive, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseRecursive, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetReverseTwoPointers, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
+            SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetReverseTwoPointers, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetReverseTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
+            SAMPLE_ARRAY, 5);
