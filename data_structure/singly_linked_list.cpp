@@ -187,6 +187,19 @@ public:
         });
     }
 
+    /** Given only a pointer/reference to a node to be deleted in a singly linked list, how do you delete it?
+     *
+     * @reference   https://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+     *
+     * Given a pointer to a node to be deleted, delete the node.
+     * Note that we don’t have pointer to head node.
+     */
+    static void DeleteNodeWithoutHead(SinglyListNode &to_be_deleted) {
+        assert(to_be_deleted.next);
+
+        to_be_deleted = *(to_be_deleted.next);
+        --size;
+    }
     /** Delete a given node in Linked List under given constraints
      *
      * @reference   https://www.geeksforgeeks.org/delete-a-given-node-in-linked-list-under-given-constraints/
@@ -203,10 +216,7 @@ public:
     void DeleteNodeConstrained(const SinglyListNode &target_node) {
         if (head) {
             if (head.get() == &target_node) {
-                assert(head->next);
-
-                *head = *(head->next);
-                --size;
+                DeleteNodeWithoutHead(*head);
             } else {
                 deleteNonhead(head, [&target_node](const SinglyListNode & node) {
                     return &node == &target_node;
