@@ -320,6 +320,52 @@ public:
 
         return target->value;
     }
+
+
+    /** Find the middle of a given linked list in C and Java
+     *
+     * @reference   https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/
+     *
+     * Given a singly linked list, find middle of the linked list. For example,
+     * if given linked list is 1->2->3->4->5 then output should be 3.
+     * If there are even nodes, then there would be two middle nodes, we need
+     * to print second middle element. For example, if given linked list is
+     * 1->2->3->4->5->6 then output should be 4.
+     */
+    auto GetMidSize() const {
+        return GetNIterative(size / 2);
+    }
+
+    auto GetMidTwoPointers() const {
+        assert(head);
+
+        auto fast_ptr = head;
+        auto slow_ptr = head;
+
+        while(fast_ptr and fast_ptr->next) {
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+
+        return slow_ptr->value;
+    }
+
+    auto GetMidOdd() const {
+        assert(head);
+
+        auto count = 0;
+        auto mid = head;
+        auto current = head;
+
+        while(current) {
+            if (count++ & 1)
+                mid = mid->next;
+
+            current = current->next;
+        }
+
+        return mid->value;
+    }
 };
 
 
@@ -404,6 +450,22 @@ auto testGetReverseNTwoPointers(const std::vector<int> &array, const std::size_t
 }
 
 
+auto testGetMidSize(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidSize();
+}
+
+auto testGetMidTwoPointers(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidTwoPointers();
+}
+
+auto testGetMidOdd(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidOdd();
+}
+
+
 const std::vector<int> EMPTY_ARRAY {};
 const std::vector<int> SINGLE_ARRAY {
     1
@@ -477,3 +539,19 @@ SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_
             SAMPLE_ARRAY.size() - 1);
 SIMPLE_TEST(testGetReverseNTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
             SAMPLE_ARRAY, 5);
+
+
+SIMPLE_TEST(testGetMidSize, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
+SIMPLE_TEST(testGetMidSize, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
+SIMPLE_TEST(testGetMidSize, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
+SIMPLE_TEST(testGetMidSize, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
+
+SIMPLE_TEST(testGetMidTwoPointers, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
+SIMPLE_TEST(testGetMidTwoPointers, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
+SIMPLE_TEST(testGetMidTwoPointers, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
+SIMPLE_TEST(testGetMidTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
+
+SIMPLE_TEST(testGetMidOdd, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
+SIMPLE_TEST(testGetMidOdd, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
+SIMPLE_TEST(testGetMidOdd, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
+SIMPLE_TEST(testGetMidOdd, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
