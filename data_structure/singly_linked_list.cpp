@@ -253,6 +253,13 @@ public:
         return countSizeRecursiveHelper(head);
     }
 
+
+    /** Iteratively Reverse a linked list using only 2 pointers (An Interesting Method)
+     *
+     * @reference   https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
+     *
+     * Given pointer to the head node of a linked list, the task is to reverse the linked list.
+     */
     /** Reverse a linked list
      *
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
