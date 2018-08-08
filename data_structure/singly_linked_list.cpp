@@ -114,8 +114,12 @@ public:
         }
     }
 
-    bool Empty() const {
+    auto Empty() const {
         return not head;
+    }
+
+    auto Size() const {
+        return size;
     }
 
     void PushBack(const SinglyListNode::ValueType v) {
@@ -150,6 +154,54 @@ public:
         node.next = new_node;
         ++size;
     }
+
+    /** Insert a node at a specific position in a linked list
+     *
+     * @reference   https://www.geeksforgeeks.org/insert-a-node-at-a-specific-position-in-a-linked-list/
+     *
+     * Given a singly linked list, a position and an element, the task is to write
+     * a program to insert that element in a linked list at a given position.
+     */
+    void InsertAtSimple(std::size_t position, const SinglyListNode::ValueType v) {
+        ++size;
+        assert(position and position <= size);
+
+        const auto new_node = std::make_shared<SinglyListNode>(v);
+        if (position == 1) {
+            new_node->next = head;
+            head = new_node;
+        } else {
+            auto current = head;
+            while (--position > 1) {
+                current = current->next;
+            }
+            new_node->next = current->next;
+            current->next = new_node;
+            if (not new_node->next) {
+                tail = new_node;
+            }
+        }
+    }
+
+    void InsertAtClever(int position, const SinglyListNode::ValueType v) {
+        ++size;
+        assert(position and position <= size);
+
+        auto *current = &head;
+        const auto new_node = std::make_shared<SinglyListNode>(v);
+        while (position--) {
+            if (not position) {
+                new_node->next = *current;
+                *current = new_node;
+            } else {
+                current = &(*current)->next;
+            }
+        }
+        if (not new_node->next) {
+            tail = new_node;
+        }
+    }
+
 
     auto SearchIterative(const SinglyListNode::ValueType key) const {
         auto iter = head;
@@ -253,6 +305,13 @@ public:
         return countSizeRecursiveHelper(head);
     }
 
+
+    /** Iteratively Reverse a linked list using only 2 pointers (An Interesting Method)
+     *
+     * @reference   https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
+     *
+     * Given pointer to the head node of a linked list, the task is to reverse the linked list.
+     */
     /** Reverse a linked list
      *
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
@@ -393,34 +452,74 @@ public:
 };
 
 
+const std::vector<int> EMPTY_ARRAY {};
+const std::vector<int> SINGLE_ARRAY {
+    1
+};
+const std::vector<int> EVEN_ARRAY {
+    1, 3
+};
+const std::vector<int> ODD_ARRAY {
+    1, 2, 3
+};
+const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+const std::vector<int> EXPECTED_ARRAY {
+    -7, 111, -6, 11, -5, 44, -1, 33, 1, 8, 6, 2, 3, 7, 4, 23, 9, 10, 15, 77, 16, 777, 17
+};
+const auto EXPECTED_SIZE = SAMPLE_ARRAY.size();
+const std::vector<int> EXPECTED_REVERSE_ARRAY {9, 5, 4, 7, 3, 2, 6, 8, 0, 1};
+
+
 auto testLinkedListInsert(const std::vector<int> &array) {
     SinglyLinkedList list {array};
+
     list.InsertFront(-1);
+
     list.PushBack(10);
+
     list.SearchIterative(255);  //non-exist
     list.SearchRecursive(255);  //non-exist
+
     const auto node = list.SearchIterative(5);
+
     list.InsertAfter(*node, 23);
     list.InsertFront(-2);
     list.PushBack(12);
+
     list.Delete(255);   //non-exist
     list.Delete(0);
     list.Delete(-2);    //head
     list.Delete(12);    //tail
     list.InsertFront(-3);
     list.PushBack(13);
+
     list.Delete(*node);
     list.Delete(*list.SearchRecursive(-3)); //head
     list.Delete(*list.SearchIterative(13)); //tail
     list.InsertFront(-4);
     list.PushBack(14);
+
     list.Delete(*list.SearchRecursive(-4)); //head
     list.Delete(*list.SearchIterative(14)); //tail
     list.InsertFront(-5);
     list.PushBack(15);
 
+    list.InsertAtSimple(3, 33);
+    list.InsertAtSimple(1, 11);   //head
+    list.InsertAtSimple(list.Size() + 1, 77);   //tail
+    list.InsertFront(-6);
+    list.PushBack(16);
+
+    list.InsertAtClever(4, 44);
+    list.InsertAtClever(1, 111);   //head
+    list.InsertAtClever(list.Size() + 1, 777);   //tail
+    list.InsertFront(-7);
+    list.PushBack(17);
+
     return list.CopyToArray();
 }
+
+SIMPLE_TEST(testLinkedListInsert, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
 auto testCountSizeIterative(const std::vector<int> &array) {
@@ -428,10 +527,23 @@ auto testCountSizeIterative(const std::vector<int> &array) {
     return list.CountSizeIterative();
 }
 
+SIMPLE_TEST(testCountSizeIterative, TestEmpty, 0, EMPTY_ARRAY);
+SIMPLE_TEST(testCountSizeIterative, TestSingle, 1, SINGLE_ARRAY);
+SIMPLE_TEST(testCountSizeIterative, TestEven, 2, EVEN_ARRAY);
+SIMPLE_TEST(testCountSizeIterative, TestOdd, 3, ODD_ARRAY);
+SIMPLE_TEST(testCountSizeIterative, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
+
+
 auto testCountSizeRecursive(const std::vector<int> &array) {
     SinglyLinkedList list {array};
     return list.CountSizeRecursive();
 }
+
+SIMPLE_TEST(testCountSizeRecursive, TestEmpty, 0, EMPTY_ARRAY);
+SIMPLE_TEST(testCountSizeRecursive, TestSingle, 1, SINGLE_ARRAY);
+SIMPLE_TEST(testCountSizeRecursive, TestEven, 2, EVEN_ARRAY);
+SIMPLE_TEST(testCountSizeRecursive, TestOdd, 3, ODD_ARRAY);
+SIMPLE_TEST(testCountSizeRecursive, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
 
 
 auto testReverseIterative(const std::vector<int> &array) {
@@ -446,6 +558,12 @@ auto testReverseRecursive(const std::vector<int> &array) {
     return list.CopyToArray();
 }
 
+SIMPLE_TEST(testReverseIterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverseIterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
 
 auto testGetNIterative(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
@@ -456,6 +574,16 @@ auto testGetNRecursive(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
     return list.GetNRecursive(index);
 }
+
+SIMPLE_TEST(testGetNIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetNIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetNIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+
+SIMPLE_TEST(testGetNRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+            SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
 
 
 auto testGetReverseNIterative(const std::vector<int> &array, const std::size_t index) {
@@ -472,76 +600,6 @@ auto testGetReverseNTwoPointers(const std::vector<int> &array, const std::size_t
     SinglyLinkedList list {array};
     return list.GetReverseNTwoPointers(index);
 }
-
-
-auto testGetMidSize(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidSize();
-}
-
-auto testGetMidTwoPointers(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidTwoPointers();
-}
-
-auto testGetMidOdd(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidOdd();
-}
-
-
-const std::vector<int> EMPTY_ARRAY {};
-const std::vector<int> SINGLE_ARRAY {
-    1
-};
-const std::vector<int> EVEN_ARRAY {
-    1, 3
-};
-const std::vector<int> ODD_ARRAY {
-    1, 2, 3
-};
-const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const std::vector<int> EXPECTED_ARRAY {
-    -5, -1, 1, 8, 6, 2, 3, 7, 4, 23, 9, 10, 15
-};
-const auto EXPECTED_SIZE = SAMPLE_ARRAY.size();
-const std::vector<int> EXPECTED_REVERSE_ARRAY {9, 5, 4, 7, 3, 2, 6, 8, 0, 1};
-
-
-SIMPLE_TEST(testLinkedListInsert, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
-
-
-SIMPLE_TEST(testCountSizeIterative, TestEmpty, 0, EMPTY_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestSingle, 1, SINGLE_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestEven, 2, EVEN_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestOdd, 3, ODD_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
-
-
-SIMPLE_TEST(testCountSizeRecursive, TestEmpty, 0, EMPTY_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestSingle, 1, SINGLE_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestEven, 2, EVEN_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestOdd, 3, ODD_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
-
-
-SIMPLE_TEST(testReverseIterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
-SIMPLE_TEST(testReverseIterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
-
-SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
-SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
-
-
-SIMPLE_TEST(testGetNIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetNIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
-            SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetNIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
-
-SIMPLE_TEST(testGetNRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
-            SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
-
 
 SIMPLE_TEST(testGetReverseNIterative, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
             SAMPLE_ARRAY, 0);
@@ -564,6 +622,21 @@ SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_
 SIMPLE_TEST(testGetReverseNTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
             SAMPLE_ARRAY, 5);
 
+
+auto testGetMidSize(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidSize();
+}
+
+auto testGetMidTwoPointers(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidTwoPointers();
+}
+
+auto testGetMidOdd(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    return list.GetMidOdd();
+}
 
 SIMPLE_TEST(testGetMidSize, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
 SIMPLE_TEST(testGetMidSize, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
