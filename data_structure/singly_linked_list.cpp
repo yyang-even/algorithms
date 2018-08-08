@@ -225,6 +225,19 @@ public:
         }
     }
 
+
+    /** Write a function to delete a Linked List
+     *
+     * @reference   https://www.geeksforgeeks.org/write-a-function-to-delete-a-linked-list/
+     *
+     * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one by one.
+     * Main point here is not to access next of the current pointer if current pointer is deleted.
+     */
+    void DeleteAllOneByOne() {
+        head = nullptr;
+    }
+
+
     auto CountSizeIterative() const {
         std::size_t size = 0;
         auto iter = head;
