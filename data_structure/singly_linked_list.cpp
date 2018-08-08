@@ -203,6 +203,30 @@ public:
     }
 
 
+    /** Given a linked list which is sorted, how will you insert in sorted way
+     *
+     * @reference   https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+     *
+     * Given a sorted linked list and a value to insert, write a function to insert the value in sorted way.
+     */
+    void SortedInsert(const SinglyListNode::ValueType v) {
+        auto *current = &head;
+        const auto new_node = std::make_shared<SinglyListNode>(v);
+
+        while (*current and (*current)->value < v) {
+            current = &(*current)->next;
+        }
+
+        new_node->next = *current;
+        *current = new_node;
+
+        if (not new_node->next) {
+            tail = new_node;
+        }
+        ++size;
+    }
+
+
     auto SearchIterative(const SinglyListNode::ValueType key) const {
         auto iter = head;
         while (iter and iter->value != key) {
@@ -652,3 +676,21 @@ SIMPLE_TEST(testGetMidOdd, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SI
 SIMPLE_TEST(testGetMidOdd, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
 SIMPLE_TEST(testGetMidOdd, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
 SIMPLE_TEST(testGetMidOdd, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
+
+
+auto testSortedInsert(std::vector<int> array) {
+    std::sort(array.begin(), array.end());
+    SinglyLinkedList list {array};
+
+    list.SortedInsert(-1);
+    list.SortedInsert(15);
+    list.SortedInsert(11);
+    list.InsertFront(-8);
+    list.PushBack(18);
+
+    return list.CopyToArray();
+}
+
+const std::vector<int> EXPECTED_SORTED_INSERT_ARRAY { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15, 18};
+
+SIMPLE_TEST(testSortedInsert, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
