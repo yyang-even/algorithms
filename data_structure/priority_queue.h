@@ -37,7 +37,7 @@ public:
     }
 
     void Pop() {
-        Delete(*head);
+        PopHead();
     }
 
     auto Peek() const {

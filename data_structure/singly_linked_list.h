@@ -59,8 +59,7 @@ protected:
     void deleteHelper(const std::function<bool(const SinglyListNode &)> is_same_node) {
         if (head) {
             if (is_same_node(*head)) {
-                head = head->next;
-                --size;
+                PopHead();
             } else {
                 deleteNonhead(head, is_same_node);
             }
@@ -248,6 +247,16 @@ public:
         }
 
         return array;
+    }
+
+    auto PopHead() {
+        assert(head);
+
+        const auto v = head->value;
+        head = head->next;
+        --size;
+
+        return v;
     }
 
     void Delete(const SinglyListNode::ValueType key) {
