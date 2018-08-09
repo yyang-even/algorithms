@@ -25,6 +25,7 @@
  *              https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
  */
 class SinglyLinkedList {
+    protected:
     struct SinglyListNode {
         using ValueType = int;
         using PointerType = std::shared_ptr<SinglyListNode>;
