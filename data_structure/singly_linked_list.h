@@ -337,6 +337,8 @@ public:
      */
     /** Reverse a linked list
      *
+     * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+     *              Introduction to Algorithms, Third Edition. Chapter 10.2. Exercises 10.2-7.
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
      *
      * Given pointer to the head node of a linked list, the task is to reverse
