@@ -37,7 +37,7 @@ public:
 /** Implementing Stack using Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  */
@@ -60,6 +60,91 @@ public:
 
     auto Empty() const {
         return buffer.empty();
+    }
+};
+
+
+/** Implement Stack using Queues
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ * @reference   https://www.geeksforgeeks.org/implement-stack-using-queue/
+ */
+class PushCostlyTwoQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> push_queue, pop_queue;
+
+    public:
+    void Push(const ValueType v) {
+        push_queue.push(v);
+
+        while(not pop_queue.empty()){
+            push_queue.push(pop_queue.front());
+            pop_queue.pop();
+        }
+
+        push_queue.swap(pop_queue);
+    }
+
+    void Pop() {
+        pop_queue.pop();
+    }
+
+    auto Empty() const {
+        return pop_queue.empty();
+    }
+};
+
+class PopCostlyTwoQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> push_queue, pop_queue;
+
+    public:
+    void Push(const ValueType v) {
+        push_queue.push(v);
+    }
+
+    void Pop() {
+        while(push_queue.size() != 1) {
+            pop_queue.push(push_queue.front());
+            push_queue.pop();
+        }
+
+        //const auto v = push_queue.front();
+        push_queue.pop();
+        pop_queue.swap(push_queue);
+        //return v;
+    }
+
+    auto Empty() const {
+        return push_queue.empty();
+    }
+};
+
+
+/** Implement a stack using single queue
+ *
+ * @reference   https://www.geeksforgeeks.org/implement-a-stack-using-single-queue/
+ */
+class PushCostlyOneQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> q;
+
+    public:
+    void Push(const ValueType v) {
+        q.push(v);
+        for(auto i = q.size() - 1; i != 0; --i) {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    void Pop() {
+        q.pop();
+    }
+
+    auto Empty() const {
+        q.empty();
     }
 };
 
@@ -101,3 +186,24 @@ auto testListStack() {
 }
 
 SIMPLE_TEST0(testListStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPushCostlyTwoQueueStack() {
+    return testStackHelper<PushCostlyTwoQueueStack>();
+}
+
+SIMPLE_TEST0(testPushCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPopCostlyTwoQueueStack() {
+    return testStackHelper<PopCostlyTwoQueueStack>();
+}
+
+SIMPLE_TEST0(testPopCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPushCostlyOneQueueStack() {
+    return testStackHelper<PushCostlyOneQueueStack>();
+}
+
+SIMPLE_TEST0(testPushCostlyOneQueueStack, TestSample, EXPECTED_ARRAY);
