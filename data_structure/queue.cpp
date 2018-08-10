@@ -63,7 +63,7 @@ public:
 /** Implementing Queue using Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-3.
  * @reference   Queue | Set 2 (Linked List Implementation)
  *              https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
  */
@@ -81,6 +81,84 @@ public:
 
     auto Empty() const {
         return buffer.Empty();
+    }
+};
+
+
+/** Implement Queue using Stacks
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-6.
+ * @reference   https://www.geeksforgeeks.org/queue-using-stacks/
+ *
+ * Method 1 (By making enQueue operation costly) This method makes sure that oldest
+ * entered element is always at the top of stack 1, so that deQueue operation just
+ * pops from stack1. To put the element at top of stack1, stack2 is used.
+ *
+ * Method 2 (By making deQueue operation costly) In this method, in en-queue operation,
+ * the new element is entered at the top of stack1. In de-queue operation, if stack2
+ * is empty then all the elements are moved to stack2 and finally top of stack2 is returned.
+ *
+ * Method 2 is definitely better than method 1.
+ */
+class DequeueCostlyTwoStackQueue {
+    using ValueType = int;
+    std::stack<ValueType> enqueue_stack, dequeue_stack;
+
+    public:
+    void Enqueue(const ValueType v) {
+        enqueue_stack.push(v);
+    }
+
+    auto Dequeue() {
+        assert(not Empty());
+
+        if(dequeue_stack.empty()){
+            while(not enqueue_stack.empty()) {
+                dequeue_stack.push(enqueue_stack.top());
+                enqueue_stack.pop();
+            }
+        }
+        
+        const auto v = dequeue_stack.top();
+        dequeue_stack.pop();
+        return v;
+    }
+
+    auto Empty() const {
+        return enqueue_stack.empty() and dequeue_stack.empty();
+    }
+};
+/**
+ * Queue can also be implemented using one user stack and one Function Call Stack.
+ */
+class DequeueCostlyOneStackQueue {
+    using ValueType = int;
+    std::stack<ValueType> enqueue_stack;
+
+    public:
+    void Enqueue(const ValueType v) {
+        enqueue_stack.push(v);
+    }
+
+    auto Dequeue() {
+        assert(not enqueue_stack.empty());
+        
+        if (enqueue_stack.size() == 1) {
+            const auto output = enqueue_stack.top();
+            enqueue_stack.pop();
+            return output;
+        } else {
+            const auto v = enqueue_stack.top();
+            enqueue_stack.pop();
+            const auto output = Dequeue();
+            enqueue_stack.push(v);
+            return output;
+        }
+    }
+
+    auto Empty() const {
+        return enqueue_stack.empty();
     }
 };
 
@@ -121,3 +199,17 @@ auto testListQueue() {
 }
 
 SIMPLE_TEST0(testListQueue, TestSample, EXPECTED_ARRAY);
+
+
+auto testDequeueCostlyTwoStackQueue() {
+    return testQueueHelper<DequeueCostlyTwoStackQueue>();
+}
+
+SIMPLE_TEST0(testDequeueCostlyTwoStackQueue, TestSample, EXPECTED_ARRAY);
+
+
+auto testDequeueCostlyOneStackQueue() {
+    return testQueueHelper<DequeueCostlyOneStackQueue>();
+}
+
+SIMPLE_TEST0(testDequeueCostlyOneStackQueue, TestSample, EXPECTED_ARRAY);
