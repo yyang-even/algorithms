@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include <forward_list>
+#include <queue>
 
 #include "3rdParty/prettyprint.hpp"
 
@@ -20,8 +21,10 @@ public:
         buffer.push_back(v);
     }
 
-    void Pop() {
+    auto Pop() {
+        const auto v = buffer.back();
         buffer.pop_back();
+        return v;
     }
 
     auto Peek() const {
@@ -37,7 +40,7 @@ public:
 /** Implementing Stack using Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  */
@@ -50,8 +53,10 @@ public:
         buffer.push_front(v);
     }
 
-    void Pop() {
+    auto Pop() {
+        const auto v = buffer.front();
         buffer.pop_front();
+        return v;
     }
 
     auto Peek() const {
@@ -60,6 +65,103 @@ public:
 
     auto Empty() const {
         return buffer.empty();
+    }
+};
+
+
+/** Implement Stack using Queues
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ * @reference   https://www.geeksforgeeks.org/implement-stack-using-queue/
+ */
+class PushCostlyTwoQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> push_queue, pop_queue;
+
+public:
+    void Push(const ValueType v) {
+        push_queue.push(v);
+
+        while (not pop_queue.empty()) {
+            push_queue.push(pop_queue.front());
+            pop_queue.pop();
+        }
+
+        push_queue.swap(pop_queue);
+    }
+
+    auto Pop() {
+        const auto v = pop_queue.front();
+        pop_queue.pop();
+        return v;
+    }
+
+    auto Empty() const {
+        return pop_queue.empty();
+    }
+
+    auto Peek() {
+        pop_queue.front();
+    }
+};
+
+class PopCostlyTwoQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> push_queue, pop_queue;
+
+public:
+    void Push(const ValueType v) {
+        push_queue.push(v);
+    }
+
+    auto Pop() {
+        while (push_queue.size() != 1) {
+            pop_queue.push(push_queue.front());
+            push_queue.pop();
+        }
+
+        const auto v = push_queue.front();
+        push_queue.pop();
+        pop_queue.swap(push_queue);
+        return v;
+    }
+
+    auto Empty() const {
+        return push_queue.empty();
+    }
+};
+
+
+/** Implement a stack using single queue
+ *
+ * @reference   https://www.geeksforgeeks.org/implement-a-stack-using-single-queue/
+ */
+class PushCostlyOneQueueStack {
+    using ValueType = int;
+    std::queue<ValueType> q;
+
+public:
+    void Push(const ValueType v) {
+        q.push(v);
+        for (auto i = q.size() - 1; i != 0; --i) {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    auto Pop() {
+        const auto v = q.front();
+        q.pop();
+        return v;
+    }
+
+    auto Empty() const {
+        return q.empty();
+    }
+
+    auto Peek() {
+        q.front();
     }
 };
 
@@ -82,8 +184,7 @@ auto testStackHelper() {
 
     std::vector<int> output;
     while (not stack.Empty()) {
-        output.push_back(stack.Peek());
-        stack.Pop();
+        output.push_back(stack.Pop());
     }
 
     return output;
@@ -101,3 +202,24 @@ auto testListStack() {
 }
 
 SIMPLE_TEST0(testListStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPushCostlyTwoQueueStack() {
+    return testStackHelper<PushCostlyTwoQueueStack>();
+}
+
+SIMPLE_TEST0(testPushCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPopCostlyTwoQueueStack() {
+    return testStackHelper<PopCostlyTwoQueueStack>();
+}
+
+SIMPLE_TEST0(testPopCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testPushCostlyOneQueueStack() {
+    return testStackHelper<PushCostlyOneQueueStack>();
+}
+
+SIMPLE_TEST0(testPushCostlyOneQueueStack, TestSample, EXPECTED_ARRAY);
