@@ -166,6 +166,55 @@ public:
 };
 
 
+/** Implement two stacks in an array
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ * @reference   https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/
+ */
+class OneArrayTwoStacks {
+    using ValueType = int;
+
+    const std::size_t CAPACITY;
+    std::vector<ValueType> buffer;
+    int top1 = -1;
+    int top2;
+
+public:
+    OneArrayTwoStacks(const std::size_t cap = 2048) : CAPACITY(cap), buffer(cap, 0), top2(cap) {}
+
+    void Push1(const ValueType v) {
+        assert(top1 < top2 - 1);
+
+        buffer[++top1] = v;
+    }
+
+    void Push2(const ValueType v) {
+        assert(top1 < top2 - 1);
+
+        buffer[--top2] = v;
+    }
+
+    auto Pop1() {
+        assert(top1 >= 0);
+
+        const auto v = buffer[top1--];
+        return v;
+    }
+
+    auto Pop2() {
+        assert(top2 < CAPACITY);
+
+        const auto v = buffer[top2++];
+        return v;
+    }
+
+    auto CopyToArray() const {
+        return buffer;
+    }
+};
+
+
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
 template <typename Stack>
@@ -223,3 +272,24 @@ auto testPushCostlyOneQueueStack() {
 }
 
 SIMPLE_TEST0(testPushCostlyOneQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+auto testOneArrayTwoStacks() {
+    OneArrayTwoStacks stacks{6};
+    stacks.Push1(1);
+    stacks.Push1(2);
+    stacks.Push1(3);
+    stacks.Push2(4);
+    stacks.Push2(5);
+    stacks.Push2(6);
+    stacks.Pop1();
+    stacks.Pop2();
+    stacks.Push2(7);
+    stacks.Push2(8);
+
+    return stacks.CopyToArray();
+}
+
+const std::vector<int> EXPECTED_TWO_STACKS_ARRAY {1, 2, 8, 7, 5, 4};
+
+SIMPLE_TEST0(testOneArrayTwoStacks, TestSample, EXPECTED_TWO_STACKS_ARRAY);
