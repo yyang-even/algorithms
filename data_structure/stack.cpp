@@ -149,6 +149,17 @@ class PushCostlyOneQueueStack {
 };
 
 
+/** Implement two stacks in an array
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ * @reference   https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/
+ */
+class OneArrayTwoStacks {
+
+};
+
+
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
 template <typename Stack>
