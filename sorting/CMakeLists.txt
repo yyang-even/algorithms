@@ -10,6 +10,9 @@ CompileTestExe(heap_sort)
 CompileBenchmarkExe(insertion)
 CompileTestExe(insertion)
 
+CompileBenchmarkExe(kth_smallest_element_after_every_insertion)
+CompileTestExe(kth_smallest_element_after_every_insertion)
+
 CompileBenchmarkExe(merge)
 CompileTestExe(merge)
 
