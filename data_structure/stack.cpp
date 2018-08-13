@@ -215,6 +215,33 @@ public:
 };
 
 
+class HeapStack {
+    using ValueType = int;
+    using KeyValuePair = std::pair<std::size_t, ValueType>;
+
+    std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
+    queue{[](const auto & lhs, const auto & rhs) {
+        return lhs.first < rhs.first;
+    }};
+
+public:
+    void Push(const ValueType v) {
+        queue.push(std::make_pair(queue.size() + 1ul, v));
+    }
+
+    auto Pop() {
+        assert(not queue.empty());
+
+        const auto v = queue.top().second;
+        queue.pop();
+        return v;
+    }
+
+    auto Empty() const {
+        return queue.empty();
+    }
+};
+
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
 template <typename Stack>
@@ -293,3 +320,10 @@ auto testOneArrayTwoStacks() {
 const std::vector<int> EXPECTED_TWO_STACKS_ARRAY {1, 2, 8, 7, 5, 4};
 
 SIMPLE_TEST0(testOneArrayTwoStacks, TestSample, EXPECTED_TWO_STACKS_ARRAY);
+
+
+auto testHeapStack() {
+    return testStackHelper<HeapStack>();
+}
+
+SIMPLE_TEST0(testHeapStack, TestSample, EXPECTED_ARRAY);
