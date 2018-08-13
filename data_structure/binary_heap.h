@@ -84,8 +84,8 @@ private:
         }
     }
 
-    void bubbleUp(SizeType i) {
-        while (i and compare(heap[i], heap[parent(i)])) {
+    void bubbleUp(SizeType i, const bool suppose_better = false) {
+        while (i and (suppose_better or compare(heap[i], heap[parent(i)]))) {
             std::swap(heap[parent(i)], heap[i]);
             i = parent(i);
         }
@@ -137,6 +137,19 @@ public:
             heap[i] = new_key;
             bubbleUp(i);
         }
+    }
+
+
+    /** Heap Delete
+    *
+    * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+    *              Introduction to Algorithms, Third Edition. Exercises 6.5-8.
+    */
+    void Delete(const SizeType i) {
+        assert(i < heap.size());
+
+        bubbleUp(i, true);
+        Pop();
     }
 };
 
