@@ -165,6 +165,40 @@ public:
 };
 
 
+/** Implement queue using priority queue or heap
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-7.
+ */
+class HeapQueue {
+    using ValueType = int;
+    using KeyValuePair = std::pair<std::size_t, ValueType>;
+
+    std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
+    queue{[](const auto & lhs, const auto & rhs) {
+        return lhs.first > rhs.first;
+    }};
+    std::size_t counter = 0;
+
+public:
+    void Push(const ValueType v) {
+        queue.push(std::make_pair(++counter, v));
+    }
+
+    auto Pop() {
+        assert(not queue.empty());
+
+        const auto v = queue.top().second;
+        queue.pop();
+        return v;
+    }
+
+    auto Empty() const {
+        return queue.empty();
+    }
+};
+
+
 const std::vector<int> EXPECTED_ARRAY {2, 3, 4, 5, 6, 7};
 
 template <typename Queue>
@@ -215,3 +249,10 @@ auto testDequeueCostlyOneStackQueue() {
 }
 
 SIMPLE_TEST0(testDequeueCostlyOneStackQueue, TestSample, EXPECTED_ARRAY);
+
+
+auto testHeapQueue() {
+    return testQueueHelper<HeapQueue>();
+}
+
+SIMPLE_TEST0(testHeapQueue, TestSample, EXPECTED_ARRAY);
