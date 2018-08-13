@@ -11,33 +11,34 @@
  *              Time Complexity of building a heap
  *              https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
  */
-template <typename Compare = std::less<int> >
+template <typename T, typename Compare = std::less<T> >
 class BinaryHeap {
 public:
-    using ArrayType = std::vector<int>;
+    using ArrayType = typename std::vector<T>;
+    using SizeType = typename ArrayType::size_type;
 
 private:
     ArrayType heap;
     const Compare compare {};
 
-    auto parent(const ArrayType::size_type i) const {
+    auto parent(const SizeType i) const {
         assert(i);
         return (i - 1) / 2;
     }
 
-    auto left(const ArrayType::size_type i) const {
+    auto left(const SizeType i) const {
         return (2 * i + 1);
     }
 
-    auto right(const ArrayType::size_type i) const {
+    auto right(const SizeType i) const {
         return (2 * i + 2);
     }
 
-    void heapifyRecursive(ArrayType::size_type i,
-                          const ArrayType::size_type heap_size) {
+    void heapifyRecursive(SizeType i,
+                          const SizeType heap_size) {
         const auto l = left(i);
         const auto r = right(i);
-        std::vector<int>::size_type best = i;
+        SizeType best = i;
 
         if (l < heap_size and compare(heap[l], heap[best])) {
             best = l;
@@ -51,12 +52,12 @@ private:
             heapifyRecursive(best, heap_size);
         }
     }
-    void heapifyIterative(ArrayType::size_type i,
-                          const ArrayType::size_type heap_size) {
+    void heapifyIterative(SizeType i,
+                          const SizeType heap_size) {
         while (i < heap_size) {
             const auto l = left(i);
             const auto r = right(i);
-            std::vector<int>::size_type best = i;
+            SizeType best = i;
 
             if (l < heap_size and compare(heap[l], heap[best])) {
                 best = l;
@@ -74,8 +75,8 @@ private:
         }
     }
 
-    void buildHeap(const std::function<void(BinaryHeap<Compare>*,
-                                            ArrayType::size_type, const ArrayType::size_type)> heapify) {
+    void buildHeap(const std::function<void(BinaryHeap<T, Compare>*,
+                                            SizeType, const SizeType)> heapify) {
         if (not heap.empty()) {
             for (int i = heap.size() / 2; i >= 0; --i) {
                 heapify(this, i, heap.size());
@@ -83,7 +84,7 @@ private:
         }
     }
 
-    void bubbleUp(ArrayType::size_type i) {
+    void bubbleUp(SizeType i) {
         while (i and compare(heap[i], heap[parent(i)])) {
             std::swap(heap[parent(i)], heap[i]);
             i = parent(i);
@@ -93,8 +94,8 @@ private:
 public:
     BinaryHeap() = default;
     BinaryHeap(const ArrayType &array, const bool recursive = true): heap(array) {
-        buildHeap(recursive ? &BinaryHeap<Compare>::heapifyRecursive :
-                  &BinaryHeap<Compare>::heapifyIterative);
+        buildHeap(recursive ? &BinaryHeap<T, Compare>::heapifyRecursive :
+                  &BinaryHeap<T, Compare>::heapifyIterative);
     }
 
     auto Top() const {
@@ -111,7 +112,7 @@ public:
         return top;
     }
 
-    void Push(const int value) {
+    void Push(const T value) {
         heap.push_back(value);
         bubbleUp(heap.size() - 1);
     }
@@ -129,7 +130,7 @@ public:
         return std::move(heap);
     }
 
-    void Prioritize(const ArrayType::size_type i, const int new_key) {
+    void Prioritize(const SizeType i, const T new_key) {
         assert(i < heap.size());
 
         if (compare(new_key, heap[i])) {
@@ -139,5 +140,7 @@ public:
     }
 };
 
-using MaxHeap = BinaryHeap< std::greater<int> > ;
-using MinHeap = BinaryHeap< std::less<int> > ;
+template <typename T>
+using MaxHeap = BinaryHeap<T, std::greater<T> > ;
+template <typename T>
+using MinHeap = BinaryHeap<T, std::less<T> > ;

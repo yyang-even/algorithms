@@ -13,8 +13,10 @@
  *              Priority Queue in C++ Standard Template Library (STL)
  *              https://www.geeksforgeeks.org/priority-queue-in-cpp-stl/
  */
-using MaxPriorityQueue = MaxHeap;
-using MinPriorityQueue = MinHeap;
+template <typename T>
+using MaxPriorityQueue = MaxHeap<T>;
+template <typename T>
+using MinPriorityQueue = MinHeap<T>;
 
 
 /** Priority Queue using Linked List

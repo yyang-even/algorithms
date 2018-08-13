@@ -13,8 +13,8 @@
  *              Heap Sort for decreasing order using min heap
  *              https://www.geeksforgeeks.org/heap-sort-for-decreasing-order-using-min-heap/
  */
-inline auto HeapSortRecursive(const MaxHeap::ArrayType &array) {
-    return MaxHeap(array).ToSortedArray();
+inline auto HeapSortRecursive(const MaxHeap<int>::ArrayType &array) {
+    return MaxHeap<int>(array).ToSortedArray();
 }
 /** Iterative Heap Sort
  *
@@ -23,25 +23,25 @@ inline auto HeapSortRecursive(const MaxHeap::ArrayType &array) {
  *
  *              https://www.geeksforgeeks.org/iterative-heap-sort/
  */
-inline auto HeapSortIterative(const MaxHeap::ArrayType &array) {
-    return MaxHeap(array, false).ToSortedArray();
+inline auto HeapSortIterative(const MaxHeap<int>::ArrayType &array) {
+    return MaxHeap<int>(array, false).ToSortedArray();
 }
 
 
-const MaxHeap::ArrayType EMPTY_ARRAY {};
-const MaxHeap::ArrayType SINGLE_ARRAY {
+const MaxHeap<int>::ArrayType EMPTY_ARRAY {};
+const MaxHeap<int>::ArrayType SINGLE_ARRAY {
     1
 };
-const MaxHeap::ArrayType EVEN_ARRAY {
+const MaxHeap<int>::ArrayType EVEN_ARRAY {
     1, 3
 };
-const MaxHeap::ArrayType ODD_ARRAY {
+const MaxHeap<int>::ArrayType ODD_ARRAY {
     1, 2, 3
 };
-const MaxHeap::ArrayType SAMPLE_ARRAY {
+const MaxHeap<int>::ArrayType SAMPLE_ARRAY {
     1, 0, 8, 6, 2, 3, 7, 4, 5, 9
 };
-const MaxHeap::ArrayType EXPECTED_ARRAY {
+const MaxHeap<int>::ArrayType EXPECTED_ARRAY {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 };
 

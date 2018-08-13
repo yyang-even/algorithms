@@ -4,13 +4,13 @@
 
 #include "binary_heap.h"
 
-auto testBinaryHeapPushAndPop(const MinHeap::ArrayType &array) {
-    MinHeap heap;
+auto testBinaryHeapPushAndPop(const MinHeap<int>::ArrayType &array) {
+    MinHeap<int> heap;
     for (const auto elem : array) {
         heap.Push(elem);
     }
 
-    MinHeap::ArrayType sorted_array;
+    MinHeap<int>::ArrayType sorted_array;
     while (not heap.Empty()) {
         sorted_array.push_back(heap.Pop());
     }
@@ -19,8 +19,8 @@ auto testBinaryHeapPushAndPop(const MinHeap::ArrayType &array) {
 }
 
 
-const MinHeap::ArrayType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const MinHeap::ArrayType EXPECTED_ARRAY {
+const MinHeap<int>::ArrayType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+const MinHeap<int>::ArrayType EXPECTED_ARRAY {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 };
 
