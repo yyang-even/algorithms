@@ -169,7 +169,7 @@ public:
 /** Implement two stacks in an array
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
  * @reference   https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/
  */
 class OneArrayTwoStacks {
@@ -215,6 +215,13 @@ public:
 };
 
 
+/** Implement stack using priority queue or heap
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-7.
+ * @reference   How to implement stack using priority queue or heap?
+ *              https://www.geeksforgeeks.org/implement-stack-using-priority-queue-or-heap/
+ */
 class HeapStack {
     using ValueType = int;
     using KeyValuePair = std::pair<std::size_t, ValueType>;
