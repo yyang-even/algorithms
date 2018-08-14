@@ -4,6 +4,16 @@
 
 using ArrayType = std::vector<int>;
 
+
+void MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n, const std::function<void(const ArrayType::iterator, const ArrayType::iterator, const ArrayType::iterator)> merge) {
+    if (n > 1) {
+        const auto middle = n >> 1; //floor(n/2)
+        const auto middle_begin = begin + middle;
+        MergeSort(begin, middle);
+        MergeSort(middle_begin, n - middle);
+        merge(begin, middle_begin, begin + n);
+    }
+}
 /** Merge Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -23,11 +33,9 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     auto R_iter = R.cbegin();
     for (; (L_iter != L.cend()) and (R_iter != R.cend()); ++iter) {
         if (*L_iter <= *R_iter) {
-            *iter = *L_iter;
-            ++L_iter;
+            *iter = *L_iter++;
         } else {
-            *iter = *R_iter;
-            ++R_iter;
+            *iter = *R_iter++;
         }
     }
 
@@ -38,17 +46,45 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
         *iter++ = *R_iter++;
     }
 }
-void MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n) {
-    if (n > 1) {
-        const auto middle = n >> 1; //floor(n/2)
-        const auto middle_begin = begin + middle;
-        MergeSort(begin, middle);
-        MergeSort(middle_begin, n - middle);
-        Merge(begin, middle_begin, begin + n);
+auto MergeSort(ArrayType values) {
+    MergeSort(values.begin(), values.size(), Merge);
+    return values;
+}
+
+
+/** Merge Sort with O(1) extra space merge and O(n lg n) time
+ *
+ * @reference   https://www.geeksforgeeks.org/merge-sort-with-o1-extra-space-merge-and-on-lg-n-time/
+ *
+ * How to modify the algorithm so that merge works in O(1) extra space and algorithm still works in O(n Log n) time.
+ */
+void MergeO1(const ArrayType::iterator begin, const ArrayType::iterator middle,
+           const ArrayType::iterator end, const ArrayType::value_type max) {
+    auto L_iter = begin;
+    auto R_iter = mid;
+    auto iter = begin;
+    for (; (L_iter != mid) and (R_iter != end); ++iter) {
+        if (*L_iter % max <= *R_iter) {
+            *iter = *iter + (*L_iter++ % max) * max;
+        } else {
+            *iter = *iter + (*R_iter++) * max;
+        }
+    }
+
+    for (;L_iter != L.cend(); ++iter) {
+            *iter = *iter + (*L_iter++ % max) * max;
+    }
+
+    for(iter = begin; iter != R_iter; ++iter) {
+        *iter = *iter / max;
     }
 }
-auto MergeSort(ArrayType values) {
-    MergeSort(values.begin(), values.size());
+auto MergeSortO1(ArrayType values) {
+    const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
+    MergeSort(values.begin(), values.size(), [max_element](const ArrayType::iterator begin, const ArrayType::iterator middle,
+           const ArrayType::iterator end){
+            MergeO1(begin, middle, end, max_element);
+            });
     return values;
 }
 
@@ -61,8 +97,19 @@ const ArrayType EXPECTED4 = {1, 2, 3};
 const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
+SIMPLE_BENCHMARK(MergeSort, SAMPLE_ARRAYS);
+
 SIMPLE_TEST(MergeSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(MergeSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(MergeSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(MergeSortO1, SAMPLE_ARRAYS);
+
+SIMPLE_TEST(MergeSortO1, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(MergeSortO1, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(MergeSortO1, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(MergeSortO1, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MergeSortO1, TestSAMPLE5, EXPECTED5, VALUES5);
