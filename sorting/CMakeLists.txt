@@ -1,5 +1,5 @@
-CompileBenchmarkExe(bubble)
-CompileTestExe(bubble)
+CompileBenchmarkExe(bubble_sort)
+CompileTestExe(bubble_sort)
 
 CompileBenchmarkExe(count_inversions)
 CompileTestExe(count_inversions)
@@ -7,17 +7,17 @@ CompileTestExe(count_inversions)
 CompileBenchmarkExe(heap_sort)
 CompileTestExe(heap_sort)
 
-CompileBenchmarkExe(insertion)
-CompileTestExe(insertion)
+CompileBenchmarkExe(insertion_sort)
+CompileTestExe(insertion_sort)
 
 CompileBenchmarkExe(kth_smallest_element_after_every_insertion)
 CompileTestExe(kth_smallest_element_after_every_insertion)
 
-CompileBenchmarkExe(merge)
-CompileTestExe(merge)
+CompileBenchmarkExe(merge_sort)
+CompileTestExe(merge_sort)
 
 CompileBenchmarkExe(merge_k_sorted_array)
 CompileTestExe(merge_k_sorted_array)
 
-CompileBenchmarkExe(selection)
-CompileTestExe(selection)
+CompileBenchmarkExe(selection_sort)
+CompileTestExe(selection_sort)
