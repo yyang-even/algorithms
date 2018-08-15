@@ -23,3 +23,7 @@ CompileTerminalApp(reservoir_sampling)
 
 CompileBenchmarkExe(shuffle_array)
 CompileTerminalApp(shuffle_array)
+
+CompileBenchmarkExe(strong_password_suggester)
+CompileTestExe(strong_password_suggester)
+CompileTerminalApp(strong_password_suggester)
