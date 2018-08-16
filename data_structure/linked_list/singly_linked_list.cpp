@@ -176,36 +176,6 @@ SIMPLE_TEST(testGetReverseNTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.si
             SAMPLE_ARRAY, 5);
 
 
-auto testGetMidSize(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidSize();
-}
-
-auto testGetMidTwoPointers(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidTwoPointers();
-}
-
-auto testGetMidOdd(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.GetMidOdd();
-}
-
-SIMPLE_TEST(testGetMidSize, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
-SIMPLE_TEST(testGetMidSize, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMidSize, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMidSize, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
-
-SIMPLE_TEST(testGetMidTwoPointers, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
-SIMPLE_TEST(testGetMidTwoPointers, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMidTwoPointers, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMidTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
-
-SIMPLE_TEST(testGetMidOdd, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
-SIMPLE_TEST(testGetMidOdd, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMidOdd, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMidOdd, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
-
 
 auto testSortedInsert(std::vector<int> array) {
     std::sort(array.begin(), array.end());
