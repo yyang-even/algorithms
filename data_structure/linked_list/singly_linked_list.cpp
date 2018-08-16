@@ -139,44 +139,6 @@ SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() 
 SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
 
 
-auto testGetReverseNIterative(const std::vector<int> &array, const std::size_t index) {
-    SinglyLinkedList list {array};
-    return list.GetReverseNIterative(index);
-}
-
-auto testGetReverseNRecursive(const std::vector<int> &array, const std::size_t index) {
-    SinglyLinkedList list {array};
-    return list.GetReverseNRecursive(index);
-}
-
-auto testGetReverseNTwoPointers(const std::vector<int> &array, const std::size_t index) {
-    SinglyLinkedList list {array};
-    return list.GetReverseNTwoPointers(index);
-}
-
-SIMPLE_TEST(testGetReverseNIterative, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
-            SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetReverseNIterative, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
-            SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetReverseNIterative, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
-            SAMPLE_ARRAY, 5);
-
-SIMPLE_TEST(testGetReverseNRecursive, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
-            SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetReverseNRecursive, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
-            SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetReverseNRecursive, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
-            SAMPLE_ARRAY, 5);
-
-SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
-            SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetReverseNTwoPointers, TestSampleTail, SAMPLE_ARRAY[0], SAMPLE_ARRAY,
-            SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetReverseNTwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 5 - 1],
-            SAMPLE_ARRAY, 5);
-
-
-
 auto testSortedInsert(std::vector<int> array) {
     std::sort(array.begin(), array.end());
     SinglyLinkedList list {array};

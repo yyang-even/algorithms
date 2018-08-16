@@ -1,5 +1,7 @@
 CompileTestExe(middle_of_singly_linked_list)
 
+CompileTestExe(nth_node_from_the_end)
+
 CompileBenchmarkExe(random_node_from_singly_linked_list)
 
 CompileTestExe(singly_linked_list)
