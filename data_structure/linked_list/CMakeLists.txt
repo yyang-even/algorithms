@@ -11,3 +11,5 @@ CompileBenchmarkExe(random_node_from_singly_linked_list)
 CompileTestExe(reverse_singly_linked_list)
 
 CompileTestExe(singly_linked_list)
+
+CompileTestExe(sorted_insert_singly_list)
