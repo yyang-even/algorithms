@@ -1,1 +1,3 @@
 CompileBenchmarkExe(random_node_from_singly_linked_list)
+
+CompileTestExe(singly_linked_list)

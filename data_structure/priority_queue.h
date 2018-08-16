@@ -2,7 +2,7 @@
 
 #include "binary_heap.h"
 
-#include "singly_linked_list.h"
+#include "data_structure/linked_list/singly_linked_list.h"
 
 /** Priority Queue
  *
