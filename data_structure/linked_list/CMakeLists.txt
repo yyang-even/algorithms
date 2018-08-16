@@ -1,3 +1,5 @@
+CompileTestExe(get_nth_node)
+
 CompileTestExe(middle_of_singly_linked_list)
 
 CompileTestExe(nth_node_from_the_end)
