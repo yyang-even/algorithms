@@ -99,25 +99,6 @@ SIMPLE_TEST(testCountSizeRecursive, TestOdd, 3, ODD_ARRAY);
 SIMPLE_TEST(testCountSizeRecursive, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
 
 
-auto testReverseIterative(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    list.ReverseIterative();
-    return list.CopyToArray();
-}
-
-auto testReverseRecursive(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    list.ReverseRecursive();
-    return list.CopyToArray();
-}
-
-SIMPLE_TEST(testReverseIterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
-SIMPLE_TEST(testReverseIterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
-
-SIMPLE_TEST(testReverseRecursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
-SIMPLE_TEST(testReverseRecursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
-
-
 auto testSortedInsert(std::vector<int> array) {
     std::sort(array.begin(), array.end());
     SinglyLinkedList list {array};
