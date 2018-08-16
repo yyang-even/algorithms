@@ -13,6 +13,14 @@ using ArrayType = std::vector<int>;
  *
  * @complexity: O(n^2)
  */
+/** Sort 3 numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/sort-3-numbers/
+ *
+ * Given three numbers, how to sort them?
+ * How to write our own sort function that does minimum comparison and does not use extra variables?
+ * The idea is to use insertion sort as insertion sort works best for small arrays.
+ */
 auto InsertionSort(ArrayType values) {
     for (int key_value, i, j = 1; j < values.size(); ++j) {
         key_value = values[j];
