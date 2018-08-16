@@ -50,6 +50,28 @@ auto MergeSort(ArrayType values) {
 }
 
 
+/** Iterative Merge Sort
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-merge-sort/
+ *
+ * Merge subarrays in bottom up manner. First merge subarrays of size 1
+ * to create sorted subarrays of size 2, then merge subarrays of size 2
+ * to create sorted subarrays of size 4, and so on.
+ */
+auto MergeSortIterative(ArrayType values) {
+    for (ArrayType::size_type current_size = 1; current_size < values.size(); current_size *= 2) {
+        for (ArrayType::size_type i = 0ul; i < (values.size() - 1);) {
+            const auto begin = values.begin() + i;
+            const auto mid = begin + current_size;
+            i += current_size * 2;
+            const auto end = values.begin() + std::min(i, values.size());
+            Merge(begin, mid, end);
+        }
+    }
+    return values;
+}
+
+
 /** Merge Sort with O(1) extra space merge and O(n lg n) time
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-with-o1-extra-space-merge-and-on-lg-n-time/
@@ -130,3 +152,12 @@ SIMPLE_TEST(MergeSortO1, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(MergeSortO1, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(MergeSortO1, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSortO1, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(MergeSortIterative, VALUES5);
+
+SIMPLE_TEST(MergeSortIterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(MergeSortIterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(MergeSortIterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(MergeSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MergeSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
