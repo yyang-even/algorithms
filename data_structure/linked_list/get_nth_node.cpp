@@ -24,4 +24,3 @@ SIMPLE_TEST(testGetNRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0)
 SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
 SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
-
