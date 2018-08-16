@@ -75,30 +75,6 @@ auto testLinkedListInsert(const std::vector<int> &array) {
 SIMPLE_TEST(testLinkedListInsert, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
-auto testCountSizeIterative(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.CountSizeIterative();
-}
-
-SIMPLE_TEST(testCountSizeIterative, TestEmpty, 0, EMPTY_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestSingle, 1, SINGLE_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestEven, 2, EVEN_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestOdd, 3, ODD_ARRAY);
-SIMPLE_TEST(testCountSizeIterative, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
-
-
-auto testCountSizeRecursive(const std::vector<int> &array) {
-    SinglyLinkedList list {array};
-    return list.CountSizeRecursive();
-}
-
-SIMPLE_TEST(testCountSizeRecursive, TestEmpty, 0, EMPTY_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestSingle, 1, SINGLE_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestEven, 2, EVEN_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestOdd, 3, ODD_ARRAY);
-SIMPLE_TEST(testCountSizeRecursive, TestSample, EXPECTED_SIZE, SAMPLE_ARRAY);
-
-
 auto testSortedInsert(std::vector<int> array) {
     std::sort(array.begin(), array.end());
     SinglyLinkedList list {array};

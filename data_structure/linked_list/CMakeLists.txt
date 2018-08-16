@@ -1,3 +1,5 @@
+CompileTestExe(count_size_of_singly_list)
+
 CompileTestExe(get_nth_node)
 
 CompileTestExe(middle_of_singly_linked_list)
