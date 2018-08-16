@@ -21,3 +21,6 @@ CompileTestExe(merge_k_sorted_array)
 
 CompileBenchmarkExe(selection_sort)
 CompileTestExe(selection_sort)
+
+CompileBenchmarkExe(sort_nearly_sorted_array)
+CompileTestExe(sort_nearly_sorted_array)
