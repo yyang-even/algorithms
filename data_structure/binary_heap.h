@@ -11,6 +11,16 @@
  *              Time Complexity of building a heap
  *              https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
  */
+/** LFU (Least Frequently Used) Cache Implementation
+ *
+ * @reference   https://www.geeksforgeeks.org/lfu-least-frequently-used-cache-implementation/
+ *
+ * Least Frequently Used (LFU) is a caching algorithm in which the least frequently used
+ * cache block is removed whenever the cache is overflowed. In LFU we check the old page
+ * as well as the frequency of that page and if the frequency of the page is larger than
+ * the old page we cannot remove it and if all the old pages are having same frequency
+ * then take last.
+ */
 template <typename T, typename Compare = std::less<T> >
 class BinaryHeap {
 public:
