@@ -4,5 +4,8 @@ CompileTestExe(a_pair_elements_sum_as_n)
 CompileBenchmarkExe(check_all_elements_distinct)
 CompileTestExe(check_all_elements_distinct)
 
+CompileBenchmarkExe(find_overlapping_sum_of_two_array)
+CompileTestExe(find_overlapping_sum_of_two_array)
+
 CompileBenchmarkExe(repeated_elements_in_array)
 CompileTestExe(repeated_elements_in_array)
