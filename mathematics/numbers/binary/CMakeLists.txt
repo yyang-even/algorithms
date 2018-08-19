@@ -11,6 +11,11 @@ CompileTestExe(are_opposite_signs)
 CompileBenchmarkExe(byte_range)
 CompileTestExe(byte_range)
 
+CompileBenchmarkExe(count_diff_bits_of_two
+    binary)
+CompileTestExe(count_diff_bits_of_two
+    binary)
+
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
 
