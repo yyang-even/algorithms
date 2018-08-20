@@ -4,11 +4,17 @@
 
 typedef unsigned InputType;
 
-/**Count set bits in an integer
+/** Count set bits in an integer
  *
  * @reference   http://www.geeksforgeeks.org/count-set-bits-in-an-integer/
  *
  * Write an efficient program to count number of 1s in binary representation of an integer.
+ */
+/** Check if a number has same number of set and unset bits
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-a-number-has-same-number-of-set-and-unset-bits/
+ *
+ * Given a number N, the task is to check whether the count of the set and unset bits in the given number are same.
  */
 
 /**
