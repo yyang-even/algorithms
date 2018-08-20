@@ -1,3 +1,5 @@
+#pragma once
+
 #include "common_header.h"
 
 #include "binary_heap.h"
