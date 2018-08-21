@@ -18,7 +18,7 @@ auto CountTrailingZerosLinear(InputType num) {
             num >>= 1;
         }
     } else {
-        result = CHAR_BIT * sizeof(num);
+        result = Bits_Number<decltype(num)>();
     }
     return result;
 }
@@ -31,7 +31,7 @@ auto CountTrailingZerosLinear(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 auto CountTrailingZerosParallel(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     InputType result = 32; // c will be the number of zero bits on the right
     num &= -signed(num);
@@ -65,7 +65,7 @@ auto CountTrailingZerosParallel(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 auto CountTrailingZerosBinarySearch(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     InputType result;
     if (num == 0) {
@@ -103,7 +103,7 @@ auto CountTrailingZerosBinarySearch(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType CountTrailingZerosFloat(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     if (num) {
         const float f_num = (float)(num & -num);
@@ -121,7 +121,7 @@ InputType CountTrailingZerosFloat(const InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 auto CountTrailingZerosModulusAndLookup(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType Mod37BitPosition[] = { // map a bit value mod 37 to its position
         32, 0, 1, 26, 2, 23, 27, 0, 3, 16, 24, 30, 28, 11, 0, 13, 4,
@@ -139,7 +139,7 @@ auto CountTrailingZerosModulusAndLookup(const InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 auto CountTrailingZerosMultiplyAndLookup(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
         0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8,
@@ -151,7 +151,7 @@ auto CountTrailingZerosMultiplyAndLookup(const InputType num) {
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType NUM_BITS = CHAR_BIT * sizeof(InputType);
+constexpr InputType NUM_BITS = Bits_Number<InputType>();
 
 SIMPLE_BENCHMARK(CountTrailingZerosLinear, UPPER);
 SIMPLE_BENCHMARK(CountTrailingZerosLinear, 1 << (NUM_BITS - 1));

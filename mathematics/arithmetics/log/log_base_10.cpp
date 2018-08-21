@@ -11,7 +11,7 @@ typedef unsigned InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType LogBase10(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static InputType constexpr PowersOf10[] = {
         1, 10, 100, 1000, 10000, 100000,
@@ -30,7 +30,7 @@ InputType LogBase10(const InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 inline InputType LogBase10Enum(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     return (num >= 1000000000) ? 9 : (num >= 100000000) ? 8 : (num >= 10000000) ? 7 :
            (num >= 1000000) ? 6 : (num >= 100000) ? 5 : (num >= 10000) ? 4 :

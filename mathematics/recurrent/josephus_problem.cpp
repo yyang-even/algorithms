@@ -30,7 +30,7 @@ InputType JosephusProblem2Recursive(const InputType n) {
  * J(2^m + l) = 2l + 1, for m >= 0 and 0 <= l < 2^m.
  */
 InputType JosephusProblem2Closedform(const InputType n) {
-    const auto bit_length = sizeof(n) * CHAR_BIT;
+    static constexpr auto bit_length = Bits_Number<decltype(n)>();
     InputType m = InputType(1) << (bit_length - 1);
 
     while (m and !(m & n)) {
@@ -54,7 +54,7 @@ InputType PenultimateSurvivorClosedform(const InputType n) {
     if (n == 2) {
         return 2;
     }
-    const auto bit_length = sizeof(n) * CHAR_BIT;
+    static constexpr auto bit_length = Bits_Number<decltype(n)>();
     InputType m = InputType(3) << (bit_length - 2);
 
     while (n < m) {

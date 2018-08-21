@@ -9,7 +9,7 @@ typedef int InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 INT_BOOL IsNegativePortable(const InputType num) {
-    return 1 & ((unsigned InputType)num >> (sizeof(InputType) * CHAR_BIT - 1));
+    return 1 & ((unsigned InputType)num >> (Bits_Number<decltype(num)>() - 1));
 }
 
 INT_BOOL IsNegative(const InputType num) {

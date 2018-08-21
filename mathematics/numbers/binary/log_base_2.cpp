@@ -54,7 +54,7 @@ static constexpr char LogTable256[256] = {
     LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
 };
 InputType LogBase2LookupTable(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     register InputType t, tt; // temporaries
 
@@ -73,7 +73,7 @@ InputType LogBase2LookupTable(const InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType LogBase2LgNBranch(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
     static const unsigned int S[] = {1, 2, 4, 8, 16};
@@ -89,7 +89,7 @@ InputType LogBase2LgNBranch(InputType num) {
     return result;
 }
 InputType LogBase2LgNNoBranch(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     register InputType result;
     register InputType shift;
@@ -118,7 +118,7 @@ InputType LogBase2LgNNoBranch(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType LogBase2LgNMultiplyAndLookup(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
         0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
@@ -142,14 +142,14 @@ InputType LogBase2LgNMultiplyAndLookup(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 int LogBase2FloatInput(const float num) {
-    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     int result;
     memcpy(&result, &num, sizeof(result));
     return (result >> 23) - 127;
 }
 int LogBase2IEEE754Float(const float num) {
-    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     int x;
     memcpy(&x, &num, sizeof(x));
@@ -178,7 +178,7 @@ int LogBase2IEEE754Float(const float num) {
  * find int(log2(pow((double) v, 1. / pow(2, r)))), where isnormal(v) and v > 0
  */
 int LogBase2ofPow2r(const float num, const unsigned r) {
-    static_assert(sizeof(float) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     int result;
     memcpy(&result, &num, sizeof result);

@@ -42,7 +42,7 @@ InputType Modulus2PowerMinus1(InputType num, const InputType s) {
  */
 InputType Modulus2PowerMinus1Parallel(InputType num, const InputType s) {
     // The following is for a word size of 32 bits!
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static const unsigned int M[] = {
         0x00000000, 0x55555555, 0x33333333, 0xc71c71c7,
@@ -118,7 +118,7 @@ InputType Modulus2PowerMinus1Parallel(InputType num, const InputType s) {
 
 
 const InputType LOWER = 0;
-constexpr InputType UPPER = (sizeof(InputType) * CHAR_BIT) - 1;
+constexpr InputType UPPER = Bits_Number<InputType>() - 1;
 
 SIMPLE_BENCHMARK(Modulus2Power, 1, UPPER);
 

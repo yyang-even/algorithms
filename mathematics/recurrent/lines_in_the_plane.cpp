@@ -97,7 +97,7 @@ constexpr InputType LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 constexpr InputType SAMPLE = 14;
 
-constexpr InputType BITS_NUM = (sizeof(InputType) * CHAR_BIT);
+constexpr InputType BITS_NUM = Bits_Number<InputType>();
 constexpr InputType UPPER2 = InputType(1) << ((LONG_BITS_NUM / 2) - 1);
 
 constexpr InputType BoundedRegionsPlaneLinesLOWER = 1;

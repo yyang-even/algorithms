@@ -9,11 +9,11 @@ typedef int InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 unsigned Absolute(const InputType num) {
-    const int mask = num >> sizeof(InputType) * CHAR_BIT - 1;
+    const InputType mask = num >> Bits_Number<decltype(num)>() - 1;
     return (num + mask) ^ mask;
 }
 unsigned AbsPatented(const InputType num) {
-    const int mask = num >> sizeof(InputType) * CHAR_BIT - 1;
+    const InputType mask = num >> Bits_Number<decltype(num)>() - 1;
     return (num ^ mask) - mask;
 }
 
