@@ -85,6 +85,9 @@ CompileTestExe(swap)
 CompileBenchmarkExe(swap_odd_even_bits)
 CompileTestExe(swap_odd_even_bits)
 
+CompileBenchmarkExe(toggle_bit)
+CompileTestExe(toggle_bit)
+
 CompileBenchmarkExe(to_binary_string)
 CompileTestExe(to_binary_string)
 
