@@ -76,6 +76,9 @@ CompileTestExe(sign_extending)
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
 
+CompileBenchmarkExe(swap_odd_even_bits)
+CompileTestExe(swap_odd_even_bits)
+
 CompileBenchmarkExe(to_binary_string)
 CompileTestExe(to_binary_string)
 

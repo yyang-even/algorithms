@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "swap_odd_even_bits.h"
+
 typedef unsigned InputType;
 
 /** Reverse bits
@@ -89,7 +91,7 @@ InputType Reverse32BitsParallel(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     // swap odd and even bits
-    num = ((num >> 1) & 0x55555555) | ((num & 0x55555555) << 1);
+    num = SwapOddAndEvenBits(num);
     // swap consecutive pairs
     num = ((num >> 2) & 0x33333333) | ((num & 0x33333333) << 2);
     // swap nibbles ...
