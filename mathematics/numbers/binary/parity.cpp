@@ -79,7 +79,7 @@ INT_BOOL ParityMultiply64(uint64_t n) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 INT_BOOL ParityParallel(InputType n) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
 
     n ^= n >> 16;
     n ^= n >> 8;

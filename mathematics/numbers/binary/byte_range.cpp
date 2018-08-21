@@ -10,7 +10,7 @@ typedef unsigned InputType;
  */
 #define haszero(v) (((v) - 0x01010101UL) & ~(v) & 0x80808080UL)
 INT_BOOL HasByteZero(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     return haszero(num) ? TRUE : FALSE;
 }
@@ -39,7 +39,7 @@ INT_BOOL HasByteZeroPointer(const InputType num) {
  */
 #define hasvalue(x,n) (haszero((x) ^ (~0UL/255 * (n))))
 INT_BOOL HasByteN(const InputType x, const unsigned char n) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(x)>() == 32, "InputType is not 32 bits.");
 
     return hasvalue(x, n) ? TRUE : FALSE;
 }

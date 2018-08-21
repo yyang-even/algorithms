@@ -24,7 +24,7 @@ auto MortonNumber(const InputType x, const InputType y) {
                   "OutputType is not twice the size of InputType.");
 
     OutputType result = 0;
-    for (InputType i = 0; i < sizeof(x) * CHAR_BIT; ++i) {
+    for (InputType i = 0; i < Bits_Number<decltype(x)>(); ++i) {
         result |= ((x & 1U << i) << i) | ((y & 1U << i) << (i + 1));
     }
     return result;

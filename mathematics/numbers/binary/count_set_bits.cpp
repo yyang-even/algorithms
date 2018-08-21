@@ -64,7 +64,7 @@ InputType CountSetBitsLookupTable(const InputType n) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 uint32_t CountSetBitsMagicBinaries32(InputType n) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
 
     n = n - ((n >> 1) & 0x55555555);
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
@@ -75,7 +75,7 @@ T CountSetBitsMagicBinaries(T n) {
     n = n - ((n >> 1) & (T)~(T)0 / 3);
     n = (n & (T)~(T)0 / 15 * 3) + ((n >> 2) & (T)~(T)0 / 15 * 3);
     n = (n + (n >> 4)) & (T)~(T)0 / 255 * 15;
-    return (T)(n * ((T)~(T)0 / 255)) >> (sizeof(T) - 1) * CHAR_BIT;
+    return (T)(n * ((T)~(T)0 / 255)) >> (Bits_Number<T>() - CHAR_BIT);
 }
 unsigned CountSetBitsMagicBinariesUnsigned(unsigned n) {
     return CountSetBitsMagicBinaries<unsigned>(n);
@@ -88,9 +88,8 @@ unsigned CountSetBitsMagicBinariesUnsigned(unsigned n) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
-    const auto sizeof_n = sizeof(n);
     // Shift out bits after given position.
-    n = n >> (sizeof_n * CHAR_BIT - pos);
+    n = n >> (Bits_Number<decltype(n)>() - pos);
     // Count set bits in parallel.
     return CountSetBitsMagicBinaries<uint64_t>(n);
 }
@@ -156,7 +155,7 @@ SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, UPPER);
 RANDOM_BENCHMARK(CountSetBitsBrianKernighan, LOWER, UPPER);
 
 SIMPLE_TEST(CountSetBitsBrianKernighan, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsBrianKernighan, TestUPPER, sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(CountSetBitsBrianKernighan, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
 SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE2, 3, 13);
 
@@ -165,7 +164,7 @@ SIMPLE_BENCHMARK(CountSetBitsLookupTable, UPPER);
 RANDOM_BENCHMARK(CountSetBitsLookupTable, LOWER, UPPER);
 
 SIMPLE_TEST(CountSetBitsLookupTable, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsLookupTable, TestUPPER, sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(CountSetBitsLookupTable, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
 SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE2, 3, 13);
 
@@ -175,7 +174,7 @@ SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, LOWER);
 SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, UPPER);
 
 SIMPLE_TEST(CountSetBitsMagicBinaries32, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsMagicBinaries32, TestUPPER, sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(CountSetBitsMagicBinaries32, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
 SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE2, 3, 13);
 
@@ -185,7 +184,7 @@ SIMPLE_BENCHMARK(CountSetBitsMagicBinariesUnsigned, LOWER);
 SIMPLE_BENCHMARK(CountSetBitsMagicBinariesUnsigned, UPPER);
 
 SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestUPPER, sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
 SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestSAMPLE2, 3, 13);
 

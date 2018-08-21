@@ -9,9 +9,9 @@ typedef unsigned InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32Bits(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
-    auto size = sizeof(num) * CHAR_BIT - 1;
+    auto size = Bits_Number<decltype(num)>() - 1;
     InputType ret = num;
     for (num >>= 1; num; num >>= 1) {
         ret <<= 1;
@@ -28,7 +28,7 @@ InputType Reverse32Bits(InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32BitsLookupTable(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static const unsigned char BitReverseTable256[256] = {
 #define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
@@ -86,7 +86,7 @@ unsigned char ReverseBitsInByte7(const unsigned char byte) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 InputType Reverse32BitsParallel(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     // swap odd and even bits
     num = ((num >> 1) & 0x55555555) | ((num & 0x55555555) << 1);
@@ -110,7 +110,7 @@ InputType Reverse32BitsParallel(InputType num) {
  */
 template <typename T>
 T ReverseNBitsParallel(T num) {
-    T size = sizeof(num) * CHAR_BIT; // bit size; must be power of 2
+    T size = Bits_Number<T>(); // bit size; must be power of 2
     T mask = ~0;
     while ((size >>= 1) > 0) {
         mask ^= (mask << size);
@@ -120,7 +120,7 @@ T ReverseNBitsParallel(T num) {
     return num;
 }
 InputType ReverseNBitsParallelUint32(InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     return ReverseNBitsParallel(num);
 }

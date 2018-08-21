@@ -29,6 +29,11 @@ inline auto Random_Number(const T from, const T to) {
     return distribution(generator);
 }
 
+template <typename T>
+inline constexpr auto Bits_Number() {
+    return sizeof(T) * CHAR_BIT;
+}
+
 // Macros
 #ifdef NONIUS_RUNNER
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
@@ -74,5 +79,5 @@ inline auto Random_Number(const T from, const T to) {
 #endif
 
 //Constants
-constexpr unsigned LONG_BITS_NUM = (sizeof(unsigned long) * CHAR_BIT);
+constexpr unsigned LONG_BITS_NUM = Bits_Number<unsigned long>();
 const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;

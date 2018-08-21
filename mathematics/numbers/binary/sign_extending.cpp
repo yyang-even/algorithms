@@ -45,7 +45,7 @@ InputType SignExtendVariable4Bits(InputType x) {
 
 template <unsigned B>
 inline InputType SignExtendVariableDirty(const InputType x) {
-    static const InputType mask = CHAR_BIT * sizeof(x) - B;
+    static const InputType mask = Bits_Number<decltype(x)>() - B;
     return (x << mask) >> mask;
 }
 InputType SignExtendVariableDirty4Bits(InputType x) {

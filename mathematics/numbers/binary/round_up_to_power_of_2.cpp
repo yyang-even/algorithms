@@ -11,7 +11,7 @@ typedef unsigned InputType;
  * So num=3 -> r=4; num=8 -> r=8
  */
 InputType RoundUpToPowerOf2Float(const InputType num) {
-    static_assert(sizeof(InputType) * CHAR_BIT == 32, "InputType is not 32 bits.");
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     if (num) {
         const float f_num = (float)num;
@@ -45,7 +45,7 @@ InputType RoundUpToPowerOf2(InputType num) {
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = 1 << (CHAR_BIT *sizeof(InputType) - 1);
+constexpr auto UPPER = 1 << (Bits_Number<InputType>() - 1);
 
 SIMPLE_BENCHMARK(RoundUpToPowerOf2Float, UPPER);
 

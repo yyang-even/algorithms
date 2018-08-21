@@ -58,7 +58,8 @@ SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE3, 97, 100);
-SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER, UPPER - sizeof(UPPER) * CHAR_BIT, UPPER);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER, UPPER - Bits_Number<decltype(UPPER)>(),
+            UPPER);
 
 #ifdef __GNUC__
 SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialNBuiltIn, LOWER);
@@ -68,8 +69,8 @@ SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialNBuiltIn, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE1, 0, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE2, 8, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestSAMPLE3, 97, 100);
-SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestUPPER, UPPER - sizeof(UPPER) * CHAR_BIT,
-            UPPER);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialNBuiltIn, TestUPPER,
+            UPPER - Bits_Number<decltype(UPPER)>(), UPPER);
 
 MUTUAL_RANDOM_TEST(LargestPowerOf2DividesFactorialN, LargestPowerOf2DividesFactorialNBuiltIn, 0,
                    96583);
