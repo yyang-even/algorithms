@@ -94,5 +94,8 @@ CompileTestExe(toggle_bit)
 CompileBenchmarkExe(to_binary_string)
 CompileTestExe(to_binary_string)
 
+CompileBenchmarkExe(twos_complement)
+CompileTestExe(twos_complement)
+
 CompileBenchmarkExe(zig_zag_encoding)
 CompileTestExe(zig_zag_encoding)
