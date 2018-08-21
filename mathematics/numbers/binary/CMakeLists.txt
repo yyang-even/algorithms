@@ -71,5 +71,8 @@ CompileTestExe(sign_extending)
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
 
+CompileBenchmarkExe(to_binary_string)
+CompileTestExe(to_binary_string)
+
 CompileBenchmarkExe(zig_zag_encoding)
 CompileTestExe(zig_zag_encoding)
