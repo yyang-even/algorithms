@@ -7,6 +7,8 @@ typedef unsigned InputType;
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Swapping values with subtraction and addition
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   How to swap two numbers without using a temporary variable?
+ *              https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
  *
  * Swap two values without using a temporary variable.
  */
@@ -23,6 +25,8 @@ void SwapSubAdd(InputType &a, InputType &b) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Swapping values with XOR
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   How to swap two numbers without using a temporary variable?
+ *              https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
  */
 void SwapXor(InputType &a, InputType &b) {
     if (a != b) {
@@ -53,7 +57,7 @@ INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
  */
 InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
                        const unsigned bit_length) {
-    constexpr unsigned NUM_BITS = sizeof(number) * CHAR_BIT;
+    constexpr unsigned NUM_BITS = Bits_Number<decltype(number)>();
     if (i + bit_length >= NUM_BITS or
         j + bit_length >= NUM_BITS or
         i == j or
