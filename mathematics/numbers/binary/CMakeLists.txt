@@ -40,6 +40,9 @@ CompileBenchmarkExe(find_the_only_set_bit_position
 CompileTestExe(find_the_only_set_bit_position
     binary)
 
+CompileBenchmarkExe(is_bit_set)
+CompileTestExe(is_bit_set)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 
