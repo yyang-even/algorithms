@@ -70,6 +70,9 @@ CompileTestExe(reverse)
 CompileBenchmarkExe(round_up_to_power_of_2)
 CompileTestExe(round_up_to_power_of_2)
 
+CompileBenchmarkExe(set_bit)
+CompileTestExe(set_bit)
+
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
