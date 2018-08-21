@@ -29,6 +29,9 @@ CompileTestExe(conditionally_negate)
 CompileBenchmarkExe(count_trailing_zeros)
 CompileTestExe(count_trailing_zeros)
 
+CompileBenchmarkExe(clear_bit)
+CompileTestExe(clear_bit)
+
 CompileBenchmarkExe(endianness)
 CompileTestExe(endianness)
 
