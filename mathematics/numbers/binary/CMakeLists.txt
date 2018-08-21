@@ -32,6 +32,11 @@ CompileTestExe(count_trailing_zeros)
 CompileBenchmarkExe(endianness)
 CompileTestExe(endianness)
 
+CompileBenchmarkExe(find_the_only_set_bit_position
+    binary)
+CompileTestExe(find_the_only_set_bit_position
+    binary)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 
