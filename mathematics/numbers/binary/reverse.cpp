@@ -9,6 +9,8 @@ typedef unsigned InputType;
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse bits the obvious way
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Write an Efficient C Program to Reverse Bits of a Number
+ *              https://www.geeksforgeeks.org/write-an-efficient-c-program-to-reverse-bits-of-a-number/
  */
 InputType Reverse32Bits(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
@@ -28,6 +30,8 @@ InputType Reverse32Bits(InputType num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse bits in word by lookup table
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Reverse bits using lookup table in O(1) time
+ *              https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
  */
 InputType Reverse32BitsLookupTable(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
