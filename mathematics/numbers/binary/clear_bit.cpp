@@ -12,8 +12,24 @@ auto ClearBit(const InputType num, const InputType position) {
 }
 
 
+/** Clear all bits from LSB to ith bit
+ *
+ * @reference   Bit Tricks for Competitive Programming
+ *              https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
+ */
+auto ClearBitsFromLSB(const InputType num, const InputType i) {
+    const auto mask = ~((1 << i + 1) - 1);
+    return num & mask;
+}
+
+
 SIMPLE_BENCHMARK(ClearBit, 0, 4);
 
 SIMPLE_TEST(ClearBit, TestSample1, 0b101, 0b111, 1);
 SIMPLE_TEST(ClearBit, TestSample2, 0, 0, 0);
 SIMPLE_TEST(ClearBit, TestSample3, 0, 0, 1);
+
+
+SIMPLE_BENCHMARK(ClearBitsFromLSB, 0, 4);
+
+SIMPLE_TEST(ClearBitsFromLSB, TestSample1, 0b00010000, 0b00011101, 3);
