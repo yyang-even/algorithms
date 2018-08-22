@@ -1,0 +1,44 @@
+#include "common_header.h"
+
+#include "conditionally_set_or_clear.h"
+
+using InputType = std::string;
+
+/** Case conversion
+ *
+ * @reference   Case conversion (Lower to Upper and Vice Versa) of a string using BitWise operators in C/C++
+ *              https://www.geeksforgeeks.org/case-conversion-lower-upper-vice-versa-string-using-bitwise-operators-cc/
+ * @reference   Bit Tricks for Competitive Programming
+ *              https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
+ *
+ * Given a string, write a function that converts it either from lower to upper case or from upper
+ * to lower case using the bitwise operators &(AND), |(OR), ~(NOT) in place and returns the string.
+ */
+constexpr char CASE_DIFF = 'a' - 'A';
+auto ToLowerCase(const char c) {
+    static const bool IS_SET = true;
+    return SetOrClearSuperscalar(IS_SET, CASE_DIFF, c);
+}
+
+auto ToUpperCase(const char c) {
+    static const bool IS_SET = false;
+    return SetOrClearSuperscalar(IS_SET, CASE_DIFF, c);
+}
+
+auto TransformString(std::string str, std::function<char(const char)> change_case) {
+    std::transform(str.cbegin(), str.cend(), str.begin(), change_case);
+    return str;
+}
+
+
+const std::string SAMPLE = "SanjaYKannA";
+const std::string EXPECTED_UPPER = "SANJAYKANNA";
+const std::string EXPECTED_LOWER = "sanjaykanna";
+
+SIMPLE_BENCHMARK(TransformString, SAMPLE, ToLowerCase);
+
+SIMPLE_TEST(TransformString, TestSampleLower, EXPECTED_LOWER, SAMPLE, ToLowerCase);
+
+SIMPLE_BENCHMARK(TransformString, SAMPLE, ToUpperCase);
+
+SIMPLE_TEST(TransformString, TestSampleUpper, EXPECTED_UPPER, SAMPLE, ToUpperCase);

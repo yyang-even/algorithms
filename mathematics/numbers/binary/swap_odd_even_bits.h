@@ -1,3 +1,5 @@
+#pragma once
+
 /** Swap all odd and even bits
  *
  * @reference   https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/
