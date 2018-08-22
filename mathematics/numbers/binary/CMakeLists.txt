@@ -29,6 +29,9 @@ CompileTestExe(conditionally_negate)
 CompileBenchmarkExe(count_trailing_zeros)
 CompileTestExe(count_trailing_zeros)
 
+CompileBenchmarkExe(clear_all_bits_except_the_last_set_bit)
+CompileTestExe(clear_all_bits_except_the_last_set_bit)
+
 CompileBenchmarkExe(clear_bit)
 CompileTestExe(clear_bit)
 
