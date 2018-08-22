@@ -82,6 +82,9 @@ CompileTestExe(set_bit)
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
+CompileBenchmarkExe(stripping_off_lowest_set_bit)
+CompileTestExe(stripping_off_lowest_set_bit)
+
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
 
