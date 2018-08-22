@@ -1,6 +1,9 @@
 add_library(probabilistic
     random_number_generator_in_arbitrary_probability.cpp)
 
+CompileBenchmarkExe(approximate_median)
+CompileTestExe(approximate_median)
+
 CompileBenchmarkExe(birthday_paradox)
 CompileTestExe(birthday_paradox)
 
