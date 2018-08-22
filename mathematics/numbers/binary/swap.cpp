@@ -50,6 +50,8 @@ INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Swapping individual bits with XOR
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Swap bits in a given number
+ *              https://www.geeksforgeeks.org/swap-bits-in-a-given-number/
  *
  * As an example of swapping ranges of bits suppose we have have number=00101111 (expressed in binary)
  * and we want to swap the bit_length=3 consecutive bits starting at i = 1 (the second bit from the right)
