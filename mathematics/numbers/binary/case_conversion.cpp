@@ -25,6 +25,16 @@ auto ToUpperCase(const char c) {
     return SetOrClearSuperscalar(IS_SET, CASE_DIFF, c);
 }
 
+/** Toggle case of a string using Bitwise Operators
+ *
+ * @reference   https://www.geeksforgeeks.org/toggle-case-string-using-bitwise-operators/
+ *
+ * Given a string, write a function that returns toggle case of a string using the bitwise operators in place.
+ */
+auto ToggleCase(const char c) {
+    return c ^ CASE_DIFF;
+}
+
 auto TransformString(std::string str, std::function<char(const char)> change_case) {
     std::transform(str.cbegin(), str.cend(), str.begin(), change_case);
     return str;
@@ -34,6 +44,7 @@ auto TransformString(std::string str, std::function<char(const char)> change_cas
 const std::string SAMPLE = "SanjaYKannA";
 const std::string EXPECTED_UPPER = "SANJAYKANNA";
 const std::string EXPECTED_LOWER = "sanjaykanna";
+const std::string EXPECTED_TOGGLE = "sANJAykANNa";
 
 SIMPLE_BENCHMARK(TransformString, SAMPLE, ToLowerCase);
 
@@ -42,3 +53,7 @@ SIMPLE_TEST(TransformString, TestSampleLower, EXPECTED_LOWER, SAMPLE, ToLowerCas
 SIMPLE_BENCHMARK(TransformString, SAMPLE, ToUpperCase);
 
 SIMPLE_TEST(TransformString, TestSampleUpper, EXPECTED_UPPER, SAMPLE, ToUpperCase);
+
+SIMPLE_BENCHMARK(TransformString, SAMPLE, ToggleCase);
+
+SIMPLE_TEST(TransformString, TestSampleToggle, EXPECTED_TOGGLE, SAMPLE, ToggleCase);
