@@ -6,6 +6,8 @@ using InputType = unsigned;
  *
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
+ * @reference   Toggling k-th bit of a number
+ *              https://www.geeksforgeeks.org/toggling-k-th-bit-number/
  */
 auto ToggleBit(const InputType num, const InputType position) {
     return num ^ (1 << position);
