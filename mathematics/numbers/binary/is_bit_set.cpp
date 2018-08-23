@@ -6,6 +6,8 @@ using InputType = unsigned;
  *
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
+ * @reference   Check whether K-th bit is set or not
+ *              https://www.geeksforgeeks.org/check-whether-k-th-bit-set-not/
  */
 INT_BOOL IsBitSet(const InputType num, const InputType position) {
     return static_cast<bool>(num & (1 << position));
