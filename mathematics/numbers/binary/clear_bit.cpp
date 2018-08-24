@@ -6,6 +6,8 @@ using InputType = unsigned;
  *
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
+ *              How to turn off a particular bit in a number?
+ *              https://www.geeksforgeeks.org/how-to-turn-off-a-particular-bit-in-a-number/
  */
 auto ClearBit(const InputType num, const InputType position) {
     return num & (~(1 << position));
