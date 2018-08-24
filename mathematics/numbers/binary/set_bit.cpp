@@ -6,6 +6,8 @@ typedef unsigned InputType;
  *
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
+ * @reference   Set the K-th bit of a given number
+ *              https://www.geeksforgeeks.org/set-k-th-bit-given-number/
  */
 auto SetBit(const InputType num, const InputType position) {
     return num | (1 << position);
