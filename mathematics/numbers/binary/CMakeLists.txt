@@ -41,6 +41,9 @@ CompileTestExe(clear_bit)
 CompileBenchmarkExe(endianness)
 CompileTestExe(endianness)
 
+CompileBenchmarkExe(find_first_bit_set)
+CompileTestExe(find_first_bit_set)
+
 CompileBenchmarkExe(find_the_only_set_bit_position
     binary)
 CompileTestExe(find_the_only_set_bit_position
