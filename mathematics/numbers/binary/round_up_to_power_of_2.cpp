@@ -7,6 +7,8 @@ typedef unsigned InputType;
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Round up to the next highest power of 2 by float casting
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Smallest power of 2 greater than or equal to n
+ *              https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
  *
  * So num=3 -> r=4; num=8 -> r=8
  */
@@ -28,8 +30,12 @@ InputType RoundUpToPowerOf2Float(const InputType num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Round up to the next highest power of 2
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Smallest power of 2 greater than or equal to n
+ *              https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
  */
 InputType RoundUpToPowerOf2(InputType num) {
+    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
+
     if (num) {
         --num;
         num |= num >> 1;
