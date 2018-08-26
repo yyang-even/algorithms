@@ -18,6 +18,12 @@ CompileTestExe(calculate_xor_of_all_numbers_1_to_n)
 CompileBenchmarkExe(case_conversion)
 CompileTestExe(case_conversion)
 
+CompileBenchmarkExe(conditionally_set_or_clear)
+CompileTestExe(conditionally_set_or_clear)
+
+CompileBenchmarkExe(conditionally_negate)
+CompileTestExe(conditionally_negate)
+
 CompileBenchmarkExe(count_diff_bits_of_two
     binary)
 CompileTestExe(count_diff_bits_of_two
@@ -26,14 +32,11 @@ CompileTestExe(count_diff_bits_of_two
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
 
-CompileBenchmarkExe(conditionally_set_or_clear)
-CompileTestExe(conditionally_set_or_clear)
-
-CompileBenchmarkExe(conditionally_negate)
-CompileTestExe(conditionally_negate)
-
 CompileBenchmarkExe(count_trailing_zeros)
 CompileTestExe(count_trailing_zeros)
+
+CompileBenchmarkExe(count_unset_bits)
+CompileTestExe(count_unset_bits)
 
 CompileBenchmarkExe(clear_all_bits_except_the_last_set_bit)
 CompileTestExe(clear_all_bits_except_the_last_set_bit)
