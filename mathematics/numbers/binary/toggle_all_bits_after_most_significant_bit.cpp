@@ -1,19 +1,6 @@
 #include "common_header.h"
 
-#include "set_all_bits_after_most_significant_bit.h"
-
-using InputType = unsigned;
-
-/** Toggle all bits after most significant bit
- *
- * @reference   https://www.geeksforgeeks.org/toggle-bits-significant-bit/
- *
- * Given a number, toggle all bits of it after most significant bit including most significant bit.
- */
-auto ToggleAllBitsAfterMSB(const InputType num) {
-    return num ^ SetAllBitsAfterMSB(num);
-}
-
+#include "toggle_all_bits_after_most_significant_bit.h"
 
 SIMPLE_BENCHMARK(ToggleAllBitsAfterMSB, 0);
 

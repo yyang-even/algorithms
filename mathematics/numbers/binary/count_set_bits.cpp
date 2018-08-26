@@ -159,6 +159,10 @@ SIMPLE_TEST(CountSetBitsBrianKernighan, TestUPPER, Bits_Number<decltype(UPPER)>(
 SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE2, 3, 13);
 
+#ifdef __GNUG__
+MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, __builtin_popcount, LOWER, UPPER);
+#endif
+
 SIMPLE_BENCHMARK(CountSetBitsLookupTable, LOWER);
 SIMPLE_BENCHMARK(CountSetBitsLookupTable, UPPER);
 RANDOM_BENCHMARK(CountSetBitsLookupTable, LOWER, UPPER);
