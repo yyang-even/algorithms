@@ -55,6 +55,9 @@ CompileTestExe(find_the_only_set_bit_position
 CompileBenchmarkExe(is_bit_set)
 CompileTestExe(is_bit_set)
 
+CompileBenchmarkExe(is_multiple_of_4)
+CompileTestExe(is_multiple_of_4)
+
 CompileBenchmarkExe(is_negative)
 CompileTestExe(is_negative)
 

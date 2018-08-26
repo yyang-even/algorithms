@@ -18,8 +18,8 @@ InputType FindFirstBitSet(const InputType num) {
 }
 
 
-constexpr auto LOWER = 1;
-constexpr auto UPPER = std::numeric_limits<unsigned>::max();
+constexpr auto LOWER = 1u;
+constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 SIMPLE_BENCHMARK(FindFirstBitSet, 4);
 
