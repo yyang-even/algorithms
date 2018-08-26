@@ -2,6 +2,8 @@
 
 #include "binary.h"
 
+#include "set_all_bits_after_most_significant_bit.h"
+
 typedef unsigned InputType;
 
 /** Find the log base 2 of an integer with the MSB N set in O(N) operations (the obvious way)
@@ -117,7 +119,7 @@ InputType LogBase2LgNNoBranch(InputType num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType LogBase2LgNMultiplyAndLookup(InputType num) {
+InputType LogBase2LgNMultiplyAndLookup(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
@@ -125,13 +127,7 @@ InputType LogBase2LgNMultiplyAndLookup(InputType num) {
         8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
     };
 
-    num |= num >> 1; // first round down to one less than a power of 2
-    num |= num >> 2;
-    num |= num >> 4;
-    num |= num >> 8;
-    num |= num >> 16;
-
-    return MultiplyDeBruijnBitPosition[(uint32_t)(num * 0x07C4ACDDU) >> 27];
+    return MultiplyDeBruijnBitPosition[(uint32_t)(SetAllBitsAfterMSB(num) * 0x07C4ACDDU) >> 27];
 }
 
 

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "set_all_bits_after_most_significant_bit.h"
+
 typedef unsigned InputType;
 
 /** Round up to the next highest power of 2 by float casting
@@ -33,17 +35,11 @@ InputType RoundUpToPowerOf2Float(const InputType num) {
  * @reference   Smallest power of 2 greater than or equal to n
  *              https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
  */
-InputType RoundUpToPowerOf2(InputType num) {
+InputType RoundUpToPowerOf2(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     if (num) {
-        --num;
-        num |= num >> 1;
-        num |= num >> 2;
-        num |= num >> 4;
-        num |= num >> 8;
-        num |= num >> 16;
-        return ++num;
+        return SetAllBitsAfterMSB(num - 1) + 1;
     } else {
         return 1;
     }
@@ -51,7 +47,7 @@ InputType RoundUpToPowerOf2(InputType num) {
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = 1 << (Bits_Number<InputType>() - 1);
+constexpr InputType UPPER = 1u << (Bits_Number<InputType>() - 1u);
 
 SIMPLE_BENCHMARK(RoundUpToPowerOf2Float, UPPER);
 

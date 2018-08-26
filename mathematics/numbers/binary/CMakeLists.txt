@@ -91,6 +91,9 @@ CompileTestExe(reverse)
 CompileBenchmarkExe(round_up_to_power_of_2)
 CompileTestExe(round_up_to_power_of_2)
 
+CompileBenchmarkExe(set_all_bits_after_most_significant_bit)
+CompileTestExe(set_all_bits_after_most_significant_bit)
+
 CompileBenchmarkExe(set_bit)
 CompileTestExe(set_bit)
 
@@ -105,6 +108,9 @@ CompileTestExe(swap)
 
 CompileBenchmarkExe(swap_odd_even_bits)
 CompileTestExe(swap_odd_even_bits)
+
+CompileBenchmarkExe(toggle_all_bits_after_most_significant_bit)
+CompileTestExe(toggle_all_bits_after_most_significant_bit)
 
 CompileBenchmarkExe(toggle_bit)
 CompileTestExe(toggle_bit)
