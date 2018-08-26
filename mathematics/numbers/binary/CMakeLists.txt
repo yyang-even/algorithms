@@ -12,6 +12,9 @@ CompileTestExe(are_opposite_signs)
 CompileBenchmarkExe(byte_range)
 CompileTestExe(byte_range)
 
+CompileBenchmarkExe(calculate_xor_of_all_numbers_1_to_n)
+CompileTestExe(calculate_xor_of_all_numbers_1_to_n)
+
 CompileBenchmarkExe(case_conversion)
 CompileTestExe(case_conversion)
 
