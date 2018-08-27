@@ -91,6 +91,9 @@ CompileTestExe(parity)
 CompileBenchmarkExe(permutation)
 CompileTestExe(permutation)
 
+CompileBenchmarkExe(position_of_rightmost_unset_bit)
+CompileTestExe(position_of_rightmost_unset_bit)
+
 CompileBenchmarkExe(reverse)
 CompileTestExe(reverse)
 
