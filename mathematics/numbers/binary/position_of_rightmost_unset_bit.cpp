@@ -1,7 +1,8 @@
 #include "common_header.h"
 
+#include <string.h>
+
 #include "are_all_bits_set.h"
-#include "find_first_bit_set.h"
 
 using InputType = unsigned;
 
@@ -21,7 +22,7 @@ int PositionOfRightmostUnsetBit(const InputType num) {
         return -1;
     }
 
-    return FindFirstBitSet(~num);
+    return ffs(~num);
 }
 
 

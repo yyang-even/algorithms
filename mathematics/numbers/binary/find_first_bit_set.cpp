@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include <string.h>
+
 #include "find_first_bit_set.h"
 
 using InputType = unsigned;

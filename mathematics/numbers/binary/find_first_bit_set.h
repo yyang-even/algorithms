@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string.h>
-
 /** Position of rightmost set bit
  *
  * @reference   https://www.geeksforgeeks.org/position-of-rightmost-set-bit/
