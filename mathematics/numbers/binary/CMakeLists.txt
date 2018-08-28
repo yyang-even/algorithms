@@ -32,6 +32,9 @@ CompileBenchmarkExe(count_diff_bits_of_two
 CompileTestExe(count_diff_bits_of_two
     binary)
 
+CompileBenchmarkExe(count_equal_sum_and_xor)
+CompileTestExe(count_equal_sum_and_xor)
+
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
 
