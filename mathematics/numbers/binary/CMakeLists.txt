@@ -133,5 +133,8 @@ CompileTestExe(to_binary_string)
 CompileBenchmarkExe(twos_complement)
 CompileTestExe(twos_complement)
 
+CompileBenchmarkExe(xor_of_xor_of_all_subsets)
+CompileTestExe(xor_of_xor_of_all_subsets)
+
 CompileBenchmarkExe(zig_zag_encoding)
 CompileTestExe(zig_zag_encoding)
