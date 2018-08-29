@@ -7,6 +7,8 @@ typedef unsigned InputType;
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Computing parity the naive way
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Program to find parity
+ *              https://www.geeksforgeeks.org/program-to-find-parity/
  *
  * 1 if an odd number of bits set, 0 otherwise.
  */
@@ -26,6 +28,8 @@ INT_BOOL ParityBrianKernighan(InputType n) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute parity by lookup table
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Compute the parity of a number using XOR and table look-up
+ *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
 INT_BOOL ParityLookupTable(const InputType n) {
     static const bool ParityTable256[256] = {
@@ -146,3 +150,11 @@ SIMPLE_TEST(ParityParallel, TestSAMPLE1, FALSE, 6);
 SIMPLE_TEST(ParityParallel, TestSAMPLE2, TRUE, 13);
 
 MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityParallel, LOWER, UPPER);
+
+#ifdef __GNUG__
+/** Builtin functions of GCC compiler
+ *
+ * @reference   https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/
+ */
+MUTUAL_RANDOM_TEST(ParityBrianKernighan, __builtin_parity, LOWER, UPPER);
+#endif
