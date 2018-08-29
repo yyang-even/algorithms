@@ -208,3 +208,11 @@ SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestWorstCase, NUM_BITS - 1, 1 
 SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestSAMPLE1, 3, 0b1101000);
 
 MUTUAL_RANDOM_TEST(CountTrailingZerosLinear, CountTrailingZerosMultiplyAndLookup, LOWER, UPPER);
+
+#ifdef __GNUG__
+/** Builtin functions of GCC compiler
+ *
+ * @reference   https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/
+ */
+MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZerosMultiplyAndLookup, LOWER, UPPER);
+#endif
