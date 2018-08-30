@@ -1,16 +1,6 @@
 #include "common_header.h"
 
-using InputType = unsigned;
-
-/** Getting lowest set bit of a number
- *
- * @reference   Bitwise Hacks for Competitive Programming
- *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
- */
-auto ClearAllBitsExceptTheLastSetBit(const InputType num) {
-    return num & (-num);
-}
-
+#include "clear_all_bits_except_the_last_set_bit.h"
 
 SIMPLE_BENCHMARK(ClearAllBitsExceptTheLastSetBit, 1);
 
