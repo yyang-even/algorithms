@@ -67,6 +67,9 @@ CompileBenchmarkExe(find_the_only_set_bit_position
 CompileTestExe(find_the_only_set_bit_position
     binary)
 
+CompileBenchmarkExe(find_the_odd_number)
+CompileTestExe(find_the_odd_number)
+
 CompileBenchmarkExe(find_the_two_nonrepeating_elements)
 CompileTestExe(find_the_two_nonrepeating_elements)
 
