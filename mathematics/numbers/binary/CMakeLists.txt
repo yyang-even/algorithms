@@ -62,13 +62,16 @@ CompileTestExe(find_first_bit_set)
 CompileBenchmarkExe(find_most_significant_bit)
 CompileTestExe(find_most_significant_bit)
 
+CompileBenchmarkExe(find_the_missing_number)
+CompileTestExe(find_the_missing_number)
+
+CompileBenchmarkExe(find_the_odd_number)
+CompileTestExe(find_the_odd_number)
+
 CompileBenchmarkExe(find_the_only_set_bit_position
     binary)
 CompileTestExe(find_the_only_set_bit_position
     binary)
-
-CompileBenchmarkExe(find_the_odd_number)
-CompileTestExe(find_the_odd_number)
 
 CompileBenchmarkExe(find_the_two_nonrepeating_elements)
 CompileTestExe(find_the_two_nonrepeating_elements)
