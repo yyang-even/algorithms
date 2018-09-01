@@ -24,6 +24,13 @@ using ArrayType = std::vector<unsigned>;
  * numbers except two numbers. Find the two numbers which have odd occurrences
  * in O(n) time complexity and O(1) extra space.
  */
+/** Find Unique pair in an array with pairs of numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/find-unique-pair-array-pairs-numbers/
+ *
+ * Given an array where every element appears twice except a
+ * pair (two elements). Find the elements of this unique pair.
+ */
 auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
     ArrayType::value_type xor_of_all = 0u;
     ArrayType::value_type x = 0u;
@@ -51,6 +58,7 @@ const ArrayType SAMPLE1 = {2, 4, 7, 9, 2, 4};
 const ArrayType SAMPLE2 = {12, 23, 34, 12, 12, 23, 12, 45};
 const ArrayType SAMPLE3 = {4, 4, 100, 5000, 4, 4, 4, 4, 100, 100};
 const ArrayType SAMPLE4 = {10, 20};
+const ArrayType SAMPLE5 = {6, 1, 3, 5, 1, 3, 7, 6};
 
 
 SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, SAMPLE1);
@@ -59,3 +67,4 @@ SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::make_pair(7u, 9u),
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u), SAMPLE2);
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::make_pair(100u, 5000u), SAMPLE3);
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::make_pair(10u, 20u), SAMPLE4);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::make_pair(7u, 5u), SAMPLE5);
