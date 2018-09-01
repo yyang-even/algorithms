@@ -2,7 +2,7 @@
 
 #include "3rdParty/prettyprint.hpp"
 
-using ArraryType = std::vector<unsigned>;
+using ArrayType = std::vector<unsigned>;
 
 /** Find the Missing Number
  *
@@ -14,7 +14,7 @@ using ArraryType = std::vector<unsigned>;
  *
  * @complexity  O(n)
  */
-auto FindTheMissingNumberSum(const ArraryType &integers) {
+auto FindTheMissingNumberSum(const ArrayType &integers) {
     assert(not integers.empty());
 
     const auto N = integers.size() + 1u;
@@ -25,12 +25,12 @@ auto FindTheMissingNumberSum(const ArraryType &integers) {
 }
 
 
-auto FindTheMissingNumberXor(const ArraryType &integers) {
+auto FindTheMissingNumberXor(const ArrayType &integers) {
     assert(not integers.empty());
 
     const auto N = integers.size() + 1u;
     auto xor_of_all = integers[0];
-    for (ArraryType::size_type i = 1ul; i < integers.size(); ++i) {
+    for (ArrayType::size_type i = 1ul; i < integers.size(); ++i) {
         xor_of_all ^= (i ^ integers[i]);
     }
 
@@ -38,8 +38,8 @@ auto FindTheMissingNumberXor(const ArraryType &integers) {
 }
 
 
-const ArraryType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
-const ArraryType SAMPLE2 = {1, 2, 4, 5, 6};
+const ArrayType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
+const ArrayType SAMPLE2 = {1, 2, 4, 5, 6};
 
 SIMPLE_BENCHMARK(FindTheMissingNumberSum, SAMPLE1);
 

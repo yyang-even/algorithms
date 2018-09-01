@@ -4,7 +4,7 @@
 
 #include "clear_all_bits_except_the_last_set_bit.h"
 
-using ArraryType = std::vector<unsigned>;
+using ArrayType = std::vector<unsigned>;
 
 /** Find the two non-repeating elements in an array of repeating elements
  *
@@ -24,10 +24,10 @@ using ArraryType = std::vector<unsigned>;
  * numbers except two numbers. Find the two numbers which have odd occurrences
  * in O(n) time complexity and O(1) extra space.
  */
-auto FindTheTwoNonrepeatingElements(const ArraryType &elements) {
-    ArraryType::value_type xor_of_all = 0u;
-    ArraryType::value_type x = 0u;
-    ArraryType::value_type y = 0u;
+auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
+    ArrayType::value_type xor_of_all = 0u;
+    ArrayType::value_type x = 0u;
+    ArrayType::value_type y = 0u;
 
     for (const auto elem : elements) {
         xor_of_all ^= elem;
@@ -47,10 +47,10 @@ auto FindTheTwoNonrepeatingElements(const ArraryType &elements) {
 }
 
 
-const ArraryType SAMPLE1 = {2, 4, 7, 9, 2, 4};
-const ArraryType SAMPLE2 = {12, 23, 34, 12, 12, 23, 12, 45};
-const ArraryType SAMPLE3 = {4, 4, 100, 5000, 4, 4, 4, 4, 100, 100};
-const ArraryType SAMPLE4 = {10, 20};
+const ArrayType SAMPLE1 = {2, 4, 7, 9, 2, 4};
+const ArrayType SAMPLE2 = {12, 23, 34, 12, 12, 23, 12, 45};
+const ArrayType SAMPLE3 = {4, 4, 100, 5000, 4, 4, 4, 4, 100, 100};
+const ArrayType SAMPLE4 = {10, 20};
 
 
 SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, SAMPLE1);

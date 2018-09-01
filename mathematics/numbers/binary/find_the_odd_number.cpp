@@ -2,7 +2,7 @@
 
 #include "3rdParty/prettyprint.hpp"
 
-using ArraryType = std::vector<unsigned>;
+using ArrayType = std::vector<unsigned>;
 
 /** Find the Number Occurring Odd Number of Times
  *
@@ -14,16 +14,16 @@ using ArraryType = std::vector<unsigned>;
  *
  * @complexity  O(n)
  */
-auto FindTheOddNumber(const ArraryType &values) {
+auto FindTheOddNumber(const ArrayType &values) {
     return std::accumulate(values.cbegin(), values.cend(), 0u, [](const auto & a, const auto & b) {
         return a ^ b;
     });
 }
 
 
-const ArraryType SAMPLE1 = {1, 2, 3, 2, 3, 1, 3};
-const ArraryType SAMPLE2 = {5, 7, 2, 7, 5, 2, 5};
-const ArraryType SAMPLE3 = {2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
+const ArrayType SAMPLE1 = {1, 2, 3, 2, 3, 1, 3};
+const ArrayType SAMPLE2 = {5, 7, 2, 7, 5, 2, 5};
+const ArrayType SAMPLE3 = {2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
 
 SIMPLE_BENCHMARK(FindTheOddNumber, SAMPLE1);
 
