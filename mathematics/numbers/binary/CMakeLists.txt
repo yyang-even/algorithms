@@ -6,6 +6,9 @@ add_library(binary
 CompileBenchmarkExe(abs)
 CompileTestExe(abs)
 
+CompileBenchmarkExe(add_minimum_number_to_even_sum)
+CompileTestExe(add_minimum_number_to_even_sum)
+
 CompileBenchmarkExe(are_all_bits_set)
 CompileTestExe(are_all_bits_set)
 
