@@ -9,6 +9,12 @@ using InputType = unsigned;
  * @reference   Check whether K-th bit is set or not
  *              https://www.geeksforgeeks.org/check-whether-k-th-bit-set-not/
  */
+/** Print ‘K’th least significant bit of a number
+ *
+ * @reference   https://www.geeksforgeeks.org/print-kth-least-significant-bit-number/
+ *
+ * A number N is given. We need to print its ‘K’th Least Significant Bit.
+ */
 INT_BOOL IsBitSet(const InputType num, const InputType position) {
     return static_cast<bool>(num & (1 << position));
 }
