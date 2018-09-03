@@ -82,6 +82,9 @@ CompileTestExe(find_the_only_set_bit_position
 CompileBenchmarkExe(find_the_repeating_and_the_missing)
 CompileTestExe(find_the_repeating_and_the_missing)
 
+CompileBenchmarkExe(find_the_two_missing_numbers)
+CompileTestExe(find_the_two_missing_numbers)
+
 CompileBenchmarkExe(find_the_two_nonrepeating_elements)
 CompileTestExe(find_the_two_nonrepeating_elements)
 
