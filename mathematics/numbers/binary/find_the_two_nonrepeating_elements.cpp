@@ -8,7 +8,7 @@ using ArrayType = std::vector<unsigned>;
 
 /** Find the two non-repeating elements in an array of repeating elements
  *
- * @reference   https://www.geeksforgeeks.org/?p=2457
+ * @reference   https://www.geeksforgeeks.org/find-two-non-repeating-elements-in-an-array-of-repeating-elements/
  *
  * Given an array in which all numbers except two are repeated once. (i.e. we
  * have 2n+2 numbers and n numbers are occurring twice and remaining two have

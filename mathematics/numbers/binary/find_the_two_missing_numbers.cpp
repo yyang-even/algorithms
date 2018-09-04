@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "find_the_element_helper.h"
+
 #include "3rdParty/prettyprint.hpp"
 
 #include "clear_all_bits_except_the_last_set_bit.h"
@@ -42,14 +44,6 @@ auto FindTheTwoMissingNumbersSum(const ArrayType &elements) {
                total_sum - total_smallers_sum - sum_of_greaters);
 }
 
-inline void divideElement(const ArrayType::value_type elem, const ArrayType::value_type lsb,
-                          ArrayType::value_type &x, ArrayType::value_type &y) {
-    if (elem & lsb) {
-        x ^= elem;
-    } else {
-        y ^= elem;
-    }
-}
 auto FindTheTwoMissingNumbersXor(const ArrayType &elements) {
     assert(not elements.empty());
 
@@ -66,12 +60,12 @@ auto FindTheTwoMissingNumbersXor(const ArrayType &elements) {
                                   xor_of_all ^ elements.size() ^ (N - 1) ^ N);
 
     for (ArrayType::size_type i = 0ul; i < elements.size(); ++i) {
-        divideElement(i, last_set_bit, x, y);
-        divideElement(elements[i], last_set_bit, x, y);
+        divideElement<ArrayType::value_type>(i, last_set_bit, x, y);
+        divideElement<ArrayType::value_type>(elements[i], last_set_bit, x, y);
     }
-    divideElement(elements.size(), last_set_bit, x, y);
-    divideElement(N - 1, last_set_bit, x, y);
-    divideElement(N, last_set_bit, x, y);
+    divideElement<ArrayType::value_type>(elements.size(), last_set_bit, x, y);
+    divideElement<ArrayType::value_type>(N - 1, last_set_bit, x, y);
+    divideElement<ArrayType::value_type>(N, last_set_bit, x, y);
 
     return std::make_pair(x, y);
 }
