@@ -18,6 +18,9 @@ CompileTestExe(fair_coin_from_biased_coin
 CompileBenchmarkExe(generate_0_1_25_75_probability)
 CompileTestExe(generate_0_1_25_75_probability)
 
+CompileBenchmarkExe(probability_K_in_array)
+CompileTestExe(probability_K_in_array)
+
 CompileBenchmarkExe(random_number_generator_in_arbitrary_probability)
 CompileTestExe(random_number_generator_in_arbitrary_probability)
 
