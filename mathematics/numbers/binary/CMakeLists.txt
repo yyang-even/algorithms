@@ -62,6 +62,9 @@ CompileTestExe(endianness)
 CompileBenchmarkExe(equal)
 CompileTestExe(equal)
 
+CompileBenchmarkExe(find_all_duplicates)
+CompileTestExe(find_all_duplicates)
+
 CompileBenchmarkExe(find_first_bit_set)
 CompileTestExe(find_first_bit_set)
 
