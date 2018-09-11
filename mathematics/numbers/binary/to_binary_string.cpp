@@ -45,5 +45,13 @@ SIMPLE_BENCHMARK(ToBinaryStringIterative, UPPER);
 SIMPLE_BENCHMARK(ToBinaryStringRecursive, UPPER);
 SIMPLE_BENCHMARK(ToBinaryStringBitset, UPPER);
 
+SIMPLE_TEST(ToBinaryStringIterative, TestSample1, std::string(Bits_Number<InputType>(), '1'), UPPER);
+SIMPLE_TEST(ToBinaryStringIterative, TestSample2, std::string("0"), LOWER);
+SIMPLE_TEST(ToBinaryStringIterative, TestSample3, std::string("1010"), 0b1010);
+
+SIMPLE_TEST(ToBinaryStringRecursive, TestSample1, std::string(Bits_Number<InputType>(), '1'), UPPER);
+SIMPLE_TEST(ToBinaryStringRecursive, TestSample2, std::string("0"), LOWER);
+SIMPLE_TEST(ToBinaryStringRecursive, TestSample3, std::string("1010"), 0b1010);
+
 MUTUAL_RANDOM_TEST(ToBinaryStringBitset, ToBinaryStringIterative, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ToBinaryStringBitset, ToBinaryStringRecursive, LOWER, UPPER);
