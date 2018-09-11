@@ -20,8 +20,8 @@ auto ToBinaryStringIterative(const InputType n) {
 
 
 void ToBinaryStringRecursiveHelper(const InputType n, std::string &output) {
-    if (n > 1) {
-        ToBinaryStringRecursiveHelper(n / 2, output);
+    if (n > 1u) {
+        ToBinaryStringRecursiveHelper(n / 2u, output);
     }
 
     output.push_back(static_cast<bool>(n & 1) + '0');
