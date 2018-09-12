@@ -19,16 +19,16 @@ auto ToBinaryStringIterative(const InputType n) {
 }
 
 
-void ToBinaryStringRecursiveHelper(const InputType n, std::string &output) {
-    if (n > 1u) {
-        ToBinaryStringRecursiveHelper(n / 2u, output);
+void ToBinaryStringRecursiveHelper(const InputType n, const unsigned i, std::string &output) {
+    if (i > 1u) {
+        ToBinaryStringRecursiveHelper(n / 2u, i - 1, output);
     }
 
     output.push_back(static_cast<bool>(n & 1) + '0');
 }
 auto ToBinaryStringRecursive(const InputType n) {
     std::string output;
-    ToBinaryStringRecursiveHelper(n, output);
+    ToBinaryStringRecursiveHelper(n, Bits_Number<decltype(n)>(), output);
     return output;
 }
 
@@ -44,6 +44,16 @@ constexpr auto UPPER = std::numeric_limits<InputType>::max();
 SIMPLE_BENCHMARK(ToBinaryStringIterative, UPPER);
 SIMPLE_BENCHMARK(ToBinaryStringRecursive, UPPER);
 SIMPLE_BENCHMARK(ToBinaryStringBitset, UPPER);
+
+SIMPLE_TEST(ToBinaryStringIterative, TestSample1, std::string(Bits_Number<InputType>(), '0'),
+            LOWER);
+SIMPLE_TEST(ToBinaryStringIterative, TestSample2, std::string(Bits_Number<InputType>(), '1'),
+            UPPER);
+
+SIMPLE_TEST(ToBinaryStringRecursive, TestSample1, std::string(Bits_Number<InputType>(), '0'),
+            LOWER);
+SIMPLE_TEST(ToBinaryStringRecursive, TestSample2, std::string(Bits_Number<InputType>(), '1'),
+            UPPER);
 
 MUTUAL_RANDOM_TEST(ToBinaryStringBitset, ToBinaryStringIterative, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ToBinaryStringBitset, ToBinaryStringRecursive, LOWER, UPPER);
