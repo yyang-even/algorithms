@@ -81,6 +81,8 @@ INT_BOOL ParityMultiply64(uint64_t n) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute parity in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *              Finding the Parity of a number Efficiently
+ *              https://www.geeksforgeeks.org/finding-the-parity-of-a-number-efficiently/
  */
 INT_BOOL ParityParallel(InputType n) {
     static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
