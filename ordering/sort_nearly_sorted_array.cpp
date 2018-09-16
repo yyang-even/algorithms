@@ -10,6 +10,8 @@ using ArrayType = std::vector<int>;
 /** Sort a nearly sorted (or K sorted) array
  *
  * @reference   https://www.geeksforgeeks.org/nearly-sorted-algorithm/
+ * @reference   Sort a nearly sorted array using STL
+ *              https://www.geeksforgeeks.org/sort-a-nearly-sorted-array-using-stl/
  *
  * Given an array of n elements, where each element is at most k away
  * from its target position, devise an algorithm that sorts in O(n log k) time.
