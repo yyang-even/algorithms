@@ -31,6 +31,32 @@ auto FindRepeatedElements(const ArrayType &values) {
     return output;
 }
 
+/** Find duplicates in O(n) time and O(1) extra space | Set 1
+ *
+ * @reference   https://www.geeksforgeeks.org/find-duplicates-in-on-time-and-constant-extra-space/
+ *
+ * Given an array of n elements which contains elements from 1 to n-1,
+ * with any of these numbers appearing at most twice. Find these
+ * repeating numbers in O(n) and using only constant memory space.
+ * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
+ * answer should be 1, 3 and 6.
+ */
+auto FindDuplicatesInplace(ArrayType values) {
+    ArrayType output;
+
+    for (const auto elem : values) {
+        const auto abs_elem = abs(elem);
+        auto &counter = values[abs_elem];
+        if (counter > 0) {
+            counter = -counter;
+        } else {
+            output.push_back(abs_elem);
+        }
+    }
+
+    return output;
+}
+
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType EXPECTED1 = {10, 45};
@@ -41,3 +67,10 @@ SIMPLE_BENCHMARK(FindRepeatedElements, SAMPLE1);
 
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE2, EXPECTED2, SAMPLE2);
+
+const ArrayType SAMPLE3 = {1, 2, 3, 1, 3, 6, 6};
+const ArrayType EXPECTED3 = {1, 3, 6};
+
+SIMPLE_BENCHMARK(FindDuplicatesInplace, SAMPLE3);
+
+SIMPLE_TEST(FindDuplicatesInplace, TestSAMPLE1, EXPECTED3, SAMPLE3);
