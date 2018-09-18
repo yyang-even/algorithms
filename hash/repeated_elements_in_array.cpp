@@ -57,6 +57,31 @@ auto FindDuplicatesInplace(ArrayType values) {
     return output;
 }
 
+/** Duplicates in an array in O(n) and by using O(1) extra space | Set-2
+ *
+ * @reference   https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-2/
+ *
+ * Given an array of n elements which contains elements from 0 to n-1,
+ * with any of these numbers appearing any number of times. Find these
+ * repeating numbers in O(n) and using only constant memory space.
+ * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
+ * answer should be 1, 3 and 6.
+ */
+auto FindDuplicatesInplace2(ArrayType values) {
+    for (const auto elem : values) {
+        values[elem % values.size()] += values.size();
+    }
+
+    ArrayType output;
+    for (ArrayType::size_type i = 0ul; i < values.size(); ++i) {
+        if ((values[i] / values.size()) > 1) {
+            output.push_back(i);
+        }
+    }
+
+    return output;
+}
+
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType EXPECTED1 = {10, 45};
@@ -74,3 +99,9 @@ const ArrayType EXPECTED3 = {1, 3, 6};
 SIMPLE_BENCHMARK(FindDuplicatesInplace, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicatesInplace, TestSAMPLE1, EXPECTED3, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(FindDuplicatesInplace2, SAMPLE3);
+
+SIMPLE_TEST(FindDuplicatesInplace2, TestSAMPLE1, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicatesInplace2, TestSAMPLE2, EXPECTED2, SAMPLE2);
