@@ -7,6 +7,9 @@ CompileTestExe(check_all_elements_distinct)
 CompileBenchmarkExe(elements_that_occurred_only_once)
 CompileTestExe(elements_that_occurred_only_once)
 
+CompileBenchmarkExe(find_first_repeating_element)
+CompileTestExe(find_first_repeating_element)
+
 CompileBenchmarkExe(find_overlapping_sum_of_two_array)
 CompileTestExe(find_overlapping_sum_of_two_array)
 
