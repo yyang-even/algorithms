@@ -16,5 +16,8 @@ CompileTestExe(find_overlapping_sum_of_two_array)
 CompileBenchmarkExe(last_occurrence_of_elements_in_relative_order)
 CompileTestExe(last_occurrence_of_elements_in_relative_order)
 
+CompileBenchmarkExe(maximum_occurring_character)
+CompileTestExe(maximum_occurring_character)
+
 CompileBenchmarkExe(repeated_elements_in_array)
 CompileTestExe(repeated_elements_in_array)
