@@ -30,6 +30,13 @@ auto FindRepeatedElements(const ArrayType &values) {
 
     return output;
 }
+/** Print all the duplicates in the input string
+ *
+ * @reference   https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
+ *
+ * Write an efficient C program to print all the duplicates and their counts in the input string.
+ */
+
 
 /** Find duplicates in O(n) time and O(1) extra space | Set 1
  *
