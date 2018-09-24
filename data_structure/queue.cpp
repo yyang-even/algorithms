@@ -3,8 +3,6 @@
 #include <stack>
 #include <queue>
 
-#include "3rdParty/prettyprint.hpp"
-
 #include "data_structure/linked_list/singly_linked_list.h"
 
 /** Implementing Queue using Arrays

@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
-
 
 using ArrayType = std::vector<int>;
 /** Check if all array elements are distinct

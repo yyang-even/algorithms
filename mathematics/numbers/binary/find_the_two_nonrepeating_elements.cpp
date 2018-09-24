@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
-
 #include "clear_all_bits_except_the_last_set_bit.h"
 
 using ArrayType = std::vector<unsigned>;

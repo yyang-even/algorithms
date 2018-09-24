@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
 
 #include "data_structure/binary_heap.h"
 

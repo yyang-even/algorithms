@@ -12,6 +12,8 @@
 #ifdef WANT_TESTS
 #include "gtest/gtest.h"
 #endif
+#include "3rdParty/prettyprint.hpp"
+
 
 // Typedefs
 typedef int INT_BOOL;

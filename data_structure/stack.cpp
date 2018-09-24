@@ -3,7 +3,6 @@
 #include <forward_list>
 #include <queue>
 
-#include "3rdParty/prettyprint.hpp"
 
 /** Implementing Stack using Arrays
  *

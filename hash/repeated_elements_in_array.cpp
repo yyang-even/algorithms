@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
 
 using ArrayType = std::vector<int>;
 /** Array elements that appear more than once

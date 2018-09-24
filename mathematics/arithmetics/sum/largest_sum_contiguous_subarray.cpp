@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
 
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
