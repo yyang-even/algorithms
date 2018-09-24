@@ -1,6 +1,5 @@
 #include "reservoir_sampling.h"
 
-#include "3rdParty/prettyprint.hpp"
 
 template <std::size_t N>
 using ArrayType = std::array<int, N>;

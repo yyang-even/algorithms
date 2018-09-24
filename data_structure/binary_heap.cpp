@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "3rdParty/prettyprint.hpp"
-
 #include "binary_heap.h"
 
 auto testBinaryHeap(const MinHeap<int>::ArrayType &array) {

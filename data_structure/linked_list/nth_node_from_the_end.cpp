@@ -1,5 +1,3 @@
-#include "3rdParty/prettyprint.hpp"
-
 #include "singly_linked_list.h"
 
 

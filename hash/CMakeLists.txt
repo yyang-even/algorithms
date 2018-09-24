@@ -28,5 +28,8 @@ CompileTestExe(last_occurrence_of_elements_in_relative_order)
 CompileBenchmarkExe(maximum_occurring_character)
 CompileTestExe(maximum_occurring_character)
 
+CompileBenchmarkExe(print_items_containing_all_chars_of_given_word)
+CompileTestExe(print_items_containing_all_chars_of_given_word)
+
 CompileBenchmarkExe(repeated_elements_in_array)
 CompileTestExe(repeated_elements_in_array)
