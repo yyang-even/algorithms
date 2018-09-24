@@ -81,3 +81,7 @@ inline constexpr auto Bits_Number() {
 //Constants
 constexpr unsigned LONG_BITS_NUM = Bits_Number<unsigned long>();
 const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
+
+static const std::string DIGIT_CHARS {"0123456789"};
+static const std::string LOWERCASE_CHARS {"abcdefghijklmnopqrstuvwxyz"};
+static const std::string UPPERCASE_CHARS {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
