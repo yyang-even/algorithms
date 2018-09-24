@@ -7,6 +7,9 @@ CompileTestExe(check_all_elements_distinct)
 CompileBenchmarkExe(elements_that_occurred_only_once)
 CompileTestExe(elements_that_occurred_only_once)
 
+CompileBenchmarkExe(find_first_nonrepeating_char)
+CompileTestExe(find_first_nonrepeating_char)
+
 CompileBenchmarkExe(find_first_repeating_element)
 CompileTestExe(find_first_repeating_element)
 
