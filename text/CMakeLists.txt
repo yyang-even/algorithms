@@ -1,8 +1,11 @@
-CompileBenchmarkExe(print_bytes)
-CompileTestExe(print_bytes)
+CompileBenchmarkExe(find_kth_char_of_decrypted_string)
+CompileTestExe(find_kth_char_of_decrypted_string)
 
 CompileTerminalApp(pretty_print)
 CompileTestExe(pretty_print)
+
+CompileBenchmarkExe(print_bytes)
+CompileTestExe(print_bytes)
 
 CompileBenchmarkExe(print_integer)
 CompileTestExe(print_integer)

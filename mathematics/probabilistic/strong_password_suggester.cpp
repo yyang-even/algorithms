@@ -14,9 +14,6 @@
  * 3. At least one number.
  * 4. At least one upper and one lower case char.
  */
-static const std::string NUMBERS {"0123456789"};
-static const std::string LOWERS {"abcdefghijklmnopqrstuvwxyz"};
-static const std::string UPPERS {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 static const std::string SPECIALS {"@#$_()!"};
 
 struct PasswordCriteria {
@@ -32,13 +29,13 @@ struct PasswordCriteria {
     }
 
     static auto is_lower_case(const char c) {
-        return c >= LOWERS.front() and c <= LOWERS.back();
+        return c >= LOWERCASE_CHARS.front() and c <= LOWERCASE_CHARS.back();
     }
     static auto is_upper_case(const char c) {
-        return c >= UPPERS.front() and c <= UPPERS.back();
+        return c >= UPPERCASE_CHARS.front() and c <= UPPERCASE_CHARS.back();
     }
     static auto is_number(const char c) {
-        return c >= NUMBERS.front() and c <= NUMBERS.back();
+        return c >= DIGIT_CHARS.front() and c <= DIGIT_CHARS.back();
     }
 };
 auto CheckPassword(const std::string &password) {
@@ -67,13 +64,13 @@ void randomInsertIfNot(const bool criteria, const std::string &char_set, std::st
     }
 }
 auto FixPassword(const PasswordCriteria &criteria, std::string &password) {
-    randomInsertIfNot(criteria.lower_case, LOWERS, password);
-    randomInsertIfNot(criteria.upper_case, UPPERS, password);
-    randomInsertIfNot(criteria.digit, NUMBERS, password);
+    randomInsertIfNot(criteria.lower_case, LOWERCASE_CHARS, password);
+    randomInsertIfNot(criteria.upper_case, UPPERCASE_CHARS, password);
+    randomInsertIfNot(criteria.digit, DIGIT_CHARS, password);
     randomInsertIfNot(criteria.special, SPECIALS, password);
 
     for (auto i = password.size(); i < PasswordCriteria::REQUIRED_PASSWORD_LENGTH; ++i) {
-        randomInsertIfNot(false, LOWERS, password);
+        randomInsertIfNot(false, LOWERCASE_CHARS, password);
     }
 }
 auto StrongPasswordSuggester(std::string password) {
