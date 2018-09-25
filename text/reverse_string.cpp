@@ -11,7 +11,7 @@ auto Reverse(std::string input) {
         auto l_iter = input.begin();
         auto r_iter = input.begin() + input.size() - 1ul;
         for (; l_iter < r_iter; ++l_iter, --r_iter) {
-            std::swap(*l_iter, *r_iter);
+            std::iter_swap(l_iter, r_iter);
         }
     }
 
