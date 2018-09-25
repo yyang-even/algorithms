@@ -97,6 +97,9 @@ CompileTestExe(find_the_two_repeating_elements)
 CompileBenchmarkExe(find_the_unique_element)
 CompileTestExe(find_the_unique_element)
 
+CompileBenchmarkExe(increment)
+CompileTestExe(increment)
+
 CompileBenchmarkExe(is_bit_set)
 CompileTestExe(is_bit_set)
 
