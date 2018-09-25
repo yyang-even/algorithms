@@ -9,3 +9,6 @@ CompileTestExe(print_bytes)
 
 CompileBenchmarkExe(print_integer)
 CompileTestExe(print_integer)
+
+CompileBenchmarkExe(reverse_string)
+CompileTestExe(reverse_string)
