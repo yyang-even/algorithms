@@ -1,3 +1,6 @@
+CompileBenchmarkExe(count_words_in_given_string)
+CompileTestExe(count_words_in_given_string)
+
 CompileBenchmarkExe(find_kth_char_of_decrypted_string)
 CompileTestExe(find_kth_char_of_decrypted_string)
 
