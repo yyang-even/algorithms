@@ -12,3 +12,6 @@ CompileTestExe(print_integer)
 
 CompileBenchmarkExe(reverse_string)
 CompileTestExe(reverse_string)
+
+CompileBenchmarkExe(run_length_encoding)
+CompileTestExe(run_length_encoding)
