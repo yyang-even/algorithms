@@ -16,5 +16,8 @@ CompileTestExe(print_integer)
 CompileBenchmarkExe(reverse_string)
 CompileTestExe(reverse_string)
 
+CompileBenchmarkExe(reverse_words_in_given_string)
+CompileTestExe(reverse_words_in_given_string)
+
 CompileBenchmarkExe(run_length_encoding)
 CompileTestExe(run_length_encoding)
