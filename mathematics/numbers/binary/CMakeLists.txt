@@ -130,8 +130,8 @@ CompileTestExe(morton_number)
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
-CompileBenchmarkExe(permutation)
-CompileTestExe(permutation)
+CompileBenchmarkExe(bits_permutation)
+CompileTestExe(bits_permutation)
 
 CompileBenchmarkExe(position_of_rightmost_unset_bit)
 CompileTestExe(position_of_rightmost_unset_bit)
