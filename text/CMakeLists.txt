@@ -10,6 +10,9 @@ CompileTestExe(find_kth_char_of_decrypted_string)
 CompileBenchmarkExe(permutation)
 CompileTestExe(permutation)
 
+CompileBenchmarkExe(permutation_with_repetition)
+CompileTestExe(permutation_with_repetition)
+
 CompileTerminalApp(pretty_print)
 CompileTestExe(pretty_print)
 
