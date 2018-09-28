@@ -139,6 +139,9 @@ CompileTestExe(position_of_rightmost_unset_bit)
 CompileBenchmarkExe(reverse)
 CompileTestExe(reverse)
 
+CompileBenchmarkExe(rotate_bits)
+CompileTestExe(rotate_bits)
+
 CompileBenchmarkExe(round_up_to_power_of_2)
 CompileTestExe(round_up_to_power_of_2)
 
