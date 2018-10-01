@@ -31,5 +31,8 @@ CompileTestExe(maximum_occurring_character)
 CompileBenchmarkExe(print_items_containing_all_chars_of_given_word)
 CompileTestExe(print_items_containing_all_chars_of_given_word)
 
+CompileBenchmarkExe(remove_duplicates)
+CompileTestExe(remove_duplicates)
+
 CompileBenchmarkExe(repeated_elements_in_array)
 CompileTestExe(repeated_elements_in_array)
