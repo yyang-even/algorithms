@@ -1,6 +1,9 @@
 CompileBenchmarkExe(count_chars_at_same_position_as_in_alphabet)
 CompileTestExe(count_chars_at_same_position_as_in_alphabet)
 
+CompileBenchmarkExe(count_strings_with_consonant_and_vowels_at_alternate_position)
+CompileTestExe(count_strings_with_consonant_and_vowels_at_alternate_position)
+
 CompileBenchmarkExe(count_words_in_given_string)
 CompileTestExe(count_words_in_given_string)
 
