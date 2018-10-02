@@ -13,6 +13,9 @@ CompileTestExe(find_kth_char_of_decrypted_string)
 CompileBenchmarkExe(interleavings_of_two_strings)
 CompileTestExe(interleavings_of_two_strings)
 
+CompileBenchmarkExe(pangram_checking)
+CompileTestExe(pangram_checking)
+
 CompileBenchmarkExe(permutation)
 CompileTestExe(permutation)
 
