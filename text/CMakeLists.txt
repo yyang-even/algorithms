@@ -1,3 +1,6 @@
+CompileBenchmarkExe(convert_to_int_array)
+CompileTestExe(convert_to_int_array)
+
 CompileBenchmarkExe(count_chars_at_same_position_as_in_alphabet)
 CompileTestExe(count_chars_at_same_position_as_in_alphabet)
 
