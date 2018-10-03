@@ -27,25 +27,15 @@ struct PasswordCriteria {
     auto is_strong_password() const {
         return lower_case and upper_case and digit and special;
     }
-
-    static auto is_lower_case(const char c) {
-        return c >= LOWERCASE_CHARS.front() and c <= LOWERCASE_CHARS.back();
-    }
-    static auto is_upper_case(const char c) {
-        return c >= UPPERCASE_CHARS.front() and c <= UPPERCASE_CHARS.back();
-    }
-    static auto is_number(const char c) {
-        return c >= DIGIT_CHARS.front() and c <= DIGIT_CHARS.back();
-    }
 };
 auto CheckPassword(const std::string &password) {
     PasswordCriteria criteria;
     for (const auto c : password) {
-        if (PasswordCriteria::is_lower_case(c)) {
+        if (islower(c)) {
             criteria.lower_case = true;
-        } else if (PasswordCriteria::is_upper_case(c)) {
+        } else if (isupper(c)) {
             criteria.upper_case = true;
-        } else if (PasswordCriteria::is_number(c)) {
+        } else if (isdigit(c)) {
             criteria.digit = true;
         } else {
             criteria.special = true;
