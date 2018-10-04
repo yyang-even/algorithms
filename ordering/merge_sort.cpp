@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "merge_two_sorted_arrays.h"
 
 using ArrayType = std::vector<int>;
 
@@ -29,19 +30,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     const auto L = ArrayType(begin, middle);
     const auto R = ArrayType(middle, end);
 
-    auto iter = begin;
-    auto L_iter = L.cbegin();
-    auto R_iter = R.cbegin();
-    for (; (L_iter != L.cend()) and (R_iter != R.cend()); ++iter) {
-        if (*L_iter <= *R_iter) {
-            *iter = *L_iter++;
-        } else {
-            *iter = *R_iter++;
-        }
-    }
-
-    iter = std::copy(L_iter, L.cend(), iter);
-    iter = std::copy(R_iter, R.cend(), iter);
+    MergeTwoSortedArrays(L, R, begin);
 }
 auto MergeSort(ArrayType values) {
     MergeSort(values.begin(), values.size(), Merge);
