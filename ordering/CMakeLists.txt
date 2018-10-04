@@ -13,11 +13,14 @@ CompileTestExe(insertion_sort)
 CompileBenchmarkExe(kth_smallest_element_after_every_insertion)
 CompileTestExe(kth_smallest_element_after_every_insertion)
 
+CompileBenchmarkExe(merge_k_sorted_array)
+CompileTestExe(merge_k_sorted_array)
+
 CompileBenchmarkExe(merge_sort)
 CompileTestExe(merge_sort)
 
-CompileBenchmarkExe(merge_k_sorted_array)
-CompileTestExe(merge_k_sorted_array)
+CompileBenchmarkExe(merge_two_sorted_arrays)
+CompileTestExe(merge_two_sorted_arrays)
 
 CompileBenchmarkExe(selection_sort)
 CompileTestExe(selection_sort)
