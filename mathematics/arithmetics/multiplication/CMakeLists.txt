@@ -1,2 +1,5 @@
 CompileBenchmarkExe(maximum_product_subarray)
 CompileTestExe(maximum_product_subarray)
+
+CompileBenchmarkExe(pair_with_greatest_product_in_array)
+CompileTestExe(pair_with_greatest_product_in_array)
