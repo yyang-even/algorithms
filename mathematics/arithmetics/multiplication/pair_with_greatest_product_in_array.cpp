@@ -1,0 +1,52 @@
+#include "common_header.h"
+
+using ArrayType = std::vector<unsigned>;
+
+/** Find pair with greatest product in array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-pair-with-greatest-product-in-array/
+ *
+ * Given an array of n elements, the task is to find the greatest number such
+ * that it is product of two elements of given array. If no such element exists,
+ * print -1. Elements are within the range of 1 to 10^5.
+ */
+int FindPairWithGreatestProductInArray(ArrayType elements){
+    std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
+    for(const auto elem: elements){
+        ++counters[elem];
+    }
+
+    std::sort(elements.begin(), elements.end());
+
+    for(auto product_iter = elements.crbegin(); product_iter != elements.crend(); ++product_iter){
+        ArrayType::value_type elem_sqrt = sqrt(*product_iter);
+        for(auto factor_iter = elements.begin(); factor_iter != elements.cend() and *factor_iter <= elem_sqrt; ++factor_iter){
+            if(*product_iter % *factor_iter == 0){
+                auto the_other_factor = *product_iter / *factor_iter;
+                if(counters[the_other_factor] > (the_other_factor == *factor_iter))
+                    return *product_iter;
+            }
+        }
+    }
+
+    return -1;
+}
+
+
+const ArrayType SAMPLE1 = {10, 3, 5, 30, 35};
+const ArrayType SAMPLE2 = {2, 5, 7, 8};
+const ArrayType SAMPLE3 = {10, 2, 4, 30, 35};
+const ArrayType SAMPLE4 = {10, 2, 2, 4, 30, 35};
+const ArrayType SAMPLE5 = {17, 2, 1, 15, 30};
+const ArrayType SAMPLE6 = {30, 10, 9, 3, 35};
+const ArrayType SAMPLE7 = {30, 10, 9, 5, 25};
+
+SIMPLE_BENCHMARK(FindPairWithGreatestProductInArray, SAMPLE1L, SAMPLE1);
+
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE1, 30, SAMPLE1);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE2, -1, SAMPLE2);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE3, -1, SAMPLE3);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE4, 4, SAMPLE4);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE5, 30, SAMPLE5);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE6, 30, SAMPLE6);
+SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE7, -1, SAMPLE7);
