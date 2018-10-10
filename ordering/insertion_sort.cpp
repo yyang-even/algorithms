@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "insertion_sort.h"
+
 
 using ArrayType = std::vector<int>;
 
@@ -21,15 +23,9 @@ using ArrayType = std::vector<int>;
  * The idea is to use insertion sort as insertion sort works best for small arrays.
  */
 auto InsertionSort(ArrayType values) {
-    for (int key_value, i, j = 1; j < values.size(); ++j) {
-        key_value = values[j];
-        i = j - 1;
-        for (; (i >= 0) and (values[i] > key_value); --i) {
-            values[i + 1] = values[i];
-        }
-        values[i + 1] = key_value;
-    }
-    return values;
+    return InsertionSort(values, [](const ArrayType::value_type v, const ArrayType::value_type key) {
+        return v > key;
+    });
 }
 
 
