@@ -18,9 +18,7 @@ auto FindTheMissingNumberSum(const ArrayType &integers) {
 
     const auto N = integers.size() + 1u;
     const auto sum = N * (N + 1) / 2;
-    return std::accumulate(integers.cbegin(), integers.cend(), sum, [](const auto & a, const auto & b) {
-        return a - b;
-    });
+    return std::accumulate(integers.cbegin(), integers.cend(), sum, std::minus<ArrayType::value_type> {});
 }
 
 

@@ -14,9 +14,7 @@ using ArrayType = std::vector<unsigned>;
  * @complexity  O(n)
  */
 auto FindTheOddNumber(const ArrayType &values) {
-    return std::accumulate(values.cbegin(), values.cend(), 0u, [](const auto & a, const auto & b) {
-        return a ^ b;
-    });
+    return std::accumulate(values.cbegin(), values.cend(), 0u, std::bit_xor<ArrayType::value_type> {});
 }
 
 
