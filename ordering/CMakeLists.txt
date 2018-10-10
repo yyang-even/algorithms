@@ -22,6 +22,9 @@ CompileTestExe(merge_sort)
 CompileBenchmarkExe(merge_two_sorted_arrays)
 CompileTestExe(merge_two_sorted_arrays)
 
+CompileBenchmarkExe(partition)
+CompileTestExe(partition)
+
 CompileBenchmarkExe(selection_sort)
 CompileTestExe(selection_sort)
 

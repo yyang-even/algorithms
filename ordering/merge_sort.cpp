@@ -1,21 +1,11 @@
 #include "common_header.h"
 
+#include "merge_sort.h"
 #include "merge_two_sorted_arrays.h"
 
 using ArrayType = std::vector<int>;
 
 
-void MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n,
-               const std::function<void(const ArrayType::iterator, const ArrayType::iterator,
-                                        const ArrayType::iterator)> merge) {
-    if (n > 1) {
-        const auto middle = n >> 1; //floor(n/2)
-        const auto middle_begin = begin + middle;
-        MergeSort(begin, middle, merge);
-        MergeSort(middle_begin, n - middle, merge);
-        merge(begin, middle_begin, begin + n);
-    }
-}
 /** Merge Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -33,7 +23,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     MergeTwoSortedArrays(L, R, begin);
 }
 auto MergeSort(ArrayType values) {
-    MergeSort(values.begin(), values.size(), Merge);
+    MergeSort<ArrayType>(values.begin(), values.size(), Merge);
     return values;
 }
 
@@ -92,7 +82,7 @@ void MergeO1(const ArrayType::iterator begin, const ArrayType::iterator middle,
 auto MergeSortO1(ArrayType values) {
     if (not values.empty()) {
         const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
-        MergeSort(values.begin(), values.size(), [max_element](const ArrayType::iterator begin,
+        MergeSort<ArrayType>(values.begin(), values.size(), [max_element](const ArrayType::iterator begin,
         const ArrayType::iterator middle, const ArrayType::iterator end) {
             MergeO1(begin, middle, end, max_element);
         });
