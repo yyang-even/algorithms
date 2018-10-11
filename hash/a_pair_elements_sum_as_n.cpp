@@ -7,7 +7,7 @@ using ArrayType = std::array<int, N>;
 
 /** Given an array A[] and a number x, check for pair in A[] with sum as x
  *
- * @reference   http://www.geeksforgeeks.org/recursive-insertion-sort/
+ * @reference   https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
  *
  * Given an array A[] of n numbers and another number x, determines
  * whether or not there exist two elements in A whose sum is exactly x.
