@@ -51,7 +51,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     const auto R = ArrayType(middle, end);
 
     MergeTwoSortedArrays(L.cbegin(), L.cend(), R.cbegin(), R.cend(), begin,
-    [](const auto lv, const auto rv) {
+    [](const ArrayType::value_type lv, const ArrayType::value_type rv) {
         if (lv < 0) {
             return true;
         } else if (rv < 0) {
@@ -111,6 +111,23 @@ void MergeReverse(const ArrayType::iterator begin, const ArrayType::iterator mid
 }
 auto RearrangePositiveAndNegativeNumbersMergeReverse(ArrayType input) {
     MergeSort<ArrayType>(input.begin(), input.size(), Merge);
+    return input;
+}
+
+/** Move all zeroes to end of array
+ *
+ * @reference   https://www.geeksforgeeks.org/move-zeroes-end-array/
+ *
+ * Given an array of random numbers, Push all the zero’s of a given array to the end
+ * of the array. For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0},
+ * it should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other
+ * elements should be same. Expected time complexity is O(n) and extra space is O(1).
+ */
+auto RearrangeZeros(ArrayType input) {
+    Partition(input.begin(), input.end(), [](const ArrayType::value_type v) {
+            return static_cast<bool>(v);
+            });
+
     return input;
 }
 
@@ -184,3 +201,19 @@ SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative, SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative, TestSAMPLE5, EXPECTED5, SAMPLE5);
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative, TestSAMPLE6, EXPECTED6, SAMPLE6);
+
+
+const ArrayType SAMPLE7 = {1, 2, 0, 4, 3, 0, 5, 0};
+const ArrayType EXPECTED7 = {1, 2, 4, 3, 5, 0, 0, 0};
+
+const ArrayType SAMPLE8 = {1, 2, 0, 0, 0, 3, 6};
+const ArrayType EXPECTED8 = {1, 2, 3, 6, 0, 0, 0};
+
+const ArrayType SAMPLE9 = {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9};
+const ArrayType EXPECTED9 = {1,9,8,4,2,7,6,9,0,0,0,0};
+
+SIMPLE_BENCHMARK(RearrangeZeros, SAMPLE7);
+
+SIMPLE_TEST(RearrangeZeros, TestSAMPLE7, EXPECTED7, SAMPLE7);
+SIMPLE_TEST(RearrangeZeros, TestSAMPLE8, EXPECTED8, SAMPLE8);
+SIMPLE_TEST(RearrangeZeros, TestSAMPLE9, EXPECTED9, SAMPLE9);
