@@ -7,6 +7,8 @@ using ArrayType = std::vector<int>;
 /** Array elements that appear more than once
  *
  * @reference   https://www.geeksforgeeks.org/array-elements-that-appear-more-than-once/
+ * @reference   Find duplicates in a given array when elements are not limited to a range
+ *              https://www.geeksforgeeks.org/find-duplicates-given-array-elements-not-limited-range/
  *
  * Given an integer array, print all repeating elements (Elements that appear
  * more than once) in array. The output should contain elements according to
