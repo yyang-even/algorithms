@@ -31,6 +31,9 @@ CompileTestExe(maximum_occurring_character)
 CompileBenchmarkExe(print_items_containing_all_chars_of_given_word)
 CompileTestExe(print_items_containing_all_chars_of_given_word)
 
+CompileBenchmarkExe(rearrange_array_arrj_becomes_i_if_arri_j)
+CompileTestExe(rearrange_array_arrj_becomes_i_if_arri_j)
+
 CompileBenchmarkExe(rearrange_array_arr_arr_i)
 CompileTestExe(rearrange_array_arr_arr_i)
 
