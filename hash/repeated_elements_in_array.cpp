@@ -39,6 +39,13 @@ auto FindRepeatedElements(const ArrayType &values) {
  *
  * Write an efficient C program to print all the duplicates and their counts in the input string.
  */
+/** Print All Distinct Elements of a given integer array
+ *
+ * @reference   https://www.geeksforgeeks.org/print-distinct-elements-given-integer-array/
+ *
+ * Given an integer array, print all distinct elements in array. The given array may contain
+ * duplicates and the output should print every element only once. The given array is not sorted.
+ */
 
 
 /** Find duplicates in O(n) time and O(1) extra space | Set 1
