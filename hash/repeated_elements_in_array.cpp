@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "repeated_elements.h"
+
 
 using ArrayType = std::vector<int>;
 /** Array elements that appear more than once
@@ -74,9 +76,7 @@ auto FindDuplicatesInplace(ArrayType values) {
  * answer should be 1, 3 and 6.
  */
 auto FindDuplicatesInplace2(ArrayType values) {
-    for (const auto elem : values) {
-        values[elem % values.size()] += values.size();
-    }
+    TransformToInplaceCounterArray(values, values.size());
 
     ArrayType output;
     for (ArrayType::size_type i = 0ul; i < values.size(); ++i) {
