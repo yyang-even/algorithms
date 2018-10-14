@@ -56,6 +56,14 @@ INT_BOOL HasPairOfElementsSumAsNSort(ArrayType<N> values, const int target) {
     return FALSE;
 }
 
+/** Count pairs with given sum
+ *
+ * @reference   https://www.geeksforgeeks.org/count-pairs-with-given-sum/
+ *
+ * Given an array of integers, and a number ‘sum’, find the number of
+ * pairs of integers in the array whose sum is equal to ‘sum’.
+ */
+
 
 constexpr ArrayType<0> VALUES1 = {};
 constexpr ArrayType<1> VALUES2 = {1};
