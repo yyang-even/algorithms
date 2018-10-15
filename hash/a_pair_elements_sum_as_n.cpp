@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "a_pair_elements_sum_as_n.h"
 
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
@@ -17,17 +18,7 @@ using ArrayType = std::array<int, N>;
  */
 template <std::size_t N>
 INT_BOOL HasPairOfElementsSumAsNHashmap(const ArrayType<N> &values, const int target) {
-    std::unordered_set<int> elements {};
-    int pair;
-
-    for (const auto element : values) {
-        pair = target - element;
-        if (elements.find(pair) != elements.cend()) {
-            return TRUE;
-        }
-        elements.insert(element);
-    }
-    return FALSE;
+    return PairOfElementsSumAsNHashmap<ArrayType<N>>(values, target, nullptr);
 }
 
 /** Using sort

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "primes_below_n.h"
+
 typedef unsigned long InputType;
 /** Primes Below N
  * @reference Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -15,27 +17,11 @@ typedef unsigned long InputType;
  * The repeatedly circle the smallest uncircled, uncrossed number and cross out its other multiples.
  * When everything has been circled or crossed out, the circled numbers are the primes.
  */
-std::vector<InputType> SieveOfEratosthenes(const InputType N) {
-    std::vector<InputType> output;
-    if (N > 2) {
-        std::vector<bool> numbers(N, true);
-        InputType j;
-        for (InputType i = 2; i < N; ++i) {
-            if (numbers[i]) {
-                output.push_back(i);
-                for (j = i * 2; j < N; j += i) {
-                    numbers[j] = false;
-                }
-            }
-        }
-    }
-    return output;
-}
 
 /** Sum of all prime numbers below N
  */
 unsigned long long SumOfPrimesBelowN(const InputType N) {
-    auto primes = SieveOfEratosthenes(N);
+    const auto primes = SieveOfEratosthenes(N);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
 
