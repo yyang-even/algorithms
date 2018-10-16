@@ -7,6 +7,9 @@ CompileTestExe(a_pair_elements_sum_as_n)
 CompileBenchmarkExe(a_pair_primes_sum_as_n)
 CompileTestExe(a_pair_primes_sum_as_n)
 
+CompileBenchmarkExe(a_pair_sum_as_n_from_two_array)
+CompileTestExe(a_pair_sum_as_n_from_two_array)
+
 CompileBenchmarkExe(check_all_elements_distinct)
 CompileTestExe(check_all_elements_distinct)
 
