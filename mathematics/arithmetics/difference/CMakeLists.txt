@@ -1,0 +1,2 @@
+CompileBenchmarkExe(minimum_difference_between_two_elements)
+CompileTestExe(minimum_difference_between_two_elements)
