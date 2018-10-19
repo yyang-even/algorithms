@@ -25,6 +25,9 @@ CompileTestExe(merge_two_sorted_arrays)
 CompileBenchmarkExe(partition)
 CompileTestExe(partition)
 
+CompileBenchmarkExe(rotation)
+CompileTestExe(rotation)
+
 CompileBenchmarkExe(selection_sort)
 CompileTestExe(selection_sort)
 

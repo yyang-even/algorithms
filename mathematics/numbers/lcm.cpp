@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "numbers.h"
+#include "gcd.h"
 
 /** LCM - Least Common Multiple
  * @reference Ronald Graham, Oren Patashnik, Donald Knuth.

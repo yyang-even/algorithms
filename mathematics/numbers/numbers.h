@@ -2,8 +2,6 @@
 
 #include "common_header.h"
 
-unsigned gcd(unsigned m, unsigned n);
-
 class LargeInteger {
     typedef std::vector<unsigned char> NumData;
     //Number are stored in reverse digit order
