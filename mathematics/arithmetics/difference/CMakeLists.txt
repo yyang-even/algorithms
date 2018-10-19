@@ -1,2 +1,5 @@
+CompileBenchmarkExe(max_difference_between_two_elements_no_sort)
+CompileTestExe(max_difference_between_two_elements_no_sort)
+
 CompileBenchmarkExe(minimum_difference_between_two_elements)
 CompileTestExe(minimum_difference_between_two_elements)
