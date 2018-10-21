@@ -37,6 +37,59 @@ auto LeftRotateGCD(ArrayType arr, const ArrayType::size_type d) {
     return arr;
 }
 
+/** Block swap algorithm for array rotation
+ *
+ * @reference   https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
+ */
+void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2, ArrayType::size_type n) {
+    while (n--) {
+        std::iter_swap(begin1++, begin2++);
+    }
+}
+void LeftRotateBlockSwapRecursive(const ArrayType::iterator begin, const ArrayType::size_type d,
+                                  const ArrayType::size_type n) {
+    if (d == 0 or d == n) {
+        return;
+    }
+    const auto right_size = n - d;
+    if (right_size == d) {
+        BlockSwap(begin, begin + d, d);
+        return;
+    }
+    if (d < right_size) {
+        BlockSwap(begin, begin + n - d, d);
+        LeftRotateBlockSwapRecursive(begin, d, right_size);
+    } else {
+        BlockSwap(begin, begin + d, right_size);
+        LeftRotateBlockSwapRecursive(begin + right_size, 2 * d - n, d);
+    }
+}
+auto LeftRotateBlockSwapRecursive(ArrayType arr, const ArrayType::size_type d) {
+    LeftRotateBlockSwapRecursive(arr.begin(), d, arr.size());
+    return arr;
+}
+
+auto LeftRotateBlockSwapIterative(ArrayType arr, const ArrayType::size_type d) {
+    if (d == 0 or arr.size() == d) {
+        return arr;
+    }
+
+    auto i = d;
+    auto j = arr.size() - d;
+    const auto begin = arr.begin() + d;
+    while (i != j) {
+        if (i < j) {
+            BlockSwap(begin - i, begin + j - i, i);
+            j -= i;
+        } else {
+            BlockSwap(begin - i, begin, j);
+            i -= j;
+        }
+    }
+    BlockSwap(begin - i, begin, i);
+
+    return arr;
+}
 
 const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
 const ArrayType ExpectedSortedArray = {3, 4, 5, 6, 7, 1, 2};
@@ -52,3 +105,13 @@ SIMPLE_BENCHMARK(LeftRotateGCD, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotateGCD, TestSample1, ExpectedSortedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotateGCD, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+
+SIMPLE_BENCHMARK(LeftRotateBlockSwapRecursive, SampleArray2, 3);
+
+SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample1, ExpectedSortedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+
+SIMPLE_BENCHMARK(LeftRotateBlockSwapIterative, SampleArray2, 3);
+
+SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample1, ExpectedSortedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
