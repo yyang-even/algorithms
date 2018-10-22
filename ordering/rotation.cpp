@@ -91,6 +91,36 @@ auto LeftRotateBlockSwapIterative(ArrayType arr, const ArrayType::size_type d) {
     return arr;
 }
 
+/** Reversal algorithm for array rotation
+ *
+ * @reference   https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+ */
+auto LeftRotateReversal(ArrayType elements, const ArrayType::size_type d) {
+    const auto mid = elements.begin() + d;
+    std::reverse(elements.begin(), mid);
+    std::reverse(mid, elements.end());
+    std::reverse(elements.begin(), elements.end());
+
+    return elements;
+}
+
+
+/** Reversal algorithm for right rotation of an array
+ *
+ * @reference   https://www.geeksforgeeks.org/reversal-algorithm-right-rotation-array/
+ *
+ * Given an array, right rotate it by k elements.
+ */
+auto RightRotateReversal(ArrayType elements, const ArrayType::size_type k) {
+    const auto mid = elements.begin() + k;
+    std::reverse(elements.begin(), elements.end());
+    std::reverse(elements.begin(), mid);
+    std::reverse(mid, elements.end());
+
+    return elements;
+}
+
+
 const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
 const ArrayType ExpectedSortedArray = {3, 4, 5, 6, 7, 1, 2};
 const ArrayType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
@@ -115,3 +145,19 @@ SIMPLE_BENCHMARK(LeftRotateBlockSwapIterative, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample1, ExpectedSortedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+
+SIMPLE_BENCHMARK(LeftRotateReversal, SampleArray2, 3);
+
+SIMPLE_TEST(LeftRotateReversal, TestSample1, ExpectedSortedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateReversal, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+
+
+const ArrayType SampleArrayR1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+const ArrayType ExpectedSortedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
+const ArrayType SampleArrayR2 = {121, 232, 33, 43 , 5};
+const ArrayType ExpectedSortedArrayR2 = {43, 5, 121, 232, 33};
+
+SIMPLE_BENCHMARK(RightRotateReversal, SampleArrayR1, 3);
+
+SIMPLE_TEST(RightRotateReversal, TestSample, ExpectedSortedArrayR1, SampleArrayR1, 3);
+SIMPLE_TEST(RightRotateReversal, TestSample2, ExpectedSortedArrayR2, SampleArrayR2, 2);
