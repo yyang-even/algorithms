@@ -121,6 +121,16 @@ auto RightRotateReversal(ArrayType elements, const ArrayType::size_type k) {
 }
 
 
+/** Split the array and add the first part to the end
+ *
+ * @reference   https://www.geeksforgeeks.org/split-array-add-first-part-end/
+ * @reference   Split the array and add the first part to the end | Set 2
+ *              https://www.geeksforgeeks.org/split-the-array-and-add-the-first-part-to-the-end-set-2/
+ *
+ * Given an array and split it from a specified position, and move the first part of array add to the end.
+ */
+
+
 const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
 const ArrayType ExpectedSortedArray = {3, 4, 5, 6, 7, 1, 2};
 const ArrayType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
