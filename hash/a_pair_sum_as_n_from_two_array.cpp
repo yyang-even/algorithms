@@ -40,7 +40,7 @@ const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPEC
     std::make_pair(1, 7), std::make_pair(4, 4), std::make_pair(5, 3), std::make_pair(7, 1)
 };
 const ArrayType SAMPLE4L = {1, 0, -4, 7, 6, 4};
-const ArrayType SAMPLE4R = {0 , 2, 4, -3, 2, 1};
+const ArrayType SAMPLE4R = {0, 2, 4, -3, 2, 1};
 const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPECTED4 = {
     std::make_pair(6, 2), std::make_pair(4, 4), std::make_pair(6, 2), std::make_pair(7, 1)
 };

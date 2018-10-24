@@ -111,13 +111,19 @@ SIMPLE_TEST(MergeTwoSortedArrays, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArrays, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
 
 
-const auto EXPECTED_PAIR1 = std::make_pair(ArrayType{1, 2, 3, 4}, ArrayType{5, 6, 7, 8});
+const auto EXPECTED_PAIR1 = std::make_pair(ArrayType {
+    1, 2, 3, 4
+}, ArrayType{5, 6, 7, 8});
 const ArrayType SAMPLE3L = {10};
 const ArrayType SAMPLE3R = {2, 3};
-const auto EXPECTED_PAIR3 = std::make_pair(ArrayType{2}, ArrayType{3, 10});
+const auto EXPECTED_PAIR3 = std::make_pair(ArrayType {
+    2
+}, ArrayType{3, 10});
 const ArrayType SAMPLE4L = {1, 5, 9, 10, 15, 20};
 const ArrayType SAMPLE4R = {2, 3, 8, 13};
-const auto EXPECTED_PAIR4 = std::make_pair(ArrayType{1, 2, 3, 5, 8, 9}, ArrayType{10, 13, 15, 20});
+const auto EXPECTED_PAIR4 = std::make_pair(ArrayType {
+    1, 2, 3, 5, 8, 9
+}, ArrayType{10, 13, 15, 20});
 
 SIMPLE_BENCHMARK(MergeTwoSortedArraysInPlace, SAMPLE1L, SAMPLE1R);
 
