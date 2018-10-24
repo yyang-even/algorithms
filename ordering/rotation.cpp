@@ -131,6 +131,14 @@ auto RightRotateReversal(ArrayType elements, const ArrayType::size_type k) {
  */
 
 
+/** Program to cyclically rotate an array by one
+ *
+ * @reference   https://www.geeksforgeeks.org/c-program-cyclically-rotate-array-one/
+ *
+ * Given an array, cyclically rotate the array clockwise by one.
+ */
+
+
 const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
 const ArrayType ExpectedSortedArray = {3, 4, 5, 6, 7, 1, 2};
 const ArrayType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
