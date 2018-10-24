@@ -131,43 +131,51 @@ auto RightRotateReversal(ArrayType elements, const ArrayType::size_type k) {
  */
 
 
+/** Program to cyclically rotate an array by one
+ *
+ * @reference   https://www.geeksforgeeks.org/c-program-cyclically-rotate-array-one/
+ *
+ * Given an array, cyclically rotate the array clockwise by one.
+ */
+
+
 const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
-const ArrayType ExpectedSortedArray = {3, 4, 5, 6, 7, 1, 2};
+const ArrayType ExpectedArray = {3, 4, 5, 6, 7, 1, 2};
 const ArrayType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-const ArrayType ExpectedSortedArray2 = {4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3};
+const ArrayType ExpectedArray2 = {4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3};
 
 SIMPLE_BENCHMARK(LeftRotateSimple, SampleArray, 2);
 
-SIMPLE_TEST(LeftRotateSimple, TestSample, ExpectedSortedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotateSimple, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotateSimple, TestSample, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateSimple, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 SIMPLE_BENCHMARK(LeftRotateGCD, SampleArray2, 3);
 
-SIMPLE_TEST(LeftRotateGCD, TestSample1, ExpectedSortedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotateGCD, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotateGCD, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateGCD, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 SIMPLE_BENCHMARK(LeftRotateBlockSwapRecursive, SampleArray2, 3);
 
-SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample1, ExpectedSortedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateBlockSwapRecursive, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 SIMPLE_BENCHMARK(LeftRotateBlockSwapIterative, SampleArray2, 3);
 
-SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample1, ExpectedSortedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateBlockSwapIterative, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 SIMPLE_BENCHMARK(LeftRotateReversal, SampleArray2, 3);
 
-SIMPLE_TEST(LeftRotateReversal, TestSample1, ExpectedSortedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotateReversal, TestSample2, ExpectedSortedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotateReversal, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotateReversal, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
 const ArrayType SampleArrayR1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-const ArrayType ExpectedSortedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
-const ArrayType SampleArrayR2 = {121, 232, 33, 43 , 5};
-const ArrayType ExpectedSortedArrayR2 = {43, 5, 121, 232, 33};
+const ArrayType ExpectedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
+const ArrayType SampleArrayR2 = {121, 232, 33, 43, 5};
+const ArrayType ExpectedArrayR2 = {43, 5, 121, 232, 33};
 
 SIMPLE_BENCHMARK(RightRotateReversal, SampleArrayR1, 3);
 
-SIMPLE_TEST(RightRotateReversal, TestSample, ExpectedSortedArrayR1, SampleArrayR1, 3);
-SIMPLE_TEST(RightRotateReversal, TestSample2, ExpectedSortedArrayR2, SampleArrayR2, 2);
+SIMPLE_TEST(RightRotateReversal, TestSample, ExpectedArrayR1, SampleArrayR1, 3);
+SIMPLE_TEST(RightRotateReversal, TestSample2, ExpectedArrayR2, SampleArrayR2, 2);

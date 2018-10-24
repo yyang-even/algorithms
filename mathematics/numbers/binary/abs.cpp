@@ -29,7 +29,7 @@ SIMPLE_BENCHMARK(Absolute, UPPER);
 SIMPLE_TEST(Absolute, TestSample1, 1, -1);
 SIMPLE_TEST(Absolute, TestSample2, 1, -1);
 SIMPLE_TEST(Absolute, TestSample3, 0, 0);
-SIMPLE_TEST(Absolute, TestSample4, static_cast<unsigned>(UPPER) + 1 , LOWER);
+SIMPLE_TEST(Absolute, TestSample4, static_cast<unsigned>(UPPER) + 1, LOWER);
 SIMPLE_TEST(Absolute, TestSample5, UPPER, UPPER);
 
 SIMPLE_BENCHMARK(AbsPatented, -1);
@@ -40,7 +40,7 @@ SIMPLE_BENCHMARK(AbsPatented, UPPER);
 SIMPLE_TEST(AbsPatented, TestSample1, 1, -1);
 SIMPLE_TEST(AbsPatented, TestSample2, 1, -1);
 SIMPLE_TEST(AbsPatented, TestSample3, 0, 0);
-SIMPLE_TEST(AbsPatented, TestSample4, static_cast<unsigned>(UPPER) + 1 , LOWER);
+SIMPLE_TEST(AbsPatented, TestSample4, static_cast<unsigned>(UPPER) + 1, LOWER);
 SIMPLE_TEST(AbsPatented, TestSample5, UPPER, UPPER);
 
 MUTUAL_RANDOM_TEST(Absolute, AbsPatented, LOWER, UPPER);
