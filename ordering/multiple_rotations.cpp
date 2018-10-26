@@ -27,6 +27,22 @@ auto MultipleLeftRotations(const ArrayType elements, const ArrayType Ks) {
 }
 
 
+auto MultipleLeftRotationsInPlace(const ArrayType elements, const ArrayType Ks) {
+    std::vector<ArrayType> outputs;
+    for (const auto k : Ks) {
+        const auto last = k + elements.size();
+        ArrayType rotation;
+
+        for (auto i = k; i < last; ++i) {
+            rotation.push_back(elements[i % elements.size()]);
+        }
+
+        outputs.emplace_back(std::move(rotation));
+    }
+    return outputs;
+}
+
+
 const ArrayType SampleArray = {1, 3, 5, 7, 9};
 const ArrayType SampleArrayK1 = {1, 3, 4, 6};
 const ArrayType SampleArrayK2 = {14};
@@ -41,3 +57,8 @@ SIMPLE_BENCHMARK(MultipleLeftRotations, SampleArray, SampleArrayK1);
 
 SIMPLE_TEST(MultipleLeftRotations, TestSample, ExpectedArray, SampleArray, SampleArrayK1);
 SIMPLE_TEST(MultipleLeftRotations, TestSample2, ExpectedArray2, SampleArray, SampleArrayK2);
+
+SIMPLE_BENCHMARK(MultipleLeftRotationsInPlace, SampleArray, SampleArrayK1);
+
+SIMPLE_TEST(MultipleLeftRotationsInPlace, TestSample, ExpectedArray, SampleArray, SampleArrayK1);
+SIMPLE_TEST(MultipleLeftRotationsInPlace, TestSample2, ExpectedArray2, SampleArray, SampleArrayK2);
