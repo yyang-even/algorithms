@@ -4,6 +4,9 @@ CompileTestExe(largest_sum_contiguous_subarray)
 CompileBenchmarkExe(multiple_array_range_increment_operations)
 CompileTestExe(multiple_array_range_increment_operations)
 
+CompileBenchmarkExe(smallest_sum_contiguous_subarray)
+CompileTestExe(smallest_sum_contiguous_subarray)
+
 CompileBenchmarkExe(subarray_with_given_sum)
 CompileTestExe(subarray_with_given_sum)
 
