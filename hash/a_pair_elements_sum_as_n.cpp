@@ -22,6 +22,10 @@ INT_BOOL HasPairOfElementsSumAsNHashmap(const ArrayType<N> &values, const int ta
 }
 
 /** Using sort
+ *
+ * @reference   Two Pointers Technique
+ *              https://www.geeksforgeeks.org/two-pointers-technique/
+ *
  * @complexity: Same as the sorting algorithm used.
  */
 template <std::size_t N>
