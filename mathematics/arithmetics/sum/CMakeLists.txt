@@ -15,3 +15,5 @@ CompileTestExe(subarray_with_given_sum)
 
 CompileBenchmarkExe(sum)
 CompileTestExe(sum)
+
+add_subdirectory(sequences)
