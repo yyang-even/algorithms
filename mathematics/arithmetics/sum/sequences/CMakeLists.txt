@@ -1,0 +1,5 @@
+CompileBenchmarkExe(sum_of_cubes)
+CompileTestExe(sum_of_cubes)
+
+CompileBenchmarkExe(sum_of_natural_numbers)
+CompileTestExe(sum_of_natural_numbers)
