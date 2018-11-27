@@ -1,2 +1,5 @@
 CompileBenchmarkExe(power)
 CompileTestExe(power)
+
+CompileBenchmarkExe(squares_of_first_n_numbers)
+CompileTestExe(squares_of_first_n_numbers)
