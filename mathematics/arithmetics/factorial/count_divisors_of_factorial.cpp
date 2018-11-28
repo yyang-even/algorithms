@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "mathematics/numbers/prime/prime.h"
+#include "mathematics/numbers/prime/primes_below_n.h"
 
 typedef unsigned InputType;
 

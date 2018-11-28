@@ -1,8 +1,10 @@
 add_library(prime
-    largest_power_of_p_divides_factorial_n.cpp
-    primes_below_n.cpp)
+    largest_power_of_p_divides_factorial_n.cpp)
 target_link_libraries(prime
     binary)
+
+CompileBenchmarkExe(difference_between_nonprimes_and_primes_of_array)
+CompileTestExe(difference_between_nonprimes_and_primes_of_array)
 
 CompileBenchmarkExe(prime_factors_of_n)
 CompileTestExe(prime_factors_of_n)
