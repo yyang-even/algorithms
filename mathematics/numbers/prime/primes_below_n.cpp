@@ -3,27 +3,39 @@
 #include "primes_below_n.h"
 
 typedef unsigned long InputType;
-/** Primes Below N
- * @reference Ronald Graham, Oren Patashnik, Donald Knuth.
- *            Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
- *
- * A positive integer p is called prime if it has just two divisors, namely 1 and p.
- * By convention, 1 isn't prime, so the sequence of primes starts out like this:
- *  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,...
- *
- * Sieve of Eratosthenes:
- * First write down all integers from 2 through N.
- * Next circle 2, marking it prime, and cross out all other multiples of 2.
- * The repeatedly circle the smallest uncircled, uncrossed number and cross out its other multiples.
- * When everything has been circled or crossed out, the circled numbers are the primes.
- */
 
 /** Sum of all prime numbers below N
  */
-unsigned long long SumOfPrimesBelowN(const InputType N) {
+auto SumOfPrimesBelowN(const InputType N) {
     const auto primes = SieveOfEratosthenes(N);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
+
+
+/** Find product of prime numbers between 1 to n
+ *
+ * @reference   https://www.geeksforgeeks.org/find-product-prime-numbers-1-n/
+ *
+ * Given a number n, we need to find the product of all prime numbers between 1 to n.
+ */
+auto ProductOfPrimesBetween1ToN(const InputType N) {
+    const auto primes = SieveOfEratosthenes(N + 1ul);
+    return std::accumulate(primes.cbegin(), primes.cend(), 1ULL, std::multiplies<InputType> {});
+}
+
+
+/** Find the Product of first N Prime Numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-product-of-first-n-prime-numbers/
+ *
+ * Given an positive integer N, calculate the product of the first N prime numbers.
+ */
+auto ProductOfFirstNPrimes(const InputType N) {
+    const auto primes = SieveOfEratosthenes(std::numeric_limits<short>::max());
+    assert(N < primes.size());
+    return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
+}
+
 
 const InputType LOWER = 2;
 const InputType SAMPLE1 = 12;
@@ -45,3 +57,18 @@ SIMPLE_BENCHMARK(SumOfPrimesBelowN, SAMPLE1);
 SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 0, LOWER);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28, SAMPLE1);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023, 1000000);
+
+
+SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, LOWER);
+SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, SAMPLE1);
+
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2, LOWER);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30, 5);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210, 7);
+
+
+SIMPLE_BENCHMARK(ProductOfFirstNPrimes, LOWER);
+SIMPLE_BENCHMARK(ProductOfFirstNPrimes, SAMPLE1);
+
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310, 5);
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30, 3);
