@@ -1,0 +1,26 @@
+#include "common_header.h"
+
+#include "a_pair_elements_product_as_n.h"
+#include "mathematics/numbers/prime/primes_below_n.h"
+
+/** Find two distinct prime numbers with given product
+ *
+ * @reference   https://www.geeksforgeeks.org/find-two-distinct-prime-numbers-with-given-product/
+ *
+ * Given a number N (greater than 2 ). The task is to find two distinct prime numbers whose
+ * product will be equal to the given number. There may be several combinations possible.
+ * Print only first such pair.
+ * If it is not possible to express N as a product of two distinct primes, print “Not Possible”.
+ */
+auto PairPrimesProductAsN(const unsigned N) {
+    const auto primes = SieveOfEratosthenes(N);
+    auto output = std::make_pair(1ul, 1ul);
+    PairElementsProductAsN(primes, N, &output);
+    return output;
+}
+
+
+SIMPLE_BENCHMARK(PairPrimesProductAsN, 74);
+
+SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE1, std::make_pair(3ul, 5ul), 15);
+SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE2, std::make_pair(3ul, 13ul), 39);

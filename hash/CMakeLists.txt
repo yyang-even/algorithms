@@ -4,6 +4,9 @@ CompileTestExe(a_pair_elements_product_as_n)
 CompileBenchmarkExe(a_pair_elements_sum_as_n)
 CompileTestExe(a_pair_elements_sum_as_n)
 
+CompileBenchmarkExe(a_pair_primes_product_as_n)
+CompileTestExe(a_pair_primes_product_as_n)
+
 CompileBenchmarkExe(a_pair_primes_sum_as_n)
 CompileTestExe(a_pair_primes_sum_as_n)
 

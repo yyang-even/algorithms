@@ -8,7 +8,7 @@ auto PairOfElementsSumAsNHashmap(const ArrayType &values,
     std::unordered_set<typename ArrayType::value_type> value_set {};
 
     for (const auto element : values) {
-        auto pair = target - element;
+        const auto pair = target - element;
         if (value_set.find(pair) != value_set.cend()) {
             if (output) {
                 *output = std::make_pair(pair, element);

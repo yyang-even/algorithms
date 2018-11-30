@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "a_pair_elements_product_as_n.h"
+
 using ArrayType = std::vector<int>;
 /** Pair with given product | Set 1 (Find if any pair exists)
  *
@@ -8,22 +10,7 @@ using ArrayType = std::vector<int>;
  * Given an array of distinct elements and a number x, find if there is a pair with product equal to x.
  */
 INT_BOOL PairElementsProductAsN(const ArrayType &elements, const ArrayType::value_type N) {
-    std::unordered_set<ArrayType::value_type> value_set{};
-
-    for (const auto elem : elements) {
-        if (elem == 0 and N == 0) {
-            return true;
-        }
-
-        if (N % elem == 0) {
-            if (value_set.find(N / elem) != value_set.cend()) {
-                return true;
-            }
-            value_set.insert(elem);
-        }
-    }
-
-    return false;
+    return PairElementsProductAsN(elements, N, nullptr);
 }
 
 
