@@ -1,0 +1,8 @@
+CompileBenchmarkExe(gcd)
+CompileTestExe(gcd)
+
+CompileBenchmarkExe(lcm)
+CompileTestExe(lcm)
+
+CompileBenchmarkExe(min_difference_between_shifted_tables_of_two_numbers)
+CompileTestExe(min_difference_between_shifted_tables_of_two_numbers)

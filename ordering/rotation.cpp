@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/gcd.h"
+#include "mathematics/numbers/gcd/gcd.h"
 
 using ArrayType = std::vector<int>;
 /** Program for array rotation
