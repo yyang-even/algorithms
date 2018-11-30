@@ -5,6 +5,19 @@
 
 
 using InputType = unsigned;
+
+/** Pair of prime numbers with a given sum and minimum absolute difference
+ *
+ * @reference   https://www.geeksforgeeks.org/pair-of-prime-numbers-with-a-given-sum-and-minimum-absolute-difference/
+ *
+ * Given an integer ‘sum’ (less than 10^8), the task is to find a pair of
+ * prime numbers whose sum is equal to the given ‘sum’.
+ * Out of all the possible pairs, the absolute difference between the chosen
+ * pair must be minimum.
+ * If the ‘sum’ cannot be represented as a sum of two prime numbers then
+ * print “Cannot be represented as sum of two primes”.
+ */
+
 /** Find two prime numbers with given sum
  *
  * @reference   https://www.geeksforgeeks.org/find-two-prime-numbers-with-given-sum/
@@ -28,3 +41,5 @@ SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE1, std::make_pair(31ul, 43ul), 74);
 SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE2, std::make_pair(503ul, 521ul), 1024);
 SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE3, std::make_pair(29ul, 37ul), 66);
 SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE4, std::make_pair(4987ul, 5003ul), 9990);
+SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE5, std::make_pair(499ul, 503ul), 1002);
+SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE6, std::make_pair(983ul, 1019ul), 2002);
