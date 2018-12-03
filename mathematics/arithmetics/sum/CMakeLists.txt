@@ -13,7 +13,7 @@ CompileTestExe(smallest_sum_contiguous_subarray)
 CompileBenchmarkExe(subarray_with_given_sum)
 CompileTestExe(subarray_with_given_sum)
 
-CompileBenchmarkExe(sum)
-CompileTestExe(sum)
+CompileBenchmarkExe(sum_of_array)
+CompileTestExe(sum_of_array)
 
 add_subdirectory(sequences)
