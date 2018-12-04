@@ -34,6 +34,8 @@ InputType CountSetBitsBrianKernighan(InputType n) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Counting bits set by lookup table
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Count set bits in an integer using Lookup Table
+ *              https://www.geeksforgeeks.org/count-set-bits-integer-using-lookup-table/
  */
 static const unsigned char BitsSetTable256[256] = {
 #define B2(n) n,     n+1,     n+1,     n+2
