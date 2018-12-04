@@ -2,6 +2,12 @@
 
 using ArrayType = std::vector<int>;
 
+/** Sum of array using pointer arithmetic
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
+ *
+ * https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
+ */
 /** Program to find sum of elements in a given array
  *
  * @reference   https://www.geeksforgeeks.org/program-find-sum-elements-given-array/
