@@ -1,27 +1,8 @@
 #include "common_header.h"
 
-typedef unsigned InputType;
+#include "count_trailing_zeros.h"
 
-/** Count the consecutive zero bits (trailing) on the right linearly
- *
- * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
- *              Count the consecutive zero bits (trailing) on the right linearly
- *              https://graphics.stanford.edu/~seander/bithacks.html
- *
- * Count num's trailing zero bits, so if v is 1101000 (base 2), then the output will be 3
- */
-auto CountTrailingZerosLinear(InputType num) {
-    InputType result = 0;
-    if (num) {
-        num = (num ^ (num - 1)) >> 1;  // Set num's trailing 0s to 1s and zero rest
-        for (; num; ++result) {
-            num >>= 1;
-        }
-    } else {
-        result = Bits_Number<decltype(num)>();
-    }
-    return result;
-}
+typedef unsigned InputType;
 
 
 /** Count the consecutive zero bits (trailing) on the right in parallel
@@ -160,6 +141,8 @@ SIMPLE_TEST(CountTrailingZerosLinear, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZerosLinear, TestUPPER, 0, UPPER);
 SIMPLE_TEST(CountTrailingZerosLinear, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
 SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE1, 3, 0b1101000);
+SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE2, 4, 16);
+SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE3, 6, 64);
 
 SIMPLE_BENCHMARK(CountTrailingZerosParallel, UPPER);
 SIMPLE_BENCHMARK(CountTrailingZerosParallel, 1 << (NUM_BITS - 1));

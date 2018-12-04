@@ -1,6 +1,5 @@
 add_library(binary
     count_set_bits.cpp
-    is_power_of_2.cpp
     log_base_2.cpp)
 
 CompileBenchmarkExe(abs)
@@ -26,6 +25,9 @@ CompileTestExe(case_conversion)
 
 CompileBenchmarkExe(check_if_alternate_pattern)
 CompileTestExe(check_if_alternate_pattern)
+
+CompileBenchmarkExe(check_only_first_and_last_bits_set)
+CompileTestExe(check_only_first_and_last_bits_set)
 
 CompileBenchmarkExe(conditionally_set_or_clear)
 CompileTestExe(conditionally_set_or_clear)
@@ -77,10 +79,8 @@ CompileTestExe(find_the_missing_number)
 CompileBenchmarkExe(find_the_odd_number)
 CompileTestExe(find_the_odd_number)
 
-CompileBenchmarkExe(find_the_only_set_bit_position
-    binary)
-CompileTestExe(find_the_only_set_bit_position
-    binary)
+CompileBenchmarkExe(find_the_only_set_bit_position)
+CompileTestExe(find_the_only_set_bit_position)
 
 CompileBenchmarkExe(find_the_repeating_and_the_missing)
 CompileTestExe(find_the_repeating_and_the_missing)
@@ -111,6 +111,9 @@ CompileTestExe(is_negative)
 
 CompileBenchmarkExe(is_power_of_2)
 CompileTestExe(is_power_of_2)
+
+CompileBenchmarkExe(is_power_of_4)
+CompileTestExe(is_power_of_4)
 
 CompileBenchmarkExe(log_base_2)
 CompileTestExe(log_base_2)

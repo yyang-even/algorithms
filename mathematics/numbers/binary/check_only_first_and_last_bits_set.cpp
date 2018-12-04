@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "is_power_of_2.h"
+
 /** Check whether the number has only first and last bits set
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-number-first-last-bits-set/
@@ -8,7 +10,7 @@
  * Given a positive integer n. The problem is to check whether only the
  * first and last bits are set in the binary representation of n.
  */
-auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
+INT_BOOL CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
     if (n == 1) {
         return true;
     } else if (n == 2) {

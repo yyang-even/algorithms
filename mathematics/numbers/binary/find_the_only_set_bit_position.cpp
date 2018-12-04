@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "binary.h"
+#include "is_power_of_2.h"
 
 typedef unsigned InputType;
 
