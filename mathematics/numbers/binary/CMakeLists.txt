@@ -46,6 +46,9 @@ CompileTestExe(count_equal_sum_and_xor)
 CompileBenchmarkExe(count_set_bits)
 CompileTestExe(count_set_bits)
 
+CompileBenchmarkExe(count_total_bits)
+CompileTestExe(count_total_bits)
+
 CompileBenchmarkExe(count_trailing_zeros)
 CompileTestExe(count_trailing_zeros)
 
