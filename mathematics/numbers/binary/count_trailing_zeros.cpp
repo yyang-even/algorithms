@@ -100,6 +100,8 @@ InputType CountTrailingZerosFloat(const InputType num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Count the consecutive zero bits (trailing) on the right with modulus division and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Count trailing zero bits using lookup table
+ *              https://www.geeksforgeeks.org/count-trailing-zero-bits-using-lookup-table/
  */
 auto CountTrailingZerosModulusAndLookup(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
