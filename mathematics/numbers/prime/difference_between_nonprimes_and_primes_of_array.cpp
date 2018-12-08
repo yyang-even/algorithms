@@ -67,7 +67,7 @@ SIMPLE_TEST(DifferenceBetweenSumOfNonprimesAndPrimes, TestSample1, 10, SAMPLE1);
 SIMPLE_TEST(DifferenceBetweenSumOfNonprimesAndPrimes, TestSample2, 7, SAMPLE2);
 
 
-const ArrayType SAMPLE3 = {-1, 3, 5, 10, 15, 7};
+const ArrayType SAMPLE3 = { -1, 3, 5, 10, 15, 7};
 
 
 SIMPLE_BENCHMARK(DifferenceBetweenProductOfNonprimesAndPrimes, SAMPLE1);
