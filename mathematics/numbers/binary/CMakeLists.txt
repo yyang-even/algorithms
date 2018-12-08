@@ -106,6 +106,9 @@ CompileTestExe(increment)
 CompileBenchmarkExe(is_bit_set)
 CompileTestExe(is_bit_set)
 
+CompileBenchmarkExe(is_divisible_by_power_of_2)
+CompileTestExe(is_divisible_by_power_of_2)
+
 CompileBenchmarkExe(is_multiple_of_4)
 CompileTestExe(is_multiple_of_4)
 
