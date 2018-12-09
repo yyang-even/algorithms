@@ -115,8 +115,8 @@ CompileTestExe(is_negative)
 CompileBenchmarkExe(is_power_of_2)
 CompileTestExe(is_power_of_2)
 
-CompileBenchmarkExe(is_power_of_4)
-CompileTestExe(is_power_of_4)
+CompileBenchmarkExe(is_power_of_power_of_2)
+CompileTestExe(is_power_of_power_of_2)
 
 CompileBenchmarkExe(log_base_2)
 CompileTestExe(log_base_2)
