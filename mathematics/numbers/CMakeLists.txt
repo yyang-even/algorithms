@@ -1,6 +1,9 @@
 add_library(numbers
     large_integer.cpp)
 
+CompileBenchmarkExe(is_duck_number)
+CompileTestExe(is_duck_number)
+
 CompileBenchmarkExe(large_integer)
 CompileTestExe(large_integer)
 
