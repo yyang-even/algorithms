@@ -1,9 +1,26 @@
 #include "common_header.h"
 
 #include "calculate_xor_of_all_numbers_1_to_n.h"
-#include "is_divisible_by_power_of_2.h"
 
 using InputType = unsigned;
+
+
+/** Check if n is divisible by power of 2 without using arithmetic operators
+ *
+ * @reference   https://www.geeksforgeeks.org/check-n-divisible-power-2-without-using-arithmetic-operators/
+ *
+ * Given two positive integers n and m. The problem is to check whether n
+ * is divisible by 2^m or not.
+ */
+INT_BOOL IsDivisibleByPowerOf2Arithmetic(const InputType n, const InputType m) {
+    return (n & ((1 << m) - 1)) == 0;
+}
+
+
+INT_BOOL IsDivisibleByPowerOf2Bitwise(const InputType n, const InputType m) {
+    return ((n >> m) << m) == n;
+}
+
 
 /** Check if a number is divisible by 8 using bitwise operators
  *
