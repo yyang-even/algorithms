@@ -63,6 +63,17 @@ inline auto IsMultipleOf4Mask(const InputType num) {
 }
 
 
+/** Check whether a given number is even or odd
+ *
+ * @reference   https://www.geeksforgeeks.org/check-whether-given-number-even-odd/
+ *
+ * Given a number, check whether it is even or odd.
+ */
+auto IsEven(const unsigned num) {
+    return IsDivisibleByPowerOf2Arithmetic(num, 1);
+}
+
+
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
@@ -112,3 +123,11 @@ SIMPLE_TEST(IsMultipleOf4Shift, TestSample4, FALSE, 14);
 
 MUTUAL_RANDOM_TEST(IsMultipleOf4Xor, IsMultipleOf4Mask, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(IsMultipleOf4Shift, IsMultipleOf4Mask, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(IsEven, 8);
+
+SIMPLE_TEST(IsEven, TestSample1, TRUE, 0);
+SIMPLE_TEST(IsEven, TestSample2, TRUE, 2);
+SIMPLE_TEST(IsEven, TestSample3, FALSE, 5);
+SIMPLE_TEST(IsEven, TestSample4, FALSE, 101);

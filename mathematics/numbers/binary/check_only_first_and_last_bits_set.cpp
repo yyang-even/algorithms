@@ -5,6 +5,7 @@
 /** Check whether the number has only first and last bits set
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-number-first-last-bits-set/
+ * @reference   Check whether the number has only first and last bits set | Set 2
  *              https://www.geeksforgeeks.org/check-whether-the-number-has-only-first-and-last-bits-set-set-2/
  *
  * Given a positive integer n. The problem is to check whether only the
