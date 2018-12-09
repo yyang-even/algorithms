@@ -21,8 +21,23 @@ INT_BOOL IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  *
  * Given an integer n, find whether it is a power of 4 or not.
  */
-INT_BOOL IsPowerOf4(const unsigned num) {
+auto IsPowerOf4(const unsigned num) {
     return IsPowerOfPowerOf2(num, 4);
+}
+
+
+/** Check if a number is power of 8 or not
+ *
+ * @reference   https://www.geeksforgeeks.org/check-number-power-8-not/
+ *
+ * Given a number check whether it is power of 8 or not.
+ */
+auto IsPowerOf8(const unsigned num) {
+    return IsPowerOfPowerOf2(num, 8);
+}
+
+INT_BOOL IsPowerOf8Const(const unsigned num) {
+    return IsPowerOf2(num) and not(num & 0xB6DB6DB6);
 }
 
 
@@ -46,3 +61,19 @@ SIMPLE_TEST(IsPowerOfPowerOf2, TestSample3, FALSE, 14, 8);
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample4, FALSE, 32, 16);
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample5, TRUE, 256, 16);
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample6, TRUE, 64, 8);
+
+
+SIMPLE_BENCHMARK(IsPowerOf8, 8);
+
+SIMPLE_TEST(IsPowerOf8, TestSample1, TRUE, 64);
+SIMPLE_TEST(IsPowerOf8, TestSample2, FALSE, 75);
+SIMPLE_TEST(IsPowerOf8, TestSample3, FALSE, 14);
+SIMPLE_TEST(IsPowerOf8, TestSample4, FALSE, 65);
+
+
+SIMPLE_BENCHMARK(IsPowerOf8Const, 8);
+
+SIMPLE_TEST(IsPowerOf8Const, TestSample1, TRUE, 64);
+SIMPLE_TEST(IsPowerOf8Const, TestSample2, FALSE, 75);
+SIMPLE_TEST(IsPowerOf8Const, TestSample3, FALSE, 14);
+SIMPLE_TEST(IsPowerOf8Const, TestSample4, FALSE, 65);

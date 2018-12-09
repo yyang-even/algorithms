@@ -47,7 +47,7 @@ INT_BOOL IsMultipleOf4Xor(const InputType num) {
     return XorOfAllFrom1toN(num) == num;
 }
 
-INT_BOOL IsMultipleOf4Shift(const InputType num) {
+inline auto IsMultipleOf4Shift(const InputType num) {
     return IsDivisibleByPowerOf2Bitwise(num, 2);
 }
 
@@ -58,7 +58,7 @@ INT_BOOL IsMultipleOf4Shift(const InputType num) {
  * Given a number n. The problem is to efficiently check whether n is a
  * multiple of 4 or not without using arithmetic operators.
  */
-INT_BOOL IsMultipleOf4Mask(const InputType num) {
+inline auto IsMultipleOf4Mask(const InputType num) {
     return IsDivisibleByPowerOf2Arithmetic(num, 2);
 }
 
