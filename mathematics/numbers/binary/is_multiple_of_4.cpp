@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 #include "calculate_xor_of_all_numbers_1_to_n.h"
+#include "is_divisible_by_power_of_2.h"
+
 
 using InputType = unsigned;
 
@@ -19,7 +21,7 @@ INT_BOOL IsMultipleOf4Xor(const InputType num) {
 }
 
 INT_BOOL IsMultipleOf4Shift(const InputType num) {
-    return ((num >> 2) << 2) == num;
+    return IsDivisibleByPowerOf2Bitwise(num, 2);
 }
 
 /** Efficiently check whether n is a multiple of 4 or not
@@ -30,7 +32,7 @@ INT_BOOL IsMultipleOf4Shift(const InputType num) {
  * multiple of 4 or not without using arithmetic operators.
  */
 INT_BOOL IsMultipleOf4Mask(const InputType num) {
-    return not(num & (4 - 1));
+    return IsDivisibleByPowerOf2Arithmetic(num, 2);
 }
 
 
