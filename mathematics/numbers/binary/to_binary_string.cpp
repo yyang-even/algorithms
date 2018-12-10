@@ -7,6 +7,12 @@ typedef unsigned InputType;
 /** Binary representation of a given number
  *
  * @reference   https://www.geeksforgeeks.org/binary-representation-of-a-given-number/
+ * @reference   Decimal to binary conversion without using arithmetic operators
+ *              https://www.geeksforgeeks.org/decimal-binary-conversion-without-using-arithmetic-operators/
+ * @reference   Program for Decimal to Binary Conversion
+ *              https://www.geeksforgeeks.org/program-decimal-binary-conversion/
+ * @reference   Decimal to binary number using recursion
+ *              https://www.geeksforgeeks.org/decimal-binary-number-using-recursion/
  *
  * Write a program to print Binary representation of a given number.
  */
