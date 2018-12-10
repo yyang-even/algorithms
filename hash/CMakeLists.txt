@@ -16,6 +16,9 @@ CompileTestExe(a_pair_sum_as_n_from_two_array)
 CompileBenchmarkExe(check_all_elements_distinct)
 CompileTestExe(check_all_elements_distinct)
 
+CompileBenchmarkExe(conditionally_assign)
+CompileTestExe(conditionally_assign)
+
 CompileBenchmarkExe(elements_that_occurred_only_once)
 CompileTestExe(elements_that_occurred_only_once)
 
