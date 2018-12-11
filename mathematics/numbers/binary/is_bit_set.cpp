@@ -12,6 +12,8 @@ using InputType = unsigned;
  *              https://www.geeksforgeeks.org/print-kth-least-significant-bit-number/
  * @reference   Find value of k-th bit in binary representation
  *              https://www.geeksforgeeks.org/find-value-k-th-bit-binary-representation/
+ * @reference   Check whether the bit at given position is set or unset
+ *              https://www.geeksforgeeks.org/check-whether-bit-given-position-set-unset/
  *
  * A number N is given. We need to print its ‘K’th Least Significant Bit.
  */
@@ -27,3 +29,5 @@ SIMPLE_TEST(IsBitSet, TestSample2, FALSE, 0, 0);
 SIMPLE_TEST(IsBitSet, TestSample3, FALSE, 0, 1);
 SIMPLE_TEST(IsBitSet, TestSample4, FALSE, 13, 1);
 SIMPLE_TEST(IsBitSet, TestSample5, TRUE, 14, 2);
+SIMPLE_TEST(IsBitSet, TestSample6, TRUE, 10, 1);
+SIMPLE_TEST(IsBitSet, TestSample7, FALSE, 21, 3);
