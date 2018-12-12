@@ -4,6 +4,15 @@
 
 typedef int InputType;
 
+/** Multiply the given number by 2 such that it is divisible by 10
+ *
+ * @reference   https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
+ *
+ * Given a number, the only operation allowed is to multiply the number by 2.
+ * Calculate the minimum number of operations to make the number divisible by 10.
+ * NOTE: If it is not possible to convert then print -1.
+ */
+
 INT_BOOL isDivisibleBy5Mod(const InputType n) {
     return n % 5 == 0;
 }
