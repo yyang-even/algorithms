@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/multiplication/multiplication.h"
+
 /** Write a program to calculate pow(x,n)
  * @reference   Write a program to calculate pow(x,n)
  *              http://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
@@ -39,6 +41,23 @@ double Power(const double x, const int n) {
     }
 }
 
+/** Write you own Power without using multiplication(*) and division(/) operators
+ *
+ * @reference   https://www.geeksforgeeks.org/write-you-own-power-without-using-multiplication-and-division/
+ */
+unsigned PowerLoop(const unsigned x, unsigned n) {
+    if (n == 0) {
+        return 1;
+    }
+
+    unsigned power = 1;
+    for (; n ; --n) {
+        power = Multiply(power, x);
+    }
+
+    return power;
+}
+
 
 const long LOWER = 0;
 
@@ -48,6 +67,16 @@ SIMPLE_BENCHMARK(Power, 2, 7);
 SIMPLE_TEST(Power, TestLOWER, 1, LOWER, LOWER);
 SIMPLE_TEST(Power, TestSAMPLE1, 8, 2, 3);
 SIMPLE_TEST(Power, TestSAMPLE2, 49, 7, 2);
+SIMPLE_TEST(Power, TestSAMPLE3, 125, 5, 3);
+
+
+SIMPLE_BENCHMARK(PowerLoop, LOWER, LOWER);
+SIMPLE_BENCHMARK(PowerLoop, 2, 7);
+
+SIMPLE_TEST(PowerLoop, TestLOWER, 1, LOWER, LOWER);
+SIMPLE_TEST(PowerLoop, TestSAMPLE1, 8, 2, 3);
+SIMPLE_TEST(PowerLoop, TestSAMPLE2, 49, 7, 2);
+SIMPLE_TEST(PowerLoop, TestSAMPLE3, 125, 5, 3);
 
 
 const double DOUBLE_LOWER = 0.0;
