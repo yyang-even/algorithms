@@ -7,5 +7,8 @@ CompileTestExe(multiplication)
 CompileBenchmarkExe(multiplication_of_array)
 CompileTestExe(multiplication_of_array)
 
+CompileBenchmarkExe(multiply_with_7)
+CompileTestExe(multiply_with_7)
+
 CompileBenchmarkExe(pair_with_greatest_product_in_array)
 CompileTestExe(pair_with_greatest_product_in_array)
