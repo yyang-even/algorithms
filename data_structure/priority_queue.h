@@ -2,7 +2,7 @@
 
 #include "common_header.h"
 
-#include "binary_heap.h"
+#include "heap/binary_heap.h"
 
 #include "data_structure/linked_list/singly_linked_list.h"
 
