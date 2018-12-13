@@ -26,22 +26,12 @@ inline auto HeapSortIterative(const MaxHeap<int>::ArrayType &array) {
 }
 
 
-const MaxHeap<int>::ArrayType EMPTY_ARRAY {};
-const MaxHeap<int>::ArrayType SINGLE_ARRAY {
-    1
-};
-const MaxHeap<int>::ArrayType EVEN_ARRAY {
-    1, 3
-};
-const MaxHeap<int>::ArrayType ODD_ARRAY {
-    1, 2, 3
-};
-const MaxHeap<int>::ArrayType SAMPLE_ARRAY {
-    1, 0, 8, 6, 2, 3, 7, 4, 5, 9
-};
-const MaxHeap<int>::ArrayType EXPECTED_ARRAY {
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-};
+const MaxHeap<int>::ArrayType EMPTY_ARRAY = {};
+const MaxHeap<int>::ArrayType SINGLE_ARRAY = {1};
+const MaxHeap<int>::ArrayType EVEN_ARRAY = {1, 3};
+const MaxHeap<int>::ArrayType ODD_ARRAY = {1, 2, 3};
+const MaxHeap<int>::ArrayType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+const MaxHeap<int>::ArrayType EXPECTED_ARRAY = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 SIMPLE_BENCHMARK(HeapSortRecursive, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
 
