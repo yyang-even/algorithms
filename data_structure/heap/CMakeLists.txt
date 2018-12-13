@@ -1,0 +1,1 @@
+CompileTestExe(binary_heap)

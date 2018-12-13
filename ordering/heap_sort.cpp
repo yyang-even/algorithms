@@ -1,7 +1,6 @@
 #include "common_header.h"
 
-
-#include "data_structure/binary_heap.h"
+#include "data_structure/heap/binary_heap.h"
 
 /** Heap Sort
  *
