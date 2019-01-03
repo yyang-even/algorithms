@@ -1,3 +1,6 @@
+CompileBenchmarkExe(modular_multiplicative_inverse)
+CompileTestExe(modular_multiplicative_inverse)
+
 CompileBenchmarkExe(modulo)
 CompileTestExe(modulo)
 

@@ -2,6 +2,7 @@
 
 #include "gcd.h"
 
+
 SIMPLE_BENCHMARK(gcd, 12, 18);
 SIMPLE_BENCHMARK(gcd, 18, 12);
 

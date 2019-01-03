@@ -13,6 +13,11 @@
  *              https://www.geeksforgeeks.org/c-program-for-basic-and-extended-euclidean-algorithms-2/
  *
  * The greatest common divisor of two integers m and n is the largest integer that divides them both.
+ * How is Extended Algorithm Useful?
+ * The extended Euclidean algorithm is particularly useful when a and b are coprime (or gcd is 1).
+ * Since x is the modular multiplicative inverse of “a modulo b”, and y is the modular multiplicative
+ * inverse of “b modulo a”. In particular, the computation of the modular multiplicative inverse is
+ * an essential step in RSA public-key encryption method.
  */
 
 /**
