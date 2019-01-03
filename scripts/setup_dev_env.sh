@@ -29,3 +29,5 @@ Install_or_Update_Packages() {
 
 
 Install_or_Update_Packages libboost-all-dev
+
+../yyLinuxConfig/scripts/setup_ctags_for.sh
