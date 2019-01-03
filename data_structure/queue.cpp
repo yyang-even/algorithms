@@ -175,8 +175,8 @@ class HeapQueue {
 
     std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
     queue{[](const auto & lhs, const auto & rhs) {
-        return lhs.first > rhs.first;
-    }};
+            return lhs.first > rhs.first;
+        }};
     std::size_t counter = 0;
 
 public:
