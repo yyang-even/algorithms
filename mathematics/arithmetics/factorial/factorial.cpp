@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "factorial.h"
 #include "mathematics/numbers/numbers.h"
 
 typedef unsigned InputType;
@@ -12,14 +13,6 @@ typedef unsigned InputType;
  * smaller than or equal to n.
  * For example factorial of 6 is 6*5*4*3*2*1 which is 720.
  */
-unsigned long FactorialIterative(InputType num) {
-    unsigned long result = 1;
-    for (; num > 1; --num) {
-        result *= num;
-    }
-    return result;
-}
-
 unsigned long FactorialRecursive(const InputType num) {
     if (num > 1) {
         return FactorialRecursive(num - 1) * num;
