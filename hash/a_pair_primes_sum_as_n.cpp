@@ -21,6 +21,8 @@ using InputType = unsigned;
 /** Find two prime numbers with given sum
  *
  * @reference   https://www.geeksforgeeks.org/find-two-prime-numbers-with-given-sum/
+ * @reference   Program for Goldbach’s Conjecture (Two Primes with given Sum)
+ *              https://www.geeksforgeeks.org/program-for-goldbachs-conjecture-two-primes-with-given-sum/
  *
  * Given an even number (greater than 2), print two prime numbers whose sum
  * will be equal to given number. There may be several combinations possible.
@@ -28,6 +30,8 @@ using InputType = unsigned;
  * conjecture.
  */
 auto PairPrimesSumAsN(const InputType N) {
+    assert((N > 2) and (N % 2 == 0));
+
     const auto primes = SieveOfEratosthenes(N);
     auto output = std::make_pair(primes[0], primes[0]);
     PairOfElementsSumAsNHashmap(primes, N, &output);
