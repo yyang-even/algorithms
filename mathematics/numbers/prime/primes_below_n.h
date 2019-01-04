@@ -1,8 +1,11 @@
 #pragma once
 
 /** Primes Below N
- * @reference Ronald Graham, Oren Patashnik, Donald Knuth.
- *            Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
+ *
+ * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
+ * @reference   Print all prime numbers less than or equal to N
+ *              https://www.geeksforgeeks.org/print-all-prime-numbers-less-than-or-equal-to-n/
  *
  * A positive integer p is called prime if it has just two divisors, namely 1 and p.
  * By convention, 1 isn't prime, so the sequence of primes starts out like this:
