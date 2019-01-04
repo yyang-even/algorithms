@@ -6,6 +6,9 @@ target_link_libraries(prime
 CompileBenchmarkExe(difference_between_nonprimes_and_primes_of_array)
 CompileTestExe(difference_between_nonprimes_and_primes_of_array)
 
+CompileBenchmarkExe(is_prime)
+CompileTestExe(is_prime)
+
 CompileBenchmarkExe(prime_factors_of_n)
 CompileTestExe(prime_factors_of_n)
 
