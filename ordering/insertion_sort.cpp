@@ -37,12 +37,12 @@ void InsertionSortRecursive(ArrayType &values, const int n) {
     if (n > 1) {
         const auto key_index = n - 1;
         InsertionSortRecursive(values, key_index);
-        const auto key_value = values[key_index];
+        auto key_value = std::move(values[key_index]);
         auto i = key_index - 1;
         for (; (i >= 0) and (values[i] > key_value); --i) {
-            values[i + 1] = values[i];
+            values[i + 1] = std::move(values[i]);
         }
-        values[i + 1] = key_value;
+        values[i + 1] = std::move(key_value);
     }
 }
 auto InsertionSortRecursive(ArrayType values) {
@@ -76,15 +76,15 @@ auto BinarySearch(const int target, const ArrayType::const_iterator begin,
 }
 auto BinaryInsertionSort(ArrayType values) {
     for (int key_value, location, i, j = 1; j < values.size(); ++j) {
-        key_value = values[j];
+        key_value = std::move(values[j]);
         i = j - 1;
 
         location = BinarySearch(key_value, values.cbegin(), j) - values.cbegin();
         while (i >= location) {
-            values[i + 1] = values[i];
+            values[i + 1] = std::move(values[i]);
             --i;
         }
-        values[i + 1] = key_value;
+        values[i + 1] = std::move(key_value);
     }
 
     return values;
