@@ -36,6 +36,84 @@ auto ProductOfFirstNPrimes(const InputType N) {
     return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
 }
 
+/** Segmented Sieve (Print Primes in a Range)
+ *
+ * @reference   https://www.geeksforgeeks.org/segmented-sieve-print-primes-in-a-range/
+ * @reference   Print prime numbers in a given range using C++ STL
+ *              https://www.geeksforgeeks.org/print-prime-numbers-given-range-using-c-stl/
+ * @reference   Prime numbers in a given range using STL | Set 2
+ *              https://www.geeksforgeeks.org/prime-numbers-in-a-given-range-using-stl-set-2/
+ *
+ * Given a range [low, high], print all primes in this range? For example, if the
+ * given range is [10, 20], then output is 11, 13, 17, 19.
+ */
+auto primesInRangeLowerBound(const InputType low, const InputType high) {
+    auto base_primes = SieveOfEratosthenes(high + 1);
+    const auto low_bound = std::lower_bound(base_primes.cbegin(), base_primes.cend(), low);
+    base_primes.erase(base_primes.begin(), low_bound);
+    return base_primes;
+}
+auto primesInRange(const InputType low, const InputType high,
+                   const std::vector<InputType> &base_primes) {
+    assert(low > 2);
+
+    std::vector<bool> prime_marks(high - low + 1, true);
+    for (const auto prime : base_primes) {
+        for (InputType i = static_cast<InputType>(ceil(static_cast<double>(low) / prime)) * prime;
+             i <= high; i += prime) {
+            prime_marks[i - low] = false;
+        }
+    }
+
+    std::vector<InputType> output;
+    for (std::size_t i = 0; i < prime_marks.size(); ++i) {
+        if (prime_marks[i]) {
+            output.push_back(i + low);
+        }
+    }
+
+    return output;
+}
+auto PrimesInRange(const InputType low, const InputType high) {
+    if (low < 3) {
+        return SieveOfEratosthenes(high + 1);
+    }
+    const InputType limit = sqrt(high) + 1;
+    if (low <= limit) {
+        return primesInRangeLowerBound(low, high);
+    } else {
+        return primesInRange(low, high, SieveOfEratosthenes(limit));
+    }
+}
+
+
+/** Sum of all the prime numbers in a given range
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-of-all-the-prime-numbers-in-a-given-range/
+ *
+ * Given a range [l, r], the task is to find the sum of all the prime numbers within that range.
+ */
+auto SumOfPrimesInRange(const InputType low, const InputType high) {
+    const auto primes = PrimesInRange(low, high);
+    return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
+}
+
+
+auto SegmentedSieveOfEratosthenes(const InputType N) {
+    const InputType limit = sqrt(N) + 1;
+    const auto base_primes = SieveOfEratosthenes(limit);
+    auto output = base_primes;
+
+    for (auto low = limit; low < N; low += limit) {
+        const auto high = std::min(N - 1, low + limit);
+        const auto primes_in_range = primesInRange(low, high, base_primes);
+        for (const auto prime : primes_in_range) {
+            output.push_back(prime);
+        }
+    }
+    return output;
+}
+
 
 const InputType LOWER = 2;
 const InputType SAMPLE1 = 12;
@@ -72,3 +150,37 @@ SIMPLE_BENCHMARK(ProductOfFirstNPrimes, SAMPLE1);
 
 SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310, 5);
 SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30, 3);
+
+
+const std::vector<InputType> RESULT3 = {11, 13, 17, 19};
+const std::vector<InputType> RESULT4 = {11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
+                                        53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+                                       };
+const std::vector<InputType> RESULT5 = {2, 3, 5, 7};
+
+SIMPLE_BENCHMARK(PrimesInRange, 10, 20);
+
+SIMPLE_TEST(PrimesInRange, TestSAMPLE3, RESULT3, 10, 20);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE4, RESULT4, 10, 100);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE5, RESULT5, 1, 10);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE6, RESULT3, 10, 19);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE7, std::vector<InputType> {}, 14, 16);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE8, std::vector<InputType> {}, 14, 14);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE9, std::vector<InputType> {19}, 19, 19);
+
+
+SIMPLE_BENCHMARK(SumOfPrimesInRange, 1, 6);
+
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10, 1, 6);
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36, 4, 13);
+
+
+const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+
+SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, LOWER);
+SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, SAMPLE1);
+
+SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestLOWER, std::vector<InputType> {}, LOWER);
+SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE1, RESULT1, SAMPLE1);
+SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE2, RESULT2, SAMPLE2);
+SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE6, RESULT6, 41);
