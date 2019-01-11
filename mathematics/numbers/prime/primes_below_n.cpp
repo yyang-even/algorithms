@@ -106,10 +106,9 @@ auto SegmentedSieveOfEratosthenes(const InputType N) {
 
     for (auto low = limit; low < N; low += limit) {
         const auto high = std::min(N - 1, low + limit);
-        const auto primes_in_range = primesInRange(low, high, base_primes);
-        for (const auto prime : primes_in_range) {
-            output.push_back(prime);
-        }
+        auto primes_in_range = primesInRange(low, high, base_primes);
+        output.insert(output.end(), std::make_move_iterator(primes_in_range.begin()),
+                      std::make_move_iterator(primes_in_range.end()));
     }
     return output;
 }
