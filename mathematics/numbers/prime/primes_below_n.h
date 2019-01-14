@@ -17,6 +17,9 @@
  * Note that time complexity (or number of operations) by Segmented Sieve is same as Simple Sieve.
  * It has advantages for large ‘n’ as it has better locality of reference and requires.
  *
+ * @reference   Bitwise Sieve
+ *              https://www.geeksforgeeks.org/bitwise-sieve/
+ *
  * A positive integer p is called prime if it has just two divisors, namely 1 and p.
  * By convention, 1 isn't prime, so the sequence of primes starts out like this:
  *  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,...
