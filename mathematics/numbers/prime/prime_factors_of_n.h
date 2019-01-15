@@ -12,6 +12,10 @@
  *              http://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
  * @reference   C Program for efficiently print all prime factors of a given number
  *              https://www.geeksforgeeks.org/c-program-for-efficiently-print-all-prime-factors-of-a-given-number/
+ * @reference   Prime Factor
+ *              https://www.geeksforgeeks.org/prime-factor/
+ * @reference   Prime Factorization using Sieve O(log n) for multiple queries
+ *              https://www.geeksforgeeks.org/prime-factorization-using-sieve-olog-n-multiple-queries/
  *
  * Given a number n, write an efficient function to print all prime factors of n.
  * For example, if the input number is 12, then output should be "2 2 3".

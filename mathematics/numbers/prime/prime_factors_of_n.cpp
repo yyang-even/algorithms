@@ -2,15 +2,30 @@
 
 #include "prime_factors_of_n.h"
 
+#include "least_prime_factor_of_numbers_till_n.h"
+
 typedef unsigned InputType;
 
 
-std::string PrintAllPrimeFactors(InputType N) {
+std::string PrintAllPrimeFactors(const InputType N) {
     std::string output;
     const auto prime_factors = PrimeFactorsOf(N);
     for (const auto factor : prime_factors) {
         output.append(std::to_string(factor));
     }
+    return output;
+}
+
+
+auto PrimeFactorsOfNSieve(unsigned N) {
+    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(N);
+
+    std::vector<unsigned> output;
+    while (N != 1) {
+        output.push_back(smallest_prime_factors[N]);
+        N /= smallest_prime_factors[N];
+    }
+
     return output;
 }
 
@@ -35,3 +50,12 @@ const std::vector<unsigned> EXPECTED2 = {3, 5, 7};
 SIMPLE_BENCHMARK(UniquePrimeFactorsOf, SAMPLE2);
 
 SIMPLE_TEST(UniquePrimeFactorsOf, TestSAMPLE2, EXPECTED2, SAMPLE2);
+
+
+const std::vector<unsigned> EXPECTED3 = {3, 3, 5, 7};
+const std::vector<unsigned> EXPECTED4 = {2, 3, 13, 157};
+
+SIMPLE_BENCHMARK(PrimeFactorsOfNSieve, 12246);
+
+SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE3, EXPECTED3, SAMPLE2);
+SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE4, EXPECTED4, 12246);
