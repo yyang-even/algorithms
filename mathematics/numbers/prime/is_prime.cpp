@@ -36,6 +36,8 @@
  *              https://www.geeksforgeeks.org/c-program-to-check-prime-number/
  * @reference   Recursive program for prime number
  *              https://www.geeksforgeeks.org/recursive-program-prime-number/
+ * @reference   Composite Number
+ *              https://www.geeksforgeeks.org/composite-number/
  *
  * Given a positive integer, check if the number is prime or not. A prime is a natural number
  * greater than 1 that has no positive divisors other than 1 and itself.
