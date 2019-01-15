@@ -9,6 +9,9 @@ CompileTestExe(difference_between_nonprimes_and_primes_of_array)
 CompileBenchmarkExe(is_prime)
 CompileTestExe(is_prime)
 
+CompileBenchmarkExe(least_prime_factor_of_numbers_till_n)
+CompileTestExe(least_prime_factor_of_numbers_till_n)
+
 CompileBenchmarkExe(prime_factors_of_n)
 CompileTestExe(prime_factors_of_n)
 
