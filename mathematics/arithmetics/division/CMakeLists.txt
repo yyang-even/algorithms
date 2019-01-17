@@ -13,3 +13,6 @@ CompileTestExe(is_divisible_by_7
 
 CompileBenchmarkExe(is_divisible_by_11)
 CompileTestExe(is_divisible_by_11)
+
+CompileBenchmarkExe(is_divisible_by_n)
+CompileTestExe(is_divisible_by_n)

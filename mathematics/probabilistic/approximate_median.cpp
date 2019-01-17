@@ -37,7 +37,7 @@ auto testApproximateMedian() {
     for (int i = 0; i < TOTAL_SAMPLE_SIZE; ++i) {
         const auto median = ApproximateMedian(values);
         ++counters[median >= sorted_array[values.size() / 4] and
-                          median <= sorted_array[values.size() * 3 / 4]];
+                   median <= sorted_array[values.size() * 3 / 4]];
     }
 
     return counters[0] <= (TOTAL_SAMPLE_SIZE * ERROR_RATE);

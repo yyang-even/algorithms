@@ -1,11 +1,16 @@
 #include "common_header.h"
 
+#include "is_divisible_by_n.h"
+
+
 typedef int InputType;
 
 /** Is divisible by 3
  *
  * @reference   Write an Efficient Method to Check if a Number is Multiple of 3
- * http://www.geeksforgeeks.org/write-an-efficient-method-to-check-if-a-number-is-multiple-of-3/
+ *              http://www.geeksforgeeks.org/write-an-efficient-method-to-check-if-a-number-is-multiple-of-3/
+ * @reference   Check if binary string multiple of 3 using DFA
+ *              https://www.geeksforgeeks.org/check-binary-string-multiple-3-using-dfa/
  *
  * There is a pattern in binary representation of the number that can be used to find if number is a multiple of 3.
  * If difference between count of odd set bits (Bits set at odd positions) and even set bits is multiple of 3 then is the number.
@@ -38,6 +43,11 @@ INT_BOOL isDivisibleBy3(InputType num) {
 }
 
 
+INT_BOOL isDivisibleBy3DFA(const std::vector<unsigned> &number) {
+    return isDivisibleByNDFA(number, 3).back();
+}
+
+
 constexpr InputType LOWER = 2;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
@@ -52,3 +62,12 @@ SIMPLE_TEST(isDivisibleBy3, TestSAMPLE2, TRUE, 3);
 SIMPLE_TEST(isDivisibleBy3, TestSAMPLE3, FALSE, 610);
 SIMPLE_TEST(isDivisibleBy3, TestSAMPLE4, TRUE, -612);
 SIMPLE_TEST(isDivisibleBy3, TestSAMPLE5, FALSE, -610);
+
+
+const std::vector<unsigned> SAMPLE1 = {1, 1, 0, 0};
+const std::vector<unsigned> SAMPLE2 = {1, 0, 1, 0};
+
+SIMPLE_BENCHMARK(isDivisibleBy3DFA, SAMPLE1);
+
+SIMPLE_TEST(isDivisibleBy3DFA, TestSAMPLE1, TRUE, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy3DFA, TestSAMPLE2, FALSE, SAMPLE2);
