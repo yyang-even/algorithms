@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "is_prime.h"
 #include "mathematics/arithmetics/factorial/factorial.h"
 
 /** Primality Test
@@ -42,26 +43,6 @@
  * Given a positive integer, check if the number is prime or not. A prime is a natural number
  * greater than 1 that has no positive divisors other than 1 and itself.
  */
-INT_BOOL IsPrimeOptimizedSchoolMethod(const unsigned n) {
-    if (n <= 1) {
-        return false;
-    }
-    if (n <= 3) {
-        return true;
-    }
-
-    if (n % 2 == 0 or n % 3 == 0) {
-        return false;
-    }
-
-    for (unsigned i = 5; i * i <= n; i += 6) {
-        if (n % i == 0 || n % (i + 2) == 0) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 
 /**

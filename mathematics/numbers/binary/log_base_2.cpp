@@ -52,13 +52,13 @@ InputType LogBase2Float(const InputType num) {
 static constexpr char LogTable256[256] = {
 #define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
     -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-    LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
-    LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
-};
+        LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
+        LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
+    };
 InputType LogBase2LookupTable(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
-    register InputType t, tt; // temporaries
+    InputType t, tt; // temporaries
 
     if (tt = num >> 16) {
         return (t = tt >> 8) ? 24 + LogTable256[t] : 16 + LogTable256[tt];
@@ -80,7 +80,7 @@ InputType LogBase2LgNBranch(InputType num) {
     static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
     static const unsigned int S[] = {1, 2, 4, 8, 16};
 
-    register InputType result = 0;
+    InputType result = 0;
     for (int i = 4; i >= 0; i--) {
         if (num & b[i]) {
             num >>= S[i];
@@ -93,8 +93,8 @@ InputType LogBase2LgNBranch(InputType num) {
 InputType LogBase2LgNNoBranch(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
-    register InputType result;
-    register InputType shift;
+    InputType result;
+    InputType shift;
 
     result = (num > 0xFFFF) << 4;
     num >>= result;
@@ -155,7 +155,7 @@ int LogBase2IEEE754Float(const float num) {
     if (result) {
         result -= 127;
     } else { // subnormal, so recompute using mantissa: c = intlog2(x) - 149;
-        register unsigned int t;
+        unsigned int t;
         // Note that LogTable256 was defined earlier
         if (t = x >> 16) {
             result = LogTable256[t] - 133;
