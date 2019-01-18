@@ -16,7 +16,7 @@ const std::vector<int> ODD_ARRAY {
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 const std::vector<int> EXPECTED_ARRAY {
     -7, 111, -6, 11, -5, 44, -1, 33, 1, 8, 6, 2, 3, 7, 4, 23, 9, 10, 15, 77, 16, 777, 17
-};
+    };
 const auto EXPECTED_SIZE = SAMPLE_ARRAY.size();
 const std::vector<int> EXPECTED_REVERSE_ARRAY {9, 5, 4, 7, 3, 2, 6, 8, 0, 1};
 

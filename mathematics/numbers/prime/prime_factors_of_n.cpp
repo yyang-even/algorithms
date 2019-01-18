@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "prime_factors_of_n.h"
+#include "is_prime.h"
 
 #include "least_prime_factor_of_numbers_till_n.h"
 
@@ -27,6 +28,56 @@ auto PrimeFactorsOfNSieve(unsigned N) {
     }
 
     return output;
+}
+
+
+/** Pollard’s Rho Algorithm for Prime Factorization
+ *
+ * @reference   https://www.geeksforgeeks.org/pollards-rho-algorithm-prime-factorization/
+ *
+ * Given a positive integer n, and that it is composite, find a divisor of it.
+ * Note: Algorithm will run indefinitely for prime numbers.
+ *  The algorithm may not find the factors and return a failure for composite n.
+ *  In that case, we use a different set of x, y and c and try again.
+ *  The above algorithm only finds a divisor. To find a prime factor, we may
+ *  recursively factorize the divisor d, run algorithm for d and n/d. The cycle
+ *  length is typically of the order √d.
+ */
+long OneDivisorOfNPollardsRho(const long N) {
+    if (N < 4) {
+        return N;
+    }
+    if (N % 2 == 0) {
+        return 2;
+    }
+    assert(not IsPrimeOptimizedSchoolMethod(N));
+
+    auto x = Random_Number<long>(2, N - 1);
+    auto y = x;
+    auto c = Random_Number<long>(1, N - 1);
+    long d = 1;
+
+    while (d == 1) {
+        x = (((x * x) % N) + c + N) % N;
+        y = ((y * y % N) + c + N) % N;
+        y = ((y * y % N) + c + N) % N;
+
+        d = std::gcd(static_cast<long>(abs(x - y)), N);
+
+        if (d == N) {
+            return OneDivisorOfNPollardsRho(N);
+        }
+    }
+
+    return d;
+}
+
+INT_BOOL testOneDivisorOfNPollardsRho(const long N) {
+    const auto factors = UniquePrimeFactorsOf(N);
+    const auto one_of_factors = OneDivisorOfNPollardsRho(N);
+
+    const auto iter = std::find(factors.cbegin(), factors.cend(), one_of_factors);
+    return iter != factors.cend();
 }
 
 
@@ -59,3 +110,8 @@ SIMPLE_BENCHMARK(PrimeFactorsOfNSieve, 12246);
 
 SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE3, EXPECTED3, SAMPLE2);
 SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE4, EXPECTED4, 12246);
+
+
+SIMPLE_BENCHMARK(testOneDivisorOfNPollardsRho, 39);
+
+SIMPLE_TEST(testOneDivisorOfNPollardsRho, TestSAMPLE1, TRUE, 39);
