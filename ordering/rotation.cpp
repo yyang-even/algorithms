@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/gcd/gcd.h"
-
 using ArrayType = std::vector<int>;
 /** Program for array rotation
  *
@@ -18,7 +16,7 @@ auto LeftRotateSimple(const ArrayType &arr, const ArrayType::size_type d) {
 }
 
 auto LeftRotateGCD(ArrayType arr, const ArrayType::size_type d) {
-    const auto step = gcd(arr.size(), d);
+    const auto step = std::gcd(arr.size(), d);
 
     for (ArrayType::size_type i = 0; i < step; ++i) {
         auto j = i;

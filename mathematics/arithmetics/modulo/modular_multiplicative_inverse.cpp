@@ -5,7 +5,7 @@
 
 auto ModularMultiplicativeInverseFermatsLittleTheorem(const int a, const int m) {
     //assert(IsPrime(m));
-    const auto exist = (gcd(a, m) == 1);
+    const auto exist = (std::gcd(a, m) == 1);
     return exist ? (static_cast<int>(pow(a, m - 2)) % m) : 0;
 }
 

@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "gcd.h"
-
 /** LCM - Least Common Multiple
  * @reference Ronald Graham, Oren Patashnik, Donald Knuth.
  *            Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Exercise 4.2.
@@ -9,7 +7,7 @@
  * The best way known to compute lcm(m, n) is to compute gcd(m, n) first and then to divide mn by the gcd.
  */
 unsigned lcm(unsigned m, unsigned n) {
-    return m * n / gcd(m, n);
+    return m * n / std::gcd(m, n);
 }
 
 

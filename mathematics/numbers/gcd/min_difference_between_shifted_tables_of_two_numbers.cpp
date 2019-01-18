@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/gcd/gcd.h"
-
 /** Find the minimum difference between Shifted tables of two numbers
  *
  * @reference   https://www.geeksforgeeks.org/find-the-difference-between-shifted-tables-of-two-numbers/
@@ -11,7 +9,7 @@
  */
 auto MinDiffBetweenShiftedTablesOfTwoNumbers(const unsigned a, const unsigned b,
         const int x, const int y) {
-    const auto g = gcd(a, b);
+    const auto g = std::gcd(a, b);
     const auto diff = abs(x - y) % g;
     return std::min(diff, g - diff);
 }

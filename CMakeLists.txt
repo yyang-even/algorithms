@@ -5,8 +5,8 @@ project (Algorithms)
 ###################################################
 # gcc
 ###################################################
-# Using C++14
-set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -std=c++1y")
+# Using C++17
+set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -std=c++17")
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -g")
 # Turn warning about any return statement with no return value in a function whose return type is not void
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Werror=return-type")
