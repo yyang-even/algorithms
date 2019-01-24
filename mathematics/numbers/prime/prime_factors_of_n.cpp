@@ -81,6 +81,20 @@ INT_BOOL testOneDivisorOfNPollardsRho(const long N) {
 }
 
 
+/** Product of unique prime factors of a number
+ *
+ * @reference   https://www.geeksforgeeks.org/product-unique-prime-factors-number/
+ *
+ * Given a number n, we need to find the product of all of its unique prime factors.
+ * Prime factors: It is basically a factor of the number that is a prime number itself.
+ */
+auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
+    const auto unique_primes = UniquePrimeFactorsOf(N);
+    return std::accumulate(unique_primes.cbegin(), unique_primes.cend(), 1u,
+                           std::multiplies<unsigned>());
+}
+
+
 constexpr InputType LOWER = 1;
 constexpr InputType SAMPLE1 = 12;
 constexpr InputType SAMPLE2 = 315;
@@ -115,3 +129,10 @@ SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE4, EXPECTED4, 12246);
 SIMPLE_BENCHMARK(testOneDivisorOfNPollardsRho, 39);
 
 SIMPLE_TEST(testOneDivisorOfNPollardsRho, TestSAMPLE1, TRUE, 39);
+
+
+SIMPLE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, 44);
+
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22, 44);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10, 10);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5, 25);
