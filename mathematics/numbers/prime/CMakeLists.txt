@@ -22,3 +22,6 @@ CompileBenchmarkExe(largest_power_of_p_divides_factorial_n
     binary)
 CompileTestExe(largest_power_of_p_divides_factorial_n
     binary)
+
+CompileBenchmarkExe(sum_of_factors_of_a_number)
+CompileTestExe(sum_of_factors_of_a_number)
