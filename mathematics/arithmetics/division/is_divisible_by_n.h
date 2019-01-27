@@ -3,6 +3,8 @@
 /** Check divisibility in a binary stream
  *
  * @reference   https://www.geeksforgeeks.org/check-divisibility-binary-stream/
+ * @reference   DFA based division
+ *              https://www.geeksforgeeks.org/dfa-based-division/
  *
  * Stream of binary number is coming, the task is to tell the number formed so
  * far is divisible by a given number n. At any given time, you will get 0 or 1
@@ -24,11 +26,7 @@ auto isDivisibleByNDFA(const std::vector<unsigned> &stream, const unsigned N) {
                 assert(false);
         }
 
-        if (not remainder) {
-            outputs.push_back(true);
-        } else {
-            outputs.push_back(false);
-        }
+        outputs.push_back(not remainder);
     }
 
     return outputs;
