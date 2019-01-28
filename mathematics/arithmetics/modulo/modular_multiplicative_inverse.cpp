@@ -1,10 +1,11 @@
 #include "common_header.h"
 
 #include "modular_multiplicative_inverse.h"
+#include "mathematics/numbers/prime/is_prime.h"
 
 
 auto ModularMultiplicativeInverseFermatsLittleTheorem(const int a, const int m) {
-    //assert(IsPrime(m));
+    assert(IsPrimeOptimizedSchoolMethod(m));
     const auto exist = (std::gcd(a, m) == 1);
     return exist ? (static_cast<int>(pow(a, m - 2)) % m) : 0;
 }
