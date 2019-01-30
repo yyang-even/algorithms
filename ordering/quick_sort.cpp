@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include <stack>
+
 using ArrayType = std::vector<int>;
 
 /** QuickSort
@@ -19,6 +21,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
  * @reference   Quick Sort vs Merge Sort
  *              https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/
+ * @reference   Iterative Quick Sort
+ *              https://www.geeksforgeeks.org/iterative-quick-sort/
+ * @reference   C Program for Iterative Quick Sort
+ *              https://www.geeksforgeeks.org/c-program-for-iterative-quick-sort/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
@@ -49,6 +55,30 @@ auto QuickSort(ArrayType values) {
 }
 
 
+auto QuickSortIterative(ArrayType values) {
+    if (values.size() > 1) {
+        std::stack<std::pair<const ArrayType::iterator, const ArrayType::size_type> > range_stack;
+        range_stack.emplace(values.begin(), values.size());
+
+        while (not range_stack.empty()) {
+            const auto range = range_stack.top();
+            range_stack.pop();
+            const auto mid = partition(range.first, range.second);
+            if (mid > 1) {
+                range_stack.emplace(range.first, mid);
+            }
+            const auto mid_plus_one = mid + 1;
+            const auto right_size = range.second - mid_plus_one;
+            if (right_size > 1) {
+                range_stack.emplace(range.first + mid_plus_one, right_size);
+            }
+        }
+    }
+
+    return values;
+}
+
+
 const ArrayType VALUES1 = {};
 const ArrayType VALUES2 = {1};
 const ArrayType VALUES3 = {1, 2};
@@ -64,3 +94,12 @@ SIMPLE_TEST(QuickSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(QuickSortIterative, VALUES5);
+
+SIMPLE_TEST(QuickSortIterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortIterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortIterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
