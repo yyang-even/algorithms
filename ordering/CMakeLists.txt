@@ -28,6 +28,9 @@ CompileTestExe(multiple_rotations)
 CompileBenchmarkExe(partition)
 CompileTestExe(partition)
 
+CompileBenchmarkExe(quick_sort)
+CompileTestExe(quick_sort)
+
 CompileBenchmarkExe(rotation)
 CompileTestExe(rotation)
 
