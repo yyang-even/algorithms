@@ -10,8 +10,11 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 2.3.
- *
- *              http://www.geeksforgeeks.org/merge-sort/
+ * @reference   http://www.geeksforgeeks.org/merge-sort/
+ * @reference   C Program for Merge Sort
+ *              https://www.geeksforgeeks.org/c-program-for-merge-sort/
+ * @reference   In-Place Merge Sort
+ *              https://www.geeksforgeeks.org/in-place-merge-sort/
  *
  * @complexity: O(n*lgn)
  */
@@ -31,6 +34,8 @@ auto MergeSort(ArrayType values) {
 /** Iterative Merge Sort
  *
  * @reference   https://www.geeksforgeeks.org/iterative-merge-sort/
+ * @reference   C Program for Iterative Merge Sort
+ *              https://www.geeksforgeeks.org/c-program-for-iterative-merge-sort/
  *
  * Merge subarrays in bottom up manner. First merge subarrays of size 1
  * to create sorted subarrays of size 2, then merge subarrays of size 2
