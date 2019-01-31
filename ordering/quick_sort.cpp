@@ -25,6 +25,12 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/iterative-quick-sort/
  * @reference   C Program for Iterative Quick Sort
  *              https://www.geeksforgeeks.org/c-program-for-iterative-quick-sort/
+ * @reference   Tail Recursion
+ *              https://www.geeksforgeeks.org/tail-recursion/
+ * @reference   Tail Call Elimination
+ *              https://www.geeksforgeeks.org/tail-call-elimination/
+ * @reference   QuickSort Tail Call Optimization (Reducing worst case space to Log n )
+ *              https://www.geeksforgeeks.org/quicksort-tail-call-optimization-reducing-worst-case-space-log-n/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
