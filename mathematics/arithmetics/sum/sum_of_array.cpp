@@ -11,8 +11,14 @@ using ArrayType = std::vector<int>;
 /** Program to find sum of elements in a given array
  *
  * @reference   https://www.geeksforgeeks.org/program-find-sum-elements-given-array/
- *              Sum of array elements using recursion
+ * @reference   Sum of array elements using recursion
  *              https://www.geeksforgeeks.org/sum-array-elements-using-recursion/
+ * @reference   Recursion
+ *              https://www.geeksforgeeks.org/recursion/
+ * @reference   Difference between Recursion and Iteration
+ *              https://www.geeksforgeeks.org/difference-between-recursion-and-iteration/
+ * @reference   Tail recursion to calculate sum of array elements.
+ *              https://www.geeksforgeeks.org/tail-recursion-to-calculate-sum-of-array-elements/
  */
 auto SumRecursiveHelper(const ArrayType::const_iterator cbegin,
                         const ArrayType::const_iterator cend) {
@@ -27,6 +33,19 @@ auto SumRecursive(const ArrayType &elements) {
 }
 
 
+auto SumTailRecursive(const ArrayType::const_iterator cbegin,
+                      const ArrayType::const_iterator cend,
+                      const ArrayType::value_type sum_so_far = 0) {
+    if (cbegin == cend) {
+        return sum_so_far;
+    }
+    return SumTailRecursive(cbegin + 1, cend, sum_so_far + *cbegin);
+}
+auto SumTailRecursive(const ArrayType &elements) {
+    return SumTailRecursive(elements.cbegin(), elements.cend());
+}
+
+
 const ArrayType SAMPLE1 = {1, 2, 3};
 const ArrayType SAMPLE2 = {15, 12, 13, 10};
 const ArrayType SAMPLE3 = {1, 2, 3, 4, 5 };
@@ -36,3 +55,10 @@ SIMPLE_BENCHMARK(SumRecursive, SAMPLE1);
 SIMPLE_TEST(SumRecursive, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(SumRecursive, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(SumRecursive, TestSAMPLE3, 15, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(SumTailRecursive, SAMPLE1);
+
+SIMPLE_TEST(SumTailRecursive, TestSAMPLE1, 6, SAMPLE1);
+SIMPLE_TEST(SumTailRecursive, TestSAMPLE2, 50, SAMPLE2);
+SIMPLE_TEST(SumTailRecursive, TestSAMPLE3, 15, SAMPLE3);
