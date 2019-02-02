@@ -36,6 +36,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/
  * Hoare’s scheme is more efficient than Lomuto’s partition scheme because it does three times fewer
  * swaps on average, and it creates efficient partitions even when all values are equal.
+ * @reference   QuickSort using Random Pivoting
+ *              https://www.geeksforgeeks.org/quicksort-using-random-pivoting/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
@@ -52,6 +54,7 @@ auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::size_type
 
     return mid;
 }
+
 auto partitionHoare(const ArrayType::iterator begin, const ArrayType::size_type size) {
     const auto pivot = begin;
     auto left = begin;
@@ -70,6 +73,13 @@ auto partitionHoare(const ArrayType::iterator begin, const ArrayType::size_type 
 
     return mid;
 }
+
+auto partitionRandomHoare(const ArrayType::iterator begin, const ArrayType::size_type size) {
+    const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, size - 1);
+    std::iter_swap(begin, begin + random_pivot_index);
+    return partitionHoare(begin, size);
+}
+
 
 template <typename PartitionFunc>
 void QuickSort(const ArrayType::iterator begin, const ArrayType::size_type size,
@@ -116,6 +126,12 @@ auto QuickSortIterative(ArrayType values) {
     return values;
 }
 
+
+auto QuickSortRandomHoare(ArrayType values) {
+    QuickSort(values.begin(), values.size(), &partitionRandomHoare);
+    return values;
+}
+
 }//namespace
 
 
@@ -152,3 +168,12 @@ SIMPLE_TEST(QuickSortHoare, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSortHoare, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSortHoare, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortHoare, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(QuickSortRandomHoare, VALUES5);
+
+SIMPLE_TEST(QuickSortRandomHoare, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortRandomHoare, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortRandomHoare, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortRandomHoare, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortRandomHoare, TestSAMPLE5, EXPECTED5, VALUES5);
