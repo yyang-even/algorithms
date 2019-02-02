@@ -2,6 +2,7 @@
 
 #include <stack>
 
+namespace {
 using ArrayType = std::vector<int>;
 
 /** QuickSort
@@ -31,11 +32,15 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/tail-call-elimination/
  * @reference   QuickSort Tail Call Optimization (Reducing worst case space to Log n )
  *              https://www.geeksforgeeks.org/quicksort-tail-call-optimization-reducing-worst-case-space-log-n/
+ * @reference   Hoare’s vs Lomuto partition scheme in QuickSort
+ *              https://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/
+ * Hoare’s scheme is more efficient than Lomuto’s partition scheme because it does three times fewer
+ * swaps on average, and it creates efficient partitions even when all values are equal.
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
  */
-auto partition(const ArrayType::iterator begin, const ArrayType::size_type size) {
+auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::size_type size) {
     const auto pivot = begin + (size - 1);
     ArrayType::size_type mid = 0;
     for (auto iter = begin; iter != pivot; ++iter) {
@@ -47,16 +52,43 @@ auto partition(const ArrayType::iterator begin, const ArrayType::size_type size)
 
     return mid;
 }
-void QuickSort(const ArrayType::iterator begin, const ArrayType::size_type size) {
+auto partitionHoare(const ArrayType::iterator begin, const ArrayType::size_type size) {
+    const auto pivot = begin;
+    auto left = begin;
+    auto mid = size - 1;    //to avoid right - left, which is more expensive
+    auto right = begin + mid;
+
+    while (true) {
+        for (; *left < *pivot; ++left);
+        for (; *right > *pivot; --right, --mid);
+
+        if (left >= right) {
+            break;
+        }
+        std::iter_swap(left, right);
+    }
+
+    return mid;
+}
+
+template <typename PartitionFunc>
+void QuickSort(const ArrayType::iterator begin, const ArrayType::size_type size,
+               const PartitionFunc partition) {
     if (size > 1) {
         const auto mid = partition(begin, size);
-        QuickSort(begin, mid);
+        QuickSort(begin, mid, partition);
         const auto mid_plus_one = mid + 1;
-        QuickSort(begin + mid_plus_one, size - mid_plus_one);
+        QuickSort(begin + mid_plus_one, size - mid_plus_one, partition);
     }
 }
-auto QuickSort(ArrayType values) {
-    QuickSort(values.begin(), values.size());
+auto QuickSortLomuto(ArrayType values) {
+    QuickSort(values.begin(), values.size(), &partitionLomuto);
+    return values;
+}
+
+
+auto QuickSortHoare(ArrayType values) {
+    QuickSort(values.begin(), values.size(), &partitionHoare);
     return values;
 }
 
@@ -69,7 +101,7 @@ auto QuickSortIterative(ArrayType values) {
         while (not range_stack.empty()) {
             const auto range = range_stack.top();
             range_stack.pop();
-            const auto mid = partition(range.first, range.second);
+            const auto mid = partitionLomuto(range.first, range.second);
             if (mid > 1) {
                 range_stack.emplace(range.first, mid);
             }
@@ -84,6 +116,8 @@ auto QuickSortIterative(ArrayType values) {
     return values;
 }
 
+}//namespace
+
 
 const ArrayType VALUES1 = {};
 const ArrayType VALUES2 = {1};
@@ -93,13 +127,13 @@ const ArrayType EXPECTED4 = {1, 2, 3};
 const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
-SIMPLE_BENCHMARK(QuickSort, VALUES5);
+SIMPLE_BENCHMARK(QuickSortLomuto, VALUES5);
 
-SIMPLE_TEST(QuickSort, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSort, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSort, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSort, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSort, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSortLomuto, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortLomuto, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortLomuto, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortLomuto, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortLomuto, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 SIMPLE_BENCHMARK(QuickSortIterative, VALUES5);
@@ -109,3 +143,12 @@ SIMPLE_TEST(QuickSortIterative, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSortIterative, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(QuickSortHoare, VALUES5);
+
+SIMPLE_TEST(QuickSortHoare, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortHoare, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortHoare, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortHoare, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortHoare, TestSAMPLE5, EXPECTED5, VALUES5);
