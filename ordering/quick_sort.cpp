@@ -38,6 +38,10 @@ using ArrayType = std::vector<int>;
  * swaps on average, and it creates efficient partitions even when all values are equal.
  * @reference   QuickSort using Random Pivoting
  *              https://www.geeksforgeeks.org/quicksort-using-random-pivoting/
+ * @reference   Stable QuickSort
+ *              https://www.geeksforgeeks.org/stable-quicksort/
+ * @reference   Stability in sorting algorithms
+ *              https://www.geeksforgeeks.org/stability-in-sorting-algorithms/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
@@ -78,6 +82,27 @@ auto partitionRandomizedHoare(const ArrayType::iterator begin, const ArrayType::
     const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, size - 1);
     std::iter_swap(begin, begin + random_pivot_index);
     return partitionHoare(begin, size);
+}
+
+auto partitionStable(const ArrayType::iterator begin, const ArrayType::size_type size) {
+    const auto pivot = begin + (size - 1);
+    ArrayType::size_type mid = 0;
+    ArrayType smaller, greater;
+
+    for (auto iter = begin; iter != pivot; ++iter) {
+        if (*iter <= *pivot) {
+            smaller.push_back(*iter);
+            ++mid;
+        } else {
+            greater.push_back(*iter);
+        }
+    }
+    std::copy(smaller.cbegin(), smaller.cend(), begin);
+    const auto mid_iter = begin + mid;
+    std::iter_swap(pivot, mid_iter);
+    std::copy(greater.cbegin(), greater.cend(), mid_iter + 1);
+
+    return mid;
 }
 
 
@@ -132,6 +157,12 @@ auto QuickSortRandomizedHoare(ArrayType values) {
     return values;
 }
 
+
+auto QuickSortStable(ArrayType values) {
+    QuickSort(values.begin(), values.size(), &partitionStable);
+    return values;
+}
+
 }//namespace
 
 
@@ -177,3 +208,12 @@ SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(QuickSortStable, VALUES5);
+
+SIMPLE_TEST(QuickSortStable, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortStable, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortStable, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortStable, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortStable, TestSAMPLE5, EXPECTED5, VALUES5);
