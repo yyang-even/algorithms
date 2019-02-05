@@ -14,8 +14,17 @@ auto testPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
     return priority_queue.ToSortedArray();
 }
 
+
 auto testListPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
     SinglyLinkedListMinPriorityQueue priority_queue{array};
+    priority_queue.Pop();
+
+    return priority_queue.MoveToSortedArray();
+}
+
+
+auto testListPriorityQueueSTL(const MinPriorityQueue<int>::ArrayType &array) {
+    SinglyLinkedListMinPriorityQueueSTL priority_queue{array};
     priority_queue.Pop();
 
     return priority_queue.MoveToSortedArray();
@@ -33,3 +42,4 @@ SIMPLE_TEST(testPriorityQueue, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 const std::vector<int> EXPECTED_LIST_ARRAY {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 SIMPLE_TEST(testListPriorityQueue, TestSample, EXPECTED_LIST_ARRAY, SAMPLE_ARRAY);
+SIMPLE_TEST(testListPriorityQueueSTL, TestSample, EXPECTED_LIST_ARRAY, SAMPLE_ARRAY);
