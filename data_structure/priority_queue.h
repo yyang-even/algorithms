@@ -5,6 +5,7 @@
 #include "heap/binary_heap.h"
 
 #include "data_structure/linked_list/singly_linked_list.h"
+#include "data_structure/linked_list/sorted_insert_singly_list.h"
 
 /** Priority Queue
  *
@@ -26,6 +27,8 @@ using MinPriorityQueue = MinHeap<T>;
  * @reference   https://www.geeksforgeeks.org/priority-queue-using-linked-list/
  *
  * Implement Priority Queue using Linked Lists.
+ *
+ * @highlight   The use of std::make_move_iterator().
  */
 class SinglyLinkedListMinPriorityQueue : protected SinglyLinkedList {
 public:
@@ -51,6 +54,35 @@ public:
     auto MoveToSortedArray() {
         const auto array = CopyToArray();
         DeleteAllOneByOne();
+        return array;
+    }
+};
+
+class SinglyLinkedListMinPriorityQueueSTL {
+    using ListType = std::forward_list<int>;
+    ListType sorted_list;
+public:
+    SinglyLinkedListMinPriorityQueueSTL() = default;
+    SinglyLinkedListMinPriorityQueueSTL(std::vector<ListType::value_type> array) {
+        std::sort(array.begin(), array.end());
+        sorted_list = {std::make_move_iterator(array.begin()), std::make_move_iterator(array.end())};
+    }
+
+    void Push(const ListType::value_type v) {
+        SortedInsertSTL(sorted_list, v);
+    }
+
+    void Pop() {
+        sorted_list.pop_front();
+    }
+
+    auto Peek() const {
+        return sorted_list.front();
+    }
+
+    auto MoveToSortedArray() {
+        std::vector<ListType::value_type> array = {std::make_move_iterator(sorted_list.begin()), std::make_move_iterator(sorted_list.end())};
+        sorted_list.clear();
         return array;
     }
 };
