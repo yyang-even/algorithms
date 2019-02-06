@@ -2,6 +2,9 @@ CompileTestExe(count_size_of_singly_list)
 
 CompileTestExe(get_nth_node)
 
+CompileBenchmarkExe(merge_two_sorted_singly_list)
+CompileTestExe(merge_two_sorted_singly_list)
+
 CompileTestExe(middle_of_singly_linked_list)
 
 CompileTestExe(nth_node_from_the_end)
