@@ -24,41 +24,32 @@ using ArrayType = std::vector<int>;
  *
  * @complexity  O(nk*lgk)
  */
-struct Node {
-    const ArrayType *array;
-    ArrayType::size_type index;
-
-    Node(const ArrayType *a, const ArrayType::size_type i) : array(a), index(i) {}
-
-    auto GetValue() const {
-        assert(index < array->size());
-
-        return (*array)[index];
-    }
-};
+using Node = std::pair<const ArrayType *, ArrayType::const_iterator>;
 
 auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
     ArrayType final_sorted_array;
 
     std::vector<Node> first_elements;
-    for (auto i = 0ul; i < k_arrays.size(); ++i) {
-        first_elements.emplace_back(&(k_arrays[i]), 0);
+    for (const auto &a : k_arrays) {
+        if (not a.empty()) {
+            first_elements.emplace_back(&a, a.cbegin());
+        }
     }
 
     const auto compare = [](const Node & lhs, const Node & rhs) {
-        return lhs.GetValue() > rhs.GetValue();
+        return  *lhs.second > *rhs.second;
     };
     std::priority_queue<Node, std::vector<Node>, decltype(compare)> heap(compare,
-            first_elements);
+            std::move(first_elements));
 
     while (not heap.empty()) {
         const auto elem = heap.top();
         heap.pop();
-        final_sorted_array.push_back(elem.GetValue());
+        final_sorted_array.push_back(*elem.second);
 
-        const auto next_index = elem.index + 1;
-        if (next_index < elem.array->size()) {
-            heap.emplace(elem.array, next_index);
+        const auto next = std::next(elem.second);
+        if (next != elem.first->cend()) {
+            heap.emplace(elem.first, next);
         }
     }
 
