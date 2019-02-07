@@ -9,7 +9,6 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-9.
- *
  * @reference   Merge k sorted arrays | Set 1
  *              https://www.geeksforgeeks.org/merge-k-sorted-arrays/
  *
@@ -19,6 +18,9 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/merge-k-sorted-arrays-set-2-different-sized-arrays/
  *
  * Given k sorted arrays of possibly different sizes, merge them and print the sorted output.
+ *
+ * @reference   Merge 3 Sorted Arrays
+ *              https://www.geeksforgeeks.org/merge-3-sorted-arrays/
  *
  * @complexity  O(nk*lgk)
  */
