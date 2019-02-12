@@ -167,6 +167,10 @@ auto QuickSortStable(ArrayType values) {
 }
 
 
+/** QuickSort on Singly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+ */
 auto GetLastNodeBeforeEnd(std::forward_list<int> &values) {
     auto before_end = values.before_begin();
     for (auto next = values.begin(); next != values.end(); ++next, ++before_end);
