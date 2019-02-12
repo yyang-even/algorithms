@@ -1,6 +1,8 @@
 #include "common_header.h"
 
+#include <forward_list>
 #include <stack>
+
 
 namespace {
 using ArrayType = std::vector<int>;
@@ -164,6 +166,49 @@ auto QuickSortStable(ArrayType values) {
     return values;
 }
 
+
+auto GetLastNodeBeforeEnd(std::forward_list<int> &values) {
+    auto before_end = values.before_begin();
+    for (auto next = values.begin(); next != values.end(); ++next, ++before_end);
+    return before_end;
+}
+auto partitionSinglyLinkedList(std::forward_list<int> &values,
+                               const std::forward_list<int>::iterator before_begin,
+                               const std::forward_list<int>::iterator begin,
+                               std::forward_list<int>::iterator &last) {
+    const auto pivot = last;
+    auto before_mid = before_begin;
+    for (auto iter = begin; iter != pivot; ++iter) {
+        if (*iter > *pivot) {
+            values.splice_after(last, values, before_mid);
+            ++last;
+            iter = before_mid;
+        } else {
+            ++before_mid;
+        }
+    }
+
+    return before_mid;
+}
+void QuickSortSinglyLinkedList(std::forward_list<int> &values,
+                               const std::forward_list<int>::iterator before_begin,
+                               std::forward_list<int>::iterator last) {
+    const auto begin = std::next(before_begin);
+    if (before_begin != last and begin != last) {
+        const auto before_mid = partitionSinglyLinkedList(values, before_begin, begin, last);
+        QuickSortSinglyLinkedList(values, before_begin, before_mid);
+        QuickSortSinglyLinkedList(values, std::next(before_mid), last);
+    }
+}
+auto QuickSortSinglyLinkedList(std::forward_list<int> values) {
+    QuickSortSinglyLinkedList(values, values.before_begin(), GetLastNodeBeforeEnd(values));
+    return values;
+}
+
+auto TestQuickSortSinglyLinkedList(const ArrayType &values) {
+    const auto sorted_values = QuickSortSinglyLinkedList({values.cbegin(), values.cend()});
+    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
+}
 }//namespace
 
 
@@ -218,3 +263,12 @@ SIMPLE_TEST(QuickSortStable, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(TestQuickSortSinglyLinkedList, VALUES5);
+
+SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
