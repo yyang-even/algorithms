@@ -171,15 +171,15 @@ auto QuickSortStable(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
  */
-auto GetLastNodeBeforeEnd(std::forward_list<int> &values) {
-    auto before_end = values.before_begin();
-    for (auto next = values.begin(); next != values.end(); ++next, ++before_end);
+auto GetLastNodeBeforeEnd(const std::forward_list<int> &values) {
+    auto before_end = values.cbefore_begin();
+    for (auto next = values.cbegin(); next != values.cend(); ++next, ++before_end);
     return before_end;
 }
 auto partitionSinglyLinkedList(std::forward_list<int> &values,
-                               const std::forward_list<int>::iterator before_begin,
-                               const std::forward_list<int>::iterator begin,
-                               std::forward_list<int>::iterator &last) {
+                               const std::forward_list<int>::const_iterator before_begin,
+                               const std::forward_list<int>::const_iterator begin,
+                               std::forward_list<int>::const_iterator &last) {
     const auto pivot = last;
     auto before_mid = before_begin;
     for (auto iter = begin; iter != pivot; ++iter) {
@@ -195,8 +195,8 @@ auto partitionSinglyLinkedList(std::forward_list<int> &values,
     return before_mid;
 }
 void QuickSortSinglyLinkedList(std::forward_list<int> &values,
-                               const std::forward_list<int>::iterator before_begin,
-                               std::forward_list<int>::iterator last) {
+                               const std::forward_list<int>::const_iterator before_begin,
+                               std::forward_list<int>::const_iterator last) {
     const auto begin = std::next(before_begin);
     if (before_begin != last and begin != last) {
         const auto before_mid = partitionSinglyLinkedList(values, before_begin, begin, last);
@@ -205,7 +205,7 @@ void QuickSortSinglyLinkedList(std::forward_list<int> &values,
     }
 }
 auto QuickSortSinglyLinkedList(std::forward_list<int> values) {
-    QuickSortSinglyLinkedList(values, values.before_begin(), GetLastNodeBeforeEnd(values));
+    QuickSortSinglyLinkedList(values, values.cbefore_begin(), GetLastNodeBeforeEnd(values));
     return values;
 }
 
@@ -213,6 +213,50 @@ auto TestQuickSortSinglyLinkedList(const ArrayType &values) {
     const auto sorted_values = QuickSortSinglyLinkedList({values.cbegin(), values.cend()});
     return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
+
+
+/** QuickSort on Doubly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/quicksort-for-linked-list/
+ *
+ * @highlight   The use of std::prev(std::list::end)
+ */
+auto partitionDoublyLinkedList(std::list<int> &values,
+                               std::list<int>::const_iterator &begin,
+                               const std::list<int>::const_iterator end) {
+    const auto pivot = std::prev(end);
+    for (auto iter = begin; iter != pivot;) {
+        if (*iter > *pivot) {
+            if (iter == begin) {
+                ++begin;
+            }
+            values.splice(end, values, iter++);
+        } else {
+            ++iter;
+        }
+    }
+
+    return pivot;
+}
+void QuickSortDoublyLinkedList(std::list<int> &values,
+                               std::list<int>::const_iterator begin,
+                               const std::list<int>::const_iterator end) {
+    if (begin != end and std::next(begin) != end) {
+        auto mid = partitionDoublyLinkedList(values, begin, end);
+        QuickSortDoublyLinkedList(values, begin, mid);
+        QuickSortDoublyLinkedList(values, ++mid, end);
+    }
+}
+auto QuickSortDoublyLinkedList(std::list<int> values) {
+    QuickSortDoublyLinkedList(values, values.cbegin(), values.cend());
+    return values;
+}
+
+auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
+    const auto sorted_values = QuickSortDoublyLinkedList({values.cbegin(), values.cend()});
+    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
+}
+
 }//namespace
 
 
@@ -276,3 +320,12 @@ SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList, VALUES5);
+
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
