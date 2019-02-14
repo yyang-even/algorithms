@@ -213,6 +213,48 @@ auto TestQuickSortSinglyLinkedList(const ArrayType &values) {
     const auto sorted_values = QuickSortSinglyLinkedList({values.cbegin(), values.cend()});
     return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
+
+
+/** QuickSort on Doubly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/quicksort-for-linked-list/
+ */
+auto partitionDoublyLinkedList(std::list<int> &values,
+                               std::list<int>::iterator &begin,
+                               const std::list<int>::iterator end) {
+    const auto pivot = std::prev(end);
+    for (auto iter = begin; iter != pivot;) {
+        if (*iter > *pivot) {
+            if (iter == begin) {
+                ++begin;
+            }
+            values.splice(end, values, iter++);
+        } else {
+            ++iter;
+        }
+    }
+
+    return pivot;
+}
+void QuickSortDoublyLinkedList(std::list<int> &values,
+                               std::list<int>::iterator begin,
+                               std::list<int>::iterator end) {
+    if (begin != end and std::next(begin) != end) {
+        auto mid = partitionDoublyLinkedList(values, begin, end);
+        QuickSortDoublyLinkedList(values, begin, mid);
+        QuickSortDoublyLinkedList(values, ++mid, end);
+    }
+}
+auto QuickSortDoublyLinkedList(std::list<int> values) {
+    QuickSortDoublyLinkedList(values, values.begin(), values.end());
+    return values;
+}
+
+auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
+    const auto sorted_values = QuickSortDoublyLinkedList({values.cbegin(), values.cend()});
+    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
+}
+
 }//namespace
 
 
@@ -276,3 +318,12 @@ SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList, VALUES5);
+
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
