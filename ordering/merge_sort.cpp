@@ -1,7 +1,12 @@
 #include "common_header.h"
 
-#include "merge_sort.h"
+
 #include "merge_two_sorted_arrays.h"
+#include "data_structure/linked_list/middle_of_singly_linked_list.h"
+
+namespace {
+
+#include "merge_sort.h"
 
 using ArrayType = std::vector<int>;
 
@@ -111,6 +116,32 @@ auto MergeSortO1(ArrayType values) {
  */
 
 
+/** Merge Sort for Linked Lists
+ *
+ * @reference   https://www.geeksforgeeks.org/merge-sort-for-linked-list/
+ */
+void MergeSortSinglyListHelper(std::forward_list<int> &l) {
+    if (not l.empty() and std::next(l.cbegin()) != l.cend()) {
+        const auto before_mid = GetBeforeMiddleTwoPointersSTL(l.cbefore_begin(), l.cend());
+        std::forward_list<int> right;
+        right.splice_after(right.cbefore_begin(), l, before_mid, l.cend());
+        MergeSortSinglyListHelper(l);
+        MergeSortSinglyListHelper(right);
+        l.merge(std::move(right));
+    }
+}
+auto MergeSortSinglyList(std::forward_list<int> values) {
+    MergeSortSinglyListHelper(values);
+    return values;
+}
+auto testMergeSortSinglyList(const ArrayType &values) {
+    const auto sorted = MergeSortSinglyList({values.cbegin(), values.cend()});
+    return ArrayType{sorted.cbegin(), sorted.cend()};
+}
+
+}//namespace
+
+
 const ArrayType VALUES1 = {};
 const ArrayType VALUES2 = {1};
 const ArrayType VALUES3 = {1, 2};
@@ -144,3 +175,12 @@ SIMPLE_TEST(MergeSortIterative, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(MergeSortIterative, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(MergeSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(testMergeSortSinglyList, VALUES5);
+
+SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
