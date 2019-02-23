@@ -139,6 +139,42 @@ auto testMergeSortSinglyList(const ArrayType &values) {
     return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
+
+/** Iterative Merge Sort for Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-merge-sort-for-linked-list/
+ */
+auto MergeSortSinglyListIterative(std::forward_list<int> values) {
+    if (not values.empty()) {
+        std::vector<std::forward_list<int>> lists;
+        while (not values.empty()) {
+            lists.emplace_back();
+            lists.back().splice_after(lists.back().cbefore_begin(), values, values.cbefore_begin());
+        }
+        for (std::size_t gap = 1; gap <= lists.size();) {
+            const auto step = gap * 2;
+            std::size_t left_index = 0;
+            for (auto right_index = left_index + gap;
+                 right_index < lists.size() and left_index < lists.size();
+                 left_index += step, right_index += step) {
+                auto &left_list = lists[left_index];
+                auto &right_list = lists[right_index];
+                left_list.merge(std::move(right_list));
+                std::cout << left_list << std::endl;
+            }
+            gap = step;
+        }
+        values = std::move(lists.front());
+    }
+
+    return values;
+}
+auto testMergeSortSinglyListIterative(const ArrayType &values) {
+    const auto sorted = MergeSortSinglyListIterative({values.cbegin(), values.cend()});
+    return ArrayType{sorted.cbegin(), sorted.cend()};
+}
+
+
 }//namespace
 
 
@@ -184,3 +220,12 @@ SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(testMergeSortSinglyListIterative, VALUES5);
+
+SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE5, EXPECTED5, VALUES5);
