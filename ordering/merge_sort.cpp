@@ -173,6 +173,29 @@ auto testMergeSortSinglyListIterative(const ArrayType &values) {
     return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
+/** Merge Sort for Doubly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/merge-sort-for-doubly-linked-list/
+ */
+void MergeSortDoublyListHelper(std::list<int> &l) {
+    if (l.size() > 1) {
+        auto mid = l.cbegin();
+        std::advance(mid, l.size() / 2);
+        std::list<int> right;
+        right.splice(right.cend(), l, mid, l.cend());
+        MergeSortDoublyListHelper(l);
+        MergeSortDoublyListHelper(right);
+        l.merge(std::move(right));
+    }
+}
+auto MergeSortDoublyList(std::list<int> values) {
+    MergeSortDoublyListHelper(values);
+    return values;
+}
+auto testMergeSortDoublyList(const ArrayType &values) {
+    const auto sorted = MergeSortDoublyList({values.cbegin(), values.cend()});
+    return ArrayType{sorted.cbegin(), sorted.cend()};
+}
 
 }//namespace
 
@@ -228,3 +251,12 @@ SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(testMergeSortDoublyList, VALUES5);
+
+SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE5, EXPECTED5, VALUES5);
