@@ -47,6 +47,33 @@ auto Segregate0sAnd1sDNF(ArrayType values) {
     return values;
 }
 
+
+/** Sort an array of 0s, 1s and 2s
+ *
+ * @reference   Sort an array of 0s, 1s and 2s (Simple Counting)
+ *              https://www.geeksforgeeks.org/sort-array-0s-1s-2s-simple-counting/
+ * @reference   Sort an array of 0s, 1s and 2s
+ *              https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+ *
+ * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[].
+ * The functions should put all 0s first, then all 1s and all 2s in last.
+ */
+auto Sort0s1s2s(ArrayType values) {
+    auto zeros_end = values.begin();
+    auto twos_begin = values.end();
+    for (auto ones_end = zeros_end; ones_end != twos_begin;) {
+        if (*ones_end == 0) {
+            std::iter_swap(zeros_end++, ones_end++);
+        } else if (*ones_end == 1) {
+            ++ones_end;
+        } else {
+            std::iter_swap(ones_end, --twos_begin);
+        }
+    }
+
+    return values;
+}
+
 }//namespace
 
 
@@ -75,3 +102,18 @@ SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+const ArrayType VALUES6 = {0, 1, 2, 0, 1, 2};
+const ArrayType EXPECTED6 = {0, 0, 1, 1, 2, 2};
+const ArrayType VALUES7 = {0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1};
+const ArrayType EXPECTED7 = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2};
+
+
+SIMPLE_BENCHMARK(Sort0s1s2s, VALUES5);
+
+SIMPLE_TEST(Sort0s1s2s, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(Sort0s1s2s, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(Sort0s1s2s, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(Sort0s1s2s, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(Sort0s1s2s, TestSAMPLE7, EXPECTED7, VALUES7);
