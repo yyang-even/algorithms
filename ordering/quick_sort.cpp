@@ -44,6 +44,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/stable-quicksort/
  * @reference   Stability in sorting algorithms
  *              https://www.geeksforgeeks.org/stability-in-sorting-algorithms/
+ * @reference   Quick Sort
+ *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Quick/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
@@ -257,6 +259,40 @@ auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
     return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
 
+
+/** 3-Way QuickSort (Dutch National Flag)
+ *
+ * @reference   https://www.geeksforgeeks.org/3-way-quicksort-dutch-national-flag/
+ * @reference   Quick Sort 3 Way
+ *              https://www.toptal.com/developers/sorting-algorithms/quick-sort-3-way
+ */
+auto partition3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    auto smallers_end = begin;
+    auto greaters_begin = end;
+    for (auto equals_end = std::next(smallers_end); equals_end != greaters_begin;) {
+        if (*equals_end < *smallers_end) {
+            std::iter_swap(smallers_end++, equals_end++);
+        } else if (*equals_end == *smallers_end) {
+            ++equals_end;
+        } else {
+            std::iter_swap(equals_end, --greaters_begin);
+        }
+    }
+
+    return std::make_pair(smallers_end, greaters_begin);
+}
+void QuickSort3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    if (begin != end and std::next(begin) != end) {
+        const auto mid_pair = partition3Way(begin, end);
+        QuickSort3Way(begin, mid_pair.first);
+        QuickSort3Way(mid_pair.second, end);
+    }
+}
+auto QuickSort3Way(ArrayType values) {
+    QuickSort3Way(values.begin(), values.end());
+    return values;
+}
+
 }//namespace
 
 
@@ -329,3 +365,17 @@ SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+const ArrayType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
+const ArrayType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
+
+
+SIMPLE_BENCHMARK(QuickSort3Way, VALUES5);
+
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort3Way, TestSAMPLE6, EXPECTED6, VALUES6);
