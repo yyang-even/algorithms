@@ -265,6 +265,8 @@ auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
  * @reference   https://www.geeksforgeeks.org/3-way-quicksort-dutch-national-flag/
  * @reference   Quick Sort 3 Way
  *              https://www.toptal.com/developers/sorting-algorithms/quick-sort-3-way
+ * @reference   Dual pivot Quicksort
+ *              https://www.geeksforgeeks.org/dual-pivot-quicksort/
  */
 auto partition3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
     auto smallers_end = begin;
@@ -290,6 +292,45 @@ void QuickSort3Way(const ArrayType::iterator begin, const ArrayType::iterator en
 }
 auto QuickSort3Way(ArrayType values) {
     QuickSort3Way(values.begin(), values.end());
+    return values;
+}
+
+
+auto partitionDualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    const auto smaller_pivot = begin;
+    auto smallers_end = std::next(begin);
+    auto greaters_begin = std::prev(end);
+    const auto greater_pivot = greaters_begin;
+
+    if (*smaller_pivot > *greater_pivot) {
+        std::iter_swap(smaller_pivot, greater_pivot);
+    }
+
+    for (auto equals_end = smallers_end; equals_end != greaters_begin;) {
+        if (*equals_end < *smaller_pivot) {
+            std::iter_swap(smallers_end++, equals_end++);
+        } else if (*equals_end < *greater_pivot) {
+            ++equals_end;
+        } else {
+            std::iter_swap(equals_end, --greaters_begin);
+        }
+    }
+
+    std::iter_swap(smaller_pivot, std::prev(smallers_end));
+    std::iter_swap(greater_pivot, greaters_begin);
+
+    return std::make_pair(smallers_end, greaters_begin);
+}
+void QuickSortDualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    if (begin != end and std::next(begin) != end) {
+        const auto mid_pair = partitionDualPivots(begin, end);
+        QuickSortDualPivots(begin, mid_pair.first);
+        QuickSortDualPivots(mid_pair.first, mid_pair.second);
+        QuickSortDualPivots(mid_pair.second, end);
+    }
+}
+auto QuickSortDualPivots(ArrayType values) {
+    QuickSortDualPivots(values.begin(), values.end());
     return values;
 }
 
@@ -379,3 +420,18 @@ SIMPLE_TEST(QuickSort3Way, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSort3Way, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort3Way, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(QuickSort3Way, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+const ArrayType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
+const ArrayType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
+
+
+SIMPLE_BENCHMARK(QuickSortDualPivots, VALUES5);
+
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE7, EXPECTED7, VALUES7);
