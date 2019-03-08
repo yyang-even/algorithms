@@ -1,8 +1,9 @@
 #include "common_header.h"
 
-#include "binary.h"
-
+#include "log_base_2.h"
 #include "set_all_bits_after_most_significant_bit.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -40,31 +41,6 @@ InputType LogBase2Float(const InputType num) {
     temp.uNum[__FLOAT_WORD_ORDER != LITTLE_ENDIAN] = num;
     temp.dNum -= 4503599627370496.0;
     return (temp.uNum[__FLOAT_WORD_ORDER == LITTLE_ENDIAN] >> 20) - 0x3FF;
-}
-
-
-/** Find the log base 2 of an integer with a lookup table
- *
- * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
- *              Find the log base 2 of an integer with a lookup table
- *              https://graphics.stanford.edu/~seander/bithacks.html
- */
-static constexpr char LogTable256[256] = {
-#define LT(n) n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n
-    -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-        LT(4), LT(5), LT(5), LT(6), LT(6), LT(6), LT(6),
-        LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7), LT(7)
-    };
-InputType LogBase2LookupTable(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
-    InputType t, tt; // temporaries
-
-    if (tt = num >> 16) {
-        return (t = tt >> 8) ? 24 + LogTable256[t] : 16 + LogTable256[tt];
-    } else {
-        return (t = num >> 8) ? 8 + LogTable256[t] : LogTable256[num];
-    }
 }
 
 
@@ -157,7 +133,7 @@ int LogBase2IEEE754Float(const float num) {
     } else { // subnormal, so recompute using mantissa: c = intlog2(x) - 149;
         unsigned int t;
         // Note that LogTable256 was defined earlier
-        if (t = x >> 16) {
+        if ((t = x >> 16)) {
             result = LogTable256[t] - 133;
         } else {
             result = (t = x >> 8) ? LogTable256[t] - 141 : LogTable256[x] - 149;
@@ -180,6 +156,8 @@ int LogBase2ofPow2r(const float num, const unsigned r) {
     memcpy(&result, &num, sizeof result);
     return ((((result - 0x3f800000) >> r) + 0x3f800000) >> 23) - 127;
 }
+
+}//namespace
 
 
 constexpr InputType LOWER = 1;

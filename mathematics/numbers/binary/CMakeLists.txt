@@ -1,7 +1,3 @@
-add_library(binary
-    count_set_bits.cpp
-    log_base_2.cpp)
-
 CompileBenchmarkExe(abs)
 CompileTestExe(abs)
 
@@ -35,10 +31,8 @@ CompileTestExe(conditionally_set_or_clear)
 CompileBenchmarkExe(conditionally_negate)
 CompileTestExe(conditionally_negate)
 
-CompileBenchmarkExe(count_diff_bits_of_two
-    binary)
-CompileTestExe(count_diff_bits_of_two
-    binary)
+CompileBenchmarkExe(count_diff_bits_of_two)
+CompileTestExe(count_diff_bits_of_two)
 
 CompileBenchmarkExe(count_equal_sum_and_xor)
 CompileTestExe(count_equal_sum_and_xor)

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 typedef int InputType;
 
 /** Compute the integer absolute value (abs) without branching
@@ -9,13 +11,15 @@ typedef int InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 unsigned Absolute(const InputType num) {
-    const InputType mask = num >> Bits_Number<decltype(num)>() - 1;
+    const InputType mask = num >> (Bits_Number<decltype(num)>() - 1);
     return (num + mask) ^ mask;
 }
 unsigned AbsPatented(const InputType num) {
-    const InputType mask = num >> Bits_Number<decltype(num)>() - 1;
+    const InputType mask = num >> (Bits_Number<decltype(num)>() - 1);
     return (num ^ mask) - mask;
 }
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();

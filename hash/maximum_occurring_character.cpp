@@ -2,6 +2,8 @@
 
 #include "repeated_elements.h"
 
+namespace {
+
 /** Return maximum occurring character in an input string
  *
  * @reference   https://www.geeksforgeeks.org/return-maximum-occurring-character-in-the-input-string/
@@ -41,7 +43,7 @@ auto MaximumOccurringChar(const std::string &input) {
  * would be 2. Expected time complexity is O(n) and extra space allowed is O(1).
  * Modifications to array are allowed.
  */
-using ArrayType = std::vector<int>;
+using ArrayType = std::vector<unsigned>;
 
 auto MaximumRepeatingNumberInplace(ArrayType numbers, const ArrayType::value_type K) {
     assert(K <= numbers.size());
@@ -50,6 +52,8 @@ auto MaximumRepeatingNumberInplace(ArrayType numbers, const ArrayType::value_typ
 
     return std::max_element(numbers.cbegin(), numbers.cend()) - numbers.cbegin();
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(MaximumOccurringChar, std::string("sample string"));

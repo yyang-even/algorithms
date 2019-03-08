@@ -2,6 +2,8 @@
 
 #include "mathematics/arithmetics/modulo/modulo.h"
 
+namespace {
+
 typedef int InputType;
 
 /** Multiply the given number by 2 such that it is divisible by 10
@@ -86,8 +88,8 @@ INT_BOOL isDivisibleBy5Float(const InputType n) {
         positive_n <<= 1;
     }
 
-    //Use static_cast<InputType> instead of std::floor() to avoid float accuracy issue
-    const auto x = static_cast<InputType>(static_cast<double>(positive_n) * 0.1) * 10;
+    //Use static_cast<unsigned> instead of std::floor() to avoid float accuracy issue
+    const auto x = static_cast<unsigned>(static_cast<double>(positive_n) * 0.1) * 10;
 
     if (x == positive_n) {
         return TRUE;
@@ -100,6 +102,9 @@ INT_BOOL isDivisibleBy5LastDigitStrict(const InputType n) {
     const auto last_digit = Mod10Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
+
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();

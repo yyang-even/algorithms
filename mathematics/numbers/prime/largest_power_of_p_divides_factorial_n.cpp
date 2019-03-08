@@ -1,27 +1,12 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/binary/binary.h"
+#include "largest_power_of_p_divides_factorial_n.h"
+#include "mathematics/numbers/binary/count_set_bits.h"
+
+namespace {
 
 typedef unsigned InputType;
 
-/**The largest power of p that divides n!
- *
- * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.4.
- *
- * We'd like to determine, for any given prime p, the largest power of p that divides n!; that is,
- * we want the exponent of p in n!'s unique factorization.
- *
- * @bug It will fall into infinite loop for large n or p, as which may cause i *= p to overflow
- */
-InputType LargestPowerOfPDividesFactorialN(const InputType p, const InputType n) {
-    InputType power = 0;
-    //Use ULL to prevent overflow
-    for (unsigned long long i = p; i <= n; i *= p) {
-        power += (n / i);
-    }
-    return power;
-}
 
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -35,6 +20,8 @@ InputType LargestPowerOf2DividesFactorialNBuiltIn(const InputType n) {
     return n - __builtin_popcount(n);
 }
 #endif
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();

@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "binary.h"
+namespace {
 
 using InputType = unsigned short;
 using OutputType = unsigned;
@@ -93,10 +93,10 @@ unsigned short MortonNumberMultiply(const unsigned char x, const unsigned char y
     static_assert(sizeof(unsigned char) * 2 == sizeof(unsigned short),
                   "OutputType is not twice the size of InputType.");
 
-    return ((x * 0x0101010101010101ULL & 0x8040201008040201ULL) *
-            0x0102040810204081ULL >> 49) & 0x5555 |
-           ((y * 0x0101010101010101ULL & 0x8040201008040201ULL) *
-            0x0102040810204081ULL >> 48) & 0xAAAA;
+    return (((x * 0x0101010101010101ULL & 0x8040201008040201ULL) *
+             0x0102040810204081ULL >> 49) & 0x5555) |
+           (((y * 0x0101010101010101ULL & 0x8040201008040201ULL) *
+             0x0102040810204081ULL >> 48) & 0xAAAA);
 }
 
 
@@ -128,6 +128,8 @@ OutputType MortonNumberMagicNumber(const InputType input_x, const InputType inpu
 
     return x | (y << 1);
 }
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();

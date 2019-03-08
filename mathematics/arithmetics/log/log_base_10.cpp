@@ -1,6 +1,8 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/binary/binary.h"
+#include "mathematics/numbers/binary/log_base_2.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -37,6 +39,7 @@ inline InputType LogBase10Enum(const InputType num) {
            (num >= 1000) ? 3 : (num >= 100) ? 2 : (num >= 10) ? 1 : 0;
 }
 
+}//namespace
 
 
 constexpr InputType LOWER = 1;

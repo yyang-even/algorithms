@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 /** Count characters at same position as in English alphabet
  *
  * @reference   https://www.geeksforgeeks.org/count-characters-at-same-position-as-in-english-alphabet/
@@ -11,13 +13,16 @@ auto CountCharsAtSamePositionAsInAlphabet(const std::string &input) {
     std::string::size_type count = 0ul;
 
     for (std::string::size_type i = 0; i < input.size(); ++i) {
-        if (i == input[i] - 'a' or i == input[i] - 'A') {
+        if (i == static_cast<std::string::size_type>(input[i] - 'a')
+            or i == static_cast<std::string::size_type>(input[i] - 'A')) {
             ++count;
         }
     }
 
     return count;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(CountCharsAtSamePositionAsInAlphabet, std::string("geeksforgeeks"));

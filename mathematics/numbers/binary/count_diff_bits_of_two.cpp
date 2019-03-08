@@ -1,6 +1,8 @@
 #include "common_header.h"
 
-#include "binary.h"
+#include "count_set_bits.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -15,6 +17,8 @@ typedef unsigned InputType;
 auto CountDiffBits(const InputType a, const InputType b) {
     return CountSetBitsBrianKernighan(a ^ b);
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(CountDiffBits, 10, 20);

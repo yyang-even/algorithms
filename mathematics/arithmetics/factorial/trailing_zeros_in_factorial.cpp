@@ -1,6 +1,8 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/prime/prime.h"
+#include "mathematics/numbers/prime/largest_power_of_p_divides_factorial_n.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -13,6 +15,8 @@ typedef unsigned InputType;
 InputType CountTrailing0sInFactorialOf(const InputType num) {
     return LargestPowerOfPDividesFactorialN(5, num);
 }
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();

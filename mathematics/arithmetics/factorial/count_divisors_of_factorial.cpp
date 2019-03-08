@@ -1,7 +1,9 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/prime/prime.h"
+#include "mathematics/numbers/prime/largest_power_of_p_divides_factorial_n.h"
 #include "mathematics/numbers/prime/primes_below_n.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -30,6 +32,8 @@ unsigned long long CountDivisorsOfFactorial(const InputType n) {
 
     return count;
 }
+
+}//namespace
 
 
 const InputType LOWER = 0;

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Smallest subarray with sum greater than a given value
@@ -14,7 +16,7 @@ auto SmallestSubarrayWithSumGreaterThanGivenValue(const ArrayType &integers,
 
     auto start = integers.cbegin();
     auto current_sum = *start;
-    auto min_length = integers.size() + 1;
+    ArrayType::difference_type min_length = integers.size() + 1;
 
     for (auto i = start + 1; i != integers.cend(); ++i) {
         while (current_sum > x) {
@@ -30,6 +32,8 @@ auto SmallestSubarrayWithSumGreaterThanGivenValue(const ArrayType &integers,
 
     return min_length;
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {1, 4, 45, 6, 0, 19};

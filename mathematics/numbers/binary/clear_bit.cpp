@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 using InputType = unsigned;
 
 /** How to unset/clear a bit at n’th position in the number ‘num’
@@ -20,7 +22,7 @@ auto ClearBit(const InputType num, const InputType position) {
  *              https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
  */
 auto ClearBitsFromLSB(const InputType num, const InputType i) {
-    const auto mask = ~((1 << i + 1) - 1);
+    const auto mask = ~((1 << (i + 1)) - 1);
     return num & mask;
 }
 
@@ -34,6 +36,8 @@ auto ClearBitsFromMSB(const InputType num, const InputType i) {
     const auto mask = (1 << i) - 1;
     return num & mask;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(ClearBit, 0, 4);

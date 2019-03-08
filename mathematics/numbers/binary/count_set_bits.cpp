@@ -1,6 +1,8 @@
 #include "common_header.h"
 
-#include "binary.h"
+#include "count_set_bits.h"
+
+namespace {
 
 typedef unsigned InputType;
 
@@ -17,17 +19,6 @@ typedef unsigned InputType;
  * Given a number N, the task is to check whether the count of the set and unset bits in the given number are same.
  */
 
-/**
- * Brian Kernighan’s Algorithm
- */
-InputType CountSetBitsBrianKernighan(InputType n) {
-    InputType count = 0;
-    while (n) {
-        ++count;
-        n &= (n - 1);
-    }
-    return count;
-}
 
 /** Counting bits set by lookup table
  *
@@ -70,7 +61,7 @@ uint32_t CountSetBitsMagicBinaries32(InputType n) {
 
     n = n - ((n >> 1) & 0x55555555);
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
-    return ((n + (n >> 4) & 0xF0F0F0F) * 0x1010101) >> 24;
+    return (((n + (n >> 4)) & 0xF0F0F0F) * 0x1010101) >> 24;
 }
 template <typename T>
 T CountSetBitsMagicBinaries(T n) {
@@ -148,6 +139,9 @@ unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
     s -= ((t - rank) & 256) >> 8;
     return 65 - s;
 }
+
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();

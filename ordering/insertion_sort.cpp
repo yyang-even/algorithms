@@ -1,7 +1,8 @@
 #include "common_header.h"
 
-#include "insertion_sort.h"
+namespace {
 
+#include "insertion_sort.h"
 
 using ArrayType = std::vector<int>;
 
@@ -75,11 +76,11 @@ auto BinarySearch(const int target, const ArrayType::const_iterator begin,
     }
 }
 auto BinaryInsertionSort(ArrayType values) {
-    for (int key_value, location, i, j = 1; j < values.size(); ++j) {
-        key_value = std::move(values[j]);
-        i = j - 1;
+    for (ArrayType::size_type j = 1; j < values.size(); ++j) {
+        auto key_value = std::move(values[j]);
+        ArrayType::difference_type i = j - 1;
 
-        location = BinarySearch(key_value, values.cbegin(), j) - values.cbegin();
+        const auto location = BinarySearch(key_value, values.cbegin(), j) - values.cbegin();
         while (i >= location) {
             values[i + 1] = std::move(values[i]);
             --i;
@@ -90,6 +91,7 @@ auto BinaryInsertionSort(ArrayType values) {
     return values;
 }
 
+}//namespace
 
 
 const ArrayType VALUES1 = {};
