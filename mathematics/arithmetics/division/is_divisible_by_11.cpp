@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 typedef int InputType;
 
 /**Is divisible by 11
@@ -51,6 +53,10 @@ struct Query {
     std::string::size_type l = 0;
     std::string::size_type r = 0;
 };
+std::ostream &operator <<(std::ostream &out, const Query &q) {
+    return out << "(" << q.l << ", " << q.r << ")";
+}
+
 
 std::vector<bool> SubstringDivisibilityBy11(const std::string &test_string,
         const std::vector<Query> &queries) {
@@ -70,6 +76,8 @@ std::vector<bool> SubstringDivisibilityBy11(const std::string &test_string,
     }
     return results;
 }
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();

@@ -57,10 +57,10 @@ inline constexpr auto Bits_Number() {
 
 
 #ifdef WANT_TESTS
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {  \
-    TEST(func_name##Test, testName) {                                           \
-        EXPECT_EQ(expectedValue, func_name(inputs)) << "Input: " << inputs;     \
-    }                                                                           \
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                  \
+    TEST(func_name##Test, testName) {                                                           \
+        EXPECT_EQ(expectedValue, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);   \
+    }                                                                                           \
 }
 #define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {    \
     TEST(func_name##Test, testName) {                                   \
