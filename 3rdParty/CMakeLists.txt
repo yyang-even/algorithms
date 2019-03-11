@@ -1,3 +1,3 @@
 if (WANT_TESTS)
-    add_subdirectory(googletest-release-${GTEST_VER})
+    add_subdirectory(googletest)
 endif (WANT_TESTS)
