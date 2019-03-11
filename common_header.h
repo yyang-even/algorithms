@@ -12,7 +12,7 @@
 #ifdef WANT_TESTS
 #include "gtest/gtest.h"
 #endif
-#include "3rdParty/prettyprint.hpp"
+#include "3rdParty/cxx-prettyprint/prettyprint.hpp"
 
 
 // Typedefs
