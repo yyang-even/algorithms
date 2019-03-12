@@ -8,7 +8,9 @@
 #include <random>
 #include <string>
 
-#include "3rdParty/nonius.h++"
+#ifdef NONIUS_RUNNER
+#include "nonius/nonius_single.h++"
+#endif
 #ifdef WANT_TESTS
 #include "gtest/gtest.h"
 #endif

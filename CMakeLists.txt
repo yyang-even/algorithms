@@ -17,6 +17,7 @@ set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Wall")
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Werror=return-type")
 
 include_directories ("${PROJECT_SOURCE_DIR}")
+include_directories ("${PROJECT_SOURCE_DIR}/3rdParty/nonius/include")
 
 ###################################################
 # Options
