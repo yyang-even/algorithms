@@ -4,11 +4,19 @@
 #include <climits>
 #include <cmath>
 
+#include <chrono>
+#include <functional>
+#include <iostream>
 #include <limits>
+#include <list>
 #include <random>
+#include <sstream>
 #include <string>
+#include <vector>
 
-#include "3rdParty/nonius.h++"
+#ifdef NONIUS_RUNNER
+#include "nonius/nonius_single.h++"
+#endif
 #ifdef WANT_TESTS
 #include "gtest/gtest.h"
 #endif
