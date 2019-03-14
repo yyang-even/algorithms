@@ -121,6 +121,9 @@ CompileTestExe(min_and_max)
 CompileBenchmarkExe(masked_bits_merge)
 CompileTestExe(masked_bits_merge)
 
+CompileBenchmarkExe(maximum_and_value_of_pair)
+CompileTestExe(maximum_and_value_of_pair)
+
 CompileBenchmarkExe(modulus)
 CompileTestExe(modulus)
 
