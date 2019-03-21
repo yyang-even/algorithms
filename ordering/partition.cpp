@@ -3,20 +3,10 @@
 #include "merge_sort.h"
 #include "merge_two_sorted_arrays.h"
 
+#include "partition.h"
 
 using ArrayType = std::vector<int>;
 
-auto Partition(ArrayType::iterator begin, ArrayType::iterator end,
-               const std::function<bool(const ArrayType::value_type)> predicate) {
-    auto j = begin;
-    for (; begin != end; ++begin) {
-        if (predicate(*begin)) {
-            std::iter_swap(begin, j++);
-        }
-    }
-
-    return j;
-}
 
 
 /** Move all negative elements to end in order with extra space allowed
@@ -124,7 +114,7 @@ auto RearrangePositiveAndNegativeNumbersMergeReverse(ArrayType input) {
  * elements should be same. Expected time complexity is O(n) and extra space is O(1).
  */
 auto RearrangeZeros(ArrayType input) {
-    Partition(input.begin(), input.end(), [](const ArrayType::value_type v) {
+    Partition<ArrayType>(input.begin(), input.end(), [](const ArrayType::value_type v) {
         return static_cast<bool>(v);
     });
 
@@ -142,7 +132,7 @@ auto RearrangeZeros(ArrayType input) {
  * numbers, they too appear in the end of the array.
  */
 auto RearrangePositiveAndNegativeNumbersAlternative(ArrayType input) {
-    auto positive_iter = Partition(input.begin(), input.end(), isNegative);
+    auto positive_iter = Partition<ArrayType>(input.begin(), input.end(), isNegative);
 
     for (auto negative_iter = input.begin();
          positive_iter != input.end() and negative_iter < positive_iter and * negative_iter < 0;

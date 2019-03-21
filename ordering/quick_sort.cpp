@@ -3,9 +3,17 @@
 #include <forward_list>
 #include <stack>
 
+#include "partition.h"
+
 
 namespace {
 using ArrayType = std::vector<int>;
+
+inline bool isThereMoreThanOne(const ArrayType::const_iterator cbegin,
+                               const ArrayType::const_iterator cend) {
+    return cbegin != cend and std::next(cbegin) != cend;
+}
+
 
 /** QuickSort
  *
@@ -50,28 +58,24 @@ using ArrayType = std::vector<int>;
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
  */
-auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::size_type size) {
-    const auto pivot = begin + (size - 1);
-    ArrayType::size_type mid = 0;
-    for (auto iter = begin; iter != pivot; ++iter) {
-        if (*iter <= *pivot) {
-            std::iter_swap(iter, (begin + mid++));
-        }
-    }
-    std::iter_swap(pivot, begin + mid);
+auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    const auto pivot = std::prev(end);
+    const auto mid = Partition<ArrayType>(begin, pivot, [pivot](const auto v) {
+        return v <= *pivot;
+    });
+    std::iter_swap(pivot, mid);
 
     return mid;
 }
 
-auto partitionHoare(const ArrayType::iterator begin, const ArrayType::size_type size) {
+auto partitionHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto pivot = begin;
     auto left = begin;
-    auto mid = size - 1;    //to avoid right - left, which is more expensive
-    auto right = begin + mid;
+    auto right = std::prev(end);
 
     while (true) {
         for (; *left < *pivot; ++left);
-        for (; *right > *pivot; --right, --mid);
+        for (; *right > *pivot; --right);
 
         if (left >= right) {
             break;
@@ -79,18 +83,18 @@ auto partitionHoare(const ArrayType::iterator begin, const ArrayType::size_type 
         std::iter_swap(left, right);
     }
 
-    return mid;
+    return right;
 }
 
-auto partitionRandomizedHoare(const ArrayType::iterator begin, const ArrayType::size_type size) {
-    const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, size - 1);
+auto partitionRandomizedHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, end - begin - 1);
     std::iter_swap(begin, begin + random_pivot_index);
-    return partitionHoare(begin, size);
+    return partitionHoare(begin, end);
 }
 
-auto partitionStable(const ArrayType::iterator begin, const ArrayType::size_type size) {
-    const auto pivot = begin + (size - 1);
-    ArrayType::size_type mid = 0;
+auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    const auto pivot = std::prev(end);
+    auto mid = begin;
     ArrayType smaller, greater;
 
     for (auto iter = begin; iter != pivot; ++iter) {
@@ -102,53 +106,50 @@ auto partitionStable(const ArrayType::iterator begin, const ArrayType::size_type
         }
     }
     std::copy(std::make_move_iterator(smaller.begin()), std::make_move_iterator(smaller.end()), begin);
-    const auto mid_iter = begin + mid;
-    *mid_iter = std::move(*pivot);
+    *mid = std::move(*pivot);
     std::copy(std::make_move_iterator(greater.begin()), std::make_move_iterator(greater.end()),
-              mid_iter + 1);
+              std::next(mid));
 
     return mid;
 }
 
 
 template <typename PartitionFunc>
-void QuickSort(const ArrayType::iterator begin, const ArrayType::size_type size,
+void QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
                const PartitionFunc partition) {
-    if (size > 1) {
-        const auto mid = partition(begin, size);
+    if (begin != end and std::next(begin) != end) {
+        const auto mid = partition(begin, end);
         QuickSort(begin, mid, partition);
-        const auto mid_plus_one = mid + 1;
-        QuickSort(begin + mid_plus_one, size - mid_plus_one, partition);
+        QuickSort(std::next(mid), end, partition);
     }
 }
 auto QuickSortLomuto(ArrayType values) {
-    QuickSort(values.begin(), values.size(), &partitionLomuto);
+    QuickSort(values.begin(), values.end(), &partitionLomuto);
     return values;
 }
 
 
 auto QuickSortHoare(ArrayType values) {
-    QuickSort(values.begin(), values.size(), &partitionHoare);
+    QuickSort(values.begin(), values.end(), &partitionHoare);
     return values;
 }
 
 
 auto QuickSortIterative(ArrayType values) {
     if (values.size() > 1) {
-        std::stack<std::pair<const ArrayType::iterator, const ArrayType::size_type> > range_stack;
-        range_stack.emplace(values.begin(), values.size());
+        std::stack<std::pair<const ArrayType::iterator, const ArrayType::iterator> > range_stack;
+        range_stack.emplace(values.begin(), values.end());
 
         while (not range_stack.empty()) {
             const auto range = range_stack.top();
             range_stack.pop();
             const auto mid = partitionLomuto(range.first, range.second);
-            if (mid > 1) {
+            if (range.first != mid and std::next(range.first) != mid) {
                 range_stack.emplace(range.first, mid);
             }
             const auto mid_plus_one = mid + 1;
-            const auto right_size = range.second - mid_plus_one;
-            if (right_size > 1) {
-                range_stack.emplace(range.first + mid_plus_one, right_size);
+            if (isThereMoreThanOne(mid_plus_one, range.second)) {
+                range_stack.emplace(mid_plus_one, range.second);
             }
         }
     }
@@ -158,13 +159,13 @@ auto QuickSortIterative(ArrayType values) {
 
 
 auto QuickSortRandomizedHoare(ArrayType values) {
-    QuickSort(values.begin(), values.size(), &partitionRandomizedHoare);
+    QuickSort(values.begin(), values.end(), &partitionRandomizedHoare);
     return values;
 }
 
 
 auto QuickSortStable(ArrayType values) {
-    QuickSort(values.begin(), values.size(), &partitionStable);
+    QuickSort(values.begin(), values.end(), &partitionStable);
     return values;
 }
 
