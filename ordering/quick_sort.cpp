@@ -58,7 +58,7 @@ inline bool isThereMoreThanOne(const ArrayType::const_iterator cbegin,
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
  */
-auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_Lomuto(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto pivot = std::prev(end);
     const auto mid = Partition<ArrayType>(begin, pivot, [pivot](const auto v) {
         return v <= *pivot;
@@ -68,7 +68,7 @@ auto partitionLomuto(const ArrayType::iterator begin, const ArrayType::iterator 
     return mid;
 }
 
-auto partitionHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_Hoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto pivot = begin;
     auto left = begin;
     auto right = std::prev(end);
@@ -86,10 +86,10 @@ auto partitionHoare(const ArrayType::iterator begin, const ArrayType::iterator e
     return right;
 }
 
-auto partitionRandomizedHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_RandomizedHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, end - begin - 1);
     std::iter_swap(begin, begin + random_pivot_index);
-    return partitionHoare(begin, end);
+    return partition_Hoare(begin, end);
 }
 
 auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator end) {
@@ -123,19 +123,19 @@ void QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
         QuickSort(std::next(mid), end, partition);
     }
 }
-auto QuickSortLomuto(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partitionLomuto);
+auto QuickSort_Lomuto(ArrayType values) {
+    QuickSort(values.begin(), values.end(), &partition_Lomuto);
     return values;
 }
 
 
-auto QuickSortHoare(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partitionHoare);
+auto QuickSort_Hoare(ArrayType values) {
+    QuickSort(values.begin(), values.end(), &partition_Hoare);
     return values;
 }
 
 
-auto QuickSortIterative(ArrayType values) {
+auto QuickSort_Iterative(ArrayType values) {
     if (values.size() > 1) {
         std::stack<std::pair<const ArrayType::iterator, const ArrayType::iterator> > range_stack;
         range_stack.emplace(values.begin(), values.end());
@@ -143,7 +143,7 @@ auto QuickSortIterative(ArrayType values) {
         while (not range_stack.empty()) {
             const auto range = range_stack.top();
             range_stack.pop();
-            const auto mid = partitionLomuto(range.first, range.second);
+            const auto mid = partition_Lomuto(range.first, range.second);
             if (range.first != mid and std::next(range.first) != mid) {
                 range_stack.emplace(range.first, mid);
             }
@@ -158,8 +158,8 @@ auto QuickSortIterative(ArrayType values) {
 }
 
 
-auto QuickSortRandomizedHoare(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partitionRandomizedHoare);
+auto QuickSort_RandomizedHoare(ArrayType values) {
+    QuickSort(values.begin(), values.end(), &partition_RandomizedHoare);
     return values;
 }
 
@@ -269,7 +269,7 @@ auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
  * @reference   Dual pivot Quicksort
  *              https://www.geeksforgeeks.org/dual-pivot-quicksort/
  */
-auto partition3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
     auto smallers_end = begin;
     auto greaters_begin = end;
     for (auto equals_end = std::next(smallers_end); equals_end != greaters_begin;) {
@@ -284,20 +284,20 @@ auto partition3Way(const ArrayType::iterator begin, const ArrayType::iterator en
 
     return std::make_pair(smallers_end, greaters_begin);
 }
-void QuickSort3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
+void QuickSort_3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
     if (begin != end and std::next(begin) != end) {
-        const auto mid_pair = partition3Way(begin, end);
-        QuickSort3Way(begin, mid_pair.first);
-        QuickSort3Way(mid_pair.second, end);
+        const auto mid_pair = partition_3Way(begin, end);
+        QuickSort_3Way(begin, mid_pair.first);
+        QuickSort_3Way(mid_pair.second, end);
     }
 }
-auto QuickSort3Way(ArrayType values) {
-    QuickSort3Way(values.begin(), values.end());
+auto QuickSort_3Way(ArrayType values) {
+    QuickSort_3Way(values.begin(), values.end());
     return values;
 }
 
 
-auto partitionDualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_DualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto smaller_pivot = begin;
     auto smallers_end = std::next(begin);
     auto greaters_begin = std::prev(end);
@@ -322,16 +322,16 @@ auto partitionDualPivots(const ArrayType::iterator begin, const ArrayType::itera
 
     return std::make_pair(smallers_end, greaters_begin);
 }
-void QuickSortDualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+void QuickSort_DualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
     if (begin != end and std::next(begin) != end) {
-        const auto mid_pair = partitionDualPivots(begin, end);
-        QuickSortDualPivots(begin, mid_pair.first);
-        QuickSortDualPivots(mid_pair.first, mid_pair.second);
-        QuickSortDualPivots(mid_pair.second, end);
+        const auto mid_pair = partition_DualPivots(begin, end);
+        QuickSort_DualPivots(begin, mid_pair.first);
+        QuickSort_DualPivots(mid_pair.first, mid_pair.second);
+        QuickSort_DualPivots(mid_pair.second, end);
     }
 }
-auto QuickSortDualPivots(ArrayType values) {
-    QuickSortDualPivots(values.begin(), values.end());
+auto QuickSort_DualPivots(ArrayType values) {
+    QuickSort_DualPivots(values.begin(), values.end());
     return values;
 }
 
@@ -346,40 +346,40 @@ const ArrayType EXPECTED4 = {1, 2, 3};
 const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
-SIMPLE_BENCHMARK(QuickSortLomuto, VALUES5);
+SIMPLE_BENCHMARK(QuickSort_Lomuto, VALUES5);
 
-SIMPLE_TEST(QuickSortLomuto, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSortLomuto, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSortLomuto, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSortLomuto, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSortLomuto, TestSAMPLE5, EXPECTED5, VALUES5);
-
-
-SIMPLE_BENCHMARK(QuickSortIterative, VALUES5);
-
-SIMPLE_TEST(QuickSortIterative, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSortIterative, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSortIterative, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortHoare, VALUES5);
+SIMPLE_BENCHMARK(QuickSort_Iterative, VALUES5);
 
-SIMPLE_TEST(QuickSortHoare, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSortHoare, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSortHoare, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSortHoare, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSortHoare, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortRandomizedHoare, VALUES5);
+SIMPLE_BENCHMARK(QuickSort_Hoare, VALUES5);
 
-SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSortRandomizedHoare, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(QuickSort_RandomizedHoare, VALUES5);
+
+SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 SIMPLE_BENCHMARK(QuickSortStable, VALUES5);
@@ -413,26 +413,26 @@ const ArrayType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
 const ArrayType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
 
 
-SIMPLE_BENCHMARK(QuickSort3Way, VALUES5);
+SIMPLE_BENCHMARK(QuickSort_3Way, VALUES5);
 
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(QuickSort3Way, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort_3Way, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
 const ArrayType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
 const ArrayType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
 
 
-SIMPLE_BENCHMARK(QuickSortDualPivots, VALUES5);
+SIMPLE_BENCHMARK(QuickSort_DualPivots, VALUES5);
 
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE6, EXPECTED6, VALUES6);
-SIMPLE_TEST(QuickSortDualPivots, TestSAMPLE7, EXPECTED7, VALUES7);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE7, EXPECTED7, VALUES7);
