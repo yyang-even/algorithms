@@ -17,7 +17,7 @@ using ArrayType = std::vector<int>;
  * negative element at the end of array without changing the order of positive element
  * and negative element.
  */
-auto RearrangePositiveAndNegativeNumbersSimple(const ArrayType &input) {
+auto RearrangePositiveAndNegativeNumbers_Simple(const ArrayType &input) {
     ArrayType output;
 
     for (const auto c : input) {
@@ -51,7 +51,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
         }
     });
 }
-auto RearrangePositiveAndNegativeNumbersMerge(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbers_Merge(ArrayType input) {
     MergeSort<ArrayType>(input.begin(), input.size(), Merge);
     return input;
 }
@@ -68,13 +68,13 @@ auto RearrangePositiveAndNegativeNumbersMerge(ArrayType input) {
 auto isNegative(const ArrayType::value_type v) {
     return v < 0;
 }
-auto RearrangePositiveAndNegativeNumbersSTL(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbers_STL(ArrayType input) {
     std::stable_partition(input.begin(), input.end(), isNegative);
 
     return input;
 }
 
-auto RearrangePositiveAndNegativeNumbersInsertion(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbers_Insertion(ArrayType input) {
     for (ArrayType::size_type j = 1; j < input.size(); ++j) {
         auto key_value = input[j];
         if (key_value < 0) {
@@ -99,7 +99,7 @@ void MergeReverse(const ArrayType::iterator begin, const ArrayType::iterator mid
     std::reverse(middle, right_mid);
     std::reverse(left_mid, right_mid);
 }
-auto RearrangePositiveAndNegativeNumbersMergeReverse(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
     MergeSort<ArrayType>(input.begin(), input.size(), Merge);
     return input;
 }
@@ -150,25 +150,25 @@ const ArrayType EXPECTED1 = { -12, -13, -5, -7, -3, -6, 11, 6, 5};
 const ArrayType SAMPLE2 = {12, 11, -13, -5, 6, -7, 5, -3, -6};
 const ArrayType EXPECTED2 = { -13, -5, -7, -3, -6, 12, 11, 6, 5};
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersSTL, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_STL, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersSTL, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersSTL, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_STL, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_STL, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersInsertion, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Insertion, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersInsertion, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersInsertion, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersMerge, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersMerge, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersMerge, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersMergeReverse, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_MergeReverse, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersMergeReverse, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersMergeReverse, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 const ArrayType SAMPLE3 = {1, -1, 3, 2, -7, -5, 11, 6 };
 const ArrayType EXPECTED3 = {1, 3, 2, 11, 6, -1, -7, -5};
@@ -176,10 +176,10 @@ const ArrayType EXPECTED3 = {1, 3, 2, 11, 6, -1, -7, -5};
 const ArrayType SAMPLE4 = { -5, 7, -3, -4, 9, 10, -1, 11};
 const ArrayType EXPECTED4 = {7, 9, 10, 11, -5, -3, -4, -1};
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersSimple, SAMPLE3);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple, SAMPLE3);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersSimple, TestSAMPLE3, EXPECTED3, SAMPLE3);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersSimple, TestSAMPLE4, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 const ArrayType SAMPLE5 = { -1, 2, -3, 4, 5, 6, -7, 8, 9};
 const ArrayType EXPECTED5 = {4, -3, 5, -1, 6, -7, 2, 8, 9};
