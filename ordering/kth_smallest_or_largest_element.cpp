@@ -24,6 +24,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/find-second-largest-element-array/
  * @reference   Why is it faster to process sorted array than an unsorted array ?
  *              https://www.geeksforgeeks.org/faster-process-sorted-array-unsorted-array/
+ * @reference   Tournament Tree (Winner Tree) and Binary Heap
+ *              https://www.geeksforgeeks.org/tournament-tree-and-binary-heap/
  *
  * Given an array and a number k where k is smaller than size of array,
  * we need to find the k’th smallest element in the given array.
