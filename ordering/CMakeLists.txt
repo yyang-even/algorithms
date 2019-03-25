@@ -22,6 +22,9 @@ CompileTestExe(kth_smallest_element_after_every_insertion)
 CompileBenchmarkExe(kth_smallest_or_largest_element)
 CompileTestExe(kth_smallest_or_largest_element)
 
+CompileBenchmarkExe(k_largest_or_smallest_elements)
+CompileTestExe(k_largest_or_smallest_elements)
+
 CompileBenchmarkExe(max_and_min)
 CompileTestExe(max_and_min)
 
