@@ -8,6 +8,13 @@ using ArrayType = std::vector<unsigned>;
 /** Maximum and minimum of an array using minimum number of comparisons
  *
  * @reference   https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+ *
+ * @reference   Second minimum element using minimum comparisons
+ *              https://www.geeksforgeeks.org/second-minimum-element-using-minimum-comparisons/
+ *
+ * Given an array of integers, find the minimum (or maximum) element and the element just
+ * greater (or smaller) than that in less than 2n comparisons. The given array is not
+ * necessarily sorted. Extra space is allowed.
  */
 auto MaxAndMin_Linear(const ArrayType &values) {
     assert(not values.empty());
