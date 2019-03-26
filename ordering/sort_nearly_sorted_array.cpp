@@ -3,6 +3,8 @@
 #include <queue>
 
 
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Sort a nearly sorted (or K sorted) array
@@ -39,6 +41,8 @@ auto SortNearlySortedArray(ArrayType array, const ArrayType::size_type k) {
 
     return array;
 }
+
+}//namespace
 
 
 const ArrayType SampleArray = {2, 6, 3, 12, 56, 8};

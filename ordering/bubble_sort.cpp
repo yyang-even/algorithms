@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -32,7 +34,7 @@ auto BubbleSort(ArrayType<N> values) {
  * @complexity: O(n^2) worst case; O(n) if the array is already sorted.
  */
 template <std::size_t N>
-auto BubbleSortOptimized(ArrayType<N> values) {
+auto BubbleSort_Optimized(ArrayType<N> values) {
     const int last_i = static_cast<int>(values.size()) - 1;
     bool swapped;
 
@@ -60,7 +62,7 @@ auto BubbleSortOptimized(ArrayType<N> values) {
  * @complexity: O(n^2)
  */
 template <std::size_t N>
-void BubbleSortRecursive(ArrayType<N> &values, const typename ArrayType<N>::size_type n) {
+void BubbleSort_Recursive(ArrayType<N> &values, const typename ArrayType<N>::size_type n) {
     if (n > 1) {
         for (typename ArrayType<N>::size_type i = 1; i < n; ++i) {
             if (values[i - 1] > values[i]) {
@@ -68,14 +70,16 @@ void BubbleSortRecursive(ArrayType<N> &values, const typename ArrayType<N>::size
             }
         }
 
-        BubbleSortRecursive(values, n - 1);
+        BubbleSort_Recursive(values, n - 1);
     }
 }
 template <std::size_t N>
-auto BubbleSortRecursive(ArrayType<N> values) {
-    BubbleSortRecursive(values, values.size());
+auto BubbleSort_Recursive(ArrayType<N> values) {
+    BubbleSort_Recursive(values, values.size());
     return values;
 }
+
+}//namespace
 
 
 constexpr ArrayType<0> VALUES1 = {};
@@ -95,16 +99,16 @@ SIMPLE_TEST(BubbleSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BubbleSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(BubbleSortOptimized, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE6, EXPECTED6, VALUES6);
 
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(BubbleSortRecursive, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);

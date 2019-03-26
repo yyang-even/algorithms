@@ -11,7 +11,11 @@ using ArrayType = std::vector<int>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 2.1.
  *
- *              http://www.geeksforgeeks.org/insertion-sort/
+ * @reference   https://www.geeksforgeeks.org/insertion-sort/
+ * @reference   An Insertion Sort time complexity question
+ *              https://www.geeksforgeeks.org/insertion-sort-time-complexity-question/
+ * @reference   Time complexity of insertion sort when there are O(n) inversions?
+ *              https://www.geeksforgeeks.org/time-complexity-insertion-sort-inversions/
  *
  * @complexity: O(n^2)
  */
@@ -30,14 +34,16 @@ auto InsertionSort(ArrayType values) {
 
 /** Recursive Insertion Sort
  *
- * @reference   http://www.geeksforgeeks.org/recursive-insertion-sort/
+ * @reference   https://www.geeksforgeeks.org/recursive-insertion-sort/
+ * @reference   C Program for Recursive Insertion Sort
+ *              https://www.geeksforgeeks.org/c-program-for-recursive-insertion-sort/
  *
  * @complexity: O(n^2)
  */
-void InsertionSortRecursive(ArrayType &values, const int n) {
+void InsertionSort_Recursive(ArrayType &values, const int n) {
     if (n > 1) {
         const auto key_index = n - 1;
-        InsertionSortRecursive(values, key_index);
+        InsertionSort_Recursive(values, key_index);
         auto key_value = std::move(values[key_index]);
         auto i = key_index - 1;
         for (; (i >= 0) and (values[i] > key_value); --i) {
@@ -46,15 +52,17 @@ void InsertionSortRecursive(ArrayType &values, const int n) {
         values[i + 1] = std::move(key_value);
     }
 }
-auto InsertionSortRecursive(ArrayType values) {
-    InsertionSortRecursive(values, values.size());
+auto InsertionSort_Recursive(ArrayType values) {
+    InsertionSort_Recursive(values, values.size());
     return values;
 }
 
 
 /** Binary Insertion Sort
  *
- * @reference   http://www.geeksforgeeks.org/binary-insertion-sort/
+ * @reference   https://www.geeksforgeeks.org/binary-insertion-sort/
+ * @reference   C Program for Binary Insertion Sort
+ *              https://www.geeksforgeeks.org/c-program-for-binary-insertion-sort/
  *
  * @complexity: O(n^2)
  */
@@ -111,12 +119,12 @@ SIMPLE_TEST(InsertionSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(InsertionSortRecursive, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE2, VALUES2, VALUES2);
