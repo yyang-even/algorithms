@@ -54,6 +54,8 @@ inline bool isThereMoreThanOne(const ArrayType::const_iterator cbegin,
  *              https://www.geeksforgeeks.org/stability-in-sorting-algorithms/
  * @reference   Quick Sort
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Quick/
+ * @reference   Can QuickSort be implemented in O(nLogn) worst case time complexity?
+ *              https://www.geeksforgeeks.org/can-quicksort-implemented-onlogn-worst-case-time-complexity/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
