@@ -13,6 +13,9 @@ CompileTestExe(heap_sort)
 CompileBenchmarkExe(insertion_sort)
 CompileTestExe(insertion_sort)
 
+CompileBenchmarkExe(is_k_sorted_array)
+CompileTestExe(is_k_sorted_array)
+
 CompileBenchmarkExe(is_sorted)
 CompileTestExe(is_sorted)
 
