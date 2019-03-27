@@ -7,6 +7,8 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
+#include "is_k_sorted_array.h"
+
 /** Sort a nearly sorted (or K sorted) array
  *
  * @reference   https://www.geeksforgeeks.org/nearly-sorted-algorithm/
@@ -25,7 +27,7 @@ using ArrayType = std::vector<int>;
  * @complexity  O(nlgk)
  */
 auto SortNearlySortedArray(ArrayType array, const ArrayType::size_type k) {
-    assert(k < array.size());
+    assert(k < array.size() and IsKSorted(array, k));
 
     auto read_iter = array.cbegin() + k + 1;
     std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type> >
