@@ -16,9 +16,20 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/insertion-sort-time-complexity-question/
  * @reference   Time complexity of insertion sort when there are O(n) inversions?
  *              https://www.geeksforgeeks.org/time-complexity-insertion-sort-inversions/
+ * @reference   Insertion sort using C++ STL
+ *              https://www.geeksforgeeks.org/insertion-sort-using-c-stl/
  *
  * @complexity: O(n^2)
  */
+auto InsertionSort_STL(ArrayType values) {
+    for (auto iter = values.begin(); iter != values.end(); ++iter) {
+        const auto insertion_point = std::upper_bound(values.begin(), iter, *iter);
+        std::rotate(insertion_point, iter, std::next(iter));
+    }
+
+    return values;
+}
+
 /** Sort 3 numbers
  *
  * @reference   https://www.geeksforgeeks.org/sort-3-numbers/
@@ -112,12 +123,14 @@ const ArrayType EXPECTED5 = {1, 2, 3, 4};
 const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
 const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
+
 SIMPLE_TEST(InsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(InsertionSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(InsertionSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
+
 
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
@@ -126,9 +139,18 @@ SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
+
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(InsertionSort_STL, TestSAMPLE6, EXPECTED6, VALUES6);
