@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -8,9 +10,12 @@ using ArrayType = std::array<int, N>;
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises Solutions 2.2-2.
- *              https://mitpress.mit.edu/sites/default/files/titles/content/Intro_to_Algo_Selected_Solutions.pdf
- *
- *              http://www.geeksforgeeks.org/selection-sort/
+ * @reference   https://mitpress.mit.edu/sites/default/files/titles/content/Intro_to_Algo_Selected_Solutions.pdf
+ * @reference   http://www.geeksforgeeks.org/selection-sort/
+ * @reference   Which sorting algorithm makes minimum number of memory writes?
+ *              https://www.geeksforgeeks.org/which-sorting-algorithm-makes-minimum-number-of-writes/
+ * @reference   Program to sort an array of strings using Selection Sort
+ *              https://www.geeksforgeeks.org/program-to-sort-an-array-of-strings-using-selection-sort/
  *
  * @complexity: O(n^2)
  */
@@ -36,13 +41,15 @@ auto SelectionSort(Container values) {
  *              https://en.cppreference.com/w/cpp/algorithm/iter_swap
  */
 template <typename Container>
-auto SelectionSortConcise(Container values) {
+auto SelectionSort_Concise(Container values) {
     for (auto i = values.begin(); i != values.end(); ++i) {
         std::iter_swap(i, std::min_element(i, values.end()));
     }
 
     return values;
 }
+
+}//namespace
 
 
 constexpr ArrayType<0> VALUES1 = {};
@@ -53,6 +60,7 @@ constexpr ArrayType<3> EXPECTED4 = {1, 2, 3};
 constexpr ArrayType<4> VALUES5 = {4, 3, 2, 1};
 constexpr ArrayType<4> EXPECTED5 = {1, 2, 3, 4};
 
+
 SIMPLE_BENCHMARK(SelectionSort, VALUES5);
 
 SIMPLE_TEST(SelectionSort, TestSAMPLE1, VALUES1, VALUES1);
@@ -61,18 +69,16 @@ SIMPLE_TEST(SelectionSort, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(SelectionSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 
-SIMPLE_BENCHMARK(SelectionSortConcise, VALUES5);
 
-SIMPLE_TEST(SelectionSortConcise, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(SelectionSortConcise, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(SelectionSortConcise, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(SelectionSortConcise, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(SelectionSortConcise, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Concise, VALUES5);
 
-/** C program to sort an array of strings using Selection Sort
- *
- * @reference   http://www.geeksforgeeks.org/c-program-to-sort-an-array-of-strings-using-selection-sort-2/
- */
+SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
 const std::vector<std::string> VALUES21 = {};
 const std::vector<std::string> VALUES22 = {"a"};
 const std::vector<std::string> VALUES23 = {"paper", "true", "soap", "floppy", "flower"};
