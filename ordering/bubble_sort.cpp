@@ -10,6 +10,12 @@ using ArrayType = std::array<int, N>;
 /** Bubble Sort
  *
  * @reference   http://www.geeksforgeeks.org/bubble-sort/
+ * @reference   Sorting Strings using Bubble Sort
+ *              https://www.geeksforgeeks.org/sorting-strings-using-bubble-sort-2/
+ * @reference   C Program for Bubble Sort
+ *              https://www.geeksforgeeks.org/c-program-for-bubble-sort/
+ * @reference   C++ Program for Bubble Sort
+ *              https://www.geeksforgeeks.org/cpp-program-for-bubble-sort/
  *
  * @complexity: O(n^2)
  */
@@ -58,6 +64,8 @@ auto BubbleSort_Optimized(ArrayType<N> values) {
 /** Recursive Bubble Sort
  *
  * @reference   http://www.geeksforgeeks.org/recursive-bubble-sort/
+ * @reference   C++ Program for Recursive Bubble Sort
+ *              https://www.geeksforgeeks.org/cpp-program-for-recursive-bubble-sort/
  *
  * @complexity: O(n^2)
  */
