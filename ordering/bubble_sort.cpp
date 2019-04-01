@@ -1,10 +1,11 @@
 #include "common_header.h"
 
+#include <forward_list>
+
 
 namespace {
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+using ArrayType = std::vector<int>;
 
 
 /** Bubble Sort
@@ -19,8 +20,7 @@ using ArrayType = std::array<int, N>;
  *
  * @complexity: O(n^2)
  */
-template <std::size_t N>
-auto BubbleSort(ArrayType<N> values) {
+auto BubbleSort(ArrayType values) {
     const int last_i = static_cast<int>(values.size()) - 1;
     for (int i = 0, j, last_j; i < last_i; ++i) {
         for (j = 1, last_j = values.size() - i; j < last_j; ++j) {
@@ -39,8 +39,7 @@ auto BubbleSort(ArrayType<N> values) {
  *
  * @complexity: O(n^2) worst case; O(n) if the array is already sorted.
  */
-template <std::size_t N>
-auto BubbleSort_Optimized(ArrayType<N> values) {
+auto BubbleSort_Optimized(ArrayType values) {
     const int last_i = static_cast<int>(values.size()) - 1;
     bool swapped;
 
@@ -69,10 +68,9 @@ auto BubbleSort_Optimized(ArrayType<N> values) {
  *
  * @complexity: O(n^2)
  */
-template <std::size_t N>
-void BubbleSort_Recursive(ArrayType<N> &values, const typename ArrayType<N>::size_type n) {
+void BubbleSort_Recursive(ArrayType &values, const typename ArrayType::size_type n) {
     if (n > 1) {
-        for (typename ArrayType<N>::size_type i = 1; i < n; ++i) {
+        for (typename ArrayType::size_type i = 1; i < n; ++i) {
             if (values[i - 1] > values[i]) {
                 std::swap(values[i - 1], values[i]);
             }
@@ -81,24 +79,56 @@ void BubbleSort_Recursive(ArrayType<N> &values, const typename ArrayType<N>::siz
         BubbleSort_Recursive(values, n - 1);
     }
 }
-template <std::size_t N>
-auto BubbleSort_Recursive(ArrayType<N> values) {
+auto BubbleSort_Recursive(ArrayType values) {
     BubbleSort_Recursive(values, values.size());
     return values;
+}
+
+
+/** C Program for Bubble Sort on Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/c-program-bubble-sort-linked-list/
+ */
+auto BubbleSort_SinglyList(std::forward_list<int> values) {
+    if (not values.empty()) {
+        auto last = values.cend();
+        for (bool swapped = true; swapped;) {
+            swapped = false;
+            auto before_iter = values.cbefore_begin();
+            auto iter = std::next(before_iter);
+            auto next = std::next(iter);
+            for (; next != last;) {
+                if (*iter > *next) {
+                    values.splice_after(next, values, before_iter);
+                    swapped = true;
+                }
+                ++before_iter;
+                iter = std::next(before_iter);
+                next = std::next(iter);
+            }
+            last = iter;
+        }
+    }
+    return values;
+}
+auto testBubbleSort_SinglyList(const ArrayType &values) {
+    auto sorted = BubbleSort_SinglyList({values.cbegin(), values.cend()});
+    return ArrayType {sorted.cbegin(), sorted.cend()};
 }
 
 }//namespace
 
 
-constexpr ArrayType<0> VALUES1 = {};
-constexpr ArrayType<1> VALUES2 = {1};
-constexpr ArrayType<2> VALUES3 = {1, 2};
-constexpr ArrayType<3> VALUES4 = {2, 3, 1};
-constexpr ArrayType<3> EXPECTED4 = {1, 2, 3};
-constexpr ArrayType<4> VALUES5 = {2, 3, 4, 1};
-constexpr ArrayType<4> EXPECTED5 = {1, 2, 3, 4};
-constexpr ArrayType<6> VALUES6 = {1, 2, 3, 1, 2, 2};
-constexpr ArrayType<6> EXPECTED6 = {1, 1, 2, 2, 2, 3};
+const ArrayType VALUES1 = {};
+const ArrayType VALUES2 = {1};
+const ArrayType VALUES3 = {1, 2};
+const ArrayType VALUES4 = {2, 3, 1};
+const ArrayType EXPECTED4 = {1, 2, 3};
+const ArrayType VALUES5 = {2, 3, 4, 1};
+const ArrayType EXPECTED5 = {1, 2, 3, 4};
+const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
+const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
+
 
 SIMPLE_TEST(BubbleSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -107,6 +137,7 @@ SIMPLE_TEST(BubbleSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BubbleSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
+
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE3, VALUES3, VALUES3);
@@ -114,9 +145,18 @@ SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE6, EXPECTED6, VALUES6);
 
+
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
