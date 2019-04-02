@@ -1,12 +1,12 @@
 #include "common_header.h"
 
 #include <forward_list>
+#include <stack>
 
 
 namespace {
 
 using ArrayType = std::vector<int>;
-
 
 /** Bubble Sort
  *
@@ -109,11 +109,42 @@ auto BubbleSort_SinglyList(std::forward_list<int> values) {
             last = iter;
         }
     }
+
     return values;
 }
 auto testBubbleSort_SinglyList(const ArrayType &values) {
     auto sorted = BubbleSort_SinglyList({values.cbegin(), values.cend()});
     return ArrayType {sorted.cbegin(), sorted.cend()};
+}
+
+
+/** Bubble sort using two Stacks
+ *
+ * @reference   https://www.geeksforgeeks.org/bubble-sort-using-two-stacks/
+ */
+auto BubbleSort_TwoStacks(ArrayType values) {
+    using StackType = std::stack<ArrayType::value_type, ArrayType>;
+
+    StackType s1(values);
+    for (auto iter = values.rbegin(); iter != values.rend(); ++iter) {
+        StackType s2;
+        s2.push(std::move(s1.top()));
+        s1.pop();
+        while (not s1.empty()) {
+            if (s2.top() > s1.top()) {
+                std::swap(s1.top(), s2.top());
+            } else {
+                s2.push(std::move(s1.top()));
+                s1.pop();
+            }
+        }
+
+        *iter = std::move(s2.top());
+        s2.pop();
+        s1 = std::move(s2);
+    }
+
+    return values;
 }
 
 }//namespace
@@ -130,6 +161,8 @@ const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
 const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
+SIMPLE_BENCHMARK(BubbleSort, VALUES6);
+
 SIMPLE_TEST(BubbleSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(BubbleSort, TestSAMPLE3, VALUES3, VALUES3);
@@ -137,6 +170,8 @@ SIMPLE_TEST(BubbleSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(BubbleSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
+
+SIMPLE_BENCHMARK(BubbleSort_Optimized, VALUES6);
 
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE2, VALUES2, VALUES2);
@@ -146,6 +181,8 @@ SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
+SIMPLE_BENCHMARK(BubbleSort_Recursive, VALUES6);
+
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
@@ -154,9 +191,21 @@ SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
+SIMPLE_BENCHMARK(testBubbleSort_SinglyList, VALUES6);
+
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+SIMPLE_BENCHMARK(BubbleSort_TwoStacks, VALUES6);
+
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE6, EXPECTED6, VALUES6);
