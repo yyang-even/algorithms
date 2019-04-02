@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include <forward_list>
+#include <stack>
 
 
 namespace {
@@ -109,11 +110,42 @@ auto BubbleSort_SinglyList(std::forward_list<int> values) {
             last = iter;
         }
     }
+
     return values;
 }
 auto testBubbleSort_SinglyList(const ArrayType &values) {
     auto sorted = BubbleSort_SinglyList({values.cbegin(), values.cend()});
     return ArrayType {sorted.cbegin(), sorted.cend()};
+}
+
+
+/** Bubble sort using two Stacks
+ *
+ * @reference   https://www.geeksforgeeks.org/bubble-sort-using-two-stacks/
+ */
+auto BubbleSort_TwoStacks(ArrayType values) {
+    using StackType = std::stack<ArrayType::value_type, ArrayType>;
+
+    StackType s1(values);
+    for (auto iter = values.rbegin(); iter != values.rend(); ++iter) {
+        StackType s2;
+        s2.push(std::move(s1.top()));
+        s1.pop();
+        while (not s1.empty()) {
+            if (s2.top() > s1.top()) {
+                std::swap(s1.top(), s2.top());
+            } else {
+                s2.push(std::move(s1.top()));
+                s1.pop();
+            }
+        }
+
+        *iter = std::move(s2.top());
+        s2.pop();
+        s1 = std::move(s2);
+    }
+
+    return values;
 }
 
 }//namespace
@@ -160,3 +192,11 @@ SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE6, EXPECTED6, VALUES6);
