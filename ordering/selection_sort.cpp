@@ -3,8 +3,7 @@
 
 namespace {
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+using ArrayType = std::vector<int>;
 
 /** Selection Sort
  *
@@ -16,14 +15,15 @@ using ArrayType = std::array<int, N>;
  *              https://www.geeksforgeeks.org/which-sorting-algorithm-makes-minimum-number-of-writes/
  * @reference   Program to sort an array of strings using Selection Sort
  *              https://www.geeksforgeeks.org/program-to-sort-an-array-of-strings-using-selection-sort/
+ * @reference   Recursive Selection Sort
+ *              https://www.geeksforgeeks.org/recursive-selection-sort/
  *
  * @complexity: O(n^2)
  */
 template <typename Container>
 auto SelectionSort(Container values) {
     for (typename Container::iterator smallest_iter, iter_j, iter_i = values.begin();
-         iter_i != values.end();
-         ++iter_i) {
+         iter_i != values.end(); ++iter_i) {
         for (iter_j = iter_i + 1, smallest_iter = iter_i; iter_j != values.end(); ++iter_j) {
             if (*iter_j < *smallest_iter) {
                 smallest_iter = iter_j;
@@ -49,16 +49,28 @@ auto SelectionSort_Concise(Container values) {
     return values;
 }
 
+
+void SelectionSort_Recursive(const ArrayType::iterator begin, const ArrayType::iterator end) {
+    if (begin != end) {
+        std::iter_swap(begin, std::min_element(begin, end));
+        SelectionSort_Recursive(std::next(begin), end);
+    }
+}
+auto SelectionSort_Recursive(ArrayType values) {
+    SelectionSort_Recursive(values.begin(), values.end());
+    return values;
+}
+
 }//namespace
 
 
-constexpr ArrayType<0> VALUES1 = {};
-constexpr ArrayType<1> VALUES2 = {1};
-constexpr ArrayType<2> VALUES3 = {1, 2};
-constexpr ArrayType<3> VALUES4 = {2, 3, 1};
-constexpr ArrayType<3> EXPECTED4 = {1, 2, 3};
-constexpr ArrayType<4> VALUES5 = {4, 3, 2, 1};
-constexpr ArrayType<4> EXPECTED5 = {1, 2, 3, 4};
+const ArrayType VALUES1 = {};
+const ArrayType VALUES2 = {1};
+const ArrayType VALUES3 = {1, 2};
+const ArrayType VALUES4 = {2, 3, 1};
+const ArrayType EXPECTED4 = {1, 2, 3};
+const ArrayType VALUES5 = {4, 3, 2, 1};
+const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
 
 SIMPLE_BENCHMARK(SelectionSort, VALUES5);
@@ -92,3 +104,12 @@ SIMPLE_TEST(SelectionSort, TestSAMPLE21, VALUES21, VALUES21);
 SIMPLE_TEST(SelectionSort, TestSAMPLE22, VALUES22, VALUES22);
 SIMPLE_TEST(SelectionSort, TestSAMPLE23, EXPECTED23, VALUES23);
 SIMPLE_TEST(SelectionSort, TestSAMPLE24, EXPECTED24, VALUES24);
+
+
+SIMPLE_BENCHMARK(SelectionSort_Recursive, VALUES5);
+
+SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
