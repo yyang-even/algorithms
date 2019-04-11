@@ -204,3 +204,8 @@
 * https://www.geeksforgeeks.org/bubble-sort-using-two-stacks/
 * https://www.geeksforgeeks.org/selection-sort/
 * https://www.geeksforgeeks.org/c-program-for-selection-sort/
+* https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+* https://www.geeksforgeeks.org/recursive-programs-to-find-minimum-and-maximum-elements-of-array/
+* https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-3-worst-case-linear-time/
+* https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time/
+* https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time-2/
