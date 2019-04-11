@@ -17,6 +17,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/program-to-sort-an-array-of-strings-using-selection-sort/
  * @reference   Recursive Selection Sort
  *              https://www.geeksforgeeks.org/recursive-selection-sort/
+ * @reference   C Program for Selection Sort
+ *              https://www.geeksforgeeks.org/c-program-for-selection-sort/
  *
  * @complexity: O(n^2)
  */
