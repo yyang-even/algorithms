@@ -9,11 +9,6 @@
 namespace {
 using ArrayType = std::vector<int>;
 
-inline bool isThereMoreThanOne(const ArrayType::const_iterator cbegin,
-                               const ArrayType::const_iterator cend) {
-    return cbegin != cend and std::next(cbegin) != cend;
-}
-
 
 /** QuickSort
  *
@@ -150,7 +145,7 @@ auto QuickSort_Iterative(ArrayType values) {
                 range_stack.emplace(range.first, mid);
             }
             const auto mid_plus_one = mid + 1;
-            if (isThereMoreThanOne(mid_plus_one, range.second)) {
+            if (isThereMoreThanOneElements(mid_plus_one, range.second)) {
                 range_stack.emplace(mid_plus_one, range.second);
             }
         }
