@@ -18,6 +18,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/time-complexity-insertion-sort-inversions/
  * @reference   Insertion sort using C++ STL
  *              https://www.geeksforgeeks.org/insertion-sort-using-c-stl/
+ * @reference   C Program for Insertion Sort
+ *              https://www.geeksforgeeks.org/c-program-for-insertion-sort/
  *
  * @complexity: O(n^2)
  */
@@ -77,8 +79,8 @@ auto InsertionSort_Recursive(ArrayType values) {
  *
  * @complexity: O(n^2)
  */
-auto BinarySearch(const int target, const ArrayType::const_iterator begin,
-                  const ArrayType::size_type n) {
+auto UpperBound(const int target, const ArrayType::const_iterator begin,
+                const ArrayType::size_type n) {
     if (n > 1) {
         const auto middle = n >> 1;
         const auto middle_value = *(begin + middle);
@@ -86,9 +88,9 @@ auto BinarySearch(const int target, const ArrayType::const_iterator begin,
         if (target == middle_value) {
             return begin + middle + 1;
         } else if (target < middle_value) {
-            return BinarySearch(target, begin, middle);
+            return UpperBound(target, begin, middle);
         } else {
-            return BinarySearch(target, begin + middle, n - middle);
+            return UpperBound(target, begin + middle, n - middle);
         }
     } else {
         return (target > *begin) ? begin + 1 : begin;
@@ -99,7 +101,7 @@ auto BinaryInsertionSort(ArrayType values) {
         auto key_value = std::move(values[j]);
         ArrayType::difference_type i = j - 1;
 
-        const auto location = BinarySearch(key_value, values.cbegin(), j) - values.cbegin();
+        const auto location = UpperBound(key_value, values.cbegin(), j) - values.cbegin();
         while (i >= location) {
             values[i + 1] = std::move(values[i]);
             --i;
