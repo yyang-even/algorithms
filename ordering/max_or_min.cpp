@@ -19,6 +19,8 @@ using ArrayType = std::vector<unsigned>;
  *              https://www.geeksforgeeks.org/c-program-to-find-the-largest-number-among-three-numbers/
  * @reference   Recursive Programs to find Minimum and Maximum elements of array
  *              https://www.geeksforgeeks.org/recursive-programs-to-find-minimum-and-maximum-elements-of-array/
+ * @reference   Find smallest and largest elements in singly linked list
+ *              https://www.geeksforgeeks.org/find-smallest-largest-elements-singly-linked-list/
  *
  * @reference   Program to Find the Largest Number using Ternary Operator
  *              https://www.geeksforgeeks.org/program-to-find-the-largest-number-using-ternary-operator/
