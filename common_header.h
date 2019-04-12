@@ -44,6 +44,11 @@ inline constexpr auto Bits_Number() {
     return sizeof(T) * CHAR_BIT;
 }
 
+template <typename Iterator>
+inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
+    return cbegin != cend and std::next(cbegin) != cend;
+}
+
 // Macros
 #ifdef NONIUS_RUNNER
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \

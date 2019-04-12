@@ -63,6 +63,25 @@ auto SelectionSort_Recursive(ArrayType values) {
     return values;
 }
 
+
+/** A sorting algorithm that slightly improves on selection sort
+ *
+ * @reference   https://www.geeksforgeeks.org/sorting-algorithm-slightly-improves-selection-sort/
+ */
+auto SelectionSort_MinMax(ArrayType values) {
+    if (not values.empty()) {
+        auto left = values.begin();
+        auto right = values.end();
+        for (; isThereMoreThanOneElements(left, right); ++left) {
+            const auto min_max_pair = std::minmax_element(left, right);
+            std::iter_swap(min_max_pair.first, left);
+            std::iter_swap(min_max_pair.second == left ? min_max_pair.first : min_max_pair.second, --right);
+        }
+    }
+
+    return values;
+}
+
 }//namespace
 
 
@@ -115,3 +134,12 @@ SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(SelectionSort_MinMax, VALUES5);
+
+SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE5, EXPECTED5, VALUES5);
