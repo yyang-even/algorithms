@@ -9,11 +9,6 @@
 namespace {
 using ArrayType = std::vector<int>;
 
-inline bool isThereMoreThanOne(const ArrayType::const_iterator cbegin,
-                               const ArrayType::const_iterator cend) {
-    return cbegin != cend and std::next(cbegin) != cend;
-}
-
 
 /** QuickSort
  *
@@ -119,7 +114,7 @@ auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator 
 template <typename PartitionFunc>
 void QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
                const PartitionFunc partition) {
-    if (begin != end and std::next(begin) != end) {
+    if (isThereMoreThanOneElements(begin, end)) {
         const auto mid = partition(begin, end);
         QuickSort(begin, mid, partition);
         QuickSort(std::next(mid), end, partition);
@@ -150,7 +145,7 @@ auto QuickSort_Iterative(ArrayType values) {
                 range_stack.emplace(range.first, mid);
             }
             const auto mid_plus_one = mid + 1;
-            if (isThereMoreThanOne(mid_plus_one, range.second)) {
+            if (isThereMoreThanOneElements(mid_plus_one, range.second)) {
                 range_stack.emplace(mid_plus_one, range.second);
             }
         }
@@ -246,7 +241,7 @@ auto partitionDoublyLinkedList(std::list<int> &values,
 void QuickSortDoublyLinkedList(std::list<int> &values,
                                std::list<int>::const_iterator begin,
                                const std::list<int>::const_iterator end) {
-    if (begin != end and std::next(begin) != end) {
+    if (isThereMoreThanOneElements(begin, end)) {
         auto mid = partitionDoublyLinkedList(values, begin, end);
         QuickSortDoublyLinkedList(values, begin, mid);
         QuickSortDoublyLinkedList(values, ++mid, end);
@@ -287,7 +282,7 @@ auto partition_3Way(const ArrayType::iterator begin, const ArrayType::iterator e
     return std::make_pair(smallers_end, greaters_begin);
 }
 void QuickSort_3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
-    if (begin != end and std::next(begin) != end) {
+    if (isThereMoreThanOneElements(begin, end)) {
         const auto mid_pair = partition_3Way(begin, end);
         QuickSort_3Way(begin, mid_pair.first);
         QuickSort_3Way(mid_pair.second, end);
@@ -325,7 +320,7 @@ auto partition_DualPivots(const ArrayType::iterator begin, const ArrayType::iter
     return std::make_pair(smallers_end, greaters_begin);
 }
 void QuickSort_DualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
-    if (begin != end and std::next(begin) != end) {
+    if (isThereMoreThanOneElements(begin, end)) {
         const auto mid_pair = partition_DualPivots(begin, end);
         QuickSort_DualPivots(begin, mid_pair.first);
         QuickSort_DualPivots(mid_pair.first, mid_pair.second);
