@@ -5,8 +5,8 @@
 /**
  * @highlight   The use of std::forward_list::cbefore_begin().
  */
-auto SortedInsertSTL(std::forward_list<int> sorted_list,
-                     const std::forward_list<int>::value_type n) {
+auto SortedInsert_STL(std::forward_list<int> sorted_list,
+                      const std::forward_list<int>::value_type n) {
     assert(std::is_sorted(sorted_list.cbegin(), sorted_list.cend()));
 
     auto current = sorted_list.cbefore_begin();
