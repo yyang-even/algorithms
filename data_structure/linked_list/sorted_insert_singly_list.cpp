@@ -2,6 +2,9 @@
 
 #include "sorted_insert_singly_list.h"
 
+
+namespace {
+
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 auto testSortedInsert(std::vector<int> array) {
@@ -17,7 +20,13 @@ auto testSortedInsert(std::vector<int> array) {
     return list.CopyToArray();
 }
 
+}//namespace
+
+
 const std::vector<int> EXPECTED_SORTED_INSERT_ARRAY = { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15, 18};
+
+
+SIMPLE_BENCHMARK(testSortedInsert, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
 
@@ -29,7 +38,10 @@ const std::forward_list<int> EXPECTED3 = {5, 8};
 const std::forward_list<int> SAMPLE_LIST = {EXPECTED_SORTED_INSERT_ARRAY.cbegin(), EXPECTED_SORTED_INSERT_ARRAY.cend()};
 const std::forward_list<int> EXPECTED4 = { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 18};
 
-SIMPLE_TEST(SortedInsertSTL, TestSample1, SINGLE_ITEM_LIST, EMPTY_LIST, SINGLE_ITEM_LIST.front());
-SIMPLE_TEST(SortedInsertSTL, TestSample2, EXPECTED2, SINGLE_ITEM_LIST, EXPECTED2.front());
-SIMPLE_TEST(SortedInsertSTL, TestSample3, EXPECTED3, SINGLE_ITEM_LIST, 8);
-SIMPLE_TEST(SortedInsertSTL, TestSample4, EXPECTED4, SAMPLE_LIST, 10);
+
+SIMPLE_BENCHMARK(SortedInsert_STL, SAMPLE_LIST, 10);
+
+SIMPLE_TEST(SortedInsert_STL, TestSample1, SINGLE_ITEM_LIST, EMPTY_LIST, SINGLE_ITEM_LIST.front());
+SIMPLE_TEST(SortedInsert_STL, TestSample2, EXPECTED2, SINGLE_ITEM_LIST, EXPECTED2.front());
+SIMPLE_TEST(SortedInsert_STL, TestSample3, EXPECTED3, SINGLE_ITEM_LIST, 8);
+SIMPLE_TEST(SortedInsert_STL, TestSample4, EXPECTED4, SAMPLE_LIST, 10);

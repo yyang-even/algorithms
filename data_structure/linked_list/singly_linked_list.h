@@ -7,21 +7,21 @@
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 10.2.
  *
- *              Linked List | Set 1 (Introduction)
+ * @reference   Linked List | Set 1 (Introduction)
  *              https://www.geeksforgeeks.org/linked-list-set-1-introduction/
- *              Linked List | Set 2 (Inserting a node)
+ * @reference   Linked List | Set 2 (Inserting a node)
  *              https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
- *              How to write C functions that modify head pointer of a Linked List?
+ * @reference   How to write C functions that modify head pointer of a Linked List?
  *              https://www.geeksforgeeks.org/how-to-write-functions-that-modify-the-head-pointer-of-a-linked-list/
- *              Linked List | Set 3 (Deleting a node)
+ * @reference   Linked List | Set 3 (Deleting a node)
  *              https://www.geeksforgeeks.org/linked-list-set-3-deleting-node/
- *              Delete a Linked List node at a given position
+ * @reference   Delete a Linked List node at a given position
  *              https://www.geeksforgeeks.org/delete-a-linked-list-node-at-a-given-position/
- *              Linked List vs Array
+ * @reference   Linked List vs Array
  *              https://www.geeksforgeeks.org/linked-list-vs-array/
- *              Search an element in a Linked List (Iterative and Recursive)
+ * @reference   Search an element in a Linked List (Iterative and Recursive)
  *              https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
- *              Find Length of a Linked List (Iterative and Recursive)
+ * @reference   Find Length of a Linked List (Iterative and Recursive)
  *              https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
  */
 class SinglyLinkedList {
@@ -41,8 +41,8 @@ protected:
     SinglyListNode::PointerType tail;
     std::size_t size = 0;
 
-    void deleteNonhead(SinglyListNode::PointerType previous,
-                       const std::function<bool(const SinglyListNode &)> is_same_node) {
+    void delete_Nonhead(SinglyListNode::PointerType previous,
+                        const std::function<bool(const SinglyListNode &)> is_same_node) {
         assert(previous);
 
         while (previous->next) {
@@ -63,22 +63,22 @@ protected:
             if (is_same_node(*head)) {
                 PopHead();
             } else {
-                deleteNonhead(head, is_same_node);
+                delete_Nonhead(head, is_same_node);
             }
         }
     }
 
-    const SinglyListNode::PointerType searchRecursiveHelper(const SinglyListNode::PointerType node,
+    const SinglyListNode::PointerType search_RecursiveHelper(const SinglyListNode::PointerType node,
             const SinglyListNode::ValueType key) const {
-        return (not node or node->value == key) ? node : searchRecursiveHelper(node->next, key);
+        return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 
-    std::size_t countSizeRecursiveHelper(const SinglyListNode::PointerType node) const {
-        return node ? countSizeRecursiveHelper(node->next) + 1 : 0;
+    std::size_t countSize_RecursiveHelper(const SinglyListNode::PointerType node) const {
+        return node ? countSize_RecursiveHelper(node->next) + 1 : 0;
     }
 
-    void reverseRecursiveHelper(const SinglyListNode::PointerType current,
-                                const SinglyListNode::PointerType previous) {
+    void reverse_RecursiveHelper(const SinglyListNode::PointerType current,
+                                 const SinglyListNode::PointerType previous) {
         if (not current->next) {
             head = current;
             current->next = previous;
@@ -87,18 +87,18 @@ protected:
 
         const auto next = current->next;
         current->next = previous;
-        reverseRecursiveHelper(next, current);
+        reverse_RecursiveHelper(next, current);
     }
 
-    SinglyListNode::ValueType getNRecursiveHelper(const SinglyListNode::PointerType node,
+    SinglyListNode::ValueType getN_RecursiveHelper(const SinglyListNode::PointerType node,
             const std::size_t index) const {
-        return index == 0 ? node->value : getNRecursiveHelper(node->next, index - 1);
+        return index == 0 ? node->value : getN_RecursiveHelper(node->next, index - 1);
     }
 
-    void getReverseNRecursiveHelper(const SinglyListNode::PointerType node, const std::size_t index,
-                                    std::size_t &i, SinglyListNode::ValueType &output) const {
+    void getReverseN_RecursiveHelper(const SinglyListNode::PointerType node, const std::size_t index,
+                                     std::size_t &i, SinglyListNode::ValueType &output) const {
         if (node) {
-            getReverseNRecursiveHelper(node->next, index, i, output);
+            getReverseN_RecursiveHelper(node->next, index, i, output);
 
             if (i++ == index) {
                 output = node->value;
@@ -164,7 +164,7 @@ public:
      * Given a singly linked list, a position and an element, the task is to write
      * a program to insert that element in a linked list at a given position.
      */
-    void InsertAtSimple(std::size_t position, const SinglyListNode::ValueType v) {
+    void InsertAt_Simple(std::size_t position, const SinglyListNode::ValueType v) {
         ++size;
         assert(position and position <= size);
 
@@ -185,7 +185,7 @@ public:
         }
     }
 
-    void InsertAtClever(int position, const SinglyListNode::ValueType v) {
+    void InsertAt_Clever(std::size_t position, const SinglyListNode::ValueType v) {
         ++size;
         assert(position and position <= size);
 
@@ -229,7 +229,7 @@ public:
     }
 
 
-    auto SearchIterative(const SinglyListNode::ValueType key) const {
+    auto Search_Iterative(const SinglyListNode::ValueType key) const {
         auto iter = head;
         while (iter and iter->value != key) {
             iter = iter->next;
@@ -237,8 +237,8 @@ public:
         return iter;
     }
 
-    auto SearchRecursive(const SinglyListNode::ValueType key) const {
-        return searchRecursiveHelper(head, key);
+    auto Search_Recursive(const SinglyListNode::ValueType key) const {
+        return search_RecursiveHelper(head, key);
     }
 
     auto CopyToArray() const {
@@ -282,7 +282,7 @@ public:
      * Given a pointer to a node to be deleted, delete the node.
      * Note that we don’t have pointer to head node.
      */
-    static void DeleteNodeWithoutHead(SinglyListNode &to_be_deleted, std::size_t &size) {
+    static void DeleteNode_WithoutHead(SinglyListNode &to_be_deleted, std::size_t &size) {
         assert(to_be_deleted.next);
 
         to_be_deleted = *(to_be_deleted.next);
@@ -301,12 +301,12 @@ public:
      *
      * You may assume that the Linked List never becomes empty.
      */
-    void DeleteNodeConstrained(const SinglyListNode &target_node) {
+    void DeleteNode_Constrained(const SinglyListNode &target_node) {
         if (head) {
             if (head.get() == &target_node) {
-                DeleteNodeWithoutHead(*head, size);
+                DeleteNode_WithoutHead(*head, size);
             } else {
-                deleteNonhead(head, [&target_node](const SinglyListNode & node) {
+                delete_Nonhead(head, [&target_node](const SinglyListNode & node) {
                     return &node == &target_node;
                 });
             }
@@ -320,13 +320,26 @@ public:
      *
      * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one by one.
      * Main point here is not to access next of the current pointer if current pointer is deleted.
+     *
+     * @reference   Delete a linked list using recursion
+     *              https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
      */
     void DeleteAllOneByOne() {
         head = nullptr;
+        size = 0;
+    }
+    void DeleteAllOneByOne_Recursive() {
+        if (head != tail) {
+            head = head->next;
+            DeleteAllOneByOne_Recursive();
+        } else {
+            head = tail = nullptr;
+            size = 0;
+        }
     }
 
 
-    auto CountSizeIterative() const {
+    auto CountSize_Iterative() const {
         std::size_t size = 0;
         auto iter = head;
         while (iter) {
@@ -337,8 +350,8 @@ public:
         return size;
     }
 
-    auto CountSizeRecursive() const {
-        return countSizeRecursiveHelper(head);
+    auto CountSize_Recursive() const {
+        return countSize_RecursiveHelper(head);
     }
 
 
@@ -359,7 +372,7 @@ public:
      *
      * @complexity  O(n)
      */
-    void ReverseIterative() {
+    void Reverse_Iterative() {
         auto current = head;
         SinglyListNode::PointerType previous = nullptr;
 
@@ -372,12 +385,12 @@ public:
         head = previous;
     }
 
-    void ReverseRecursive() {
+    void Reverse_Recursive() {
         if (not head) {
             return;
         }
 
-        reverseRecursiveHelper(head, nullptr);
+        reverse_RecursiveHelper(head, nullptr);
     }
 
     /** Write a function to get Nth node in a Linked List
@@ -387,7 +400,7 @@ public:
      * Write a GetNth() function that takes a linked list and an integer index
      * and returns the data value stored in the node at that index position.
      */
-    auto GetNIterative(std::size_t index) const {
+    auto GetN_Iterative(std::size_t index) const {
         assert(index < size);
 
         auto target = head;
@@ -398,9 +411,9 @@ public:
         return target->value;
     }
 
-    auto GetNRecursive(const std::size_t index) const {
+    auto GetN_Recursive(const std::size_t index) const {
         assert(index < size);
-        return getNRecursiveHelper(head, index);
+        return getN_RecursiveHelper(head, index);
     }
 
     /** Program for n’th node from the end of a Linked List
@@ -410,20 +423,20 @@ public:
      * Given a Linked List and a number n, write a function that returns the value
      * at the n’th node from end of the Linked List.
      */
-    auto GetReverseNIterative(const std::size_t index) const {
-        return GetNIterative(size - index - 1);
+    auto GetReverseN_Iterative(const std::size_t index) const {
+        return GetN_Iterative(size - index - 1);
     }
 
-    auto GetReverseNRecursive(const std::size_t index) const {
+    auto GetReverseN_Recursive(const std::size_t index) const {
         assert(index < size);
 
         std::size_t i = 0;
         SinglyListNode::ValueType output{};
-        getReverseNRecursiveHelper(head, index, i, output);
+        getReverseN_RecursiveHelper(head, index, i, output);
         return output;
     }
 
-    auto GetReverseNTwoPointers(std::size_t index) const {
+    auto GetReverseN_TwoPointers(std::size_t index) const {
         assert(index < size);
 
         auto target = head;
@@ -452,11 +465,11 @@ public:
      * to print second middle element. For example, if given linked list is
      * 1->2->3->4->5->6 then output should be 4.
      */
-    auto GetMidSize() const {
-        return GetNIterative(size / 2);
+    auto GetMid_Size() const {
+        return GetN_Iterative(size / 2);
     }
 
-    auto GetMidTwoPointers() const {
+    auto GetMid_TwoPointers() const {
         assert(head);
 
         auto fast_ptr = head;
@@ -470,7 +483,7 @@ public:
         return slow_ptr->value;
     }
 
-    auto GetMidOdd() const {
+    auto GetMid_Odd() const {
         assert(head);
 
         auto count = 0;
