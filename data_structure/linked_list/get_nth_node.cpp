@@ -3,22 +3,22 @@
 
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
-auto testGetNIterative(const std::vector<int> &array, const std::size_t index) {
+auto testGetN_Iterative(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
-    return list.GetNIterative(index);
+    return list.GetN_Iterative(index);
 }
 
-auto testGetNRecursive(const std::vector<int> &array, const std::size_t index) {
+auto testGetN_Recursive(const std::vector<int> &array, const std::size_t index) {
     SinglyLinkedList list {array};
-    return list.GetNRecursive(index);
+    return list.GetN_Recursive(index);
 }
 
-SIMPLE_TEST(testGetNIterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetNIterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+SIMPLE_TEST(testGetN_Iterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetN_Iterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetNIterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+SIMPLE_TEST(testGetN_Iterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
 
-SIMPLE_TEST(testGetNRecursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
-SIMPLE_TEST(testGetNRecursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
+SIMPLE_TEST(testGetN_Recursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
+SIMPLE_TEST(testGetN_Recursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
             SAMPLE_ARRAY.size() - 1);
-SIMPLE_TEST(testGetNRecursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
+SIMPLE_TEST(testGetN_Recursive, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
