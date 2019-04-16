@@ -25,7 +25,7 @@
  *              https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
  */
 class SinglyLinkedList {
-protected:
+public:
     struct SinglyListNode {
         using ValueType = int;
         using PointerType = std::shared_ptr<SinglyListNode>;
@@ -33,10 +33,20 @@ protected:
         ValueType value;
         PointerType next;
 
-        SinglyListNode() = default;
-        SinglyListNode(const ValueType v): value(v) {}
+        static std::size_t node_alive;
+
+        SinglyListNode() {
+            ++node_alive;
+        }
+        SinglyListNode(const ValueType v): value(v) {
+            ++node_alive;
+        }
+        ~SinglyListNode() {
+            --node_alive;
+        }
     };
 
+protected:
     SinglyListNode::PointerType head;
     SinglyListNode::PointerType tail;
     std::size_t size = 0;
@@ -325,7 +335,7 @@ public:
      *              https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
      */
     void DeleteAllOneByOne() {
-        head = nullptr;
+        head = tail = nullptr;
         size = 0;
     }
     void DeleteAllOneByOne_Recursive() {
@@ -501,3 +511,5 @@ public:
         return mid->value;
     }
 };
+
+std::size_t SinglyLinkedList::SinglyListNode::node_alive = 0;

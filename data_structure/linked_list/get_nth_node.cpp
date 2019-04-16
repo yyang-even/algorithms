@@ -18,7 +18,7 @@ auto testGetN_Recursive(const std::vector<int> &array, const std::size_t index) 
 }//namespace
 
 
-SIMPLE_BENCHMARK(testGetN_Iterative, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetN_Iterative, SAMPLE_ARRAY, SAMPLE_ARRAY.size() - 1);
 
 SIMPLE_TEST(testGetN_Iterative, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
 SIMPLE_TEST(testGetN_Iterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,
@@ -26,7 +26,7 @@ SIMPLE_TEST(testGetN_Iterative, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size()
 SIMPLE_TEST(testGetN_Iterative, TestSample, SAMPLE_ARRAY[5], SAMPLE_ARRAY, 5);
 
 
-SIMPLE_BENCHMARK(testGetN_Recursive, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetN_Recursive, SAMPLE_ARRAY, SAMPLE_ARRAY.size() - 1);
 
 SIMPLE_TEST(testGetN_Recursive, TestSampleHead, SAMPLE_ARRAY[0], SAMPLE_ARRAY, 0);
 SIMPLE_TEST(testGetN_Recursive, TestSampleTail, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1], SAMPLE_ARRAY,

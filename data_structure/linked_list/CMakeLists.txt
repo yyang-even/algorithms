@@ -1,5 +1,10 @@
+CompileBenchmarkExe(count_size_of_singly_list)
 CompileTestExe(count_size_of_singly_list)
 
+CompileBenchmarkExe(delete_all_singly_list)
+CompileTestExe(delete_all_singly_list)
+
+CompileBenchmarkExe(get_nth_node)
 CompileTestExe(get_nth_node)
 
 CompileBenchmarkExe(merge_k_sorted_singly_list)
@@ -8,14 +13,19 @@ CompileTestExe(merge_k_sorted_singly_list)
 CompileBenchmarkExe(merge_two_sorted_singly_list)
 CompileTestExe(merge_two_sorted_singly_list)
 
+CompileBenchmarkExe(middle_of_singly_linked_list)
 CompileTestExe(middle_of_singly_linked_list)
 
+CompileBenchmarkExe(nth_node_from_the_end)
 CompileTestExe(nth_node_from_the_end)
 
 CompileBenchmarkExe(random_node_from_singly_linked_list)
 
+CompileBenchmarkExe(reverse_singly_linked_list)
 CompileTestExe(reverse_singly_linked_list)
 
+CompileBenchmarkExe(singly_linked_list)
 CompileTestExe(singly_linked_list)
 
+CompileBenchmarkExe(sorted_insert_singly_list)
 CompileTestExe(sorted_insert_singly_list)
