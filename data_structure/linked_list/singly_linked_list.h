@@ -116,6 +116,22 @@ protected:
         }
     }
 
+    /** Given only a pointer/reference to a node to be deleted in a singly linked list, how do you delete it?
+     *
+     * @reference   https://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+     * @reference   https://www.geeksforgeeks.org/in-a-linked-list-given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+     * @reference   Delete a Node from linked list without head pointer
+     *              https://www.geeksforgeeks.org/delete-a-node-from-linked-list-without-head-pointer/
+     *
+     * Given a pointer to a node to be deleted, delete the node.
+     * Note that we don’t have pointer to head node.
+     */
+    static void deleteNode_WithoutHead(SinglyListNode &to_be_deleted, std::size_t &size) {
+        assert(to_be_deleted.next);
+
+        to_be_deleted = *(to_be_deleted.next);
+        --size;
+    }
 public:
     using ValueType = SinglyListNode::ValueType;
 
@@ -285,19 +301,6 @@ public:
         });
     }
 
-    /** Given only a pointer/reference to a node to be deleted in a singly linked list, how do you delete it?
-     *
-     * @reference   https://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
-     *
-     * Given a pointer to a node to be deleted, delete the node.
-     * Note that we don’t have pointer to head node.
-     */
-    static void DeleteNode_WithoutHead(SinglyListNode &to_be_deleted, std::size_t &size) {
-        assert(to_be_deleted.next);
-
-        to_be_deleted = *(to_be_deleted.next);
-        --size;
-    }
     /** Delete a given node in Linked List under given constraints
      *
      * @reference   https://www.geeksforgeeks.org/delete-a-given-node-in-linked-list-under-given-constraints/
@@ -314,7 +317,7 @@ public:
     void DeleteNode_Constrained(const SinglyListNode &target_node) {
         if (head) {
             if (head.get() == &target_node) {
-                DeleteNode_WithoutHead(*head, size);
+                deleteNode_WithoutHead(*head, size);
             } else {
                 delete_Nonhead(head, [&target_node](const SinglyListNode & node) {
                     return &node == &target_node;

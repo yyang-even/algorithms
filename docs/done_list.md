@@ -211,3 +211,12 @@
 * https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time-2/
 * https://www.geeksforgeeks.org/c-program-for-insertion-sort/
 * https://www.geeksforgeeks.org/sorting-algorithm-slightly-improves-selection-sort/
+* https://www.geeksforgeeks.org/c-program-for-sorting-dates-using-selection-sort/
+* https://www.geeksforgeeks.org/find-smallest-largest-elements-singly-linked-list/
+* https://www.geeksforgeeks.org/write-a-function-to-delete-a-linked-list/
+* https://www.geeksforgeeks.org/delete-a-linked-list-node-at-a-given-position/
+* https://www.geeksforgeeks.org/delete-a-given-node-in-linked-list-under-given-constraints/
+* https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
+* https://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+* https://www.geeksforgeeks.org/delete-a-node-from-linked-list-without-head-pointer/
+* https://www.geeksforgeeks.org/in-a-linked-list-given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/

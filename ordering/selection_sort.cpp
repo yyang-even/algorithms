@@ -19,6 +19,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/recursive-selection-sort/
  * @reference   C Program for Selection Sort
  *              https://www.geeksforgeeks.org/c-program-for-selection-sort/
+ * @reference   C++ program for Sorting Dates using Selection Sort
+ *              https://www.geeksforgeeks.org/c-program-for-sorting-dates-using-selection-sort/
  *
  * @complexity: O(n^2)
  */
@@ -81,6 +83,17 @@ auto SelectionSort_MinMax(ArrayType values) {
 
     return values;
 }
+
+
+/** Iterative selection sort for linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-selection-sort-for-linked-list/
+ */
+/*auto SelectionSort_SinglyList(std::forward_list<int> values) {
+    for () {
+
+    }
+}*/
 
 }//namespace
 
