@@ -122,7 +122,7 @@ auto MergeSortO1(ArrayType values) {
  */
 void MergeSortSinglyListHelper(std::forward_list<int> &l) {
     if (not l.empty() and std::next(l.cbegin()) != l.cend()) {
-        const auto before_mid = GetBeforeMiddleTwoPointersSTL(l.cbefore_begin(), l.cend());
+        const auto before_mid = GetBeforeMiddle_TwoPointersSTL(l.cbefore_begin(), l.cend());
         std::forward_list<int> right;
         right.splice_after(right.cbefore_begin(), l, before_mid, l.cend());
         MergeSortSinglyListHelper(l);

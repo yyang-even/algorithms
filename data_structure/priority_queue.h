@@ -69,7 +69,7 @@ public:
     }
 
     void Push(const ListType::value_type v) {
-        SortedInsertSTL(sorted_list, v);
+        SortedInsert_STL(sorted_list, v);
     }
 
     void Pop() {
