@@ -3,6 +3,9 @@
 #include "is_prime.h"
 #include "mathematics/arithmetics/factorial/factorial.h"
 
+
+namespace {
+
 /** Primality Test
  *
  * @reference   Prime Numbers
@@ -50,7 +53,7 @@
  * (or non-prime), then it may return true or false, but the probability of producing incorrect
  * result for composite is low and can be reduced by doing more iterations.
  */
-INT_BOOL IsPrimeFermet(const unsigned n) {
+INT_BOOL IsPrime_Fermet(const unsigned n) {
     if (n <= 1u or n == 4u) {
         return false;
     }
@@ -98,7 +101,7 @@ bool millerTest(unsigned d, const unsigned n) {
 
     return false;
 }
-INT_BOOL IsPrimeMillerRabin(const unsigned n) {
+INT_BOOL IsPrime_MillerRabin(const unsigned n) {
     if (n <= 1u) {
         return false;
     }
@@ -180,7 +183,7 @@ int calculateJacobian(long long a, long long n) {
 
     return 0;
 }
-INT_BOOL IsPrimeSolovayStrassen(long long n) {
+INT_BOOL IsPrime_SolovayStrassen(long long n) {
     if (n <= 1u) {
         return false;
     }
@@ -209,7 +212,7 @@ INT_BOOL IsPrimeSolovayStrassen(long long n) {
  * Lucas-Lehmer series is used to check primality of prime numbers of
  * the form n = 2^p – 1 where p is an integer.
  */
-INT_BOOL IsPrimeLucasLehmerSeries(unsigned long long p) {
+INT_BOOL IsPrime_LucasLehmerSeries(unsigned long long p) {
     const unsigned long long n = pow(2, p) - 1;
 
     auto i = 4 % n;
@@ -221,12 +224,12 @@ INT_BOOL IsPrimeLucasLehmerSeries(unsigned long long p) {
 }
 
 
-INT_BOOL IsPrimeWilson(const unsigned p) {
-    return p != 4 and (FactorialIterative(p >> 1) % p);
+INT_BOOL IsPrime_Wilson(const unsigned p) {
+    return p != 4 and (Factorial_Iterative(p >> 1) % p);
 }
 
 
-INT_BOOL IsPrimeRecursive(const unsigned n, const unsigned i = 2) {
+INT_BOOL IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
     if (n < 2) {
         return false;
     }
@@ -240,50 +243,52 @@ INT_BOOL IsPrimeRecursive(const unsigned n, const unsigned i = 2) {
         return true;
     }
 
-    return IsPrimeRecursive(n, i + 1);
+    return IsPrime_Recursive(n, i + 1);
 }
 
-
-SIMPLE_BENCHMARK(IsPrimeOptimizedSchoolMethod, 18);
-
-SIMPLE_TEST(IsPrimeOptimizedSchoolMethod, TestSample1, FALSE, 12);
-SIMPLE_TEST(IsPrimeOptimizedSchoolMethod, TestSample2, FALSE, 15);
-SIMPLE_TEST(IsPrimeOptimizedSchoolMethod, TestSample3, FALSE, 1);
-SIMPLE_TEST(IsPrimeOptimizedSchoolMethod, TestSample4, TRUE, 11);
+}//namespace
 
 
-SIMPLE_BENCHMARK(IsPrimeFermet, 11);
+SIMPLE_BENCHMARK(IsPrime_OptimizedSchoolMethod, 18);
 
-SIMPLE_TEST(IsPrimeFermet, TestSample1, TRUE, 11);
-
-
-SIMPLE_BENCHMARK(IsPrimeMillerRabin, 11);
-
-SIMPLE_TEST(IsPrimeMillerRabin, TestSample1, TRUE, 11);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample1, FALSE, 12);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample2, FALSE, 15);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample3, FALSE, 1);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample4, TRUE, 11);
 
 
-SIMPLE_BENCHMARK(IsPrimeSolovayStrassen, 11);
+SIMPLE_BENCHMARK(IsPrime_Fermet, 11);
 
-SIMPLE_TEST(IsPrimeSolovayStrassen, TestSample1, TRUE, 11);
-
-
-SIMPLE_BENCHMARK(IsPrimeLucasLehmerSeries, 7);
-
-SIMPLE_TEST(IsPrimeLucasLehmerSeries, TestSample1, TRUE, 7);
+SIMPLE_TEST(IsPrime_Fermet, TestSample1, TRUE, 11);
 
 
-SIMPLE_BENCHMARK(IsPrimeWilson, 11);
+SIMPLE_BENCHMARK(IsPrime_MillerRabin, 11);
 
-SIMPLE_TEST(IsPrimeWilson, TestSample1, TRUE, 11);
-SIMPLE_TEST(IsPrimeWilson, TestSample2, TRUE, 5);
-SIMPLE_TEST(IsPrimeWilson, TestSample3, TRUE, 7);
-SIMPLE_TEST(IsPrimeWilson, TestSample4, FALSE, 4);
-SIMPLE_TEST(IsPrimeWilson, TestSample5, TRUE, 127);
+SIMPLE_TEST(IsPrime_MillerRabin, TestSample1, TRUE, 11);
 
 
-SIMPLE_BENCHMARK(IsPrimeRecursive, 18);
+SIMPLE_BENCHMARK(IsPrime_SolovayStrassen, 11);
 
-SIMPLE_TEST(IsPrimeRecursive, TestSample1, FALSE, 12);
-SIMPLE_TEST(IsPrimeRecursive, TestSample2, FALSE, 15);
-SIMPLE_TEST(IsPrimeRecursive, TestSample3, FALSE, 1);
-SIMPLE_TEST(IsPrimeRecursive, TestSample4, TRUE, 11);
+SIMPLE_TEST(IsPrime_SolovayStrassen, TestSample1, TRUE, 11);
+
+
+SIMPLE_BENCHMARK(IsPrime_LucasLehmerSeries, 7);
+
+SIMPLE_TEST(IsPrime_LucasLehmerSeries, TestSample1, TRUE, 7);
+
+
+SIMPLE_BENCHMARK(IsPrime_Wilson, 11);
+
+SIMPLE_TEST(IsPrime_Wilson, TestSample1, TRUE, 11);
+SIMPLE_TEST(IsPrime_Wilson, TestSample2, TRUE, 5);
+SIMPLE_TEST(IsPrime_Wilson, TestSample3, TRUE, 7);
+SIMPLE_TEST(IsPrime_Wilson, TestSample4, FALSE, 4);
+SIMPLE_TEST(IsPrime_Wilson, TestSample5, TRUE, 127);
+
+
+SIMPLE_BENCHMARK(IsPrime_Recursive, 18);
+
+SIMPLE_TEST(IsPrime_Recursive, TestSample1, FALSE, 12);
+SIMPLE_TEST(IsPrime_Recursive, TestSample2, FALSE, 15);
+SIMPLE_TEST(IsPrime_Recursive, TestSample3, FALSE, 1);
+SIMPLE_TEST(IsPrime_Recursive, TestSample4, TRUE, 11);

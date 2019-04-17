@@ -218,3 +218,7 @@
 * https://www.geeksforgeeks.org/delete-a-given-node-in-linked-list-under-given-constraints/
 * https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
 * https://www.geeksforgeeks.org/delete-a-node-from-linked-list-without-head-pointer/
+* https://www.geeksforgeeks.org/factorial-large-number/
+* https://www.geeksforgeeks.org/program-for-factorial-of-a-number/
+* https://www.geeksforgeeks.org/c-program-for-factorial-of-a-number/
+* https://www.geeksforgeeks.org/one-line-function-for-factorial-of-a-number/

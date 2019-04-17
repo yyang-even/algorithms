@@ -5,8 +5,10 @@
 
 #include "least_prime_factor_of_numbers_till_n.h"
 
-typedef unsigned InputType;
 
+namespace {
+
+typedef unsigned InputType;
 
 std::string PrintAllPrimeFactors(const InputType N) {
     std::string output;
@@ -18,7 +20,7 @@ std::string PrintAllPrimeFactors(const InputType N) {
 }
 
 
-auto PrimeFactorsOfNSieve(unsigned N) {
+auto PrimeFactorsOfN_Sieve(unsigned N) {
     const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(N);
 
     std::vector<unsigned> output;
@@ -43,14 +45,14 @@ auto PrimeFactorsOfNSieve(unsigned N) {
  *  recursively factorize the divisor d, run algorithm for d and n/d. The cycle
  *  length is typically of the order √d.
  */
-long OneDivisorOfNPollardsRho(const long N) {
+long OneDivisorOfN_PollardsRho(const long N) {
     if (N < 4) {
         return N;
     }
     if (N % 2 == 0) {
         return 2;
     }
-    assert(not IsPrimeOptimizedSchoolMethod(N));
+    assert(not IsPrime_OptimizedSchoolMethod(N));
 
     auto x = Random_Number<long>(2, N - 1);
     auto y = x;
@@ -65,16 +67,16 @@ long OneDivisorOfNPollardsRho(const long N) {
         d = std::gcd(static_cast<long>(abs(x - y)), N);
 
         if (d == N) {
-            return OneDivisorOfNPollardsRho(N);
+            return OneDivisorOfN_PollardsRho(N);
         }
     }
 
     return d;
 }
 
-INT_BOOL testOneDivisorOfNPollardsRho(const long N) {
+INT_BOOL testOneDivisorOfN_PollardsRho(const long N) {
     const auto factors = UniquePrimeFactorsOf(N);
-    const auto one_of_factors = OneDivisorOfNPollardsRho(N);
+    const auto one_of_factors = OneDivisorOfN_PollardsRho(N);
 
     const auto iter = std::find(factors.cbegin(), factors.cend(), one_of_factors);
     return iter != factors.cend();
@@ -93,6 +95,8 @@ auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
     return std::accumulate(unique_primes.cbegin(), unique_primes.cend(), 1u,
                            std::multiplies<unsigned>());
 }
+
+}//namespace
 
 
 constexpr InputType LOWER = 1;
@@ -120,19 +124,19 @@ SIMPLE_TEST(UniquePrimeFactorsOf, TestSAMPLE2, EXPECTED2, SAMPLE2);
 const std::vector<unsigned> EXPECTED3 = {3, 3, 5, 7};
 const std::vector<unsigned> EXPECTED4 = {2, 3, 13, 157};
 
-SIMPLE_BENCHMARK(PrimeFactorsOfNSieve, 12246);
+SIMPLE_BENCHMARK(PrimeFactorsOfN_Sieve, 12246);
 
-SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE3, EXPECTED3, SAMPLE2);
-SIMPLE_TEST(PrimeFactorsOfNSieve, TestSAMPLE4, EXPECTED4, 12246);
+SIMPLE_TEST(PrimeFactorsOfN_Sieve, TestSAMPLE3, EXPECTED3, SAMPLE2);
+SIMPLE_TEST(PrimeFactorsOfN_Sieve, TestSAMPLE4, EXPECTED4, 12246);
 
 
-SIMPLE_BENCHMARK(testOneDivisorOfNPollardsRho, 39);
+SIMPLE_BENCHMARK(testOneDivisorOfN_PollardsRho, 39);
 
-SIMPLE_TEST(testOneDivisorOfNPollardsRho, TestSAMPLE1, TRUE, 39);
+SIMPLE_TEST(testOneDivisorOfN_PollardsRho, TestSAMPLE1, TRUE, 39);
 
 
 SIMPLE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, 44);
 
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22, 44);
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10, 10);
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5, 25);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22u, 44);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10u, 10);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5u, 25);

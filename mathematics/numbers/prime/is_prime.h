@@ -1,6 +1,6 @@
 #pragma once
 
-INT_BOOL IsPrimeOptimizedSchoolMethod(const unsigned n) {
+INT_BOOL IsPrime_OptimizedSchoolMethod(const unsigned n) {
     if (n <= 1) {
         return false;
     }
