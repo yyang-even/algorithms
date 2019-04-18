@@ -225,3 +225,7 @@
 * https://www.geeksforgeeks.org/reverse-a-linked-list/
 * https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
 * https://www.geeksforgeeks.org/recursively-reversing-a-linked-list-a-simple-implementation/
+* https://www.geeksforgeeks.org/can-we-reverse-a-linked-list-in-less-than-on/
+* https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
+* https://www.geeksforgeeks.org/program-to-reverse-a-linked-list-using-stack/
+* https://www.geeksforgeeks.org/print-reverse-linked-list-using-stack/
