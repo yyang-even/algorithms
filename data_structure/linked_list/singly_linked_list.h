@@ -368,17 +368,13 @@ public:
     }
 
 
-    /** Iteratively Reverse a linked list using only 2 pointers (An Interesting Method)
-     *
-     * @reference   https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
-     *
-     * Given pointer to the head node of a linked list, the task is to reverse the linked list.
-     */
     /** Reverse a linked list
      *
      * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
      *              Introduction to Algorithms, Third Edition. Chapter 10.2. Exercises 10.2-7.
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
+     * @reference   Recursively Reversing a linked list (A simple implementation)
+     *              https://www.geeksforgeeks.org/recursively-reversing-a-linked-list-a-simple-implementation/
      *
      * Given pointer to the head node of a linked list, the task is to reverse
      * the linked list. We need to reverse the list by changing links between nodes.
@@ -386,6 +382,7 @@ public:
      * @complexity  O(n)
      */
     void Reverse_Iterative() {
+        tail = head;
         auto current = head;
         SinglyListNode::PointerType previous = nullptr;
 
@@ -402,8 +399,34 @@ public:
         if (not head) {
             return;
         }
+        tail = head;
 
         reverse_RecursiveHelper(head, nullptr);
+    }
+
+    /** Iteratively Reverse a linked list using only 2 pointers (An Interesting Method)
+     *
+     * @reference   https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
+     *
+     * Method 1: The idea is to use XOR to swap pointers.
+     *
+     * @comment     This method doesn't work with shared_ptr.
+     *
+     * Method 2: Implemented as below.
+     */
+    void Reverse_TwoPointers() {
+        if (not head) {
+            return;
+        }
+        tail = head;
+
+        auto current = head;
+        while (current->next != nullptr) {
+            auto next = current->next;
+            current->next = next->next;
+            next->next = head;
+            head = next;
+        }
     }
 
     /** Write a function to get Nth node in a Linked List

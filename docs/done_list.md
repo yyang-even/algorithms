@@ -222,3 +222,6 @@
 * https://www.geeksforgeeks.org/program-for-factorial-of-a-number/
 * https://www.geeksforgeeks.org/c-program-for-factorial-of-a-number/
 * https://www.geeksforgeeks.org/one-line-function-for-factorial-of-a-number/
+* https://www.geeksforgeeks.org/reverse-a-linked-list/
+* https://www.geeksforgeeks.org/iteratively-reverse-a-linked-list-using-only-2-pointers/
+* https://www.geeksforgeeks.org/recursively-reversing-a-linked-list-a-simple-implementation/

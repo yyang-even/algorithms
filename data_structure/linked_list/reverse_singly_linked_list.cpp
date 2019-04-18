@@ -14,9 +14,17 @@ auto testReverse_Iterative(const std::vector<int> &array) {
     return list.CopyToArray();
 }
 
+
 auto testReverse_Recursive(const std::vector<int> &array) {
     SinglyLinkedList list {array};
     list.Reverse_Recursive();
+    return list.CopyToArray();
+}
+
+
+auto testReverse_TwoPointers(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    list.Reverse_TwoPointers();
     return list.CopyToArray();
 }
 
@@ -33,3 +41,9 @@ SIMPLE_BENCHMARK(testReverse_Recursive, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Recursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Recursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_TwoPointers, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverse_TwoPointers, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
