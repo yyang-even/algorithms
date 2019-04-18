@@ -2,6 +2,8 @@
 
 #include "common_header.h"
 
+#include <stack>
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -375,6 +377,10 @@ public:
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
      * @reference   Recursively Reversing a linked list (A simple implementation)
      *              https://www.geeksforgeeks.org/recursively-reversing-a-linked-list-a-simple-implementation/
+     * @reference   Can we reverse a linked list in less than O(n)?
+     *              https://www.geeksforgeeks.org/can-we-reverse-a-linked-list-in-less-than-on/
+     * @reference   Print reverse of a Linked List without actually reversing
+     *              https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
      *
      * Given pointer to the head node of a linked list, the task is to reverse
      * the linked list. We need to reverse the list by changing links between nodes.
@@ -427,6 +433,30 @@ public:
             next->next = head;
             head = next;
         }
+    }
+
+    /** Program to reverse a linked list using Stack
+     *
+     * @reference   https://www.geeksforgeeks.org/program-to-reverse-a-linked-list-using-stack/
+     * @reference   Print Reverse a linked list using Stack
+     *              https://www.geeksforgeeks.org/print-reverse-linked-list-using-stack/
+     */
+    void Reverse_Stack() {
+        if (not head) {
+            return;
+        }
+
+        std::stack<SinglyListNode::PointerType> node_stack;
+        while (head->next) {
+            node_stack.push(head);
+            head = head->next;
+        }
+
+        while (not node_stack.empty()) {
+            tail = tail->next = node_stack.top();
+            node_stack.pop();
+        }
+        tail->next = nullptr;
     }
 
     /** Write a function to get Nth node in a Linked List

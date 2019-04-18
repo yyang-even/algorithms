@@ -28,6 +28,13 @@ auto testReverse_TwoPointers(const std::vector<int> &array) {
     return list.CopyToArray();
 }
 
+
+auto testReverse_Stack(const std::vector<int> &array) {
+    SinglyLinkedList list {array};
+    list.Reverse_Stack();
+    return list.CopyToArray();
+}
+
 }//namespace
 
 
@@ -47,3 +54,9 @@ SIMPLE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_TwoPointers, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_TwoPointers, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_Stack, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_Stack, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverse_Stack, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
