@@ -42,6 +42,8 @@ public:
  *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
+ * @reference   Implement a stack using singly linked list
+ *              https://www.geeksforgeeks.org/implement-a-stack-using-singly-linked-list/
  */
 class ListStack {
     using ValueType = int;
@@ -202,7 +204,7 @@ public:
     }
 
     auto Pop2() {
-        assert(top2 < CAPACITY);
+        assert(static_cast<std::size_t>(top2) < CAPACITY);
 
         const auto v = buffer[top2++];
         return v;
@@ -248,6 +250,9 @@ public:
     }
 };
 
+
+namespace {
+
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
 template <typename Stack>
@@ -272,39 +277,30 @@ auto testStackHelper() {
     return output;
 }
 
+
 auto testArrayStack() {
     return testStackHelper<ArrayStack>();
 }
-
-SIMPLE_TEST0(testArrayStack, TestSample, EXPECTED_ARRAY);
 
 
 auto testListStack() {
     return testStackHelper<ListStack>();
 }
 
-SIMPLE_TEST0(testListStack, TestSample, EXPECTED_ARRAY);
-
 
 auto testPushCostlyTwoQueueStack() {
     return testStackHelper<PushCostlyTwoQueueStack>();
 }
-
-SIMPLE_TEST0(testPushCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
 
 
 auto testPopCostlyTwoQueueStack() {
     return testStackHelper<PopCostlyTwoQueueStack>();
 }
 
-SIMPLE_TEST0(testPopCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
-
 
 auto testPushCostlyOneQueueStack() {
     return testStackHelper<PushCostlyOneQueueStack>();
 }
-
-SIMPLE_TEST0(testPushCostlyOneQueueStack, TestSample, EXPECTED_ARRAY);
 
 
 auto testOneArrayTwoStacks() {
@@ -323,13 +319,33 @@ auto testOneArrayTwoStacks() {
     return stacks.CopyToArray();
 }
 
-const std::vector<int> EXPECTED_TWO_STACKS_ARRAY {1, 2, 8, 7, 5, 4};
 
-SIMPLE_TEST0(testOneArrayTwoStacks, TestSample, EXPECTED_TWO_STACKS_ARRAY);
+const std::vector<int> EXPECTED_TWO_STACKS_ARRAY {1, 2, 8, 7, 5, 4};
 
 
 auto testHeapStack() {
     return testStackHelper<HeapStack>();
 }
+
+}//namespace
+
+
+SIMPLE_TEST0(testArrayStack, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testListStack, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testPushCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testPopCostlyTwoQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testPushCostlyOneQueueStack, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testOneArrayTwoStacks, TestSample, EXPECTED_TWO_STACKS_ARRAY);
+
 
 SIMPLE_TEST0(testHeapStack, TestSample, EXPECTED_ARRAY);

@@ -229,3 +229,10 @@
 * https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
 * https://www.geeksforgeeks.org/program-to-reverse-a-linked-list-using-stack/
 * https://www.geeksforgeeks.org/print-reverse-linked-list-using-stack/
+* https://www.geeksforgeeks.org/implement-a-stack-using-singly-linked-list/
+* https://www.geeksforgeeks.org/select-a-random-node-from-a-singly-linked-list/
+* https://www.geeksforgeeks.org/reservoir-sampling/
+* https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
+* https://www.geeksforgeeks.org/priority-queue-set-1-introduction/
+* https://www.geeksforgeeks.org/implement-stack-using-priority-queue-or-heap/
+* https://www.geeksforgeeks.org/implement-a-stack-using-single-queue/
