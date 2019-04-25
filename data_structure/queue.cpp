@@ -11,6 +11,8 @@
  *              Introduction to Algorithms, Third Edition. Chapter 10.1.
  * @reference   Queue | Set 1 (Introduction and Array Implementation)
  *              https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
+ * @reference   Queue in Standard Template Library (STL)
+ *              https://www.geeksforgeeks.org/queue-cpp-stl/
  */
 class ArrayQueue {
     using ValueType = int;
@@ -198,6 +200,8 @@ public:
 };
 
 
+namespace {
+
 const std::vector<int> EXPECTED_ARRAY {2, 3, 4, 5, 6, 7};
 
 template <typename Queue>
@@ -222,36 +226,44 @@ auto testQueueHelper() {
     return output;
 }
 
+
 auto testArrayQueue() {
     return testQueueHelper<ArrayQueue>();
 }
-
-SIMPLE_TEST0(testArrayQueue, TestSample, EXPECTED_ARRAY);
 
 
 auto testListQueue() {
     return testQueueHelper<ListQueue>();
 }
 
-SIMPLE_TEST0(testListQueue, TestSample, EXPECTED_ARRAY);
-
 
 auto testDequeueCostlyTwoStackQueue() {
     return testQueueHelper<DequeueCostlyTwoStackQueue>();
 }
-
-SIMPLE_TEST0(testDequeueCostlyTwoStackQueue, TestSample, EXPECTED_ARRAY);
 
 
 auto testDequeueCostlyOneStackQueue() {
     return testQueueHelper<DequeueCostlyOneStackQueue>();
 }
 
-SIMPLE_TEST0(testDequeueCostlyOneStackQueue, TestSample, EXPECTED_ARRAY);
-
 
 auto testHeapQueue() {
     return testQueueHelper<HeapQueue>();
 }
+
+}//namespace
+
+
+SIMPLE_TEST0(testArrayQueue, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testListQueue, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testDequeueCostlyTwoStackQueue, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testDequeueCostlyOneStackQueue, TestSample, EXPECTED_ARRAY);
+
 
 SIMPLE_TEST0(testHeapQueue, TestSample, EXPECTED_ARRAY);
