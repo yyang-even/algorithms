@@ -10,6 +10,8 @@
  *              Introduction to Algorithms, Third Edition. Chapter 10.1.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
+ * @reference   Difference between Stack and Queue Data Structures
+ *              https://www.geeksforgeeks.org/difference-between-stack-and-queue-data-structures/
  */
 class ArrayStack {
     using ValueType = int;
