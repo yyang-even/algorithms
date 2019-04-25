@@ -7,11 +7,15 @@
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 6.1. 6.2. 6.3. Problems 6-1.
  *
- *              https://www.geeksforgeeks.org/binary-heap/
- *              Array Representation Of Binary Heap
+ * @reference   https://www.geeksforgeeks.org/binary-heap/
+ * @reference   Array Representation Of Binary Heap
  *              https://www.geeksforgeeks.org/array-representation-of-binary-heap/
- *              Time Complexity of building a heap
+ * @reference   Time Complexity of building a heap
  *              https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
+ * @reference   Building Heap from Array
+ *              https://www.geeksforgeeks.org/building-heap-from-array/
+ * @reference   Insertion and Deletion in Heaps
+ *              https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/
  */
 /** LFU (Least Frequently Used) Cache Implementation
  *
