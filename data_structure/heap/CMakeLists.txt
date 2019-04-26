@@ -1,4 +1,7 @@
 CompileTestExe(binary_heap)
 
+CompileBenchmarkExe(is_heap)
+CompileTestExe(is_heap)
+
 CompileBenchmarkExe(median_of_running_integers)
 CompileTestExe(median_of_running_integers)

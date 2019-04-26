@@ -252,3 +252,4 @@
 * https://www.geeksforgeeks.org/iterative-heap-sort/
 * https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/
 * https://www.geeksforgeeks.org/kth-smallest-element-after-every-insertion/
+* https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/

@@ -35,18 +35,18 @@ public:
 
 private:
     ArrayType heap;
-    const Compare compare {};
+    static const Compare compare;
 
-    auto parent(const SizeType i) const {
+    static auto parent(const SizeType i) {
         assert(i);
         return (i - 1) / 2;
     }
 
-    auto left(const SizeType i) const {
+    static auto left(const SizeType i) {
         return (2 * i + 1);
     }
 
-    auto right(const SizeType i) const {
+    static auto right(const SizeType i) {
         return (2 * i + 2);
     }
 
@@ -167,7 +167,49 @@ public:
         bubbleUp(i, true);
         Pop();
     }
+
+
+    /** How to check if a given array represents a Binary Heap?
+     *
+     * @reference   https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+     */
+    static auto isHeap_Recursive(const ArrayType &values, const SizeType i = 0) {
+        assert(values.size());
+
+        const auto left_child_index = left(i);
+        if (left_child_index >= values.size()) {
+            return true;
+        }
+
+        const auto right_child_index = right(i);
+        if (compare(values[i], values[left_child_index]) and
+            (right_child_index >= values.size() or compare(values[i], values[right_child_index])) and
+            isHeap_Recursive(values, left_child_index) and
+            isHeap_Recursive(values, right_child_index)) {
+            return true;
+        }
+
+        return false;
+    }
+    static auto isHeap_Iterative(const ArrayType &values) {
+        for (SizeType i = 0; i < (values.size() / 2); ++i) {
+            if (not compare(values[i], values[left(i)])) {
+                return false;
+            }
+
+            const auto right_child_index = right(i);
+            if (right_child_index < values.size() and
+                not compare(values[i], values[right_child_index])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 };
+
+template <typename T, typename Compare>
+const Compare BinaryHeap<T, Compare>::compare;
 
 template <typename T>
 using MaxHeap = BinaryHeap<T, std::greater<T> > ;
