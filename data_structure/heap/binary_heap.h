@@ -16,6 +16,12 @@
  *              https://www.geeksforgeeks.org/building-heap-from-array/
  * @reference   Insertion and Deletion in Heaps
  *              https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/
+ * @reference   Leaf starting point in a Binary Heap data structure
+ *              https://www.geeksforgeeks.org/leaf-starting-point-binary-heap-data-structure/
+ * @reference   Height of a complete binary tree (or Heap) with N nodes
+ *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
+ * @reference   Heap in C++ STL | make_heap(), push_heap(), pop_heap(), sort_heap(), is_heap, is_heap_until()
+ *              https://www.geeksforgeeks.org/heap-using-stl-c/
  */
 /** LFU (Least Frequently Used) Cache Implementation
  *
@@ -37,17 +43,25 @@ private:
     ArrayType heap;
     static const Compare compare;
 
-    static auto parent(const SizeType i) {
+    static SizeType parent(const SizeType i) {
         assert(i);
         return (i - 1) / 2;
     }
 
-    static auto left(const SizeType i) {
+    static SizeType left(const SizeType i) {
         return (2 * i + 1);
     }
 
-    static auto right(const SizeType i) {
+    static SizeType right(const SizeType i) {
         return (2 * i + 2);
+    }
+
+    static SizeType indexOfFirstLeave(const SizeType n) {
+        return n / 2;
+    }
+
+    static SizeType height(const SizeType n) {
+        return std::ceil(std::log2(n + 1)) - 1;
     }
 
     void heapifyRecursive(SizeType i,
@@ -94,7 +108,7 @@ private:
     void buildHeap(const std::function<void(BinaryHeap<T, Compare>*,
                                             SizeType, const SizeType)> heapify) {
         if (not heap.empty()) {
-            for (int i = heap.size() / 2; i >= 0; --i) {
+            for (int i = indexOfFirstLeave(heap.size()) - 1; i >= 0; --i) {
                 heapify(this, i, heap.size());
             }
         }
@@ -172,6 +186,8 @@ public:
     /** How to check if a given array represents a Binary Heap?
      *
      * @reference   https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+     * @reference   Given level order traversal of a Binary Tree, check if the Tree is a Min-Heap
+     *              https://www.geeksforgeeks.org/given-level-order-traversal-binary-tree-check-tree-min-heap/
      */
     static auto isHeap_Recursive(const ArrayType &values, const SizeType i = 0) {
         assert(values.size());
@@ -192,7 +208,7 @@ public:
         return false;
     }
     static auto isHeap_Iterative(const ArrayType &values) {
-        for (SizeType i = 0; i < (values.size() / 2); ++i) {
+        for (SizeType i = 0; i < indexOfFirstLeave(values.size()); ++i) {
             if (not compare(values[i], values[left(i)])) {
                 return false;
             }

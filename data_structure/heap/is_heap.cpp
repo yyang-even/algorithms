@@ -14,6 +14,11 @@ auto isMaxHeap_Iterative(const MaxHeap<int>::ArrayType &values) {
     return MaxHeap<int>::isHeap_Iterative(values);
 }
 
+
+auto isMinHeap_Iterative(const MinHeap<int>::ArrayType &values) {
+    return MinHeap<int>::isHeap_Iterative(values);
+}
+
 }//namespace
 
 
@@ -37,3 +42,13 @@ SIMPLE_TEST(isMaxHeap_Iterative, TestSample1, true, SAMPLE_ARRAY1);
 SIMPLE_TEST(isMaxHeap_Iterative, TestSample2, false, SAMPLE_ARRAY2);
 SIMPLE_TEST(isMaxHeap_Iterative, TestSample3, true, SAMPLE_ARRAY3);
 SIMPLE_TEST(isMaxHeap_Iterative, TestSample4, true, SAMPLE_ARRAY4);
+
+
+const MinHeap<int>::ArrayType SAMPLE_ARRAY5 = {10, 15, 14, 25, 30};
+const MinHeap<int>::ArrayType SAMPLE_ARRAY6 = {30, 56, 22, 49, 30, 51, 2, 67};
+
+
+SIMPLE_BENCHMARK(isMinHeap_Iterative, SAMPLE_ARRAY5);
+
+SIMPLE_TEST(isMinHeap_Iterative, TestSample1, true, SAMPLE_ARRAY5);
+SIMPLE_TEST(isMinHeap_Iterative, TestSample2, false, SAMPLE_ARRAY6);
