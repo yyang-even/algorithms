@@ -15,6 +15,8 @@ namespace {
  *              https://www.geeksforgeeks.org/heap-sort-for-decreasing-order-using-min-heap/
  * @reference   C++ Program for Heap Sort
  *              https://www.geeksforgeeks.org/cpp-program-for-heap-sort/
+ * @reference   Where is Heap Sort used practically?
+ *              https://www.geeksforgeeks.org/where-is-heap-sort-used-practically/
  */
 inline auto HeapSort_Recursive(const MaxHeap<int>::ArrayType &array) {
     return MaxHeap<int>(array).ToSortedArray();

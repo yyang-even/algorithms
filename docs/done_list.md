@@ -253,3 +253,9 @@
 * https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/
 * https://www.geeksforgeeks.org/kth-smallest-element-after-every-insertion/
 * https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/
+* https://www.geeksforgeeks.org/leaf-starting-point-binary-heap-data-structure/
+* https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
+* https://www.geeksforgeeks.org/given-level-order-traversal-binary-tree-check-tree-min-heap/
+* https://www.geeksforgeeks.org/where-is-heap-sort-used-practically/
+* https://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+* https://www.geeksforgeeks.org/heap-using-stl-c/
