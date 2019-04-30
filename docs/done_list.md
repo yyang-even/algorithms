@@ -259,3 +259,7 @@
 * https://www.geeksforgeeks.org/where-is-heap-sort-used-practically/
 * https://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
 * https://www.geeksforgeeks.org/heap-using-stl-c/
+* https://www.geeksforgeeks.org/implement-min-heap-using-stl/
+* https://www.geeksforgeeks.org/queue-using-stacks/
+* https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
+* https://www.geeksforgeeks.org/array-implementation-of-queue-simple/

@@ -13,6 +13,8 @@
  *              https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
  * @reference   Queue in Standard Template Library (STL)
  *              https://www.geeksforgeeks.org/queue-cpp-stl/
+ * @reference   Array implementation of queue (Simple)
+ *              https://www.geeksforgeeks.org/array-implementation-of-queue-simple/
  */
 class ArrayQueue {
     using ValueType = int;
