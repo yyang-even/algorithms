@@ -15,6 +15,8 @@
  *              https://www.geeksforgeeks.org/queue-cpp-stl/
  * @reference   Array implementation of queue (Simple)
  *              https://www.geeksforgeeks.org/array-implementation-of-queue-simple/
+ * @reference   Circular Queue | Set 1 (Introduction and Array Implementation)
+ *              https://www.geeksforgeeks.org/circular-queue-set-1-introduction-array-implementation/
  */
 class ArrayQueue {
     using ValueType = int;

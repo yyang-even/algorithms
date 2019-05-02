@@ -263,3 +263,8 @@
 * https://www.geeksforgeeks.org/queue-using-stacks/
 * https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
 * https://www.geeksforgeeks.org/array-implementation-of-queue-simple/
+* https://www.geeksforgeeks.org/circular-queue-set-1-introduction-array-implementation/
+* https://www.geeksforgeeks.org/linked-list-set-1-introduction/
+* https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
+* https://www.geeksforgeeks.org/how-to-write-functions-that-modify-the-head-pointer-of-a-linked-list/
+* https://www.geeksforgeeks.org/linked-list-set-3-deleting-node/
