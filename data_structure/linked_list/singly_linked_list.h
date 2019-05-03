@@ -25,6 +25,9 @@
  *              https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
  * @reference   Find Length of a Linked List (Iterative and Recursive)
  *              https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
+ * @reference   Remove first node of the linked list
+ *              https://www.geeksforgeeks.org/remove-first-node-of-the-linked-list/
+ *
  */
 class SinglyLinkedList {
 public:
