@@ -41,15 +41,18 @@ auto testGetMid_Size(const std::vector<int> &array) {
     return list.GetMid_Size();
 }
 
+
 auto testGetMid_TwoPointers(const std::vector<int> &array) {
     SinglyLinkedList list {array};
     return list.GetMid_TwoPointers();
 }
 
+
 auto testGetMid_Odd(const std::vector<int> &array) {
     SinglyLinkedList list {array};
     return list.GetMid_Odd();
 }
+
 
 auto testGetBeforeMiddle_TwoPointersSTL(const std::vector<int> &array) {
     std::forward_list<int> l{array.cbegin(), array.cend()};
@@ -57,10 +60,23 @@ auto testGetBeforeMiddle_TwoPointersSTL(const std::vector<int> &array) {
     return *(++before_mid);
 }
 
+
 auto testGetMiddle_Recursive(const std::vector<int> &array) {
     std::forward_list<int> l{array.cbegin(), array.cend()};
     return GetMiddle_Recursive(l);
 }
+
+
+/** Insert node into the middle of the linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/insert-node-middle-linked-list/
+ */
+
+
+/** Delete middle of linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/delete-middle-of-linked-list/
+ */
 
 }//namespace
 
