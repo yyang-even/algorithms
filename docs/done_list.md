@@ -268,3 +268,10 @@
 * https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 * https://www.geeksforgeeks.org/how-to-write-functions-that-modify-the-head-pointer-of-a-linked-list/
 * https://www.geeksforgeeks.org/linked-list-set-3-deleting-node/
+* https://www.geeksforgeeks.org/insert-node-middle-linked-list/
+* https://www.geeksforgeeks.org/insert-a-node-at-a-specific-position-in-a-linked-list/
+* https://www.geeksforgeeks.org/delete-middle-of-linked-list/
+* https://www.geeksforgeeks.org/remove-first-node-of-the-linked-list/
+* https://www.geeksforgeeks.org/delete-occurrences-given-key-linked-list/
+* https://www.geeksforgeeks.org/delete-multiple-occurrences-of-key-in-linked-list-using-double-pointer/
+* https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/

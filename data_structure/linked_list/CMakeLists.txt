@@ -1,6 +1,9 @@
 CompileBenchmarkExe(count_size_of_singly_list)
 CompileTestExe(count_size_of_singly_list)
 
+CompileBenchmarkExe(delete_all_of_key_singly_list)
+CompileTestExe(delete_all_of_key_singly_list)
+
 CompileBenchmarkExe(delete_all_singly_list)
 CompileTestExe(delete_all_singly_list)
 
