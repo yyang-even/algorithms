@@ -357,6 +357,40 @@ public:
     }
 
 
+    /** Delete last occurrence of an item from linked list
+     *
+     * @reference   https://www.geeksforgeeks.org/delete-last-occurrence-of-an-item-from-linked-list/
+     *
+     * Given a liked list and a key to be deleted. Delete last occurrence of key from linked.
+     * The list may have duplicates.
+     */
+    void DeleteLastOfKey(const SinglyListNode::ValueType key) {
+        if (head) {
+            SinglyListNode::PointerType *pointer_to_last_of_key = nullptr;
+            if (head->value == key) {
+                pointer_to_last_of_key = &head;
+                if (head == tail) {
+                    tail = nullptr;
+                }
+            }
+
+            for (auto iter = head; iter->next; iter = iter->next) {
+                if (iter->next->value == key) {
+                    pointer_to_last_of_key = &(iter->next);
+                    if (not iter->next->next) {
+                        tail = iter;
+                    }
+                }
+            }
+
+            if (pointer_to_last_of_key) {
+                *pointer_to_last_of_key = (*pointer_to_last_of_key)->next;
+                --size;
+            }
+        }
+    }
+
+
     auto CountSize_Iterative() const {
         std::size_t size = 0;
         auto iter = head;
@@ -430,7 +464,7 @@ public:
         tail = head;
 
         auto current = head;
-        while (current->next != nullptr) {
+        while (current->next) {
             auto next = current->next;
             current->next = next->next;
             next->next = head;
