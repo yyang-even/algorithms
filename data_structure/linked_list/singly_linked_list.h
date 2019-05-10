@@ -40,10 +40,7 @@ public:
 
         static std::size_t node_alive;
 
-        SinglyListNode() {
-            ++node_alive;
-        }
-        SinglyListNode(const ValueType v): value(v) {
+        explicit SinglyListNode(const ValueType v = 0): value(v) {
             ++node_alive;
         }
         ~SinglyListNode() {
@@ -141,7 +138,7 @@ public:
     using ValueType = SinglyListNode::ValueType;
 
     SinglyLinkedList() = default;
-    SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
+    explicit SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
         for (const auto elem : array) {
             PushBack(elem);
         }

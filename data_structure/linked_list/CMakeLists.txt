@@ -32,3 +32,5 @@ CompileTestExe(singly_linked_list)
 
 CompileBenchmarkExe(sorted_insert_singly_list)
 CompileTestExe(sorted_insert_singly_list)
+
+add_subdirectory(doubly_list)

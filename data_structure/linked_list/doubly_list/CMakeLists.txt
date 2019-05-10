@@ -1,0 +1,2 @@
+CompileBenchmarkExe(doubly_linked_list)
+CompileTestExe(doubly_linked_list)

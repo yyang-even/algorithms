@@ -5,19 +5,11 @@
 
 namespace {
 
-const std::vector<int> EMPTY_ARRAY {};
-const std::vector<int> SINGLE_ARRAY = {1};
-const std::vector<int> EVEN_ARRAY = {1, 3};
-const std::vector<int> ODD_ARRAY = {1, 2, 3};
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const std::vector<int> EXPECTED_ARRAY = {-9, 111, -6, 11, -5, 44, -1, 33, 1, 8, 6,
-                                         2, 3, 7, 4, 23, 9, 10, 16, 777, 17, 19
-                                        };
-const auto EXPECTED_SIZE = SAMPLE_ARRAY.size();
-const std::vector<int> EXPECTED_REVERSE_ARRAY {9, 5, 4, 7, 3, 2, 6, 8, 0, 1};
+const std::vector<int> EXPECTED_ARRAY = {-9, 111, -6, 11, -5, 44, -1, 33, 1, 8, 6, 2, 3, 7, 4, 23, 9, 10, 16, 777, 17, 19};
 
 
-auto testLinkedListInsert(const std::vector<int> &array) {
+auto testLinkedList_Helper(const std::vector<int> &array) {
     SinglyLinkedList list {array};
 
     list.InsertFront(-1);
@@ -74,12 +66,29 @@ auto testLinkedListInsert(const std::vector<int> &array) {
     list.InsertFront(-9);
     list.PushBack(19);
 
+    return list;
+}
+
+
+auto testLinkedList(const std::vector<int> &array) {
+    auto list = testLinkedList_Helper(array);
     return list.CopyToArray();
+}
+
+
+auto testLinkedList_Size(const std::vector<int> &array) {
+    auto list = testLinkedList_Helper(array);
+    return list.Size() ==  SinglyLinkedList::SinglyListNode::node_alive;
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(testLinkedListInsert, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testLinkedListInsert, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
+SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testLinkedList_Size, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testLinkedList_Size, TestSample, true, SAMPLE_ARRAY);
