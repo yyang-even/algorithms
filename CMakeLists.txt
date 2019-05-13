@@ -41,7 +41,7 @@ if(WANT_TESTS)
     #gtest
     #################################
     set(gtest_force_shared_crt ON)
-    set(GTEST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/3rdParty/googletest/include)
+    set(GTEST_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/3rdParty/googletest/include)
     include_directories ("${GTEST_INCLUDE_DIRS}")
 endif(WANT_TESTS)
 
