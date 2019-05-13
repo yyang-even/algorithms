@@ -4,7 +4,7 @@
 
 #include "heap/binary_heap.h"
 
-#include "data_structure/linked_list/singly_linked_list.h"
+#include "data_structure/linked_list/singly_list/singly_linked_list.h"
 #include "data_structure/linked_list/sorted_insert_singly_list.h"
 
 /** Priority Queue

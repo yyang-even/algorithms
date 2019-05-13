@@ -1,0 +1,13 @@
+CompileBenchmarkExe(delete_all_singly_list)
+CompileTestExe(delete_all_singly_list)
+
+CompileBenchmarkExe(get_nth_node)
+CompileTestExe(get_nth_node)
+
+CompileBenchmarkExe(nth_node_from_the_end)
+CompileTestExe(nth_node_from_the_end)
+
+CompileBenchmarkExe(random_node_from_singly_linked_list)
+
+CompileBenchmarkExe(singly_linked_list)
+CompileTestExe(singly_linked_list)
