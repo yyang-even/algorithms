@@ -278,3 +278,4 @@
 * https://www.geeksforgeeks.org/doubly-linked-list/
 * https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list/
 * https://www.geeksforgeeks.org/delete-doubly-linked-list-node-given-position/
+* https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
