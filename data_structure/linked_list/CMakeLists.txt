@@ -3,8 +3,8 @@ include_directories ("${CMAKE_CURRENT_BINARY_DIR}")
 CompileBenchmarkExe(count_size_of_singly_list)
 CompileTestExe(count_size_of_singly_list)
 
-CompileBenchmarkExe(delete_all_of_key_singly_list)
-CompileTestExe(delete_all_of_key_singly_list)
+CompileBenchmarkExe(delete_all_of_key_linked_list)
+CompileTestExe(delete_all_of_key_linked_list)
 
 CompileBenchmarkExe(merge_k_sorted_singly_list)
 CompileTestExe(merge_k_sorted_singly_list)
