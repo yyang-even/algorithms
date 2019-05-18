@@ -210,6 +210,18 @@ public:
         const auto del = At(index);
         Delete(del);
     }
+
+
+    /**
+     * @reference   Reverse a Doubly Linked List
+     *              https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
+     */
+    void Reverse() {
+        for (auto iter = head; iter; iter = iter->prev) {
+            std::swap(iter->next, iter->prev);
+        }
+        std::swap(head, tail);
+    }
 };
 
 std::size_t DoublyLinkedList::DoublyListNode::node_alive = 0;
