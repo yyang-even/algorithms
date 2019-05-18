@@ -1,2 +1,5 @@
 CompileBenchmarkExe(doubly_linked_list)
 CompileTestExe(doubly_linked_list)
+
+CompileBenchmarkExe(reverse_doubly_list)
+CompileTestExe(reverse_doubly_list)

@@ -279,3 +279,5 @@
 * https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list/
 * https://www.geeksforgeeks.org/delete-doubly-linked-list-node-given-position/
 * https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
+* https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
+* https://www.geeksforgeeks.org/write-a-program-to-reverse-an-array-or-string/
