@@ -1,5 +1,10 @@
 #include "common_header.h"
 
+
+namespace {
+
+#include "swap.h"
+
 typedef unsigned InputType;
 
 /** Swapping values with subtraction and addition
@@ -12,7 +17,7 @@ typedef unsigned InputType;
  *
  * Swap two values without using a temporary variable.
  */
-void SwapSubAdd(InputType &a, InputType &b) {
+void Swap_SubAdd(InputType &a, InputType &b) {
     if (a != b) {
         a -= b;
         b += a;
@@ -20,21 +25,6 @@ void SwapSubAdd(InputType &a, InputType &b) {
     }
 }
 
-/** Swapping values with XOR
- *
- * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
- *              Swapping values with XOR
- *              https://graphics.stanford.edu/~seander/bithacks.html
- * @reference   How to swap two numbers without using a temporary variable?
- *              https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
- */
-void SwapXor(InputType &a, InputType &b) {
-    if (a != b) {
-        a ^= b;
-        b ^= a;
-        a ^= b;
-    }
-}
 
 INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
                   const InputType a, const InputType b) {
@@ -71,29 +61,34 @@ InputType SwapBitRange(const InputType number, const unsigned i, const unsigned 
     return number ^ ((xor_mask << i) | (xor_mask << j));
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
-SIMPLE_BENCHMARK(TestSwap, SwapSubAdd, LOWER, UPPER);
 
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE1, TRUE, SwapSubAdd, 6, 13);
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE2, TRUE, SwapSubAdd, 13, 6);
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE3, TRUE, SwapSubAdd, LOWER, UPPER);
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE4, TRUE, SwapSubAdd, UPPER, LOWER);
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE5, TRUE, SwapSubAdd, 6, 6);
-SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE6, TRUE, SwapSubAdd, UPPER, UPPER);
+SIMPLE_BENCHMARK(TestSwap, Swap_SubAdd, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(TestSwap, SwapXor, LOWER, UPPER);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE1, true, Swap_SubAdd, 6, 13);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE2, true, Swap_SubAdd, 13, 6);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE3, true, Swap_SubAdd, LOWER, UPPER);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE4, true, Swap_SubAdd, UPPER, LOWER);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE5, true, Swap_SubAdd, 6, 6);
+SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE6, true, Swap_SubAdd, UPPER, UPPER);
 
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE1, TRUE, SwapXor, 6, 13);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE2, TRUE, SwapXor, 13, 6);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE3, TRUE, SwapXor, LOWER, UPPER);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE4, TRUE, SwapXor, UPPER, LOWER);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, TRUE, SwapXor, 13, 13);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, TRUE, SwapXor, UPPER, UPPER);
+
+SIMPLE_BENCHMARK(TestSwap, Swap_Xor<InputType>, LOWER, UPPER);
+
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE1, true, Swap_Xor<InputType>, 6, 13);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE2, true, Swap_Xor<InputType>, 13, 6);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE3, true, Swap_Xor<InputType>, LOWER, UPPER);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE4, true, Swap_Xor<InputType>, UPPER, LOWER);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, true, Swap_Xor<InputType>, 13, 13);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<InputType>, UPPER, UPPER);
+
 
 SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
 
-SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011, 0b00101111, 1, 5, 3);
-SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0, 0b00101111, 0, 4, 5);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011u, 0b00101111, 1, 5, 3);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0u, 0b00101111, 0, 4, 5);
