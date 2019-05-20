@@ -281,3 +281,9 @@
 * https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
 * https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
 * https://www.geeksforgeeks.org/write-a-program-to-reverse-an-array-or-string/
+* https://www.geeksforgeeks.org/print-doubly-linked-list-in-reverse-order/
+* https://www.geeksforgeeks.org/reverse-words-in-a-given-string/
+* https://www.geeksforgeeks.org/reverse-a-string-in-c-cpp-different-methods/
+* https://www.geeksforgeeks.org/program-to-reverse-a-string-using-pointers/
+* https://www.geeksforgeeks.org/c-program-to-reverse-array-of-strings/
+* https://www.geeksforgeeks.org/reverse-string-without-using-any-temporary-variable/
