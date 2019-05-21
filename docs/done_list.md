@@ -287,3 +287,9 @@
 * https://www.geeksforgeeks.org/program-to-reverse-a-string-using-pointers/
 * https://www.geeksforgeeks.org/c-program-to-reverse-array-of-strings/
 * https://www.geeksforgeeks.org/reverse-string-without-using-any-temporary-variable/
+* https://www.geeksforgeeks.org/reverse-array-without-using-subtract-sign-anywhere-code/
+* https://www.geeksforgeeks.org/how-to-sum-two-integers-without-using-arithmetic-operators-in-cc/
+* https://www.geeksforgeeks.org/check-if-two-numbers-are-equal-without-using-arithmetic-and-comparison-operators/
+* https://www.geeksforgeeks.org/check-two-numbers-equal-without-using-comparison-operators/
+* https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
+* https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
