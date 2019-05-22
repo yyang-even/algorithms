@@ -3,7 +3,6 @@
 * https://www.geeksforgeeks.org/sum-square-sums-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/print-squares-first-n-natural-numbers-without-using/
 * https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
-* https://www.geeksforgeeks.org/prime-numbers/
 * https://www.geeksforgeeks.org/find-product-prime-numbers-1-n/
 * https://www.geeksforgeeks.org/find-the-product-of-first-n-prime-numbers/
 * https://www.geeksforgeeks.org/find-two-prime-numbers-with-given-sum/
@@ -44,7 +43,6 @@
 * https://www.geeksforgeeks.org/decimal-binary-conversion-without-using-arithmetic-operators/
 * https://www.geeksforgeeks.org/program-decimal-binary-conversion/
 * https://www.geeksforgeeks.org/decimal-binary-number-using-recursion/
-* https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
 * https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
 * https://www.geeksforgeeks.org/check-whether-k-th-bit-set-not/
 * https://www.geeksforgeeks.org/check-whether-bit-given-position-set-unset/
@@ -163,7 +161,6 @@
 * https://www.geeksforgeeks.org/c-program-to-find-the-largest-number-among-three-numbers/
 * https://www.geeksforgeeks.org/program-to-find-the-largest-number-using-ternary-operator/
 * https://www.geeksforgeeks.org/c-program-for-program-to-find-largest-element-in-an-array/
-* https://www.geeksforgeeks.org/cc-ternary-operator-some-interesting-observations/
 * https://www.geeksforgeeks.org/c-nested-ternary-operator/
 * https://www.geeksforgeeks.org/maximum-value-pair-array/
 * https://www.geeksforgeeks.org/print-pair-with-maximum-and-value-in-an-array/
@@ -289,7 +286,8 @@
 * https://www.geeksforgeeks.org/reverse-string-without-using-any-temporary-variable/
 * https://www.geeksforgeeks.org/reverse-array-without-using-subtract-sign-anywhere-code/
 * https://www.geeksforgeeks.org/how-to-sum-two-integers-without-using-arithmetic-operators-in-cc/
-* https://www.geeksforgeeks.org/check-if-two-numbers-are-equal-without-using-arithmetic-and-comparison-operators/
 * https://www.geeksforgeeks.org/check-two-numbers-equal-without-using-comparison-operators/
 * https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
 * https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
+* https://www.geeksforgeeks.org/multiply-two-numbers-without-using-multiply-division-bitwise-operators-and-no-loops/
+* https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/

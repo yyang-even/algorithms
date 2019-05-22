@@ -2,6 +2,8 @@
 
 #include "mathematics/arithmetics/multiplication/multiplication.h"
 
+namespace {
+
 /** Write a program to calculate pow(x,n)
  * @reference   Write a program to calculate pow(x,n)
  *              http://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
@@ -41,25 +43,30 @@ double Power(const double x, const int n) {
     }
 }
 
+
 /** Write you own Power without using multiplication(*) and division(/) operators
  *
  * @reference   https://www.geeksforgeeks.org/write-you-own-power-without-using-multiplication-and-division/
  */
-unsigned PowerLoop(const unsigned x, unsigned n) {
+unsigned Power_Loop(const unsigned x, unsigned n) {
     if (n == 0) {
         return 1;
     }
 
     unsigned power = 1;
     for (; n ; --n) {
-        power = Multiply(power, x);
+        power = Multiply_RussianPeasant(power, x);
     }
 
     return power;
 }
 
+}//namespace
+
 
 const long LOWER = 0;
+const double DOUBLE_LOWER = 0.0;
+
 
 SIMPLE_BENCHMARK(Power, LOWER, LOWER);
 SIMPLE_BENCHMARK(Power, 2, 7);
@@ -69,17 +76,6 @@ SIMPLE_TEST(Power, TestSAMPLE1, 8, 2, 3);
 SIMPLE_TEST(Power, TestSAMPLE2, 49, 7, 2);
 SIMPLE_TEST(Power, TestSAMPLE3, 125, 5, 3);
 
-
-SIMPLE_BENCHMARK(PowerLoop, LOWER, LOWER);
-SIMPLE_BENCHMARK(PowerLoop, 2, 7);
-
-SIMPLE_TEST(PowerLoop, TestLOWER, 1, LOWER, LOWER);
-SIMPLE_TEST(PowerLoop, TestSAMPLE1, 8, 2, 3);
-SIMPLE_TEST(PowerLoop, TestSAMPLE2, 49, 7, 2);
-SIMPLE_TEST(PowerLoop, TestSAMPLE3, 125, 5, 3);
-
-
-const double DOUBLE_LOWER = 0.0;
 SIMPLE_BENCHMARK(Power, DOUBLE_LOWER, DOUBLE_LOWER);
 SIMPLE_BENCHMARK(Power, 2.0, 7);
 
@@ -87,3 +83,12 @@ SIMPLE_TEST(Power, TestDoubleLOWER, 1.0, DOUBLE_LOWER, DOUBLE_LOWER);
 SIMPLE_TEST(Power, TestDoubleSAMPLE1, 8.0, 2.0, 3);
 SIMPLE_TEST(Power, TestDoubleSAMPLE2, 49.0, 7.0, 2);
 SIMPLE_TEST(Power, TestDoubleSAMPLE3, 0.125, 2.0, -3);
+
+
+SIMPLE_BENCHMARK(Power_Loop, LOWER, LOWER);
+SIMPLE_BENCHMARK(Power_Loop, 2, 7);
+
+SIMPLE_TEST(Power_Loop, TestLOWER, 1u, LOWER, LOWER);
+SIMPLE_TEST(Power_Loop, TestSAMPLE1, 8u, 2, 3);
+SIMPLE_TEST(Power_Loop, TestSAMPLE2, 49u, 7, 2);
+SIMPLE_TEST(Power_Loop, TestSAMPLE3, 125u, 5, 3);

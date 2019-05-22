@@ -1,23 +1,25 @@
 #pragma once
 
-/** Multiply two integers without using multiplication, division and bitwise operators, and no loops
+/** Russian Peasant (Multiply two numbers using bitwise operators)
  *
- * @reference   https://www.geeksforgeeks.org/multiply-two-numbers-without-using-multiply-division-bitwise-operators-and-no-loops/
- *
- * By making use of recursion, we can multiply two integers with the given constraints.
+ * @reference   https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/
+ * @reference   Russian Peasant Multiplication
+ *              http://mathforum.org/dr.math/faq/faq.peasant.html
  */
-auto MultiplyHelper(const int x, const int y) {
-    if (y == 0) {
-        return 0;
-    } else if (y > 0) {
-        return x + MultiplyHelper(x, y - 1);
-    } else {
-        return -MultiplyHelper(x, -y);
+auto Multiply_RussianPeasant(unsigned lhs, unsigned rhs) {
+    if (not rhs) {
+        return rhs;
     }
-}
-auto Multiply(int x, int y) {
-    if (abs(x) < abs(y)) {
-        std::swap(x, y);
+
+    unsigned result = 0;
+    while (rhs) {
+        if (rhs & 1) {
+            result += lhs;
+        }
+
+        lhs <<= 1;
+        rhs >>= 1;
     }
-    return MultiplyHelper(x, y);
+
+    return result ? result : lhs;
 }
