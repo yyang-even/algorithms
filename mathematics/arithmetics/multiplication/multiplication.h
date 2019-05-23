@@ -5,6 +5,8 @@
  * @reference   https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/
  * @reference   Russian Peasant Multiplication
  *              http://mathforum.org/dr.math/faq/faq.peasant.html
+ * @reference   Multiplication of two numbers with shift operator
+ *              https://www.geeksforgeeks.org/multiplication-two-numbers-shift-operator/
  */
 auto Multiply_RussianPeasant(unsigned lhs, unsigned rhs) {
     if (not rhs) {

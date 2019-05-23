@@ -291,3 +291,5 @@
 * https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
 * https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/
 * https://www.geeksforgeeks.org/subtract-two-numbers-without-using-arithmetic-operators/
+* https://www.geeksforgeeks.org/multiplication-two-numbers-shift-operator/
+* https://www.geeksforgeeks.org/find-two-missing-numbers-set-2-xor-based-solution/
