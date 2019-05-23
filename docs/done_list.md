@@ -289,5 +289,5 @@
 * https://www.geeksforgeeks.org/check-two-numbers-equal-without-using-comparison-operators/
 * https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
 * https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
-* https://www.geeksforgeeks.org/multiply-two-numbers-without-using-multiply-division-bitwise-operators-and-no-loops/
 * https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/
+* https://www.geeksforgeeks.org/subtract-two-numbers-without-using-arithmetic-operators/

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+namespace {
+
 /** To find sum of two numbers without using any operator
  *
  * @reference   https://www.geeksforgeeks.org/to-find-sum-of-two-numbers-without-using-any-operator/
@@ -7,7 +9,7 @@
  * Write a C program to find sum of positive integers without using any operator.
  * Only use of printf() is allowed. No other library function can be used.
  */
-auto SumPrintf(const unsigned a, const unsigned b) {
+auto Sum_Printf(const unsigned a, const unsigned b) {
     return printf("%*c%*c", a, ' ', b, ' ');
 }
 
@@ -17,9 +19,9 @@ auto SumPrintf(const unsigned a, const unsigned b) {
  * @reference   https://www.geeksforgeeks.org/add-two-numbers-without-using-arithmetic-operators/
  *
  * Write a function Add() that returns sum of two integers. The function should
- * not use any of the arithmetic operators (+, ++, –, -, .. etc).
+ * not use any of the arithmetic operators (+, ++, --, -, .. etc).
  */
-auto SumHalfAdderIterative(int a, int b) {
+auto Sum_HalfAdder_Iterative(int a, int b) {
     while (b) {
         const auto carry = a & b;
         a ^= b;
@@ -28,11 +30,11 @@ auto SumHalfAdderIterative(int a, int b) {
     return a;
 }
 
-auto SumHalfAdderRecursive(const int a, const int b) {
+auto Sum_HalfAdder_Recursive(const int a, const int b) {
     if (b == 0) {
         return a;
     } else {
-        return SumHalfAdderRecursive(a ^ b, (a & b) << 1);
+        return Sum_HalfAdder_Recursive(a ^ b, (a & b) << 1);
     }
 }
 
@@ -42,37 +44,39 @@ auto SumHalfAdderRecursive(const int a, const int b) {
  * @reference   https://www.geeksforgeeks.org/how-to-sum-two-integers-without-using-arithmetic-operators-in-cc/
  *
  * Given two integers a and b, how can we evaluate the sum a + b without using
- * operators such as +, -, ++, –, …?
+ * operators such as +, -, ++, --, …?
  */
-auto SumPointer(const int a, const int b) {
+auto Sum_Pointer(const int a, const int b) {
     const char *p = reinterpret_cast<char *>(a);
     return reinterpret_cast<long>(&p[b]);
 }
 
-
-SIMPLE_BENCHMARK(SumPrintf, 3, 4);
-
-SIMPLE_TEST(SumPrintf, TestSAMPLE1, 7, 3, 4);
-SIMPLE_TEST(SumPrintf, TestSAMPLE2, 15, 5, 10);
-SIMPLE_TEST(SumPrintf, TestSAMPLE3, 47, 15, 32);
+}//namespace
 
 
-SIMPLE_BENCHMARK(SumHalfAdderIterative, 3, 4);
+SIMPLE_BENCHMARK(Sum_Printf, 3, 4);
 
-SIMPLE_TEST(SumHalfAdderIterative, TestSAMPLE1, 7, 3, 4);
-SIMPLE_TEST(SumHalfAdderIterative, TestSAMPLE2, 15, 5, 10);
-SIMPLE_TEST(SumHalfAdderIterative, TestSAMPLE3, 47, 15, 32);
-
-
-SIMPLE_BENCHMARK(SumHalfAdderRecursive, 3, 4);
-
-SIMPLE_TEST(SumHalfAdderRecursive, TestSAMPLE1, 7, 3, 4);
-SIMPLE_TEST(SumHalfAdderRecursive, TestSAMPLE2, 15, 5, 10);
-SIMPLE_TEST(SumHalfAdderRecursive, TestSAMPLE3, 47, 15, 32);
+SIMPLE_TEST(Sum_Printf, TestSAMPLE1, 7, 3, 4);
+SIMPLE_TEST(Sum_Printf, TestSAMPLE2, 15, 5, 10);
+SIMPLE_TEST(Sum_Printf, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(SumPointer, 3, 4);
+SIMPLE_BENCHMARK(Sum_HalfAdder_Iterative, 3, 4);
 
-SIMPLE_TEST(SumPointer, TestSAMPLE1, 7, 3, 4);
-SIMPLE_TEST(SumPointer, TestSAMPLE2, 15, 5, 10);
-SIMPLE_TEST(SumPointer, TestSAMPLE3, 47, 15, 32);
+SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE1, 7, 3, 4);
+SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE2, 15, 5, 10);
+SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE3, 47, 15, 32);
+
+
+SIMPLE_BENCHMARK(Sum_HalfAdder_Recursive, 3, 4);
+
+SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE1, 7, 3, 4);
+SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE2, 15, 5, 10);
+SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE3, 47, 15, 32);
+
+
+SIMPLE_BENCHMARK(Sum_Pointer, 3, 4);
+
+SIMPLE_TEST(Sum_Pointer, TestSAMPLE1, 7, 3, 4);
+SIMPLE_TEST(Sum_Pointer, TestSAMPLE2, 15, 5, 10);
+SIMPLE_TEST(Sum_Pointer, TestSAMPLE3, 47, 15, 32);
