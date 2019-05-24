@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Find the Missing Number
@@ -13,7 +15,7 @@ using ArrayType = std::vector<unsigned>;
  *
  * @complexity  O(n)
  */
-auto FindTheMissingNumberSum(const ArrayType &integers) {
+auto FindTheMissingNumber_Sum(const ArrayType &integers) {
     assert(not integers.empty());
 
     const auto N = integers.size() + 1u;
@@ -22,29 +24,59 @@ auto FindTheMissingNumberSum(const ArrayType &integers) {
 }
 
 
-auto FindTheMissingNumberXor(const ArrayType &integers) {
+auto FindTheMissingNumber_Xor(const ArrayType &integers, ArrayType::value_type min = 1) {
     assert(not integers.empty());
 
-    const auto N = integers.size() + 1u;
-    auto xor_of_all = integers[0];
+    const ArrayType::value_type N = integers.size() + min;
+    auto xor_of_all = integers[0] ^ min++;
     for (ArrayType::size_type i = 1ul; i < integers.size(); ++i) {
-        xor_of_all ^= (i ^ integers[i]);
+        xor_of_all ^= (min++ ^ integers[i]);
     }
 
-    return xor_of_all ^ N ^ integers.size();
+    return xor_of_all ^ N;
 }
+
+/** Find the one missing number in range
+ *
+ * @reference   https://www.geeksforgeeks.org/find-one-missing-number-range/
+ *
+ * Given an array of size n. It is also given that range of numbers is from smallestNumber
+ * to smallestNumber + n where smallestNumber is the smallest number in array. The array
+ * contains number in this range but one number is missing so the task is to find this
+ * missing number.
+ */
+auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
+    const auto min = std::min_element(integers.cbegin(), integers.cend());
+
+    return FindTheMissingNumber_Xor(integers, *min);
+}
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
 const ArrayType SAMPLE2 = {1, 2, 4, 5, 6};
 
-SIMPLE_BENCHMARK(FindTheMissingNumberSum, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumberSum, TestSample1, 5, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumberSum, TestSample2, 3, SAMPLE2);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sum, SAMPLE1);
+
+SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample1, 5u, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample2, 3u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumberXor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Xor, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumberXor, TestSample1, 5, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumberXor, TestSample2, 3, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample1, 5u, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample2, 3u, SAMPLE2);
+
+
+const ArrayType SAMPLE3 = {13, 12, 11, 15};
+const ArrayType SAMPLE4 = {33, 36, 35, 34};
+
+
+SIMPLE_BENCHMARK(FindTheMissingNumberRange_Xor, SAMPLE1);
+
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5u, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3u, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14u, SAMPLE3);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
