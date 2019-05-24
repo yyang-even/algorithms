@@ -296,3 +296,7 @@
 * https://www.geeksforgeeks.org/josephus-problem-set-1-a-on-solution/
 * https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
 * https://www.geeksforgeeks.org/josephus-problem-using-bit-magic/
+* https://www.geeksforgeeks.org/find-one-missing-number-range/
+* https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
+* https://www.geeksforgeeks.org/find-the-missing-number/
+* https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
