@@ -293,3 +293,6 @@
 * https://www.geeksforgeeks.org/subtract-two-numbers-without-using-arithmetic-operators/
 * https://www.geeksforgeeks.org/multiplication-two-numbers-shift-operator/
 * https://www.geeksforgeeks.org/find-two-missing-numbers-set-2-xor-based-solution/
+* https://www.geeksforgeeks.org/josephus-problem-set-1-a-on-solution/
+* https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
+* https://www.geeksforgeeks.org/josephus-problem-using-bit-magic/
