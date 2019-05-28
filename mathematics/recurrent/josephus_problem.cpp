@@ -9,6 +9,8 @@ typedef unsigned long InputType;
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.3.
  * @reference   Josephus problem | Set 2 (A Simple Solution when k = 2)
  *              https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
+ * @reference   Find last element after deleting every second element in array of n integers
+ *              https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
  *
  * A variant of Josephus Problem. Start with n people numbered 1 to n around a circle,
  * and we eliminate every second remaining person until only one survives. For n = 10,
