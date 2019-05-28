@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Find the first repeating element in an array of integers
@@ -26,9 +28,12 @@ auto FindFirstRepeatingElement(const ArrayType &elements) {
     return first_repeated;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
 const ArrayType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
+
 
 SIMPLE_BENCHMARK(FindFirstRepeatingElement, SAMPLE1);
 

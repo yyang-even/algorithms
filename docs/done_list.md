@@ -302,3 +302,4 @@
 * https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
 * https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
 * https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
+* https://www.geeksforgeeks.org/find-the-element-that-appears-once/
