@@ -300,3 +300,5 @@
 * https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
 * https://www.geeksforgeeks.org/find-the-missing-number/
 * https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
+* https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
+* https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
