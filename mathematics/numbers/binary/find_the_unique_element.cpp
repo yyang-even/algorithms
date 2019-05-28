@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Unique element in an array where all elements occur k times except one
@@ -8,8 +10,14 @@ using ArrayType = std::vector<unsigned>;
  * @reference   https://www.geeksforgeeks.org/find-unique-element-element-occurs-k-times-except-one/
  *
  * Given an array which contains all elements occurring k times, but one occurs only once. Find that unique element.
+ *
+ * @reference   Find the element that appears once
+ *              https://www.geeksforgeeks.org/find-the-element-that-appears-once/
+ *
+ * Given an array where every element occurs three times, except one element which occurs only once. Find the element
+ * that occurs once. Expected time complexity is O(n) and O(1) extra space.
  */
-ArrayType::value_type FindTheUniqueElementHash(const ArrayType &elements,
+ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
         const ArrayType::size_type K) {
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
 
@@ -25,7 +33,8 @@ ArrayType::value_type FindTheUniqueElementHash(const ArrayType &elements,
     return 0u;
 }
 
-auto FindTheUniqueElementBits(const ArrayType &elements, const ArrayType::size_type K) {
+
+auto FindTheUniqueElement_Bits(const ArrayType &elements, const ArrayType::size_type K) {
     const auto NUMBER_BITS = Bits_Number<ArrayType::value_type>();
     std::vector<ArrayType::value_type> counters(NUMBER_BITS, 0u);
 
@@ -47,17 +56,48 @@ auto FindTheUniqueElementBits(const ArrayType &elements, const ArrayType::size_t
 }
 
 
+auto FindTheUniqueElement3_Xor(const ArrayType &elements) {
+    ArrayType::value_type ones = 0, twos = 0;
+    ArrayType::value_type common_bit_mask;
+
+    for (const auto value : elements) {
+        twos  = twos | (ones & value);
+        ones  = ones ^ value;
+        common_bit_mask = ~(ones & twos);
+        ones &= common_bit_mask;
+        twos &= common_bit_mask;
+    }
+
+    return ones;
+}
+
+}//namespace
+
+
 const ArrayType SAMPLE1 = {6, 2, 5, 2, 2, 6, 6};
 const ArrayType SAMPLE2 = {2, 2, 2, 10, 2};
+const ArrayType SAMPLE3 = {12, 1, 12, 3, 12, 1, 1, 2, 3, 3};
+const ArrayType SAMPLE4 = {10, 20, 10, 30, 10, 30, 30};
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElementHash, SAMPLE1, 3u);
+SIMPLE_BENCHMARK(FindTheUniqueElement_Hash, SAMPLE1, 3u);
 
-SIMPLE_TEST(FindTheUniqueElementHash, TestSample1, 5u, SAMPLE1, 3u);
-SIMPLE_TEST(FindTheUniqueElementHash, TestSample2, 10u, SAMPLE2, 4u);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample1, 5u, SAMPLE1, 3u);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample2, 10u, SAMPLE2, 4u);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample3, 2u, SAMPLE3, 3u);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample4, 20u, SAMPLE4, 3u);
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElementBits, SAMPLE1, 3u);
+SIMPLE_BENCHMARK(FindTheUniqueElement_Bits, SAMPLE1, 3u);
 
-SIMPLE_TEST(FindTheUniqueElementBits, TestSample1, 5u, SAMPLE1, 3u);
-SIMPLE_TEST(FindTheUniqueElementBits, TestSample2, 10u, SAMPLE2, 4u);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample1, 5u, SAMPLE1, 3u);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample2, 10u, SAMPLE2, 4u);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample3, 2u, SAMPLE3, 3u);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample4, 20u, SAMPLE4, 3u);
+
+
+SIMPLE_BENCHMARK(FindTheUniqueElement3_Xor, SAMPLE1);
+
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample1, 5u, SAMPLE1);
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample3, 2u, SAMPLE3);
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample4, 20u, SAMPLE4);
