@@ -4,6 +4,9 @@ CompileTestExe(bubble_sort)
 CompileBenchmarkExe(count_inversions)
 CompileTestExe(count_inversions)
 
+CompileBenchmarkExe(count_occurrences_in_sorted_array)
+CompileTestExe(count_occurrences_in_sorted_array)
+
 CompileBenchmarkExe(dutch_national_flag)
 CompileTestExe(dutch_national_flag)
 
