@@ -303,3 +303,5 @@
 * https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
 * https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
 * https://www.geeksforgeeks.org/find-the-element-that-appears-once/
+* https://www.geeksforgeeks.org/count-number-of-occurrences-or-frequency-in-a-sorted-array/
+* https://www.geeksforgeeks.org/count-of-only-repeated-element-in-a-sorted-array-of-consecutive-elements/
