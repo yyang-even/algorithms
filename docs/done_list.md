@@ -305,3 +305,8 @@
 * https://www.geeksforgeeks.org/find-the-element-that-appears-once/
 * https://www.geeksforgeeks.org/count-number-of-occurrences-or-frequency-in-a-sorted-array/
 * https://www.geeksforgeeks.org/count-of-only-repeated-element-in-a-sorted-array-of-consecutive-elements/
+* https://www.geeksforgeeks.org/given-a-string-find-its-first-non-repeating-character/
+* https://www.geeksforgeeks.org/find-first-repeated-word-string/
+* https://www.geeksforgeeks.org/find-repeated-character-present-first-string/
+* https://www.geeksforgeeks.org/repeated-character-whose-first-appearance-is-leftmost/
+* https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/

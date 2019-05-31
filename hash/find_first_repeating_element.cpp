@@ -8,12 +8,18 @@ using ArrayType = std::vector<int>;
 /** Find the first repeating element in an array of integers
  *
  * @reference   https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
+ * @reference   Find repeated character present first in a string
+ *              https://www.geeksforgeeks.org/find-repeated-character-present-first-string/
+ * @reference   Repeated Character Whose First Appearance is Leftmost
+ *              https://www.geeksforgeeks.org/repeated-character-whose-first-appearance-is-leftmost/
+ * @reference   Find the first repeated word in a string
+ *              https://www.geeksforgeeks.org/find-first-repeated-word-string/
  *
  * Given an array of integers, find the first repeating element in it.
  * We need to find the element that occurs more than once and whose
  * index of first occurrence is smallest.
  */
-auto FindFirstRepeatingElement(const ArrayType &elements) {
+auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
     ArrayType::value_type first_repeated = -1;
 
@@ -28,6 +34,54 @@ auto FindFirstRepeatingElement(const ArrayType &elements) {
     return first_repeated;
 }
 
+
+/** Find the first repeated character in a string
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
+ *
+ * Given a string, find the first repeated character in it. We need to find the character that
+ * occurs more than once and whose index of second occurrence is smallest.
+ *
+ * @reference   Efficiently find first repeated character in a string without using any additional data structure in one traversal
+ *              https://www.geeksforgeeks.org/efficiently-find-first-repeated-character-string-without-using-additional-data-structure-one-traversal/
+ *
+ * Implement a space efficient algorithm to check First repeated character in a string without
+ * using any additional data structure in one traversal. Use additional data structures like
+ * count array, hash, etc is not allowed.
+ */
+auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string &str) {
+    std::unordered_set<ArrayType::value_type> counters;
+
+    for (const auto c : str) {
+        if (counters.find(c) != counters.cend()) {
+            return c;
+        } else {
+            counters.insert(c);
+        }
+    }
+
+    return '\0';
+}
+
+
+auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string &str) {
+    assert(std::all_of(str.cbegin(), str.cend(), islower));
+
+    unsigned long counters = 0;
+
+    for (const auto c : str) {
+        const auto mask = 1u << (c - 'a');
+
+        if (counters & mask) {
+            return c;
+        } else {
+            counters |= mask;
+        }
+    }
+
+    return '\0';
+}
+
 }//namespace
 
 
@@ -35,7 +89,19 @@ const ArrayType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
 const ArrayType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement, SAMPLE1);
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, SAMPLE1);
 
-SIMPLE_TEST(FindFirstRepeatingElement, TestSAMPLE1, 5, SAMPLE1);
-SIMPLE_TEST(FindFirstRepeatingElement, TestSAMPLE2, 6, SAMPLE2);
+SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
+SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, "geeksforgeeks");
+
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE1, 'e', "geeksforgeeks");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE2, 'l', "hello geeks");
+
+
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, "geeksforgeeks");
+
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e', "geeksforgeeks");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a', "abcfdeacf");
