@@ -310,3 +310,7 @@
 * https://www.geeksforgeeks.org/find-repeated-character-present-first-string/
 * https://www.geeksforgeeks.org/repeated-character-whose-first-appearance-is-leftmost/
 * https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
+* https://www.geeksforgeeks.org/kth-non-repeating-character/
+* https://www.geeksforgeeks.org/return-maximum-occurring-character-in-the-input-string/
+* https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
+* https://www.geeksforgeeks.org/maximum-occurring-character-in-an-input-string-set-2/
