@@ -11,20 +11,43 @@ namespace {
  * Write an efficient function to return maximum occurring character in the input
  * string e.g., if input string is “test” then function should return ‘t’.
  */
-auto MaximumOccurringChar(const std::string &input) {
+auto MaximumOccurringChar_Position(const std::string &input) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;
-
-    for (const auto c : input) {
-        ++counters[c];
-    }
-
-    std::string::size_type max = 0ul;
+    std::string::size_type max = 1ul;
     std::string::value_type max_char = input.front();
 
-    for (const auto count : counters) {
-        if (count.second > max) {
-            max_char = count.first;
-            max = count.second;
+    for (const auto c : input) {
+        const auto count = ++counters[c];
+        if (count > max) {
+            max_char = c;
+            max = count;
+        }
+    }
+
+    return max_char;
+}
+
+
+/** Maximum occurring character in an input string | Set-2
+ *
+ * @reference   https://www.geeksforgeeks.org/maximum-occurring-character-in-an-input-string-set-2/
+ *
+ * Given a string containing lowercase characters. The task is to print the maximum occurring character
+ * in the input string. If 2 or more characters appear the same number of times, print the
+ * lexicographically (alphabetically) lowest (first) character.
+ */
+auto MaximumOccurringChar_Alphabet(const std::string &input) {
+    std::unordered_map<std::string::value_type, std::string::size_type> counters;
+    std::string::size_type max = 1ul;
+    std::string::value_type max_char = input.front();
+
+    for (const auto c : input) {
+        const auto count = ++counters[c];
+        if (count > max) {
+            max_char = c;
+            max = count;
+        } else if (count == max and c < max_char) {
+            max_char = c;
         }
     }
 
@@ -45,7 +68,7 @@ auto MaximumOccurringChar(const std::string &input) {
  */
 using ArrayType = std::vector<unsigned>;
 
-auto MaximumRepeatingNumberInplace(ArrayType numbers, const ArrayType::value_type K) {
+auto MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_type K) {
     assert(K <= numbers.size());
 
     TransformToInplaceCounterArray(numbers, K);
@@ -56,16 +79,22 @@ auto MaximumRepeatingNumberInplace(ArrayType numbers, const ArrayType::value_typ
 }//namespace
 
 
-SIMPLE_BENCHMARK(MaximumOccurringChar, std::string("sample string"));
+SIMPLE_BENCHMARK(MaximumOccurringChar_Position, std::string("sample string"));
 
-SIMPLE_TEST(MaximumOccurringChar, TestSAMPLE1, 's', std::string("sample string"));
-SIMPLE_TEST(MaximumOccurringChar, TestSAMPLE2, 't', std::string("test"));
+SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE1, 's', std::string("sample string"));
+SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE2, 't', std::string("test"));
+
+
+SIMPLE_BENCHMARK(MaximumOccurringChar_Alphabet, std::string("test sample"));
+
+SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE1, 'e', std::string("test sample"));
+SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE2, 'a', std::string("sample program"));
 
 
 const ArrayType SAMPLE1 = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3};
 const ArrayType SAMPLE2 = {2, 3, 3, 5, 3, 4, 1, 7};
 
-SIMPLE_BENCHMARK(MaximumRepeatingNumberInplace, SAMPLE1, 10);
+SIMPLE_BENCHMARK(MaximumRepeatingNumber_Inplace, SAMPLE1, 10);
 
-SIMPLE_TEST(MaximumRepeatingNumberInplace, TestSAMPLE1, 2, SAMPLE1, 10);
-SIMPLE_TEST(MaximumRepeatingNumberInplace, TestSAMPLE2, 3, SAMPLE2, 8);
+SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE1, 2, SAMPLE1, 10);
+SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE2, 3, SAMPLE2, 8);
