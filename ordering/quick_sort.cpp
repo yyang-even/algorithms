@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include <forward_list>
+#include <future>
 #include <stack>
 
 #include "partition.h"
@@ -258,6 +259,71 @@ auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
 }
 
 
+/**
+ * @reference   Anthony Williams. C++ Concurrency in Action: Practical Multithreading 1st Edition. Chapter 4.4.1.
+ */
+auto QuickSortDoublyLinkedList_Sequential(std::list<int> values) {
+    if (values.size() < 2) {
+        return values;
+    }
+
+    std::list<int> result;
+    result.splice(result.cbegin(), values, values.cbegin());
+    const auto &pivot = *result.cbegin();
+
+    const auto divide_point = std::partition(values.begin(), values.end(), [&pivot](const auto & t) {
+        return t < pivot;
+    });
+
+    std::list<int> lower_part;
+    lower_part.splice(lower_part.cend(), values, values.cbegin(), divide_point);
+
+    auto new_lowers = QuickSortDoublyLinkedList_Sequential(std::move(lower_part));
+    auto new_highers = QuickSortDoublyLinkedList_Sequential(std::move(values));
+
+    result.splice(result.cend(), new_highers);
+    result.splice(result.cbegin(), new_lowers);
+
+    return result;
+}
+
+auto TestQuickSortDoublyLinkedList_Sequential(const ArrayType &values) {
+    const auto sorted_values = QuickSortDoublyLinkedList_Sequential({values.cbegin(), values.cend()});
+    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
+}
+
+
+auto QuickSortDoublyLinkedList_NaiveAsync(std::list<int> values) {
+    if (values.size() < 2) {
+        return values;
+    }
+
+    std::list<int> result;
+    result.splice(result.cbegin(), values, values.cbegin());
+    const auto &pivot = *result.cbegin();
+
+    const auto divide_point = std::partition(values.begin(), values.end(), [&pivot](const auto & t) {
+        return t < pivot;
+    });
+
+    std::list<int> lower_part;
+    lower_part.splice(lower_part.cend(), values, values.cbegin(), divide_point);
+
+    auto new_lowers = std::async(QuickSortDoublyLinkedList_NaiveAsync, std::move(lower_part));
+    auto new_highers = QuickSortDoublyLinkedList_NaiveAsync(std::move(values));
+
+    result.splice(result.cend(), new_highers);
+    result.splice(result.cbegin(), new_lowers.get());
+
+    return result;
+}
+
+auto TestQuickSortDoublyLinkedList_NaiveAsync(const ArrayType &values) {
+    const auto sorted_values = QuickSortDoublyLinkedList_NaiveAsync({values.cbegin(), values.cend()});
+    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
+}
+
+
 /** 3-Way QuickSort (Dutch National Flag)
  *
  * @reference   https://www.geeksforgeeks.org/3-way-quicksort-dutch-national-flag/
@@ -404,6 +470,24 @@ SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList_Sequential, VALUES5);
+
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList_NaiveAsync, VALUES5);
+
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 const ArrayType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
