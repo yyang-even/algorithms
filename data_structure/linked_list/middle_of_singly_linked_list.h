@@ -1,7 +1,5 @@
 #pragma once
 
-#include <forward_list>
-
 
 auto GetBeforeMiddle_TwoPointersSTL(const std::forward_list<int>::const_iterator cbefore_begin,
                                     const std::forward_list<int>::const_iterator cend) {

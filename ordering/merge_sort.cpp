@@ -15,7 +15,7 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 2.3.
- * @reference   http://www.geeksforgeeks.org/merge-sort/
+ * @reference   https://www.geeksforgeeks.org/merge-sort/
  * @reference   C Program for Merge Sort
  *              https://www.geeksforgeeks.org/c-program-for-merge-sort/
  * @reference   In-Place Merge Sort

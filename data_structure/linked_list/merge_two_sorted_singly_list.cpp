@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include <forward_list>
 
 namespace {
 
@@ -22,7 +21,7 @@ using ListType = std::forward_list<int>;
  * there’s the problem of starting the result list empty, and building
  * it up while going through ‘a’ and ‘b’.
  */
-auto SortedMergeListSTL(ListType L, ListType R) {
+auto SortedMergeList_STL(ListType L, ListType R) {
     assert(std::is_sorted(L.cbegin(), L.cend()));
     assert(std::is_sorted(R.cbegin(), R.cend()));
 
@@ -53,9 +52,9 @@ const ListType SAMPLE2L = {5, 8, 9};
 const ListType SAMPLE2R = {4, 7, 8};
 const ListType EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
-SIMPLE_BENCHMARK(SortedMergeListSTL, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(SortedMergeList_STL, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(SortedMergeListSTL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(SortedMergeListSTL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
-SIMPLE_TEST(SortedMergeListSTL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
-SIMPLE_TEST(SortedMergeListSTL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
+SIMPLE_TEST(SortedMergeList_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(SortedMergeList_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(SortedMergeList_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
+SIMPLE_TEST(SortedMergeList_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
