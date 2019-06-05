@@ -1,8 +1,8 @@
 #include "common_header.h"
 
-#include <forward_list>
-
 #include "mathematics/probabilistic/reservoir_sampling.h"
+
+namespace {
 
 using ArrayType = std::forward_list<int>;
 
@@ -17,6 +17,8 @@ using ArrayType = std::forward_list<int>;
 auto RandomNodeFromSinglyLinkedList(const ArrayType &stream) {
     return ReservoirSampling(stream, 1).back();
 }
+
+}//namespace
 
 
 ArrayType VALUES = {1, 2, 3, 4, 5, 6, 7, 8};

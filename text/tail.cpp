@@ -1,7 +1,8 @@
 #include "common_header.h"
 
-#include <sstream>
 #include <fstream>
+
+namespace {
 
 /** Implement your own tail (Read last n lines of a huge file)
  *
@@ -48,6 +49,8 @@ INT_BOOL TestTail() {
 
     return TAIL == tail_str;
 }
+
+}//namespace
 
 SIMPLE_BENCHMARK(TestTail);
 

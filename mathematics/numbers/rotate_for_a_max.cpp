@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include <string>
+namespace {
 
 /** Rotate for a Max
  *  @reference  Rotate for a Max
@@ -23,6 +23,8 @@ long long RotateForMax(long long n) {
     }
     return n;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(RotateForMax, 56789);

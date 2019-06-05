@@ -1,8 +1,6 @@
 #include "common_header.h"
 
-#include <forward_list>
 #include <queue>
-
 
 /** Implementing Stack using Arrays
  *

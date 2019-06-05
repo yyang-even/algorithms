@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include <forward_list>
 #include <future>
 #include <stack>
 
@@ -8,8 +7,8 @@
 
 
 namespace {
-using ArrayType = std::vector<int>;
 
+using ArrayType = std::vector<int>;
 
 /** QuickSort
  *

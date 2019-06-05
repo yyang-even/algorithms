@@ -314,3 +314,10 @@
 * https://www.geeksforgeeks.org/return-maximum-occurring-character-in-the-input-string/
 * https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
 * https://www.geeksforgeeks.org/maximum-occurring-character-in-an-input-string-set-2/
+* https://www.geeksforgeeks.org/find-the-two-repeating-elements-in-a-given-array/
+* https://www.geeksforgeeks.org/find-the-number-occurring-odd-number-of-times/
+* https://www.geeksforgeeks.org/merge-one-array-of-size-n-into-another-one-of-size-mn/
+* https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
+* https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
+* https://www.geeksforgeeks.org/reversal-algorithm-right-rotation-array/
+* https://www.geeksforgeeks.org/rotate-a-linked-list/

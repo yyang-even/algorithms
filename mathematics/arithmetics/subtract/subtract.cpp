@@ -2,7 +2,6 @@
 
 namespace {
 
-
 /** Subtract two numbers without using arithmetic operators
  *
  * @reference   https://www.geeksforgeeks.org/subtract-two-numbers-without-using-arithmetic-operators/

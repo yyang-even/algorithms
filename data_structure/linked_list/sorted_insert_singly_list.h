@@ -1,7 +1,5 @@
 #pragma once
 
-#include <forward_list>
-
 /**
  * @highlight   The use of std::forward_list::cbefore_begin().
  */
