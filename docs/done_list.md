@@ -321,3 +321,6 @@
 * https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
 * https://www.geeksforgeeks.org/reversal-algorithm-right-rotation-array/
 * https://www.geeksforgeeks.org/rotate-a-linked-list/
+* https://www.geeksforgeeks.org/reverse-doubly-linked-list-using-recursion/
+* https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-2/
+* https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-4-swapping-data/

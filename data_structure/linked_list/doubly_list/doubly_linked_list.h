@@ -164,6 +164,11 @@ public:
         return array;
     }
 
+
+    /**
+     * @reference   Print Doubly Linked list in Reverse Order
+     *              https://www.geeksforgeeks.org/print-doubly-linked-list-in-reverse-order/
+     */
     const auto CopyToArray_Reverse() const {
         std::vector<DoublyListNode::ValueType> array;
         for (auto iter = tail; iter; iter = iter->prev) {
@@ -215,12 +220,39 @@ public:
     /**
      * @reference   Reverse a Doubly Linked List
      *              https://www.geeksforgeeks.org/reverse-a-doubly-linked-list/
+     * @reference   Reverse a Doubly linked list using recursion
+     *              https://www.geeksforgeeks.org/reverse-doubly-linked-list-using-recursion/
+     * @reference   Reverse a Doubly Linked List | Set-2
+     *              https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-2/
+     * @reference   Reverse a Doubly Linked List | Set 4 (Swapping Data)
+     *              https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-4-swapping-data/
      */
     void Reverse() {
         for (auto iter = head; iter; iter = iter->prev) {
             std::swap(iter->next, iter->prev);
         }
         std::swap(head, tail);
+    }
+
+    void Reverse_Recursive() {
+        Reverse_Recursive(head);
+        std::swap(head, tail);
+    }
+    void Reverse_Recursive(const DoublyListNode::PointerType current) {
+        if (current) {
+            std::swap(current->next, current->prev);
+            Reverse_Recursive(current->prev);
+        }
+    }
+
+    void Reverse_TwoPointers() {
+        if (head) {
+            auto left = head;
+            auto right = tail;
+            for (; left != right and left->prev != right; left = left->next, right = right->prev) {
+                std::swap(left->value, right->value);
+            }
+        }
     }
 };
 

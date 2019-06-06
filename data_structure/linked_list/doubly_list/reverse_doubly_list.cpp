@@ -12,6 +12,26 @@ bool testReverse(std::vector<int> array) {
     return list.CopyToArray() == array;
 }
 
+
+bool testReverse_Recursive(std::vector<int> array) {
+    DoublyLinkedList list {array};
+    list.Reverse_Recursive();
+
+    std::reverse(array.begin(), array.end());
+
+    return list.CopyToArray() == array;
+}
+
+
+bool testReverse_TwoPointers(std::vector<int> array) {
+    DoublyLinkedList list {array};
+    list.Reverse_TwoPointers();
+
+    std::reverse(array.begin(), array.end());
+
+    return list.CopyToArray() == array;
+}
+
 }//namespace
 
 
@@ -21,3 +41,13 @@ const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 SIMPLE_BENCHMARK(testReverse, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse, TestSample, true, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_Recursive, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_Recursive, TestSample, true, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_TwoPointers, TestSample, true, SAMPLE_ARRAY);
