@@ -10,6 +10,9 @@
  *
  * @reference   Doubly Linked List | Set 1 (Introduction and Insertion)
  *              https://www.geeksforgeeks.org/doubly-linked-list/
+ *
+ * @reference   Program to find size of Doubly Linked List
+ *              https://www.geeksforgeeks.org/program-find-size-doubly-linked-list/
  */
 class DoublyLinkedList {
 public:
