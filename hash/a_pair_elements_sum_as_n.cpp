@@ -2,6 +2,8 @@
 
 #include "a_pair_elements_sum_as_n.h"
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -12,24 +14,29 @@ using ArrayType = std::array<int, N>;
  *
  * Given an array A[] of n numbers and another number x, determines
  * whether or not there exist two elements in A whose sum is exactly x.
- */
-/** Using Hash map
+ *
  * @complexity: O(n)
  */
-template <std::size_t N>
-INT_BOOL HasPairOfElementsSumAsNHashmap(const ArrayType<N> &values, const int target) {
-    return PairOfElementsSumAsNHashmap<ArrayType<N>>(values, target, nullptr);
+template <typename ArrayType>
+auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
+    return PairOfElementsSumAsN_Hashmap<ArrayType>(values, target, nullptr);
 }
 
-/** Using sort
- *
+
+/**
  * @reference   Two Pointers Technique
  *              https://www.geeksforgeeks.org/two-pointers-technique/
  *
  * @complexity: Same as the sorting algorithm used.
+ *
+ * @reference   Find pairs with given sum in doubly linked list
+ *              https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/
+ *
+ * Given a sorted doubly linked list of positive distinct elements, the task is to find pairs in doubly linked
+ * list whose sum is equal to given value x, without using any extra space?
  */
 template <std::size_t N>
-INT_BOOL HasPairOfElementsSumAsNSort(ArrayType<N> values, const int target) {
+auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
     if (values.size() > 1) {
         std::sort(values.begin(), values.end());
 
@@ -40,7 +47,7 @@ INT_BOOL HasPairOfElementsSumAsNSort(ArrayType<N> values, const int target) {
         while (left < right) {
             sum = *left + *right;
             if (sum == target) {
-                return TRUE;
+                return true;
             } else if (sum < target) {
                 ++left;
             } else {
@@ -48,8 +55,9 @@ INT_BOOL HasPairOfElementsSumAsNSort(ArrayType<N> values, const int target) {
             }
         }
     }
-    return FALSE;
+    return false;
 }
+
 
 /** Count pairs with given sum
  *
@@ -59,19 +67,41 @@ INT_BOOL HasPairOfElementsSumAsNSort(ArrayType<N> values, const int target) {
  * pairs of integers in the array whose sum is equal to ‘sum’.
  */
 
+}//namespace
+
 
 constexpr ArrayType<0> VALUES1 = {};
 constexpr ArrayType<1> VALUES2 = {1};
 constexpr ArrayType<8> VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
 
-SIMPLE_TEST(HasPairOfElementsSumAsNHashmap, TestSAMPLE1, FALSE, VALUES1, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNHashmap, TestSAMPLE2, FALSE, VALUES2, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNHashmap, TestSAMPLE3, TRUE, VALUES3, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNHashmap, TestSAMPLE4, TRUE, VALUES3, 8);
-SIMPLE_TEST(HasPairOfElementsSumAsNHashmap, TestSAMPLE5, FALSE, VALUES3, 6);
 
-SIMPLE_TEST(HasPairOfElementsSumAsNSort, TestSAMPLE1, FALSE, VALUES1, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNSort, TestSAMPLE2, FALSE, VALUES2, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNSort, TestSAMPLE3, TRUE, VALUES3, 16);
-SIMPLE_TEST(HasPairOfElementsSumAsNSort, TestSAMPLE4, TRUE, VALUES3, 8);
-SIMPLE_TEST(HasPairOfElementsSumAsNSort, TestSAMPLE5, FALSE, VALUES3, 6);
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, VALUES3, 8);
+
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE1, false, VALUES1, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE2, false, VALUES2, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE3, true, VALUES3, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE4, true, VALUES3, 8);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE5, false, VALUES3, 6);
+
+
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Sort, VALUES3, 8);
+
+SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE1, false, VALUES1, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE2, false, VALUES2, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE3, true, VALUES3, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE4, true, VALUES3, 8);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE5, false, VALUES3, 6);
+
+
+const std::list<int> LIST1 = {};
+const std::list<int> LIST2 = {1};
+const std::list<int> LIST3 = {1, 4, 45, 6, 10, -8, 9, 4};
+
+
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, LIST3, 8);
+
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE6, false, LIST1, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE7, false, LIST2, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE8, true, LIST3, 16);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE9, true, LIST3, 8);
+SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE10, false, LIST3, 6);

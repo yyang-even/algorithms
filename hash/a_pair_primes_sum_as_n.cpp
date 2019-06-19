@@ -4,6 +4,8 @@
 #include "mathematics/numbers/prime/primes_below_n.h"
 
 
+namespace {
+
 using InputType = unsigned;
 
 /** Pair of prime numbers with a given sum and minimum absolute difference
@@ -34,9 +36,11 @@ auto PairPrimesSumAsN(const InputType N) {
 
     const auto primes = SieveOfEratosthenes(N);
     auto output = std::make_pair(primes[0], primes[0]);
-    PairOfElementsSumAsNHashmap(primes, N, &output);
+    PairOfElementsSumAsN_Hashmap(primes, N, &output);
     return output;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(PairPrimesSumAsN, 74);

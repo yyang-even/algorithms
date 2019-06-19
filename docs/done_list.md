@@ -326,3 +326,5 @@
 * https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-4-swapping-data/
 * https://www.geeksforgeeks.org/xor-linked-list-a-memory-efficient-doubly-linked-list-set-1/
 * https://www.geeksforgeeks.org/xor-linked-list-a-memory-efficient-doubly-linked-list-set-2/
+* https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/
+* https://www.geeksforgeeks.org/program-find-size-doubly-linked-list/
