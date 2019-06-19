@@ -18,8 +18,6 @@ public:
         using PointerType = std::shared_ptr<DoublyListNode>;
 
         ValueType value;
-        PointerType prev;
-        PointerType next;
 
         static std::size_t node_alive;
 
@@ -29,11 +27,28 @@ public:
         ~DoublyListNode() {
             --node_alive;
         }
+
+        PointerType &Next() {
+            return next;
+        }
+        const PointerType &Next() const {
+            return next;
+        }
+        PointerType &Prev() {
+            return prev;
+        }
+        const PointerType &Prev() const {
+            return prev;
+        }
+
+    private:
+        PointerType prev = nullptr;
+        PointerType next = nullptr;
     };
 
 protected:
-    DoublyListNode::PointerType head;
-    DoublyListNode::PointerType tail;
+    DoublyListNode::PointerType head = nullptr;
+    DoublyListNode::PointerType tail = nullptr;
     std::size_t size = 0;
 
 public:
@@ -48,8 +63,8 @@ public:
 
 
     ~DoublyLinkedList() {
-        for (; head; head = head->next) {
-            head->prev = nullptr;
+        for (; head; head = head->Next()) {
+            head->Prev() = nullptr;
         }
 
         tail = nullptr;
@@ -68,10 +83,10 @@ public:
 
     void PushFront(const ValueType v) {
         const auto new_node = std::make_shared<DoublyListNode>(v);
-        new_node->next = head;
+        new_node->Next() = head;
 
         if (head) {
-            head->prev = new_node;
+            head->Prev() = new_node;
         }
 
         head = new_node;
@@ -88,13 +103,13 @@ public:
         assert(next);
 
         const auto new_node = std::make_shared<DoublyListNode>(v);
-        new_node->prev = next->prev;
-        new_node->next = next;
+        new_node->Prev() = next->Prev();
+        new_node->Next() = next;
 
-        next->prev = new_node;
+        next->Prev() = new_node;
 
-        if (new_node->prev) {
-            new_node->prev->next = new_node;
+        if (new_node->Prev()) {
+            new_node->Prev()->Next() = new_node;
         } else {
             head = new_node;
         }
@@ -107,13 +122,13 @@ public:
         assert(prev);
 
         const auto new_node = std::make_shared<DoublyListNode>(v);
-        new_node->prev = prev;
-        new_node->next = prev->next;
+        new_node->Prev() = prev;
+        new_node->Next() = prev->Next();
 
-        prev->next = new_node;
+        prev->Next() = new_node;
 
-        if (new_node->next) {
-            new_node->next->prev = new_node;
+        if (new_node->Next()) {
+            new_node->Next()->Prev() = new_node;
         } else {
             tail = new_node;
         }
@@ -124,10 +139,10 @@ public:
 
     void PushBack(const ValueType v) {
         const auto new_node = std::make_shared<DoublyListNode>(v);
-        new_node->prev = tail;
+        new_node->Prev() = tail;
 
         if (tail) {
-            tail->next = new_node;
+            tail->Next() = new_node;
         }
 
         tail = new_node;
@@ -141,8 +156,8 @@ public:
 
 
     const auto Search(const ValueType v) const {
-        DoublyListNode::PointerType iter;
-        for (iter = head; iter and iter->value != v; iter = iter->next);
+        auto iter = head;
+        for (; iter and iter->value != v; iter = iter->Next());
         return iter;
     }
 
@@ -150,14 +165,14 @@ public:
     const auto At(std::size_t index) const {
         assert(index < size);
         auto iter = head;
-        for (; index--; iter = iter->next);
+        for (; index--; iter = iter->Next());
         return iter;
     }
 
 
     const auto CopyToArray() const {
         std::vector<DoublyListNode::ValueType> array;
-        for (auto iter = head; iter; iter = iter->next) {
+        for (auto iter = head; iter; iter = iter->Next()) {
             array.push_back(iter->value);
         }
 
@@ -171,7 +186,7 @@ public:
      */
     const auto CopyToArray_Reverse() const {
         std::vector<DoublyListNode::ValueType> array;
-        for (auto iter = tail; iter; iter = iter->prev) {
+        for (auto iter = tail; iter; iter = iter->Prev()) {
             array.push_back(iter->value);
         }
 
@@ -187,17 +202,17 @@ public:
         assert(del);
 
         if (head == del) {
-            head = del->next;
+            head = del->Next();
         }
         if (tail == del) {
-            tail = del->prev;
+            tail = del->Prev();
         }
 
-        if (del->next) {
-            del->next->prev = del->prev;
+        if (del->Next()) {
+            del->Next()->Prev() = del->Prev();
         }
-        if (del->prev) {
-            del->prev->next = del->next;
+        if (del->Prev()) {
+            del->Prev()->Next() = del->Next();
         }
 
         --size;
@@ -228,8 +243,8 @@ public:
      *              https://www.geeksforgeeks.org/reverse-doubly-linked-list-set-4-swapping-data/
      */
     void Reverse() {
-        for (auto iter = head; iter; iter = iter->prev) {
-            std::swap(iter->next, iter->prev);
+        for (auto iter = head; iter; iter = iter->Prev()) {
+            std::swap(iter->Next(), iter->Prev());
         }
         std::swap(head, tail);
     }
@@ -240,8 +255,8 @@ public:
     }
     void Reverse_Recursive(const DoublyListNode::PointerType current) {
         if (current) {
-            std::swap(current->next, current->prev);
-            Reverse_Recursive(current->prev);
+            std::swap(current->Next(), current->Prev());
+            Reverse_Recursive(current->Prev());
         }
     }
 
@@ -249,7 +264,7 @@ public:
         if (head) {
             auto left = head;
             auto right = tail;
-            for (; left != right and left->prev != right; left = left->next, right = right->prev) {
+            for (; left != right and left->Prev() != right; left = left->Next(), right = right->Prev()) {
                 std::swap(left->value, right->value);
             }
         }

@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include <stack>
+
 #include "mathematics/numbers/binary/swap.h"
 
 namespace {
@@ -17,13 +19,16 @@ namespace {
  * @reference   Reverse string without using any temporary variable
  *              https://www.geeksforgeeks.org/reverse-string-without-using-any-temporary-variable/
  *
+ * @reference   Reverse an array without using subtract sign ‘-‘ anywhere in the code
+ *              https://www.geeksforgeeks.org/reverse-array-without-using-subtract-sign-anywhere-code/
+ *
  * Given a string, write a C/C++ program to reverse it.
  */
 template <typename SwapFunc>
 auto Reverse(std::string input, const SwapFunc swap) {
     if (not input.empty()) {
         auto l_iter = input.begin();
-        auto r_iter = input.begin() + input.size() - 1ul;
+        auto r_iter = input.end() - 1;
         for (; l_iter < r_iter; ++l_iter, --r_iter) {
             swap(*l_iter, *r_iter);
         }
@@ -58,6 +63,21 @@ auto Reverse_Xor(const std::string &input) {
     return Reverse(input, Swap_Xor<std::string::value_type>);
 }
 
+
+auto Reverse_Stack(std::string input) {
+    std::stack<std::string::value_type> s;
+    for (auto &c : input) {
+        s.push(std::move(c));
+    }
+
+    for (std::string::size_type i = 0; not s.empty(); ++i) {
+        input[i] = std::move(s.top());
+        s.pop();
+    }
+
+    return input;
+}
+
 }//namespace
 
 
@@ -83,3 +103,11 @@ SIMPLE_TEST(Reverse_Xor, TestSAMPLE1, std::string(""), std::string(""));
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE2, std::string("a"), std::string("a"));
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE3, std::string("ba"), std::string("ab"));
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE4, std::string("cba"), std::string("abc"));
+
+
+SIMPLE_BENCHMARK(Reverse_Stack, std::string("ab4c12ed3"));
+
+SIMPLE_TEST(Reverse_Stack, TestSAMPLE1, std::string(""), std::string(""));
+SIMPLE_TEST(Reverse_Stack, TestSAMPLE2, std::string("a"), std::string("a"));
+SIMPLE_TEST(Reverse_Stack, TestSAMPLE3, std::string("ba"), std::string("ab"));
+SIMPLE_TEST(Reverse_Stack, TestSAMPLE4, std::string("cba"), std::string("abc"));
