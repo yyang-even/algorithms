@@ -328,3 +328,5 @@
 * https://www.geeksforgeeks.org/xor-linked-list-a-memory-efficient-doubly-linked-list-set-2/
 * https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/
 * https://www.geeksforgeeks.org/program-find-size-doubly-linked-list/
+* https://www.geeksforgeeks.org/find-pairs-with-given-product-in-a-sorted-doubly-linked-list/
+* https://www.geeksforgeeks.org/find-largest-node-doubly-linked-list/

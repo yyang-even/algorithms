@@ -41,11 +41,10 @@ auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
         std::sort(values.begin(), values.end());
 
         auto left = values.cbegin();
-        auto right = values.cbegin() + (values.size() - 1);
-        int sum;
+        auto right = std::prev(values.cend());
 
-        while (left < right) {
-            sum = *left + *right;
+        while (left != right) {
+            const auto sum = *left + *right;
             if (sum == target) {
                 return true;
             } else if (sum < target) {
