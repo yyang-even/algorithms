@@ -18,8 +18,8 @@ CompileTestExe(middle_of_singly_linked_list)
 CompileBenchmarkExe(reverse_singly_linked_list)
 CompileTestExe(reverse_singly_linked_list)
 
-CompileBenchmarkExe(sorted_insert_singly_list)
-CompileTestExe(sorted_insert_singly_list)
+CompileBenchmarkExe(sorted_insert_linked_list)
+CompileTestExe(sorted_insert_linked_list)
 
 add_subdirectory(doubly_list)
 add_subdirectory(singly_list)

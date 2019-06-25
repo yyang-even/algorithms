@@ -1,20 +1,35 @@
 #include "singly_list/singly_linked_list.h"
+#include "doubly_list/doubly_linked_list.h"
 
-#include "sorted_insert_singly_list.h"
+#include "sorted_insert_linked_list.h"
 
 
 namespace {
 
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
-auto testSortedInsert(std::vector<int> array) {
+auto testSortedInsert_Singly(std::vector<int> array) {
     std::sort(array.begin(), array.end());
     SinglyLinkedList list {array};
 
-    list.SortedInsert(-1);
-    list.SortedInsert(15);
+    list.SortedInsert(-1);  //head
+    list.SortedInsert(15);  //tail
     list.SortedInsert(11);
     list.InsertFront(-8);
+    list.PushBack(18);
+
+    return list.CopyToArray();
+}
+
+
+auto testSortedInsert_Doubly(std::vector<int> array) {
+    std::sort(array.begin(), array.end());
+    DoublyLinkedList list {array};
+
+    list.SortedInsert(-1);  //head
+    list.SortedInsert(15);  //tail
+    list.SortedInsert(11);
+    list.PushFront(-8);
     list.PushBack(18);
 
     return list.CopyToArray();
@@ -26,9 +41,9 @@ auto testSortedInsert(std::vector<int> array) {
 const std::vector<int> EXPECTED_SORTED_INSERT_ARRAY = { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15, 18};
 
 
-SIMPLE_BENCHMARK(testSortedInsert, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testSortedInsert_Singly, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testSortedInsert, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
+SIMPLE_TEST(testSortedInsert_Singly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
 
 
 const std::forward_list<int> EMPTY_LIST = {};
@@ -45,3 +60,8 @@ SIMPLE_TEST(SortedInsert_STL, TestSample1, SINGLE_ITEM_LIST, EMPTY_LIST, SINGLE_
 SIMPLE_TEST(SortedInsert_STL, TestSample2, EXPECTED2, SINGLE_ITEM_LIST, EXPECTED2.front());
 SIMPLE_TEST(SortedInsert_STL, TestSample3, EXPECTED3, SINGLE_ITEM_LIST, 8);
 SIMPLE_TEST(SortedInsert_STL, TestSample4, EXPECTED4, SAMPLE_LIST, 10);
+
+
+SIMPLE_BENCHMARK(testSortedInsert_Doubly, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testSortedInsert_Doubly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);

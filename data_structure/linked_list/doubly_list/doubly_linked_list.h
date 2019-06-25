@@ -140,6 +140,31 @@ public:
     }
 
 
+    /** Sorted insert in a doubly linked list with head and tail pointers
+     *
+     * @reference   https://www.geeksforgeeks.org/create-doubly-linked-list-using-double-pointer-inserting-nodes-list-remains-ascending-order/
+     *
+     * A Doubly linked list is a linked list that consists of a set of sequentially linked records called nodes.
+     * Each node contains two fields that are references to the previous and to the next node in the sequence of nodes.
+     * The task is to create a doubly linked list by inserting nodes such that list remains in ascending order on
+     * printing from left to right. Also, we need to maintain two pointers, head (points to first node) and tail
+     * (points to last node).
+     */
+    void SortedInsert(const ValueType v) {
+        auto current = head;
+
+        while (current and (current->value < v)) {
+            current = current->Next();
+        }
+
+        if (current) {
+            InsertBefore(current, v);
+        } else {
+            PushBack(v);
+        }
+    }
+
+
     void PushBack(const ValueType v) {
         const auto new_node = std::make_shared<DoublyListNode>(v);
         new_node->Prev() = tail;
