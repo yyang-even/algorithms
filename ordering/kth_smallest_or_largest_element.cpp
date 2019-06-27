@@ -22,6 +22,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/third-largest-element-array-distinct-elements/
  * @reference   Find Second largest element in an array
  *              https://www.geeksforgeeks.org/find-second-largest-element-array/
+ * @reference   Find the Second Largest Element in a Linked List
+ *              https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
+ * @reference   Second Smallest Element in a Linked List
+ *              https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
  * @reference   Why is it faster to process sorted array than an unsorted array ?
  *              https://www.geeksforgeeks.org/faster-process-sorted-array-unsorted-array/
  * @reference   Tournament Tree (Winner Tree) and Binary Heap

@@ -330,3 +330,8 @@
 * https://www.geeksforgeeks.org/program-find-size-doubly-linked-list/
 * https://www.geeksforgeeks.org/find-pairs-with-given-product-in-a-sorted-doubly-linked-list/
 * https://www.geeksforgeeks.org/find-largest-node-doubly-linked-list/
+* https://www.geeksforgeeks.org/recursive-approach-to-find-nth-node-from-the-end-in-the-linked-list/
+* https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
+* https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
+* https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
+* https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
