@@ -335,3 +335,12 @@
 * https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
 * https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
 * https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
+* https://www.geeksforgeeks.org/delete-all-the-even-nodes-from-a-doubly-linked-list/
+* https://www.geeksforgeeks.org/delete-nodes-list-greater-x/
+* https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-singly-linked-list/
+* https://www.geeksforgeeks.org/delete-all-non-prime-nodes-from-a-singly-linked-list/
+* https://www.geeksforgeeks.org/count-of-prime-nodes-of-a-singly-linked-list/
+* https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-divisible-by-any-given-number-k/
+* https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-less-than-k/
+* https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-doubly-linked-list/
+* https://www.geeksforgeeks.org/delete-all-nodes-from-the-doubly-linked-list-which-are-divisible-by-k/

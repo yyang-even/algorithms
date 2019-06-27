@@ -24,15 +24,9 @@ auto DeleteWithKey_Singly(std::forward_list<int> single_list,
 }
 
 
-/** Write a function that counts the number of times a given int occurs in a Linked List
- *
- * @reference   https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
- */
-
-
-/** Delete all occurrences of a given key in a doubly linked list
- *
- * @reference   https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
+/**
+ * @reference   Delete all occurrences of a given key in a doubly linked list
+ *              https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
  */
 auto DeleteWithKey_Doubly(std::list<int> doubly_list, const std::list<int>::value_type key) {
     for (auto iter = doubly_list.cbegin(); iter != doubly_list.cend();) {
@@ -56,6 +50,66 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
     const auto key_deleted_list = delete_func(list, key);
     return expected == key_deleted_list;
 }
+
+
+/** Write a function that counts the number of times a given int occurs in a Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
+ * @reference   Count of Prime Nodes of a Singly Linked List
+ *              https://www.geeksforgeeks.org/count-of-prime-nodes-of-a-singly-linked-list/
+ *
+ * Given a singly linked list containing N nodes, the task is to find the total count of prime numbers.
+ */
+
+
+/** Delete all the even nodes from a Doubly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/delete-all-the-even-nodes-from-a-doubly-linked-list/
+ *
+ * Given a doubly linked list containing N nodes, the task is to delete all the even nodes from the list.
+ */
+
+
+/** Delete all the nodes from the doubly linked list that are greater than a given value
+ *
+ * @reference   https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-doubly-linked-list-that-are-greater-than-a-given-value/
+ * @reference   Delete all the nodes from the list that are greater than x
+ *              https://www.geeksforgeeks.org/delete-nodes-list-greater-x/
+ *
+ * Given a doubly linked list containing N nodes and a number X, the task is to delete all the nodes
+ * from the list that are greater than the given value X.
+ *
+ * @reference   Delete all the nodes from the list which are less than K
+ *              https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-less-than-k/
+ * @reference   Delete all the nodes from a doubly linked list that are smaller than a given value
+ *              https://www.geeksforgeeks.org/delete-all-the-nodes-from-a-doubly-linked-list-that-are-smaller-than-a-given-value/
+ *
+ * Given a Linked List and a key K. The task is to write a program to delete all the nodes from the
+ * list that are lesser than the key K.
+ */
+
+
+/** Delete all Prime Nodes from a Singly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-singly-linked-list/
+ * @reference   Delete all Non-Prime Nodes from a Singly Linked List
+ *              https://www.geeksforgeeks.org/delete-all-non-prime-nodes-from-a-singly-linked-list/
+ * @reference   Delete all Prime Nodes from a Doubly Linked List
+ *              https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-doubly-linked-list/
+ *
+ * Given a singly linked list containing N nodes, the task is to delete all nodes from the list which are prime.
+ */
+
+
+/** Delete all the nodes from the list which are divisible by any given number K
+ *
+ * @reference   https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-divisible-by-any-given-number-k/
+ * @reference   Delete all nodes from the doubly linked list which are divisible by K
+ *              https://www.geeksforgeeks.org/delete-all-nodes-from-the-doubly-linked-list-which-are-divisible-by-k/
+ *
+ * Given a Linked List and a key K. The task is to write a program to delete all the nodes from
+ * the list that are divisible by K.
+ */
 
 }//namespace
 
