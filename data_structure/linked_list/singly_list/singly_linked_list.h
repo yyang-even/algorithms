@@ -519,6 +519,8 @@ public:
     /** Program for n’th node from the end of a Linked List
      *
      * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
+     * @reference   Recursive Approach to find nth node from the end in the linked list
+     *              https://www.geeksforgeeks.org/recursive-approach-to-find-nth-node-from-the-end-in-the-linked-list/
      *
      * Given a Linked List and a number n, write a function that returns the value
      * at the n’th node from end of the Linked List.
