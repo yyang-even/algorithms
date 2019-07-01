@@ -9,14 +9,14 @@ auto testDeleteAll() {
     const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
     SinglyLinkedList list {SAMPLE_ARRAY};
     list.DeleteAllOneByOne();
-    return SinglyLinkedList::SinglyListNode::node_alive;
+    return SinglyLinkedList::Node::node_alive;
 }
 
 auto testDeleteAll_Recursive() {
     const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
     SinglyLinkedList list {SAMPLE_ARRAY};
     list.DeleteAllOneByOne_Recursive();
-    return SinglyLinkedList::SinglyListNode::node_alive;
+    return SinglyLinkedList::Node::node_alive;
 }
 
 }//namespace

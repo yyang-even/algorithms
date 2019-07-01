@@ -78,7 +78,7 @@ auto testLinkedList(const std::vector<int> &array) {
 
 auto testLinkedList_Size(const std::vector<int> &array) {
     auto list = testLinkedList_Helper(array);
-    return list.Size() ==  SinglyLinkedList::SinglyListNode::node_alive;
+    return list.Size() ==  SinglyLinkedList::Node::node_alive;
 }
 
 }//namespace

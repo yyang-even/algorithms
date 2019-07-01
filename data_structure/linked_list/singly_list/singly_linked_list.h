@@ -31,30 +31,30 @@
  */
 class SinglyLinkedList {
 public:
-    struct SinglyListNode {
+    struct Node {
         using ValueType = int;
-        using PointerType = std::shared_ptr<SinglyListNode>;
+        using PointerType = std::shared_ptr<Node>;
 
         ValueType value;
         PointerType next;
 
         static std::size_t node_alive;
 
-        explicit SinglyListNode(const ValueType v = 0): value(v) {
+        explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
-        ~SinglyListNode() {
+        ~Node() {
             --node_alive;
         }
     };
 
 protected:
-    SinglyListNode::PointerType head;
-    SinglyListNode::PointerType tail;
+    Node::PointerType head;
+    Node::PointerType tail;
     std::size_t size = 0;
 
-    void delete_Nonhead(SinglyListNode::PointerType previous,
-                        const std::function<bool(const SinglyListNode &)> is_same_node) {
+    void delete_Nonhead(Node::PointerType previous,
+                        const std::function<bool(const Node &)> is_same_node) {
         assert(previous);
 
         while (previous->next) {
@@ -70,7 +70,7 @@ protected:
         }
     }
 
-    void deleteHelper(const std::function<bool(const SinglyListNode &)> is_same_node) {
+    void deleteHelper(const std::function<bool(const Node &)> is_same_node) {
         if (head) {
             if (is_same_node(*head)) {
                 PopHead();
@@ -80,17 +80,17 @@ protected:
         }
     }
 
-    const SinglyListNode::PointerType search_RecursiveHelper(const SinglyListNode::PointerType node,
-            const SinglyListNode::ValueType key) const {
+    const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
+            const Node::ValueType key) const {
         return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 
-    std::size_t countSize_RecursiveHelper(const SinglyListNode::PointerType node) const {
+    std::size_t countSize_RecursiveHelper(const Node::PointerType node) const {
         return node ? countSize_RecursiveHelper(node->next) + 1 : 0;
     }
 
-    void reverse_RecursiveHelper(const SinglyListNode::PointerType current,
-                                 const SinglyListNode::PointerType previous) {
+    void reverse_RecursiveHelper(const Node::PointerType current,
+                                 const Node::PointerType previous) {
         if (not current->next) {
             head = current;
             current->next = previous;
@@ -102,13 +102,13 @@ protected:
         reverse_RecursiveHelper(next, current);
     }
 
-    SinglyListNode::ValueType getN_RecursiveHelper(const SinglyListNode::PointerType node,
-            const std::size_t index) const {
+    Node::ValueType getN_RecursiveHelper(const Node::PointerType node,
+                                         const std::size_t index) const {
         return index == 0 ? node->value : getN_RecursiveHelper(node->next, index - 1);
     }
 
-    void getReverseN_RecursiveHelper(const SinglyListNode::PointerType node, const std::size_t index,
-                                     std::size_t &i, SinglyListNode::ValueType &output) const {
+    void getReverseN_RecursiveHelper(const Node::PointerType node, const std::size_t index,
+                                     std::size_t &i, Node::ValueType &output) const {
         if (node) {
             getReverseN_RecursiveHelper(node->next, index, i, output);
 
@@ -128,17 +128,17 @@ protected:
      * Given a pointer to a node to be deleted, delete the node.
      * Note that we don’t have pointer to head node.
      */
-    static void deleteNode_WithoutHead(SinglyListNode &to_be_deleted, std::size_t &size) {
+    static void deleteNode_WithoutHead(Node &to_be_deleted, std::size_t &size) {
         assert(to_be_deleted.next);
 
         to_be_deleted = *(to_be_deleted.next);
         --size;
     }
 public:
-    using ValueType = SinglyListNode::ValueType;
+    using ValueType = Node::ValueType;
 
     SinglyLinkedList() = default;
-    explicit SinglyLinkedList(const std::vector<SinglyListNode::ValueType> &array) {
+    explicit SinglyLinkedList(const std::vector<Node::ValueType> &array) {
         for (const auto elem : array) {
             PushBack(elem);
         }
@@ -152,8 +152,8 @@ public:
         return size;
     }
 
-    void PushBack(const SinglyListNode::ValueType v) {
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+    void PushBack(const Node::ValueType v) {
+        const auto new_node = std::make_shared<Node>(v);
         if (tail) {
             tail->next = new_node;
             tail = new_node;
@@ -163,8 +163,8 @@ public:
         ++size;
     }
 
-    void InsertFront(const SinglyListNode::ValueType v) {
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+    void InsertFront(const Node::ValueType v) {
+        const auto new_node = std::make_shared<Node>(v);
         if (head) {
             new_node->next = head;
             head = new_node;
@@ -174,8 +174,8 @@ public:
         ++size;
     }
 
-    void InsertAfter(SinglyListNode &node, const SinglyListNode::ValueType v) {
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+    void InsertAfter(Node &node, const Node::ValueType v) {
+        const auto new_node = std::make_shared<Node>(v);
         if (not node.next) {
             tail = new_node;
         } else {
@@ -192,11 +192,11 @@ public:
      * Given a singly linked list, a position and an element, the task is to write
      * a program to insert that element in a linked list at a given position.
      */
-    void InsertAt_Simple(std::size_t position, const SinglyListNode::ValueType v) {
+    void InsertAt_Simple(std::size_t position, const Node::ValueType v) {
         ++size;
         assert(position and position <= size);
 
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         if (position == 1) {
             new_node->next = head;
             head = new_node;
@@ -213,12 +213,12 @@ public:
         }
     }
 
-    void InsertAt_Clever(std::size_t position, const SinglyListNode::ValueType v) {
+    void InsertAt_Clever(std::size_t position, const Node::ValueType v) {
         ++size;
         assert(position and position <= size);
 
         auto *current = &head;
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         while (position--) {
             if (not position) {
                 new_node->next = *current;
@@ -239,9 +239,9 @@ public:
      *
      * Given a sorted linked list and a value to insert, write a function to insert the value in sorted way.
      */
-    void SortedInsert(const SinglyListNode::ValueType v) {
+    void SortedInsert(const Node::ValueType v) {
         auto *current = &head;
-        const auto new_node = std::make_shared<SinglyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
 
         while (*current and (*current)->value < v) {
             current = &(*current)->next;
@@ -257,7 +257,7 @@ public:
     }
 
 
-    auto Search_Iterative(const SinglyListNode::ValueType key) const {
+    auto Search_Iterative(const Node::ValueType key) const {
         auto iter = head;
         while (iter and iter->value != key) {
             iter = iter->next;
@@ -265,12 +265,12 @@ public:
         return iter;
     }
 
-    auto Search_Recursive(const SinglyListNode::ValueType key) const {
+    auto Search_Recursive(const Node::ValueType key) const {
         return search_RecursiveHelper(head, key);
     }
 
     auto CopyToArray() const {
-        std::vector<SinglyListNode::ValueType> array;
+        std::vector<Node::ValueType> array;
         auto iter = head;
 
         while (iter) {
@@ -281,7 +281,7 @@ public:
         return array;
     }
 
-    SinglyListNode::ValueType PopHead() {
+    Node::ValueType PopHead() {
         assert(head);
 
         const auto v = head->value;
@@ -291,14 +291,14 @@ public:
         return v;
     }
 
-    void Delete(const SinglyListNode::ValueType key) {
-        deleteHelper([key](const SinglyListNode & node) {
+    void Delete(const Node::ValueType key) {
+        deleteHelper([key](const Node & node) {
             return node.value == key;
         });
     }
 
-    void Delete(const SinglyListNode &target_node) {
-        deleteHelper([&target_node](const SinglyListNode & node) {
+    void Delete(const Node &target_node) {
+        deleteHelper([&target_node](const Node & node) {
             return &node == &target_node;
         });
     }
@@ -316,12 +316,12 @@ public:
      *
      * You may assume that the Linked List never becomes empty.
      */
-    void DeleteNode_Constrained(const SinglyListNode &target_node) {
+    void DeleteNode_Constrained(const Node &target_node) {
         if (head) {
             if (head.get() == &target_node) {
                 deleteNode_WithoutHead(*head, size);
             } else {
-                delete_Nonhead(head, [&target_node](const SinglyListNode & node) {
+                delete_Nonhead(head, [&target_node](const Node & node) {
                     return &node == &target_node;
                 });
             }
@@ -361,9 +361,9 @@ public:
      * Given a liked list and a key to be deleted. Delete last occurrence of key from linked.
      * The list may have duplicates.
      */
-    void DeleteLastOfKey(const SinglyListNode::ValueType key) {
+    void DeleteLastOfKey(const Node::ValueType key) {
         if (head) {
-            SinglyListNode::PointerType *pointer_to_last_of_key = nullptr;
+            Node::PointerType *pointer_to_last_of_key = nullptr;
             if (head->value == key) {
                 pointer_to_last_of_key = &head;
                 if (head == tail) {
@@ -424,7 +424,7 @@ public:
     void Reverse_Iterative() {
         tail = head;
         auto current = head;
-        SinglyListNode::PointerType previous = nullptr;
+        Node::PointerType previous = nullptr;
 
         while (current) {
             const auto next = current->next;
@@ -480,7 +480,7 @@ public:
             return;
         }
 
-        std::stack<SinglyListNode::PointerType> node_stack;
+        std::stack<Node::PointerType> node_stack;
         while (head->next) {
             node_stack.push(head);
             head = head->next;
@@ -533,7 +533,7 @@ public:
         assert(index < size);
 
         std::size_t i = 0;
-        SinglyListNode::ValueType output{};
+        Node::ValueType output{};
         getReverseN_RecursiveHelper(head, index, i, output);
         return output;
     }
@@ -604,4 +604,4 @@ public:
     }
 };
 
-std::size_t SinglyLinkedList::SinglyListNode::node_alive = 0;
+std::size_t SinglyLinkedList::Node::node_alive = 0;

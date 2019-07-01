@@ -33,13 +33,13 @@ using MinPriorityQueue = MinHeap<T>;
 class SinglyLinkedListMinPriorityQueue : protected SinglyLinkedList {
 public:
     SinglyLinkedListMinPriorityQueue() = default;
-    SinglyLinkedListMinPriorityQueue(const std::vector<SinglyListNode::ValueType> &array) {
+    SinglyLinkedListMinPriorityQueue(const std::vector<Node::ValueType> &array) {
         for (const auto elem : array) {
             SortedInsert(elem);
         }
     }
 
-    void Push(const SinglyListNode::ValueType v) {
+    void Push(const Node::ValueType v) {
         SortedInsert(v);
     }
 

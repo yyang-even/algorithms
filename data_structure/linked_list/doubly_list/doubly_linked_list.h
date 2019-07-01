@@ -16,18 +16,18 @@
  */
 class DoublyLinkedList {
 public:
-    struct DoublyListNode {
+    struct Node {
         using ValueType = int;
-        using PointerType = std::shared_ptr<DoublyListNode>;
+        using PointerType = std::shared_ptr<Node>;
 
         ValueType value;
 
         static std::size_t node_alive;
 
-        explicit DoublyListNode(const ValueType v = 0): value(v) {
+        explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
-        ~DoublyListNode() {
+        ~Node() {
             --node_alive;
         }
 
@@ -50,12 +50,12 @@ public:
     };
 
 protected:
-    DoublyListNode::PointerType head = nullptr;
-    DoublyListNode::PointerType tail = nullptr;
+    Node::PointerType head = nullptr;
+    Node::PointerType tail = nullptr;
     std::size_t size = 0;
 
 public:
-    using ValueType = DoublyListNode::ValueType;
+    using ValueType = Node::ValueType;
 
     DoublyLinkedList() = default;
     explicit DoublyLinkedList(const std::vector<ValueType> &array) {
@@ -85,7 +85,7 @@ public:
 
 
     void PushFront(const ValueType v) {
-        const auto new_node = std::make_shared<DoublyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         new_node->Next() = head;
 
         if (head) {
@@ -102,10 +102,10 @@ public:
     }
 
 
-    void InsertBefore(const DoublyListNode::PointerType next, const ValueType v) {
+    void InsertBefore(const Node::PointerType next, const ValueType v) {
         assert(next);
 
-        const auto new_node = std::make_shared<DoublyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         new_node->Prev() = next->Prev();
         new_node->Next() = next;
 
@@ -121,10 +121,10 @@ public:
     }
 
 
-    void InsertAfter(const DoublyListNode::PointerType prev, const ValueType v) {
+    void InsertAfter(const Node::PointerType prev, const ValueType v) {
         assert(prev);
 
-        const auto new_node = std::make_shared<DoublyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         new_node->Prev() = prev;
         new_node->Next() = prev->Next();
 
@@ -166,7 +166,7 @@ public:
 
 
     void PushBack(const ValueType v) {
-        const auto new_node = std::make_shared<DoublyListNode>(v);
+        const auto new_node = std::make_shared<Node>(v);
         new_node->Prev() = tail;
 
         if (tail) {
@@ -199,7 +199,7 @@ public:
 
 
     const auto CopyToArray() const {
-        std::vector<DoublyListNode::ValueType> array;
+        std::vector<Node::ValueType> array;
         for (auto iter = head; iter; iter = iter->Next()) {
             array.push_back(iter->value);
         }
@@ -213,7 +213,7 @@ public:
      *              https://www.geeksforgeeks.org/print-doubly-linked-list-in-reverse-order/
      */
     const auto CopyToArray_Reverse() const {
-        std::vector<DoublyListNode::ValueType> array;
+        std::vector<Node::ValueType> array;
         for (auto iter = tail; iter; iter = iter->Prev()) {
             array.push_back(iter->value);
         }
@@ -226,7 +226,7 @@ public:
      * @reference   Delete a node in a Doubly Linked List
      *              https://www.geeksforgeeks.org/delete-a-node-in-a-doubly-linked-list/
      */
-    void Delete(const DoublyListNode::PointerType del) {
+    void Delete(const Node::PointerType del) {
         assert(del);
 
         if (head == del) {
@@ -281,7 +281,7 @@ public:
         Reverse_Recursive(head);
         std::swap(head, tail);
     }
-    void Reverse_Recursive(const DoublyListNode::PointerType current) {
+    void Reverse_Recursive(const Node::PointerType current) {
         if (current) {
             std::swap(current->Next(), current->Prev());
             Reverse_Recursive(current->Prev());
@@ -299,4 +299,4 @@ public:
     }
 };
 
-std::size_t DoublyLinkedList::DoublyListNode::node_alive = 0;
+std::size_t DoublyLinkedList::Node::node_alive = 0;

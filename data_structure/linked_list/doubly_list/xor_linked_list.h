@@ -14,19 +14,19 @@
  */
 class XorLinkedList {
 public:
-    struct DoublyListNode {
+    struct Node {
         using ValueType = int;
-        using PointerType = DoublyListNode*;
+        using PointerType = Node*;
 
         ValueType value;
         PointerType prev_xor_next = nullptr;
 
         static std::size_t node_alive;
 
-        explicit DoublyListNode(const ValueType v = 0): value(v) {
+        explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
-        ~DoublyListNode() {
+        ~Node() {
             --node_alive;
         }
 
@@ -49,12 +49,12 @@ public:
     };
 
 protected:
-    DoublyListNode::PointerType head = nullptr;
-    DoublyListNode::PointerType tail = nullptr;
+    Node::PointerType head = nullptr;
+    Node::PointerType tail = nullptr;
     std::size_t size = 0;
 
 public:
-    using ValueType = DoublyListNode::ValueType;
+    using ValueType = Node::ValueType;
 
     XorLinkedList() = default;
     explicit XorLinkedList(const std::vector<ValueType> &array) {
@@ -67,7 +67,7 @@ public:
 
 
     ~XorLinkedList() {
-        DoublyListNode::PointerType prev = nullptr;
+        Node::PointerType prev = nullptr;
         for (auto iter = head; iter;) {
             const auto next = iter->Next(prev);
             delete iter;
@@ -87,11 +87,11 @@ public:
 
 
     void PushFront(const ValueType v) {
-        const auto new_node = new DoublyListNode(v);
+        const auto new_node = new Node(v);
         new_node->prev_xor_next = head;
 
         if (head) {
-            head->prev_xor_next = DoublyListNode::Xor(new_node, head->prev_xor_next);
+            head->prev_xor_next = Node::Xor(new_node, head->prev_xor_next);
         }
 
         head = new_node;
@@ -104,20 +104,20 @@ public:
     }
 
 
-    void InsertAfter(const std::pair<DoublyListNode::PointerType, DoublyListNode::PointerType>
+    void InsertAfter(const std::pair<Node::PointerType, Node::PointerType>
                      &prev_prev_pair, const ValueType v) {
         const auto prev = prev_prev_pair.first;
         const auto prev_prev = prev_prev_pair.second;
         assert(prev);
 
-        const auto new_node = new DoublyListNode(v);
+        const auto new_node = new Node(v);
         const auto next = prev->Next(prev_prev);
-        new_node->prev_xor_next = DoublyListNode::Xor(prev, next);
+        new_node->prev_xor_next = Node::Xor(prev, next);
 
-        prev->prev_xor_next = DoublyListNode::Xor(prev_prev, new_node);
+        prev->prev_xor_next = Node::Xor(prev_prev, new_node);
 
         if (next) {
-            next->prev_xor_next = DoublyListNode::Xor(new_node, next->Next(prev));
+            next->prev_xor_next = Node::Xor(new_node, next->Next(prev));
         } else {
             tail = new_node;
         }
@@ -127,11 +127,11 @@ public:
 
 
     void PushBack(const ValueType v) {
-        const auto new_node = new DoublyListNode(v);
+        const auto new_node = new Node(v);
         new_node->prev_xor_next = tail;
 
         if (tail) {
-            tail->prev_xor_next = DoublyListNode::Xor(new_node, tail->prev_xor_next);
+            tail->prev_xor_next = Node::Xor(new_node, tail->prev_xor_next);
         }
 
         tail = new_node;
@@ -145,7 +145,7 @@ public:
 
 
     const auto Search(const ValueType v) const {
-        DoublyListNode::PointerType prev = nullptr;
+        Node::PointerType prev = nullptr;
         auto iter = head;
         for (; iter and iter->value != v; iter = iter->Next(prev));
         return std::make_pair(iter, prev);
@@ -153,8 +153,8 @@ public:
 
 
     const auto CopyToArray() const {
-        std::vector<DoublyListNode::ValueType> array;
-        DoublyListNode::PointerType prev = nullptr;
+        std::vector<Node::ValueType> array;
+        Node::PointerType prev = nullptr;
         for (auto current = head; current; current = current->Next(prev)) {
             array.push_back(current->value);
         }
@@ -163,8 +163,8 @@ public:
     }
 
     const auto CopyToArray_Reverse() const {
-        std::vector<DoublyListNode::ValueType> array;
-        DoublyListNode::PointerType next = nullptr;
+        std::vector<Node::ValueType> array;
+        Node::PointerType next = nullptr;
         for (auto current = tail; current; current = current->Prev(next)) {
             array.push_back(current->value);
         }
@@ -173,4 +173,4 @@ public:
     }
 };
 
-std::size_t XorLinkedList::DoublyListNode::node_alive = 0;
+std::size_t XorLinkedList::Node::node_alive = 0;

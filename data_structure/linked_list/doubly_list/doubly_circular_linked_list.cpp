@@ -1,4 +1,4 @@
-#include "doubly_linked_list.h"
+#include "doubly_circular_linked_list.h"
 
 
 namespace {
@@ -8,7 +8,7 @@ const std::vector<int> EXPECTED_ARRAY = {27, 24, -4, -3, -2, 1, 8, 6, 7, 4, -23,
 
 
 auto testLinkedList_Helper(const std::vector<int> &array) {
-    DoublyLinkedList list {array};
+    DoublyCircularLinkedList list {array};
 
     list.PushFront(-1);
     list.PushFront(-2);
@@ -68,7 +68,7 @@ auto testLinkedList_ReverseOrder(const std::vector<int> &array) {
 auto testLinkedList_Size(const std::vector<int> &array) {
     const auto list = testLinkedList_Helper(array);
 
-    return list.Size() ==  DoublyLinkedList::Node::node_alive;
+    return list.Size() ==  DoublyCircularLinkedList::Node::node_alive;
 }
 
 }//namespace

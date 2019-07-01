@@ -54,7 +54,7 @@ auto testLinkedList_ReverseOrder(const std::vector<int> &array) {
 auto testLinkedList_Size(const std::vector<int> &array) {
     const auto list = testLinkedList_Helper(array);
 
-    return list.Size() ==  XorLinkedList::DoublyListNode::node_alive;
+    return list.Size() ==  XorLinkedList::Node::node_alive;
 }
 
 }//namespace
