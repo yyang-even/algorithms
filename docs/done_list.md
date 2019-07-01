@@ -344,3 +344,8 @@
 * https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-less-than-k/
 * https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-doubly-linked-list/
 * https://www.geeksforgeeks.org/delete-all-nodes-from-the-doubly-linked-list-which-are-divisible-by-k/
+* https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/
+* https://www.geeksforgeeks.org/search-an-element-in-doubly-circular-linked-list/
+* https://www.geeksforgeeks.org/convert-array-to-circular-doubly-linked-list/
+* https://www.geeksforgeeks.org/insertion-at-specific-position-in-a-circular-doubly-linked-list/
+* https://www.geeksforgeeks.org/doubly-circular-linked-list-set-2-deletion/
