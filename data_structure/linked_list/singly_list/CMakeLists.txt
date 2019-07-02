@@ -9,5 +9,8 @@ CompileTestExe(nth_node_from_the_end)
 
 CompileBenchmarkExe(random_node_from_singly_linked_list)
 
+CompileBenchmarkExe(reverse_singly_linked_list)
+CompileTestExe(reverse_singly_linked_list)
+
 CompileBenchmarkExe(singly_linked_list)
 CompileTestExe(singly_linked_list)

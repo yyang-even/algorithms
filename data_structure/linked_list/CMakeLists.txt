@@ -15,9 +15,6 @@ CompileTestExe(merge_two_sorted_singly_list)
 CompileBenchmarkExe(middle_of_singly_linked_list)
 CompileTestExe(middle_of_singly_linked_list)
 
-CompileBenchmarkExe(reverse_singly_linked_list)
-CompileTestExe(reverse_singly_linked_list)
-
 CompileBenchmarkExe(sorted_insert_linked_list)
 CompileTestExe(sorted_insert_linked_list)
 
