@@ -1,4 +1,5 @@
 #include "doubly_linked_list.h"
+#include "doubly_circular_linked_list.h"
 
 
 namespace {
@@ -32,6 +33,16 @@ bool testReverse_TwoPointers(std::vector<int> array) {
     return list.CopyToArray() == array;
 }
 
+
+bool testReverse_Circular(std::vector<int> array) {
+    DoublyCircularLinkedList list {array};
+    list.Reverse();
+
+    std::reverse(array.begin(), array.end());
+
+    return list.CopyToArray() == array;
+}
+
 }//namespace
 
 
@@ -51,3 +62,8 @@ SIMPLE_TEST(testReverse_Recursive, TestSample, true, SAMPLE_ARRAY);
 SIMPLE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_TwoPointers, TestSample, true, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_Circular, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_Circular, TestSample, true, SAMPLE_ARRAY);

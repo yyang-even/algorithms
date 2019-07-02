@@ -202,4 +202,19 @@ public:
         const auto del = At(index);
         Delete(del);
     }
+
+
+    /**
+     * @reference   Reverse a doubly circular linked list
+     *              https://www.geeksforgeeks.org/reverse-a-doubly-circular-linked-list/
+     */
+    void Reverse() {
+        if (size > 1) {
+            for (auto iter = head->Next(); iter != head; iter = iter->Prev()) {
+                std::swap(iter->Next(), iter->Prev());
+            }
+            std::swap(head->Next(), head->Prev());
+            head = head->Next();
+        }
+    }
 };

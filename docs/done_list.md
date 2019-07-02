@@ -349,3 +349,4 @@
 * https://www.geeksforgeeks.org/convert-array-to-circular-doubly-linked-list/
 * https://www.geeksforgeeks.org/insertion-at-specific-position-in-a-circular-doubly-linked-list/
 * https://www.geeksforgeeks.org/doubly-circular-linked-list-set-2-deletion/
+* https://www.geeksforgeeks.org/reverse-a-doubly-circular-linked-list/
