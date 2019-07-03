@@ -149,6 +149,11 @@ public:
      * The task is to create a doubly linked list by inserting nodes such that list remains in ascending order on
      * printing from left to right. Also, we need to maintain two pointers, head (points to first node) and tail
      * (points to last node).
+     *
+     * @reference   Insert value in sorted way in a sorted doubly linked list
+     *              https://www.geeksforgeeks.org/insert-value-sorted-way-sorted-doubly-linked-list/
+     *
+     * Given a sorted doubly linked list and a value to insert, write a function to insert the value in sorted way.
      */
     void SortedInsert(const ValueType v) {
         auto current = head;
