@@ -9,8 +9,8 @@ CompileTestExe(delete_all_of_key_linked_list)
 CompileBenchmarkExe(merge_k_sorted_singly_list)
 CompileTestExe(merge_k_sorted_singly_list)
 
-CompileBenchmarkExe(merge_two_sorted_singly_list)
-CompileTestExe(merge_two_sorted_singly_list)
+CompileBenchmarkExe(merge_two_sorted_list)
+CompileTestExe(merge_two_sorted_list)
 
 CompileBenchmarkExe(middle_of_singly_linked_list)
 CompileTestExe(middle_of_singly_linked_list)
