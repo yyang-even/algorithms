@@ -18,5 +18,8 @@ CompileTestExe(middle_of_singly_linked_list)
 CompileBenchmarkExe(sorted_insert_linked_list)
 CompileTestExe(sorted_insert_linked_list)
 
+CompileBenchmarkExe(swap_nodes_in_a_linked_list)
+CompileTestExe(swap_nodes_in_a_linked_list)
+
 add_subdirectory(doubly_list)
 add_subdirectory(singly_list)

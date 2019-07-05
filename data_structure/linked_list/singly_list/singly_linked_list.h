@@ -257,9 +257,12 @@ public:
     }
 
 
-    auto Search_Iterative(const Node::ValueType key) const {
+    auto Search_Iterative(const Node::ValueType key, Node::PointerType *prev = nullptr) const {
         auto iter = head;
         while (iter and iter->value != key) {
+            if (prev) {
+                *prev = iter;
+            }
             iter = iter->next;
         }
         return iter;
@@ -601,6 +604,50 @@ public:
         }
 
         return mid->value;
+    }
+
+
+    /**
+     * @reference   Swap nodes in a linked list without swapping data
+     *              https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
+     *
+     * Given a linked list and two keys in it, swap nodes for two given keys. Nodes should be swapped
+     * by changing links. Swapping data of nodes may be expensive in many situations when data contains
+     * many fields.
+     * It may be assumed that all keys in linked list are distinct.
+     */
+    void Swap(const Node::ValueType x, const Node::ValueType y) {
+        assert(x != y);
+        assert(size > 1);
+
+        Node::PointerType prev_x = nullptr;
+        auto current_x = Search_Iterative(x, &prev_x);
+
+        Node::PointerType prev_y = nullptr;
+        auto current_y = Search_Iterative(y, &prev_y);
+
+        assert(current_x and current_y);
+
+        if (tail == current_x) {
+            tail == current_y;
+        }
+        if (tail == current_y) {
+            tail == current_x;
+        }
+
+        if (prev_x == nullptr) {
+            head = current_y;
+        } else {
+            prev_x->next = current_y;
+        }
+
+        if (prev_y == nullptr) {
+            head = current_x;
+        } else {
+            prev_y->next = current_x;
+        }
+
+        std::swap(current_x->next, current_y->next);
     }
 };
 
