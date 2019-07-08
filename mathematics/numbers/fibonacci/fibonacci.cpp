@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /** Mathematics of Rabbit Breeding
@@ -17,7 +20,7 @@ typedef unsigned InputType;
  */
 /**
  * @reference   Program for Fibonacci numbers
- *              http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+ *              https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
  *
  * The Fibonacci numbers are the numbers in the following integer sequence.
  *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……..
@@ -47,7 +50,7 @@ typedef unsigned InputType;
  */
 /**
  * @reference   Count number of possible paths up ladder
- *              http://stackoverflow.com/questions/12255193/count-number-of-possible-paths-up-ladder
+ *              https://stackoverflow.com/questions/12255193/count-number-of-possible-paths-up-ladder
  *
  * A ladder has n steps, one can climb the ladder using any combination of steps of 1 or steps of 2.
  * How many possible ways are there for one to climb the ladder?
@@ -75,13 +78,13 @@ typedef unsigned InputType;
 
 /** Golden Ratio
  * @reference   Nature, The Golden Ratio, and Fibonacci too ...
- *              http://www.mathsisfun.com/numbers/nature-golden-ratio-fibonacci.html
+ *              https://www.mathsisfun.com/numbers/nature-golden-ratio-fibonacci.html
  *
  * When we take any two successive (one after the other) Fibonacci Numbers,
  * their ratio is very close to the Golden Ratio.
  */
 const double GOLDEN_RATIO = 1.61803;
-unsigned long FibonacciGoldenRatio(const InputType n) {
+unsigned long Fibonacci_GoldenRatio(const InputType n) {
     if (n < 2) {
         return n;
     } else if (n == 2) {
@@ -95,11 +98,12 @@ unsigned long FibonacciGoldenRatio(const InputType n) {
     }
 }
 
+
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 6.6.
  */
-unsigned long FibonacciGoldenRatioClosedForm(const InputType n) {
+unsigned long Fibonacci_GoldenRatioClosedForm(const InputType n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
     constexpr double phi = (1.0 + square_root_of_5) / 2.0;
     constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
@@ -107,22 +111,26 @@ unsigned long FibonacciGoldenRatioClosedForm(const InputType n) {
     return (std::pow(phi, n) - std::pow(phi_hat, n)) / square_root_of_5;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 
-SIMPLE_BENCHMARK(FibonacciGoldenRatio, LOWER);
-SIMPLE_BENCHMARK(FibonacciGoldenRatio, UPPER);
-RANDOM_BENCHMARK(FibonacciGoldenRatio, LOWER, UPPER);
 
-SIMPLE_TEST(FibonacciGoldenRatio, TestLOWER, 0, LOWER);
-SIMPLE_TEST(FibonacciGoldenRatio, TestSAMPLE1, 1, 1);
-SIMPLE_TEST(FibonacciGoldenRatio, TestSAMPLE2, 144, 12);
+SIMPLE_BENCHMARK(Fibonacci_GoldenRatio, LOWER);
+SIMPLE_BENCHMARK(Fibonacci_GoldenRatio, UPPER);
+RANDOM_BENCHMARK(Fibonacci_GoldenRatio, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(FibonacciGoldenRatioClosedForm, LOWER);
-SIMPLE_BENCHMARK(FibonacciGoldenRatioClosedForm, UPPER);
-RANDOM_BENCHMARK(FibonacciGoldenRatioClosedForm, LOWER, UPPER);
+SIMPLE_TEST(Fibonacci_GoldenRatio, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(Fibonacci_GoldenRatio, TestSAMPLE1, 1u, 1);
+SIMPLE_TEST(Fibonacci_GoldenRatio, TestSAMPLE2, 144u, 12);
 
-SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestLOWER, 0, LOWER);
-SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestSAMPLE1, 1, 1);
-SIMPLE_TEST(FibonacciGoldenRatioClosedForm, TestSAMPLE2, 144, 12);
+
+SIMPLE_BENCHMARK(Fibonacci_GoldenRatioClosedForm, LOWER);
+SIMPLE_BENCHMARK(Fibonacci_GoldenRatioClosedForm, UPPER);
+RANDOM_BENCHMARK(Fibonacci_GoldenRatioClosedForm, LOWER, UPPER);
+
+SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestSAMPLE1, 1u, 1);
+SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestSAMPLE2, 144u, 12);

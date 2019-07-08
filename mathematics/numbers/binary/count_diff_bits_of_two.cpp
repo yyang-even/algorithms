@@ -2,6 +2,7 @@
 
 #include "count_set_bits.h"
 
+
 namespace {
 
 typedef unsigned InputType;
@@ -15,7 +16,7 @@ typedef unsigned InputType;
  * Given two numbers ‘a’ and b’. Write a program to count number of bits needed to be flipped to convert ‘a’ to ‘b’.
  */
 auto CountDiffBits(const InputType a, const InputType b) {
-    return CountSetBitsBrianKernighan(a ^ b);
+    return CountSetBits_BrianKernighan(a ^ b);
 }
 
 }//namespace
@@ -23,7 +24,7 @@ auto CountDiffBits(const InputType a, const InputType b) {
 
 SIMPLE_BENCHMARK(CountDiffBits, 10, 20);
 
-SIMPLE_TEST(CountDiffBits, TestSample1, 4, 10, 20);
-SIMPLE_TEST(CountDiffBits, TestSample2, 3, 10, 7);
-SIMPLE_TEST(CountDiffBits, TestSample3, 2, 12, 15);
-SIMPLE_TEST(CountDiffBits, TestSample4, 3, 3, 16);
+SIMPLE_TEST(CountDiffBits, TestSample1, 4u, 10, 20);
+SIMPLE_TEST(CountDiffBits, TestSample2, 3u, 10, 7);
+SIMPLE_TEST(CountDiffBits, TestSample3, 2u, 12, 15);
+SIMPLE_TEST(CountDiffBits, TestSample4, 3u, 3, 16);

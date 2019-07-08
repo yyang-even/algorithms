@@ -1,17 +1,22 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Is Little Endian
  *
  * @reference   Little and Big Endian Mystery
- *              http://www.geeksforgeeks.org/little-and-big-endian-mystery/
+ *              https://www.geeksforgeeks.org/little-and-big-endian-mystery/
  *
  * Is there a quick way to determine endianness of your machine?
  */
-INT_BOOL IsLittleEndian() {
+inline INT_BOOL IsLittleEndian() {
     const auto one = 1;
     const auto *byte_ptr = reinterpret_cast<const char *>(&one);
     return *byte_ptr ? TRUE : FALSE;
 }
+
+}//namespace
 
 
 #ifdef __GNUC__

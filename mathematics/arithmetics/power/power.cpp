@@ -6,7 +6,7 @@ namespace {
 
 /** Write a program to calculate pow(x,n)
  * @reference   Write a program to calculate pow(x,n)
- *              http://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+ *              https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
  *
  * Given two integers x and n, write a function to compute x^n.
  * We may assume that x and n are small and overflow doesn’t happen.

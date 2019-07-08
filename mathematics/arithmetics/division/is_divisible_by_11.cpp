@@ -9,7 +9,7 @@ typedef int InputType;
  *
  * @reference   Grade 7:  The Learning Equation Math
  *              11.04 Divisibility Rules
- *              https://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
+ *              http://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
  *
  * The (sum of the odd numbered digits) - (sum of the even numbered digits) is divisible by 11.
  */

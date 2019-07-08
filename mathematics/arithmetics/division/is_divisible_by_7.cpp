@@ -2,11 +2,14 @@
 
 #include "mathematics/arithmetics/modulo/modulo.h"
 
+
+namespace {
+
 typedef int InputType;
 
 /** Is divisible by 7
  * @reference   Check divisibility by 7
- *              http://www.geeksforgeeks.org/divisibility-by-7/
+ *              https://www.geeksforgeeks.org/divisibility-by-7/
  *
  * Given a number, check if it is divisible by 7.
  * You are not allowed to use modulo operator,
@@ -45,9 +48,12 @@ INT_BOOL isDivisibleBy7(InputType num) {
     return isDivisibleBy7(num / 10 - 2 * Mod10(num));
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
 
 SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy7, UPPER);

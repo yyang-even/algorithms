@@ -1,10 +1,13 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /**
  * @reference   Count factorial numbers in a given range
- *              http://www.geeksforgeeks.org/count-factorial-numbers-in-a-given-range/
+ *              https://www.geeksforgeeks.org/count-factorial-numbers-in-a-given-range/
  *
  * A number F is a factorial number if there exists some integer I >= 0 such that F = I!
  * (that is, F is factorial of I). Examples of factorial numbers are 1, 2, 6, 24, 120, ….
@@ -33,15 +36,18 @@ InputType CountFactorialNumInRange(const InputType low, const InputType high) {
     return count;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
 
 SIMPLE_BENCHMARK(CountFactorialNumInRange, LOWER, 1);
 SIMPLE_BENCHMARK(CountFactorialNumInRange, LOWER, UPPER);
 SIMPLE_BENCHMARK(CountFactorialNumInRange, 2, 10);
 
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE1, 1, 0, 1);
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE2, 2, 12, 122);
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE3, 5, 2, 720);
-SIMPLE_TEST(CountFactorialNumInRange, TestUPPER, 12, LOWER, UPPER);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE1, 1u, 0, 1);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE2, 2u, 12, 122);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE3, 5u, 2, 720);
+SIMPLE_TEST(CountFactorialNumInRange, TestUPPER, 12u, LOWER, UPPER);

@@ -3,13 +3,14 @@
 #include "mathematics/numbers/prime/largest_power_of_p_divides_factorial_n.h"
 #include "mathematics/numbers/prime/primes_below_n.h"
 
+
 namespace {
 
 typedef unsigned InputType;
 
 /**
  * @reference   Count Divisors of Factorial
- *              http://www.geeksforgeeks.org/count-divisors-of-factorial/
+ *              https://www.geeksforgeeks.org/count-divisors-of-factorial/
  *
  * Given a number n, count total number of divisors of n!.
  *
@@ -40,8 +41,8 @@ const InputType LOWER = 0;
 
 SIMPLE_BENCHMARK(CountDivisorsOfFactorial, LOWER);
 
-SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE1, 0, LOWER);
-SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE2, 1, 1);
-SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE3, 8, 4);
-SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE4, 16, 5);
-SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE5, 30, 6);
+SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE1, 0u, LOWER);
+SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE2, 1u, 1);
+SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE3, 8u, 4);
+SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE4, 16u, 5);
+SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE5, 30u, 6);

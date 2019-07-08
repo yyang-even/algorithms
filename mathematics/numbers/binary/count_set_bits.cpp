@@ -8,7 +8,7 @@ typedef unsigned InputType;
 
 /** Count set bits in an integer
  *
- * @reference   http://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+ * @reference   https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
  *
  * Write an efficient program to count number of 1s in binary representation of an integer.
  */
@@ -34,7 +34,7 @@ static const unsigned char BitsSetTable256[256] = {
 #define B6(n) B4(n), B4(n+1), B4(n+1), B4(n+2)
     B6(0), B6(1), B6(1), B6(2)
 };
-InputType CountSetBitsLookupTable(const InputType n) {
+InputType CountSetBits_LookupTable(const InputType n) {
     auto *p = reinterpret_cast<const unsigned char *>(&n);
     auto num_bytes = sizeof(InputType);
     unsigned char count = 0;
@@ -43,6 +43,7 @@ InputType CountSetBitsLookupTable(const InputType n) {
     }
     return count;
 }
+
 
 /** TODO: Counting bits set in 14, 24, or 32-bit words using 64-bit instructions
  *
@@ -56,13 +57,15 @@ InputType CountSetBitsLookupTable(const InputType n) {
  *              Counting bits set, in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-uint32_t CountSetBitsMagicBinaries32(InputType n) {
+uint32_t CountSetBits_MagicBinaries32(InputType n) {
     static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
 
     n = n - ((n >> 1) & 0x55555555);
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
     return (((n + (n >> 4)) & 0xF0F0F0F) * 0x1010101) >> 24;
 }
+
+
 template <typename T>
 T CountSetBitsMagicBinaries(T n) {
     n = n - ((n >> 1) & (T)~(T)0 / 3);
@@ -70,7 +73,7 @@ T CountSetBitsMagicBinaries(T n) {
     n = (n + (n >> 4)) & (T)~(T)0 / 255 * 15;
     return (T)(n * ((T)~(T)0 / 255)) >> (Bits_Number<T>() - CHAR_BIT);
 }
-unsigned CountSetBitsMagicBinariesUnsigned(unsigned n) {
+unsigned CountSetBits_MagicBinariesUnsigned(unsigned n) {
     return CountSetBitsMagicBinaries<unsigned>(n);
 }
 
@@ -86,6 +89,7 @@ uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
     // Count set bits in parallel.
     return CountSetBitsMagicBinaries<uint64_t>(n);
 }
+
 
 /** Select the bit position (from the most-significant bit) with the given count (rank)
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -146,62 +150,69 @@ unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
-SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, LOWER);
-SIMPLE_BENCHMARK(CountSetBitsBrianKernighan, UPPER);
-RANDOM_BENCHMARK(CountSetBitsBrianKernighan, LOWER, UPPER);
 
-SIMPLE_TEST(CountSetBitsBrianKernighan, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsBrianKernighan, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
-SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE1, 2, 6);
-SIMPLE_TEST(CountSetBitsBrianKernighan, TestSAMPLE2, 3, 13);
+SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, UPPER);
+RANDOM_BENCHMARK(CountSetBits_BrianKernighan, LOWER, UPPER);
+
+SIMPLE_TEST(CountSetBits_BrianKernighan, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(CountSetBits_BrianKernighan, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountSetBits_BrianKernighan, TestSAMPLE1, 2u, 6);
+SIMPLE_TEST(CountSetBits_BrianKernighan, TestSAMPLE2, 3u, 13);
 
 #ifdef __GNUG__
-MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, __builtin_popcount, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, __builtin_popcount, LOWER, UPPER);
 #endif
 
-SIMPLE_BENCHMARK(CountSetBitsLookupTable, LOWER);
-SIMPLE_BENCHMARK(CountSetBitsLookupTable, UPPER);
-RANDOM_BENCHMARK(CountSetBitsLookupTable, LOWER, UPPER);
 
-SIMPLE_TEST(CountSetBitsLookupTable, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsLookupTable, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
-SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE1, 2, 6);
-SIMPLE_TEST(CountSetBitsLookupTable, TestSAMPLE2, 3, 13);
+SIMPLE_BENCHMARK(CountSetBits_LookupTable, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_LookupTable, UPPER);
+RANDOM_BENCHMARK(CountSetBits_LookupTable, LOWER, UPPER);
 
-MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, CountSetBitsLookupTable, LOWER, UPPER);
+SIMPLE_TEST(CountSetBits_LookupTable, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(CountSetBits_LookupTable, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountSetBits_LookupTable, TestSAMPLE1, 2u, 6);
+SIMPLE_TEST(CountSetBits_LookupTable, TestSAMPLE2, 3u, 13);
 
-SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, LOWER);
-SIMPLE_BENCHMARK(CountSetBitsMagicBinaries32, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_LookupTable, LOWER, UPPER);
 
-SIMPLE_TEST(CountSetBitsMagicBinaries32, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsMagicBinaries32, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
-SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE1, 2, 6);
-SIMPLE_TEST(CountSetBitsMagicBinaries32, TestSAMPLE2, 3, 13);
 
-MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, CountSetBitsMagicBinaries32, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, UPPER);
 
-SIMPLE_BENCHMARK(CountSetBitsMagicBinariesUnsigned, LOWER);
-SIMPLE_BENCHMARK(CountSetBitsMagicBinariesUnsigned, UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE1, 2u, 6);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE2, 3u, 13);
 
-SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
-SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestSAMPLE1, 2, 6);
-SIMPLE_TEST(CountSetBitsMagicBinariesUnsigned, TestSAMPLE2, 3, 13);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32, LOWER, UPPER);
 
-MUTUAL_RANDOM_TEST(CountSetBitsBrianKernighan, CountSetBitsMagicBinariesUnsigned, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, UPPER);
+
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE1, 2u, 6);
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE2, 3u, 13);
+
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned, LOWER, UPPER);
+
 
 SIMPLE_BENCHMARK(CountSetBitsFromMSB, LOWER, CHAR_BIT);
 SIMPLE_BENCHMARK(CountSetBitsFromMSB, UPPER, CHAR_BIT);
 
-SIMPLE_TEST(CountSetBitsFromMSB, TestLOWER, 0, LOWER, CHAR_BIT);
-SIMPLE_TEST(CountSetBitsFromMSB, TestUPPER, CHAR_BIT, -1ULL, CHAR_BIT);
-SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE1, 2, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
-SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE2, 3, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(CountSetBitsFromMSB, TestLOWER, 0u, LOWER, CHAR_BIT);
+SIMPLE_TEST(CountSetBitsFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT), -1ULL, CHAR_BIT);
+SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE1, 2u, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE2, 3u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
+
 
 SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, LOWER, CHAR_BIT);
 SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, UPPER, CHAR_BIT);
 
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64, LOWER, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER, CHAR_BIT, -1ULL, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64u, LOWER, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT), -1ULL,
+            CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14u, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
