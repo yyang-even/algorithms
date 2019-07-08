@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+
 namespace {
 
 typedef int InputType;
@@ -8,7 +9,7 @@ typedef int InputType;
  *
  * @reference   Grade 7:  The Learning Equation Math
  *              11.04 Divisibility Rules
- *              http://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
+ *              https://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
  *
  * The (sum of the odd numbered digits) - (sum of the even numbered digits) is divisible by 11.
  */
@@ -41,19 +42,22 @@ INT_BOOL isDivisibleBy11(int num) {
     return isDivisibleBy11(even_odd_diff);
 }
 
+
 /**
  * @reference   Sub-string Divisibility by 11 Queries
- *              http://www.geeksforgeeks.org/sub-string-divisibility-11-queries/
+ *              https://www.geeksforgeeks.org/sub-string-divisibility-11-queries/
  *
  * Given a large number, n (having number digits up to 10^6) and various queries of the below form :
  * Query(l, r) :  find if the sub-string between the indices l and r (Both inclusive) are divisible by 11.
+ *
+ * @highlight   The use of inline keyword to silence the -Wunused-function warning.
  */
 struct Query {
     Query(const std::string::size_type a, const std::string::size_type b): l(a), r(b) {}
     std::string::size_type l = 0;
     std::string::size_type r = 0;
 };
-std::ostream &operator <<(std::ostream &out, const Query &q) {
+inline std::ostream &operator <<(std::ostream &out, const Query &q) {
     return out << "(" << q.l << ", " << q.r << ")";
 }
 
@@ -87,6 +91,7 @@ constexpr InputType SAMPLE2 = -121;
 constexpr InputType SAMPLE3 = 60;
 constexpr InputType SAMPLE4 = 6600;
 
+
 SIMPLE_BENCHMARK(isDivisibleBy11, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy11, UPPER);
 SIMPLE_BENCHMARK(isDivisibleBy11, SAMPLE3);
@@ -100,6 +105,7 @@ SIMPLE_TEST(isDivisibleBy11, TestSAMPLE2, TRUE, SAMPLE2);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE3, FALSE, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE4, TRUE, SAMPLE4);
 SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, TRUE, 0);
+
 
 const std::vector<bool> EXPECTED_RESULTS {true, true, false, true};
 SIMPLE_BENCHMARK(SubstringDivisibilityBy11, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
