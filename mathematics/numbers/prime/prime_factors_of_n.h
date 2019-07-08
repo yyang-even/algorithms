@@ -9,7 +9,7 @@
  * nondecreasing order.
  *
  * @reference   Efficient program to print all prime factors of a given number
- *              http://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
+ *              https://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
  * @reference   C Program for efficiently print all prime factors of a given number
  *              https://www.geeksforgeeks.org/c-program-for-efficiently-print-all-prime-factors-of-a-given-number/
  * @reference   Prime Factor

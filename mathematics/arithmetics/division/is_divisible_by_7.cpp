@@ -2,11 +2,14 @@
 
 #include "mathematics/arithmetics/modulo/modulo.h"
 
+
+namespace {
+
 typedef int InputType;
 
 /** Is divisible by 7
  * @reference   Check divisibility by 7
- *              http://www.geeksforgeeks.org/divisibility-by-7/
+ *              https://www.geeksforgeeks.org/divisibility-by-7/
  *
  * Given a number, check if it is divisible by 7.
  * You are not allowed to use modulo operator,
@@ -16,7 +19,7 @@ typedef int InputType;
 /**
  * @reference   Grade 7:  The Learning Equation Math
  *              11.04 Divisibility Rules
- *              http://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
+ *              https://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
  *
  * To find out if a number is divisible by seven, take the last digit, double it,
  * and subtract it from the rest of the number. If you get an answer divisible by 7
@@ -45,9 +48,12 @@ INT_BOOL isDivisibleBy7(InputType num) {
     return isDivisibleBy7(num / 10 - 2 * Mod10(num));
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
 
 SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy7, UPPER);

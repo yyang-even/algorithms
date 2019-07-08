@@ -2,6 +2,9 @@
 
 #include "prime_factors_of_n.h"
 
+
+namespace {
+
 /** Sum of Factors of a Number using Prime Factorization
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-factors-of-a-number-using-prime-factorization/
@@ -29,9 +32,11 @@ auto SumOfFactorsOfN(const unsigned N) {
     return sum * sub_sum;
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(SumOfFactorsOfN, 1100);
 
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE1, 28, 12);
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168, 60);
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604, 1100);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE1, 28u, 12);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168u, 60);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604u, 1100);

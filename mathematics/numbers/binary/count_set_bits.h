@@ -3,7 +3,7 @@
 /**
  * Brian Kernighan’s Algorithm
  */
-unsigned CountSetBitsBrianKernighan(unsigned n) {
+unsigned CountSetBits_BrianKernighan(unsigned n) {
     unsigned count = 0;
     while (n) {
         ++count;

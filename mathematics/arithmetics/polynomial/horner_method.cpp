@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -14,7 +16,7 @@ using ArrayType = std::array<int, N>;
  * for x^n and poly[1] represents coefficient for x^(n-1) and so on.
  *
  *
- * @reference   http://www.geeksforgeeks.org/horners-method-polynomial-evaluation/
+ * @reference   https://www.geeksforgeeks.org/horners-method-polynomial-evaluation/
  *
  * @complexity: O(n)
  */
@@ -29,12 +31,15 @@ auto HornerMethod(ArrayType<N> coefficients, const int x) {
     return result;
 }
 
+}//namespace
+
 
 constexpr ArrayType<0> VALUES1 = {};
 constexpr ArrayType<1> VALUES2 = {1};
 constexpr ArrayType<2> VALUES3 = {1, 0};
 constexpr ArrayType<4> VALUES4 = {2, -6, 2, -1};
 constexpr ArrayType<4> VALUES5 = {2, 0, 3, 1};
+
 
 SIMPLE_TEST(HornerMethod, TestSAMPLE1, 0, VALUES1, 3);
 SIMPLE_TEST(HornerMethod, TestSAMPLE2, 1, VALUES2, 3);
