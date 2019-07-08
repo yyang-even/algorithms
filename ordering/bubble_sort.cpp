@@ -8,7 +8,7 @@ using ArrayType = std::vector<int>;
 
 /** Bubble Sort
  *
- * @reference   http://www.geeksforgeeks.org/bubble-sort/
+ * @reference   https://www.geeksforgeeks.org/bubble-sort/
  * @reference   Sorting Strings using Bubble Sort
  *              https://www.geeksforgeeks.org/sorting-strings-using-bubble-sort-2/
  * @reference   C Program for Bubble Sort
@@ -33,7 +33,7 @@ auto BubbleSort(ArrayType values) {
 
 /** Bubble Sort Optimized
  *
- * @reference   http://www.geeksforgeeks.org/bubble-sort/
+ * @reference   https://www.geeksforgeeks.org/bubble-sort/
  *
  * @complexity: O(n^2) worst case; O(n) if the array is already sorted.
  */
@@ -60,7 +60,7 @@ auto BubbleSort_Optimized(ArrayType values) {
 
 /** Recursive Bubble Sort
  *
- * @reference   http://www.geeksforgeeks.org/recursive-bubble-sort/
+ * @reference   https://www.geeksforgeeks.org/recursive-bubble-sort/
  * @reference   C++ Program for Recursive Bubble Sort
  *              https://www.geeksforgeeks.org/cpp-program-for-recursive-bubble-sort/
  *
@@ -86,6 +86,8 @@ auto BubbleSort_Recursive(ArrayType values) {
 /** C Program for Bubble Sort on Linked List
  *
  * @reference   https://www.geeksforgeeks.org/c-program-bubble-sort-linked-list/
+ * @reference   Bubble Sort for Linked List by Swapping nodes
+ *              https://www.geeksforgeeks.org/bubble-sort-for-linked-list-by-swapping-nodes/
  */
 auto BubbleSort_SinglyList(std::forward_list<int> values) {
     if (not values.empty()) {
