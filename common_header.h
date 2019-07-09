@@ -60,7 +60,7 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 
 #define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {                         \
     NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
-        auto input = Random_Number<InputType>(lowerBound, upperBound);                          \
+        const auto input = Random_Number<InputType>(lowerBound, upperBound);                    \
         meter.measure([&input]() { return func_name(input); });                                 \
     })                                                                                          \
 }
@@ -82,11 +82,11 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
     }                                                                   \
 }
 
-#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {            \
-    TEST(MutualRandomTest, func1##vs##func2) {                                          \
-        auto input = Random_Number<InputType>(lowerBound, upperBound);                  \
-        EXPECT_EQ(func1(input), func2(input)) << "Input: " << input;                    \
-    }                                                                                   \
+#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {                                \
+    TEST(MutualRandomTest, func1##vs##func2) {                                                              \
+        const auto input = Random_Number<InputType>(lowerBound, upperBound);                                \
+        EXPECT_EQ(func1(input), static_cast<decltype(func1(input))>(func2(input))) << "Input: " << input;   \
+    }                                                                                                       \
 }
 #else
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
