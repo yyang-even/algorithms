@@ -354,3 +354,4 @@
 * https://www.geeksforgeeks.org/sorted-merge-of-two-sorted-doubly-circular-linked-lists/
 * https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
 * https://www.geeksforgeeks.org/bubble-sort-for-linked-list-by-swapping-nodes/
+* https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/

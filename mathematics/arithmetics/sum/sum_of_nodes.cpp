@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Sum of array using pointer arithmetic
@@ -46,9 +49,18 @@ auto SumTailRecursive(const ArrayType &elements) {
 }
 
 
+/** Sum of the nodes of a Singly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/
+ */
+
+}//namespace
+
+
 const ArrayType SAMPLE1 = {1, 2, 3};
 const ArrayType SAMPLE2 = {15, 12, 13, 10};
 const ArrayType SAMPLE3 = {1, 2, 3, 4, 5 };
+
 
 SIMPLE_BENCHMARK(SumRecursive, SAMPLE1);
 

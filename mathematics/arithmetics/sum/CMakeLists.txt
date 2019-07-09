@@ -16,7 +16,7 @@ CompileTestExe(subarray_with_given_sum)
 CompileBenchmarkExe(sum)
 CompileTestExe(sum)
 
-CompileBenchmarkExe(sum_of_array)
-CompileTestExe(sum_of_array)
+CompileBenchmarkExe(sum_of_nodes)
+CompileTestExe(sum_of_nodes)
 
 add_subdirectory(sequences)
