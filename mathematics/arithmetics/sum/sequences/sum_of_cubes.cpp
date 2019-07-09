@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Program for cube sum of first n natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/program-cube-sum-first-n-natural-numbers/
@@ -37,21 +40,23 @@ auto SumOfEvenCubes(const unsigned N) {
     return 2 * N * N * (N + 1) * (N + 1);
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(SumOfCubes, 7);
 
-SIMPLE_TEST(SumOfCubes, TestSAMPLE1, 225, 5);
-SIMPLE_TEST(SumOfCubes, TestSAMPLE2, 784, 7);
+SIMPLE_TEST(SumOfCubes, TestSAMPLE1, 225u, 5);
+SIMPLE_TEST(SumOfCubes, TestSAMPLE2, 784u, 7);
 
 
 SIMPLE_BENCHMARK(SumOfOddCubes, 7);
 
-SIMPLE_TEST(SumOfOddCubes, TestSAMPLE1, 28, 2);
-SIMPLE_TEST(SumOfOddCubes, TestSAMPLE2, 496, 4);
+SIMPLE_TEST(SumOfOddCubes, TestSAMPLE1, 28u, 2);
+SIMPLE_TEST(SumOfOddCubes, TestSAMPLE2, 496u, 4);
 
 
 SIMPLE_BENCHMARK(SumOfEvenCubes, 7);
 
-SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE1, 72, 2);
-SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE2, 800, 4);
-SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE3, 10368, 8);
+SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE1, 72u, 2);
+SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE2, 800u, 4);
+SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE3, 10368u, 8);

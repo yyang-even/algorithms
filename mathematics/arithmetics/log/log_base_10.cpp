@@ -2,6 +2,7 @@
 
 #include "mathematics/numbers/binary/log_base_2.h"
 
+
 namespace {
 
 typedef unsigned InputType;
@@ -31,7 +32,7 @@ InputType LogBase10(const InputType num) {
  *              Find integer log base 10 of an integer the obvious way
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-inline InputType LogBase10Enum(const InputType num) {
+inline InputType LogBase10_Enum(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     return (num >= 1000000000) ? 9 : (num >= 100000000) ? 8 : (num >= 10000000) ? 7 :
@@ -45,18 +46,20 @@ inline InputType LogBase10Enum(const InputType num) {
 constexpr InputType LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
+
 SIMPLE_BENCHMARK(LogBase10, UPPER);
 
-SIMPLE_TEST(LogBase10, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase10, TestUPPER, 9, UPPER);
-SIMPLE_TEST(LogBase10, TestSAMPLE1, 2, 100);
-SIMPLE_TEST(LogBase10, TestSAMPLE2, 4, 87000);
+SIMPLE_TEST(LogBase10, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase10, TestUPPER, 9u, UPPER);
+SIMPLE_TEST(LogBase10, TestSAMPLE1, 2u, 100);
+SIMPLE_TEST(LogBase10, TestSAMPLE2, 4u, 87000);
 
-SIMPLE_BENCHMARK(LogBase10Enum, UPPER);
 
-SIMPLE_TEST(LogBase10Enum, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase10Enum, TestUPPER, 9, UPPER);
-SIMPLE_TEST(LogBase10Enum, TestSAMPLE1, 2, 100);
-SIMPLE_TEST(LogBase10Enum, TestSAMPLE2, 4, 87000);
+SIMPLE_BENCHMARK(LogBase10_Enum, UPPER);
 
-MUTUAL_RANDOM_TEST(LogBase10, LogBase10Enum, LOWER, UPPER);
+SIMPLE_TEST(LogBase10_Enum, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase10_Enum, TestUPPER, 9u, UPPER);
+SIMPLE_TEST(LogBase10_Enum, TestSAMPLE1, 2u, 100);
+SIMPLE_TEST(LogBase10_Enum, TestSAMPLE2, 4u, 87000);
+
+MUTUAL_RANDOM_TEST(LogBase10, LogBase10_Enum, LOWER, UPPER);

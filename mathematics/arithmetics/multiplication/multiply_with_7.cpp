@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Efficient way to multiply with 7
  *
  * @reference   https://www.geeksforgeeks.org/efficient-way-to-multiply-with-7/
@@ -12,7 +15,9 @@ auto Multiply7(const unsigned n) {
     return (n << 3) - n;
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(Multiply7, 4);
 
-SIMPLE_TEST(Multiply7, TestSAMPLE1, 28, 4);
+SIMPLE_TEST(Multiply7, TestSAMPLE1, 28u, 4);

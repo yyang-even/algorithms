@@ -2,6 +2,9 @@
 
 #include "subarrays_with_given_sum.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Find subarray with given sum | Set 1 (Nonnegative Numbers)
@@ -33,11 +36,12 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
     return NOT_FOUND;
 }
 
+
 /** Find subarray with given sum | Set 2 (Handles Negative Numbers)
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
-std::pair<int, int> FindSubarrayWithGivenSumMap(const ArrayType &integers,
+std::pair<int, int> FindSubarrayWithGivenSum_Map(const ArrayType &integers,
         const ArrayType::value_type SUM) {
     const auto all_such_arrays = AllSubarraysWithGivenSum(integers, SUM);
 
@@ -48,6 +52,7 @@ std::pair<int, int> FindSubarrayWithGivenSumMap(const ArrayType &integers,
     }
 }
 
+
 /** Find if there is a subarray with 0 sum
  *
  * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
@@ -55,7 +60,7 @@ std::pair<int, int> FindSubarrayWithGivenSumMap(const ArrayType &integers,
  * Given an array of positive and negative numbers, find if there is a subarray
  * (of size at-least one) with 0 sum.
  */
-INT_BOOL FindSubarrayWith0Sum(const ArrayType &integers) {
+bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
 }
 
@@ -92,11 +97,14 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
     return largest_length;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {1, 4, 20, 3, 10, 5};
 const ArrayType SAMPLE2 = {1, 4, 0, 0, 3, 10, 5};
 const ArrayType SAMPLE3 = {1, 4};
 const ArrayType SAMPLE4 = {15, 2, 4, 8, 9, 5, 10};
+
 
 SIMPLE_BENCHMARK(FindSubarrayWithGivenSum, SAMPLE1, 33);
 
@@ -106,45 +114,51 @@ SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample3, NOT_FOUND, SAMPLE3, 0);
 SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample4, std::make_pair(1, 4), SAMPLE4, 23);
 SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample5, std::make_pair(3, 3), SAMPLE4, 8);
 
+
 const ArrayType SAMPLE6 = {10, 2, -2, -20, 10};
 const ArrayType SAMPLE7 = { -10, 0, 2, -2, -20, 10};
 
-SIMPLE_BENCHMARK(FindSubarrayWithGivenSumMap, SAMPLE6, 33);
 
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample1, std::make_pair(2, 4), SAMPLE1, 33);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample2, std::make_pair(1, 4), SAMPLE2, 7);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample3, NOT_FOUND, SAMPLE3, 0);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample4, std::make_pair(1, 4), SAMPLE4, 23);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample5, std::make_pair(3, 3), SAMPLE4, 8);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample6, std::make_pair(0, 3), SAMPLE6, -10);
-SIMPLE_TEST(FindSubarrayWithGivenSumMap, TestSample7, NOT_FOUND, SAMPLE7, 20);
+SIMPLE_BENCHMARK(FindSubarrayWithGivenSum_Map, SAMPLE6, 33);
+
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample1, std::make_pair(2, 4), SAMPLE1, 33);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample2, std::make_pair(1, 4), SAMPLE2, 7);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample3, NOT_FOUND, SAMPLE3, 0);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample4, std::make_pair(1, 4), SAMPLE4, 23);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample5, std::make_pair(3, 3), SAMPLE4, 8);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample6, std::make_pair(0, 3), SAMPLE6, -10);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample7, NOT_FOUND, SAMPLE7, 20);
+
 
 const ArrayType SAMPLE8 = {4, 2, -3, 1, 6};
 const ArrayType SAMPLE9 = {4, 2, 0, 1, 6};
 const ArrayType SAMPLE10 = { -3, 2, 3, 1, 6};
 
+
 SIMPLE_BENCHMARK(FindSubarrayWith0Sum, SAMPLE8);
 
-SIMPLE_TEST(FindSubarrayWith0Sum, TestSample8, TRUE, SAMPLE8);
-SIMPLE_TEST(FindSubarrayWith0Sum, TestSample9, TRUE, SAMPLE9);
-SIMPLE_TEST(FindSubarrayWith0Sum, TestSample10, FALSE, SAMPLE10);
+SIMPLE_TEST(FindSubarrayWith0Sum, TestSample8, true, SAMPLE8);
+SIMPLE_TEST(FindSubarrayWith0Sum, TestSample9, true, SAMPLE9);
+SIMPLE_TEST(FindSubarrayWith0Sum, TestSample10, false, SAMPLE10);
 
 
 const ArrayType SAMPLE11 = {9, 4, 20, 3, 10, 5};
 
+
 SIMPLE_BENCHMARK(NumberOfSubarraysWithGivenSum, SAMPLE6, -10);
 
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample6, 3, SAMPLE6, -10);
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample7, 0, SAMPLE7, 20);
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample11, 2, SAMPLE11, 33);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample6, 3u, SAMPLE6, -10);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample7, 0u, SAMPLE7, 20);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample11, 2u, SAMPLE11, 33);
 
 
 const ArrayType SAMPLE12 = {15, -2, 2, -8, 1, 7, 10, 23};
 const ArrayType SAMPLE13 = {1, 2, 3};
 const ArrayType SAMPLE14 = {1, 0, 3};
 
+
 SIMPLE_BENCHMARK(LengthOfLargestSubarrayWith0Sum, SAMPLE12);
 
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5, SAMPLE12);
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0, SAMPLE13);
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample14, 1, SAMPLE14);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5u, SAMPLE12);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0u, SAMPLE13);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample14, 1u, SAMPLE14);

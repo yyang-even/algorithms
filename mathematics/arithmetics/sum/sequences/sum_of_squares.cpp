@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Sum of squares of first n natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-squares-of-first-n-natural-numbers/
@@ -21,15 +24,17 @@ auto SumOfSquareSums(const unsigned N) {
     return (N * (N + 1) * (N + 1) * (N + 2)) / 12;
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(SumOfSquares, 7);
 
-SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5, 2);
-SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204, 8);
-SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385, 10);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5u, 2);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204u, 8);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385u, 10);
 
 
 SIMPLE_BENCHMARK(SumOfSquareSums, 7);
 
-SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6, 2);
-SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20, 3);
+SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6u, 2);
+SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20u, 3);

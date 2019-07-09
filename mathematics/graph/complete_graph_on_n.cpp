@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Complete Graph on n Vertices
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.6.
@@ -16,13 +19,15 @@ unsigned long long CompleteGraphOnN(const unsigned n) {
     return std::pow(n, n - 2);
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(CompleteGraphOnN, 1);
 SIMPLE_BENCHMARK(CompleteGraphOnN, std::numeric_limits<unsigned>::min());
 SIMPLE_BENCHMARK(CompleteGraphOnN, std::numeric_limits<unsigned>::max());
 
-SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0, 0);
-SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1, 1);
-SIMPLE_TEST(CompleteGraphOnN, TestSample3, 1, 2);
-SIMPLE_TEST(CompleteGraphOnN, TestSample4, 3, 3);
-SIMPLE_TEST(CompleteGraphOnN, TestSample5, 16, 4);
+SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0u, 0);
+SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1u, 1);
+SIMPLE_TEST(CompleteGraphOnN, TestSample3, 1u, 2);
+SIMPLE_TEST(CompleteGraphOnN, TestSample4, 3u, 3);
+SIMPLE_TEST(CompleteGraphOnN, TestSample5, 16u, 4);
