@@ -28,6 +28,9 @@ using MinPriorityQueue = MinHeap<T>;
  *
  * Implement Priority Queue using Linked Lists.
  *
+ * @reference   Priority Queue using doubly linked list
+ *              https://www.geeksforgeeks.org/priority-queue-using-doubly-linked-list/
+ *
  * @highlight   The use of std::make_move_iterator().
  */
 class SinglyLinkedListMinPriorityQueue : protected SinglyLinkedList {
@@ -57,6 +60,7 @@ public:
         return array;
     }
 };
+
 
 class SinglyLinkedListMinPriorityQueueSTL {
     using ListType = std::forward_list<int>;
