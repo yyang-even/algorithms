@@ -57,6 +57,10 @@ public:
     using ValueType = Node::ValueType;
 
     XorLinkedList() = default;
+    /**
+     * @reference   Convert Singly Linked List to XOR Linked List
+     *              https://www.geeksforgeeks.org/convert-singly-linked-list-to-xor-linked-list/
+     */
     explicit XorLinkedList(const std::vector<ValueType> &array) {
         for (const auto elem : array) {
             PushBack(elem);

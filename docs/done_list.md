@@ -357,3 +357,4 @@
 * https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/
 * https://www.geeksforgeeks.org/product-of-the-nodes-of-a-singly-linked-list/
 * https://www.geeksforgeeks.org/priority-queue-using-doubly-linked-list/
+* https://www.geeksforgeeks.org/convert-singly-linked-list-to-xor-linked-list/
