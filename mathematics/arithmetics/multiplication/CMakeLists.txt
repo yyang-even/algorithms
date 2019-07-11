@@ -4,8 +4,8 @@ CompileTestExe(maximum_product_subarray)
 CompileBenchmarkExe(multiplication)
 CompileTestExe(multiplication)
 
-CompileBenchmarkExe(multiplication_of_array)
-CompileTestExe(multiplication_of_array)
+CompileBenchmarkExe(multiplication_of_nodes)
+CompileTestExe(multiplication_of_nodes)
 
 CompileBenchmarkExe(multiply_with_7)
 CompileTestExe(multiply_with_7)

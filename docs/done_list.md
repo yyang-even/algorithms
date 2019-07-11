@@ -355,3 +355,4 @@
 * https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
 * https://www.geeksforgeeks.org/bubble-sort-for-linked-list-by-swapping-nodes/
 * https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/
+* https://www.geeksforgeeks.org/product-of-the-nodes-of-a-singly-linked-list/
