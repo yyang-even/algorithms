@@ -364,3 +364,4 @@
 * https://www.geeksforgeeks.org/deletion-at-different-positions-in-a-circular-linked-list/
 * https://www.geeksforgeeks.org/reverse-circular-linked-list/
 * https://www.geeksforgeeks.org/count-nodes-circular-linked-list/
+* https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-circular-linked-list/

@@ -56,20 +56,19 @@ public:
      * @reference   Count nodes in Circular linked list
      *              https://www.geeksforgeeks.org/count-nodes-circular-linked-list/
      */
-    template <typename CallableObject>
-    void orderlessTraversal(const CallableObject func) const {
+    void OrderlessTraversal(const std::function<void(const Node::PointerType)> func) const {
         if (tail) {
             auto current = tail;
             do {
                 current = current->next;
-                func();
+                func(current);
             } while (current != tail);
         }
     }
 
     auto CountSize() const {
         std::size_t count = 0;
-        orderlessTraversal([&count]() {
+        OrderlessTraversal([&count](const Node::PointerType) {
             ++count;
         });
         return count;

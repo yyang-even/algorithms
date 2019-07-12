@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "data_structure/linked_list/singly_list/singly_circular_linked_list.h"
+
 
 namespace {
 
@@ -54,6 +56,20 @@ auto Sum_TailRecursive(const ArrayType &elements) {
  * @reference   https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/
  */
 
+
+/** Sum of the nodes of a Circular Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-circular-linked-list/
+ */
+auto Sum_SinglyCircularList(const ArrayType &elements) {
+    const auto list = SinglyCircularLinkedList{elements};
+    SinglyCircularLinkedList::Node::ValueType sum = 0;
+    list.OrderlessTraversal([&sum](const SinglyCircularLinkedList::Node::PointerType current) {
+        sum += current->value;
+    });
+    return sum;
+}
+
 }//namespace
 
 
@@ -74,3 +90,10 @@ SIMPLE_BENCHMARK(Sum_TailRecursive, SAMPLE1);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE3, 15, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(Sum_SinglyCircularList, SAMPLE1);
+
+SIMPLE_TEST(Sum_SinglyCircularList, TestSAMPLE1, 6, SAMPLE1);
+SIMPLE_TEST(Sum_SinglyCircularList, TestSAMPLE2, 50, SAMPLE2);
+SIMPLE_TEST(Sum_SinglyCircularList, TestSAMPLE3, 15, SAMPLE3);
