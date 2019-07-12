@@ -65,6 +65,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
 /** Delete all the even nodes from a Doubly Linked List
  *
  * @reference   https://www.geeksforgeeks.org/delete-all-the-even-nodes-from-a-doubly-linked-list/
+ * @reference   Delete all the even nodes of a Circular Linked List
+ *              https://www.geeksforgeeks.org/delete-all-the-even-nodes-of-a-circular-linked-list/
  *
  * Given a doubly linked list containing N nodes, the task is to delete all the even nodes from the list.
  */
@@ -96,6 +98,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  *              https://www.geeksforgeeks.org/delete-all-non-prime-nodes-from-a-singly-linked-list/
  * @reference   Delete all Prime Nodes from a Doubly Linked List
  *              https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-doubly-linked-list/
+ * @reference   Delete all Prime Nodes from a Circular Singly Linked List
+ *              https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-circular-singly-linked-list/
  *
  * Given a singly linked list containing N nodes, the task is to delete all nodes from the list which are prime.
  */
