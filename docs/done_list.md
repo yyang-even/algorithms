@@ -1,4 +1,3 @@
-
 * https://www.geeksforgeeks.org/sum-of-squares-of-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/sum-square-sums-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/print-squares-first-n-natural-numbers-without-using/
@@ -358,3 +357,9 @@
 * https://www.geeksforgeeks.org/product-of-the-nodes-of-a-singly-linked-list/
 * https://www.geeksforgeeks.org/priority-queue-using-doubly-linked-list/
 * https://www.geeksforgeeks.org/convert-singly-linked-list-to-xor-linked-list/
+* https://www.geeksforgeeks.org/circular-linked-list/
+* https://www.geeksforgeeks.org/circular-linked-list-set-2-traversal/
+* https://www.geeksforgeeks.org/circular-singly-linked-list-insertion/
+* https://www.geeksforgeeks.org/deletion-circular-linked-list/
+* https://www.geeksforgeeks.org/deletion-at-different-positions-in-a-circular-linked-list/
+* https://www.geeksforgeeks.org/reverse-circular-linked-list/
