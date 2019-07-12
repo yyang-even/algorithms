@@ -59,6 +59,13 @@ auto testLinkedList_Size(const std::vector<int> &array) {
     return list.Size() ==  SinglyCircularLinkedList::Node::node_alive;
 }
 
+
+auto testLinkedList_CountSize(const std::vector<int> &array) {
+    const auto list = testLinkedList_Helper(array);
+
+    return list.Size() ==  list.CountSize();
+}
+
 }//namespace
 
 
@@ -70,3 +77,8 @@ SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 SIMPLE_BENCHMARK(testLinkedList_Size, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_Size, TestSample, true, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testLinkedList_CountSize, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testLinkedList_CountSize, TestSample, true, SAMPLE_ARRAY);
