@@ -1,4 +1,5 @@
 #include "singly_linked_list.h"
+#include "singly_circular_linked_list.h"
 
 
 namespace {
@@ -35,6 +36,13 @@ auto testReverse_Stack(const std::vector<int> &array) {
     return list.CopyToArray();
 }
 
+
+auto testReverse_Circular(const std::vector<int> &array) {
+    SinglyCircularLinkedList list {array};
+    list.Reverse();
+    return list.CopyToArray();
+}
+
 }//namespace
 
 
@@ -60,3 +68,9 @@ SIMPLE_BENCHMARK(testReverse_Stack, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Stack, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Stack, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testReverse_Circular, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testReverse_Circular, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
+SIMPLE_TEST(testReverse_Circular, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
