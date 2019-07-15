@@ -61,9 +61,9 @@ if(WANT_BENCHMARKS OR WANT_TESTS)
 endif()
 
 ###################################################
-# Macros
+# Functions
 ###################################################
-macro(CompileBenchmarkExe name)
+function(CompileBenchmarkExe name)
     if(WANT_BENCHMARKS)
         set(target_name ${name}_benchmark)
         add_executable(${target_name} ${name}.cpp)
@@ -72,9 +72,9 @@ macro(CompileBenchmarkExe name)
             ${PTHREAD_LIBRARY}
             ${ARGN})
     endif(WANT_BENCHMARKS)
-endmacro(CompileBenchmarkExe)
+endfunction(CompileBenchmarkExe)
 
-macro(CompileTestExe name)
+function(CompileTestExe name)
     if(WANT_TESTS)
         set(target_name ${name}_test)
         add_executable(${target_name} ${name}.cpp)
@@ -92,9 +92,9 @@ macro(CompileTestExe name)
                 COMMENT "Testing '${target_name}'" VERBATIM)
         endif(WANT_AUTO_TESTS)
     endif(WANT_TESTS)
-endmacro(CompileTestExe)
+endfunction(CompileTestExe)
 
-macro(CompileTerminalApp name)
+function(CompileTerminalApp name)
     if(WANT_TERMINAL_APP)
         set(target_name ${name}_app)
         add_executable(${target_name} ${name}.cpp)
@@ -102,7 +102,7 @@ macro(CompileTerminalApp name)
         target_link_libraries(${target_name}
             ${ARGN})
     endif(WANT_TERMINAL_APP)
-endmacro(CompileTerminalApp)
+endfunction(CompileTerminalApp)
 
 ###################################################
 # Subdirectories
