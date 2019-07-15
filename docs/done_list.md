@@ -367,3 +367,4 @@
 * https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-circular-linked-list/
 * https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-circular-singly-linked-list/
 * https://www.geeksforgeeks.org/delete-all-the-even-nodes-of-a-circular-linked-list/
+* https://www.geeksforgeeks.org/check-if-a-linked-list-is-circular-linked-list/

@@ -66,6 +66,13 @@ auto testLinkedList_CountSize(const std::vector<int> &array) {
     return list.Size() ==  list.CountSize();
 }
 
+
+auto testLinkedList_isCircular(const std::vector<int> &array) {
+    const auto list = testLinkedList_Helper(array);
+
+    return list.isCircular();
+}
+
 }//namespace
 
 
@@ -82,3 +89,8 @@ SIMPLE_TEST(testLinkedList_Size, TestSample, true, SAMPLE_ARRAY);
 SIMPLE_BENCHMARK(testLinkedList_CountSize, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_CountSize, TestSample, true, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testLinkedList_isCircular, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testLinkedList_isCircular, TestSample, true, SAMPLE_ARRAY);

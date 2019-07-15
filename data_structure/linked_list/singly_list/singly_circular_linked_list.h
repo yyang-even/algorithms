@@ -210,4 +210,21 @@ public:
             tail = new_tail;
         }
     }
+
+
+    /**
+     * @reference   Check if a linked list is Circular Linked List
+     *              https://www.geeksforgeeks.org/check-if-a-linked-list-is-circular-linked-list/
+     */
+    auto isCircular() const {
+        if (not tail) {
+            return true;
+        }
+
+        Node::PointerType iter = nullptr;
+        OrderlessTraversal([&iter](const Node::PointerType current) {
+            iter = current;
+        });
+        return iter == tail;
+    }
 };
