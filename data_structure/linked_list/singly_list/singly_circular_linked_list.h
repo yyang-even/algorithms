@@ -34,6 +34,15 @@ public:
             PushBack(elem);
         }
     }
+    SinglyCircularLinkedList(SinglyCircularLinkedList &&list): tail(std::move(list.tail)),
+        size(list.size) {
+    }
+    SinglyCircularLinkedList &operator=(SinglyCircularLinkedList &&list) {
+        std::swap(tail, list.tail);
+        std::swap(size, list.size);
+
+        return *this;
+    }
     /**
      * @reference   Convert singly linked list into circular linked list
      *              https://www.geeksforgeeks.org/convert-singly-linked-list-circular-linked-list/
@@ -41,8 +50,20 @@ public:
     explicit SinglyCircularLinkedList(SinglyLinkedList &&list): tail(std::move(list.tail)),
         size(std::move(list.size)) {
         if (tail) {
-            tail->next = list.head;
+            tail->next = std::move(list.head);
         }
+    }
+
+
+    explicit operator SinglyLinkedList() {
+        SinglyLinkedList list;
+        list.tail = std::move(tail);
+        list.size = std::move(size);
+        if (list.tail) {
+            list.head = std::move(list.tail->next);
+        }
+
+        return list;
     }
 
 
@@ -155,6 +176,12 @@ public:
                 ++size;
             }
         }
+    }
+
+    void SortedInsert_Convert(const Node::ValueType v) {
+        auto list = static_cast<SinglyLinkedList>(*this);
+        list.SortedInsert(v);
+        *this = SinglyCircularLinkedList{std::move(list)};
     }
 
 

@@ -50,6 +50,20 @@ auto testSortedInsert_SinglyCircular(std::vector<int> array) {
     return list.CopyToArray();
 }
 
+
+auto testSortedInsert_SinglyCircular_Convert(std::vector<int> array) {
+    std::sort(array.begin(), array.end());
+    SinglyCircularLinkedList list {array};
+
+    list.SortedInsert_Convert(-1);  //head
+    list.SortedInsert_Convert(15);  //tail
+    list.SortedInsert_Convert(11);
+    list.PushFront(-8);
+    list.PushBack(18);
+
+    return list.CopyToArray();
+}
+
 }//namespace
 
 
@@ -85,4 +99,10 @@ SIMPLE_TEST(testSortedInsert_Doubly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, S
 SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_SinglyCircular, TestSample, EXPECTED_SORTED_INSERT_ARRAY,
+            SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular_Convert, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testSortedInsert_SinglyCircular_Convert, TestSample, EXPECTED_SORTED_INSERT_ARRAY,
             SAMPLE_ARRAY);
