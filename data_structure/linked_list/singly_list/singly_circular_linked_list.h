@@ -34,6 +34,16 @@ public:
             PushBack(elem);
         }
     }
+    /**
+     * @reference   Convert singly linked list into circular linked list
+     *              https://www.geeksforgeeks.org/convert-singly-linked-list-circular-linked-list/
+     */
+    explicit SinglyCircularLinkedList(SinglyLinkedList &&list): tail(std::move(list.tail)),
+        size(std::move(list.size)) {
+        if (tail) {
+            tail->next = list.head;
+        }
+    }
 
 
     ~SinglyCircularLinkedList() {

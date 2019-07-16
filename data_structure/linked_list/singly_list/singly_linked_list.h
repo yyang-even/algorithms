@@ -4,6 +4,7 @@
 
 #include <stack>
 
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -27,7 +28,8 @@
  *              https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/
  * @reference   Remove first node of the linked list
  *              https://www.geeksforgeeks.org/remove-first-node-of-the-linked-list/
- *
+ * @reference   Applications of linked list data structure
+ *              https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
  */
 class SinglyLinkedList {
 public:
@@ -136,6 +138,7 @@ protected:
     }
 public:
     using ValueType = Node::ValueType;
+    friend class SinglyCircularLinkedList;
 
     SinglyLinkedList() = default;
     explicit SinglyLinkedList(const std::vector<Node::ValueType> &array) {
@@ -143,6 +146,7 @@ public:
             PushBack(elem);
         }
     }
+
 
     auto Empty() const {
         return not head;
