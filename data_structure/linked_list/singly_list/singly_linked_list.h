@@ -519,6 +519,13 @@ public:
         return getN_RecursiveHelper(head, index);
     }
 
+
+    /**
+     * @reference   Recursive function to delete k-th node from linked list
+     *              https://www.geeksforgeeks.org/recursive-function-delete-k-th-node-linked-list/
+     */
+
+
     /** Program for n’th node from the end of a Linked List
      *
      * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
@@ -558,6 +565,12 @@ public:
 
         return target->value;
     }
+
+
+    /**
+     * @reference   Delete Nth node from the end of the given linked list
+     *              https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/
+     */
 
 
     /** Find the middle of a given linked list in C and Java
