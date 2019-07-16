@@ -11,6 +11,10 @@ typedef unsigned long InputType;
  *              https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
  * @reference   Find last element after deleting every second element in array of n integers
  *              https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
+ * @reference   Josephus Circle using circular linked list
+ *              https://www.geeksforgeeks.org/josephus-circle-using-circular-linked-list/
+ * @reference   Delete every Kth node from circular linked list
+ *              https://www.geeksforgeeks.org/delete-every-kth-node-from-circular-linked-list/
  *
  * A variant of Josephus Problem. Start with n people numbered 1 to n around a circle,
  * and we eliminate every second remaining person until only one survives. For n = 10,
