@@ -1,4 +1,5 @@
 #include "singly_list/singly_linked_list.h"
+#include "singly_list/singly_circular_linked_list.h"
 #include "doubly_list/doubly_linked_list.h"
 
 #include "sorted_insert_linked_list.h"
@@ -25,6 +26,20 @@ auto testSortedInsert_Singly(std::vector<int> array) {
 auto testSortedInsert_Doubly(std::vector<int> array) {
     std::sort(array.begin(), array.end());
     DoublyLinkedList list {array};
+
+    list.SortedInsert(-1);  //head
+    list.SortedInsert(15);  //tail
+    list.SortedInsert(11);
+    list.PushFront(-8);
+    list.PushBack(18);
+
+    return list.CopyToArray();
+}
+
+
+auto testSortedInsert_SinglyCircular(std::vector<int> array) {
+    std::sort(array.begin(), array.end());
+    SinglyCircularLinkedList list {array};
 
     list.SortedInsert(-1);  //head
     list.SortedInsert(15);  //tail
@@ -65,3 +80,9 @@ SIMPLE_TEST(SortedInsert_STL, TestSample4, EXPECTED4, SAMPLE_LIST, 10);
 SIMPLE_BENCHMARK(testSortedInsert_Doubly, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_Doubly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testSortedInsert_SinglyCircular, TestSample, EXPECTED_SORTED_INSERT_ARRAY,
+            SAMPLE_ARRAY);

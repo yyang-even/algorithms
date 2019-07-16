@@ -119,6 +119,35 @@ public:
     }
 
 
+    /**
+     * @reference   Sorted insert for circular linked list
+     *              https://www.geeksforgeeks.org/sorted-insert-for-circular-linked-list/
+     */
+    void SortedInsert(const Node::ValueType v) {
+        const auto new_node = std::make_shared<Node>(v);
+
+        if (not tail) {
+            PushFront(new_node);
+        } else {
+            auto *current = &tail;
+
+            do {
+                current = &(*current)->next;
+            } while (*current != tail and (*current)->value < v);
+
+            if (*current == tail and tail->value < v) {
+                InsertAfterHelper(tail, new_node);
+                tail = new_node;
+            } else {
+                new_node->next = *current;
+                *current = new_node;
+
+                ++size;
+            }
+        }
+    }
+
+
     const auto SearchPrev(const ValueType v) const {
         if (tail) {
             auto iter = tail;

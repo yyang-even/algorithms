@@ -372,3 +372,5 @@
 * https://www.geeksforgeeks.org/delete-every-kth-node-from-circular-linked-list/
 * https://www.geeksforgeeks.org/recursive-function-delete-k-th-node-linked-list/
 * https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/
+* https://www.geeksforgeeks.org/sorted-insert-for-circular-linked-list/
+* https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
