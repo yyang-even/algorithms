@@ -8,6 +8,8 @@ using ArrayType = std::vector<unsigned>;
 /** Maximum and minimum of an array using minimum number of comparisons
  *
  * @reference   https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+ * @reference   Find minimum and maximum elements in singly Circular Linked List
+ *              https://www.geeksforgeeks.org/find-minimum-and-maximum-elements-in-singly-circular-linked-list/
  *
  * @reference   Second minimum element using minimum comparisons
  *              https://www.geeksforgeeks.org/second-minimum-element-using-minimum-comparisons/
