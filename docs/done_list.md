@@ -376,3 +376,4 @@
 * https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
 * https://www.geeksforgeeks.org/convert-singly-linked-list-circular-linked-list/
 * https://www.geeksforgeeks.org/find-minimum-and-maximum-elements-in-singly-circular-linked-list/
+* https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/

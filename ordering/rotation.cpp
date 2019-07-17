@@ -168,6 +168,25 @@ auto TestLeftRotate_SinglyList(const ArrayType &elements,
     return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
 }
 
+
+/** Rotate Doubly linked list by N nodes
+ *
+ * @reference   https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/
+ *
+ * Given a doubly linked list, rotate the linked list counter-clockwise by N nodes. Here N is a given
+ * positive integer and is smaller than the count of nodes in linked list.
+ */
+auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_type k) {
+    auto mid = elements.cbegin();
+    std::advance(mid, k);
+    elements.splice(elements.cbegin(), elements, mid, elements.cend());
+    return elements;
+}
+auto TestLeftRotate_DoublyList(const ArrayType &elements, const std::list<int>::size_type k) {
+    const auto rotated_list = LeftRotate_DoublyList({elements.cbegin(), elements.cend()}, k);
+    return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
+}
+
 }//namespace
 
 
@@ -223,3 +242,9 @@ SIMPLE_BENCHMARK(TestLeftRotate_SinglyList, SampleArray2, 3);
 
 SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3);
+
+
+SIMPLE_BENCHMARK(TestLeftRotate_DoublyList, SampleArray2, 3);
+
+SIMPLE_TEST(TestLeftRotate_DoublyList, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(TestLeftRotate_DoublyList, TestSample2, ExpectedArray2, SampleArray2, 3);
