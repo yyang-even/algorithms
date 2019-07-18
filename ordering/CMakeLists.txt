@@ -63,3 +63,6 @@ CompileTestExe(selection_sort)
 
 CompileBenchmarkExe(sort_nearly_sorted_array)
 CompileTestExe(sort_nearly_sorted_array)
+
+CompileBenchmarkExe(sublist_rotation)
+CompileTestExe(sublist_rotation)
