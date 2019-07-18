@@ -1,6 +1,10 @@
 #include "common_header.h"
 
+#include "sublist_rotation.h"
+
+
 namespace {
+
 
 using ArrayType = std::vector<int>;
 
@@ -157,10 +161,7 @@ auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
  */
 auto LeftRotate_SinglyList(std::forward_list<int> elements,
                            const std::forward_list<int>::size_type k) {
-    auto mid = elements.cbefore_begin();
-    std::advance(mid, k);
-    elements.splice_after(elements.cbefore_begin(), elements, mid, elements.cend());
-    return elements;
+    return SublistLeftRotate_SinglyList(elements, elements.cbefore_begin(), elements.cend(), k);
 }
 auto TestLeftRotate_SinglyList(const ArrayType &elements,
                                const std::forward_list<int>::size_type k) {
