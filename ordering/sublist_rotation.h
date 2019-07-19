@@ -6,8 +6,7 @@ auto SublistLeftRotate_SinglyList(std::forward_list<int> &elements,
                                   const std::forward_list<int>::difference_type k) {
     assert(k < std::distance(cbefore_begin, cend));
 
-    auto mid = cbefore_begin;
-    std::advance(mid, k);
+    auto mid = std::next(cbefore_begin, k);
     elements.splice_after(cbefore_begin, elements, mid, cend);
 
     return elements;

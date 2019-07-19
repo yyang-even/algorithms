@@ -4,6 +4,7 @@
 #include "merge_two_sorted_arrays.h"
 #include "data_structure/linked_list/middle_of_singly_linked_list.h"
 
+
 namespace {
 
 #include "merge_sort.h"
@@ -46,7 +47,7 @@ auto MergeSort(ArrayType values) {
  * to create sorted subarrays of size 2, then merge subarrays of size 2
  * to create sorted subarrays of size 4, and so on.
  */
-auto MergeSortIterative(ArrayType values) {
+auto MergeSort_Iterative(ArrayType values) {
     for (ArrayType::size_type current_size = 1; current_size < values.size(); current_size *= 2) {
         for (ArrayType::size_type i = 0ul; i < (values.size() - 1);) {
             const auto begin = values.begin() + i;
@@ -66,8 +67,8 @@ auto MergeSortIterative(ArrayType values) {
  *
  * How to modify the algorithm so that merge works in O(1) extra space and algorithm still works in O(n Log n) time.
  */
-void MergeO1(const ArrayType::iterator begin, const ArrayType::iterator middle,
-             const ArrayType::iterator end, const ArrayType::value_type max) {
+void Merge_O1(const ArrayType::iterator begin, const ArrayType::iterator middle,
+              const ArrayType::iterator end, const ArrayType::value_type max) {
     auto L_iter = begin;
     auto R_iter = middle;
     auto iter = begin;
@@ -89,12 +90,12 @@ void MergeO1(const ArrayType::iterator begin, const ArrayType::iterator middle,
         return v / max;
     });
 }
-auto MergeSortO1(ArrayType values) {
+auto MergeSort_O1(ArrayType values) {
     if (not values.empty()) {
         const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
         MergeSort<ArrayType>(values.begin(), values.size(), [max_element](const ArrayType::iterator begin,
         const ArrayType::iterator middle, const ArrayType::iterator end) {
-            MergeO1(begin, middle, end, max_element);
+            Merge_O1(begin, middle, end, max_element);
         });
     }
     return values;
@@ -120,22 +121,22 @@ auto MergeSortO1(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-for-linked-list/
  */
-void MergeSortSinglyListHelper(std::forward_list<int> &l) {
+void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
     if (not l.empty() and std::next(l.cbegin()) != l.cend()) {
         const auto before_mid = GetBeforeMiddle_TwoPointersSTL(l.cbefore_begin(), l.cend());
         std::forward_list<int> right;
         right.splice_after(right.cbefore_begin(), l, before_mid, l.cend());
-        MergeSortSinglyListHelper(l);
-        MergeSortSinglyListHelper(right);
+        MergeSort_SinglyListHelper(l);
+        MergeSort_SinglyListHelper(right);
         l.merge(std::move(right));
     }
 }
-auto MergeSortSinglyList(std::forward_list<int> values) {
-    MergeSortSinglyListHelper(values);
+auto MergeSort_SinglyList(std::forward_list<int> values) {
+    MergeSort_SinglyListHelper(values);
     return values;
 }
-auto testMergeSortSinglyList(const ArrayType &values) {
-    const auto sorted = MergeSortSinglyList({values.cbegin(), values.cend()});
+auto testMergeSort_SinglyList(const ArrayType &values) {
+    const auto sorted = MergeSort_SinglyList({values.cbegin(), values.cend()});
     return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
@@ -144,7 +145,7 @@ auto testMergeSortSinglyList(const ArrayType &values) {
  *
  * @reference   https://www.geeksforgeeks.org/iterative-merge-sort-for-linked-list/
  */
-auto MergeSortSinglyListIterative(std::forward_list<int> values) {
+auto MergeSort_SinglyList_Iterative(std::forward_list<int> values) {
     if (not values.empty()) {
         std::vector<std::forward_list<int>> lists;
         while (not values.empty()) {
@@ -168,8 +169,8 @@ auto MergeSortSinglyListIterative(std::forward_list<int> values) {
 
     return values;
 }
-auto testMergeSortSinglyListIterative(const ArrayType &values) {
-    const auto sorted = MergeSortSinglyListIterative({values.cbegin(), values.cend()});
+auto testMergeSort_SinglyList_Iterative(const ArrayType &values) {
+    const auto sorted = MergeSort_SinglyList_Iterative({values.cbegin(), values.cend()});
     return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
@@ -177,23 +178,22 @@ auto testMergeSortSinglyListIterative(const ArrayType &values) {
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-for-doubly-linked-list/
  */
-void MergeSortDoublyListHelper(std::list<int> &l) {
+void MergeSort_DoublyListHelper(std::list<int> &l) {
     if (l.size() > 1) {
-        auto mid = l.cbegin();
-        std::advance(mid, l.size() / 2);
+        auto mid = std::next(l.cbegin(), l.size() / 2);
         std::list<int> right;
         right.splice(right.cend(), l, mid, l.cend());
-        MergeSortDoublyListHelper(l);
-        MergeSortDoublyListHelper(right);
+        MergeSort_DoublyListHelper(l);
+        MergeSort_DoublyListHelper(right);
         l.merge(std::move(right));
     }
 }
-auto MergeSortDoublyList(std::list<int> values) {
-    MergeSortDoublyListHelper(values);
+auto MergeSort_DoublyList(std::list<int> values) {
+    MergeSort_DoublyListHelper(values);
     return values;
 }
-auto testMergeSortDoublyList(const ArrayType &values) {
-    const auto sorted = MergeSortDoublyList({values.cbegin(), values.cend()});
+auto testMergeSort_DoublyList(const ArrayType &values) {
+    const auto sorted = MergeSort_DoublyList({values.cbegin(), values.cend()});
     return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
@@ -217,46 +217,46 @@ SIMPLE_TEST(MergeSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSortO1, VALUES5);
+SIMPLE_BENCHMARK(MergeSort_O1, VALUES5);
 
-SIMPLE_TEST(MergeSortO1, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(MergeSortO1, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(MergeSortO1, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(MergeSortO1, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(MergeSortO1, TestSAMPLE5, EXPECTED5, VALUES5);
-
-
-SIMPLE_BENCHMARK(MergeSortIterative, VALUES5);
-
-SIMPLE_TEST(MergeSortIterative, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(MergeSortIterative, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(MergeSortIterative, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(MergeSortIterative, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(MergeSortIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(MergeSort_O1, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(MergeSort_O1, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(MergeSort_O1, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(MergeSort_O1, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MergeSort_O1, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(testMergeSortSinglyList, VALUES5);
+SIMPLE_BENCHMARK(MergeSort_Iterative, VALUES5);
 
-SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSortSinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
-
-
-SIMPLE_BENCHMARK(testMergeSortSinglyListIterative, VALUES5);
-
-SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSortSinglyListIterative, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(testMergeSortDoublyList, VALUES5);
+SIMPLE_BENCHMARK(testMergeSort_SinglyList, VALUES5);
 
-SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSortDoublyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(testMergeSort_SinglyList_Iterative, VALUES5);
+
+SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(testMergeSort_DoublyList, VALUES5);
+
+SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE5, EXPECTED5, VALUES5);

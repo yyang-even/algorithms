@@ -178,8 +178,7 @@ auto TestLeftRotate_SinglyList(const ArrayType &elements,
  * positive integer and is smaller than the count of nodes in linked list.
  */
 auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_type k) {
-    auto mid = elements.cbegin();
-    std::advance(mid, k);
+    auto mid = std::next(elements.cbegin(), k);
     elements.splice(elements.cbegin(), elements, mid, elements.cend());
     return elements;
 }

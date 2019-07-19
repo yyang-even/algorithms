@@ -1,6 +1,10 @@
 #include "common_header.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
+
 /** Randomized Algorithms | Set 3 (1/2 Approximate Median)
  *
  * @reference   https://www.geeksforgeeks.org/randomized-algorithms-set-3-12-approximate-median/
@@ -20,13 +24,11 @@ auto ApproximateMedian(const ArrayType &values) {
         samples.insert(values[Random_Number<ArrayType::size_type>(0, values.size() - 1)]);
     }
 
-    auto iter = samples.cbegin();
-    advance(iter, (samples.size() / 2) - 1);
-    return *iter;
+    return *std::next(samples.cbegin(), (samples.size() / 2) - 1);
 }
 
 
-auto testApproximateMedian() {
+inline auto testApproximateMedian() {
     static const auto TOTAL_SAMPLE_SIZE = 100000;
     const ArrayType values = {1, 13, 4, 12, 5, 8, 15, 9, 7, 11, 6, 10, 3, 2, 14};
     auto sorted_array = values;
@@ -42,6 +44,8 @@ auto testApproximateMedian() {
 
     return counters[0] <= (TOTAL_SAMPLE_SIZE * ERROR_RATE);
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(ApproximateMedian, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});

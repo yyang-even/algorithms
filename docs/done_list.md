@@ -378,3 +378,5 @@
 * https://www.geeksforgeeks.org/find-minimum-and-maximum-elements-in-singly-circular-linked-list/
 * https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/
 * https://www.geeksforgeeks.org/rotate-the-sub-list-of-a-linked-list-from-position-m-to-n-to-the-right-by-k-places/
+* https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
+* https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/

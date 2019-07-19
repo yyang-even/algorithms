@@ -20,11 +20,9 @@ auto SublistRightRotate_SinglyList(ListType elements,
                                    const ListType::difference_type k) {
     assert(m and n and m < n);
 
-    auto cbefore_begin = elements.cbefore_begin();
-    std::advance(cbefore_begin, m - 1);
-    auto cend = cbefore_begin;
+    auto cbefore_begin = std::next(elements.cbefore_begin(), m - 1);
     const auto length = n - m + 1;
-    std::advance(cend, length + 1);
+    auto cend = std::next(cbefore_begin, length + 1);
 
     return SublistLeftRotate_SinglyList(elements, cbefore_begin, cend, length - (k % (length)));
 }

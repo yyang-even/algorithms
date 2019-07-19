@@ -42,7 +42,7 @@ auto MaxAndMin_Linear(const ArrayType &values) {
 }
 
 
-auto MaxAndMin_Tournament(ArrayType::const_iterator cbegin, const ArrayType::size_type size) {
+auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin, const ArrayType::size_type size) {
     if (size == 1) {
         return std::make_pair(*cbegin, *cbegin);
     } else if (size == 2) {
@@ -56,8 +56,7 @@ auto MaxAndMin_Tournament(ArrayType::const_iterator cbegin, const ArrayType::siz
     } else {
         const auto half = size / 2;
         const auto left_result = MaxAndMin_Tournament(cbegin, half);
-        std::advance(cbegin, half);
-        const auto right_result = MaxAndMin_Tournament(cbegin, size - half);
+        const auto right_result = MaxAndMin_Tournament(std::next(cbegin, half), size - half);
 
         return std::make_pair(std::max(left_result.first, right_result.first),
                               std::min(left_result.second, right_result.second));

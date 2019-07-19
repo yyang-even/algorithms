@@ -176,30 +176,12 @@ auto GetLastNodeBeforeEnd(const std::forward_list<int> &values) {
     for (auto next = values.cbegin(); next != values.cend(); ++next, ++before_end);
     return before_end;
 }
-auto partitionSinglyLinkedList(std::forward_list<int> &values,
-                               const std::forward_list<int>::const_iterator before_begin,
-                               const std::forward_list<int>::const_iterator begin,
-                               std::forward_list<int>::const_iterator &last) {
-    const auto pivot = last;
-    auto before_mid = before_begin;
-    for (auto iter = begin; iter != pivot; ++iter) {
-        if (*iter > *pivot) {
-            values.splice_after(last, values, before_mid);
-            ++last;
-            iter = before_mid;
-        } else {
-            ++before_mid;
-        }
-    }
-
-    return before_mid;
-}
 void QuickSortSinglyLinkedList(std::forward_list<int> &values,
                                const std::forward_list<int>::const_iterator before_begin,
                                std::forward_list<int>::const_iterator last) {
     const auto begin = std::next(before_begin);
     if (before_begin != last and begin != last) {
-        const auto before_mid = partitionSinglyLinkedList(values, before_begin, begin, last);
+        const auto before_mid = Partition_SinglyList(values, before_begin, begin, last);
         QuickSortSinglyLinkedList(values, before_begin, before_mid);
         QuickSortSinglyLinkedList(values, std::next(before_mid), last);
     }
