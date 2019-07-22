@@ -3,6 +3,9 @@ include_directories ("${CMAKE_CURRENT_BINARY_DIR}")
 CompileBenchmarkExe(delete_all_of_key_linked_list)
 CompileTestExe(delete_all_of_key_linked_list)
 
+CompileBenchmarkExe(detect_loop)
+CompileTestExe(detect_loop)
+
 CompileBenchmarkExe(merge_k_sorted_singly_list)
 CompileTestExe(merge_k_sorted_singly_list)
 

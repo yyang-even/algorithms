@@ -46,6 +46,11 @@ public:
     }
 
 
+    auto GetHead() const {
+        return head;
+    }
+
+
     auto Empty() const {
         return not size;
     }

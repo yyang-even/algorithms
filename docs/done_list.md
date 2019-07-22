@@ -380,3 +380,7 @@
 * https://www.geeksforgeeks.org/rotate-the-sub-list-of-a-linked-list-from-position-m-to-n-to-the-right-by-k-places/
 * https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
 * https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
+* https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
+* https://www.geeksforgeeks.org/how-does-floyds-slow-and-fast-pointers-approach-work/
+* https://www.geeksforgeeks.org/programmers-approach-looking-array-vs-linked-list/
+* https://www.geeksforgeeks.org/create-linked-list-from-a-given-array/

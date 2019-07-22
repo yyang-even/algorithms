@@ -30,6 +30,8 @@
  *              https://www.geeksforgeeks.org/remove-first-node-of-the-linked-list/
  * @reference   Applications of linked list data structure
  *              https://www.geeksforgeeks.org/applications-of-linked-list-data-structure/
+ * @reference   A Programmer’s approach of looking at Array vs. Linked List
+ *              https://www.geeksforgeeks.org/programmers-approach-looking-array-vs-linked-list/
  */
 class SinglyLinkedList {
 public:
@@ -141,6 +143,10 @@ public:
     friend class SinglyCircularLinkedList;
 
     SinglyLinkedList() = default;
+    /**
+     * @reference   Create linked list from a given array
+     *              https://www.geeksforgeeks.org/create-linked-list-from-a-given-array/
+     */
     explicit SinglyLinkedList(const std::vector<Node::ValueType> &array) {
         for (const auto elem : array) {
             PushBack(elem);
@@ -148,13 +154,20 @@ public:
     }
 
 
+    auto GetHead() const {
+        return head;
+    }
+
+
     auto Empty() const {
         return not head;
     }
 
+
     auto Size() const {
         return size;
     }
+
 
     void PushBack(const Node::ValueType v) {
         const auto new_node = std::make_shared<Node>(v);

@@ -74,6 +74,11 @@ public:
     }
 
 
+    Node::PointerType GetHead() const {
+        return tail ? tail->next : nullptr;
+    }
+
+
     auto Empty() const {
         return not size;
     }
