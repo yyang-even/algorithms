@@ -1,3 +1,6 @@
+CompileBenchmarkExe(array_linked_list)
+CompileTestExe(array_linked_list)
+
 CompileBenchmarkExe(count_size_of_singly_list)
 CompileTestExe(count_size_of_singly_list)
 
