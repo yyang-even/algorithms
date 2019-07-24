@@ -15,34 +15,35 @@ const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
  *
  * @reference   https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
  */
-auto DetectLoop_Hash(const SinglyLinkedList::Node::PointerType head) {
+SinglyLinkedList::Node::PointerType
+DetectLoop_Hash(const SinglyLinkedList::Node::PointerType head) {
     std::unordered_set<SinglyLinkedList::Node *> visited_nodes;
 
     for (auto current = head; current; current = current->next) {
         if (visited_nodes.find(current.get()) != visited_nodes.cend()) {
-            return true;
+            return current;
         } else {
             visited_nodes.insert(current.get());
         }
     }
 
-    return false;
+    return nullptr;
 }
 
 auto testDetectLoop_Hash_SinglyList() {
     SinglyLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_Hash(list.GetHead());
+    return DetectLoop_Hash(list.GetHead()) == nullptr;
 }
 
 auto testDetectLoop_Hash_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_Hash(list.GetHead());
+    return DetectLoop_Hash(list.GetHead()) == list.GetHead();
 }
 
 auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
     SinglyLinkedList list{SAMPLE_ARRAY};
     list.MakeLoopAt(index);
-    return DetectLoop_Hash(list.GetHead());
+    return DetectLoop_Hash(list.GetHead()) == list.At(index);
 }
 
 
@@ -56,8 +57,15 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  *
  * This solution is “Floyd’s Cycle-Finding Algorithm” as published in “Non-deterministic Algorithms”
  * by Robert W. Floyd in 1967. It is also called “The Tortoise and the Hare Algorithm”.
+ *
+ * @reference   Find first node of loop in a linked list
+ *              https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
+ *
+ * Write a function findFirstLoopNode() that checks whether a given Linked List contains loop.
+ * If loop is present then it returns point to first node of loop. Else it returns NULL.
  */
-auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType head) {
+auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType head,
+                                   SinglyLinkedList::Node::PointerType *first_node = nullptr) {
     auto slow_ptr = head;
     auto fast_ptr = head;
 
@@ -66,6 +74,10 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
         fast_ptr = fast_ptr->next->next;
 
         if (slow_ptr == fast_ptr) {
+            if (first_node) {
+                for (slow_ptr = head; slow_ptr != fast_ptr; slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next);
+                *first_node = slow_ptr;
+            }
             return true;
         }
     }
@@ -75,27 +87,31 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
 
 auto testDetectLoop_FloydsCycleFinding_SinglyList() {
     SinglyLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_FloydsCycleFinding(list.GetHead());
+    SinglyLinkedList::Node::PointerType first_node = nullptr;
+    return not DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and not first_node;
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_FloydsCycleFinding(list.GetHead());
+    SinglyLinkedList::Node::PointerType first_node = nullptr;
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and first_node == list.GetHead();
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
     SinglyLinkedList list{SAMPLE_ARRAY};
     list.MakeLoopAt(index);
-    return DetectLoop_FloydsCycleFinding(list.GetHead());
+    SinglyLinkedList::Node::PointerType first_node = nullptr;
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and first_node == list.At(index);
 }
 
 
-auto DetectLoop_NextFlag(const SinglyLinkedList::Node::PointerType head) {
+SinglyLinkedList::Node::PointerType
+DetectLoop_NextFlag(const SinglyLinkedList::Node::PointerType head) {
     const auto temp_node = std::make_shared<SinglyLinkedList::Node>();
 
     for (auto current = head; current;) {
         if (current->next == temp_node) {
-            return true;
+            return current;
         } else {
             const auto next = current->next;
             current->next = temp_node;
@@ -103,23 +119,23 @@ auto DetectLoop_NextFlag(const SinglyLinkedList::Node::PointerType head) {
         }
     }
 
-    return false;
+    return nullptr;
 }
 
 auto testDetectLoop_NextFlag_SinglyList() {
     SinglyLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_NextFlag(list.GetHead());
+    return DetectLoop_NextFlag(list.GetHead()) == nullptr;
 }
 
 auto testDetectLoop_NextFlag_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
-    return DetectLoop_NextFlag(list.GetHead());
+    return DetectLoop_NextFlag(list.GetHead()) == list.GetHead();
 }
 
 auto testDetectLoop_NextFlag_SinglyMakeLoop(const std::size_t index) {
     SinglyLinkedList list{SAMPLE_ARRAY};
     list.MakeLoopAt(index);
-    return DetectLoop_NextFlag(list.GetHead());
+    return DetectLoop_NextFlag(list.GetHead()) == list.At(index);
 }
 
 
@@ -189,7 +205,7 @@ SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyCircular);
 SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyMakeLoop, 3);
 
-SIMPLE_TEST0(testDetectLoop_Hash_SinglyList, TestSample, false);
+SIMPLE_TEST0(testDetectLoop_Hash_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample2, true, 3);
@@ -200,7 +216,7 @@ SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyCircular);
 SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, 3);
 
-SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyList, TestSample, false);
+SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample2, true, 3);
@@ -212,7 +228,7 @@ SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyCircular);
 SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyMakeLoop, 3);
 
-SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyList, TestSample, false);
+SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample2, true, 3);
