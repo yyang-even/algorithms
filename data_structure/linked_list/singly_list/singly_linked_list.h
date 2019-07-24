@@ -153,6 +153,12 @@ public:
         }
     }
 
+    ~SinglyLinkedList() {
+        if (tail) {
+            tail->next = nullptr;
+        }
+    }
+
 
     auto GetHead() const {
         return head;
@@ -520,7 +526,7 @@ public:
      * Write a GetNth() function that takes a linked list and an integer index
      * and returns the data value stored in the node at that index position.
      */
-    auto GetN_Iterative(std::size_t index) const {
+    auto At(std::size_t index) const {
         assert(index < size);
 
         auto target = head;
@@ -528,7 +534,11 @@ public:
             target = target->next;
         }
 
-        return target->value;
+        return target;
+    }
+    auto GetN_Iterative(const std::size_t index) const {
+
+        return At(index)->value;
     }
 
     auto GetN_Recursive(const std::size_t index) const {
@@ -703,6 +713,15 @@ public:
 
         std::swap(*node_x, *node_y);
         std::swap((*node_x)->next, (*node_y)->next);
+    }
+
+
+    /**
+     * @reference   Make a loop at k-th position in a linked list
+     *              https://www.geeksforgeeks.org/make-loop-k-th-position-linked-list/
+     */
+    void MakeLoopAt(const std::size_t index) {
+        tail->next = At(index);
     }
 };
 

@@ -39,6 +39,12 @@ auto testDetectLoop_Hash_SinglyCircular() {
     return DetectLoop_Hash(list.GetHead());
 }
 
+auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
+    SinglyLinkedList list{SAMPLE_ARRAY};
+    list.MakeLoopAt(index);
+    return DetectLoop_Hash(list.GetHead());
+}
+
 
 /**
  * @reference   Detect loop in a linked list
@@ -77,6 +83,12 @@ auto testDetectLoop_FloydsCycleFinding_SinglyCircular() {
     return DetectLoop_FloydsCycleFinding(list.GetHead());
 }
 
+auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
+    SinglyLinkedList list{SAMPLE_ARRAY};
+    list.MakeLoopAt(index);
+    return DetectLoop_FloydsCycleFinding(list.GetHead());
+}
+
 
 auto DetectLoop_NextFlag(const SinglyLinkedList::Node::PointerType head) {
     const auto temp_node = std::make_shared<SinglyLinkedList::Node>();
@@ -101,6 +113,12 @@ auto testDetectLoop_NextFlag_SinglyList() {
 
 auto testDetectLoop_NextFlag_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
+    return DetectLoop_NextFlag(list.GetHead());
+}
+
+auto testDetectLoop_NextFlag_SinglyMakeLoop(const std::size_t index) {
+    SinglyLinkedList list{SAMPLE_ARRAY};
+    list.MakeLoopAt(index);
     return DetectLoop_NextFlag(list.GetHead());
 }
 
@@ -158,28 +176,47 @@ auto testDetectLoop_Reverse_SinglyCircular() {
     return DetectLoop_Reverse(list.GetHead());
 }
 
+auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
+    SinglyLinkedList list{SAMPLE_ARRAY};
+    list.MakeLoopAt(index);
+    return DetectLoop_Reverse(list.GetHead());
+}
+
 }//namespace
 
 
 SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyMakeLoop, 3);
 
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyCircular, TestSample, true);
+SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample1, true, 2);
+SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample2, true, 3);
+SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
 
 
 SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, 3);
 
 SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyCircular, TestSample, true);
+SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample1, true, 2);
+SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample2, true, 3);
+SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample3, true,
+            SAMPLE_ARRAY.size() - 1);
 
 
 SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyMakeLoop, 3);
 
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyCircular, TestSample, true);
+SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample1, true, 2);
+SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample2, true, 3);
+SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
 
 
 SIMPLE_BENCHMARK(testDetectLoop_DoublyList);
@@ -191,6 +228,10 @@ SIMPLE_TEST0(testDetectLoop_DoublyCircular, TestSample, true);
 
 SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyList);
 SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyMakeLoop, 3);
 
 SIMPLE_TEST0(testDetectLoop_Reverse_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_Reverse_SinglyCircular, TestSample, true);
+SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample1, true, 2);
+SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample2, true, 3);
+SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);

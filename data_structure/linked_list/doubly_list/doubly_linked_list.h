@@ -70,7 +70,10 @@ public:
             head->Prev() = nullptr;
         }
 
-        tail = nullptr;
+        if (tail) {
+            tail->Next() = nullptr;
+            tail = nullptr;
+        }
     }
 
 
