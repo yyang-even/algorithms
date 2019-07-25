@@ -69,6 +69,12 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  *              https://www.geeksforgeeks.org/delete-all-the-even-nodes-of-a-circular-linked-list/
  *
  * Given a doubly linked list containing N nodes, the task is to delete all the even nodes from the list.
+ *
+ * @reference   Remove every k-th node of the linked list
+ *              https://www.geeksforgeeks.org/remove-every-k-th-node-linked-list/
+ *
+ * Given a singly linked list, Your task is to remove every K-th node of the linked list.
+ * Assume that K is always less than or equal to length of Linked List.
  */
 
 
