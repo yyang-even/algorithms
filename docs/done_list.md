@@ -387,3 +387,4 @@
 * https://www.geeksforgeeks.org/linked-list-vs-array/
 * https://www.geeksforgeeks.org/make-loop-k-th-position-linked-list/
 * https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
+* https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/

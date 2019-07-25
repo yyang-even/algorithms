@@ -63,8 +63,15 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  *
  * Write a function findFirstLoopNode() that checks whether a given Linked List contains loop.
  * If loop is present then it returns point to first node of loop. Else it returns NULL.
+ *
+ * @reference   Find length of loop in linked list
+ *              https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/
+ *
+ * Write a function detectAndCountLoop() that checks whether a given Linked List contains loop and
+ * if loop is present then returns count of nodes in loop.
  */
 auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType head,
+                                   std::size_t *loop_length = nullptr,
                                    SinglyLinkedList::Node::PointerType *first_node = nullptr) {
     auto slow_ptr = head;
     auto fast_ptr = head;
@@ -74,6 +81,13 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
         fast_ptr = fast_ptr->next->next;
 
         if (slow_ptr == fast_ptr) {
+            if (loop_length) {
+                *loop_length = 0;
+                do {
+                    ++(*loop_length);
+                    slow_ptr = slow_ptr->next;
+                } while (slow_ptr != fast_ptr);
+            }
             if (first_node) {
                 for (slow_ptr = head; slow_ptr != fast_ptr; slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next);
                 *first_node = slow_ptr;
@@ -87,21 +101,27 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
 
 auto testDetectLoop_FloydsCycleFinding_SinglyList() {
     SinglyLinkedList list{SAMPLE_ARRAY};
+    std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
-    return not DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and not first_node;
+    return not(DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) or
+               loop_length or first_node);
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
+    std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and first_node == list.GetHead();
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) and
+           loop_length == SAMPLE_ARRAY.size() and first_node == list.GetHead();
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
     SinglyLinkedList list{SAMPLE_ARRAY};
     list.MakeLoopAt(index);
+    std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &first_node) and first_node == list.At(index);
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) and
+           loop_length == (SAMPLE_ARRAY.size() - index) and first_node == list.At(index);
 }
 
 
