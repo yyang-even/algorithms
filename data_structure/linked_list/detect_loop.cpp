@@ -64,6 +64,13 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  * Write a function findFirstLoopNode() that checks whether a given Linked List contains loop.
  * If loop is present then it returns point to first node of loop. Else it returns NULL.
  *
+ * @reference   Detect and Remove Loop in a Linked List
+ *              https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
+ *
+ * Write a function detectAndRemoveLoop() that checks whether a given Linked List contains loop and
+ * if loop is present then removes the loop and returns true. If the list doesn’t contain loop then
+ * it returns false.
+ *
  * @reference   Find length of loop in linked list
  *              https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/
  *
@@ -72,7 +79,8 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  */
 auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType head,
                                    std::size_t *loop_length = nullptr,
-                                   SinglyLinkedList::Node::PointerType *first_node = nullptr) {
+                                   SinglyLinkedList::Node::PointerType *first_node = nullptr,
+                                   SinglyLinkedList::Node::PointerType *last_node = nullptr) {
     auto slow_ptr = head;
     auto fast_ptr = head;
 
@@ -88,9 +96,20 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
                     slow_ptr = slow_ptr->next;
                 } while (slow_ptr != fast_ptr);
             }
-            if (first_node) {
-                for (slow_ptr = head; slow_ptr != fast_ptr; slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next);
-                *first_node = slow_ptr;
+            if (first_node or last_node) {
+                SinglyLinkedList::Node::PointerType prev = nullptr;
+                for (slow_ptr = head; slow_ptr != fast_ptr; slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next) {
+                    prev = slow_ptr;
+                }
+                if (first_node) {
+                    *first_node = slow_ptr;
+                }
+                if (last_node) {
+                    if (not prev) {
+                        for (prev = head; prev->next != head; prev = prev->next);
+                    }
+                    *last_node = prev;
+                }
             }
             return true;
         }
@@ -103,16 +122,19 @@ auto testDetectLoop_FloydsCycleFinding_SinglyList() {
     SinglyLinkedList list{SAMPLE_ARRAY};
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
+    SinglyLinkedList::Node::PointerType last_node = nullptr;
     return not(DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) or
-               loop_length or first_node);
+               loop_length or first_node or last_node);
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyCircular() {
     SinglyCircularLinkedList list{SAMPLE_ARRAY};
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) and
-           loop_length == SAMPLE_ARRAY.size() and first_node == list.GetHead();
+    SinglyLinkedList::Node::PointerType last_node = nullptr;
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node, &last_node) and
+           loop_length == SAMPLE_ARRAY.size() and first_node == list.GetHead() and
+           last_node->next == first_node;
 }
 
 auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
@@ -120,8 +142,10 @@ auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
     list.MakeLoopAt(index);
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node) and
-           loop_length == (SAMPLE_ARRAY.size() - index) and first_node == list.At(index);
+    SinglyLinkedList::Node::PointerType last_node = nullptr;
+    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node, &last_node) and
+           loop_length == (SAMPLE_ARRAY.size() - index) and first_node == list.At(index) and
+           last_node->next == first_node;
 }
 
 

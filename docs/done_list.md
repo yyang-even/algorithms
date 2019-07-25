@@ -389,3 +389,4 @@
 * https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
 * https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/
 * https://www.geeksforgeeks.org/check-whether-the-length-of-given-linked-list-is-even-or-odd/
+* https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
