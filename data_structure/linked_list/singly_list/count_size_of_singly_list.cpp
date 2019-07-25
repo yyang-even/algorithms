@@ -21,6 +21,20 @@ auto testCountSize_Recursive(const std::vector<int> &array) {
     return list.CountSize_Recursive();
 }
 
+
+/** Check whether the length of given linked list is Even or Odd
+ *
+ * @reference   https://www.geeksforgeeks.org/check-whether-the-length-of-given-linked-list-is-even-or-odd/
+ */
+auto IsLengthEven(const std::forward_list<int> &l) {
+    auto iter = l.cbegin();
+    for (; iter != l.cend() and std::next(iter) != l.cend(); std::advance(iter, 2));
+    return iter == l.cend();
+}
+auto testIsLengthEven(const std::vector<int> &array) {
+    return IsLengthEven({array.cbegin(), array.cend()});
+}
+
 }//namespace
 
 
@@ -40,3 +54,12 @@ SIMPLE_TEST(testCountSize_Recursive, TestSingle, SINGLE_ARRAY.size(), SINGLE_ARR
 SIMPLE_TEST(testCountSize_Recursive, TestEven, EVEN_ARRAY.size(), EVEN_ARRAY);
 SIMPLE_TEST(testCountSize_Recursive, TestOdd, ODD_ARRAY.size(), ODD_ARRAY);
 SIMPLE_TEST(testCountSize_Recursive, TestSample, SAMPLE_ARRAY.size(), SAMPLE_ARRAY);
+
+
+SIMPLE_BENCHMARK(testIsLengthEven, SAMPLE_ARRAY);
+
+SIMPLE_TEST(testIsLengthEven, TestEmpty, not(EMPTY_ARRAY.size() % 2), EMPTY_ARRAY);
+SIMPLE_TEST(testIsLengthEven, TestSingle, not(SINGLE_ARRAY.size() % 2), SINGLE_ARRAY);
+SIMPLE_TEST(testIsLengthEven, TestEven, not(EVEN_ARRAY.size() % 2), EVEN_ARRAY);
+SIMPLE_TEST(testIsLengthEven, TestOdd, not(ODD_ARRAY.size() % 2), ODD_ARRAY);
+SIMPLE_TEST(testIsLengthEven, TestSample, not(SAMPLE_ARRAY.size() % 2), SAMPLE_ARRAY);
