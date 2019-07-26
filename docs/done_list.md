@@ -393,3 +393,4 @@
 * https://www.geeksforgeeks.org/remove-every-k-th-node-linked-list/
 * https://www.geeksforgeeks.org/find-unique-elements-linked-list/
 * https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
+* https://www.geeksforgeeks.org/find-the-first-duplicate-element-in-the-linked-list/

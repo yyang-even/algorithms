@@ -82,6 +82,37 @@ auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string &str) {
     return '\0';
 }
 
+
+/** Find the first duplicate element in the linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-first-duplicate-element-in-the-linked-list/
+ *
+ * Given a linked list. Find the first element from the left which appears more than once.
+ * If all the elements are unique then print -1.
+ */
+auto FindFirstDuplicateElement_LinkedList_FirstAppearance(const std::forward_list<int> &l) {
+    std::unordered_map<int, std::size_t> occurrence_map;
+
+    std::size_t index = 0;
+    auto min_index = std::numeric_limits<std::size_t>::max();
+    int first_duplicate_element = -1;
+    for (const auto element : l) {
+        const auto map_iter = occurrence_map.find(element);
+        if (map_iter == occurrence_map.cend()) {
+            occurrence_map.emplace(element, index);
+        } else if (map_iter->second < min_index) {
+            min_index = map_iter->second;
+            first_duplicate_element = element;
+        }
+        ++index;
+    }
+
+    return first_duplicate_element;
+}
+auto testFindFirstDuplicateElement_LinkedList_FirstAppearance(const ArrayType &array) {
+    return FindFirstDuplicateElement_LinkedList_FirstAppearance({array.cbegin(), array.cend()});
+}
+
 }//namespace
 
 
@@ -105,3 +136,10 @@ SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, "geeksforgeeks
 
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e', "geeksforgeeks");
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a', "abcfdeacf");
+
+
+SIMPLE_BENCHMARK(testFindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
+
+SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, ArrayType{});
+SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
+SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
