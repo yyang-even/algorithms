@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Elements that occurred only once in the array
@@ -40,6 +43,8 @@ auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
     return output;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {7, 7, 8, 8, 9, 1, 1, 4, 2, 2};
 const ArrayType EXPECTED1 = {9, 4};
@@ -47,6 +52,7 @@ const ArrayType SAMPLE2 = { -9, -8, 4, 4, 5, 5, -1};
 const ArrayType EXPECTED2 = { -9, -8, -1};
 const ArrayType SAMPLE3 = {3, 7, 7, 8, 8, 9, 1, 1, 4, 2, 2, 3};
 const ArrayType SAMPLE4 = {1, -9, -8, 4, 4, 5, 5, -1, 1};
+
 
 SIMPLE_BENCHMARK(ElementsThatOccurredOnlyOnce, SAMPLE1);
 

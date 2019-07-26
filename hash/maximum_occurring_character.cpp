@@ -94,6 +94,7 @@ SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE2, 'a', std::string("sample
 const ArrayType SAMPLE1 = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3};
 const ArrayType SAMPLE2 = {2, 3, 3, 5, 3, 4, 1, 7};
 
+
 SIMPLE_BENCHMARK(MaximumRepeatingNumber_Inplace, SAMPLE1, 10);
 
 SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE1, 2, SAMPLE1, 10);

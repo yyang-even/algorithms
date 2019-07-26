@@ -391,3 +391,5 @@
 * https://www.geeksforgeeks.org/check-whether-the-length-of-given-linked-list-is-even-or-odd/
 * https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
 * https://www.geeksforgeeks.org/remove-every-k-th-node-linked-list/
+* https://www.geeksforgeeks.org/find-unique-elements-linked-list/
+* https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
