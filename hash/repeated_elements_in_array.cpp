@@ -3,6 +3,8 @@
 #include "repeated_elements.h"
 
 
+namespace {
+
 using ArrayType = std::vector<int>;
 /** Array elements that appear more than once
  *
@@ -33,12 +35,31 @@ auto FindRepeatedElements(const ArrayType &values) {
 
     return output;
 }
+/** Find unique elements in linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/find-unique-elements-linked-list/
+ *
+ * Given a linked list. We need to find unique elements in the linked list i.e, those elements
+ * which are not repeated in the linked list or those elements whose frequency is 1. If No such
+ * elements are present in list so Print ” No Unique Elements”.
+ */
+
+/** Count minimum frequency elements in a linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
+ *
+ * Given a linked list containing duplicate elements. The task is to find the count of all minimum
+ * occurring elements in the given linked list. That is the count of all such elements whose
+ * frequency is minimum in the matrix.
+ */
+
 /** Print all the duplicates in the input string
  *
  * @reference   https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
  *
  * Write an efficient C program to print all the duplicates and their counts in the input string.
  */
+
 /** Print All Distinct Elements of a given integer array
  *
  * @reference   https://www.geeksforgeeks.org/print-distinct-elements-given-integer-array/
@@ -58,7 +79,7 @@ auto FindRepeatedElements(const ArrayType &values) {
  * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
  * answer should be 1, 3 and 6.
  */
-auto FindDuplicatesInplace(ArrayType values) {
+auto FindDuplicates_Inplace(ArrayType values) {
     ArrayType output;
 
     for (const auto elem : values) {
@@ -74,6 +95,7 @@ auto FindDuplicatesInplace(ArrayType values) {
     return output;
 }
 
+
 /** Duplicates in an array in O(n) and by using O(1) extra space | Set-2
  *
  * @reference   https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-2/
@@ -84,7 +106,7 @@ auto FindDuplicatesInplace(ArrayType values) {
  * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
  * answer should be 1, 3 and 6.
  */
-auto FindDuplicatesInplace2(ArrayType values) {
+auto FindDuplicates_Inplace2(ArrayType values) {
     TransformToInplaceCounterArray(values, values.size());
 
     ArrayType output;
@@ -97,26 +119,31 @@ auto FindDuplicatesInplace2(ArrayType values) {
     return output;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType EXPECTED1 = {10, 45};
 const ArrayType SAMPLE2 = {1, 1, 1, 1, 1};
 const ArrayType EXPECTED2 = {1};
 
+
 SIMPLE_BENCHMARK(FindRepeatedElements, SAMPLE1);
 
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
+
 const ArrayType SAMPLE3 = {1, 2, 3, 1, 3, 6, 6};
 const ArrayType EXPECTED3 = {1, 3, 6};
 
-SIMPLE_BENCHMARK(FindDuplicatesInplace, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicatesInplace, TestSAMPLE1, EXPECTED3, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace, SAMPLE3);
+
+SIMPLE_TEST(FindDuplicates_Inplace, TestSAMPLE1, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindDuplicatesInplace2, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace2, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicatesInplace2, TestSAMPLE1, EXPECTED3, SAMPLE3);
-SIMPLE_TEST(FindDuplicatesInplace2, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace2, TestSAMPLE1, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace2, TestSAMPLE2, EXPECTED2, SAMPLE2);
