@@ -593,6 +593,11 @@ public:
         return target->value;
     }
 
+    /**
+     * @reference   Find the sum of last n nodes of the given Linked List
+     *              https://www.geeksforgeeks.org/find-sum-last-n-nodes-given-linked-list/
+     */
+
 
     /**
      * @reference   Delete Nth node from the end of the given linked list
