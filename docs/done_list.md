@@ -394,3 +394,5 @@
 * https://www.geeksforgeeks.org/find-unique-elements-linked-list/
 * https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
 * https://www.geeksforgeeks.org/find-the-first-duplicate-element-in-the-linked-list/
+* https://www.geeksforgeeks.org/move-first-element-to-end-of-a-given-linked-list/
+* https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/

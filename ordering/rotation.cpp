@@ -158,6 +158,9 @@ auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
  * positive integer. For example, if the given linked list is 10->20->30->40->50->60 and k is 4, the
  * list should be modified to 50->60->10->20->30->40. Assume that k is smaller than the count of nodes
  * in linked list.
+ *
+ * @reference   Move first element to end of a given Linked List
+ *              https://www.geeksforgeeks.org/move-first-element-to-end-of-a-given-linked-list/
  */
 auto LeftRotate_SinglyList(std::forward_list<int> elements,
                            const std::forward_list<int>::size_type k) {
@@ -168,6 +171,11 @@ auto TestLeftRotate_SinglyList(const ArrayType &elements,
     const auto rotated_list = LeftRotate_SinglyList({elements.cbegin(), elements.cend()}, k);
     return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
 }
+
+/** Move last element to front of a given Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
+ */
 
 
 /** Rotate Doubly linked list by N nodes
@@ -238,10 +246,14 @@ SIMPLE_TEST(RightRotate_Reversal, TestSample, ExpectedArrayR1, SampleArrayR1, 3)
 SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArrayR2, 2);
 
 
+const ArrayType ExpectedArray3 = {2, 3, 4, 5, 6, 7, 1};
+
+
 SIMPLE_BENCHMARK(TestLeftRotate_SinglyList, SampleArray2, 3);
 
 SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3);
+SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample3, ExpectedArray3, SampleArray, 1);
 
 
 SIMPLE_BENCHMARK(TestLeftRotate_DoublyList, SampleArray2, 3);
