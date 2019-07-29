@@ -397,3 +397,7 @@
 * https://www.geeksforgeeks.org/move-first-element-to-end-of-a-given-linked-list/
 * https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
 * https://www.geeksforgeeks.org/find-sum-last-n-nodes-given-linked-list/
+* https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/
+* https://www.geeksforgeeks.org/find-the-last-non-repeating-character-in-string/
+* https://www.geeksforgeeks.org/first-non-repeating-character-using-one-traversal-of-string-set-2/
+* https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
