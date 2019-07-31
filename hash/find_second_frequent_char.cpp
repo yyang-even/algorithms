@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Program to find second most frequent character
  *
  * @reference   https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
@@ -32,6 +35,8 @@ auto FindSecondFrequentChar(const std::string input) {
 
     return second;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(FindSecondFrequentChar, std::string("geeksforgee"));

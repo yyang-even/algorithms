@@ -57,3 +57,6 @@ CompileTestExe(remove_duplicates)
 
 CompileBenchmarkExe(repeated_elements_in_array)
 CompileTestExe(repeated_elements_in_array)
+
+CompileBenchmarkExe(top_k_most_frequent_numbers)
+CompileTestExe(top_k_most_frequent_numbers)

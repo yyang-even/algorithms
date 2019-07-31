@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** K’th Non-repeating Character
  *
  * @reference   https://www.geeksforgeeks.org/kth-non-repeating-character/
@@ -34,6 +37,8 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
 
     return input[nonrepeating_char_indice[K - 1]];
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(FindKthNonrepeatingChar, std::string("GeeksforGeeks"), 3ul);
