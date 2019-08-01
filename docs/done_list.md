@@ -403,3 +403,6 @@
 * https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
 * https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/
 * https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+* https://www.geeksforgeeks.org/frequent-element-array/
+* https://www.geeksforgeeks.org/least-frequent-element-array/
+* https://www.geeksforgeeks.org/find-the-most-frequent-digit-without-using-arraystring/

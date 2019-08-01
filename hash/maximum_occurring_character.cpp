@@ -10,6 +10,11 @@ namespace {
  *
  * Write an efficient function to return maximum occurring character in the input
  * string e.g., if input string is “test” then function should return ‘t’.
+ *
+ * @reference   Most frequent element in an array
+ *              https://www.geeksforgeeks.org/frequent-element-array/
+ * @reference   Least frequent element in an array
+ *              https://www.geeksforgeeks.org/least-frequent-element-array/
  */
 auto MaximumOccurringChar_Position(const std::string &input) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;
@@ -53,6 +58,15 @@ auto MaximumOccurringChar_Alphabet(const std::string &input) {
 
     return max_char;
 }
+
+/** Find the most frequent digit without using array/string
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-most-frequent-digit-without-using-arraystring/
+ *
+ * Given an integer, find the most occurring digit in it. If two or more digits occur same number of times,
+ * then return the highest of them. Input integer is given as an int variable, not as a string or array.
+ * Use of hash or array or string is not allowed.
+ */
 
 
 /** Find the maximum repeating number in O(n) time and O(1) extra space
