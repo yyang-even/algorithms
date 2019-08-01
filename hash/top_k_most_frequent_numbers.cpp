@@ -14,7 +14,7 @@ using ArrayType = std::vector<int>;
  * We basically need to print top k numbers sorted by frequency when input stream has included
  * k distinct elements, else need to print all distinct elements sorted by frequency.
  */
-auto FindTopKMostFrequentNumbers(const ArrayType &stream, const ArrayType::size_type K) {
+auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType::size_type K) {
     assert(K);
 
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> frequency_map;
@@ -45,6 +45,47 @@ auto FindTopKMostFrequentNumbers(const ArrayType &stream, const ArrayType::size_
     return outputs;
 }
 
+
+/** Find k numbers with most occurrences in the given array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+ *
+ * Given an array of n numbers and a positive integer k. The problem is to find k numbers
+ * with most occurrences, i.e., the top k numbers having the maximum frequency. If two
+ * numbers have same frequency then the larger number should be given preference. The
+ * numbers should be displayed in decreasing order of their frequencies. It is assumed
+ * that the array consists of k numbers with most occurrences.
+ */
+auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size_type K) {
+    assert(K);
+
+    using MapType = std::unordered_map<ArrayType::value_type, ArrayType::size_type>;
+    MapType frequency_map;
+
+    for (const auto n : numbers) {
+        ++frequency_map[n];
+    }
+
+    std::vector<MapType::const_iterator> number_frequency_array;
+    for (auto iter = frequency_map.cbegin(); iter != frequency_map.cend(); ++iter) {
+        number_frequency_array.push_back(iter);
+    }
+
+    const auto compare_function = [](const auto & lhs, const auto & rhs) {
+        return lhs->second == rhs->second ? lhs->first > rhs->first : lhs->second > rhs->second;
+    };
+    const auto kth = std::next(number_frequency_array.begin(), std::min(frequency_map.size(), K));
+    std::partial_sort(number_frequency_array.begin(), kth, number_frequency_array.end(),
+                      compare_function);
+
+    ArrayType output;
+    for (auto iter = number_frequency_array.cbegin(); iter != kth; ++iter) {
+        output.push_back((*iter)->first);
+    }
+
+    return output;
+}
+
 }//namespace
 
 
@@ -53,7 +94,19 @@ const std::vector<ArrayType> EXPECTED1 = {{1}, {1}, {1, 2}, {1, 2, 3}, {1, 3, 2}
 const std::vector<ArrayType> EXPECTED2 = {{1}, {1}, {1}, {1}, {1}, {3}, {3}, {3}, {3}, {3}, {2}};
 
 
-SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers, SAMPLE, 4);
+SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers_Stream, SAMPLE, 4);
 
-SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE1, EXPECTED1, SAMPLE, 4);
-SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE2, EXPECTED2, SAMPLE, 1);
+SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE1, EXPECTED1, SAMPLE, 4);
+SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE2, EXPECTED2, SAMPLE, 1);
+
+
+const ArrayType SAMPLE1 = {3, 1, 4, 4, 5, 2, 6, 1};
+const ArrayType EXPECTED_ARRAY1 = {4, 1};
+const ArrayType SAMPLE2 = {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};
+const ArrayType EXPECTED_ARRAY2 = {5, 11, 7, 10};
+
+
+SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers, SAMPLE1, 2);
+
+SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE1, EXPECTED_ARRAY1, SAMPLE1, 2);
+SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE2, EXPECTED_ARRAY2, SAMPLE2, 4);

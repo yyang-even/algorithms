@@ -402,3 +402,4 @@
 * https://www.geeksforgeeks.org/first-non-repeating-character-using-one-traversal-of-string-set-2/
 * https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
 * https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/
+* https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
