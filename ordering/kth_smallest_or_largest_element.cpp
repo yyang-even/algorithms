@@ -81,6 +81,39 @@ auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     return *KthSmallest_QuickSelect(elements.begin(), elements.end(), elements.cbegin() + K);
 }
 
+
+/**
+ * @reference   Kth smallest element in the array using constant space when array can’t be modified
+ *              https://www.geeksforgeeks.org/kth-smallest-element-in-the-array-using-constant-space-when-array-cant-be-modified/
+ */
+ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
+        const ArrayType::value_type max, const ArrayType &elements, const ArrayType::size_type K) {
+    assert(K <= elements.size());
+
+    const auto mid = (min + max) / 2;
+
+    ArrayType::size_type less_than_mid = 0;
+    auto equal_to_mid = 0;
+    for (const auto elem : elements) {
+        if (elem < mid) {
+            ++less_than_mid;
+        } else if (elem == mid) {
+            ++equal_to_mid;
+        }
+    }
+
+    if (less_than_mid >= K) {
+        return KthSmallest_BinarySearch(min, mid - 1, elements, K);
+    } else if (less_than_mid + equal_to_mid < K) {
+        return KthSmallest_BinarySearch(mid + 1, max, elements, K);
+    }
+    return mid;
+}
+auto KthSmallest_BinarySearch(const ArrayType &elements, const ArrayType::size_type K) {
+    const auto min_max = std::minmax_element(elements.cbegin(), elements.cend());
+    return KthSmallest_BinarySearch(*(min_max.first), *(min_max.second), elements, K + 1);
+}
+
 }//namespace
 
 
@@ -118,3 +151,17 @@ SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE1, 5, VALUES1, 1);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE3, 14, VALUES2, 3);
+
+
+const ArrayType VALUES3 = {7, 10, 4, 3, 20, 15};
+const ArrayType VALUES4 = {12, 3, 5, 7, 19};
+
+
+SIMPLE_BENCHMARK(KthSmallest_BinarySearch, VALUES1, 1);
+
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE0, 3, VALUES1, 0);
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE1, 5, VALUES1, 1);
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE3, 14, VALUES2, 3);
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE4, 7, VALUES3, 2);
+SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE5, 5, VALUES4, 1);
