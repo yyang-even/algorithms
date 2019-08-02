@@ -242,6 +242,32 @@ auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
     return DetectLoop_Reverse(list.GetHead());
 }
 
+
+/** Find duplicate in an array in O(n) and by using O(1) extra space
+ *
+ * @reference   https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-3/
+ *
+ * Given an array arr[] containing n + 1 integers where each integer is between 1 and n (inclusive).
+ * There is only one duplicate element, find the duplicate element in O(n) time complexity and O(1) space.
+ */
+auto FindTheDuplicate_FloydsCycleFinding(const std::vector<unsigned> &values) {
+    auto slow_ptr = values.front();
+    auto fast_ptr = values.front();
+
+    do {
+        slow_ptr = values[slow_ptr];
+        fast_ptr = values[values[fast_ptr]];
+    } while (slow_ptr != fast_ptr);
+
+    slow_ptr = values.front();
+    while (slow_ptr != fast_ptr) {
+        slow_ptr = values[slow_ptr];
+        fast_ptr = values[fast_ptr];
+    }
+
+    return slow_ptr;
+}
+
 }//namespace
 
 
@@ -295,3 +321,13 @@ SIMPLE_TEST0(testDetectLoop_Reverse_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample2, true, 3);
 SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
+
+
+const std::vector<unsigned> SAMPLE1 = {1, 4, 3, 4, 2};
+const std::vector<unsigned> SAMPLE2 = {1, 3, 2, 1};
+
+
+SIMPLE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, SAMPLE1);
+
+SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample1, 4u, SAMPLE1);
+SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample2, 1u, SAMPLE2);
