@@ -407,3 +407,6 @@
 * https://www.geeksforgeeks.org/least-frequent-element-array/
 * https://www.geeksforgeeks.org/find-the-most-frequent-digit-without-using-arraystring/
 * https://www.geeksforgeeks.org/kth-smallest-element-in-the-array-using-constant-space-when-array-cant-be-modified/
+* https://www.geeksforgeeks.org/find-duplicates-in-on-time-and-constant-extra-space/
+* https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-2/
+* https://www.geeksforgeeks.org/duplicates-in-an-array-in-on-time-and-by-using-o1-extra-space-set-3/

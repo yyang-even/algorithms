@@ -6,6 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+
 /** Array elements that appear more than once
  *
  * @reference   https://www.geeksforgeeks.org/array-elements-that-appear-more-than-once/
@@ -80,7 +81,7 @@ auto FindRepeatedElements(const ArrayType &values) {
  * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
  * answer should be 1, 3 and 6.
  */
-auto FindDuplicates_Inplace(ArrayType values) {
+auto FindDuplicates_Inplace_Sign(ArrayType values) {
     ArrayType output;
 
     for (const auto elem : values) {
@@ -107,7 +108,7 @@ auto FindDuplicates_Inplace(ArrayType values) {
  * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the
  * answer should be 1, 3 and 6.
  */
-auto FindDuplicates_Inplace2(ArrayType values) {
+auto FindDuplicates_Inplace_Mod(ArrayType values) {
     TransformToInplaceCounterArray(values, values.size());
 
     ArrayType output;
@@ -115,6 +116,39 @@ auto FindDuplicates_Inplace2(ArrayType values) {
         if ((values[i] / values.size()) > 1) {
             output.push_back(i);
         }
+    }
+
+    return output;
+}
+
+
+/** Duplicates in an array in O(n) time and by using O(1) extra space | Set-3
+ *
+ * @reference   https://www.geeksforgeeks.org/duplicates-in-an-array-in-on-time-and-by-using-o1-extra-space-set-3/
+ *
+ * Given an array of n elements which contains elements from 0 to n-1, with any of these
+ * numbers appearing any number of times. Find these repeating numbers in O(n) and using
+ * only constant memory space. It is required that the order in which elements repeat
+ * should be maintained. If there is no repeating element present then print -1.
+ */
+auto FindDuplicates_Inplace_Mod_SecondOccurrence(ArrayType values) {
+    assert(not values.empty());
+
+    const long N = values.size();
+    const auto TWO_TIMES_N = N * 2;
+
+    ArrayType output;
+    for (const auto number : values) {
+        const auto original_number = number % N;
+        if (values[original_number] >= N) {
+            //Repeated
+            if (values[original_number] < TWO_TIMES_N) {
+                //First repetition
+                output.push_back(original_number);
+            }
+        }
+
+        values[original_number] += N;
     }
 
     return output;
@@ -139,12 +173,23 @@ const ArrayType SAMPLE3 = {1, 2, 3, 1, 3, 6, 6};
 const ArrayType EXPECTED3 = {1, 3, 6};
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Sign, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicates_Inplace, TestSAMPLE1, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace_Sign, TestSAMPLE1, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace2, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicates_Inplace2, TestSAMPLE1, EXPECTED3, SAMPLE3);
-SIMPLE_TEST(FindDuplicates_Inplace2, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE1, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE2, EXPECTED2, SAMPLE2);
+
+
+const ArrayType SAMPLE4 = {0, 3, 1, 3, 0};
+const ArrayType EXPECTED4 = {3, 0};
+
+
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, SAMPLE3);
+
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3, SAMPLE3);
