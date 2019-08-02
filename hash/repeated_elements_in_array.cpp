@@ -154,6 +154,32 @@ auto FindDuplicates_Inplace_Mod_SecondOccurrence(ArrayType values) {
     return output;
 }
 
+
+/** Find Duplicates of array using bit array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-duplicates-of-array-using-bit-array/
+ *
+ * You have an array of N numbers, where N is at most 32,000. The array may have
+ * duplicates entries and you do not know what N is. With only 4 Kilobytes of
+ * memory available, how would print all duplicates elements in the array ?
+ *
+ * @complexity  O(n)
+ */
+auto FindAllDuplicates_BitArray(const ArrayType &elements) {
+    std::vector<bool> counters(elements.size(), false);
+
+    ArrayType output;
+    for (const auto elem : elements) {
+        if (counters[elem]) {
+            output.push_back(elem);
+        } else {
+            counters[elem] = true;
+        }
+    }
+
+    return output;
+}
+
 }//namespace
 
 
@@ -193,3 +219,15 @@ SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, SAMPLE3);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4, SAMPLE4);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3, SAMPLE3);
+
+
+const ArrayType SAMPLE5 = {1, 5, 1, 10, 12, 10};
+const ArrayType EXPECTED5 = {1, 10};
+const ArrayType SAMPLE6 = {50, 40, 50};
+const ArrayType EXPECTED6 = {50};
+
+
+SIMPLE_BENCHMARK(FindAllDuplicates_BitArray, SAMPLE5);
+
+SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample1, EXPECTED5, SAMPLE5);
+SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample2, EXPECTED6, SAMPLE6);
