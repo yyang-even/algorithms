@@ -424,3 +424,7 @@
 * https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
 * https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
 * https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
+* https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/
+* https://www.geeksforgeeks.org/rearrange-positive-negative-numbers-using-inbuilt-sort-function/
+* https://www.geeksforgeeks.org/partition-negative-positive-without-comparison-0/
+* https://www.geeksforgeeks.org/segregating-negative-and-positive-maintaining-order-and-o1-space/

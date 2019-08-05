@@ -19,7 +19,7 @@ using ArrayType = std::vector<int>;
  * negative element at the end of array without changing the order of positive element
  * and negative element.
  */
-auto RearrangePositiveAndNegativeNumbers_Simple(const ArrayType &input) {
+auto RearrangePositiveAndNegativeNumbers_Simple_Stable(const ArrayType &input) {
     ArrayType output;
 
     for (const auto c : input) {
@@ -55,7 +55,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     });
 }
 
-auto RearrangePositiveAndNegativeNumbers_Merge(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
     MergeSort<ArrayType>(input.begin(), input.size(), Merge);
     return input;
 }
@@ -64,11 +64,23 @@ auto RearrangePositiveAndNegativeNumbers_Merge(ArrayType input) {
 /** Rearrange positive and negative numbers with constant extra space
  *
  * @reference   https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
+ * @reference   Rearrange positive and negative numbers using inbuilt sort function
+ *              https://www.geeksforgeeks.org/rearrange-positive-negative-numbers-using-inbuilt-sort-function/
+ * @reference   Segregating negative and positive maintaining order and O(1) space
+ *              https://www.geeksforgeeks.org/segregating-negative-and-positive-maintaining-order-and-o1-space/
  *
  * Given an array of positive and negative numbers, arrange them such that all negative
  * integers appear before all the positive integers in the array without using any
  * additional data structure like hash table, arrays, etc. The order of appearance
  * should be maintained.
+ *
+ * @reference   Move all negative numbers to beginning and positive to end with constant extra space
+ *              https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/
+ * @reference   Partition negative and positive without comparison with 0
+ *              https://www.geeksforgeeks.org/partition-negative-positive-without-comparison-0/
+ *
+ * An array contains both positive and negative numbers in random order. Rearrange
+ * the array elements so that all negative numbers appear before all positive numbers.
  */
 auto isNegative(const ArrayType::value_type v) {
     return v < 0;
@@ -240,10 +252,10 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE1, EXPECTED
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge_Stable, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_MergeReverse, SAMPLE1);
@@ -259,10 +271,10 @@ const ArrayType SAMPLE4 = { -5, 7, -3, -4, 9, 10, -1, 11};
 const ArrayType EXPECTED4 = {7, 9, 10, 11, -5, -3, -4, -1};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple, SAMPLE3);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple_Stable, SAMPLE3);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple, TestSAMPLE3, EXPECTED3, SAMPLE3);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple, TestSAMPLE4, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
 const ArrayType SAMPLE5 = { -1, 2, -3, 4, 5, 6, -7, 8, 9};
