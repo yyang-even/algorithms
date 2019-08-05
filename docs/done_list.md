@@ -411,3 +411,9 @@
 * https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-2/
 * https://www.geeksforgeeks.org/duplicates-in-an-array-in-on-time-and-by-using-o1-extra-space-set-3/
 * https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-3/
+* https://www.geeksforgeeks.org/find-the-maximum-repeating-number-in-ok-time/
+* https://www.geeksforgeeks.org/find-duplicates-constant-array-elements-0-n-1-o1-space/
+* https://www.geeksforgeeks.org/find-duplicates-of-array-using-bit-array/
+* https://www.geeksforgeeks.org/find-duplicates-given-array-elements-not-limited-range/
+* https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
+* https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/

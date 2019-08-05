@@ -1,7 +1,10 @@
 #include "common_header.h"
 
 
+namespace {
+
 using ArrayType = std::vector<int>;
+
 /** Check if all array elements are distinct
  *
  * @reference   https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/
@@ -20,9 +23,12 @@ auto CheckIfAllElementsDistinct(const ArrayType &elements) {
     return true;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType SAMPLE2 = {2, 1, 9, 5};
+
 
 SIMPLE_BENCHMARK(CheckIfAllElementsDistinct, SAMPLE1);
 

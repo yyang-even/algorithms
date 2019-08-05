@@ -249,6 +249,13 @@ auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
  *
  * Given an array arr[] containing n + 1 integers where each integer is between 1 and n (inclusive).
  * There is only one duplicate element, find the duplicate element in O(n) time complexity and O(1) space.
+ *
+ * @reference   Find duplicates in constant array with elements 0 to N-1 in O(1) space
+ *              https://www.geeksforgeeks.org/find-duplicates-constant-array-elements-0-n-1-o1-space/
+ *
+ * Given a constant array of n elements which contains elements from 0 to n-1, with any of these numbers
+ * appearing any number of times. Find any one of these repeating numbers in O(n) and using only constant
+ * memory space.
  */
 auto FindTheDuplicate_FloydsCycleFinding(const std::vector<unsigned> &values) {
     auto slow_ptr = values.front();
