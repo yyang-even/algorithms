@@ -417,3 +417,10 @@
 * https://www.geeksforgeeks.org/find-duplicates-given-array-elements-not-limited-range/
 * https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
 * https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/
+* https://www.geeksforgeeks.org/count-distinct-elements-in-an-array/
+* https://www.geeksforgeeks.org/product-of-non-repeating-distinct-elements-in-an-array/
+* https://www.geeksforgeeks.org/rearrange-given-array-place/
+* https://www.geeksforgeeks.org/rearrange-array-arrj-becomes-arri-j/
+* https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
+* https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
+* https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/

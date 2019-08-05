@@ -70,6 +70,16 @@ auto FindRepeatedElements(const ArrayType &values) {
  * duplicates and the output should print every element only once. The given array is not sorted.
  */
 
+/** Product of non-repeating (distinct) elements in an Array
+ *
+ * @reference   https://www.geeksforgeeks.org/product-of-non-repeating-distinct-elements-in-an-array/
+ */
+
+/** Count distinct elements in an array
+ *
+ * @reference   https://www.geeksforgeeks.org/count-distinct-elements-in-an-array/
+ */
+
 
 /** Find duplicates in O(n) time and O(1) extra space | Set 1
  *
