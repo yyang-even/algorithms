@@ -144,6 +144,10 @@ auto RearrangeZeros(ArrayType input) {
 /** Rearrange positive and negative numbers in O(n) time and O(1) extra space
  *
  * @reference   https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
+ * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 1
+ *              https://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/
+ * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 2
+ *              https://www.geeksforgeeks.org/rearrange-array-in-alternating-positive-negative-items-with-o1-extra-space-set-2/
  *
  * An array contains both positive and negative numbers in random order. Rearrange
  * the array elements so that positive and negative numbers are placed alternatively.
@@ -151,13 +155,64 @@ auto RearrangeZeros(ArrayType input) {
  * positive numbers they appear at the end of the array. If there are more negative
  * numbers, they too appear in the end of the array.
  */
-auto RearrangePositiveAndNegativeNumbersAlternative(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(ArrayType input) {
     auto positive_iter = Partition<ArrayType>(input.begin(), input.end(), isNegative);
 
     for (auto negative_iter = input.begin();
          positive_iter != input.end() and negative_iter < positive_iter and * negative_iter < 0;
          ++positive_iter, negative_iter += 2) {
         std::iter_swap(negative_iter, positive_iter);
+    }
+
+    return input;
+}
+
+
+/**
+ * @reference   Positive elements at even and negative at odd positions (Relative order not maintained)
+ *              https://www.geeksforgeeks.org/positive-elements-at-even-and-negative-at-odd-positions-relative-order-not-maintained/
+ */
+auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable(ArrayType input) {
+    ArrayType::size_type positive = 0;
+    ArrayType::size_type negative = 1;
+    while (true) {
+        for (; positive < input.size() and input[positive] >= 0; positive += 2);
+        for (; negative < input.size() and input[negative] < 0; negative += 2);
+
+        if (positive < input.size() and negative < input.size()) {
+            std::swap(input[positive], input[negative]);
+        } else {
+            break;
+        }
+    }
+
+    return input;
+}
+
+
+auto isPositiveAndNegativeAlternative(const ArrayType::const_iterator iter,
+                                      const bool is_even_position) {
+    if (is_even_position) {
+        return *iter >= 0;
+    } else {
+        return *iter < 0;
+    }
+}
+
+auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(ArrayType input) {
+    auto is_even_position = true;
+    for (auto iter = input.begin(); iter != input.end();
+         ++iter, is_even_position = not is_even_position) {
+        if (not isPositiveAndNegativeAlternative(iter, is_even_position)) {
+            auto is_even_position_at_j = not is_even_position;
+            for (auto j = std::next(iter); j != input.end();
+                 ++j, is_even_position_at_j = not is_even_position_at_j) {
+                if (not isPositiveAndNegativeAlternative(j, is_even_position_at_j)) {
+                    std::iter_swap(iter, j);
+                    break;
+                }
+            }
+        }
     }
 
     return input;
@@ -284,10 +339,38 @@ const ArrayType SAMPLE6 = { -5, 7, -3, -4, 9, 10, -1, -11};
 const ArrayType EXPECTED6 = {10, -3, 7, -1, 9, -5, -4, -11};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative, SAMPLE5);
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, SAMPLE5);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative, TestSAMPLE5, EXPECTED5, SAMPLE5);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative, TestSAMPLE6, EXPECTED6, SAMPLE6);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE5,
+            EXPECTED5,
+            SAMPLE5);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE6,
+            EXPECTED6,
+            SAMPLE6);
+
+
+const ArrayType EXPECTED5_b = {2, -1, 4, -3, 5, -7, 6, 8, 9};
+const ArrayType EXPECTED6_b = {7, -5, 10, -4, 9, -3, -1, -11};
+
+
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, SAMPLE5);
+
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE5,
+            EXPECTED5_b, SAMPLE5);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE6,
+            EXPECTED6_b, SAMPLE6);
+
+
+const ArrayType EXPECTED5_Stable = {2, -1, 4, -3, 5, -7, 6, 8, 9};
+const ArrayType EXPECTED6_Stable = {7, -5, 10, -4, 9, -3, -1, -11};
+
+
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, SAMPLE5);
+
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, TestSAMPLE5,
+            EXPECTED5_Stable, SAMPLE5);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, TestSAMPLE6,
+            EXPECTED6_Stable, SAMPLE6);
 
 
 const ArrayType SAMPLE7 = {1, 2, 0, 4, 3, 0, 5, 0};
