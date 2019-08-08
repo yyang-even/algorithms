@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "repeated_elements.h"
+#include "count_frequencies_of_all_elements.h"
 
 
 namespace {

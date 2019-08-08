@@ -52,6 +52,7 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 
 // Macros
 #ifdef NONIUS_RUNNER
+
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
     NONIUS_BENCHMARK((std::string(#func_name) + "(" + #inputs + ")"), []() {    \
         return func_name(inputs);                                               \
@@ -64,13 +65,17 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
         meter.measure([&input]() { return func_name(input); });                                 \
     })                                                                                          \
 }
+
 #else
+
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {}
 #define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {}
+
 #endif
 
 
 #ifdef WANT_TESTS
+
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                  \
     TEST(func_name##Test, testName) {                                                           \
         EXPECT_EQ(expectedValue, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);   \
@@ -82,16 +87,25 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
     }                                                                   \
 }
 
+#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {                                                       \
+    TEST(func1##vs##func2, testName) {                                                                                          \
+        EXPECT_EQ(func1(inputs), static_cast<decltype(func1(inputs))>(func2(inputs))) << "Inputs: " << std::make_tuple(inputs); \
+    }                                                                                                                           \
+}
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {                                \
     TEST(MutualRandomTest, func1##vs##func2) {                                                              \
         const auto input = Random_Number<InputType>(lowerBound, upperBound);                                \
         EXPECT_EQ(func1(input), static_cast<decltype(func1(input))>(func2(input))) << "Input: " << input;   \
     }                                                                                                       \
 }
+
 #else
+
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
 #define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {}
+#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {}
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}
+
 #endif
 
 //Constants

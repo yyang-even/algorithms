@@ -19,6 +19,9 @@ CompileTestExe(check_all_elements_distinct)
 CompileBenchmarkExe(conditionally_assign)
 CompileTestExe(conditionally_assign)
 
+CompileBenchmarkExe(count_frequencies_of_all_elements)
+CompileTestExe(count_frequencies_of_all_elements)
+
 CompileBenchmarkExe(elements_that_occurred_only_once)
 CompileTestExe(elements_that_occurred_only_once)
 
