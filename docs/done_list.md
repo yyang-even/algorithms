@@ -437,3 +437,5 @@
 * https://www.geeksforgeeks.org/fifo-vs-lifo-approach-in-programming/
 * https://www.geeksforgeeks.org/lifo-last-in-first-out-approach-in-programming/
 * https://www.geeksforgeeks.org/little-and-big-endian-mystery/
+* https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
+* https://www.geeksforgeeks.org/bits-manipulation-important-tactics/

@@ -10,10 +10,10 @@ namespace {
  *
  * Is there a quick way to determine endianness of your machine?
  */
-inline INT_BOOL IsLittleEndian() {
+inline bool IsLittleEndian() {
     const auto one = 1;
     const auto *byte_ptr = reinterpret_cast<const char *>(&one);
-    return *byte_ptr ? TRUE : FALSE;
+    return *byte_ptr;
 }
 
 }//namespace
@@ -21,8 +21,8 @@ inline INT_BOOL IsLittleEndian() {
 
 #ifdef __GNUC__
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-SIMPLE_TEST0(IsLittleEndian, Test, TRUE);
+SIMPLE_TEST0(IsLittleEndian, Test, true);
 #else
-SIMPLE_TEST0(IsLittleEndian, Test, FALSE);
+SIMPLE_TEST0(IsLittleEndian, Test, false);
 #endif
 #endif
