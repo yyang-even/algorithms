@@ -4,6 +4,7 @@
 #include <climits>
 #include <cmath>
 
+#include <algorithm>
 #include <chrono>
 #include <forward_list>
 #include <functional>
@@ -13,6 +14,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 #ifdef NONIUS_RUNNER

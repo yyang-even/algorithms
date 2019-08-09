@@ -2,6 +2,9 @@
 
 #include "primes_below_n.h"
 
+
+namespace {
+
 typedef unsigned long InputType;
 
 /** Sum of all prime numbers below N
@@ -36,6 +39,7 @@ auto ProductOfFirstNPrimes(const InputType N) {
     return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
 }
 
+
 /** Segmented Sieve (Print Primes in a Range)
  *
  * @reference   https://www.geeksforgeeks.org/segmented-sieve-print-primes-in-a-range/
@@ -47,7 +51,7 @@ auto ProductOfFirstNPrimes(const InputType N) {
  * Given a range [low, high], print all primes in this range? For example, if the
  * given range is [10, 20], then output is 11, 13, 17, 19.
  */
-auto primesInRangeLowerBound(const InputType low, const InputType high) {
+auto primesInRange_LowerBound(const InputType low, const InputType high) {
     auto base_primes = SieveOfEratosthenes(high + 1);
     const auto low_bound = std::lower_bound(base_primes.cbegin(), base_primes.cend(), low);
     base_primes.erase(base_primes.begin(), low_bound);
@@ -80,7 +84,7 @@ auto PrimesInRange(const InputType low, const InputType high) {
     }
     const InputType limit = sqrt(high) + 1;
     if (low <= limit) {
-        return primesInRangeLowerBound(low, high);
+        return primesInRange_LowerBound(low, high);
     } else {
         return primesInRange(low, high, SieveOfEratosthenes(limit));
     }
@@ -113,10 +117,13 @@ auto SegmentedSieveOfEratosthenes(const InputType N) {
     return output;
 }
 
+}//namespace
+
 
 const InputType LOWER = 2;
 const InputType SAMPLE1 = 12;
 const InputType SAMPLE2 = 42;
+
 
 SIMPLE_BENCHMARK(SieveOfEratosthenes, LOWER);
 SIMPLE_BENCHMARK(SieveOfEratosthenes, SAMPLE1);
@@ -131,24 +138,24 @@ SIMPLE_TEST(SieveOfEratosthenes, TestSAMPLE2, RESULT2, SAMPLE2);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, LOWER);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 0, LOWER);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28, SAMPLE1);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023, 1000000);
+SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28u, SAMPLE1);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023ull, 1000000);
 
 
 SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, LOWER);
 SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, SAMPLE1);
 
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2, LOWER);
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30, 5);
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210, 7);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2u, LOWER);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30u, 5);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210u, 7);
 
 
 SIMPLE_BENCHMARK(ProductOfFirstNPrimes, LOWER);
 SIMPLE_BENCHMARK(ProductOfFirstNPrimes, SAMPLE1);
 
-SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310, 5);
-SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30, 3);
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310u, 5);
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30u, 3);
 
 
 const std::vector<InputType> RESULT3 = {11, 13, 17, 19};
@@ -156,6 +163,7 @@ const std::vector<InputType> RESULT4 = {11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 
                                         53, 59, 61, 67, 71, 73, 79, 83, 89, 97
                                        };
 const std::vector<InputType> RESULT5 = {2, 3, 5, 7};
+
 
 SIMPLE_BENCHMARK(PrimesInRange, 10, 20);
 
@@ -170,11 +178,12 @@ SIMPLE_TEST(PrimesInRange, TestSAMPLE9, std::vector<InputType> {19}, 19, 19);
 
 SIMPLE_BENCHMARK(SumOfPrimesInRange, 1, 6);
 
-SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10, 1, 6);
-SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36, 4, 13);
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10u, 1, 6);
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36u, 4, 13);
 
 
 const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+
 
 SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, LOWER);
 SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, SAMPLE1);

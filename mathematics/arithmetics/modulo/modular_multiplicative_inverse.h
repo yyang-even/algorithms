@@ -15,6 +15,6 @@
  *  prime (i.e., if gcd(a, m) = 1).
  */
 auto ModularMultiplicativeInverse(const int a, const int m) {
-    const auto results = gcdExtended(a, m);
+    const auto results = gcd_Extended(a, m);
     return (std::get<0>(results) == 1) ? ((std::get<1>(results) % m + m) % m) : 0;
 }

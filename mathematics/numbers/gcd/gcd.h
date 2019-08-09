@@ -38,7 +38,7 @@ unsigned gcd(unsigned m, unsigned n) {
 }
 
 
-int gcdExtended(const int a, const int b, int *x, int *y) {
+int gcd_Extended(const int a, const int b, int *x, int *y) {
     if (a == 0) {
         *x = 0;
         *y = 1;
@@ -46,15 +46,15 @@ int gcdExtended(const int a, const int b, int *x, int *y) {
     }
 
     int x1 = 0, y1 = 0;
-    const auto gcd = gcdExtended(b % a, a, &x1, &y1);
+    const auto gcd = gcd_Extended(b % a, a, &x1, &y1);
 
     *x = y1 - (b / a) * x1;
     *y = x1;
 
     return gcd;
 }
-auto gcdExtended(const int a, const int b) {
+auto gcd_Extended(const int a, const int b) {
     int x = 0, y = 0;
-    const auto gcd = gcdExtended(a, b, &x, &y);
+    const auto gcd = gcd_Extended(a, b, &x, &y);
     return std::make_tuple(gcd, x, y);
 }

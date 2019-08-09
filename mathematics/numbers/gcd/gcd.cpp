@@ -3,6 +3,9 @@
 #include "gcd.h"
 #include "mathematics/numbers/binary/count_trailing_zeros.h"
 
+
+namespace {
+
 /** Stein’s Algorithm for finding GCD
  *
  * @reference   https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
@@ -67,43 +70,46 @@ auto GcdSteinRecursive(const unsigned a, const unsigned b) {
     return a > b ? GcdSteinRecursive((a - b) >> 1, b) : GcdSteinRecursive((b - a) >> 1, a);
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(gcd, 12, 18);
 SIMPLE_BENCHMARK(gcd, 18, 12);
 
-SIMPLE_TEST(gcd, Test1, 6, 12, 18);
-SIMPLE_TEST(gcd, Test2, 6, 18, 12);
-SIMPLE_TEST(gcd, Test3, 5, 10, 15);
-SIMPLE_TEST(gcd, Test4, 5, 35, 10);
-SIMPLE_TEST(gcd, Test5, 1, 31, 2);
+SIMPLE_TEST(gcd, Test1, 6u, 12, 18);
+SIMPLE_TEST(gcd, Test2, 6u, 18, 12);
+SIMPLE_TEST(gcd, Test3, 5u, 10, 15);
+SIMPLE_TEST(gcd, Test4, 5u, 35, 10);
+SIMPLE_TEST(gcd, Test5, 1u, 31, 2);
 
 
-const auto EXPECTED1 = std::make_tuple(10, 1, -1);
-const auto EXPECTED2 = std::make_tuple(5, 1, -2);
+const auto EXPECTED1 = std::make_tuple(10u, 1, -1);
+const auto EXPECTED2 = std::make_tuple(5u, 1, -2);
 
-SIMPLE_BENCHMARK(gcdExtended, 18, 12);
 
-SIMPLE_TEST(gcdExtended, TestSample1, EXPECTED1, 30, 20);
-SIMPLE_TEST(gcdExtended, TestSample2, EXPECTED2, 35, 15);
+SIMPLE_BENCHMARK(gcd_Extended, 18, 12);
+
+SIMPLE_TEST(gcd_Extended, TestSample1, EXPECTED1, 30, 20);
+SIMPLE_TEST(gcd_Extended, TestSample2, EXPECTED2, 35, 15);
 
 
 SIMPLE_BENCHMARK(GcdSteinIterative, 18, 12);
 
-SIMPLE_TEST(GcdSteinIterative, Test1, 6, 12, 18);
-SIMPLE_TEST(GcdSteinIterative, Test2, 6, 18, 12);
-SIMPLE_TEST(GcdSteinIterative, Test3, 5, 10, 15);
-SIMPLE_TEST(GcdSteinIterative, Test4, 5, 35, 10);
-SIMPLE_TEST(GcdSteinIterative, Test5, 1, 31, 2);
-SIMPLE_TEST(GcdSteinIterative, Test6, 17, 17, 34);
-SIMPLE_TEST(GcdSteinIterative, Test7, 1, 50, 49);
+SIMPLE_TEST(GcdSteinIterative, Test1, 6u, 12, 18);
+SIMPLE_TEST(GcdSteinIterative, Test2, 6u, 18, 12);
+SIMPLE_TEST(GcdSteinIterative, Test3, 5u, 10, 15);
+SIMPLE_TEST(GcdSteinIterative, Test4, 5u, 35, 10);
+SIMPLE_TEST(GcdSteinIterative, Test5, 1u, 31, 2);
+SIMPLE_TEST(GcdSteinIterative, Test6, 17u, 17, 34);
+SIMPLE_TEST(GcdSteinIterative, Test7, 1u, 50, 49);
 
 
 SIMPLE_BENCHMARK(GcdSteinRecursive, 18, 12);
 
-SIMPLE_TEST(GcdSteinRecursive, Test1, 6, 12, 18);
-SIMPLE_TEST(GcdSteinRecursive, Test2, 6, 18, 12);
-SIMPLE_TEST(GcdSteinRecursive, Test3, 5, 10, 15);
-SIMPLE_TEST(GcdSteinRecursive, Test4, 5, 35, 10);
-SIMPLE_TEST(GcdSteinRecursive, Test5, 1, 31, 2);
-SIMPLE_TEST(GcdSteinRecursive, Test6, 17, 17, 34);
-SIMPLE_TEST(GcdSteinRecursive, Test7, 1, 50, 49);
+SIMPLE_TEST(GcdSteinRecursive, Test1, 6u, 12, 18);
+SIMPLE_TEST(GcdSteinRecursive, Test2, 6u, 18, 12);
+SIMPLE_TEST(GcdSteinRecursive, Test3, 5u, 10, 15);
+SIMPLE_TEST(GcdSteinRecursive, Test4, 5u, 35, 10);
+SIMPLE_TEST(GcdSteinRecursive, Test5, 1u, 31, 2);
+SIMPLE_TEST(GcdSteinRecursive, Test6, 17u, 17, 34);
+SIMPLE_TEST(GcdSteinRecursive, Test7, 1u, 50, 49);
