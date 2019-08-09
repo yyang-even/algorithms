@@ -10,6 +10,8 @@
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  * @reference   Difference between Stack and Queue Data Structures
  *              https://www.geeksforgeeks.org/difference-between-stack-and-queue-data-structures/
+ * @reference   LIFO (Last-In-First-Out) approach in Programming
+ *              https://www.geeksforgeeks.org/lifo-last-in-first-out-approach-in-programming/
  */
 class ArrayStack {
     using ValueType = int;

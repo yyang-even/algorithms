@@ -17,6 +17,10 @@
  *              https://www.geeksforgeeks.org/array-implementation-of-queue-simple/
  * @reference   Circular Queue | Set 1 (Introduction and Array Implementation)
  *              https://www.geeksforgeeks.org/circular-queue-set-1-introduction-array-implementation/
+ * @reference   FIFO (First-In-First-Out) approach in Programming
+ *              https://www.geeksforgeeks.org/fifo-first-in-first-out-approach-in-programming/
+ * @reference   FIFO vs LIFO approach in Programming
+ *              https://www.geeksforgeeks.org/fifo-vs-lifo-approach-in-programming/
  */
 class ArrayQueue {
     using ValueType = int;

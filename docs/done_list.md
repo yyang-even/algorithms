@@ -433,3 +433,7 @@
 * https://www.geeksforgeeks.org/rearrange-array-in-alternating-positive-negative-items-with-o1-extra-space-set-2/
 * https://www.geeksforgeeks.org/positive-elements-at-even-and-negative-at-odd-positions-relative-order-not-maintained/
 * https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
+* https://www.geeksforgeeks.org/fifo-first-in-first-out-approach-in-programming/
+* https://www.geeksforgeeks.org/fifo-vs-lifo-approach-in-programming/
+* https://www.geeksforgeeks.org/lifo-last-in-first-out-approach-in-programming/
+* https://www.geeksforgeeks.org/little-and-big-endian-mystery/
