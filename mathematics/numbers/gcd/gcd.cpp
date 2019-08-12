@@ -14,7 +14,7 @@ namespace {
  * greatest common divisor of two non-negative integers. Stein’s algorithm
  * replaces division with arithmetic shifts, comparisons, and subtraction.
  */
-auto GcdSteinIterative(unsigned a, unsigned b) {
+auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
     if (a == 0) {
         return b;
     }
@@ -45,7 +45,7 @@ auto GcdSteinIterative(unsigned a, unsigned b) {
     return a << k;
 }
 
-auto GcdSteinRecursive(const unsigned a, const unsigned b) {
+auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
     if (a == b) {
         return a;
     }
@@ -59,15 +59,15 @@ auto GcdSteinRecursive(const unsigned a, const unsigned b) {
 
     if (not(a & 1)) {
         if (b & 1) {
-            return GcdSteinRecursive(a >> 1, b);
+            return Gcd_Stein_Recursive(a >> 1, b);
         } else {
-            return GcdSteinRecursive(a >> 1, b >> 1) << 1;
+            return Gcd_Stein_Recursive(a >> 1, b >> 1) << 1;
         }
     } else if (not(b & 1)) {
-        return GcdSteinRecursive(a, b >> 1);
+        return Gcd_Stein_Recursive(a, b >> 1);
     }
 
-    return a > b ? GcdSteinRecursive((a - b) >> 1, b) : GcdSteinRecursive((b - a) >> 1, a);
+    return a > b ? Gcd_Stein_Recursive((a - b) >> 1, b) : Gcd_Stein_Recursive((b - a) >> 1, a);
 }
 
 }//namespace
@@ -93,23 +93,23 @@ SIMPLE_TEST(gcd_Extended, TestSample1, EXPECTED1, 30, 20);
 SIMPLE_TEST(gcd_Extended, TestSample2, EXPECTED2, 35, 15);
 
 
-SIMPLE_BENCHMARK(GcdSteinIterative, 18, 12);
+SIMPLE_BENCHMARK(Gcd_Stein_Iterative, 18, 12);
 
-SIMPLE_TEST(GcdSteinIterative, Test1, 6u, 12, 18);
-SIMPLE_TEST(GcdSteinIterative, Test2, 6u, 18, 12);
-SIMPLE_TEST(GcdSteinIterative, Test3, 5u, 10, 15);
-SIMPLE_TEST(GcdSteinIterative, Test4, 5u, 35, 10);
-SIMPLE_TEST(GcdSteinIterative, Test5, 1u, 31, 2);
-SIMPLE_TEST(GcdSteinIterative, Test6, 17u, 17, 34);
-SIMPLE_TEST(GcdSteinIterative, Test7, 1u, 50, 49);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test1, 6u, 12, 18);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test2, 6u, 18, 12);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test3, 5u, 10, 15);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test4, 5u, 35, 10);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test5, 1u, 31, 2);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test6, 17u, 17, 34);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test7, 1u, 50, 49);
 
 
-SIMPLE_BENCHMARK(GcdSteinRecursive, 18, 12);
+SIMPLE_BENCHMARK(Gcd_Stein_Recursive, 18, 12);
 
-SIMPLE_TEST(GcdSteinRecursive, Test1, 6u, 12, 18);
-SIMPLE_TEST(GcdSteinRecursive, Test2, 6u, 18, 12);
-SIMPLE_TEST(GcdSteinRecursive, Test3, 5u, 10, 15);
-SIMPLE_TEST(GcdSteinRecursive, Test4, 5u, 35, 10);
-SIMPLE_TEST(GcdSteinRecursive, Test5, 1u, 31, 2);
-SIMPLE_TEST(GcdSteinRecursive, Test6, 17u, 17, 34);
-SIMPLE_TEST(GcdSteinRecursive, Test7, 1u, 50, 49);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test1, 6u, 12, 18);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test2, 6u, 18, 12);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test3, 5u, 10, 15);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test4, 5u, 35, 10);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test5, 1u, 31, 2);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test6, 17u, 17, 34);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test7, 1u, 50, 49);

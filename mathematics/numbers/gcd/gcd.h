@@ -11,6 +11,12 @@
  *              https://www.geeksforgeeks.org/c-program-for-basic-and-extended-euclidean-algorithms/
  * @reference   C Program for Extended Euclidean algorithms
  *              https://www.geeksforgeeks.org/c-program-for-basic-and-extended-euclidean-algorithms-2/
+ * @reference   Program to find HCF (Highest Common Factor) of 2 Numbers
+ *              https://www.geeksforgeeks.org/program-to-find-hcf-highest-common-factor-of-2-numbers/
+ * @reference   Program to find GCD or HCF of two numbers using Middle School Procedure
+ *              https://www.geeksforgeeks.org/program-to-find-gcd-or-hcf-of-two-numbers-using-middle-school-procedure/
+ * @reference   Program to find GCD or HCF of two numbers
+ *              https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
  *
  * The greatest common divisor of two integers m and n is the largest integer that divides them both.
  * How is Extended Algorithm Useful?

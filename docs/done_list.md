@@ -443,3 +443,8 @@
 * https://www.geeksforgeeks.org/c-program-swap-two-numbers/
 * https://www.geeksforgeeks.org/program-to-find-lcm-of-two-numbers/
 * https://www.geeksforgeeks.org/program-to-find-lcm-of-2-numbers-without-using-gcd/
+* https://www.geeksforgeeks.org/program-to-find-hcf-highest-common-factor-of-2-numbers/
+* https://www.geeksforgeeks.org/program-to-find-gcd-or-hcf-of-two-numbers-using-middle-school-procedure/
+* https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
+* https://www.geeksforgeeks.org/program-find-sum-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/program-cube-sum-first-n-natural-numbers/
