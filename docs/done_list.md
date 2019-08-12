@@ -439,3 +439,5 @@
 * https://www.geeksforgeeks.org/little-and-big-endian-mystery/
 * https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
 * https://www.geeksforgeeks.org/bits-manipulation-important-tactics/
+* https://www.geeksforgeeks.org/swap-two-nibbles-byte/
+* https://www.geeksforgeeks.org/c-program-swap-two-numbers/

@@ -61,6 +61,12 @@ InputType SwapBitRange(const InputType number, const unsigned i, const unsigned 
     return number ^ ((xor_mask << i) | (xor_mask << j));
 }
 
+
+/**
+ * @reference   C Program to Swap two Numbers
+ *              https://www.geeksforgeeks.org/c-program-swap-two-numbers/
+ */
+
 }//namespace
 
 

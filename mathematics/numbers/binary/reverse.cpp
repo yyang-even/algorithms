@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "swap_odd_even_bits.h"
+#include "swap_nibbles.h"
 #include "text/reverse.h"
 
 
@@ -108,7 +109,7 @@ InputType ReverseBits_32_Parallel(InputType num) {
     // swap consecutive pairs
     num = ((num >> 2) & 0x33333333) | ((num & 0x33333333) << 2);
     // swap nibbles ...
-    num = ((num >> 4) & 0x0F0F0F0F) | ((num & 0x0F0F0F0F) << 4);
+    num = SwapNibbles(num);
     // swap bytes
     num = ((num >> 8) & 0x00FF00FF) | ((num & 0x00FF00FF) << 8);
     // swap 2-byte long pairs

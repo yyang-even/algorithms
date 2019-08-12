@@ -160,6 +160,9 @@ CompileTestExe(stripping_off_lowest_set_bit)
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
 
+CompileBenchmarkExe(swap_nibbles)
+CompileTestExe(swap_nibbles)
+
 CompileBenchmarkExe(swap_odd_even_bits)
 CompileTestExe(swap_odd_even_bits)
 
