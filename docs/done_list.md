@@ -441,3 +441,5 @@
 * https://www.geeksforgeeks.org/bits-manipulation-important-tactics/
 * https://www.geeksforgeeks.org/swap-two-nibbles-byte/
 * https://www.geeksforgeeks.org/c-program-swap-two-numbers/
+* https://www.geeksforgeeks.org/program-to-find-lcm-of-two-numbers/
+* https://www.geeksforgeeks.org/program-to-find-lcm-of-2-numbers-without-using-gcd/
