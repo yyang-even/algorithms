@@ -1,3 +1,6 @@
+CompileBenchmarkExe(squares_of_first_n_numbers)
+CompileTestExe(squares_of_first_n_numbers)
+
 CompileBenchmarkExe(sum_of_cubes)
 CompileTestExe(sum_of_cubes)
 

@@ -454,3 +454,4 @@
 * https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/c-program-for-program-for-cube-sum-of-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/cpp-program-for-program-for-cube-sum-of-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/

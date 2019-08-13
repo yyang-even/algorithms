@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Print squares of first n natural numbers without using *, / and –
@@ -8,7 +11,7 @@ using ArrayType = std::vector<unsigned>;
  *
  * Given a natural number ‘n’, print squares of first n natural numbers without using *, / and -.
  */
-auto SquaresOfFirstNPrev(const ArrayType::value_type N) {
+auto SquaresOfFirstN_Prev(const ArrayType::value_type N) {
     ArrayType::value_type square = 0, previous_i = 0;
     ArrayType outputs;
 
@@ -22,7 +25,7 @@ auto SquaresOfFirstNPrev(const ArrayType::value_type N) {
 }
 
 
-auto SquaresOfFirstNOdd(const ArrayType::value_type N) {
+auto SquaresOfFirstN_Odd(const ArrayType::value_type N) {
     ArrayType::value_type square = 0, odd = 1;
     ArrayType outputs;
 
@@ -35,18 +38,20 @@ auto SquaresOfFirstNOdd(const ArrayType::value_type N) {
     return outputs;
 }
 
+}//namespace
+
 
 const ArrayType EXPECTED1 = {0, 1, 4, 9, 16};
 const ArrayType EXPECTED2 = {0, 1, 4, 9, 16, 25};
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstNPrev, 51);
+SIMPLE_BENCHMARK(SquaresOfFirstN_Prev, 51);
 
-SIMPLE_TEST(SquaresOfFirstNPrev, TestSample1, EXPECTED1, 5);
-SIMPLE_TEST(SquaresOfFirstNPrev, TestSample2, EXPECTED2, 6);
+SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample1, EXPECTED1, 5);
+SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample2, EXPECTED2, 6);
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstNOdd, 51);
+SIMPLE_BENCHMARK(SquaresOfFirstN_Odd, 51);
 
-SIMPLE_TEST(SquaresOfFirstNOdd, TestSample1, EXPECTED1, 5);
-SIMPLE_TEST(SquaresOfFirstNOdd, TestSample2, EXPECTED2, 6);
+SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample1, EXPECTED1, 5);
+SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample2, EXPECTED2, 6);
