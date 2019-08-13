@@ -448,3 +448,9 @@
 * https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
 * https://www.geeksforgeeks.org/program-find-sum-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/program-cube-sum-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/natural-numbers/
+* https://www.geeksforgeeks.org/sum-squares-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/average-squares-natural-numbers/
+* https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/c-program-for-program-for-cube-sum-of-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/cpp-program-for-program-for-cube-sum-of-first-n-natural-numbers/

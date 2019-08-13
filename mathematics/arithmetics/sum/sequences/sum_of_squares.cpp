@@ -6,11 +6,27 @@ namespace {
 /** Sum of squares of first n natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-squares-of-first-n-natural-numbers/
+ * @reference   Sum of squares of first n natural numbers
+ *              https://www.geeksforgeeks.org/sum-squares-first-n-natural-numbers/
  *
  * Given n, find sum of squares of first n natural numbers.
  */
 auto SumOfSquares(const unsigned N) {
     return (N * (N + 1) * (2 * N + 1)) / 6;
+}
+
+
+auto SumOfSquares_2(const unsigned N) {
+    return ((N * (N + 1) / 2) * (2 * N + 1)) / 3;
+}
+
+
+/** Average of Squares of Natural Numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/average-squares-natural-numbers/
+ */
+auto AverageOfSquaresOfNaturalNumbers(const unsigned N) {
+    return static_cast<double>((N + 1) * (2 * N + 1)) / 6.0;
 }
 
 
@@ -38,3 +54,15 @@ SIMPLE_BENCHMARK(SumOfSquareSums, 7);
 
 SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6u, 2);
 SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20u, 3);
+
+
+SIMPLE_BENCHMARK(SumOfSquares_2, 7);
+
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE1, 5u, 2);
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE2, 204u, 8);
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE3, 385u, 10);
+
+
+SIMPLE_BENCHMARK(AverageOfSquaresOfNaturalNumbers, 7);
+
+SIMPLE_TEST(AverageOfSquaresOfNaturalNumbers, TestSAMPLE1, 2.5, 2);
