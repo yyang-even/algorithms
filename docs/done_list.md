@@ -455,3 +455,5 @@
 * https://www.geeksforgeeks.org/c-program-for-program-for-cube-sum-of-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/cpp-program-for-program-for-cube-sum-of-first-n-natural-numbers/
 * https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
+* https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+* https://www.geeksforgeeks.org/write-an-iterative-olog-y-function-for-powx-y/
