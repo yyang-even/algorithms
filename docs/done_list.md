@@ -457,3 +457,13 @@
 * https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
 * https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
 * https://www.geeksforgeeks.org/write-an-iterative-olog-y-function-for-powx-y/
+* https://www.geeksforgeeks.org/write-an-efficient-c-program-to-reverse-bits-of-a-number/
+* https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
+* https://www.geeksforgeeks.org/check-if-a-number-has-bits-in-alternate-pattern/
+* https://www.geeksforgeeks.org/toggle-bits-number-except-k-th-bit/
+* https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+* https://www.geeksforgeeks.org/case-conversion-lower-upper-vice-versa-string-using-bitwise-operators-cc/
+* https://www.geeksforgeeks.org/toggle-case-string-using-bitwise-operators/
+* https://www.geeksforgeeks.org/lower-case-upper-case-interesting-fact/
+* https://www.geeksforgeeks.org/convert-alternate-characters-string-upper-case/
+* https://www.geeksforgeeks.org/program-toggle-characters-string/
