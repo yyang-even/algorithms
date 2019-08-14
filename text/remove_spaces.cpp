@@ -1,8 +1,13 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Remove spaces from a given string
  *
  * @reference   https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
+ * @reference   C++ Program to remove spaces from a string
+ *              https://www.geeksforgeeks.org/c-program-remove-spaces-string/
  *
  * Given a string, remove all spaces from the string and return it.
  * Expected time complexity is O(n) and only one traversal of string.
@@ -20,7 +25,33 @@ auto RemoveSpaces(std::string input) {
 }
 
 
+/**
+ * @reference   Removing spaces from a string using Stringstream
+ *              https://www.geeksforgeeks.org/removing-spaces-string-using-stringstream/
+ */
+auto RemoveSpaces_StringStream(std::string input) {
+    std::stringstream ss;
+    ss << input;
+
+    for (input.clear(); ss;) {
+        std::string temp;
+        ss >> temp;
+        input.append(std::move(temp));
+    }
+
+    return input;
+}
+
+}//namespace
+
+
 SIMPLE_BENCHMARK(RemoveSpaces, std::string("g  eeks   for ge  eeks  "));
 
 SIMPLE_TEST(RemoveSpaces, TestSAMPLE1, std::string("geeksforgeeeks"),
+            std::string("g  eeks   for ge  eeks  "));
+
+
+SIMPLE_BENCHMARK(RemoveSpaces_StringStream, std::string("g  eeks   for ge  eeks  "));
+
+SIMPLE_TEST(RemoveSpaces_StringStream, TestSAMPLE1, std::string("geeksforgeeeks"),
             std::string("g  eeks   for ge  eeks  "));

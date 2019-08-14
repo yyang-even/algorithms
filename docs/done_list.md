@@ -467,3 +467,8 @@
 * https://www.geeksforgeeks.org/lower-case-upper-case-interesting-fact/
 * https://www.geeksforgeeks.org/convert-alternate-characters-string-upper-case/
 * https://www.geeksforgeeks.org/program-toggle-characters-string/
+* https://www.geeksforgeeks.org/reverse-a-string-using-recursion/
+* https://www.geeksforgeeks.org/remove-duplicates-from-a-given-string/
+* https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
+* https://www.geeksforgeeks.org/c-program-remove-spaces-string/
+* https://www.geeksforgeeks.org/removing-spaces-string-using-stringstream/
