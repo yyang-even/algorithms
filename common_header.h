@@ -31,6 +31,7 @@ typedef int INT_BOOL;
 #define TRUE 1
 #define FALSE 0
 
+
 // Util Functions
 /** A function return a random number in range [from, to]
  */
@@ -42,15 +43,18 @@ inline auto Random_Number(const T from, const T to) {
     return distribution(generator);
 }
 
+
 template <typename T>
 inline constexpr auto Bits_Number() {
     return sizeof(T) * CHAR_BIT;
 }
 
+
 template <typename Iterator>
 inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
 }
+
 
 // Macros
 #ifdef NONIUS_RUNNER
@@ -83,6 +87,7 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
         EXPECT_EQ(expectedValue, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);   \
     }                                                                                           \
 }
+
 #define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {    \
     TEST(func_name##Test, testName) {                                   \
         EXPECT_EQ(expectedValue, func_name());                          \
@@ -94,6 +99,7 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
         EXPECT_EQ(func1(inputs), static_cast<decltype(func1(inputs))>(func2(inputs))) << "Inputs: " << std::make_tuple(inputs); \
     }                                                                                                                           \
 }
+
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {                                \
     TEST(MutualRandomTest, func1##vs##func2) {                                                              \
         const auto input = Random_Number<InputType>(lowerBound, upperBound);                                \
@@ -109,6 +115,24 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}
 
 #endif
+
+
+/**
+ * @reference   Functions in std
+ *              https://en.cppreference.com/w/cpp/algorithm/stable_partition
+ */
+#define ToLambda(F) [](auto&&... args)                              \
+    noexcept(noexcept(F(std::forward<decltype(args)>(args)...)))    \
+    -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
+        return F(std::forward<decltype(args)>(args)...);            \
+    }
+
+#define ToNegationLambda(F) [](auto&&... args)                      \
+    noexcept(noexcept(F(std::forward<decltype(args)>(args)...)))    \
+    -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
+        return not F(std::forward<decltype(args)>(args)...);        \
+    }
+
 
 //Constants
 constexpr unsigned LONG_BITS_NUM = Bits_Number<unsigned long>();
