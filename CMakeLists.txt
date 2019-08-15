@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.12.2)
 
 project (Algorithms)
 
+
 ###################################################
 # gcc
 ###################################################
@@ -9,15 +10,22 @@ project (Algorithms)
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -std=c++17")
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -g")
 
-# Turn on warnings
+## Turn on warnings
+#
+# @reference    Warnings: -Weverything and the Kitchen Sink
+#               https://embeddedartistry.com/blog/2017/3/7/clang-weverything
+##
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Wall")
+set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Wextra")
 # Obtain all the diagnostics required by the standard as errors rather than warnings
 #set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -pedantic-errors")
 # Turn warning about any return statement with no return value in a function whose return type is not void
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Werror=return-type")
 
+
 include_directories ("${PROJECT_SOURCE_DIR}")
 include_directories ("${PROJECT_SOURCE_DIR}/3rdParty/nonius/include")
+
 
 ###################################################
 # Options
@@ -26,8 +34,10 @@ include_directories ("${PROJECT_SOURCE_DIR}/3rdParty/nonius/include")
 option(BUILD_SHARED_LIBS "Build libraries as .dll's/.so's" true)
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS)# mark un-advanced
 
+
 option(WANT_TERMINAL_APP "We want terminal based applications" ON)
 option(WANT_BENCHMARKS "We want benchmark executables" ON)
+
 
 # Do we want unit tests?
 option(WANT_TESTS "We want unit tests" ON)
@@ -45,6 +55,7 @@ if(WANT_TESTS)
     include_directories ("${GTEST_INCLUDE_DIRS}")
 endif(WANT_TESTS)
 
+
 # pthread
 if(WANT_BENCHMARKS OR WANT_TESTS)
     # on unices, we also have to link with pthreads for GTest.
@@ -60,6 +71,7 @@ if(WANT_BENCHMARKS OR WANT_TESTS)
     endif(UNIX)
 endif()
 
+
 ###################################################
 # Functions
 ###################################################
@@ -73,6 +85,7 @@ function(CompileBenchmarkExe name)
             ${ARGN})
     endif(WANT_BENCHMARKS)
 endfunction(CompileBenchmarkExe)
+
 
 function(CompileTestExe name)
     if(WANT_TESTS)
@@ -94,6 +107,7 @@ function(CompileTestExe name)
     endif(WANT_TESTS)
 endfunction(CompileTestExe)
 
+
 function(CompileTerminalApp name)
     if(WANT_TERMINAL_APP)
         set(target_name ${name}_app)
@@ -103,6 +117,7 @@ function(CompileTerminalApp name)
             ${ARGN})
     endif(WANT_TERMINAL_APP)
 endfunction(CompileTerminalApp)
+
 
 ###################################################
 # Subdirectories
