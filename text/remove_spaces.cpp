@@ -30,13 +30,12 @@ auto RemoveSpaces(std::string input) {
  *              https://www.geeksforgeeks.org/removing-spaces-string-using-stringstream/
  */
 auto RemoveSpaces_StringStream(std::string input) {
-    std::stringstream ss;
-    ss << input;
 
+    std::stringstream ss(input);
     for (input.clear(); ss;) {
-        std::string temp;
-        ss >> temp;
-        input.append(std::move(temp));
+        std::string word;
+        ss >> word;
+        input.append(std::move(word));
     }
 
     return input;

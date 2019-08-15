@@ -472,3 +472,5 @@
 * https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
 * https://www.geeksforgeeks.org/c-program-remove-spaces-string/
 * https://www.geeksforgeeks.org/removing-spaces-string-using-stringstream/
+* https://www.geeksforgeeks.org/count-words-in-a-given-string/
+* https://www.geeksforgeeks.org/stringstream-c-applications/
