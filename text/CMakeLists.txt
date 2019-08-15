@@ -34,8 +34,8 @@ CompileTestExe(print_bytes)
 CompileBenchmarkExe(print_integer)
 CompileTestExe(print_integer)
 
-CompileBenchmarkExe(remove_spaces)
-CompileTestExe(remove_spaces)
+CompileBenchmarkExe(remove_characters)
+CompileTestExe(remove_characters)
 
 CompileBenchmarkExe(reverse_string)
 CompileTestExe(reverse_string)

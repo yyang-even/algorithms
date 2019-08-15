@@ -474,3 +474,7 @@
 * https://www.geeksforgeeks.org/removing-spaces-string-using-stringstream/
 * https://www.geeksforgeeks.org/count-words-in-a-given-string/
 * https://www.geeksforgeeks.org/stringstream-c-applications/
+* https://www.geeksforgeeks.org/remove-all-occurrences-of-a-character-in-a-string/
+* https://www.geeksforgeeks.org/removing-punctuations-given-string/
+* https://www.geeksforgeeks.org/move-spaces-front-string-single-traversal/
+* https://www.geeksforgeeks.org/remove-characters-from-the-first-string-which-are-present-in-the-second-string/

@@ -37,7 +37,7 @@ auto MortonNumber(const InputType x, const InputType y) {
  *              Interleave bits by table lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-OutputType MortonNumberLookup(const InputType x, const InputType y) {
+OutputType MortonNumber_Lookup(const InputType x, const InputType y) {
     static_assert(sizeof(InputType) * 2 == sizeof(OutputType),
                   "OutputType is not twice the size of InputType.");
 
@@ -89,7 +89,7 @@ OutputType MortonNumberLookup(const InputType x, const InputType y) {
  *              Interleave bits with 64-bit multiply
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned short MortonNumberMultiply(const unsigned char x, const unsigned char y) {
+unsigned short MortonNumber_Multiply(const unsigned char x, const unsigned char y) {
     static_assert(sizeof(unsigned char) * 2 == sizeof(unsigned short),
                   "OutputType is not twice the size of InputType.");
 
@@ -106,7 +106,7 @@ unsigned short MortonNumberMultiply(const unsigned char x, const unsigned char y
  *              Interleave bits by Binary Magic Numbers
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-OutputType MortonNumberMagicNumber(const InputType input_x, const InputType input_y) {
+OutputType MortonNumber_MagicNumber(const InputType input_x, const InputType input_y) {
     static_assert(sizeof(InputType) * 2 == sizeof(OutputType),
                   "OutputType is not twice the size of InputType.");
 
@@ -135,33 +135,34 @@ OutputType MortonNumberMagicNumber(const InputType input_x, const InputType inpu
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
+
 SIMPLE_BENCHMARK(MortonNumber, LOWER, UPPER);
 
-SIMPLE_TEST(MortonNumber, TestLOWER, 0, LOWER, LOWER);
+SIMPLE_TEST(MortonNumber, TestLOWER, 0u, LOWER, LOWER);
 SIMPLE_TEST(MortonNumber, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER, UPPER);
-SIMPLE_TEST(MortonNumber, TestSAMPLE1, 0b10111001, 0b101, 0b1110);
-SIMPLE_TEST(MortonNumber, TestSAMPLE2, 0b01110110, 0b1110, 0b101);
+SIMPLE_TEST(MortonNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
+SIMPLE_TEST(MortonNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
-SIMPLE_BENCHMARK(MortonNumberLookup, LOWER, UPPER);
+SIMPLE_BENCHMARK(MortonNumber_Lookup, LOWER, UPPER);
 
-SIMPLE_TEST(MortonNumberLookup, TestLOWER, 0, LOWER, LOWER);
-SIMPLE_TEST(MortonNumberLookup, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER, UPPER);
-SIMPLE_TEST(MortonNumberLookup, TestSAMPLE1, 0b10111001, 0b101, 0b1110);
-SIMPLE_TEST(MortonNumberLookup, TestSAMPLE2, 0b01110110, 0b1110, 0b101);
+SIMPLE_TEST(MortonNumber_Lookup, TestLOWER, 0u, LOWER, LOWER);
+SIMPLE_TEST(MortonNumber_Lookup, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER, UPPER);
+SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
+SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
-SIMPLE_BENCHMARK(MortonNumberMultiply, 0b101, 0b1110);
+SIMPLE_BENCHMARK(MortonNumber_Multiply, 0b101, 0b1110);
 
-SIMPLE_TEST(MortonNumberMultiply, TestLOWER, 0, LOWER, LOWER);
-SIMPLE_TEST(MortonNumberMultiply, TestUPPER, std::numeric_limits<unsigned short>::max(),
+SIMPLE_TEST(MortonNumber_Multiply, TestLOWER, 0u, LOWER, LOWER);
+SIMPLE_TEST(MortonNumber_Multiply, TestUPPER, std::numeric_limits<unsigned short>::max(),
             std::numeric_limits<unsigned char>::max(),
             std::numeric_limits<unsigned char>::max());
-SIMPLE_TEST(MortonNumberMultiply, TestSAMPLE1, 0b10111001, 0b101, 0b1110);
-SIMPLE_TEST(MortonNumberMultiply, TestSAMPLE2, 0b01110110, 0b1110, 0b101);
+SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
+SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
-SIMPLE_BENCHMARK(MortonNumberMagicNumber, LOWER, UPPER);
+SIMPLE_BENCHMARK(MortonNumber_MagicNumber, LOWER, UPPER);
 
-SIMPLE_TEST(MortonNumberMagicNumber, TestLOWER, 0, LOWER, LOWER);
-SIMPLE_TEST(MortonNumberMagicNumber, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER,
+SIMPLE_TEST(MortonNumber_MagicNumber, TestLOWER, 0u, LOWER, LOWER);
+SIMPLE_TEST(MortonNumber_MagicNumber, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER,
             UPPER);
-SIMPLE_TEST(MortonNumberMagicNumber, TestSAMPLE1, 0b10111001, 0b101, 0b1110);
-SIMPLE_TEST(MortonNumberMagicNumber, TestSAMPLE2, 0b01110110, 0b1110, 0b101);
+SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
+SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
