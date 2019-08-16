@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -18,12 +20,13 @@ using ArrayType = std::array<int, N>;
  * @complexity  O(n)
  */
 template <std::size_t N>
-void ShuffleArrayInPlace(ArrayType<N> &array) {
+void ShuffleArray_InPlace(ArrayType<N> &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
         auto j = Random_Number<decltype(i)>(0, i);
         std::swap(array[i], array[j]);
     }
 }
+
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -32,7 +35,7 @@ void ShuffleArrayInPlace(ArrayType<N> &array) {
  * @complexity  O(nlgn)
  */
 template <std::size_t N>
-auto ShuffleArrayBySorting(const ArrayType<N> &array) {
+auto ShuffleArray_BySorting(const ArrayType<N> &array) {
     const int PRIORITY_BOUND = pow(array.size(), 3.0);
 
     std::vector<std::pair<int, typename ArrayType<N>::size_type> > priorities;
@@ -52,18 +55,24 @@ auto ShuffleArrayBySorting(const ArrayType<N> &array) {
     return output;
 }
 
+}//namespace
+
 
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
-SIMPLE_BENCHMARK(ShuffleArrayInPlace, VALUES);
-SIMPLE_BENCHMARK(ShuffleArrayBySorting, VALUES);
+
+
+SIMPLE_BENCHMARK(ShuffleArray_InPlace, VALUES);
+
+
+SIMPLE_BENCHMARK(ShuffleArray_BySorting, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP
-int main(int argc, char **argv) {
-    ShuffleArrayInPlace(VALUES);
+int main(int, char **) {
+    ShuffleArray_InPlace(VALUES);
     std::cout << "Shuffled array in place: " << VALUES << std::endl;
 
-    std::cout << "Shuffled array by sorting: " << ShuffleArrayBySorting(VALUES) << std::endl;
+    std::cout << "Shuffled array by sorting: " << ShuffleArray_BySorting(VALUES) << std::endl;
 
     return EXIT_SUCCESS;
 }

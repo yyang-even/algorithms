@@ -1,6 +1,8 @@
 #include "reservoir_sampling.h"
 
 
+namespace {
+
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
@@ -18,14 +20,20 @@ auto RandomNumberFromStream(const Container &stream) {
     return ReservoirSampling(stream, 1).back();
 }
 
+}//namespace
+
 
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
+
+
 SIMPLE_BENCHMARK(ReservoirSampling, VALUES, 3);
+
+
 SIMPLE_BENCHMARK(RandomNumberFromStream, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP
-int main(int argc, char **argv) {
+int main(int, char **) {
     std::cout << "Selected Samples: " << ReservoirSampling(VALUES, 3) << std::endl;
     std::cout << "Selected Random Number from Stream: " << RandomNumberFromStream(VALUES) << std::endl;
 

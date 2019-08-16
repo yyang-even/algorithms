@@ -2,6 +2,9 @@
 
 #include <unistd.h>
 
+
+namespace {
+
 /** Strong Password Suggester Program
  *
  * @reference   https://www.geeksforgeeks.org/strong-password-suggester-program/
@@ -28,6 +31,7 @@ struct PasswordCriteria {
         return lower_case and upper_case and digit and special;
     }
 };
+
 auto CheckPassword(const std::string &password) {
     PasswordCriteria criteria;
     for (const auto c : password) {
@@ -44,15 +48,18 @@ auto CheckPassword(const std::string &password) {
 
     return criteria;
 }
+
 auto RandomChar(const std::string &chars) {
     return chars[Random_Number<std::string::size_type>(0ul, chars.size() - 1ul)];
 }
+
 void randomInsertIfNot(const bool criteria, const std::string &char_set, std::string &password) {
     if (not criteria) {
         password.insert(Random_Number<std::string::size_type>(0ul, password.size() - 1ul), 1,
                         RandomChar(char_set));
     }
 }
+
 auto FixPassword(const PasswordCriteria &criteria, std::string &password) {
     randomInsertIfNot(criteria.lower_case, LOWERCASE_CHARS, password);
     randomInsertIfNot(criteria.upper_case, UPPERCASE_CHARS, password);
@@ -63,22 +70,26 @@ auto FixPassword(const PasswordCriteria &criteria, std::string &password) {
         randomInsertIfNot(false, LOWERCASE_CHARS, password);
     }
 }
+
 auto StrongPasswordSuggester(std::string password) {
     const auto criteria = CheckPassword(password);
     FixPassword(criteria, password);
     return password;
 }
 
+inline bool testStrongPasswordSuggester(const std::string &password) {
+    return CheckPassword(StrongPasswordSuggester(password)).is_strong_password();
+}
+
+}//namespace
+
 
 const std::string VALID_PASSWORD = "Rakesh@1995kumar";
 const std::string INVALID_PASSWORD = "keshav123";
 
+
 SIMPLE_BENCHMARK(StrongPasswordSuggester, INVALID_PASSWORD);
 SIMPLE_BENCHMARK(StrongPasswordSuggester, VALID_PASSWORD);
-
-bool testStrongPasswordSuggester(const std::string &password) {
-    return CheckPassword(StrongPasswordSuggester(password)).is_strong_password();
-}
 
 SIMPLE_TEST(testStrongPasswordSuggester, TestValid, true, VALID_PASSWORD);
 SIMPLE_TEST(testStrongPasswordSuggester, TestInvalid, true, INVALID_PASSWORD);
@@ -86,7 +97,7 @@ SIMPLE_TEST(testStrongPasswordSuggester, TestShort, true, "aB7@");
 
 
 #if defined(WANT_TERMINAL_APP) && defined(__linux__)
-int main(int argc, char **argv) {
+int main(int, char **) {
     const auto *passwd = getpass("password:   ");
     const auto new_password = StrongPasswordSuggester({passwd});
     std::cout << "Suggested Strong Password: " << new_password << std::endl;

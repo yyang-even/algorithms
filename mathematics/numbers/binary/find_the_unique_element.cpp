@@ -18,7 +18,7 @@ using ArrayType = std::vector<unsigned>;
  * that occurs once. Expected time complexity is O(n) and O(1) extra space.
  */
 ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
-        const ArrayType::size_type K) {
+        const ArrayType::size_type) {
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
 
     for (const auto elem : elements) {
