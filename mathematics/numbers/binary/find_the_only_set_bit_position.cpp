@@ -2,6 +2,9 @@
 
 #include "is_power_of_2.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /** Find position of the only set bit
@@ -17,8 +20,10 @@ auto FindPositionOfTheOnlySetBit(const InputType v) {
     return static_cast<InputType>(log2(v)) + 1;
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(FindPositionOfTheOnlySetBit, 128);
 
-SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample1, 1, 1);
-SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample2, 8, 128);
+SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample1, 1u, 1);
+SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample2, 8u, 128);

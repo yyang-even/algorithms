@@ -1,9 +1,12 @@
 #include "common_header.h"
 
+#include "binary.h"
 #include "count_trailing_zeros.h"
 
-typedef unsigned InputType;
 
+namespace {
+
+typedef unsigned InputType;
 
 /** Count the consecutive zero bits (trailing) on the right in parallel
  *
@@ -11,7 +14,7 @@ typedef unsigned InputType;
  *              Count the consecutive zero bits (trailing) on the right in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZerosParallel(InputType num) {
+auto CountTrailingZeros_Parallel(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     InputType result = 32; // c will be the number of zero bits on the right
@@ -45,7 +48,7 @@ auto CountTrailingZerosParallel(InputType num) {
  *              Count the consecutive zero bits (trailing) on the right by binary search
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZerosBinarySearch(InputType num) {
+auto CountTrailingZeros_BinarySearch(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     InputType result;
@@ -83,12 +86,13 @@ auto CountTrailingZerosBinarySearch(InputType num) {
  *              Count the consecutive zero bits (trailing) on the right by casting to a float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType CountTrailingZerosFloat(const InputType num) {
+InputType CountTrailingZeros_Float(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     if (num) {
-        const float f_num = (float)(num & -num);
-        return (*(uint32_t *)&f_num >> 23) - 0x7f;
+        FloatUnsignedUnion float_unsigned_union;
+        float_unsigned_union.f = static_cast<float>(num & -num);
+        return (float_unsigned_union.u >> 23) - 0x7f;
     } else {
         return 32;
     }
@@ -103,7 +107,7 @@ InputType CountTrailingZerosFloat(const InputType num) {
  * @reference   Count trailing zero bits using lookup table
  *              https://www.geeksforgeeks.org/count-trailing-zero-bits-using-lookup-table/
  */
-auto CountTrailingZerosModulusAndLookup(const InputType num) {
+auto CountTrailingZeros_ModulusAndLookup(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType Mod37BitPosition[] = { // map a bit value mod 37 to its position
@@ -121,7 +125,7 @@ auto CountTrailingZerosModulusAndLookup(const InputType num) {
  *              Count the consecutive zero bits (trailing) on the right with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZerosMultiplyAndLookup(const InputType num) {
+auto CountTrailingZeros_MultiplyAndLookup(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
@@ -131,73 +135,82 @@ auto CountTrailingZerosMultiplyAndLookup(const InputType num) {
     return num ? MultiplyDeBruijnBitPosition[((uint32_t)((num & -num) * 0x077CB531U)) >> 27] : 32;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 constexpr InputType NUM_BITS = Bits_Number<InputType>();
 
-SIMPLE_BENCHMARK(CountTrailingZerosLinear, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosLinear, 1 << (NUM_BITS - 1));
 
-SIMPLE_TEST(CountTrailingZerosLinear, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosLinear, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosLinear, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE1, 3, 0b1101000);
-SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE2, 4, 16);
-SIMPLE_TEST(CountTrailingZerosLinear, TestSAMPLE3, 6, 64);
+SIMPLE_BENCHMARK(CountTrailingZeros_Linear, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Linear, 1 << (NUM_BITS - 1));
 
-SIMPLE_BENCHMARK(CountTrailingZerosParallel, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosParallel, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Linear, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_Linear, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_Linear, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Linear, TestSAMPLE1, 3u, 0b1101000);
+SIMPLE_TEST(CountTrailingZeros_Linear, TestSAMPLE2, 4u, 16);
+SIMPLE_TEST(CountTrailingZeros_Linear, TestSAMPLE3, 6u, 64);
 
-SIMPLE_TEST(CountTrailingZerosParallel, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosParallel, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosParallel, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosParallel, TestSAMPLE1, 3, 0b1101000);
 
-MUTUAL_RANDOM_TEST(CountTrailingZerosLinear, CountTrailingZerosParallel, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, 1 << (NUM_BITS - 1));
 
-SIMPLE_BENCHMARK(CountTrailingZerosBinarySearch, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosBinarySearch, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Parallel, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_Parallel, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_Parallel, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Parallel, TestSAMPLE1, 3u, 0b1101000);
 
-SIMPLE_TEST(CountTrailingZerosBinarySearch, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosBinarySearch, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosBinarySearch, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosBinarySearch, TestSAMPLE1, 3, 0b1101000);
+MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_Parallel, LOWER, UPPER);
 
-MUTUAL_RANDOM_TEST(CountTrailingZerosLinear, CountTrailingZerosBinarySearch, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(CountTrailingZerosFloat, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosFloat, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, 1 << (NUM_BITS - 1));
 
-SIMPLE_TEST(CountTrailingZerosFloat, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosFloat, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosFloat, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosFloat, TestSAMPLE1, 3, 0b1101000);
+SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestSAMPLE1, 3u, 0b1101000);
 
-SIMPLE_BENCHMARK(CountTrailingZerosModulusAndLookup, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosModulusAndLookup, 1 << (NUM_BITS - 1));
+MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_BinarySearch, LOWER, UPPER);
 
-SIMPLE_TEST(CountTrailingZerosModulusAndLookup, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosModulusAndLookup, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosModulusAndLookup, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosModulusAndLookup, TestSAMPLE1, 3, 0b1101000);
 
-MUTUAL_RANDOM_TEST(CountTrailingZerosLinear, CountTrailingZerosModulusAndLookup, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Float, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Float, 1 << (NUM_BITS - 1));
 
-SIMPLE_BENCHMARK(CountTrailingZerosMultiplyAndLookup, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZerosMultiplyAndLookup, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Float, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_Float, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_Float, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Float, TestSAMPLE1, 3u, 0b1101000);
 
-SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestLOWER, NUM_BITS, LOWER);
-SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestUPPER, 0, UPPER);
-SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
-SIMPLE_TEST(CountTrailingZerosMultiplyAndLookup, TestSAMPLE1, 3, 0b1101000);
 
-MUTUAL_RANDOM_TEST(CountTrailingZerosLinear, CountTrailingZerosMultiplyAndLookup, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, 1 << (NUM_BITS - 1));
+
+SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestSAMPLE1, 3u, 0b1101000);
+
+MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_ModulusAndLookup, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, 1 << (NUM_BITS - 1));
+
+SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestSAMPLE1, 3u, 0b1101000);
+
+MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_MultiplyAndLookup, LOWER, UPPER);
+
 
 #ifdef __GNUG__
 /** Builtin functions of GCC compiler
  *
  * @reference   https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/
  */
-MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZerosMultiplyAndLookup, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZeros_MultiplyAndLookup, LOWER, UPPER);
 #endif

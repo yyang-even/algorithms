@@ -9,7 +9,7 @@
  *
  * Count num's trailing zero bits, so if v is 1101000 (base 2), then the output will be 3
  */
-auto CountTrailingZerosLinear(unsigned num) {
+auto CountTrailingZeros_Linear(unsigned num) {
     unsigned result = 0;
     if (num) {
         num = (num ^ (num - 1)) >> 1;  // Set num's trailing 0s to 1s and zero rest

@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "binary.h"
 #include "set_all_bits_after_most_significant_bit.h"
 
 
@@ -21,8 +22,9 @@ InputType RoundUpToPowerOf2_Float(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     if (num) {
-        const float f_num = (float)num;
-        const auto temp = 1U << ((*(unsigned int *)&f_num >> 23) - 0x7f);
+        FloatUnsignedUnion float_unsigned_union;
+        float_unsigned_union.f = static_cast<float>(num);
+        const auto temp = 1U << ((float_unsigned_union.u >> 23) - 0x7f);
         return temp << (temp < num);
     } else {
         return 1;

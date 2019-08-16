@@ -22,7 +22,7 @@ auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
         return a;
     }
 
-    const auto k = CountTrailingZerosLinear(a | b);
+    const auto k = CountTrailingZeros_Linear(a | b);
     a >>= k;
     b >>= k;
 
@@ -44,6 +44,7 @@ auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
 
     return a << k;
 }
+
 
 auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
     if (a == b) {
