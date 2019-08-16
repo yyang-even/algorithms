@@ -4,7 +4,7 @@
  *
  * @reference   https://www.geeksforgeeks.org/toggle-bits-significant-bit/
  */
-inline unsigned SetAllBitsAfterMSB(unsigned num) {
+inline auto SetAllBitsAfterMSB(unsigned num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     num |= num >> 1u;

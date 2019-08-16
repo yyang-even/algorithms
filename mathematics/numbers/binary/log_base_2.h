@@ -15,7 +15,7 @@ static constexpr char LogTable256[256] = {
     };
 #undef LT
 
-unsigned LogBase2LookupTable(const unsigned num) {
+unsigned LogBase2_LookupTable(const unsigned num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     unsigned t, tt; // temporaries

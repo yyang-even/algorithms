@@ -39,7 +39,7 @@ mark_as_advanced(CLEAR BUILD_SHARED_LIBS)# mark un-advanced
 # @reference    -Werror is Not Your Friend
 #               https://embeddedartistry.com/blog/2017/5/3/-werror-is-not-your-friend
 ##
-option(WARNINGS_AS_ERRORS "Treat all warnings as build errors" ON) 
+option(WARNINGS_AS_ERRORS "Treat all warnings as build errors" ON)
 if (WARNINGS_AS_ERRORS)
     set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -Werror")
 endif(WARNINGS_AS_ERRORS)

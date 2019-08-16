@@ -95,6 +95,22 @@ auto RemoveCharactersPresentInTheSecond_Partition(const std::string &input,
     });
 }
 
+
+/** Remove even frequency characters from the string
+ *
+ * @reference   https://www.geeksforgeeks.org/remove-even-frequency-characters-from-the-string/
+ */
+auto RemoveCharactersWithEvenFrequency_Partition(const std::string &input) {
+    std::unordered_map<std::string::value_type, std::string::size_type> counter;
+    for (const auto c : input) {
+        ++counter[c];
+    }
+
+    return RemoveCharacters_Partition(input, [&counter](const auto c) {
+        return counter[c] % 2 != 0;
+    });
+}
+
 }//namespace
 
 
@@ -133,3 +149,9 @@ SIMPLE_BENCHMARK(RemoveCharactersPresentInTheSecond_Partition, "geeksforgeeks", 
 
 SIMPLE_TEST(RemoveCharactersPresentInTheSecond_Partition, TestSAMPLE1, "geeforgee",
             "geeksforgeeks", "mask");
+
+
+SIMPLE_BENCHMARK(RemoveCharactersWithEvenFrequency_Partition, "aabbbddeeecc");
+
+SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE1, "bbbeee", "aabbbddeeecc");
+SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE2, "zzzweee", "zzzxxweeerr");

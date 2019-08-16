@@ -3,6 +3,7 @@
 #include "log_base_2.h"
 #include "set_all_bits_after_most_significant_bit.h"
 
+
 namespace {
 
 typedef unsigned InputType;
@@ -31,7 +32,7 @@ InputType LogBase2(InputType num) {
  *              Find the integer log base 2 of an integer with an 64-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType LogBase2Float(const InputType num) {
+InputType LogBase2_Float(const InputType num) {
     union {
         unsigned int uNum[2];
         double dNum;
@@ -50,7 +51,7 @@ InputType LogBase2Float(const InputType num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType LogBase2LgNBranch(InputType num) {
+InputType LogBase2_LgN_Branch(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
@@ -66,7 +67,9 @@ InputType LogBase2LgNBranch(InputType num) {
 
     return result;
 }
-InputType LogBase2LgNNoBranch(InputType num) {
+
+
+InputType LogBase2_LgN_NoBranch(InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     InputType result;
@@ -95,7 +98,7 @@ InputType LogBase2LgNNoBranch(InputType num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType LogBase2LgNMultiplyAndLookup(const InputType num) {
+InputType LogBase2_LgN_MultiplyAndLookup(const InputType num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
@@ -113,14 +116,16 @@ InputType LogBase2LgNMultiplyAndLookup(const InputType num) {
  *              Find integer log base 2 of a 32-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-int LogBase2FloatInput(const float num) {
+int LogBase2_FloatInput(const float num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     int result;
     memcpy(&result, &num, sizeof(result));
     return (result >> 23) - 127;
 }
-int LogBase2IEEE754Float(const float num) {
+
+
+int LogBase2_IEEE754Float(const float num) {
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
     int x;
@@ -141,6 +146,8 @@ int LogBase2IEEE754Float(const float num) {
     }
     return result;
 }
+
+
 /** Find integer log base 2 of the pow(2, r)-root of a 32-bit IEEE float (for unsigned integer r)
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -163,75 +170,81 @@ int LogBase2ofPow2r(const float num, const unsigned r) {
 constexpr InputType LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
+
 SIMPLE_BENCHMARK(LogBase2, UPPER);
 
-SIMPLE_TEST(LogBase2, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2, TestSAMPLE2, 4, 17);
+SIMPLE_TEST(LogBase2, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2, TestSAMPLE2, 4u, 17);
 
-SIMPLE_BENCHMARK(LogBase2Float, UPPER);
 
-SIMPLE_TEST(LogBase2Float, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2Float, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2Float, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2Float, TestSAMPLE2, 4, 17);
+SIMPLE_BENCHMARK(LogBase2_Float, UPPER);
 
-MUTUAL_RANDOM_TEST(LogBase2, LogBase2Float, LOWER, UPPER);
+SIMPLE_TEST(LogBase2_Float, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2_Float, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2_Float, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2_Float, TestSAMPLE2, 4u, 17);
 
-SIMPLE_BENCHMARK(LogBase2LookupTable, UPPER);
+MUTUAL_RANDOM_TEST(LogBase2, LogBase2_Float, LOWER, UPPER);
 
-SIMPLE_TEST(LogBase2LookupTable, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2LookupTable, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2LookupTable, TestSAMPLE2, 4, 17);
 
-MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2Float, LOWER, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LookupTable, UPPER);
 
-SIMPLE_BENCHMARK(LogBase2LgNBranch, UPPER);
+SIMPLE_TEST(LogBase2_LookupTable, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2_LookupTable, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2_LookupTable, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2_LookupTable, TestSAMPLE2, 4u, 17);
 
-SIMPLE_TEST(LogBase2LgNBranch, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2LgNBranch, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2LgNBranch, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2LgNBranch, TestSAMPLE2, 4, 17);
+MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_Float, LOWER, UPPER);
 
-MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNBranch, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(LogBase2LgNNoBranch, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LgN_Branch, UPPER);
 
-SIMPLE_TEST(LogBase2LgNNoBranch, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2LgNNoBranch, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2LgNNoBranch, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2LgNNoBranch, TestSAMPLE2, 4, 17);
+SIMPLE_TEST(LogBase2_LgN_Branch, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2_LgN_Branch, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2_LgN_Branch, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2_LgN_Branch, TestSAMPLE2, 4u, 17);
 
-MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNNoBranch, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_Branch, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(LogBase2LgNMultiplyAndLookup, UPPER);
 
-SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestLOWER, 0, LOWER);
-SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestUPPER, 31, UPPER);
-SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2LgNMultiplyAndLookup, TestSAMPLE2, 4, 17);
+SIMPLE_BENCHMARK(LogBase2_LgN_NoBranch, UPPER);
 
-MUTUAL_RANDOM_TEST(LogBase2LookupTable, LogBase2LgNMultiplyAndLookup, LOWER, UPPER);
+SIMPLE_TEST(LogBase2_LgN_NoBranch, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2_LgN_NoBranch, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2_LgN_NoBranch, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2_LgN_NoBranch, TestSAMPLE2, 4u, 17);
 
-SIMPLE_BENCHMARK(LogBase2FloatInput, UPPER);
+MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_NoBranch, LOWER, UPPER);
 
-SIMPLE_TEST(LogBase2FloatInput, TestLOWER, 0, LOWER);
-//SIMPLE_TEST(LogBase2FloatInput, TestUPPER, 31, UPPER);  //Failed
-SIMPLE_TEST(LogBase2FloatInput, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2FloatInput, TestSAMPLE2, 4, 17);
 
-SIMPLE_BENCHMARK(LogBase2IEEE754Float, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LgN_MultiplyAndLookup, UPPER);
 
-SIMPLE_TEST(LogBase2IEEE754Float, TestLOWER, 0, LOWER);
-//SIMPLE_TEST(LogBase2IEEE754Float, TestUPPER, 31, UPPER);    //Failed
-SIMPLE_TEST(LogBase2IEEE754Float, TestSAMPLE1, 3, 8);
-SIMPLE_TEST(LogBase2IEEE754Float, TestSAMPLE2, 4, 17);
+SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestUPPER, 31u, UPPER);
+SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestSAMPLE1, 3u, 8);
+SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestSAMPLE2, 4u, 17);
+
+MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_MultiplyAndLookup, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(LogBase2_FloatInput, UPPER);
+
+SIMPLE_TEST(LogBase2_FloatInput, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2_FloatInput, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2_FloatInput, TestSAMPLE2, 4, 17);
+
+
+SIMPLE_BENCHMARK(LogBase2_IEEE754Float, UPPER);
+
+SIMPLE_TEST(LogBase2_IEEE754Float, TestLOWER, 0, LOWER);
+SIMPLE_TEST(LogBase2_IEEE754Float, TestSAMPLE1, 3, 8);
+SIMPLE_TEST(LogBase2_IEEE754Float, TestSAMPLE2, 4, 17);
+
 
 SIMPLE_BENCHMARK(LogBase2ofPow2r, UPPER, 0);
 
 SIMPLE_TEST(LogBase2ofPow2r, TestLOWER, 0, LOWER, 0);
-//SIMPLE_TEST(LogBase2ofPow2r, TestUPPER, 31, UPPER, 0);    //Failed
 SIMPLE_TEST(LogBase2ofPow2r, TestSAMPLE1, 3, 8, 0);
 SIMPLE_TEST(LogBase2ofPow2r, TestSAMPLE2, 4, 17, 0);

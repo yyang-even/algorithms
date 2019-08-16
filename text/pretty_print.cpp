@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Pretty Columns Print
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 3.4.
@@ -58,8 +61,12 @@ void GetOneInput(T &input, const std::string &inputName) {
         exit(EXIT_FAILURE);
     }
 }
+
+}//namespace
+
+
 #ifdef WANT_TERMINAL_APP
-int main(int argc, char **argv) {
+int main(int, char **) {
     std::cout << "PrettyColumnsPrint(const unsigned n, const unsigned m): " << std::endl;
 
     unsigned n;
@@ -72,16 +79,17 @@ int main(int argc, char **argv) {
 }
 #endif
 
-SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_37_5, std::string(
-                "line 1\tline 9\tline 17\tline 24\tline 31\t\n"
-                "line 2\tline 10\tline 18\tline 25\tline 32\t\n"
-                "line 3\tline 11\tline 19\tline 26\tline 33\t\n"
-                "line 4\tline 12\tline 20\tline 27\tline 34\t\n"
-                "line 5\tline 13\tline 21\tline 28\tline 35\t\n"
-                "line 6\tline 14\tline 22\tline 29\tline 36\t\n"
-                "line 7\tline 15\tline 23\tline 30\tline 37\t\n"
-                "line 8\tline 16\t\n"), 37, 5);
 
-SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_10_5, std::string(
-                "line 1\tline 3\tline 5\tline 7\tline 9\t\n"
-                "line 2\tline 4\tline 6\tline 8\tline 10\t\n"), 10, 5);
+SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_37_5,
+            "line 1\tline 9\tline 17\tline 24\tline 31\t\n"
+            "line 2\tline 10\tline 18\tline 25\tline 32\t\n"
+            "line 3\tline 11\tline 19\tline 26\tline 33\t\n"
+            "line 4\tline 12\tline 20\tline 27\tline 34\t\n"
+            "line 5\tline 13\tline 21\tline 28\tline 35\t\n"
+            "line 6\tline 14\tline 22\tline 29\tline 36\t\n"
+            "line 7\tline 15\tline 23\tline 30\tline 37\t\n"
+            "line 8\tline 16\t\n", 37, 5);
+
+SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_10_5,
+            "line 1\tline 3\tline 5\tline 7\tline 9\t\n"
+            "line 2\tline 4\tline 6\tline 8\tline 10\t\n", 10, 5);
