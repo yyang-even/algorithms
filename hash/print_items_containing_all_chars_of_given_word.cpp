@@ -1,7 +1,12 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
+
+namespace {
 
 using ArrayType = std::vector<std::string>;
+
 /** Print list items containing all characters of a given word
  *
  * @reference   https://www.geeksforgeeks.org/print-list-items-containing-all-characters-of-a-given-word/
@@ -13,10 +18,7 @@ using ArrayType = std::vector<std::string>;
  * print "sunday" and "utensils".
  */
 auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items, const std::string &word) {
-    std::unordered_map<std::string::value_type, std::string::size_type> counters;
-    for (const auto c : word) {
-        ++counters[c];
-    }
+    const auto counters = ToFrequencyHashTable(word);
 
     ArrayType output;
     for (const auto item : items) {
@@ -37,10 +39,13 @@ auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items, const std::strin
     return output;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE = {"geeksforgeeks", "unsorted", "sunday", "just", "sss"};
 const ArrayType EXPECTED = {"unsorted", "sunday"};
 
-SIMPLE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, SAMPLE, std::string("sun"));
 
-SIMPLE_TEST(ItemsContainingAllCharsOfGivenWord, TestSAMPLE1, EXPECTED, SAMPLE, std::string("sun"));
+SIMPLE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, SAMPLE, "sun");
+
+SIMPLE_TEST(ItemsContainingAllCharsOfGivenWord, TestSAMPLE1, EXPECTED, SAMPLE, "sun");

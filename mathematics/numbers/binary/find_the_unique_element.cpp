@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
 
 namespace {
 
@@ -19,11 +21,7 @@ using ArrayType = std::vector<unsigned>;
  */
 ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
         const ArrayType::size_type) {
-    std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
-
-    for (const auto elem : elements) {
-        ++counters[elem];
-    }
+    const auto counters = ToFrequencyHashTable(elements);
 
     for (auto iter = counters.cbegin(); iter != counters.cend(); ++iter) {
         if (iter->second == 1u) {
