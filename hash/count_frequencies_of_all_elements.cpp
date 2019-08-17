@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include <map>
-
 #include "count_frequencies_of_all_elements.h"
 
 

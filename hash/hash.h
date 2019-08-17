@@ -9,3 +9,9 @@ auto ToFrequencyHashTable(const Container &container) {
 
     return counter;
 }
+
+
+template <typename Container>
+inline auto ToUnorderedSet(const Container &container) {
+    return std::unordered_set<typename Container::value_type>(container.cbegin(), container.cend());
+}

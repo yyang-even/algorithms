@@ -1,8 +1,13 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
 #include "mathematics/numbers/prime/primes_below_n.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
+
 /** Absolute Difference between the Sum of Non-Prime numbers and Prime numbers of an Array
  *
  * @reference   https://www.geeksforgeeks.org/absolute-difference-between-the-sum-of-non-prime-numbers-and-prime-numbers-of-an-array/
@@ -14,8 +19,7 @@ using ArrayType = std::vector<int>;
 auto DifferenceBetweenSumOfNonprimesAndPrimes(const ArrayType &numbers) {
     const auto max = *std::max_element(numbers.cbegin(), numbers.cend());
     const auto primes_below_n = SieveOfEratosthenes(max + 1);
-    const auto primes_hash = std::unordered_set<ArrayType::value_type>(primes_below_n.cbegin(),
-                             primes_below_n.cend());
+    const auto primes_hash = ToUnorderedSet(primes_below_n);
 
     long difference = 0;
     for (const auto n : numbers) {
@@ -41,8 +45,7 @@ auto DifferenceBetweenSumOfNonprimesAndPrimes(const ArrayType &numbers) {
 auto DifferenceBetweenProductOfNonprimesAndPrimes(const ArrayType &numbers) {
     const auto max = *std::max_element(numbers.cbegin(), numbers.cend());
     const auto primes_below_n = SieveOfEratosthenes(max + 1);
-    const auto primes_hash = std::unordered_set<ArrayType::value_type>(primes_below_n.cbegin(),
-                             primes_below_n.cend());
+    const auto primes_hash = ToUnorderedSet(primes_below_n);
 
     long primes_product = 1, nonprimes_product = 1;
     for (const auto n : numbers) {
@@ -55,6 +58,8 @@ auto DifferenceBetweenProductOfNonprimesAndPrimes(const ArrayType &numbers) {
 
     return abs(primes_product - nonprimes_product);
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {1, 3, 5, 10, 15, 7};

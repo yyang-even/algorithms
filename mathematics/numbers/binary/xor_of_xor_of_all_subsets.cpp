@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include <unordered_set>
 
+namespace {
 
 using SetType = std::unordered_set<unsigned>;
 
@@ -19,11 +19,14 @@ SetType::value_type FindXorOfXorOfAllSubsets(const SetType &s) {
     return s.size() == 1 ? *s.cbegin() : 0u;
 }
 
+}//namespace
+
 
 const SetType SAMPLE_SET = {1, 2, 3};
 const SetType SINGLE_SET = {5};
 
+
 SIMPLE_BENCHMARK(FindXorOfXorOfAllSubsets, SAMPLE_SET);
 
-SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample1, 0, SAMPLE_SET);
+SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample1, 0u, SAMPLE_SET);
 SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample2, *SINGLE_SET.cbegin(), SINGLE_SET);

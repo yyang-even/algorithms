@@ -87,10 +87,7 @@ auto RemovePunctuations_Partition(const std::string &input) {
  */
 auto RemoveCharactersPresentInTheSecond_Partition(const std::string &input,
         const std::string &mask) {
-    std::unordered_set<std::string::value_type> counter;
-    for (const auto c : mask) {
-        counter.insert(c);
-    }
+    const auto counter = ToUnorderedSet(mask);
 
     return RemoveCharacters_Partition(input, [&counter](const auto c) {
         return counter.find(c) == counter.cend();
