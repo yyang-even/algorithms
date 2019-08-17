@@ -479,3 +479,4 @@
 * https://www.geeksforgeeks.org/move-spaces-front-string-single-traversal/
 * https://www.geeksforgeeks.org/remove-characters-from-the-first-string-which-are-present-in-the-second-string/
 * https://www.geeksforgeeks.org/remove-even-frequency-characters-from-the-string/
+* https://www.geeksforgeeks.org/remove-characters-from-string-that-appears-strictly-less-than-k-times/

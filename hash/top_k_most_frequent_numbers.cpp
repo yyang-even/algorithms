@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
 
 namespace {
 
@@ -59,14 +61,9 @@ auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType
 auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size_type K) {
     assert(K);
 
-    using MapType = std::unordered_map<ArrayType::value_type, ArrayType::size_type>;
-    MapType frequency_map;
+    const auto frequency_map = ToFrequencyHashTable(numbers);
 
-    for (const auto n : numbers) {
-        ++frequency_map[n];
-    }
-
-    std::vector<MapType::const_iterator> number_frequency_array;
+    std::vector<decltype(frequency_map)::const_iterator> number_frequency_array;
     for (auto iter = frequency_map.cbegin(); iter != frequency_map.cend(); ++iter) {
         number_frequency_array.push_back(iter);
     }

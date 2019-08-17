@@ -1,5 +1,10 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
+
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Find pair with greatest product in array
@@ -11,20 +16,19 @@ using ArrayType = std::vector<unsigned>;
  * print -1. Elements are within the range of 1 to 10^5.
  */
 int FindPairWithGreatestProductInArray(ArrayType elements) {
-    std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
-    for (const auto elem : elements) {
-        ++counters[elem];
-    }
+    const auto counters = ToFrequencyHashTable(elements);
 
     std::sort(elements.begin(), elements.end());
 
     for (auto product_iter = elements.crbegin(); product_iter != elements.crend(); ++product_iter) {
         ArrayType::value_type elem_sqrt = sqrt(*product_iter);
-        for (auto factor_iter = elements.begin();
+        for (auto factor_iter = elements.cbegin();
              factor_iter != elements.cend() and * factor_iter <= elem_sqrt; ++factor_iter) {
             if (*product_iter % *factor_iter == 0) {
                 auto the_other_factor = *product_iter / *factor_iter;
-                if (counters[the_other_factor] > (the_other_factor == *factor_iter)) {
+                const auto the_other_factor_iter = counters.find(the_other_factor);
+                if (the_other_factor_iter != counters.cend() and
+                    the_other_factor_iter->second > (the_other_factor == *factor_iter)) {
                     return *product_iter;
                 }
             }
@@ -34,6 +38,8 @@ int FindPairWithGreatestProductInArray(ArrayType elements) {
     return -1;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {10, 3, 5, 30, 35};
 const ArrayType SAMPLE2 = {2, 5, 7, 8};
@@ -42,6 +48,7 @@ const ArrayType SAMPLE4 = {10, 2, 2, 4, 30, 35};
 const ArrayType SAMPLE5 = {17, 2, 1, 15, 30};
 const ArrayType SAMPLE6 = {30, 10, 9, 3, 35};
 const ArrayType SAMPLE7 = {30, 10, 9, 5, 25};
+
 
 SIMPLE_BENCHMARK(FindPairWithGreatestProductInArray, SAMPLE1);
 

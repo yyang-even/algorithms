@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
 #include "count_frequencies_of_all_elements.h"
 
 
@@ -20,10 +21,7 @@ using ArrayType = std::vector<int>;
  * @complexity  O(n)
  */
 auto FindRepeatedElements(const ArrayType &values) {
-    std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
-    for (const auto elem : values) {
-        ++counters[elem];
-    }
+    auto counters = ToFrequencyHashTable(values);
 
     ArrayType output;
     for (const auto elem : values) {

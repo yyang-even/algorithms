@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
 
 namespace {
 
@@ -101,13 +103,26 @@ auto RemoveCharactersPresentInTheSecond_Partition(const std::string &input,
  * @reference   https://www.geeksforgeeks.org/remove-even-frequency-characters-from-the-string/
  */
 auto RemoveCharactersWithEvenFrequency_Partition(const std::string &input) {
-    std::unordered_map<std::string::value_type, std::string::size_type> counter;
-    for (const auto c : input) {
-        ++counter[c];
-    }
+    const auto counter = ToFrequencyHashTable(input);
 
     return RemoveCharacters_Partition(input, [&counter](const auto c) {
-        return counter[c] % 2 != 0;
+        const auto iter = counter.find(c);
+        return iter != counter.cend() and iter->second % 2 != 0;
+    });
+}
+
+
+/** Remove characters from string that appears strictly less than K times
+ *
+ * @reference   https://www.geeksforgeeks.org/remove-characters-from-string-that-appears-strictly-less-than-k-times/
+ */
+auto RemoveCharactersAppearLessThanK_Partition(const std::string &input,
+        const std::string::size_type K) {
+    const auto counter = ToFrequencyHashTable(input);
+
+    return RemoveCharacters_Partition(input, [&counter, K](const auto c) {
+        const auto iter = counter.find(c);
+        return iter != counter.cend() and iter->second >= K;
     });
 }
 
@@ -155,3 +170,10 @@ SIMPLE_BENCHMARK(RemoveCharactersWithEvenFrequency_Partition, "aabbbddeeecc");
 
 SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE1, "bbbeee", "aabbbddeeecc");
 SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE2, "zzzweee", "zzzxxweeerr");
+
+
+SIMPLE_BENCHMARK(RemoveCharactersAppearLessThanK_Partition, "geeksforgeeks", 3);
+
+SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE1, "geeksgeeks",
+            "geeksforgeeks", 2);
+SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE2, "eeee", "geeksforgeeks", 3);

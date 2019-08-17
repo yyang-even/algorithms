@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+
 
 namespace {
 
@@ -13,11 +15,7 @@ namespace {
 auto FindSecondFrequentChar(const std::string &input) {
     assert(input.size() > 1ul);
 
-    std::unordered_map<std::string::value_type, std::string::size_type> counters;
-
-    for (const auto c : input) {
-        ++counters[c];
-    }
+    const auto counters = ToFrequencyHashTable(input);
 
     std::string::size_type first_frequency = 0ul, second_frequency = 0ul;
     std::string::value_type first{}, second{};
