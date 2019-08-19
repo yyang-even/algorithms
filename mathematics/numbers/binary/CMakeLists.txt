@@ -112,9 +112,6 @@ CompileTestExe(is_power_of_power_of_2)
 CompileBenchmarkExe(log_base_2)
 CompileTestExe(log_base_2)
 
-CompileBenchmarkExe(min_and_max)
-CompileTestExe(min_and_max)
-
 CompileBenchmarkExe(masked_bits_merge)
 CompileTestExe(masked_bits_merge)
 

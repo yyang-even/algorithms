@@ -489,3 +489,7 @@
 * https://www.geeksforgeeks.org/remove-characters-alphabets-string/
 * https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
 * https://www.geeksforgeeks.org/remove-duplicate-elements-in-an-array-using-stl-in-c/
+* https://www.geeksforgeeks.org/detect-if-two-integers-have-opposite-signs/
+* https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
+* https://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
+* https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
