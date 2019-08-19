@@ -10,6 +10,8 @@ using InputType = unsigned;
 /** Find most significant set bit of a number
  *
  * @reference   https://www.geeksforgeeks.org/find-significant-set-bit-number/
+ * @reference   Highest power of 2 less than or equal to given number
+ *              https://www.geeksforgeeks.org/highest-power-2-less-equal-given-number/
  *
  * Given a number, find the most significant bit number which is set bit and which is in power of two.
  */
@@ -35,6 +37,7 @@ SIMPLE_TEST(FindMSB, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(FindMSB, TestUPPER, 1u << (Bits_Number<InputType>() - 1), UPPER);
 SIMPLE_TEST(FindMSB, TestSample1, 0b100u, 0b101);
 SIMPLE_TEST(FindMSB, TestSample2, 256u, 273);
+SIMPLE_TEST(FindMSB, TestSample3, 8u, 10);
 
 
 SIMPLE_BENCHMARK(FindMSB_Float, 4);

@@ -493,3 +493,5 @@
 * https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
 * https://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
 * https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
+* https://www.geeksforgeeks.org/highest-power-2-less-equal-given-number/
+* https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
