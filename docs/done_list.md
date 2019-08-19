@@ -486,3 +486,6 @@
 * https://www.geeksforgeeks.org/remove-elements-from-the-array-whose-frequency-lies-in-the-range-l-r/
 * https://www.geeksforgeeks.org/find-unique-element-element-occurs-k-times-except-one/
 * https://www.geeksforgeeks.org/two-odd-occurring-elements-array-occur-even-times/
+* https://www.geeksforgeeks.org/remove-characters-alphabets-string/
+* https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
+* https://www.geeksforgeeks.org/remove-duplicate-elements-in-an-array-using-stl-in-c/

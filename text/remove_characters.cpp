@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "remove_characters.h"
 #include "hash/hash.h"
 
 
@@ -14,16 +15,8 @@ namespace {
  * Given a string, remove all spaces from the string and return it.
  * Expected time complexity is O(n) and only one traversal of string.
  */
-auto RemoveSpaces(std::string input) {
-    auto output_iter = input.begin();
-    for (auto input_iter = input.begin(); input_iter != input.end(); ++input_iter) {
-        if (not std::isspace(*input_iter)) {
-            *output_iter++ = *input_iter;
-        }
-    }
-
-    input.resize(output_iter - input.begin());
-    return input;
+auto RemoveSpaces_TwoPointers(const std::string &input) {
+    return RemoveCharacters_TwoPointers(input, ToNegationLambda(std::isspace));
 }
 
 
@@ -47,7 +40,8 @@ auto RemoveSpaces_StringStream(std::string input) {
 template <typename UnaryPredicate>
 auto RemoveCharacters_Partition(std::string input, const UnaryPredicate p) {
     const auto end = std::stable_partition(input.begin(), input.end(), p);
-    return input.substr(0, std::distance(input.begin(), end));
+    input.resize(std::distance(input.begin(), end));
+    return input;
 }
 
 auto RemoveSpaces_Partition(const std::string &input) {
@@ -133,12 +127,21 @@ auto RemoveCharactersAppearLessThanK_Partition(const std::string &input,
     });
 }
 
+
+/** Remove all characters other than alphabets from string
+ *
+ * @reference   https://www.geeksforgeeks.org/remove-characters-alphabets-string/
+ */
+auto RemoveNonalphabetsCharacters_Partition(const std::string &input) {
+    return RemoveCharacters_Partition(input, ToLambda(std::isalpha));
+}
+
 }//namespace
 
 
-SIMPLE_BENCHMARK(RemoveSpaces, "g  eeks   for ge  eeks  ");
+SIMPLE_BENCHMARK(RemoveSpaces_TwoPointers, "g  eeks   for ge  eeks  ");
 
-SIMPLE_TEST(RemoveSpaces, TestSAMPLE1, "geeksforgeeeks", "g  eeks   for ge  eeks  ");
+SIMPLE_TEST(RemoveSpaces_TwoPointers, TestSAMPLE1, "geeksforgeeeks", "g  eeks   for ge  eeks  ");
 
 
 SIMPLE_BENCHMARK(RemoveSpaces_StringStream, "g  eeks   for ge  eeks  ");
@@ -184,3 +187,11 @@ SIMPLE_BENCHMARK(RemoveCharactersAppearLessThanK_Partition, "geeksforgeeks", 3);
 SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE1, "geeksgeeks",
             "geeksforgeeks", 2);
 SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE2, "eeee", "geeksforgeeks", 3);
+
+
+SIMPLE_BENCHMARK(RemoveNonalphabetsCharacters_Partition, "$Gee*k;s..fo, r'Ge^eks?");
+
+SIMPLE_TEST(RemoveNonalphabetsCharacters_Partition, TestSAMPLE1, "GeeksforGeeks",
+            "$Gee*k;s..fo, r'Ge^eks?");
+SIMPLE_TEST(RemoveNonalphabetsCharacters_Partition, TestSAMPLE2, "PraBHatkumarsingh",
+            "P&ra+$BHa;;t*ku, ma$r@@s#in}gh");
