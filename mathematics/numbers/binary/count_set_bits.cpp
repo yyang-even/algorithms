@@ -9,6 +9,8 @@ typedef unsigned InputType;
 /** Count set bits in an integer
  *
  * @reference   https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+ * @reference   Count Set-bits of number using Recursion
+ *              https://www.geeksforgeeks.org/count-set-bits-of-number-using-recursion/
  *
  * Write an efficient program to count number of 1s in binary representation of an integer.
  */

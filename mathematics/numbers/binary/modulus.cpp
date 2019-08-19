@@ -10,6 +10,8 @@ typedef unsigned InputType;
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute modulus division by 1 << s without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ * @reference   Compute modulus division by a power-of-2-number
+ *              https://www.geeksforgeeks.org/compute-modulus-division-by-a-power-of-2-number/
  */
 InputType Modulus2Power(const InputType num, const InputType s) {
     return num & ((1U << s) - 1);

@@ -495,3 +495,7 @@
 * https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
 * https://www.geeksforgeeks.org/highest-power-2-less-equal-given-number/
 * https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
+* https://www.geeksforgeeks.org/compute-modulus-division-by-a-power-of-2-number/
+* https://www.geeksforgeeks.org/count-set-bits-of-number-using-recursion/
+* https://www.geeksforgeeks.org/number-of-mismatching-bits-in-the-binary-representation-of-two-integers/
+* https://www.geeksforgeeks.org/number-of-leading-zeros-in-binary-representation-of-a-given-number/
