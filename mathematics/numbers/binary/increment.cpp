@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using InputType = unsigned;
 
 /** Increment a number without using ++ or +
@@ -12,8 +15,10 @@ auto Increment(const InputType num) {
     return -(~num);
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(Increment, 4);
 
-SIMPLE_TEST(Increment, TestSample1, 4, 3);
-SIMPLE_TEST(Increment, TestSample2, 10, 9);
+SIMPLE_TEST(Increment, TestSample1, 4u, 3);
+SIMPLE_TEST(Increment, TestSample2, 10u, 9);

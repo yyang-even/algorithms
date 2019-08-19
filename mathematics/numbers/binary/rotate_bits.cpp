@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using InputType = unsigned;
 
 /** Rotate bits of a number
@@ -15,15 +18,19 @@ auto LeftRotate(const InputType num, const InputType r) {
     return (num << r) | (num >> (Bits_Number<decltype(num)>() - r));
 }
 
+
 auto RightRotate(const InputType num, const InputType r) {
     return (num >> r) | (num << (Bits_Number<decltype(num)>() - r));
 }
 
+}//namespace
+
 
 SIMPLE_BENCHMARK(LeftRotate, 0b1101, 4);
 
-SIMPLE_TEST(LeftRotate, TestSample1, 0b1000, 1, 3);
-SIMPLE_TEST(LeftRotate, TestSample2, 64, 16, 2);
+SIMPLE_TEST(LeftRotate, TestSample1, 0b1000u, 1, 3);
+SIMPLE_TEST(LeftRotate, TestSample2, 64u, 16, 2);
+
 
 SIMPLE_BENCHMARK(RightRotate, 0b1101, 4);
 

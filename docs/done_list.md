@@ -484,3 +484,5 @@
 * https://www.geeksforgeeks.org/remove-elements-from-the-array-which-appear-more-than-k-times/
 * https://www.geeksforgeeks.org/remove-characters-that-appear-more-than-k-times/
 * https://www.geeksforgeeks.org/remove-elements-from-the-array-whose-frequency-lies-in-the-range-l-r/
+* https://www.geeksforgeeks.org/find-unique-element-element-occurs-k-times-except-one/
+* https://www.geeksforgeeks.org/two-odd-occurring-elements-array-occur-even-times/

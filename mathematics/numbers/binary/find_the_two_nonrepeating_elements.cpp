@@ -2,6 +2,9 @@
 
 #include "clear_all_bits_except_the_last_set_bit.h"
 
+
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Find the two non-repeating elements in an array of repeating elements
@@ -17,6 +20,8 @@ using ArrayType = std::vector<unsigned>;
 /** Find the two numbers with odd occurrences in an unsorted array
  *
  * @reference   https://www.geeksforgeeks.org/find-the-two-numbers-with-odd-occurences-in-an-unsorted-array/
+ * @reference   Two odd occurring elements in an array where all other occur even times
+ *              https://www.geeksforgeeks.org/two-odd-occurring-elements-array-occur-even-times/
  *
  * Given an unsorted array that contains even number of occurrences for all
  * numbers except two numbers. Find the two numbers which have odd occurrences
@@ -51,12 +56,15 @@ auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
     return std::make_pair(x, y);
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {2, 4, 7, 9, 2, 4};
 const ArrayType SAMPLE2 = {12, 23, 34, 12, 12, 23, 12, 45};
 const ArrayType SAMPLE3 = {4, 4, 100, 5000, 4, 4, 4, 4, 100, 100};
 const ArrayType SAMPLE4 = {10, 20};
 const ArrayType SAMPLE5 = {6, 1, 3, 5, 1, 3, 7, 6};
+const ArrayType SAMPLE6 = {2, 3, 3, 4, 4, 5};
 
 
 SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, SAMPLE1);
@@ -66,3 +74,4 @@ SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::make_pair(100u, 5000u), SAMPLE3);
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::make_pair(10u, 20u), SAMPLE4);
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::make_pair(7u, 5u), SAMPLE5);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample6, std::make_pair(5u, 2u), SAMPLE6);

@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /** Compute modulus division by 1 << s without a division operator
@@ -40,7 +43,7 @@ InputType Modulus2PowerMinus1(InputType num, const InputType s) {
  *              Compute modulus division by (1 << s) - 1 in parallel without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType Modulus2PowerMinus1Parallel(InputType num, const InputType s) {
+InputType Modulus2PowerMinus1_Parallel(InputType num, const InputType s) {
     // The following is for a word size of 32 bits!
     static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
 
@@ -116,27 +119,32 @@ InputType Modulus2PowerMinus1Parallel(InputType num, const InputType s) {
     return result == divisor ? 0 : result;
 }
 
+}//namespace
+
 
 const InputType LOWER = 0;
 constexpr InputType UPPER = Bits_Number<InputType>() - 1;
+
 
 SIMPLE_BENCHMARK(Modulus2Power, 1, UPPER);
 
 SIMPLE_TEST(Modulus2Power, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2Power, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2Power, TestSAMPLE1, 51, 179, 7);
-SIMPLE_TEST(Modulus2Power, TestSAMPLE2, 0, 708, 2);
+SIMPLE_TEST(Modulus2Power, TestSAMPLE1, 51u, 179, 7);
+SIMPLE_TEST(Modulus2Power, TestSAMPLE2, 0u, 708, 2);
+
 
 SIMPLE_BENCHMARK(Modulus2PowerMinus1, 1, UPPER);
 
 SIMPLE_TEST(Modulus2PowerMinus1, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2PowerMinus1, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE1, 52, 179, 7);
-SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE2, 0, 708, 2);
+SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE1, 52u, 179, 7);
+SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE2, 0u, 708, 2);
 
-SIMPLE_BENCHMARK(Modulus2PowerMinus1Parallel, 1, UPPER);
 
-SIMPLE_TEST(Modulus2PowerMinus1Parallel, TestLOWER, LOWER, LOWER, LOWER);
-SIMPLE_TEST(Modulus2PowerMinus1Parallel, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2PowerMinus1Parallel, TestSAMPLE1, 52, 179, 7);
-SIMPLE_TEST(Modulus2PowerMinus1Parallel, TestSAMPLE2, 0, 708, 2);
+SIMPLE_BENCHMARK(Modulus2PowerMinus1_Parallel, 1, UPPER);
+
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestLOWER, LOWER, LOWER, LOWER);
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestUPPER, UPPER, UPPER, UPPER);
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE1, 52u, 179, 7);
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE2, 0u, 708, 2);
