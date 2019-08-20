@@ -1,6 +1,9 @@
 #include "common_header.h"
 
-#include "probabilistic.h"
+#include "random_number_generator_in_arbitrary_probability.h"
+
+
+namespace {
 
 /** Make a fair coin from a biased coin
  *
@@ -16,11 +19,11 @@
  * foo(), no other library method.
  */
 inline bool foo() {
-    return RandomNumberInArbitraryProbability({0, 1}, {6, 4});
+    return RandomNumberInArbitraryProbability_Ceil({0, 1}, {6, 4});
 }
-bool MakeFairCoinfromBiasedCoin() {
-    bool coin1 = foo();
-    bool coin2 = foo();
+auto MakeFairCoinfromBiasedCoin() {
+    const bool coin1 = foo();
+    const bool coin2 = foo();
     if (coin1 ^ coin2) {
         return coin2;
     } else {
@@ -28,8 +31,7 @@ bool MakeFairCoinfromBiasedCoin() {
     }
 }
 
-
-bool TestMakeFairCoinfromBiasedCoin() {
+inline auto TestMakeFairCoinfromBiasedCoin() {
     static const int SAMPLE_SIZE = 2000000;
     static const int HALF_SAMPLE_SIZE = SAMPLE_SIZE / 2;
     static const double ERROR_RATE = 0.01;
@@ -42,6 +44,8 @@ bool TestMakeFairCoinfromBiasedCoin() {
 
     return (HALF_SAMPLE_SIZE - TOLERATION) <= counter and (HALF_SAMPLE_SIZE + TOLERATION) >= counter;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(MakeFairCoinfromBiasedCoin);

@@ -104,7 +104,7 @@ INT_BOOL isDivisibleBy5_Float(const InputType n) {
 
 
 INT_BOOL isDivisibleBy5_LastDigitStrict(const InputType n) {
-    const auto last_digit = Mod10Float(n);
+    const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
 

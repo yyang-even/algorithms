@@ -1,7 +1,7 @@
 #include "common_header.h"
 
 #include "factorial.h"
-#include "mathematics/numbers/numbers.h"
+#include "mathematics/numbers/large_integer.h"
 
 namespace {
 

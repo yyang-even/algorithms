@@ -1,6 +1,9 @@
 #include "common_header.h"
 
-#include "probabilistic.h"
+#include "random_number_generator_in_arbitrary_probability.h"
+
+
+namespace {
 
 using ArrayType = std::vector<int>;
 
@@ -11,11 +14,11 @@ using ArrayType = std::vector<int>;
  * Given n numbers, each with some frequency of occurrence. Return a
  * random number with probability proportional to its frequency of occurrence.
  */
-auto RandomNumberInArbitraryProbabilitySimple(const ArrayType &numbers,
+auto RandomNumberInArbitraryProbability_Simple(const ArrayType &numbers,
         const ArrayType &frequencies) {
     assert(numbers.size() == frequencies.size());
 
-    std::vector<ArrayType::value_type> samples;
+    ArrayType samples;
     for (ArrayType::size_type i = 0; i < numbers.size(); ++i) {
         std::fill_n(std::back_insert_iterator<ArrayType>(samples), frequencies[i], numbers[i]);
     }
@@ -24,28 +27,10 @@ auto RandomNumberInArbitraryProbabilitySimple(const ArrayType &numbers,
 }
 
 
-auto findCeil(const std::vector<ArrayType::value_type> &prefixs,
-              const ArrayType::value_type value) {
-    const auto ceil = std::upper_bound(prefixs.cbegin(), prefixs.cend(), value);
-    return ceil == prefixs.cend() ? -1 : ceil - prefixs.cbegin();
-}
-auto RandomNumberInArbitraryProbabilityCeil(const ArrayType &numbers,
-        const ArrayType &frequencies) {
-    assert(numbers.size() == frequencies.size());
-
-    std::vector<ArrayType::value_type> prefixs = {frequencies.front()};
-    for (auto iter = frequencies.cbegin() + 1; iter < frequencies.cend(); ++iter) {
-        prefixs.push_back(prefixs.back() + *iter);
-    }
-
-    const auto random_number = Random_Number(1, prefixs.back());
-    return numbers[findCeil(prefixs, random_number)];
-}
-
-
 static const ArrayType NUMBERS = {0, 1};
 static const ArrayType FREQUENCIES = {25, 75};
-bool testRandomNumberInArbitraryProbability(
+
+inline bool testRandomNumberInArbitraryProbability(
     const std::function<int(const ArrayType &, const ArrayType &)> generator) {
     static const auto TOTAL_SAMPLE_SIZE = 4000000;
     static const auto SAMPLE_SIZE0 = TOTAL_SAMPLE_SIZE / 4;
@@ -66,12 +51,6 @@ bool testRandomNumberInArbitraryProbability(
 }
 
 
-int RandomNumberInArbitraryProbability(const std::vector<int> &numbers,
-                                       const std::vector<int> &frequencies) {
-    return RandomNumberInArbitraryProbabilityCeil(numbers, frequencies);
-}
-
-
 /** Write a function that generates one of 3 numbers according to given probabilities
  *
  * @reference   https://www.geeksforgeeks.org/write-a-function-to-generate-3-numbers-according-to-given-probabilities/
@@ -82,20 +61,22 @@ int RandomNumberInArbitraryProbability(const std::vector<int> &numbers,
  */
 inline auto RandomNumber1of3(const int x, const int y, const int z,
                              const int px, const int py, const int pz) {
-    return RandomNumberInArbitraryProbabilityCeil({x, y, z}, {px, py, pz});
+    return RandomNumberInArbitraryProbability_Ceil({x, y, z}, {px, py, pz});
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbabilitySimple, NUMBERS, FREQUENCIES);
+
+SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Simple, NUMBERS, FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestSample, true,
-            RandomNumberInArbitraryProbabilitySimple);
+            RandomNumberInArbitraryProbability_Simple);
 
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbabilityCeil, NUMBERS, FREQUENCIES);
+SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Ceil, NUMBERS, FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestCeil, true,
-            RandomNumberInArbitraryProbabilityCeil);
+            RandomNumberInArbitraryProbability_Ceil);
 
 
 SIMPLE_BENCHMARK(RandomNumber1of3, 1, 2, 3, 40, 25, 35);

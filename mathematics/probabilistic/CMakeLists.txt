@@ -1,6 +1,3 @@
-add_library(probabilistic
-    random_number_generator_in_arbitrary_probability.cpp)
-
 CompileBenchmarkExe(approximate_median)
 CompileTestExe(approximate_median)
 
@@ -10,10 +7,8 @@ CompileTestExe(birthday_paradox)
 CompileBenchmarkExe(equal_probability_random_number)
 CompileTestExe(equal_probability_random_number)
 
-CompileBenchmarkExe(fair_coin_from_biased_coin
-    probabilistic)
-CompileTestExe(fair_coin_from_biased_coin
-    probabilistic)
+CompileBenchmarkExe(fair_coin_from_biased_coin)
+CompileTestExe(fair_coin_from_biased_coin)
 
 CompileBenchmarkExe(generate_0_1_25_75_probability)
 CompileTestExe(generate_0_1_25_75_probability)
