@@ -499,3 +499,7 @@
 * https://www.geeksforgeeks.org/count-set-bits-of-number-using-recursion/
 * https://www.geeksforgeeks.org/number-of-mismatching-bits-in-the-binary-representation-of-two-integers/
 * https://www.geeksforgeeks.org/number-of-leading-zeros-in-binary-representation-of-a-given-number/
+* https://www.geeksforgeeks.org/find-the-two-numbers-with-odd-occurences-in-an-unsorted-array/
+* https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array/
+* https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-2/
+* https://www.geeksforgeeks.org/rotate-bits-of-an-integer/
