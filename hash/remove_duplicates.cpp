@@ -12,6 +12,10 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-a-given-string/
  * @reference   Remove duplicate elements in an Array using STL in C++
  *              https://www.geeksforgeeks.org/remove-duplicate-elements-in-an-array-using-stl-in-c/
+ * @reference   Remove duplicates from unsorted array
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array/
+ * @reference   Remove duplicates from unsorted array
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-2/
  *
  * @complexity  O(n)
  */
