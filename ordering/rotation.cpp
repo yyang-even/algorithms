@@ -25,6 +25,9 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/c-program-cyclically-rotate-array-one/
  *
  * Given an array, cyclically rotate the array clockwise by one.
+ *
+ * @reference   C Program for Program for array rotation
+ *              https://www.geeksforgeeks.org/c-program-for-program-for-array-rotation-2/
  */
 auto LeftRotate_Simple(const ArrayType &arr, const ArrayType::size_type d) {
     assert(d < arr.size());
@@ -35,6 +38,7 @@ auto LeftRotate_Simple(const ArrayType &arr, const ArrayType::size_type d) {
     std::copy(arr.cbegin(), mid, iter);
     return output;
 }
+
 
 auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
     assert(d < arr.size());
@@ -57,6 +61,7 @@ auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
     }
     return arr;
 }
+
 
 /**
  * @reference   Block swap algorithm for array rotation
@@ -92,6 +97,7 @@ auto LeftRotate_BlockSwap_Recursive(ArrayType arr, const ArrayType::size_type d)
     return arr;
 }
 
+
 auto LeftRotate_BlockSwap_Iterative(ArrayType arr, const ArrayType::size_type d) {
     assert(d < arr.size());
 
@@ -115,6 +121,7 @@ auto LeftRotate_BlockSwap_Iterative(ArrayType arr, const ArrayType::size_type d)
 
     return arr;
 }
+
 
 /**
  * @reference   Reversal algorithm for array rotation
@@ -171,6 +178,7 @@ auto TestLeftRotate_SinglyList(const ArrayType &elements,
     const auto rotated_list = LeftRotate_SinglyList({elements.cbegin(), elements.cend()}, k);
     return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
 }
+
 
 /** Move last element to front of a given Linked List
  *

@@ -6,12 +6,18 @@ namespace {
 typedef unsigned InputType;
 
 /** The Tower of Hanoi
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.1.
  *
  * We are given a tower of eight disks, initially stacked in decreasing size on one of three pegs.
  * The objective is to transfer the entire tower to one of the other pegs, moving only one disk
  * at a time and never moving a larger one onto a smaller.
+ *
+ * @reference   Recursive Functions
+ *              https://www.geeksforgeeks.org/recursive-functions/
+ * @reference   Program for Tower of Hanoi
+ *              https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/
  */
 
 /**
@@ -31,8 +37,14 @@ unsigned long HanoiTower_Recursive(const InputType n) {
  * T(n) = 2^n - 1, for n >= 0.
  */
 unsigned long HanoiTower_Closedform(const InputType n) {
-    return ((unsigned long)1 << n) - 1;
+    return (1ul << n) - 1;
 }
+
+
+/** Iterative Tower of Hanoi
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-tower-of-hanoi/
+ */
 
 
 /**
@@ -61,11 +73,12 @@ unsigned long IndirectHanoiTower_Recursive(const InputType n) {
  * T(n) = 3^n - 1, for n > 0;
  */
 unsigned long IndirectHanoiTower_Closedform(const InputType n) {
-    return std::pow(double(3.0), n) - 1;
+    return static_cast<unsigned long>(std::pow(double(3.0), n)) - 1;
 }
 
 
 /** Double Hanoi Tower
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 11.
  *
@@ -94,7 +107,7 @@ unsigned long DoubleHanoiTower_A_Recursive(const InputType n) {
  * A(n) = 2^(n+1) - 2
  */
 unsigned long DoubleHanoiTower_A_Closedform(const InputType n) {
-    return (long(1) << (n + 1)) - 2;
+    return (1ul << (n + 1)) - 2;
 }
 
 
@@ -102,8 +115,35 @@ unsigned long DoubleHanoiTower_A_Closedform(const InputType n) {
  * B(n) = 2^(n+2) - 5
  */
 unsigned long DoubleHanoiTower_B_Closedform(const InputType n) {
-    return (long(1) << (n + 2)) - 5;
+    return (1ul << (n + 2)) - 5;
 }
+
+
+/** Recursive Tower of Hanoi using 4 pegs / rods
+ *
+ * @reference   https://www.geeksforgeeks.org/recursive-tower-hanoi-using-4-pegs-rods/
+ */
+unsigned long HanoiTower_4Rods_Recursive(const InputType n) {
+    if (n < 2) {
+        return n;
+    } else {
+        return (HanoiTower_4Rods_Recursive(n - 2) << 1) + 3;
+    }
+}
+
+
+/**
+ * @reference   How does a C program executes?
+ *              https://www.geeksforgeeks.org/how-does-a-c-program-executes/
+ * @reference   How to compile 32-bit program on 64-bit gcc in C and C++
+ *              https://www.geeksforgeeks.org/compile-32-bit-program-64-bit-gcc-c-c/
+ * @reference   Write a C program that won’t compile in C++
+ *              https://www.geeksforgeeks.org/write-c-program-wont-compiler-c/
+ * @reference   Memory Layout of C Programs
+ *              https://www.geeksforgeeks.org/memory-layout-of-c-program/
+ * @reference   Compiling a C program:- Behind the Scenes
+ *              https://www.geeksforgeeks.org/compiling-a-c-program-behind-the-scenes/
+ */
 
 }//namespace
 
@@ -210,3 +250,10 @@ SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerBLOWER, 3u, Doubl
 SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerUPPER, 9223372036854775803ull,
             DoubleHanoiTowerUPPER);
 SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestSAMPLE, 1019u, SAMPLE);
+
+
+SIMPLE_BENCHMARK(HanoiTower_4Rods_Recursive, 3);
+
+SIMPLE_TEST(HanoiTower_4Rods_Recursive, TestSample1, 5u, 3);
+SIMPLE_TEST(HanoiTower_4Rods_Recursive, TestSample2, 9u, 4);
+SIMPLE_TEST(HanoiTower_4Rods_Recursive, TestSample3, 13u, 5);

@@ -8,6 +8,8 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/sum-of-squares-of-first-n-natural-numbers/
  * @reference   Sum of squares of first n natural numbers
  *              https://www.geeksforgeeks.org/sum-squares-first-n-natural-numbers/
+ * @reference   Program to find the sum of a Series (1*1) + (2*2) + (3*3) + (4*4) + (5*5) + … + (n*n)
+ *              https://www.geeksforgeeks.org/program-find-sum-series-11-22-33-44-55-nn/
  *
  * Given n, find sum of squares of first n natural numbers.
  */
@@ -48,6 +50,7 @@ SIMPLE_BENCHMARK(SumOfSquares, 7);
 SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5u, 2);
 SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204u, 8);
 SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385u, 10);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE4, 55u, 5);
 
 
 SIMPLE_BENCHMARK(SumOfSquareSums, 7);
