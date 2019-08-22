@@ -86,6 +86,8 @@ INT_BOOL testOneDivisorOfN_PollardsRho(const long N) {
 /** Product of unique prime factors of a number
  *
  * @reference   https://www.geeksforgeeks.org/product-unique-prime-factors-number/
+ * @reference   C/C++ Program to find Product of unique prime factors of a number
+ *              https://www.geeksforgeeks.org/c-program-for-product-of-unique-prime-factors-of-a-number/
  *
  * Given a number n, we need to find the product of all of its unique prime factors.
  * Prime factors: It is basically a factor of the number that is a prime number itself.
@@ -94,6 +96,39 @@ auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
     const auto unique_primes = UniquePrimeFactorsOf(N);
     return std::accumulate(unique_primes.cbegin(), unique_primes.cend(), 1u,
                            std::multiplies<unsigned>());
+}
+
+
+/** N-th prime factor of a given number
+ *
+ * @reference   https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
+ *
+ * Given Q queries which consist of two integers, one is number(1 <= number <= 106) and the other is N,
+ * the task is to find the N-th prime factor of the given number.
+ */
+using Query = std::pair<unsigned, unsigned>;
+auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
+    const auto max_number = std::max_element(queries.cbegin(), queries.cend(), [](const auto & lhs,
+    const auto & rhs) {
+        return lhs.first < rhs.first;
+    });
+
+    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(max_number->first);
+
+    std::vector<unsigned> outputs;
+    for (const auto &query : queries) {
+        auto number = query.first;
+        std::vector<unsigned> prime_factors;
+        while (number != 1) {
+            const auto smallest_prime_factor = smallest_prime_factors[number];
+            prime_factors.push_back(smallest_prime_factor);
+            number /= smallest_prime_factor;
+        }
+
+        outputs.push_back(prime_factors[query.second - 1]);
+    }
+
+    return outputs;
 }
 
 }//namespace
@@ -140,3 +175,12 @@ SIMPLE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, 44);
 SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22u, 44);
 SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10u, 10);
 SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5u, 25);
+
+
+const std::vector<Query> SAMPLE_QUERIES = {{6, 1}, {210, 3}, {210, 2}, {60, 2}};
+const std::vector<unsigned> EXPECTED_QUERIES = {2, 5, 3, 2};
+
+
+SIMPLE_BENCHMARK(QueryNthPrimeFactorOfNumbers, SAMPLE_QUERIES);
+
+SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES, SAMPLE_QUERIES);

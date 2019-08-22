@@ -7,10 +7,12 @@ namespace {
 
 typedef unsigned long InputType;
 
-/** Sum of all prime numbers below N
+/** Program to find sum of prime numbers between 1 to n
+ *
+ * @reference   https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
  */
 auto SumOfPrimesBelowN(const InputType N) {
-    const auto primes = SieveOfEratosthenes(N);
+    const auto primes = SieveOfEratosthenes(N + 1);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
 
@@ -25,6 +27,12 @@ auto ProductOfPrimesBetween1ToN(const InputType N) {
     const auto primes = SieveOfEratosthenes(N + 1ul);
     return std::accumulate(primes.cbegin(), primes.cend(), 1ULL, std::multiplies<InputType> {});
 }
+
+
+/** Program to find the Nth Prime Number
+ *
+ * @reference   https://www.geeksforgeeks.org/program-to-find-the-nth-prime-number/
+ */
 
 
 /** Find the Product of first N Prime Numbers
@@ -47,6 +55,8 @@ auto ProductOfFirstNPrimes(const InputType N) {
  *              https://www.geeksforgeeks.org/print-prime-numbers-given-range-using-c-stl/
  * @reference   Prime numbers in a given range using STL | Set 2
  *              https://www.geeksforgeeks.org/prime-numbers-in-a-given-range-using-stl-set-2/
+ * @reference   Program to find Prime Numbers Between given Interval
+ *              https://www.geeksforgeeks.org/program-to-find-prime-numbers-between-given-interval/
  *
  * Given a range [low, high], print all primes in this range? For example, if the
  * given range is [10, 20], then output is 11, 13, 17, 19.
@@ -138,9 +148,11 @@ SIMPLE_TEST(SieveOfEratosthenes, TestSAMPLE2, RESULT2, SAMPLE2);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, LOWER);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 0u, LOWER);
+SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 2u, LOWER);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28u, SAMPLE1);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023ull, 1000000);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE3, 17u, 10);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE4, 28u, 11);
 
 
 SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, LOWER);

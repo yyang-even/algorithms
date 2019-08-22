@@ -52,6 +52,25 @@ auto PrimeFactorsOf(unsigned N) {
     return output;
 }
 
+
+/**
+ * @reference   Find largest prime factor of a number
+ *              https://www.geeksforgeeks.org/find-largest-prime-factor-number/
+ * @reference   C Program for Find largest prime factor of a number
+ *              https://www.geeksforgeeks.org/c-program-for-find-largest-prime-factor-of-a-number/
+ * @reference   Find sum of a number and its maximum prime factor
+ *              https://www.geeksforgeeks.org/find-sum-of-a-number-and-its-maximum-prime-factor/
+ */
+
+
+/** k-th prime factor of a given number
+ *
+ * @reference   https://www.geeksforgeeks.org/k-th-prime-factor-given-number/
+ *
+ * Given two numbers n and k, print k-th prime factor among all prime factors of n.
+ */
+
+
 auto UniquePrimeFactorsOf(const unsigned N) {
     auto prime_factors = PrimeFactorsOf(N);
     auto last = std::unique(prime_factors.begin(), prime_factors.end());

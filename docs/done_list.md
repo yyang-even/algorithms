@@ -528,3 +528,5 @@
 * https://www.geeksforgeeks.org/c-program-for-fibonacci-numbers/
 * https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
 * https://www.geeksforgeeks.org/program-to-print-first-n-fibonacci-numbers/
+* https://www.geeksforgeeks.org/c-program-to-find-whether-a-no-is-power-of-two/
+* https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
