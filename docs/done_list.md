@@ -530,3 +530,4 @@
 * https://www.geeksforgeeks.org/program-to-print-first-n-fibonacci-numbers/
 * https://www.geeksforgeeks.org/c-program-to-find-whether-a-no-is-power-of-two/
 * https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
+* https://www.geeksforgeeks.org/almost-prime-numbers/

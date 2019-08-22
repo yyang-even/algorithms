@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include "prime_factors_of_n.h"
 #include "is_prime.h"
 
 #include "least_prime_factor_of_numbers_till_n.h"
@@ -9,6 +8,8 @@
 namespace {
 
 typedef unsigned InputType;
+
+#include "prime_factors_of_n.h"
 
 std::string PrintAllPrimeFactors(const InputType N) {
     std::string output;
@@ -20,16 +21,9 @@ std::string PrintAllPrimeFactors(const InputType N) {
 }
 
 
-auto PrimeFactorsOfN_Sieve(unsigned N) {
+auto PrimeFactorsOfN_Sieve(const unsigned N) {
     const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(N);
-
-    std::vector<unsigned> output;
-    while (N != 1) {
-        output.push_back(smallest_prime_factors[N]);
-        N /= smallest_prime_factors[N];
-    }
-
-    return output;
+    return PrimeFactorsOfN_Sieve(N, smallest_prime_factors);
 }
 
 
@@ -117,14 +111,7 @@ auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
 
     std::vector<unsigned> outputs;
     for (const auto &query : queries) {
-        auto number = query.first;
-        std::vector<unsigned> prime_factors;
-        while (number != 1) {
-            const auto smallest_prime_factor = smallest_prime_factors[number];
-            prime_factors.push_back(smallest_prime_factor);
-            number /= smallest_prime_factor;
-        }
-
+        const auto prime_factors = PrimeFactorsOfN_Sieve(query.first, smallest_prime_factors);
         outputs.push_back(prime_factors[query.second - 1]);
     }
 
@@ -137,6 +124,7 @@ auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
 constexpr InputType LOWER = 1;
 constexpr InputType SAMPLE1 = 12;
 constexpr InputType SAMPLE2 = 315;
+
 
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, LOWER);
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, SAMPLE1);
@@ -151,6 +139,7 @@ SIMPLE_TEST(PrintAllPrimeFactors, TestSAMPLE4, "311", 33);
 
 const std::vector<unsigned> EXPECTED2 = {3, 5, 7};
 
+
 SIMPLE_BENCHMARK(UniquePrimeFactorsOf, SAMPLE2);
 
 SIMPLE_TEST(UniquePrimeFactorsOf, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -158,6 +147,7 @@ SIMPLE_TEST(UniquePrimeFactorsOf, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 const std::vector<unsigned> EXPECTED3 = {3, 3, 5, 7};
 const std::vector<unsigned> EXPECTED4 = {2, 3, 13, 157};
+
 
 SIMPLE_BENCHMARK(PrimeFactorsOfN_Sieve, 12246);
 

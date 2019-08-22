@@ -1,3 +1,6 @@
+CompileBenchmarkExe(almost_prime_numbers)
+CompileTestExe(almost_prime_numbers)
+
 CompileBenchmarkExe(difference_between_nonprimes_and_primes_of_array)
 CompileTestExe(difference_between_nonprimes_and_primes_of_array)
 

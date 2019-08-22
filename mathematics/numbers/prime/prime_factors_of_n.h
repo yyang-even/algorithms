@@ -77,3 +77,15 @@ auto UniquePrimeFactorsOf(const unsigned N) {
     prime_factors.erase(last, prime_factors.end());
     return prime_factors;
 }
+
+
+auto PrimeFactorsOfN_Sieve(unsigned N, const std::vector<unsigned> &smallest_prime_factors) {
+    std::vector<unsigned> output;
+    while (N != 1) {
+        const auto smallest_prime_factor = smallest_prime_factors[N];
+        output.push_back(smallest_prime_factor);
+        N /= smallest_prime_factor;
+    }
+
+    return output;
+}
