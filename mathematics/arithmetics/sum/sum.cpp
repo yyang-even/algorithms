@@ -57,6 +57,21 @@ auto Sum_Pointer(const int a, const int b) {
     return reinterpret_cast<long>(&p[b]);
 }
 
+
+/** Add two numbers using ++ and/or --
+ *
+ * @reference   https://www.geeksforgeeks.org/add-two-numbers-using-andor/
+ */
+auto Sum_Loop(int a, int b) {
+    if (b > 0) {
+        for (; b--; ++a);
+    } else if (b < 0) {
+        for (; b++; --a);
+    }
+
+    return a;
+}
+
 }//namespace
 
 
@@ -86,3 +101,10 @@ SIMPLE_BENCHMARK(Sum_Pointer, 3, 4);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE3, 47, 15, 32);
+
+
+SIMPLE_BENCHMARK(Sum_Loop, 3, 4);
+
+SIMPLE_TEST(Sum_Loop, TestSAMPLE1, 7, 3, 4);
+SIMPLE_TEST(Sum_Loop, TestSAMPLE2, 15, 5, 10);
+SIMPLE_TEST(Sum_Loop, TestSAMPLE3, 47, 15, 32);
