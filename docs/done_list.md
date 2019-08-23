@@ -546,3 +546,5 @@
 * https://www.geeksforgeeks.org/add-two-numbers-using-andor/
 * https://www.geeksforgeeks.org/find-count-of-almost-prime-numbers-from-1-to-n/
 * https://www.geeksforgeeks.org/check-if-each-element-of-the-given-array-is-the-product-of-exactly-k-prime-numbers/
+* https://www.geeksforgeeks.org/pair-of-prime-numbers-with-a-given-sum-and-minimum-absolute-difference/
+* https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
