@@ -23,7 +23,7 @@ unsigned long long CountDivisorsOfFactorial(const InputType n) {
         return 0;
     }
 
-    auto primes_below_n_plus_1 = SieveOfEratosthenes(n + 1);
+    auto primes_below_n_plus_1 = PrimesBelowN(n + 1);
 
     unsigned long long count = 1ULL;
     for (auto prime : primes_below_n_plus_1) {

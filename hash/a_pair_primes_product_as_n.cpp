@@ -14,7 +14,7 @@
  */
 auto PairPrimesProductAsN(const unsigned N) {
     assert(N > 2);
-    const auto primes = SieveOfEratosthenes(N);
+    const auto primes = PrimesBelowN(N);
     auto output = std::make_pair(1ul, 1ul);
     PairElementsProductAsN(primes, N, &output);
     return output;

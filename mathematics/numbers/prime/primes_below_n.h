@@ -30,19 +30,85 @@
  * The repeatedly circle the smallest uncircled, uncrossed number and cross out its other multiples.
  * When everything has been circled or crossed out, the circled numbers are the primes.
  */
-auto SieveOfEratosthenes(const unsigned long N) {
+template <typename Function>
+auto SieveOfEratosthenes_VectorBool(const unsigned long N, const Function for_each_prime_function) {
+    assert(N > 2);
+
+    std::vector<bool> prime_marks(N, true);
+    prime_marks[0] = false;
+    prime_marks[1] = false;
+
+    for_each_prime_function(2);
+    for (unsigned long j = 2 * 2; j < N; j += 2) {
+        prime_marks[j] = false;
+    }
+
+    for (unsigned long i = 3; i < N; i += 2) {
+        if (prime_marks[i]) {
+            for_each_prime_function(i);
+            for (auto j = i * 2; j < N; j += i) {
+                prime_marks[j] = false;
+            }
+        }
+    }
+
+    return prime_marks;
+}
+
+auto PrimesBelowN(const unsigned long N) {
     std::vector<unsigned long> output;
     if (N > 2) {
-        std::vector<bool> prime_marks(N, true);
-        unsigned long j;
-        for (unsigned long i = 2; i < N; ++i) {
-            if (prime_marks[i]) {
-                output.push_back(i);
-                for (j = i * 2; j < N; j += i) {
-                    prime_marks[j] = false;
+        SieveOfEratosthenes_VectorBool(N, [&output](const auto prime) {
+            output.push_back(prime);
+        });
+    }
+    return output;
+}
+
+
+auto SieveOfEratosthenes_UniqueCount(const unsigned long N) {
+    assert(N > 2);
+
+    std::vector<unsigned char> prime_marks(N, 0);
+
+    for (unsigned long j = 2; j < N; j += 2) {
+        ++prime_marks[j];
+    }
+
+    for (unsigned long i = 3; i < N; i += 2) {
+        if (not prime_marks[i]) {
+            for (auto j = i; j < N; j += i) {
+                ++prime_marks[j];
+            }
+        }
+    }
+
+    return prime_marks;
+}
+
+
+auto SieveOfEratosthenes_Count(const unsigned long N) {
+    assert(N > 2);
+
+    std::vector<unsigned char> prime_marks(N, 0);
+
+    prime_marks[2] = 1;
+    for (unsigned long j = 2 * 2; j < N; j += 2) {
+        for (auto temp = j; temp > 1 and temp % 2 == 0; temp /= 2) {
+            ++prime_marks[j];
+        }
+    }
+
+    for (unsigned long i = 3; i < N; i += 2) {
+        if (not prime_marks[i]) {
+            ++prime_marks[i];
+            for (auto j = i * 2; j < N; j += i) {
+                for (auto temp = j; temp > 1 and temp % i == 0; temp /= i) {
+                    ++prime_marks[j];
                 }
             }
         }
     }
-    return output;
+
+    return prime_marks;
 }

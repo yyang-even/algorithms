@@ -15,10 +15,13 @@ auto LeastPrimeFactorOfNumbers(const unsigned N) {
     std::vector<unsigned> smallest_prime_factors(N + 1, 0);
     smallest_prime_factors[1] = 1;
 
-    for (unsigned i = 2; i <= N; ++i) {
+    for (unsigned j = 2; j <= N; j += 2) {
+        smallest_prime_factors[j] = 2;
+    }
+
+    for (unsigned i = 3; i <= N; i += 2) {
         if (smallest_prime_factors[i] == 0) {
-            smallest_prime_factors[i] = i;
-            for (unsigned j = i * 2; j <= N; j += i) {
+            for (auto j = i; j <= N; j += i) {
                 if (smallest_prime_factors[j] == 0) {
                     smallest_prime_factors[j] = i;
                 }
