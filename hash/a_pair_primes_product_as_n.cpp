@@ -3,6 +3,9 @@
 #include "a_pair_elements_product_as_n.h"
 #include "mathematics/numbers/prime/primes_below_n.h"
 
+
+namespace {
+
 /** Find two distinct prime numbers with given product
  *
  * @reference   https://www.geeksforgeeks.org/find-two-distinct-prime-numbers-with-given-product/
@@ -14,11 +17,13 @@
  */
 auto PairPrimesProductAsN(const unsigned N) {
     assert(N > 2);
-    const auto primes = SieveOfEratosthenes(N);
+    const auto primes = PrimesBelowN(N);
     auto output = std::make_pair(1ul, 1ul);
     PairElementsProductAsN(primes, N, &output);
     return output;
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(PairPrimesProductAsN, 74);

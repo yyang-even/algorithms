@@ -18,7 +18,7 @@ using ArrayType = std::vector<int>;
  */
 auto DifferenceBetweenSumOfNonprimesAndPrimes(const ArrayType &numbers) {
     const auto max = *std::max_element(numbers.cbegin(), numbers.cend());
-    const auto primes_below_n = SieveOfEratosthenes(max + 1);
+    const auto primes_below_n = PrimesBelowN(max + 1);
     const auto primes_hash = ToUnorderedSet(primes_below_n);
 
     long difference = 0;
@@ -44,7 +44,7 @@ auto DifferenceBetweenSumOfNonprimesAndPrimes(const ArrayType &numbers) {
  */
 auto DifferenceBetweenProductOfNonprimesAndPrimes(const ArrayType &numbers) {
     const auto max = *std::max_element(numbers.cbegin(), numbers.cend());
-    const auto primes_below_n = SieveOfEratosthenes(max + 1);
+    const auto primes_below_n = PrimesBelowN(max + 1);
     const auto primes_hash = ToUnorderedSet(primes_below_n);
 
     long primes_product = 1, nonprimes_product = 1;

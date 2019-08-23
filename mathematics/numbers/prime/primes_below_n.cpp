@@ -12,7 +12,7 @@ typedef unsigned long InputType;
  * @reference   https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
  */
 auto SumOfPrimesBelowN(const InputType N) {
-    const auto primes = SieveOfEratosthenes(N + 1);
+    const auto primes = PrimesBelowN(N + 1);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
 
@@ -24,7 +24,7 @@ auto SumOfPrimesBelowN(const InputType N) {
  * Given a number n, we need to find the product of all prime numbers between 1 to n.
  */
 auto ProductOfPrimesBetween1ToN(const InputType N) {
-    const auto primes = SieveOfEratosthenes(N + 1ul);
+    const auto primes = PrimesBelowN(N + 1ul);
     return std::accumulate(primes.cbegin(), primes.cend(), 1ULL, std::multiplies<InputType> {});
 }
 
@@ -42,10 +42,16 @@ auto ProductOfPrimesBetween1ToN(const InputType N) {
  * Given an positive integer N, calculate the product of the first N prime numbers.
  */
 auto ProductOfFirstNPrimes(const InputType N) {
-    const auto primes = SieveOfEratosthenes(std::numeric_limits<short>::max());
+    const auto primes = PrimesBelowN(std::numeric_limits<short>::max());
     assert(N < primes.size());
     return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
 }
+
+
+/** Sum of the first N Prime numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-of-the-first-n-prime-numbers/
+ */
 
 
 /** Segmented Sieve (Print Primes in a Range)
@@ -62,7 +68,7 @@ auto ProductOfFirstNPrimes(const InputType N) {
  * given range is [10, 20], then output is 11, 13, 17, 19.
  */
 auto primesInRange_LowerBound(const InputType low, const InputType high) {
-    auto base_primes = SieveOfEratosthenes(high + 1);
+    auto base_primes = PrimesBelowN(high + 1);
     const auto low_bound = std::lower_bound(base_primes.cbegin(), base_primes.cend(), low);
     base_primes.erase(base_primes.begin(), low_bound);
     return base_primes;
@@ -90,13 +96,13 @@ auto primesInRange(const InputType low, const InputType high,
 }
 auto PrimesInRange(const InputType low, const InputType high) {
     if (low < 3) {
-        return SieveOfEratosthenes(high + 1);
+        return PrimesBelowN(high + 1);
     }
     const InputType limit = sqrt(high) + 1;
     if (low <= limit) {
         return primesInRange_LowerBound(low, high);
     } else {
-        return primesInRange(low, high, SieveOfEratosthenes(limit));
+        return primesInRange(low, high, PrimesBelowN(limit));
     }
 }
 
@@ -113,9 +119,9 @@ auto SumOfPrimesInRange(const InputType low, const InputType high) {
 }
 
 
-auto SegmentedSieveOfEratosthenes(const InputType N) {
+auto SegmentedPrimesBelowN(const InputType N) {
     const InputType limit = sqrt(N) + 1;
-    const auto base_primes = SieveOfEratosthenes(limit);
+    const auto base_primes = PrimesBelowN(limit);
     auto output = base_primes;
 
     for (auto low = limit; low < N; low += limit) {
@@ -135,14 +141,14 @@ const InputType SAMPLE1 = 12;
 const InputType SAMPLE2 = 42;
 
 
-SIMPLE_BENCHMARK(SieveOfEratosthenes, LOWER);
-SIMPLE_BENCHMARK(SieveOfEratosthenes, SAMPLE1);
+SIMPLE_BENCHMARK(PrimesBelowN, LOWER);
+SIMPLE_BENCHMARK(PrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(SieveOfEratosthenes, TestLOWER, std::vector<InputType> {}, LOWER);
+SIMPLE_TEST(PrimesBelowN, TestLOWER, std::vector<InputType> {}, LOWER);
 const std::vector<InputType> RESULT1 = {2, 3, 5, 7, 11};
-SIMPLE_TEST(SieveOfEratosthenes, TestSAMPLE1, RESULT1, SAMPLE1);
+SIMPLE_TEST(PrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
 const std::vector<InputType> RESULT2 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
-SIMPLE_TEST(SieveOfEratosthenes, TestSAMPLE2, RESULT2, SAMPLE2);
+SIMPLE_TEST(PrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, LOWER);
@@ -197,10 +203,10 @@ SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36u, 4, 13);
 const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
 
 
-SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, LOWER);
-SIMPLE_BENCHMARK(SegmentedSieveOfEratosthenes, SAMPLE1);
+SIMPLE_BENCHMARK(SegmentedPrimesBelowN, LOWER);
+SIMPLE_BENCHMARK(SegmentedPrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestLOWER, std::vector<InputType> {}, LOWER);
-SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE1, RESULT1, SAMPLE1);
-SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE2, RESULT2, SAMPLE2);
-SIMPLE_TEST(SegmentedSieveOfEratosthenes, TestSAMPLE6, RESULT6, 41);
+SIMPLE_TEST(SegmentedPrimesBelowN, TestLOWER, std::vector<InputType> {}, LOWER);
+SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
+SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
+SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE6, RESULT6, 41);

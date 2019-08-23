@@ -34,7 +34,7 @@ using InputType = unsigned;
 auto PairPrimesSumAsN(const InputType N) {
     assert((N > 2) and (N % 2 == 0));
 
-    const auto primes = SieveOfEratosthenes(N);
+    const auto primes = PrimesBelowN(N);
     auto output = std::make_pair(primes[0], primes[0]);
     PairOfElementsSumAsN_Hashmap(primes, N, &output);
     return output;

@@ -544,3 +544,5 @@
 * https://www.geeksforgeeks.org/sum-first-n-odd-numbers-o1-complexity/
 * https://www.geeksforgeeks.org/sum-first-n-even-numbers/
 * https://www.geeksforgeeks.org/add-two-numbers-using-andor/
+* https://www.geeksforgeeks.org/find-count-of-almost-prime-numbers-from-1-to-n/
+* https://www.geeksforgeeks.org/check-if-each-element-of-the-given-array-is-the-product-of-exactly-k-prime-numbers/
