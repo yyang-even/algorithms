@@ -4,6 +4,9 @@ CompileTestExe(is_duck_number)
 CompileBenchmarkExe(large_integer)
 CompileTestExe(large_integer)
 
+CompileBenchmarkExe(perfect_square)
+CompileTestExe(perfect_square)
+
 CompileBenchmarkExe(rotate_for_a_max)
 CompileTestExe(rotate_for_a_max)
 
