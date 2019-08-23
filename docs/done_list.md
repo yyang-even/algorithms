@@ -531,3 +531,15 @@
 * https://www.geeksforgeeks.org/c-program-to-find-whether-a-no-is-power-of-two/
 * https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
 * https://www.geeksforgeeks.org/almost-prime-numbers/
+* https://www.geeksforgeeks.org/sum-of-the-first-n-prime-numbers/
+* https://www.geeksforgeeks.org/static-vs-dynamic-libraries/
+* https://www.geeksforgeeks.org/working-with-shared-libraries-set-1/
+* https://www.geeksforgeeks.org/working-with-shared-libraries-set-2/
+* https://www.geeksforgeeks.org/difference-between-loading-and-linking/
+* https://www.geeksforgeeks.org/numbers-less-than-n-which-are-product-of-exactly-two-distinct-prime-numbers/
+* https://www.geeksforgeeks.org/check-if-given-number-is-perfect-square-in-cpp/
+* https://www.geeksforgeeks.org/check-if-a-number-is-perfect-square-without-finding-square-root/
+* https://www.geeksforgeeks.org/check-whether-the-number-can-be-made-perfect-square-after-adding-1/
+* https://www.geeksforgeeks.org/check-number-is-perfect-square-using-additionsubtraction/
+* https://www.geeksforgeeks.org/sum-first-n-odd-numbers-o1-complexity/
+* https://www.geeksforgeeks.org/sum-first-n-even-numbers/

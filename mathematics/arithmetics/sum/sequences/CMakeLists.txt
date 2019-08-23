@@ -4,6 +4,12 @@ CompileTestExe(squares_of_first_n_numbers)
 CompileBenchmarkExe(sum_of_cubes)
 CompileTestExe(sum_of_cubes)
 
+CompileBenchmarkExe(sum_of_first_n_even_numbers)
+CompileTestExe(sum_of_first_n_even_numbers)
+
+CompileBenchmarkExe(sum_of_first_n_odd_numbers)
+CompileTestExe(sum_of_first_n_odd_numbers)
+
 CompileBenchmarkExe(sum_of_natural_numbers)
 CompileTestExe(sum_of_natural_numbers)
 
