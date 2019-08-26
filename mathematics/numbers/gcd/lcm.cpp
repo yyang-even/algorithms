@@ -14,6 +14,9 @@ namespace {
  *              https://www.geeksforgeeks.org/program-to-find-lcm-of-two-numbers/
  *
  * LCM (Least Common Multiple) of two numbers is the smallest number which can be divided by both numbers.
+ *
+ * @reference   TCS Coding Practice Question | LCM of 2 Numbers
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-lcm-of-2-numbers/
  */
 unsigned LCM(const unsigned m, const unsigned n) {
     return m * n / std::gcd(m, n);

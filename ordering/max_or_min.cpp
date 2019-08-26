@@ -81,6 +81,8 @@ InputType Max_QuickDirty(const InputType x, const InputType y) {
  * @reference   https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
  * @reference   C program to Find the Largest Number Among Three Numbers
  *              https://www.geeksforgeeks.org/c-program-to-find-the-largest-number-among-three-numbers/
+ * @reference   TCS Coding Practice Question | Greatest of 3 Numbers
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-greatest-of-3-numbers/
  */
 
 }//namespace

@@ -12,6 +12,8 @@ namespace {
  *              https://www.geeksforgeeks.org/prime-numbers/
  * @reference   Primality Test | Set 1 (Introduction and School Method)
  *              https://www.geeksforgeeks.org/primality-test-set-1-introduction-and-school-method/
+ * @reference   TCS Coding Practice Question | Checking Prime Number
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-checking-prime-number/
  * @reference   Primality Test | Set 2 (Fermat Method)
  *              https://www.geeksforgeeks.org/primality-test-set-2-fermet-method/
  * @reference   Primality Test | Set 3 (Miller–Rabin)
@@ -53,7 +55,7 @@ namespace {
  * (or non-prime), then it may return true or false, but the probability of producing incorrect
  * result for composite is low and can be reduced by doing more iterations.
  */
-INT_BOOL IsPrime_Fermet(const unsigned n) {
+auto IsPrime_Fermet(const unsigned n) {
     if (n <= 1u or n == 4u) {
         return false;
     }
@@ -78,7 +80,7 @@ INT_BOOL IsPrime_Fermet(const unsigned n) {
 /**
  * This method is a probabilistic method (Like Fermat), but it generally preferred over Fermat’s method.
  */
-bool millerTest(unsigned d, const unsigned n) {
+auto millerTest(unsigned d, const unsigned n) {
     const auto a = Random_Number<unsigned>(2, n - 2);
     auto x = static_cast<unsigned>(pow(a, d)) % n;
     const auto n_minus_1 = n - 1;
@@ -101,7 +103,7 @@ bool millerTest(unsigned d, const unsigned n) {
 
     return false;
 }
-INT_BOOL IsPrime_MillerRabin(const unsigned n) {
+auto IsPrime_MillerRabin(const unsigned n) {
     if (n <= 1u) {
         return false;
     }
@@ -183,7 +185,7 @@ int calculateJacobian(long long a, long long n) {
 
     return 0;
 }
-INT_BOOL IsPrime_SolovayStrassen(long long n) {
+auto IsPrime_SolovayStrassen(long long n) {
     if (n <= 1u) {
         return false;
     }
@@ -212,7 +214,7 @@ INT_BOOL IsPrime_SolovayStrassen(long long n) {
  * Lucas-Lehmer series is used to check primality of prime numbers of
  * the form n = 2^p – 1 where p is an integer.
  */
-INT_BOOL IsPrime_LucasLehmerSeries(unsigned long long p) {
+auto IsPrime_LucasLehmerSeries(unsigned long long p) {
     const unsigned long long n = pow(2, p) - 1;
 
     auto i = 4 % n;
@@ -224,12 +226,12 @@ INT_BOOL IsPrime_LucasLehmerSeries(unsigned long long p) {
 }
 
 
-INT_BOOL IsPrime_Wilson(const unsigned p) {
+auto IsPrime_Wilson(const unsigned p) {
     return p != 4 and (Factorial_Iterative(p >> 1) % p);
 }
 
 
-INT_BOOL IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
+auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
     if (n < 2) {
         return false;
     }
@@ -251,44 +253,44 @@ INT_BOOL IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
 
 SIMPLE_BENCHMARK(IsPrime_OptimizedSchoolMethod, 18);
 
-SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample1, FALSE, 12);
-SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample2, FALSE, 15);
-SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample3, FALSE, 1);
-SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample4, TRUE, 11);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample1, false, 12);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample2, false, 15);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample3, false, 1);
+SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample4, true, 11);
 
 
 SIMPLE_BENCHMARK(IsPrime_Fermet, 11);
 
-SIMPLE_TEST(IsPrime_Fermet, TestSample1, TRUE, 11);
+SIMPLE_TEST(IsPrime_Fermet, TestSample1, true, 11);
 
 
 SIMPLE_BENCHMARK(IsPrime_MillerRabin, 11);
 
-SIMPLE_TEST(IsPrime_MillerRabin, TestSample1, TRUE, 11);
+SIMPLE_TEST(IsPrime_MillerRabin, TestSample1, true, 11);
 
 
 SIMPLE_BENCHMARK(IsPrime_SolovayStrassen, 11);
 
-SIMPLE_TEST(IsPrime_SolovayStrassen, TestSample1, TRUE, 11);
+SIMPLE_TEST(IsPrime_SolovayStrassen, TestSample1, true, 11);
 
 
 SIMPLE_BENCHMARK(IsPrime_LucasLehmerSeries, 7);
 
-SIMPLE_TEST(IsPrime_LucasLehmerSeries, TestSample1, TRUE, 7);
+SIMPLE_TEST(IsPrime_LucasLehmerSeries, TestSample1, true, 7);
 
 
 SIMPLE_BENCHMARK(IsPrime_Wilson, 11);
 
-SIMPLE_TEST(IsPrime_Wilson, TestSample1, TRUE, 11);
-SIMPLE_TEST(IsPrime_Wilson, TestSample2, TRUE, 5);
-SIMPLE_TEST(IsPrime_Wilson, TestSample3, TRUE, 7);
-SIMPLE_TEST(IsPrime_Wilson, TestSample4, FALSE, 4);
-SIMPLE_TEST(IsPrime_Wilson, TestSample5, TRUE, 127);
+SIMPLE_TEST(IsPrime_Wilson, TestSample1, true, 11);
+SIMPLE_TEST(IsPrime_Wilson, TestSample2, true, 5);
+SIMPLE_TEST(IsPrime_Wilson, TestSample3, true, 7);
+SIMPLE_TEST(IsPrime_Wilson, TestSample4, false, 4);
+SIMPLE_TEST(IsPrime_Wilson, TestSample5, true, 127);
 
 
 SIMPLE_BENCHMARK(IsPrime_Recursive, 18);
 
-SIMPLE_TEST(IsPrime_Recursive, TestSample1, FALSE, 12);
-SIMPLE_TEST(IsPrime_Recursive, TestSample2, FALSE, 15);
-SIMPLE_TEST(IsPrime_Recursive, TestSample3, FALSE, 1);
-SIMPLE_TEST(IsPrime_Recursive, TestSample4, TRUE, 11);
+SIMPLE_TEST(IsPrime_Recursive, TestSample1, false, 12);
+SIMPLE_TEST(IsPrime_Recursive, TestSample2, false, 15);
+SIMPLE_TEST(IsPrime_Recursive, TestSample3, false, 1);
+SIMPLE_TEST(IsPrime_Recursive, TestSample4, true, 11);

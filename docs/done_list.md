@@ -516,7 +516,6 @@
 * https://www.geeksforgeeks.org/compiling-a-c-program-behind-the-scenes/
 * https://www.geeksforgeeks.org/iterative-tower-of-hanoi/
 * https://www.geeksforgeeks.org/recursive-tower-hanoi-using-4-pegs-rods/
-* https://www.geeksforgeeks.org/c-program-for-n-th-fibonacci-number/
 * https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
 * https://www.geeksforgeeks.org/program-to-find-the-nth-prime-number/
 * https://www.geeksforgeeks.org/find-largest-prime-factor-number/
@@ -526,7 +525,6 @@
 * https://www.geeksforgeeks.org/c-program-for-product-of-unique-prime-factors-of-a-number/
 * https://www.geeksforgeeks.org/c-program-for-find-largest-prime-factor-of-a-number/
 * https://www.geeksforgeeks.org/c-program-for-fibonacci-numbers/
-* https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
 * https://www.geeksforgeeks.org/program-to-print-first-n-fibonacci-numbers/
 * https://www.geeksforgeeks.org/c-program-to-find-whether-a-no-is-power-of-two/
 * https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
@@ -551,3 +549,15 @@
 * https://www.geeksforgeeks.org/multiply-two-numbers-without-using-multiply-division-bitwise-operators-and-no-loops/
 * https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-doubly-linked-list-that-are-greater-than-a-given-value/
 * https://www.geeksforgeeks.org/delete-all-the-nodes-from-a-doubly-linked-list-that-are-smaller-than-a-given-value/
+* https://www.geeksforgeeks.org/magic-fibonacci-numbers/
+* https://www.geeksforgeeks.org/sum-fibonacci-numbers/
+* https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-swap-2-numbers/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-lcm-of-2-numbers/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-factorial-of-a-number/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-checking-prime-number/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-reverse-a-string/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-check-odd-or-even/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-prime-numbers-upto-n/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-greatest-of-3-numbers/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-hcf-or-gcd-of-2-numbers/

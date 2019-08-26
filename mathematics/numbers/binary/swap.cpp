@@ -14,6 +14,10 @@ typedef unsigned InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  * @reference   How to swap two numbers without using a temporary variable?
  *              https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
+ * @reference   TCS Coding Practice Question | Swap two Numbers
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-swap-2-numbers/
+ * @reference   Command line arguments in C/C++
+ *              https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/
  *
  * Swap two values without using a temporary variable.
  */

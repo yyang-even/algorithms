@@ -6,6 +6,8 @@
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
  * @reference   Print all prime numbers less than or equal to N
  *              https://www.geeksforgeeks.org/print-all-prime-numbers-less-than-or-equal-to-n/
+ * @reference   TCS Coding Practice Question | Prime Numbers upto N
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-prime-numbers-upto-n/
  * @reference   Sieve of Eratosthenes
  *              https://www.geeksforgeeks.org/sieve-of-eratosthenes/
  * @reference   Sieve of Eratosthenes in 0(n) time complexity
