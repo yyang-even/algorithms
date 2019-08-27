@@ -12,6 +12,8 @@ typedef unsigned InputType;
  * @reference   https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
  * @reference   Number of mismatching bits in the binary representation of two integers
  *              https://www.geeksforgeeks.org/number-of-mismatching-bits-in-the-binary-representation-of-two-integers/
+ * @reference   Count number of bits to be flipped to convert A to B | Set-2
+ *              https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
  *
  * Given two numbers ‘a’ and b’. Write a program to count number of bits needed to be flipped to convert ‘a’ to ‘b’.
  */

@@ -561,3 +561,7 @@
 * https://www.geeksforgeeks.org/tcs-coding-practice-question-prime-numbers-upto-n/
 * https://www.geeksforgeeks.org/tcs-coding-practice-question-greatest-of-3-numbers/
 * https://www.geeksforgeeks.org/tcs-coding-practice-question-hcf-or-gcd-of-2-numbers/
+* https://www.geeksforgeeks.org/how-to-swap-two-bits-in-a-given-integer/
+* https://www.geeksforgeeks.org/compute-the-integer-absolute-value-abs-without-branching/
+* https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
+* https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/

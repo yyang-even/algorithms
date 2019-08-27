@@ -135,6 +135,15 @@ auto CountTrailingZeros_MultiplyAndLookup(const InputType num) {
     return num ? MultiplyDeBruijnBitPosition[((uint32_t)((num & -num) * 0x077CB531U)) >> 27] : 32;
 }
 
+
+/** Count number of bits changed after adding 1 to given N
+ *
+ * @reference   https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/
+ */
+auto CountChangedBitsAfterAdd1(const InputType N) {
+    return CountSetBits_BrianKernighan(N ^ (N + 1));
+}
+
 }//namespace
 
 
@@ -214,3 +223,10 @@ MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_MultiplyAndLook
  */
 MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZeros_MultiplyAndLookup, LOWER, UPPER);
 #endif
+
+
+SIMPLE_BENCHMARK(CountChangedBitsAfterAdd1, 5);
+
+SIMPLE_TEST(CountChangedBitsAfterAdd1, TestSAMPLE1, 2u, 5);
+SIMPLE_TEST(CountChangedBitsAfterAdd1, TestSAMPLE2, 2u, 1);
+SIMPLE_TEST(CountChangedBitsAfterAdd1, TestSAMPLE3, 1u, 0);

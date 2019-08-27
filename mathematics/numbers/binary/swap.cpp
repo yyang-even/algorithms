@@ -30,8 +30,8 @@ void Swap_SubAdd(InputType &a, InputType &b) {
 }
 
 
-INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
-                  const InputType a, const InputType b) {
+auto TestSwap(std::function<void(InputType &, InputType &)> swap,
+              const InputType a, const InputType b) {
     InputType swapped_a = b;
     InputType swapped_b = a;
     swap(swapped_a, swapped_b);
@@ -50,6 +50,12 @@ INT_BOOL TestSwap(std::function<void(InputType &, InputType &)> swap,
  * As an example of swapping ranges of bits suppose we have have number=00101111 (expressed in binary)
  * and we want to swap the bit_length=3 consecutive bits starting at i = 1 (the second bit from the right)
  * with the 3 consecutive bits starting at j = 5; the result would be r=11100011 (binary).
+ *
+ * @reference   How to swap two bits in a given integer?
+ *              https://www.geeksforgeeks.org/how-to-swap-two-bits-in-a-given-integer/
+ *
+ * Given an integer n and two bit positions p1 and p2 inside it, swap bits at the given positions.
+ * The given positions are from least significant bit (lsb). For example, the position for lsb is 0.
  */
 InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
                        const unsigned bit_length) {
@@ -102,3 +108,5 @@ SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
 
 SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011u, 0b00101111, 1, 5, 3);
 SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0u, 0b00101111, 0, 4, 5);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE3, 21u, 28, 0, 3, 1);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE4, 24u, 20, 2, 3, 1);

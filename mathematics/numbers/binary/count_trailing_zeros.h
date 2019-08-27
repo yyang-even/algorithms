@@ -1,5 +1,7 @@
 #pragma once
 
+#include "count_set_bits.h"
+
 
 /** Count the consecutive zero bits (trailing) on the right linearly
  *
@@ -9,15 +11,12 @@
  *
  * Count num's trailing zero bits, so if v is 1101000 (base 2), then the output will be 3
  */
-auto CountTrailingZeros_Linear(unsigned num) {
-    unsigned result = 0;
+unsigned CountTrailingZeros_Linear(unsigned num) {
     if (num) {
         num = (num ^ (num - 1)) >> 1;  // Set num's trailing 0s to 1s and zero rest
-        for (; num; ++result) {
-            num >>= 1;
-        }
+        return CountSetBits_BrianKernighan(num);
+
     } else {
-        result = Bits_Number<decltype(num)>();
+        return Bits_Number<decltype(num)>();
     }
-    return result;
 }
