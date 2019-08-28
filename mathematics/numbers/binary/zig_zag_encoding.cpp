@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Zig Zag Encoding
  *
  * @reference   Protocol Buffers: Encoding
@@ -18,21 +21,24 @@ unsigned ZigZagEncoding(const int num) {
     return (num << 1) ^ (num >> (Bits_Number<decltype(num)>() - 1));
 }
 
+
 int ZigZagDecoding(const unsigned num) {
     return (num >> 1) ^ (-(num & 1));
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(ZigZagEncoding, 0);
 SIMPLE_BENCHMARK(ZigZagEncoding, 1);
 SIMPLE_BENCHMARK(ZigZagEncoding, -1);
 
-SIMPLE_TEST(ZigZagEncoding, TestSample1, 0, 0);
-SIMPLE_TEST(ZigZagEncoding, TestSample2, 1, -1);
-SIMPLE_TEST(ZigZagEncoding, TestSample3, 2, 1);
-SIMPLE_TEST(ZigZagEncoding, TestSample4, 3, -2);
-SIMPLE_TEST(ZigZagEncoding, TestSample5, 4294967294, 2147483647);
-SIMPLE_TEST(ZigZagEncoding, TestSample6, 4294967295, -2147483648);
+SIMPLE_TEST(ZigZagEncoding, TestSample1, 0u, 0);
+SIMPLE_TEST(ZigZagEncoding, TestSample2, 1u, -1);
+SIMPLE_TEST(ZigZagEncoding, TestSample3, 2u, 1);
+SIMPLE_TEST(ZigZagEncoding, TestSample4, 3u, -2);
+SIMPLE_TEST(ZigZagEncoding, TestSample5, 4294967294u, 2147483647);
+SIMPLE_TEST(ZigZagEncoding, TestSample6, 4294967295u, -2147483648);
 
 
 SIMPLE_BENCHMARK(ZigZagDecoding, 0);

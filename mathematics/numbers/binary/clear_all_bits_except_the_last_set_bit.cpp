@@ -4,4 +4,4 @@
 
 SIMPLE_BENCHMARK(ClearAllBitsExceptTheLastSetBit, 1);
 
-SIMPLE_TEST(ClearAllBitsExceptTheLastSetBit, TestSample1, 0b00000100, 0b00101100);
+SIMPLE_TEST(ClearAllBitsExceptTheLastSetBit, TestSample1, 0b00000100u, 0b00101100);

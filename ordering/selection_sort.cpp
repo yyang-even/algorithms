@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises Solutions 2.2-2.
  * @reference   https://mitpress.mit.edu/sites/default/files/titles/content/Intro_to_Algo_Selected_Solutions.pdf
- * @reference   http://www.geeksforgeeks.org/selection-sort/
+ * @reference   https://www.geeksforgeeks.org/selection-sort/
  * @reference   Which sorting algorithm makes minimum number of memory writes?
  *              https://www.geeksforgeeks.org/which-sorting-algorithm-makes-minimum-number-of-writes/
  * @reference   Program to sort an array of strings using Selection Sort
@@ -19,6 +19,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/recursive-selection-sort/
  * @reference   C Program for Selection Sort
  *              https://www.geeksforgeeks.org/c-program-for-selection-sort/
+ * @reference   C++ program for Sorting Dates using Selection Sort
+ *              https://www.geeksforgeeks.org/c-program-for-sorting-dates-using-selection-sort/
  *
  * @complexity: O(n^2)
  */
@@ -81,6 +83,17 @@ auto SelectionSort_MinMax(ArrayType values) {
 
     return values;
 }
+
+
+/** Iterative selection sort for linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-selection-sort-for-linked-list/
+ */
+/*auto SelectionSort_SinglyList(std::forward_list<int> values) {
+    for () {
+
+    }
+}*/
 
 }//namespace
 

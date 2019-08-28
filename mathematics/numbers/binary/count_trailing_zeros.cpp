@@ -136,6 +136,26 @@ auto CountTrailingZeros_MultiplyAndLookup(const InputType num) {
 }
 
 
+/** Count number of trailing zeros in Binary representation of a number using Bitset
+ *
+ * @reference   https://www.geeksforgeeks.org/count-number-of-trailing-zeros-in-binary-representation-of-a-number-using-bitset/
+ */
+auto CountTrailingZeros_Bitset(const InputType num) {
+    std::bitset<Bits_Number<decltype(num)>()> binary_num{num};
+
+    unsigned count = 0;
+    for (std::size_t i = 0; i < binary_num.size(); ++i) {
+        if (binary_num[i] == 0) {
+            ++count;
+        } else {
+            break;
+        }
+    }
+
+    return count;
+}
+
+
 /** Count number of bits changed after adding 1 to given N
  *
  * @reference   https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/
@@ -223,6 +243,19 @@ MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_MultiplyAndLook
  */
 MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZeros_MultiplyAndLookup, LOWER, UPPER);
 #endif
+
+
+SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, 1 << (NUM_BITS - 1));
+
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestLOWER, NUM_BITS, LOWER);
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestUPPER, 0u, UPPER);
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BITS - 1));
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestSAMPLE1, 3u, 0b1101000);
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestSAMPLE2, 4u, 16);
+SIMPLE_TEST(CountTrailingZeros_Bitset, TestSAMPLE3, 6u, 64);
+
+MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_Bitset, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(CountChangedBitsAfterAdd1, 5);

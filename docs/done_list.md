@@ -565,3 +565,9 @@
 * https://www.geeksforgeeks.org/compute-the-integer-absolute-value-abs-without-branching/
 * https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
 * https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/
+* https://www.geeksforgeeks.org/swap-every-two-bits-bytes/
+* https://www.geeksforgeeks.org/count-number-of-trailing-zeros-in-binary-representation-of-a-number-using-bitset/
+* https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/
+* https://www.geeksforgeeks.org/given-a-set-find-xor-of-the-xors-of-all-subsets/
+* https://www.geeksforgeeks.org/find-position-of-the-only-set-bit/
+* https://www.geeksforgeeks.org/position-rightmost-common-bit-two-numbers/
