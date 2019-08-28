@@ -3,8 +3,10 @@
 #include <cassert>
 #include <climits>
 #include <cmath>
+#include <cstring>
 
 #include <algorithm>
+#include <bitset>
 #include <chrono>
 #include <forward_list>
 #include <functional>

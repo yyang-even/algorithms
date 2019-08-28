@@ -10,6 +10,6 @@
 inline unsigned FindFirstBitSet(const unsigned num) {
     assert(num);
 
-    return log2(num & (-num)) + 1;
+    return std::log2(num & (-num)) + 1;
 }
 

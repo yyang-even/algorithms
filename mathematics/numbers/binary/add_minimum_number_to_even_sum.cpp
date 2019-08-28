@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Add minimum number to an array so that the sum becomes even
@@ -24,11 +26,14 @@ auto AddMinimumNumberToEvenSum(const ArrayType &numbers) {
     return isOdd ? 1u : 2u;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1 = {1, 2, 3, 4, 5, 6, 7, 8};
 const ArrayType SAMPLE2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
+
 SIMPLE_BENCHMARK(AddMinimumNumberToEvenSum, SAMPLE1);
 
-SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample1, 2, SAMPLE1);
-SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample2, 1, SAMPLE2);
+SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample1, 2u, SAMPLE1);
+SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample2, 1u, SAMPLE2);

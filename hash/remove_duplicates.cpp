@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include <bitset>
-
 #include "text/remove_characters.h"
 
 
