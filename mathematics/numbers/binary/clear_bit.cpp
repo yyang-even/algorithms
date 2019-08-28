@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+
 namespace {
 
 using InputType = unsigned;
@@ -42,16 +43,16 @@ auto ClearBitsFromMSB(const InputType num, const InputType i) {
 
 SIMPLE_BENCHMARK(ClearBit, 0, 4);
 
-SIMPLE_TEST(ClearBit, TestSample1, 0b101, 0b111, 1);
-SIMPLE_TEST(ClearBit, TestSample2, 0, 0, 0);
-SIMPLE_TEST(ClearBit, TestSample3, 0, 0, 1);
+SIMPLE_TEST(ClearBit, TestSample1, 0b101u, 0b111, 1);
+SIMPLE_TEST(ClearBit, TestSample2, 0u, 0, 0);
+SIMPLE_TEST(ClearBit, TestSample3, 0u, 0, 1);
 
 
 SIMPLE_BENCHMARK(ClearBitsFromLSB, 0, 4);
 
-SIMPLE_TEST(ClearBitsFromLSB, TestSample1, 0b00010000, 0b00011101, 3);
+SIMPLE_TEST(ClearBitsFromLSB, TestSample1, 0b00010000u, 0b00011101, 3);
 
 
 SIMPLE_BENCHMARK(ClearBitsFromMSB, 0, 4);
 
-SIMPLE_TEST(ClearBitsFromMSB, TestSample1, 0b00000111, 0b11010111, 4);
+SIMPLE_TEST(ClearBitsFromMSB, TestSample1, 0b00000111u, 0b11010111, 4);

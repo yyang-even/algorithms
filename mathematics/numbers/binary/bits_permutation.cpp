@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /** Compute the lexicographically next bit permutation
@@ -22,27 +25,30 @@ InputType NextPermutation(const InputType num) {
 #endif
 
 
-InputType NextPermutationDivision(const InputType num) {
+InputType NextPermutation_Division(const InputType num) {
     const InputType t = (num | (num - 1)) + 1;
     return t | ((((t & -t) / (num & -num)) >> 1) - 1);
 }
+
+}//namespace
 
 
 constexpr InputType LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
+
 #ifdef __GNUC__
 SIMPLE_BENCHMARK(NextPermutation, UPPER);
 
-SIMPLE_TEST(NextPermutation, TestLOWER, 2, LOWER);
-//SIMPLE_TEST(NextPermutation, TestUPPER, UPPER, UPPER);  //Failed
-SIMPLE_TEST(NextPermutation, TestSAMPLE1, 0b00011001, 0b00010110);
-SIMPLE_TEST(NextPermutation, TestSAMPLE2, 0b00011100, 0b00011010);
+SIMPLE_TEST(NextPermutation, TestLOWER, 2u, LOWER);
+SIMPLE_TEST(NextPermutation, TestSAMPLE1, 0b00011001u, 0b00010110);
+SIMPLE_TEST(NextPermutation, TestSAMPLE2, 0b00011100u, 0b00011010);
 #endif
 
-SIMPLE_BENCHMARK(NextPermutationDivision, UPPER);
 
-SIMPLE_TEST(NextPermutationDivision, TestLOWER, 2, LOWER);
-SIMPLE_TEST(NextPermutationDivision, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(NextPermutationDivision, TestSAMPLE1, 0b00011001, 0b00010110);
-SIMPLE_TEST(NextPermutationDivision, TestSAMPLE2, 0b00011100, 0b00011010);
+SIMPLE_BENCHMARK(NextPermutation_Division, UPPER);
+
+SIMPLE_TEST(NextPermutation_Division, TestLOWER, 2u, LOWER);
+SIMPLE_TEST(NextPermutation_Division, TestUPPER, UPPER, UPPER);
+SIMPLE_TEST(NextPermutation_Division, TestSAMPLE1, 0b00011001u, 0b00010110);
+SIMPLE_TEST(NextPermutation_Division, TestSAMPLE2, 0b00011100u, 0b00011010);
