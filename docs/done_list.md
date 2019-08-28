@@ -571,3 +571,9 @@
 * https://www.geeksforgeeks.org/given-a-set-find-xor-of-the-xors-of-all-subsets/
 * https://www.geeksforgeeks.org/find-position-of-the-only-set-bit/
 * https://www.geeksforgeeks.org/position-rightmost-common-bit-two-numbers/
+* https://www.geeksforgeeks.org/position-rightmost-different-bit/
+* https://www.geeksforgeeks.org/set-the-rightmost-off-bit/
+* https://www.geeksforgeeks.org/set-rightmost-unset-bit/
+* https://www.geeksforgeeks.org/set-rightmost-unset-bit-2/
+* https://www.geeksforgeeks.org/position-of-rightmost-set-bit/
+* https://www.geeksforgeeks.org/check-number-bits-alternate-pattern-set-2-o1-approach/

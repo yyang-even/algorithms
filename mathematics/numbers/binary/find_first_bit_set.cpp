@@ -3,7 +3,19 @@
 #include "find_first_bit_set.h"
 
 
+namespace {
+
 using InputType = unsigned;
+
+/** Position of rightmost different bit
+ *
+ * @reference   https://www.geeksforgeeks.org/position-rightmost-different-bit/
+ */
+auto PositionOfRightmostDifferentBit(const InputType lhs, const InputType rhs) {
+    return ffs((lhs ^ rhs));
+}
+
+}//namespace
 
 
 constexpr auto LOWER = 1u;
@@ -20,3 +32,9 @@ SIMPLE_TEST(FindFirstBitSet, TestSample4, 3u, 12);
 SIMPLE_TEST(FindFirstBitSet, TestUPPER, 1u, UPPER);
 
 MUTUAL_RANDOM_TEST(FindFirstBitSet, ffs, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(PositionOfRightmostDifferentBit, 11, 9);
+
+SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample1, 2, 11, 9);
+SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample2, 5, 52, 4);
