@@ -581,3 +581,7 @@
 * https://www.geeksforgeeks.org/heap-overflow-stack-overflow/
 * https://www.geeksforgeeks.org/stack-unwinding-in-c/
 * https://www.geeksforgeeks.org/c-program-find-direction-growth-stack/
+* https://www.geeksforgeeks.org/add-1-to-a-given-number/
+* https://www.geeksforgeeks.org/how-to-turn-off-a-particular-bit-in-a-number/
+* https://www.geeksforgeeks.org/turn-particular-bit-number-2/
+* https://www.geeksforgeeks.org/turn-off-the-rightmost-set-bit/

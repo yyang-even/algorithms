@@ -72,6 +72,23 @@ auto Sum_Loop(int a, int b) {
     return a;
 }
 
+
+/** Add 1 to a given number
+ *
+ * @reference   https://www.geeksforgeeks.org/add-1-to-a-given-number/
+ *
+ * Write a program to add one to a given number. The use of operators like ‘+’, ‘-‘, ‘*’, ‘/’, ‘++’, ‘–‘ …etc are not allowed.
+ * ~x = -(x+1)
+ */
+auto Add1_HalfAdder(const int x) {
+    return Sum_HalfAdder_Iterative(x, 1);
+}
+
+
+auto Add1_2sComplement(const int x) {
+    return -(~x);
+}
+
 }//namespace
 
 
@@ -108,3 +125,15 @@ SIMPLE_BENCHMARK(Sum_Loop, 3, 4);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE3, 47, 15, 32);
+
+
+SIMPLE_BENCHMARK(Add1_HalfAdder, 4);
+
+SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE1, 7, 6);
+SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE2, 14, 13);
+
+
+SIMPLE_BENCHMARK(Add1_2sComplement, 4);
+
+SIMPLE_TEST(Add1_2sComplement, TestSAMPLE1, 7, 6);
+SIMPLE_TEST(Add1_2sComplement, TestSAMPLE2, 14, 13);
