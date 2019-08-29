@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "clear_bit.h"
 #include "find_first_bit_set.h"
 
 
@@ -13,6 +14,15 @@ using InputType = unsigned;
  */
 auto PositionOfRightmostDifferentBit(const InputType lhs, const InputType rhs) {
     return ffs((lhs ^ rhs));
+}
+
+
+/** Number formed by the rightmost set bit in N
+ *
+ * @reference   https://www.geeksforgeeks.org/number-formed-by-the-rightmost-set-bit-in-n/
+ */
+auto NumberFormedByRightmostBit(const InputType N) {
+    return N ^ ClearRightmostBit(N);
 }
 
 }//namespace
@@ -38,3 +48,10 @@ SIMPLE_BENCHMARK(PositionOfRightmostDifferentBit, 11, 9);
 
 SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample1, 2, 11, 9);
 SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample2, 5, 52, 4);
+
+
+SIMPLE_BENCHMARK(NumberFormedByRightmostBit, 4);
+
+SIMPLE_TEST(NumberFormedByRightmostBit, TestSample1, 1u, 7);
+SIMPLE_TEST(NumberFormedByRightmostBit, TestSample2, 2u, 10);
+SIMPLE_TEST(NumberFormedByRightmostBit, TestSample3, 16u, 16);
