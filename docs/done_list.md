@@ -585,3 +585,4 @@
 * https://www.geeksforgeeks.org/how-to-turn-off-a-particular-bit-in-a-number/
 * https://www.geeksforgeeks.org/turn-particular-bit-number-2/
 * https://www.geeksforgeeks.org/turn-off-the-rightmost-set-bit/
+* https://www.geeksforgeeks.org/number-formed-by-the-rightmost-set-bit-in-n/
