@@ -38,6 +38,15 @@ auto ClearBitsFromMSB(const InputType num, const InputType i) {
     return num & mask;
 }
 
+
+/** Turn off the rightmost set bit
+ *
+ * @reference   https://www.geeksforgeeks.org/turn-off-the-rightmost-set-bit/
+ */
+auto ClearRightmostBit(const InputType num) {
+    return num & (num - 1);
+}
+
 }//namespace
 
 
@@ -56,3 +65,9 @@ SIMPLE_TEST(ClearBitsFromLSB, TestSample1, 0b00010000u, 0b00011101, 3);
 SIMPLE_BENCHMARK(ClearBitsFromMSB, 0, 4);
 
 SIMPLE_TEST(ClearBitsFromMSB, TestSample1, 0b00000111u, 0b11010111, 4);
+
+
+SIMPLE_BENCHMARK(ClearRightmostBit, 7);
+
+SIMPLE_TEST(ClearRightmostBit, TestSample1, 8u, 12);
+SIMPLE_TEST(ClearRightmostBit, TestSample2, 6u, 7);

@@ -13,6 +13,8 @@ typedef unsigned InputType;
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
  * @reference   Set the K-th bit of a given number
  *              https://www.geeksforgeeks.org/set-k-th-bit-given-number/
+ * @reference   How to turn on a particular bit in a number?
+ *              https://www.geeksforgeeks.org/turn-particular-bit-number-2/
  */
 auto SetBit(const InputType num, const InputType position) {
     return num | (1 << position);
