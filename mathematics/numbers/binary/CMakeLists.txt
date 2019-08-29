@@ -67,6 +67,8 @@ CompileTestExe(find_first_bit_set)
 CompileBenchmarkExe(find_most_significant_bit)
 CompileTestExe(find_most_significant_bit)
 
+CompileTerminalApp(find_stack_growth_direction)
+
 CompileBenchmarkExe(find_the_missing_number)
 CompileTestExe(find_the_missing_number)
 

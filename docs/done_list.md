@@ -577,3 +577,7 @@
 * https://www.geeksforgeeks.org/set-rightmost-unset-bit-2/
 * https://www.geeksforgeeks.org/position-of-rightmost-set-bit/
 * https://www.geeksforgeeks.org/check-number-bits-alternate-pattern-set-2-o1-approach/
+* https://www.geeksforgeeks.org/stack-vs-heap-memory-allocation/
+* https://www.geeksforgeeks.org/heap-overflow-stack-overflow/
+* https://www.geeksforgeeks.org/stack-unwinding-in-c/
+* https://www.geeksforgeeks.org/c-program-find-direction-growth-stack/
