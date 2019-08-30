@@ -3,6 +3,16 @@
 #include "is_power_of_2.h"
 
 
+namespace {
+
+/** Check whether the two numbers differ at one bit position only
+ *
+ * @reference   https://www.geeksforgeeks.org/check-whether-two-numbers-differ-one-bit-position/
+ */
+
+}//namespace
+
+
 SIMPLE_BENCHMARK(IsPowerOf2, 1);
 SIMPLE_BENCHMARK(IsPowerOf2, 0);
 SIMPLE_BENCHMARK(IsPowerOf2, std::numeric_limits<int>::min());
