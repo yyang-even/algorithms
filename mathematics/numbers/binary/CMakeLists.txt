@@ -153,6 +153,9 @@ CompileTestExe(set_bit)
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
+CompileBenchmarkExe(sum_of_xor_of_all_subsets)
+CompileTestExe(sum_of_xor_of_all_subsets)
+
 CompileBenchmarkExe(swap)
 CompileTestExe(swap)
 
