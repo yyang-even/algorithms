@@ -588,3 +588,4 @@
 * https://www.geeksforgeeks.org/number-formed-by-the-rightmost-set-bit-in-n/
 * https://www.geeksforgeeks.org/check-whether-two-numbers-differ-one-bit-position/
 * https://www.geeksforgeeks.org/modify-bit-given-position/
+* https://www.geeksforgeeks.org/sum-xor-possible-subsets/
