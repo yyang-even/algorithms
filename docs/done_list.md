@@ -592,3 +592,4 @@
 * https://www.geeksforgeeks.org/calculate-xor-1-n/
 * https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
 * https://www.geeksforgeeks.org/toggle-last-m-bits/
+* https://www.geeksforgeeks.org/unset-last-m-bits/

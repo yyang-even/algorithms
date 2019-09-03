@@ -5,8 +5,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** How to unset/clear a bit at n’th position in the number ‘num’
  *
  * @reference   Bitwise Hacks for Competitive Programming
@@ -14,7 +12,7 @@ using InputType = unsigned;
  *              How to turn off a particular bit in a number?
  *              https://www.geeksforgeeks.org/how-to-turn-off-a-particular-bit-in-a-number/
  */
-auto ClearBit(const InputType num, const InputType position) {
+auto ClearBit(const unsigned num, const unsigned position) {
     return num & (~(1 << position));
 }
 
@@ -23,8 +21,10 @@ auto ClearBit(const InputType num, const InputType position) {
  *
  * @reference   Bit Tricks for Competitive Programming
  *              https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
+ * @reference   Unset the last m bits
+ *              https://www.geeksforgeeks.org/unset-last-m-bits/
  */
-auto ClearBitsFromLSB(const InputType num, const InputType i) {
+auto ClearBitsFromLSB(const unsigned num, const unsigned i) {
     const auto mask = ~((1 << (i + 1)) - 1);
     return num & mask;
 }
@@ -35,7 +35,7 @@ auto ClearBitsFromLSB(const InputType num, const InputType i) {
  * @reference   Bit Tricks for Competitive Programming
  *              https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
  */
-auto ClearBitsFromMSB(const InputType num, const InputType i) {
+auto ClearBitsFromMSB(const unsigned num, const unsigned i) {
     const auto mask = (1 << i) - 1;
     return num & mask;
 }
@@ -53,6 +53,8 @@ SIMPLE_TEST(ClearBit, TestSample3, 0u, 0, 1);
 SIMPLE_BENCHMARK(ClearBitsFromLSB, 0, 4);
 
 SIMPLE_TEST(ClearBitsFromLSB, TestSample1, 0b00010000u, 0b00011101, 3);
+SIMPLE_TEST(ClearBitsFromLSB, TestSample2, 8u, 10, 1);
+SIMPLE_TEST(ClearBitsFromLSB, TestSample3, 144u, 150, 3);
 
 
 SIMPLE_BENCHMARK(ClearBitsFromMSB, 0, 4);
