@@ -27,6 +27,16 @@ auto ToggleAllBitsExceptKth(const InputType num, const InputType position) {
     return ~(num ^ (1 << position));
 }
 
+
+/** Toggle the last m bits
+ *
+ * @reference   https://www.geeksforgeeks.org/toggle-last-m-bits/
+ */
+auto ToggleLastBits(const unsigned num, const unsigned m) {
+    const auto mask = (1 << m) - 1;
+    return num ^ mask;
+}
+
 }//namespace
 
 
@@ -40,3 +50,9 @@ SIMPLE_TEST(ToggleBit, TestSample3, 0b10u, 0, 1);
 SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, 0, 4);
 
 SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u, std::numeric_limits<InputType>::max(), 0);
+
+
+SIMPLE_BENCHMARK(ToggleLastBits, 21, 2);
+
+SIMPLE_TEST(ToggleLastBits, TestSample1, 22u, 21, 2);
+SIMPLE_TEST(ToggleLastBits, TestSample2, 100u, 107, 4);

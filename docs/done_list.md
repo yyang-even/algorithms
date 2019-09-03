@@ -590,3 +590,5 @@
 * https://www.geeksforgeeks.org/modify-bit-given-position/
 * https://www.geeksforgeeks.org/sum-xor-possible-subsets/
 * https://www.geeksforgeeks.org/calculate-xor-1-n/
+* https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
+* https://www.geeksforgeeks.org/toggle-last-m-bits/
