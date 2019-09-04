@@ -597,3 +597,5 @@
 * https://www.geeksforgeeks.org/swap-bits-in-a-given-number/
 * https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order/
 * https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order-iterative-approaches/
+* https://www.geeksforgeeks.org/reverse-the-sentence-using-stack/
+* https://www.geeksforgeeks.org/split-a-sentence-into-words-in-cpp/

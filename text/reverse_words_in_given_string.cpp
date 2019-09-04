@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Reverse words in a given string
  *
  * @reference   https://www.geeksforgeeks.org/reverse-words-in-a-given-string/
@@ -9,7 +12,7 @@
  */
 auto ReverseWordsInGivenString(std::string input) {
     auto word_begin = input.begin();
-    bool in_word = false;
+    auto in_word = false;
 
     for (auto iter = input.begin(); iter != input.end();) {
         if (not in_word and * iter != ' ') {
@@ -29,14 +32,48 @@ auto ReverseWordsInGivenString(std::string input) {
 }
 
 
-SIMPLE_BENCHMARK(ReverseWordsInGivenString, std::string("geeks quiz practice code"));
+/**
+ * @reference   Reverse the Sentence using Stack
+ *              https://www.geeksforgeeks.org/reverse-the-sentence-using-stack/
+ */
+auto ReverseWordsInGivenString_Stack(std::string input) {
+    std::stack<const char *> words_stack;
+    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), " "); token != nullptr;
+         token = std::strtok(nullptr, " ")) {
+        words_stack.push(token);
+    }
 
-SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE1, std::string("code practice quiz geeks"),
-            std::string("geeks quiz practice code"));
+    std::string output;
+    for (; not words_stack.empty(); words_stack.pop()) {
+        if (not output.empty()) {
+            output.append(1, ' ');
+        }
+        output.append(words_stack.top());
+    }
+
+    return output;
+}
+
+}//namespace
+
+
+SIMPLE_BENCHMARK(ReverseWordsInGivenString, "geeks quiz practice code");
+
+SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE1, "code practice quiz geeks",
+            "geeks quiz practice code");
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE2,
-            std::string("practice of lot a needs coding at good getting"),
-            std::string("getting good at coding needs a lot of practice"));
-SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE3, std::string("much very program this like i"),
-            std::string("i like this program very much"));
-SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE4, std::string("  much very  "),
-            std::string("  very much  "));
+            "practice of lot a needs coding at good getting", "getting good at coding needs a lot of practice");
+SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE3, "much very program this like i",
+            "i like this program very much");
+SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE4, "  much very  ", "  very much  ");
+
+
+SIMPLE_BENCHMARK(ReverseWordsInGivenString_Stack, "geeks quiz practice code");
+
+SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE1, "code practice quiz geeks",
+            "geeks quiz practice code");
+SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE2,
+            "practice of lot a needs coding at good getting", "getting good at coding needs a lot of practice");
+SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE3, "much very program this like i",
+            "i like this program very much");
+SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE4, "much very", "  very much  ");
