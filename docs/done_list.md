@@ -595,3 +595,5 @@
 * https://www.geeksforgeeks.org/unset-last-m-bits/
 * https://www.geeksforgeeks.org/print-numbers-first-last-bits-set-bits/
 * https://www.geeksforgeeks.org/swap-bits-in-a-given-number/
+* https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order/
+* https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order-iterative-approaches/

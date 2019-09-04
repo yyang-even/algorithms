@@ -604,6 +604,13 @@ public:
      *              https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/
      */
 
+    /**
+     * @reference   Print the last k nodes of the linked list in reverse order | Recursive approach
+     *              https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order/
+     * @reference   Print the last k nodes of the linked list in reverse order | Iterative Approaches
+     *              https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order-iterative-approaches/
+     */
+
 
     /** Find the middle of a given linked list in C and Java
      *
