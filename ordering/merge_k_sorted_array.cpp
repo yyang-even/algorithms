@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include <queue>
 
+namespace {
 
 using ArrayType = std::vector<int>;
 
@@ -56,6 +56,8 @@ auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
     return final_sorted_array;
 }
 
+}//namespace
+
 
 const std::vector<ArrayType> SAMPLE_ARRAYS = {{1, 3, 5, 7, 9},
     {2, 4, 6, 8, 10},
@@ -63,6 +65,7 @@ const std::vector<ArrayType> SAMPLE_ARRAYS = {{1, 3, 5, 7, 9},
     {14, 15, 16, 20}
 };
 const ArrayType EXPECTED_ARRAY = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 19, 20};
+
 
 SIMPLE_BENCHMARK(MergeKSortedArrays, SAMPLE_ARRAYS);
 
@@ -75,6 +78,7 @@ const std::vector<ArrayType> SAMPLE_DIFF_SIZE_ARRAYS = {{1, 3, 5, 7, 9},
     {10, 12, 13, 14, 15, 16, 20}
 };
 const ArrayType EXPECTED_DIFF_SIZE_ARRAY = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20};
+
 
 SIMPLE_BENCHMARK(MergeKSortedArrays, SAMPLE_DIFF_SIZE_ARRAYS);
 

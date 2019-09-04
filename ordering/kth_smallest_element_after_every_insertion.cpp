@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include <queue>
 
+namespace {
 
 using ArrayType = std::vector<int>;
 
@@ -31,9 +31,12 @@ auto KthSmallestElementAfterEveryInsertion(const ArrayType stream, const ArrayTy
     return kth_smallest_array;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE_ARRAY = {10, 20, 11, 70, 50, 40, 100, 5};
 const ArrayType EXPECTED_ARRAY = {0, 0, 10, 11, 20, 40, 50,  50};
+
 
 SIMPLE_BENCHMARK(KthSmallestElementAfterEveryInsertion, SAMPLE_ARRAY, 3);
 

@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include <queue>
 
 /** Implementing Stack using Arrays
  *

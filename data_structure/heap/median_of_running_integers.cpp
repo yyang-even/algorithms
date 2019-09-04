@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include <queue>
 
+namespace {
 
 using ArrayType = std::vector<int>;
 
@@ -67,9 +67,12 @@ auto MedianOfRunningintegers(const ArrayType &ints) {
     return outputs;
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE_ARRAY = {5, 15, 10, 20, 3};
 const std::vector<double> EXPECTED_ARRAY = {5, 10, 10, 12.5, 10};
+
 
 SIMPLE_BENCHMARK(MedianOfRunningintegers, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
 

@@ -1,6 +1,5 @@
 #include "common_header.h"
 
-#include <queue>
 
 namespace {
 
@@ -108,28 +107,23 @@ auto FindFirstNonrepeatingCharFromStream_Queue(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingChar, std::string("GeeksforGeeks"));
+SIMPLE_BENCHMARK(FindFirstNonrepeatingChar, "GeeksforGeeks");
 
-SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE1, 'f', std::string("GeeksforGeeks"));
-SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE2, 'G', std::string("GeeksQuiz"));
-SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE3, 'd', std::string("aabbccd"));
-
-
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, std::string("GeeksforGeeks"));
-
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, std::string("GGGGGGGGkkksf"),
-            std::string("GeeksforGeeks"));
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE2, std::string("GGGGGGGGG"),
-            std::string("GeeksQuiz"));
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE3, std::string("abcd"),
-            std::string("aabbccd"));
+SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE1, 'f', "GeeksforGeeks");
+SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE2, 'G', "GeeksQuiz");
+SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE3, 'd', "aabbccd");
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, std::string("GeeksforGeeks"));
+SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, "GeeksforGeeks");
 
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, std::string("GGGGGGGGkkksf"),
-            std::string("GeeksforGeeks"));
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE2, std::string("GGGGGGGGG"),
-            std::string("GeeksQuiz"));
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE3, std::string("abcd"),
-            std::string("aabbccd"));
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, "GGGGGGGGkkksf", "GeeksforGeeks");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE2, "GGGGGGGGG", "GeeksQuiz");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE3, "abcd", "aabbccd");
+
+
+SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, "GeeksforGeeks");
+
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, "GGGGGGGGkkksf",
+            "GeeksforGeeks");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE2, "GGGGGGGGG", "GeeksQuiz");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE3, "abcd", "aabbccd");

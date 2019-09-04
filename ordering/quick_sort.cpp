@@ -1,7 +1,6 @@
 #include "common_header.h"
 
 #include <future>
-#include <stack>
 
 #include "partition.h"
 
@@ -389,6 +388,7 @@ const ArrayType VALUES4 = {2, 3, 1};
 const ArrayType EXPECTED4 = {1, 2, 3};
 const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
+
 
 SIMPLE_BENCHMARK(QuickSort_Lomuto, VALUES5);
 

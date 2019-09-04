@@ -1,8 +1,8 @@
 #include "common_header.h"
 
-#include <queue>
 
 namespace {
+
 using ArrayType = std::vector<int>;
 
 #include "kth_smallest_or_largest_element.h"

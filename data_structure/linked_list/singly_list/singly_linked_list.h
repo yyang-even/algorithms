@@ -2,8 +2,6 @@
 
 #include "common_header.h"
 
-#include <stack>
-
 
 /** Singly Linked List
  *

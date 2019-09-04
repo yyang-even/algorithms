@@ -1,8 +1,5 @@
 #include "common_header.h"
 
-#include <stack>
-#include <queue>
-
 #include "data_structure/linked_list/singly_list/singly_linked_list.h"
 
 /** Implementing Queue using Arrays

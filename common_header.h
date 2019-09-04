@@ -14,9 +14,11 @@
 #include <limits>
 #include <list>
 #include <map>
+#include <queue>
 #include <random>
 #include <set>
 #include <sstream>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
