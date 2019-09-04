@@ -593,3 +593,5 @@
 * https://www.geeksforgeeks.org/bit-tricks-competitive-programming/
 * https://www.geeksforgeeks.org/toggle-last-m-bits/
 * https://www.geeksforgeeks.org/unset-last-m-bits/
+* https://www.geeksforgeeks.org/print-numbers-first-last-bits-set-bits/
+* https://www.geeksforgeeks.org/swap-bits-in-a-given-number/

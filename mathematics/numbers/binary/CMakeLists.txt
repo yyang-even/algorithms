@@ -126,6 +126,9 @@ CompileTestExe(modulus)
 CompileBenchmarkExe(morton_number)
 CompileTestExe(morton_number)
 
+CompileBenchmarkExe(numbers_having_first_and_last_bits_set)
+CompileTestExe(numbers_having_first_and_last_bits_set)
+
 CompileBenchmarkExe(parity)
 CompileTestExe(parity)
 
