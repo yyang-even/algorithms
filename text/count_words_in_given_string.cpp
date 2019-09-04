@@ -14,7 +14,7 @@ namespace {
  */
 auto CountWordsInGivenString(const std::string &input) {
     std::string::size_type count = 0;
-    bool in_word = false;
+    auto in_word = false;
 
     for (const auto c : input) {
         if (c == ' ' or c == '\n' or c == '\t') {
@@ -41,14 +41,12 @@ auto CountWordsInGivenString_StringStream(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountWordsInGivenString, std::string("One two         three\n    four\tfive  "));
+SIMPLE_BENCHMARK(CountWordsInGivenString, "One two         three\n    four\tfive  ");
 
-SIMPLE_TEST(CountWordsInGivenString, TestSAMPLE1, 5u,
-            std::string("One two         three\n    four\tfive  "));
+SIMPLE_TEST(CountWordsInGivenString, TestSAMPLE1, 5u, "One two         three\n    four\tfive  ");
 
 
-SIMPLE_BENCHMARK(CountWordsInGivenString_StringStream,
-                 std::string("One two         three\n    four\tfive  "));
+SIMPLE_BENCHMARK(CountWordsInGivenString_StringStream, "One two         three\n    four\tfive  ");
 
 SIMPLE_TEST(CountWordsInGivenString_StringStream, TestSAMPLE1, 5u,
-            std::string("One two         three\n    four\tfive  "));
+            "One two         three\n    four\tfive  ");

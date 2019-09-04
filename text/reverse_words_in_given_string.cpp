@@ -37,9 +37,11 @@ auto ReverseWordsInGivenString(std::string input) {
  *              https://www.geeksforgeeks.org/reverse-the-sentence-using-stack/
  */
 auto ReverseWordsInGivenString_Stack(std::string input) {
+    static const auto *delimiters = " ";
+
     std::stack<const char *> words_stack;
-    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), " "); token != nullptr;
-         token = std::strtok(nullptr, " ")) {
+    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), delimiters); token != nullptr;
+         token = std::strtok(nullptr, delimiters)) {
         words_stack.push(token);
     }
 

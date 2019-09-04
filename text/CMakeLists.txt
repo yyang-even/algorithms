@@ -46,5 +46,8 @@ CompileTestExe(reverse_words_in_given_string)
 CompileBenchmarkExe(run_length_encoding)
 CompileTestExe(run_length_encoding)
 
+CompileBenchmarkExe(split_into_words)
+CompileTestExe(split_into_words)
+
 CompileBenchmarkExe(tail)
 CompileTestExe(tail)
