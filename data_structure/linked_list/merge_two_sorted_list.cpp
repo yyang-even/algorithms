@@ -64,17 +64,11 @@ auto SortedMergeList_Doubly_STL(std::list<int> L, std::list<int> R) {
  */
 
 
-auto testSortedMergeList_Single_STL(const std::vector<int> &L, const std::vector<int> &R) {
-    const auto sorted_list = SortedMergeList_Single_STL({L.cbegin(), L.cend()},
-    {R.cbegin(), R.cend()});
-    return std::vector<int> {sorted_list.cbegin(), sorted_list.cend()};
-}
-
-
-auto testSortedMergeList_Doubly_STL(const std::vector<int> &L, const std::vector<int> &R) {
-    const auto sorted_list = SortedMergeList_Doubly_STL({L.cbegin(), L.cend()},
-    {R.cbegin(), R.cend()});
-    return std::vector<int> {sorted_list.cbegin(), sorted_list.cend()};
+template <typename Container, typename Function>
+auto TestSortedMergeListHelper(const Function func, const Container &L, const Container &R) {
+    const auto sorted_list = func({L.cbegin(), L.cend()}, {R.cbegin(), R.cend()});
+    return Container{std::make_move_iterator(sorted_list.cbegin()),
+                     std::make_move_iterator(sorted_list.cend())};
 }
 
 }//namespace
@@ -91,17 +85,25 @@ const std::vector<int> SAMPLE2R = {4, 7, 8};
 const std::vector<int> EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
 
-SIMPLE_BENCHMARK(testSortedMergeList_Single_STL, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(TestSortedMergeListHelper, SortedMergeList_Single_STL, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(testSortedMergeList_Single_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(testSortedMergeList_Single_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
-SIMPLE_TEST(testSortedMergeList_Single_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
-SIMPLE_TEST(testSortedMergeList_Single_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE1, EXPECTED1, SortedMergeList_Single_STL,
+            SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE2, EXPECTED2, SortedMergeList_Single_STL,
+            SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE3, SAMPLE1L, SortedMergeList_Single_STL,
+            SAMPLE1L, EMPTY);
+SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE4, SAMPLE1R, SortedMergeList_Single_STL,
+            EMPTY, SAMPLE1R);
 
 
-SIMPLE_BENCHMARK(testSortedMergeList_Doubly_STL, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(TestSortedMergeListHelper, SortedMergeList_Doubly_STL, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(testSortedMergeList_Doubly_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(testSortedMergeList_Doubly_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
-SIMPLE_TEST(testSortedMergeList_Doubly_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
-SIMPLE_TEST(testSortedMergeList_Doubly_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE1, EXPECTED1, SortedMergeList_Doubly_STL,
+            SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE2, EXPECTED2, SortedMergeList_Doubly_STL,
+            SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE3, SAMPLE1L, SortedMergeList_Doubly_STL,
+            SAMPLE1L, EMPTY);
+SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE4, SAMPLE1R, SortedMergeList_Doubly_STL,
+            EMPTY, SAMPLE1R);

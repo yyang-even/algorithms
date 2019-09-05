@@ -27,4 +27,5 @@ auto testBinaryHeap(const MinHeap<int>::ArrayType &array) {
 const MinHeap<int>::ArrayType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 const MinHeap<int>::ArrayType EXPECTED_ARRAY = {0, 1, 2, 3, 4, 5, 6, 7, 9};
 
+
 SIMPLE_TEST(testBinaryHeap, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);

@@ -135,10 +135,6 @@ auto MergeSort_SinglyList(std::forward_list<int> values) {
     MergeSort_SinglyListHelper(values);
     return values;
 }
-auto testMergeSort_SinglyList(const ArrayType &values) {
-    const auto sorted = MergeSort_SinglyList({values.cbegin(), values.cend()});
-    return ArrayType{sorted.cbegin(), sorted.cend()};
-}
 
 
 /** Iterative Merge Sort for Linked List
@@ -169,10 +165,7 @@ auto MergeSort_SinglyList_Iterative(std::forward_list<int> values) {
 
     return values;
 }
-auto testMergeSort_SinglyList_Iterative(const ArrayType &values) {
-    const auto sorted = MergeSort_SinglyList_Iterative({values.cbegin(), values.cend()});
-    return ArrayType{sorted.cbegin(), sorted.cend()};
-}
+
 
 /** Merge Sort for Doubly Linked List
  *
@@ -191,10 +184,6 @@ void MergeSort_DoublyListHelper(std::list<int> &l) {
 auto MergeSort_DoublyList(std::list<int> values) {
     MergeSort_DoublyListHelper(values);
     return values;
-}
-auto testMergeSort_DoublyList(const ArrayType &values) {
-    const auto sorted = MergeSort_DoublyList({values.cbegin(), values.cend()});
-    return ArrayType{sorted.cbegin(), sorted.cend()};
 }
 
 }//namespace
@@ -235,28 +224,37 @@ SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(testMergeSort_SinglyList, VALUES5);
+SIMPLE_BENCHMARK(ContainerTestHelper, MergeSort_SinglyList, VALUES5);
 
-SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
-
-
-SIMPLE_BENCHMARK(testMergeSort_SinglyList_Iterative, VALUES5);
-
-SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSort_SinglyList_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMS_SAMPLE1, VALUES1, MergeSort_SinglyList, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMS_SAMPLE2, VALUES2, MergeSort_SinglyList, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMS_SAMPLE3, VALUES3, MergeSort_SinglyList, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMS_SAMPLE4, EXPECTED4, MergeSort_SinglyList,
+            VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMS_SAMPLE5, EXPECTED5, MergeSort_SinglyList,
+            VALUES5);
 
 
-SIMPLE_BENCHMARK(testMergeSort_DoublyList, VALUES5);
+SIMPLE_BENCHMARK(ContainerTestHelper, MergeSort_SinglyList_Iterative, VALUES5);
 
-SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testMergeSort_DoublyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMSIterative_SAMPLE1, VALUES1,
+            MergeSort_SinglyList_Iterative, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMSIterative_SAMPLE2, VALUES2,
+            MergeSort_SinglyList_Iterative, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMSIterative_SAMPLE3, VALUES3,
+            MergeSort_SinglyList_Iterative, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMSIterative_SAMPLE4, EXPECTED4,
+            MergeSort_SinglyList_Iterative, VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestSinglyListMSIterative_SAMPLE5, EXPECTED5,
+            MergeSort_SinglyList_Iterative, VALUES5);
+
+
+SIMPLE_BENCHMARK(ContainerTestHelper, MergeSort_DoublyList, VALUES5);
+
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListMS_SAMPLE1, VALUES1, MergeSort_DoublyList, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListMS_SAMPLE2, VALUES2, MergeSort_DoublyList, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListMS_SAMPLE3, VALUES3, MergeSort_DoublyList, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListMS_SAMPLE4, EXPECTED4, MergeSort_DoublyList,
+            VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListMS_SAMPLE5, EXPECTED5, MergeSort_DoublyList,
+            VALUES5);

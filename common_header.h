@@ -64,6 +64,15 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 }
 
 
+template<typename Container, typename Function, typename... Args>
+auto ContainerTestHelper(const Function func, const Container &elements, Args &&... args) {
+    auto other_container =
+        func({elements.cbegin(), elements.cend()}, std::forward<Args> (args)...);
+    return Container{std::make_move_iterator(other_container.cbegin()),
+                     std::make_move_iterator(other_container.cend())};
+}
+
+
 // Macros
 #ifdef NONIUS_RUNNER
 

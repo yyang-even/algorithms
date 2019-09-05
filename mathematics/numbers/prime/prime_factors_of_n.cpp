@@ -68,7 +68,7 @@ long OneDivisorOfN_PollardsRho(const long N) {
     return d;
 }
 
-INT_BOOL testOneDivisorOfN_PollardsRho(const long N) {
+auto testOneDivisorOfN_PollardsRho(const long N) {
     const auto factors = UniquePrimeFactorsOf(N);
     const auto one_of_factors = OneDivisorOfN_PollardsRho(N);
 
@@ -157,7 +157,7 @@ SIMPLE_TEST(PrimeFactorsOfN_Sieve, TestSAMPLE4, EXPECTED4, 12246);
 
 SIMPLE_BENCHMARK(testOneDivisorOfN_PollardsRho, 39);
 
-SIMPLE_TEST(testOneDivisorOfN_PollardsRho, TestSAMPLE1, TRUE, 39);
+SIMPLE_TEST(testOneDivisorOfN_PollardsRho, TestSAMPLE1, true, 39);
 
 
 SIMPLE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, 44);

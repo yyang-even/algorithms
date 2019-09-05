@@ -111,10 +111,6 @@ auto BubbleSort_SinglyList(std::forward_list<int> values) {
 
     return values;
 }
-auto testBubbleSort_SinglyList(const ArrayType &values) {
-    auto sorted = BubbleSort_SinglyList({values.cbegin(), values.cend()});
-    return ArrayType {sorted.cbegin(), sorted.cend()};
-}
 
 
 /** Bubble sort using two Stacks
@@ -190,14 +186,14 @@ SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(testBubbleSort_SinglyList, VALUES6);
+SIMPLE_BENCHMARK(ContainerTestHelper, BubbleSort_SinglyList, VALUES6);
 
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(testBubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE1, VALUES1, BubbleSort_SinglyList, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE2, VALUES2, BubbleSort_SinglyList, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE3, VALUES3, BubbleSort_SinglyList, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE4, EXPECTED4, BubbleSort_SinglyList, VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE5, EXPECTED5, BubbleSort_SinglyList, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestSAMPLE6, EXPECTED6, BubbleSort_SinglyList, VALUES6);
 
 
 SIMPLE_BENCHMARK(BubbleSort_TwoStacks, VALUES6);

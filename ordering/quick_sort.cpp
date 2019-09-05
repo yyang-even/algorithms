@@ -175,24 +175,19 @@ auto GetLastNodeBeforeEnd(const std::forward_list<int> &values) {
     for (auto next = values.cbegin(); next != values.cend(); ++next, ++before_end);
     return before_end;
 }
-void QuickSortSinglyLinkedList(std::forward_list<int> &values,
+void quickSortSinglyLinkedList(std::forward_list<int> &values,
                                const std::forward_list<int>::const_iterator before_begin,
                                std::forward_list<int>::const_iterator last) {
     const auto begin = std::next(before_begin);
     if (before_begin != last and begin != last) {
         const auto before_mid = Partition_SinglyList(values, before_begin, begin, last);
-        QuickSortSinglyLinkedList(values, before_begin, before_mid);
-        QuickSortSinglyLinkedList(values, std::next(before_mid), last);
+        quickSortSinglyLinkedList(values, before_begin, before_mid);
+        quickSortSinglyLinkedList(values, std::next(before_mid), last);
     }
 }
 auto QuickSortSinglyLinkedList(std::forward_list<int> values) {
-    QuickSortSinglyLinkedList(values, values.cbefore_begin(), GetLastNodeBeforeEnd(values));
+    quickSortSinglyLinkedList(values, values.cbefore_begin(), GetLastNodeBeforeEnd(values));
     return values;
-}
-
-auto TestQuickSortSinglyLinkedList(const ArrayType &values) {
-    const auto sorted_values = QuickSortSinglyLinkedList({values.cbegin(), values.cend()});
-    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
 
 
@@ -219,23 +214,18 @@ auto partitionDoublyLinkedList(std::list<int> &values,
 
     return pivot;
 }
-void QuickSortDoublyLinkedList(std::list<int> &values,
+void quickSortDoublyLinkedList(std::list<int> &values,
                                std::list<int>::const_iterator begin,
                                const std::list<int>::const_iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
         auto mid = partitionDoublyLinkedList(values, begin, end);
-        QuickSortDoublyLinkedList(values, begin, mid);
-        QuickSortDoublyLinkedList(values, ++mid, end);
+        quickSortDoublyLinkedList(values, begin, mid);
+        quickSortDoublyLinkedList(values, ++mid, end);
     }
 }
 auto QuickSortDoublyLinkedList(std::list<int> values) {
-    QuickSortDoublyLinkedList(values, values.cbegin(), values.cend());
+    quickSortDoublyLinkedList(values, values.cbegin(), values.cend());
     return values;
-}
-
-auto TestQuickSortDoublyLinkedList(const ArrayType &values) {
-    const auto sorted_values = QuickSortDoublyLinkedList({values.cbegin(), values.cend()});
-    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
 
 
@@ -267,11 +257,6 @@ auto QuickSortDoublyLinkedList_Sequential(std::list<int> values) {
     return result;
 }
 
-auto TestQuickSortDoublyLinkedList_Sequential(const ArrayType &values) {
-    const auto sorted_values = QuickSortDoublyLinkedList_Sequential({values.cbegin(), values.cend()});
-    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
-}
-
 
 auto QuickSortDoublyLinkedList_NaiveAsync(std::list<int> values) {
     if (values.size() < 2) {
@@ -296,11 +281,6 @@ auto QuickSortDoublyLinkedList_NaiveAsync(std::list<int> values) {
     result.splice(result.cbegin(), new_lowers.get());
 
     return result;
-}
-
-auto TestQuickSortDoublyLinkedList_NaiveAsync(const ArrayType &values) {
-    const auto sorted_values = QuickSortDoublyLinkedList_NaiveAsync({values.cbegin(), values.cend()});
-    return ArrayType{sorted_values.cbegin(), sorted_values.cend()};
 }
 
 
@@ -435,40 +415,55 @@ SIMPLE_TEST(QuickSortStable, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(TestQuickSortSinglyLinkedList, VALUES5);
+SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortSinglyLinkedList, VALUES5);
 
-SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(TestQuickSortSinglyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
-
-
-SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList, VALUES5);
-
-SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestListQSSample1, VALUES1, QuickSortSinglyLinkedList, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestListQSSample2, VALUES2, QuickSortSinglyLinkedList, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestListQSSample3, VALUES3, QuickSortSinglyLinkedList, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestListQSSample4, EXPECTED4, QuickSortSinglyLinkedList, VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestListQSSample5, EXPECTED5, QuickSortSinglyLinkedList, VALUES5);
 
 
-SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList_Sequential, VALUES5);
+SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList, VALUES5);
 
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_Sequential, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample1, VALUES1, QuickSortDoublyLinkedList,
+            VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample2, VALUES2, QuickSortDoublyLinkedList,
+            VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample3, VALUES3, QuickSortDoublyLinkedList,
+            VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample4, EXPECTED4, QuickSortDoublyLinkedList,
+            VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample5, EXPECTED5, QuickSortDoublyLinkedList,
+            VALUES5);
 
 
-SIMPLE_BENCHMARK(TestQuickSortDoublyLinkedList_NaiveAsync, VALUES5);
+SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList_Sequential, VALUES5);
 
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(TestQuickSortDoublyLinkedList_NaiveAsync, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample1, VALUES1,
+            QuickSortDoublyLinkedList_Sequential, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample2, VALUES2,
+            QuickSortDoublyLinkedList_Sequential, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample3, VALUES3,
+            QuickSortDoublyLinkedList_Sequential, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample4, EXPECTED4,
+            QuickSortDoublyLinkedList_Sequential, VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample5, EXPECTED5,
+            QuickSortDoublyLinkedList_Sequential, VALUES5);
+
+
+SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
+
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample1, VALUES1,
+            QuickSortDoublyLinkedList_NaiveAsync, VALUES1);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample2, VALUES2,
+            QuickSortDoublyLinkedList_NaiveAsync, VALUES2);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample3, VALUES3,
+            QuickSortDoublyLinkedList_NaiveAsync, VALUES3);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample4, EXPECTED4,
+            QuickSortDoublyLinkedList_NaiveAsync, VALUES4);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample5, EXPECTED5,
+            QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
 
 
 const ArrayType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};

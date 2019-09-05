@@ -5,7 +5,6 @@
 
 namespace {
 
-
 using ArrayType = std::vector<int>;
 
 /** Program for array rotation
@@ -173,11 +172,6 @@ auto LeftRotate_SinglyList(std::forward_list<int> elements,
                            const std::forward_list<int>::size_type k) {
     return SublistLeftRotate_SinglyList(elements, elements.cbefore_begin(), elements.cend(), k);
 }
-auto TestLeftRotate_SinglyList(const ArrayType &elements,
-                               const std::forward_list<int>::size_type k) {
-    const auto rotated_list = LeftRotate_SinglyList({elements.cbegin(), elements.cend()}, k);
-    return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
-}
 
 
 /** Move last element to front of a given Linked List
@@ -197,10 +191,6 @@ auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_t
     auto mid = std::next(elements.cbegin(), k);
     elements.splice(elements.cbegin(), elements, mid, elements.cend());
     return elements;
-}
-auto TestLeftRotate_DoublyList(const ArrayType &elements, const std::list<int>::size_type k) {
-    const auto rotated_list = LeftRotate_DoublyList({elements.cbegin(), elements.cend()}, k);
-    return ArrayType{rotated_list.cbegin(), rotated_list.cend()};
 }
 
 }//namespace
@@ -242,29 +232,34 @@ SIMPLE_TEST(LeftRotate_Reversal, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_Reversal, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-const ArrayType SampleArrayR1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+const ArrayType SampleArray3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 const ArrayType ExpectedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
-const ArrayType SampleArrayR2 = {121, 232, 33, 43, 5};
+const ArrayType SampleArray4 = {121, 232, 33, 43, 5};
 const ArrayType ExpectedArrayR2 = {43, 5, 121, 232, 33};
 
 
-SIMPLE_BENCHMARK(RightRotate_Reversal, SampleArrayR1, 3);
+SIMPLE_BENCHMARK(RightRotate_Reversal, SampleArray3, 3);
 
-SIMPLE_TEST(RightRotate_Reversal, TestSample, ExpectedArrayR1, SampleArrayR1, 3);
-SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArrayR2, 2);
+SIMPLE_TEST(RightRotate_Reversal, TestSample, ExpectedArrayR1, SampleArray3, 3);
+SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArray4, 2);
 
 
 const ArrayType ExpectedArray3 = {2, 3, 4, 5, 6, 7, 1};
 
 
-SIMPLE_BENCHMARK(TestLeftRotate_SinglyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(ContainerTestHelper, LeftRotate_SinglyList, SampleArray2, 3);
 
-SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3);
-SIMPLE_TEST(TestLeftRotate_SinglyList, TestSample3, ExpectedArray3, SampleArray, 1);
+SIMPLE_TEST(ContainerTestHelper, TestListRotateSample1, ExpectedArray, LeftRotate_SinglyList,
+            SampleArray, 2);
+SIMPLE_TEST(ContainerTestHelper, TestListRotateSample2, ExpectedArray2, LeftRotate_SinglyList,
+            SampleArray2, 3);
+SIMPLE_TEST(ContainerTestHelper, TestListRotateSample3, ExpectedArray3, LeftRotate_SinglyList,
+            SampleArray, 1);
 
 
-SIMPLE_BENCHMARK(TestLeftRotate_DoublyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(ContainerTestHelper, LeftRotate_DoublyList, SampleArray2, 3);
 
-SIMPLE_TEST(TestLeftRotate_DoublyList, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(TestLeftRotate_DoublyList, TestSample2, ExpectedArray2, SampleArray2, 3);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample1, ExpectedArray, LeftRotate_DoublyList,
+            SampleArray, 2);
+SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample2, ExpectedArray2, LeftRotate_DoublyList,
+            SampleArray2, 3);
