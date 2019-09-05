@@ -599,3 +599,4 @@
 * https://www.geeksforgeeks.org/print-the-last-k-nodes-of-the-linked-list-in-reverse-order-iterative-approaches/
 * https://www.geeksforgeeks.org/reverse-the-sentence-using-stack/
 * https://www.geeksforgeeks.org/split-a-sentence-into-words-in-cpp/
+* https://www.geeksforgeeks.org/rotate-linked-list-block-wise/

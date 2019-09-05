@@ -27,6 +27,27 @@ auto SublistRightRotate_SinglyList(ListType elements,
     return SublistLeftRotate_SinglyList(elements, cbefore_begin, cend, length - (k % (length)));
 }
 
+
+/** Rotate Linked List block wise
+ *
+ * @reference   https://www.geeksforgeeks.org/rotate-linked-list-block-wise/
+ *
+ * Given a Linked List of length n and block length k rotate in circular manner towards right/left
+ * each block by a number d. If d is positive rotate towards right else rotate towards left.
+ */
+auto BlockwiseRightRotate_SinglyList(std::forward_list<int> elements,
+                                     const std::forward_list<int>::size_type k, const int d) {
+    auto cbefore_begin = elements.cbefore_begin();
+    for (auto iter = std::next(cbefore_begin); iter != elements.cend();) {
+        std::forward_list<int>::size_type i = 0;
+        for (; i < k and iter != elements.cend(); ++i, std::advance(iter, 1));
+        SublistLeftRotate_SinglyList(elements, cbefore_begin, iter, -d);
+        std::advance(cbefore_begin, i);
+    }
+
+    return elements;
+}
+
 }//namespace
 
 
@@ -46,3 +67,14 @@ SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample, ExpectedArray, SampleArra
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample1, ExpectedArray1, SampleArray1, 1, 6, 2);
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3, 6, 2);
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample3, ExpectedArray3, SampleArray3, 3, 6, 3);
+
+
+const ListType SampleArray4 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+const ListType ExpectedArray4 = {2, 3, 4, 1, 6, 7, 8, 5, 10, 11, 12, 9, 14, 15, 13};
+const ListType ExpectedArray5 = {2, 3, 1, 5, 6, 4, 8, 9, 7, 11, 12, 10, 14, 15, 13};
+
+
+SIMPLE_BENCHMARK(BlockwiseRightRotate_SinglyList, SampleArray4, 4, -1);
+
+SIMPLE_TEST(BlockwiseRightRotate_SinglyList, TestSample4, ExpectedArray4, SampleArray4, 4, -1);
+SIMPLE_TEST(BlockwiseRightRotate_SinglyList, TestSample5, ExpectedArray5, SampleArray4, 3, -1);
