@@ -62,8 +62,7 @@ auto testGetBeforeMiddle_TwoPointersSTL(const std::vector<int> &array) {
 
 
 auto testGetMiddle_Recursive(const std::vector<int> &array) {
-    std::forward_list<int> l{array.cbegin(), array.cend()};
-    return GetMiddle_Recursive(l);
+    return GetMiddle_Recursive(ContainerCast(array));
 }
 
 

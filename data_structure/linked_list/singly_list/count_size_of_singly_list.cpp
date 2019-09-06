@@ -32,7 +32,7 @@ auto IsLengthEven(const std::forward_list<int> &l) {
     return iter == l.cend();
 }
 auto testIsLengthEven(const std::vector<int> &array) {
-    return IsLengthEven({array.cbegin(), array.cend()});
+    return IsLengthEven(ContainerCast(array));
 }
 
 }//namespace

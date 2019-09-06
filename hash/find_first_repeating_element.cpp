@@ -110,7 +110,7 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(const std::forward_lis
     return first_duplicate_element;
 }
 auto testFindFirstDuplicateElement_LinkedList_FirstAppearance(const ArrayType &array) {
-    return FindFirstDuplicateElement_LinkedList_FirstAppearance({array.cbegin(), array.cend()});
+    return FindFirstDuplicateElement_LinkedList_FirstAppearance(ContainerCast(array));
 }
 
 }//namespace

@@ -66,7 +66,7 @@ auto SortedMergeList_Doubly_STL(std::list<int> L, std::list<int> R) {
 
 template <typename Container, typename Function>
 auto TestSortedMergeListHelper(const Function func, const Container &L, const Container &R) {
-    const auto sorted_list = func({L.cbegin(), L.cend()}, {R.cbegin(), R.cend()});
+    auto sorted_list = func(ContainerCast(L), ContainerCast(R));
     return Container{std::make_move_iterator(sorted_list.cbegin()),
                      std::make_move_iterator(sorted_list.cend())};
 }

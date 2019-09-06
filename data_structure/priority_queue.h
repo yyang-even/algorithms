@@ -69,7 +69,7 @@ public:
     SinglyLinkedListMinPriorityQueue_STL() = default;
     SinglyLinkedListMinPriorityQueue_STL(std::vector<ListType::value_type> array) {
         std::sort(array.begin(), array.end());
-        sorted_list = {std::make_move_iterator(array.begin()), std::make_move_iterator(array.end())};
+        sorted_list = ContainerCast(array);
     }
 
     void Push(const ListType::value_type v) {
@@ -85,7 +85,7 @@ public:
     }
 
     auto MoveToSortedArray() {
-        std::vector<ListType::value_type> array = {std::make_move_iterator(sorted_list.begin()), std::make_move_iterator(sorted_list.end())};
+        std::vector<ListType::value_type> array = ContainerCast(sorted_list);
         sorted_list.clear();
         return array;
     }
