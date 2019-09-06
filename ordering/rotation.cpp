@@ -27,6 +27,9 @@ using ArrayType = std::vector<int>;
  *
  * @reference   C Program for Program for array rotation
  *              https://www.geeksforgeeks.org/c-program-for-program-for-array-rotation-2/
+ *
+ * @reference   Left rotation of an array using vectors in C++
+ *              https://www.geeksforgeeks.org/left-rotation-of-an-array-using-vectors-in-c/
  */
 auto LeftRotate_Simple(const ArrayType &arr, const ArrayType::size_type d) {
     assert(d < arr.size());
@@ -125,6 +128,10 @@ auto LeftRotate_BlockSwap_Iterative(ArrayType arr, const ArrayType::size_type d)
 /**
  * @reference   Reversal algorithm for array rotation
  *              https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+ * @reference   Left Rotation and Right Rotation of a String
+ *              https://www.geeksforgeeks.org/left-rotation-right-rotation-string-2/
+ * @reference   C Program for Reversal algorithm for array rotation
+ *              https://www.geeksforgeeks.org/c-program-for-reversal-algorithm-for-array-rotation/
  */
 auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d) {
     assert(d < elements.size());
@@ -191,6 +198,47 @@ auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_t
     auto mid = std::next(elements.cbegin(), k);
     elements.splice(elements.cbegin(), elements, mid, elements.cend());
     return elements;
+}
+
+
+/** Quickly find multiple left rotations of an array | Set 1
+ *
+ * @reference   https://www.geeksforgeeks.org/quickly-find-multiple-left-rotations-of-an-array/
+ * @reference   Print left rotation of array in O(n) time and O(1) space
+ *              https://www.geeksforgeeks.org/print-left-rotation-array/
+ *
+ * Given an array of size n and multiple values around which we need to left rotate the array.
+ * How to quickly find multiple left rotations?
+ */
+auto MultipleLeftRotate_2n(const ArrayType &elements, const ArrayType &queries) {
+    auto elements_after_elements = elements;
+    for (const auto e : elements) {
+        elements_after_elements.push_back(e);
+    }
+
+    std::vector<ArrayType> outputs;
+    for (const auto k : queries) {
+        const auto start_index = k % elements.size();
+        const auto cbegin = std::next(elements_after_elements.cbegin(), start_index);
+        const auto cend = std::next(cbegin, elements.size());
+        outputs.emplace_back(cbegin, cend);
+    }
+
+    return outputs;
+}
+
+
+auto MultipleLeftRotate_n(const ArrayType &elements, const ArrayType &queries) {
+    std::vector<ArrayType> outputs;
+    for (const auto k : queries) {
+        outputs.emplace_back();
+        auto &out = outputs.back();
+        for (ArrayType::size_type i = k; i < k + elements.size(); ++i) {
+            out.emplace_back(elements[i % elements.size()]);
+        }
+    }
+
+    return outputs;
 }
 
 }//namespace
@@ -263,3 +311,23 @@ SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample1, ExpectedArray, Lef
             SampleArray, 2);
 SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample2, ExpectedArray2, LeftRotate_DoublyList,
             SampleArray2, 3);
+
+
+const ArrayType SampleArray5 = {1, 3, 5, 7, 9};
+const ArrayType SampleQuery5 = {1, 3, 4, 6, 14};
+const std::vector<ArrayType> ExpectedMultiple5 = {{3, 5, 7, 9, 1},
+    {7, 9, 1, 3, 5},
+    {9, 1, 3, 5, 7},
+    {3, 5, 7, 9, 1},
+    {9, 1, 3, 5, 7}
+};
+
+
+SIMPLE_BENCHMARK(MultipleLeftRotate_2n, SampleArray5, SampleQuery5);
+
+SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
+
+
+SIMPLE_BENCHMARK(MultipleLeftRotate_n, SampleArray5, SampleQuery5);
+
+SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);

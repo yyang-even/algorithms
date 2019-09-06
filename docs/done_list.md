@@ -600,3 +600,10 @@
 * https://www.geeksforgeeks.org/reverse-the-sentence-using-stack/
 * https://www.geeksforgeeks.org/split-a-sentence-into-words-in-cpp/
 * https://www.geeksforgeeks.org/rotate-linked-list-block-wise/
+* https://www.geeksforgeeks.org/quickly-find-multiple-left-rotations-of-an-array/
+* https://www.geeksforgeeks.org/print-left-rotation-array/
+* https://www.geeksforgeeks.org/left-rotation-of-an-array-using-vectors-in-c/
+* https://www.geeksforgeeks.org/left-rotation-right-rotation-string-2/
+* https://www.geeksforgeeks.org/c-program-for-reversal-algorithm-for-array-rotation/
+* https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+* https://www.geeksforgeeks.org/array-rotation/
