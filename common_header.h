@@ -67,10 +67,10 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 #define ContainerCast(from_container) {std::make_move_iterator(from_container.cbegin()), std::make_move_iterator(from_container.cend())}
 
 template<typename Container, typename Function, typename... Args>
-auto ContainerTestHelper(const Function func, Container &&elements, Args &&... args) {
+std::remove_reference_t<Container>
+ContainerTestHelper(const Function func, Container &&elements, Args &&... args) {
     auto other_container = func(ContainerCast(elements), std::forward<Args> (args)...);
-    return Container{std::make_move_iterator(other_container.cbegin()),
-                     std::make_move_iterator(other_container.cend())};
+    return ContainerCast(other_container);
 }
 
 
