@@ -2,11 +2,13 @@
 
 #include "modulo.h"
 
+
 typedef int InputType;
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
 
 SIMPLE_BENCHMARK(Mod10, LOWER);
 SIMPLE_BENCHMARK(Mod10, UPPER);

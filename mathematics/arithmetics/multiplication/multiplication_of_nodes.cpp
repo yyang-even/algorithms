@@ -29,6 +29,33 @@ auto Multiplication_Recersive(const ArrayType &elements) {
  * @reference   https://www.geeksforgeeks.org/product-of-the-nodes-of-a-singly-linked-list/
  */
 
+
+/** Program for product of array
+ *
+ * @reference   https://www.geeksforgeeks.org/program-for-product-of-array/
+ *
+ * The above code may cause overflow. Therefore it is always desired to compute product under modulo.
+ * The reason of its working is simple distributive property of modulo.
+ * ( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
+ *
+ * @reference   Modulo 10^9+7 (1000000007)
+ *              https://www.geeksforgeeks.org/modulo-1097-1000000007/
+ *
+ * ( a + b) % c = ( ( a % c ) + ( b % c ) ) % c
+ * ( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
+ * ( a – b) % c = ( ( a % c ) – ( b % c ) ) % c
+ */
+auto Multiplication_Modulo(const ArrayType &elements) {
+    constexpr ArrayType::value_type MOD = 1000000007;
+
+    ArrayType::value_type result = 1;
+    for (const auto e : elements) {
+        result = (result * e % MOD) % MOD;
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -40,3 +67,9 @@ SIMPLE_BENCHMARK(Multiplication_Recersive, SAMPLE1);
 
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE1, 720, SAMPLE1);
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE2, 945, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(Multiplication_Modulo, SAMPLE1);
+
+SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE1, 720, SAMPLE1);
+SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE2, 945, SAMPLE2);

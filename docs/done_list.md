@@ -607,3 +607,7 @@
 * https://www.geeksforgeeks.org/c-program-for-reversal-algorithm-for-array-rotation/
 * https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
 * https://www.geeksforgeeks.org/array-rotation/
+* https://www.geeksforgeeks.org/program-for-product-of-array/
+* https://www.geeksforgeeks.org/modulo-1097-1000000007/
+* https://www.geeksforgeeks.org/find-unique-pair-array-pairs-numbers/
+* https://www.geeksforgeeks.org/find-pair-with-greatest-product-in-array/
