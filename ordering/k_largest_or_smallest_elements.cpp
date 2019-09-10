@@ -28,6 +28,12 @@ using ArrayType = std::vector<int>;
  *
  * Given an unsorted of distinct integers, find the largest pair sum in it.
  *
+ * @reference   Minimum product pair an array of positive Integers
+ *              https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
+ *
+ * Given an array of positive integers. We are required to write a program to print the minimum
+ * product of any two numbers of the given array.
+ *
  * @highlight   Use of std::make_heap() and std::pop_heap()
  *              Use of std::make_reverse_iterator()
  */

@@ -613,3 +613,5 @@
 * https://www.geeksforgeeks.org/find-pair-with-greatest-product-in-array/
 * https://www.geeksforgeeks.org/pair-with-given-product-set-1-find-if-any-pair-exists/
 * https://www.geeksforgeeks.org/check-if-a-pair-with-given-product-exists-in-linked-list/
+* https://www.geeksforgeeks.org/return-a-pair-with-maximum-product-in-array-of-integers/
+* https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
