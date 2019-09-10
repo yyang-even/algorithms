@@ -611,3 +611,5 @@
 * https://www.geeksforgeeks.org/modulo-1097-1000000007/
 * https://www.geeksforgeeks.org/find-unique-pair-array-pairs-numbers/
 * https://www.geeksforgeeks.org/find-pair-with-greatest-product-in-array/
+* https://www.geeksforgeeks.org/pair-with-given-product-set-1-find-if-any-pair-exists/
+* https://www.geeksforgeeks.org/check-if-a-pair-with-given-product-exists-in-linked-list/

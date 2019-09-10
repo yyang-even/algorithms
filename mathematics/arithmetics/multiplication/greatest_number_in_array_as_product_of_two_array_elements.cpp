@@ -15,7 +15,7 @@ using ArrayType = std::vector<unsigned>;
  * that it is product of two elements of given array. If no such element exists,
  * print -1. Elements are within the range of 1 to 10^5.
  */
-int FindPairWithGreatestProductInArray(ArrayType elements) {
+int GreatestNumberInArrayAsProductOfTwoArrayElements(ArrayType elements) {
     const auto counters = ToFrequencyHashTable(elements);
 
     std::sort(elements.begin(), elements.end());
@@ -50,12 +50,12 @@ const ArrayType SAMPLE6 = {30, 10, 9, 3, 35};
 const ArrayType SAMPLE7 = {30, 10, 9, 5, 25};
 
 
-SIMPLE_BENCHMARK(FindPairWithGreatestProductInArray, SAMPLE1);
+SIMPLE_BENCHMARK(GreatestNumberInArrayAsProductOfTwoArrayElements, SAMPLE1);
 
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE1, 30, SAMPLE1);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE2, -1, SAMPLE2);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE3, -1, SAMPLE3);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE4, 4, SAMPLE4);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE5, 30, SAMPLE5);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE6, 30, SAMPLE6);
-SIMPLE_TEST(FindPairWithGreatestProductInArray, TestSAMPLE7, -1, SAMPLE7);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE1, 30, SAMPLE1);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE2, -1, SAMPLE2);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE3, -1, SAMPLE3);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE4, 4, SAMPLE4);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE5, 30, SAMPLE5);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE6, 30, SAMPLE6);
+SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE7, -1, SAMPLE7);

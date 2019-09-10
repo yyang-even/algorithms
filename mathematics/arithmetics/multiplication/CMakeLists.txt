@@ -1,3 +1,9 @@
+CompileBenchmarkExe(a_pair_with_maximum_product)
+CompileTestExe(a_pair_with_maximum_product)
+
+CompileBenchmarkExe(greatest_number_in_array_as_product_of_two_array_elements)
+CompileTestExe(greatest_number_in_array_as_product_of_two_array_elements)
+
 CompileBenchmarkExe(maximum_product_subarray)
 CompileTestExe(maximum_product_subarray)
 
@@ -9,6 +15,3 @@ CompileTestExe(multiplication_of_nodes)
 
 CompileBenchmarkExe(multiply_with_7)
 CompileTestExe(multiply_with_7)
-
-CompileBenchmarkExe(pair_with_greatest_product_in_array)
-CompileTestExe(pair_with_greatest_product_in_array)

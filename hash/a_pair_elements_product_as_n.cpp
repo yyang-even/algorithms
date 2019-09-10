@@ -2,14 +2,19 @@
 
 #include "a_pair_elements_product_as_n.h"
 
+
 namespace {
 
 using ArrayType = std::vector<int>;
+
 /** Pair with given product | Set 1 (Find if any pair exists)
  *
  * @reference   https://www.geeksforgeeks.org/pair-with-given-product-set-1-find-if-any-pair-exists/
  *
  * Given an array of distinct elements and a number x, find if there is a pair with product equal to x.
+ *
+ * @reference   Check if a pair with given product exists in Linked list
+ *              https://www.geeksforgeeks.org/check-if-a-pair-with-given-product-exists-in-linked-list/
  */
 auto PairElementsProductAsN_Hash(const ArrayType &elements, const ArrayType::value_type N) {
     return PairElementsProductAsN(elements, N, nullptr);
