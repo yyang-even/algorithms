@@ -1,8 +1,8 @@
 CompileBenchmarkExe(a_pair_with_maximum_product)
 CompileTestExe(a_pair_with_maximum_product)
 
-CompileBenchmarkExe(closest_product_pair)
-CompileTestExe(closest_product_pair)
+CompileBenchmarkExe(closest_product_pair_to_x)
+CompileTestExe(closest_product_pair_to_x)
 
 CompileBenchmarkExe(greatest_number_in_array_as_product_of_two_array_elements)
 CompileTestExe(greatest_number_in_array_as_product_of_two_array_elements)

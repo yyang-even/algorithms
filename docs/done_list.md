@@ -616,3 +616,4 @@
 * https://www.geeksforgeeks.org/return-a-pair-with-maximum-product-in-array-of-integers/
 * https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
 * https://www.geeksforgeeks.org/closest-product-pair-array/
+* https://www.geeksforgeeks.org/given-sorted-array-number-x-find-pair-array-whose-sum-closest-x/

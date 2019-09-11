@@ -1,3 +1,6 @@
+CompileBenchmarkExe(closest_sum_pair_to_x)
+CompileTestExe(closest_sum_pair_to_x)
+
 CompileBenchmarkExe(largest_sum_contiguous_subarray)
 CompileTestExe(largest_sum_contiguous_subarray)
 
