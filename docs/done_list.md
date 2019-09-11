@@ -615,3 +615,4 @@
 * https://www.geeksforgeeks.org/check-if-a-pair-with-given-product-exists-in-linked-list/
 * https://www.geeksforgeeks.org/return-a-pair-with-maximum-product-in-array-of-integers/
 * https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
+* https://www.geeksforgeeks.org/closest-product-pair-array/
