@@ -10,6 +10,8 @@ using ArrayType = std::vector<unsigned>;
  * @reference   https://www.geeksforgeeks.org/find-the-number-occurring-odd-number-of-times/
  * @reference   Find the element that appears once in an array where every other element appears twice
  *              https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
+ * @reference   Find single in an array of 2n+1 integer elements
+ *              https://www.geeksforgeeks.org/find-single-array-2n1-integer-elements/
  *
  * Given an array of positive integers. All numbers occur even number of times
  * except one number which occurs odd number of times. Find the number in O(n)

@@ -61,6 +61,8 @@ auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
 /** Count pairs with given sum
  *
  * @reference   https://www.geeksforgeeks.org/count-pairs-with-given-sum/
+ * @reference   Count pairs with given sum | Set 2
+ *              https://www.geeksforgeeks.org/count-pairs-with-given-sum-set-2/
  *
  * Given an array of integers, and a number ‘sum’, find the number of
  * pairs of integers in the array whose sum is equal to ‘sum’.

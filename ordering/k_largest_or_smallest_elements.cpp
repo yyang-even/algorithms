@@ -25,6 +25,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Find the largest pair sum in an unsorted array
  *              https://www.geeksforgeeks.org/find-the-largest-pair-sum-in-an-unsorted-array/
+ * @reference   Smallest Pair Sum in an array
+ *              https://www.geeksforgeeks.org/smallest-pair-sum-in-an-array/
  *
  * Given an unsorted of distinct integers, find the largest pair sum in it.
  *

@@ -26,22 +26,22 @@ auto FindAllPairsSumAsN(const ArrayType &arr1, const ArrayType &arr2,
 
 const ArrayType SAMPLE1L = { -1, -2, 4, -6, 5, 7};
 const ArrayType SAMPLE1R = {6, 3, 4, 0};
-const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPECTED1 = {
+const auto EXPECTED1 = std::vector {
     std::make_pair(5, 3), std::make_pair(4, 4)
 };
 const ArrayType SAMPLE2L = {1, 2, 4, 5, 7};
 const ArrayType SAMPLE2R = {5, 6, 3, 4, 8};
-const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPECTED2 = {
+const auto EXPECTED2 = std::vector {
     std::make_pair(4, 5), std::make_pair(5, 4), std::make_pair(1, 8)
 };
 const ArrayType SAMPLE3L = {1, 2, 3, 7, 5, 4};
 const ArrayType SAMPLE3R = {0, 7, 4, 3, 2, 1};
-const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPECTED3 = {
+const auto EXPECTED3 = std::vector {
     std::make_pair(1, 7), std::make_pair(4, 4), std::make_pair(5, 3), std::make_pair(7, 1)
 };
 const ArrayType SAMPLE4L = {1, 0, -4, 7, 6, 4};
 const ArrayType SAMPLE4R = {0, 2, 4, -3, 2, 1};
-const std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>> EXPECTED4 = {
+const auto EXPECTED4 = std::vector {
     std::make_pair(6, 2), std::make_pair(4, 4), std::make_pair(6, 2), std::make_pair(7, 1)
 };
 

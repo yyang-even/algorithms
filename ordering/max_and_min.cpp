@@ -103,34 +103,30 @@ auto MaxAndMin_Pair(const ArrayType &values) {
 
 
 const ArrayType VALUES1 = {1};
-const std::pair<ArrayType::value_type, ArrayType::value_type> EXPECTED1 = {1, 1};
 const ArrayType VALUES2 = {1, 2};
-const std::pair<ArrayType::value_type, ArrayType::value_type> EXPECTED2 = {2, 1};
 const ArrayType VALUES3 = {4, 8, 12, 16};
-const std::pair<ArrayType::value_type, ArrayType::value_type> EXPECTED3 = {16, 4};
 const ArrayType VALUES4 = {15, 0, 2, 15};
-const std::pair<ArrayType::value_type, ArrayType::value_type> EXPECTED4 = {15, 0};
 
 
 SIMPLE_BENCHMARK(MaxAndMin_Linear, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, EXPECTED1, VALUES1);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, EXPECTED2, VALUES2);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, EXPECTED3, VALUES3);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
 
 
 SIMPLE_BENCHMARK(MaxAndMin_Tournament, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, EXPECTED1, VALUES1);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, EXPECTED2, VALUES2);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, EXPECTED3, VALUES3);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
 
 
 SIMPLE_BENCHMARK(MaxAndMin_Pair, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, EXPECTED1, VALUES1);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, EXPECTED2, VALUES2);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, EXPECTED3, VALUES3);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);

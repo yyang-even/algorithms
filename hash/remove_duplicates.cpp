@@ -50,6 +50,12 @@ auto RemoveDuplicates_Bits(const std::string &input) {
     });
 }
 
+
+/** Find sum of non-repeating (distinct) elements in an array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-sum-non-repeating-distinct-elements-array/
+ */
+
 }//namespace
 
 

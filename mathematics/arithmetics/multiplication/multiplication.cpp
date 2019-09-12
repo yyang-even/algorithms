@@ -19,12 +19,19 @@ auto Multiply_Recursive_Helper(const int x, const int y) {
         return -Multiply_Recursive_Helper(x, -y);
     }
 }
+
 auto Multiply_Recursive(int x, int y) {
     if (abs(x) < abs(y)) {
         std::swap(x, y);
     }
     return Multiply_Recursive_Helper(x, y);
 }
+
+
+/** Multiply any Number with 4 using Bitwise Operator
+ *
+ * @reference   https://www.geeksforgeeks.org/multiply-number-4-using-bitwise-operator/
+ */
 
 }//namespace
 

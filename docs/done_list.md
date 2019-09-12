@@ -617,3 +617,13 @@
 * https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
 * https://www.geeksforgeeks.org/closest-product-pair-array/
 * https://www.geeksforgeeks.org/given-sorted-array-number-x-find-pair-array-whose-sum-closest-x/
+* https://www.geeksforgeeks.org/count-pairs-with-given-sum/
+* https://www.geeksforgeeks.org/count-pairs-with-given-sum-set-2/
+* https://www.geeksforgeeks.org/given-two-unsorted-arrays-find-pairs-whose-sum-x/
+* https://www.geeksforgeeks.org/smallest-pair-sum-in-an-array/
+* https://www.geeksforgeeks.org/find-two-non-repeating-elements-in-an-array-of-repeating-elements/
+* https://www.geeksforgeeks.org/find-single-array-2n1-integer-elements/
+* https://www.geeksforgeeks.org/find-sum-non-repeating-distinct-elements-array/
+* https://www.geeksforgeeks.org/find-two-missing-numbers-set-1-an-interesting-linear-time-solution/
+* https://www.geeksforgeeks.org/compare-two-integers-without-using-comparison-operator/
+* https://www.geeksforgeeks.org/multiply-number-4-using-bitwise-operator/
