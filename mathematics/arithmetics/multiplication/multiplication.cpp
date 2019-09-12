@@ -31,6 +31,8 @@ auto Multiply_Recursive(int x, int y) {
 /** Multiply any Number with 4 using Bitwise Operator
  *
  * @reference   https://www.geeksforgeeks.org/multiply-number-4-using-bitwise-operator/
+ * @reference   Multiplication with a power of 2
+ *              https://www.geeksforgeeks.org/multiplication-power-2/
  */
 
 }//namespace

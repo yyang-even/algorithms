@@ -627,3 +627,5 @@
 * https://www.geeksforgeeks.org/find-two-missing-numbers-set-1-an-interesting-linear-time-solution/
 * https://www.geeksforgeeks.org/compare-two-integers-without-using-comparison-operator/
 * https://www.geeksforgeeks.org/multiply-number-4-using-bitwise-operator/
+* https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-mod-operator/
+* https://www.geeksforgeeks.org/multiplication-power-2/
