@@ -629,3 +629,7 @@
 * https://www.geeksforgeeks.org/multiply-number-4-using-bitwise-operator/
 * https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-mod-operator/
 * https://www.geeksforgeeks.org/multiplication-power-2/
+* https://www.geeksforgeeks.org/how-to-avoid-overflow-in-modular-multiplication/
+* https://www.geeksforgeeks.org/multiplying-variable-constant-without-using-multiplication-operator/
+* https://www.geeksforgeeks.org/multiply-number-10-without-using-multiplication-operator/
+* https://www.geeksforgeeks.org/multiply-a-number-by-15-without-using-and-operators/

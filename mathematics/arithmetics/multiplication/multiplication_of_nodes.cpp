@@ -44,6 +44,9 @@ auto Multiplication_Recersive(const ArrayType &elements) {
  * ( a + b) % c = ( ( a % c ) + ( b % c ) ) % c
  * ( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
  * ( a – b) % c = ( ( a % c ) – ( b % c ) ) % c
+ *
+ * @reference   How to avoid overflow in modular multiplication?
+ *              https://www.geeksforgeeks.org/how-to-avoid-overflow-in-modular-multiplication/
  */
 auto Multiplication_Modulo(const ArrayType &elements) {
     constexpr ArrayType::value_type MOD = 1000000007;
