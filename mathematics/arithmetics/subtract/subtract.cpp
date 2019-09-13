@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+#include "subtract.h"
+
+
 namespace {
 
 /** Subtract two numbers without using arithmetic operators
@@ -37,3 +40,8 @@ SIMPLE_TEST(Subtract_Iterative, TestSAMPLE1, 16, 29, 13);
 SIMPLE_BENCHMARK(Subtract_Recursive, 29, 13);
 
 SIMPLE_TEST(Subtract_Recursive, TestSAMPLE1, 16, 29, 13);
+
+
+SIMPLE_BENCHMARK(Subtract_Bits, 29, 13);
+
+SIMPLE_TEST(Subtract_Bits, TestSAMPLE1, 16, 29, 13);

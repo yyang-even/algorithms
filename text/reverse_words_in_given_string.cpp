@@ -9,6 +9,9 @@ namespace {
  *
  * Example: Let the input string be “i like this program very much”. The
  * function should change the string to “much very program this like i”
+ *
+ * @reference   Print words of a string in reverse order
+ *              https://www.geeksforgeeks.org/print-words-string-reverse-order/
  */
 auto ReverseWordsInGivenString(std::string input) {
     auto word_begin = input.begin();

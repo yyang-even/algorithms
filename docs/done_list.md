@@ -633,3 +633,9 @@
 * https://www.geeksforgeeks.org/multiplying-variable-constant-without-using-multiplication-operator/
 * https://www.geeksforgeeks.org/multiply-number-10-without-using-multiplication-operator/
 * https://www.geeksforgeeks.org/multiply-a-number-by-15-without-using-and-operators/
+* https://www.geeksforgeeks.org/c-program-for-reverse-a-linked-list/
+* https://www.geeksforgeeks.org/program-to-copy-the-contents-of-one-array-into-another-in-the-reverse-order/
+* https://www.geeksforgeeks.org/print-words-string-reverse-order/
+* https://www.geeksforgeeks.org/program-reverse-array-using-pointers/
+* https://www.geeksforgeeks.org/program-reverse-string-iterative-recursive/
+* https://www.geeksforgeeks.org/c-program-to-sort-an-array-using-pointers/
