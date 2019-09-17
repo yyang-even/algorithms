@@ -34,12 +34,6 @@
 #include "3rdParty/cxx-prettyprint/prettyprint.hpp"
 
 
-// Typedefs
-typedef int INT_BOOL;
-#define TRUE 1
-#define FALSE 0
-
-
 // Util Functions
 /** A function return a random number in range [from, to]
  */

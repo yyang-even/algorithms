@@ -2,6 +2,9 @@
 
 #include "are_all_bits_set.h"
 
+
+namespace {
+
 using InputType = unsigned;
 
 /** Check if a number has bits in alternate pattern
@@ -16,7 +19,7 @@ using InputType = unsigned;
  * Print “Yes” if it has an alternate pattern otherwise “No”. Here alternate pattern
  * can be like 0101 or 1010.
  */
-INT_BOOL CheckForBitsAlternatePatternSimple(InputType num) {
+auto CheckForBitsAlternatePattern_Simple(unsigned num) {
     assert(num);
 
     auto previous = num & 1u;
@@ -33,31 +36,34 @@ INT_BOOL CheckForBitsAlternatePatternSimple(InputType num) {
 }
 
 
-auto CheckForBitsAlternatePattern(const InputType num) {
+auto CheckForBitsAlternatePattern(const unsigned num) {
     return AreAllBitsSet(num ^ (num >> 1u));
 }
 
+}//namespace
+
 
 constexpr auto LOWER = 1u;
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
-SIMPLE_BENCHMARK(CheckForBitsAlternatePatternSimple, 1);
 
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestSample1, FALSE, 15);
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestSample2, FALSE, 12);
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestSample3, TRUE, 10);
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestSample4, TRUE, 5);
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestLOWER, TRUE, LOWER);
-SIMPLE_TEST(CheckForBitsAlternatePatternSimple, TestUPPER, FALSE, UPPER);
+SIMPLE_BENCHMARK(CheckForBitsAlternatePattern_Simple, 1);
+
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample1, false, 15);
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample2, false, 12);
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample3, true, 10);
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample4, true, 5);
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestLOWER, true, LOWER);
+SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestUPPER, false, UPPER);
 
 
 SIMPLE_BENCHMARK(CheckForBitsAlternatePattern, 1);
 
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample1, FALSE, 15);
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample2, FALSE, 12);
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample3, TRUE, 10);
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample4, TRUE, 5);
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestLOWER, TRUE, LOWER);
-SIMPLE_TEST(CheckForBitsAlternatePattern, TestUPPER, FALSE, UPPER);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample1, false, 15);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample2, false, 12);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample3, true, 10);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample4, true, 5);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestLOWER, true, LOWER);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestUPPER, false, UPPER);
 
-MUTUAL_RANDOM_TEST(CheckForBitsAlternatePatternSimple, CheckForBitsAlternatePattern, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple, CheckForBitsAlternatePattern, LOWER, UPPER);

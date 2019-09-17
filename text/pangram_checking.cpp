@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 
+namespace {
+
 auto toCharCounters(const std::string &sentence) {
     std::vector<bool> counters(LOWERCASE_CHARS.size(), false);
 
@@ -26,7 +28,7 @@ auto toCharCounters(const std::string &sentence) {
  * Given a string check if it is Pangram or not. A pangram is a
  * sentence containing every letter in the English Alphabet.
  */
-INT_BOOL CheckPangram(const std::string &sentence) {
+auto CheckPangram(const std::string &sentence) {
     const auto counters = toCharCounters(sentence);
 
     for (const auto count : counters) {
@@ -51,7 +53,7 @@ INT_BOOL CheckPangram(const std::string &sentence) {
  * Note: Given that length of string is greater than 26 always and in one operation
  * we have to remove an existing element to add a new element.
  */
-INT_BOOL CheckPangramConvertibleInK(const std::string &sentence, int K) {
+auto CheckPangramConvertibleInK(const std::string &sentence, int K) {
     assert(sentence.size() > LOWERCASE_CHARS.size());
 
     const auto counters = toCharCounters(sentence);
@@ -65,19 +67,18 @@ INT_BOOL CheckPangramConvertibleInK(const std::string &sentence, int K) {
     return true;
 }
 
-
-SIMPLE_BENCHMARK(CheckPangram, std::string("The quick brown fox jumps over the lazy dog."));
-
-SIMPLE_TEST(CheckPangram, TestSAMPLE1, TRUE,
-            std::string("The quick brown fox jumps over the lazy dog."));
-SIMPLE_TEST(CheckPangram, TestSAMPLE2, FALSE,
-            std::string("The quick brown fox jumps over the dog."));
+}//namespace
 
 
-SIMPLE_BENCHMARK(CheckPangramConvertibleInK,
-                 std::string("qwqqwqeqqwdsdadsdasadsfsdsdsdasasas"), 24);
+SIMPLE_BENCHMARK(CheckPangram, "The quick brown fox jumps over the lazy dog.");
 
-SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE1, TRUE,
-            std::string("qwqqwqeqqwdsdadsdasadsfsdsdsdasasas"), 24);
-SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE2, FALSE,
-            std::string("qwqqwqeqqwdsdadsdasadsfsdsdsdasasas"), 4);
+SIMPLE_TEST(CheckPangram, TestSAMPLE1, true, "The quick brown fox jumps over the lazy dog.");
+SIMPLE_TEST(CheckPangram, TestSAMPLE2, false, "The quick brown fox jumps over the dog.");
+
+
+SIMPLE_BENCHMARK(CheckPangramConvertibleInK, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas", 24);
+
+SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE1, true, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
+            24);
+SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE2, false, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
+            4);

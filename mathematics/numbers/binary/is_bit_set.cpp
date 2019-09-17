@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using InputType = unsigned;
 
 /** Checking if bit at nth position is set or unset
@@ -17,17 +20,19 @@ using InputType = unsigned;
  *
  * A number N is given. We need to print its ‘K’th Least Significant Bit.
  */
-INT_BOOL IsBitSet(const InputType num, const InputType position) {
-    return static_cast<bool>(num & (1 << position));
+bool IsBitSet(const InputType num, const InputType position) {
+    return num & (1 << position);
 }
+
+}//namespace
 
 
 SIMPLE_BENCHMARK(IsBitSet, 0, 4);
 
-SIMPLE_TEST(IsBitSet, TestSample1, TRUE, 0b101, 0);
-SIMPLE_TEST(IsBitSet, TestSample2, FALSE, 0, 0);
-SIMPLE_TEST(IsBitSet, TestSample3, FALSE, 0, 1);
-SIMPLE_TEST(IsBitSet, TestSample4, FALSE, 13, 1);
-SIMPLE_TEST(IsBitSet, TestSample5, TRUE, 14, 2);
-SIMPLE_TEST(IsBitSet, TestSample6, TRUE, 10, 1);
-SIMPLE_TEST(IsBitSet, TestSample7, FALSE, 21, 3);
+SIMPLE_TEST(IsBitSet, TestSample1, true, 0b101, 0);
+SIMPLE_TEST(IsBitSet, TestSample2, false, 0, 0);
+SIMPLE_TEST(IsBitSet, TestSample3, false, 0, 1);
+SIMPLE_TEST(IsBitSet, TestSample4, false, 13, 1);
+SIMPLE_TEST(IsBitSet, TestSample5, true, 14, 2);
+SIMPLE_TEST(IsBitSet, TestSample6, true, 10, 1);
+SIMPLE_TEST(IsBitSet, TestSample7, false, 21, 3);

@@ -13,7 +13,7 @@ namespace {
  * Given an integer n, find whether it is a power of d or not,
  * where d is itself a power of 2.
  */
-INT_BOOL IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
+auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
     return IsPowerOf2(n) and (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
 }
 

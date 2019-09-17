@@ -15,12 +15,12 @@ typedef int InputType;
  * NOTE: If it is not possible to convert then print -1.
  */
 
-INT_BOOL isDivisibleBy5_Mod(const InputType n) {
+auto isDivisibleBy5_Mod(const InputType n) {
     return n % 5 == 0;
 }
 
 
-INT_BOOL isDivisibleBy5_LastDigit(const InputType n) {
+auto isDivisibleBy5_LastDigit(const InputType n) {
     const auto last_digit = n % 10;
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -40,7 +40,7 @@ INT_BOOL isDivisibleBy5_LastDigit(const InputType n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-INT_BOOL isDivisibleBy5_Subtraction(InputType n) {
+auto isDivisibleBy5_Subtraction(InputType n) {
     if (n < 0) {
         n = -n;
     }
@@ -48,11 +48,7 @@ INT_BOOL isDivisibleBy5_Subtraction(InputType n) {
         n -= 5;
     }
 
-    if (n == 0) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return n == 0;
 }
 
 
@@ -61,13 +57,9 @@ INT_BOOL isDivisibleBy5_Subtraction(InputType n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-INT_BOOL isDivisibleBy5_ToString(const InputType n) {
+auto isDivisibleBy5_ToString(const InputType n) {
     const auto str_n = std::to_string(n);
-    if (str_n.back() == '0' || str_n.back() == '5') {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return str_n.back() == '0' || str_n.back() == '5';
 }
 
 
@@ -82,7 +74,7 @@ INT_BOOL isDivisibleBy5_ToString(const InputType n) {
  * we have the last digit as 0. Once we do that, our work is to just check if the last digit
  * is 0 or not, which we can do using float and integer comparison trick.
  */
-INT_BOOL isDivisibleBy5_Float(const InputType n) {
+auto isDivisibleBy5_Float(const InputType n) {
     //Make it unsigned to prevent integer overflow error
     unsigned positive_n = n;
     if (n < 0) {
@@ -95,15 +87,11 @@ INT_BOOL isDivisibleBy5_Float(const InputType n) {
     //Use static_cast<unsigned> instead of std::floor() to avoid float accuracy issue
     const auto x = static_cast<unsigned>(static_cast<double>(positive_n) * 0.1) * 10;
 
-    if (x == positive_n) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
+    return x == positive_n;
 }
 
 
-INT_BOOL isDivisibleBy5_LastDigitStrict(const InputType n) {
+auto isDivisibleBy5_LastDigitStrict(const InputType n) {
     const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -125,12 +113,12 @@ SIMPLE_BENCHMARK(isDivisibleBy5_Mod, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_Mod, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_Mod, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_Mod, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_Mod, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE4, TRUE, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE4, true, SAMPLE4);
 
 
 SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, LOWER);
@@ -139,13 +127,13 @@ SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_LastDigit, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE4, TRUE, SAMPLE4);
-SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE5, TRUE, -970991465);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE5, true, -970991465);
 
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_LastDigit, LOWER, UPPER);
 
@@ -156,12 +144,12 @@ SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_Subtraction, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE4, TRUE, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE4, true, SAMPLE4);
 
 
 SIMPLE_BENCHMARK(isDivisibleBy5_ToString, LOWER);
@@ -170,12 +158,12 @@ SIMPLE_BENCHMARK(isDivisibleBy5_ToString, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_ToString, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_ToString, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_ToString, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_ToString, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE4, TRUE, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE4, true, SAMPLE4);
 
 
 SIMPLE_BENCHMARK(isDivisibleBy5_Float, LOWER);
@@ -184,14 +172,14 @@ SIMPLE_BENCHMARK(isDivisibleBy5_Float, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_Float, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_Float, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_Float, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_Float, TestLOWERPlusOne, FALSE, LOWER + 1);
-SIMPLE_TEST(isDivisibleBy5_Float, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE4, TRUE, SAMPLE4);
-SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE5, TRUE, -1082066345);
+SIMPLE_TEST(isDivisibleBy5_Float, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_Float, TestLOWERPlusOne, false, LOWER + 1);
+SIMPLE_TEST(isDivisibleBy5_Float, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_Float, TestSAMPLE5, true, -1082066345);
 
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_Subtraction, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_ToString, LOWER, UPPER);
@@ -204,13 +192,13 @@ SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy5_LastDigitStrict, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWERPlusOne, FALSE, LOWER + 1);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE4, TRUE, SAMPLE4);
-SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE5, TRUE, -1082066345);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWERPlusOne, false, LOWER + 1);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE5, true, -1082066345);
 
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_LastDigitStrict, LOWER, UPPER);

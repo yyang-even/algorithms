@@ -1,6 +1,7 @@
 #include "common_header.h"
 
-typedef unsigned InputType;
+
+namespace {
 
 /** Determine if a word has a zero byte
  *
@@ -9,27 +10,30 @@ typedef unsigned InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 #define haszero(v) (((v) - 0x01010101UL) & ~(v) & 0x80808080UL)
-INT_BOOL HasByteZero(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
+auto HasByteZero(const unsigned num) {
+    static_assert(Bits_Number<decltype(num)>() == 32, "unsigned is not 32 bits.");
 
-    return haszero(num) ? TRUE : FALSE;
+    return haszero(num);
 }
+
+
 /** Determine if a word has a zero byte
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Determine if a word has a zero byte
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-INT_BOOL HasByteZeroPointer(const InputType num) {
+auto HasByteZero_Pointer(const unsigned num) {
     const auto *p = (const unsigned char *)&num;
     const auto *end = p + sizeof(num);
     for (; p < end; ++p) {
         if ((*p) == 0) {
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
+
 
 /** Determine if a word has a byte equal to n
  *
@@ -38,10 +42,10 @@ INT_BOOL HasByteZeroPointer(const InputType num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 #define hasvalue(x,n) (haszero((x) ^ (~0UL/255 * (n))))
-INT_BOOL HasByteN(const InputType x, const unsigned char n) {
-    static_assert(Bits_Number<decltype(x)>() == 32, "InputType is not 32 bits.");
+auto HasByteN(const unsigned x, const unsigned char n) {
+    static_assert(Bits_Number<decltype(x)>() == 32, "unsigned is not 32 bits.");
 
-    return hasvalue(x, n) ? TRUE : FALSE;
+    return hasvalue(x, n);
 }
 
 
@@ -56,7 +60,6 @@ INT_BOOL HasByteN(const InputType x, const unsigned char n) {
 #define hasless(x,n) (((x)-~0UL/255*(n))&~(x)&~0UL/255*128)
 #define countless(x,n) \
 (((~0UL/255*(127+(n))-((x)&~0UL/255*127))&~(x)&~0UL/255*128)/128%255)
-
 
 
 /** Determine if a word has a byte greater than n
@@ -84,27 +87,32 @@ INT_BOOL HasByteN(const InputType x, const unsigned char n) {
 ((~0UL/255*(127+(n))-((x)&~0UL/255*127)&~(x)&((x)&~0UL/255*127)+~0UL/255*(127-(m)))&~0UL/255*128)
 #define countbetween(x,m,n) (hasbetween(x,m,n)/128%255)
 
+}//namespace
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+
+constexpr auto LOWER = std::numeric_limits<unsigned>::min();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
+
 
 SIMPLE_BENCHMARK(HasByteZero, UPPER);
 
-SIMPLE_TEST(HasByteZero, TestLOWER, TRUE, LOWER);
-SIMPLE_TEST(HasByteZero, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(HasByteZero, TestSAMPLE1, TRUE, 8);
-SIMPLE_TEST(HasByteZero, TestSAMPLE2, FALSE, 0x88888888U);
+SIMPLE_TEST(HasByteZero, TestLOWER, true, LOWER);
+SIMPLE_TEST(HasByteZero, TestUPPER, false, UPPER);
+SIMPLE_TEST(HasByteZero, TestSAMPLE1, true, 8);
+SIMPLE_TEST(HasByteZero, TestSAMPLE2, false, 0x88888888U);
 
-SIMPLE_BENCHMARK(HasByteZeroPointer, UPPER);
 
-SIMPLE_TEST(HasByteZeroPointer, TestLOWER, TRUE, LOWER);
-SIMPLE_TEST(HasByteZeroPointer, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(HasByteZeroPointer, TestSAMPLE1, TRUE, 8);
-SIMPLE_TEST(HasByteZeroPointer, TestSAMPLE2, FALSE, 0x88888888U);
+SIMPLE_BENCHMARK(HasByteZero_Pointer, UPPER);
+
+SIMPLE_TEST(HasByteZero_Pointer, TestLOWER, true, LOWER);
+SIMPLE_TEST(HasByteZero_Pointer, TestUPPER, false, UPPER);
+SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE1, true, 8);
+SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE2, false, 0x88888888U);
+
 
 SIMPLE_BENCHMARK(HasByteN, UPPER, 0xF);
 
-SIMPLE_TEST(HasByteN, TestLOWER, TRUE, LOWER, 0);
-SIMPLE_TEST(HasByteN, TestUPPER, TRUE, UPPER, 0xFF);
-SIMPLE_TEST(HasByteN, TestSAMPLE1, FALSE, 8, 0xFF);
-SIMPLE_TEST(HasByteN, TestSAMPLE2, TRUE, 0x88888888U, 0x88);
+SIMPLE_TEST(HasByteN, TestLOWER, true, LOWER, 0);
+SIMPLE_TEST(HasByteN, TestUPPER, true, UPPER, 0xFF);
+SIMPLE_TEST(HasByteN, TestSAMPLE1, false, 8, 0xFF);
+SIMPLE_TEST(HasByteN, TestSAMPLE2, true, 0x88888888U, 0x88);
