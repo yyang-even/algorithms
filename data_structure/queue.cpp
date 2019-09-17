@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "data_structure/linked_list/singly_list/singly_linked_list.h"
+#include "data_structure/linked_list/singly_list/singly_circular_linked_list.h"
 
 /** Implementing Queue using Arrays
  *
@@ -18,8 +19,10 @@
  *              https://www.geeksforgeeks.org/fifo-first-in-first-out-approach-in-programming/
  * @reference   FIFO vs LIFO approach in Programming
  *              https://www.geeksforgeeks.org/fifo-vs-lifo-approach-in-programming/
+ * @reference   Circular array
+ *              https://www.geeksforgeeks.org/circular-array/
  */
-class ArrayQueue {
+class ArrayCircularQueue {
     using ValueType = int;
 
     const std::size_t CAPACITY;
@@ -33,7 +36,7 @@ class ArrayQueue {
     }
 
 public:
-    ArrayQueue(const std::size_t cap = 1024): CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
+    ArrayCircularQueue(const std::size_t cap = 1024): CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
 
     void Enqueue(const ValueType v) {
         assert(size < CAPACITY);
@@ -74,9 +77,35 @@ public:
  *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-3.
  * @reference   Queue | Set 2 (Linked List Implementation)
  *              https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
+ * @reference   Queue – Linked List Implementation
+ *              https://www.geeksforgeeks.org/queue-linked-list-implementation/
+ * @reference   Difference between a Static Queue and a Singly Linked List
+ *              https://www.geeksforgeeks.org/difference-between-a-static-queue-and-a-singly-linked-list/
  */
 class ListQueue {
     SinglyLinkedList buffer;
+
+public:
+    void Enqueue(const SinglyLinkedList::ValueType v) {
+        buffer.PushBack(v);
+    }
+
+    auto Dequeue() {
+        return buffer.PopHead();
+    }
+
+    auto Empty() const {
+        return buffer.Empty();
+    }
+};
+
+
+/** Circular Queue | Set 2 (Circular Linked List Implementation)
+ *
+ * @reference   https://www.geeksforgeeks.org/circular-queue-set-2-circular-linked-list-implementation/
+ */
+class ListCircularQueue {
+    SinglyCircularLinkedList buffer;
 
 public:
     void Enqueue(const SinglyLinkedList::ValueType v) {
@@ -232,13 +261,18 @@ auto testQueueHelper() {
 }
 
 
-auto testArrayQueue() {
-    return testQueueHelper<ArrayQueue>();
+auto testArrayCircularQueue() {
+    return testQueueHelper<ArrayCircularQueue>();
 }
 
 
 auto testListQueue() {
     return testQueueHelper<ListQueue>();
+}
+
+
+auto testListCircularQueue() {
+    return testQueueHelper<ListCircularQueue>();
 }
 
 
@@ -259,10 +293,13 @@ auto testHeapQueue() {
 }//namespace
 
 
-SIMPLE_TEST0(testArrayQueue, TestSample, EXPECTED_ARRAY);
+SIMPLE_TEST0(testArrayCircularQueue, TestSample, EXPECTED_ARRAY);
 
 
 SIMPLE_TEST0(testListQueue, TestSample, EXPECTED_ARRAY);
+
+
+SIMPLE_TEST0(testListCircularQueue, TestSample, EXPECTED_ARRAY);
 
 
 SIMPLE_TEST0(testDequeueCostlyTwoStackQueue, TestSample, EXPECTED_ARRAY);

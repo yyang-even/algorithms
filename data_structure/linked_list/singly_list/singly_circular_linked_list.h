@@ -250,6 +250,15 @@ public:
     }
 
 
+    auto PopHead() {
+        assert(tail);
+
+        const auto top = tail->next->value;
+        DeleteAfter(tail);
+        return top;
+    }
+
+
     /**
      * @reference   Deletion at different positions in a Circular Linked List
      *              https://www.geeksforgeeks.org/deletion-at-different-positions-in-a-circular-linked-list/

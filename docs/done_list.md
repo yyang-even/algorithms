@@ -639,3 +639,8 @@
 * https://www.geeksforgeeks.org/program-reverse-array-using-pointers/
 * https://www.geeksforgeeks.org/program-reverse-string-iterative-recursive/
 * https://www.geeksforgeeks.org/c-program-to-sort-an-array-using-pointers/
+* https://www.geeksforgeeks.org/memory-efficient-doubly-linked-list/
+* https://www.geeksforgeeks.org/queue-linked-list-implementation/
+* https://www.geeksforgeeks.org/circular-queue-set-2-circular-linked-list-implementation/
+* https://www.geeksforgeeks.org/circular-array/
+* https://www.geeksforgeeks.org/difference-between-a-static-queue-and-a-singly-linked-list/

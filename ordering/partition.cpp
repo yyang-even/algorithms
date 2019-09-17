@@ -342,11 +342,9 @@ const ArrayType EXPECTED6 = {10, -3, 7, -1, 9, -5, -4, -11};
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE5,
-            EXPECTED5,
-            SAMPLE5);
+            EXPECTED5, SAMPLE5);
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE6,
-            EXPECTED6,
-            SAMPLE6);
+            EXPECTED6, SAMPLE6);
 
 
 const ArrayType EXPECTED5_b = {2, -1, 4, -3, 5, -7, 6, 8, 9};

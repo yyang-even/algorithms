@@ -11,6 +11,8 @@
  *              https://www.geeksforgeeks.org/xor-linked-list-a-memory-efficient-doubly-linked-list-set-2/
  * @reference   A Memory-Efficient Doubly Linked List
  *              https://www.linuxjournal.com/article/6828
+ * @reference   Memory efficient doubly linked list
+ *              https://www.geeksforgeeks.org/memory-efficient-doubly-linked-list/
  */
 class XorLinkedList {
 public:
