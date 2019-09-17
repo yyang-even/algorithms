@@ -17,15 +17,15 @@ typedef int InputType;
  * There is a pattern in binary representation of the number that can be used to find if number is a multiple of 3.
  * If difference between count of odd set bits (Bits set at odd positions) and even set bits is multiple of 3 then is the number.
  */
-INT_BOOL isDivisibleBy3(InputType num) {
+auto isDivisibleBy3(InputType num) {
     if (num < 0) {
         num = -num;
     }
     if (num == 0) {
-        return TRUE;
+        return true;
     }
     if (num == 1) {
-        return FALSE;
+        return false;
     }
 
     int even_odd_diff = 0;
@@ -45,7 +45,7 @@ INT_BOOL isDivisibleBy3(InputType num) {
 }
 
 
-INT_BOOL isDivisibleBy3_DFA(const std::vector<unsigned> &number) {
+auto isDivisibleBy3_DFA(const std::vector<unsigned> &number) {
     return isDivisibleByNDFA(number, 3).back();
 }
 
@@ -60,13 +60,13 @@ SIMPLE_BENCHMARK(isDivisibleBy3, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy3, UPPER);
 RANDOM_BENCHMARK(isDivisibleBy3, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy3, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy3, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy3, TestSAMPLE1, TRUE, 612);
-SIMPLE_TEST(isDivisibleBy3, TestSAMPLE2, TRUE, 3);
-SIMPLE_TEST(isDivisibleBy3, TestSAMPLE3, FALSE, 610);
-SIMPLE_TEST(isDivisibleBy3, TestSAMPLE4, TRUE, -612);
-SIMPLE_TEST(isDivisibleBy3, TestSAMPLE5, FALSE, -610);
+SIMPLE_TEST(isDivisibleBy3, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy3, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE1, true, 612);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE2, true, 3);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE3, false, 610);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE4, true, -612);
+SIMPLE_TEST(isDivisibleBy3, TestSAMPLE5, false, -610);
 
 
 const std::vector<unsigned> SAMPLE1 = {1, 1, 0, 0};
@@ -75,5 +75,5 @@ const std::vector<unsigned> SAMPLE2 = {1, 0, 1, 0};
 
 SIMPLE_BENCHMARK(isDivisibleBy3_DFA, SAMPLE1);
 
-SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE1, TRUE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE2, FALSE, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE2, false, SAMPLE2);

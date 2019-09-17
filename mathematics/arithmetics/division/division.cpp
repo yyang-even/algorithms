@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/numbers/binary/are_opposite_signs.h"
+
 
 namespace {
 
@@ -8,7 +10,7 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-mod-operator/
  */
 auto Division_Subtract(int dividend, int divisor) {
-    const auto sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+    const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
 
     dividend = std::abs(dividend);
     divisor = std::abs(divisor);
@@ -21,7 +23,7 @@ auto Division_Subtract(int dividend, int divisor) {
 
 
 auto Division_Bit(int dividend, int divisor) {
-    const auto sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+    const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
 
     dividend = std::abs(dividend);
     divisor = std::abs(divisor);

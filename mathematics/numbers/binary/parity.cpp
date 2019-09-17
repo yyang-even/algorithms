@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef unsigned InputType;
 
 /** Computing parity the naive way
@@ -12,7 +15,7 @@ typedef unsigned InputType;
  *
  * 1 if an odd number of bits set, 0 otherwise.
  */
-INT_BOOL ParityBrianKernighan(InputType n) {
+auto Parity_BrianKernighan(InputType n) {
     bool parity = false;  // parity will be the parity of n
 
     while (n) {
@@ -23,6 +26,7 @@ INT_BOOL ParityBrianKernighan(InputType n) {
     return parity;
 }
 
+
 /** Compute parity by lookup table
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -31,7 +35,7 @@ INT_BOOL ParityBrianKernighan(InputType n) {
  * @reference   Compute the parity of a number using XOR and table look-up
  *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
-INT_BOOL ParityLookupTable(const InputType n) {
+auto Parity_LookupTable(const InputType n) {
     static const bool ParityTable256[256] = {
 #   define P2(n) n, n^1, n^1, n
 #   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
@@ -47,15 +51,17 @@ INT_BOOL ParityLookupTable(const InputType n) {
     return ParityTable256[parity];
 }
 
+
 /** Compute parity of a byte using 64-bit multiply and modulus division
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute parity of a byte using 64-bit multiply and modulus division
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-INT_BOOL ParityOfByte64bit(const unsigned char n) {
+bool ParityOfByte_64bit(const unsigned char n) {
     return (((n * 0x0101010101010101ULL) & 0x8040201008040201ULL) % 0x1FF) & 1;
 }
+
 
 /** Compute parity of word with a multiply
  *
@@ -63,18 +69,21 @@ INT_BOOL ParityOfByte64bit(const unsigned char n) {
  *              Compute parity of word with a multiply
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-INT_BOOL ParityMultiply32(uint32_t n) {
+bool Parity_Multiply_32(uint32_t n) {
     n ^= n >> 1;
     n ^= n >> 2;
     n = (n & 0x11111111U) * 0x11111111U;
     return (n >> 28) & 1;
 }
-INT_BOOL ParityMultiply64(uint64_t n) {
+
+
+bool Parity_Multiply_64(uint64_t n) {
     n ^= n >> 1;
     n ^= n >> 2;
     n = (n & 0x1111111111111111UL) * 0x1111111111111111UL;
     return (n >> 60) & 1;
 }
+
 
 /** Compute parity in parallel
  *
@@ -84,7 +93,7 @@ INT_BOOL ParityMultiply64(uint64_t n) {
  *              Finding the Parity of a number Efficiently
  *              https://www.geeksforgeeks.org/finding-the-parity-of-a-number-efficiently/
  */
-INT_BOOL ParityParallel(InputType n) {
+bool Parity_Parallel(InputType n) {
     static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
 
     n ^= n >> 16;
@@ -94,69 +103,78 @@ INT_BOOL ParityParallel(InputType n) {
     return (0x6996 >> n) & 1;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
-SIMPLE_BENCHMARK(ParityBrianKernighan, LOWER);
-SIMPLE_BENCHMARK(ParityBrianKernighan, UPPER);
 
-SIMPLE_TEST(ParityBrianKernighan, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityBrianKernighan, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(ParityBrianKernighan, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityBrianKernighan, TestSAMPLE2, TRUE, 13);
+SIMPLE_BENCHMARK(Parity_BrianKernighan, LOWER);
+SIMPLE_BENCHMARK(Parity_BrianKernighan, UPPER);
 
-SIMPLE_BENCHMARK(ParityLookupTable, LOWER);
-SIMPLE_BENCHMARK(ParityLookupTable, UPPER);
+SIMPLE_TEST(Parity_BrianKernighan, TestLOWER, false, LOWER);
+SIMPLE_TEST(Parity_BrianKernighan, TestUPPER, false, UPPER);
+SIMPLE_TEST(Parity_BrianKernighan, TestSAMPLE1, false, 6);
+SIMPLE_TEST(Parity_BrianKernighan, TestSAMPLE2, true, 13);
 
-SIMPLE_TEST(ParityLookupTable, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityLookupTable, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(ParityLookupTable, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityLookupTable, TestSAMPLE2, TRUE, 13);
 
-MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityLookupTable, LOWER, UPPER);
+SIMPLE_BENCHMARK(Parity_LookupTable, LOWER);
+SIMPLE_BENCHMARK(Parity_LookupTable, UPPER);
 
-SIMPLE_BENCHMARK(ParityOfByte64bit, LOWER);
-SIMPLE_BENCHMARK(ParityOfByte64bit, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(Parity_LookupTable, TestLOWER, false, LOWER);
+SIMPLE_TEST(Parity_LookupTable, TestUPPER, false, UPPER);
+SIMPLE_TEST(Parity_LookupTable, TestSAMPLE1, false, 6);
+SIMPLE_TEST(Parity_LookupTable, TestSAMPLE2, true, 13);
 
-SIMPLE_TEST(ParityOfByte64bit, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityOfByte64bit, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
-SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityOfByte64bit, TestSAMPLE2, TRUE, 13);
+MUTUAL_RANDOM_TEST(Parity_BrianKernighan, Parity_LookupTable, LOWER, UPPER);
 
-SIMPLE_BENCHMARK(ParityMultiply32, LOWER);
-SIMPLE_BENCHMARK(ParityMultiply32, static_cast<unsigned char>(UPPER));
 
-SIMPLE_TEST(ParityMultiply32, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityMultiply32, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
-SIMPLE_TEST(ParityMultiply32, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityMultiply32, TestSAMPLE2, TRUE, 13);
+SIMPLE_BENCHMARK(ParityOfByte_64bit, LOWER);
+SIMPLE_BENCHMARK(ParityOfByte_64bit, static_cast<unsigned char>(UPPER));
 
-SIMPLE_BENCHMARK(ParityMultiply64, LOWER);
-SIMPLE_BENCHMARK(ParityMultiply64, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityOfByte_64bit, TestLOWER, false, LOWER);
+SIMPLE_TEST(ParityOfByte_64bit, TestUPPER, false, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(ParityOfByte_64bit, TestSAMPLE1, false, 6);
+SIMPLE_TEST(ParityOfByte_64bit, TestSAMPLE2, true, 13);
 
-SIMPLE_TEST(ParityMultiply64, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityMultiply64, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
-SIMPLE_TEST(ParityMultiply64, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityMultiply64, TestSAMPLE2, TRUE, 13);
 
-MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityMultiply32, LOWER, UPPER);
-MUTUAL_RANDOM_TEST(ParityMultiply32, ParityMultiply64, LOWER, UPPER);
+SIMPLE_BENCHMARK(Parity_Multiply_32, LOWER);
+SIMPLE_BENCHMARK(Parity_Multiply_32, static_cast<unsigned char>(UPPER));
 
-SIMPLE_BENCHMARK(ParityParallel, LOWER);
-SIMPLE_BENCHMARK(ParityParallel, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(Parity_Multiply_32, TestLOWER, false, LOWER);
+SIMPLE_TEST(Parity_Multiply_32, TestUPPER, false, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(Parity_Multiply_32, TestSAMPLE1, false, 6);
+SIMPLE_TEST(Parity_Multiply_32, TestSAMPLE2, true, 13);
 
-SIMPLE_TEST(ParityParallel, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(ParityParallel, TestUPPER, FALSE, static_cast<unsigned char>(UPPER));
-SIMPLE_TEST(ParityParallel, TestSAMPLE1, FALSE, 6);
-SIMPLE_TEST(ParityParallel, TestSAMPLE2, TRUE, 13);
 
-MUTUAL_RANDOM_TEST(ParityBrianKernighan, ParityParallel, LOWER, UPPER);
+SIMPLE_BENCHMARK(Parity_Multiply_64, LOWER);
+SIMPLE_BENCHMARK(Parity_Multiply_64, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(Parity_Multiply_64, TestLOWER, false, LOWER);
+SIMPLE_TEST(Parity_Multiply_64, TestUPPER, false, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(Parity_Multiply_64, TestSAMPLE1, false, 6);
+SIMPLE_TEST(Parity_Multiply_64, TestSAMPLE2, true, 13);
+
+MUTUAL_RANDOM_TEST(Parity_BrianKernighan, Parity_Multiply_32, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(Parity_Multiply_32, Parity_Multiply_64, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(Parity_Parallel, LOWER);
+SIMPLE_BENCHMARK(Parity_Parallel, static_cast<unsigned char>(UPPER));
+
+SIMPLE_TEST(Parity_Parallel, TestLOWER, false, LOWER);
+SIMPLE_TEST(Parity_Parallel, TestUPPER, false, static_cast<unsigned char>(UPPER));
+SIMPLE_TEST(Parity_Parallel, TestSAMPLE1, false, 6);
+SIMPLE_TEST(Parity_Parallel, TestSAMPLE2, true, 13);
+
+MUTUAL_RANDOM_TEST(Parity_BrianKernighan, Parity_Parallel, LOWER, UPPER);
+
 
 #ifdef __GNUG__
 /** Builtin functions of GCC compiler
  *
  * @reference   https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/
  */
-MUTUAL_RANDOM_TEST(ParityBrianKernighan, __builtin_parity, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(Parity_BrianKernighan, __builtin_parity, LOWER, UPPER);
 #endif
