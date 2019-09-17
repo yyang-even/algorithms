@@ -33,16 +33,16 @@ typedef int InputType;
  *  check to see if the difference is divisible by 7: 14 is divisible by 7,
  *      therefore 203 is also divisible by 7.
  */
-INT_BOOL isDivisibleBy7(InputType num) {
+auto isDivisibleBy7(InputType num) {
     if (num < 0) {
         num = -num;
     }
 
     if (num == 0 || num == 7) {
-        return TRUE;
+        return true;
     }
     if (num < 14) {
-        return FALSE;
+        return false;
     }
 
     return isDivisibleBy7(num / 10 - 2 * Mod10(num));
@@ -59,10 +59,10 @@ SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
 SIMPLE_BENCHMARK(isDivisibleBy7, UPPER);
 RANDOM_BENCHMARK(isDivisibleBy7, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy7, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy7, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy7, TestSAMPLE1, TRUE, 203);
-SIMPLE_TEST(isDivisibleBy7, TestSAMPLE2, TRUE, 7);
-SIMPLE_TEST(isDivisibleBy7, TestSAMPLE3, FALSE, 200);
-SIMPLE_TEST(isDivisibleBy7, TestSAMPLE4, TRUE, -203);
-SIMPLE_TEST(isDivisibleBy7, TestSAMPLE5, FALSE, -200);
+SIMPLE_TEST(isDivisibleBy7, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy7, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy7, TestSAMPLE1, true, 203);
+SIMPLE_TEST(isDivisibleBy7, TestSAMPLE2, true, 7);
+SIMPLE_TEST(isDivisibleBy7, TestSAMPLE3, false, 200);
+SIMPLE_TEST(isDivisibleBy7, TestSAMPLE4, true, -203);
+SIMPLE_TEST(isDivisibleBy7, TestSAMPLE5, false, -200);

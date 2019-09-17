@@ -13,15 +13,15 @@ typedef int InputType;
  *
  * The (sum of the odd numbered digits) - (sum of the even numbered digits) is divisible by 11.
  */
-INT_BOOL isDivisibleBy11(int num) {
+auto isDivisibleBy11(int num) {
     if (num < 0) {
         num = -num;
     }
     if (num == 0 || num == 11) {
-        return TRUE;
+        return true;
     }
     if (num < 22) {
-        return FALSE;
+        return false;
     }
 
     bool positive = true;
@@ -61,9 +61,8 @@ inline std::ostream &operator <<(std::ostream &out, const Query &q) {
     return out << "(" << q.l << ", " << q.r << ")";
 }
 
-
-std::vector<bool> SubstringDivisibilityBy11(const std::string &test_string,
-        const std::vector<Query> &queries) {
+auto SubstringDivisibilityBy11(const std::string &test_string,
+                               const std::vector<Query> &queries) {
     //Pre-compute
     //Diff of even and odd placed digits before this index
     std::vector<int> diffs(test_string.size() + 1);
@@ -98,16 +97,19 @@ SIMPLE_BENCHMARK(isDivisibleBy11, SAMPLE3);
 SIMPLE_BENCHMARK(isDivisibleBy11, SAMPLE4);
 RANDOM_BENCHMARK(isDivisibleBy11, LOWER, UPPER);
 
-SIMPLE_TEST(isDivisibleBy11, TestLOWER, FALSE, LOWER);
-SIMPLE_TEST(isDivisibleBy11, TestUPPER, FALSE, UPPER);
-SIMPLE_TEST(isDivisibleBy11, TestSAMPLE1, FALSE, SAMPLE1);
-SIMPLE_TEST(isDivisibleBy11, TestSAMPLE2, TRUE, SAMPLE2);
-SIMPLE_TEST(isDivisibleBy11, TestSAMPLE3, FALSE, SAMPLE3);
-SIMPLE_TEST(isDivisibleBy11, TestSAMPLE4, TRUE, SAMPLE4);
-SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, TRUE, 0);
+SIMPLE_TEST(isDivisibleBy11, TestLOWER, false, LOWER);
+SIMPLE_TEST(isDivisibleBy11, TestUPPER, false, UPPER);
+SIMPLE_TEST(isDivisibleBy11, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(isDivisibleBy11, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isDivisibleBy11, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(isDivisibleBy11, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, true, 0);
 
 
-const std::vector<bool> EXPECTED_RESULTS {true, true, false, true};
+const std::vector<bool> EXPECTED_RESULTS = {true, true, false, true};
+
+
 SIMPLE_BENCHMARK(SubstringDivisibilityBy11, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
+
 SIMPLE_TEST(SubstringDivisibilityBy11, TestLOWER, EXPECTED_RESULTS,
 "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});

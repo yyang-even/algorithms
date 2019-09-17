@@ -2,6 +2,7 @@
 
 #include <fstream>
 
+
 namespace {
 
 /** Implement your own tail (Read last n lines of a huge file)
@@ -34,7 +35,7 @@ std::string tail(std::ifstream &file, unsigned N) {
     return output.str();
 }
 
-INT_BOOL TestTail() {
+auto TestTail() {
     const std::string HEAD = "1\n2\n3\n4\n5\n";
     const std::string TAIL = "6\n7\n8\n9\n10\n";
     const auto file_str = HEAD + TAIL;
@@ -52,6 +53,7 @@ INT_BOOL TestTail() {
 
 }//namespace
 
+
 SIMPLE_BENCHMARK(TestTail);
 
-SIMPLE_TEST0(TestTail, TestSAMPLE1, TRUE);
+SIMPLE_TEST0(TestTail, TestSAMPLE1, true);
