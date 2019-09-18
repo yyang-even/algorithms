@@ -644,3 +644,5 @@
 * https://www.geeksforgeeks.org/circular-queue-set-2-circular-linked-list-implementation/
 * https://www.geeksforgeeks.org/circular-array/
 * https://www.geeksforgeeks.org/difference-between-a-static-queue-and-a-singly-linked-list/
+* https://www.geeksforgeeks.org/lru-cache-implementation/
+* https://www.geeksforgeeks.org/design-a-data-structure-for-lru-cache/

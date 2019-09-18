@@ -1,3 +1,5 @@
+CompileTestExe(lru_cache)
+
 CompileTestExe(priority_queue)
 
 CompileTestExe(queue)
