@@ -23,7 +23,7 @@ auto RandomNumberInArbitraryProbability_Simple(const ArrayType &numbers,
         std::fill_n(std::back_insert_iterator<ArrayType>(samples), frequencies[i], numbers[i]);
     }
 
-    return samples[Random_Number<std::size_t>(0, samples.size() - 1)];
+    return samples[Random_Number(0, samples.size() - 1)];
 }
 
 

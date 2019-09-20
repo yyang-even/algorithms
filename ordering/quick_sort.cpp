@@ -83,7 +83,7 @@ auto partition_Hoare(const ArrayType::iterator begin, const ArrayType::iterator 
 }
 
 auto partition_RandomizedHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
-    const auto random_pivot_index = Random_Number<ArrayType::size_type>(0, end - begin - 1);
+    const auto random_pivot_index = Random_Number(0, end - begin - 1);
     std::iter_swap(begin, begin + random_pivot_index);
     return partition_Hoare(begin, end);
 }

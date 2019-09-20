@@ -32,7 +32,7 @@ auto ReservoirSampling(const Container &stream, const typename Container::size_t
     }
 
     for (; iter != stream.cend(); ++i, ++iter) {
-        const auto j = Random_Number<typename Container::size_type>(0, i);
+        const auto j = Random_Number(0, i);
         if (j < k) {
             samples[j] = *iter;
         }

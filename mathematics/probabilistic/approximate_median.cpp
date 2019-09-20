@@ -21,7 +21,7 @@ auto ApproximateMedian(const ArrayType &values) {
 
     std::set<ArrayType::value_type> samples;
     for (; k > 0; --k) {
-        samples.insert(values[Random_Number<ArrayType::size_type>(0, values.size() - 1)]);
+        samples.insert(values[Random_Number(0, values.size() - 1)]);
     }
 
     return *std::next(samples.cbegin(), (samples.size() / 2) - 1);

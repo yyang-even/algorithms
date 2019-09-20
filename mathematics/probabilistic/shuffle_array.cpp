@@ -22,7 +22,7 @@ using ArrayType = std::array<int, N>;
 template <std::size_t N>
 void ShuffleArray_InPlace(ArrayType<N> &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
-        auto j = Random_Number<decltype(i)>(0, i);
+        auto j = Random_Number(0, i);
         std::swap(array[i], array[j]);
     }
 }

@@ -139,3 +139,9 @@ add_subdirectory(hash)
 add_subdirectory(mathematics)
 add_subdirectory(ordering)
 add_subdirectory(text)
+
+
+###################################################
+# Top Level Tests
+###################################################
+CompileTestExe(common_header_test)

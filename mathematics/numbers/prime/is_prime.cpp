@@ -66,7 +66,7 @@ auto IsPrime_Fermet(const unsigned n) {
     const static auto K = 3;
     auto i = 0;
     while (++i <= K) {
-        const auto a = Random_Number<unsigned>(2, n - 2);
+        const auto a = Random_Number(2, n - 2);
 
         if ((static_cast<unsigned>(pow(a, n - 1)) % n) != 1) {
             return false;
@@ -81,7 +81,7 @@ auto IsPrime_Fermet(const unsigned n) {
  * This method is a probabilistic method (Like Fermat), but it generally preferred over Fermat’s method.
  */
 auto millerTest(unsigned d, const unsigned n) {
-    const auto a = Random_Number<unsigned>(2, n - 2);
+    const auto a = Random_Number(2, n - 2);
     auto x = static_cast<unsigned>(pow(a, d)) % n;
     const auto n_minus_1 = n - 1;
 
@@ -198,7 +198,7 @@ auto IsPrime_SolovayStrassen(long long n) {
 
     const static auto K = 3;
     for (auto i = 0; i < K; ++i) {
-        const auto a = Random_Number<long long>(2, n - 1);
+        const auto a = Random_Number(2, n - 1);
         const auto jacobian = (n + calculateJacobian(a, n)) % n;
         const auto mod = static_cast<long long>(pow(a, (n - 1) / 2)) % n;
 

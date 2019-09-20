@@ -48,9 +48,9 @@ long OneDivisorOfN_PollardsRho(const long N) {
     }
     assert(not IsPrime_OptimizedSchoolMethod(N));
 
-    auto x = Random_Number<long>(2, N - 1);
+    auto x = Random_Number(2, N - 1);
     auto y = x;
-    auto c = Random_Number<long>(1, N - 1);
+    auto c = Random_Number(1, N - 1);
     long d = 1;
 
     while (d == 1) {
