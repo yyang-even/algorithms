@@ -15,12 +15,12 @@ using InputType = unsigned;
  * In right rotation, the bits that fall off at right end are put back at left end.
  */
 auto LeftRotate(const InputType num, const InputType r) {
-    return (num << r) | (num >> (Bits_Number<decltype(num)>() - r));
+    return (num << r) | (num >> (BitsNumber<decltype(num)> - r));
 }
 
 
 auto RightRotate(const InputType num, const InputType r) {
-    return (num >> r) | (num << (Bits_Number<decltype(num)>() - r));
+    return (num >> r) | (num << (BitsNumber<decltype(num)> - r));
 }
 
 }//namespace

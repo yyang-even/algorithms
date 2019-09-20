@@ -46,12 +46,6 @@ inline auto Random_Number(const FromType from, const ToType to) {
 }
 
 
-template <typename T>
-inline constexpr auto Bits_Number() {
-    return sizeof(T) * CHAR_BIT;
-}
-
-
 template <typename Iterator>
 inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
@@ -147,7 +141,12 @@ ContainerTestHelper(const Function func, Container &&elements, Args &&... args) 
 
 
 //Constants
-constexpr unsigned LONG_BITS_NUM = Bits_Number<unsigned long>();
+template <typename T>
+constexpr auto BitsNumber = sizeof(T) * CHAR_BIT;
+
+constexpr auto LONG_BITS_NUM = BitsNumber<long>;
+constexpr auto INT_BITS_NUM = BitsNumber<int>;
+
 const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
 static const std::string DIGIT_CHARS {"0123456789"};

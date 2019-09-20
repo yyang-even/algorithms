@@ -30,7 +30,7 @@ auto Division_Bit(int dividend, int divisor) {
 
     auto quotient = 0;
     auto temp = 0;
-    for (int i = Bits_Number<decltype(divisor)>() - 1; i >= 0; --i) {
+    for (int i = BitsNumber<decltype(divisor)> - 1; i >= 0; --i) {
         const auto try_number = static_cast<long long>(divisor) << i;
         if (temp + try_number <= dividend) {
             temp += try_number;

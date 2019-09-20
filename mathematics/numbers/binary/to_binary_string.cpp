@@ -19,7 +19,7 @@ typedef unsigned InputType;
  */
 auto ToBinaryString_Iterative(const InputType n) {
     std::string output;
-    for (InputType i = 1 << (Bits_Number<decltype(n)>() - 1); i; i >>= 1) {
+    for (InputType i = 1 << (BitsNumber<decltype(n)> - 1); i; i >>= 1) {
         output.push_back(static_cast<bool>(n & i) + '0');
     }
     return output;
@@ -35,13 +35,13 @@ void ToBinaryString_Recursive_Helper(const InputType n, const unsigned i, std::s
 }
 auto ToBinaryString_Recursive(const InputType n) {
     std::string output;
-    ToBinaryString_Recursive_Helper(n, Bits_Number<decltype(n)>(), output);
+    ToBinaryString_Recursive_Helper(n, BitsNumber<decltype(n)>, output);
     return output;
 }
 
 
 auto ToBinaryString_Bitset(const InputType n) {
-    return std::bitset<Bits_Number<decltype(n)>()>(n).to_string();
+    return std::bitset<BitsNumber<decltype(n)>>(n).to_string();
 }
 
 }//namespace
@@ -56,14 +56,14 @@ SIMPLE_BENCHMARK(ToBinaryString_Recursive, UPPER);
 SIMPLE_BENCHMARK(ToBinaryString_Bitset, UPPER);
 
 
-SIMPLE_TEST(ToBinaryString_Iterative, TestSample1, std::string(Bits_Number<InputType>(), '0'),
+SIMPLE_TEST(ToBinaryString_Iterative, TestSample1, std::string(BitsNumber<InputType>(), '0'),
             LOWER);
-SIMPLE_TEST(ToBinaryString_Iterative, TestSample2, std::string(Bits_Number<InputType>(), '1'),
+SIMPLE_TEST(ToBinaryString_Iterative, TestSample2, std::string(BitsNumber<InputType>(), '1'),
             UPPER);
 
-SIMPLE_TEST(ToBinaryString_Recursive, TestSample1, std::string(Bits_Number<InputType>(), '0'),
+SIMPLE_TEST(ToBinaryString_Recursive, TestSample1, std::string(BitsNumber<InputType>(), '0'),
             LOWER);
-SIMPLE_TEST(ToBinaryString_Recursive, TestSample2, std::string(Bits_Number<InputType>(), '1'),
+SIMPLE_TEST(ToBinaryString_Recursive, TestSample2, std::string(BitsNumber<InputType>(), '1'),
             UPPER);
 
 

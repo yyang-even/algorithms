@@ -93,9 +93,7 @@ bool Parity_Multiply_64(uint64_t n) {
  *              Finding the Parity of a number Efficiently
  *              https://www.geeksforgeeks.org/finding-the-parity-of-a-number-efficiently/
  */
-bool Parity_Parallel(InputType n) {
-    static_assert(Bits_Number<decltype(n)>() == 32, "InputType is not 32 bits.");
-
+bool Parity_Parallel(uint32_t n) {
     n ^= n >> 16;
     n ^= n >> 8;
     n ^= n >> 4;
@@ -106,8 +104,8 @@ bool Parity_Parallel(InputType n) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
+constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
 SIMPLE_BENCHMARK(Parity_BrianKernighan, LOWER);

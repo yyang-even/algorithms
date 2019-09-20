@@ -33,7 +33,7 @@ ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
 
 
 auto FindTheUniqueElement_Bits(const ArrayType &elements, const ArrayType::size_type K) {
-    const auto NUMBER_BITS = Bits_Number<ArrayType::value_type>();
+    const auto NUMBER_BITS = BitsNumber<ArrayType::value_type>;
     std::vector<ArrayType::value_type> counters(NUMBER_BITS, 0u);
 
     for (size_t i = 0; i < NUMBER_BITS; ++i) {

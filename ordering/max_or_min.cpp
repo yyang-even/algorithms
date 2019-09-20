@@ -65,14 +65,14 @@ InputType Max_Xor(const InputType x, const InputType y) {
 //If and only if INT_MIN <= x - y <= INT_MAX
 InputType Min_QuickDirty(const InputType x, const InputType y) {
     auto diff = x - y;
-    return y + ((diff) & ((diff) >> (Bits_Number<decltype(diff)>() - 1)));
+    return y + ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
 InputType Max_QuickDirty(const InputType x, const InputType y) {
     auto diff = x - y;
-    return x - ((diff) & ((diff) >> (Bits_Number<decltype(diff)>() - 1)));
+    return x - ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 

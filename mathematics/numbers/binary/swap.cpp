@@ -59,7 +59,7 @@ auto TestSwap(std::function<void(InputType &, InputType &)> swap,
  */
 InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
                        const unsigned bit_length) {
-    constexpr unsigned NUM_BITS = Bits_Number<decltype(number)>();
+    constexpr auto NUM_BITS = BitsNumber<decltype(number)>;
     if (i + bit_length >= NUM_BITS or
         j + bit_length >= NUM_BITS or
         i == j or

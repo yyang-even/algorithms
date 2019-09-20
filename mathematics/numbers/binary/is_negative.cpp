@@ -12,7 +12,7 @@ typedef int InputType;
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 bool IsNegative_Portable(const InputType num) {
-    return 1 & ((unsigned InputType)num >> (Bits_Number<decltype(num)>() - 1));
+    return 1 & ((unsigned InputType)num >> (BitsNumber<decltype(num)> - 1));
 }
 
 
@@ -26,7 +26,7 @@ inline auto IsNegative(const InputType num) {
  * @reference   https://www.geeksforgeeks.org/check-number-positive-negative-zero-using-bit-operators/
  */
 int IsNegativeOrZeroOrPositive(const InputType num) {
-    constexpr auto BITS_NUM = Bits_Number<decltype(num)>() - 1;
+    constexpr auto BITS_NUM = BitsNumber<decltype(num)> - 1;
     return 1 + (num >> BITS_NUM) - (-num >> BITS_NUM);
 }
 
