@@ -31,13 +31,11 @@ auto CountTotalBits_Loop(InputType num) {
  * @reference   https://www.geeksforgeeks.org/number-of-leading-zeros-in-binary-representation-of-a-given-number/
  */
 auto CountLeadingZeros_Loop(const InputType num) {
-    return Bits_Number<decltype(num)>() - CountTotalBits_Loop(num);
+    return BitsNumber<decltype(num)> - CountTotalBits_Loop(num);
 }
 
 
-auto CountLeadingZeros_BinarySearch(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto CountLeadingZeros_BinarySearch(uint32_t num) {
     InputType result = 32;
     if (num & 0xffff0000) {
         result -= 16;
@@ -74,7 +72,7 @@ constexpr auto UPPER = std::numeric_limits<InputType>::max();
 SIMPLE_BENCHMARK(CountTotalBits_Log, UPPER);
 RANDOM_BENCHMARK(CountTotalBits_Log, LOWER, UPPER);
 
-SIMPLE_TEST(CountTotalBits_Log, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountTotalBits_Log, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE1, 4u, 13);
 SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE2, 8u, 183);
 SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE3, 13u, 4096);
@@ -86,7 +84,7 @@ SIMPLE_BENCHMARK(CountTotalBits_Loop, UPPER);
 RANDOM_BENCHMARK(CountTotalBits_Loop, LOWER, UPPER);
 
 SIMPLE_TEST(CountTotalBits_Loop, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(CountTotalBits_Loop, TestUPPER, Bits_Number<decltype(UPPER)>(), UPPER);
+SIMPLE_TEST(CountTotalBits_Loop, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountTotalBits_Loop, TestSAMPLE1, 4u, 13);
 SIMPLE_TEST(CountTotalBits_Loop, TestSAMPLE2, 8u, 183);
 SIMPLE_TEST(CountTotalBits_Loop, TestSAMPLE3, 13u, 4096);
@@ -98,7 +96,7 @@ MUTUAL_RANDOM_TEST(CountTotalBits_Log, CountTotalBits_Loop, LOWER, UPPER);
 SIMPLE_BENCHMARK(CountLeadingZeros_Loop, 16);
 RANDOM_BENCHMARK(CountLeadingZeros_Loop, LOWER, UPPER);
 
-SIMPLE_TEST(CountLeadingZeros_Loop, TestLower, Bits_Number<decltype(LOWER)>(), LOWER);
+SIMPLE_TEST(CountLeadingZeros_Loop, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
 SIMPLE_TEST(CountLeadingZeros_Loop, TestSAMPLE1, 27u, 16);
 SIMPLE_TEST(CountLeadingZeros_Loop, TestSAMPLE2, 26u, 33);
 SIMPLE_TEST(CountLeadingZeros_Loop, TestUpper, 0u, UPPER);
@@ -107,7 +105,7 @@ SIMPLE_TEST(CountLeadingZeros_Loop, TestUpper, 0u, UPPER);
 SIMPLE_BENCHMARK(CountLeadingZeros_BinarySearch, 16);
 RANDOM_BENCHMARK(CountLeadingZeros_BinarySearch, LOWER, UPPER);
 
-SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, Bits_Number<decltype(LOWER)>(), LOWER);
+SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE1, 27u, 16);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE2, 26u, 33);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestUpper, 0u, UPPER);

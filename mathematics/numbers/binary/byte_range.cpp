@@ -10,9 +10,7 @@ namespace {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 #define haszero(v) (((v) - 0x01010101UL) & ~(v) & 0x80808080UL)
-bool HasByteZero(const unsigned num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "unsigned is not 32 bits.");
-
+bool HasByteZero(const uint32_t num) {
     return haszero(num);
 }
 
@@ -42,9 +40,7 @@ auto HasByteZero_Pointer(const unsigned num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 #define hasvalue(x,n) (haszero((x) ^ (~0UL/255 * (n))))
-bool HasByteN(const unsigned x, const unsigned char n) {
-    static_assert(Bits_Number<decltype(x)>() == 32, "unsigned is not 32 bits.");
-
+bool HasByteN(const uint32_t x, const unsigned char n) {
     return hasvalue(x, n);
 }
 
