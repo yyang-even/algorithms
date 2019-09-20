@@ -17,11 +17,9 @@ typedef unsigned InputType;
  * @reference   Write an Efficient C Program to Reverse Bits of a Number
  *              https://www.geeksforgeeks.org/write-an-efficient-c-program-to-reverse-bits-of-a-number/
  */
-InputType ReverseBits_32(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
-    auto size = Bits_Number<decltype(num)>() - 1;
-    InputType ret = num;
+auto ReverseBits(unsigned num) {
+    auto size = BitsNumber<decltype(num)> - 1;
+    auto ret = num;
     for (num >>= 1; num; num >>= 1) {
         ret <<= 1;
         ret |= (num & 1);
@@ -39,9 +37,7 @@ InputType ReverseBits_32(InputType num) {
  * @reference   Reverse bits using lookup table in O(1) time
  *              https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
  */
-InputType ReverseBits_32_LookupTable(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto ReverseBits_32_LookupTable(const uint32_t num) {
     static const unsigned char BitReverseTable256[256] = {
 #define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
 #define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
@@ -101,9 +97,7 @@ unsigned char ReverseBitsInByte_7(const unsigned char byte) {
  *              Reverse an N-bit quantity in parallel in 5 * lg(N) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType ReverseBits_32_Parallel(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto ReverseBits_32_Parallel(uint32_t num) {
     // swap odd and even bits
     num = SwapOddAndEvenBits(num);
     // swap consecutive pairs
@@ -127,7 +121,7 @@ InputType ReverseBits_32_Parallel(InputType num) {
  */
 template <typename T>
 T ReverseNBits_Parallel(T num) {
-    T size = Bits_Number<T>(); // bit size; must be power of 2
+    T size = BitsNumber<T>; // bit size; must be power of 2
     T mask = ~0;
     while ((size >>= 1) > 0) {
         mask ^= (mask << size);
@@ -136,9 +130,7 @@ T ReverseNBits_Parallel(T num) {
 
     return num;
 }
-InputType ReverseNBits_Parallel_Uint32(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+InputType ReverseNBits_Parallel_Uint32(uint32_t num) {
     return ReverseNBits_Parallel(num);
 }
 
@@ -160,16 +152,16 @@ auto ReverseBytes(unsigned num) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
+constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(ReverseBits_32, UPPER);
+SIMPLE_BENCHMARK(ReverseBits, UPPER);
 
-SIMPLE_TEST(ReverseBits_32, TestLOWER, LOWER, LOWER);
-SIMPLE_TEST(ReverseBits_32, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(ReverseBits_32, TestSAMPLE1, 0XB0000000u, 0b1101);
-SIMPLE_TEST(ReverseBits_32, TestSAMPLE2, 0X80u, 0X01000000);
+SIMPLE_TEST(ReverseBits, TestLOWER, LOWER, LOWER);
+SIMPLE_TEST(ReverseBits, TestUPPER, UPPER, UPPER);
+SIMPLE_TEST(ReverseBits, TestSAMPLE1, 0XB0000000u, 0b1101);
+SIMPLE_TEST(ReverseBits, TestSAMPLE2, 0X80u, 0X01000000);
 
 
 SIMPLE_BENCHMARK(ReverseBits_32_LookupTable, UPPER);
@@ -179,7 +171,7 @@ SIMPLE_TEST(ReverseBits_32_LookupTable, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ReverseBits_32_LookupTable, TestSAMPLE1, 0XB0000000u, 0b1101);
 SIMPLE_TEST(ReverseBits_32_LookupTable, TestSAMPLE2, 0X80u, 0X01000000);
 
-MUTUAL_RANDOM_TEST(ReverseBits_32, ReverseBits_32_LookupTable, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(ReverseBits, ReverseBits_32_LookupTable, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(ReverseBitsInByte_3, static_cast<unsigned char>(UPPER));
@@ -225,7 +217,7 @@ SIMPLE_TEST(ReverseBits_32_Parallel, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ReverseBits_32_Parallel, TestSAMPLE1, 0XB0000000u, 0b1101);
 SIMPLE_TEST(ReverseBits_32_Parallel, TestSAMPLE2, 0X80u, 0X01000000);
 
-MUTUAL_RANDOM_TEST(ReverseBits_32, ReverseBits_32_Parallel, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(ReverseBits, ReverseBits_32_Parallel, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(ReverseNBits_Parallel_Uint32, UPPER);
@@ -235,7 +227,7 @@ SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestSAMPLE1, 0XB0000000u, 0b1101);
 SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestSAMPLE2, 0X80u, 0X01000000);
 
-MUTUAL_RANDOM_TEST(ReverseBits_32, ReverseNBits_Parallel_Uint32, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(ReverseBits, ReverseNBits_Parallel_Uint32, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(ReverseBytes, 0x12345678);

@@ -17,6 +17,6 @@ unsigned CountTrailingZeros_Linear(unsigned num) {
         return CountSetBits_BrianKernighan(num);
 
     } else {
-        return Bits_Number<decltype(num)>();
+        return BitsNumber<decltype(num)>;
     }
 }

@@ -14,9 +14,7 @@ typedef unsigned InputType;
  *              Count the consecutive zero bits (trailing) on the right in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZeros_Parallel(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto CountTrailingZeros_Parallel(uint32_t num) {
     InputType result = 32; // c will be the number of zero bits on the right
     num &= -signed(num);
     if (num) {
@@ -48,9 +46,7 @@ auto CountTrailingZeros_Parallel(InputType num) {
  *              Count the consecutive zero bits (trailing) on the right by binary search
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZeros_BinarySearch(InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto CountTrailingZeros_BinarySearch(uint32_t num) {
     InputType result;
     if (num == 0) {
         result = 32;
@@ -86,9 +82,7 @@ auto CountTrailingZeros_BinarySearch(InputType num) {
  *              Count the consecutive zero bits (trailing) on the right by casting to a float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType CountTrailingZeros_Float(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+InputType CountTrailingZeros_Float(const uint32_t num) {
     if (num) {
         FloatUnsignedUnion float_unsigned_union;
         float_unsigned_union.f = static_cast<float>(num & -num);
@@ -107,9 +101,7 @@ InputType CountTrailingZeros_Float(const InputType num) {
  * @reference   Count trailing zero bits using lookup table
  *              https://www.geeksforgeeks.org/count-trailing-zero-bits-using-lookup-table/
  */
-auto CountTrailingZeros_ModulusAndLookup(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto CountTrailingZeros_ModulusAndLookup(const uint32_t num) {
     static constexpr InputType Mod37BitPosition[] = { // map a bit value mod 37 to its position
         32, 0, 1, 26, 2, 23, 27, 0, 3, 16, 24, 30, 28, 11, 0, 13, 4,
         7, 17, 0, 25, 22, 31, 15, 29, 10, 12, 6, 0, 21, 14, 9, 5,
@@ -125,9 +117,7 @@ auto CountTrailingZeros_ModulusAndLookup(const InputType num) {
  *              Count the consecutive zero bits (trailing) on the right with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto CountTrailingZeros_MultiplyAndLookup(const InputType num) {
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+auto CountTrailingZeros_MultiplyAndLookup(const uint32_t num) {
     static constexpr InputType MultiplyDeBruijnBitPosition[32] = {
         0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8,
         31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
@@ -141,7 +131,7 @@ auto CountTrailingZeros_MultiplyAndLookup(const InputType num) {
  * @reference   https://www.geeksforgeeks.org/count-number-of-trailing-zeros-in-binary-representation-of-a-number-using-bitset/
  */
 auto CountTrailingZeros_Bitset(const InputType num) {
-    std::bitset<Bits_Number<decltype(num)>()> binary_num{num};
+    std::bitset<BitsNumber<decltype(num)>> binary_num{num};
 
     unsigned count = 0;
     for (std::size_t i = 0; i < binary_num.size(); ++i) {
@@ -167,9 +157,9 @@ auto CountChangedBitsAfterAdd1(const InputType N) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType NUM_BITS = Bits_Number<InputType>();
+constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
+constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
+constexpr auto NUM_BITS = BitsNumber<uint32_t>;
 
 
 SIMPLE_BENCHMARK(CountTrailingZeros_Linear, UPPER);

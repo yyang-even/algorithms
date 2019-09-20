@@ -18,7 +18,7 @@ namespace {
  * encoded as 2, -2 is encoded as 3, and so on.
  */
 unsigned ZigZagEncoding(const int num) {
-    return (num << 1) ^ (num >> (Bits_Number<decltype(num)>() - 1));
+    return (num << 1) ^ (num >> (BitsNumber<decltype(num)> - 1));
 }
 
 

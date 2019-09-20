@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 typedef int InputType;
 
 /** Sign extending
@@ -22,35 +25,42 @@ typedef int InputType;
  * this is sign extending.
  */
 template <unsigned B>
-inline InputType SignExtendConst(const InputType x) {
+inline InputType SignExtend_Const(const InputType x) {
     struct {
     InputType x:
         B;
     } bits;
     return bits.x = x;
 }
-InputType SignExtendConst4Bits(const InputType x) {
-    return SignExtendConst<4>(x);
+
+InputType SignExtend_Const_4Bits(const InputType x) {
+    return SignExtend_Const<4>(x);
 }
 
+
 template <unsigned B>
-inline InputType SignExtendVariable(InputType x) {
+inline InputType SignExtend_Variable(InputType x) {
     static const InputType mask = 1U << (B - 1);
     x = x & ((1U << B) - 1);
     return (x ^ mask) - mask;
 }
-InputType SignExtendVariable4Bits(InputType x) {
-    return SignExtendVariable<4>(x);
+
+InputType SignExtend_Variable_4Bits(InputType x) {
+    return SignExtend_Variable<4>(x);
 }
 
+
 template <unsigned B>
-inline InputType SignExtendVariableDirty(const InputType x) {
-    static const InputType mask = Bits_Number<decltype(x)>() - B;
+inline InputType SignExtend_Variable_Dirty(const InputType x) {
+    static const InputType mask = BitsNumber<decltype(x)> - B;
     return (x << mask) >> mask;
 }
-InputType SignExtendVariableDirty4Bits(InputType x) {
-    return SignExtendVariableDirty<4>(x);
+
+InputType SignExtend_Variable_Dirty_4Bits(InputType x) {
+    return SignExtend_Variable_Dirty<4>(x);
 }
+
+}//namespace
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
@@ -61,45 +71,47 @@ constexpr InputType SAMPLE3 = 0b1111; //-1
 constexpr InputType SAMPLE4 = 0b1000; //-8
 constexpr InputType SAMPLE5 = 0b0111; //7
 
-SIMPLE_BENCHMARK(SignExtendConst4Bits, 1);
-SIMPLE_BENCHMARK(SignExtendConst4Bits, 0);
-SIMPLE_BENCHMARK(SignExtendConst4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtendConst4Bits, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, 1);
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, 0);
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, LOWER);
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, std::numeric_limits<unsigned>::max());
 
-SIMPLE_TEST(SignExtendConst4Bits, TestSample1, 0, SAMPLE1);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample2, 1, SAMPLE2);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample3, -1, SAMPLE3);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample4, -8, SAMPLE4);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample5, 7, SAMPLE5);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample6, 0, LOWER);
-SIMPLE_TEST(SignExtendConst4Bits, TestSample7, -1, UPPER);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample1, 0, SAMPLE1);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample2, 1, SAMPLE2);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample3, -1, SAMPLE3);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample4, -8, SAMPLE4);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample5, 7, SAMPLE5);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample6, 0, LOWER);
+SIMPLE_TEST(SignExtend_Const_4Bits, TestSample7, -1, UPPER);
 
-SIMPLE_BENCHMARK(SignExtendVariable4Bits, 1);
-SIMPLE_BENCHMARK(SignExtendVariable4Bits, 0);
-SIMPLE_BENCHMARK(SignExtendVariable4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtendVariable4Bits, std::numeric_limits<unsigned>::max());
 
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample1, 0, SAMPLE1);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample2, 1, SAMPLE2);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample3, -1, SAMPLE3);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample4, -8, SAMPLE4);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample5, 7, SAMPLE5);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample6, 0, LOWER);
-SIMPLE_TEST(SignExtendVariable4Bits, TestSample7, -1, UPPER);
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, 1);
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, 0);
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, LOWER);
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, std::numeric_limits<unsigned>::max());
 
-SIMPLE_BENCHMARK(SignExtendVariableDirty4Bits, 1);
-SIMPLE_BENCHMARK(SignExtendVariableDirty4Bits, 0);
-SIMPLE_BENCHMARK(SignExtendVariableDirty4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtendVariableDirty4Bits, std::numeric_limits<unsigned>::max());
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample1, 0, SAMPLE1);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample2, 1, SAMPLE2);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample3, -1, SAMPLE3);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample4, -8, SAMPLE4);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample5, 7, SAMPLE5);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample6, 0, LOWER);
+SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample7, -1, UPPER);
 
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample1, 0, SAMPLE1);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample2, 1, SAMPLE2);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample3, -1, SAMPLE3);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample4, -8, SAMPLE4);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample5, 7, SAMPLE5);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample6, 0, LOWER);
-SIMPLE_TEST(SignExtendVariableDirty4Bits, TestSample7, -1, UPPER);
 
-MUTUAL_RANDOM_TEST(SignExtendConst4Bits, SignExtendVariable4Bits, LOWER, UPPER);
-MUTUAL_RANDOM_TEST(SignExtendConst4Bits, SignExtendVariableDirty4Bits, LOWER, UPPER);
-MUTUAL_RANDOM_TEST(SignExtendVariableDirty4Bits, SignExtendVariable4Bits, LOWER, UPPER);
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, 1);
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, 0);
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, LOWER);
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, std::numeric_limits<unsigned>::max());
+
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample1, 0, SAMPLE1);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample2, 1, SAMPLE2);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample3, -1, SAMPLE3);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample4, -8, SAMPLE4);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample5, 7, SAMPLE5);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample6, 0, LOWER);
+SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample7, -1, UPPER);
+
+MUTUAL_RANDOM_TEST(SignExtend_Const_4Bits, SignExtend_Variable_4Bits, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(SignExtend_Const_4Bits, SignExtend_Variable_Dirty_4Bits, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(SignExtend_Variable_Dirty_4Bits, SignExtend_Variable_4Bits, LOWER, UPPER);

@@ -4,7 +4,6 @@
 namespace {
 
 using ArrayType = std::vector<unsigned>;
-using InputType = int;
 
 #include "mathematics/numbers/binary/maximum_and_value_of_pair.h"
 
@@ -52,27 +51,27 @@ auto MaxElement_Bit(ArrayType values) {
  * @reference   What are the differences between bitwise and logical AND operators in C/C++?
  *              https://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
  */
-InputType Min_Xor(const InputType x, const InputType y) {
+int Min_Xor(const int x, const int y) {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 
-InputType Max_Xor(const InputType x, const InputType y) {
+int Max_Xor(const int x, const int y) {
     return x ^ ((x ^ y) & -(x < y));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-InputType Min_QuickDirty(const InputType x, const InputType y) {
+int Min_QuickDirty(const int x, const int y) {
     auto diff = x - y;
-    return y + ((diff) & ((diff) >> (Bits_Number<decltype(diff)>() - 1)));
+    return y + ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-InputType Max_QuickDirty(const InputType x, const InputType y) {
+int Max_QuickDirty(const int x, const int y) {
     auto diff = x - y;
-    return x - ((diff) & ((diff) >> (Bits_Number<decltype(diff)>() - 1)));
+    return x - ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 
@@ -104,8 +103,8 @@ SIMPLE_TEST(MaxElement_Bit, TestSAMPLE4, 16u, VALUES4);
 SIMPLE_TEST(MaxElement_Bit, TestSAMPLE5, 15u, VALUES5);
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
 SIMPLE_BENCHMARK(Min_Xor, -1, 0);

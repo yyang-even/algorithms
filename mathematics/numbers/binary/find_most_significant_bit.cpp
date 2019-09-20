@@ -34,7 +34,7 @@ constexpr auto UPPER = std::numeric_limits<InputType>::max();
 SIMPLE_BENCHMARK(FindMSB, 4);
 
 SIMPLE_TEST(FindMSB, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(FindMSB, TestUPPER, 1u << (Bits_Number<InputType>() - 1), UPPER);
+SIMPLE_TEST(FindMSB, TestUPPER, 1u << (BitsNumber<decltype(UPPER)> - 1), UPPER);
 SIMPLE_TEST(FindMSB, TestSample1, 0b100u, 0b101);
 SIMPLE_TEST(FindMSB, TestSample2, 256u, 273);
 SIMPLE_TEST(FindMSB, TestSample3, 8u, 10);
@@ -43,7 +43,7 @@ SIMPLE_TEST(FindMSB, TestSample3, 8u, 10);
 SIMPLE_BENCHMARK(FindMSB_Float, 4);
 
 SIMPLE_TEST(FindMSB_Float, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(FindMSB_Float, TestUPPER, 1u << (Bits_Number<InputType>() - 1), UPPER);
+SIMPLE_TEST(FindMSB_Float, TestUPPER, 1u << (BitsNumber<decltype(UPPER)> - 1), UPPER);
 SIMPLE_TEST(FindMSB_Float, TestSample1, 0b100u, 0b101);
 SIMPLE_TEST(FindMSB_Float, TestSample2, 256u, 273);
 
