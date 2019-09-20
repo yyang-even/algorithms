@@ -110,8 +110,7 @@ constexpr InputType LOWER = std::numeric_limits<InputType>::min();
 constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 constexpr InputType SAMPLE = 14;
 
-constexpr InputType BITS_NUM = Bits_Number<InputType>();
-constexpr InputType UPPER2 = InputType(1) << ((LONG_BITS_NUM / 2) - 1);
+constexpr InputType UPPER2 = InputType(1) << ((BitsNumber<InputType> / 2) - 1);
 
 constexpr InputType BoundedRegionsPlaneLinesLOWER = 1;
 
@@ -170,7 +169,8 @@ SIMPLE_TEST(PlaneZigzagLines_Recursive, TestUPPER, 75483137u, UPPER);
 SIMPLE_TEST(PlaneZigzagLines_Recursive, TestSAMPLE, 834u, SAMPLE);
 
 
-constexpr InputType PlaneZigzagLinesClosedformUPPER = InputType(1) << ((LONG_BITS_NUM / 2) - 2);
+constexpr InputType PlaneZigzagLinesClosedformUPPER = InputType(1) << ((
+            BitsNumber<InputType> / 2) - 2);
 
 
 SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, LOWER);
