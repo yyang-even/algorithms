@@ -47,7 +47,7 @@ public:
             cache_queue.emplace_back(key, value);
             iter->second = cache_queue.cbegin();
         } else {
-            if (cache_queue.size() >= CAPICITY) {
+            if (Size() >= CAPICITY) {
                 cache_map.erase(cache_queue.back().first);
                 cache_queue.pop_back();
             }

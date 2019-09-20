@@ -66,8 +66,8 @@ private:
         return std::ceil(std::log2(n + 1)) - 1;
     }
 
-    void heapifyRecursive(SizeType i,
-                          const SizeType heap_size) {
+
+    SizeType heapify_Recursive(SizeType i, const SizeType heap_size) {
         const auto l = left(i);
         const auto r = right(i);
         SizeType best = i;
@@ -81,11 +81,12 @@ private:
 
         if (best != i) {
             std::swap(heap[i], heap[best]);
-            heapifyRecursive(best, heap_size);
+            return heapify_Recursive(best, heap_size);
         }
+        return i;
     }
-    void heapifyIterative(SizeType i,
-                          const SizeType heap_size) {
+
+    auto heapify_Iterative(SizeType i, const SizeType heap_size) {
         while (i < heap_size) {
             const auto l = left(i);
             const auto r = right(i);
@@ -105,10 +106,13 @@ private:
                 break;
             }
         }
+
+        return i;
     }
 
-    void buildHeap(const std::function<void(BinaryHeap<T, Compare>*,
-                                            SizeType, const SizeType)> heapify) {
+
+    void buildHeap(const std::function<SizeType(BinaryHeap<T, Compare>*,
+                   SizeType, const SizeType)> heapify) {
         if (not heap.empty()) {
             for (int i = indexOfFirstLeave(heap.size()) - 1; i >= 0; --i) {
                 heapify(this, i, heap.size());
@@ -116,59 +120,97 @@ private:
         }
     }
 
-    void bubbleUp(SizeType i, const bool suppose_better = false) {
-        while (i and (suppose_better or compare(heap[i], heap[parent(i)]))) {
-            std::swap(heap[parent(i)], heap[i]);
-            i = parent(i);
-        }
-    }
 
 public:
     BinaryHeap() = default;
     BinaryHeap(const ArrayType &array, const bool recursive = true): heap(array) {
-        buildHeap(recursive ? &BinaryHeap<T, Compare>::heapifyRecursive :
-                  &BinaryHeap<T, Compare>::heapifyIterative);
+        buildHeap(recursive ? &BinaryHeap<T, Compare>::heapify_Recursive :
+                  &BinaryHeap<T, Compare>::heapify_Iterative);
     }
 
-    auto Top() const {
+
+    auto Size() const {
+        return heap.size();
+    }
+
+
+    const auto &At(const SizeType &i) const {
+        return heap.at(i);
+    }
+
+    auto &At(const SizeType &i) {
+        return heap.at(i);
+    }
+
+
+    const auto &Top() const {
         assert(not heap.empty());
         return heap.front();
     }
+
 
     auto Pop() {
         const auto top = Top();
         heap.front() = heap.back();
         heap.pop_back();
-        heapifyRecursive(0, heap.size());
+        heapify_Recursive(0, heap.size());
 
         return top;
     }
 
-    void Push(const T value) {
+
+    auto Push(const T value) {
         heap.push_back(value);
-        bubbleUp(heap.size() - 1);
+        return BubbleUp(heap.size() - 1);
     }
+
+
+    template<typename... Args>
+    auto Emplace(Args &&...args) {
+        heap.emplace_back(std::forward<Args>(args)...);
+        return BubbleUp(heap.size() - 1);
+    }
+
+
 
     bool Empty() const {
         return heap.empty();
     }
 
+
+    auto BubbleUp(SizeType i, const bool suppose_better = false) {
+        while (i and (suppose_better or compare(heap[i], heap[parent(i)]))) {
+            std::swap(heap[parent(i)], heap[i]);
+            i = parent(i);
+        }
+
+        return i;
+    }
+
+
+    auto Heapify(const SizeType i) {
+        return heapify_Iterative(i, heap.size());
+    }
+
+
     ArrayType ToSortedArray() {
         for (auto heap_size = heap.size(); heap_size > 1;) {
             std::swap(heap.front(), heap[--heap_size]);
-            heapifyRecursive(0, heap_size);
+            heapify_Recursive(0, heap_size);
         }
 
         return std::move(heap);
     }
 
-    void Prioritize(const SizeType i, const T new_key) {
+
+    auto Prioritize(const SizeType i, const T new_key) {
         assert(i < heap.size());
 
         if (compare(new_key, heap[i])) {
             heap[i] = new_key;
-            bubbleUp(i);
+            return BubbleUp(i);
         }
+        return i;
     }
 
 
@@ -180,7 +222,7 @@ public:
     void Delete(const SizeType i) {
         assert(i < heap.size());
 
-        bubbleUp(i, true);
+        BubbleUp(i, true);
         Pop();
     }
 
@@ -209,6 +251,7 @@ public:
 
         return false;
     }
+
     static auto isHeap_Iterative(const ArrayType &values) {
         for (SizeType i = 0; i < indexOfFirstLeave(values.size()); ++i) {
             if (not compare(values[i], values[left(i)])) {
