@@ -49,7 +49,7 @@ SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0u, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8u, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE3, 97u, 100);
-SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER, UPPER - Bits_Number<decltype(UPPER)>(),
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER, UPPER - BitsNumber<decltype(UPPER)>,
             UPPER);
 
 
@@ -62,7 +62,7 @@ SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE1, 0u, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE2, 8u, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE3, 97u, 100);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestUPPER,
-            UPPER - Bits_Number<decltype(UPPER)>(), UPPER);
+            UPPER - BitsNumber<decltype(UPPER)>, UPPER);
 
 MUTUAL_RANDOM_TEST(LargestPowerOf2DividesFactorialN, LargestPowerOf2DividesFactorialN_BuiltIn, 0,
                    96583);

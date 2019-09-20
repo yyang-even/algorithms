@@ -3,6 +3,7 @@
 namespace {
 
 typedef unsigned long InputType;
+
 /** Josephus Problem
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -46,8 +47,7 @@ InputType JosephusProblem2_Recursive(const InputType n) {
  * J(2^m + l) = 2l + 1, for m >= 0 and 0 <= l < 2^m.
  */
 InputType JosephusProblem2_Closedform(const InputType n) {
-    static constexpr auto bit_length = Bits_Number<decltype(n)>();
-    InputType m = InputType(1) << (bit_length - 1);
+    InputType m = InputType(1) << (BitsNumber<decltype(n)> - 1);
 
     while (m and !(m & n)) {
         m /= 2;
@@ -71,8 +71,7 @@ InputType PenultimateSurvivor_Closedform(const InputType n) {
     if (n == 2) {
         return 2;
     }
-    static constexpr auto bit_length = Bits_Number<decltype(n)>();
-    InputType m = InputType(3) << (bit_length - 2);
+    InputType m = InputType(3) << (BitsNumber<decltype(n)> - 2);
 
     while (n < m) {
         m /= 2;

@@ -3,8 +3,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Rotate bits of a number
  *
  * @reference   https://www.geeksforgeeks.org/rotate-bits-of-an-integer/
@@ -14,13 +12,13 @@ using InputType = unsigned;
  * In left rotation, the bits that fall off at left end are put back at right end.
  * In right rotation, the bits that fall off at right end are put back at left end.
  */
-auto LeftRotate(const InputType num, const InputType r) {
-    return (num << r) | (num >> (Bits_Number<decltype(num)>() - r));
+auto LeftRotate(const unsigned num, const unsigned r) {
+    return (num << r) | (num >> (BitsNumber<decltype(num)> - r));
 }
 
 
-auto RightRotate(const InputType num, const InputType r) {
-    return (num >> r) | (num << (Bits_Number<decltype(num)>() - r));
+auto RightRotate(const unsigned num, const unsigned r) {
+    return (num >> r) | (num << (BitsNumber<decltype(num)> - r));
 }
 
 }//namespace

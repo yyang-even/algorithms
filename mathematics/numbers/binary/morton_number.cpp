@@ -1,9 +1,7 @@
 #include "common_header.h"
 
-namespace {
 
-using InputType = unsigned short;
-using OutputType = unsigned;
+namespace {
 
 /** Interleave bits the obvious way
  *
@@ -19,12 +17,9 @@ using OutputType = unsigned;
  *              y = 1 1 1 0
  *         result = 10111001
  */
-auto MortonNumber(const InputType x, const InputType y) {
-    static_assert(sizeof(InputType) * 2 == sizeof(OutputType),
-                  "OutputType is not twice the size of InputType.");
-
-    OutputType result = 0;
-    for (InputType i = 0; i < Bits_Number<decltype(x)>(); ++i) {
+auto MortonNumber(const uint16_t x, const uint16_t y) {
+    uint32_t result = 0;
+    for (unsigned short i = 0; i < BitsNumber<decltype(x)>; ++i) {
         result |= ((x & 1U << i) << i) | ((y & 1U << i) << (i + 1));
     }
     return result;
@@ -37,11 +32,8 @@ auto MortonNumber(const InputType x, const InputType y) {
  *              Interleave bits by table lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-OutputType MortonNumber_Lookup(const InputType x, const InputType y) {
-    static_assert(sizeof(InputType) * 2 == sizeof(OutputType),
-                  "OutputType is not twice the size of InputType.");
-
-    static constexpr InputType MortonTable256[256] = {
+uint32_t MortonNumber_Lookup(const uint16_t x, const uint16_t y) {
+    static constexpr unsigned short MortonTable256[256] = {
         0x0000, 0x0001, 0x0004, 0x0005, 0x0010, 0x0011, 0x0014, 0x0015,
         0x0040, 0x0041, 0x0044, 0x0045, 0x0050, 0x0051, 0x0054, 0x0055,
         0x0100, 0x0101, 0x0104, 0x0105, 0x0110, 0x0111, 0x0114, 0x0115,
@@ -89,10 +81,7 @@ OutputType MortonNumber_Lookup(const InputType x, const InputType y) {
  *              Interleave bits with 64-bit multiply
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned short MortonNumber_Multiply(const unsigned char x, const unsigned char y) {
-    static_assert(sizeof(unsigned char) * 2 == sizeof(unsigned short),
-                  "OutputType is not twice the size of InputType.");
-
+uint16_t MortonNumber_Multiply(const unsigned char x, const unsigned char y) {
     return (((x * 0x0101010101010101ULL & 0x8040201008040201ULL) *
              0x0102040810204081ULL >> 49) & 0x5555) |
            (((y * 0x0101010101010101ULL & 0x8040201008040201ULL) *
@@ -106,15 +95,12 @@ unsigned short MortonNumber_Multiply(const unsigned char x, const unsigned char 
  *              Interleave bits by Binary Magic Numbers
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-OutputType MortonNumber_MagicNumber(const InputType input_x, const InputType input_y) {
-    static_assert(sizeof(InputType) * 2 == sizeof(OutputType),
-                  "OutputType is not twice the size of InputType.");
+uint32_t MortonNumber_MagicNumber(const uint16_t input_x, const uint16_t input_y) {
+    static constexpr uint32_t B[] = {0x55555555, 0x33333333, 0x0F0F0F0F, 0x00FF00FF};
+    static constexpr uint32_t S[] = {1, 2, 4, 8};
 
-    static constexpr OutputType B[] = {0x55555555, 0x33333333, 0x0F0F0F0F, 0x00FF00FF};
-    static constexpr OutputType S[] = {1, 2, 4, 8};
-
-    OutputType x = input_x;
-    OutputType y = input_y;
+    uint32_t x = input_x;
+    uint32_t y = input_y;
 
     x = (x | (x << S[3])) & B[3];
     x = (x | (x << S[2])) & B[2];
@@ -132,21 +118,21 @@ OutputType MortonNumber_MagicNumber(const InputType input_x, const InputType inp
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<uint16_t>::min();
+constexpr auto UPPER = std::numeric_limits<uint16_t>::max();
 
 
 SIMPLE_BENCHMARK(MortonNumber, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER, UPPER);
+SIMPLE_TEST(MortonNumber, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER, UPPER);
 SIMPLE_TEST(MortonNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
 SIMPLE_BENCHMARK(MortonNumber_Lookup, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber_Lookup, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber_Lookup, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER, UPPER);
+SIMPLE_TEST(MortonNumber_Lookup, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER, UPPER);
 SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
@@ -154,15 +140,14 @@ SIMPLE_BENCHMARK(MortonNumber_Multiply, 0b101, 0b1110);
 
 SIMPLE_TEST(MortonNumber_Multiply, TestLOWER, 0u, LOWER, LOWER);
 SIMPLE_TEST(MortonNumber_Multiply, TestUPPER, std::numeric_limits<unsigned short>::max(),
-            std::numeric_limits<unsigned char>::max(),
-            std::numeric_limits<unsigned char>::max());
+            std::numeric_limits<unsigned char>::max(), std::numeric_limits<unsigned char>::max());
 SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
 SIMPLE_BENCHMARK(MortonNumber_MagicNumber, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber_MagicNumber, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber_MagicNumber, TestUPPER, std::numeric_limits<OutputType>::max(), UPPER,
+SIMPLE_TEST(MortonNumber_MagicNumber, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER,
             UPPER);
 SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);

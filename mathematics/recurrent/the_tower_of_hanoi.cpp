@@ -135,7 +135,8 @@ unsigned long HanoiTower_4Rods_Recursive(const InputType n) {
 
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr InputType UPPER = LONG_BITS_NUM - 1;
+constexpr auto OUTPUT_NUMBER_BITS = BitsNumber<decltype(HanoiTower_Closedform(LOWER))>;
+constexpr auto UPPER = OUTPUT_NUMBER_BITS - 1;
 constexpr InputType SAMPLE = 8;
 
 
@@ -163,7 +164,7 @@ SIMPLE_TEST(HanoiTower_Closedform, TestSAMPLE, 255u, SAMPLE);
 MUTUAL_RANDOM_TEST(HanoiTower_Recursive, HanoiTower_Closedform, LOWER, UPPER);
 
 
-constexpr InputType IndirectHanoiTowerUPPER = LONG_BITS_NUM / 3;
+constexpr InputType IndirectHanoiTowerUPPER = OUTPUT_NUMBER_BITS / 3;
 
 
 SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, LOWER);
