@@ -13,13 +13,13 @@ typedef int InputType;
  *              https://www.geeksforgeeks.org/compute-the-integer-absolute-value-abs-without-branching/
  */
 unsigned Absolute(const InputType num) {
-    const InputType mask = num >> (Bits_Number<decltype(num)>() - 1);
+    const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num + mask) ^ mask;
 }
 
 
 unsigned Abs_Patented(const InputType num) {
-    const InputType mask = num >> (Bits_Number<decltype(num)>() - 1);
+    const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num ^ mask) - mask;
 }
 

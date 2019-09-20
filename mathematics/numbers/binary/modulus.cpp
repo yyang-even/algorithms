@@ -3,8 +3,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Compute modulus division by 1 << s without a division operator
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -13,7 +11,7 @@ typedef unsigned InputType;
  * @reference   Compute modulus division by a power-of-2-number
  *              https://www.geeksforgeeks.org/compute-modulus-division-by-a-power-of-2-number/
  */
-InputType Modulus2Power(const InputType num, const InputType s) {
+unsigned Modulus2Power(const unsigned num, const unsigned s) {
     return num & ((1U << s) - 1);
 }
 
@@ -24,9 +22,9 @@ InputType Modulus2Power(const InputType num, const InputType s) {
  *              Compute modulus division by (1 << s) - 1 without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType Modulus2PowerMinus1(InputType num, const InputType s) {
-    InputType result = num;
-    InputType divisor = (1U << s) - 1;
+unsigned Modulus2PowerMinus1(unsigned num, const unsigned s) {
+    unsigned result = num;
+    unsigned divisor = (1U << s) - 1;
 
     for (; num > divisor; num = result) {
         for (result = 0; num; num >>= s) {
@@ -45,10 +43,7 @@ InputType Modulus2PowerMinus1(InputType num, const InputType s) {
  *              Compute modulus division by (1 << s) - 1 in parallel without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-InputType Modulus2PowerMinus1_Parallel(InputType num, const InputType s) {
-    // The following is for a word size of 32 bits!
-    static_assert(Bits_Number<decltype(num)>() == 32, "InputType is not 32 bits.");
-
+unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
     static const unsigned int M[] = {
         0x00000000, 0x55555555, 0x33333333, 0xc71c71c7,
         0x0f0f0f0f, 0xc1f07c1f, 0x3f03f03f, 0xf01fc07f,
@@ -124,8 +119,8 @@ InputType Modulus2PowerMinus1_Parallel(InputType num, const InputType s) {
 }//namespace
 
 
-const InputType LOWER = 0;
-constexpr InputType UPPER = Bits_Number<InputType>() - 1;
+const uint32_t LOWER = 0;
+constexpr auto UPPER = BitsNumber<uint32_t> - 1;
 
 
 SIMPLE_BENCHMARK(Modulus2Power, 1, UPPER);

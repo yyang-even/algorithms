@@ -12,3 +12,13 @@
 
 RandomNumberTest(TestSameType, 0, 20);
 RandomNumberTest(TestDiffType, 0, 20u);
+
+
+TEST(BitsNumberTest, TestSanity) {
+    EXPECT_EQ(16u, BitsNumber<int16_t>);
+    EXPECT_EQ(16u, BitsNumber<uint16_t>);
+    EXPECT_EQ(32u, BitsNumber<int32_t>);
+    EXPECT_EQ(32u, BitsNumber<uint32_t>);
+    EXPECT_EQ(64u, BitsNumber<int64_t>);
+    EXPECT_EQ(64u, BitsNumber<uint64_t>);
+}

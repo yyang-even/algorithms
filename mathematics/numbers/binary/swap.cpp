@@ -5,8 +5,6 @@ namespace {
 
 #include "swap.h"
 
-typedef unsigned InputType;
-
 /** Swapping values with subtraction and addition
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -21,7 +19,7 @@ typedef unsigned InputType;
  *
  * Swap two values without using a temporary variable.
  */
-void Swap_SubAdd(InputType &a, InputType &b) {
+void Swap_SubAdd(unsigned &a, unsigned &b) {
     if (a != b) {
         a -= b;
         b += a;
@@ -30,10 +28,10 @@ void Swap_SubAdd(InputType &a, InputType &b) {
 }
 
 
-auto TestSwap(std::function<void(InputType &, InputType &)> swap,
-              const InputType a, const InputType b) {
-    InputType swapped_a = b;
-    InputType swapped_b = a;
+auto TestSwap(std::function<void(unsigned &, unsigned &)> swap,
+              const unsigned a, const unsigned b) {
+    unsigned swapped_a = b;
+    unsigned swapped_b = a;
     swap(swapped_a, swapped_b);
     return swapped_a == a and swapped_b == b;
 }
@@ -57,9 +55,9 @@ auto TestSwap(std::function<void(InputType &, InputType &)> swap,
  * Given an integer n and two bit positions p1 and p2 inside it, swap bits at the given positions.
  * The given positions are from least significant bit (lsb). For example, the position for lsb is 0.
  */
-InputType SwapBitRange(const InputType number, const unsigned i, const unsigned j,
-                       const unsigned bit_length) {
-    constexpr unsigned NUM_BITS = Bits_Number<decltype(number)>();
+unsigned SwapBitRange(const unsigned number, const unsigned i, const unsigned j,
+                      const unsigned bit_length) {
+    constexpr auto NUM_BITS = BitsNumber<decltype(number)>;
     if (i + bit_length >= NUM_BITS or
         j + bit_length >= NUM_BITS or
         i == j or
@@ -80,8 +78,8 @@ InputType SwapBitRange(const InputType number, const unsigned i, const unsigned 
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<unsigned>::min();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(TestSwap, Swap_SubAdd, LOWER, UPPER);
@@ -94,14 +92,14 @@ SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE5, true, Swap_SubAdd, 6, 6);
 SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE6, true, Swap_SubAdd, UPPER, UPPER);
 
 
-SIMPLE_BENCHMARK(TestSwap, Swap_Xor<InputType>, LOWER, UPPER);
+SIMPLE_BENCHMARK(TestSwap, Swap_Xor<unsigned>, LOWER, UPPER);
 
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE1, true, Swap_Xor<InputType>, 6, 13);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE2, true, Swap_Xor<InputType>, 13, 6);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE3, true, Swap_Xor<InputType>, LOWER, UPPER);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE4, true, Swap_Xor<InputType>, UPPER, LOWER);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, true, Swap_Xor<InputType>, 13, 13);
-SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<InputType>, UPPER, UPPER);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE1, true, Swap_Xor<unsigned>, 6, 13);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE2, true, Swap_Xor<unsigned>, 13, 6);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE3, true, Swap_Xor<unsigned>, LOWER, UPPER);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE4, true, Swap_Xor<unsigned>, UPPER, LOWER);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, true, Swap_Xor<unsigned>, 13, 13);
+SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<unsigned>, UPPER, UPPER);
 
 
 SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
