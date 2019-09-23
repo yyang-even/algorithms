@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using InputType = unsigned;
 
 /** Two’s complement of the number
@@ -9,11 +12,11 @@ using InputType = unsigned;
  *
  * 2’s complement of a number is 1’s complement + 1.
  */
-auto TwosComplementByOnesComplement(const InputType num) {
+inline auto TwosComplement_ByOnesComplement(const InputType num) {
     return ~num + 1;
 }
 
-auto TwosComplementByMinusOperator(const InputType num) {
+inline auto TwosComplement_ByMinusOperator(const InputType num) {
     return -num;
 }
 
@@ -54,7 +57,7 @@ auto TwosComplement(std::string binary_string) {
  *
  * @reference   https://www.geeksforgeeks.org/efficient-method-2s-complement-binary-string/
  */
-auto TwosComplementEfficient(std::string binary_string) {
+auto TwosComplement_Efficient(std::string binary_string) {
     auto riter = binary_string.rbegin();
     for (; riter != binary_string.rend() and * riter != '1'; ++riter) {
     }
@@ -70,34 +73,37 @@ auto TwosComplementEfficient(std::string binary_string) {
     return binary_string;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
-MUTUAL_RANDOM_TEST(TwosComplementByOnesComplement, TwosComplementByMinusOperator, LOWER, UPPER);
+
+MUTUAL_RANDOM_TEST(TwosComplement_ByOnesComplement, TwosComplement_ByMinusOperator, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(OnesComplement, std::string("0111"));
+SIMPLE_BENCHMARK(OnesComplement, "0111");
 
-SIMPLE_TEST(OnesComplement, TestSample1, std::string("1000"), std::string("0111"));
-SIMPLE_TEST(OnesComplement, TestSample2, std::string("0011"), std::string("1100"));
-
-
-SIMPLE_BENCHMARK(TwosComplement, std::string("0111"));
-
-SIMPLE_TEST(TwosComplement, TestSample1, std::string("1001"), std::string("0111"));
-SIMPLE_TEST(TwosComplement, TestSample2, std::string("0100"), std::string("1100"));
-SIMPLE_TEST(TwosComplement, TestSample3, std::string("11000"), std::string("01000"));
-SIMPLE_TEST(TwosComplement, TestSample4, std::string("1000"), std::string("000"));
-SIMPLE_TEST(TwosComplement, TestSample5, std::string("0111100"), std::string("1000100"));
-SIMPLE_TEST(TwosComplement, TestSample6, std::string("11111011"), std::string("00000101"));
+SIMPLE_TEST(OnesComplement, TestSample1, "1000", "0111");
+SIMPLE_TEST(OnesComplement, TestSample2, "0011", "1100");
 
 
-SIMPLE_BENCHMARK(TwosComplementEfficient, std::string("0111"));
+SIMPLE_BENCHMARK(TwosComplement, "0111");
 
-SIMPLE_TEST(TwosComplementEfficient, TestSample1, std::string("1001"), std::string("0111"));
-SIMPLE_TEST(TwosComplementEfficient, TestSample2, std::string("0100"), std::string("1100"));
-SIMPLE_TEST(TwosComplementEfficient, TestSample3, std::string("11000"), std::string("01000"));
-SIMPLE_TEST(TwosComplementEfficient, TestSample4, std::string("1000"), std::string("000"));
-SIMPLE_TEST(TwosComplementEfficient, TestSample5, std::string("0111100"), std::string("1000100"));
-SIMPLE_TEST(TwosComplementEfficient, TestSample6, std::string("11111011"), std::string("00000101"));
+SIMPLE_TEST(TwosComplement, TestSample1, "1001", "0111");
+SIMPLE_TEST(TwosComplement, TestSample2, "0100", "1100");
+SIMPLE_TEST(TwosComplement, TestSample3, "11000", "01000");
+SIMPLE_TEST(TwosComplement, TestSample4, "1000", "000");
+SIMPLE_TEST(TwosComplement, TestSample5, "0111100", "1000100");
+SIMPLE_TEST(TwosComplement, TestSample6, "11111011", "00000101");
+
+
+SIMPLE_BENCHMARK(TwosComplement_Efficient, "0111");
+
+SIMPLE_TEST(TwosComplement_Efficient, TestSample1, "1001", "0111");
+SIMPLE_TEST(TwosComplement_Efficient, TestSample2, "0100", "1100");
+SIMPLE_TEST(TwosComplement_Efficient, TestSample3, "11000", "01000");
+SIMPLE_TEST(TwosComplement_Efficient, TestSample4, "1000", "000");
+SIMPLE_TEST(TwosComplement_Efficient, TestSample5, "0111100", "1000100");
+SIMPLE_TEST(TwosComplement_Efficient, TestSample6, "11111011", "00000101");

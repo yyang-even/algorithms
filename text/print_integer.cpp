@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using InputType = int;
 
 /** Print a long int in C using putchar() only
@@ -34,16 +37,19 @@ auto PrintInteger(InputType num) {
     return stream;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<InputType>::min() + 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
+
 SIMPLE_BENCHMARK(PrintInteger, -1);
 
-SIMPLE_TEST(PrintInteger, TestSample1, std::string("-1"), -1);
-SIMPLE_TEST(PrintInteger, TestSample2, std::string("0"), 0);
-SIMPLE_TEST(PrintInteger, TestSample3, std::string("1"), 1);
-SIMPLE_TEST(PrintInteger, TestSample4, std::string("12045"), 12045);
+SIMPLE_TEST(PrintInteger, TestSample1, "-1", -1);
+SIMPLE_TEST(PrintInteger, TestSample2, "0", 0);
+SIMPLE_TEST(PrintInteger, TestSample3, "1", 1);
+SIMPLE_TEST(PrintInteger, TestSample4, "12045", 12045);
 
 using std::to_string;
 MUTUAL_RANDOM_TEST(PrintInteger, to_string, LOWER, UPPER);

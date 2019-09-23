@@ -5,8 +5,6 @@
 
 namespace {
 
-using InputType = std::string;
-
 /** Case conversion
  *
  * @reference   Case conversion (Lower to Upper and Vice Versa) of a string using BitWise operators in C/C++

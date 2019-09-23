@@ -519,6 +519,23 @@ public:
         tail->next = nullptr;
     }
 
+    /**
+     * Print reverse of a Linked List without extra space and modifications
+     * @reference   https://www.geeksforgeeks.org/print-reverse-linked-list-without-extra-space-modifications/
+     *
+     * For i = n to 1, do following.
+     *     Print i-th node using get n-th node function
+     */
+
+    /**
+     * An interesting method to print reverse of a linked list
+     * @reference   https://www.geeksforgeeks.org/an-interesting-method-to-print-reverse-of-a-linked-list/
+     *
+     * Carriage return (“r”) : It commands a printer (cursor or the display of a system console),
+     * to move the position of the cursor to the first position on the same line.
+     */
+
+
     /** Write a function to get Nth node in a Linked List
      *
      * @reference   https://www.geeksforgeeks.org/write-a-function-to-get-nth-node-in-a-linked-list/

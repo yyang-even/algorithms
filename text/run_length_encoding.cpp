@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Run Length Encoding
  *
  * @reference   https://www.geeksforgeeks.org/run-length-encoding/
@@ -24,7 +27,9 @@ auto RunLengthEncoding(const std::string &input) {
     return output;
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(RunLengthEncoding, std::string("wwwwaaadexxxxxx"));
 
-SIMPLE_TEST(RunLengthEncoding, TestSAMPLE1, "w4a3d1e1x6", std::string("wwwwaaadexxxxxx"));
+SIMPLE_BENCHMARK(RunLengthEncoding, "wwwwaaadexxxxxx");
+
+SIMPLE_TEST(RunLengthEncoding, TestSAMPLE1, "w4a3d1e1x6", "wwwwaaadexxxxxx");

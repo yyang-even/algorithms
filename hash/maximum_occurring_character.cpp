@@ -93,16 +93,16 @@ auto MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_ty
 }//namespace
 
 
-SIMPLE_BENCHMARK(MaximumOccurringChar_Position, std::string("sample string"));
+SIMPLE_BENCHMARK(MaximumOccurringChar_Position, "sample string");
 
-SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE1, 's', std::string("sample string"));
-SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE2, 't', std::string("test"));
+SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE1, 's', "sample string");
+SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE2, 't', "test");
 
 
-SIMPLE_BENCHMARK(MaximumOccurringChar_Alphabet, std::string("test sample"));
+SIMPLE_BENCHMARK(MaximumOccurringChar_Alphabet, "test sample");
 
-SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE1, 'e', std::string("test sample"));
-SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE2, 'a', std::string("sample program"));
+SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE1, 'e', "test sample");
+SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE2, 'a', "sample program");
 
 
 const ArrayType SAMPLE1 = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3};

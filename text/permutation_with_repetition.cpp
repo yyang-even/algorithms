@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Print all permutations with repetition of characters
  *
  * @reference   https://www.geeksforgeeks.org/print-all-permutations-with-repetition-of-characters/
@@ -20,6 +23,7 @@ void PermutationWithRepetitionHelper(const std::string &input, const std::string
         }
     }
 }
+
 auto PermutationWithRepetition(std::string input) {
     std::sort(input.begin(), input.end());
 
@@ -31,9 +35,12 @@ auto PermutationWithRepetition(std::string input) {
     return outputs;
 }
 
+}//namespace
+
 
 const std::vector<std::string> EXPECTED1 = {"aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc", "baa", "bab", "bac", "bba", "bbb", "bbc", "bca", "bcb", "bcc", "caa", "cab", "cac", "cba", "cbb", "cbc", "cca", "ccb", "ccc"};
 
-SIMPLE_BENCHMARK(PermutationWithRepetition, std::string("ab4c12ed3"));
 
-SIMPLE_TEST(PermutationWithRepetition, TestSAMPLE1, EXPECTED1, std::string("abc"));
+SIMPLE_BENCHMARK(PermutationWithRepetition, "ab4c12ed3");
+
+SIMPLE_TEST(PermutationWithRepetition, TestSAMPLE1, EXPECTED1, "abc");

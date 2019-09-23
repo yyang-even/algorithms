@@ -647,3 +647,5 @@
 * https://www.geeksforgeeks.org/lru-cache-implementation/
 * https://www.geeksforgeeks.org/design-a-data-structure-for-lru-cache/
 * https://www.geeksforgeeks.org/least-frequently-used-lfu-cache-implementation/
+* https://www.geeksforgeeks.org/print-reverse-linked-list-without-extra-space-modifications/
+* https://www.geeksforgeeks.org/an-interesting-method-to-print-reverse-of-a-linked-list/

@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Find k’th character of decrypted string
  *
  * @reference   https://www.geeksforgeeks.org/find-kth-character-of-decrypted-string/
@@ -30,9 +33,11 @@ auto FindKthCharOfDecryptedString(const std::string &encoded, const std::string:
     return decrypted[K - 1ul];
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(FindKthCharOfDecryptedString, std::string("ab4c12ed3"), 21ul);
 
-SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE1, 'c', std::string("a2b2c3"), 5ul);
-SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE2, 'c', std::string("ab4c2ed3"), 9ul);
-SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE3, 'e', std::string("ab4c12ed3"), 21ul);
+SIMPLE_BENCHMARK(FindKthCharOfDecryptedString, "ab4c12ed3", 21ul);
+
+SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE1, 'c', "a2b2c3", 5ul);
+SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE2, 'c', "ab4c2ed3", 9ul);
+SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE3, 'e', "ab4c12ed3", 21ul);

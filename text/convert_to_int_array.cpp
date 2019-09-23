@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Convert a String to Integer Array in C/C++
  *
  * @reference   https://www.geeksforgeeks.org/convert-a-string-to-integer-array-in-c-c/
@@ -21,12 +24,14 @@ auto ConvertToIntArray(const std::string &str) {
     return outputs;
 }
 
+}//namespace
+
 
 const std::vector<int> EXPECTED1 = {2, 6, 3, 14};
 const std::vector<int> EXPECTED2 = {125, 4, 24, 5543, 111};
 
 
-SIMPLE_BENCHMARK(ConvertToIntArray, std::string("2, 6, 3, 14"));
+SIMPLE_BENCHMARK(ConvertToIntArray, "2, 6, 3, 14");
 
-SIMPLE_TEST(ConvertToIntArray, TestSAMPLE1, EXPECTED1, std::string("2, 6, 3, 14"));
-SIMPLE_TEST(ConvertToIntArray, TestSAMPLE2, EXPECTED2, std::string("125, 4, 24, 5543, 111"));
+SIMPLE_TEST(ConvertToIntArray, TestSAMPLE1, EXPECTED1, "2, 6, 3, 14");
+SIMPLE_TEST(ConvertToIntArray, TestSAMPLE2, EXPECTED2, "125, 4, 24, 5543, 111");

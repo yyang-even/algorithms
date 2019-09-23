@@ -16,7 +16,7 @@ namespace {
  */
 std::string PrettyColumnsPrint(const unsigned n, const unsigned m) {
     if (m == 0) {
-        return std::string("Columns number cannot be zero.");
+        return "Columns number cannot be zero.";
     } else {
         std::cout << "Arrange " << n << " short lines of text in " << m << " columns." << std::endl;
         const unsigned short_column_lines = n / m;

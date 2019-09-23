@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Write a program to print all permutations of a given string
  *
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
@@ -43,16 +46,20 @@ auto PermutationSTL(std::string input) {
     return outputs;
 }
 
+}//namespace
+
 
 const std::vector<std::string> EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};
 
-SIMPLE_BENCHMARK(Permutation, std::string("ab4c12ed3"));
 
-SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, std::string("abc"));
+SIMPLE_BENCHMARK(Permutation, "ab4c12ed3");
+
+SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 
 
 const std::vector<std::string> EXPECTED2 = {"abc", "acb", "bac", "bca", "cab", "cba"};
 
-SIMPLE_BENCHMARK(PermutationSTL, std::string("ab4c12ed3"));
 
-SIMPLE_TEST(PermutationSTL, TestSAMPLE1, EXPECTED2, std::string("abc"));
+SIMPLE_BENCHMARK(PermutationSTL, "ab4c12ed3");
+
+SIMPLE_TEST(PermutationSTL, TestSAMPLE1, EXPECTED2, "abc");

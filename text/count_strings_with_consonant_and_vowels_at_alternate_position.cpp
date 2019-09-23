@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Count strings with consonants and vowels at alternate position
  *
  * @reference   Given a string str. The task is to find all possible number of strings
@@ -21,10 +24,10 @@ auto CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string &st
     return total;
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(CountStringsWithConsonantAndVowelsAtAlternatePosition, std::string("s$$e$"));
 
-SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE1, 2205ul,
-            std::string("s$$e$"));
-SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE2, 5ul,
-            std::string("y$s"));
+SIMPLE_BENCHMARK(CountStringsWithConsonantAndVowelsAtAlternatePosition, "s$$e$");
+
+SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE1, 2205ul, "s$$e$");
+SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE2, 5ul, "y$s");

@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Print all interleavings of given two strings
  *
  * @reference   https://www.geeksforgeeks.org/print-all-interleavings-of-given-two-strings/
@@ -43,11 +46,14 @@ auto InterleavingsOfTwoString(const std::string str1, const std::string str2) {
     return outputs;
 }
 
+}//namespace
+
 
 const std::vector<std::string> EXPECTED1 = {"abc", "acb", "cab"};
 const std::vector<std::string> EXPECTED2 = {"abcd", "acbd", "acdb", "cabd", "cadb", "cdab"};
 
-SIMPLE_BENCHMARK(InterleavingsOfTwoString, std::string("abcde"), std::string("12345"));
 
-SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE1, EXPECTED1, std::string("ab"), std::string("c"));
-SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE2, EXPECTED2, std::string("ab"), std::string("cd"));
+SIMPLE_BENCHMARK(InterleavingsOfTwoString, "abcde", "12345");
+
+SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE1, EXPECTED1, "ab", "c");
+SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE2, EXPECTED2, "ab", "cd");
