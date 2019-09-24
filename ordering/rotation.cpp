@@ -244,10 +244,12 @@ auto MultipleLeftRotate_n(const ArrayType &elements, const ArrayType &queries) {
 }//namespace
 
 
-const ArrayType SampleArray = {1, 2, 3, 4, 5, 6, 7};
-const ArrayType ExpectedArray = {3, 4, 5, 6, 7, 1, 2};
-const ArrayType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-const ArrayType ExpectedArray2 = {4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType SampleArray = {1, 2, 3, 4, 5, 6, 7};
+const InitializerType ExpectedArray = {3, 4, 5, 6, 7, 1, 2};
+const InitializerType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+const InitializerType ExpectedArray2 = {4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3};
 
 
 SIMPLE_BENCHMARK(LeftRotate_Simple, SampleArray, 2);
@@ -280,10 +282,10 @@ SIMPLE_TEST(LeftRotate_Reversal, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_Reversal, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-const ArrayType SampleArray3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-const ArrayType ExpectedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
-const ArrayType SampleArray4 = {121, 232, 33, 43, 5};
-const ArrayType ExpectedArrayR2 = {43, 5, 121, 232, 33};
+const InitializerType SampleArray3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+const InitializerType ExpectedArrayR1 = {8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
+const InitializerType SampleArray4 = {121, 232, 33, 43, 5};
+const InitializerType ExpectedArrayR2 = {43, 5, 121, 232, 33};
 
 
 SIMPLE_BENCHMARK(RightRotate_Reversal, SampleArray3, 3);
@@ -292,29 +294,24 @@ SIMPLE_TEST(RightRotate_Reversal, TestSample, ExpectedArrayR1, SampleArray3, 3);
 SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArray4, 2);
 
 
-const ArrayType ExpectedArray3 = {2, 3, 4, 5, 6, 7, 1};
+const InitializerType ExpectedArray3 = {2, 3, 4, 5, 6, 7, 1};
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, LeftRotate_SinglyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_SinglyList, SampleArray2, 3);
 
-SIMPLE_TEST(ContainerTestHelper, TestListRotateSample1, ExpectedArray, LeftRotate_SinglyList,
-            SampleArray, 2);
-SIMPLE_TEST(ContainerTestHelper, TestListRotateSample2, ExpectedArray2, LeftRotate_SinglyList,
-            SampleArray2, 3);
-SIMPLE_TEST(ContainerTestHelper, TestListRotateSample3, ExpectedArray3, LeftRotate_SinglyList,
-            SampleArray, 1);
+SIMPLE_TEST(LeftRotate_SinglyList, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_SinglyList, TestSample3, ExpectedArray3, SampleArray, 1);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, LeftRotate_DoublyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_DoublyList, SampleArray2, 3);
 
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample1, ExpectedArray, LeftRotate_DoublyList,
-            SampleArray, 2);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListRotateSample2, ExpectedArray2, LeftRotate_DoublyList,
-            SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_DoublyList, TestSample1, ExpectedArray, SampleArray, 2);
+SIMPLE_TEST(LeftRotate_DoublyList, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-const ArrayType SampleArray5 = {1, 3, 5, 7, 9};
-const ArrayType SampleQuery5 = {1, 3, 4, 6, 14};
+const InitializerType SampleArray5 = {1, 3, 5, 7, 9};
+const InitializerType SampleQuery5 = {1, 3, 4, 6, 14};
 const std::vector<ArrayType> ExpectedMultiple5 = {{3, 5, 7, 9, 1},
     {7, 9, 1, 3, 5},
     {9, 1, 3, 5, 7},

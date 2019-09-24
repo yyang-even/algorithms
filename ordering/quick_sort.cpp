@@ -361,13 +361,15 @@ auto QuickSort_DualPivots(ArrayType values) {
 }//namespace
 
 
-const ArrayType VALUES1 = {};
-const ArrayType VALUES2 = {1};
-const ArrayType VALUES3 = {1, 2};
-const ArrayType VALUES4 = {2, 3, 1};
-const ArrayType EXPECTED4 = {1, 2, 3};
-const ArrayType VALUES5 = {4, 3, 2, 1};
-const ArrayType EXPECTED5 = {1, 2, 3, 4};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType VALUES1 = {};
+const InitializerType VALUES2 = {1};
+const InitializerType VALUES3 = {1, 2};
+const InitializerType VALUES4 = {2, 3, 1};
+const InitializerType EXPECTED4 = {1, 2, 3};
+const InitializerType VALUES5 = {4, 3, 2, 1};
+const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 
 SIMPLE_BENCHMARK(QuickSort_Lomuto, VALUES5);
@@ -415,59 +417,45 @@ SIMPLE_TEST(QuickSortStable, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortSinglyLinkedList, VALUES5);
+SIMPLE_BENCHMARK(QuickSortSinglyLinkedList, VALUES5);
 
-SIMPLE_TEST(ContainerTestHelper, TestListQSSample1, VALUES1, QuickSortSinglyLinkedList, VALUES1);
-SIMPLE_TEST(ContainerTestHelper, TestListQSSample2, VALUES2, QuickSortSinglyLinkedList, VALUES2);
-SIMPLE_TEST(ContainerTestHelper, TestListQSSample3, VALUES3, QuickSortSinglyLinkedList, VALUES3);
-SIMPLE_TEST(ContainerTestHelper, TestListQSSample4, EXPECTED4, QuickSortSinglyLinkedList, VALUES4);
-SIMPLE_TEST(ContainerTestHelper, TestListQSSample5, EXPECTED5, QuickSortSinglyLinkedList, VALUES5);
+SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList, VALUES5);
+SIMPLE_BENCHMARK(QuickSortDoublyLinkedList, VALUES5);
 
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample1, VALUES1, QuickSortDoublyLinkedList,
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample1, VALUES1,
             VALUES1);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample2, VALUES2, QuickSortDoublyLinkedList,
-            VALUES2);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample3, VALUES3, QuickSortDoublyLinkedList,
-            VALUES3);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample4, EXPECTED4, QuickSortDoublyLinkedList,
-            VALUES4);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSample5, EXPECTED5, QuickSortDoublyLinkedList,
-            VALUES5);
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList_Sequential, VALUES5);
+SIMPLE_BENCHMARK(QuickSortDoublyLinkedList_Sequential, VALUES5);
 
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample1, VALUES1,
-            QuickSortDoublyLinkedList_Sequential, VALUES1);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample2, VALUES2,
-            QuickSortDoublyLinkedList_Sequential, VALUES2);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample3, VALUES3,
-            QuickSortDoublyLinkedList_Sequential, VALUES3);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample4, EXPECTED4,
-            QuickSortDoublyLinkedList_Sequential, VALUES4);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSSequentialSample5, EXPECTED5,
-            QuickSortDoublyLinkedList_Sequential, VALUES5);
+SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
+SIMPLE_BENCHMARK(QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
 
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample1, VALUES1,
-            QuickSortDoublyLinkedList_NaiveAsync, VALUES1);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample2, VALUES2,
-            QuickSortDoublyLinkedList_NaiveAsync, VALUES2);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample3, VALUES3,
-            QuickSortDoublyLinkedList_NaiveAsync, VALUES3);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample4, EXPECTED4,
-            QuickSortDoublyLinkedList_NaiveAsync, VALUES4);
-SIMPLE_TEST(ContainerTestHelper, TestDoublyListQSAsyncSample5, EXPECTED5,
-            QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
+SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample1, VALUES1, VALUES1);
+SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample2, VALUES2, VALUES2);
+SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample3, VALUES3, VALUES3);
+SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample4, EXPECTED4, VALUES4);
+SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample5, EXPECTED5, VALUES5);
 
 
-const ArrayType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
-const ArrayType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
+const InitializerType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
+const InitializerType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
 
 
 SIMPLE_BENCHMARK(QuickSort_3Way, VALUES5);
@@ -480,8 +468,8 @@ SIMPLE_TEST(QuickSort_3Way, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(QuickSort_3Way, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-const ArrayType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
-const ArrayType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
+const InitializerType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
+const InitializerType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
 
 
 SIMPLE_BENCHMARK(QuickSort_DualPivots, VALUES5);

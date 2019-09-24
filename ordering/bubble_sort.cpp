@@ -145,15 +145,17 @@ auto BubbleSort_TwoStacks(ArrayType values) {
 }//namespace
 
 
-const ArrayType VALUES1 = {};
-const ArrayType VALUES2 = {1};
-const ArrayType VALUES3 = {1, 2};
-const ArrayType VALUES4 = {2, 3, 1};
-const ArrayType EXPECTED4 = {1, 2, 3};
-const ArrayType VALUES5 = {2, 3, 4, 1};
-const ArrayType EXPECTED5 = {1, 2, 3, 4};
-const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
-const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType VALUES1 = {};
+const InitializerType VALUES2 = {1};
+const InitializerType VALUES3 = {1, 2};
+const InitializerType VALUES4 = {2, 3, 1};
+const InitializerType EXPECTED4 = {1, 2, 3};
+const InitializerType VALUES5 = {2, 3, 4, 1};
+const InitializerType EXPECTED5 = {1, 2, 3, 4};
+const InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
+const InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
 SIMPLE_BENCHMARK(BubbleSort, VALUES6);
@@ -186,14 +188,14 @@ SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(ContainerTestHelper, BubbleSort_SinglyList, VALUES6);
+SIMPLE_BENCHMARK(BubbleSort_SinglyList, VALUES6);
 
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE1, VALUES1, BubbleSort_SinglyList, VALUES1);
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE2, VALUES2, BubbleSort_SinglyList, VALUES2);
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE3, VALUES3, BubbleSort_SinglyList, VALUES3);
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE4, EXPECTED4, BubbleSort_SinglyList, VALUES4);
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE5, EXPECTED5, BubbleSort_SinglyList, VALUES5);
-SIMPLE_TEST(ContainerTestHelper, TestSAMPLE6, EXPECTED6, BubbleSort_SinglyList, VALUES6);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
 SIMPLE_BENCHMARK(BubbleSort_TwoStacks, VALUES6);
