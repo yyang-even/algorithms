@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises Solutions 2.2-2.
  * @reference   https://mitpress.mit.edu/sites/default/files/titles/content/Intro_to_Algo_Selected_Solutions.pdf
- * @reference   http://www.geeksforgeeks.org/selection-sort/
+ * @reference   https://www.geeksforgeeks.org/selection-sort/
  * @reference   Which sorting algorithm makes minimum number of memory writes?
  *              https://www.geeksforgeeks.org/which-sorting-algorithm-makes-minimum-number-of-writes/
  * @reference   Program to sort an array of strings using Selection Sort
@@ -19,12 +19,16 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/recursive-selection-sort/
  * @reference   C Program for Selection Sort
  *              https://www.geeksforgeeks.org/c-program-for-selection-sort/
+ * @reference   C++ program for Sorting Dates using Selection Sort
+ *              https://www.geeksforgeeks.org/c-program-for-sorting-dates-using-selection-sort/
+ * @reference   C program to sort an array using pointers
+ *              https://www.geeksforgeeks.org/c-program-to-sort-an-array-using-pointers/
  *
  * @complexity: O(n^2)
  */
-template <typename Container>
-auto SelectionSort(Container values) {
-    for (typename Container::iterator smallest_iter, iter_j, iter_i = values.begin();
+template <typename T>
+auto SelectionSort(std::vector<T> values) {
+    for (typename std::vector<T>::iterator smallest_iter, iter_j, iter_i = values.begin();
          iter_i != values.end(); ++iter_i) {
         for (iter_j = iter_i + 1, smallest_iter = iter_i; iter_j != values.end(); ++iter_j) {
             if (*iter_j < *smallest_iter) {
@@ -42,8 +46,7 @@ auto SelectionSort(Container values) {
  * @reference   std::iter_swap
  *              https://en.cppreference.com/w/cpp/algorithm/iter_swap
  */
-template <typename Container>
-auto SelectionSort_Concise(Container values) {
+auto SelectionSort_Concise(ArrayType values) {
     for (auto i = values.begin(); i != values.end(); ++i) {
         std::iter_swap(i, std::min_element(i, values.end()));
     }
@@ -82,25 +85,55 @@ auto SelectionSort_MinMax(ArrayType values) {
     return values;
 }
 
+
+/** Iterative selection sort for linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-selection-sort-for-linked-list/
+ */
+auto SelectionSort_SinglyList(std::forward_list<int> values) {
+    std::forward_list<int> output;
+    auto before_last = output.cbefore_begin();
+
+    while (not values.empty()) {
+        auto cbefore_min = values.cbefore_begin();
+        auto min_iter = values.cbegin();
+        auto cbefore_iter = min_iter;
+        for (auto iter = std::next(min_iter); iter != values.cend(); ++iter, ++cbefore_iter) {
+            if (*iter < *min_iter) {
+                min_iter = iter;
+                cbefore_min = cbefore_iter;
+            }
+        }
+
+        output.splice_after(before_last, values, cbefore_min);
+        std::advance(before_last, 1);
+    }
+
+    return output;
+}
+
+
 }//namespace
 
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+const InitializerType VALUES1 = {};
+const InitializerType VALUES2 = {1};
+const InitializerType VALUES3 = {1, 2};
+const InitializerType VALUES4 = {2, 3, 1};
+const InitializerType EXPECTED4 = {1, 2, 3};
+const InitializerType VALUES5 = {4, 3, 2, 1};
+const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
-const ArrayType VALUES1 = {};
-const ArrayType VALUES2 = {1};
-const ArrayType VALUES3 = {1, 2};
-const ArrayType VALUES4 = {2, 3, 1};
-const ArrayType EXPECTED4 = {1, 2, 3};
-const ArrayType VALUES5 = {4, 3, 2, 1};
-const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
+const auto SelectionSort_Int = SelectionSort<int>;
 
-SIMPLE_BENCHMARK(SelectionSort, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Int, VALUES5);
 
-SIMPLE_TEST(SelectionSort, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(SelectionSort, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(SelectionSort, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(SelectionSort, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(SelectionSort, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(SelectionSort_Int, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_Int, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_Int, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_Int, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_Int, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 SIMPLE_BENCHMARK(SelectionSort_Concise, VALUES5);
@@ -118,6 +151,7 @@ const std::vector<std::string> VALUES23 = {"paper", "true", "soap", "floppy", "f
 const std::vector<std::string> EXPECTED23 = {"floppy", "flower", "paper", "soap", "true"};
 const std::vector<std::string> VALUES24 = {"paper", "soap", "floppy", "flower"};
 const std::vector<std::string> EXPECTED24 = {"floppy", "flower", "paper", "soap"};
+
 
 SIMPLE_BENCHMARK(SelectionSort, VALUES24);
 
@@ -143,3 +177,12 @@ SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(SelectionSort_SinglyList, VALUES5);
+
+SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
