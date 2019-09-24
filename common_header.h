@@ -88,16 +88,16 @@ ContainerTestHelper(const Function func, Container &&elements, Args &&... args) 
 
 #ifdef WANT_TESTS
 
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                  \
-    TEST(func_name##Test, testName) {                                                           \
-        EXPECT_EQ(expectedValue, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);   \
-    }                                                                                           \
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                                                          \
+    TEST(func_name##Test, testName) {                                                                                                   \
+        EXPECT_EQ(static_cast<decltype(func_name(inputs))>(expectedValue), func_name(inputs)) << "Inputs: " << std::make_tuple(inputs); \
+    }                                                                                                                                   \
 }
 
-#define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {    \
-    TEST(func_name##Test, testName) {                                   \
-        EXPECT_EQ(expectedValue, func_name());                          \
-    }                                                                   \
+#define SIMPLE_TEST0(func_name, testName, expectedValue) namespace {                \
+    TEST(func_name##Test, testName) {                                               \
+        EXPECT_EQ(static_cast<decltype(func_name())>(expectedValue), func_name());  \
+    }                                                                               \
 }
 
 #define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {                                                       \

@@ -144,4 +144,5 @@ add_subdirectory(text)
 ###################################################
 # Top Level Tests
 ###################################################
+CompileBenchmarkExe(common_header_test)
 CompileTestExe(common_header_test)
