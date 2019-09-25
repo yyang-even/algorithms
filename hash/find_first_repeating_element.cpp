@@ -90,7 +90,8 @@ auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string &str) {
  * Given a linked list. Find the first element from the left which appears more than once.
  * If all the elements are unique then print -1.
  */
-auto FindFirstDuplicateElement_LinkedList_FirstAppearance(const std::forward_list<int> &l) {
+auto FindFirstDuplicateElement_LinkedList_FirstAppearance(const
+        std::forward_list<ArrayType::value_type> &l) {
     std::unordered_map<int, std::size_t> occurrence_map;
 
     std::size_t index = 0;
@@ -109,15 +110,15 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(const std::forward_lis
 
     return first_duplicate_element;
 }
-auto testFindFirstDuplicateElement_LinkedList_FirstAppearance(const ArrayType &array) {
-    return FindFirstDuplicateElement_LinkedList_FirstAppearance(ContainerCast(array));
-}
 
 }//namespace
 
 
-const ArrayType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
-const ArrayType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType EMPTY = {};
+const InitializerType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
+const InitializerType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
 
 
 SIMPLE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, SAMPLE1);
@@ -138,8 +139,8 @@ SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e', "
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a', "abcfdeacf");
 
 
-SIMPLE_BENCHMARK(testFindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
+SIMPLE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
 
-SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, ArrayType{});
-SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
-SIMPLE_TEST(testFindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, EMPTY);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
