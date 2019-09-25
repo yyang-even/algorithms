@@ -29,17 +29,16 @@ TEST(BitsNumberTest, TestSanity) {
 const int signed_value = 5;
 const unsigned unsigned_value = 5u;
 
-
-static unsigned ZeroArgumentFunction() {
+static auto ZeroUnsignedFunction() {
     return unsigned_value;
 }
 
-SIMPLE_BENCHMARK(ZeroArgumentFunction);
+SIMPLE_BENCHMARK(ZeroUnsignedFunction);
 
-SIMPLE_TEST(ZeroArgumentFunction, TestSignedConstant, 5);
-SIMPLE_TEST(ZeroArgumentFunction, TestUnsignedConstant, 5u);
-SIMPLE_TEST(ZeroArgumentFunction, TestSignedVariable, signed_value);
-SIMPLE_TEST(ZeroArgumentFunction, TestUnsignedVariable, unsigned_value);
+SIMPLE_TEST(ZeroUnsignedFunction, TestSignedConstant, 5);
+SIMPLE_TEST(ZeroUnsignedFunction, TestUnsignedConstant, 5u);
+SIMPLE_TEST(ZeroUnsignedFunction, TestSignedVariable, signed_value);
+SIMPLE_TEST(ZeroUnsignedFunction, TestUnsignedVariable, unsigned_value);
 
 
 template <typename T>
@@ -121,6 +120,25 @@ const std::initializer_list<ValueType> initializer_list_multi_values = {signed_v
 const std::vector<ValueType> vector_multi_values = initializer_list_multi_values;
 const std::list<ValueType> list_multi_values = initializer_list_multi_values;
 
+static auto ZeroVectorSingleFunction() {
+    return vector_single_value;
+}
+
+static auto ZeroVectorMultiFunction() {
+    return vector_multi_values;
+}
+
+SIMPLE_BENCHMARK(ZeroVectorSingleFunction);
+SIMPLE_BENCHMARK(ZeroVectorMultiFunction);
+
+SIMPLE_TEST0(ZeroVectorSingleFunction, TestConstantReturn, {5});
+SIMPLE_TEST0(ZeroVectorSingleFunction, TestInitializerReturnSingle, initializer_list_single_value);
+SIMPLE_TEST0(ZeroVectorSingleFunction, TestVariableSingle, vector_single_value);
+
+SIMPLE_TEST0(ZeroVectorMultiFunction, TestConstantReturn, {5, 5, 5, 5});
+SIMPLE_TEST0(ZeroVectorMultiFunction, TestInitializerReturnSingle, initializer_list_multi_values);
+SIMPLE_TEST0(ZeroVectorMultiFunction, TestVariableSingle, vector_multi_values);
+
 
 const auto VectorFunction = TemplateFunction<std::vector<ValueType>>;
 
@@ -132,7 +150,8 @@ SIMPLE_BENCHMARK(VectorFunction, vector_single_value);
 SIMPLE_BENCHMARK(VectorFunction, vector_multi_values);
 
 //SIMPLE_TEST(VectorFunction, TestConstant, 5, 5);
-//SIMPLE_TEST(VectorFunction, TestConstantReturn, {5}, vector_single_value);
+SIMPLE_TEST(VectorFunction, TestConstantReturnSingle, {5}, vector_single_value);
+//SIMPLE_TEST(VectorFunction, TestConstantReturnMulti, ({5, 5, 5}), vector_multi_values);
 SIMPLE_TEST(VectorFunction, TestInitializerReturnSingle, initializer_list_single_value,
             initializer_list_single_value);
 SIMPLE_TEST(VectorFunction, TestInitializerReturnMulti, initializer_list_multi_values,
@@ -158,7 +177,7 @@ SIMPLE_BENCHMARK(ListFunction, list_single_value);
 SIMPLE_BENCHMARK(ListFunction, list_multi_values);
 
 //SIMPLE_TEST(ListFunction, TestConstant, 5, 5);
-//SIMPLE_TEST(ListFunction, TestConstantReturn, {5}, list_single_value);
+SIMPLE_TEST(ListFunction, TestConstantReturn, {5}, list_single_value);
 SIMPLE_TEST(ListFunction, TestInitializerReturnSingle, initializer_list_single_value,
             initializer_list_single_value);
 SIMPLE_TEST(ListFunction, TestInitializerReturnMulti, initializer_list_multi_values,
