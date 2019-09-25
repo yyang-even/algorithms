@@ -55,6 +55,20 @@ auto SelectionSort_Concise(ArrayType values) {
 }
 
 
+/**
+ * @reference   Stable Selection Sort
+ *              https://www.geeksforgeeks.org/stable-selection-sort/
+ */
+auto SelectionSort_Stable(ArrayType values) {
+    for (auto i = values.begin(); i != values.end(); ++i) {
+        const auto min_iter = std::min_element(i, values.end());
+        std::rotate(i, min_iter, std::next(min_iter));
+    }
+
+    return values;
+}
+
+
 void SelectionSort_Recursive(const ArrayType::iterator begin, const ArrayType::iterator end) {
     if (begin != end) {
         std::iter_swap(begin, std::min_element(begin, end));
@@ -90,26 +104,52 @@ auto SelectionSort_MinMax(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/iterative-selection-sort-for-linked-list/
  */
-auto SelectionSort_SinglyList(std::forward_list<int> values) {
-    std::forward_list<int> output;
-    auto before_last = output.cbefore_begin();
+void SelectionSort_SinglyList_Helper(std::forward_list<ArrayType::value_type> &l,
+                                     const std::forward_list<ArrayType::value_type>::const_iterator cbefore_begin,
+                                     const std::forward_list<ArrayType::value_type>::const_iterator cbegin) {
+    assert(cbegin != l.cend());
 
-    while (not values.empty()) {
-        auto cbefore_min = values.cbefore_begin();
-        auto min_iter = values.cbegin();
-        auto cbefore_iter = min_iter;
-        for (auto iter = std::next(min_iter); iter != values.cend(); ++iter, ++cbefore_iter) {
-            if (*iter < *min_iter) {
-                min_iter = iter;
-                cbefore_min = cbefore_iter;
-            }
+    auto min_iter = cbegin;
+    auto cbefore_min = cbefore_begin;
+    auto cbefore_iter = min_iter;
+    for (auto iter = std::next(min_iter); iter != l.cend(); ++iter, ++cbefore_iter) {
+        if (*iter < *min_iter) {
+            min_iter = iter;
+            cbefore_min = cbefore_iter;
         }
-
-        output.splice_after(before_last, values, cbefore_min);
-        std::advance(before_last, 1);
     }
 
-    return output;
+    l.splice_after(cbefore_begin, l, cbefore_min);
+}
+
+auto SelectionSort_SinglyList_Iterative(std::forward_list<ArrayType::value_type> values) {
+    auto iter = values.cbegin();
+    for (auto cbefore_iter = values.cbefore_begin(); iter != values.cend();
+         iter = std::next(cbefore_iter)) {
+        SelectionSort_SinglyList_Helper(values, cbefore_iter, iter);
+        std::advance(cbefore_iter, 1);
+    }
+
+    return values;
+}
+
+
+/**
+ * @reference   Recursive selection sort for singly linked list | Swapping node links
+ *              https://www.geeksforgeeks.org/recursive-selection-sort-singly-linked-list-swapping-node-links/
+ */
+void SelectionSort_SinglyList_Recursive(std::forward_list<ArrayType::value_type> &l,
+                                        const std::forward_list<ArrayType::value_type>::const_iterator cbefore_begin) {
+    const auto cbegin = std::next(cbefore_begin);
+    if (cbegin != l.cend()) {
+        SelectionSort_SinglyList_Helper(l, cbefore_begin, cbegin);
+        SelectionSort_SinglyList_Recursive(l, std::next(cbefore_begin));
+    }
+}
+
+auto SelectionSort_SinglyList_Recursive(std::forward_list<ArrayType::value_type> values) {
+    SelectionSort_SinglyList_Recursive(values, values.cbefore_begin());
+    return values;
 }
 
 }//namespace
@@ -126,7 +166,7 @@ const InitializerType VALUES5 = {4, 3, 2, 1};
 const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 
-const auto SelectionSort_Int = SelectionSort<int>;
+const auto SelectionSort_Int = SelectionSort<ArrayType::value_type>;
 
 SIMPLE_BENCHMARK(SelectionSort_Int, VALUES5);
 
@@ -144,6 +184,15 @@ SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(SelectionSort_Stable, VALUES5);
+
+SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 const std::vector<std::string> VALUES21 = {};
@@ -180,10 +229,19 @@ SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_SinglyList, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_SinglyList_Iterative, VALUES5);
 
-SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(SelectionSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(SelectionSort_SinglyList_Recursive, VALUES5);
+
+SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
