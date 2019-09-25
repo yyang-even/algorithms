@@ -52,9 +52,6 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 }
 
 
-#define ContainerCast(from_container) {std::make_move_iterator(from_container.cbegin()), std::make_move_iterator(from_container.cend())}
-
-
 // Macros
 #ifdef NONIUS_RUNNER
 
@@ -131,6 +128,9 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
     -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
         return not F(std::forward<decltype(args)>(args)...);        \
     }
+
+
+#define ContainerCast(from_container) {std::make_move_iterator(from_container.cbegin()), std::make_move_iterator(from_container.cend())}
 
 
 //Constants

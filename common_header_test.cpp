@@ -122,7 +122,7 @@ const std::vector<ValueType> vector_multi_values = initializer_list_multi_values
 const std::list<ValueType> list_multi_values = initializer_list_multi_values;
 
 
-const auto VectorFunction = TemplateFunction<std::vector<int>>;
+const auto VectorFunction = TemplateFunction<std::vector<ValueType>>;
 
 SIMPLE_BENCHMARK(VectorFunction, {5});
 SIMPLE_BENCHMARK(VectorFunction, {5, 5, 5});
@@ -148,7 +148,7 @@ MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableSingle, vector_si
 MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableMulti, vector_multi_values);
 
 
-const auto ListFunction = TemplateFunction<std::list<int>>;
+const auto ListFunction = TemplateFunction<std::list<ValueType>>;
 
 SIMPLE_BENCHMARK(ListFunction, {5});
 SIMPLE_BENCHMARK(ListFunction, {5, 5, 5});
@@ -172,3 +172,32 @@ MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestInitializerReturnMulti,
                    initializer_list_multi_values);
 MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableSingle, list_single_value);
 MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableMulti, list_multi_values);
+
+
+std::list<ValueType> ConstVectorToList(const std::vector<ValueType> &array) {
+    return ContainerCast(array);
+}
+
+std::list<ValueType> NonconstVectorToList(std::vector<ValueType> array) {
+    return ContainerCast(array);
+}
+
+SIMPLE_TEST(ConstVectorToList, TestInitializerReturnSingle, initializer_list_single_value,
+            initializer_list_single_value);
+SIMPLE_TEST(ConstVectorToList, TestInitializerReturnMulti, initializer_list_multi_values,
+            initializer_list_multi_values);
+
+SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnSingle, initializer_list_single_value,
+            initializer_list_single_value);
+SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnMulti, initializer_list_multi_values,
+            initializer_list_multi_values);
+
+MUTUAL_SIMPLE_TEST(ListFunction, ConstVectorToList, TestInitializerReturnSingle,
+                   initializer_list_single_value);
+MUTUAL_SIMPLE_TEST(ListFunction, ConstVectorToList, TestInitializerReturnMulti,
+                   initializer_list_multi_values);
+
+MUTUAL_SIMPLE_TEST(ListFunction, NonconstVectorToList, TestInitializerReturnSingle,
+                   initializer_list_single_value);
+MUTUAL_SIMPLE_TEST(ListFunction, NonconstVectorToList, TestInitializerReturnMulti,
+                   initializer_list_multi_values);
