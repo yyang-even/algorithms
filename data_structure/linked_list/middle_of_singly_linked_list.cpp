@@ -4,14 +4,16 @@
 
 namespace {
 
+using ListType = std::forward_list<int>;
+
 /** Find middle of singly linked list Recursively
  *
  * @reference   https://www.geeksforgeeks.org/find-middle-singly-linked-list-recursively/
  */
-std::forward_list<int>::const_iterator GetMiddle_Recursive(
-    const std::forward_list<int>::const_iterator cbegin,
-    const std::forward_list<int>::const_iterator cend,
-    std::forward_list<int>::size_type &n) {
+ListType::const_iterator GetMiddle_Recursive(
+    const ListType::const_iterator cbegin,
+    const ListType::const_iterator cend,
+    ListType::size_type &n) {
 
     const auto next = std::next(cbegin);
     if (cbegin == cend or next == cend) {
@@ -24,16 +26,20 @@ std::forward_list<int>::const_iterator GetMiddle_Recursive(
     }
     return cbegin;
 }
-auto GetMiddle_Recursive(const std::forward_list<int> &l) {
+
+auto GetMiddle_Recursive(const ListType &l) {
     assert(not l.empty());
-    std::forward_list<int>::size_type n = 0;
+    ListType::size_type n = 0;
     return *GetMiddle_Recursive(l.cbegin(), l.end(), n);
 }
 
-const std::vector<int> SINGLE_ARRAY = {1};
-const std::vector<int> EVEN_ARRAY = {1, 3};
-const std::vector<int> ODD_ARRAY = {1, 2, 3};
-const std::vector<int> SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+
+using InitializerType = std::initializer_list<int>;
+
+const InitializerType SINGLE_ARRAY = {1};
+const InitializerType EVEN_ARRAY = {1, 3};
+const InitializerType ODD_ARRAY = {1, 2, 3};
+const InitializerType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
 auto testGetMid_Size(const std::vector<int> &array) {
@@ -55,14 +61,9 @@ auto testGetMid_Odd(const std::vector<int> &array) {
 
 
 auto testGetBeforeMiddle_TwoPointersSTL(const std::vector<int> &array) {
-    std::forward_list<int> l{array.cbegin(), array.cend()};
+    ListType l{array.cbegin(), array.cend()};
     auto before_mid = GetBeforeMiddle_TwoPointersSTL(l.cbefore_begin(), l.cend());
     return *(++before_mid);
-}
-
-
-auto testGetMiddle_Recursive(const std::vector<int> &array) {
-    return GetMiddle_Recursive(ContainerCast(array));
 }
 
 
@@ -77,52 +78,49 @@ auto testGetMiddle_Recursive(const std::vector<int> &array) {
  * @reference   https://www.geeksforgeeks.org/delete-middle-of-linked-list/
  */
 
+
+inline auto GetMiddle(const std::vector<int> &array) {
+    return array[array.size() / 2];
+}
+
 }//namespace
 
 
 SIMPLE_BENCHMARK(testGetMid_Size, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testGetMid_Size, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
-SIMPLE_TEST(testGetMid_Size, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMid_Size, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMid_Size, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestSample, SAMPLE_ARRAY);
 
 
 SIMPLE_BENCHMARK(testGetMid_TwoPointers, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testGetMid_TwoPointers, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2],
-            SINGLE_ARRAY);
-SIMPLE_TEST(testGetMid_TwoPointers, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMid_TwoPointers, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMid_TwoPointers, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2],
-            SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestSample, SAMPLE_ARRAY);
 
 
 SIMPLE_BENCHMARK(testGetMid_Odd, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testGetMid_Odd, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2], SINGLE_ARRAY);
-SIMPLE_TEST(testGetMid_Odd, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMid_Odd, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMid_Odd, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2], SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSample, SAMPLE_ARRAY);
 
 
 SIMPLE_BENCHMARK(testGetBeforeMiddle_TwoPointersSTL, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testGetBeforeMiddle_TwoPointersSTL, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2],
-            SINGLE_ARRAY);
-SIMPLE_TEST(testGetBeforeMiddle_TwoPointersSTL, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2],
-            EVEN_ARRAY);
-SIMPLE_TEST(testGetBeforeMiddle_TwoPointersSTL, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2],
-            ODD_ARRAY);
-SIMPLE_TEST(testGetBeforeMiddle_TwoPointersSTL, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2],
-            SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testGetMiddle_Recursive, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(GetMiddle_Recursive, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testGetMiddle_Recursive, TestSingle, SINGLE_ARRAY[SINGLE_ARRAY.size() / 2],
-            SINGLE_ARRAY);
-SIMPLE_TEST(testGetMiddle_Recursive, TestEven, EVEN_ARRAY[EVEN_ARRAY.size() / 2], EVEN_ARRAY);
-SIMPLE_TEST(testGetMiddle_Recursive, TestOdd, ODD_ARRAY[ODD_ARRAY.size() / 2], ODD_ARRAY);
-SIMPLE_TEST(testGetMiddle_Recursive, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.size() / 2],
-            SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestSample, SAMPLE_ARRAY);
