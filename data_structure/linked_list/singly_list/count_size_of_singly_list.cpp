@@ -3,11 +3,14 @@
 
 namespace {
 
-const std::vector<int> EMPTY_ARRAY {};
-const std::vector<int> SINGLE_ARRAY = {1};
-const std::vector<int> EVEN_ARRAY = {1, 3};
-const std::vector<int> ODD_ARRAY = {1, 2, 3};
-const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+using ListType = std::forward_list<int>;
+using InitializerType = std::initializer_list<ListType::value_type>;
+
+const InitializerType EMPTY_ARRAY = {};
+const InitializerType SINGLE_ARRAY = {1};
+const InitializerType EVEN_ARRAY = {1, 3};
+const InitializerType ODD_ARRAY = {1, 2, 3};
+const InitializerType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
 auto testCountSize_Iterative(const std::vector<int> &array) {
@@ -26,13 +29,15 @@ auto testCountSize_Recursive(const std::vector<int> &array) {
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-the-length-of-given-linked-list-is-even-or-odd/
  */
-auto IsLengthEven(const std::forward_list<int> &l) {
+auto IsLengthEven(const ListType &l) {
     auto iter = l.cbegin();
     for (; iter != l.cend() and std::next(iter) != l.cend(); std::advance(iter, 2));
     return iter == l.cend();
 }
-auto testIsLengthEven(const std::vector<int> &array) {
-    return IsLengthEven(ContainerCast(array));
+
+
+inline auto IsLengthEven_Vector(const std::vector<ListType::value_type> &array) {
+    return not(array.size() % 2);
 }
 
 }//namespace
@@ -56,10 +61,10 @@ SIMPLE_TEST(testCountSize_Recursive, TestOdd, ODD_ARRAY.size(), ODD_ARRAY);
 SIMPLE_TEST(testCountSize_Recursive, TestSample, SAMPLE_ARRAY.size(), SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testIsLengthEven, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(IsLengthEven, SAMPLE_ARRAY);
 
-SIMPLE_TEST(testIsLengthEven, TestEmpty, not(EMPTY_ARRAY.size() % 2), EMPTY_ARRAY);
-SIMPLE_TEST(testIsLengthEven, TestSingle, not(SINGLE_ARRAY.size() % 2), SINGLE_ARRAY);
-SIMPLE_TEST(testIsLengthEven, TestEven, not(EVEN_ARRAY.size() % 2), EVEN_ARRAY);
-SIMPLE_TEST(testIsLengthEven, TestOdd, not(ODD_ARRAY.size() % 2), ODD_ARRAY);
-SIMPLE_TEST(testIsLengthEven, TestSample, not(SAMPLE_ARRAY.size() % 2), SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestEmpty, EMPTY_ARRAY);
+MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestEven, EVEN_ARRAY);
+MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestOdd, ODD_ARRAY);
+MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestSample, SAMPLE_ARRAY);
