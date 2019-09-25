@@ -40,7 +40,8 @@ auto SortedMergeList_Single_STL(ListType L, ListType R) {
 }
 
 
-auto SortedMergeList_Doubly_STL(std::list<int> L, std::list<int> R) {
+auto SortedMergeList_Doubly_STL(std::list<ListType::value_type> L,
+                                std::list<ListType::value_type> R) {
     assert(std::is_sorted(L.cbegin(), L.cend()));
     assert(std::is_sorted(R.cbegin(), R.cend()));
 
@@ -63,46 +64,33 @@ auto SortedMergeList_Doubly_STL(std::list<int> L, std::list<int> R) {
  * @reference   https://www.geeksforgeeks.org/sorted-merge-of-two-sorted-doubly-circular-linked-lists/
  */
 
-
-template <typename Container, typename Function>
-Container TestSortedMergeListHelper(const Function func, const Container &L, const Container &R) {
-    auto sorted_list = func(ContainerCast(L), ContainerCast(R));
-    return ContainerCast(sorted_list);
-}
-
 }//namespace
 
 
-const std::vector<int> EMPTY = {};
+using InitializerType = std::initializer_list<ListType::value_type>;
 
-const std::vector<int> SAMPLE1L = {1, 3, 5, 7};
-const std::vector<int> SAMPLE1R = {2, 4, 6, 8};
-const std::vector<int> EXPECTED1 = {1, 2, 3, 4, 5, 6, 7, 8};
+const InitializerType EMPTY = {};
 
-const std::vector<int> SAMPLE2L = {5, 8, 9};
-const std::vector<int> SAMPLE2R = {4, 7, 8};
-const std::vector<int> EXPECTED2 = {4, 5, 7, 8, 8, 9};
+const InitializerType SAMPLE1L = {1, 3, 5, 7};
+const InitializerType SAMPLE1R = {2, 4, 6, 8};
+const InitializerType EXPECTED1 = {1, 2, 3, 4, 5, 6, 7, 8};
 
-
-SIMPLE_BENCHMARK(TestSortedMergeListHelper, SortedMergeList_Single_STL, SAMPLE1L, SAMPLE1R);
-
-SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE1, EXPECTED1, SortedMergeList_Single_STL,
-            SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE2, EXPECTED2, SortedMergeList_Single_STL,
-            SAMPLE2L, SAMPLE2R);
-SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE3, SAMPLE1L, SortedMergeList_Single_STL,
-            SAMPLE1L, EMPTY);
-SIMPLE_TEST(TestSortedMergeListHelper, TestSinglySAMPLE4, SAMPLE1R, SortedMergeList_Single_STL,
-            EMPTY, SAMPLE1R);
+const InitializerType SAMPLE2L = {5, 8, 9};
+const InitializerType SAMPLE2R = {4, 7, 8};
+const InitializerType EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
 
-SIMPLE_BENCHMARK(TestSortedMergeListHelper, SortedMergeList_Doubly_STL, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(SortedMergeList_Single_STL, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE1, EXPECTED1, SortedMergeList_Doubly_STL,
-            SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE2, EXPECTED2, SortedMergeList_Doubly_STL,
-            SAMPLE2L, SAMPLE2R);
-SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE3, SAMPLE1L, SortedMergeList_Doubly_STL,
-            SAMPLE1L, EMPTY);
-SIMPLE_TEST(TestSortedMergeListHelper, TestDoublySAMPLE4, SAMPLE1R, SortedMergeList_Doubly_STL,
-            EMPTY, SAMPLE1R);
+SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
+SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
+
+
+SIMPLE_BENCHMARK(SortedMergeList_Doubly_STL, SAMPLE1L, SAMPLE1R);
+
+SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
+SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
