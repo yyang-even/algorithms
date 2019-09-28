@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+#include "data_structure/linked_list/sorted_insert_linked_list.h"
+
+
 namespace {
 
 #include "insertion_sort.h"
@@ -112,18 +115,40 @@ auto BinaryInsertionSort(ArrayType values) {
     return values;
 }
 
+
+/** Insertion Sort by Swapping Elements
+ *
+ * @reference   https://www.geeksforgeeks.org/insertion-sort-swapping-elements/
+ */
+
+
+/** Insertion Sort for Singly Linked List
+ *
+ * @reference   https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
+ */
+auto InsertionSort_SinglyList(std::forward_list<ArrayType::value_type> values) {
+    std::forward_list<ArrayType::value_type> sorted_list;
+    while (not values.empty()) {
+        SortedInsert_STL(sorted_list, values, values.cbefore_begin(), values.cbegin());
+    }
+
+    return sorted_list;
+}
+
 }//namespace
 
 
-const ArrayType VALUES1 = {};
-const ArrayType VALUES2 = {1};
-const ArrayType VALUES3 = {1, 2};
-const ArrayType VALUES4 = {2, 3, 1};
-const ArrayType EXPECTED4 = {1, 2, 3};
-const ArrayType VALUES5 = {4, 3, 2, 1};
-const ArrayType EXPECTED5 = {1, 2, 3, 4};
-const ArrayType VALUES6 = {1, 2, 3, 1, 2, 2};
-const ArrayType EXPECTED6 = {1, 1, 2, 2, 2, 3};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType VALUES1 = {};
+const InitializerType VALUES2 = {1};
+const InitializerType VALUES3 = {1, 2};
+const InitializerType VALUES4 = {2, 3, 1};
+const InitializerType EXPECTED4 = {1, 2, 3};
+const InitializerType VALUES5 = {4, 3, 2, 1};
+const InitializerType EXPECTED5 = {1, 2, 3, 4};
+const InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
+const InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
 SIMPLE_BENCHMARK(InsertionSort, VALUES6);
@@ -164,3 +189,13 @@ SIMPLE_TEST(InsertionSort_STL, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE6, EXPECTED6, VALUES6);
+
+
+SIMPLE_BENCHMARK(InsertionSort_SinglyList, VALUES6);
+
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);

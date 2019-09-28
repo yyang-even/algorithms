@@ -752,6 +752,12 @@ public:
     void MakeLoopAt(const std::size_t index) {
         tail->next = At(index);
     }
+
+
+    /**
+     * @reference   Recursive insertion and traversal linked list
+     *              https://www.geeksforgeeks.org/recursive-insertion-and-traversal-linked-list/
+     */
 };
 
 std::size_t SinglyLinkedList::Node::node_alive = 0;

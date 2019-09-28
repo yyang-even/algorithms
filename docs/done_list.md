@@ -652,3 +652,6 @@
 * https://www.geeksforgeeks.org/iterative-selection-sort-for-linked-list/
 * https://www.geeksforgeeks.org/stable-selection-sort/
 * https://www.geeksforgeeks.org/recursive-selection-sort-singly-linked-list-swapping-node-links/
+* https://www.geeksforgeeks.org/insertion-sort-swapping-elements/
+* https://www.geeksforgeeks.org/recursive-insertion-and-traversal-linked-list/
+* https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
