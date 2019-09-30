@@ -3,6 +3,8 @@
 
 namespace {
 
+#include "merge_k_sorted_array.h"
+
 using ArrayType = std::vector<int>;
 
 /** Merge k sorted arrays
@@ -24,34 +26,10 @@ using ArrayType = std::vector<int>;
  *
  * @complexity  O(nk*lgk)
  */
-using Node = std::pair<const ArrayType *, ArrayType::const_iterator>;
-
 auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
     ArrayType final_sorted_array;
 
-    std::vector<Node> first_elements;
-    for (const auto &a : k_arrays) {
-        if (not a.empty()) {
-            first_elements.emplace_back(&a, a.cbegin());
-        }
-    }
-
-    const auto compare = [](const Node & lhs, const Node & rhs) {
-        return  *lhs.second > *rhs.second;
-    };
-    std::priority_queue<Node, std::vector<Node>, decltype(compare)> heap(compare,
-            std::move(first_elements));
-
-    while (not heap.empty()) {
-        const auto elem = heap.top();
-        heap.pop();
-        final_sorted_array.push_back(*elem.second);
-
-        const auto next = std::next(elem.second);
-        if (next != elem.first->cend()) {
-            heap.emplace(elem.first, next);
-        }
-    }
+    MergeKSortedArrays(k_arrays, std::back_insert_iterator<ArrayType>(final_sorted_array));
 
     return final_sorted_array;
 }

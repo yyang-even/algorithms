@@ -2,6 +2,8 @@
 
 
 #include "merge_two_sorted_arrays.h"
+#include "merge_k_sorted_array.h"
+
 #include "data_structure/linked_list/middle_of_singly_linked_list.h"
 
 
@@ -186,6 +188,36 @@ auto MergeSort_DoublyList(std::list<int> values) {
     return values;
 }
 
+
+/** 3-way Merge Sort
+ *
+ * @reference   https://www.geeksforgeeks.org/3-way-merge-sort/
+ */
+void Merge_3Way(const ArrayType::iterator begin, const ArrayType::iterator middle1,
+                const ArrayType::iterator middle2, const ArrayType::iterator end) {
+    MergeKSortedArrays({ArrayType(begin, middle1), ArrayType(middle1, middle2), ArrayType(middle2, end)},
+                       begin);
+}
+
+void MergeSort_3Way(const ArrayType::iterator begin, const ArrayType::size_type n) {
+    if (n > 1) {
+        const auto mid = n / 3;
+        const auto mid_begin1 = begin + mid;
+        const auto mid_begin2 = mid_begin1 + mid + 1;
+
+        MergeSort_3Way(begin, mid);
+        MergeSort_3Way(mid_begin1, mid + 1);
+        MergeSort_3Way(mid_begin2, n - 2 * mid - 1);
+
+        Merge_3Way(begin, mid_begin1, mid_begin2, begin + n);
+    }
+}
+
+auto MergeSort_3Way(ArrayType values) {
+    MergeSort_3Way(values.begin(), values.size());
+    return values;
+}
+
 }//namespace
 
 
@@ -251,3 +283,12 @@ SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+SIMPLE_BENCHMARK(MergeSort_3Way, VALUES5);
+
+SIMPLE_TEST(MergeSort_3Way, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(MergeSort_3Way, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(MergeSort_3Way, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(MergeSort_3Way, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(MergeSort_3Way, TestSAMPLE5, EXPECTED5, VALUES5);
