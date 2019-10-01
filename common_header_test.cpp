@@ -151,7 +151,9 @@ SIMPLE_BENCHMARK(VectorFunction, vector_multi_values);
 
 //SIMPLE_TEST(VectorFunction, TestConstant, 5, 5);
 SIMPLE_TEST(VectorFunction, TestConstantReturnSingle, {5}, vector_single_value);
-//SIMPLE_TEST(VectorFunction, TestConstantReturnMulti, ({5, 5, 5}), vector_multi_values);
+//SIMPLE_TEST(VectorFunction, TestConstantReturnMulti_Short, ({5, 5, 5, 5}), vector_multi_values);
+SIMPLE_TEST(VectorFunction, TestConstantReturnMulti_Long, STRIP_PARENTHESES({5, 5, 5, 5}),
+            vector_multi_values);
 SIMPLE_TEST(VectorFunction, TestInitializerReturnSingle, initializer_list_single_value,
             initializer_list_single_value);
 SIMPLE_TEST(VectorFunction, TestInitializerReturnMulti, initializer_list_multi_values,
@@ -178,6 +180,9 @@ SIMPLE_BENCHMARK(ListFunction, list_multi_values);
 
 //SIMPLE_TEST(ListFunction, TestConstant, 5, 5);
 SIMPLE_TEST(ListFunction, TestConstantReturn, {5}, list_single_value);
+//SIMPLE_TEST(ListFunction, TestConstantReturnMulti_Short, ({5, 5, 5, 5}), list_multi_values);
+SIMPLE_TEST(ListFunction, TestConstantReturnMulti_Long, STRIP_PARENTHESES({5, 5, 5, 5}),
+            list_multi_values);
 SIMPLE_TEST(ListFunction, TestInitializerReturnSingle, initializer_list_single_value,
             initializer_list_single_value);
 SIMPLE_TEST(ListFunction, TestInitializerReturnMulti, initializer_list_multi_values,

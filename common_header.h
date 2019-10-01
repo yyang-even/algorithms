@@ -53,6 +53,19 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 
 
 // Macros
+/**
+ * @reference   How to remove the enclosing parentheses with macro?
+ *              https://stackoverflow.com/questions/24481810/how-to-remove-the-enclosing-parentheses-with-macro
+ * @reference   Comma in C/C++ macro
+ *              https://stackoverflow.com/questions/13842468/comma-in-c-c-macro
+ */
+#define STRIP_PARENTHESES(...) __VA_ARGS__
+
+
+/**
+ * @reference   #ifdef inside #define
+ *              https://stackoverflow.com/questions/5586429/ifdef-inside-define
+ */
 #ifdef NONIUS_RUNNER
 
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
