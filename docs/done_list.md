@@ -657,3 +657,6 @@
 * https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
 * https://www.geeksforgeeks.org/comparison-among-bubble-sort-selection-sort-and-insertion-sort/
 * https://www.geeksforgeeks.org/3-way-merge-sort/
+* https://www.geeksforgeeks.org/counting-sort/
+* https://www.geeksforgeeks.org/c-program-for-counting-sort-2/
+* https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/

@@ -7,6 +7,9 @@ CompileTestExe(count_inversions)
 CompileBenchmarkExe(count_occurrences_in_sorted_array)
 CompileTestExe(count_occurrences_in_sorted_array)
 
+CompileBenchmarkExe(counting_sort)
+CompileTestExe(counting_sort)
+
 CompileBenchmarkExe(dutch_national_flag)
 CompileTestExe(dutch_national_flag)
 
