@@ -1,3 +1,6 @@
+CompileBenchmarkExe(mean)
+CompileTestExe(mean)
+
 add_subdirectory(division)
 add_subdirectory(factorial)
 add_subdirectory(log)

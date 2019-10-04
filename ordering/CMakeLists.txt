@@ -40,6 +40,9 @@ CompileTestExe(max_and_min)
 CompileBenchmarkExe(max_or_min)
 CompileTestExe(max_or_min)
 
+CompileBenchmarkExe(median)
+CompileTestExe(median)
+
 CompileBenchmarkExe(merge_k_sorted_array)
 CompileTestExe(merge_k_sorted_array)
 
