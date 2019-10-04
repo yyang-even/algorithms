@@ -93,9 +93,19 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                              \
     TEST(func_name##Test, testName) {                                                                       \
-        const decltype(func_name(inputs)) &fine_type_expected_value = expectedValue;                        \
+        using ExpectedType = decltype(func_name(inputs));                                                   \
+        const ExpectedType &fine_type_expected_value = expectedValue;                                       \
         EXPECT_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);    \
     }                                                                                                       \
+}
+
+#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                           \
+    TEST(func_name##Test, testName) {                                                                           \
+        using ExpectedType = decltype(func_name(inputs));                                                       \
+        ASSERT_TRUE(std::is_floating_point<ExpectedType>::value);                                               \
+        const ExpectedType &fine_type_expected_value = expectedValue;                                           \
+        EXPECT_DOUBLE_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs); \
+    }                                                                                                           \
 }
 
 #define SIMPLE_TEST0(func_name, testName, expectedValue...) namespace {         \
@@ -121,6 +131,7 @@ inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cen
 #else
 
 #define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
+#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
 #define SIMPLE_TEST0(func_name, testName, expectedValue...) namespace {}
 #define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {}
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}

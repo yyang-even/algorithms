@@ -111,6 +111,14 @@ MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestSi
                    signed_value);
 
 
+const auto DoubleFunction = TemplateFunction<double>;
+
+const double double_value = 5.0;
+
+SIMPLE_DOUBLE_TEST(DoubleFunction, TestConstant, 5.0, 5.0);
+SIMPLE_DOUBLE_TEST(DoubleFunction, TestSignedVariable, double_value, double_value);
+
+
 using ValueType = int;
 const std::initializer_list<ValueType> initializer_list_single_value = {signed_value};
 const std::vector<ValueType> vector_single_value = initializer_list_single_value;
