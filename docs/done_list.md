@@ -661,3 +661,9 @@
 * https://www.geeksforgeeks.org/c-program-for-counting-sort-2/
 * https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
 * https://www.geeksforgeeks.org/program-for-mean-and-median-of-an-unsorted-array/
+* https://www.geeksforgeeks.org/median-and-mode-using-counting-sort/
+* https://www.geeksforgeeks.org/median/
+* https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/
+* https://www.geeksforgeeks.org/mode/
+* https://www.geeksforgeeks.org/randomized-algorithms-set-3-12-approximate-median/
+* https://www.geeksforgeeks.org/finding-median-in-a-sorted-linked-list/

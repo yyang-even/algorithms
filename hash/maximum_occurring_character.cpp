@@ -15,6 +15,8 @@ namespace {
  *              https://www.geeksforgeeks.org/frequent-element-array/
  * @reference   Least frequent element in an array
  *              https://www.geeksforgeeks.org/least-frequent-element-array/
+ * @reference   Mode
+ *              https://www.geeksforgeeks.org/mode/
  */
 auto MaximumOccurringChar_Position(const std::string &input) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;

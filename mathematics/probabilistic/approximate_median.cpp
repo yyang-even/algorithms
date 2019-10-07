@@ -28,7 +28,8 @@ auto ApproximateMedian(const ArrayType &values) {
 }
 
 
-inline auto testApproximateMedian() {
+#ifdef WANT_TESTS
+TEST(ApproximateMedianTest, TestSanity) {
     static const auto TOTAL_SAMPLE_SIZE = 100000;
     const ArrayType values = {1, 13, 4, 12, 5, 8, 15, 9, 7, 11, 6, 10, 3, 2, 14};
     auto sorted_array = values;
@@ -42,12 +43,11 @@ inline auto testApproximateMedian() {
                           median <= sorted_array[values.size() * 3 / 4]];
     }
 
-    return counters[0] <= (TOTAL_SAMPLE_SIZE * ERROR_RATE);
+    EXPECT_GE((TOTAL_SAMPLE_SIZE * ERROR_RATE), counters[0]);
 }
+#endif
 
 }//namespace
 
 
 SIMPLE_BENCHMARK(ApproximateMedian, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});
-
-SIMPLE_TEST0(testApproximateMedian, TestSample, true);
