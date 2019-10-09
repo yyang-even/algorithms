@@ -2,7 +2,7 @@
 
 /** Generate integer from 1 to 7 with equal probability
  *
- * @reference   https://www.geeksforgeeks.org/?p=22539
+ * @reference   https://www.geeksforgeeks.org/generate-integer-from-1-to-7-with-equal-probability/
  *
  * Given a function foo() that returns integers from 1 to 5 with equal probability,
  * write a function that returns integers from 1 to 7 with equal probability using

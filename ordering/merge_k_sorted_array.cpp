@@ -34,6 +34,12 @@ auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
     return final_sorted_array;
 }
 
+
+/** Merge K sorted Doubly Linked List in Sorted Order
+ *
+ * @reference   https://www.geeksforgeeks.org/merge-k-sorted-doubly-linked-list-in-sorted-order/
+ */
+
 }//namespace
 
 

@@ -6,13 +6,15 @@ namespace {
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
 
-/** Shuffle a given array
+/** Shuffle a given array using Fisher–Yates shuffle Algorithm
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 5.3.
  *
- *              https://www.geeksforgeeks.org/shuffle-a-given-array/
+ * @reference   Shuffle a deck of cards
  *              https://www.geeksforgeeks.org/shuffle-a-deck-of-cards-3/
+ * @reference   Shuffle a given array using Fisher–Yates shuffle Algorithm
+ *              https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
  *
  * Given an array, write a program to generate a random permutation of array elements.
  * This question is also asked as “shuffle a deck of cards” or “randomize a given array”.
