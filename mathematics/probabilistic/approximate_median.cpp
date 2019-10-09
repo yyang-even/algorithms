@@ -12,6 +12,25 @@ using ArrayType = std::vector<int>;
  * Given an unsorted array A[] of n numbers and ε > 0, compute an element whose rank
  * (position in sorted A[]) is in the range [(1 – ε)n/2, (1 + ε)n/2].
  * For 1/2 Approximate Median Algorithm &epsilom; is 1/2 => rank should be in the range [n/4, 3n/4]
+ *
+ * @reference   Randomized Algorithms | Set 0 (Mathematical Background)
+ *              https://www.geeksforgeeks.org/randomized-algorithms-set-0-mathematical-background/
+ * @reference   Randomized Algorithms | Set 1 (Introduction and Analysis)
+ *              https://www.geeksforgeeks.org/randomized-algorithms-set-1-introduction-and-analysis/
+ * @reference   Randomized Algorithms | Set 2 (Classification and Applications)
+ *              https://www.geeksforgeeks.org/randomized-algorithms-set-2-classification-and-applications/
+ * @reference   Mathematics | Conditional Probability
+ *              https://www.geeksforgeeks.org/conditional-probability/
+ * @reference   Bayes’s Theorem for Conditional Probability
+ *              https://www.geeksforgeeks.org/bayess-theorem-for-conditional-probability/
+ * @reference   Linearity of Expectation
+ *              https://www.geeksforgeeks.org/linearity-of-expectation/
+ * @reference   Expected Number of Trials until Success
+ *              https://www.geeksforgeeks.org/expected-number-of-trials-before-success/
+ * @reference   Expected number of coin flips to get two heads in a row?
+ *              https://www.geeksforgeeks.org/expected-number-of-coin-flips-to-get-two-heads-in-a-row/
+ * @reference   Load Balancing on Servers (Randomized Algorithm)
+ *              https://www.geeksforgeeks.org/load-balancing-on-servers-random-algorithm/
  */
 auto ApproximateMedian(const ArrayType &values) {
     assert(not values.empty());

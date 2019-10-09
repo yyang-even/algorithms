@@ -1,8 +1,11 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Generate integer from 1 to 7 with equal probability
  *
- * @reference   https://www.geeksforgeeks.org/?p=22539
+ * @reference   https://www.geeksforgeeks.org/generate-integer-from-1-to-7-with-equal-probability/
  *
  * Given a function foo() that returns integers from 1 to 5 with equal probability,
  * write a function that returns integers from 1 to 7 with equal probability using
@@ -41,7 +44,8 @@ auto RandomNumber0to6() {
 }
 
 
-auto testRandomNumber1to7() {
+#ifdef WANT_TESTS
+TEST(RandomNumber1to7Test, TestSanity) {
     static const auto SAMPLE_SIZE = 7000000;
     static const auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
     static const double ERROR_RATE = 0.01;
@@ -52,21 +56,18 @@ auto testRandomNumber1to7() {
         ++counters[RandomNumber1to7()];
     }
 
+    bool result = true;
     for (auto iter = counters.cbegin() + 1; iter != counters.cend(); ++iter) {
         if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
-            return false;
+            result = false;
         }
     }
-    return true;
+
+    EXPECT_TRUE(result);
 }
 
 
-SIMPLE_BENCHMARK(RandomNumber1to7);
-
-SIMPLE_TEST0(testRandomNumber1to7, TestSample, true);
-
-
-auto testRandomNumber0to6() {
+TEST(RandomNumber0to6Test, TestSanity) {
     static const auto SAMPLE_SIZE = 7000000;
     static const auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
     static const double ERROR_RATE = 0.01;
@@ -77,15 +78,21 @@ auto testRandomNumber0to6() {
         ++counters[RandomNumber0to6()];
     }
 
+    bool result = true;
     for (auto iter = counters.cbegin(); iter != counters.cend(); ++iter) {
         if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
-            return false;
+            result = false;
         }
     }
-    return true;
+
+    EXPECT_TRUE(result);
 }
+#endif
+
+}//namespace
+
+
+SIMPLE_BENCHMARK(RandomNumber1to7);
 
 
 SIMPLE_BENCHMARK(RandomNumber0to6);
-
-SIMPLE_TEST0(testRandomNumber0to6, TestSample, true);
