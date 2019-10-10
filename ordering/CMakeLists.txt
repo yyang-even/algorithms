@@ -58,6 +58,9 @@ CompileTestExe(multiple_rotations)
 CompileBenchmarkExe(partition)
 CompileTestExe(partition)
 
+CompileBenchmarkExe(queries_for_counts_in_range)
+CompileTestExe(queries_for_counts_in_range)
+
 CompileBenchmarkExe(quick_sort)
 CompileTestExe(quick_sort)
 

@@ -686,3 +686,6 @@
 * https://www.geeksforgeeks.org/select-a-random-number-from-stream-with-o1-space/
 * https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
 * https://www.geeksforgeeks.org/shuffle-a-deck-of-cards-3/
+* https://www.geeksforgeeks.org/euclids-algorithm-when-and-operations-are-costly/
+* https://www.geeksforgeeks.org/find-hcf-of-two-numbers-without-using-recursion-or-euclidean-algorithm/
+* https://www.geeksforgeeks.org/queries-counts-array-elements-values-given-range/
