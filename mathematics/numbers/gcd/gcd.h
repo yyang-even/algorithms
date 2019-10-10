@@ -26,6 +26,9 @@
  * Since x is the modular multiplicative inverse of “a modulo b”, and y is the modular multiplicative
  * inverse of “b modulo a”. In particular, the computation of the modular multiplicative inverse is
  * an essential step in RSA public-key encryption method.
+ *
+ * @reference   Find HCF of two numbers without using recursion or Euclidean algorithm
+ *              https://www.geeksforgeeks.org/find-hcf-of-two-numbers-without-using-recursion-or-euclidean-algorithm/
  */
 
 /**

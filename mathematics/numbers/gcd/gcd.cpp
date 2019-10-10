@@ -13,6 +13,9 @@ namespace {
  * Stein’s algorithm or binary GCD algorithm is an algorithm that computes the
  * greatest common divisor of two non-negative integers. Stein’s algorithm
  * replaces division with arithmetic shifts, comparisons, and subtraction.
+ *
+ * @reference   Euclid’s Algorithm when % and / operations are costly
+ *              https://www.geeksforgeeks.org/euclids-algorithm-when-and-operations-are-costly/
  */
 auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
     if (a == 0) {
