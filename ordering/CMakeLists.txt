@@ -64,6 +64,9 @@ CompileTestExe(queries_for_counts_in_range)
 CompileBenchmarkExe(quick_sort)
 CompileTestExe(quick_sort)
 
+CompileBenchmarkExe(radix_sort)
+CompileTestExe(radix_sort)
+
 CompileBenchmarkExe(rotation)
 CompileTestExe(rotation)
 
