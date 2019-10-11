@@ -3,6 +3,8 @@
 
 namespace {
 
+#include "counting_sort.h"
+
 using ArrayType = std::vector<int>;
 
 /** Counting Sort
@@ -33,8 +35,8 @@ auto CountingSort_NoNegative(const ArrayType &values) {
     }
 
     ArrayType outputs(values.size(), 0);
-    for (const auto v : values) {
-        outputs[--counter[v]] = v;
+    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
+        outputs[--counter[*riter]] = *riter;
     }
 
     return outputs;
@@ -52,25 +54,10 @@ auto CountingSort(const ArrayType &values) {
 
     const auto min_max_pair = std::minmax_element(values.cbegin(), values.cend());
     const auto RANGE = *min_max_pair.second - *min_max_pair.first + 1;
-    const auto ToIndex = [min = *min_max_pair.first](const auto v) {
+
+    return CountingSort(values, RANGE, [min = *min_max_pair.first](const auto v) {
         return v - min;
-    };
-
-    ArrayType counter(RANGE, 0);
-    for (const auto v : values) {
-        ++counter[ToIndex(v)];
-    }
-
-    for (auto iter = std::next(counter.begin()); iter != counter.end(); ++iter) {
-        *iter += *std::prev(iter);
-    }
-
-    ArrayType outputs(values.size(), 0);
-    for (const auto v : values) {
-        outputs[--counter[ToIndex(v)]] = v;
-    }
-
-    return outputs;
+    });
 }
 
 

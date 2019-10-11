@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "counting_sort.h"
+
 
 namespace {
 
@@ -44,14 +46,7 @@ auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
         return v - min;
     };
 
-    ArrayType counter(RANGE, 0);
-    for (const auto v : values) {
-        ++counter[ToIndex(v)];
-    }
-
-    for (auto iter = std::next(counter.begin()); iter != counter.end(); ++iter) {
-        *iter += *std::prev(iter);
-    }
+    const auto counter = ToCountingArray(values, RANGE, ToIndex);
 
     for (const auto &range_pair : queries) {
         const auto lower = counter[ToIndex(
