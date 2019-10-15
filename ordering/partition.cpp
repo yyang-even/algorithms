@@ -10,7 +10,6 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-
 /** Move all negative elements to end in order with extra space allowed
  *
  * @reference   https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
@@ -227,6 +226,11 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(Array
  * then all nodes with value equal to x and finally nodes with value greater than or equal to x.
  * The original relative order of the nodes in each of the three partitions should be preserved.
  * The partition must work in-place.
+ *
+ * @reference   Sort a linked list of 0s, 1s and 2s
+ *              https://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
+ * @reference   Sort a linked list of 0s, 1s and 2s by changing links
+ *              https://www.geeksforgeeks.org/sort-linked-list-0s-1s-2s-changing-links/
  */
 auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
                                       const std::forward_list<int>::value_type x) {
@@ -347,20 +351,16 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstab
             EXPECTED6, SAMPLE6);
 
 
-const ArrayType EXPECTED5_b = {2, -1, 4, -3, 5, -7, 6, 8, 9};
-const ArrayType EXPECTED6_b = {7, -5, 10, -4, 9, -3, -1, -11};
+const ArrayType EXPECTED5_Stable = {2, -1, 4, -3, 5, -7, 6, 8, 9};
+const ArrayType EXPECTED6_Stable = {7, -5, 10, -4, 9, -3, -1, -11};
 
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE5,
-            EXPECTED5_b, SAMPLE5);
+            EXPECTED5_Stable, SAMPLE5);
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE6,
-            EXPECTED6_b, SAMPLE6);
-
-
-const ArrayType EXPECTED5_Stable = {2, -1, 4, -3, 5, -7, 6, 8, 9};
-const ArrayType EXPECTED6_Stable = {7, -5, 10, -4, 9, -3, -1, -11};
+            EXPECTED6_Stable, SAMPLE6);
 
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, SAMPLE5);
@@ -394,6 +394,8 @@ const std::forward_list<int> LIST2 = {1, 4, 2, 10};
 const std::forward_list<int> EXPECTED_LIST2 = {1, 2, 4, 10};
 const std::forward_list<int> LIST3 = {10, 4, 20, 10, 3};
 const std::forward_list<int> EXPECTED_LIST3 = {3, 10, 4, 20, 10};
+const std::forward_list<int> LIST4 = {2, 1, 2, 1, 1, 2, 0, 1, 0};
+const std::forward_list<int> EXPECTED_LIST4 = {0, 0, 1, 1, 1, 1, 2, 2, 2};
 
 
 SIMPLE_BENCHMARK(Partition_3Way_SinglyList_Stable, LIST1, 3);
@@ -401,12 +403,13 @@ SIMPLE_BENCHMARK(Partition_3Way_SinglyList_Stable, LIST1, 3);
 SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList1, EXPECTED_LIST1, LIST1, 3);
 SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList2, EXPECTED_LIST2, LIST2, 3);
 SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList3, EXPECTED_LIST3, LIST3, 3);
+SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList4, EXPECTED_LIST4, LIST4, 1);
 
 
-const std::forward_list<int> LIST4 = {3, 5, 10, 2, 8, 2, 1};
-const std::forward_list<int> EXPECTED_LIST4 = {1, 2, 2, 3, 5, 10, 8};
+const std::forward_list<int> LIST5 = {3, 5, 10, 2, 8, 2, 1};
+const std::forward_list<int> EXPECTED_LIST5 = {1, 2, 2, 3, 5, 10, 8};
 
 
-SIMPLE_BENCHMARK(Partition_SinglyList_Unstable, LIST4, 5);
+SIMPLE_BENCHMARK(Partition_SinglyList_Unstable, LIST5, 5);
 
-SIMPLE_TEST(Partition_SinglyList_Unstable, TestList4, EXPECTED_LIST4, LIST4, 5);
+SIMPLE_TEST(Partition_SinglyList_Unstable, TestList5, EXPECTED_LIST5, LIST5, 5);

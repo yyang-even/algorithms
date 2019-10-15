@@ -73,6 +73,9 @@ CompileTestExe(rotation)
 CompileBenchmarkExe(selection_sort)
 CompileTestExe(selection_sort)
 
+CompileBenchmarkExe(sort_by_frequency)
+CompileTestExe(sort_by_frequency)
+
 CompileBenchmarkExe(sort_nearly_sorted_array)
 CompileTestExe(sort_nearly_sorted_array)
 

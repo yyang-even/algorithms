@@ -691,3 +691,10 @@
 * https://www.geeksforgeeks.org/queries-counts-array-elements-values-given-range/
 * https://www.geeksforgeeks.org/radix-sort/
 * https://www.geeksforgeeks.org/sort-n-numbers-range-0-n2-1-linear-time/
+* https://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
+* https://www.geeksforgeeks.org/sort-linked-list-0s-1s-2s-changing-links/
+* https://www.geeksforgeeks.org/sort-elements-by-frequency/
+* https://www.geeksforgeeks.org/sort-elements-by-frequency-set-2/
+* https://www.geeksforgeeks.org/sorting-array-elements-frequency-set-3-using-stl/
+* https://www.geeksforgeeks.org/sort-elements-frequency-set-4-efficient-approach-using-hash/
+* https://www.geeksforgeeks.org/sort-elements-by-frequency-set-5-using-java-map/
