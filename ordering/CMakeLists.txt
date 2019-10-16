@@ -1,6 +1,9 @@
 CompileBenchmarkExe(bubble_sort)
 CompileTestExe(bubble_sort)
 
+CompileBenchmarkExe(bucket_sort)
+CompileTestExe(bucket_sort)
+
 CompileBenchmarkExe(count_inversions)
 CompileTestExe(count_inversions)
 

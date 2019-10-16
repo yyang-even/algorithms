@@ -14,6 +14,9 @@ using ArrayType = std::vector<int>;
  *              Introduction to Algorithms, Third Edition. Chapter 8.3.
  * @reference   Radix Sort
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Radix/
+ *
+ * The idea of Radix Sort is to do digit by digit sort starting from least significant
+ * digit to most significant digit. Radix sort uses counting sort as a subroutine to sort.
  */
 auto RadixSort(ArrayType values, const ArrayType::value_type base = 10) {
     if (values.empty()) {

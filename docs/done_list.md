@@ -698,3 +698,5 @@
 * https://www.geeksforgeeks.org/sorting-array-elements-frequency-set-3-using-stl/
 * https://www.geeksforgeeks.org/sort-elements-frequency-set-4-efficient-approach-using-hash/
 * https://www.geeksforgeeks.org/sort-elements-by-frequency-set-5-using-java-map/
+* https://www.geeksforgeeks.org/bucket-sort-2/
+* https://www.geeksforgeeks.org/bucket-sort-to-sort-an-array-with-negative-numbers/
