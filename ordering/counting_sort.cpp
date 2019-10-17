@@ -17,6 +17,9 @@ using ArrayType = std::vector<int>;
  *
  * Counting sort is efficient if the range of input data is not significantly greater
  * than the number of objects to be sorted.
+ *
+ * @reference   Sort string of characters
+ *              https://www.geeksforgeeks.org/sort-string-characters/
  */
 auto CountingSort_NoNegative(const ArrayType &values) {
     constexpr ArrayType::value_type MAXIMUM = 1 << 8;
@@ -61,24 +64,10 @@ auto CountingSort(const ArrayType &values) {
 }
 
 
-/**
- * @reference   Implementing Counting Sort using map in C++
- *              https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
- */
-auto CountingSort_Map(ArrayType values) {
-    std::map<ArrayType::value_type, std::size_t> counter;
-    for (const auto v : values) {
-        ++counter[v];
-    }
-
-    ArrayType::size_type i = 0;
-    for (const auto &value_count_pair : counter) {
-        for (std::size_t j = 0; j < value_count_pair.second; ++j) {
-            values[i++] = value_count_pair.first;
-        }
-    }
-
-    return values;
+auto CountingSort_STL(const ArrayType &values) {
+    return CountingSort_STL(values, [](const auto v) {
+        return v;
+    });
 }
 
 }//namespace
@@ -122,12 +111,12 @@ SIMPLE_TEST(CountingSort, TestSAMPLE6, EXPECTED6, VALUES6);
 SIMPLE_TEST(CountingSort, TestSAMPLE7, EXPECTED7, VALUES7);
 
 
-SIMPLE_BENCHMARK(CountingSort_Map, VALUES6);
+SIMPLE_BENCHMARK(CountingSort_STL, VALUES6);
 
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE1, VALUES1, VALUES1);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE2, VALUES2, VALUES2);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE3, VALUES3, VALUES3);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE4, EXPECTED4, VALUES4);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE5, EXPECTED5, VALUES5);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE6, EXPECTED6, VALUES6);
-SIMPLE_TEST(CountingSort_Map, TestSAMPLE7, EXPECTED7, VALUES7);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE5, EXPECTED5, VALUES5);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(CountingSort_STL, TestSAMPLE7, EXPECTED7, VALUES7);
