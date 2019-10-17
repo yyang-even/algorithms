@@ -3,6 +3,8 @@
 
 namespace {
 
+#include "bucket_sort.h"
+
 using ArrayType = std::vector<float>;
 
 /** Bucket Sort
@@ -37,6 +39,13 @@ auto BucketSort(ArrayType elements) {
     }
 
     return elements;
+}
+
+
+auto BucketSort_STL(const ArrayType &elements) {
+    return BucketSort_STL(elements, [&elements](const auto & elem) {
+        return elem * elements.size();
+    }, ToLambda(std::sort));
 }
 
 
@@ -76,6 +85,11 @@ const ArrayType EXPECTED1 = {0.1234, 0.3434, 0.565, 0.656, 0.665, 0.897};
 SIMPLE_BENCHMARK(BucketSort, VALUES1);
 
 SIMPLE_TEST(BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
+
+
+SIMPLE_BENCHMARK(BucketSort_STL, VALUES1);
+
+SIMPLE_TEST(BucketSort_STL, TestSAMPLE1, EXPECTED1, VALUES1);
 
 
 const ArrayType VALUES2 = {-0.897, 0.565, 0.656, -0.1234, 0, 0.3434};

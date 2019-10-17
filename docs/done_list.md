@@ -700,3 +700,6 @@
 * https://www.geeksforgeeks.org/sort-elements-by-frequency-set-5-using-java-map/
 * https://www.geeksforgeeks.org/bucket-sort-2/
 * https://www.geeksforgeeks.org/bucket-sort-to-sort-an-array-with-negative-numbers/
+* https://www.geeksforgeeks.org/sort-string-characters/
+* https://www.geeksforgeeks.org/sort-array-strings-according-string-lengths/
+* https://www.geeksforgeeks.org/sort-an-array-of-strings-according-to-string-lengths-using-map/

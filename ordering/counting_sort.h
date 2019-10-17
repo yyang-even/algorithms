@@ -28,3 +28,33 @@ inline static auto CountingSort(const std::vector<int> &values, const std::size_
 
     return outputs;
 }
+
+
+/**
+ * @reference   Implementing Counting Sort using map in C++
+ *              https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
+ */
+template <typename ArrayType>
+static inline auto CountingSort_STL(const ArrayType &values,
+                                    const std::function<std::size_t(const typename ArrayType::value_type &)> to_index) {
+    if (values.empty()) {
+        return values;
+    }
+
+    std::map<std::size_t, std::size_t> counter;
+    for (const auto &v : values) {
+        ++counter[to_index(v)];
+    }
+
+    auto prev = counter.begin();
+    for (auto iter = std::next(prev); iter != counter.end(); ++iter, ++prev) {
+        iter->second += prev->second;
+    }
+
+    ArrayType outputs(values.size());
+    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
+        outputs[--counter[to_index(*riter)]] = *riter;
+    }
+
+    return outputs;
+}
