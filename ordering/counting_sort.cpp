@@ -17,6 +17,9 @@ using ArrayType = std::vector<int>;
  *
  * Counting sort is efficient if the range of input data is not significantly greater
  * than the number of objects to be sorted.
+ *
+ * @reference   Sort string of characters
+ *              https://www.geeksforgeeks.org/sort-string-characters/
  */
 auto CountingSort_NoNegative(const ArrayType &values) {
     constexpr ArrayType::value_type MAXIMUM = 1 << 8;
