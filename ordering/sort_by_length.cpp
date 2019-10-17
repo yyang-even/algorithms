@@ -37,7 +37,7 @@ auto SortByLengths_Stable(ArrayType strings) {
 auto SortByLengths_Stable_Bucket(const ArrayType &strings) {
     return BucketSort_STL(strings, [](const auto & str) {
         return str.length();
-    }, [](const auto, const auto) {});
+    }, Void);
 }
 
 

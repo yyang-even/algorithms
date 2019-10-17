@@ -65,9 +65,7 @@ auto CountingSort(const ArrayType &values) {
 
 
 auto CountingSort_STL(const ArrayType &values) {
-    return CountingSort_STL(values, [](const auto v) {
-        return v;
-    });
+    return CountingSort_STL(values, Copy);
 }
 
 }//namespace
