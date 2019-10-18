@@ -703,3 +703,7 @@
 * https://www.geeksforgeeks.org/sort-string-characters/
 * https://www.geeksforgeeks.org/sort-array-strings-according-string-lengths/
 * https://www.geeksforgeeks.org/sort-an-array-of-strings-according-to-string-lengths-using-map/
+* https://www.geeksforgeeks.org/c-program-sort-array-names-strings/
+* https://www.geeksforgeeks.org/sort-an-array-of-string-of-dates-in-ascending-order/
+* https://www.geeksforgeeks.org/how-to-sort-an-array-of-dates-in-cc/
+* https://www.geeksforgeeks.org/how-to-efficiently-sort-a-big-list-dates-in-20s/

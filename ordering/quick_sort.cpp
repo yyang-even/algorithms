@@ -50,6 +50,8 @@ using ArrayType = std::vector<int>;
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Quick/
  * @reference   Can QuickSort be implemented in O(nLogn) worst case time complexity?
  *              https://www.geeksforgeeks.org/can-quicksort-implemented-onlogn-worst-case-time-complexity/
+ * @reference   C Program to Sort an array of names or strings
+ *              https://www.geeksforgeeks.org/c-program-sort-array-names-strings/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
