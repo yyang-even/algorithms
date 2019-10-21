@@ -14,6 +14,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/c-program-for-bubble-sort/
  * @reference   C++ Program for Bubble Sort
  *              https://www.geeksforgeeks.org/cpp-program-for-bubble-sort/
+ * @reference   Stable sort for descending order
+ *              https://www.geeksforgeeks.org/stable-sort-descending-order/
  *
  * @complexity: O(n^2)
  */
