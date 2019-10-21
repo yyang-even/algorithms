@@ -707,3 +707,16 @@
 * https://www.geeksforgeeks.org/sort-an-array-of-string-of-dates-in-ascending-order/
 * https://www.geeksforgeeks.org/how-to-sort-an-array-of-dates-in-cc/
 * https://www.geeksforgeeks.org/how-to-efficiently-sort-a-big-list-dates-in-20s/
+* https://www.geeksforgeeks.org/program-sort-string-descending-order/
+* https://www.geeksforgeeks.org/how-to-sort-an-array-in-descending-order-using-stl-in-c/
+* https://www.geeksforgeeks.org/how-to-sort-a-vector-in-descending-order-using-stl-in-c/
+* https://www.geeksforgeeks.org/sorting-vector-tuple-c-ascending-order/
+* https://www.geeksforgeeks.org/sorting-vector-tuple-c-descending-order/
+* https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-1-sort-by-first-and-second/
+* https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-2-sort-in-descending-order-by-first-and-second/
+* https://www.geeksforgeeks.org/keep-track-of-previous-indexes-after-sorting-a-vector-in-c-stl/
+* https://www.geeksforgeeks.org/sorting-a-vector-in-c/
+* https://www.geeksforgeeks.org/print-2-d-co-ordinate-points-in-ascending-order-followed-by-their-frequencies/
+* https://www.geeksforgeeks.org/print-numbers-in-descending-order-along-with-their-frequencies/
+* https://www.geeksforgeeks.org/descending-order-map-multimap-c-stl/
+* https://www.geeksforgeeks.org/stable-sort-descending-order/

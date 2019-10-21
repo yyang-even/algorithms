@@ -20,6 +20,24 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Sort string of characters
  *              https://www.geeksforgeeks.org/sort-string-characters/
+ * @reference   Program to sort string in descending order
+ *              https://www.geeksforgeeks.org/program-sort-string-descending-order/
+ * @reference   How to sort an Array in descending order using STL in C++?
+ *              https://www.geeksforgeeks.org/how-to-sort-an-array-in-descending-order-using-stl-in-c/
+ * @reference   How to sort a Vector in descending order using STL in C++?
+ *              https://www.geeksforgeeks.org/how-to-sort-a-vector-in-descending-order-using-stl-in-c/
+ * @reference   Sorting of Vector of Tuple in C++ (Ascending Order)
+ *              https://www.geeksforgeeks.org/sorting-vector-tuple-c-ascending-order/
+ * @reference   Sorting of Vector of Tuple in C++ (Descending Order)
+ *              https://www.geeksforgeeks.org/sorting-vector-tuple-c-descending-order/
+ * @reference   Sorting Vector of Pairs in C++ | Set 1 (Sort by first and second)
+ *              https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-1-sort-by-first-and-second/
+ * @reference   Sorting Vector of Pairs in C++ | Set 2 (Sort in descending order by first and second)
+ *              https://www.geeksforgeeks.org/sorting-vector-of-pairs-in-c-set-2-sort-in-descending-order-by-first-and-second/
+ * @reference   Keep track of previous indexes after sorting a vector in C++ STL
+ *              https://www.geeksforgeeks.org/keep-track-of-previous-indexes-after-sorting-a-vector-in-c-stl/
+ * @reference   Sorting a vector in C++
+ *              https://www.geeksforgeeks.org/sorting-a-vector-in-c/
  */
 auto CountingSort_NoNegative(const ArrayType &values) {
     constexpr ArrayType::value_type MAXIMUM = 1 << 8;

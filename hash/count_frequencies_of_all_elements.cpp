@@ -2,6 +2,7 @@
 
 #include "count_frequencies_of_all_elements.h"
 
+#include "ordering/count_occurrences_in_sorted_array.h"
 
 namespace {
 
@@ -72,6 +73,37 @@ auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
     return output;
 }
 
+
+/** Print numbers in descending order along with their frequencies
+ *
+ * @reference   https://www.geeksforgeeks.org/print-numbers-in-descending-order-along-with-their-frequencies/
+ * @reference   Print 2-D co-ordinate points in ascending order followed by their frequencies
+ *              https://www.geeksforgeeks.org/print-2-d-co-ordinate-points-in-ascending-order-followed-by-their-frequencies/
+ * @reference   Descending order in Map and Multimap of C++ STL
+ *              https://www.geeksforgeeks.org/descending-order-map-multimap-c-stl/
+ */
+using ValueCountPair = std::pair<ArrayType::value_type, ArrayType::size_type>;
+
+auto SortAndCount(ArrayType values) {
+    std::sort(values.begin(), values.end(), std::greater<ArrayType::value_type> {});
+    return CountAllOccurrencesInSortedArray_STL(values);
+}
+
+
+auto SortAndCount_BucketSort(ArrayType values) {
+    std::map<ArrayType::value_type, ArrayType::size_type, std::greater<ArrayType::value_type>> buckets;
+    for (const auto v : values) {
+        ++buckets[v];
+    }
+
+    std::vector<ValueCountPair> outputs;
+    for (const auto &value_count_pair : buckets) {
+        outputs.emplace_back(value_count_pair);
+    }
+
+    return outputs;
+}
+
 }//namespace
 
 
@@ -121,3 +153,25 @@ MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllEleme
                    TestSAMPLE6, SAMPLE6);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE7, SAMPLE7);
+
+
+const ArrayType VALUES1 = {1, 1, 2, 2, 2, 2, 3};
+const std::vector<ValueCountPair> EXPECTED1 = {{3, 1}, {2, 4}, {1, 2}};
+const ArrayType VALUES2 = {1, 3, 3, 3, 4, 4, 5};
+const std::vector<ValueCountPair> EXPECTED2 = {{5, 1}, {4, 2}, {3, 3}, {1, 1}};
+const ArrayType VALUES3 = {1, 1, 1, 2, 3, 4, 9, 9, 10};
+const std::vector<ValueCountPair> EXPECTED3 = {{10, 1}, {9, 2}, {4, 1}, {3, 1}, {2, 1}, {1, 3}};
+
+
+SIMPLE_BENCHMARK(SortAndCount, VALUES1);
+
+SIMPLE_TEST(SortAndCount, TestSAMPLE1, EXPECTED1, VALUES1);
+SIMPLE_TEST(SortAndCount, TestSAMPLE2, EXPECTED2, VALUES2);
+SIMPLE_TEST(SortAndCount, TestSAMPLE3, EXPECTED3, VALUES3);
+
+
+SIMPLE_BENCHMARK(SortAndCount_BucketSort, VALUES1);
+
+SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
+SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE2, EXPECTED2, VALUES2);
+SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE3, EXPECTED3, VALUES3);

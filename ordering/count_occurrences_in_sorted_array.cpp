@@ -20,7 +20,6 @@ using ArrayType = std::vector<int>;
  * Expected Time Complexity : Less than 0(n)
  *
  * @highlight   The use of std::equal_range()
- *
  */
 auto CountOccurrencesInSortedArray_STL(const ArrayType &values, const ArrayType::value_type x) {
     assert(std::is_sorted(values.cbegin(), values.cend()));
@@ -33,6 +32,7 @@ auto CountOccurrencesInSortedArray_STL(const ArrayType &values, const ArrayType:
 
 
 const ArrayType VALUES1 = {1, 1, 2, 2, 2, 2, 3};
+
 
 SIMPLE_BENCHMARK(CountOccurrencesInSortedArray_STL, VALUES1, 2);
 
