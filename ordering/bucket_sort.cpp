@@ -23,6 +23,15 @@ using ArrayType = std::vector<float>;
  * finding a point in any region of the circle is proportional to the area of the region. Design an
  * algorithm with an average-case running time of O(n) to sort the n points by their distances d(i) =
  * sqrt(x(i) ^ 2 + y(i) ^ 2) from the origin.
+ *
+ * @reference   How to sort a big array with many repetitions?
+ *              https://www.geeksforgeeks.org/how-to-sort-a-big-array-with-many-repetitions/
+ * @reference   Sort an array which contain 1 to n values
+ *              https://www.geeksforgeeks.org/sort-array-contain-1-n-values/
+ * @reference   Sort Linked List containing values from 1 to N
+ *              https://www.geeksforgeeks.org/sort-linked-list-containing-values-from-1-to-n/
+ * @reference   How to sort an Array using STL in C++?
+ *              https://www.geeksforgeeks.org/how-to-sort-an-array-using-stl-in-c/
  */
 auto BucketSort(ArrayType elements) {
     ArrayType buckets[elements.size()] = {};

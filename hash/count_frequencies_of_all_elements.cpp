@@ -104,6 +104,25 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
     return outputs;
 }
 
+
+/**
+ * @reference   Print characters in decreasing order of frequency
+ *              https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
+ *
+ * Given a string str, the task is to print the characters in decreasing order of their frequency.
+ * If the frequency of two characters is same then sort them in descending order alphabetically.
+ */
+
+
+/**
+ * @reference   Print characters and their frequencies in order of occurrence
+ *              https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/
+ *
+ * Given a string str containing only lowercase characters. The problem is to print the characters
+ * along with their frequency in the order of their occurrence and in the given format explained
+ * in the examples below.
+ */
+
 }//namespace
 
 

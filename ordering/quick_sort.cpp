@@ -52,6 +52,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/can-quicksort-implemented-onlogn-worst-case-time-complexity/
  * @reference   C Program to Sort an array of names or strings
  *              https://www.geeksforgeeks.org/c-program-sort-array-names-strings/
+ * @reference   Print array of strings in sorted order without copying one string into another
+ *              https://www.geeksforgeeks.org/print-array-strings-sorted-order-without-copying-one-string-another/
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)

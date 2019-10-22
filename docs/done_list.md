@@ -720,3 +720,11 @@
 * https://www.geeksforgeeks.org/print-numbers-in-descending-order-along-with-their-frequencies/
 * https://www.geeksforgeeks.org/descending-order-map-multimap-c-stl/
 * https://www.geeksforgeeks.org/stable-sort-descending-order/
+* https://www.geeksforgeeks.org/how-to-sort-a-big-array-with-many-repetitions/
+* https://www.geeksforgeeks.org/sort-array-contain-1-n-values/
+* https://www.geeksforgeeks.org/how-to-sort-an-array-using-stl-in-c/
+* https://www.geeksforgeeks.org/sort-linked-list-containing-values-from-1-to-n/
+* https://www.geeksforgeeks.org/print-array-strings-sorted-order-without-copying-one-string-another/
+* https://www.geeksforgeeks.org/print-all-distinct-characters-of-a-string-in-order-3-methods/
+* https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
+* https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/

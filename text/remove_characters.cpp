@@ -97,8 +97,7 @@ auto RemoveCharactersWithEvenFrequency_Partition(const std::string &input) {
     const auto counter = ToFrequencyHashTable(input);
 
     return RemoveCharacters_Partition(input, [&counter](const auto c) {
-        const auto iter = counter.find(c);
-        return iter != counter.cend() and iter->second % 2 != 0;
+        return counter.at(c) % 2 != 0;
     });
 }
 
@@ -122,8 +121,7 @@ auto RemoveCharactersAppearLessThanK_Partition(const std::string &input,
     const auto counter = ToFrequencyHashTable(input);
 
     return RemoveCharacters_Partition(input, [&counter, K](const auto c) {
-        const auto iter = counter.find(c);
-        return iter != counter.cend() and iter->second >= K;
+        return counter.at(c) >= K;
     });
 }
 

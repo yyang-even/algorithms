@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename Container>
-auto ToFrequencyHashTable(const Container &container) {
+static inline auto ToFrequencyHashTable(const Container &container) {
     std::unordered_map<typename Container::value_type, typename Container::size_type> counter;
     for (const auto &c : container) {
         ++counter[c];
@@ -12,6 +12,6 @@ auto ToFrequencyHashTable(const Container &container) {
 
 
 template <typename Container>
-inline auto ToUnorderedSet(const Container &container) {
+static inline auto ToUnorderedSet(const Container &container) {
     return std::unordered_set<typename Container::value_type>(container.cbegin(), container.cend());
 }
