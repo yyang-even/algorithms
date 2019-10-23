@@ -728,3 +728,9 @@
 * https://www.geeksforgeeks.org/print-all-distinct-characters-of-a-string-in-order-3-methods/
 * https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
 * https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/
+* https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
+* https://www.geeksforgeeks.org/count-digits-factorial-set-1/
+* https://www.geeksforgeeks.org/count-digits-factorial-set-2/
+* https://www.geeksforgeeks.org/count-divisors-of-factorial/
+* https://www.geeksforgeeks.org/count-factorial-numbers-in-a-given-range/
+* https://www.geeksforgeeks.org/count-trailing-zeroes-factorial-number/
