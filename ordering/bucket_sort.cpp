@@ -1,5 +1,9 @@
 #include "common_header.h"
 
+#include "radix_sort.h"
+
+#include "mathematics/numbers/count_digits_in_integer.h"
+
 
 namespace {
 
@@ -84,6 +88,23 @@ auto BucketSort_Mixed(ArrayType elements) {
     return elements;
 }
 
+
+/** Sorting variable-length items
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 8-3.
+ *
+ * You are given an array of integers, where different integers may have different numbers
+ * of digits, but the total number of digits over all the integers in the array is n. Show
+ * how to sort the array in O(n) time.
+ */
+auto SortVariableLengthItems_Ints(const std::vector<int> &elements) {
+    return BucketSort_STL(elements, CountDigits_Iterative, [](const auto begin, const auto end) {
+        const auto sorted = RadixSort(std::vector<int>(begin, end));
+        std::copy(sorted.cbegin(), sorted.cend(), begin);
+    });
+}
+
 }//namespace
 
 
@@ -109,3 +130,12 @@ SIMPLE_BENCHMARK(BucketSort_Mixed, VALUES2);
 
 SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE2, EXPECTED2, VALUES2);
+
+
+const std::vector<int> VALUES3 = {6666, 999, 888, 11, 22, 33, 7, 0};
+const std::vector<int> EXPECTED3 = {0, 7, 11, 22, 33, 888, 999, 6666};
+
+
+SIMPLE_BENCHMARK(SortVariableLengthItems_Ints, VALUES3);
+
+SIMPLE_TEST(SortVariableLengthItems_Ints, TestSAMPLE3, EXPECTED3, VALUES3);

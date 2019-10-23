@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "counting_sort.h"
+#include "radix_sort.h"
 
 
 namespace {
@@ -18,20 +18,6 @@ using ArrayType = std::vector<int>;
  * The idea of Radix Sort is to do digit by digit sort starting from least significant
  * digit to most significant digit. Radix sort uses counting sort as a subroutine to sort.
  */
-auto RadixSort(ArrayType values, const ArrayType::value_type base = 10) {
-    if (values.empty()) {
-        return values;
-    }
-
-    const auto max_value = *std::max_element(values.cbegin(), values.cend());
-    for (ArrayType::value_type mask = 1; max_value / mask > 0; mask *= base) {
-        values = CountingSort(values, base, [mask, base](const auto v) {
-            return (v / mask) % base;
-        });
-    }
-
-    return values;
-}
 
 
 /**
