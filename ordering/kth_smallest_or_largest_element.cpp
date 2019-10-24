@@ -75,10 +75,44 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
 }
 
 
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 9.2.
+ */
 auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
     return *KthSmallest_QuickSelect(elements.begin(), elements.end(), elements.cbegin() + K);
+}
+
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 9.2-3.
+ */
+auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size_type K) {
+    assert(K < elements.size());
+
+    auto begin = elements.begin();
+    auto end = elements.end();
+    const auto target = elements.cbegin() + K;
+    while (begin != end) {
+        const auto pivot = std::prev(end);
+        const auto partition_point = std::partition(begin, pivot, [pivot](const auto v) {
+            return v <= *pivot;
+        });
+        std::iter_swap(pivot, partition_point);
+
+        if (target == partition_point) {
+            break;
+        } else if (partition_point > target) {
+            end = partition_point;
+        } else {
+            begin = std::next(partition_point);
+        }
+    }
+
+    return *target;
 }
 
 
@@ -109,6 +143,7 @@ ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
     }
     return mid;
 }
+
 auto KthSmallest_BinarySearch(const ArrayType &elements, const ArrayType::size_type K) {
     const auto min_max = std::minmax_element(elements.cbegin(), elements.cend());
     return KthSmallest_BinarySearch(*(min_max.first), *(min_max.second), elements, K + 1);
@@ -151,6 +186,14 @@ SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE1, 5, VALUES1, 1);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE3, 14, VALUES2, 3);
+
+
+SIMPLE_BENCHMARK(KthSmallest_QuickSelect_Iterative, VALUES1, 1);
+
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE0, 3, VALUES1, 0);
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE1, 5, VALUES1, 1);
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE3, 14, VALUES2, 3);
 
 
 const ArrayType VALUES3 = {7, 10, 4, 3, 20, 15};

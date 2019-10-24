@@ -92,7 +92,7 @@ auto BucketSort_Mixed(ArrayType elements) {
 /** Sorting variable-length items
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Problems 8-3.
+ *              Introduction to Algorithms, Third Edition. Problems 8-3.a.
  *
  * You are given an array of integers, where different integers may have different numbers
  * of digits, but the total number of digits over all the integers in the array is n. Show

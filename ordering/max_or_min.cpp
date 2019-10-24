@@ -21,6 +21,8 @@ using ArrayType = std::vector<unsigned>;
  *              https://www.geeksforgeeks.org/find-smallest-largest-elements-singly-linked-list/
  * @reference   Find the largest node in Doubly linked list
  *              https://www.geeksforgeeks.org/find-largest-node-doubly-linked-list/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 9.1.
  *
  * @reference   Program to Find the Largest Number using Ternary Operator
  *              https://www.geeksforgeeks.org/program-to-find-the-largest-number-using-ternary-operator/
