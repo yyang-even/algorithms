@@ -34,6 +34,9 @@ CompileTestExe(kth_smallest_element_after_every_insertion)
 CompileBenchmarkExe(kth_smallest_or_largest_element)
 CompileTestExe(kth_smallest_or_largest_element)
 
+CompileBenchmarkExe(k_closest_numbers_to_median)
+CompileTestExe(k_closest_numbers_to_median)
+
 CompileBenchmarkExe(k_largest_or_smallest_elements)
 CompileTestExe(k_largest_or_smallest_elements)
 
