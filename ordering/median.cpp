@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "median.h"
+
 
 namespace {
 
@@ -92,3 +94,12 @@ SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE2, 1.5, VALUES2);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE3, 2, VALUES3);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE5, 4, VALUES5);
+
+
+SIMPLE_BENCHMARK(Median_Unsorted_QuickSelect, VALUES5);
+
+SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE1, 1, VALUES1);
+SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE2, 1.5, VALUES2);
+SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE3, 2, VALUES3);
+SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE4, 4.5, VALUES4);
+SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE5, 4, VALUES5);

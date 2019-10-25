@@ -4,6 +4,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using OutputType = std::unordered_set<ArrayType::value_type>;
 
 #include "kth_smallest_or_largest_element.h"
 
@@ -43,8 +44,8 @@ auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
     assert(K <= values.size());
 
     std::sort(values.begin(), values.end());
-    return ArrayType{std::make_move_iterator(values.cbegin()),
-                     std::make_move_iterator(values.cbegin() + K)};
+    return OutputType{std::make_move_iterator(values.cbegin()),
+                      std::make_move_iterator(values.cbegin() + K)};
 }
 
 
@@ -59,8 +60,8 @@ auto KSmallestElements_MinHeap(ArrayType values, ArrayType::size_type K) {
         std::pop_heap(values.begin(), end, compare);
     }
 
-    return ArrayType{std::make_move_iterator(values.rbegin()),
-                     std::make_move_iterator(std::make_reverse_iterator(end))};
+    return OutputType{std::make_move_iterator(values.rbegin()),
+                      std::make_move_iterator(std::make_reverse_iterator(end))};
 }
 
 
@@ -69,13 +70,8 @@ auto KSmallestElements_QuickSelect(ArrayType values, ArrayType::size_type K) {
 
     const auto kth = KthSmallest_QuickSelect(values.begin(), values.end(), values.cbegin() + (K - 1));
 
-    return ArrayType{std::make_move_iterator(values.begin()),
-                     std::make_move_iterator(std::next(kth))};
-}
-auto SortedKSmallestElements_QuickSelect(const ArrayType &values, ArrayType::size_type K) {
-    auto results = KSmallestElements_QuickSelect(values, K);
-    std::sort(results.begin(), results.end());
-    return results;
+    return OutputType{std::make_move_iterator(values.begin()),
+                      std::make_move_iterator(std::next(kth))};
 }
 
 
@@ -91,13 +87,12 @@ auto KSmallestElements_MaxHeap(const ArrayType &values, ArrayType::size_type K) 
         }
     }
 
-    ArrayType results;
+    OutputType results;
     while (not heap.empty()) {
-        results.push_back(std::move(heap.top()));
+        results.emplace(std::move(heap.top()));
         heap.pop();
     }
 
-    std::reverse(results.begin(), results.end());
     return results;
 }
 
@@ -120,10 +115,10 @@ auto StableKSmallestElements_Sort(const ArrayType &values, const ArrayType::size
     std::stable_sort(sorted_values.begin(), sorted_values.end());
 
     const auto cend = sorted_values.cbegin() + K;
-    ArrayType results;
+    OutputType results;
     for (const auto i : values) {
         if (std::binary_search(sorted_values.cbegin(), cend, i)) {
-            results.push_back(i);
+            results.emplace(i);
         }
     }
 
@@ -146,68 +141,68 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
         }
     }
 
-    return ArrayType{std::make_move_iterator(values.begin()),
-                     std::make_move_iterator(iter_K)};
+    return OutputType{std::make_move_iterator(values.begin()),
+                      std::make_move_iterator(iter_K)};
 }
 
 }//namespace
 
 
-const ArrayType EMPTY = {};
-const ArrayType VALUES1 = {1, 23, 12, 9, 30, 2, 50};
-const ArrayType SORTED_EXPECTED1 = {1, 2, 9};
-const ArrayType SORTED_VALUES1 = {1, 2, 9, 12, 23, 30, 50};
+using InitializerType = std::initializer_list<ArrayType::value_type>;
+
+const InitializerType EMPTY = {};
+const InitializerType VALUES1 = {1, 23, 12, 9, 30, 2, 50};
+const InitializerType EXPECTED1 = {1, 2, 9};
 
 
-SIMPLE_BENCHMARK(KSmallestElements_Sort, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(KSmallestElements_Sort, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_Sort, TestEmpty, EMPTY, VALUES1, EMPTY.size());
-SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE1, SORTED_EXPECTED1, VALUES1,
-            SORTED_EXPECTED1.size());
-SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE2, SORTED_VALUES1, VALUES1, VALUES1.size());
+SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE2, VALUES1, VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(KSmallestElements_MinHeap, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(KSmallestElements_MinHeap, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_MinHeap, TestEmpty, EMPTY, VALUES1, EMPTY.size());
-SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE1, SORTED_EXPECTED1, VALUES1,
-            SORTED_EXPECTED1.size());
-SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE2, SORTED_VALUES1, VALUES1, VALUES1.size());
+SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE2, VALUES1, VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(SortedKSmallestElements_QuickSelect, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(KSmallestElements_QuickSelect, VALUES1, EXPECTED1.size());
 
-SIMPLE_TEST(SortedKSmallestElements_QuickSelect, TestSAMPLE1, SORTED_EXPECTED1, VALUES1,
-            SORTED_EXPECTED1.size());
-SIMPLE_TEST(SortedKSmallestElements_QuickSelect, TestSAMPLE2, SORTED_VALUES1, VALUES1,
+SIMPLE_TEST(KSmallestElements_QuickSelect, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(KSmallestElements_QuickSelect, TestSAMPLE2, VALUES1, VALUES1,
             VALUES1.size());
 
 
-SIMPLE_BENCHMARK(KSmallestElements_MaxHeap, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(KSmallestElements_MaxHeap, VALUES1, EXPECTED1.size());
 
-SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE1, SORTED_EXPECTED1, VALUES1,
-            SORTED_EXPECTED1.size());
-SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE2, SORTED_VALUES1, VALUES1, VALUES1.size());
+SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE2, VALUES1, VALUES1, VALUES1.size());
 
 
-const ArrayType STABLE_EXPECTED1 = {1, 9, 2};
 const ArrayType VALUES2 = {1, 5, 8, 9, 6, 7, 3, 4, 2, 0};
-const ArrayType STABLE_EXPECTED2 = {1, 3, 4, 2, 0};
+const InitializerType EXPECTED2 = {1, 3, 4, 2, 0};
 
 
-SIMPLE_BENCHMARK(StableKSmallestElements_Sort, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(StableKSmallestElements_Sort, VALUES1, EXPECTED1.size());
 
-SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE1, STABLE_EXPECTED1, VALUES1,
-            STABLE_EXPECTED1.size());
-SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE2, STABLE_EXPECTED2, VALUES2,
-            STABLE_EXPECTED2.size());
+SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE2, EXPECTED2, VALUES2,
+            EXPECTED2.size());
 SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE3, VALUES1, VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(StableKSmallestElements_Insertion, VALUES1, SORTED_EXPECTED1.size());
+SIMPLE_BENCHMARK(StableKSmallestElements_Insertion, VALUES1, EXPECTED1.size());
 
-SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE1, STABLE_EXPECTED1, VALUES1,
-            STABLE_EXPECTED1.size());
-SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE2, STABLE_EXPECTED2, VALUES2,
-            STABLE_EXPECTED2.size());
+SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE1, EXPECTED1, VALUES1,
+            EXPECTED1.size());
+SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE2, EXPECTED2, VALUES2,
+            EXPECTED2.size());
 SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE3, VALUES1, VALUES1, VALUES1.size());
