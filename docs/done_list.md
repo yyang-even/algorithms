@@ -735,3 +735,8 @@
 * https://www.geeksforgeeks.org/count-factorial-numbers-in-a-given-range/
 * https://www.geeksforgeeks.org/count-trailing-zeroes-factorial-number/
 * https://knaidu.gitbooks.io/problem-solving/searching/k_closest_to_median.html
+* https://www.geeksforgeeks.org/linear-search/
+* https://www.geeksforgeeks.org/c-c-program-for-linear-search/
+* https://www.geeksforgeeks.org/recursive-c-program-linearly-search-element-given-array/
+* https://www.geeksforgeeks.org/sentinel-linear-search/
+* https://www.geeksforgeeks.org/search-element-unsorted-array-using-minimum-number-comparisons/
