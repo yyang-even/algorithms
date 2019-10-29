@@ -740,3 +740,11 @@
 * https://www.geeksforgeeks.org/recursive-c-program-linearly-search-element-given-array/
 * https://www.geeksforgeeks.org/sentinel-linear-search/
 * https://www.geeksforgeeks.org/search-element-unsorted-array-using-minimum-number-comparisons/
+* https://www.geeksforgeeks.org/lower-bound-on-comparison-based-sorting-algorithms/
+* https://www.geeksforgeeks.org/time-complexities-of-all-sorting-algorithms/
+* https://www.geeksforgeeks.org/asymptotic-analysis-comparison-sorting-algorithms/
+* https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/
+* https://www.geeksforgeeks.org/binary-search/
+* https://www.geeksforgeeks.org/c-program-for-binary-search-recursive-and-iterative/
+* https://www.geeksforgeeks.org/linear-search-vs-binary-search/
+* https://www.geeksforgeeks.org/binary-search-a-string/

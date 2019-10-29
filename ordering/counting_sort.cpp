@@ -38,6 +38,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/keep-track-of-previous-indexes-after-sorting-a-vector-in-c-stl/
  * @reference   Sorting a vector in C++
  *              https://www.geeksforgeeks.org/sorting-a-vector-in-c/
+ * @reference   Sorting without comparison of elements
+ *              https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/
  */
 auto CountingSort_NoNegative(const ArrayType &values) {
     constexpr ArrayType::value_type MAXIMUM = 1 << 8;

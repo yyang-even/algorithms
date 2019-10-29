@@ -1,3 +1,6 @@
+CompileBenchmarkExe(binary_search)
+CompileTestExe(binary_search)
+
 CompileBenchmarkExe(bubble_sort)
 CompileTestExe(bubble_sort)
 
