@@ -1,42 +1,21 @@
 #include "common_header.h"
 
+#include "count_total_bits.h"
+
 
 namespace {
-
-using InputType = unsigned;
-
-/** Count total bits in a number
- *
- * @reference   https://www.geeksforgeeks.org/count-total-bits-number/
- *
- * Given a positive number n, count total bit in it.
- */
-auto CountTotalBits_Log(const InputType num) {
-    assert(num);
-    return static_cast<InputType>(log2(num)) + 1;
-}
-
-
-auto CountTotalBits_Loop(InputType num) {
-    InputType count = 0;
-    for (; num; num >>= 1) {
-        ++count;
-    }
-    return count;
-}
-
 
 /** Number of leading zeros in binary representation of a given number
  *
  * @reference   https://www.geeksforgeeks.org/number-of-leading-zeros-in-binary-representation-of-a-given-number/
  */
-auto CountLeadingZeros_Loop(const InputType num) {
+auto CountLeadingZeros_Loop(const unsigned num) {
     return BitsNumber<decltype(num)> - CountTotalBits_Loop(num);
 }
 
 
 auto CountLeadingZeros_BinarySearch(uint32_t num) {
-    InputType result = 32;
+    unsigned result = 32;
     if (num & 0xffff0000) {
         result -= 16;
         num >>= 16;

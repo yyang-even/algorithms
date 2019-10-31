@@ -76,7 +76,7 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Itera
 
 #define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {                         \
     NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
-        const auto random_input = Random_Number<InputType>(lowerBound, upperBound);             \
+        const auto random_input = Random_Number(lowerBound, upperBound);                        \
         meter.measure([&random_input]() { return func_name(random_input); });                   \
     })                                                                                          \
 }
@@ -123,7 +123,7 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Itera
 
 #define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {                                                            \
     TEST(MutualRandomTest, func1##vs##func2) {                                                                                          \
-        const auto random_input = Random_Number<InputType>(lowerBound, upperBound);                                                     \
+        const auto random_input = Random_Number(lowerBound, upperBound);                                                                \
         EXPECT_EQ(func1(random_input), static_cast<decltype(func1(random_input))>(func2(random_input))) << "Input: " << random_input;   \
     }                                                                                                                                   \
 }

@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "mathematics/numbers/binary/count_total_bits.h"
 
 namespace {
 
@@ -68,6 +69,40 @@ auto BinarySearch_Iterative(const ArrayType &elements, const ArrayType::value_ty
     return elements.cend();
 }
 
+
+/**
+ * @reference   Meta Binary Search | One-Sided Binary Search
+ *              https://www.geeksforgeeks.org/meta-binary-search-one-sided-binary-search/
+ * @reference   What is meta binary search?
+ *              https://www.quora.com/What-is-meta-binary-search
+ */
+auto BinarySearch_Meta(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+    assert(not elements.empty());
+
+    if (x == elements.front()) {
+        return elements.cbegin();
+    }
+
+    const auto max_index_bits = CountTotalBits_Log(elements.size() - 1);
+    ArrayType::size_type i = 0;
+    for (int shift = max_index_bits - 1; shift >= 0; --shift) {
+        const auto index_candidate = i + (1 << shift);
+
+        if (index_candidate >= elements.size()) {
+            continue;
+        }
+        if (elements[index_candidate] == x) {
+            return elements.cbegin() + index_candidate;
+        }
+        if (elements[index_candidate] < x) {
+            i = index_candidate;
+        }
+    }
+
+    return elements.cend();
+}
+
 }//namespace
 
 
@@ -91,3 +126,11 @@ SIMPLE_TEST(BinarySearch_Iterative, TestBegin, VALUES2.cbegin(), VALUES2, VALUES
 MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Iterative, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
+
+
+SIMPLE_BENCHMARK(BinarySearch_Meta, VALUES2, 10);
+
+SIMPLE_TEST(BinarySearch_Meta, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Meta, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarySearch_Meta, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
+SIMPLE_TEST(BinarySearch_Meta, TestNotExist, VALUES2.cend(), VALUES2, 999);
