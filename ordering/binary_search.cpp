@@ -15,6 +15,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/linear-search-vs-binary-search/
  * @reference   Binary Search a String
  *              https://www.geeksforgeeks.org/binary-search-a-string/
+ * @reference   Complexity Analysis of Binary Search
+ *              https://www.geeksforgeeks.org/complexity-analysis-of-binary-search/
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length, const ArrayType::const_iterator cend,
@@ -103,6 +105,57 @@ auto BinarySearch_Meta(const ArrayType &elements, const ArrayType::value_type x)
     return elements.cend();
 }
 
+
+/**
+ * @reference   Uniform Binary Search
+ *              https://www.geeksforgeeks.org/uniform-binary-search/
+ */
+auto CreateDeltaTable(const ArrayType::size_type size) {
+    std::cout << "Creating delta table of size " << size << std::endl;
+
+    std::vector<ArrayType::size_type> delta_table(CountTotalBits_Log(size) + 1);
+
+    unsigned power = 1;
+    int i = 0;
+    do {
+        const auto half = power;
+        power <<= 1;
+        delta_table[i] = (size + half) / power;
+    } while (delta_table[i++] != 0);
+
+    return delta_table;
+}
+
+template <unsigned size>
+const auto &GetDeltaTable() {
+    static const auto delta_table = CreateDeltaTable(size);
+    return delta_table;
+}
+
+template <unsigned size>
+auto BinarySearch_Uniform(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(size == elements.size());
+    assert(not elements.empty());
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    const auto &delta_table = GetDeltaTable<size>();
+    auto delta = 0;
+    for (auto i = delta_table[delta] - 1; delta_table[delta];) {
+        if (x == elements[i]) {
+            return elements.cbegin() + i;
+        }
+        if (x < elements[i]) {
+            i -= delta_table[++delta];
+        } else {
+            i += delta_table[++delta];
+        }
+    }
+
+    return elements.cend();
+}
+
+const auto BinarySearch_Uniform5 = BinarySearch_Uniform<5>;
+
 }//namespace
 
 
@@ -134,3 +187,11 @@ SIMPLE_TEST(BinarySearch_Meta, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.fro
 MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Meta, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Meta, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Meta, TestNotExist, VALUES2.cend(), VALUES2, 999);
+
+
+SIMPLE_BENCHMARK(BinarySearch_Uniform5, VALUES2, 10);
+
+SIMPLE_TEST(BinarySearch_Uniform5, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Uniform5, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarySearch_Uniform5, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
+SIMPLE_TEST(BinarySearch_Uniform5, TestNotExist, VALUES2.cend(), VALUES2, 999);

@@ -31,6 +31,9 @@ typedef unsigned InputType;
  *      Fn = Fn-1 + Fn-2
  * with seed values
  *      F0 = 0 and F1 = 1.
+ *
+ * @reference   Time complexity of recursive Fibonacci program
+ *              https://www.geeksforgeeks.org/time-complexity-recursive-fibonacci-program/
  */
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.

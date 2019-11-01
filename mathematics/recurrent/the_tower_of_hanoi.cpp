@@ -18,6 +18,8 @@ typedef unsigned InputType;
  *              https://www.geeksforgeeks.org/recursive-functions/
  * @reference   Program for Tower of Hanoi
  *              https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/
+ * @reference   Time Complexity Analysis | Tower Of Hanoi (Recursion)
+ *              https://www.geeksforgeeks.org/time-complexity-analysis-tower-hanoi-recursion/
  */
 
 /**
@@ -54,6 +56,9 @@ unsigned long HanoiTower_Closedform(const InputType n) {
  * Find the shortest sequence of moves that transfers a tower of n disks from the left peg A to the right peg B,
  * if direct moves between A and B are disallowed. (Each move must be to or from the middle peg.
  * As usual, a larger disk must never appear above a smaller one.)
+ *
+ * @reference   Twisted Tower of Hanoi Problem
+ *              https://www.geeksforgeeks.org/twisted-tower-of-hanoi-problem/
  */
 
 /**
