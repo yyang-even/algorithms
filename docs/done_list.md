@@ -754,3 +754,5 @@
 * https://www.geeksforgeeks.org/time-complexity-analysis-tower-hanoi-recursion/
 * https://www.geeksforgeeks.org/twisted-tower-of-hanoi-problem/
 * https://www.geeksforgeeks.org/time-complexity-recursive-fibonacci-program/
+* https://www.geeksforgeeks.org/find-first-and-last-positions-of-an-element-in-a-sorted-array/
+* https://www.geeksforgeeks.org/variants-of-binary-search/

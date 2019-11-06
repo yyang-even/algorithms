@@ -43,8 +43,17 @@ auto BinarySearch_Recursive(const ArrayType &elements, const ArrayType::value_ty
 }
 
 
-inline auto BinarySearch_STL(const ArrayType &elements, const ArrayType::value_type x) {
+inline auto BinarySearch_STL_Lower(const ArrayType &elements, const ArrayType::value_type x) {
     return std::lower_bound(elements.cbegin(), elements.cend(), x);
+}
+
+
+inline auto BinarySearch_STL_Upper(const ArrayType &elements, const ArrayType::value_type x) {
+    const auto iter = std::upper_bound(elements.cbegin(), elements.cend(), x);
+    if (iter != elements.cend()) {
+        return std::prev(iter);
+    }
+    return iter;
 }
 
 
@@ -156,6 +165,198 @@ auto BinarySearch_Uniform(const ArrayType &elements, const ArrayType::value_type
 
 const auto BinarySearch_Uniform5 = BinarySearch_Uniform<5>;
 
+
+/** Find first and last positions of an element in a sorted array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-first-and-last-positions-of-an-element-in-a-sorted-array/
+ *
+ * Given a sorted array with possibly duplicate elements, the task is to find indexes
+ * of first and last occurrences of an element x in the given array.
+ */
+auto BinarySearch_First_Recursive(const ArrayType &elements,
+                                  const ArrayType::const_iterator cbegin,
+                                  const ArrayType::size_type length,
+                                  const ArrayType::value_type x) {
+    if (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+
+        if (*mid == x and (mid == elements.cbegin() or x > *std::prev(mid))) {
+            return mid;
+        }
+        if (*mid < x) {
+            return BinarySearch_First_Recursive(elements, std::next(mid), length - half - 1, x);
+        }
+        return BinarySearch_First_Recursive(elements, cbegin, half, x);
+    }
+
+    return elements.cend();
+}
+
+auto BinarySearch_First_Recursive(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+    return BinarySearch_First_Recursive(elements, elements.cbegin(), elements.size(), x);
+}
+
+
+/**
+ * @reference   Variants of Binary Search
+ *              https://www.geeksforgeeks.org/variants-of-binary-search/
+ */
+auto BinarSearch_First_Iterative(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    auto cbegin = elements.cbegin();
+    auto length = elements.size();
+    auto output = elements.cend();
+
+    while (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+
+        if (*mid < x) {
+            cbegin = std::next(mid);
+            length -= (half + 1);
+        } else {
+            if (*mid == x) {
+                output = mid;
+            }
+            length = half;
+        }
+    }
+
+    return output;
+}
+
+
+auto BinarySearch_Last_Recursive(const ArrayType &elements,
+                                 const ArrayType::const_iterator cbegin,
+                                 const ArrayType::size_type length,
+                                 const ArrayType::value_type x) {
+    if (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+        const auto mid_next = std::next(mid);
+
+        if (*mid == x and (mid_next == elements.cend() or x < *mid_next)) {
+            return mid;
+        }
+        if (*mid > x) {
+            return BinarySearch_Last_Recursive(elements, cbegin, half, x);
+        }
+        return BinarySearch_Last_Recursive(elements, std::next(mid), length - half - 1, x);
+    }
+
+    return elements.cend();
+}
+
+auto BinarySearch_Last_Recursive(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+    return BinarySearch_Last_Recursive(elements, elements.cbegin(), elements.size(), x);
+}
+
+
+/**
+ * @reference   Variants of Binary Search
+ *              https://www.geeksforgeeks.org/variants-of-binary-search/
+ */
+auto BinarSearch_Last_Iterative(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    auto cbegin = elements.cbegin();
+    auto length = elements.size();
+    auto output = elements.cend();
+
+    while (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+
+        if (*mid > x) {
+            length = half;
+        } else {
+            if (*mid == x) {
+                output = mid;
+            }
+            cbegin = std::next(mid);
+            length -= (half + 1);
+        }
+    }
+
+    return output;
+}
+
+
+/**
+ * @reference   Variants of Binary Search
+ *              https://www.geeksforgeeks.org/variants-of-binary-search/
+ * Find index of first occurrence of least element greater than key in array
+ */
+auto UpperBound_BinarySearch(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    auto cbegin = elements.cbegin();
+    auto length = elements.size();
+    auto output = elements.cend();
+
+    while (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+
+        if (*mid > x) {
+            output = mid;
+            length = half;
+        } else {
+            cbegin = std::next(mid);
+            length -= (half + 1);
+        }
+    }
+
+    return output;
+}
+
+
+inline auto UpperBound_STL(const ArrayType &elements, const ArrayType::value_type x) {
+    return std::upper_bound(elements.cbegin(), elements.cend(), x);
+}
+
+
+/**
+ * @reference   Variants of Binary Search
+ *              https://www.geeksforgeeks.org/variants-of-binary-search/
+ * Find index of last occurrence of greatest element less than key in array
+ */
+auto GreatestLesser_BinarySearch(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    auto cbegin = elements.cbegin();
+    auto length = elements.size();
+    auto output = elements.cend();
+
+    while (length) {
+        const auto half = length / 2;
+        const auto mid = cbegin + half;
+
+        if (*mid < x) {
+            output = mid;
+            cbegin = std::next(mid);
+            length -= (half + 1);
+        } else {
+            length = half;
+        }
+    }
+
+    return output;
+}
+
+
+inline auto GreatestLesser_STL(const ArrayType &elements, const ArrayType::value_type x) {
+    const auto iter = std::lower_bound(elements.cbegin(), elements.cend(), x);
+    if (iter == elements.cbegin() or iter == elements.cend()) {
+        elements.cend();
+    }
+    return std::prev(iter);
+}
+
 }//namespace
 
 
@@ -167,7 +368,7 @@ SIMPLE_BENCHMARK(BinarySearch_Recursive, VALUES2, 10);
 
 SIMPLE_TEST(BinarySearch_Recursive, TestEmpty, VALUES1.cend(), VALUES1, 10);
 SIMPLE_TEST(BinarySearch_Recursive, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Recursive, TestSample1, VALUES2, 10);
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Recursive, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Recursive, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
 
@@ -176,7 +377,7 @@ SIMPLE_BENCHMARK(BinarySearch_Iterative, VALUES2, 10);
 
 SIMPLE_TEST(BinarySearch_Iterative, TestEmpty, VALUES1.cend(), VALUES1, 10);
 SIMPLE_TEST(BinarySearch_Iterative, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Iterative, TestSample1, VALUES2, 10);
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Iterative, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
 
@@ -184,7 +385,7 @@ SIMPLE_TEST(BinarySearch_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
 SIMPLE_BENCHMARK(BinarySearch_Meta, VALUES2, 10);
 
 SIMPLE_TEST(BinarySearch_Meta, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Meta, TestSample1, VALUES2, 10);
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Meta, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Meta, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Meta, TestNotExist, VALUES2.cend(), VALUES2, 999);
 
@@ -192,6 +393,85 @@ SIMPLE_TEST(BinarySearch_Meta, TestNotExist, VALUES2.cend(), VALUES2, 999);
 SIMPLE_BENCHMARK(BinarySearch_Uniform5, VALUES2, 10);
 
 SIMPLE_TEST(BinarySearch_Uniform5, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL, BinarySearch_Uniform5, TestSample1, VALUES2, 10);
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Uniform5, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Uniform5, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Uniform5, TestNotExist, VALUES2.cend(), VALUES2, 999);
+
+
+const ArrayType VALUES3 = {2, 3, 3, 5, 5, 5, 6, 6};
+
+
+SIMPLE_BENCHMARK(BinarSearch_First_Iterative, VALUES2, 10);
+
+SIMPLE_TEST(BinarSearch_First_Iterative, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin2, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_First_Iterative, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarSearch_First_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back());
+SIMPLE_TEST(BinarSearch_First_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin3, VALUES3.cbegin(), VALUES3, VALUES3.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_First_Iterative, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(BinarySearch_First_Recursive, VALUES2, 10);
+
+SIMPLE_TEST(BinarySearch_First_Recursive, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(BinarySearch_First_Recursive, TestBegin2, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_First_Recursive, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarySearch_First_Recursive, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back());
+SIMPLE_TEST(BinarySearch_First_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_First_Recursive, TestBegin3, VALUES3.cbegin(), VALUES3, VALUES3.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_First_Recursive, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(BinarSearch_Last_Iterative, VALUES2, 10);
+
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestBegin2, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_Last_Iterative, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back());
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestLast3, std::prev(VALUES3.cend()), VALUES3,
+            VALUES3.back());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Upper, BinarSearch_Last_Iterative, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(BinarySearch_Last_Recursive, VALUES2, 10);
+
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestBegin2, VALUES2.cbegin(), VALUES2, VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Last_Recursive, TestSample1, VALUES2, 10);
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back());
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestLast3, std::prev(VALUES3.cend()), VALUES3,
+            VALUES3.back());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Upper, BinarySearch_Last_Recursive, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(UpperBound_BinarySearch, VALUES2, 10);
+
+SIMPLE_TEST(UpperBound_BinarySearch, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(UpperBound_BinarySearch, TestBegin2, VALUES2.cbegin(), VALUES2, VALUES2.front() - 1);
+MUTUAL_SIMPLE_TEST(UpperBound_STL, UpperBound_BinarySearch, TestSample1, VALUES2, 10);
+SIMPLE_TEST(UpperBound_BinarySearch, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back() - 1);
+SIMPLE_TEST(UpperBound_BinarySearch, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(UpperBound_BinarySearch, TestLast3, VALUES3.cend(), VALUES3, VALUES3.back());
+MUTUAL_SIMPLE_TEST(UpperBound_STL, UpperBound_BinarySearch, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(GreatestLesser_BinarySearch, VALUES2, 10);
+
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestEmpty, VALUES1.cend(), VALUES1, 10);
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestBegin2, VALUES2.cbegin(), VALUES2,
+            VALUES2.front() + 1);
+MUTUAL_SIMPLE_TEST(GreatestLesser_STL, GreatestLesser_BinarySearch, TestSample1, VALUES2, 10);
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back() + 1);
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestNotExist, VALUES2.cend(), VALUES2, 0);
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestLast3, std::prev(VALUES3.cend()), VALUES3,
+            VALUES2.back() + 1);
+MUTUAL_SIMPLE_TEST(GreatestLesser_STL, GreatestLesser_BinarySearch, TestSample2, VALUES3, 5);
