@@ -1,6 +1,9 @@
 CompileBenchmarkExe(count_digits_in_integer)
 CompileTestExe(count_digits_in_integer)
 
+CompileBenchmarkExe(detect_integer_overflow)
+CompileTestExe(detect_integer_overflow)
+
 CompileBenchmarkExe(is_duck_number)
 CompileTestExe(is_duck_number)
 
