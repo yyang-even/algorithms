@@ -23,6 +23,43 @@ auto FindTheOddNumber(const ArrayType &values) {
     return std::accumulate(values.cbegin(), values.cend(), 0u, std::bit_xor<ArrayType::value_type> {});
 }
 
+
+/** Find the element that appears once in a sorted array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-element-that-appears-once-in-a-sorted-array/
+ *
+ * Given a sorted array in which all elements appear twice (one after one) and one
+ * element appears only once. Find that element in O(log n) complexity.
+ */
+auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values, const ArrayType::size_type low,
+        const ArrayType::size_type high) {
+    if (low == high) {
+        return low;
+    }
+
+    const auto mid = (low + high) / 2;
+    if (mid % 2 == 0) {
+        if (values[mid] == values[mid + 1]) {
+            return FindTheOddNumber_Sorted_BinarySearch(values, mid + 2, high);
+        } else {
+            return FindTheOddNumber_Sorted_BinarySearch(values, low, mid);
+        }
+    } else {
+        if (values[mid] == values[mid - 1]) {
+            return FindTheOddNumber_Sorted_BinarySearch(values, mid + 1, high);
+        } else {
+            return FindTheOddNumber_Sorted_BinarySearch(values, low, mid - 1);
+        }
+    }
+}
+
+auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values) {
+    assert(not values.empty());
+    assert(std::is_sorted(values.cbegin(), values.cend()));
+
+    return values[FindTheOddNumber_Sorted_BinarySearch(values, 0, values.size() - 1)];
+}
+
 }//namespace
 
 
@@ -38,3 +75,16 @@ SIMPLE_TEST(FindTheOddNumber, TestSample1, 3u, SAMPLE1);
 SIMPLE_TEST(FindTheOddNumber, TestSample2, 5u, SAMPLE2);
 SIMPLE_TEST(FindTheOddNumber, TestSample3, 5u, SAMPLE3);
 SIMPLE_TEST(FindTheOddNumber, TestSample4, 7u, SAMPLE4);
+
+
+const ArrayType SORTED_SAMPLE1 = {1, 2, 2, 4, 4, 5, 5, 6, 6};
+const ArrayType SORTED_SAMPLE2 = {1, 1, 2, 4, 4, 5, 5, 6, 6};
+const ArrayType SORTED_SAMPLE3 = {1, 1, 2, 2, 4, 4, 5, 5, 6};
+
+
+SIMPLE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, SORTED_SAMPLE1);
+
+SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestFront, SORTED_SAMPLE1.front(),
+            SORTED_SAMPLE1);
+SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestSample2, 2, SORTED_SAMPLE2);
+SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestBack, SORTED_SAMPLE3.back(), SORTED_SAMPLE3);
