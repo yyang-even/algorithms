@@ -36,6 +36,7 @@ auto FindTheMissingNumber_Xor(const ArrayType &integers, ArrayType::value_type m
     return xor_of_all ^ N;
 }
 
+
 /** Find the one missing number in range
  *
  * @reference   https://www.geeksforgeeks.org/find-one-missing-number-range/
@@ -49,6 +50,40 @@ auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
     const auto min = std::min_element(integers.cbegin(), integers.cend());
 
     return FindTheMissingNumber_Xor(integers, *min);
+}
+
+
+/** Find missing element in a sorted array of consecutive numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/find-missing-element-in-a-sorted-array-of-consecutive-numbers/
+ *
+ * Given an array arr[] of n distinct integers. Elements are placed sequentially in
+ * ascending order with one element missing. The task is to find the missing element.
+ */
+int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
+    assert(not values.empty());
+    assert(std::is_sorted(values.cbegin(), values.cend()));
+
+    ArrayType::size_type low = 0;
+    auto high = values.size() - 1;
+
+    while (high > low) {
+        const auto mid = (low + high) / 2;
+
+        if (values[mid] - mid == values.front()) {
+            if (values[mid + 1] - values[mid] > 1) {
+                return values[mid] + 1;
+            }
+            low = mid + 1;
+        } else {
+            if (values[mid] - values[mid - 1] > 1) {
+                return values[mid] - 1;
+            }
+            high = mid - 1;
+        }
+    }
+
+    return -1;
 }
 
 }//namespace
@@ -80,3 +115,8 @@ SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3u, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14u, SAMPLE3);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, SAMPLE2);
+
+SIMPLE_TEST(FindTheMissingNumber_SortedRange_BinarySearch, TestSample2, 3, SAMPLE2);
