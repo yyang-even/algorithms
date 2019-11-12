@@ -86,6 +86,82 @@ int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
     return -1;
 }
 
+
+/** Find the Missing Number in a sorted array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-missing-number-in-a-sorted-array/
+ *
+ * Given a list of n-1 integers and these integers are in the range of 1 to n. There
+ * are no duplicates in list. One of the integers is missing in the list. Write an
+ * efficient code to find the missing integer.
+ *
+ * @reference   Find the missing number in a sorted array of limited range
+ *              https://www.geeksforgeeks.org/find-missing-number-sorted-array-limited-range/
+ *
+ * Given a sorted array of size n and given that there are numbers from 1 to n+1 with
+ * one missing, the missing number is to be found. It may be assumed that array has
+ * distinct elements.
+ */
+int FindTheMissingNumber_Sorted_BinarySearch(const ArrayType &values) {
+    assert(not values.empty());
+    assert(std::is_sorted(values.cbegin(), values.cend()));
+
+    ArrayType::size_type low = 0;
+    const auto last = values.size() - 1;
+    auto high = last;
+
+    while (high >= low) {
+        const auto mid = (low + high) / 2;
+        if (values[mid] - mid == 1) {
+            if (mid == last or values[mid + 1] - values[mid] > 1) {
+                return values[mid] + 1;
+            }
+            low = mid + 1;
+        } else {
+            if (mid == 0 or values[mid] - values[mid - 1] > 1) {
+                return values[mid] - 1;
+            }
+            high = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
+
+/**
+ * @reference   Find the only missing number in a sorted array
+ *              https://www.geeksforgeeks.org/find-the-only-missing-number-in-a-sorted-array/
+ */
+int FindTheMissingNumber_Sorted_BinaryLast(const ArrayType &values) {
+    assert(not values.empty());
+    assert(std::is_sorted(values.cbegin(), values.cend()));
+
+    if (values.front() != 1) {
+        return 1;
+    }
+    if (values.back() != values.size() + 1) {
+        return values.size() + 1;
+    }
+
+    ArrayType::size_type low = 0;
+    auto high = values.size() - 1;
+
+    while (high >= low) {
+        const auto mid = (low + high) / 2;
+        if (values[mid] != mid + 1) {
+            if (values[mid - 1] == mid) {
+                return mid + 1;
+            }
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
 }//namespace
 
 
@@ -120,3 +196,21 @@ SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
 SIMPLE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_SortedRange_BinarySearch, TestSample2, 3, SAMPLE2);
+
+
+const ArrayType SAMPLE5 = {2, 3, 4, 5, 6};
+const ArrayType SAMPLE6 = {1, 2, 3, 4, 5};
+
+
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, SAMPLE2);
+
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestSample2, 3, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestBegin, 1, SAMPLE5);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1, SAMPLE6);
+
+
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, SAMPLE2);
+
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast, SAMPLE6.size() + 1, SAMPLE6);

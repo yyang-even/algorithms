@@ -172,6 +172,9 @@ const auto BinarySearch_Uniform5 = BinarySearch_Uniform<5>;
  *
  * Given a sorted array with possibly duplicate elements, the task is to find indexes
  * of first and last occurrences of an element x in the given array.
+ *
+ * @reference   Find the index of first 1 in a sorted array of 0’s and 1’s
+ *              https://www.geeksforgeeks.org/find-index-first-1-sorted-array-0s-1s/
  */
 auto BinarySearch_First_Recursive(const ArrayType &elements,
                                   const ArrayType::const_iterator cbegin,
