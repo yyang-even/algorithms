@@ -75,6 +75,9 @@ CompileTestExe(find_the_missing_number)
 CompileBenchmarkExe(find_the_odd_number)
 CompileTestExe(find_the_odd_number)
 
+CompileBenchmarkExe(find_the_only_repeating_element)
+CompileTestExe(find_the_only_repeating_element)
+
 CompileBenchmarkExe(find_the_only_set_bit_position)
 CompileTestExe(find_the_only_set_bit_position)
 

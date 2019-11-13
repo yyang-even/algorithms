@@ -763,3 +763,5 @@
 * https://www.geeksforgeeks.org/find-index-first-1-sorted-array-0s-1s/
 * https://www.geeksforgeeks.org/find-the-only-missing-number-in-a-sorted-array/
 * https://www.geeksforgeeks.org/find-missing-number-sorted-array-limited-range/
+* https://www.geeksforgeeks.org/find-repetitive-element-1-n-1/
+* https://www.geeksforgeeks.org/find-repeating-element-sorted-array-size-n/
