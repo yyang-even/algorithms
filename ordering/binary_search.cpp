@@ -360,6 +360,34 @@ inline auto GreatestLesser_STL(const ArrayType &elements, const ArrayType::value
     return std::prev(iter);
 }
 
+
+/**
+ * @reference   Randomized Binary Search Algorithm
+ *              https://www.geeksforgeeks.org/randomized-binary-search-algorithm/
+ */
+auto BinarySearch_Randomized_Iterative(const ArrayType &elements, const ArrayType::value_type x) {
+    assert(not elements.empty());
+    assert(std::is_sorted(elements.cbegin(), elements.cend()));
+
+    ArrayType::size_type low = 0;
+    auto high = elements.size() - 1;
+
+    while (low <= high) {
+        const auto mid = Random_Number(low, high);
+        if (elements[mid] == x) {
+            return elements.cbegin() + mid;
+        }
+
+        if (elements[mid] < x) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return elements.cend();
+}
+
 }//namespace
 
 
@@ -478,3 +506,14 @@ SIMPLE_TEST(GreatestLesser_BinarySearch, TestNotExist, VALUES2.cend(), VALUES2, 
 SIMPLE_TEST(GreatestLesser_BinarySearch, TestLast3, std::prev(VALUES3.cend()), VALUES3,
             VALUES2.back() + 1);
 MUTUAL_SIMPLE_TEST(GreatestLesser_STL, GreatestLesser_BinarySearch, TestSample2, VALUES3, 5);
+
+
+SIMPLE_BENCHMARK(BinarySearch_Randomized_Iterative, VALUES2, 10);
+
+SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestBegin, VALUES2.cbegin(), VALUES2,
+            VALUES2.front());
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Randomized_Iterative, TestSample1, VALUES2,
+                   10);
+SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2,
+            VALUES2.back());
+SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);

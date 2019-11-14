@@ -765,3 +765,4 @@
 * https://www.geeksforgeeks.org/find-missing-number-sorted-array-limited-range/
 * https://www.geeksforgeeks.org/find-repetitive-element-1-n-1/
 * https://www.geeksforgeeks.org/find-repeating-element-sorted-array-size-n/
+* https://www.geeksforgeeks.org/randomized-binary-search-algorithm/
