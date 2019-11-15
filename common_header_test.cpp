@@ -110,6 +110,8 @@ MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestCo
 MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestSignedVariable,
                    signed_value);
 
+MUTUAL_RANDOM_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, 1, 5);
+
 
 const auto DoubleFunction = TemplateFunction<double>;
 

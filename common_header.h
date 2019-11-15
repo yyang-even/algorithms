@@ -91,12 +91,15 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Itera
 
 #ifdef WANT_TESTS
 
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                              \
-    TEST(func_name##Test, testName) {                                                                       \
-        using ExpectedType = decltype(func_name(inputs));                                                   \
-        const ExpectedType &fine_type_expected_value = expectedValue;                                       \
-        EXPECT_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);    \
-    }                                                                                                       \
+#define EXPECT_EQ_AND_PRINT_INPUTS(expectedExpression, func_name, inputs...)                        \
+    using ExpectedType = decltype(func_name(inputs));                                               \
+    const ExpectedType &fine_type_expected_value = expectedExpression;                              \
+    EXPECT_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);
+
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {              \
+    TEST(func_name##Test, testName) {                                                       \
+        EXPECT_EQ_AND_PRINT_INPUTS(STRIP_PARENTHESES(expectedValue), func_name, inputs);    \
+    }                                                                                       \
 }
 
 #define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                           \
@@ -115,17 +118,17 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Itera
     }                                                                           \
 }
 
-#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {                                                       \
-    TEST(func1##vs##func2, testName) {                                                                                          \
-        EXPECT_EQ(func1(inputs), static_cast<decltype(func1(inputs))>(func2(inputs))) << "Inputs: " << std::make_tuple(inputs); \
-    }                                                                                                                           \
+#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {   \
+    TEST(func1##vs##func2, testName) {                                      \
+        EXPECT_EQ_AND_PRINT_INPUTS(func1(inputs), func2, inputs);           \
+    }                                                                       \
 }
 
-#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {                                                            \
-    TEST(MutualRandomTest, func1##vs##func2) {                                                                                          \
-        const auto random_input = Random_Number(lowerBound, upperBound);                                                                \
-        EXPECT_EQ(func1(random_input), static_cast<decltype(func1(random_input))>(func2(random_input))) << "Input: " << random_input;   \
-    }                                                                                                                                   \
+#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {    \
+    TEST(MutualRandomTest, func1##vs##func2) {                                  \
+        const auto random_input = Random_Number(lowerBound, upperBound);        \
+        EXPECT_EQ_AND_PRINT_INPUTS(func1(random_input), func2, random_input);   \
+    }                                                                           \
 }
 
 #else
