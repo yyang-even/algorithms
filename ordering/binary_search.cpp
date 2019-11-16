@@ -17,6 +17,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/binary-search-a-string/
  * @reference   Complexity Analysis of Binary Search
  *              https://www.geeksforgeeks.org/complexity-analysis-of-binary-search/
+ * @reference   The Ubiquitous Binary Search | Set 1
+ *              https://www.geeksforgeeks.org/the-ubiquitous-binary-search-set-1/
+ * @reference   A Problem in Many Binary Search Implementations
+ *              https://www.geeksforgeeks.org/problem-binary-search-implementations/
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length, const ArrayType::const_iterator cend,

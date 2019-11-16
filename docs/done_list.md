@@ -766,3 +766,6 @@
 * https://www.geeksforgeeks.org/find-repetitive-element-1-n-1/
 * https://www.geeksforgeeks.org/find-repeating-element-sorted-array-size-n/
 * https://www.geeksforgeeks.org/randomized-binary-search-algorithm/
+* https://www.geeksforgeeks.org/the-ubiquitous-binary-search-set-1/
+* https://www.geeksforgeeks.org/problem-binary-search-implementations/
+* https://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/

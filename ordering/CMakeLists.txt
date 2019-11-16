@@ -19,6 +19,9 @@ CompileTestExe(counting_sort)
 CompileBenchmarkExe(dutch_national_flag)
 CompileTestExe(dutch_national_flag)
 
+CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
+CompileTestExe(find_minimum_in_sorted_and_rotated_array)
+
 CompileBenchmarkExe(heap_sort)
 CompileTestExe(heap_sort)
 
