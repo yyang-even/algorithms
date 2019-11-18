@@ -769,3 +769,10 @@
 * https://www.geeksforgeeks.org/the-ubiquitous-binary-search-set-1/
 * https://www.geeksforgeeks.org/problem-binary-search-implementations/
 * https://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
+* https://www.geeksforgeeks.org/maximum-element-in-a-sorted-and-rotated-array/
+* https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
+* https://www.geeksforgeeks.org/count-smaller-equal-elements-sorted-array/
+* https://www.geeksforgeeks.org/count-smaller-elements-in-sorted-array-in-cpp/
+* https://www.geeksforgeeks.org/find-the-number-of-elements-greater-than-k-in-a-sorted-array/
+* https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated/
+* https://www.geeksforgeeks.org/sort-rotated-sorted-array/

@@ -296,7 +296,26 @@ auto BinarSearch_Last_Iterative(const ArrayType &elements, const ArrayType::valu
 /**
  * @reference   Variants of Binary Search
  *              https://www.geeksforgeeks.org/variants-of-binary-search/
+ *
  * Find index of first occurrence of least element greater than key in array
+ *
+ * @reference   Count smaller elements in sorted array in C++
+ *              https://www.geeksforgeeks.org/count-smaller-elements-in-sorted-array-in-cpp/
+ *
+ * Given a sorted array and a number x, count smaller elements than x in the given array.
+ *
+ * @reference   Find the number of elements greater than k in a sorted array
+ *              https://www.geeksforgeeks.org/find-the-number-of-elements-greater-than-k-in-a-sorted-array/
+ *
+ * Given a sorted array arr[] of integers and an integer k, the task is to find the count
+ * of elements in the array which are greater than k. Note that k may or may not be present
+ * in the array.
+ *
+ * @reference   Count of smaller or equal elements in sorted array
+ *              https://www.geeksforgeeks.org/count-smaller-equal-elements-sorted-array/
+ *
+ * Given an sorted array of size n. Find number of elements which are less than or equal
+ * to given element.
  */
 auto UpperBound_BinarySearch(const ArrayType &elements, const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));

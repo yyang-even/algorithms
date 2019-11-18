@@ -10,6 +10,9 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
  *
  * Assumes that all elements are distinct.
+ *
+ * @reference   Find the Rotation Count in Rotated Sorted array
+ *              https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
  */
 auto FindMinInSortedAndRotatedArray(const ArrayType::const_iterator cbegin,
                                     const ArrayType::size_type length) {
@@ -37,6 +40,18 @@ inline auto FindMinInSortedAndRotatedArray(const ArrayType &elements) {
 
     return *FindMinInSortedAndRotatedArray(elements.cbegin(), elements.size());
 }
+
+
+/** Maximum element in a sorted and rotated array
+ *
+ * @reference   https://www.geeksforgeeks.org/maximum-element-in-a-sorted-and-rotated-array/
+ */
+
+
+/** Sort a Rotated Sorted Array
+ *
+ * @reference   https://www.geeksforgeeks.org/sort-rotated-sorted-array/
+ */
 
 }//namespace
 
