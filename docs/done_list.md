@@ -778,3 +778,4 @@
 * https://www.geeksforgeeks.org/sort-rotated-sorted-array/
 * https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
 * https://www.geeksforgeeks.org/find-local-minima-array/
+* https://www.geeksforgeeks.org/maximum-number-local-extrema/
