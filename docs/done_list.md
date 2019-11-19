@@ -776,3 +776,5 @@
 * https://www.geeksforgeeks.org/find-the-number-of-elements-greater-than-k-in-a-sorted-array/
 * https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated/
 * https://www.geeksforgeeks.org/sort-rotated-sorted-array/
+* https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
+* https://www.geeksforgeeks.org/find-local-minima-array/

@@ -9,6 +9,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference
  */
+auto FunctionName(const ArrayType &elements) {
+}
 
 }//namespace
 

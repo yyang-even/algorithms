@@ -255,7 +255,7 @@ auto BinarySearch_Last_Recursive(const ArrayType &elements,
         if (*mid > x) {
             return BinarySearch_Last_Recursive(elements, cbegin, half, x);
         }
-        return BinarySearch_Last_Recursive(elements, std::next(mid), length - half - 1, x);
+        return BinarySearch_Last_Recursive(elements, mid_next, length - half - 1, x);
     }
 
     return elements.cend();

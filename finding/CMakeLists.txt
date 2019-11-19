@@ -7,5 +7,8 @@ CompileTestExe(check_if_array_sorted_and_rotated)
 CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
 CompileTestExe(find_minimum_in_sorted_and_rotated_array)
 
+CompileBenchmarkExe(find_peak_element)
+CompileTestExe(find_peak_element)
+
 CompileBenchmarkExe(linear_search)
 CompileTestExe(linear_search)
