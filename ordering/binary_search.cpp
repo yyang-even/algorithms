@@ -21,6 +21,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/the-ubiquitous-binary-search-set-1/
  * @reference   A Problem in Many Binary Search Implementations
  *              https://www.geeksforgeeks.org/problem-binary-search-implementations/
+ * @reference   Binary Search
+ *              http://locklessinc.com/articles/binary_search/
+ * @reference   Extra, Extra - Read All About It: Nearly All Binary Searches and Mergesorts are Broken
+ *              https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length, const ArrayType::const_iterator cend,
