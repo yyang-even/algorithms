@@ -1,14 +1,8 @@
-CompileBenchmarkExe(binary_search)
-CompileTestExe(binary_search)
-
 CompileBenchmarkExe(bubble_sort)
 CompileTestExe(bubble_sort)
 
 CompileBenchmarkExe(bucket_sort)
 CompileTestExe(bucket_sort)
-
-CompileBenchmarkExe(check_if_array_sorted_and_rotated)
-CompileTestExe(check_if_array_sorted_and_rotated)
 
 CompileBenchmarkExe(count_inversions)
 CompileTestExe(count_inversions)
@@ -21,9 +15,6 @@ CompileTestExe(counting_sort)
 
 CompileBenchmarkExe(dutch_national_flag)
 CompileTestExe(dutch_national_flag)
-
-CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
-CompileTestExe(find_minimum_in_sorted_and_rotated_array)
 
 CompileBenchmarkExe(heap_sort)
 CompileTestExe(heap_sort)
@@ -48,9 +39,6 @@ CompileTestExe(k_closest_numbers_to_median)
 
 CompileBenchmarkExe(k_largest_or_smallest_elements)
 CompileTestExe(k_largest_or_smallest_elements)
-
-CompileBenchmarkExe(linear_search)
-CompileTestExe(linear_search)
 
 CompileBenchmarkExe(max_and_min)
 CompileTestExe(max_and_min)

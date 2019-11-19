@@ -1,0 +1,11 @@
+CompileBenchmarkExe(binary_search)
+CompileTestExe(binary_search)
+
+CompileBenchmarkExe(check_if_array_sorted_and_rotated)
+CompileTestExe(check_if_array_sorted_and_rotated)
+
+CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
+CompileTestExe(find_minimum_in_sorted_and_rotated_array)
+
+CompileBenchmarkExe(linear_search)
+CompileTestExe(linear_search)
