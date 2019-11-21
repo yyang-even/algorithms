@@ -779,3 +779,16 @@
 * https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
 * https://www.geeksforgeeks.org/find-local-minima-array/
 * https://www.geeksforgeeks.org/maximum-number-local-extrema/
+* https://www.geeksforgeeks.org/ceiling-in-a-sorted-array/
+* https://www.geeksforgeeks.org/floor-in-a-sorted-array/
+* https://www.geeksforgeeks.org/sort-array-two-halves-sorted/
+* https://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
+* https://www.geeksforgeeks.org/finding-floor-and-ceil-of-a-sorted-array-using-stl/
+* https://www.geeksforgeeks.org/minimum-in-an-array-which-is-first-decreasing-then-increasing/
+* https://www.geeksforgeeks.org/sum-and-product-of-minimum-and-maximum-element-of-an-array/
+* https://www.geeksforgeeks.org/check-if-it-is-possible-to-make-array-increasing-or-decreasing-by-rotating-the-array/
+* https://www.geeksforgeeks.org/check-if-it-is-possible-to-sort-the-array-after-rotating-it/
+* https://www.geeksforgeeks.org/check-if-an-array-is-increasing-or-decreasing/
+* https://www.geeksforgeeks.org/find-a-fixed-point-in-a-given-array/
+* https://www.geeksforgeeks.org/find-fixed-point-value-equal-index-given-array-duplicates-allowed/
+* https://www.geeksforgeeks.org/find-fixed-point-array-duplicates-allowed/

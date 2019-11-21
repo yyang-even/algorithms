@@ -351,6 +351,16 @@ inline auto UpperBound_STL(const ArrayType &elements, const ArrayType::value_typ
 
 
 /**
+ * @reference   Ceiling in a sorted array
+ *              https://www.geeksforgeeks.org/ceiling-in-a-sorted-array/
+ *
+ * Given a sorted array and a value x, the ceiling of x is the smallest element in array greater than
+ * or equal to x, and the floor is the greatest element smaller than or equal to x. Assume than the
+ * array is sorted in non-decreasing order. Write efficient functions to find floor and ceiling of x.
+ */
+
+
+/**
  * @reference   Variants of Binary Search
  *              https://www.geeksforgeeks.org/variants-of-binary-search/
  * Find index of last occurrence of greatest element less than key in array
@@ -389,6 +399,23 @@ inline auto GreatestLesser_STL(const ArrayType &elements, const ArrayType::value
 
 
 /**
+ * @reference   Floor in a Sorted Array
+ *              https://www.geeksforgeeks.org/floor-in-a-sorted-array/
+ *
+ * Given a sorted array and a value x, the floor of x is the largest element in array smaller
+ * than or equal to x. Write efficient functions to find floor of x.
+ */
+
+
+/**
+ * @reference   Finding Floor and Ceil of a Sorted Array using C++ STL
+ *              https://www.geeksforgeeks.org/finding-floor-and-ceil-of-a-sorted-array-using-stl/
+ *
+ * Given a sorted array, the task is to find the floor and ceil of given numbers using STL.
+ */
+
+
+/**
  * @reference   Randomized Binary Search Algorithm
  *              https://www.geeksforgeeks.org/randomized-binary-search-algorithm/
  */
@@ -396,8 +423,8 @@ auto BinarySearch_Randomized_Iterative(const ArrayType &elements, const ArrayTyp
     assert(not elements.empty());
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
-    ArrayType::size_type low = 0;
-    auto high = elements.size() - 1;
+    long low = 0;
+    long high = elements.size() - 1;
 
     while (low <= high) {
         const auto mid = Random_Number(low, high);
@@ -420,6 +447,7 @@ auto BinarySearch_Randomized_Iterative(const ArrayType &elements, const ArrayTyp
 
 const ArrayType VALUES1 = {};
 const ArrayType VALUES2 = {2, 3, 4, 10, 40};
+const ArrayType UNDERFLOW = {2};
 
 
 SIMPLE_BENCHMARK(BinarySearch_Recursive, VALUES2, 10);
@@ -429,6 +457,8 @@ SIMPLE_TEST(BinarySearch_Recursive, TestBegin, VALUES2.cbegin(), VALUES2, VALUES
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Recursive, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Recursive, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Recursive, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_Iterative, VALUES2, 10);
@@ -438,6 +468,8 @@ SIMPLE_TEST(BinarySearch_Iterative, TestBegin, VALUES2.cbegin(), VALUES2, VALUES
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Iterative, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Iterative, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_Meta, VALUES2, 10);
@@ -446,6 +478,7 @@ SIMPLE_TEST(BinarySearch_Meta, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.fro
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Meta, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Meta, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Meta, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Meta, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW, UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_Uniform5, VALUES2, 10);
@@ -454,6 +487,8 @@ SIMPLE_TEST(BinarySearch_Uniform5, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Uniform5, TestSample1, VALUES2, 10);
 SIMPLE_TEST(BinarySearch_Uniform5, TestLast, std::prev(VALUES2.cend()), VALUES2, VALUES2.back());
 SIMPLE_TEST(BinarySearch_Uniform5, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Uniform5, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 const ArrayType VALUES3 = {2, 3, 3, 5, 5, 5, 6, 6};
@@ -469,6 +504,8 @@ SIMPLE_TEST(BinarSearch_First_Iterative, TestLast, std::prev(VALUES2.cend()), VA
 SIMPLE_TEST(BinarSearch_First_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
 SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin3, VALUES3.cbegin(), VALUES3, VALUES3.front());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_First_Iterative, TestSample2, VALUES3, 5);
+SIMPLE_TEST(BinarSearch_First_Iterative, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_First_Recursive, VALUES2, 10);
@@ -481,6 +518,8 @@ SIMPLE_TEST(BinarySearch_First_Recursive, TestLast, std::prev(VALUES2.cend()), V
 SIMPLE_TEST(BinarySearch_First_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
 SIMPLE_TEST(BinarySearch_First_Recursive, TestBegin3, VALUES3.cbegin(), VALUES3, VALUES3.front());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_First_Recursive, TestSample2, VALUES3, 5);
+SIMPLE_TEST(BinarySearch_First_Recursive, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarSearch_Last_Iterative, VALUES2, 10);
@@ -494,6 +533,8 @@ SIMPLE_TEST(BinarSearch_Last_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 9
 SIMPLE_TEST(BinarSearch_Last_Iterative, TestLast3, std::prev(VALUES3.cend()), VALUES3,
             VALUES3.back());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Upper, BinarSearch_Last_Iterative, TestSample2, VALUES3, 5);
+SIMPLE_TEST(BinarSearch_Last_Iterative, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_Last_Recursive, VALUES2, 10);
@@ -507,6 +548,8 @@ SIMPLE_TEST(BinarySearch_Last_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 
 SIMPLE_TEST(BinarySearch_Last_Recursive, TestLast3, std::prev(VALUES3.cend()), VALUES3,
             VALUES3.back());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Upper, BinarySearch_Last_Recursive, TestSample2, VALUES3, 5);
+SIMPLE_TEST(BinarySearch_Last_Recursive, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(UpperBound_BinarySearch, VALUES2, 10);
@@ -519,6 +562,8 @@ SIMPLE_TEST(UpperBound_BinarySearch, TestLast, std::prev(VALUES2.cend()), VALUES
 SIMPLE_TEST(UpperBound_BinarySearch, TestNotExist, VALUES2.cend(), VALUES2, 999);
 SIMPLE_TEST(UpperBound_BinarySearch, TestLast3, VALUES3.cend(), VALUES3, VALUES3.back());
 MUTUAL_SIMPLE_TEST(UpperBound_STL, UpperBound_BinarySearch, TestSample2, VALUES3, 5);
+SIMPLE_TEST(UpperBound_BinarySearch, TestUnderflow, UNDERFLOW.cbegin(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(GreatestLesser_BinarySearch, VALUES2, 10);
@@ -533,6 +578,8 @@ SIMPLE_TEST(GreatestLesser_BinarySearch, TestNotExist, VALUES2.cend(), VALUES2, 
 SIMPLE_TEST(GreatestLesser_BinarySearch, TestLast3, std::prev(VALUES3.cend()), VALUES3,
             VALUES2.back() + 1);
 MUTUAL_SIMPLE_TEST(GreatestLesser_STL, GreatestLesser_BinarySearch, TestSample2, VALUES3, 5);
+SIMPLE_TEST(GreatestLesser_BinarySearch, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
 
 
 SIMPLE_BENCHMARK(BinarySearch_Randomized_Iterative, VALUES2, 10);
@@ -544,3 +591,5 @@ MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Randomized_Iterative, Te
 SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2,
             VALUES2.back());
 SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
+SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestUnderflow, UNDERFLOW.cend(), UNDERFLOW,
+            UNDERFLOW.front() - 1);
