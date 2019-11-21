@@ -24,6 +24,12 @@ using ArrayType = std::vector<int>;
  * @reference   In-Place Merge Sort
  *              https://www.geeksforgeeks.org/in-place-merge-sort/
  *
+ * @reference   Sort an array when two halves are sorted
+ *              https://www.geeksforgeeks.org/sort-array-two-halves-sorted/
+ *
+ * Given an integer array of which both first half and second half are sorted. Task is
+ * to merge two sorted halves of array into single sorted array.
+ *
  * @complexity: O(n*lgn)
  */
 void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,

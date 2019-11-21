@@ -15,6 +15,9 @@ using ArrayType = std::vector<int>;
  * 20 is the only peak element. For input array {10, 20, 15, 2, 23, 90, 67},
  * there are two peak elements: 20 and 90. Note that we need to return any one
  * peak element.
+ *
+ * @reference   Find the maximum element in an array which is first increasing and then decreasing
+ *              https://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
  */
 auto FindOnePeakElement(const ArrayType &elements, const ArrayType::const_iterator cbegin,
                         const ArrayType::size_type length) {
@@ -44,6 +47,22 @@ auto FindOnePeakElement(const ArrayType &elements) {
  * Given an array arr[0 .. n-1] of distinct integers, the task is to find a local
  * minima in it. We say that an element arr[x] is a local minimum if it is less
  * than or equal to both its neighbors.
+ *
+ * @reference   Minimum in an array which is first decreasing then increasing
+ *              https://www.geeksforgeeks.org/minimum-in-an-array-which-is-first-decreasing-then-increasing/
+ */
+
+
+/** Check if an array is increasing or decreasing
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-an-array-is-increasing-or-decreasing/
+ *
+ * Given an array arr[] of N elements where N ≥ 2, the task is to check the type of array whether it is:
+ *  1. Increasing.
+ *  2. Decreasing.
+ *  3. Increasing then decreasing.
+ *  4. Decreasing then increasing.
+ * Note that the given array is definitely one of the given types.
  */
 
 }//namespace

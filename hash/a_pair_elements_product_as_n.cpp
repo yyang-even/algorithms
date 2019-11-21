@@ -71,11 +71,13 @@ SIMPLE_TEST(PairElementsProductAsN_Hash, TestSample5, true, SAMPLE5, 0);
 
 
 const std::list<int> LIST1 = {1, 2, 4, 5, 6, 8, 9};
-const std::list<int> LIST2 = {1, 2, 3, 4, 5, 6, 7};
+const std::list<int> LIST_EVEN = {1, 2, 3, 4, 5, 6, 7};
+const std::list<int> LIST_ODD = {1, 2, 3, 4, 5, 6};
 
 
 SIMPLE_BENCHMARK(PairElementsProductAsN_TwoPointers, LIST1, 8);
 
 SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample1, true, LIST1, 8);
-SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample2, true, LIST2, 6);
-SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample3, false, LIST2, 0);
+SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample2, true, LIST_EVEN, 6);
+SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestEven, false, LIST_EVEN, 0);
+SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestOdd, false, LIST_ODD, 0);
