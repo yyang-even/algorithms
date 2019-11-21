@@ -99,6 +99,12 @@ auto MaxAndMin_Pair(const ArrayType &values) {
     return std::make_pair(*max_iter, *min_iter);
 }
 
+
+/** Sum and Product of minimum and maximum element of an Array
+ *
+ * @reference   https://www.geeksforgeeks.org/sum-and-product-of-minimum-and-maximum-element-of-an-array/
+ */
+
 }//namespace
 
 

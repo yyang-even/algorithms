@@ -26,6 +26,25 @@ auto CheckIfArraySortedAndRotated(const ArrayType &values) {
            values.back() < *std::prev(minimum_element);
 }
 
+
+/** Check if it is possible to make array increasing or decreasing by rotating the array
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-it-is-possible-to-make-array-increasing-or-decreasing-by-rotating-the-array/
+ *
+ * Given an array arr[] of N distinct elements, the task is to check if it is possible
+ * to make the array increasing or decreasing by rotating the array in any direction.
+ */
+
+
+/** Check if it is possible to sort the array after rotating it
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-it-is-possible-to-sort-the-array-after-rotating-it/
+ *
+ * Given an array of size N, the task is to determine whether its possible to sort the array
+ * or not by just one shuffle. In one shuffle, we can shift some contiguous elements from the
+ * end of the array and place it in the front of the array.
+ */
+
 }//namespace
 
 
