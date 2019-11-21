@@ -3,8 +3,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /**
  * @reference   Count factorial numbers in a given range
  *              https://www.geeksforgeeks.org/count-factorial-numbers-in-a-given-range/
@@ -14,20 +12,20 @@ typedef unsigned InputType;
  * Write a program that takes as input two long integers ‘low’ and ‘high’ where
  * 0 < low < high and finds count of factorial numbers in the closed interval [low, high].
  */
-InputType CountFactorialNumInRange(const InputType low, const InputType high) {
+unsigned CountFactorialNumInRange(const unsigned low, const unsigned high) {
     if (low > high) {
         return 0;
     }
 
     unsigned long long F = 1ULL;
-    InputType i = 2;
+    unsigned i = 2;
     //Find the first F >= low
     for (; F < low; ++i) {
         F *= i;
     }
 
     //Find the first F > high
-    InputType count = 0;
+    unsigned count = 0;
     for (; F <= high; ++i) {
         ++count;
         F *= i;
@@ -39,8 +37,8 @@ InputType CountFactorialNumInRange(const InputType low, const InputType high) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<unsigned>::min();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(CountFactorialNumInRange, LOWER, 1);
