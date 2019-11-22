@@ -10,6 +10,9 @@ CompileTestExe(count_local_extrema)
 CompileBenchmarkExe(find_fixed_point)
 CompileTestExe(find_fixed_point)
 
+CompileBenchmarkExe(find_k_closest_elements_to_X)
+CompileTestExe(find_k_closest_elements_to_X)
+
 CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
 CompileTestExe(find_minimum_in_sorted_and_rotated_array)
 

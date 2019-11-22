@@ -792,3 +792,4 @@
 * https://www.geeksforgeeks.org/find-a-fixed-point-in-a-given-array/
 * https://www.geeksforgeeks.org/find-fixed-point-value-equal-index-given-array-duplicates-allowed/
 * https://www.geeksforgeeks.org/find-fixed-point-array-duplicates-allowed/
+* https://www.geeksforgeeks.org/find-k-closest-elements-given-value/
