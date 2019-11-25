@@ -44,6 +44,39 @@ auto FindKClosestElementsToX(const ArrayType &elements, const ArrayType::value_t
     return outputs;
 }
 
+
+/** Find k closest numbers in an unsorted array
+ *
+ * @reference   https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
+ */
+auto FindKClosestElementsToX_Unsorted(const ArrayType &elements, const ArrayType::value_type X,
+                                      ArrayType::size_type K) {
+    assert(elements.size() >= K);
+
+    using DiffIndexPair = std::pair<int, ArrayType::size_type>;
+    std::priority_queue<DiffIndexPair> max_diff_heap;
+    for (ArrayType::size_type i = 0; i < K; ++i) {
+        max_diff_heap.emplace(std::abs(X - elements[i]), i);
+    }
+
+    for (auto i = K; i < elements.size(); ++i) {
+        const auto diff = std::abs(X - elements[i]);
+
+        if (diff < max_diff_heap.top().first) {
+            max_diff_heap.pop();
+            max_diff_heap.emplace(diff, i);
+        }
+    }
+
+    ArrayType outputs;
+    while (not max_diff_heap.empty()) {
+        outputs.emplace_back(elements[max_diff_heap.top().second]);
+        max_diff_heap.pop();
+    }
+
+    return outputs;
+}
+
 }//namespace
 
 
@@ -63,3 +96,16 @@ SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_FRONT, EXPECTED_FRONT, SAMPLE1, 
 SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_BACK, EXPECTED_BACK, SAMPLE1, SAMPLE1.back() + 1,
             EXPECTED1.size());
 SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE2, EXPECTED2, SAMPLE1, 43, EXPECTED2.size());
+
+
+const ArrayType SAMPLE3 = {10, 2, 14, 4, 7, 6};
+const ArrayType EXPECTED3 = {7, 6, 4};
+const ArrayType SAMPLE4 = {-10, -50, 20, 17, 80};
+const ArrayType EXPECTED4 = {17, 20};
+
+
+SIMPLE_BENCHMARK(FindKClosestElementsToX_Unsorted, SAMPLE3, 5, EXPECTED3.size());
+
+SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5, EXPECTED3.size());
+SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20,
+            EXPECTED4.size());
