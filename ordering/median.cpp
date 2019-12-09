@@ -23,11 +23,7 @@ double Median(const ArrayType &sorted_array) {
     assert(not sorted_array.empty());
     assert(std::is_sorted(sorted_array.cbegin(), sorted_array.cend()));
 
-    if (sorted_array.size() % 2 == 0) {
-        return (sorted_array[(sorted_array.size() - 1) / 2] + sorted_array[sorted_array.size() / 2]) / 2.0;
-    } else {
-        return sorted_array[sorted_array.size() / 2];
-    }
+    return Median_Sorted(sorted_array.cbegin(), sorted_array.size());
 }
 
 inline auto Median_Unsorted(ArrayType values) {
