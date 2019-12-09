@@ -794,3 +794,7 @@
 * https://www.geeksforgeeks.org/find-fixed-point-array-duplicates-allowed/
 * https://www.geeksforgeeks.org/find-k-closest-elements-given-value/
 * https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
+* https://www.geeksforgeeks.org/median-of-two-sorted-arrays/
+* https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes/
+* https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
+* https://www.geeksforgeeks.org/median-two-sorted-arrays-different-sizes-ologminn-m/

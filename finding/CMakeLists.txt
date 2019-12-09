@@ -21,3 +21,6 @@ CompileTestExe(find_peak_element)
 
 CompileBenchmarkExe(linear_search)
 CompileTestExe(linear_search)
+
+CompileBenchmarkExe(median_of_two_sorted_arrays)
+CompileTestExe(median_of_two_sorted_arrays)
