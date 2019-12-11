@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 #include "merge_two_sorted_arrays.h"
 
 using ArrayType = std::vector<int>;
@@ -34,6 +37,7 @@ ArrayType::size_type nextGap(const ArrayType::size_type gap) {
     }
     return (gap / 2ul) + (gap % 2ul);
 }
+
 auto MergeTwoSortedArraysInPlace(ArrayType L, ArrayType R) {
     for (auto gap = nextGap(L.size() + R.size()); gap; gap = nextGap(gap)) {
         ArrayType::size_type i = 0ul;
@@ -61,6 +65,27 @@ auto MergeTwoSortedArraysInPlace(ArrayType L, ArrayType R) {
             }
         }
     }
+
+    return std::make_pair(L, R);
+}
+
+
+/**
+ * @reference   Merge two sorted arrays in constant space using Min Heap
+ *              https://www.geeksforgeeks.org/merge-two-sorted-arrays-in-constant-space-using-min-heap/
+ */
+auto MergeTwoSortedArraysInPlace_Heap(ArrayType L, ArrayType R) {
+    std::make_heap(R.begin(), R.end(), std::greater<ArrayType::value_type> {});
+    for (auto &elem : L) {
+        if (elem > R.front()) {
+            std::pop_heap(R.begin(), R.end(), std::greater<ArrayType::value_type> {});
+            std::swap(elem, R.back());
+            std::push_heap(R.begin(), R.end(), std::greater<ArrayType::value_type> {});
+        }
+    }
+
+    std::make_heap(R.begin(), R.end());
+    sort_heap(R.begin(), R.end());
 
     return std::make_pair(L, R);
 }
@@ -96,6 +121,8 @@ auto MergeTwoSortedArraysToOnePartition(ArrayType L, const ArrayType &R) {
     return MergeTwoSortedArraysToOne(L, R);
 }
 
+}//namespace
+
 
 const ArrayType SAMPLE1L = {1, 3, 5, 7};
 const ArrayType SAMPLE1R = {2, 4, 6, 8};
@@ -104,6 +131,7 @@ const ArrayType EXPECTED1 = {1, 2, 3, 4, 5, 6, 7, 8};
 const ArrayType SAMPLE2L = {5, 8, 9};
 const ArrayType SAMPLE2R = {4, 7, 8};
 const ArrayType EXPECTED2 = {4, 5, 7, 8, 8, 9};
+
 
 SIMPLE_BENCHMARK(MergeTwoSortedArrays, SAMPLE1L, SAMPLE1R);
 
@@ -125,17 +153,27 @@ const auto EXPECTED_PAIR4 = std::make_pair(ArrayType {
     1, 2, 3, 5, 8, 9
 }, ArrayType{10, 13, 15, 20});
 
+
 SIMPLE_BENCHMARK(MergeTwoSortedArraysInPlace, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArraysInPlace, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArraysInPlace, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
 SIMPLE_TEST(MergeTwoSortedArraysInPlace, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L, SAMPLE4R);
 
+
+SIMPLE_BENCHMARK(MergeTwoSortedArraysInPlace_Heap, SAMPLE1L, SAMPLE1R);
+
+SIMPLE_TEST(MergeTwoSortedArraysInPlace_Heap, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(MergeTwoSortedArraysInPlace_Heap, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
+SIMPLE_TEST(MergeTwoSortedArraysInPlace_Heap, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L, SAMPLE4R);
+
+
 const ArrayType SAMPLE1LToOne = {1, 3, 5, 7, NA, NA, NA, NA};
 const ArrayType SAMPLE2LToOne = {5, 8, 9, NA, NA, NA};
 const ArrayType SAMPLE5LToOne = {10, 12, 13, 14, 18, NA, NA, NA, NA, NA};
 const ArrayType SAMPLE5R = {16, 17, 19, 20, 22};
 const ArrayType EXPECTED5 = {10, 12, 13, 14, 16, 17, 18, 19, 20, 22};
+
 
 SIMPLE_BENCHMARK(MergeTwoSortedArraysToOne, SAMPLE1LToOne, SAMPLE1R);
 
@@ -147,6 +185,7 @@ SIMPLE_TEST(MergeTwoSortedArraysToOne, TestSAMPLE5, EXPECTED5, SAMPLE5LToOne, SA
 const ArrayType SAMPLE1LToOnePartition = {1, NA, 3, NA, 5, NA, 7, NA};
 const ArrayType SAMPLE2LToOnePartition = {NA, 5, NA, 8, NA, 9};
 const ArrayType SAMPLE5LToOnePartition = {10, 12, NA, NA, 13, 14, 18, NA, NA, NA};
+
 
 SIMPLE_BENCHMARK(MergeTwoSortedArraysToOnePartition, SAMPLE1LToOnePartition,
                  SAMPLE1R);

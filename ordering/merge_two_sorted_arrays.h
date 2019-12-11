@@ -24,9 +24,10 @@ void MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R,
                          std::less<typename ArrayType::value_type>());
 }
 
+
 template<typename ArrayType>
-void MergeTwoSortedArraysReverse(const ArrayType &L, const ArrayType &R,
-                                 typename ArrayType::iterator output_iter) {
+void MergeTwoSortedArrays_Reverse(const ArrayType &L, const ArrayType &R,
+                                  typename ArrayType::iterator output_iter) {
     MergeTwoSortedArrays(L.crbegin(), L.crend(), R.crbegin(), R.crend(), output_iter,
                          std::greater<typename ArrayType::value_type>());
 }

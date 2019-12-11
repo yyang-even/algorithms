@@ -798,3 +798,6 @@
 * https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes/
 * https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
 * https://www.geeksforgeeks.org/median-two-sorted-arrays-different-sizes-ologminn-m/
+* https://www.geeksforgeeks.org/merge-k-sorted-arrays-set-3-using-divide-and-conquer-approach/
+* https://www.geeksforgeeks.org/merge-k-sorted-arrays-of-different-sizes-divide-and-conquer-approach/
+* https://www.geeksforgeeks.org/merge-two-sorted-arrays-in-constant-space-using-min-heap/
