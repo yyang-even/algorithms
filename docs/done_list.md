@@ -801,3 +801,5 @@
 * https://www.geeksforgeeks.org/merge-k-sorted-arrays-set-3-using-divide-and-conquer-approach/
 * https://www.geeksforgeeks.org/merge-k-sorted-arrays-of-different-sizes-divide-and-conquer-approach/
 * https://www.geeksforgeeks.org/merge-two-sorted-arrays-in-constant-space-using-min-heap/
+* https://www.geeksforgeeks.org/binary-search-preferred-ternary-search/
+* https://www.geeksforgeeks.org/numbers-whose-factorials-end-with-n-zeros/

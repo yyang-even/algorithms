@@ -171,6 +171,8 @@ const auto Copy = [](auto v) {
     return std::move(v);
 };
 
+constexpr auto LARGE_PRIME = 1000000007;
+
 const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
 static const std::string DIGIT_CHARS {"0123456789"};

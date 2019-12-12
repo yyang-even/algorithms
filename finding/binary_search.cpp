@@ -25,6 +25,8 @@ using ArrayType = std::vector<int>;
  *              http://locklessinc.com/articles/binary_search/
  * @reference   Extra, Extra - Read All About It: Nearly All Binary Searches and Mergesorts are Broken
  *              https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+ * @reference   Why is Binary Search preferred over Ternary Search?
+ *              https://www.geeksforgeeks.org/binary-search-preferred-ternary-search/
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length, const ArrayType::const_iterator cend,
