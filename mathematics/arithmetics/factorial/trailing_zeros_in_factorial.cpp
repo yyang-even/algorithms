@@ -16,6 +16,36 @@ unsigned CountTrailing0sInFactorialOf(const unsigned num) {
 }
 
 
+/**
+ * @reference   Trailing number of 0s in product of two factorials
+ *              https://www.geeksforgeeks.org/trailing-number-0s-product-two-factorials/
+ */
+
+
+/** Find the smallest number X such that X! contains at least Y trailing zeros.
+ *
+ * @reference   https://www.geeksforgeeks.org/find-the-smallest-number-x-such-that-x-contains-at-least-y-trailing-zeros/
+ * @reference   Smallest number with at least n trailing zeroes in factorial
+ *              https://www.geeksforgeeks.org/smallest-number-least-n-trailing-zeroes-factorial/
+ */
+auto SmallestNumberWhoseFactorialContainsYTrailingZeros(const unsigned Y) {
+    unsigned low = 0;
+    unsigned high = Y * 5;
+
+    while (low < high) {
+        const auto mid = (low + high) / 2;
+        const auto trailing_zeros = CountTrailing0sInFactorialOf(mid);
+        if (trailing_zeros < Y) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+
+    return low;
+}
+
+
 /** Numbers whose factorials end with n zeros
  *
  * @reference   https://www.geeksforgeeks.org/numbers-whose-factorials-end-with-n-zeros/
@@ -23,23 +53,12 @@ unsigned CountTrailing0sInFactorialOf(const unsigned num) {
  * Given an integer n, we need to find the number of positive integers whose factorial ends with n zeros.
  */
 auto FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch(const unsigned N) {
-    unsigned low = 0;
-    unsigned high = LARGE_PRIME;
+    auto lower_bound = SmallestNumberWhoseFactorialContainsYTrailingZeros(N);
 
-    while (low < high) {
-        const auto mid = (low + high) / 2;
-        const auto trailing_zeros = CountTrailing0sInFactorialOf(mid);
-        if (trailing_zeros < N) {
-            low = mid + 1;
-        } else {
-            high = mid;
-        }
-    }
-
-    std::vector<unsigned> outputs;
-    while (CountTrailing0sInFactorialOf(low) == N) {
-        outputs.push_back(low++);
-    }
+    std::vector<unsigned> outputs(5, lower_bound);
+    std::generate_n(outputs.begin(), 5, [&lower_bound]() {
+        return lower_bound++;
+    });
 
     return outputs;
 }
@@ -64,6 +83,13 @@ SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE2, 4u, SAMPLE2);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE3, 4u, SAMPLE3);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE4, 24u, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, 10);
+
+SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE1, 10, 2);
+SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE2, 25, 6);
+SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE3, 45, 10);
 
 
 const std::vector<unsigned> EXPECTED1 = {5, 6, 7, 8, 9};

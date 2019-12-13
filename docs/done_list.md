@@ -803,3 +803,6 @@
 * https://www.geeksforgeeks.org/merge-two-sorted-arrays-in-constant-space-using-min-heap/
 * https://www.geeksforgeeks.org/binary-search-preferred-ternary-search/
 * https://www.geeksforgeeks.org/numbers-whose-factorials-end-with-n-zeros/
+* https://www.geeksforgeeks.org/find-the-smallest-number-x-such-that-x-contains-at-least-y-trailing-zeros/
+* https://www.geeksforgeeks.org/smallest-number-least-n-trailing-zeroes-factorial/
+* https://www.geeksforgeeks.org/trailing-number-0s-product-two-factorials/
