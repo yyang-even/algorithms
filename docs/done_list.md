@@ -806,3 +806,8 @@
 * https://www.geeksforgeeks.org/find-the-smallest-number-x-such-that-x-contains-at-least-y-trailing-zeros/
 * https://www.geeksforgeeks.org/smallest-number-least-n-trailing-zeroes-factorial/
 * https://www.geeksforgeeks.org/trailing-number-0s-product-two-factorials/
+* https://www.geeksforgeeks.org/square-root-of-an-integer/
+* https://www.geeksforgeeks.org/square-root-of-a-perfect-square/
+* https://www.geeksforgeeks.org/square-root-number-using-log/
+* https://www.geeksforgeeks.org/find-square-root-number-upto-given-precision-using-binary-search/
+* https://www.geeksforgeeks.org/square-root-of-a-number-without-using-sqrt-function/

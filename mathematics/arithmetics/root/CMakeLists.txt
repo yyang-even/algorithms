@@ -1,0 +1,2 @@
+CompileBenchmarkExe(square_root)
+CompileTestExe(square_root)
