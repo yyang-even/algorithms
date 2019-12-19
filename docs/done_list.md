@@ -811,3 +811,5 @@
 * https://www.geeksforgeeks.org/square-root-number-using-log/
 * https://www.geeksforgeeks.org/find-square-root-number-upto-given-precision-using-binary-search/
 * https://www.geeksforgeeks.org/square-root-of-a-number-without-using-sqrt-function/
+* https://www.geeksforgeeks.org/binary-search-on-singly-linked-list/
+* https://www.geeksforgeeks.org/binary-search-sorted-vector-pairs/
