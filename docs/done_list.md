@@ -813,3 +813,4 @@
 * https://www.geeksforgeeks.org/square-root-of-a-number-without-using-sqrt-function/
 * https://www.geeksforgeeks.org/binary-search-on-singly-linked-list/
 * https://www.geeksforgeeks.org/binary-search-sorted-vector-pairs/
+* https://www.geeksforgeeks.org/search-insert-and-delete-in-a-sorted-array/

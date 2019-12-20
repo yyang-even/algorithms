@@ -2,6 +2,8 @@
 
 #include "data_structure/linked_list/sorted_insert_linked_list.h"
 
+#include "sorted_insert.h"
+
 
 namespace {
 
@@ -30,8 +32,7 @@ using ArrayType = std::vector<int>;
  */
 auto InsertionSort_STL(ArrayType values) {
     for (auto iter = values.begin(); iter != values.end(); ++iter) {
-        const auto insertion_point = std::upper_bound(values.begin(), iter, *iter);
-        std::rotate(insertion_point, iter, std::next(iter));
+        SortedInsert(values.begin(), iter);
     }
 
     return values;
