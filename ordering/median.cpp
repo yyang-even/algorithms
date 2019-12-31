@@ -18,6 +18,16 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/median-and-mode-using-counting-sort/
  * @reference   Median
  *              https://www.geeksforgeeks.org/median/
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 9.3-9.
+ *
+ * Professor Olay is consulting for an oil company, which is planning a large pipeline running east
+ * to west through an oil field of n wells, The company wants to connect a spur pipeline from each
+ * well directly to the main pipeline along a shortest route (either north or south). Given the x-
+ * and y-coordinate of the wells, how should the professor pick the optimal location of the main
+ * pipeline, which would be the one that minimizes the total length of the spurs? Show how to
+ * determine the optimal location in linear time.
  */
 double Median(const ArrayType &sorted_array) {
     assert(not sorted_array.empty());

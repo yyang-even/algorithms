@@ -10,6 +10,8 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
 
 /** k largest(or smallest) elements in an array
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 9-1.
  * @reference   k largest(or smallest) elements in an array | added Min Heap method
  *              https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
  * @reference   Find the largest three elements in an array
@@ -40,6 +42,10 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  * @highlight   Use of std::make_heap() and std::pop_heap()
  *              Use of std::make_reverse_iterator()
  */
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 9-1.a.
+ */
 auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
     assert(K <= values.size());
 
@@ -49,6 +55,10 @@ auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
 }
 
 
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 9-1.b.
+ */
 auto KSmallestElements_MinHeap(ArrayType values, ArrayType::size_type K) {
     assert(K <= values.size());
 
@@ -65,6 +75,10 @@ auto KSmallestElements_MinHeap(ArrayType values, ArrayType::size_type K) {
 }
 
 
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 9-1.c.
+ */
 auto KSmallestElements_QuickSelect(ArrayType values, ArrayType::size_type K) {
     assert(K and K <= values.size());
 

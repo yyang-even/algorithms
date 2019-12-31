@@ -236,8 +236,6 @@ public:
 
 namespace {
 
-const std::vector<int> EXPECTED_ARRAY {2, 3, 4, 5, 6, 7};
-
 template <typename Queue>
 auto testQueueHelper() {
     Queue queue;
@@ -260,52 +258,34 @@ auto testQueueHelper() {
     return output;
 }
 
-
-auto testArrayCircularQueue() {
-    return testQueueHelper<ArrayCircularQueue>();
-}
-
-
-auto testListQueue() {
-    return testQueueHelper<ListQueue>();
-}
-
-
-auto testListCircularQueue() {
-    return testQueueHelper<ListCircularQueue>();
-}
-
-
-auto testDequeueCostlyTwoStackQueue() {
-    return testQueueHelper<DequeueCostlyTwoStackQueue>();
-}
-
-
-auto testDequeueCostlyOneStackQueue() {
-    return testQueueHelper<DequeueCostlyOneStackQueue>();
-}
-
-
-auto testHeapQueue() {
-    return testQueueHelper<HeapQueue>();
-}
-
 }//namespace
 
 
-SIMPLE_TEST0(testArrayCircularQueue, TestSample, EXPECTED_ARRAY);
+#ifdef WANT_TESTS
+const std::vector<int> EXPECTED_ARRAY {2, 3, 4, 5, 6, 7};
 
 
-SIMPLE_TEST0(testListQueue, TestSample, EXPECTED_ARRAY);
+#define SimpleQueueTest(queueName) namespace {                      \
+    TEST(SimpleQueueTest, Test##queueName) {                        \
+        EXPECT_EQ(EXPECTED_ARRAY, testQueueHelper<queueName>());    \
+    }                                                               \
+}
 
 
-SIMPLE_TEST0(testListCircularQueue, TestSample, EXPECTED_ARRAY);
+SimpleQueueTest(ArrayCircularQueue);
 
 
-SIMPLE_TEST0(testDequeueCostlyTwoStackQueue, TestSample, EXPECTED_ARRAY);
+SimpleQueueTest(ListQueue);
 
 
-SIMPLE_TEST0(testDequeueCostlyOneStackQueue, TestSample, EXPECTED_ARRAY);
+SimpleQueueTest(ListCircularQueue);
 
 
-SIMPLE_TEST0(testHeapQueue, TestSample, EXPECTED_ARRAY);
+SimpleQueueTest(DequeueCostlyTwoStackQueue);
+
+
+SimpleQueueTest(DequeueCostlyOneStackQueue);
+
+
+SimpleQueueTest(HeapQueue);
+#endif
