@@ -814,3 +814,6 @@
 * https://www.geeksforgeeks.org/binary-search-on-singly-linked-list/
 * https://www.geeksforgeeks.org/binary-search-sorted-vector-pairs/
 * https://www.geeksforgeeks.org/search-insert-and-delete-in-a-sorted-array/
+* https://www.geeksforgeeks.org/deque-set-1-introduction-applications/
+* https://www.geeksforgeeks.org/implementation-deque-using-circular-array/
+* https://www.geeksforgeeks.org/implementation-deque-using-doubly-linked-list/

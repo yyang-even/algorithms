@@ -1,3 +1,5 @@
+CompileTestExe(deque)
+
 CompileTestExe(lfu_cache)
 
 CompileTestExe(lru_cache)
