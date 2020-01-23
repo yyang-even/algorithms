@@ -5,6 +5,8 @@
 
 /** Implement Linked List using Array
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.3.
  * @reference   https://comtechstash.wordpress.com/2013/12/03/implement-linked-list-using-array/
  * @reference   A Programmer’s approach of looking at Array vs. Linked List
  *              https://www.geeksforgeeks.org/programmers-approach-looking-array-vs-linked-list/

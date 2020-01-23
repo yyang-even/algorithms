@@ -138,6 +138,12 @@ public:
 };
 
 
+/** Implement Stack and Queue using Deque
+ *
+ * @reference   https://www.geeksforgeeks.org/implement-stack-queue-using-deque/
+ */
+
+
 namespace {
 
 template <typename Deque>

@@ -5,6 +5,8 @@
 
 /** XOR Linked List – A Memory Efficient Doubly Linked List
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 10.2-8.
  * @reference   XOR Linked List – A Memory Efficient Doubly Linked List | Set 1
  *              https://www.geeksforgeeks.org/xor-linked-list-a-memory-efficient-doubly-linked-list-set-1/
  * @reference   XOR Linked List – A Memory Efficient Doubly Linked List | Set 2

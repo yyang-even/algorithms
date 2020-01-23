@@ -7,6 +7,8 @@
 
 /** Circular Linked List
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 10.2. Exercises 10.2-5.
  * @reference   Circular Linked List | Set 1 (Introduction and Applications)
  *              https://www.geeksforgeeks.org/circular-linked-list/
  * @reference   Circular Linked List | Set 2 (Traversal)
