@@ -817,3 +817,4 @@
 * https://www.geeksforgeeks.org/deque-set-1-introduction-applications/
 * https://www.geeksforgeeks.org/implementation-deque-using-circular-array/
 * https://www.geeksforgeeks.org/implementation-deque-using-doubly-linked-list/
+* https://www.geeksforgeeks.org/implement-stack-queue-using-deque/
