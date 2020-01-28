@@ -11,14 +11,15 @@ namespace {
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 10.4-2.
  */
-auto InorderTraversal(const BinaryTree::Node::PointerType node, BinaryTree::ArrayType &outputs) {
+auto InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
+                                BinaryTree::ArrayType &outputs) {
     if (not node) {
         return;
     }
 
-    InorderTraversal(node->left, outputs);
+    InorderTraversal_Recursive(node->left, outputs);
     outputs.push_back(node->value);
-    InorderTraversal(node->right, outputs);
+    InorderTraversal_Recursive(node->right, outputs);
 }
 
 
@@ -41,6 +42,32 @@ auto PostorderTraversal(const BinaryTree::Node::PointerType node, BinaryTree::Ar
     PostorderTraversal(node->left, outputs);
     PostorderTraversal(node->right, outputs);
     outputs.push_back(node->value);
+}
+
+
+/** Inorder Tree Traversal without Recursion
+ *
+ * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 10.4-3.
+ */
+auto InorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
+                                BinaryTree::ArrayType &outputs) {
+    std::stack<BinaryTree::Node::PointerType> remaining_nodes;
+
+    while (current_node or not remaining_nodes.empty()) {
+        while (current_node) {
+            remaining_nodes.push(current_node);
+            current_node = current_node->left;
+        }
+
+        current_node = remaining_nodes.top();
+        remaining_nodes.pop();
+
+        outputs.push_back(current_node->value);
+
+        current_node = current_node->right;
+    }
 }
 
 
@@ -81,11 +108,14 @@ const BinaryTree::ArrayType EXPECTED_PREORDER = {1, 2, 4, 5, 3};
 const BinaryTree::ArrayType EXPECTED_POSTORDER = {4, 5, 2, 3, 1};
 
 
-BinaryTreeTraversalTest(InorderTraversal, EXPECTED_INORDER);
+BinaryTreeTraversalTest(InorderTraversal_Recursive, EXPECTED_INORDER);
 
 
 BinaryTreeTraversalTest(PreorderTraversal, EXPECTED_PREORDER);
 
 
 BinaryTreeTraversalTest(PostorderTraversal, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(InorderTraversal_Iterative, EXPECTED_INORDER);
 #endif
