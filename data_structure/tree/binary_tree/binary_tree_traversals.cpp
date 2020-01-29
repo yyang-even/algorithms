@@ -71,6 +71,37 @@ auto InorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
 }
 
 
+/** Inorder Tree Traversal without recursion and without stack!
+ *
+ * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+ */
+auto InorderTraversal_Morris(BinaryTree::Node::PointerType current_node,
+                             BinaryTree::ArrayType &outputs) {
+    auto previous_node = current_node;
+
+    while (current_node) {
+        if (not current_node->left) {
+            outputs.push_back(current_node->value);
+            current_node = current_node->right;
+        } else {
+            previous_node = current_node->left;
+            while (previous_node->right and previous_node->right != current_node) {
+                previous_node = previous_node->right;
+            }
+
+            if (not previous_node->right) {
+                previous_node->right = current_node;
+                current_node = current_node->left;
+            } else {
+                previous_node->right = nullptr;
+                outputs.push_back(current_node->value);
+                current_node = current_node->right;
+            }
+        }
+    }
+}
+
+
 template <typename TraversalFunction>
 auto TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
     BinaryTree::ArrayType outputs;
@@ -118,4 +149,7 @@ BinaryTreeTraversalTest(PostorderTraversal, EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(InorderTraversal_Iterative, EXPECTED_INORDER);
+
+
+BinaryTreeTraversalTest(InorderTraversal_Morris, EXPECTED_INORDER);
 #endif
