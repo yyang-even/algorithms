@@ -822,3 +822,5 @@
 * https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
 * https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
 * https://www.geeksforgeeks.org/level-order-tree-traversal/
+* https://www.geeksforgeeks.org/dfs-traversal-of-a-tree-using-recursion/
+* https://www.geeksforgeeks.org/zigzag-tree-traversal/

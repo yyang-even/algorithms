@@ -10,6 +10,8 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 10.4-2.
+ * @reference   DFS traversal of a tree using recursion
+ *              https://www.geeksforgeeks.org/dfs-traversal-of-a-tree-using-recursion/
  */
 auto InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
                                 BinaryTree::ArrayType &outputs) {
@@ -106,10 +108,10 @@ auto InorderTraversal_Morris(BinaryTree::Node::PointerType current_node,
  *
  * @reference   https://www.geeksforgeeks.org/level-order-tree-traversal/
  */
-inline void EnqueueIfNotNull(std::queue<BinaryTree::Node::PointerType> &queue,
-                             const BinaryTree::Node::PointerType node) {
+template <typename Container>
+inline void EnqueueIfNotNull(Container &container, const BinaryTree::Node::PointerType node) {
     if (node) {
-        queue.push(node);
+        container.push(node);
     }
 }
 
@@ -125,6 +127,39 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 
         EnqueueIfNotNull(remaining_nodes, node->left);
         EnqueueIfNotNull(remaining_nodes, node->right);
+    }
+}
+
+
+/** ZigZag Tree Traversal
+ *
+ * @reference   https://www.geeksforgeeks.org/zigzag-tree-traversal/
+ */
+auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
+                     BinaryTree::ArrayType &outputs) {
+    std::stack<BinaryTree::Node::PointerType> current_level_nodes;
+    std::stack<BinaryTree::Node::PointerType> next_level_nodes;
+
+    EnqueueIfNotNull(current_level_nodes, root_node);
+    bool is_left_to_right = true;
+
+    while (not current_level_nodes.empty()) {
+        const auto node = current_level_nodes.top();
+        current_level_nodes.pop();
+
+        outputs.push_back(node->value);
+        if (is_left_to_right) {
+            EnqueueIfNotNull(next_level_nodes, node->left);
+            EnqueueIfNotNull(next_level_nodes, node->right);
+        } else {
+            EnqueueIfNotNull(next_level_nodes, node->right);
+            EnqueueIfNotNull(next_level_nodes, node->left);
+        }
+
+        if (current_level_nodes.empty()) {
+            is_left_to_right = not is_left_to_right;
+            current_level_nodes.swap(next_level_nodes);
+        }
     }
 }
 
@@ -165,6 +200,7 @@ const BinaryTree::ArrayType EXPECTED_INORDER = {4, 2, 5, 1, 3};
 const BinaryTree::ArrayType EXPECTED_PREORDER = {1, 2, 4, 5, 3};
 const BinaryTree::ArrayType EXPECTED_POSTORDER = {4, 5, 2, 3, 1};
 const BinaryTree::ArrayType EXPECTED_LEVELORDER = {1, 2, 3, 4, 5};
+const BinaryTree::ArrayType EXPECTED_ZIGZAG = {1, 3, 2, 4, 5};
 
 
 BinaryTreeTraversalTest(InorderTraversal_Recursive, EXPECTED_INORDER);
@@ -183,4 +219,7 @@ BinaryTreeTraversalTest(InorderTraversal_Morris, EXPECTED_INORDER);
 
 
 BinaryTreeTraversalTest(LevelOrderTraversal, EXPECTED_LEVELORDER);
+
+
+BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
 #endif
