@@ -824,3 +824,9 @@
 * https://www.geeksforgeeks.org/level-order-tree-traversal/
 * https://www.geeksforgeeks.org/dfs-traversal-of-a-tree-using-recursion/
 * https://www.geeksforgeeks.org/zigzag-tree-traversal/
+* https://www.geeksforgeeks.org/zig-zag-level-order-traversal-of-a-tree-using-single-queue/
+* https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
+* https://www.geeksforgeeks.org/binary-tree-set-1-introduction/
+* https://www.geeksforgeeks.org/binary-tree-set-2-properties/
+* https://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/
+* https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/

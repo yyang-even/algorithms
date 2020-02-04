@@ -4,6 +4,12 @@
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 10.4.
+ * @reference   Binary Tree | Set 1 (Introduction)
+ *              https://www.geeksforgeeks.org/binary-tree-set-1-introduction/
+ * @reference   Binary Tree | Set 2 (Properties)
+ *              https://www.geeksforgeeks.org/binary-tree-set-2-properties/
+ * @reference   Binary Tree | Set 3 (Types of Binary Tree)
+ *              https://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/
  */
 class BinaryTree {
 public:
@@ -37,4 +43,16 @@ static auto SetLeftChild(BinaryTree::Node &node, const BinaryTree::Node::ValueTy
 static auto SetRightChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
     node.right = std::make_shared<BinaryTree::Node>(v);
     return node.right;
+}
+
+
+static auto MakeTheSampleTree() {
+    BinaryTree binary_tree{1};
+    auto &root = *binary_tree.GetRoot();
+    auto &left_child = *SetLeftChild(root, 2);
+    SetRightChild(root, 3);
+    SetLeftChild(left_child, 4);
+    SetRightChild(left_child, 5);
+
+    return binary_tree;
 }

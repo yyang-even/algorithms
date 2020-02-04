@@ -164,23 +164,23 @@ auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
 }
 
 
+/** Zig Zag Level order traversal of a tree using single queue
+ *
+ * @reference   https://www.geeksforgeeks.org/zig-zag-level-order-traversal-of-a-tree-using-single-queue/
+ */
+
+
+/** Zig-Zag traversal of a Binary Tree using Recursion
+ *
+ * @reference   https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
+ */
+
+
 template <typename TraversalFunction>
 auto TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
     BinaryTree::ArrayType outputs;
     traversal(binary_tree.GetRoot(), outputs);
     return outputs;
-}
-
-
-auto MakeTheSampleTree() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetLeftChild(left_child, 4);
-    SetRightChild(left_child, 5);
-
-    return binary_tree;
 }
 
 }//namespace
