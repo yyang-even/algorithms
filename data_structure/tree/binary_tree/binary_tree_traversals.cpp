@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "binary_tree_traversals.h"
 
 
 namespace {
@@ -108,13 +109,6 @@ auto InorderTraversal_Morris(BinaryTree::Node::PointerType current_node,
  *
  * @reference   https://www.geeksforgeeks.org/level-order-tree-traversal/
  */
-template <typename Container>
-inline void EnqueueIfNotNull(Container &container, const BinaryTree::Node::PointerType node) {
-    if (node) {
-        container.push(node);
-    }
-}
-
 auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
                          BinaryTree::ArrayType &outputs) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
@@ -129,6 +123,21 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
         EnqueueIfNotNull(remaining_nodes, node->right);
     }
 }
+
+
+auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
+                                    BinaryTree::ArrayType &outputs) {
+    LevelOrderTraversal_LevelAware_Helper(root_node, &outputs);
+}
+
+
+/** Reverse Level Order Traversal
+ *
+ * @reference   https://www.geeksforgeeks.org/reverse-level-order-traversal/
+ *
+ * The idea is to print last level first, then second last level, and so on.
+ * Like Level order traversal, every level is printed from left to right.
+ */
 
 
 /** ZigZag Tree Traversal
@@ -219,6 +228,9 @@ BinaryTreeTraversalTest(InorderTraversal_Morris, EXPECTED_INORDER);
 
 
 BinaryTreeTraversalTest(LevelOrderTraversal, EXPECTED_LEVELORDER);
+
+
+BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 
 
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
