@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "binary_tree_height.h"
 #include "binary_tree_traversals.h"
 
 
@@ -138,6 +139,25 @@ auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_nod
  * The idea is to print last level first, then second last level, and so on.
  * Like Level order traversal, every level is printed from left to right.
  */
+void GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned level,
+                   BinaryTree::ArrayType &outputs) {
+    if (node) {
+        if (level == 1) {
+            outputs.push_back(node->value);
+        } else if (level > 1) {
+            GetGivenLevel(node->left, level - 1, outputs);
+            GetGivenLevel(node->right, level - 1, outputs);
+        }
+    }
+}
+
+auto ReverseLevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
+                                BinaryTree::ArrayType &outputs) {
+    const auto height = Height_Recursive(root_node);
+    for (auto i = height; i; --i) {
+        GetGivenLevel(root_node, i, outputs);
+    }
+}
 
 
 /** ZigZag Tree Traversal
@@ -210,6 +230,7 @@ const BinaryTree::ArrayType EXPECTED_PREORDER = {1, 2, 4, 5, 3};
 const BinaryTree::ArrayType EXPECTED_POSTORDER = {4, 5, 2, 3, 1};
 const BinaryTree::ArrayType EXPECTED_LEVELORDER = {1, 2, 3, 4, 5};
 const BinaryTree::ArrayType EXPECTED_ZIGZAG = {1, 3, 2, 4, 5};
+const BinaryTree::ArrayType EXPECTED_REVERSE_LEVELORDER = {4, 5, 2, 3, 1};
 
 
 BinaryTreeTraversalTest(InorderTraversal_Recursive, EXPECTED_INORDER);
@@ -234,4 +255,7 @@ BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 
 
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
+
+
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal, EXPECTED_REVERSE_LEVELORDER);
 #endif
