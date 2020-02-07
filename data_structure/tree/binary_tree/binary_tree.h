@@ -17,6 +17,14 @@ public:
         using ValueType = int;
         using PointerType = std::shared_ptr<Node>;
 
+        enum class Type {
+            leaf,
+            left_sided,
+            right_sided,
+            full,
+            unknown,
+        };
+
         PointerType left;
         PointerType right;
         ValueType value = 0;
@@ -35,18 +43,25 @@ private:
     Node::PointerType root;
 };
 
-static auto SetLeftChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
+static inline auto SetLeftChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
     node.left = std::make_shared<BinaryTree::Node>(v);
     return node.left;
 }
 
-static auto SetRightChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
+static inline auto SetRightChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
     node.right = std::make_shared<BinaryTree::Node>(v);
     return node.right;
 }
 
 
-static auto MakeTheSampleTree() {
+/**
+ *     1
+ *    / \
+ *   2   3
+ *  / \
+ * 4   5
+ */
+static inline auto MakeTheSampleCompleteTree() {
     BinaryTree binary_tree{1};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
@@ -55,4 +70,27 @@ static auto MakeTheSampleTree() {
     SetRightChild(left_child, 5);
 
     return binary_tree;
+}
+
+
+template <typename Container>
+static inline void EnqueueIfNotNull(Container &container,
+                                    const BinaryTree::Node::PointerType node) {
+    if (node) {
+        container.push(node);
+    }
+}
+
+
+static inline auto CheckType(const BinaryTree::Node &node) {
+    const auto type_num = static_cast<bool>(node.left) + static_cast<bool>(node.right);
+    switch (type_num) {
+        case 0:
+            return BinaryTree::Node::Type::leaf;
+        case 1:
+            return node.left ? BinaryTree::Node::Type::left_sided : BinaryTree::Node::Type::right_sided;
+        case 2:
+            return BinaryTree::Node::Type::full;
+    }
+    return BinaryTree::Node::Type::unknown;
 }

@@ -13,7 +13,7 @@ namespace {
  */
 auto Height_Iterative(const BinaryTree::Node::PointerType node) {
     unsigned height = 0;
-    LevelOrderTraversal_LevelAware_Helper(node, nullptr, [&height]() {
+    LevelOrderTraversal_LevelAware_Helper(node, {}, [&height]() {
         ++height;
     });
     return height;
@@ -22,7 +22,7 @@ auto Height_Iterative(const BinaryTree::Node::PointerType node) {
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleTree().GetRoot();
+const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
 SIMPLE_BENCHMARK(Height_Recursive, SAMPLE1);

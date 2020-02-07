@@ -2,3 +2,6 @@ CompileBenchmarkExe(binary_tree_height)
 CompileTestExe(binary_tree_height)
 
 CompileTestExe(binary_tree_traversals)
+
+CompileBenchmarkExe(complete_binary_tree)
+CompileTestExe(complete_binary_tree)

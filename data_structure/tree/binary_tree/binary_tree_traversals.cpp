@@ -128,7 +128,10 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 
 auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
                                     BinaryTree::ArrayType &outputs) {
-    LevelOrderTraversal_LevelAware_Helper(root_node, &outputs);
+    LevelOrderTraversal_LevelAware_Helper(root_node, [&outputs](const BinaryTree::Node & node) {
+        outputs.push_back(node.value);
+        return true;
+    });
 }
 
 
@@ -151,11 +154,33 @@ void GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned leve
     }
 }
 
-auto ReverseLevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
-                                BinaryTree::ArrayType &outputs) {
+auto ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
+        BinaryTree::ArrayType &outputs) {
     const auto height = Height_Recursive(root_node);
     for (auto i = height; i; --i) {
         GetGivenLevel(root_node, i, outputs);
+    }
+}
+
+
+auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::PointerType root_node,
+        BinaryTree::ArrayType &outputs) {
+    std::queue<BinaryTree::Node::PointerType> remaining_nodes;
+    std::stack<BinaryTree::Node::PointerType> outputs_stack;
+
+    EnqueueIfNotNull(remaining_nodes, root_node);
+    while (not remaining_nodes.empty()) {
+        const auto node = remaining_nodes.front();
+        remaining_nodes.pop();
+        outputs_stack.push(node);
+
+        EnqueueIfNotNull(remaining_nodes, node->right);
+        EnqueueIfNotNull(remaining_nodes, node->left);
+    }
+
+    while (not outputs_stack.empty()) {
+        outputs.push_back(outputs_stack.top()->value);
+        outputs_stack.pop();
     }
 }
 
@@ -218,7 +243,7 @@ auto TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traver
 #ifdef WANT_TESTS
 #define BinaryTreeTraversalTest(traversalFunctionName, expectedResult) namespace {  \
     TEST(BinaryTreeTraversalTest, test##traversalFunctionName) {                    \
-        const auto sample_tree = MakeTheSampleTree();                               \
+        const auto sample_tree = MakeTheSampleCompleteTree();                               \
         const auto result = TreeTraversal(sample_tree, traversalFunctionName);      \
         EXPECT_EQ(expectedResult, result);                                          \
     }                                                                               \
@@ -257,5 +282,8 @@ BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
 
 
-BinaryTreeTraversalTest(ReverseLevelOrderTraversal, EXPECTED_REVERSE_LEVELORDER);
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive, EXPECTED_REVERSE_LEVELORDER);
+
+
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative, EXPECTED_REVERSE_LEVELORDER);
 #endif
