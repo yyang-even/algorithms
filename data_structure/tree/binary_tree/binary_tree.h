@@ -74,8 +74,8 @@ static inline auto MakeTheSampleCompleteTree() {
 
 
 template <typename Container>
-static inline void EnqueueIfNotNull(Container &container,
-                                    const BinaryTree::Node::PointerType node) {
+static inline void PushIfNotNull(Container &container,
+                                 const BinaryTree::Node::PointerType node) {
     if (node) {
         container.push(node);
     }

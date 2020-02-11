@@ -5,7 +5,7 @@ static auto LevelOrderTraversal_LevelAware_Helper(const BinaryTree::Node::Pointe
 const std::function<bool(BinaryTree::Node &)> on_each_node = {},
 const std::function<void(void)> on_level_change = {}) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
-    EnqueueIfNotNull(remaining_nodes, root_node);
+    PushIfNotNull(remaining_nodes, root_node);
 
     while (not remaining_nodes.empty()) {
         if (on_level_change) {
@@ -24,8 +24,8 @@ const std::function<void(void)> on_level_change = {}) {
                 }
             }
 
-            EnqueueIfNotNull(remaining_nodes, node->left);
-            EnqueueIfNotNull(remaining_nodes, node->right);
+            PushIfNotNull(remaining_nodes, node->left);
+            PushIfNotNull(remaining_nodes, node->right);
         }
     }
 

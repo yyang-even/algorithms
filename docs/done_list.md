@@ -834,3 +834,4 @@
 * https://www.geeksforgeeks.org/reverse-level-order-traversal/
 * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
 * https://www.geeksforgeeks.org/iterative-search-for-a-key-x-in-binary-tree/
+* https://www.geeksforgeeks.org/iterative-preorder-traversal/
