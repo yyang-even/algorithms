@@ -51,6 +51,97 @@ auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
 }
 
 
+/** Iterative Postorder Traversal | Set 1 (Using Two Stacks)
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal/
+ */
+auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType current_node,
+        BinaryTree::ArrayType &outputs) {
+    std::stack<BinaryTree::Node::PointerType> remaining_nodes;
+    std::stack<BinaryTree::Node::PointerType> reverse_outputs;
+
+    PushIfNotNull(remaining_nodes, current_node);
+    while (not remaining_nodes.empty()) {
+        current_node = remaining_nodes.top();
+        remaining_nodes.pop();
+        reverse_outputs.push(current_node);
+
+        PushIfNotNull(remaining_nodes, current_node->left);
+        PushIfNotNull(remaining_nodes, current_node->right);
+    }
+
+    while (not reverse_outputs.empty()) {
+        current_node = reverse_outputs.top();
+        reverse_outputs.pop();
+        outputs.push_back(current_node->value);
+    }
+}
+
+
+/** Iterative Postorder Traversal | Set 2 (Using One Stack)
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+ */
+auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current_node,
+        BinaryTree::ArrayType &outputs) {
+    std::stack<BinaryTree::Node::PointerType> remaining_nodes;
+
+    while (current_node or not remaining_nodes.empty()) {
+        while (current_node) {
+            PushIfNotNull(remaining_nodes, current_node->right);
+            remaining_nodes.push(current_node);
+            current_node = current_node->left;
+        }
+
+        current_node = remaining_nodes.top();
+        remaining_nodes.pop();
+
+        if (current_node->right and not remaining_nodes.empty() and
+            current_node->right == remaining_nodes.top()) {
+            remaining_nodes.top().swap(current_node);
+        } else {
+            outputs.push_back(current_node->value);
+            current_node = nullptr;
+        }
+    }
+}
+
+/** Iterative Postorder traversal | Set 3
+ *
+ * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
+ */
+auto PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType current_node,
+        BinaryTree::ArrayType &outputs) {
+    std::stack<std::pair<BinaryTree::Node::PointerType, int>> remaining_node_pairs;
+
+    if (current_node) {
+        remaining_node_pairs.emplace(current_node, 0);
+    }
+    while (not remaining_node_pairs.empty()) {
+        current_node = remaining_node_pairs.top().first;
+        const auto count = remaining_node_pairs.top().second;
+        remaining_node_pairs.pop();
+
+        switch (count) {
+            case 0:
+                remaining_node_pairs.emplace(current_node, 1);
+                if (current_node->left) {
+                    remaining_node_pairs.emplace(current_node->left, 0);
+                }
+                break;
+            case 1:
+                remaining_node_pairs.emplace(current_node, 2);
+                if (current_node->right) {
+                    remaining_node_pairs.emplace(current_node->right, 0);
+                }
+                break;
+            default:
+                outputs.push_back(current_node->value);
+        }
+    }
+}
+
+
 /** Inorder Tree Traversal without Recursion
  *
  * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
@@ -285,7 +376,7 @@ auto TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traver
 #ifdef WANT_TESTS
 #define BinaryTreeTraversalTest(traversalFunctionName, expectedResult) namespace {  \
     TEST(BinaryTreeTraversalTest, test##traversalFunctionName) {                    \
-        const auto sample_tree = MakeTheSampleCompleteTree();                               \
+        const auto sample_tree = MakeTheSampleCompleteTree();                       \
         const auto result = TreeTraversal(sample_tree, traversalFunctionName);      \
         EXPECT_EQ(expectedResult, result);                                          \
     }                                                                               \
@@ -313,6 +404,15 @@ BinaryTreeTraversalTest(PreorderTraversal_Iterative_Better, EXPECTED_PREORDER);
 
 
 BinaryTreeTraversalTest(PostorderTraversal_Recursive, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_TwoStacks, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count, EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(InorderTraversal_Iterative, EXPECTED_INORDER);

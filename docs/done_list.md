@@ -835,3 +835,6 @@
 * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
 * https://www.geeksforgeeks.org/iterative-search-for-a-key-x-in-binary-tree/
 * https://www.geeksforgeeks.org/iterative-preorder-traversal/
+* https://www.geeksforgeeks.org/iterative-postorder-traversal/
+* https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+* https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
