@@ -1,7 +1,8 @@
 #pragma once
 
 
-void CloneBinaryTree(const BinaryTree::Node::PointerType source_node, BinaryTree::Node &new_node) {
+static inline void CloneBinaryTree(const BinaryTree::Node::PointerType source_node,
+                                   BinaryTree::Node &new_node) {
     assert(source_node);
 
     if (source_node->left) {
@@ -15,7 +16,7 @@ void CloneBinaryTree(const BinaryTree::Node::PointerType source_node, BinaryTree
     }
 }
 
-auto CloneBinaryTree(const BinaryTree::Node::PointerType source_root) {
+static inline auto CloneBinaryTree(const BinaryTree::Node::PointerType source_root) {
     if (source_root) {
         BinaryTree new_tree{source_root->value};
         CloneBinaryTree(source_root, *new_tree.GetRoot());

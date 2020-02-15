@@ -59,6 +59,13 @@ static inline auto SetRightChild(BinaryTree::Node &node, const BinaryTree::Node:
     return node.right;
 }
 
+static inline auto SetNode(const BinaryTree::Node::PointerType node,
+                           const BinaryTree::Node::ValueType x) {
+    assert(node);
+    node->value = x;
+    return node;
+}
+
 
 /**
  *     1

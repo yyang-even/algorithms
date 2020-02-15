@@ -1,3 +1,6 @@
+CompileBenchmarkExe(binary_tree_deletion)
+CompileTestExe(binary_tree_deletion)
+
 CompileBenchmarkExe(binary_tree_height)
 CompileTestExe(binary_tree_height)
 
