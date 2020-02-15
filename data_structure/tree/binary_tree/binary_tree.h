@@ -37,7 +37,13 @@ public:
         return root;
     }
 
+    auto &GetMutableRoot() {
+        return root;
+    }
+
+    BinaryTree() = default;
     explicit BinaryTree(const Node::ValueType v): root(new Node(v)) {}
+    explicit BinaryTree(const BinaryTree::Node::PointerType source_root): root(source_root) {}
 
 private:
     Node::PointerType root;

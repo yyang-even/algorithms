@@ -6,5 +6,8 @@ CompileTestExe(binary_tree_search)
 
 CompileTestExe(binary_tree_traversals)
 
+CompileBenchmarkExe(compare_binary_trees)
+CompileTestExe(compare_binary_trees)
+
 CompileBenchmarkExe(complete_binary_tree)
 CompileTestExe(complete_binary_tree)

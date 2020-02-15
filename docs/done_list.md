@@ -838,3 +838,6 @@
 * https://www.geeksforgeeks.org/iterative-postorder-traversal/
 * https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
 * https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
+* https://www.geeksforgeeks.org/deletion-binary-tree/
+* https://www.geeksforgeeks.org/write-c-code-to-determine-if-two-trees-are-identical/
+* https://www.geeksforgeeks.org/iterative-function-check-two-trees-identical/
