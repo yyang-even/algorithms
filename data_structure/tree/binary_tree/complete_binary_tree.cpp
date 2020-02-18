@@ -1,7 +1,9 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "binary_tree_deletion.h"
 #include "binary_tree_traversals.h"
+#include "clone_binary_tree.h"
 
 
 namespace {
@@ -39,22 +41,10 @@ auto isCompleteBinaryTree(const BinaryTree::Node::PointerType root_node) {
     }, {});
 }
 
-
-/**
- *     1
- *    / \
- *   2   3
- */
-inline auto MakeCompleteTree2() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-
-    return binary_tree;
-}
+}//namespace
 
 
+const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 /**
  *     1
  *    / \
@@ -62,17 +52,13 @@ inline auto MakeCompleteTree2() {
  *  /
  * 4
  */
-inline auto MakeCompleteTree3() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetLeftChild(left_child, 4);
-
-    return binary_tree;
-}
-
-
+const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 5).GetRoot();
+/**
+ *     1
+ *    / \
+ *   2   3
+ */
+const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE2), 4).GetRoot();
 /**
  *      1
  *    /   \
@@ -81,18 +67,13 @@ inline auto MakeCompleteTree3() {
  * 4   5 6
  */
 static inline auto MakeCompleteTree4() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    auto &right_child = *SetRightChild(root, 3);
-    SetLeftChild(left_child, 4);
-    SetRightChild(left_child, 5);
-    SetLeftChild(right_child, 6);
+    auto binary_tree = CloneBinaryTree(SAMPLE1);
+    auto &right_child_of_root = *(binary_tree.GetRoot()->right);
+    SetLeftChild(right_child_of_root, 6);
 
     return binary_tree;
 }
-
-
+const auto SAMPLE4 = MakeCompleteTree4().GetRoot();
 /**
  *     1
  *    / \
@@ -100,17 +81,7 @@ static inline auto MakeCompleteTree4() {
  *    \
  *     5
  */
-inline auto MakeIncompleteTree5() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetRightChild(left_child, 5);
-
-    return binary_tree;
-}
-
-
+const auto SAMPLE5 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 4).GetRoot();
 /**
  *      1
  *    /   \
@@ -119,29 +90,18 @@ inline auto MakeIncompleteTree5() {
  *       6   7
  */
 inline auto MakeIncompleteTree6() {
-    BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    SetLeftChild(root, 2);
-    auto &right_child = *SetRightChild(root, 3);
-    SetLeftChild(right_child, 6);
-    SetRightChild(right_child, 7);
+    auto binary_tree = CloneBinaryTree(SAMPLE3);
+    auto &right_child_of_root = *(binary_tree.GetRoot()->right);
+    SetLeftChild(right_child_of_root, 6);
+    SetRightChild(right_child_of_root, 7);
 
     return binary_tree;
 }
-
-}//namespace
-
-
-const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
-const auto SAMPLE2 = MakeCompleteTree2().GetRoot();
-const auto SAMPLE3 = MakeCompleteTree3().GetRoot();
-const auto SAMPLE4 = MakeCompleteTree4().GetRoot();
-const auto SAMPLE5 = MakeIncompleteTree5().GetRoot();
 const auto SAMPLE6 = MakeIncompleteTree6().GetRoot();
 
 
 SIMPLE_BENCHMARK(isCompleteBinaryTree, SAMPLE1);
-SIMPLE_BENCHMARK(isCompleteBinaryTree, SAMPLE2);
+SIMPLE_BENCHMARK(isCompleteBinaryTree, SAMPLE6);
 
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE2, true, SAMPLE2);
