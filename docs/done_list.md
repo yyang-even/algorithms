@@ -841,3 +841,4 @@
 * https://www.geeksforgeeks.org/deletion-binary-tree/
 * https://www.geeksforgeeks.org/write-c-code-to-determine-if-two-trees-are-identical/
 * https://www.geeksforgeeks.org/iterative-function-check-two-trees-identical/
+* https://www.geeksforgeeks.org/check-whether-binary-tree-full-binary-tree-not/
