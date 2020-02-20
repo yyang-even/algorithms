@@ -20,8 +20,8 @@ namespace {
  */
 auto isCompleteBinaryTree(const BinaryTree::Node::PointerType root_node) {
     bool has_nonfull_node_found = false;
-    return LevelOrderTraversal_LevelAware_Helper(root_node, [&has_nonfull_node_found](
-    const BinaryTree::Node & node) {
+    return LevelOrderTraversal_LevelAware_Helper(root_node,
+    [&has_nonfull_node_found](const BinaryTree::Node & node) {
         const auto node_type = CheckType(node);
 
         if (has_nonfull_node_found) {
@@ -40,6 +40,12 @@ auto isCompleteBinaryTree(const BinaryTree::Node::PointerType root_node) {
         return true;
     }, {});
 }
+
+
+/** Check whether a binary tree is a complete tree or not | Set 2 (Recursive Solution)
+ *
+ * @reference   https://www.geeksforgeeks.org/check-whether-binary-tree-complete-not-set-2-recursive-solution/
+ */
 
 }//namespace
 

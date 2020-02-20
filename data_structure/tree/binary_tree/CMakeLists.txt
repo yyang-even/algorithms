@@ -17,3 +17,6 @@ CompileTestExe(complete_binary_tree)
 
 CompileBenchmarkExe(full_binary_tree)
 CompileTestExe(full_binary_tree)
+
+CompileBenchmarkExe(perfect_binary_tree)
+CompileTestExe(perfect_binary_tree)

@@ -5,7 +5,7 @@
  *
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
  */
-static unsigned Height_Recursive(const BinaryTree::Node::PointerType node) {
+static inline unsigned Height_Recursive(const BinaryTree::Node::PointerType node) {
     if (node) {
         const auto left_height = Height_Recursive(node->left);
         const auto right_height = Height_Recursive(node->right);
@@ -14,4 +14,11 @@ static unsigned Height_Recursive(const BinaryTree::Node::PointerType node) {
     }
 
     return 0;
+}
+
+
+static inline auto HeightOfLeftmostLeaf(BinaryTree::Node::PointerType node) {
+    unsigned height = 0;
+    for (; node; ++height, node = node->left);
+    return height;
 }
