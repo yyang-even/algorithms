@@ -846,3 +846,8 @@
 * https://www.geeksforgeeks.org/check-weather-given-binary-tree-perfect-not/
 * https://www.geeksforgeeks.org/iterative-approach-to-check-if-a-binary-tree-is-perfect/
 * https://www.geeksforgeeks.org/check-whether-binary-tree-full-binary-tree-not-iterative-approach/
+* https://www.geeksforgeeks.org/write-a-c-program-to-get-count-of-leaf-nodes-in-a-binary-tree/
+* https://www.geeksforgeeks.org/iterative-program-count-leaf-nodes-binary-tree/
+* https://www.geeksforgeeks.org/count-half-nodes-in-a-binary-tree-iterative-and-recursive/
+* https://www.geeksforgeeks.org/count-non-leaf-nodes-binary-tree/
+* https://www.geeksforgeeks.org/count-full-nodes-binary-tree-iterative-recursive/
