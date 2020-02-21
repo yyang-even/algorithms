@@ -845,3 +845,4 @@
 * https://www.geeksforgeeks.org/check-whether-binary-tree-complete-not-set-2-recursive-solution/
 * https://www.geeksforgeeks.org/check-weather-given-binary-tree-perfect-not/
 * https://www.geeksforgeeks.org/iterative-approach-to-check-if-a-binary-tree-is-perfect/
+* https://www.geeksforgeeks.org/check-whether-binary-tree-full-binary-tree-not-iterative-approach/
