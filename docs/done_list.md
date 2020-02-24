@@ -851,3 +851,6 @@
 * https://www.geeksforgeeks.org/count-half-nodes-in-a-binary-tree-iterative-and-recursive/
 * https://www.geeksforgeeks.org/count-non-leaf-nodes-binary-tree/
 * https://www.geeksforgeeks.org/count-full-nodes-binary-tree-iterative-recursive/
+* https://www.geeksforgeeks.org/write-a-c-program-to-calculate-size-of-a-tree/
+* https://www.geeksforgeeks.org/write-program-calculate-size-tree-iterative/
+* https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
