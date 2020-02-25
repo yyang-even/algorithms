@@ -106,9 +106,9 @@ auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current
     }
 }
 
-/** Iterative Postorder traversal | Set 3
- *
- * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
+/**
+ * @reference   Iterative Postorder traversal | Set 3
+ *              https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
  */
 auto PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType current_node,
         BinaryTree::ArrayType &outputs) {
@@ -137,6 +137,51 @@ auto PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType c
                 break;
             default:
                 outputs.push_back(current_node->value);
+        }
+    }
+}
+
+
+/**
+ * @reference   Postorder traversal of Binary Tree without recursion and without stack
+ *              https://www.geeksforgeeks.org/postorder-traversal-binary-tree-without-recursion-without-stack/
+ */
+auto PostorderTraversal_Iterative_Hash(const BinaryTree::Node::PointerType root_node,
+                                       BinaryTree::ArrayType &outputs) {
+    auto current_node = root_node;
+    std::unordered_set<BinaryTree::Node *> visited_nodes;
+
+    while (current_node and visited_nodes.find(current_node.get()) == visited_nodes.cend()) {
+        if (current_node->left and visited_nodes.find(current_node->left.get()) == visited_nodes.cend()) {
+            current_node = current_node->left;
+        } else if (current_node->right and
+                   visited_nodes.find(current_node->right.get()) == visited_nodes.cend()) {
+            current_node = current_node->right;
+        } else {
+            outputs.push_back(current_node->value);
+            visited_nodes.emplace(current_node.get());
+            current_node = root_node;
+        }
+    }
+}
+
+
+auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node,
+                                      BinaryTree::ArrayType &outputs) {
+    std::unordered_map<BinaryTree::Node *, BinaryTree::Node::PointerType> parent_map;
+    parent_map.emplace(current_node.get(), nullptr);
+
+    while (current_node) {
+        if (current_node->left and parent_map.find(current_node->left.get()) == parent_map.cend()) {
+            parent_map.emplace(current_node->left.get(), current_node);
+            current_node = current_node->left;
+        } else if (current_node->right and
+                   parent_map.find(current_node->right.get()) == parent_map.cend()) {
+            parent_map.emplace(current_node->right.get(), current_node);
+            current_node = current_node->right;
+        } else {
+            outputs.push_back(current_node->value);
+            current_node = parent_map.find(current_node.get())->second;
         }
     }
 }
@@ -413,6 +458,12 @@ BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack, EXPECTED_POSTORDE
 
 
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_Hash, EXPECTED_POSTORDER);
+
+
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_Map, EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(InorderTraversal_Iterative, EXPECTED_INORDER);
