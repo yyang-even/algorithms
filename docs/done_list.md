@@ -855,3 +855,6 @@
 * https://www.geeksforgeeks.org/write-program-calculate-size-tree-iterative/
 * https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
 * https://www.geeksforgeeks.org/postorder-traversal-binary-tree-without-recursion-without-stack/
+* https://www.geeksforgeeks.org/write-a-c-program-to-delete-a-tree/
+* https://www.geeksforgeeks.org/non-recursive-program-to-delete-an-entire-binary-tree/
+* https://www.geeksforgeeks.org/deleting-a-binary-tree-using-the-delete-keyword/

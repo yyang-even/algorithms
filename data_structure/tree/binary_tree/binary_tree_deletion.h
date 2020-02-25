@@ -1,6 +1,10 @@
 #pragma once
 
 
+/**
+ * @reference   Deleting a binary tree using the delete keyword
+ *              https://www.geeksforgeeks.org/deleting-a-binary-tree-using-the-delete-keyword/
+ */
 static inline void BinaryTreeDeletion_Subtree(BinaryTree::Node::PointerType &current_node,
         const BinaryTree::Node::ValueType x) {
     if (current_node) {

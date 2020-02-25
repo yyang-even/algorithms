@@ -50,6 +50,53 @@ auto BinaryTreeDeletion_BottomShrink(BinaryTree binary_tree, const BinaryTree::N
     return binary_tree;
 }
 
+
+/** Write a program to Delete a Tree
+ *
+ * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-delete-a-tree/
+ */
+void DeleteEntireTree_Recursive_Postorder(BinaryTree::Node::PointerType &node) {
+    if (node) {
+        DeleteEntireTree_Recursive_Postorder(node->left);
+        DeleteEntireTree_Recursive_Postorder(node->right);
+        node = nullptr;
+    }
+}
+
+auto DeleteEntireTree_Recursive_Postorder(BinaryTree binary_tree) {
+    DeleteEntireTree_Recursive_Postorder(binary_tree.GetMutableRoot());
+    return binary_tree;
+}
+
+
+/**
+ * @reference   Non-recursive program to delete an entire binary tree
+ *              https://www.geeksforgeeks.org/non-recursive-program-to-delete-an-entire-binary-tree/
+ */
+auto DeleteEntireTree_Iterative_LevelOrder(BinaryTree binary_tree) {
+    const auto root_node = binary_tree.GetRoot();
+
+    std::queue<BinaryTree::Node::PointerType *> remaining_nodes;
+    if (root_node) {
+        remaining_nodes.push(&(binary_tree.GetMutableRoot()));
+    }
+    while (not remaining_nodes.empty()) {
+        auto &node = *(remaining_nodes.front());
+        remaining_nodes.pop();
+
+        if (node->left) {
+            remaining_nodes.push(&(node->left));
+        }
+        if (node->right) {
+            remaining_nodes.push(&(node->right));
+        }
+
+        node = nullptr;
+    }
+
+    return binary_tree;
+}
+
 }//namespace
 
 
@@ -70,3 +117,15 @@ SIMPLE_BENCHMARK(BinaryTreeDeletion_BottomShrink, CloneBinaryTree(SAMPLE0), 4);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1_LHS, SAMPLE1_RHS);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2_LHS, SAMPLE2_RHS);
+
+
+SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, CloneBinaryTree(SAMPLE0));
+
+SIMPLE_TEST(areIdenticalTrees, TestSAMPLE3, true, EMPTY_TREE,
+            DeleteEntireTree_Recursive_Postorder(CloneBinaryTree(SAMPLE0)).GetRoot());
+
+
+SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, CloneBinaryTree(SAMPLE0));
+
+SIMPLE_TEST(areIdenticalTrees, TestSAMPLE4, true, EMPTY_TREE,
+            DeleteEntireTree_Iterative_LevelOrder(CloneBinaryTree(SAMPLE0)).GetRoot());
