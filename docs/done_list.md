@@ -863,3 +863,5 @@
 * https://www.geeksforgeeks.org/handshaking-lemma-and-interesting-tree-properties/
 * https://www.geeksforgeeks.org/applications-of-tree-data-structure/
 * https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+* https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
+* https://www.geeksforgeeks.org/check-if-a-binary-tree-is-bst-simple-and-efficient-approach/

@@ -15,7 +15,8 @@ namespace {
  */
 auto BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
                                  const BinaryTree::Node::ValueType x) {
-    return not LevelOrderTraversal_LevelAware_Helper(root_node, [x](const BinaryTree::Node & node) {
+    return not LevelOrderTraversal_LevelAware_Helper(root_node,
+    [x](const BinaryTree::Node & node) {
         return node.value != x;
     });
 }
