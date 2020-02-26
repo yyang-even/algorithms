@@ -10,6 +10,10 @@
  *              https://www.geeksforgeeks.org/binary-tree-set-2-properties/
  * @reference   Binary Tree | Set 3 (Types of Binary Tree)
  *              https://www.geeksforgeeks.org/binary-tree-set-3-types-of-binary-tree/
+ * @reference   Handshaking Lemma and Interesting Tree Properties
+ *              https://www.geeksforgeeks.org/handshaking-lemma-and-interesting-tree-properties/
+ * @reference   Applications of tree data structure
+ *              https://www.geeksforgeeks.org/applications-of-tree-data-structure/
  */
 class BinaryTree {
 public:

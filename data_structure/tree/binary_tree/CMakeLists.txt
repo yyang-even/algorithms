@@ -4,6 +4,9 @@ CompileTestExe(binary_tree_deletion)
 CompileBenchmarkExe(binary_tree_height)
 CompileTestExe(binary_tree_height)
 
+CompileBenchmarkExe(binary_tree_insertion)
+CompileTestExe(binary_tree_insertion)
+
 CompileBenchmarkExe(binary_tree_search)
 CompileTestExe(binary_tree_search)
 
