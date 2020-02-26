@@ -858,3 +858,7 @@
 * https://www.geeksforgeeks.org/write-a-c-program-to-delete-a-tree/
 * https://www.geeksforgeeks.org/non-recursive-program-to-delete-an-entire-binary-tree/
 * https://www.geeksforgeeks.org/deleting-a-binary-tree-using-the-delete-keyword/
+* https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
+* https://www.geeksforgeeks.org/insertion-in-a-binary-tree-in-level-order/
+* https://www.geeksforgeeks.org/handshaking-lemma-and-interesting-tree-properties/
+* https://www.geeksforgeeks.org/applications-of-tree-data-structure/
