@@ -1,0 +1,2 @@
+CompileBenchmarkExe(BST_search)
+CompileTestExe(BST_search)

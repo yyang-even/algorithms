@@ -1,3 +1,5 @@
+add_subdirectory(BST)
+
 CompileBenchmarkExe(binary_tree_deletion)
 CompileTestExe(binary_tree_deletion)
 
