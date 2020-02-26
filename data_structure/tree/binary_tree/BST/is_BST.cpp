@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_search_tree.h"
+#include "is_BST.h"
 
 
 namespace {
@@ -22,36 +23,6 @@ auto isBST_Recursive(const BinaryTree::Node::PointerType node,
 
     return isBST_Recursive(node->left, min, node->value - 1) and
            isBST_Recursive(node->right, node->value + 1, max);
-}
-
-
-/**
- * @reference   Check if a Binary Tree is BST : Simple and Efficient Approach
- *              https://www.geeksforgeeks.org/check-if-a-binary-tree-is-bst-simple-and-efficient-approach/
- */
-bool isBST_Recursive_Inorder(const BinaryTree::Node::PointerType node,
-                             BinaryTree::Node::PointerType &previous_node) {
-    if (node) {
-        if (not isBST_Recursive_Inorder(node->left, previous_node)) {
-            return false;
-        }
-
-        if (previous_node and node->value <= previous_node->value) {
-            return false;
-        }
-        previous_node = node;
-
-        if (not isBST_Recursive_Inorder(node->right, previous_node)) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-auto isBST_Recursive_Inorder(const BinaryTree::Node::PointerType node) {
-    BinaryTree::Node::PointerType previous_node;
-    return isBST_Recursive_Inorder(node, previous_node);
 }
 
 }//namespace
