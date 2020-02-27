@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "binary_tree_search.h"
 #include "binary_tree_traversals.h"
 
 
@@ -9,6 +10,8 @@ namespace {
 /** Iterative Search for a key ‘x’ in Binary Tree
  *
  * @reference   https://www.geeksforgeeks.org/iterative-search-for-a-key-x-in-binary-tree/
+ * @reference   Search a node in Binary Tree
+ *              https://www.geeksforgeeks.org/search-a-node-in-binary-tree/
  *
  * Given a Binary Tree and a key to be searched in it, write an iterative method that
  * returns true if key is present in Binary Tree, else false.
