@@ -9,8 +9,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
  */
-auto BSTSearch(const BinaryTree::Node::PointerType node,
-               const BinaryTree::Node::ValueType x) {
+auto BSTSearch_Recursive(const BinaryTree::Node::PointerType node,
+                         const BinaryTree::Node::ValueType x) {
     if (not node) {
         return false;
     }
@@ -18,7 +18,28 @@ auto BSTSearch(const BinaryTree::Node::PointerType node,
         return true;
     }
 
-    return node->value > x ? BSTSearch(node->left, x) : BSTSearch(node->right, x);
+    return node->value > x ?
+           BSTSearch_Recursive(node->left, x) :
+           BSTSearch_Recursive(node->right, x);
+}
+
+
+/**
+ * @reference   Iterative searching in Binary Search Tree
+ *              https://www.geeksforgeeks.org/iterative-searching-binary-search-tree/
+ */
+auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_node,
+                         const BinaryTree::Node::ValueType x) {
+    while (current_node) {
+        if (x < current_node->value) {
+            current_node = current_node->left;
+        } else if (x > current_node->value) {
+            current_node = current_node->right;
+        } else {
+            return true;
+        }
+    }
+    return false;
 }
 
 }//namespace
@@ -27,9 +48,17 @@ auto BSTSearch(const BinaryTree::Node::PointerType node,
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(BSTSearch, SAMPLE1, -1);
-SIMPLE_BENCHMARK(BSTSearch, SAMPLE1, 1);
+SIMPLE_BENCHMARK(BSTSearch_Recursive, SAMPLE1, -1);
+SIMPLE_BENCHMARK(BSTSearch_Recursive, SAMPLE1, 1);
 
-SIMPLE_TEST(BSTSearch, TestSAMPLE1, true, SAMPLE1, 4);
-SIMPLE_TEST(BSTSearch, TestSAMPLE2, true, SAMPLE1, 1);
-SIMPLE_TEST(BSTSearch, TestSAMPLE3, false, SAMPLE1, -1);
+SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE1, true, SAMPLE1, 4);
+SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE2, true, SAMPLE1, 1);
+SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE3, false, SAMPLE1, -1);
+
+
+SIMPLE_BENCHMARK(BSTSearch_Iterative, SAMPLE1, -1);
+SIMPLE_BENCHMARK(BSTSearch_Iterative, SAMPLE1, 1);
+
+SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE1, true, SAMPLE1, 4);
+SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE2, true, SAMPLE1, 1);
+SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE3, false, SAMPLE1, -1);

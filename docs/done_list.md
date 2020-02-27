@@ -865,3 +865,5 @@
 * https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
 * https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
 * https://www.geeksforgeeks.org/check-if-a-binary-tree-is-bst-simple-and-efficient-approach/
+* https://www.geeksforgeeks.org/iterative-searching-binary-search-tree/
+* https://www.geeksforgeeks.org/how-to-handle-duplicates-in-binary-search-tree/

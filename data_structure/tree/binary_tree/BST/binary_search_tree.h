@@ -3,7 +3,11 @@
 #include "data_structure/tree/binary_tree/binary_tree.h"
 
 
-/**
+/** Binary Search Tree
+ *
+ * @reference   How to handle duplicates in Binary Search Tree?
+ *              https://www.geeksforgeeks.org/how-to-handle-duplicates-in-binary-search-tree/
+ *
  * Binary Search Tree, is a node-based binary tree data structure which has the following properties:
  *  The left subtree of a node contains only nodes with keys lesser than the node’s key.
  *  The right subtree of a node contains only nodes with keys greater than the node’s key.
