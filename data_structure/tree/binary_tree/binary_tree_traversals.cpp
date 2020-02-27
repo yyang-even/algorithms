@@ -11,7 +11,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Exercises 10.4-2.
+ *              Introduction to Algorithms, Third Edition. Exercises 10.4-2. Exercises 12.1-4.
  * @reference   DFS traversal of a tree using recursion
  *              https://www.geeksforgeeks.org/dfs-traversal-of-a-tree-using-recursion/
  * @reference   BFS vs DFS for Binary Tree
@@ -257,6 +257,8 @@ auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType current_no
 
 /** Inorder Tree Traversal without recursion and without stack!
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 12.1-3.
  * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
  */
 auto InorderTraversal_Morris(BinaryTree::Node::PointerType current_node,

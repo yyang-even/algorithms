@@ -9,6 +9,8 @@ namespace {
 /** Binary Search Tree | Set 1 (Search and Insertion)
  *
  * @reference   https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 12.2.
  */
 auto BSTSearch_Recursive(const BinaryTree::Node::PointerType node,
                          const BinaryTree::Node::ValueType x) {
@@ -53,6 +55,8 @@ auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_node,
  *              https://www.geeksforgeeks.org/find-the-node-with-maximum-value-in-a-binary-search-tree/
  * @reference   Find the node with maximum value in a Binary Search Tree using recursion
  *              https://www.geeksforgeeks.org/find-the-node-with-maximum-value-in-a-binary-search-tree-using-recursion/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 12.2-2.
  */
 auto Minimum(const BinaryTree::Node::PointerType root_node) {
     assert(root_node);
