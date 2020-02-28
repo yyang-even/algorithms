@@ -1,3 +1,6 @@
+CompileBenchmarkExe(BST_inorder_predecessor)
+CompileTestExe(BST_inorder_predecessor)
+
 CompileBenchmarkExe(BST_inorder_successor)
 CompileTestExe(BST_inorder_successor)
 

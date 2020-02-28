@@ -26,3 +26,8 @@ static inline auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_nod
 static inline auto MinimumNode(const BinaryTree::Node::PointerType root_node) {
     return LeftmostNode(root_node);
 }
+
+
+static inline auto MaximumNode(const BinaryTree::Node::PointerType root_node) {
+    return RightmostNode(root_node);
+}

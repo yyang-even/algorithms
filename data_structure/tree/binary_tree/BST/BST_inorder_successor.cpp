@@ -46,6 +46,6 @@ SIMPLE_BENCHMARK(InorderSuccessor_WithoutParentPointer, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE1,
             SAMPLE1->right, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE2,
-            nullptr, SAMPLE1, SAMPLE1->right);
+            nullptr, SAMPLE1, MaximumNode(SAMPLE1));
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE3,
             SAMPLE1->left, SAMPLE1, MinimumNode(SAMPLE1));
