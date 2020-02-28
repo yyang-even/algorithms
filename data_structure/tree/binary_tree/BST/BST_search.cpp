@@ -72,6 +72,11 @@ SIMPLE_TEST(hasNode_iterative, TestSAMPLE2, true, SAMPLE1, 1);
 SIMPLE_TEST(hasNode_iterative, TestSAMPLE3, false, SAMPLE1, -1);
 
 
-SIMPLE_BENCHMARK(Minimum, SAMPLE1);
+SIMPLE_BENCHMARK(MinimumNode, SAMPLE1);
 
 SIMPLE_TEST(Minimum, TestSAMPLE1, 1, SAMPLE1);
+
+
+SIMPLE_BENCHMARK(MaximumNode, SAMPLE1);
+
+SIMPLE_TEST(MaximumNode, TestSAMPLE1, SAMPLE1->right, SAMPLE1);
