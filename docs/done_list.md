@@ -875,3 +875,4 @@
 * https://www.geeksforgeeks.org/insert-a-node-in-binary-search-tree-iteratively/
 * https://www.geeksforgeeks.org/inorder-successor-in-binary-search-tree/
 * https://www.geeksforgeeks.org/inorder-succesor-node-binary-tree/
+* https://www.geeksforgeeks.org/check-array-represents-inorder-binary-search-tree-not/

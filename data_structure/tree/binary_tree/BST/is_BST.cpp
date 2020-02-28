@@ -25,6 +25,15 @@ auto isBST_Recursive(const BinaryTree::Node::PointerType node,
            isBST_Recursive(node->right, node->value + 1, max);
 }
 
+
+/** Check if an array represents Inorder of Binary Search tree or not
+ *
+ * @reference   https://www.geeksforgeeks.org/check-array-represents-inorder-binary-search-tree-not/
+ */
+auto isBSTInorderRepresent(const BinaryTree::ArrayType &array) {
+    return std::is_sorted(array.cbegin(), array.cend());
+}
+
 }//namespace
 
 
@@ -64,3 +73,13 @@ SIMPLE_BENCHMARK(isBST_Recursive_Inorder, SAMPLE2);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE2, false, SAMPLE2);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE3, false, SAMPLE3);
+
+
+const BinaryTree::ArrayType ARRAY1 = {19, 23, 25, 30, 45};
+const BinaryTree::ArrayType ARRAY2 = {19, 23, 30, 25, 45};
+
+
+SIMPLE_BENCHMARK(isBSTInorderRepresent, ARRAY1);
+
+SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE1, true, ARRAY1);
+SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE2, false, ARRAY2);
