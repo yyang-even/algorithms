@@ -32,24 +32,6 @@ auto hasNode_iterative(const BinaryTree::Node::PointerType current_node,
     return static_cast<bool>(BSTSearch_Iterative(current_node, x));
 }
 
-
-/** Find the node with minimum value in a Binary Search Tree
- *
- * @reference   https://www.geeksforgeeks.org/find-the-minimum-element-in-a-binary-search-tree/
- * @reference   Find the node with minimum value in a Binary Search Tree using recursion
- *              https://www.geeksforgeeks.org/find-the-node-with-minimum-value-in-a-binary-search-tree-using-recursion/
- * @reference   Find the node with maximum value in a Binary Search Tree
- *              https://www.geeksforgeeks.org/find-the-node-with-maximum-value-in-a-binary-search-tree/
- * @reference   Find the node with maximum value in a Binary Search Tree using recursion
- *              https://www.geeksforgeeks.org/find-the-node-with-maximum-value-in-a-binary-search-tree-using-recursion/
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Exercises 12.2-2.
- */
-auto Minimum(const BinaryTree::Node::PointerType root_node) {
-    assert(root_node);
-    return MinimumNode(root_node)->value;
-}
-
 }//namespace
 
 
@@ -72,6 +54,11 @@ SIMPLE_TEST(hasNode_iterative, TestSAMPLE2, true, SAMPLE1, 1);
 SIMPLE_TEST(hasNode_iterative, TestSAMPLE3, false, SAMPLE1, -1);
 
 
-SIMPLE_BENCHMARK(Minimum, SAMPLE1);
+SIMPLE_BENCHMARK(MinimumNode, SAMPLE1);
 
-SIMPLE_TEST(Minimum, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(MinimumNode, TestSAMPLE1, SAMPLE1->left->left, SAMPLE1);
+
+
+SIMPLE_BENCHMARK(MaximumNode, SAMPLE1);
+
+SIMPLE_TEST(MaximumNode, TestSAMPLE1, SAMPLE1->right, SAMPLE1);
