@@ -1,7 +1,7 @@
 #include "common_header.h"
 
 #include "binary_search_tree.h"
-#include "data_structure/tree/binary_tree/binary_tree_search.h"
+#include "BST_search.h"
 
 
 namespace {
@@ -27,22 +27,9 @@ auto BSTSearch_Recursive(const BinaryTree::Node::PointerType node,
 }
 
 
-/**
- * @reference   Iterative searching in Binary Search Tree
- *              https://www.geeksforgeeks.org/iterative-searching-binary-search-tree/
- */
-auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_node,
-                         const BinaryTree::Node::ValueType x) {
-    while (current_node) {
-        if (x < current_node->value) {
-            current_node = current_node->left;
-        } else if (x > current_node->value) {
-            current_node = current_node->right;
-        } else {
-            return true;
-        }
-    }
-    return false;
+auto hasNode_iterative(const BinaryTree::Node::PointerType current_node,
+                       const BinaryTree::Node::ValueType x) {
+    return static_cast<bool>(BSTSearch_Iterative(current_node, x));
 }
 
 
@@ -60,7 +47,7 @@ auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_node,
  */
 auto Minimum(const BinaryTree::Node::PointerType root_node) {
     assert(root_node);
-    return LeftmostNode(root_node)->value;
+    return MinimumNode(root_node)->value;
 }
 
 }//namespace
@@ -77,12 +64,12 @@ SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE2, true, SAMPLE1, 1);
 SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE3, false, SAMPLE1, -1);
 
 
-SIMPLE_BENCHMARK(BSTSearch_Iterative, SAMPLE1, -1);
-SIMPLE_BENCHMARK(BSTSearch_Iterative, SAMPLE1, 1);
+SIMPLE_BENCHMARK(hasNode_iterative, SAMPLE1, -1);
+SIMPLE_BENCHMARK(hasNode_iterative, SAMPLE1, 1);
 
-SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE1, true, SAMPLE1, 4);
-SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE2, true, SAMPLE1, 1);
-SIMPLE_TEST(BSTSearch_Iterative, TestSAMPLE3, false, SAMPLE1, -1);
+SIMPLE_TEST(hasNode_iterative, TestSAMPLE1, true, SAMPLE1, 4);
+SIMPLE_TEST(hasNode_iterative, TestSAMPLE2, true, SAMPLE1, 1);
+SIMPLE_TEST(hasNode_iterative, TestSAMPLE3, false, SAMPLE1, -1);
 
 
 SIMPLE_BENCHMARK(Minimum, SAMPLE1);

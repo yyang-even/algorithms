@@ -873,3 +873,4 @@
 * https://www.geeksforgeeks.org/find-the-node-with-maximum-value-in-a-binary-search-tree-using-recursion/
 * https://www.geeksforgeeks.org/search-a-node-in-binary-tree/
 * https://www.geeksforgeeks.org/insert-a-node-in-binary-search-tree-iteratively/
+* https://www.geeksforgeeks.org/inorder-successor-in-binary-search-tree/
