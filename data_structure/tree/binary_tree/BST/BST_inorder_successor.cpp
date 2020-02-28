@@ -35,12 +35,6 @@ auto InorderSuccessor_WithoutParentPointer(BinaryTree::Node::PointerType current
     return successor;
 }
 
-inline auto InorderSuccessor_WithoutParentPointer(const BinaryTree::Node::PointerType root_node,
-        const BinaryTree::Node::ValueType x) {
-    const auto x_node = BSTSearch_Iterative(root_node, x);
-    return InorderSuccessor_WithoutParentPointer(root_node, x_node);
-}
-
 }//namespace
 
 
@@ -50,7 +44,7 @@ const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 SIMPLE_BENCHMARK(InorderSuccessor_WithoutParentPointer, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE1,
-            SAMPLE1->right, SAMPLE1, SAMPLE1->value);
+            SAMPLE1->right, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE2,
             nullptr, SAMPLE1, SAMPLE1->right);
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE3,

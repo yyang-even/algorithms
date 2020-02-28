@@ -29,5 +29,8 @@ CompileTestExe(count_binary_tree_leaves)
 CompileBenchmarkExe(full_binary_tree)
 CompileTestExe(full_binary_tree)
 
+CompileBenchmarkExe(inorder_successor)
+CompileTestExe(inorder_successor)
+
 CompileBenchmarkExe(perfect_binary_tree)
 CompileTestExe(perfect_binary_tree)
