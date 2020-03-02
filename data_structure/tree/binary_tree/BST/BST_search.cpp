@@ -32,6 +32,28 @@ auto hasNode_iterative(const BinaryTree::Node::PointerType current_node,
     return static_cast<bool>(BSTSearch_Iterative(current_node, x));
 }
 
+
+/** Floor in Binary Search Tree (BST)
+ *
+ * @reference   https://www.geeksforgeeks.org/floor-in-binary-search-tree-bst/
+ */
+auto BSTFloor(const BinaryTree::Node::PointerType node,
+              const BinaryTree::Node::ValueType x) {
+    if (not node) {
+        return std::numeric_limits<BinaryTree::Node::ValueType>::max();
+    }
+
+    if (node->value == x) {
+        return x;
+    }
+    if (node->value > x) {
+        return BSTFloor(node->left, x);
+    }
+
+    const auto right_floor = BSTFloor(node->right, x);
+    return right_floor <= x ? right_floor : node->value;
+}
+
 }//namespace
 
 
@@ -62,3 +84,14 @@ SIMPLE_TEST(MinimumNode, TestSAMPLE1, SAMPLE1->left->left, SAMPLE1);
 SIMPLE_BENCHMARK(MaximumNode, SAMPLE1);
 
 SIMPLE_TEST(MaximumNode, TestSAMPLE1, SAMPLE1->right, SAMPLE1);
+
+
+SIMPLE_BENCHMARK(BSTFloor, SAMPLE1, 3);
+
+SIMPLE_TEST(BSTFloor, TestSAMPLE1, 4, SAMPLE1, 4);
+SIMPLE_TEST(BSTFloor, TestSAMPLE2, 1, SAMPLE1, 1);
+SIMPLE_TEST(BSTFloor, TestSAMPLE3, 3, SAMPLE1, 3);
+SIMPLE_TEST(BSTFloor, TestSAMPLE4, 5, SAMPLE1, 5);
+SIMPLE_TEST(BSTFloor, TestSAMPLE5, 5, SAMPLE1, 6);
+SIMPLE_TEST(BSTFloor, TestSAMPLE6,
+            std::numeric_limits<BinaryTree::Node::ValueType>::max(), SAMPLE1, 0);
