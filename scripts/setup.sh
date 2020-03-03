@@ -5,6 +5,22 @@
 #
 
 
-../yyLinuxConfig/scripts/setup_ctags_for.sh
+THIS_DIR=$(dirname "$0")
+PROJECT_ROOT_DIR="$THIS_DIR/.."
 
-./scripts/open_urls.sh docs/done_list.md
+
+pushd "$PROJECT_ROOT_DIR"
+    ./scripts/bootstrap.sh
+
+    mkdir build
+    pushd build
+        ccmake ..
+    popd
+    ./scripts/astyle_and_build.sh
+
+
+    ../yyLinuxConfig/scripts/setup_ctags_for.sh
+
+
+    ./scripts/open_urls.sh docs/done_list.md
+popd

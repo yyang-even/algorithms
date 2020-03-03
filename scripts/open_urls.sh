@@ -21,7 +21,7 @@ fi
 trap _term SIGTERM SIGINT
 
 FILE="$1"
-SLEEP_SECONDS=10
+SLEEP_SECONDS=16
 NUMBER_LINES=$(wc -l "$FILE" | awk '{ print $1 }')
 
 echo "Processing URL file: " "$FILE"

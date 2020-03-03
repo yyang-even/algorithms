@@ -28,4 +28,9 @@ Install_or_Update_Packages() {
 }
 
 
+echo "Installing dependencies."
 Install_or_Update_Packages libboost-all-dev
+
+
+echo "Setup submodules."
+git submodule update --init
