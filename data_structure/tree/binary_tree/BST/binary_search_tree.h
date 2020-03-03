@@ -7,6 +7,10 @@
  *
  * @reference   How to handle duplicates in Binary Search Tree?
  *              https://www.geeksforgeeks.org/how-to-handle-duplicates-in-binary-search-tree/
+ * @reference   Applications of BST
+ *              https://www.geeksforgeeks.org/applications-of-bst/
+ * @reference   Difference between Binary Tree and Binary Search Tree
+ *              https://www.geeksforgeeks.org/difference-between-binary-tree-and-binary-search-tree/
  *
  * Binary Search Tree, is a node-based binary tree data structure which has the following properties:
  *  The left subtree of a node contains only nodes with keys lesser than the node’s key.

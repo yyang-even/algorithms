@@ -1,3 +1,6 @@
+CompileBenchmarkExe(binary_tree_to_BST)
+CompileTestExe(binary_tree_to_BST)
+
 CompileBenchmarkExe(BST_delete)
 CompileTestExe(BST_delete)
 

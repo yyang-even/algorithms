@@ -17,18 +17,6 @@ namespace {
  * @reference   BFS vs DFS for Binary Tree
  *              https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
  */
-auto InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
-                                BinaryTree::ArrayType &outputs) {
-    if (not node) {
-        return;
-    }
-
-    InorderTraversal_Recursive(node->left, outputs);
-    outputs.push_back(node->value);
-    InorderTraversal_Recursive(node->right, outputs);
-}
-
-
 auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
                                  BinaryTree::ArrayType &outputs) {
     if (not node) {

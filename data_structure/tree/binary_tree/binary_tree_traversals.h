@@ -1,7 +1,20 @@
 #pragma once
 
 
-static auto LevelOrderTraversal_LevelAware_Helper(const BinaryTree::Node::PointerType root_node,
+static inline auto InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
+        BinaryTree::ArrayType &outputs) {
+    if (not node) {
+        return;
+    }
+
+    InorderTraversal_Recursive(node->left, outputs);
+    outputs.push_back(node->value);
+    InorderTraversal_Recursive(node->right, outputs);
+}
+
+
+static inline auto LevelOrderTraversal_LevelAware_Helper(const BinaryTree::Node::PointerType
+        root_node,
 const std::function<bool(BinaryTree::Node &)> on_each_node = {},
 const std::function<bool(void)> on_level_change = {}) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
