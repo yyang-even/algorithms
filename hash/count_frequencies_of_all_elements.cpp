@@ -86,7 +86,7 @@ using ValueCountPair = std::pair<ArrayType::value_type, ArrayType::size_type>;
 
 auto SortAndCount(ArrayType values) {
     std::sort(values.begin(), values.end(), std::greater<ArrayType::value_type> {});
-    return CountAllOccurrencesInSortedArray_STL(values);
+    return CountAllOccurrencesInSortedArray_STL(values, std::greater<ArrayType::value_type> {});
 }
 
 

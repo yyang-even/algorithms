@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/numbers/perfect_square.h"
+
 
 namespace {
 

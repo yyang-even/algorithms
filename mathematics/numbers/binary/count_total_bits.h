@@ -8,8 +8,7 @@
  * Given a positive number n, count total bit in it.
  */
 auto CountTotalBits_Log(const unsigned num) {
-    assert(num);
-    return static_cast<unsigned>(log2(num)) + 1;
+    return num ? static_cast<unsigned>(log2(num)) + 1 : 0;
 }
 
 

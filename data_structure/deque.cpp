@@ -38,6 +38,14 @@ public:
     CircularArrayDeque(const BufferType::size_type cap = 1024):
         CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
 
+    auto Full() const {
+        return size >= CAPACITY;
+    }
+
+    auto Empty() const {
+        return size == 0;
+    }
+
     void EndequeRear(const BufferType::value_type v) {
         assert(not Full());
 
@@ -79,14 +87,6 @@ public:
         --size;
         return elem;
     }
-
-    auto Full() const {
-        return size >= CAPACITY;
-    }
-
-    auto Empty() const {
-        return size == 0;
-    }
 };
 
 
@@ -100,6 +100,10 @@ class DoublyListDeque {
     BufferType buffer;
 
 public:
+    auto Empty() const {
+        return buffer.empty();
+    }
+
     void EndequeRear(const BufferType::value_type v) {
         buffer.push_back(v);
     }
@@ -130,10 +134,6 @@ public:
         const auto v = Rear();
         buffer.pop_back();
         return v;
-    }
-
-    auto Empty() const {
-        return buffer.empty();
     }
 };
 

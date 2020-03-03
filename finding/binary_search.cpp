@@ -178,6 +178,7 @@ auto BinarySearch_Uniform(const ArrayType &elements, const ArrayType::value_type
 }
 
 const auto BinarySearch_Uniform5 = BinarySearch_Uniform<5>;
+const auto BinarySearch_Uniform1 = BinarySearch_Uniform<1>;
 
 
 /** Find first and last positions of an element in a sorted array
@@ -533,7 +534,7 @@ SIMPLE_TEST(BinarySearch_Uniform5, TestBegin, ARRAY1.cbegin(), ARRAY1, ARRAY1.fr
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Uniform5, TestSample1, ARRAY1, 10);
 SIMPLE_TEST(BinarySearch_Uniform5, TestLast, std::prev(ARRAY1.cend()), ARRAY1, ARRAY1.back());
 SIMPLE_TEST(BinarySearch_Uniform5, TestNotExist, ARRAY1.cend(), ARRAY1, 999);
-SIMPLE_TEST(BinarySearch_Uniform5, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY_UNDERFLOW,
+SIMPLE_TEST(BinarySearch_Uniform1, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY_UNDERFLOW,
             ARRAY_UNDERFLOW.front() - 1);
 
 
