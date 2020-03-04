@@ -14,6 +14,8 @@ namespace {
  *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array/
  * @reference   Remove duplicates from unsorted array
  *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-2/
+ * @reference   Remove duplicates from unsorted array using Map data structure
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-map-data-structure/
  *
  * @complexity  O(n)
  */
@@ -51,6 +53,33 @@ auto RemoveDuplicates_Bits(const std::string &input) {
 }
 
 
+/**
+ * @reference   Remove duplicates from sorted array
+ *              https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
+ */
+auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
+    assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));
+
+    if (sorted_input.empty()) {
+        return sorted_input;
+    }
+
+    std::string::value_type previous_element = sorted_input.front() + 1;
+    return RemoveCharacters_TwoPointers(sorted_input, [&previous_element](const auto c) {
+        const auto result = (previous_element != c);
+        previous_element = c;
+        return result;
+    });
+}
+
+/**
+ * @reference   Duplicates Removal in Array using BST
+ *              https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
+ * @reference   Remove duplicates from unsorted array using Set data structure
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
+ */
+
+
 /** Find sum of non-repeating (distinct) elements in an array
  *
  * @reference   https://www.geeksforgeeks.org/find-sum-non-repeating-distinct-elements-array/
@@ -69,3 +98,8 @@ SIMPLE_BENCHMARK(RemoveDuplicates_Bits, "geeksforgeeks");
 
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE1, "geksfor", "geeksforgeeks");
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE2, "chartes", "characters");
+
+
+SIMPLE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
+
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
