@@ -2,6 +2,8 @@
 
 #include "binary_heap.h"
 
+#include "data_structure/tree/binary_tree/binary_tree.h"
+#include "data_structure/tree/binary_tree/complete_binary_tree.h"
 
 namespace {
 
@@ -17,6 +19,32 @@ auto isMaxHeap_Iterative(const MaxHeap<int>::ArrayType &values) {
 
 auto isMinHeap_Iterative(const MinHeap<int>::ArrayType &values) {
     return MinHeap<int>::isHeap_Iterative(values);
+}
+
+
+/** Check if a given Binary Tree is Heap
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
+ */
+auto isMaxHeap_Helper(const BinaryTree::Node::PointerType node) {
+    if ((not node) or (not node->left and not node->right)) {
+        return true;
+    }
+
+    if (not node->right) {
+        return node->value >= node->left->value;
+    }
+
+    if (node->value >= node->left->value and
+        node->value >= node->right->value)
+        return isMaxHeap_Helper(node->left) and
+               isMaxHeap_Helper(node->right);
+
+    return false;
+}
+
+auto isMaxHeap(const BinaryTree::Node::PointerType root_node) {
+    return isCompleteBinaryTree(root_node) and isMaxHeap_Helper(root_node);
 }
 
 }//namespace
@@ -52,3 +80,30 @@ SIMPLE_BENCHMARK(isMinHeap_Iterative, SAMPLE_ARRAY5);
 
 SIMPLE_TEST(isMinHeap_Iterative, TestSample1, true, SAMPLE_ARRAY5);
 SIMPLE_TEST(isMinHeap_Iterative, TestSample2, false, SAMPLE_ARRAY6);
+
+
+const auto SAMPLE_TREE1 = MakeTheSampleCompleteTree().GetRoot();
+/**
+ *     5
+ *    / \
+ *   3   4
+ *  / \
+ * 2   1
+ */
+static inline auto MakeSampleTree2() {
+    BinaryTree binary_tree{5};
+    auto &root = *binary_tree.GetRoot();
+    auto &left_child = *SetLeftChild(root, 3);
+    SetRightChild(root, 4);
+    SetLeftChild(left_child, 2);
+    SetRightChild(left_child, 1);
+
+    return binary_tree;
+}
+const auto SAMPLE_TREE2 = MakeSampleTree2().GetRoot();
+
+
+SIMPLE_BENCHMARK(isMaxHeap, SAMPLE_TREE1);
+
+SIMPLE_TEST(isMaxHeap, TestSample1, false, SAMPLE_TREE1);
+SIMPLE_TEST(isMaxHeap, TestSample2, true, SAMPLE_TREE2);
