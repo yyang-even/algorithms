@@ -21,6 +21,15 @@ auto Height_Iterative(const BinaryTree::Node::PointerType node) {
     return height;
 }
 
+
+/**
+ * @reference   Height of a complete binary tree (or Heap) with N nodes
+ *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
+ */
+std::size_t HeightOfCompleteTree(const std::size_t number_of_nodes) {
+    return std::ceil(std::log2(number_of_nodes + 1));
+}
+
 }//namespace
 
 
@@ -35,3 +44,8 @@ SIMPLE_TEST(Height_Recursive, TestSAMPLE1, 3, SAMPLE1);
 SIMPLE_BENCHMARK(Height_Iterative, SAMPLE1);
 
 SIMPLE_TEST(Height_Iterative, TestSAMPLE1, 3, SAMPLE1);
+
+
+SIMPLE_BENCHMARK(HeightOfCompleteTree, 5);
+
+SIMPLE_TEST(HeightOfCompleteTree, TestSAMPLE1, 3, 5);

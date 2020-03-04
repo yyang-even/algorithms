@@ -883,3 +883,4 @@
 * https://www.geeksforgeeks.org/binary-tree-to-binary-search-tree-conversion/
 * https://www.geeksforgeeks.org/binary-tree-binary-search-tree-conversion-using-stl-set/
 * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
+* https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
