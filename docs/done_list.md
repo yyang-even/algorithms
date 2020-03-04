@@ -884,3 +884,7 @@
 * https://www.geeksforgeeks.org/binary-tree-binary-search-tree-conversion-using-stl-set/
 * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
 * https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
+* https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
+* https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
+* https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-map-data-structure/
+* https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
