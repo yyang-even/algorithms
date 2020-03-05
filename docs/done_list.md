@@ -888,3 +888,6 @@
 * https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
 * https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-map-data-structure/
 * https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
+* https://www.geeksforgeeks.org/counting-inversions/
+* https://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
+* https://www.geeksforgeeks.org/counting-inversions-using-set-in-c-stl/

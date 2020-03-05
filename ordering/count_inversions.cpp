@@ -9,6 +9,7 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Count Inversions in an array | Set 1 (Using Merge Sort)
  *              https://www.geeksforgeeks.org/counting-inversions/
+ * @reference   https://www.cp.eng.chula.ac.th/~prabhas//teaching/algo/algo2008/count-inv.htm
  *
  * Inversion Count for an array indicates – how far (or close) the array is from being sorted.
  * If array is already sorted then inversion count is 0. If array is sorted in reverse order
@@ -48,6 +49,7 @@ auto Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     }
     return inversion_count;
 }
+
 unsigned MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n) {
     if (n > 1) {
         const auto middle = n >> 1; //floor(n/2)
@@ -58,8 +60,32 @@ unsigned MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n
     }
     return 0u;
 }
+
 auto CountInversions_MergeSort(ArrayType values) {
     return MergeSort(values.begin(), values.size());
+}
+
+
+/**
+ * @reference   Count inversions in an array | Set 2 (Using Self-Balancing BST)
+ *              https://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
+ * @reference   Counting Inversions using Set in C++ STL
+ *              https://www.geeksforgeeks.org/counting-inversions-using-set-in-c-stl/
+ */
+auto CountInversions_Multiset(const ArrayType &values) {
+    unsigned inversion_count = 0;
+
+    if (not values.empty()) {
+        auto iter = values.cbegin();
+        std::multiset<ArrayType::value_type> visited_nodes = {*iter++};
+
+        for (; iter != values.cend(); ++iter) {
+            visited_nodes.emplace(*iter);
+            inversion_count += std::distance(visited_nodes.upper_bound(*iter), visited_nodes.cend());
+        }
+    }
+
+    return inversion_count;
 }
 
 }//namespace
@@ -83,3 +109,14 @@ SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE4, 2u, VALUES4);
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE5, 6u, VALUES5);
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE6, 5u, VALUES6);
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE7, 3u, VALUES7);
+
+
+SIMPLE_BENCHMARK(CountInversions_Multiset, VALUES6);
+
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE1, 0u, VALUES1);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE2, 0u, VALUES2);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE3, 0u, VALUES3);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE4, 2u, VALUES4);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE5, 6u, VALUES5);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE6, 5u, VALUES6);
+SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE7, 3u, VALUES7);
