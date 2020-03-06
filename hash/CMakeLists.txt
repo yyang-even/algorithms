@@ -43,6 +43,9 @@ CompileTestExe(find_second_frequent_char)
 CompileBenchmarkExe(last_occurrence_of_elements_in_relative_order)
 CompileTestExe(last_occurrence_of_elements_in_relative_order)
 
+CompileBenchmarkExe(majority_element)
+CompileTestExe(majority_element)
+
 CompileBenchmarkExe(maximum_occurring_character)
 CompileTestExe(maximum_occurring_character)
 

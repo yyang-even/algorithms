@@ -891,3 +891,8 @@
 * https://www.geeksforgeeks.org/counting-inversions/
 * https://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
 * https://www.geeksforgeeks.org/counting-inversions-using-set-in-c-stl/
+* https://www.geeksforgeeks.org/majority-element/
+* https://www.geeksforgeeks.org/majority-element-set-2-hashing/
+* https://www.geeksforgeeks.org/find-the-majority-element-set-3-bit-magic/
+* https://www.geeksforgeeks.org/majority-element-in-a-linked-list/
+* https://www.geeksforgeeks.org/check-array-majority-element/
