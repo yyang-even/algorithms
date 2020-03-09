@@ -896,3 +896,5 @@
 * https://www.geeksforgeeks.org/find-the-majority-element-set-3-bit-magic/
 * https://www.geeksforgeeks.org/majority-element-in-a-linked-list/
 * https://www.geeksforgeeks.org/check-array-majority-element/
+* https://www.geeksforgeeks.org/sieve-sundaram-print-primes-smaller-n/
+* https://www.geeksforgeeks.org/how-is-the-time-complexity-of-sieve-of-eratosthenes-is-nloglogn/
