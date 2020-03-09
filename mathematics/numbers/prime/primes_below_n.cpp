@@ -73,6 +73,7 @@ auto primesInRange_LowerBound(const InputType low, const InputType high) {
     base_primes.erase(base_primes.begin(), low_bound);
     return base_primes;
 }
+
 auto primesInRange(const InputType low, const InputType high,
                    const std::vector<InputType> &base_primes) {
     assert(low > 2);
@@ -94,6 +95,7 @@ auto primesInRange(const InputType low, const InputType high,
 
     return output;
 }
+
 auto PrimesInRange(const InputType low, const InputType high) {
     if (low < 3) {
         return PrimesBelowN(high + 1);
@@ -133,6 +135,33 @@ auto SegmentedPrimesBelowN(const InputType N) {
     return output;
 }
 
+
+/**
+ * @reference   Sieve of Sundaram to print all primes smaller than n
+ *              https://www.geeksforgeeks.org/sieve-sundaram-print-primes-smaller-n/
+ */
+std::vector<InputType> PrimesBelowN_SieveOfSundaram(InputType N) {
+    if (N <= 2)
+        return {};
+
+    std::vector<unsigned long> outputs = {2};
+
+    N = (N - 2) / 2;
+    std::vector<bool> marks(N, true);
+
+    for (InputType i = 1; i <= N; ++i) {
+        for (InputType j = i; (i + j + 2 * i * j) <= N; ++j) {
+            marks[i + j + 2 * i * j] = false;
+        }
+
+        if (marks[i]) {
+            outputs.push_back(2 * i + 1);
+        }
+    }
+
+    return outputs;
+}
+
 }//namespace
 
 
@@ -140,15 +169,24 @@ const InputType LOWER = 2;
 const InputType SAMPLE1 = 12;
 const InputType SAMPLE2 = 42;
 
+const std::vector<InputType> RESULT1 = {2, 3, 5, 7, 11};
+const std::vector<InputType> RESULT2 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
+
 
 SIMPLE_BENCHMARK(PrimesBelowN, LOWER);
 SIMPLE_BENCHMARK(PrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(PrimesBelowN, TestLOWER, std::vector<InputType> {}, LOWER);
-const std::vector<InputType> RESULT1 = {2, 3, 5, 7, 11};
+SIMPLE_TEST(PrimesBelowN, TestLOWER, {}, LOWER);
 SIMPLE_TEST(PrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
-const std::vector<InputType> RESULT2 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
 SIMPLE_TEST(PrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, LOWER);
+SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, SAMPLE1);
+
+SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestLOWER, {}, LOWER);
+SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestSAMPLE1, RESULT1, SAMPLE1);
+SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestSAMPLE2, RESULT2, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, LOWER);
@@ -189,9 +227,9 @@ SIMPLE_TEST(PrimesInRange, TestSAMPLE3, RESULT3, 10, 20);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE4, RESULT4, 10, 100);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE5, RESULT5, 1, 10);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE6, RESULT3, 10, 19);
-SIMPLE_TEST(PrimesInRange, TestSAMPLE7, std::vector<InputType> {}, 14, 16);
-SIMPLE_TEST(PrimesInRange, TestSAMPLE8, std::vector<InputType> {}, 14, 14);
-SIMPLE_TEST(PrimesInRange, TestSAMPLE9, std::vector<InputType> {19}, 19, 19);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE7, {}, 14, 16);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE8, {}, 14, 14);
+SIMPLE_TEST(PrimesInRange, TestSAMPLE9, {19}, 19, 19);
 
 
 SIMPLE_BENCHMARK(SumOfPrimesInRange, 1, 6);
@@ -206,7 +244,7 @@ const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 
 SIMPLE_BENCHMARK(SegmentedPrimesBelowN, LOWER);
 SIMPLE_BENCHMARK(SegmentedPrimesBelowN, SAMPLE1);
 
-SIMPLE_TEST(SegmentedPrimesBelowN, TestLOWER, std::vector<InputType> {}, LOWER);
+SIMPLE_TEST(SegmentedPrimesBelowN, TestLOWER, {}, LOWER);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE6, RESULT6, 41);
