@@ -32,6 +32,12 @@ auto CountDigits_String(const int n) {
     return str_n.size();
 }
 
+
+/** TCS Coding Practice Question | Sum of Digits of a number
+ *
+ * @reference   https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
+ */
+
 }//namespace
 
 

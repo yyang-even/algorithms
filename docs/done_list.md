@@ -904,3 +904,4 @@
 * https://www.geeksforgeeks.org/c-program-to-print-fibonacci-series-using-class-template/
 * https://www.geeksforgeeks.org/tcs-coding-practice-question-fibonacci-series/
 * https://www.geeksforgeeks.org/print-fibonacci-sequence-using-2-variables/
+* https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
