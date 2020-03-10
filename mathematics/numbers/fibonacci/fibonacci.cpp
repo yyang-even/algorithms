@@ -3,8 +3,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Mathematics of Rabbit Breeding
  *
  * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Chapter 8.5.
@@ -24,6 +22,12 @@ typedef unsigned InputType;
  *              https://www.geeksforgeeks.org/c-program-for-n-th-fibonacci-number/
  * @reference   Program to print first n Fibonacci Numbers | Set 1
  *              https://www.geeksforgeeks.org/program-to-print-first-n-fibonacci-numbers/
+ * @reference   Program for Fibonacci numbers
+ *              https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+ * @reference   C++ Program to print Fibonacci Series using Class template
+ *              https://www.geeksforgeeks.org/c-program-to-print-fibonacci-series-using-class-template/
+ * @reference   TCS Coding Practice Question | Fibonacci Series
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-fibonacci-series/
  *
  * The Fibonacci numbers are the numbers in the following integer sequence.
  *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……..
@@ -93,14 +97,14 @@ typedef unsigned InputType;
  * their ratio is very close to the Golden Ratio.
  */
 const double GOLDEN_RATIO = 1.61803;
-unsigned long Fibonacci_GoldenRatio(const InputType n) {
+unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     if (n < 2) {
         return n;
     } else if (n == 2) {
         return 1;
     } else {
         unsigned long ret = 1;
-        for (InputType i = 2; i < n; ++i) {
+        for (unsigned i = 2; i < n; ++i) {
             ret = ret * GOLDEN_RATIO + 0.5;
         }
         return ret;
@@ -116,7 +120,7 @@ unsigned long Fibonacci_GoldenRatio(const InputType n) {
  *
  * Note: It may not work perfect due to floating point precision errors.
  */
-unsigned long Fibonacci_GoldenRatioClosedForm(const InputType n) {
+unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
     constexpr double phi = (1.0 + square_root_of_5) / 2.0;
     constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
@@ -125,39 +129,89 @@ unsigned long Fibonacci_GoldenRatioClosedForm(const InputType n) {
 }
 
 
+auto NthFibonacci_DP(const unsigned n) {
+    std::vector<unsigned> fibonaccis = {0, 1};
+    for (unsigned i = 1; i < n; ++i) {
+        fibonaccis.push_back(fibonaccis[i] + fibonaccis[i - 1]);
+    }
+
+    return fibonaccis[n];
+}
+
+
+auto NthFibonacci_DP_Optimized(const unsigned n) {
+    unsigned f_n_minus_2 = 0, f_n_minus_1 = 1;
+    if (n == 0) {
+        return f_n_minus_2;
+    }
+
+    for (unsigned i = 1; i < n; ++i) {
+        const auto f_n = f_n_minus_2 + f_n_minus_1;
+        f_n_minus_2 = f_n_minus_1;
+        f_n_minus_1 = f_n;
+    }
+
+    return f_n_minus_1;
+}
+
+
+/**
+ * @reference   Print Fibonacci sequence using 2 variables
+ *              https://www.geeksforgeeks.org/print-fibonacci-sequence-using-2-variables/
+ */
+
+
 /** Sum of Fibonacci Numbers
  *
  * @reference   https://www.geeksforgeeks.org/sum-fibonacci-numbers/
  *
  * Given a number positive number n, find value of f0 + f1 + f2 + … + fn where fi indicates i’th Fibonacci number.
  */
-auto SumOfFibonacci(const InputType n) {
-    return  Fibonacci_GoldenRatioClosedForm(n + 2) - 1;
+auto SumOfFibonacci(const unsigned n) {
+    return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
 }
 
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr InputType UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
+constexpr auto LOWER = std::numeric_limits<unsigned>::min();
+constexpr unsigned UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 
 
-SIMPLE_BENCHMARK(Fibonacci_GoldenRatio, LOWER);
-SIMPLE_BENCHMARK(Fibonacci_GoldenRatio, UPPER);
-RANDOM_BENCHMARK(Fibonacci_GoldenRatio, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, UPPER);
+RANDOM_BENCHMARK(NthFibonacci_GoldenRatio, LOWER, UPPER);
 
-SIMPLE_TEST(Fibonacci_GoldenRatio, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(Fibonacci_GoldenRatio, TestSAMPLE1, 1u, 1);
-SIMPLE_TEST(Fibonacci_GoldenRatio, TestSAMPLE2, 144u, 12);
+SIMPLE_TEST(NthFibonacci_GoldenRatio, TestLOWER, 0, LOWER);
+SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(Fibonacci_GoldenRatioClosedForm, LOWER);
-SIMPLE_BENCHMARK(Fibonacci_GoldenRatioClosedForm, UPPER);
-RANDOM_BENCHMARK(Fibonacci_GoldenRatioClosedForm, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, UPPER);
+RANDOM_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, LOWER, UPPER);
 
-SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestSAMPLE1, 1u, 1);
-SIMPLE_TEST(Fibonacci_GoldenRatioClosedForm, TestSAMPLE2, 144u, 12);
+SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestLOWER, 0, LOWER);
+SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE2, 144, 12);
+
+
+SIMPLE_BENCHMARK(NthFibonacci_DP, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_DP, UPPER);
+RANDOM_BENCHMARK(NthFibonacci_DP, LOWER, UPPER);
+
+SIMPLE_TEST(NthFibonacci_DP, TestLOWER, 0, LOWER);
+SIMPLE_TEST(NthFibonacci_DP, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(NthFibonacci_DP, TestSAMPLE2, 144, 12);
+
+
+SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, UPPER);
+RANDOM_BENCHMARK(NthFibonacci_DP_Optimized, LOWER, UPPER);
+
+SIMPLE_TEST(NthFibonacci_DP_Optimized, TestLOWER, 0, LOWER);
+SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE2, 144, 12);
 
 
 SIMPLE_BENCHMARK(SumOfFibonacci, 4);
