@@ -908,3 +908,4 @@
 * https://www.geeksforgeeks.org/c-program-for-radix-sort/
 * https://www.geeksforgeeks.org/division-without-using-operator/
 * https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-and-mod-operator-set2/
+* https://www.geeksforgeeks.org/find-subsequences-with-maximum-bitwise-and-and-bitwise-or/

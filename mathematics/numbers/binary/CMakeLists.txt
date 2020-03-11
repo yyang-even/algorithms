@@ -159,6 +159,9 @@ CompileTestExe(set_bit)
 CompileBenchmarkExe(sign_extending)
 CompileTestExe(sign_extending)
 
+CompileBenchmarkExe(subsequences_with_max_and_and_max_or)
+CompileTestExe(subsequences_with_max_and_and_max_or)
+
 CompileBenchmarkExe(sum_of_xor_of_all_subsets)
 CompileTestExe(sum_of_xor_of_all_subsets)
 
