@@ -911,3 +911,5 @@
 * https://www.geeksforgeeks.org/find-subsequences-with-maximum-bitwise-and-and-bitwise-or/
 * https://www.geeksforgeeks.org/multiply-large-integers-under-large-modulo/
 * https://www.geeksforgeeks.org/comparing-xy-and-yx-for-very-large-values-of-x-and-y/
+* https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
+* https://www.geeksforgeeks.org/length-of-longest-consecutive-zeroes-in-the-binary-representation-of-a-number/

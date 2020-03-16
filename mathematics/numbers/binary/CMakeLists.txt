@@ -117,6 +117,9 @@ CompileTestExe(is_power_of_power_of_2)
 CompileBenchmarkExe(log_base_2)
 CompileTestExe(log_base_2)
 
+CompileBenchmarkExe(longest_consecutive_1s)
+CompileTestExe(longest_consecutive_1s)
+
 CompileBenchmarkExe(masked_bits_merge)
 CompileTestExe(masked_bits_merge)
 
