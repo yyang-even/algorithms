@@ -1,8 +1,12 @@
 #include "common_header.h"
 
+#include "data_structure/linked_list/singly_list/singly_circular_linked_list.h"
+#include "data_structure/linked_list/linked_list.h"
+
+
 namespace {
 
-typedef unsigned long InputType;
+using ArrayType = std::vector<unsigned>;
 
 /** Josephus Problem
  *
@@ -12,23 +16,20 @@ typedef unsigned long InputType;
  *              https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
  * @reference   Find last element after deleting every second element in array of n integers
  *              https://www.geeksforgeeks.org/find-last-element-deleting-every-second-element-array-n-integers/
- * @reference   Josephus Circle using circular linked list
- *              https://www.geeksforgeeks.org/josephus-circle-using-circular-linked-list/
- * @reference   Delete every Kth node from circular linked list
- *              https://www.geeksforgeeks.org/delete-every-kth-node-from-circular-linked-list/
+ * @reference   Puzzle 81 | 100 people in a circle with gun puzzle
+ *              https://www.geeksforgeeks.org/puzzle-100-people-in-a-circle-with-gun-puzzle/
  *
  * A variant of Josephus Problem. Start with n people numbered 1 to n around a circle,
  * and we eliminate every second remaining person until only one survives. For n = 10,
  * the elimination order is 2, 4, 6, 8, 10, 3, 7, 1, 9, so 5 survives.
  * The problem: Determine the survivor’s number, J(n).
  */
-
 /**
  * J(1) = 1;
  * J(2n) = 2J(n) - 1,      for n >= 1;
  * J(2n + 1) = 2J(n) + 1,  for n >= 1.
  */
-InputType JosephusProblem2_Recursive(const InputType n) {
+unsigned JosephusProblem2_Recursive(const unsigned n) {
     if (n == 1) {
         return 1;
     } else if ((n & 1) == 1) {  //odd
@@ -38,22 +39,26 @@ InputType JosephusProblem2_Recursive(const InputType n) {
     }
 }
 
+
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.3.
  * @reference   Josephus Problem Using Bit Magic
  *              https://www.geeksforgeeks.org/josephus-problem-using-bit-magic/
+ * @reference   Lucky alive person in a circle | Set – 2
+ *              https://www.geeksforgeeks.org/lucky-alive-person-in-a-circle-set-2/
  *
  * J(2^m + l) = 2l + 1, for m >= 0 and 0 <= l < 2^m.
  */
-InputType JosephusProblem2_Closedform(const InputType n) {
-    InputType m = InputType(1) << (BitsNumber<decltype(n)> - 1);
+unsigned JosephusProblem2_Closedform(const unsigned n) {
+    unsigned m = 1u << (BitsNumber<decltype(n)> - 1);
 
     while (m and !(m & n)) {
         m /= 2;
     }
     return ((m ^ n) << 1) + 1;
 }
+
 
 /** Penultimate Survivor
  *
@@ -63,21 +68,21 @@ InputType JosephusProblem2_Closedform(const InputType n) {
  * Josephus had a friend who was saved by getting into the next-to-last position.
  * What is I(n), the number of the penultimate survivor when every second person is executed?
  */
-
 /**
  * I(n) = I(3*2^m + l) = 2l + 1.
  */
-InputType PenultimateSurvivor_Closedform(const InputType n) {
+unsigned PenultimateSurvivor_Closedform(const unsigned n) {
     if (n == 2) {
         return 2;
     }
-    InputType m = InputType(3) << (BitsNumber<decltype(n)> - 2);
+    unsigned m = 3u << (BitsNumber<decltype(n)> - 2);
 
     while (n < m) {
         m /= 2;
     }
     return ((n - m) << 1) + 1;
 }
+
 
 /** Authentic Josephus Problem
  *
@@ -86,14 +91,15 @@ InputType PenultimateSurvivor_Closedform(const InputType n) {
  *
  *  Authentic Josephus Problem in which every third person is eliminated, instead of every second.
  */
-InputType JosephusProblem3(const InputType n) {
+unsigned JosephusProblem3(const unsigned n) {
     double D = 1.0;
     const double BOUND = n * 2.0;
     while (D <= BOUND) {
         D = std::ceil(1.5 * D);
     }
-    return 3 * n + 1 - static_cast<InputType>(D);
+    return 3 * n + 1 - static_cast<unsigned>(D);
 }
+
 
 /** Kth Josephus problem
  *
@@ -107,7 +113,6 @@ InputType JosephusProblem3(const InputType n) {
  * and a number k which indicates that k-1 persons are skipped and kth person is killed in circle.
  * The task is to choose the place in the initial circle so that you are the last one remaining and so survive.
  */
-
 /**
  * josephus(n, k) = (josephus(n - 1, k) + k-1) % n + 1;
  * josephus(1, k) = 1.
@@ -116,7 +121,7 @@ InputType JosephusProblem3(const InputType n) {
  * to get the position with n-1 persons. But the position returned by josephus(n - 1, k) will consider
  * the position starting from k%n + 1. So, we must make adjustments to the position returned by josephus(n - 1, k).
  */
-InputType JosephusK_Recursive(const InputType n, const InputType k) {
+unsigned JosephusK_Recursive(const unsigned n, const unsigned k) {
     if (n == 1) {
         return 1;
     } else {
@@ -124,101 +129,176 @@ InputType JosephusK_Recursive(const InputType n, const InputType k) {
     }
 }
 
+
+/**
+ * @reference   Josephus Problem | (Iterative Solution)
+ *              https://www.geeksforgeeks.org/josephus-problem-iterative-solution/
+ */
+auto JosephusK_Iterative(const unsigned n, const unsigned k) {
+    unsigned sword = 0;
+    for (unsigned i = 2; i <= n; ++i) {
+        sword = (sword + k) % i;
+    }
+
+    return sword + 1;
+}
+
+
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 3.3.
  */
-InputType JosephusK_Closedform(const InputType n, const InputType k) {
+unsigned JosephusK_Closedform(const unsigned n, const unsigned k) {
     double D = 1.0;
     const double K_MINUS_ONE = static_cast<double>(k - 1);
     const double BOUND = n * K_MINUS_ONE;
     while (D <= BOUND) {
         D = std::ceil(k / K_MINUS_ONE * D);
     }
-    return k * n + 1 - static_cast<InputType>(D);
+    return k * n + 1 - static_cast<unsigned>(D);
+}
+
+
+/** Josephus permutation
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 14-2.
+ * @reference   Lucky alive person in a circle | Code Solution to sword puzzle
+ *              https://www.geeksforgeeks.org/lucky-alive-person-circle/
+ * @reference   Josephus Circle using circular linked list
+ *              https://www.geeksforgeeks.org/josephus-circle-using-circular-linked-list/
+ * @reference   Delete every Kth node from circular linked list
+ *              https://www.geeksforgeeks.org/delete-every-kth-node-from-circular-linked-list/
+ */
+auto JosephusPermutation(const unsigned n, const unsigned k) {
+    SinglyCircularLinkedList persons;
+    for (unsigned i = 1; i <= n; ++i) {
+        persons.PushBack(i);
+    }
+
+    auto sword = persons.GetHead();
+    ArrayType outputs;
+    for (unsigned i = 2; sword != sword->next; i = 1) {
+        Advance(sword, k - i);
+
+        outputs.push_back(sword->next->value);
+        persons.DeleteAfter(sword);
+    }
+    outputs.push_back(sword->value);
+
+    return outputs;
 }
 
 }//namespace
 
 
-constexpr InputType LOWER = 1;
-constexpr InputType UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType SAMPLE = 15;
+constexpr unsigned LOWER = 1;
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(JosephusProblem2_Recursive, LOWER);
 SIMPLE_BENCHMARK(JosephusProblem2_Recursive, UPPER);
-SIMPLE_BENCHMARK(JosephusProblem2_Recursive, SAMPLE);
+SIMPLE_BENCHMARK(JosephusProblem2_Recursive, 15);
 RANDOM_BENCHMARK(JosephusProblem2_Recursive, LOWER, UPPER);
 
-SIMPLE_TEST(JosephusProblem2_Recursive, TestLOWER, 1u, LOWER);
+SIMPLE_TEST(JosephusProblem2_Recursive, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem2_Recursive, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(JosephusProblem2_Recursive, TestSAMPLE, 15u, SAMPLE);
+SIMPLE_TEST(JosephusProblem2_Recursive, TestSample1, 15, 15);
+SIMPLE_TEST(JosephusProblem2_Recursive, TestSample2, 3, 5);
+SIMPLE_TEST(JosephusProblem2_Recursive, TestSample3, 5, 10);
 
 
 SIMPLE_BENCHMARK(JosephusProblem2_Closedform, LOWER);
 SIMPLE_BENCHMARK(JosephusProblem2_Closedform, UPPER);
-SIMPLE_BENCHMARK(JosephusProblem2_Closedform, SAMPLE);
+SIMPLE_BENCHMARK(JosephusProblem2_Closedform, 15);
 RANDOM_BENCHMARK(JosephusProblem2_Closedform, LOWER, UPPER);
 
-SIMPLE_TEST(JosephusProblem2_Closedform, TestLOWER, 1u, LOWER);
+SIMPLE_TEST(JosephusProblem2_Closedform, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem2_Closedform, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(JosephusProblem2_Closedform, TestSAMPLE, 15u, SAMPLE);
+SIMPLE_TEST(JosephusProblem2_Closedform, TestSample1, 15, 15);
+SIMPLE_TEST(JosephusProblem2_Closedform, TestSample2, 3, 5);
+SIMPLE_TEST(JosephusProblem2_Closedform, TestSample3, 5, 10);
 
 
 MUTUAL_RANDOM_TEST(JosephusProblem2_Recursive, JosephusProblem2_Closedform, LOWER, UPPER);
 
 
-const InputType LOWER2 = 2;
+const unsigned LOWER2 = 2;
 
 
 SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, LOWER2);
 SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, UPPER);
-SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, SAMPLE);
+SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, 15);
 RANDOM_BENCHMARK(PenultimateSurvivor_Closedform, LOWER2, UPPER);
 
-SIMPLE_TEST(PenultimateSurvivor_Closedform, TestLOWER2, 2u, LOWER2);
+SIMPLE_TEST(PenultimateSurvivor_Closedform, TestLOWER2, 2, LOWER2);
 SIMPLE_TEST(PenultimateSurvivor_Closedform, TestUPPER, UPPER / 2, UPPER);
-SIMPLE_TEST(PenultimateSurvivor_Closedform, TestSAMPLE, 7u, SAMPLE);
-
-
-constexpr InputType UPPER3 = ~InputType(0) / 4;
+SIMPLE_TEST(PenultimateSurvivor_Closedform, TestSample1, 7, 15);
 
 
 SIMPLE_BENCHMARK(JosephusProblem3, LOWER);
-SIMPLE_BENCHMARK(JosephusProblem3, UPPER3);
-SIMPLE_BENCHMARK(JosephusProblem3, SAMPLE);
-RANDOM_BENCHMARK(JosephusProblem3, LOWER, UPPER3);
+SIMPLE_BENCHMARK(JosephusProblem3, 15);
 
-SIMPLE_TEST(JosephusProblem3, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(JosephusProblem3, TestUPPER3, 2565990286715650046u, UPPER3);
-SIMPLE_TEST(JosephusProblem3, TestSAMPLE, 5u, SAMPLE);
+SIMPLE_TEST(JosephusProblem3, TestLOWER, 1, LOWER);
+SIMPLE_TEST(JosephusProblem3, TestSample1, 5, 15);
 
 
-const InputType UPPER_K = HYPOTHETIC_MAX_STACK_DEPTH;
+const unsigned UPPER_K = HYPOTHETIC_MAX_STACK_DEPTH;
 
 
 SIMPLE_BENCHMARK(JosephusK_Recursive, LOWER, UPPER_K);
 SIMPLE_BENCHMARK(JosephusK_Recursive, LOWER, 2);
 SIMPLE_BENCHMARK(JosephusK_Recursive, UPPER_K, UPPER_K);
 SIMPLE_BENCHMARK(JosephusK_Recursive, UPPER_K, 2);
-SIMPLE_BENCHMARK(JosephusK_Recursive, SAMPLE, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Recursive, SAMPLE, 2);
+SIMPLE_BENCHMARK(JosephusK_Recursive, 15, UPPER_K);
+SIMPLE_BENCHMARK(JosephusK_Recursive, 15, 2);
 
-SIMPLE_TEST(JosephusK_Recursive, TestLOWER2, 1u, LOWER, 2);
-SIMPLE_TEST(JosephusK_Recursive, TestSAMPLE2, 15u, SAMPLE, 2);
-SIMPLE_TEST(JosephusK_Recursive, TestLOWER3, 1u, LOWER, 3);
-SIMPLE_TEST(JosephusK_Recursive, TestSAMPLE3, 5u, SAMPLE, 3);
+SIMPLE_TEST(JosephusK_Recursive, TestLOWER2, 1, LOWER, 2);
+SIMPLE_TEST(JosephusK_Recursive, TestSample1, 15, 15, 2);
+SIMPLE_TEST(JosephusK_Recursive, TestLOWER3, 1, LOWER, 3);
+SIMPLE_TEST(JosephusK_Recursive, TestSample2, 5, 15, 3);
+SIMPLE_TEST(JosephusK_Recursive, TestSample3, 5, 10, 2);
+SIMPLE_TEST(JosephusK_Recursive, TestSample4, 3, 5, 2);
+SIMPLE_TEST(JosephusK_Recursive, TestSample5, 2, 7, 4);
 
 
 SIMPLE_BENCHMARK(JosephusK_Closedform, LOWER, UPPER_K);
 SIMPLE_BENCHMARK(JosephusK_Closedform, LOWER, 2);
 SIMPLE_BENCHMARK(JosephusK_Closedform, UPPER_K, UPPER_K);
 SIMPLE_BENCHMARK(JosephusK_Closedform, UPPER_K, 2);
-SIMPLE_BENCHMARK(JosephusK_Closedform, SAMPLE, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Closedform, SAMPLE, 2);
+SIMPLE_BENCHMARK(JosephusK_Closedform, 15, UPPER_K);
+SIMPLE_BENCHMARK(JosephusK_Closedform, 15, 2);
 
-SIMPLE_TEST(JosephusK_Closedform, TestLOWER2, 1u, LOWER, 2);
-SIMPLE_TEST(JosephusK_Closedform, TestSAMPLE2, 15u, SAMPLE, 2);
-SIMPLE_TEST(JosephusK_Closedform, TestLOWER3, 1u, LOWER, 3);
-SIMPLE_TEST(JosephusK_Closedform, TestSAMPLE3, 5u, SAMPLE, 3);
+SIMPLE_TEST(JosephusK_Closedform, TestLOWER2, 1, LOWER, 2);
+SIMPLE_TEST(JosephusK_Closedform, TestSample1, 15, 15, 2);
+SIMPLE_TEST(JosephusK_Closedform, TestLOWER3, 1, LOWER, 3);
+SIMPLE_TEST(JosephusK_Closedform, TestSample2, 5, 15, 3);
+SIMPLE_TEST(JosephusK_Closedform, TestSample3, 5, 10, 2);
+SIMPLE_TEST(JosephusK_Closedform, TestSample4, 3, 5, 2);
+SIMPLE_TEST(JosephusK_Closedform, TestSample5, 2, 7, 4);
+
+
+SIMPLE_BENCHMARK(JosephusK_Iterative, LOWER, UPPER_K);
+SIMPLE_BENCHMARK(JosephusK_Iterative, LOWER, 2);
+SIMPLE_BENCHMARK(JosephusK_Iterative, UPPER_K, UPPER_K);
+SIMPLE_BENCHMARK(JosephusK_Iterative, UPPER_K, 2);
+SIMPLE_BENCHMARK(JosephusK_Iterative, 15, UPPER_K);
+SIMPLE_BENCHMARK(JosephusK_Iterative, 15, 2);
+
+SIMPLE_TEST(JosephusK_Iterative, TestLOWER2, 1, LOWER, 2);
+SIMPLE_TEST(JosephusK_Iterative, TestSample1, 15, 15, 2);
+SIMPLE_TEST(JosephusK_Iterative, TestLOWER3, 1, LOWER, 3);
+SIMPLE_TEST(JosephusK_Iterative, TestSample2, 5, 15, 3);
+SIMPLE_TEST(JosephusK_Iterative, TestSample3, 5, 10, 2);
+SIMPLE_TEST(JosephusK_Iterative, TestSample4, 3, 5, 2);
+SIMPLE_TEST(JosephusK_Iterative, TestSample5, 2, 7, 4);
+
+
+const ArrayType EXPECTED1 = {2, 4, 6, 8, 10, 3, 7, 1, 9, 5};
+const ArrayType EXPECTED2 = {3, 6, 2, 7, 5, 1, 4};
+
+
+SIMPLE_BENCHMARK(JosephusPermutation, 15, 2);
+
+SIMPLE_TEST(JosephusPermutation, TestSample1, EXPECTED1, 10, 2);
+SIMPLE_TEST(JosephusPermutation, TestSample2, EXPECTED2, 7, 3);

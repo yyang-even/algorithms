@@ -913,3 +913,7 @@
 * https://www.geeksforgeeks.org/comparing-xy-and-yx-for-very-large-values-of-x-and-y/
 * https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
 * https://www.geeksforgeeks.org/length-of-longest-consecutive-zeroes-in-the-binary-representation-of-a-number/
+* https://www.geeksforgeeks.org/josephus-problem-iterative-solution/
+* https://www.geeksforgeeks.org/puzzle-100-people-in-a-circle-with-gun-puzzle/
+* https://www.geeksforgeeks.org/lucky-alive-person-circle/
+* https://www.geeksforgeeks.org/lucky-alive-person-in-a-circle-set-2/
