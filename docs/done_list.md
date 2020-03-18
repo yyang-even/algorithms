@@ -917,3 +917,4 @@
 * https://www.geeksforgeeks.org/puzzle-100-people-in-a-circle-with-gun-puzzle/
 * https://www.geeksforgeeks.org/lucky-alive-person-circle/
 * https://www.geeksforgeeks.org/lucky-alive-person-in-a-circle-set-2/
+* https://www.geeksforgeeks.org/cutting-a-rod-dp-13/

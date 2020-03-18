@@ -1,0 +1,2 @@
+CompileBenchmarkExe(rod_cutting)
+CompileTestExe(rod_cutting)
