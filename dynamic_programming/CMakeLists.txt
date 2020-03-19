@@ -1,2 +1,5 @@
+CompileBenchmarkExe(matrix_chain_multiplication)
+CompileTestExe(matrix_chain_multiplication)
+
 CompileBenchmarkExe(rod_cutting)
 CompileTestExe(rod_cutting)
