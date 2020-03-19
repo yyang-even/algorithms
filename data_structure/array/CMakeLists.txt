@@ -1,0 +1,1 @@
+CompileTestExe(dimensions_of_multidimensional_array)
