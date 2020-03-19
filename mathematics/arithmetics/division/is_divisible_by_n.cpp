@@ -3,6 +3,8 @@
 #include "is_divisible_by_n.h"
 
 
+namespace {
+
 auto stateTransitionTable(const unsigned N) {
     std::vector<std::vector<unsigned>> table(N, std::vector<unsigned>(2, 0));
 
@@ -15,7 +17,8 @@ auto stateTransitionTable(const unsigned N) {
 
     return table;
 }
-auto isDivisibleByNDFALookupTable(const std::vector<unsigned> &stream, const unsigned N) {
+
+auto isDivisibleByN_DFALookupTable(const std::vector<unsigned> &stream, const unsigned N) {
     const auto state_transition_table = stateTransitionTable(N);
     std::vector<bool> outputs;
     unsigned remainder = 0;
@@ -28,15 +31,18 @@ auto isDivisibleByNDFALookupTable(const std::vector<unsigned> &stream, const uns
     return outputs;
 }
 
+}//namespace
+
 
 const std::vector<unsigned> SAMPLE1 = {1, 0, 1, 0, 1};
 const std::vector<bool> EXPECTED1 = {false, false, false, false, true};
 
-SIMPLE_BENCHMARK(isDivisibleByNDFA, SAMPLE1, 3);
 
-SIMPLE_TEST(isDivisibleByNDFA, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
+SIMPLE_BENCHMARK(isDivisibleByN_DFA, SAMPLE1, 3);
+
+SIMPLE_TEST(isDivisibleByN_DFA, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 
 
-SIMPLE_BENCHMARK(isDivisibleByNDFALookupTable, SAMPLE1, 3);
+SIMPLE_BENCHMARK(isDivisibleByN_DFALookupTable, SAMPLE1, 3);
 
-SIMPLE_TEST(isDivisibleByNDFALookupTable, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
+SIMPLE_TEST(isDivisibleByN_DFALookupTable, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);

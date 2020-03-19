@@ -22,7 +22,7 @@ auto MedianOf4(const ArrayType::value_type smaller_one, const ArrayType::value_t
  * @reference   Median of two sorted arrays of same size
  *              https://www.geeksforgeeks.org/median-of-two-sorted-arrays/
  *
- * Note : Since size of the set for which we are looking for median is even (2n), we need
+ * Note: Since size of the set for which we are looking for median is even (2n), we need
  * take average of middle two numbers and return floor of the average.
  */
 auto MedianOfTwoSortedArrays_SameSize(const ArrayType::const_iterator &cbegin_one,

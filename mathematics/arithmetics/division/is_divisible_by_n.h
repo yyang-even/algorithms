@@ -10,7 +10,7 @@
  * far is divisible by a given number n. At any given time, you will get 0 or 1
  * and tell whether the number formed with these bits is divisible by n or not.
  */
-auto isDivisibleByNDFA(const std::vector<unsigned> &stream, const unsigned N) {
+auto isDivisibleByN_DFA(const std::vector<unsigned> &stream, const unsigned N) {
     std::vector<bool> outputs;
     unsigned remainder = 0;
 

@@ -7,11 +7,9 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 #include "prime_factors_of_n.h"
 
-std::string PrintAllPrimeFactors(const InputType N) {
+std::string PrintAllPrimeFactors(const unsigned N) {
     std::string output;
     const auto prime_factors = PrimeFactorsOf(N);
     for (const auto factor : prime_factors) {
@@ -32,12 +30,12 @@ auto PrimeFactorsOfN_Sieve(const unsigned N) {
  * @reference   https://www.geeksforgeeks.org/pollards-rho-algorithm-prime-factorization/
  *
  * Given a positive integer n, and that it is composite, find a divisor of it.
- * Note: Algorithm will run indefinitely for prime numbers.
- *  The algorithm may not find the factors and return a failure for composite n.
- *  In that case, we use a different set of x, y and c and try again.
- *  The above algorithm only finds a divisor. To find a prime factor, we may
- *  recursively factorize the divisor d, run algorithm for d and n/d. The cycle
- *  length is typically of the order √d.
+ * @note    Algorithm will run indefinitely for prime numbers.
+ *          The algorithm may not find the factors and return a failure for composite n.
+ *          In that case, we use a different set of x, y and c and try again.
+ *          The above algorithm only finds a divisor. To find a prime factor, we may
+ *          recursively factorize the divisor d, run algorithm for d and n/d. The cycle
+ *          length is typically of the order √d.
  */
 long OneDivisorOfN_PollardsRho(const long N) {
     if (N < 4) {
@@ -121,14 +119,14 @@ auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
 }//namespace
 
 
-constexpr InputType LOWER = 1;
-constexpr InputType SAMPLE1 = 12;
-constexpr InputType SAMPLE2 = 315;
+constexpr unsigned LOWER = 1;
+constexpr unsigned SAMPLE1 = 12;
+constexpr unsigned SAMPLE2 = 315;
 
 
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, LOWER);
 SIMPLE_BENCHMARK(PrintAllPrimeFactors, SAMPLE1);
-RANDOM_BENCHMARK(PrintAllPrimeFactors, LOWER, std::numeric_limits<InputType>::max());
+RANDOM_BENCHMARK(PrintAllPrimeFactors, LOWER, std::numeric_limits<unsigned>::max());
 
 SIMPLE_TEST(PrintAllPrimeFactors, TestLOWER, "", LOWER);
 SIMPLE_TEST(PrintAllPrimeFactors, TestSAMPLE1, "223", SAMPLE1);
