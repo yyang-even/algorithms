@@ -32,12 +32,12 @@ auto PrimeFactorsOfN_Sieve(const unsigned N) {
  * @reference   https://www.geeksforgeeks.org/pollards-rho-algorithm-prime-factorization/
  *
  * Given a positive integer n, and that it is composite, find a divisor of it.
- * Note: Algorithm will run indefinitely for prime numbers.
- *  The algorithm may not find the factors and return a failure for composite n.
- *  In that case, we use a different set of x, y and c and try again.
- *  The above algorithm only finds a divisor. To find a prime factor, we may
- *  recursively factorize the divisor d, run algorithm for d and n/d. The cycle
- *  length is typically of the order √d.
+ * @note    Algorithm will run indefinitely for prime numbers.
+ *          The algorithm may not find the factors and return a failure for composite n.
+ *          In that case, we use a different set of x, y and c and try again.
+ *          The above algorithm only finds a divisor. To find a prime factor, we may
+ *          recursively factorize the divisor d, run algorithm for d and n/d. The cycle
+ *          length is typically of the order √d.
  */
 long OneDivisorOfN_PollardsRho(const long N) {
     if (N < 4) {

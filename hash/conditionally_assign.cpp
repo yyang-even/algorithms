@@ -18,7 +18,7 @@
  *    Assign value 'a' to variable 'y'
  * Else (If 'x' is 1)
  *    Assign value 'b' to variable 'y'.
- * Note: – You are not allowed to use any conditional operator (including
+ * Note: You are not allowed to use any conditional operator (including
  * ternary operator) or any arithmetic operator ( +, -, *, /).
  */
 auto ConditionallyAssign(const int a, const int b, const bool x) {

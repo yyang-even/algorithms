@@ -118,7 +118,7 @@ unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  * @reference   Print first n Fibonacci Numbers using direct formula
  *              https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
  *
- * Note: It may not work perfect due to floating point precision errors.
+ * @note    It may not work perfect due to floating point precision errors.
  */
 unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);

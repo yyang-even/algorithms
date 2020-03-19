@@ -5,8 +5,6 @@
 
 namespace {
 
-typedef int InputType;
-
 /** Is divisible by 3
  *
  * @reference   Write an Efficient Method to Check if a Number is Multiple of 3
@@ -17,7 +15,7 @@ typedef int InputType;
  * There is a pattern in binary representation of the number that can be used to find if number is a multiple of 3.
  * If difference between count of odd set bits (Bits set at odd positions) and even set bits is multiple of 3 then is the number.
  */
-auto isDivisibleBy3(InputType num) {
+auto isDivisibleBy3(int num) {
     if (num < 0) {
         num = -num;
     }
@@ -46,14 +44,14 @@ auto isDivisibleBy3(InputType num) {
 
 
 bool isDivisibleBy3_DFA(const std::vector<unsigned> &number) {
-    return isDivisibleByNDFA(number, 3).back();
+    return isDivisibleByN_DFA(number, 3).back();
 }
 
 }//namespace
 
 
-constexpr InputType LOWER = 2;
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr int LOWER = 2;
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
 SIMPLE_BENCHMARK(isDivisibleBy3, LOWER);
