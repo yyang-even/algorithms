@@ -118,7 +118,7 @@ unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  * @reference   Print first n Fibonacci Numbers using direct formula
  *              https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
  *
- * Note: It may not work perfect due to floating point precision errors.
+ * @note    It may not work perfect due to floating point precision errors.
  */
 unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
@@ -132,6 +132,10 @@ unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 15.1-5.
+ * @reference   Overlapping Subproblems Property in Dynamic Programming | DP-1
+ *              https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/
+ * @reference   Optimal Substructure Property in Dynamic Programming | DP-2
+ *              https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/
  */
 auto NthFibonacci_DP(const unsigned n) {
     std::vector<unsigned> fibonaccis = {0, 1};

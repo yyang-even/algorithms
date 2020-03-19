@@ -9,7 +9,7 @@ namespace {
  * that can be obtained by replacing the "$" with alphabets in the given string.
  * Note: Alphabets should be placed in such a way that the string is always alternating
  * in vowels and consonants, and the string must always start with a consonant. It is
- * assumed that such a string is always possible, i.e. there is no need to care about
+ * assumed that such a string is always possible, i.e. There is no need to care about
  * the characters other than "$".
  */
 auto CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string &str) {

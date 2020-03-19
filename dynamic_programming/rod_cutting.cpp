@@ -11,6 +11,8 @@ using ArrayType = std::vector<int>;
  *              Introduction to Algorithms, Third Edition. Chapter 15.1.
  * @reference   Cutting a Rod | DP-13
  *              https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
+ * @reference   C Program for Cutting a Rod | DP-13
+ *              https://www.geeksforgeeks.org/c-program-for-cutting-a-rod-dp-13/
  *
  * Given a rod of length n inches and an array of prices that contains prices of all
  * pieces of size smaller than n. Determine the maximum value obtainable by cutting

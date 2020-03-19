@@ -18,8 +18,8 @@
  * @reference   Segmented Sieve
  *              https://www.geeksforgeeks.org/segmented-sieve/
  *
- * Note that time complexity (or number of operations) by Segmented Sieve is same as Simple Sieve.
- * It has advantages for large ‘n’ as it has better locality of reference and requires.
+ * @note    Time complexity (or number of operations) by Segmented Sieve is same as Simple Sieve.
+ *          It has advantages for large ‘n’ as it has better locality of reference and requires.
  *
  * @reference   Bitwise Sieve
  *              https://www.geeksforgeeks.org/bitwise-sieve/

@@ -12,7 +12,7 @@ using ArrayType = std::vector<int>;
  * You are given an array on n-elements. An extrema is an elements which is
  * either greater than its both of neighbors or less than its both neighbors.
  * You have to calculate the number of local extrema in given array.
- * Note : 1st and last elements are not extrema.
+ * Note: 1st and last elements are not extrema.
  */
 auto CountLocalExtrema(const ArrayType &elements) {
     assert(elements.size() > 2);

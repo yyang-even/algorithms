@@ -918,3 +918,12 @@
 * https://www.geeksforgeeks.org/lucky-alive-person-circle/
 * https://www.geeksforgeeks.org/lucky-alive-person-in-a-circle-set-2/
 * https://www.geeksforgeeks.org/cutting-a-rod-dp-13/
+* https://www.geeksforgeeks.org/c-program-for-cutting-a-rod-dp-13/
+* https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
+* https://www.geeksforgeeks.org/c-program-for-matrix-chain-multiplication-dp-8/
+* https://www.geeksforgeeks.org/matrix-chain-multiplication-a-on2-solution/
+* https://www.geeksforgeeks.org/printing-brackets-matrix-chain-multiplication-problem/
+* https://www.geeksforgeeks.org/print-dimensions-multidimensional-array-c/
+* https://www.geeksforgeeks.org/printing-matrix-chain-multiplication-a-space-optimized-solution/
+* https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/
+* https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/
