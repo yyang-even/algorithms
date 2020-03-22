@@ -5,16 +5,12 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Check if an array is sorted and rotated
- *
- * @reference   https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated/
- *
- * Given an array of N distinct integers. The task is to write a program to check if
- * this array is sorted and rotated counter-clockwise. A sorted array is not considered
- * as sorted and rotated, i.e., there should at least one rotation.
- */
-auto CheckIfArraySortedAndRotated(const ArrayType &values) {
-    const auto minimum_element = std::min_element(values.cbegin(), values.cend());
+#include "find_minimum_in_sorted_and_rotated_array.h"
+
+
+auto CheckIfArraySortedAndRotated(const ArrayType &values,
+                                  const std::function<ArrayType::const_iterator(const ArrayType &)> min_element) {
+    const auto minimum_element = min_element(values);
 
     if (minimum_element == values.cbegin()) {
         return false;
@@ -24,6 +20,31 @@ auto CheckIfArraySortedAndRotated(const ArrayType &values) {
     const auto is_second_part_sorted = std::is_sorted(std::next(minimum_element), values.cend());
     return is_first_part_sorted and is_second_part_sorted and
            values.back() < *std::prev(minimum_element);
+}
+
+/** Check if an array is sorted and rotated
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated/
+ *
+ * Given an array of N distinct integers. The task is to write a program to check if
+ * this array is sorted and rotated counter-clockwise. A sorted array is not considered
+ * as sorted and rotated, i.e., there should at least one rotation.
+ */
+auto CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
+    return CheckIfArraySortedAndRotated(values, [](const ArrayType & values) {
+        return std::min_element(values.cbegin(), values.cend());
+    });
+}
+
+
+/**
+ * @reference   Check if an array is sorted and rotated using Binary Search
+ *              https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated-using-binary-search/
+ */
+auto CheckIfArraySortedAndRotated_BinarySearch(const ArrayType &values) {
+    return CheckIfArraySortedAndRotated(values, [](const ArrayType & values) {
+        return FindMinInSortedAndRotatedArray(values.cbegin(), values.size());
+    });
 }
 
 
@@ -54,9 +75,17 @@ const ArrayType SAMPLE3 = {1, 2, 3};
 const ArrayType SAMPLE4 = {4, 9, 1, 5, 2};
 
 
-SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated, SAMPLE1);
+SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_LinearSearch, SAMPLE1);
 
-SIMPLE_TEST(CheckIfArraySortedAndRotated, TestSAMPLE1, true, SAMPLE1);
-SIMPLE_TEST(CheckIfArraySortedAndRotated, TestSAMPLE2, true, SAMPLE2);
-SIMPLE_TEST(CheckIfArraySortedAndRotated, TestSAMPLE3, false, SAMPLE3);
-SIMPLE_TEST(CheckIfArraySortedAndRotated, TestSAMPLE4, false, SAMPLE4);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE4, false, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_BinarySearch, SAMPLE1);
+
+SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE4, false, SAMPLE4);

@@ -927,3 +927,5 @@
 * https://www.geeksforgeeks.org/printing-matrix-chain-multiplication-a-space-optimized-solution/
 * https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/
 * https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/
+* https://www.geeksforgeeks.org/check-if-a-number-is-odd-or-even-using-bitwise-operators/
+* https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated-using-binary-search/

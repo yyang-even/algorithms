@@ -75,6 +75,8 @@ inline auto IsMultipleOf4_Mask(const InputType num) {
  *              https://www.geeksforgeeks.org/3-ways-check-number-odd-even-without-using-modulus-operator-set-2-can-merge-httpswww-geeksforgeeks-orgcheck-whether-given-number-even-odd/
  * @reference   TCS Coding Practice Question | Check Odd or Even
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-check-odd-or-even/
+ * @reference   Check if a Number is Odd or Even using Bitwise Operators
+ *              https://www.geeksforgeeks.org/check-if-a-number-is-odd-or-even-using-bitwise-operators/
  *
  * Given a number, check whether it is even or odd.
  */
