@@ -1,0 +1,247 @@
+#include "common_header.h"
+
+
+namespace {
+
+using TwoDimensionalArrayType =
+    std::unordered_map<std::size_t, std::unordered_map<std::size_t, unsigned>>;
+
+/** Longest Common Subsequence
+ *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 15.4.
+ * @reference   Longest Common Subsequence | DP-4
+ *              https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
+ * @reference   C++ Program for Longest Common Subsequence
+ *              https://www.geeksforgeeks.org/cpp-program-for-longest-common-subsequence/
+ *
+ * LCS Problem Statement: Given two sequences, find the length of longest subsequence
+ * present in both of them. A subsequence is a sequence that appears in the same
+ * relative order, but not necessarily contiguous. For example, "abc", "abg", "bdf",
+ * "aeg", "acefg", .. etc are subsequences of "abcdefg".
+ * It is a classic computer science problem, the basis of diff (a file comparison
+ * program that outputs the differences between two files), and has applications in
+ * bioinformatics.
+ */
+auto LongestCommonSubsequence(const std::string &X, const std::string &Y,
+                              std::string *const the_lcs = nullptr) {
+    unsigned LCS_table[X.size() + 1][Y.size() + 1] = {};
+
+    for (std::string::size_type i = 1; i <= X.size(); ++i) {
+        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+            if (X[i - 1] == Y[j - 1]) {
+                LCS_table[i][j] = LCS_table[i - 1][j - 1] + 1;
+            } else {
+                LCS_table[i][j] = std::max(LCS_table[i - 1][j], LCS_table[i][j - 1]);
+            }
+        }
+    }
+
+    if (the_lcs) {
+        auto i = X.size();
+        auto j = Y.size();
+        auto lcs_length = LCS_table[i][j];
+        the_lcs->resize(lcs_length);
+
+        while (i and j) {
+            if (X[i - 1] == Y[j - 1]) {
+                (*the_lcs)[--lcs_length] = X[--i];
+                --j;
+            } else if (LCS_table[i - 1][j] > LCS_table[i][j - 1]) {
+                --i;
+            } else {
+                --j;
+            }
+        }
+    }
+
+    return LCS_table[X.size()][Y.size()];
+}
+
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 15.4-4.
+ * @reference   A Space Optimized Solution of LCS
+ *              https://www.geeksforgeeks.org/space-optimized-solution-lcs/
+ */
+auto LongestCommonSubsequence_SpaceOptimized(const std::string &X, const std::string &Y) {
+    auto row_size = 2;  //work around a GCC bug.
+    unsigned LCS_table[row_size][Y.size() + 1] = {};
+
+    for (std::string::size_type i = 1; i <= X.size(); ++i) {
+        const auto current_row = i & 1;
+        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+            if (X[i - 1] == Y[j - 1]) {
+                LCS_table[current_row][j] = LCS_table[1 - current_row][j - 1] + 1;
+            } else {
+                LCS_table[current_row][j] =
+                    std::max(LCS_table[1 - current_row][j], LCS_table[current_row][j - 1]);
+            }
+        }
+    }
+
+    return LCS_table[X.size() & 1][Y.size()];
+}
+
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 15.4-3.
+ * @reference   Longest Common Subsequence | DP using Memoization
+ *              https://www.geeksforgeeks.org/longest-common-subsequence-dp-using-memoization/
+ */
+unsigned LongestCommonSubsequence_Memoization(const std::string &X,
+        const std::string::size_type x_i,
+        const std::string &Y, const std::string::size_type y_i,
+        TwoDimensionalArrayType &LCS_table) {
+    if (x_i == 0 or y_i == 0) {
+        return 0;
+    }
+
+    if (LCS_table[x_i - 1].find(y_i - 1) == LCS_table[x_i - 1].cend()) {
+
+        if (X[x_i - 1] == Y[y_i - 1]) {
+            LCS_table[x_i - 1][y_i - 1] =
+                1 + LongestCommonSubsequence_Memoization(X, x_i - 1, Y, y_i - 1, LCS_table);
+        } else
+            LCS_table[x_i - 1][y_i - 1] =
+                std::max(LongestCommonSubsequence_Memoization(X, x_i, Y, y_i - 1, LCS_table),
+                         LongestCommonSubsequence_Memoization(X, x_i - 1, Y, y_i, LCS_table));
+    }
+
+    return LCS_table[x_i - 1][y_i - 1];
+}
+
+auto LongestCommonSubsequence_Memoization(const std::string &X, const std::string &Y) {
+    TwoDimensionalArrayType LCS_table;
+    return LongestCommonSubsequence_Memoization(X, X.size(), Y, Y.size(), LCS_table);
+}
+
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 15.4-2.
+ * @reference   Printing Longest Common Subsequence
+ *              https://www.geeksforgeeks.org/printing-longest-common-subsequence/
+ */
+auto LongestCommonSubsequenceString(const std::string &X, const std::string &Y) {
+    std::string the_lcs;
+    LongestCommonSubsequence(X, Y, &the_lcs);
+    return the_lcs;
+}
+
+
+/**
+ * @reference   Printing Longest Common Subsequence | Set 2 (Printing All)
+ *              https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
+ */
+auto AllLongestCommonSubsequenceStrings(const std::string &X, const std::string::size_type x_i,
+                                        const std::string &Y, const std::string::size_type y_i,
+                                        TwoDimensionalArrayType &LCS_table) {
+    if (x_i == 0 or y_i == 0)
+        return std::unordered_set<std::string> {""};
+
+    std::unordered_set<std::string> all_lcs;
+    if (X[x_i - 1] == Y[y_i - 1]) {
+        auto all_sub_lcs = AllLongestCommonSubsequenceStrings(X, x_i - 1, Y, y_i - 1, LCS_table);
+        for (const auto &one_sub_lcs : all_sub_lcs) {
+            all_lcs.emplace(one_sub_lcs + X[x_i - 1]);
+        }
+    } else {
+        if (LCS_table[x_i - 1][y_i] >= LCS_table[x_i][y_i - 1]) {
+            all_lcs = AllLongestCommonSubsequenceStrings(X, x_i - 1, Y, y_i, LCS_table);
+        }
+        if (LCS_table[x_i - 1][y_i] <= LCS_table[x_i][y_i - 1]) {
+            all_lcs.merge(AllLongestCommonSubsequenceStrings(X, x_i, Y, y_i - 1, LCS_table));
+        }
+    }
+    return all_lcs;
+}
+
+auto AllLongestCommonSubsequenceStrings(const std::string &X, const std::string &Y) {
+    TwoDimensionalArrayType LCS_table = {};
+
+    for (std::string::size_type i = 1; i <= X.size(); ++i) {
+        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+            if (X[i - 1] == Y[j - 1]) {
+                LCS_table[i][j] = LCS_table[i - 1][j - 1] + 1;
+            } else {
+                LCS_table[i][j] = std::max(LCS_table[i - 1][j], LCS_table[i][j - 1]);
+            }
+        }
+    }
+
+    return AllLongestCommonSubsequenceStrings(X, X.size(), Y, Y.size(), LCS_table);
+}
+
+}//namespace
+
+
+const auto SAMPLE1_X = "ABCDGH";
+const auto SAMPLE1_Y = "AEDFHR";
+const std::string EXPECTED1 = "ADH";
+
+const auto SAMPLE2_X = "AGGTAB";
+const auto SAMPLE2_Y = "GXTXAYB";
+const std::string EXPECTED2 = "GTAB";
+
+const auto SAMPLE3_X = "10010101";
+const auto SAMPLE3_Y = "010110110";
+const std::string EXPECTED3 = "010101";
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequence, SAMPLE1_X, SAMPLE1_Y);
+
+SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, SAMPLE1_X, SAMPLE1_Y);
+
+SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
+            SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(),
+            SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE3, EXPECTED3.size(),
+            SAMPLE3_X, SAMPLE3_Y);
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequence_Memoization, SAMPLE1_X, SAMPLE1_Y);
+
+SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE1, EXPECTED1.size(),
+            SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE2, EXPECTED2.size(),
+            SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE3, EXPECTED3.size(),
+            SAMPLE3_X, SAMPLE3_Y);
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequenceString, SAMPLE1_X, SAMPLE1_Y);
+
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE1, EXPECTED1, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE2, EXPECTED2, SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE3, EXPECTED3, SAMPLE3_X, SAMPLE3_Y);
+
+
+const auto SAMPLE4_X = "AGTGATG";
+const auto SAMPLE4_Y = "GTTAG";
+const std::unordered_set<std::string> EXPECTED4 = {"GTAG", "GTTG"};
+
+
+const auto SAMPLE5_X = "AATCC";
+const auto SAMPLE5_Y = "ACACG";
+const std::unordered_set<std::string> EXPECTED5 = {"ACC", "AAC"};
+
+
+const auto SAMPLE6_X = "ABCBDAB";
+const auto SAMPLE6_Y = "BDCABA";
+const std::unordered_set<std::string> EXPECTED6 = {"BCAB", "BCBA", "BDAB"};
+
+
+SIMPLE_BENCHMARK(AllLongestCommonSubsequenceStrings, SAMPLE4_X, SAMPLE4_Y);
+
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE4, EXPECTED4, SAMPLE4_X, SAMPLE4_Y);
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE5, EXPECTED5, SAMPLE5_X, SAMPLE5_Y);
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE6, EXPECTED6, SAMPLE6_X, SAMPLE6_Y);

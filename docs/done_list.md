@@ -934,3 +934,9 @@
 * https://www.geeksforgeeks.org/largest-number-less-equal-n-bst-iterative-approach/
 * https://www.geeksforgeeks.org/smallest-number-in-bst-which-is-greater-than-or-equal-to-n/
 * https://www.geeksforgeeks.org/smallest-number-in-bst-which-is-greater-than-or-equal-to-n-iterative-approach/
+* https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
+* https://www.geeksforgeeks.org/printing-longest-common-subsequence/
+* https://www.geeksforgeeks.org/cpp-program-for-longest-common-subsequence/
+* https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
+* https://www.geeksforgeeks.org/space-optimized-solution-lcs/
+* https://www.geeksforgeeks.org/longest-common-subsequence-dp-using-memoization/
