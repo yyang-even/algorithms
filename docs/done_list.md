@@ -929,3 +929,8 @@
 * https://www.geeksforgeeks.org/optimal-substructure-property-in-dynamic-programming-dp-2/
 * https://www.geeksforgeeks.org/check-if-a-number-is-odd-or-even-using-bitwise-operators/
 * https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated-using-binary-search/
+* https://www.geeksforgeeks.org/check-whether-the-two-binary-search-trees-are-identical-or-not/
+* https://www.geeksforgeeks.org/largest-number-bst-less-equal-n/
+* https://www.geeksforgeeks.org/largest-number-less-equal-n-bst-iterative-approach/
+* https://www.geeksforgeeks.org/smallest-number-in-bst-which-is-greater-than-or-equal-to-n/
+* https://www.geeksforgeeks.org/smallest-number-in-bst-which-is-greater-than-or-equal-to-n-iterative-approach/

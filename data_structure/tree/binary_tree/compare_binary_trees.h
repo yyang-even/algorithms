@@ -9,6 +9,8 @@ static inline auto isSameTree(const BinaryTree::Node::PointerType lhs_node,
 /** Write Code to Determine if Two Trees are Identical
  *
  * @reference   https://www.geeksforgeeks.org/write-c-code-to-determine-if-two-trees-are-identical/
+ * @reference   Check whether the two Binary Search Trees are Identical or Not
+ *              https://www.geeksforgeeks.org/check-whether-the-two-binary-search-trees-are-identical-or-not/
  */
 static inline auto areIdenticalTrees(const BinaryTree::Node::PointerType lhs_node,
                                      const BinaryTree::Node::PointerType rhs_node) {
