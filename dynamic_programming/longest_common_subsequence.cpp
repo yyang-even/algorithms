@@ -1,61 +1,16 @@
 #include "common_header.h"
 
+#include "longest_common_subsequence.h"
+
 
 namespace {
 
 using TwoDimensionalArrayType =
     std::unordered_map<std::size_t, std::unordered_map<std::size_t, unsigned>>;
 
-/** Longest Common Subsequence
- *
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 15.4.
- * @reference   Longest Common Subsequence | DP-4
- *              https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
- * @reference   C++ Program for Longest Common Subsequence
- *              https://www.geeksforgeeks.org/cpp-program-for-longest-common-subsequence/
- *
- * LCS Problem Statement: Given two sequences, find the length of longest subsequence
- * present in both of them. A subsequence is a sequence that appears in the same
- * relative order, but not necessarily contiguous. For example, "abc", "abg", "bdf",
- * "aeg", "acefg", .. etc are subsequences of "abcdefg".
- * It is a classic computer science problem, the basis of diff (a file comparison
- * program that outputs the differences between two files), and has applications in
- * bioinformatics.
- */
-auto LongestCommonSubsequence(const std::string &X, const std::string &Y,
-                              std::string *const the_lcs = nullptr) {
-    unsigned LCS_table[X.size() + 1][Y.size() + 1] = {};
 
-    for (std::string::size_type i = 1; i <= X.size(); ++i) {
-        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
-            if (X[i - 1] == Y[j - 1]) {
-                LCS_table[i][j] = LCS_table[i - 1][j - 1] + 1;
-            } else {
-                LCS_table[i][j] = std::max(LCS_table[i - 1][j], LCS_table[i][j - 1]);
-            }
-        }
-    }
-
-    if (the_lcs) {
-        auto i = X.size();
-        auto j = Y.size();
-        auto lcs_length = LCS_table[i][j];
-        the_lcs->resize(lcs_length);
-
-        while (i and j) {
-            if (X[i - 1] == Y[j - 1]) {
-                (*the_lcs)[--lcs_length] = X[--i];
-                --j;
-            } else if (LCS_table[i - 1][j] > LCS_table[i][j - 1]) {
-                --i;
-            } else {
-                --j;
-            }
-        }
-    }
-
-    return LCS_table[X.size()][Y.size()];
+auto LongestCommonSubsequence_DP(const std::string &X, const std::string &Y) {
+    return LongestCommonSubsequence(X, Y);
 }
 
 
@@ -190,11 +145,11 @@ const auto SAMPLE3_Y = "010110110";
 const std::string EXPECTED3 = "010101";
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequence, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequence_DP, SAMPLE1_X, SAMPLE1_Y);
 
-SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
-SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
-SIMPLE_TEST(LongestCommonSubsequence, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
 
 
 SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, SAMPLE1_X, SAMPLE1_Y);
