@@ -1,6 +1,9 @@
 CompileBenchmarkExe(longest_common_subsequence)
 CompileTestExe(longest_common_subsequence)
 
+CompileBenchmarkExe(longest_increasing_subsequence)
+CompileTestExe(longest_increasing_subsequence)
+
 CompileBenchmarkExe(matrix_chain_multiplication)
 CompileTestExe(matrix_chain_multiplication)
 

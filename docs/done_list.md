@@ -940,3 +940,11 @@
 * https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
 * https://www.geeksforgeeks.org/space-optimized-solution-lcs/
 * https://www.geeksforgeeks.org/longest-common-subsequence-dp-using-memoization/
+* https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/
+* https://www.geeksforgeeks.org/c-c-program-for-longest-increasing-subsequence/
+* https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+* https://www.geeksforgeeks.org/c-program-for-longest-increasing-subsequence/
+* https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n-simple-implementation/
+* https://www.geeksforgeeks.org/longest-increasing-subsequence-using-longest-common-subsequence-algorithm/
+* https://www.geeksforgeeks.org/construction-of-longest-increasing-subsequence-using-dynamic-programming/
+* https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
