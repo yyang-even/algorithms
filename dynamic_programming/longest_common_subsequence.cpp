@@ -8,6 +8,11 @@ namespace {
 using TwoDimensionalArrayType =
     std::unordered_map<std::size_t, std::unordered_map<std::size_t, unsigned>>;
 
+using ThreeDimensionalArrayType =
+    std::unordered_map<std::size_t,
+    std::unordered_map<std::size_t,
+    std::unordered_map<std::size_t, unsigned>>>;
+
 
 auto LongestCommonSubsequence_DP(const std::string &X, const std::string &Y) {
     return LongestCommonSubsequence(X, Y);
@@ -129,6 +134,67 @@ auto AllLongestCommonSubsequenceStrings(const std::string &X, const std::string 
     return AllLongestCommonSubsequenceStrings(X, X.size(), Y, Y.size(), LCS_table);
 }
 
+
+/**
+ * @reference   LCS (Longest Common Subsequence) of three strings
+ *              https://www.geeksforgeeks.org/lcs-longest-common-subsequence-three-strings/
+ */
+auto LongestCommonSubsequenceOfThree(const std::string &X,
+                                     const std::string &Y, const std::string &Z) {
+    unsigned LCS_table[X.size() + 1][Y.size() + 1][Z.size() + 1] = {};
+
+    for (std::string::size_type i = 1; i <= X.size(); ++i) {
+        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+            for (std::string::size_type k = 1; k <= Z.size(); ++k) {
+                if (X[i - 1] == Y[j - 1] and Y[j - 1] == Z[k - 1]) {
+                    LCS_table[i][j][k] = LCS_table[i - 1][j - 1][k - 1] + 1;
+                } else
+                    LCS_table[i][j][k] = std::max(std::max(LCS_table[i - 1][j][k],
+                                                           LCS_table[i][j - 1][k]),
+                                                  LCS_table[i][j][k - 1]);
+            }
+        }
+    }
+
+    return LCS_table[X.size()][Y.size()][Z.size()];
+}
+
+
+/**
+ * @reference   Memoization (1D, 2D and 3D)
+ *              https://www.geeksforgeeks.org/memoization-1d-2d-and-3d/
+ */
+unsigned LongestCommonSubsequenceOfThree_Memoization(
+    const std::string &X, const std::string::size_type x_i,
+    const std::string &Y, const std::string::size_type y_i,
+    const std::string &Z, const std::string::size_type z_i,
+    ThreeDimensionalArrayType &LCS_table) {
+    if (x_i == 0 or y_i == 0 or z_i == 0) {
+        return 0;
+    }
+
+    if (LCS_table[x_i - 1][y_i - 1].find(z_i - 1) == LCS_table[x_i - 1][y_i - 1].cend()) {
+        if (X[x_i - 1] == Y[y_i - 1] and Y[y_i - 1] == Z[z_i - 1]) {
+            LCS_table[x_i - 1][y_i - 1][z_i - 1] =
+                1 + LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i - 1, Z, z_i - 1, LCS_table);
+        } else
+            LCS_table[x_i - 1][y_i - 1][z_i - 1] =
+                std::max(
+                    std::max(LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i - 1, Z, z_i, LCS_table),
+                             LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i, Z, z_i, LCS_table)),
+                    LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i, Z, z_i - 1, LCS_table));
+    }
+
+    return LCS_table[x_i - 1][y_i - 1][z_i - 1];
+}
+
+auto LongestCommonSubsequenceOfThree_Memoization(const std::string &X,
+        const std::string &Y, const std::string &Z) {
+    ThreeDimensionalArrayType LCS_table;
+    return LongestCommonSubsequenceOfThree_Memoization(
+               X, X.size(), Y, Y.size(), Z, Z.size(), LCS_table);
+}
+
 }//namespace
 
 
@@ -199,3 +265,30 @@ SIMPLE_BENCHMARK(AllLongestCommonSubsequenceStrings, SAMPLE4_X, SAMPLE4_Y);
 SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE4, EXPECTED4, SAMPLE4_X, SAMPLE4_Y);
 SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE5, EXPECTED5, SAMPLE5_X, SAMPLE5_Y);
 SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE6, EXPECTED6, SAMPLE6_X, SAMPLE6_Y);
+
+
+const std::string SAMPLE7_X = "geeks";
+const auto SAMPLE7_Y = "geeksfor";
+const auto SAMPLE7_Z = "geeksforgeeks";
+
+
+const auto SAMPLE8_X = "abcd1e2";
+const auto SAMPLE8_Y = "bc12ea";
+const auto SAMPLE8_Z = "bd1ea";
+const std::string EXPECTED8 = "b1e";
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+
+SIMPLE_TEST(LongestCommonSubsequenceOfThree, TestSAMPLE7, SAMPLE7_X.size(),
+            SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+SIMPLE_TEST(LongestCommonSubsequenceOfThree, TestSAMPLE8, EXPECTED8.size(),
+            SAMPLE8_X, SAMPLE8_Y, SAMPLE8_Z);
+
+
+SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree_Memoization, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+
+SIMPLE_TEST(LongestCommonSubsequenceOfThree_Memoization, TestSAMPLE7, SAMPLE7_X.size(),
+            SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+SIMPLE_TEST(LongestCommonSubsequenceOfThree_Memoization, TestSAMPLE8, EXPECTED8.size(),
+            SAMPLE8_X, SAMPLE8_Y, SAMPLE8_Z);
