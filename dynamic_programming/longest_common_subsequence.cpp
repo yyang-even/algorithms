@@ -249,11 +249,9 @@ const auto SAMPLE4_X = "AGTGATG";
 const auto SAMPLE4_Y = "GTTAG";
 const std::unordered_set<std::string> EXPECTED4 = {"GTAG", "GTTG"};
 
-
 const auto SAMPLE5_X = "AATCC";
 const auto SAMPLE5_Y = "ACACG";
 const std::unordered_set<std::string> EXPECTED5 = {"ACC", "AAC"};
-
 
 const auto SAMPLE6_X = "ABCBDAB";
 const auto SAMPLE6_Y = "BDCABA";
@@ -270,7 +268,6 @@ SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE6, EXPECTED6, SAMPLE6_
 const std::string SAMPLE7_X = "geeks";
 const auto SAMPLE7_Y = "geeksfor";
 const auto SAMPLE7_Z = "geeksforgeeks";
-
 
 const auto SAMPLE8_X = "abcd1e2";
 const auto SAMPLE8_Y = "bc12ea";
