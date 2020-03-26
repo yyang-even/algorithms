@@ -7,5 +7,8 @@ CompileTestExe(longest_increasing_subsequence)
 CompileBenchmarkExe(matrix_chain_multiplication)
 CompileTestExe(matrix_chain_multiplication)
 
+CompileBenchmarkExe(optimal_binary_search_trees)
+CompileTestExe(optimal_binary_search_trees)
+
 CompileBenchmarkExe(rod_cutting)
 CompileTestExe(rod_cutting)

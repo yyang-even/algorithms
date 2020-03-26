@@ -952,3 +952,4 @@
 * https://www.geeksforgeeks.org/memoization-1d-2d-and-3d/
 * https://www.geeksforgeeks.org/solve-dynamic-programming-problem/
 * https://www.geeksforgeeks.org/tabulation-vs-memoization/
+* https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/
