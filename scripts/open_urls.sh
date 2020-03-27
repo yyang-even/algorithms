@@ -13,6 +13,16 @@ _term() {
     exit 0
 }
 
+SLEEP_SECONDS=16
+
+OpenUrlAndSleep() {
+    echo "Opening: $1"
+
+    firefox --new-tab "$1" &
+
+    sleep $SLEEP_SECONDS
+}
+
 
 if [ $# -ne 1 ]; then
     echo "Usage: $(basename $0) file"
@@ -21,20 +31,16 @@ fi
 trap _term SIGTERM SIGINT
 
 FILE="$1"
-SLEEP_SECONDS=16
 NUMBER_LINES=$(wc -l "$FILE" | awk '{ print $1 }')
 
 echo "Processing URL file: " "$FILE"
 echo "  number of lines: " $NUMBER_LINES
-echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS)) " seconds"
+echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
 
 while IFS=" " read -r field1 url; do
     no_space_url="${url// }"
     if [ ! -z "$no_space_url" ]; then
-        echo "Opening: $no_space_url"
-
-        firefox --new-tab "$no_space_url" &
-
-        sleep $SLEEP_SECONDS
+        OpenUrlAndSleep "$no_space_url"
+        OpenUrlAndSleep "$no_space_url?ref=rp"
     fi
 done <"$FILE"
