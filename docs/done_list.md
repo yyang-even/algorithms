@@ -952,4 +952,17 @@
 * https://www.geeksforgeeks.org/memoization-1d-2d-and-3d/
 * https://www.geeksforgeeks.org/solve-dynamic-programming-problem/
 * https://www.geeksforgeeks.org/tabulation-vs-memoization/
+* https://www.geeksforgeeks.org/kth-largest-element-in-a-stream/
 * https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/
+* https://www.geeksforgeeks.org/quickselect-algorithm/
+* https://www.geeksforgeeks.org/sorting-objects-using-in-place-sorting-algorithm/
+* https://www.geeksforgeeks.org/sorting-terminology/
+* https://www.geeksforgeeks.org/quickselect-a-simple-iterative-implementation/
+* https://www.geeksforgeeks.org/solution-get-prime-numbers-smaller-n/
+* https://www.geeksforgeeks.org/c-program-check-given-string-palindrome/
+* https://www.geeksforgeeks.org/recursive-function-check-string-palindrome/
+* https://www.geeksforgeeks.org/check-if-a-string-is-palindrome-in-c-using-pointers/
+* https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not/
+* https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-recursion/
+* https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-stl-in-c/
+* https://www.geeksforgeeks.org/check-whether-the-given-string-is-palindrome-using-stack/

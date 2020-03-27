@@ -5,7 +5,15 @@
 
 namespace {
 
-typedef unsigned long InputType;
+using InputType = unsigned long;
+
+/**
+ * @reference   An interesting solution to get all prime numbers smaller than n
+ *              https://www.geeksforgeeks.org/solution-get-prime-numbers-smaller-n/
+ *
+ * @note    This method doesn't get all the primes.
+ */
+
 
 /** Program to find sum of prime numbers between 1 to n
  *
@@ -144,7 +152,7 @@ std::vector<InputType> PrimesBelowN_SieveOfSundaram(InputType N) {
     if (N <= 2)
         return {};
 
-    std::vector<unsigned long> outputs = {2};
+    std::vector<unsigned long> primes = {2};
 
     N = (N - 2) / 2;
     std::vector<bool> marks(N, true);
@@ -155,11 +163,11 @@ std::vector<InputType> PrimesBelowN_SieveOfSundaram(InputType N) {
         }
 
         if (marks[i]) {
-            outputs.push_back(2 * i + 1);
+            primes.push_back(2 * i + 1);
         }
     }
 
-    return outputs;
+    return primes;
 }
 
 }//namespace

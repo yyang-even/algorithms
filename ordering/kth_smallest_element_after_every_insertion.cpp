@@ -8,6 +8,8 @@ using ArrayType = std::vector<int>;
 /** Kth smallest element after every insertion
  *
  * @reference   https://www.geeksforgeeks.org/kth-smallest-element-after-every-insertion/
+ * @reference   K’th largest element in a stream
+ *              https://www.geeksforgeeks.org/kth-largest-element-in-a-stream/
  *
  * Given an infinite stream of integers, find the k’th largest
  * element at any point of time. It may be assumed that 1 <= k <= n.

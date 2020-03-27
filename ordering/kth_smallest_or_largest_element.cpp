@@ -78,6 +78,8 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 9.2.
+ * @reference   Quickselect Algorithm
+ *              https://www.geeksforgeeks.org/quickselect-algorithm/
  */
 auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
@@ -89,6 +91,8 @@ auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 9.2-3.
+ * @reference   QuickSelect (A Simple Iterative Implementation)
+ *              https://www.geeksforgeeks.org/quickselect-a-simple-iterative-implementation/
  */
 auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());

@@ -60,13 +60,13 @@ auto SieveOfEratosthenes_VectorBool(const unsigned long N, const Function for_ea
 }
 
 auto PrimesBelowN(const unsigned long N) {
-    std::vector<unsigned long> output;
+    std::vector<unsigned long> primes;
     if (N > 2) {
-        SieveOfEratosthenes_VectorBool(N, [&output](const auto prime) {
-            output.push_back(prime);
+        SieveOfEratosthenes_VectorBool(N, [&primes](const auto prime) {
+            primes.push_back(prime);
         });
     }
-    return output;
+    return primes;
 }
 
 

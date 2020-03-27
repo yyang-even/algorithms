@@ -57,6 +57,15 @@ auto Segregate0sAnd1sDNF(ArrayType values) {
  *
  * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[].
  * The functions should put all 0s first, then all 1s and all 2s in last.
+ *
+ * @reference   Sorting objects using In-Place sorting algorithm
+ *              https://www.geeksforgeeks.org/sorting-objects-using-in-place-sorting-algorithm/
+ * @reference   Sorting Terminology
+ *              https://www.geeksforgeeks.org/sorting-terminology/
+ *
+ * Given an array of red, blue and yellow objects, the task is to use an in-place sorting
+ * algorithm to sort the array in such a way that all the blue objects appear before all
+ * the red objects and all the red objects appear before all the yellow objects.
  */
 auto Sort0s1s2s(ArrayType values) {
     auto zeros_end = values.begin();
