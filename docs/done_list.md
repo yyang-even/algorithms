@@ -966,3 +966,5 @@
 * https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-recursion/
 * https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-stl-in-c/
 * https://www.geeksforgeeks.org/check-whether-the-given-string-is-palindrome-using-stack/
+* https://www.geeksforgeeks.org/find-minimum-difference-pair/
+* https://www.geeksforgeeks.org/closest-numbers-list-unsorted-integers/

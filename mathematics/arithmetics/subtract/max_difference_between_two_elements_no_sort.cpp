@@ -2,6 +2,9 @@
 
 #include "mathematics/arithmetics/sum/largest_sum_contiguous_subarray.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Maximum difference between two elements such that larger element appears after the smaller number
@@ -31,7 +34,7 @@ auto MaxDiffBetweenTwoElementsNoSort(const ArrayType &elements) {
 }
 
 
-auto MaxDiffBetweenTwoElementsNoSortSubarraySum(const ArrayType &elements) {
+auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
     assert(elements.size() > 1);
 
     ArrayType diff_array{};
@@ -41,6 +44,8 @@ auto MaxDiffBetweenTwoElementsNoSortSubarraySum(const ArrayType &elements) {
 
     return LargestSumContiguousSubarrayKadane(diff_array);
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 10, 6, 4, 8, 1};
@@ -57,9 +62,9 @@ SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample3, 109, SAMPLE3);
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample4, 98, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSortSubarraySum, SAMPLE1);
+SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort_SubarraySum, SAMPLE1);
 
-SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSortSubarraySum, TestSample1, 8, SAMPLE1);
-SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSortSubarraySum, TestSample2, 2, SAMPLE2);
-SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSortSubarraySum, TestSample3, 109, SAMPLE3);
-SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSortSubarraySum, TestSample4, 98, SAMPLE4);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample1, 8, SAMPLE1);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample2, 2, SAMPLE2);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample3, 109, SAMPLE3);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample4, 98, SAMPLE4);
