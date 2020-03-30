@@ -977,3 +977,5 @@
 * https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
 * https://www.geeksforgeeks.org/convert-a-string-to-a-singly-linked-list/
 * https://www.geeksforgeeks.org/difference-between-singly-linked-list-and-doubly-linked-list/
+* https://www.geeksforgeeks.org/write-a-program-to-reverse-digits-of-a-number/
+* https://www.geeksforgeeks.org/reverse-digits-integer-overflow-handled/

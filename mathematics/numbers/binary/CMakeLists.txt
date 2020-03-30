@@ -144,8 +144,8 @@ CompileTestExe(bits_permutation)
 CompileBenchmarkExe(position_of_rightmost_unset_bit)
 CompileTestExe(position_of_rightmost_unset_bit)
 
-CompileBenchmarkExe(reverse)
-CompileTestExe(reverse)
+CompileBenchmarkExe(reverse_bits)
+CompileTestExe(reverse_bits)
 
 CompileBenchmarkExe(rotate_bits)
 CompileTestExe(rotate_bits)

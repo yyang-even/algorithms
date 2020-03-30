@@ -13,6 +13,9 @@ CompileTestExe(large_integer)
 CompileBenchmarkExe(perfect_square)
 CompileTestExe(perfect_square)
 
+CompileBenchmarkExe(reverse_digits)
+CompileTestExe(reverse_digits)
+
 CompileBenchmarkExe(rotate_for_a_max)
 CompileTestExe(rotate_for_a_max)
 
