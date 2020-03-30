@@ -972,3 +972,8 @@
 * https://www.geeksforgeeks.org/print-all-prime-factors-and-their-powers/
 * https://www.geeksforgeeks.org/check-if-total-number-of-divisors-are-even-or-odd/
 * https://www.geeksforgeeks.org/c-program-for-check-if-count-of-divisors-is-even-or-odd/
+* https://www.geeksforgeeks.org/check-if-the-characters-in-a-string-form-a-palindrome-in-o1-extra-space/
+* https://www.geeksforgeeks.org/check-doubly-linked-list-characters-palindrome-not/
+* https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+* https://www.geeksforgeeks.org/convert-a-string-to-a-singly-linked-list/
+* https://www.geeksforgeeks.org/difference-between-singly-linked-list-and-doubly-linked-list/

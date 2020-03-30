@@ -20,6 +20,8 @@
  *              https://www.geeksforgeeks.org/delete-a-linked-list-node-at-a-given-position/
  * @reference   Linked List vs Array
  *              https://www.geeksforgeeks.org/linked-list-vs-array/
+ * @reference   Difference between Singly linked list and Doubly linked list
+ *              https://www.geeksforgeeks.org/difference-between-singly-linked-list-and-doubly-linked-list/
  * @reference   Search an element in a Linked List (Iterative and Recursive)
  *              https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/
  * @reference   Find Length of a Linked List (Iterative and Recursive)
@@ -144,6 +146,8 @@ public:
     /**
      * @reference   Create linked list from a given array
      *              https://www.geeksforgeeks.org/create-linked-list-from-a-given-array/
+     * @reference   Convert a String to a Singly Linked List
+     *              https://www.geeksforgeeks.org/convert-a-string-to-a-singly-linked-list/
      */
     explicit SinglyLinkedList(const std::vector<Node::ValueType> &array) {
         for (const auto elem : array) {
