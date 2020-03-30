@@ -968,3 +968,7 @@
 * https://www.geeksforgeeks.org/check-whether-the-given-string-is-palindrome-using-stack/
 * https://www.geeksforgeeks.org/find-minimum-difference-pair/
 * https://www.geeksforgeeks.org/closest-numbers-list-unsorted-integers/
+* https://www.geeksforgeeks.org/sum-factors-number/
+* https://www.geeksforgeeks.org/print-all-prime-factors-and-their-powers/
+* https://www.geeksforgeeks.org/check-if-total-number-of-divisors-are-even-or-odd/
+* https://www.geeksforgeeks.org/c-program-for-check-if-count-of-divisors-is-even-or-odd/

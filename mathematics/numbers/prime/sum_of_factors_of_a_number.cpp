@@ -8,6 +8,10 @@ namespace {
 /** Sum of Factors of a Number using Prime Factorization
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-factors-of-a-number-using-prime-factorization/
+ * @reference   Sum of all the factors of a number
+ *              https://www.geeksforgeeks.org/sum-factors-number/
+ * @reference   Finding the sum of the divisors of n
+ *              https://www.math.upenn.edu/~deturck/m170/wk3/lecture/sumdiv.html
  *
  * Given a number N. The task is to find the sum of all factors of the given number N.
  */
@@ -37,6 +41,8 @@ auto SumOfFactorsOfN(const unsigned N) {
 
 SIMPLE_BENCHMARK(SumOfFactorsOfN, 1100);
 
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE1, 28u, 12);
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168u, 60);
-SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604u, 1100);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE1, 28, 12);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168, 60);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604, 1100);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE4, 72, 30);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE5, 24, 15);

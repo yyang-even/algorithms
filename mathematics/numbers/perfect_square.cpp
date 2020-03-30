@@ -38,6 +38,19 @@ auto IsPerfectSquare_Sum(const unsigned x) {
     return false;
 }
 
+
+/** Check if count of divisors is even or odd
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-total-number-of-divisors-are-even-or-odd/
+ * @reference   C Program to Check if count of divisors is even or odd
+ *              https://www.geeksforgeeks.org/c-program-for-check-if-count-of-divisors-is-even-or-odd/
+ *
+ * Given a number "n", find its total number of divisors are even or odd.
+ */
+auto isCountOfDivisorsOdd(const unsigned N) {
+    return IsPerfectSquare(N);
+}
+
 }//namespace
 
 
@@ -57,3 +70,10 @@ SIMPLE_BENCHMARK(IsPerfectSquare_Sum, 2500);
 
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE2, false, 2555);
+
+
+SIMPLE_BENCHMARK(isCountOfDivisorsOdd, 100);
+
+SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE1, false, 10);
+SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE2, true, 100);
+SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE3, false, 125);
