@@ -4,10 +4,10 @@
 #include "swap_nibbles.h"
 #include "text/reverse.h"
 
+#include "mathematics/numbers/reverse_digits.h"
+
 
 namespace {
-
-typedef unsigned InputType;
 
 /** Reverse bits
  *
@@ -45,7 +45,7 @@ auto ReverseBits_32_LookupTable(const uint32_t num) {
         R6(0), R6(2), R6(1), R6(3)
     };
 
-    InputType ret = 0;
+    unsigned ret = 0;
     auto *num_ptr = reinterpret_cast<const unsigned char *>(&num);
     unsigned char *ret_ptr = reinterpret_cast<unsigned char *>(&ret);
 
@@ -130,7 +130,8 @@ T ReverseNBits_Parallel(T num) {
 
     return num;
 }
-InputType ReverseNBits_Parallel_Uint32(uint32_t num) {
+
+unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
     return ReverseNBits_Parallel(num);
 }
 
@@ -147,6 +148,20 @@ auto ReverseBytes(unsigned num) {
     });
 
     return num;
+}
+
+
+/** Reverse actual bits of the given number
+ *
+ * @reference   https://www.geeksforgeeks.org/reverse-actual-bits-given-number/
+ *
+ * Given a non-negative integer n. The problem is to reverse the bits of n and print the
+ * number obtained after reversing the bits. Note that the actual binary representation
+ * of the number is being considered for reversing the bits, no leading 0’s are being
+ * considered.
+ */
+auto ReverseActualBits(const unsigned number) {
+    return ReverseDigits(number, 2);
 }
 
 }//namespace
@@ -234,3 +249,9 @@ SIMPLE_BENCHMARK(ReverseBytes, 0x12345678);
 
 SIMPLE_TEST(ReverseBytes, TestSAMPLE1, 0x78563412u, 0x12345678);
 SIMPLE_TEST(ReverseBytes, TestSAMPLE2, 0x21436587u, 0x87654321);
+
+
+SIMPLE_BENCHMARK(ReverseActualBits, 0x12345678);
+
+SIMPLE_TEST(ReverseActualBits, TestSAMPLE1, 0b1101, 0b1011);
+SIMPLE_TEST(ReverseActualBits, TestSAMPLE2, 0b101, 0b1010);

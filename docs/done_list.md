@@ -988,3 +988,4 @@
 * https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
 * https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
 * https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
+* https://www.geeksforgeeks.org/reverse-actual-bits-given-number/
