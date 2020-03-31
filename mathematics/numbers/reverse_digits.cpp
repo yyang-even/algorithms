@@ -1,21 +1,13 @@
 #include "common_header.h"
 
+#include "reverse_digits.h"
+
 
 namespace {
 
-/** Write a program to reverse digits of a number
- *
- * @reference   https://www.geeksforgeeks.org/write-a-program-to-reverse-digits-of-a-number/
- */
-auto ReverseDigits_Iterative(int number) {
-    int reversed_number = 0;
-    for (; number; number /= 10) {
-        reversed_number = reversed_number * 10 + number % 10;
-    }
-
-    return reversed_number;
+inline auto ReverseDigits_Iterative(const int number) {
+    return ReverseDigits(number, 10);
 }
-
 
 int ReverseDigits_Recursive(const int number, int &reversed_number) {
     if (number) {
