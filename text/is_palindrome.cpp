@@ -1,9 +1,12 @@
 #include "common_header.h"
 
+#include "mathematics/numbers/count_digits_in_integer.h"
+#include "mathematics/numbers/reverse_digits.h"
+
 
 namespace {
 
-using ListType = std::list<int>;
+using ListType = std::list<unsigned>;
 
 /** C Program to Check if a Given String is Palindrome
  *
@@ -16,6 +19,9 @@ using ListType = std::list<int>;
  *              https://www.geeksforgeeks.org/check-if-the-characters-in-a-string-form-a-palindrome-in-o1-extra-space/
  * @reference   Check if a doubly linked list of characters is palindrome or not
  *              https://www.geeksforgeeks.org/check-doubly-linked-list-characters-palindrome-not/
+ *
+ * @reference   Check whether the given floating point number is a palindrome
+ *              https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
  */
 auto isPalindrome_Iterative(const std::string &a_string) {
     assert(not a_string.empty());
@@ -124,6 +130,100 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     return true;
 }
 
+
+/** Check if a number is Palindrome
+ *
+ * @reference   https://www.geeksforgeeks.org/check-if-a-number-is-palindrome/
+ * @reference   Recursive program to check if number is palindrome or not
+ *              https://www.geeksforgeeks.org/recursive-program-to-check-if-number-is-palindrome-or-not/
+ * @reference   Program to check the number is Palindrome or not
+ *              https://www.geeksforgeeks.org/program-to-check-the-number-is-palindrome-or-not/
+ * @reference   To check a number is palindrome or not without using any extra space
+ *              https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
+ */
+inline auto isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
+    const unsigned reversed_number = ReverseDigits(number, base);
+    return reversed_number == number;
+}
+
+inline auto isIntPalindrome_Reverse(const unsigned number) {
+    return isNumberPalindrome_Reverse(number, 10);
+}
+
+
+auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base, unsigned &copy) {
+    if (number < base) {
+        return number == copy % base;
+    }
+
+    if (not isNumberPalindrome_Recursive(number / base, base, copy)) {
+        return false;
+    }
+
+    copy /= base;
+    return (number % base) == (copy % base);
+}
+
+auto isIntPalindrome_Recursive(const unsigned number) {
+    auto copy = number;
+    return isNumberPalindrome_Recursive(number, 10, copy);
+}
+
+
+/**
+ * @reference   Check if a number with even number of digits is palindrome or not
+ *              https://www.geeksforgeeks.org/check-if-a-number-with-even-number-of-digits-is-palindrome-or-not/
+ */
+auto isEvenDigitsIntPalindrome(const unsigned number) {
+    assert(CountDigits_Iterative(number) % 2 == 0);
+    return number % 11 == 0;
+}
+
+
+/**
+ * @reference   Check if number is palindrome or not in Octal
+ *              https://www.geeksforgeeks.org/check-number-palindrome-not-octal/
+ */
+inline auto isOctalPalindrome_Reverse(const unsigned number) {
+    return isNumberPalindrome_Reverse(number, 8);
+}
+
+
+inline auto isOctalPalindrome_Recursive(const unsigned number) {
+    auto copy = number;
+    return isNumberPalindrome_Recursive(number, 8, copy);
+}
+
+
+/**
+ * @reference   Check if actual binary representation of a number is palindrome
+ *              https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
+ *
+ * Given a non-negative integer n. The problem is to check if binary representation of n is
+ * palindrome or not. Note that the actual binary representation of the number is being
+ * considered for palindrome checking, no leading 0’s are being considered.
+ */
+inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {
+    return isNumberPalindrome_Reverse(number, 2);
+}
+
+
+/** Check if binary representation of a number is palindrome
+ *
+ * @reference   https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
+ */
+auto isBinaryPalindrome(const unsigned number) {
+    unsigned least_significant = 1;
+    unsigned most_significant = 1 << (BitsNumber<decltype(number)> - 1);
+
+    for (; least_significant < most_significant; least_significant <<= 1, most_significant >>= 1)
+        if (static_cast<bool>(number & least_significant) != static_cast<bool>(number & most_significant)) {
+            return false;
+        }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -158,3 +258,55 @@ SIMPLE_BENCHMARK(isSinglyListPalindrome_Stack, SAMPLE1);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE2, true, SAMPLE2);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE3, false, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(isIntPalindrome_Reverse, 121);
+
+SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE1, true, 121);
+SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE2, true, 1221);
+SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE3, false, 211);
+
+
+SIMPLE_BENCHMARK(isIntPalindrome_Recursive, 121);
+
+SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE1, true, 121);
+SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE2, true, 1221);
+SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE3, false, 211);
+
+
+SIMPLE_BENCHMARK(isEvenDigitsIntPalindrome, 123321);
+
+SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE1, true, 123321);
+SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE2, true, 1221);
+SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE3, false, 1234);
+
+
+SIMPLE_BENCHMARK(isOctalPalindrome_Reverse, 0121);
+
+SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE1, true, 0121);
+SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE2, true, 01221);
+SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE3, false, 0211);
+
+
+SIMPLE_BENCHMARK(isOctalPalindrome_Recursive, 0121);
+
+SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE1, true, 0121);
+SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE2, true, 01221);
+SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE3, false, 0211);
+
+
+SIMPLE_BENCHMARK(isActualBinaryPalindrome_Reverse, 0b101);
+
+SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE1, true, 0b101);
+SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE2, true, 0b1001);
+SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE3, false, 0b1011);
+
+
+SIMPLE_BENCHMARK(isBinaryPalindrome, 0b101);
+
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE1, false, 0b101);
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE2, true, -1);
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE3, true, (1 << (BitsNumber<unsigned> - 1)) + 1);
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE4, true,
+            (1 << ((BitsNumber<unsigned> / 2) - 1)) + (1 << (BitsNumber<unsigned> / 2)));
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE5, false, 0b1011);

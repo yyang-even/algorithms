@@ -979,3 +979,11 @@
 * https://www.geeksforgeeks.org/difference-between-singly-linked-list-and-doubly-linked-list/
 * https://www.geeksforgeeks.org/write-a-program-to-reverse-digits-of-a-number/
 * https://www.geeksforgeeks.org/reverse-digits-integer-overflow-handled/
+* https://www.geeksforgeeks.org/check-if-a-number-is-palindrome/
+* https://www.geeksforgeeks.org/recursive-program-to-check-if-number-is-palindrome-or-not/
+* https://www.geeksforgeeks.org/program-to-check-the-number-is-palindrome-or-not/
+* https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
+* https://www.geeksforgeeks.org/check-number-palindrome-not-octal/
+* https://www.geeksforgeeks.org/check-if-a-number-with-even-number-of-digits-is-palindrome-or-not/
+* https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
+* https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
