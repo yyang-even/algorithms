@@ -989,3 +989,5 @@
 * https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
 * https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
 * https://www.geeksforgeeks.org/reverse-actual-bits-given-number/
+* https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/
+* https://www.geeksforgeeks.org/longest-palindrome-subsequence-space/

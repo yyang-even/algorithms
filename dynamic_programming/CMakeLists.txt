@@ -4,6 +4,9 @@ CompileTestExe(longest_common_subsequence)
 CompileBenchmarkExe(longest_increasing_subsequence)
 CompileTestExe(longest_increasing_subsequence)
 
+CompileBenchmarkExe(longest_palindromic_subsequence)
+CompileTestExe(longest_palindromic_subsequence)
+
 CompileBenchmarkExe(matrix_chain_multiplication)
 CompileTestExe(matrix_chain_multiplication)
 
