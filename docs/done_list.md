@@ -992,3 +992,9 @@
 * https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/
 * https://www.geeksforgeeks.org/longest-palindrome-subsequence-space/
 * https://www.geeksforgeeks.org/print-longest-palindromic-subsequence/
+* https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
+* https://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
+* https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/
+* https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-2/
+* https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-3-2/
+* https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-4/
