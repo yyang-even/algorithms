@@ -998,3 +998,8 @@
 * https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-2/
 * https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-3-2/
 * https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-4/
+* https://www.geeksforgeeks.org/longest-common-substring-dp-29/
+* https://www.geeksforgeeks.org/longest-common-substring-space-optimized-dp-solution/
+* https://www.geeksforgeeks.org/longest-common-substring-binary-representation-two-numbers/
+* https://www.geeksforgeeks.org/print-longest-common-substring/
+* https://www.geeksforgeeks.org/longest-common-substring-array-strings/

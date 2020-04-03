@@ -1,6 +1,9 @@
 CompileBenchmarkExe(longest_common_subsequence)
 CompileTestExe(longest_common_subsequence)
 
+CompileBenchmarkExe(longest_common_substring)
+CompileTestExe(longest_common_substring)
+
 CompileBenchmarkExe(longest_increasing_subsequence)
 CompileTestExe(longest_increasing_subsequence)
 
