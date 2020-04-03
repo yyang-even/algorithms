@@ -1003,3 +1003,6 @@
 * https://www.geeksforgeeks.org/longest-common-substring-binary-representation-two-numbers/
 * https://www.geeksforgeeks.org/print-longest-common-substring/
 * https://www.geeksforgeeks.org/longest-common-substring-array-strings/
+* https://www.geeksforgeeks.org/check-two-strings-common-substring/
+* https://www.geeksforgeeks.org/check-if-there-is-any-common-character-in-two-given-strings/
+* https://www.geeksforgeeks.org/count-common-characters-in-two-strings/
