@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string>;
+
 /** Check if two strings have a common substring
  *
  * @reference   https://www.geeksforgeeks.org/check-two-strings-common-substring/
@@ -46,6 +48,73 @@ auto CountCommonChars(const std::string &X, const std::string &Y) {
     return count;
 }
 
+
+/** Print common characters of two Strings in alphabetical order
+ *
+ * @reference   https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
+ *
+ * Given two strings, print all the common characters in lexicographical order.
+ * If there are no common letters, print -1. All letters are lower case.
+ */
+auto GetCommonChars(const std::string &X, const std::string &Y) {
+    assert(std::all_of(X.cbegin(), X.cend(), islower));
+    assert(std::all_of(Y.cbegin(), Y.cend(), islower));
+
+    std::unordered_map<std::string::value_type, int> one_set_characters;
+    for (const auto c : X) {
+        ++(one_set_characters[c]);
+    }
+
+    std::vector<unsigned> common_chars(26, 0);
+    for (const auto c : Y) {
+        if ((one_set_characters[c])-- > 0) {
+            ++(common_chars[c - 'a']);
+        }
+    }
+
+    std::string results;
+    for (int i = 0; i < 26; ++i) {
+        for (unsigned j = 0; j < common_chars[i]; ++j) {
+            results.push_back('a' + i);
+        }
+    }
+
+    return results;
+}
+
+
+/** Common characters in n strings
+ *
+ * @reference   https://www.geeksforgeeks.org/common-characters-n-strings/
+ */
+auto CommonCharsOfStrings(const ArrayType &strings) {
+    assert(std::all_of(strings.cbegin(), strings.cend(), [](const auto & a_string) {
+        return std::all_of(a_string.cbegin(), a_string.cend(), islower);
+    }));
+
+    std::vector<int> all_common_chars(26, std::numeric_limits<int>::max());
+    for (const auto &a_string : strings) {
+        std::vector<int> common_chars_of_two(26, 0);
+        for (const auto c : a_string) {
+            const auto index = c - 'a';
+            if ((all_common_chars[index])-- > 0) {
+                ++(common_chars_of_two[index]);
+            }
+        }
+
+        all_common_chars.swap(common_chars_of_two);
+    }
+
+    std::string results;
+    for (int i = 0; i < 26; ++i) {
+        for (int j = 0; j < all_common_chars[i]; ++j) {
+            results.push_back('a' + i);
+        }
+    }
+
+    return results;
+}
+
 }//namespace
 
 
@@ -61,3 +130,19 @@ SIMPLE_TEST(CountCommonChars, TestSAMPLE1, 2, "HELLO", "WORLD");
 SIMPLE_TEST(CountCommonChars, TestSAMPLE2, 0, "HI", "ALL");
 SIMPLE_TEST(CountCommonChars, TestSAMPLE3, 2, "abcd", "aad");
 SIMPLE_TEST(CountCommonChars, TestSAMPLE4, 8, "geeksforgeeks", "platformforgeeks");
+
+
+SIMPLE_BENCHMARK(GetCommonChars, "geeks", "forgeeks");
+
+SIMPLE_TEST(GetCommonChars, TestSAMPLE1, "eegks", "geeks", "forgeeks");
+SIMPLE_TEST(GetCommonChars, TestSAMPLE2, "hhh", "hhhhhello", "gfghhmh");
+
+
+const ArrayType SAMPLE1 = {"geeksforgeeks", "gemkstones", "acknowledges", "aguelikes"};
+const ArrayType SAMPLE2 = {"apple", "orange"};
+
+
+SIMPLE_BENCHMARK(CommonCharsOfStrings, SAMPLE1);
+
+SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE1, "eegks", SAMPLE1);
+SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE2, "ae", SAMPLE2);

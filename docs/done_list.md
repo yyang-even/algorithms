@@ -1006,3 +1006,6 @@
 * https://www.geeksforgeeks.org/check-two-strings-common-substring/
 * https://www.geeksforgeeks.org/check-if-there-is-any-common-character-in-two-given-strings/
 * https://www.geeksforgeeks.org/count-common-characters-in-two-strings/
+* https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
+* https://www.geeksforgeeks.org/print-all-interleavings-of-given-two-strings/
+* https://www.geeksforgeeks.org/common-characters-n-strings/

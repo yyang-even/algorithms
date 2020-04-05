@@ -35,6 +35,7 @@ void InterleavingsOfTwoStringHelper(const std::string::const_iterator cbegin1,
         }
     }
 }
+
 auto InterleavingsOfTwoString(const std::string str1, const std::string str2) {
     std::vector<std::string> outputs;
     std::string buffer(str1.size() + str2.size(), '0');
