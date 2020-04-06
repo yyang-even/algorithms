@@ -1011,3 +1011,5 @@
 * https://www.geeksforgeeks.org/common-characters-n-strings/
 * https://www.geeksforgeeks.org/find-divisors-natural-number-set-1/
 * https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
+* https://www.geeksforgeeks.org/word-wrap-problem-dp-19/
+* https://www.geeksforgeeks.org/word-wrap-problem-space-optimized-solution/
