@@ -1013,3 +1013,5 @@
 * https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
 * https://www.geeksforgeeks.org/word-wrap-problem-dp-19/
 * https://www.geeksforgeeks.org/word-wrap-problem-space-optimized-solution/
+* https://www.geeksforgeeks.org/total-number-divisors-given-number/
+* https://www.geeksforgeeks.org/count-divisors-n-on13/
