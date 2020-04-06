@@ -1009,3 +1009,5 @@
 * https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
 * https://www.geeksforgeeks.org/print-all-interleavings-of-given-two-strings/
 * https://www.geeksforgeeks.org/common-characters-n-strings/
+* https://www.geeksforgeeks.org/find-divisors-natural-number-set-1/
+* https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/

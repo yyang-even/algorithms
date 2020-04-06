@@ -4,6 +4,9 @@ CompileTestExe(almost_prime_numbers)
 CompileBenchmarkExe(difference_between_nonprimes_and_primes_of_array)
 CompileTestExe(difference_between_nonprimes_and_primes_of_array)
 
+CompileBenchmarkExe(divisors_of_n)
+CompileTestExe(divisors_of_n)
+
 CompileBenchmarkExe(is_prime)
 CompileTestExe(is_prime)
 
