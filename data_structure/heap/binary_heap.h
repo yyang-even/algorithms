@@ -18,8 +18,6 @@
  *              https://www.geeksforgeeks.org/insertion-and-deletion-in-heaps/
  * @reference   Leaf starting point in a Binary Heap data structure
  *              https://www.geeksforgeeks.org/leaf-starting-point-binary-heap-data-structure/
- * @reference   Height of a complete binary tree (or Heap) with N nodes
- *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
  * @reference   Heap in C++ STL | make_heap(), push_heap(), pop_heap(), sort_heap(), is_heap, is_heap_until()
  *              https://www.geeksforgeeks.org/heap-using-stl-c/
  * @reference   How to implement Min Heap using STL?
@@ -62,6 +60,11 @@ private:
         return n / 2;
     }
 
+
+    /**
+     * @reference   Height of a complete binary tree (or Heap) with N nodes
+     *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
+     */
     static SizeType height(const SizeType n) {
         return std::ceil(std::log2(n + 1)) - 1;
     }

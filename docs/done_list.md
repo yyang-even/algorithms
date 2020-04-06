@@ -883,7 +883,6 @@
 * https://www.geeksforgeeks.org/binary-tree-to-binary-search-tree-conversion/
 * https://www.geeksforgeeks.org/binary-tree-binary-search-tree-conversion-using-stl-set/
 * https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-heap/
-* https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
 * https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
 * https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
 * https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-map-data-structure/
@@ -1013,3 +1012,5 @@
 * https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
 * https://www.geeksforgeeks.org/word-wrap-problem-dp-19/
 * https://www.geeksforgeeks.org/word-wrap-problem-space-optimized-solution/
+* https://www.geeksforgeeks.org/total-number-divisors-given-number/
+* https://www.geeksforgeeks.org/count-divisors-n-on13/
