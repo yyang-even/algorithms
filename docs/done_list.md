@@ -1014,3 +1014,8 @@
 * https://www.geeksforgeeks.org/word-wrap-problem-space-optimized-solution/
 * https://www.geeksforgeeks.org/total-number-divisors-given-number/
 * https://www.geeksforgeeks.org/count-divisors-n-on13/
+* https://www.geeksforgeeks.org/edit-distance-dp-using-memoization/
+* https://www.geeksforgeeks.org/edit-distance-dp-5/
+* https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
+* https://www.geeksforgeeks.org/check-if-two-given-strings-are-at-edit-distance-one/
+* https://www.geeksforgeeks.org/edit-distance-and-lcs-longest-common-subsequence/
