@@ -1,3 +1,6 @@
+CompileBenchmarkExe(edit_distance)
+CompileTestExe(edit_distance)
+
 CompileBenchmarkExe(longest_common_subsequence)
 CompileTestExe(longest_common_subsequence)
 
