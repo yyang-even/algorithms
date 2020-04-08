@@ -1,0 +1,2 @@
+CompileBenchmarkExe(n-ary_tree_traversal)
+CompileTestExe(n-ary_tree_traversal)

@@ -1019,3 +1019,7 @@
 * https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
 * https://www.geeksforgeeks.org/check-if-two-given-strings-are-at-edit-distance-one/
 * https://www.geeksforgeeks.org/edit-distance-and-lcs-longest-common-subsequence/
+* https://www.geeksforgeeks.org/maximize-the-total-profit-of-all-the-persons/
+* https://www.geeksforgeeks.org/left-child-right-sibling-representation-tree/
+* https://www.geeksforgeeks.org/generic-treesn-array-trees/
+* https://www.geeksforgeeks.org/generic-tree-level-order-traversal/

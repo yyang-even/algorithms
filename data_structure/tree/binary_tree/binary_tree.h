@@ -1,5 +1,8 @@
 #pragma once
 
+#include "data_structure/tree/tree.h"
+
+
 /** Binary Tree
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -33,7 +36,7 @@ public:
         PointerType right;
         ValueType value = 0;
 
-        explicit Node(const ValueType v) : value(v) {}
+        explicit Node(ValueType v) : value(std::move(v)) {}
     };
     using ArrayType = std::vector<Node::ValueType>;
 
@@ -87,15 +90,6 @@ static inline auto MakeTheSampleCompleteTree() {
     SetRightChild(left_child, 5);
 
     return binary_tree;
-}
-
-
-template <typename Container>
-static inline void PushIfNotNull(Container &container,
-                                 const BinaryTree::Node::PointerType node) {
-    if (node) {
-        container.push(node);
-    }
 }
 
 
