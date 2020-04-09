@@ -1,3 +1,6 @@
+CompileBenchmarkExe(company_party_planning)
+CompileTestExe(company_party_planning)
+
 CompileBenchmarkExe(edit_distance)
 CompileTestExe(edit_distance)
 
