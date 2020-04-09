@@ -1,5 +1,7 @@
 #pragma once
 
+#include "n-ary_tree_traversal.h"
+
 
 template <typename PointerType>
 static inline auto Search(const PointerType root, const decltype(root->value) x) {
