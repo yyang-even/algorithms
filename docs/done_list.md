@@ -1023,3 +1023,6 @@
 * https://www.geeksforgeeks.org/left-child-right-sibling-representation-tree/
 * https://www.geeksforgeeks.org/generic-treesn-array-trees/
 * https://www.geeksforgeeks.org/generic-tree-level-order-traversal/
+* https://www.geeksforgeeks.org/creating-tree-left-child-right-sibling-representation/
+* https://www.geeksforgeeks.org/preorder-traversal-of-n-ary-tree-without-recursion/
+* https://www.geeksforgeeks.org/iterative-preorder-traversal-of-a-n-ary-tree/
