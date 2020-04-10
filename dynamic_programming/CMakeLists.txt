@@ -31,5 +31,8 @@ CompileTestExe(optimal_binary_search_trees)
 CompileBenchmarkExe(rod_cutting)
 CompileTestExe(rod_cutting)
 
+CompileBenchmarkExe(word_break)
+CompileTestExe(word_break)
+
 CompileBenchmarkExe(word_wrap)
 CompileTestExe(word_wrap)
