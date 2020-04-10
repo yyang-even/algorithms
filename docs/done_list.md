@@ -1027,3 +1027,7 @@
 * https://www.geeksforgeeks.org/preorder-traversal-of-n-ary-tree-without-recursion/
 * https://www.geeksforgeeks.org/iterative-preorder-traversal-of-a-n-ary-tree/
 * https://www.geeksforgeeks.org/sum-of-all-the-prime-divisors-of-a-number/
+* https://www.geeksforgeeks.org/word-break-problem-dp-32/
+* https://www.geeksforgeeks.org/word-break-problem-trie-solution/
+* https://www.geeksforgeeks.org/word-break-problem-using-backtracking/
+* https://www.geeksforgeeks.org/minimum-word-break/
