@@ -1,3 +1,6 @@
+CompileBenchmarkExe(break_a_string)
+CompileTestExe(break_a_string)
+
 CompileBenchmarkExe(company_party_planning)
 CompileTestExe(company_party_planning)
 
