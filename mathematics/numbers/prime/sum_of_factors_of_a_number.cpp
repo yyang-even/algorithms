@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "prime_factors_of_n.h"
+#include "least_prime_factor_of_numbers_till_n.h"
 
 
 namespace {
@@ -15,25 +15,23 @@ namespace {
  *
  * Given a number N. The task is to find the sum of all factors of the given number N.
  */
-auto SumOfFactorsOfN(const unsigned N) {
-    const auto prime_factors = PrimeFactorsOf(N);
+auto SumOfFactorsOfN(unsigned N) {
+    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(N);
 
-    unsigned power = 1;
-    unsigned current = 1;
-    unsigned sub_sum = 1;
-    unsigned sum = 1;
-    for (const auto prime : prime_factors) {
-        if (prime != current) {
-            sum *= sub_sum;
-            current = prime;
-            sub_sum = 1;
-            power = 1;
+    unsigned total_sum = 1;
+    while (N > 1) {
+        unsigned term = 1;
+        unsigned sum = 1;
+        for (auto current_factor = smallest_prime_factors[N];
+             current_factor == smallest_prime_factors[N]; N /= current_factor) {
+            term *= current_factor;
+            sum += term;
         }
-        power *= prime;
-        sub_sum += power;
+
+        total_sum *= sum;
     }
 
-    return sum * sub_sum;
+    return total_sum;
 }
 
 }//namespace
@@ -46,3 +44,4 @@ SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168, 60);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604, 1100);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE4, 72, 30);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE5, 24, 15);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE6, 14, 13);

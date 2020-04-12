@@ -1031,3 +1031,4 @@
 * https://www.geeksforgeeks.org/word-break-problem-trie-solution/
 * https://www.geeksforgeeks.org/word-break-problem-using-backtracking/
 * https://www.geeksforgeeks.org/minimum-word-break/
+* https://www.geeksforgeeks.org/check-if-a-number-has-prime-count-of-divisors/
