@@ -1033,3 +1033,5 @@
 * https://www.geeksforgeeks.org/minimum-word-break/
 * https://www.geeksforgeeks.org/check-if-a-number-has-prime-count-of-divisors/
 * https://www.geeksforgeeks.org/arithmetic-number/
+* https://www.geeksforgeeks.org/generating-all-divisors-of-a-number-using-its-prime-factorization/
+* https://www.geeksforgeeks.org/count-of-numbers-below-n-whose-sum-of-prime-divisors-is-k/

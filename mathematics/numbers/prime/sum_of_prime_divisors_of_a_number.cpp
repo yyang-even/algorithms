@@ -21,6 +21,15 @@ auto SumOfPrimeDivisors(const unsigned number) {
     return sum_of_prime_divisors[number];
 }
 
+
+/**
+ * @reference   Count of numbers below N whose sum of prime divisors is K
+ *              https://www.geeksforgeeks.org/count-of-numbers-below-n-whose-sum-of-prime-divisors-is-k/
+ *
+ * Given two integers K and N, the task is to find the count of integers from
+ * the range [2, N – 1] whose sum of prime divisors is K
+ */
+
 }//namespace
 
 
