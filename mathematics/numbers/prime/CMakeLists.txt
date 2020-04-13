@@ -1,6 +1,9 @@
 CompileBenchmarkExe(almost_prime_numbers)
 CompileTestExe(almost_prime_numbers)
 
+CompileBenchmarkExe(arithmetic_number)
+CompileTestExe(arithmetic_number)
+
 CompileBenchmarkExe(count_divisors_of_n)
 CompileTestExe(count_divisors_of_n)
 

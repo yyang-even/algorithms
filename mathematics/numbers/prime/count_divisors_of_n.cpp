@@ -1,33 +1,11 @@
 #include "common_header.h"
 
 #include "is_prime.h"
-#include "primes_below_n.h"
+
+#include "count_divisors_of_n.h"
 
 
 namespace {
-
-/** Total number of divisors for a given number
- *
- * @reference   https://www.geeksforgeeks.org/total-number-divisors-given-number/
- */
-auto CountDivisorsOfN(unsigned N) {
-    const auto prime_factors = PrimesBelowN(N + 1);
-
-    unsigned total = 1;
-    for (const auto prime : prime_factors) {
-        if (N % prime == 0) {
-            unsigned count = 1;
-            do {
-                N /= prime;
-                ++count;
-            } while (N % prime == 0);
-            total *= count;
-        }
-    }
-
-    return total;
-}
-
 
 /**
  * @reference   Count Divisors of n in O(n^1/3)
