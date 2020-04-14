@@ -1035,3 +1035,4 @@
 * https://www.geeksforgeeks.org/arithmetic-number/
 * https://www.geeksforgeeks.org/generating-all-divisors-of-a-number-using-its-prime-factorization/
 * https://www.geeksforgeeks.org/count-of-numbers-below-n-whose-sum-of-prime-divisors-is-k/
+* https://www.geeksforgeeks.org/count-perfect-divisors-number/
