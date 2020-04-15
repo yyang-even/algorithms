@@ -1,0 +1,2 @@
+CompileBenchmarkExe(activity_selection)
+CompileTestExe(activity_selection)
