@@ -10,7 +10,7 @@ using OutputType = std::vector<ArrayType::size_type>;
 /** Activity Selection Problem
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 16-1.
+ *              Introduction to Algorithms, Third Edition. Chapter 16.1.
  * @reference   Activity Selection Problem | Greedy Algo-1
  *              https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
  * @reference   C Program for Activity Selection Problem | Greedy Algo-1

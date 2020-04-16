@@ -1039,3 +1039,7 @@
 * https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 * https://www.geeksforgeeks.org/c-program-for-activity-selection-problem-greedy-algo-1/
 * https://www.geeksforgeeks.org/greedy-approach-vs-dynamic-programming/
+* https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
+* https://www.geeksforgeeks.org/space-optimized-dp-solution-0-1-knapsack-problem/
+* https://www.geeksforgeeks.org/0-1-knapsack-queries/
+* https://www.geeksforgeeks.org/printing-items-01-knapsack/

@@ -1,3 +1,6 @@
+CompileBenchmarkExe(0-1_knapsack_problem)
+CompileTestExe(0-1_knapsack_problem)
+
 CompileBenchmarkExe(break_a_string)
 CompileTestExe(break_a_string)
 
