@@ -1043,3 +1043,4 @@
 * https://www.geeksforgeeks.org/space-optimized-dp-solution-0-1-knapsack-problem/
 * https://www.geeksforgeeks.org/0-1-knapsack-queries/
 * https://www.geeksforgeeks.org/printing-items-01-knapsack/
+* https://www.geeksforgeeks.org/fractional-knapsack-problem/

@@ -115,6 +115,47 @@ auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
  * put in the knapsack. Value of C does’t exceed a certain integer C_MAX.
  */
 
+
+/** Fractional Knapsack Problem
+ *
+ * @reference   https://www.geeksforgeeks.org/fractional-knapsack-problem/
+ *
+ * Given weights and values of n items, we need to put these items in a knapsack of
+ * capacity W to get the maximum total value in the knapsack.
+ * In the 0-1 Knapsack problem, we are not allowed to break items. We either take
+ * the whole item or don’t take it.
+ * In Fractional Knapsack, we can break items for maximizing the total value of
+ * knapsack. This problem in which we can break an item is also called the
+ * fractional knapsack problem.
+ */
+auto FractionalKnapsack01(const ArrayType &weights, const ArrayType &values,
+                          ArrayType::value_type W) {
+    assert(weights.size() == values.size());
+
+    using RatioIndexPair = std::pair<double, ArrayType::size_type>;
+    std::vector<RatioIndexPair> ratios;
+    for (ArrayType::size_type i = 0; i < weights.size(); ++i) {
+        ratios.emplace_back(values[i] / weights[i], i);
+    }
+
+    std::sort(ratios.begin(), ratios.end(), [](const auto & lhs, const auto & rhs) {
+        return lhs.first > rhs.first;
+    });
+
+    auto final_value = 0.0;
+    for (const auto &ration_index_pair : ratios) {
+        if (weights[ration_index_pair.second] <= W) {
+            W -= weights[ration_index_pair.second];
+            final_value += values[ration_index_pair.second];
+        } else {
+            final_value += ration_index_pair.first * W;
+            break;
+        }
+    }
+
+    return final_value;
+}
+
 }//namespace
 
 
@@ -165,3 +206,8 @@ SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE1, EXPECTED1, SAMPLE1_WEIGHT, SAMPL
 SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE2, EXPECTED2, SAMPLE2_WEIGHT, SAMPLE2_VALUES, 10);
 SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE3, EXPECTED3, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
 SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE4, EXPECTED4, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
+
+
+SIMPLE_BENCHMARK(FractionalKnapsack01, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+
+SIMPLE_TEST(FractionalKnapsack01, TestSAMPLE1, 240, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
