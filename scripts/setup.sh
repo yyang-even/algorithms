@@ -10,6 +10,9 @@ PROJECT_ROOT_DIR="$THIS_DIR/.."
 
 
 pushd "$PROJECT_ROOT_DIR"
+    PROJECT_NAME=$( basename `git rev-parse --show-toplevel` )
+    echo "Setting up project \"$PROJECT_NAME\"."
+
     ./scripts/bootstrap.sh
 
     mkdir build
