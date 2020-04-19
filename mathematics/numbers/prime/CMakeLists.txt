@@ -19,17 +19,20 @@ CompileTestExe(divisors_of_n)
 CompileBenchmarkExe(is_prime)
 CompileTestExe(is_prime)
 
+CompileBenchmarkExe(largest_power_of_p_divides_factorial_n)
+CompileTestExe(largest_power_of_p_divides_factorial_n)
+
 CompileBenchmarkExe(least_prime_factor_of_numbers_till_n)
 CompileTestExe(least_prime_factor_of_numbers_till_n)
+
+CompileBenchmarkExe(perfect_number)
+CompileTestExe(perfect_number)
 
 CompileBenchmarkExe(prime_factors_of_n)
 CompileTestExe(prime_factors_of_n)
 
 CompileBenchmarkExe(primes_below_n)
 CompileTestExe(primes_below_n)
-
-CompileBenchmarkExe(largest_power_of_p_divides_factorial_n)
-CompileTestExe(largest_power_of_p_divides_factorial_n)
 
 CompileBenchmarkExe(sum_of_factors_of_a_number)
 CompileTestExe(sum_of_factors_of_a_number)

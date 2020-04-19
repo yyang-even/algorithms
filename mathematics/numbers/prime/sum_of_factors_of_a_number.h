@@ -32,3 +32,8 @@ static inline auto SumOfFactorsOfN(unsigned N) {
 
     return total_sum;
 }
+
+
+static inline auto SumOfProferDivisors(const unsigned N) {
+    return SumOfFactorsOfN(N) - N;
+}
