@@ -1046,3 +1046,4 @@
 * https://www.geeksforgeeks.org/fractional-knapsack-problem/
 * https://www.geeksforgeeks.org/perfect-number/
 * https://www.geeksforgeeks.org/check-if-sum-of-divisors-of-two-numbers-are-same/
+* https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/
