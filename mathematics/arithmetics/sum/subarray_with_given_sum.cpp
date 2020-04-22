@@ -97,6 +97,19 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
     return largest_length;
 }
 
+
+/**
+ * @reference   Largest subarray with equal number of 0s and 1s
+ *              https://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/
+ *
+ * @reference   Length of longest Subarray with equal number of odd and even elements
+ *              https://www.geeksforgeeks.org/length-of-longest-subarray-with-equal-number-of-odd-and-even-elements/
+ */
+auto LargestSubarrayWithEqual0sAnd1s(ArrayType elements) {
+    std::replace(elements.begin(), elements.end(), 0, -1);
+    return LengthOfLargestSubarrayWith0Sum(elements);
+}
+
 }//namespace
 
 
@@ -162,3 +175,15 @@ SIMPLE_BENCHMARK(LengthOfLargestSubarrayWith0Sum, SAMPLE12);
 SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5u, SAMPLE12);
 SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0u, SAMPLE13);
 SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample14, 1u, SAMPLE14);
+
+
+const ArrayType SAMPLE15 = {1, 0, 1, 1, 1, 0, 0};
+const ArrayType SAMPLE16 = {1, 1, 1, 1};
+const ArrayType SAMPLE17 = {0, 0, 1, 1, 0};
+
+
+SIMPLE_BENCHMARK(LargestSubarrayWithEqual0sAnd1s, SAMPLE15);
+
+SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample15, 6, SAMPLE15);
+SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample16, 0, SAMPLE16);
+SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample17, 4, SAMPLE17);

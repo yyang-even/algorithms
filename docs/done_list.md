@@ -1051,3 +1051,5 @@
 * https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
 * https://www.geeksforgeeks.org/find-subarray-with-given-sum/
 * https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
+* https://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/
+* https://www.geeksforgeeks.org/length-of-longest-subarray-with-equal-number-of-odd-and-even-elements/
