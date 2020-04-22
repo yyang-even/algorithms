@@ -1047,3 +1047,7 @@
 * https://www.geeksforgeeks.org/perfect-number/
 * https://www.geeksforgeeks.org/check-if-sum-of-divisors-of-two-numbers-are-same/
 * https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/
+* https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
+* https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
+* https://www.geeksforgeeks.org/find-subarray-with-given-sum/
+* https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
