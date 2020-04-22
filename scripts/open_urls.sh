@@ -25,7 +25,8 @@ OpenUrlAndSleep() {
 
 
 if [ $# -ne 1 ]; then
-    echo "Usage: $(basename $0) file"
+    echo "Usage: $(basename $0) <file>"
+    exit 1
 fi
 
 trap _term SIGTERM SIGINT
