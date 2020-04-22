@@ -12,18 +12,34 @@
  * @complexity  O(n)
  */
 template <typename Container>
-auto LargestSumContiguousSubarrayKadane(const Container &array) {
+static inline auto LargestSumContiguousSubarray_Kadane(const Container &array,
+        Container *const max_sum_subarray = nullptr) {
+    assert(not array.empty());
+
     auto max_so_far = std::numeric_limits<typename Container::value_type>::min();
     typename Container::value_type max_ending_here = 0;
+    typename Container::size_type max_start = 0;
+    typename Container::size_type max_last = 0;
+    typename Container::size_type current_start = 0;
 
-    for (const auto num : array) {
-        max_ending_here += num;
-        if (max_so_far < max_ending_here) {
+    for (typename Container::size_type i = 0; i < array.size(); ++i) {
+        max_ending_here += array[i];
+
+        // <= instead of <, would return the longest such subarray.
+        if (max_so_far <= max_ending_here) {
             max_so_far = max_ending_here;
+            max_start = current_start;
+            max_last = i;
         }
+
         if (max_ending_here < 0) {
             max_ending_here = 0;
+            current_start = i + 1;
         }
+    }
+
+    if (max_sum_subarray) {
+        *max_sum_subarray = Container(array.cbegin() + max_start, array.cbegin() + max_last + 1);
     }
 
     return max_so_far;

@@ -2,15 +2,103 @@
 
 #include "largest_sum_contiguous_subarray.h"
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+
+namespace {
+
+using ArrayType = std::vector<int>;
+
+auto TheLargestSumContiguousSubarray(const ArrayType &elements) {
+    ArrayType the_max_sum_subarray;
+    LargestSumContiguousSubarray_Kadane(elements, &the_max_sum_subarray);
+    return the_max_sum_subarray;
+}
 
 
-constexpr ArrayType<0> VALUES1 = {};
-constexpr ArrayType<3> VALUES2 = { -1, -2, -3};
-constexpr ArrayType<8> VALUES3 = { -2, -3, 4, -1, -2, 1, 5, -3};
+/**
+ * @reference   Maximum subarray sum in O(n) using prefix sum
+ *              https://www.geeksforgeeks.org/maximum-subarray-sum-using-prefix-sum/
+ *
+ * @note    This solution is less efficient, and slightly more complicate.
+ */
 
-SIMPLE_TEST(LargestSumContiguousSubarrayKadane, TestSAMPLE1, std::numeric_limits<int>::min(),
-            VALUES1);
-SIMPLE_TEST(LargestSumContiguousSubarrayKadane, TestSAMPLE2, -1, VALUES2);
-SIMPLE_TEST(LargestSumContiguousSubarrayKadane, TestSAMPLE3, 7, VALUES3);
+
+/**
+ * @reference   Longest subarray having maximum sum
+ *              https://www.geeksforgeeks.org/longest-subarray-having-maximum-sum/
+ *
+ * Given an array arr[] containing n integers. The problem is to find the length of
+ * the subarray having maximum sum. If there exists two or more subarrays with
+ * maximum sum then print the length of the longest subarray.
+ */
+auto LengthOfLargestSumContiguousSubarray(const ArrayType &elements) {
+    return TheLargestSumContiguousSubarray(elements).size();
+}
+
+
+/** Smallest sum contiguous subarray
+ *
+ * @reference   https://www.geeksforgeeks.org/smallest-sum-contiguous-subarray/
+ */
+auto SmallestSumContiguousSubarray(const ArrayType &elements) {
+    assert(not elements.empty());
+
+    auto min_so_far = std::numeric_limits<ArrayType::value_type>::max();
+    auto min_ending_here = min_so_far;
+
+    for (const auto number : elements) {
+        if (min_ending_here > 0) {
+            min_ending_here = 0;
+        }
+        min_ending_here += number;
+
+        min_so_far = std::min(min_so_far, min_ending_here);
+    }
+
+    return min_so_far;
+}
+
+}//namespace
+
+
+const ArrayType SAMPLE1 = { -1, -2, -3};
+const ArrayType EXPECTED1 = { -1};
+
+const ArrayType SAMPLE2 = { -2, -3, 4, -1, -2, 1, 5, -3};
+const ArrayType EXPECTED2 = {4, -1, -2, 1, 5};
+
+const ArrayType SAMPLE3 = { -2, -1, -3};
+
+const ArrayType SAMPLE4 = {5, -2, -1, 3, -4};
+const ArrayType EXPECTED4 = {5, -2, -1, 3};
+
+
+SIMPLE_BENCHMARK(LargestSumContiguousSubarray_Kadane, SAMPLE2);
+
+SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE1, -1, SAMPLE1);
+SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE2, 7, SAMPLE2);
+SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE4, 5, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(TheLargestSumContiguousSubarray, SAMPLE2);
+
+SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE3, EXPECTED1, SAMPLE3);
+SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(LengthOfLargestSumContiguousSubarray, SAMPLE2);
+
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
+
+
+const ArrayType SAMPLE5 = {3, -4, 2, -3, -1, 7, -5};
+const ArrayType SAMPLE6 = {2, 6, 8, 1, 4};
+
+
+SIMPLE_BENCHMARK(SmallestSumContiguousSubarray, SAMPLE5);
+
+SIMPLE_TEST(SmallestSumContiguousSubarray, TestSAMPLE5, -6, SAMPLE5);
+SIMPLE_TEST(SmallestSumContiguousSubarray, TestSAMPLE6, 1, SAMPLE6);

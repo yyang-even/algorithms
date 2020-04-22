@@ -1053,3 +1053,7 @@
 * https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
 * https://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/
 * https://www.geeksforgeeks.org/length-of-longest-subarray-with-equal-number-of-odd-and-even-elements/
+* https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+* https://www.geeksforgeeks.org/longest-subarray-having-maximum-sum/
+* https://www.geeksforgeeks.org/maximum-subarray-sum-using-prefix-sum/
+* https://www.geeksforgeeks.org/smallest-sum-contiguous-subarray/

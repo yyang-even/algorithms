@@ -42,7 +42,7 @@ auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
         diff_array.push_back(*iter - * (iter - 1));
     }
 
-    return LargestSumContiguousSubarrayKadane(diff_array);
+    return LargestSumContiguousSubarray_Kadane(diff_array);
 }
 
 }//namespace
