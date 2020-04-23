@@ -1057,3 +1057,4 @@
 * https://www.geeksforgeeks.org/longest-subarray-having-maximum-sum/
 * https://www.geeksforgeeks.org/maximum-subarray-sum-using-prefix-sum/
 * https://www.geeksforgeeks.org/smallest-sum-contiguous-subarray/
+* https://www.geeksforgeeks.org/fractional-knapsack-queries/
