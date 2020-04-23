@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/sum/prefix_sum_array.h"
+
 
 namespace {
 
@@ -156,6 +158,57 @@ auto FractionalKnapsack01(const ArrayType &weights, const ArrayType &values,
     return final_value;
 }
 
+
+/**
+ * @reference   Fractional Knapsack Queries
+ *              https://www.geeksforgeeks.org/fractional-knapsack-queries/
+ */
+auto FractionalKnapsack01Queries(const ArrayType &weights, const ArrayType &values,
+                                 const ArrayType &queries) {
+    assert(weights.size() == values.size());
+
+    using ValueWeightPair = std::pair<ArrayType::value_type, ArrayType::value_type>;
+    std::vector<ValueWeightPair> items;
+
+    for (ArrayType::size_type i = 0; i < weights.size(); ++i) {
+        items.emplace_back(values[i], weights[i]);
+    }
+
+    std::sort(items.begin(), items.end(), [](const auto & lhs, const auto & rhs) {
+        return (lhs.first / static_cast<double>(lhs.second)) >
+               (rhs.first / static_cast<double>(rhs.second));
+    });
+
+    const auto prefix_sums = PrefixSumArray(std::move(items), [](const auto & lhs, const auto & rhs) {
+        return std::make_pair(lhs.first + rhs.first, lhs.second + rhs.second);
+    });
+
+    std::vector<double> max_values;
+    for (const auto W : queries) {
+        if (prefix_sums.back().second <= W) {
+            max_values.emplace_back(prefix_sums.back().first);
+            continue;
+        }
+
+        const auto upper = std::upper_bound(prefix_sums.cbegin(), prefix_sums.cend(), W,
+        [](const auto & w, const auto & one_item) {
+            return w < one_item.second;
+        });
+
+        if (upper == prefix_sums.cbegin()) {
+            max_values.emplace_back(static_cast<double>(W) * upper->first / upper->second);
+        } else {
+            const auto previous_item = std::prev(upper);
+            max_values.emplace_back(previous_item->first +
+                                    static_cast<double>(W - previous_item->second) *
+                                    (upper->first - previous_item->first) /
+                                    (upper->second - previous_item->second));
+        }
+    }
+
+    return max_values;
+}
+
 }//namespace
 
 
@@ -211,3 +264,15 @@ SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE4, EXPECTED4, SAMPLE4_WEIGHT, SAMPL
 SIMPLE_BENCHMARK(FractionalKnapsack01, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_TEST(FractionalKnapsack01, TestSAMPLE1, 240, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+
+
+const ArrayType SAMPLE5_VALUES = {2, 8, 9};
+const ArrayType SAMPLE5_WEIGHT = {1, 2, 3};
+const ArrayType SAMPLE5_QUERY = {1, 2, 3, 4, 5, 6, 7};
+const std::vector<double> EXPECTED5 = {4, 8, 11, 14, 17, 19, 19};
+
+
+SIMPLE_BENCHMARK(FractionalKnapsack01Queries, SAMPLE5_WEIGHT, SAMPLE5_VALUES, SAMPLE5_QUERY);
+
+SIMPLE_TEST(FractionalKnapsack01Queries, TestSAMPLE5, EXPECTED5, SAMPLE5_WEIGHT, SAMPLE5_VALUES,
+            SAMPLE5_QUERY);
