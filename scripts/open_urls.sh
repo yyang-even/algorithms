@@ -16,7 +16,7 @@ _term() {
 SLEEP_SECONDS=16
 
 OpenUrlAndSleep() {
-    URL="$1"
+    local URL="$1"
     echo "Opening: $URL"
 
     firefox --new-tab "$URL" &
@@ -40,7 +40,7 @@ echo "  number of lines: " $NUMBER_LINES
 echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
 
 while IFS=" " read -r field1 url; do
-    no_space_url="${url// }"
+    local no_space_url="${url// }"
     if [ ! -z "$no_space_url" ]; then
         OpenUrlAndSleep "$no_space_url"
         OpenUrlAndSleep "$no_space_url?ref=rp"
