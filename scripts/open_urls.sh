@@ -16,9 +16,10 @@ _term() {
 SLEEP_SECONDS=16
 
 OpenUrlAndSleep() {
-    echo "Opening: $1"
+    URL="$1"
+    echo "Opening: $URL"
 
-    firefox --new-tab "$1" &
+    firefox --new-tab "$URL" &
 
     sleep $SLEEP_SECONDS
 }
