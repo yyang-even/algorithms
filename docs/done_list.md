@@ -1058,3 +1058,4 @@
 * https://www.geeksforgeeks.org/maximum-subarray-sum-using-prefix-sum/
 * https://www.geeksforgeeks.org/smallest-sum-contiguous-subarray/
 * https://www.geeksforgeeks.org/fractional-knapsack-queries/
+* https://www.geeksforgeeks.org/legendres-formula-highest-power-of-prime-number-that-divides-n/

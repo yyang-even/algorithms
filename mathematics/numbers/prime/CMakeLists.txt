@@ -25,6 +25,9 @@ CompileTestExe(largest_power_of_p_divides_factorial_n)
 CompileBenchmarkExe(least_prime_factor_of_numbers_till_n)
 CompileTestExe(least_prime_factor_of_numbers_till_n)
 
+CompileBenchmarkExe(legendres_formula)
+CompileTestExe(legendres_formula)
+
 CompileBenchmarkExe(perfect_number)
 CompileTestExe(perfect_number)
 
