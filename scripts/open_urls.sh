@@ -40,7 +40,7 @@ echo "  number of lines: " $NUMBER_LINES
 echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
 
 while IFS=" " read -r field1 url; do
-    local no_space_url="${url// }"
+    no_space_url="${url// }"
     if [ ! -z "$no_space_url" ]; then
         OpenUrlAndSleep "$no_space_url"
         OpenUrlAndSleep "$no_space_url?ref=rp"
