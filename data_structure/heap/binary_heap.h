@@ -22,6 +22,16 @@
  *              https://www.geeksforgeeks.org/heap-using-stl-c/
  * @reference   How to implement Min Heap using STL?
  *              https://www.geeksforgeeks.org/implement-min-heap-using-stl/
+ * @reference   Applications of Priority Queue
+ *              https://www.geeksforgeeks.org/applications-priority-queue/
+ * @reference   Priority Queue of Vectors in C++ STL with Examples
+ *              https://www.geeksforgeeks.org/priority-queue-of-vectors-in-c-stl-with-examples/
+ * @reference   STL Priority Queue for Structure or Class
+ *              https://www.geeksforgeeks.org/stl-priority-queue-for-structure-or-class/
+ * @reference   Priority queue of pairs in C++ (Ordered by first)
+ *              https://www.geeksforgeeks.org/priority-queue-of-pairs-in-c-ordered-by-first/
+ * @reference   Why is Binary Heap Preferred over BST for Priority Queue?
+ *              https://www.geeksforgeeks.org/why-is-binary-heap-preferred-over-bst-for-priority-queue/
  */
 /** LFU (Least Frequently Used) Cache Implementation
  *

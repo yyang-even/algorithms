@@ -1,2 +1,5 @@
 CompileBenchmarkExe(activity_selection)
 CompileTestExe(activity_selection)
+
+CompileBenchmarkExe(huffman_codes)
+CompileTestExe(huffman_codes)

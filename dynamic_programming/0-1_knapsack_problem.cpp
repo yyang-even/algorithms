@@ -120,7 +120,10 @@ auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
 
 /** Fractional Knapsack Problem
  *
- * @reference   https://www.geeksforgeeks.org/fractional-knapsack-problem/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 16.2.
+ * @reference   Fractional Knapsack Problem
+ *              https://www.geeksforgeeks.org/fractional-knapsack-problem/
  *
  * Given weights and values of n items, we need to put these items in a knapsack of
  * capacity W to get the maximum total value in the knapsack.

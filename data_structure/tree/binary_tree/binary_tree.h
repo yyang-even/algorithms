@@ -18,26 +18,30 @@
  * @reference   Applications of tree data structure
  *              https://www.geeksforgeeks.org/applications-of-tree-data-structure/
  */
+template <typename T>
+struct BinaryTreeNode {
+    using ValueType = T;
+    using PointerType = std::shared_ptr<BinaryTreeNode>;
+
+    enum class Type {
+        leaf,
+        left_sided,
+        right_sided,
+        full,
+        unknown,
+    };
+
+    PointerType left;
+    PointerType right;
+    ValueType value{};
+
+    explicit BinaryTreeNode(ValueType v) : value(std::move(v)) {}
+};
+
+
 class BinaryTree {
 public:
-    struct Node {
-        using ValueType = int;
-        using PointerType = std::shared_ptr<Node>;
-
-        enum class Type {
-            leaf,
-            left_sided,
-            right_sided,
-            full,
-            unknown,
-        };
-
-        PointerType left;
-        PointerType right;
-        ValueType value = 0;
-
-        explicit Node(ValueType v) : value(std::move(v)) {}
-    };
+    using Node = BinaryTreeNode<int>;
     using ArrayType = std::vector<Node::ValueType>;
 
     const auto &GetRoot() const {

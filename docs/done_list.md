@@ -1060,3 +1060,11 @@
 * https://www.geeksforgeeks.org/fractional-knapsack-queries/
 * https://www.geeksforgeeks.org/legendres-formula-highest-power-of-prime-number-that-divides-n/
 * https://www.geeksforgeeks.org/largest-power-k-n-factorial-k-may-not-prime/
+* https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
+* https://www.geeksforgeeks.org/applications-priority-queue/
+* https://www.geeksforgeeks.org/applications-of-queue-data-structure/
+* https://www.geeksforgeeks.org/priority-queue-of-vectors-in-c-stl-with-examples/
+* https://www.geeksforgeeks.org/stl-priority-queue-for-structure-or-class/
+* https://www.geeksforgeeks.org/priority-queue-of-pairs-in-c-ordered-by-first/
+* https://www.geeksforgeeks.org/why-is-binary-heap-preferred-over-bst-for-priority-queue/
+* https://www.geeksforgeeks.org/huffman-coding-using-priority-queue/

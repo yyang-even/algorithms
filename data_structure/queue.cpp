@@ -21,6 +21,8 @@
  *              https://www.geeksforgeeks.org/fifo-vs-lifo-approach-in-programming/
  * @reference   Circular array
  *              https://www.geeksforgeeks.org/circular-array/
+ * @reference   Applications of Queue Data Structure
+ *              https://www.geeksforgeeks.org/applications-of-queue-data-structure/
  */
 class ArrayCircularQueue {
     using ValueType = int;
