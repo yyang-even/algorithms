@@ -1,28 +1,11 @@
 #include "common_header.h"
 
-#include "is_prime.h"
 #include "least_prime_factor_of_numbers_till_n.h"
+
+#include "legendres_formula.h"
 
 
 namespace {
-
-/** Legendre’s formula (Given p and n, find the largest x such that p^x divides n!)
- *
- * @reference   https://www.geeksforgeeks.org/legendres-formula-highest-power-of-prime-number-that-divides-n/
- */
-auto LegendresFormula(const unsigned p, unsigned n) {
-    assert(IsPrime_OptimizedSchoolMethod(p));
-
-    unsigned x = 0;
-
-    while (n) {
-        n /= p;
-        x += n;
-    }
-
-    return x;
-}
-
 
 /**
  * @reference   Largest power of k in n! (factorial) where k may not be prime

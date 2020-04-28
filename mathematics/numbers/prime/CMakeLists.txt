@@ -37,6 +37,9 @@ CompileTestExe(prime_factors_of_n)
 CompileBenchmarkExe(primes_below_n)
 CompileTestExe(primes_below_n)
 
+CompileBenchmarkExe(sum_of_divisors_of_factorial)
+CompileTestExe(sum_of_divisors_of_factorial)
+
 CompileBenchmarkExe(sum_of_factors_of_a_number)
 CompileTestExe(sum_of_factors_of_a_number)
 

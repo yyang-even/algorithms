@@ -1068,3 +1068,4 @@
 * https://www.geeksforgeeks.org/priority-queue-of-pairs-in-c-ordered-by-first/
 * https://www.geeksforgeeks.org/why-is-binary-heap-preferred-over-bst-for-priority-queue/
 * https://www.geeksforgeeks.org/huffman-coding-using-priority-queue/
+* https://www.geeksforgeeks.org/sum-divisors-factorial-number/

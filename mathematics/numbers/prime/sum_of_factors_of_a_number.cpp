@@ -27,6 +27,7 @@ SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE3, 2604, 1100);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE4, 72, 30);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE5, 24, 15);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE6, 14, 13);
+SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE7, 60, 24);
 
 
 SIMPLE_BENCHMARK(HaveSameSumsOfProperDivisors, 559, 703);
