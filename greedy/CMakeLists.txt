@@ -3,3 +3,6 @@ CompileTestExe(activity_selection)
 
 CompileBenchmarkExe(huffman_codes)
 CompileTestExe(huffman_codes)
+
+CompileBenchmarkExe(task_scheduling)
+CompileTestExe(task_scheduling)
