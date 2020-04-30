@@ -36,6 +36,8 @@ auto CountDigits_String(const int n) {
 /** TCS Coding Practice Question | Sum of Digits of a number
  *
  * @reference   https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
+ * @reference   C Program for Sum the digits of a given number
+ *              https://www.geeksforgeeks.org/c-program-for-program-for-sum-the-digits-of-a-given-number/
  */
 
 }//namespace

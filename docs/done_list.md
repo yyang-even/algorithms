@@ -1070,3 +1070,11 @@
 * https://www.geeksforgeeks.org/huffman-coding-using-priority-queue/
 * https://www.geeksforgeeks.org/sum-divisors-factorial-number/
 * https://www.geeksforgeeks.org/job-sequencing-problem/
+* https://www.geeksforgeeks.org/coin-change-dp-7/
+* https://www.geeksforgeeks.org/understanding-the-coin-change-problem-with-dynamic-programming/
+* https://www.geeksforgeeks.org/c-program-coin-change/
+* https://www.geeksforgeeks.org/c-program-for-program-for-sum-the-digits-of-a-given-number/
+* https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
+* https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/
+* https://www.geeksforgeeks.org/find-out-the-minimum-number-of-coins-required-to-pay-total-amount/
+* https://www.geeksforgeeks.org/coin-change-bfs-approach/

@@ -4,6 +4,9 @@ CompileTestExe(0-1_knapsack_problem)
 CompileBenchmarkExe(break_a_string)
 CompileTestExe(break_a_string)
 
+CompileBenchmarkExe(coin_change)
+CompileTestExe(coin_change)
+
 CompileBenchmarkExe(company_party_planning)
 CompileTestExe(company_party_planning)
 
