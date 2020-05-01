@@ -1078,3 +1078,5 @@
 * https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/
 * https://www.geeksforgeeks.org/find-out-the-minimum-number-of-coins-required-to-pay-total-amount/
 * https://www.geeksforgeeks.org/coin-change-bfs-approach/
+* https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
+* https://www.geeksforgeeks.org/optimal-page-replacement-algorithm/

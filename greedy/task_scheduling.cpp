@@ -18,7 +18,7 @@ inline auto &operator<<(std::ostream &out, const Job &a_job) {
 /** Task-scheduling Problem
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 16.5.
+ *              Introduction to Algorithms, Third Edition. Chapter 16.5. Problems 16-4.
  * @reference   Job Sequencing Problem
  *              https://www.geeksforgeeks.org/job-sequencing-problem/
  *
