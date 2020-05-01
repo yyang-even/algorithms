@@ -4,13 +4,17 @@
 # This script sets up a project to be used for the first time
 #
 
+source ~/.bash_util.sh
+
 
 THIS_DIR=$(dirname "$0")
-PROJECT_ROOT_DIR="$THIS_DIR/.."
 
+QuietRun pushd "$THIS_DIR"
+    PROJECT_ROOT_DIR=$(git rev-parse --show-toplevel)
+QuietRun popd
 
-pushd "$PROJECT_ROOT_DIR"
-    PROJECT_NAME=$( basename `git rev-parse --show-toplevel` )
+QuietRun pushd "$PROJECT_ROOT_DIR"
+    PROJECT_NAME=$( basename "$PROJECT_ROOT_DIR" )
     echo "Setting up project \"$PROJECT_NAME\"."
 
     ./scripts/bootstrap.sh
@@ -26,4 +30,4 @@ pushd "$PROJECT_ROOT_DIR"
 
 
     ./scripts/open_urls.sh docs/done_list.md
-popd
+QuietRun popd
