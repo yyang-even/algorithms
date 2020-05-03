@@ -1080,3 +1080,6 @@
 * https://www.geeksforgeeks.org/coin-change-bfs-approach/
 * https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
 * https://www.geeksforgeeks.org/optimal-page-replacement-algorithm/
+* https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
+* https://www.geeksforgeeks.org/divisibility-by-7/
+* https://www.geeksforgeeks.org/program-to-convert-octal-number-to-binary-number/

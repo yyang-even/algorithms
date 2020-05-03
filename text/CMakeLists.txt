@@ -19,6 +19,9 @@ CompileTestExe(interleavings_of_two_strings)
 CompileBenchmarkExe(is_palindrome)
 CompileTestExe(is_palindrome)
 
+CompileBenchmarkExe(octal_to_binary)
+CompileTestExe(octal_to_binary)
+
 CompileBenchmarkExe(pangram_checking)
 CompileTestExe(pangram_checking)
 
