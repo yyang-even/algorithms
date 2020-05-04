@@ -5,9 +5,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
-
 /** Check if n is divisible by power of 2 without using arithmetic operators
  *
  * @reference   https://www.geeksforgeeks.org/check-n-divisible-power-2-without-using-arithmetic-operators/
@@ -15,12 +12,12 @@ using InputType = unsigned;
  * Given two positive integers n and m. The problem is to check whether n
  * is divisible by 2^m or not.
  */
-auto IsDivisibleByPowerOf2_Arithmetic(const InputType n, const InputType m) {
+auto IsDivisibleByPowerOf2_Arithmetic(const unsigned n, const unsigned m) {
     return not(n & ((1 << m) - 1));
 }
 
 
-auto IsDivisibleByPowerOf2_Bitwise(const InputType n, const InputType m) {
+auto IsDivisibleByPowerOf2_Bitwise(const unsigned n, const unsigned m) {
     return ((n >> m) << m) == n;
 }
 
@@ -31,7 +28,7 @@ auto IsDivisibleByPowerOf2_Bitwise(const InputType n, const InputType m) {
  *
  * Given a number n, check if it is divisible by 8 using bitwise operators.
  */
-inline auto IsDivisibleBy8(const InputType num) {
+inline auto IsDivisibleBy8(const unsigned num) {
     return IsDivisibleByPowerOf2_Bitwise(num, 3);
 }
 
@@ -43,7 +40,7 @@ inline auto IsDivisibleBy8(const InputType num) {
  * Given a number n, the task is to check whether this number is a multiple
  * of 4 or not without using +, -, * ,/ and % operators.
  */
-auto IsMultipleOf4_Xor(const InputType num) {
+auto IsMultipleOf4_Xor(const unsigned num) {
     if (num == 1) {
         return false;
     }
@@ -51,7 +48,7 @@ auto IsMultipleOf4_Xor(const InputType num) {
 }
 
 
-inline auto IsMultipleOf4_Shift(const InputType num) {
+inline auto IsMultipleOf4_Shift(const unsigned num) {
     return IsDivisibleByPowerOf2_Bitwise(num, 2);
 }
 
@@ -63,7 +60,7 @@ inline auto IsMultipleOf4_Shift(const InputType num) {
  * Given a number n. The problem is to efficiently check whether n is a
  * multiple of 4 or not without using arithmetic operators.
  */
-inline auto IsMultipleOf4_Mask(const InputType num) {
+inline auto IsMultipleOf4_Mask(const unsigned num) {
     return IsDivisibleByPowerOf2_Arithmetic(num, 2);
 }
 
@@ -84,11 +81,23 @@ auto IsEven(const unsigned num) {
     return IsDivisibleByPowerOf2_Arithmetic(num, 1);
 }
 
+
+/**
+ * @reference   Check if an Octal number is Even or Odd
+ *              https://www.geeksforgeeks.org/check-if-an-octal-number-is-even-or-odd/
+ */
+
+
+/**
+ * @reference   Check if a HexaDecimal number is Even or Odd
+ *              https://www.geeksforgeeks.org/check-if-a-hexadecimal-number-is-even-or-odd/
+ */
+
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<unsigned>::min();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(IsDivisibleByPowerOf2_Arithmetic, 8, 2);
