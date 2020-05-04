@@ -1083,3 +1083,6 @@
 * https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
 * https://www.geeksforgeeks.org/divisibility-by-7/
 * https://www.geeksforgeeks.org/program-to-convert-octal-number-to-binary-number/
+* https://www.geeksforgeeks.org/check-if-an-octal-number-is-even-or-odd/
+* https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
+* https://www.geeksforgeeks.org/check-if-a-hexadecimal-number-is-even-or-odd/

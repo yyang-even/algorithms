@@ -13,6 +13,9 @@ CompileTestExe(count_words_in_given_string)
 CompileBenchmarkExe(find_kth_char_of_decrypted_string)
 CompileTestExe(find_kth_char_of_decrypted_string)
 
+CompileBenchmarkExe(hex_to_binary)
+CompileTestExe(hex_to_binary)
+
 CompileBenchmarkExe(interleavings_of_two_strings)
 CompileTestExe(interleavings_of_two_strings)
 
