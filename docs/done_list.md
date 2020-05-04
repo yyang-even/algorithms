@@ -1086,3 +1086,6 @@
 * https://www.geeksforgeeks.org/check-if-an-octal-number-is-even-or-odd/
 * https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
 * https://www.geeksforgeeks.org/check-if-a-hexadecimal-number-is-even-or-odd/
+* https://www.geeksforgeeks.org/program-page-replacement-algorithms-set-2-fifo/
+* https://www.geeksforgeeks.org/beladys-anomaly-in-page-replacement-algorithms/
+* https://www.geeksforgeeks.org/program-to-show-beladys-anomaly/

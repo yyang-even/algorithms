@@ -6,11 +6,10 @@ CompileTestExe(lru_cache)
 
 CompileTestExe(priority_queue)
 
-CompileTestExe(queue)
-
 CompileTestExe(stack)
 
 add_subdirectory(array)
 add_subdirectory(heap)
 add_subdirectory(linked_list)
 add_subdirectory(tree)
+add_subdirectory(queue)
