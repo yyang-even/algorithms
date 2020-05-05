@@ -1089,3 +1089,5 @@
 * https://www.geeksforgeeks.org/program-page-replacement-algorithms-set-2-fifo/
 * https://www.geeksforgeeks.org/beladys-anomaly-in-page-replacement-algorithms/
 * https://www.geeksforgeeks.org/program-to-show-beladys-anomaly/
+* https://www.geeksforgeeks.org/program-for-least-recently-used-lru-page-replacement-algorithm/
+* https://www.geeksforgeeks.org/implementation-of-least-recently-used-lru-page-replacement-algorithm-using-counters/

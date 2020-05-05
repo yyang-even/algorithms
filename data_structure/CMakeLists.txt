@@ -2,6 +2,7 @@ CompileTestExe(deque)
 
 CompileTestExe(lfu_cache)
 
+CompileBenchmarkExe(lru_cache)
 CompileTestExe(lru_cache)
 
 CompileTestExe(priority_queue)
