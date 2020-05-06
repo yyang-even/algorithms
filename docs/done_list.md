@@ -1091,3 +1091,7 @@
 * https://www.geeksforgeeks.org/program-to-show-beladys-anomaly/
 * https://www.geeksforgeeks.org/program-for-least-recently-used-lru-page-replacement-algorithm/
 * https://www.geeksforgeeks.org/implementation-of-least-recently-used-lru-page-replacement-algorithm-using-counters/
+* https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
+* https://www.geeksforgeeks.org/advantages-and-disadvantages-of-various-page-replacement-algorithms/
+* https://www.geeksforgeeks.org/second-chance-or-clock-page-replacement-policy/
+* https://www.geeksforgeeks.org/lru-approximation-second-chance-algorithm/

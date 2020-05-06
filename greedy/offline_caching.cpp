@@ -13,6 +13,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
  * @reference   Optimal Page Replacement Algorithm
  *              https://www.geeksforgeeks.org/optimal-page-replacement-algorithm/
+ * @reference   Page Replacement Algorithms in Operating Systems
+ *              https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
+ * @reference   Advantages and Disadvantages of various Page Replacement algorithms
+ *              https://www.geeksforgeeks.org/advantages-and-disadvantages-of-various-page-replacement-algorithms/
  */
 auto FurthestInFuture(const ArrayType &requests, const ArrayType::size_type cache_size) {
     std::unordered_set<ArrayType::value_type> cache;
