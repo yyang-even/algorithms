@@ -1095,3 +1095,5 @@
 * https://www.geeksforgeeks.org/advantages-and-disadvantages-of-various-page-replacement-algorithms/
 * https://www.geeksforgeeks.org/second-chance-or-clock-page-replacement-policy/
 * https://www.geeksforgeeks.org/lru-approximation-second-chance-algorithm/
+* https://www.geeksforgeeks.org/program-for-hexadecimal-to-decimal/
+* https://www.geeksforgeeks.org/program-octal-decimal-conversion/

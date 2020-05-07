@@ -16,6 +16,9 @@ CompileTestExe(find_kth_char_of_decrypted_string)
 CompileBenchmarkExe(hex_to_binary)
 CompileTestExe(hex_to_binary)
 
+CompileBenchmarkExe(hex_to_decimal)
+CompileTestExe(hex_to_decimal)
+
 CompileBenchmarkExe(interleavings_of_two_strings)
 CompileTestExe(interleavings_of_two_strings)
 
@@ -24,6 +27,9 @@ CompileTestExe(is_palindrome)
 
 CompileBenchmarkExe(octal_to_binary)
 CompileTestExe(octal_to_binary)
+
+CompileBenchmarkExe(octal_to_decimal)
+CompileTestExe(octal_to_decimal)
 
 CompileBenchmarkExe(pangram_checking)
 CompileTestExe(pangram_checking)
