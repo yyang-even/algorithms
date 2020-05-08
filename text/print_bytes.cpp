@@ -9,6 +9,8 @@ typedef const unsigned char *Byte_Pointer;
  *              https://www.geeksforgeeks.org/how-will-you-show-memory-representation-of-c-variables/
  * @reference   Randal E.Bryant, David R.O'Hallaron.
  *              Computer System: A Programmer's Perspective (Third Edition). Section 2.1.
+ * @reference   StringStream in C++ for Decimal to Hexadecimal and back
+ *              https://www.geeksforgeeks.org/stringstream-c-decimal-hexadecimal-back/
  *
  * Write a C program to show memory representation of C variables like int, float, pointer, etc.
  */

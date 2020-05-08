@@ -1097,3 +1097,5 @@
 * https://www.geeksforgeeks.org/lru-approximation-second-chance-algorithm/
 * https://www.geeksforgeeks.org/program-for-hexadecimal-to-decimal/
 * https://www.geeksforgeeks.org/program-octal-decimal-conversion/
+* https://www.geeksforgeeks.org/program-decimal-octal-conversion/
+* https://www.geeksforgeeks.org/stringstream-c-decimal-hexadecimal-back/

@@ -10,14 +10,14 @@ CompileTestExe(count_strings_with_consonant_and_vowels_at_alternate_position)
 CompileBenchmarkExe(count_words_in_given_string)
 CompileTestExe(count_words_in_given_string)
 
+CompileBenchmarkExe(decimal_conversion_to)
+CompileTestExe(decimal_conversion_to)
+
 CompileBenchmarkExe(find_kth_char_of_decrypted_string)
 CompileTestExe(find_kth_char_of_decrypted_string)
 
 CompileBenchmarkExe(hex_to_binary)
 CompileTestExe(hex_to_binary)
-
-CompileBenchmarkExe(hex_to_decimal)
-CompileTestExe(hex_to_decimal)
 
 CompileBenchmarkExe(interleavings_of_two_strings)
 CompileTestExe(interleavings_of_two_strings)
@@ -27,9 +27,6 @@ CompileTestExe(is_palindrome)
 
 CompileBenchmarkExe(octal_to_binary)
 CompileTestExe(octal_to_binary)
-
-CompileBenchmarkExe(octal_to_decimal)
-CompileTestExe(octal_to_decimal)
 
 CompileBenchmarkExe(pangram_checking)
 CompileTestExe(pangram_checking)
@@ -66,3 +63,6 @@ CompileTestExe(split_into_words)
 
 CompileBenchmarkExe(tail)
 CompileTestExe(tail)
+
+CompileBenchmarkExe(to_decimal)
+CompileTestExe(to_decimal)
