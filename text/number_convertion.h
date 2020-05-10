@@ -25,3 +25,8 @@ static inline auto HexDigitToDecimal(const char digit) {
     static const auto hex_digit_to_decimal_map = CreateHexDigitToDecimalMap();
     return hex_digit_to_decimal_map.at(digit);
 }
+
+
+static inline auto BinaryDigitToDecimal(const char digit) {
+    return digit - '0';
+}

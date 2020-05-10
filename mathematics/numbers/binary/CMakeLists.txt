@@ -183,9 +183,6 @@ CompileTestExe(toggle_all_bits_after_most_significant_bit)
 CompileBenchmarkExe(toggle_bit)
 CompileTestExe(toggle_bit)
 
-CompileBenchmarkExe(to_binary_string)
-CompileTestExe(to_binary_string)
-
 CompileBenchmarkExe(twos_complement)
 CompileTestExe(twos_complement)
 

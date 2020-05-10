@@ -1100,3 +1100,7 @@
 * https://www.geeksforgeeks.org/program-decimal-octal-conversion/
 * https://www.geeksforgeeks.org/stringstream-c-decimal-hexadecimal-back/
 * https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
+* https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
+* https://www.geeksforgeeks.org/reverse-number-using-stack/
+* https://www.geeksforgeeks.org/program-binary-decimal-conversion/
+* https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
