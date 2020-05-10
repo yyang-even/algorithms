@@ -16,17 +16,11 @@ CompileTestExe(decimal_conversion_to)
 CompileBenchmarkExe(find_kth_char_of_decrypted_string)
 CompileTestExe(find_kth_char_of_decrypted_string)
 
-CompileBenchmarkExe(hex_to_binary)
-CompileTestExe(hex_to_binary)
-
 CompileBenchmarkExe(interleavings_of_two_strings)
 CompileTestExe(interleavings_of_two_strings)
 
 CompileBenchmarkExe(is_palindrome)
 CompileTestExe(is_palindrome)
-
-CompileBenchmarkExe(octal_to_binary)
-CompileTestExe(octal_to_binary)
 
 CompileBenchmarkExe(pangram_checking)
 CompileTestExe(pangram_checking)

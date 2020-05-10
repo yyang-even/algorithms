@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "text/number_convertion.h"
+
 
 namespace {
 
@@ -43,6 +45,34 @@ auto ToBinaryString_Bitset(const unsigned n) {
     return std::bitset<BitsNumber<decltype(n)>>(n).to_string();
 }
 
+
+template <unsigned Size>
+auto ToBinary(const std::string &octal, const std::function<int(const char)> to_decimal) {
+    std::stringstream ss_out;
+    for (const auto octal_digit : octal) {
+        ss_out << std::bitset<Size>(to_decimal(octal_digit));
+    }
+
+    return ss_out.str();
+}
+
+/** Program to Convert Octal Number to Binary Number
+ *
+ * @reference   https://www.geeksforgeeks.org/program-to-convert-octal-number-to-binary-number/
+ */
+auto OctalToBinary(const std::string &octal) {
+    return ToBinary<3>(octal, OctalDigitToDecimal);
+}
+
+
+/** Program to Convert Hexadecimal Number to Binary
+ *
+ * @reference   https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
+ */
+auto HexToBinary(const std::string &hex) {
+    return ToBinary<4>(hex, HexDigitToDecimal);
+}
+
 }//namespace
 
 
@@ -66,3 +96,15 @@ SIMPLE_BENCHMARK(ToBinaryString_Bitset, UPPER);
 
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Iterative, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Recursive, LOWER, UPPER);
+
+
+SIMPLE_BENCHMARK(OctalToBinary, "345");
+
+SIMPLE_TEST(OctalToBinary, TestSAMPLE1, "011100101", "345");
+SIMPLE_TEST(OctalToBinary, TestSAMPLE2, "001010000", "120");
+
+
+SIMPLE_BENCHMARK(HexToBinary, "1AC5");
+
+SIMPLE_TEST(HexToBinary, TestSAMPLE1, "0001101011000101", "1AC5");
+SIMPLE_TEST(HexToBinary, TestSAMPLE2, "0101110100011111", "5D1F");

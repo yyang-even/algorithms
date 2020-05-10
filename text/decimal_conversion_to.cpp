@@ -25,6 +25,10 @@ auto ToOctal(const int number) {
 }
 
 
+/** Program for decimal to hexadecimal conversion
+ *
+ * @reference   https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
+ */
 auto ToHex(const int number) {
     return DecimalTo(number, 16, [](const int digit) {
         if (digit < 10) {
@@ -48,3 +52,7 @@ SIMPLE_TEST(ToOctal, TestSAMPLE3, "41", 33);
 SIMPLE_BENCHMARK(ToHex, 942);
 
 SIMPLE_TEST(ToHex, TestSAMPLE1, "3AE", 942);
+SIMPLE_TEST(ToHex, TestSAMPLE2, "74", 116);
+SIMPLE_TEST(ToHex, TestSAMPLE3, "A", 10);
+SIMPLE_TEST(ToHex, TestSAMPLE4, "21", 33);
+SIMPLE_TEST(ToHex, TestSAMPLE5, "9F1", 2545);

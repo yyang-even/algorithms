@@ -14,3 +14,14 @@ static inline auto CreateHexDigitToDecimalMap() {
 
     return hex_digit_to_decimal_map;
 }
+
+
+static inline auto OctalDigitToDecimal(const char digit) {
+    return digit - '0';
+}
+
+
+static inline auto HexDigitToDecimal(const char digit) {
+    static const auto hex_digit_to_decimal_map = CreateHexDigitToDecimalMap();
+    return hex_digit_to_decimal_map.at(digit);
+}

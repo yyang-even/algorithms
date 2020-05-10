@@ -6,11 +6,11 @@
 namespace {
 
 auto ToDecimal(const std::string &number, const int base,
-               const std::function<int(const char)> to_decimal_digit) {
+               const std::function<int(const char)> to_decimal) {
     int power_of_base = 1;
     int decimal_result = 0;
     for (auto r_iter = number.crbegin(); r_iter != number.crend(); ++r_iter, power_of_base *= base) {
-        decimal_result += to_decimal_digit(*r_iter) * power_of_base;
+        decimal_result += to_decimal(*r_iter) * power_of_base;
     }
 
     return decimal_result;
@@ -22,10 +22,7 @@ auto ToDecimal(const std::string &number, const int base,
  * @reference   https://www.geeksforgeeks.org/program-for-hexadecimal-to-decimal/
  */
 auto HexToDecimal(const std::string &hex) {
-    const auto hex_digit_to_decimal_map = CreateHexDigitToDecimalMap();
-    return ToDecimal(hex, 16, [&hex_digit_to_decimal_map](const char digit) {
-        return hex_digit_to_decimal_map.at(digit);
-    });
+    return ToDecimal(hex, 16, HexDigitToDecimal);
 }
 
 
@@ -48,9 +45,7 @@ auto HexToDecimal_StringStream(const std::string &hex) {
  * @reference   https://www.geeksforgeeks.org/program-octal-decimal-conversion/
  */
 auto OctalToDecimal(const std::string &octal) {
-    return ToDecimal(octal, 8, [](const char digit) {
-        return digit - '0';
-    });
+    return ToDecimal(octal, 8, OctalDigitToDecimal);
 }
 
 }//namespace
