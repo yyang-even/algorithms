@@ -58,5 +58,8 @@ CompileTestExe(split_into_words)
 CompileBenchmarkExe(tail)
 CompileTestExe(tail)
 
+CompileBenchmarkExe(to_binary)
+CompileTestExe(to_binary)
+
 CompileBenchmarkExe(to_decimal)
 CompileTestExe(to_decimal)

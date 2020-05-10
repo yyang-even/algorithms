@@ -48,6 +48,29 @@ auto OctalToDecimal(const std::string &octal) {
     return ToDecimal(octal, 8, OctalDigitToDecimal);
 }
 
+
+/** Program for Binary To Decimal Conversion
+ *
+ * @reference   https://www.geeksforgeeks.org/program-binary-decimal-conversion/
+ */
+auto BinaryToDecimal(const std::string &binary) {
+    return ToDecimal(binary, 2, BinaryDigitToDecimal);
+}
+
+
+/**
+ * @reference   Recursive Program for Binary to Decimal
+ *              https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
+ */
+int BinaryToDecimal_Recursive(const std::string &binary, const std::string::size_type i = 0) {
+    if (i == binary.size()) {
+        return 0;
+    }
+
+    return (BinaryDigitToDecimal(binary[i]) << (binary.size() - i - 1)) +
+           BinaryToDecimal_Recursive(binary, i + 1);
+}
+
 }//namespace
 
 
@@ -74,3 +97,21 @@ SIMPLE_BENCHMARK(OctalToDecimal, "67");
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE1, 55, "67");
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE2, 330, "512");
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE3, 83, "123");
+
+
+SIMPLE_BENCHMARK(BinaryToDecimal, "111");
+
+SIMPLE_TEST(BinaryToDecimal, TestSAMPLE1, 7, "111");
+SIMPLE_TEST(BinaryToDecimal, TestSAMPLE2, 10, "1010");
+SIMPLE_TEST(BinaryToDecimal, TestSAMPLE3, 33, "100001");
+SIMPLE_TEST(BinaryToDecimal, TestSAMPLE4, 169, "10101001");
+SIMPLE_TEST(BinaryToDecimal, TestSAMPLE5, 9, "1001");
+
+
+SIMPLE_BENCHMARK(BinaryToDecimal_Recursive, "111");
+
+SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE1, 7, "111");
+SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE2, 10, "1010");
+SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE3, 33, "100001");
+SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE4, 169, "10101001");
+SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE5, 9, "1001");

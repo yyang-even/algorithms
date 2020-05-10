@@ -45,6 +45,14 @@ auto ReverseDigits_Safe(int number) {
     return reversed_number;
 }
 
+
+/**
+ * @reference   Reverse a number using stack
+ *              https://www.geeksforgeeks.org/reverse-number-using-stack/
+ *
+ * @note    This solution is not very efficient.
+ */
+
 }//namespace
 
 

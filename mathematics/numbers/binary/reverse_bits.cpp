@@ -140,7 +140,7 @@ unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
  *
  * @reference   https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
  */
-auto ReverseBytes(unsigned num) {
+auto ReverseBytes_String(unsigned num) {
     auto *begin = reinterpret_cast<unsigned char *>(&num);
 
     Reverse_TwoPointers(begin, begin + sizeof(num), [](unsigned char &lhs, unsigned char &rhs) {
@@ -148,6 +148,15 @@ auto ReverseBytes(unsigned num) {
     });
 
     return num;
+}
+
+
+/**
+ * @reference   Reverse bytes of a Hexadecimal Number
+ *              https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
+ */
+auto ReverseBytes_Shift(const unsigned num) {
+    return (num << 24) | (((num >> 16) << 24) >> 16) | (((num << 16) >> 24) << 16) | (num >> 24);
 }
 
 
@@ -245,10 +254,16 @@ SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestSAMPLE2, 0X80u, 0X01000000);
 MUTUAL_RANDOM_TEST(ReverseBits, ReverseNBits_Parallel_Uint32, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseBytes, 0x12345678);
+SIMPLE_BENCHMARK(ReverseBytes_String, 0x12345678);
 
-SIMPLE_TEST(ReverseBytes, TestSAMPLE1, 0x78563412u, 0x12345678);
-SIMPLE_TEST(ReverseBytes, TestSAMPLE2, 0x21436587u, 0x87654321);
+SIMPLE_TEST(ReverseBytes_String, TestSAMPLE1, 0x78563412u, 0x12345678);
+SIMPLE_TEST(ReverseBytes_String, TestSAMPLE2, 0x21436587u, 0x87654321);
+
+
+SIMPLE_BENCHMARK(ReverseBytes_Shift, 0x12345678);
+
+SIMPLE_TEST(ReverseBytes_Shift, TestSAMPLE1, 0x78563412u, 0x12345678);
+SIMPLE_TEST(ReverseBytes_Shift, TestSAMPLE2, 0x21436587u, 0x87654321);
 
 
 SIMPLE_BENCHMARK(ReverseActualBits, 0x12345678);
