@@ -1104,3 +1104,4 @@
 * https://www.geeksforgeeks.org/reverse-number-using-stack/
 * https://www.geeksforgeeks.org/program-binary-decimal-conversion/
 * https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
+* https://www.geeksforgeeks.org/convert-binary-number-octal/

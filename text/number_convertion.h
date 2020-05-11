@@ -28,3 +28,18 @@ static inline auto HexDigitToDecimal(const char digit) {
 
 
 const auto BinaryDigitToDecimal = OctalDigitToDecimal;
+
+
+static inline auto CreateBinaryToOctalDigitMap() {
+    std::unordered_map<std::string, char> binary_to_octal_digit_map = {
+        {"1", '1'},
+        {"10", '2'},
+        {"11", '3'},
+    };
+
+    for (int i = 0; i < 8; ++i) {
+        binary_to_octal_digit_map[std::bitset<3>(i).to_string()] = '0' + i;
+    }
+
+    return binary_to_octal_digit_map;
+}

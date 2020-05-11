@@ -1,3 +1,6 @@
+CompileBenchmarkExe(binary_conversion_to)
+CompileTestExe(binary_conversion_to)
+
 CompileBenchmarkExe(convert_to_int_array)
 CompileTestExe(convert_to_int_array)
 
