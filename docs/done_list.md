@@ -1105,3 +1105,9 @@
 * https://www.geeksforgeeks.org/program-binary-decimal-conversion/
 * https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
 * https://www.geeksforgeeks.org/convert-binary-number-octal/
+* https://www.geeksforgeeks.org/program-for-sum-of-the-digits-of-a-given-number/
+* https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
+* https://www.geeksforgeeks.org/program-to-calculate-product-of-digits-of-a-number/
+* https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
+* https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
+* https://www.geeksforgeeks.org/sum-of-the-series-20-21-22-2n/

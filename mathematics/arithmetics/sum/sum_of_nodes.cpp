@@ -10,9 +10,9 @@ using ArrayType = std::vector<int>;
 /** Sum of array using pointer arithmetic
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
- *
- * https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
  */
+
+
 /** Program to find sum of elements in a given array
  *
  * @reference   https://www.geeksforgeeks.org/program-find-sum-elements-given-array/
@@ -33,6 +33,7 @@ auto Sum_RecursiveHelper(const ArrayType::const_iterator cbegin,
         return Sum_RecursiveHelper(cbegin + 1, cend) + *cbegin;
     }
 }
+
 auto Sum_Recursive(const ArrayType &elements) {
     return Sum_RecursiveHelper(elements.cbegin(), elements.cend());
 }
@@ -46,6 +47,7 @@ auto Sum_TailRecursive(const ArrayType::const_iterator cbegin,
     }
     return Sum_TailRecursive(cbegin + 1, cend, sum_so_far + *cbegin);
 }
+
 auto Sum_TailRecursive(const ArrayType &elements) {
     return Sum_TailRecursive(elements.cbegin(), elements.cend());
 }

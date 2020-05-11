@@ -25,4 +25,4 @@ CompileTestExe(sum)
 CompileBenchmarkExe(sum_of_nodes)
 CompileTestExe(sum_of_nodes)
 
-add_subdirectory(sequences)
+add_subdirectory(series)

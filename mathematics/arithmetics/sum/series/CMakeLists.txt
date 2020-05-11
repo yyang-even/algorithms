@@ -10,6 +10,9 @@ CompileTestExe(sum_of_first_n_even_numbers)
 CompileBenchmarkExe(sum_of_first_n_odd_numbers)
 CompileTestExe(sum_of_first_n_odd_numbers)
 
+CompileBenchmarkExe(sum_of_geometric_series)
+CompileTestExe(sum_of_geometric_series)
+
 CompileBenchmarkExe(sum_of_natural_numbers)
 CompileTestExe(sum_of_natural_numbers)
 

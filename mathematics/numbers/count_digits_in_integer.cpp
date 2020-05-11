@@ -8,6 +8,8 @@ namespace {
 /** Program to count digits in an integer (4 Different Methods)
  *
  * @reference   https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
+ * @reference   C program to Count the digits of a number
+ *              https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
  */
 auto CountDigits_Recursive(const int n) {
     if (not n) {
@@ -33,11 +35,25 @@ auto CountDigits_String(const int n) {
 }
 
 
-/** TCS Coding Practice Question | Sum of Digits of a number
- *
- * @reference   https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
+/**
+ * @reference   TCS Coding Practice Question | Sum of Digits of a number
+ *              https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
  * @reference   C Program for Sum the digits of a given number
  *              https://www.geeksforgeeks.org/c-program-for-program-for-sum-the-digits-of-a-given-number/
+ * @reference   Program for Sum of the digits of a given number
+ *              https://www.geeksforgeeks.org/program-for-sum-of-the-digits-of-a-given-number/
+ */
+
+
+/**
+ * @reference   Program to calculate product of digits of a number
+ *              https://www.geeksforgeeks.org/program-to-calculate-product-of-digits-of-a-number/
+ */
+
+
+/**
+ * @reference   C Program to Print all digits of a given number
+ *              https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
  */
 
 }//namespace
