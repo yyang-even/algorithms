@@ -1111,3 +1111,14 @@
 * https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
 * https://www.geeksforgeeks.org/sum-of-array-using-pointer-arithmetic/
 * https://www.geeksforgeeks.org/sum-of-the-series-20-21-22-2n/
+* https://www.geeksforgeeks.org/sum-of-the-series-11-22-33-nn-using-recursion/
+* https://www.geeksforgeeks.org/sum-of-natural-numbers-using-recursion/
+* https://www.geeksforgeeks.org/mean-of-array-using-recursion/
+* https://www.geeksforgeeks.org/program-to-find-all-factors-of-a-number-using-recursion/
+* https://www.geeksforgeeks.org/program-to-print-factors-of-a-number-in-pairs/
+* https://www.geeksforgeeks.org/sum-of-n-elements-without-loops-and-recursion/
+* https://www.geeksforgeeks.org/c-program-to-print-an-array-using-recursion/
+* https://www.geeksforgeeks.org/sum-array-elements-using-recursion/
+* https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
+* https://www.geeksforgeeks.org/product-2-numbers-using-recursion/
+* https://www.geeksforgeeks.org/product-of-2-numbers-using-recursion-set-2/

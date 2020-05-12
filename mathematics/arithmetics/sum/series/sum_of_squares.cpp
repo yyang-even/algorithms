@@ -10,6 +10,8 @@ namespace {
  *              https://www.geeksforgeeks.org/sum-squares-first-n-natural-numbers/
  * @reference   Program to find the sum of a Series (1*1) + (2*2) + (3*3) + (4*4) + (5*5) + … + (n*n)
  *              https://www.geeksforgeeks.org/program-find-sum-series-11-22-33-44-55-nn/
+ * @reference   Sum of the series 1^1 + 2^2 + 3^3 + ….. + n^n using recursion
+ *              https://www.geeksforgeeks.org/sum-of-the-series-11-22-33-nn-using-recursion/
  *
  * Given n, find sum of squares of first n natural numbers.
  */

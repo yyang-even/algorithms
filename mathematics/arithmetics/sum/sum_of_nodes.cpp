@@ -53,6 +53,25 @@ auto Sum_TailRecursive(const ArrayType &elements) {
 }
 
 
+/**
+ * @reference   Sum of array Elements without using loops and recursion
+ *              https://www.geeksforgeeks.org/sum-of-n-elements-without-loops-and-recursion/
+ */
+auto Sum_Goto(const ArrayType &elements) {
+    ArrayType::value_type sum = 0;
+    ArrayType::size_type i = 0;
+
+label:
+    sum += elements[i++];
+
+    if (i < elements.size()) {
+        goto label;
+    }
+
+    return sum;
+}
+
+
 /** Sum of the nodes of a Singly Linked List
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-the-nodes-of-a-singly-linked-list/
@@ -71,6 +90,12 @@ auto Sum_SinglyCircularList(const ArrayType &elements) {
     });
     return sum;
 }
+
+
+/** C++ Program to print an Array using Recursion
+ *
+ * @reference   https://www.geeksforgeeks.org/c-program-to-print-an-array-using-recursion/
+ */
 
 }//namespace
 
@@ -92,6 +117,13 @@ SIMPLE_BENCHMARK(Sum_TailRecursive, SAMPLE1);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE3, 15, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(Sum_Goto, SAMPLE1);
+
+SIMPLE_TEST(Sum_Goto, TestSAMPLE1, 6, SAMPLE1);
+SIMPLE_TEST(Sum_Goto, TestSAMPLE2, 50, SAMPLE2);
+SIMPLE_TEST(Sum_Goto, TestSAMPLE3, 15, SAMPLE3);
 
 
 SIMPLE_BENCHMARK(Sum_SinglyCircularList, SAMPLE1);

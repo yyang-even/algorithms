@@ -18,6 +18,12 @@ auto Mean(const ArrayType &values) {
     return sum / values.size();
 }
 
+
+/**
+ * @reference   Mean of array using recursion
+ *              https://www.geeksforgeeks.org/mean-of-array-using-recursion/
+ */
+
 }//namespace
 
 

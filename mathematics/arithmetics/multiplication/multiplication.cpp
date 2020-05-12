@@ -7,6 +7,10 @@ namespace {
 /** Multiply two integers without using multiplication, division and bitwise operators, and no loops
  *
  * @reference   https://www.geeksforgeeks.org/multiply-two-numbers-without-using-multiply-division-bitwise-operators-and-no-loops/
+ * @reference   Product of 2 Numbers using Recursion
+ *              https://www.geeksforgeeks.org/product-2-numbers-using-recursion/
+ * @reference   Product of 2 numbers using recursion | Set 2
+ *              https://www.geeksforgeeks.org/product-of-2-numbers-using-recursion-set-2/
  *
  * By making use of recursion, we can multiply two integers with the given constraints.
  */

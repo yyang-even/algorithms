@@ -42,6 +42,8 @@ auto CountDigits_String(const int n) {
  *              https://www.geeksforgeeks.org/c-program-for-program-for-sum-the-digits-of-a-given-number/
  * @reference   Program for Sum of the digits of a given number
  *              https://www.geeksforgeeks.org/program-for-sum-of-the-digits-of-a-given-number/
+ * @reference   Sum of digit of a number using recursion
+ *              https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
  */
 
 

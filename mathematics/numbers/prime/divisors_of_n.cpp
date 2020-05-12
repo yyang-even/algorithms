@@ -11,6 +11,10 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/find-divisors-natural-number-set-1/
  * @reference   Find all divisors of a natural number | Set 2
  *              https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
+ * @reference   Program to find all Factors of a Number using recursion
+ *              https://www.geeksforgeeks.org/program-to-find-all-factors-of-a-number-using-recursion/
+ * @reference   Program to print factors of a number in pairs
+ *              https://www.geeksforgeeks.org/program-to-print-factors-of-a-number-in-pairs/
  */
 auto DivisorsOfN_Pairs(const int N) {
     ArrayType divisors;
