@@ -1122,3 +1122,13 @@
 * https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
 * https://www.geeksforgeeks.org/product-2-numbers-using-recursion/
 * https://www.geeksforgeeks.org/product-of-2-numbers-using-recursion-set-2/
+* https://www.geeksforgeeks.org/output-of-c-program-set-18-3/
+* https://www.geeksforgeeks.org/how-will-you-print-numbers-from-1-to-200-without-using-loop/
+* https://www.geeksforgeeks.org/print-numbers-1-n-using-indirect-recursion/
+* https://www.geeksforgeeks.org/c-program-to-print-numbers-from-1-to-n-without-using-semicolon/
+* https://www.geeksforgeeks.org/program-print-upto-100-without-using-loops/
+* https://www.geeksforgeeks.org/how-to-print-n-times-without-using-loops-or-recursion/
+* https://www.geeksforgeeks.org/print-number-100-times-without-using-loop-recursion-c/
+* https://www.geeksforgeeks.org/print-number-100-times-without-using-loop-recursion-macro-expansion-c/
+* https://www.geeksforgeeks.org/print-a-character-n-times-without-using-loop-recursion-or-goto-in-cpp/
+* https://www.geeksforgeeks.org/write-c-program-print-gfg-repeatedly-without-using-loop-recursion-control-structure/

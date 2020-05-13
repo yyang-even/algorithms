@@ -43,6 +43,9 @@ CompileTestExe(print_bytes)
 CompileBenchmarkExe(print_integer)
 CompileTestExe(print_integer)
 
+CompileBenchmarkExe(print_range)
+CompileTestExe(print_range)
+
 CompileBenchmarkExe(remove_characters)
 CompileTestExe(remove_characters)
 

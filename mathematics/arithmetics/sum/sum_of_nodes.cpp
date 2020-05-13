@@ -61,11 +61,11 @@ auto Sum_Goto(const ArrayType &elements) {
     ArrayType::value_type sum = 0;
     ArrayType::size_type i = 0;
 
-label:
+begin:
     sum += elements[i++];
 
     if (i < elements.size()) {
-        goto label;
+        goto begin;
     }
 
     return sum;
@@ -90,12 +90,6 @@ auto Sum_SinglyCircularList(const ArrayType &elements) {
     });
     return sum;
 }
-
-
-/** C++ Program to print an Array using Recursion
- *
- * @reference   https://www.geeksforgeeks.org/c-program-to-print-an-array-using-recursion/
- */
 
 }//namespace
 
