@@ -1091,7 +1091,6 @@
 * https://www.geeksforgeeks.org/program-to-show-beladys-anomaly/
 * https://www.geeksforgeeks.org/program-for-least-recently-used-lru-page-replacement-algorithm/
 * https://www.geeksforgeeks.org/implementation-of-least-recently-used-lru-page-replacement-algorithm-using-counters/
-* https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/
 * https://www.geeksforgeeks.org/advantages-and-disadvantages-of-various-page-replacement-algorithms/
 * https://www.geeksforgeeks.org/second-chance-or-clock-page-replacement-policy/
 * https://www.geeksforgeeks.org/lru-approximation-second-chance-algorithm/
@@ -1132,3 +1131,6 @@
 * https://www.geeksforgeeks.org/print-number-100-times-without-using-loop-recursion-macro-expansion-c/
 * https://www.geeksforgeeks.org/print-a-character-n-times-without-using-loop-recursion-or-goto-in-cpp/
 * https://www.geeksforgeeks.org/write-c-program-print-gfg-repeatedly-without-using-loop-recursion-control-structure/
+* https://www.geeksforgeeks.org/program-to-remove-consonants-from-a-string/
+* https://www.geeksforgeeks.org/program-remove-vowels-string/
+* https://www.geeksforgeeks.org/ugly-numbers/

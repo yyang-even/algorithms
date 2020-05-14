@@ -45,3 +45,6 @@ CompileTestExe(sum_of_factors_of_a_number)
 
 CompileBenchmarkExe(sum_of_prime_divisors_of_a_number)
 CompileTestExe(sum_of_prime_divisors_of_a_number)
+
+CompileBenchmarkExe(ugly_numbers)
+CompileTestExe(ugly_numbers)

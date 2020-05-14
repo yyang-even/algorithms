@@ -134,6 +134,14 @@ auto RemoveNonalphabetsCharacters_Partition(const std::string &input) {
     return RemoveCharacters_Partition(input, ToLambda(std::isalpha));
 }
 
+
+/**
+ * @reference   Program to remove vowels from a String
+ *              https://www.geeksforgeeks.org/program-remove-vowels-string/
+ * @reference   Program to remove consonants from a String
+ *              https://www.geeksforgeeks.org/program-to-remove-consonants-from-a-string/
+ */
+
 }//namespace
 
 
