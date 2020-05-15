@@ -1134,3 +1134,4 @@
 * https://www.geeksforgeeks.org/program-to-remove-consonants-from-a-string/
 * https://www.geeksforgeeks.org/program-remove-vowels-string/
 * https://www.geeksforgeeks.org/ugly-numbers/
+* https://www.geeksforgeeks.org/super-ugly-number-number-whose-prime-factors-given-set/
