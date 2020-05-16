@@ -1135,3 +1135,8 @@
 * https://www.geeksforgeeks.org/program-remove-vowels-string/
 * https://www.geeksforgeeks.org/ugly-numbers/
 * https://www.geeksforgeeks.org/super-ugly-number-number-whose-prime-factors-given-set/
+* https://www.geeksforgeeks.org/average-of-first-n-even-natural-numbers/
+* https://www.geeksforgeeks.org/sum-of-first-n-natural-numbers/
+* https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
+* https://www.geeksforgeeks.org/average-of-first-n-odd-naturals-numbers/
+* https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/

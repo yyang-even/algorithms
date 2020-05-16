@@ -14,6 +14,28 @@ auto SumOfFirstNOddNumbers(const unsigned N) {
     return N * N;
 }
 
+
+/**
+ * @reference   Average of first n odd naturals numbers
+ *              https://www.geeksforgeeks.org/average-of-first-n-odd-naturals-numbers/
+ */
+
+
+/**
+ * @reference   Sum of all odd natural numbers in range L and R
+ *              https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/
+ */
+auto SumOfOddNumbersTillN(const unsigned N) {
+    return SumOfFirstNOddNumbers((N + 1) / 2);
+}
+
+auto SumOfFirstNOddNumbersInRange(const unsigned L, const unsigned R) {
+    assert(L);
+    assert(L <= R);
+
+    return SumOfOddNumbersTillN(R) - SumOfOddNumbersTillN(L - 1);
+}
+
 }//namespace
 
 
@@ -22,3 +44,9 @@ SIMPLE_BENCHMARK(SumOfFirstNOddNumbers, 10);
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE1, 100u, 10);
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE2, 25u, 5);
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE3, 4u, 2);
+
+
+SIMPLE_BENCHMARK(SumOfFirstNOddNumbersInRange, 2, 5);
+
+SIMPLE_TEST(SumOfFirstNOddNumbersInRange, TestSAMPLE1, 8, 2, 5);
+SIMPLE_TEST(SumOfFirstNOddNumbersInRange, TestSAMPLE2, 40, 7, 13);

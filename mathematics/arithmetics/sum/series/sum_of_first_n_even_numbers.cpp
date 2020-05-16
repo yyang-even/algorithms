@@ -11,6 +11,12 @@ auto SumOfFirstNEvenNumbers(const unsigned N) {
     return N * (N + 1);
 }
 
+
+/**
+ * @reference   Average of first n even natural numbers
+ *              https://www.geeksforgeeks.org/average-of-first-n-even-natural-numbers/
+ */
+
 }//namespace
 
 
