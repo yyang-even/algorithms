@@ -1135,3 +1135,5 @@
 * https://www.geeksforgeeks.org/program-remove-vowels-string/
 * https://www.geeksforgeeks.org/ugly-numbers/
 * https://www.geeksforgeeks.org/super-ugly-number-number-whose-prime-factors-given-set/
+* https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
+* https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/

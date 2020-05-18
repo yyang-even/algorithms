@@ -43,3 +43,26 @@ static inline auto CreateBinaryToOctalDigitMap() {
 
     return binary_to_octal_digit_map;
 }
+
+
+static inline auto CreateBinaryToHexDigitMap() {
+    std::unordered_map<std::string, char> binary_to_hex_digit_map = {
+        {"1", '1'},
+        {"10", '2'},
+        {"11", '3'},
+        {"100", '4'},
+        {"101", '5'},
+        {"110", '6'},
+        {"111", '7'},
+    };
+
+    for (int i = 0; i < 10; ++i) {
+        binary_to_hex_digit_map[std::bitset<4>(i).to_string()] = '0' + i;
+    }
+
+    for (int i = 0; i < 6; ++i) {
+        binary_to_hex_digit_map[std::bitset<4>(10 + i).to_string()] = 'A' + i;
+    }
+
+    return binary_to_hex_digit_map;
+}
