@@ -5,25 +5,61 @@
 
 namespace {
 
-auto BinaryIntegerToOctal(const std::string &binary,
-                          std::string::size_type start, const std::string::size_type length) {
-    static const auto binary_to_octal_digit_map = CreateBinaryToOctalDigitMap();
-
-    const auto remainder = length % 3;
+auto BinaryIntegerTo(const std::string &binary, const unsigned base,
+                     std::string::size_type start, const std::string::size_type length,
+                     const std::unordered_map<std::string, char> &binary_to_digit_map) {
+    const auto remainder = length % base;
     const auto end = start + length;
 
     std::string result;
-    for (std::string::size_type substr_size = (remainder == 0 ? 3 : remainder);
-         start < end; substr_size = 3) {
-        result.push_back(binary_to_octal_digit_map.at(binary.substr(start, substr_size)));
+    for (std::string::size_type substr_size = (remainder == 0 ? base : remainder);
+         start < end; substr_size = base) {
+        result.push_back(binary_to_digit_map.at(binary.substr(start, substr_size)));
         start += substr_size;
     }
 
     return result;
 }
 
+
+auto BinaryIntegerToOctal(const std::string &binary,
+                          std::string::size_type start, const std::string::size_type length) {
+    static const auto binary_to_octal_digit_map = CreateBinaryToOctalDigitMap();
+
+    return BinaryIntegerTo(binary, 3, start, length, binary_to_octal_digit_map);
+}
+
 auto BinaryIntegerToOctal(const std::string &binary) {
     return BinaryIntegerToOctal(binary, 0, binary.size());
+}
+
+
+auto BinaryIntegerToHex(const std::string &binary,
+                        std::string::size_type start, const std::string::size_type length) {
+    static const auto binary_to_hex_digit_map = CreateBinaryToHexDigitMap();
+
+    return BinaryIntegerTo(binary, 4, start, length, binary_to_hex_digit_map);
+}
+
+
+auto BinaryTo(const std::string &binary, const unsigned base,
+              const std::function<std::string(const std::string &, std::string::size_type, const std::string::size_type)>
+              binary_integer_to) {
+    const auto dot_position = binary.find('.');
+    if (dot_position == std::string::npos) {
+        return binary_integer_to(binary, 0, binary.size());
+    }
+
+    auto padded_binary = binary;
+    auto right_size = padded_binary.size() - dot_position - 1;
+    for (int number_pad = (base - (right_size % base)) % base; number_pad--; ++right_size) {
+        padded_binary.push_back('0');
+    }
+
+    const auto left = binary_integer_to(padded_binary, 0, dot_position);
+    const auto right = binary_integer_to(padded_binary, dot_position + 1, right_size);
+
+    return left + "." + right;
 }
 
 
@@ -32,21 +68,16 @@ auto BinaryIntegerToOctal(const std::string &binary) {
  * @reference   https://www.geeksforgeeks.org/convert-binary-number-octal/
  */
 auto BinaryToOctal(const std::string &binary) {
-    const auto dot_position = binary.find('.');
-    if (dot_position == std::string::npos) {
-        return BinaryIntegerToOctal(binary);
-    }
+    return BinaryTo(binary, 3, ToLambda(BinaryIntegerToOctal));
+}
 
-    auto padded_binary = binary;
-    auto right_size = padded_binary.size() - dot_position - 1;
-    for (int number_pad = (3 - (right_size % 3)) % 3; number_pad--; ++right_size) {
-        padded_binary.push_back('0');
-    }
 
-    const auto left = BinaryIntegerToOctal(padded_binary, 0, dot_position);
-    const auto right = BinaryIntegerToOctal(padded_binary, dot_position + 1, right_size);
-
-    return left + "." + right;
+/**
+ * @reference   Convert a binary number to hexadecimal number
+ *              https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
+ */
+auto BinaryToHex(const std::string &binary) {
+    return BinaryTo(binary, 4, BinaryIntegerToHex);
 }
 
 }//namespace
@@ -63,3 +94,9 @@ SIMPLE_BENCHMARK(BinaryToOctal, "110001110");
 SIMPLE_TEST(BinaryToOctal, TestSAMPLE1, "616", "110001110");
 SIMPLE_TEST(BinaryToOctal, TestSAMPLE2, "16", "1110");
 SIMPLE_TEST(BinaryToOctal, TestSAMPLE3, "1712241.26633", "1111001010010100001.010110110011011");
+
+
+SIMPLE_BENCHMARK(BinaryToHex, "110001110");
+
+SIMPLE_TEST(BinaryToHex, TestSAMPLE1, "18E", "110001110");
+SIMPLE_TEST(BinaryToHex, TestSAMPLE2, "794A1.5B36", "1111001010010100001.010110110011011");

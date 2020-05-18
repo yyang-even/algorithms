@@ -17,6 +17,8 @@ auto DecimalTo(int number, const int base, const std::function<char(const int)> 
 /** Program for Decimal to Octal Conversion
  *
  * @reference   https://www.geeksforgeeks.org/program-decimal-octal-conversion/
+ * @reference   Decimal to octal conversion with minimum use of arithmetic operators
+ *              https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
  */
 auto ToOctal(const int number) {
     return DecimalTo(number, 8, [](const int digit) {

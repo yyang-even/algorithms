@@ -1140,3 +1140,5 @@
 * https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
 * https://www.geeksforgeeks.org/average-of-first-n-odd-naturals-numbers/
 * https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/
+* https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
+* https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
