@@ -24,6 +24,26 @@ auto Mean(const ArrayType &values) {
  *              https://www.geeksforgeeks.org/mean-of-array-using-recursion/
  */
 
+
+/**
+ * @reference   Compute average of two numbers without overflow
+ *              https://www.geeksforgeeks.org/compute-average-two-numbers-without-overflow/
+ */
+auto Average_NoOverflow(const int a, const int b) {
+    return (a / 2) + (b / 2) + ((a % 2 + b % 2) / 2);
+}
+
+
+/**
+ * @reference   Find average of two numbers using bit operation
+ *              https://www.geeksforgeeks.org/find-average-of-two-numbers-using-bit-operation/
+ * @reference   Fast average of two numbers without division
+ *              https://www.geeksforgeeks.org/fast-average-two-numbers-without-division/
+ */
+auto Average_Bit(const int a, const int b) {
+    return (a & b) + ((a ^ b) >> 1);
+}
+
 }//namespace
 
 
@@ -41,3 +61,20 @@ SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE2, 1.5, VALUES2);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE3, 2, VALUES3);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE5, 4, VALUES5);
+
+
+const auto UPPER = std::numeric_limits<int>::max();
+
+
+SIMPLE_BENCHMARK(Average_NoOverflow, UPPER, UPPER);
+
+SIMPLE_TEST(Average_NoOverflow, TestSAMPLE1, UPPER, UPPER, UPPER);
+SIMPLE_TEST(Average_NoOverflow, TestSAMPLE2, 3, 2, 4);
+SIMPLE_TEST(Average_NoOverflow, TestSAMPLE3, 9, 10, 9);
+
+
+SIMPLE_BENCHMARK(Average_Bit, UPPER, UPPER);
+
+SIMPLE_TEST(Average_Bit, TestSAMPLE1, UPPER, UPPER, UPPER);
+SIMPLE_TEST(Average_Bit, TestSAMPLE2, 3, 2, 4);
+SIMPLE_TEST(Average_Bit, TestSAMPLE3, 9, 10, 9);

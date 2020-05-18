@@ -1142,3 +1142,6 @@
 * https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/
 * https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
 * https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
+* https://www.geeksforgeeks.org/compute-average-two-numbers-without-overflow/
+* https://www.geeksforgeeks.org/find-average-of-two-numbers-using-bit-operation/
+* https://www.geeksforgeeks.org/fast-average-two-numbers-without-division/
