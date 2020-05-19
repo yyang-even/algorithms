@@ -18,3 +18,6 @@ CompileTestExe(multiplication_of_nodes)
 
 CompileBenchmarkExe(multiply_with_constant)
 CompileTestExe(multiply_with_constant)
+
+CompileBenchmarkExe(product_array_of_all_elements_except_ith)
+CompileTestExe(product_array_of_all_elements_except_ith)

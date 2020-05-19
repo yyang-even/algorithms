@@ -1145,3 +1145,7 @@
 * https://www.geeksforgeeks.org/compute-average-two-numbers-without-overflow/
 * https://www.geeksforgeeks.org/find-average-of-two-numbers-using-bit-operation/
 * https://www.geeksforgeeks.org/fast-average-two-numbers-without-division/
+* https://www.geeksforgeeks.org/a-product-array-puzzle/
+* https://www.geeksforgeeks.org/product-array-puzzle-set-2-o1-space/
+* https://www.geeksforgeeks.org/construct-an-array-from-xor-of-all-elements-of-array-except-element-at-same-index/
+* https://www.geeksforgeeks.org/a-sum-array-puzzle/
