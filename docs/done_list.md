@@ -1149,3 +1149,8 @@
 * https://www.geeksforgeeks.org/product-array-puzzle-set-2-o1-space/
 * https://www.geeksforgeeks.org/construct-an-array-from-xor-of-all-elements-of-array-except-element-at-same-index/
 * https://www.geeksforgeeks.org/a-sum-array-puzzle/
+* https://www.geeksforgeeks.org/maximum-product-subarray/
+* https://www.geeksforgeeks.org/maximum-product-subarray-set-2-using-two-traversals/
+* https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+* https://www.geeksforgeeks.org/maximum-product-subarray-set-3/
+* https://www.geeksforgeeks.org/maximum-product-subarray-added-negative-product-case/
