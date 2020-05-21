@@ -24,6 +24,8 @@ inline auto TwosComplement_ByMinusOperator(const InputType num) {
 /** 1’s and 2’s complement of a Binary Number
  *
  * @reference   https://www.geeksforgeeks.org/1s-2s-complement-binary-number/
+ * @reference   Why are negative numbers stored as 2’s complement?
+ *              https://www.geeksforgeeks.org/why-are-negative-numbers-stored-as-2s-complement/
  *
  * Given a Binary Number as string, print its 1’s and 2’s complements.
  */

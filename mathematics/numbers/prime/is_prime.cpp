@@ -47,6 +47,12 @@ namespace {
  *
  * Given a positive integer, check if the number is prime or not. A prime is a natural number
  * greater than 1 that has no positive divisors other than 1 and itself.
+ *
+ * @reference   Euclid’s lemma
+ *              https://www.geeksforgeeks.org/euclids-lemma/
+ *
+ * Euclid’s lemma states that if a prime p divides the product of two numbers (x*y), it must
+ * divide at least one of those numbers.
  */
 
 

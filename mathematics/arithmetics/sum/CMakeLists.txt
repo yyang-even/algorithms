@@ -16,9 +16,6 @@ CompileTestExe(prefix_sum_array)
 CompileBenchmarkExe(smallest_subarray_with_sum_greater_than_given_value)
 CompileTestExe(smallest_subarray_with_sum_greater_than_given_value)
 
-CompileBenchmarkExe(smallest_sum_contiguous_subarray)
-CompileTestExe(smallest_sum_contiguous_subarray)
-
 CompileBenchmarkExe(subarray_with_given_sum)
 CompileTestExe(subarray_with_given_sum)
 

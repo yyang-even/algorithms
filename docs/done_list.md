@@ -48,9 +48,7 @@
 * https://www.geeksforgeeks.org/get-position-rightmost-unset-bit/
 * https://www.geeksforgeeks.org/efficiently-check-whether-n-multiple-4-not/
 * https://www.geeksforgeeks.org/print-kth-least-significant-bit-number/
-* https://www.geeksforgeeks.org/variable-name-not-start-numbers-c/
 * https://www.geeksforgeeks.org/programming-puzzle-assign-value-without-control-statement/
-* https://www.geeksforgeeks.org/print-hello-world-without-semicolon-in-ccpp/
 * https://www.geeksforgeeks.org/implementing-ternary-operator-without-conditional-statement/
 * https://www.geeksforgeeks.org/cc-ternary-operator-some-interesting-observations/
 * https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
