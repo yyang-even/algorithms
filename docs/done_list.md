@@ -1154,3 +1154,9 @@
 * https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
 * https://www.geeksforgeeks.org/maximum-product-subarray-set-3/
 * https://www.geeksforgeeks.org/maximum-product-subarray-added-negative-product-case/
+* https://www.geeksforgeeks.org/size-subarray-maximum-sum/
+* https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
+* https://www.geeksforgeeks.org/largest-product-subarray-size-k/
+* https://www.geeksforgeeks.org/find-the-subarray-of-size-k-with-minimum-xor/
+* https://www.geeksforgeeks.org/subarray-of-size-k-with-given-sum/
+* https://www.geeksforgeeks.org/window-sliding-technique/

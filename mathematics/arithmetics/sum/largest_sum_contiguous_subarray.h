@@ -5,6 +5,8 @@
  *
  * @reference   Largest Sum Contiguous Subarray
  *              https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+ * @reference   Size of The Subarray With Maximum Sum
+ *              https://www.geeksforgeeks.org/size-subarray-maximum-sum/
  *
  * Write an efficient C program to find the sum of contiguous subarray within
  * a one-dimensional array of numbers which has the largest sum.
