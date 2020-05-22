@@ -65,6 +65,24 @@ auto LinearSearch_Sentinel(ArrayType elements, const ArrayType::value_type x) {
     return i < elements.size() - 1 ? i : -1;
 }
 
+
+/**
+ * @reference   Calculate the total fine to be collected
+ *              https://www.geeksforgeeks.org/calculate-the-total-fine-to-be-collected/
+ *
+ * Given a date and an array of integer containing the numbers of the cars traveling on that date(an integer),
+ * the task is to calculate the total fine collected based on the following rules:
+ *     * Odd numbered cars can travel on only odd dates.
+ *     * Even numbered cars on only even dates.
+ *     * Otherwise a car would be fined 250 Rs.
+ */
+auto TotalFine(const ArrayType &car_numbers, const ArrayType::value_type date) {
+    return 250 * std::count_if(car_numbers.cbegin(), car_numbers.cend(),
+    [date](const auto & car) {
+        return (car % 2) != (date % 2);
+    });
+}
+
 }//namespace
 
 
@@ -96,3 +114,13 @@ SIMPLE_TEST(LinearSearch_Sentinel, TestBegin, 0, VALUES2, VALUES2.front());
 SIMPLE_TEST(LinearSearch_Sentinel, TestSample1, 6, VALUES2, 110);
 SIMPLE_TEST(LinearSearch_Sentinel, TestLast, VALUES2.size() - 1, VALUES2, VALUES2.back());
 SIMPLE_TEST(LinearSearch_Sentinel, TestNotExist, -1, VALUES2, 999);
+
+
+const ArrayType SAMPLE1 = {3, 4, 1, 2};
+const ArrayType SAMPLE2 = {1, 2, 3};
+
+
+SIMPLE_BENCHMARK(TotalFine, SAMPLE1, 15);
+
+SIMPLE_TEST(TotalFine, TestSample1, 500, SAMPLE1, 15);
+SIMPLE_TEST(TotalFine, TestSample2, 500, SAMPLE2, 16);

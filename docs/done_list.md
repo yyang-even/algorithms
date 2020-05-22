@@ -1158,3 +1158,7 @@
 * https://www.geeksforgeeks.org/find-the-subarray-of-size-k-with-minimum-xor/
 * https://www.geeksforgeeks.org/subarray-of-size-k-with-given-sum/
 * https://www.geeksforgeeks.org/window-sliding-technique/
+* https://www.geeksforgeeks.org/two-pointers-technique/
+* https://www.geeksforgeeks.org/check-if-a-given-number-is-a-perfect-square-using-binary-search/
+* https://www.geeksforgeeks.org/check-whether-the-number-can-be-made-perfect-square-after-adding-k/
+* https://www.geeksforgeeks.org/calculate-the-total-fine-to-be-collected/

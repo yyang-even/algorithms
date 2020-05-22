@@ -39,6 +39,12 @@ auto IsPerfectSquare_Sum(const unsigned x) {
 }
 
 
+/**
+ * @reference   Check if a given number is a Perfect square using Binary Search
+ *              https://www.geeksforgeeks.org/check-if-a-given-number-is-a-perfect-square-using-binary-search/
+ */
+
+
 /** Check if count of divisors is even or odd
  *
  * @reference   https://www.geeksforgeeks.org/check-if-total-number-of-divisors-are-even-or-odd/
