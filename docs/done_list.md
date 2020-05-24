@@ -1162,3 +1162,4 @@
 * https://www.geeksforgeeks.org/check-if-a-given-number-is-a-perfect-square-using-binary-search/
 * https://www.geeksforgeeks.org/check-whether-the-number-can-be-made-perfect-square-after-adding-k/
 * https://www.geeksforgeeks.org/calculate-the-total-fine-to-be-collected/
+* https://www.geeksforgeeks.org/program-to-convert-hexadecimal-to-octal/

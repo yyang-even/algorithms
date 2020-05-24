@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "number_convertion.h"
+#include "to_binary.h"
 
 
 namespace {
@@ -80,6 +81,15 @@ auto BinaryToHex(const std::string &binary) {
     return BinaryTo(binary, 4, BinaryIntegerToHex);
 }
 
+
+/**
+ * @reference   Program to Convert Hexadecimal to Octal
+ *              https://www.geeksforgeeks.org/program-to-convert-hexadecimal-to-octal/
+ */
+auto HexToOct(const std::string &hex) {
+    return BinaryToOctal(HexToBinary(hex));
+}
+
 }//namespace
 
 
@@ -100,3 +110,9 @@ SIMPLE_BENCHMARK(BinaryToHex, "110001110");
 
 SIMPLE_TEST(BinaryToHex, TestSAMPLE1, "18E", "110001110");
 SIMPLE_TEST(BinaryToHex, TestSAMPLE2, "794A1.5B36", "1111001010010100001.010110110011011");
+
+
+SIMPLE_BENCHMARK(HexToOct, "1AC");
+
+SIMPLE_TEST(HexToOct, TestSAMPLE1, "0654", "1AC");
+SIMPLE_TEST(HexToOct, TestSAMPLE2, "056437", "5D1F");

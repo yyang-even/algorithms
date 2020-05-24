@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "number_convertion.h"
+#include "to_binary.h"
 
 
 namespace {
@@ -46,31 +47,12 @@ auto ToBinaryString_Bitset(const unsigned n) {
 }
 
 
-template <unsigned Size>
-auto ToBinary(const std::string &octal, const std::function<int(const char)> to_decimal) {
-    std::stringstream ss_out;
-    for (const auto octal_digit : octal) {
-        ss_out << std::bitset<Size>(to_decimal(octal_digit));
-    }
-
-    return ss_out.str();
-}
-
 /** Program to Convert Octal Number to Binary Number
  *
  * @reference   https://www.geeksforgeeks.org/program-to-convert-octal-number-to-binary-number/
  */
 auto OctalToBinary(const std::string &octal) {
     return ToBinary<3>(octal, OctalDigitToDecimal);
-}
-
-
-/** Program to Convert Hexadecimal Number to Binary
- *
- * @reference   https://www.geeksforgeeks.org/program-to-convert-hexadecimal-number-to-binary/
- */
-auto HexToBinary(const std::string &hex) {
-    return ToBinary<4>(hex, HexDigitToDecimal);
 }
 
 }//namespace

@@ -32,6 +32,9 @@ const auto BinaryDigitToDecimal = OctalDigitToDecimal;
 
 static inline auto CreateBinaryToOctalDigitMap() {
     std::unordered_map<std::string, char> binary_to_octal_digit_map = {
+        {"00", '0'},
+        {"0", '0'},
+        {"01", '1'},
         {"1", '1'},
         {"10", '2'},
         {"11", '3'},
