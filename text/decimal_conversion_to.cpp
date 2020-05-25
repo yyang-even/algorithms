@@ -30,6 +30,8 @@ auto ToOctal(const int number) {
 /** Program for decimal to hexadecimal conversion
  *
  * @reference   https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
+ * @reference   Convert Decimal To Hexa-Decimal including negative numbers
+ *              https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
  */
 auto ToHex(const int number) {
     return DecimalTo(number, 16, [](const int digit) {

@@ -1163,3 +1163,7 @@
 * https://www.geeksforgeeks.org/check-whether-the-number-can-be-made-perfect-square-after-adding-k/
 * https://www.geeksforgeeks.org/calculate-the-total-fine-to-be-collected/
 * https://www.geeksforgeeks.org/program-to-convert-hexadecimal-to-octal/
+* https://www.geeksforgeeks.org/stack-set-3-reverse-string-using-stack/
+* https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
+* https://www.geeksforgeeks.org/program-to-convert-octal-to-hexadecimal/
+* https://www.geeksforgeeks.org/check-if-decimal-representation-of-an-octal-number-is-divisible-by-7/

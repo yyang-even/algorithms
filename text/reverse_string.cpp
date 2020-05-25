@@ -68,6 +68,10 @@ auto Reverse_Xor(const std::string &input) {
 }
 
 
+/**
+ * @reference   Stack | Set 3 (Reverse a string using stack)
+ *              https://www.geeksforgeeks.org/stack-set-3-reverse-string-using-stack/
+ */
 auto Reverse_Stack(std::string input) {
     std::stack<std::string::value_type> s;
     for (auto &c : input) {

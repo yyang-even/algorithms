@@ -90,6 +90,12 @@ auto HexToOct(const std::string &hex) {
     return BinaryToOctal(HexToBinary(hex));
 }
 
+
+/**
+ * @reference   Program to Convert Octal to Hexadecimal
+ *              https://www.geeksforgeeks.org/program-to-convert-octal-to-hexadecimal/
+ */
+
 }//namespace
 
 

@@ -5,8 +5,6 @@
 
 namespace {
 
-typedef int InputType;
-
 /** Is divisible by 7
  * @reference   Check divisibility by 7
  *              https://www.geeksforgeeks.org/divisibility-by-7/
@@ -33,7 +31,7 @@ typedef int InputType;
  *  check to see if the difference is divisible by 7: 14 is divisible by 7,
  *      therefore 203 is also divisible by 7.
  */
-auto isDivisibleBy7(InputType num) {
+auto isDivisibleBy7(int num) {
     if (num < 0) {
         num = -num;
     }
@@ -48,11 +46,25 @@ auto isDivisibleBy7(InputType num) {
     return isDivisibleBy7(num / 10 - 2 * Mod10(num));
 }
 
+
+/**
+ * @reference   Check if Decimal representation of an Octal number is divisible by 7
+ *              https://www.geeksforgeeks.org/check-if-decimal-representation-of-an-octal-number-is-divisible-by-7/
+ */
+auto isOctalDivisibleBy7(const std::string &octal) {
+    const auto digits_sum = std::accumulate(octal.cbegin(), octal.cend(), 0,
+    [](const auto & sum, const auto & digit) {
+        return sum + digit - '0';
+    });
+
+    return digits_sum % 7 == 0;
+}
+
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
 SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
@@ -66,3 +78,9 @@ SIMPLE_TEST(isDivisibleBy7, TestSAMPLE2, true, 7);
 SIMPLE_TEST(isDivisibleBy7, TestSAMPLE3, false, 200);
 SIMPLE_TEST(isDivisibleBy7, TestSAMPLE4, true, -203);
 SIMPLE_TEST(isDivisibleBy7, TestSAMPLE5, false, -200);
+
+
+SIMPLE_BENCHMARK(isOctalDivisibleBy7, "112");
+
+SIMPLE_TEST(isOctalDivisibleBy7, TestSAMPLE1, false, "112");
+SIMPLE_TEST(isOctalDivisibleBy7, TestSAMPLE2, true, "25");
