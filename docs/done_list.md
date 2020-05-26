@@ -1169,3 +1169,5 @@
 * https://www.geeksforgeeks.org/check-if-decimal-representation-of-an-octal-number-is-divisible-by-7/
 * https://www.geeksforgeeks.org/decimal-to-binary-using-recursion-and-without-using-power-operator/
 * https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
+* https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
+* https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-set-in-cpp-stl/

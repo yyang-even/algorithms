@@ -40,6 +40,9 @@ CompileTestExe(k_closest_numbers_to_median)
 CompileBenchmarkExe(k_largest_or_smallest_elements)
 CompileTestExe(k_largest_or_smallest_elements)
 
+CompileBenchmarkExe(maximum_of_all_subarrays_of_size_k)
+CompileTestExe(maximum_of_all_subarrays_of_size_k)
+
 CompileBenchmarkExe(max_and_min)
 CompileTestExe(max_and_min)
 
