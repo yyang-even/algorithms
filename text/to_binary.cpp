@@ -27,6 +27,10 @@ auto ToBinaryString_Iterative(const unsigned n) {
 }
 
 
+/**
+ * @reference   Decimal to Binary using recursion and without using power operator
+ *              https://www.geeksforgeeks.org/decimal-to-binary-using-recursion-and-without-using-power-operator/
+ */
 void ToBinaryString_Recursive_Helper(const unsigned n, const unsigned i, std::string &output) {
     if (i > 1u) {
         ToBinaryString_Recursive_Helper(n / 2u, i - 1, output);
