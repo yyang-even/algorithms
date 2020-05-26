@@ -1167,3 +1167,5 @@
 * https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
 * https://www.geeksforgeeks.org/program-to-convert-octal-to-hexadecimal/
 * https://www.geeksforgeeks.org/check-if-decimal-representation-of-an-octal-number-is-divisible-by-7/
+* https://www.geeksforgeeks.org/decimal-to-binary-using-recursion-and-without-using-power-operator/
+* https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/

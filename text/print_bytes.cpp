@@ -40,6 +40,21 @@ std::string PrintInt_Cpp(const int num) {
     return PrintBytes_Cpp(reinterpret_cast<Byte_Pointer>(&num), sizeof(num));
 }
 
+
+/** Convert Hexadecimal value String to ASCII value String
+ *
+ * @reference   https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
+ */
+auto HexToChar(const std::string &hex) {
+    std::string result;
+    for (std::string::size_type i = 0; i < hex.size(); i += 2) {
+        const auto c = stoul(hex.substr(i, 2), nullptr, 16);
+        result.push_back(c);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -53,3 +68,9 @@ SIMPLE_BENCHMARK(PrintInt_C, -1);
 
 SIMPLE_TEST(PrintInt_C, TestSample1, std::string(sizeof(int) * 2, 'f'), -1);
 SIMPLE_TEST(PrintInt_C, TestSample2, std::string(sizeof(int) * 2, '0'), 0);
+
+
+SIMPLE_BENCHMARK(HexToChar, "6765656b73");
+
+SIMPLE_TEST(HexToChar, TestSample1, "geeks", "6765656b73");
+SIMPLE_TEST(HexToChar, TestSample2, "avengers", "6176656e67657273");
