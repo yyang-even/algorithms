@@ -1171,3 +1171,8 @@
 * https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
 * https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
 * https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-set-in-cpp-stl/
+* https://www.geeksforgeeks.org/minimum-and-maximum-of-all-subarrays-of-size-k-using-map/
+* https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/
+* https://www.geeksforgeeks.org/next-greater-element/
+* https://www.geeksforgeeks.org/next-greater-element-in-same-order-as-input/
+* https://www.geeksforgeeks.org/previous-greater-element/
