@@ -10,6 +10,12 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
  * @reference   Maximum of all Subarrays of size k using set in C++ STL
  *              https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-set-in-cpp-stl/
+ *
+ * @reference   Minimum and Maximum of all subarrays of size K using Map
+ *              https://www.geeksforgeeks.org/minimum-and-maximum-of-all-subarrays-of-size-k-using-map/
+ *
+ * @reference   Sum of minimum and maximum elements of all subarrays of size k.
+ *              https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/
  */
 auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements, const ArrayType::size_type K) {
     assert(K);
@@ -53,6 +59,14 @@ auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements, const ArrayType::
 
     return result;
 }
+
+
+/**
+ * @reference   Sliding Window Maximum : Set 2
+ *              https://www.geeksforgeeks.org/sliding-window-maximum-set-2/
+ *
+ * @note    Same as the naive solution in Set 1.
+ */
 
 }//namespace
 

@@ -24,3 +24,6 @@ CompileTestExe(linear_search)
 
 CompileBenchmarkExe(median_of_two_sorted_arrays)
 CompileTestExe(median_of_two_sorted_arrays)
+
+CompileBenchmarkExe(next_greater_element)
+CompileTestExe(next_greater_element)
