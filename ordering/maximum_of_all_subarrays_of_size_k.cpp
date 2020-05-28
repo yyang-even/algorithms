@@ -68,6 +68,46 @@ auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements, const ArrayType::
  * @note    Same as the naive solution in Set 1.
  */
 
+
+/**
+ * @reference   Sliding Window Maximum (Maximum of all subarrays of size k) using stack in O(n) time
+ *              https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k-using-stack-in-on-time/
+ */
+auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements, const ArrayType::size_type K) {
+    assert(K);
+    assert(elements.size() >= K);
+
+    std::vector<ArrayType::size_type> max_upto(elements.size(), 0);
+    std::stack<ArrayType::size_type> s;
+    s.push(0);
+
+    for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
+        while (not s.empty() and elements[s.top()] < elements[i]) {
+            max_upto[s.top()] = i - 1;
+            s.pop();
+        }
+
+        s.push(i);
+    }
+
+    while (not s.empty()) {
+        max_upto[s.top()] = elements.size() - 1;
+        s.pop();
+    }
+
+    ArrayType result;
+    ArrayType::size_type j = 0;
+    for (ArrayType::size_type i = 0; i <= elements.size() - K; ++i) {
+        while (j < i or max_upto[j] < i + K - 1) {
+            ++j;
+        }
+
+        result.push_back(elements[j]);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -88,3 +128,9 @@ SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Deque, SAMPLE1, 3);
 
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Deque, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Deque, TestSAMPLE2, EXPECTED2, SAMPLE2, 4);
+
+
+SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Stack, SAMPLE1, 3);
+
+SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Stack, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
+SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Stack, TestSAMPLE2, EXPECTED2, SAMPLE2, 4);
