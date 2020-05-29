@@ -38,7 +38,47 @@ auto NextGreaterElement(const ArrayType &elements) {
 /**
  * @reference   Previous greater element
  *              https://www.geeksforgeeks.org/previous-greater-element/
+ *
+ * @reference   The Stock Span Problem
+ *              https://www.geeksforgeeks.org/the-stock-span-problem/
+ *
+ * The stock span problem is a financial problem where we have a series of n daily price
+ * quotes for a stock and we need to calculate span of stock’s price for all n days.
+ * The span Si of the stock’s price on a given day i is defined as the maximum number of
+ * consecutive days just before the given day, for which the price of the stock on the
+ * current day is less than or equal to its price on the given day.
  */
+auto StockSpanProblem_Stack(const ArrayType &prices) {
+    ArrayType result;
+
+    std::stack<ArrayType::size_type> s;
+    for (ArrayType::size_type i = 0; i < prices.size(); ++i) {
+        while (not s.empty() and prices[s.top()] <= prices[i]) {
+            s.pop();
+        }
+
+        result.push_back(s.empty() ? (i + 1) : (i - s.top()));
+
+        s.push(i);
+    }
+
+    return result;
+}
+
+
+auto StockSpanProblem(const ArrayType &prices) {
+    ArrayType result = {1};
+
+    for (ArrayType::size_type i = 1; i < prices.size(); ++i) {
+        ArrayType::size_type counter = 1;
+        while (i >= counter and prices[i] >= prices[i - counter]) {
+            counter += result[i - counter];
+        }
+        result.push_back(counter);
+    }
+
+    return result;
+}
 
 }//namespace
 
@@ -54,3 +94,22 @@ SIMPLE_BENCHMARK(NextGreaterElement, SAMPLE1);
 
 SIMPLE_TEST(NextGreaterElement, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(NextGreaterElement, TestSAMPLE2, EXPECTED2, SAMPLE2);
+
+
+const ArrayType SAMPLE3 = {100, 80, 60, 70, 60, 75, 85};
+const ArrayType EXPECTED3 = {1, 1, 1, 2, 1, 4, 6};
+
+const ArrayType SAMPLE4 = { 10, 4, 5, 90, 120, 80 };
+const ArrayType EXPECTED4 = {1, 1, 2, 4, 5, 1};
+
+
+SIMPLE_BENCHMARK(StockSpanProblem_Stack, SAMPLE3);
+
+SIMPLE_TEST(StockSpanProblem_Stack, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(StockSpanProblem_Stack, TestSAMPLE4, EXPECTED4, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(StockSpanProblem, SAMPLE3);
+
+SIMPLE_TEST(StockSpanProblem, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(StockSpanProblem, TestSAMPLE4, EXPECTED4, SAMPLE4);

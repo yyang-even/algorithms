@@ -1178,3 +1178,4 @@
 * https://www.geeksforgeeks.org/previous-greater-element/
 * https://www.geeksforgeeks.org/sliding-window-maximum-set-2/
 * https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k-using-stack-in-on-time/
+* https://www.geeksforgeeks.org/the-stock-span-problem/
