@@ -83,6 +83,16 @@ auto Sort0s1s2s(ArrayType values) {
     return values;
 }
 
+
+/**
+ * @reference   Move all zeros to start and ones to end in an Array of random integers
+ *              https://www.geeksforgeeks.org/move-all-zeros-to-start-and-ones-to-end-in-an-array-of-random-integers/
+ *
+ * Given an array arr[] of random integers, the task is to push all the zero’s in the array
+ * to the start and all the one’s to the end of the array. Note that the order of all the
+ * other elements should be the same.
+ */
+
 }//namespace
 
 
