@@ -1179,3 +1179,9 @@
 * https://www.geeksforgeeks.org/sliding-window-maximum-set-2/
 * https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k-using-stack-in-on-time/
 * https://www.geeksforgeeks.org/the-stock-span-problem/
+* https://www.geeksforgeeks.org/find-number-zeroes/
+* https://www.geeksforgeeks.org/move-all-values-equal-to-k-to-the-end-of-the-array/
+* https://www.geeksforgeeks.org/move-all-zeroes-to-end-of-array-using-two-pointers/
+* https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/
+* https://www.geeksforgeeks.org/move-all-zeros-to-start-and-ones-to-end-in-an-array-of-random-integers/
+* https://www.geeksforgeeks.org/count-occurences-of-anagrams/

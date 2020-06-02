@@ -125,11 +125,21 @@ auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
 /** Move all zeroes to end of array
  *
  * @reference   https://www.geeksforgeeks.org/move-zeroes-end-array/
+ * @reference   Move all zeroes to end of array using Two-Pointers
+ *              https://www.geeksforgeeks.org/move-all-zeroes-to-end-of-array-using-two-pointers/
+ * @reference   Move all zeroes to end of array | Set-2 (Using single traversal)
+ *              https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/
  *
  * Given an array of random numbers, Push all the zero’s of a given array to the end
  * of the array. For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0},
  * it should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other
  * elements should be same. Expected time complexity is O(n) and extra space is O(1).
+ *
+ * @reference   Move all values equal to K to the end of the Array
+ *              https://www.geeksforgeeks.org/move-all-values-equal-to-k-to-the-end-of-the-array/
+ *
+ * Given an array arr[] of size N and an integer K, the task is to print the array
+ * after moving all value equal to K at the end of the array.
  */
 auto RearrangeZeros(ArrayType input) {
     Partition<ArrayType>(input.begin(), input.end(), [](const ArrayType::value_type v) {

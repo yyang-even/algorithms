@@ -19,6 +19,12 @@ using ArrayType = std::vector<int>;
  * The task is to find length of the sequence of repeated element.
  * Expected Time Complexity : Less than 0(n)
  *
+ * @reference   Find the number of zeroes
+ *              https://www.geeksforgeeks.org/find-number-zeroes/
+ *
+ * Given an array of 1s and 0s which has all 1s first followed by all 0s. Find the number of 0s.
+ * Count the number of zeroes in the given array.
+ *
  * @highlight   The use of std::equal_range()
  */
 auto CountOccurrencesInSortedArray_STL(const ArrayType &values, const ArrayType::value_type x) {

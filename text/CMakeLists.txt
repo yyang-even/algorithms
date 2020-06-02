@@ -4,6 +4,9 @@ CompileTestExe(binary_conversion_to)
 CompileBenchmarkExe(convert_to_int_array)
 CompileTestExe(convert_to_int_array)
 
+CompileBenchmarkExe(count_anagrams)
+CompileTestExe(count_anagrams)
+
 CompileBenchmarkExe(count_chars_at_same_position_as_in_alphabet)
 CompileTestExe(count_chars_at_same_position_as_in_alphabet)
 
