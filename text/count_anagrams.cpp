@@ -41,6 +41,29 @@ auto CountAnagrams(const std::string &text, const std::string &word) {
     return count;
 }
 
+
+/** Check whether two strings are anagram of each other
+ *
+ * @reference   https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
+ * @reference   Check whether two strings are anagrams of each other using unordered_map in C++
+ *              https://www.geeksforgeeks.org/check-whether-two-strings-are-anagrams-of-each-other-using-unordered_map-in-c/
+ * @reference   Check if two strings are permutation of each other
+ *              https://www.geeksforgeeks.org/check-if-two-strings-are-permutation-of-each-other/
+ */
+auto AreAnagrams(const std::string &s1, const std::string &s2) {
+    if (s1.size() != s2.size()) {
+        return false;
+    }
+
+    std::unordered_map<std::string::value_type, int> char_counts;
+    for (std::string::size_type i = 0; i < s1.size(); ++i) {
+        ++(char_counts[s1[i]]);
+        --(char_counts[s2[i]]);
+    }
+
+    return AreAllCharZero(char_counts);
+}
+
 }//namespace
 
 
@@ -48,3 +71,10 @@ SIMPLE_BENCHMARK(CountAnagrams, "forxxorfxdofr", "for");
 
 SIMPLE_TEST(CountAnagrams, TestSAMPLE1, 3, "forxxorfxdofr", "for");
 SIMPLE_TEST(CountAnagrams, TestSAMPLE2, 4, "aabaabaa", "aaba");
+
+
+SIMPLE_BENCHMARK(AreAnagrams, "abcd", "dabc");
+
+SIMPLE_TEST(AreAnagrams, TestSAMPLE1, true, "abcd", "dabc");
+SIMPLE_TEST(AreAnagrams, TestSAMPLE2, true, "geeksforgeeks", "forgeeksgeeks");
+SIMPLE_TEST(AreAnagrams, TestSAMPLE3, false, "geeksforgeeks", "geeks");

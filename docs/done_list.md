@@ -1185,3 +1185,8 @@
 * https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/
 * https://www.geeksforgeeks.org/move-all-zeros-to-start-and-ones-to-end-in-an-array-of-random-integers/
 * https://www.geeksforgeeks.org/count-occurences-of-anagrams/
+* https://www.geeksforgeeks.org/check-whether-two-strings-are-anagrams-of-each-other-using-unordered_map-in-c/
+* https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
+* https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
+* https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
+* https://www.geeksforgeeks.org/check-if-two-strings-are-permutation-of-each-other/

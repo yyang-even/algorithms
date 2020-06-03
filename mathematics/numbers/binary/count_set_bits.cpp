@@ -144,6 +144,24 @@ unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
     return 65 - s;
 }
 
+
+/** Check if binary representations of two numbers are anagram
+ *
+ * @reference   https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
+ */
+auto AreBitAnagram(const unsigned a, const unsigned b) {
+    return CountSetBits_BrianKernighan(a) == CountSetBits_BrianKernighan(b);
+}
+
+
+/** Check if binary representation of a given number and its complement are anagram
+ *
+ * @reference   https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
+ */
+auto AreNumberAndItsComplementAnagram(const unsigned long long number) {
+    return CountSetBits_BrianKernighan(number) == BitsNumber<decltype(number)> / 2;
+}
+
 }//namespace
 
 
@@ -212,7 +230,19 @@ SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, LOWER, CHAR_BIT);
 SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, UPPER, CHAR_BIT);
 
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64u, LOWER, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT), -1ULL,
-            CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER,
+            static_cast<unsigned>(CHAR_BIT), -1ULL, CHAR_BIT);
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14u, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
+
+
+SIMPLE_BENCHMARK(AreBitAnagram, 8, 4);
+
+SIMPLE_TEST(AreBitAnagram, TestSAMPLE1, true, 8, 4);
+SIMPLE_TEST(AreBitAnagram, TestSAMPLE2, false, 5, 4);
+
+
+SIMPLE_BENCHMARK(AreNumberAndItsComplementAnagram, 4294967295);
+
+SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE1, true, 4294967295);
+SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE2, false, 4);
