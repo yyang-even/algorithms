@@ -64,6 +64,9 @@ CompileTestExe(run_length_encoding)
 CompileBenchmarkExe(split_into_words)
 CompileTestExe(split_into_words)
 
+CompileBenchmarkExe(string_comparison)
+CompileTestExe(string_comparison)
+
 CompileBenchmarkExe(tail)
 CompileTestExe(tail)
 

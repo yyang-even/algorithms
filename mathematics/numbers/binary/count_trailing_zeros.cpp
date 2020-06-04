@@ -146,6 +146,12 @@ auto CountTrailingZeros_Bitset(const InputType num) {
 }
 
 
+/**
+ * @reference   Check divisibility of binary string by 2^k
+ *              https://www.geeksforgeeks.org/check-divisibility-binary-string-2k/
+ */
+
+
 /** Count number of bits changed after adding 1 to given N
  *
  * @reference   https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/

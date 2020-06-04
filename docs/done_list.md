@@ -1190,3 +1190,6 @@
 * https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
 * https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
 * https://www.geeksforgeeks.org/check-if-two-strings-are-permutation-of-each-other/
+* https://www.geeksforgeeks.org/program-to-check-if-two-strings-are-same-or-not/
+* https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
+* https://www.geeksforgeeks.org/check-divisibility-binary-string-2k/
