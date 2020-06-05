@@ -3,6 +3,10 @@
 
 namespace {
 
+/**
+ * @reference   Implement your own itoa()
+ *              https://www.geeksforgeeks.org/implement-itoa/
+ */
 auto DecimalTo(int number, const int base, const std::function<char(const int)> to_digit) {
     std::string result;
     for (; number; number /= base) {

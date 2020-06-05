@@ -1193,3 +1193,6 @@
 * https://www.geeksforgeeks.org/program-to-check-if-two-strings-are-same-or-not/
 * https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
 * https://www.geeksforgeeks.org/check-divisibility-binary-string-2k/
+* https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
+* https://www.geeksforgeeks.org/implement-itoa/
+* https://www.geeksforgeeks.org/highest-power-of-2-less-than-or-equal-to-given-integer/

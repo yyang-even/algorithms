@@ -6,8 +6,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Round up to the next highest power of 2 by float casting
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -18,7 +16,7 @@ typedef unsigned InputType;
  *
  * So num=3 -> r=4; num=8 -> r=8
  */
-InputType RoundUpToPowerOf2_Float(const uint32_t num) {
+unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
     if (num) {
         FloatUnsignedUnion float_unsigned_union;
         float_unsigned_union.f = static_cast<float>(num);
@@ -35,10 +33,8 @@ InputType RoundUpToPowerOf2_Float(const uint32_t num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Round up to the next highest power of 2
  *              https://graphics.stanford.edu/~seander/bithacks.html
- * @reference   Smallest power of 2 greater than or equal to n
- *              https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
  */
-InputType RoundUpToPowerOf2(const uint32_t num) {
+unsigned RoundUpToPowerOf2(const uint32_t num) {
     if (num) {
         return SetAllBitsAfterMSB(num - 1) + 1;
     } else {

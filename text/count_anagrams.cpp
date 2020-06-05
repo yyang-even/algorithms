@@ -49,6 +49,14 @@ auto CountAnagrams(const std::string &text, const std::string &word) {
  *              https://www.geeksforgeeks.org/check-whether-two-strings-are-anagrams-of-each-other-using-unordered_map-in-c/
  * @reference   Check if two strings are permutation of each other
  *              https://www.geeksforgeeks.org/check-if-two-strings-are-permutation-of-each-other/
+ *
+ * @reference   Check if two arrays are equal or not
+ *              https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
+ *
+ * Given two given arrays of equal length, the task is to find if given arrays are equal or not. Two arrays are
+ * said to be equal if both of them contain same set of elements, arrangements (or permutation) of elements may
+ * be different though.
+ * Note: If there are repetitions, then counts of repeated elements must also be same for two array to be equal.
  */
 auto AreAnagrams(const std::string &s1, const std::string &s2) {
     if (s1.size() != s2.size()) {
