@@ -170,6 +170,21 @@ auto NthFibonacci_DP_Optimized(const unsigned n) {
 
 
 /**
+ * @reference   Tail Recursion for Fibonacci
+ *              https://www.geeksforgeeks.org/tail-recursion-fibonacci/
+ */
+auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0, const unsigned b = 1) {
+    if (n == 0) {
+        return a;
+    }
+    if (n == 1) {
+        return b;
+    }
+    return NthFibonacci_TailRecursion(n - 1, b, a + b);
+}
+
+
+/**
  * @reference   Print Fibonacci sequence using 2 variables
  *              https://www.geeksforgeeks.org/print-fibonacci-sequence-using-2-variables/
  */
@@ -226,6 +241,15 @@ RANDOM_BENCHMARK(NthFibonacci_DP_Optimized, LOWER, UPPER);
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE2, 144, 12);
+
+
+SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, UPPER);
+RANDOM_BENCHMARK(NthFibonacci_TailRecursion, LOWER, UPPER);
+
+SIMPLE_TEST(NthFibonacci_TailRecursion, TestLOWER, 0, LOWER);
+SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE2, 144, 12);
 
 
 SIMPLE_BENCHMARK(SumOfFibonacci, 4);
