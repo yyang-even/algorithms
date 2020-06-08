@@ -1,3 +1,6 @@
+CompileBenchmarkExe(are_two_sets_disjoint)
+CompileTestExe(are_two_sets_disjoint)
+
 CompileBenchmarkExe(a_pair_elements_product_as_n)
 CompileTestExe(a_pair_elements_product_as_n)
 
