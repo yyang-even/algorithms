@@ -1198,3 +1198,5 @@
 * https://www.geeksforgeeks.org/highest-power-of-2-less-than-or-equal-to-given-integer/
 * https://www.geeksforgeeks.org/tail-recursion-fibonacci/
 * https://www.geeksforgeeks.org/check-two-given-sets-disjoint/
+* https://www.geeksforgeeks.org/constant-time-range-add-operation-array/
+* https://www.geeksforgeeks.org/print-modified-array-multiple-array-range-increment-operations/
