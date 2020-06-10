@@ -1203,3 +1203,5 @@
 * https://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/
 * https://www.geeksforgeeks.org/maximum-occurred-integer-n-ranges/
 * https://www.geeksforgeeks.org/maximum-occurred-integer-in-n-ranges-set-2/
+* https://www.geeksforgeeks.org/elements-that-occurred-only-once-in-the-array/
+* https://www.geeksforgeeks.org/first-digit-in-product-of-an-array-of-numbers/

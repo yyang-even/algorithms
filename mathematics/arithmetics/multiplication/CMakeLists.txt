@@ -4,6 +4,9 @@ CompileTestExe(a_pair_with_maximum_product)
 CompileBenchmarkExe(closest_product_pair_to_x)
 CompileTestExe(closest_product_pair_to_x)
 
+CompileBenchmarkExe(first_digit_in_product_of_array)
+CompileTestExe(first_digit_in_product_of_array)
+
 CompileBenchmarkExe(greatest_number_in_array_as_product_of_two_array_elements)
 CompileTestExe(greatest_number_in_array_as_product_of_two_array_elements)
 
