@@ -24,3 +24,6 @@ CompileTestExe(multiply_with_constant)
 
 CompileBenchmarkExe(product_array_of_all_elements_except_ith)
 CompileTestExe(product_array_of_all_elements_except_ith)
+
+CompileBenchmarkExe(replace_element_by_multiplication_of_previous_and_next)
+CompileTestExe(replace_element_by_multiplication_of_previous_and_next)
