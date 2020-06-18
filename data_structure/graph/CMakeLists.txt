@@ -1,0 +1,2 @@
+CompileBenchmarkExe(depth_first_search)
+CompileTestExe(depth_first_search)

@@ -1206,3 +1206,5 @@
 * https://www.geeksforgeeks.org/elements-that-occurred-only-once-in-the-array/
 * https://www.geeksforgeeks.org/first-digit-in-product-of-an-array-of-numbers/
 * https://www.geeksforgeeks.org/replace-every-array-element-by-multiplication-of-previous-and-next/
+* https://www.geeksforgeeks.org/graph-and-its-representations/
+* https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
