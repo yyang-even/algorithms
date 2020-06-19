@@ -10,7 +10,7 @@ using ArrayType = std::vector<std::size_t>;
 /** Depth First Search or DFS for a Graph
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 22.3            .
+ *              Introduction to Algorithms, Third Edition. Chapter 22.3.
  * @reference   Depth First Search or DFS for a Graph
  *              https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
  * @reference   Graph implementation using STL for competitive programming | Set 1 (DFS of Unweighted and Undirected)
