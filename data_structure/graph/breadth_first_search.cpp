@@ -13,10 +13,20 @@ using ArrayType = std::vector<std::size_t>;
  *              Introduction to Algorithms, Third Edition. Chapter 22.2.
  * @reference   Breadth First Search or BFS for a Graph
  *              https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+ * @reference   BFS using vectors & queue as per the algorithm of CLRS
+ *              https://www.geeksforgeeks.org/bfs-using-vectors-queue-per-algorithm-clrs/
+ *
+ * @reference   Breadth First Search without using Queue
+ *              https://www.geeksforgeeks.org/breadth-first-search-without-using-queue/
+ *
+ * @note    This solution still uses a queue implicitly.
+ *
+ * @reference   Applications of Breadth First Traversal
+ *              https://www.geeksforgeeks.org/applications-of-breadth-first-traversal/
  */
-void BreadthFirstSearch(const AdjacencyListGraph::RepresentationType &graph,
-                        const std::size_t source,
-                        std::vector<bool> &visited_vertices, ArrayType &results) {
+void BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
+                                    const std::size_t source,
+                                    std::vector<bool> &visited_vertices, ArrayType &results) {
     std::queue<std::size_t> gray_vertex_queue;
     visited_vertices[source] = true;
     gray_vertex_queue.push(source);
@@ -35,22 +45,41 @@ void BreadthFirstSearch(const AdjacencyListGraph::RepresentationType &graph,
     }
 }
 
-auto BreadthFirstSearch(const AdjacencyListGraph::RepresentationType &graph,
-                        const std::size_t source) {
+auto BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
+                                    const std::size_t source) {
     ArrayType results;
     std::vector<bool> visited_vertices(graph.size(), false);
-    BreadthFirstSearch(graph, source, visited_vertices, results);
+    BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
+
+    return results;
+}
+
+auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
+                                    const AdjacencyListGraph::EdgeArrayType &edges,
+                                    const std::size_t source) {
+    return AdjacencyListGraph(number_vertices, edges).Visit(
+    [source](const AdjacencyListGraph::RepresentationType & graph) {
+        return BreadthFirstSearchSingleSource(graph, source);
+    });
+}
+
+
+auto BreadthFirstSearch(const AdjacencyListGraph::RepresentationType &graph) {
+    ArrayType results;
+    std::vector<bool> visited_vertices(graph.size(), false);
+
+    for (std::size_t i = 0; i < graph.size(); ++i) {
+        if (not visited_vertices[i]) {
+            BreadthFirstSearchSingleSource(graph, i, visited_vertices, results);
+        }
+    }
 
     return results;
 }
 
 auto BreadthFirstSearch(const std::size_t number_vertices,
-                        const AdjacencyListGraph::EdgeArrayType &edges,
-                        const std::size_t source) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(
-    [source](const AdjacencyListGraph::RepresentationType & graph) {
-        return BreadthFirstSearch(graph, source);
-    });
+                        const AdjacencyListGraph::EdgeArrayType &edges) {
+    return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(BreadthFirstSearch));
 }
 
 }//namespace
@@ -60,6 +89,15 @@ const AdjacencyListGraph::EdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0
 const ArrayType EXPECTED1 = {2, 0, 3, 1};
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearch, 4, SAMPLE1, 2);
+SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, 4, SAMPLE1, 2);
 
-SIMPLE_TEST(BreadthFirstSearch, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 2);
+SIMPLE_TEST(BreadthFirstSearchSingleSource, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 2);
+
+
+const AdjacencyListGraph::EdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {2, 6}};
+const ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
+
+
+SIMPLE_BENCHMARK(BreadthFirstSearch, 7, SAMPLE2);
+
+SIMPLE_TEST(BreadthFirstSearch, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);

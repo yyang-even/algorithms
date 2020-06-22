@@ -2,8 +2,12 @@
 
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Chapter 22.
  * @reference   Graph and its representations
  *              https://www.geeksforgeeks.org/graph-and-its-representations/
+ * @reference   Mathematics | Graph Theory Basics – Set 1
+ *              https://www.geeksforgeeks.org/mathematics-graph-theory-basics-set-1/
  */
 class AdjacencyListGraph {
 public:

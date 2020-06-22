@@ -1209,3 +1209,7 @@
 * https://www.geeksforgeeks.org/graph-and-its-representations/
 * https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
 * https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+* https://www.geeksforgeeks.org/bfs-using-vectors-queue-per-algorithm-clrs/
+* https://www.geeksforgeeks.org/breadth-first-search-without-using-queue/
+* https://www.geeksforgeeks.org/applications-of-breadth-first-traversal/
+* https://www.geeksforgeeks.org/mathematics-graph-theory-basics-set-1/
