@@ -1213,3 +1213,9 @@
 * https://www.geeksforgeeks.org/breadth-first-search-without-using-queue/
 * https://www.geeksforgeeks.org/applications-of-breadth-first-traversal/
 * https://www.geeksforgeeks.org/mathematics-graph-theory-basics-set-1/
+* https://www.geeksforgeeks.org/mathematics-graph-theory-basics/
+* https://www.geeksforgeeks.org/graph-types-and-applications/
+* https://www.geeksforgeeks.org/applications-of-depth-first-search/
+* https://www.geeksforgeeks.org/applications-of-graph-data-structure/
+* https://www.geeksforgeeks.org/print-the-dfs-traversal-step-wise-backtracking-also/
+* https://www.geeksforgeeks.org/iterative-depth-first-traversal/

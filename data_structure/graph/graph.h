@@ -8,6 +8,12 @@
  *              https://www.geeksforgeeks.org/graph-and-its-representations/
  * @reference   Mathematics | Graph Theory Basics – Set 1
  *              https://www.geeksforgeeks.org/mathematics-graph-theory-basics-set-1/
+ * @reference   Mathematics | Graph Theory Basics – Set 2
+ *              https://www.geeksforgeeks.org/mathematics-graph-theory-basics/
+ * @reference   Graph Types and Applications
+ *              https://www.geeksforgeeks.org/graph-types-and-applications/
+ * @reference   Applications of Graph Data Structure
+ *              https://www.geeksforgeeks.org/applications-of-graph-data-structure/
  */
 class AdjacencyListGraph {
 public:
