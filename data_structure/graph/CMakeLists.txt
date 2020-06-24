@@ -3,3 +3,6 @@ CompileTestExe(breadth_first_search)
 
 CompileBenchmarkExe(depth_first_search)
 CompileTestExe(depth_first_search)
+
+CompileBenchmarkExe(topological_sort)
+CompileTestExe(topological_sort)

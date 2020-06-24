@@ -5,21 +5,6 @@
 
 namespace {
 
-using ArrayType = std::vector<std::size_t>;
-
-template <typename DFS>
-auto DepthFirstSearch(const AdjacencyListGraph::RepresentationType &graph, const DFS dfs) {
-    ArrayType results;
-    std::vector<bool> visited_vertices(graph.size(), false);
-    for (std::size_t i = 0; i < graph.size(); ++i) {
-        if (not visited_vertices[i]) {
-            dfs(graph, i, visited_vertices, results);
-        }
-    }
-
-    return results;
-}
-
 /** Depth First Search or DFS for a Graph
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -33,7 +18,8 @@ auto DepthFirstSearch(const AdjacencyListGraph::RepresentationType &graph, const
  */
 void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
                                 const std::size_t vertex,
-                                std::vector<bool> &visited_vertices, ArrayType &results) {
+                                std::vector<bool> &visited_vertices,
+                                AdjacencyListGraph::ArrayType &results) {
     visited_vertices[vertex] = true;
     results.push_back(vertex);
 
@@ -46,10 +32,7 @@ void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &gr
 
 auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
                                 const AdjacencyListGraph::EdgeArrayType &edges) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(
-    [](const AdjacencyListGraph::RepresentationType & graph) {
-        return DepthFirstSearch(graph, ToLambda(DepthFirstSearch_Recursive));
-    });
+    return GraphTraverse(number_vertices, edges, ToLambda(DepthFirstSearch_Recursive));
 }
 
 
@@ -59,7 +42,8 @@ auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
  */
 void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &graph,
                                 const std::size_t source,
-                                std::vector<bool> &visited_vertices, ArrayType &results) {
+                                std::vector<bool> &visited_vertices,
+                                AdjacencyListGraph::ArrayType &results) {
     std::stack<std::size_t> gray_vertex_stack;
     gray_vertex_stack.push(source);
 
@@ -80,10 +64,7 @@ void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &gr
 
 auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
                                 const AdjacencyListGraph::EdgeArrayType &edges) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(
-    [](const AdjacencyListGraph::RepresentationType & graph) {
-        return DepthFirstSearch(graph, ToLambda(DepthFirstSearch_Iterative));
-    });
+    return GraphTraverse(number_vertices, edges, ToLambda(DepthFirstSearch_Iterative));
 }
 
 
@@ -96,7 +77,7 @@ auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
 
 
 const AdjacencyListGraph::EdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
-const ArrayType EXPECTED1 = {0, 1, 2, 3};
+const AdjacencyListGraph::ArrayType EXPECTED1 = {0, 1, 2, 3};
 
 
 SIMPLE_BENCHMARK(DepthFirstSearch_Recursive, 4, SAMPLE1);
@@ -105,7 +86,7 @@ SIMPLE_TEST(DepthFirstSearch_Recursive, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
 const AdjacencyListGraph::EdgeArrayType SAMPLE2 = {{1, 0}, {2, 1}, {3, 4}, {4, 0}};
-const ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
+const AdjacencyListGraph::ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
 
 
 SIMPLE_BENCHMARK(DepthFirstSearch_Iterative, 5, SAMPLE2);

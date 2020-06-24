@@ -20,6 +20,7 @@ public:
     using RepresentationType = std::vector<std::list<std::size_t>>;
     using EdgeType = std::pair<std::size_t, std::size_t>;
     using EdgeArrayType = std::vector<EdgeType>;
+    using ArrayType = std::vector<std::size_t>;
 
     AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges) {
         adjacency_list.resize(number_vertices);
@@ -41,3 +42,28 @@ public:
 private:
     RepresentationType adjacency_list;
 };
+
+
+template <typename Traverser>
+static inline auto GraphTraverse(const AdjacencyListGraph::RepresentationType &graph,
+                                 const Traverser traverser) {
+    AdjacencyListGraph::ArrayType results;
+    std::vector<bool> visited_vertices(graph.size(), false);
+    for (std::size_t i = 0; i < graph.size(); ++i) {
+        if (not visited_vertices[i]) {
+            traverser(graph, i, visited_vertices, results);
+        }
+    }
+
+    return results;
+}
+
+template <typename Traverser>
+static inline auto GraphTraverse(const std::size_t number_vertices,
+                                 const AdjacencyListGraph::EdgeArrayType &edges,
+                                 const Traverser traverser) {
+    return AdjacencyListGraph(number_vertices, edges).Visit(
+    [traverser](const AdjacencyListGraph::RepresentationType & graph) {
+        return GraphTraverse(graph, traverser);
+    });
+}
