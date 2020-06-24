@@ -1219,3 +1219,6 @@
 * https://www.geeksforgeeks.org/applications-of-graph-data-structure/
 * https://www.geeksforgeeks.org/print-the-dfs-traversal-step-wise-backtracking-also/
 * https://www.geeksforgeeks.org/iterative-depth-first-traversal/
+* https://www.geeksforgeeks.org/bfs-using-stl-competitive-coding/
+* https://www.geeksforgeeks.org/bfs-disconnected-graph/
+* https://www.geeksforgeeks.org/real-time-application-of-data-structures/
