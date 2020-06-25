@@ -37,6 +37,8 @@ auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
 
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 22.3-7.
  * @reference   Iterative Depth First Traversal of Graph
  *              https://www.geeksforgeeks.org/iterative-depth-first-traversal/
  */
