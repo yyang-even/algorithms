@@ -45,25 +45,24 @@ private:
 
 
 template <typename Traverser>
-static inline auto GraphTraverse(const AdjacencyListGraph::RepresentationType &graph,
+static inline void GraphTraverse(const AdjacencyListGraph::RepresentationType &graph,
                                  const Traverser traverser) {
-    AdjacencyListGraph::ArrayType results;
     std::vector<bool> visited_vertices(graph.size(), false);
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i]) {
-            traverser(graph, i, visited_vertices, results);
+            if (not traverser(graph, i, visited_vertices)) {
+                break;
+            }
         }
     }
-
-    return results;
 }
 
 template <typename Traverser>
-static inline auto GraphTraverse(const std::size_t number_vertices,
+static inline void GraphTraverse(const std::size_t number_vertices,
                                  const AdjacencyListGraph::EdgeArrayType &edges,
                                  const Traverser traverser) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(
+    AdjacencyListGraph(number_vertices, edges).Visit(
     [traverser](const AdjacencyListGraph::RepresentationType & graph) {
-        return GraphTraverse(graph, traverser);
+        GraphTraverse(graph, traverser);
     });
 }

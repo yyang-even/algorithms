@@ -71,7 +71,14 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
 
 auto BreadthFirstSearch(const std::size_t number_vertices,
                         const AdjacencyListGraph::EdgeArrayType &edges) {
-    return GraphTraverse(number_vertices, edges, ToLambda(BreadthFirstSearchSingleSource));
+    AdjacencyListGraph::ArrayType results;
+    GraphTraverse(number_vertices, edges,
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
+        return true;
+    });
+
+    return results;
 }
 
 }//namespace

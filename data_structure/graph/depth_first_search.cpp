@@ -32,7 +32,14 @@ void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &gr
 
 auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
                                 const AdjacencyListGraph::EdgeArrayType &edges) {
-    return GraphTraverse(number_vertices, edges, ToLambda(DepthFirstSearch_Recursive));
+    AdjacencyListGraph::ArrayType results;
+    GraphTraverse(number_vertices, edges,
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
+        return true;
+    });
+
+    return results;
 }
 
 
@@ -66,7 +73,14 @@ void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &gr
 
 auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
                                 const AdjacencyListGraph::EdgeArrayType &edges) {
-    return GraphTraverse(number_vertices, edges, ToLambda(DepthFirstSearch_Iterative));
+    AdjacencyListGraph::ArrayType results;
+    GraphTraverse(number_vertices, edges,
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        DepthFirstSearch_Iterative(graph, source, visited_vertices, results);
+        return true;
+    });
+
+    return results;
 }
 
 

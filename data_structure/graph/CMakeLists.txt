@@ -4,5 +4,8 @@ CompileTestExe(breadth_first_search)
 CompileBenchmarkExe(depth_first_search)
 CompileTestExe(depth_first_search)
 
+CompileBenchmarkExe(detect_cycle)
+CompileTestExe(detect_cycle)
+
 CompileBenchmarkExe(topological_sort)
 CompileTestExe(topological_sort)

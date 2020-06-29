@@ -33,7 +33,12 @@ void TopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
 
 auto TopologicalSort(const std::size_t number_vertices,
                      const AdjacencyListGraph::EdgeArrayType &edges) {
-    auto results = GraphTraverse(number_vertices, edges, ToLambda(TopologicalSort));
+    AdjacencyListGraph::ArrayType results;
+    GraphTraverse(number_vertices, edges,
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        TopologicalSort(graph, source, visited_vertices, results);
+        return true;
+    });
 
     std::reverse(results.begin(), results.end());
     return results;
