@@ -1226,3 +1226,6 @@
 * https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
 * https://www.geeksforgeeks.org/all-topological-sorts-of-a-directed-acyclic-graph/
 * https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+* https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
+* https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/
+* https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/

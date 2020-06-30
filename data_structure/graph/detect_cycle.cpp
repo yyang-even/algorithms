@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "graph.h"
+#include "topological_sort.h"
 
 
 namespace {
@@ -8,6 +9,8 @@ namespace {
 /** Detect Cycle in a Directed Graph
  *
  * @reference   https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+ * @reference   Detect Cycle in a directed graph using colors
+ *              https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
  */
 bool DetectCycle_DFS(const AdjacencyListGraph::RepresentationType &graph,
                      const std::size_t source,
@@ -46,10 +49,27 @@ auto DetectCycle_DFS(const std::size_t number_vertices,
 }
 
 
+/**
+ * @reference   Detect Cycle in a Directed Graph using BFS
+ *              https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/
+ */
+auto DetectCycle_BFS(const std::size_t number_vertices,
+                     const AdjacencyListGraph::EdgeArrayType &edges) {
+    return not AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(TopologicalSort_Kahn)).first;
+}
+
+
 /** Detect cycle in an undirected graph
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 22.4-3.
+ *
+ * @reference   Detect cycle in the graph using degrees of nodes of graph
+ *              https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/
+ *
+ * Given a graph, the task is to detect a cycle in the graph using degrees of the nodes in the graph
+ * and print all the nodes that are involved in any of the cycles. If there is no cycle in the graph
+ * then print -1.
  */
 
 }//namespace
@@ -63,3 +83,9 @@ SIMPLE_BENCHMARK(DetectCycle_DFS, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE2, false, 4, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(DetectCycle_BFS, 4, SAMPLE1);
+
+SIMPLE_TEST(DetectCycle_BFS, TestSAMPLE1, true, 4, SAMPLE1);
+SIMPLE_TEST(DetectCycle_BFS, TestSAMPLE2, false, 4, SAMPLE2);
