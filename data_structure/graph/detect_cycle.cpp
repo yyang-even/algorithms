@@ -16,17 +16,15 @@ bool DetectCycle_DFS(const AdjacencyListGraph::RepresentationType &graph,
                      const std::size_t source,
                      std::vector<bool> &visited_vertices,
                      std::vector<bool> &in_stack_vertices) {
-    if (not visited_vertices[source]) {
-        visited_vertices[source] = true;
-        in_stack_vertices[source] = true;
+    visited_vertices[source] = true;
+    in_stack_vertices[source] = true;
 
-        for (const auto adjacent_vertex : graph.at(source)) {
-            if (not visited_vertices[adjacent_vertex] and
-                DetectCycle_DFS(graph, adjacent_vertex, visited_vertices, in_stack_vertices)) {
-                return true;
-            } else if (in_stack_vertices[adjacent_vertex]) {
-                return true;
-            }
+    for (const auto adjacent_vertex : graph.at(source)) {
+        if (not visited_vertices[adjacent_vertex] and
+            DetectCycle_DFS(graph, adjacent_vertex, visited_vertices, in_stack_vertices)) {
+            return true;
+        } else if (in_stack_vertices[adjacent_vertex]) {
+            return true;
         }
     }
 
@@ -63,6 +61,8 @@ auto DetectCycle_BFS(const std::size_t number_vertices,
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 22.4-3.
+ * @reference   Detect cycle in an undirected graph
+ *              https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
  *
  * @reference   Detect cycle in the graph using degrees of nodes of graph
  *              https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/
@@ -71,6 +71,37 @@ auto DetectCycle_BFS(const std::size_t number_vertices,
  * and print all the nodes that are involved in any of the cycles. If there is no cycle in the graph
  * then print -1.
  */
+bool DetectCycle_Undirected_DFS(const AdjacencyListGraph::RepresentationType &graph,
+                                const std::size_t source,
+                                std::vector<bool> &visited_vertices,
+                                const std::size_t parent = -1) {
+    visited_vertices[source] = true;
+
+    for (const auto adjacent_vertex : graph.at(source)) {
+        if (not visited_vertices[adjacent_vertex]) {
+            if (DetectCycle_Undirected_DFS(graph, adjacent_vertex, visited_vertices, source)) {
+                return true;
+            }
+        } else if (adjacent_vertex != parent) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+auto DetectCycle_Undirected_DFS(const std::size_t number_vertices,
+                                const AdjacencyListGraph::EdgeArrayType &edges) {
+    bool result = false;
+
+    GraphTraverse(number_vertices, edges,
+    [&result](const auto & graph, const auto source, auto & visited_vertices) {
+        result = DetectCycle_Undirected_DFS(graph, source, visited_vertices);
+        return not result;
+    });
+
+    return result;
+}
 
 }//namespace
 
@@ -89,3 +120,13 @@ SIMPLE_BENCHMARK(DetectCycle_BFS, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_BFS, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_BFS, TestSAMPLE2, false, 4, SAMPLE2);
+
+
+const AdjacencyListGraph::EdgeArrayType SAMPLE3 = {{0, 1}, {0, 1}, {0, 2}, {2, 0}, {2, 1}, {1, 2}, {0, 3}, {3, 0}, {3, 4}, {4, 3}};
+const AdjacencyListGraph::EdgeArrayType SAMPLE4 = {{0, 1}, {1, 0}, {1, 2}, {2, 1}};
+
+
+SIMPLE_BENCHMARK(DetectCycle_Undirected_DFS, 5, SAMPLE3);
+
+SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE3, true, 5, SAMPLE3);
+SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE4, false, 3, SAMPLE4);

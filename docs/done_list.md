@@ -1229,3 +1229,4 @@
 * https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
 * https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/
 * https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/
+* https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
