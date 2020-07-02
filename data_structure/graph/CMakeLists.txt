@@ -1,6 +1,9 @@
 CompileBenchmarkExe(breadth_first_search)
 CompileTestExe(breadth_first_search)
 
+CompileBenchmarkExe(degree_of_graph)
+CompileTestExe(degree_of_graph)
+
 CompileBenchmarkExe(depth_first_search)
 CompileTestExe(depth_first_search)
 

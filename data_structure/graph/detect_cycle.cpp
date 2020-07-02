@@ -150,15 +150,15 @@ auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
  * then print -1.
  */
 auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType &graph) {
-    auto in_degrees = InDegrees(graph);
+    auto degrees = OutDegrees(graph);
 
     std::vector<bool> visited_vertices(graph.size(), false);
 
     std::queue<std::size_t> one_indegree_vertex_queue;
     for (std::size_t i = 0; i < graph.size(); ++i) {
-        if (in_degrees[i] == 0) {
+        if (degrees[i] == 0) {
             visited_vertices[i] = true;
-        } else if (in_degrees[i] == 1) {
+        } else if (degrees[i] == 1) {
             one_indegree_vertex_queue.push(i);
         }
     }
@@ -169,7 +169,7 @@ auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType
         visited_vertices[vertex] = true;
 
         for (const auto adjacent_vertex : graph[vertex]) {
-            if (--in_degrees[adjacent_vertex] == 1) {
+            if (--degrees[adjacent_vertex] == 1) {
                 one_indegree_vertex_queue.push(adjacent_vertex);
             }
         }

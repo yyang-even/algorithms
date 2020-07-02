@@ -1231,3 +1231,6 @@
 * https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/
 * https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
 * https://www.geeksforgeeks.org/detect-cycle-in-an-undirected-graph-using-bfs/
+* https://www.geeksforgeeks.org/degree-of-a-cycle-graph/
+* https://www.geeksforgeeks.org/finding-in-and-out-degrees-of-all-vertices-in-a-graph/
+* https://www.geeksforgeeks.org/sum-of-degrees-of-all-nodes-of-a-undirected-graph/

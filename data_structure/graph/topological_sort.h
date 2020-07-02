@@ -1,19 +1,8 @@
 #pragma once
 
 #include "graph.h"
+#include "degree_of_graph.h"
 
-
-static inline auto InDegrees(const AdjacencyListGraph::RepresentationType &graph) {
-    AdjacencyListGraph::ArrayType in_degrees(graph.size(), 0);
-
-    for (std::size_t i = 0; i < graph.size(); ++i) {
-        for (const auto adjacent_vertex : graph[i]) {
-            ++in_degrees[adjacent_vertex];
-        }
-    }
-
-    return in_degrees;
-}
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
