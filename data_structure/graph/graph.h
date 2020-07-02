@@ -17,11 +17,23 @@
  */
 class AdjacencyListGraph {
 public:
+    struct DirectedEdge {
+        std::size_t from;
+        std::size_t to;
+    };
+
+    struct UndirectedEdge {
+        std::size_t u;
+        std::size_t v;
+    };
+
     using RepresentationType = std::vector<std::list<std::size_t>>;
-    using EdgeType = std::pair<std::size_t, std::size_t>;
-    using EdgeArrayType = std::vector<EdgeType>;
+    using DirectedEdgeArrayType = std::vector<DirectedEdge>;
+    using UndirectedEdgeArrayType = std::vector<UndirectedEdge>;
     using ArrayType = std::vector<std::size_t>;
 
+
+    template <typename EdgeArrayType>
     AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges) {
         adjacency_list.resize(number_vertices);
 
@@ -30,18 +42,35 @@ public:
         }
     }
 
-    void AddEdge(const EdgeType &edge) {
-        adjacency_list.at(edge.first).push_back(edge.second);
+
+    void AddEdge(const DirectedEdge &edge) {
+        adjacency_list.at(edge.from).push_back(edge.to);
     }
+
+    void AddEdge(const UndirectedEdge &edge) {
+        adjacency_list.at(edge.u).push_back(edge.v);
+        adjacency_list.at(edge.v).push_back(edge.u);
+    }
+
 
     template<typename Visitor>
     auto Visit(const Visitor visitor) const {
         return visitor(adjacency_list);
     }
 
+
 private:
     RepresentationType adjacency_list;
 };
+
+
+inline auto &operator<<(std::ostream &out, const AdjacencyListGraph::DirectedEdge &edge) {
+    return out << "(" << edge.from << ", " << edge.to << ")";
+}
+
+inline auto &operator<<(std::ostream &out, const AdjacencyListGraph::UndirectedEdge &edge) {
+    return out << "(" << edge.u << ", " << edge.v << ")";
+}
 
 
 template <typename Traverser>
@@ -57,9 +86,9 @@ static inline void GraphTraverse(const AdjacencyListGraph::RepresentationType &g
     }
 }
 
-template <typename Traverser>
+template <typename EdgeArrayType, typename Traverser>
 static inline void GraphTraverse(const std::size_t number_vertices,
-                                 const AdjacencyListGraph::EdgeArrayType &edges,
+                                 const EdgeArrayType &edges,
                                  const Traverser traverser) {
     AdjacencyListGraph(number_vertices, edges).Visit(
     [traverser](const AdjacencyListGraph::RepresentationType & graph) {
