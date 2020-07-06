@@ -1,6 +1,29 @@
 #pragma once
 
 
+struct DirectedEdge {
+    std::size_t from;
+    std::size_t to;
+};
+
+struct UndirectedEdge {
+    std::size_t u;
+    std::size_t v;
+};
+
+using DirectedEdgeArrayType = std::vector<DirectedEdge>;
+using UndirectedEdgeArrayType = std::vector<UndirectedEdge>;
+
+
+inline auto &operator<<(std::ostream &out, const DirectedEdge &edge) {
+    return out << "(" << edge.from << ", " << edge.to << ")";
+}
+
+inline auto &operator<<(std::ostream &out, const UndirectedEdge &edge) {
+    return out << "(" << edge.u << ", " << edge.v << ")";
+}
+
+
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Chapter 22.
@@ -17,26 +40,13 @@
  */
 class AdjacencyListGraph {
 public:
-    struct DirectedEdge {
-        std::size_t from;
-        std::size_t to;
-    };
-
-    struct UndirectedEdge {
-        std::size_t u;
-        std::size_t v;
-    };
-
     using RepresentationType = std::vector<std::list<std::size_t>>;
-    using DirectedEdgeArrayType = std::vector<DirectedEdge>;
-    using UndirectedEdgeArrayType = std::vector<UndirectedEdge>;
     using ArrayType = std::vector<std::size_t>;
 
 
     template <typename EdgeArrayType>
-    AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges) {
-        adjacency_list.resize(number_vertices);
-
+    AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+        adjacency_list(number_vertices, std::list<std::size_t> {}) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
         }
@@ -64,13 +74,40 @@ private:
 };
 
 
-inline auto &operator<<(std::ostream &out, const AdjacencyListGraph::DirectedEdge &edge) {
-    return out << "(" << edge.from << ", " << edge.to << ")";
-}
+class AdjacencyMatrixGraph {
+public:
+    using RepresentationType = std::vector<std::vector<bool>>;
+    using ArrayType = std::vector<std::size_t>;
 
-inline auto &operator<<(std::ostream &out, const AdjacencyListGraph::UndirectedEdge &edge) {
-    return out << "(" << edge.u << ", " << edge.v << ")";
-}
+
+    template <typename EdgeArrayType>
+    AdjacencyMatrixGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+        adjacency_matrix(number_vertices, std::vector<bool>(number_vertices, false)) {
+        for (const auto &one_edge : edges) {
+            AddEdge(one_edge);
+        }
+    }
+
+
+    void AddEdge(const DirectedEdge &edge) {
+        adjacency_matrix.at(edge.from).at(edge.to) = true;
+    }
+
+    void AddEdge(const UndirectedEdge &edge) {
+        adjacency_matrix.at(edge.u).at(edge.v) = true;
+        adjacency_matrix.at(edge.v).at(edge.u) = true;
+    }
+
+
+    template<typename Visitor>
+    auto Visit(const Visitor visitor) const {
+        return visitor(adjacency_matrix);
+    }
+
+
+private:
+    RepresentationType adjacency_matrix;
+};
 
 
 template <typename Traverser>

@@ -61,7 +61,7 @@ auto BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType
 }
 
 auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
-                                    const AdjacencyListGraph::DirectedEdgeArrayType &edges,
+                                    const DirectedEdgeArrayType &edges,
                                     const std::size_t source) {
     return AdjacencyListGraph(number_vertices, edges).Visit(
     [source](const AdjacencyListGraph::RepresentationType & graph) {
@@ -70,7 +70,7 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
 }
 
 auto BreadthFirstSearch(const std::size_t number_vertices,
-                        const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                        const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph::ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -84,7 +84,7 @@ auto BreadthFirstSearch(const std::size_t number_vertices,
 }//namespace
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
+const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
 const AdjacencyListGraph::ArrayType EXPECTED1 = {2, 0, 3, 1};
 
 
@@ -93,7 +93,7 @@ SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, 4, SAMPLE1, 2);
 SIMPLE_TEST(BreadthFirstSearchSingleSource, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 2);
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {2, 6}};
+const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {2, 6}};
 const AdjacencyListGraph::ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
 
 

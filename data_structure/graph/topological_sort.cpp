@@ -33,7 +33,7 @@ void TopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
 }
 
 auto TopologicalSort(const std::size_t number_vertices,
-                     const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                     const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph::ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -47,7 +47,7 @@ auto TopologicalSort(const std::size_t number_vertices,
 
 
 auto TopologicalSort_Kahn(const std::size_t number_vertices,
-                          const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                          const DirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(TopologicalSort_Kahn)).second;
 }
 
@@ -100,14 +100,14 @@ auto AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph) {
 }
 
 auto AllTopologicalSort(const std::size_t number_vertices,
-                        const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                        const DirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(AllTopologicalSort));
 }
 
 }//namespace
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}};
+const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}};
 const AdjacencyListGraph::ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
 
 

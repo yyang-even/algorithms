@@ -27,15 +27,39 @@ auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
 }
 
 
-auto InDegrees(const std::size_t number_vertices,
-               const AdjacencyListGraph::UndirectedEdgeArrayType &edges) {
+auto InDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(InDegrees));
 }
 
 
-auto OutDegrees(const std::size_t number_vertices,
-                const AdjacencyListGraph::UndirectedEdgeArrayType &edges) {
+auto OutDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(OutDegrees));
+}
+
+
+/** Find the Degree of a Particular vertex in a Graph
+ *
+ * @reference   https://www.geeksforgeeks.org/find-degree-particular-vertex-graph/
+ */
+auto DegreeOfVertex(const AdjacencyMatrixGraph::RepresentationType &graph,
+                    const std::size_t source) {
+    int out_degree = 0;
+
+    for (std::size_t i = 0; i < graph.size(); ++i) {
+        if (graph.at(source).at(i)) {
+            ++out_degree;
+        }
+    }
+
+    return out_degree;
+}
+
+auto DegreeOfVertex(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges,
+                    const std::size_t source) {
+    return AdjacencyMatrixGraph(number_vertices, edges).Visit(
+    [source](const auto & graph) {
+        return DegreeOfVertex(graph, source);
+    });
 }
 
 }//namespace
@@ -46,7 +70,7 @@ SIMPLE_BENCHMARK(SumOfDegreesOfCycleGraph, 4);
 SIMPLE_TEST(SumOfDegreesOfCycleGraph, TestSAMPLE1, 8, 4);
 
 
-const AdjacencyListGraph::UndirectedEdgeArrayType SAMPLE1 = {{0, 1}, {1, 2}, {0, 3}, {1, 3}};
+const UndirectedEdgeArrayType SAMPLE1 = {{0, 1}, {1, 2}, {0, 3}, {1, 3}};
 const AdjacencyListGraph::ArrayType EXPECTED1 = {2, 3, 1, 2};
 
 
@@ -58,3 +82,9 @@ SIMPLE_TEST(InDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 SIMPLE_BENCHMARK(OutDegrees, 4, SAMPLE1);
 
 SIMPLE_TEST(OutDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
+
+
+SIMPLE_BENCHMARK(DegreeOfVertex, 4, SAMPLE1, 1);
+
+SIMPLE_TEST(DegreeOfVertex, TestSAMPLE1, EXPECTED1[0], 4, SAMPLE1, 0);
+SIMPLE_TEST(DegreeOfVertex, TestSAMPLE2, EXPECTED1[1], 4, SAMPLE1, 1);

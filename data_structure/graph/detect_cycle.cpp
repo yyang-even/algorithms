@@ -33,7 +33,7 @@ bool DetectCycle_DFS(const AdjacencyListGraph::RepresentationType &graph,
 }
 
 auto DetectCycle_DFS(const std::size_t number_vertices,
-                     const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                     const DirectedEdgeArrayType &edges) {
     std::vector<bool> in_stack_vertices(number_vertices, false);
     bool result = false;
 
@@ -52,7 +52,7 @@ auto DetectCycle_DFS(const std::size_t number_vertices,
  *              https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/
  */
 auto DetectCycle_Degrees(const std::size_t number_vertices,
-                         const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                         const DirectedEdgeArrayType &edges) {
     return not AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(TopologicalSort_Kahn)).first;
 }
 
@@ -84,7 +84,7 @@ bool DetectCycle_Undirected_DFS(const AdjacencyListGraph::RepresentationType &gr
 }
 
 auto DetectCycle_Undirected_DFS(const std::size_t number_vertices,
-                                const AdjacencyListGraph::UndirectedEdgeArrayType &edges) {
+                                const UndirectedEdgeArrayType &edges) {
     bool result = false;
 
     GraphTraverse(number_vertices, edges,
@@ -128,7 +128,7 @@ bool DetectCycle_Undirected_BFS(const AdjacencyListGraph::RepresentationType &gr
 }
 
 auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
-                                const AdjacencyListGraph::UndirectedEdgeArrayType &edges) {
+                                const UndirectedEdgeArrayType &edges) {
     bool result = false;
 
     GraphTraverse(number_vertices, edges,
@@ -186,15 +186,15 @@ auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType
 }
 
 auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
-                                    const AdjacencyListGraph::UndirectedEdgeArrayType &edges) {
+                                    const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(DetectCycle_Undirected_Degrees));
 }
 
 }//namespace
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
+const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
 
 
 SIMPLE_BENCHMARK(DetectCycle_DFS, 4, SAMPLE1);
@@ -209,10 +209,10 @@ SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE2, false, 4, SAMPLE2);
 
 
-const AdjacencyListGraph::UndirectedEdgeArrayType SAMPLE3 = {{0, 1}, {0, 2}, {1, 2}, {0, 3}, {3, 4}};
+const UndirectedEdgeArrayType SAMPLE3 = {{0, 1}, {0, 2}, {1, 2}, {0, 3}, {3, 4}};
 const AdjacencyListGraph::ArrayType EXPECTED3 = {0, 1, 2};
 
-const AdjacencyListGraph::UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}};
+const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}};
 
 
 SIMPLE_BENCHMARK(DetectCycle_Undirected_DFS, 5, SAMPLE3);

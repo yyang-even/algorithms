@@ -31,7 +31,7 @@ void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &gr
 }
 
 auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
-                                const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                                const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph::ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -72,7 +72,7 @@ void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &gr
 }
 
 auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
-                                const AdjacencyListGraph::DirectedEdgeArrayType &edges) {
+                                const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph::ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -92,7 +92,7 @@ auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
 }//namespace
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
+const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
 const AdjacencyListGraph::ArrayType EXPECTED1 = {0, 1, 2, 3};
 
 
@@ -101,7 +101,7 @@ SIMPLE_BENCHMARK(DepthFirstSearch_Recursive, 4, SAMPLE1);
 SIMPLE_TEST(DepthFirstSearch_Recursive, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
-const AdjacencyListGraph::DirectedEdgeArrayType SAMPLE2 = {{1, 0}, {2, 1}, {3, 4}, {4, 0}};
+const DirectedEdgeArrayType SAMPLE2 = {{1, 0}, {2, 1}, {3, 4}, {4, 0}};
 const AdjacencyListGraph::ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
 
 
