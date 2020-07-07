@@ -44,9 +44,13 @@ public:
     using ArrayType = std::vector<std::size_t>;
 
 
+    AdjacencyListGraph(const std::size_t number_vertices):
+        adjacency_list(number_vertices, std::list<std::size_t> {}) {
+    }
+
     template <typename EdgeArrayType>
     AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
-        adjacency_list(number_vertices, std::list<std::size_t> {}) {
+        AdjacencyListGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
         }
@@ -80,9 +84,13 @@ public:
     using ArrayType = std::vector<std::size_t>;
 
 
+    AdjacencyMatrixGraph(const std::size_t number_vertices):
+        adjacency_matrix(number_vertices, std::vector<bool>(number_vertices, false)) {
+    }
+
     template <typename EdgeArrayType>
     AdjacencyMatrixGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
-        adjacency_matrix(number_vertices, std::vector<bool>(number_vertices, false)) {
+        AdjacencyMatrixGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
         }
@@ -131,4 +139,16 @@ static inline void GraphTraverse(const std::size_t number_vertices,
     [traverser](const AdjacencyListGraph::RepresentationType & graph) {
         GraphTraverse(graph, traverser);
     });
+}
+
+
+static inline auto GraphTranspose(const AdjacencyListGraph::RepresentationType &graph) {
+    AdjacencyListGraph transpose{graph.size()};
+    for (std::size_t source = 0; source < graph.size(); ++source) {
+        for (const auto adjacent_vertex : graph[source]) {
+            transpose.AddEdge(DirectedEdge{adjacent_vertex, source});
+        }
+    }
+
+    return transpose;
 }

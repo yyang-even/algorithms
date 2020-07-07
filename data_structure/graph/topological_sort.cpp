@@ -6,32 +6,6 @@ namespace {
 #include "topological_sort.h"
 
 
-/** Topological Sorting
- *
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 22.4.
- * @reference   Topological Sorting
- *              https://www.geeksforgeeks.org/topological-sorting/
- *
- * Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices
- * such that for every directed edge uv, vertex u comes before v in the ordering.
- * Topological Sorting for a graph is not possible if the graph is not a DAG.
- */
-void TopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
-                     const std::size_t vertex,
-                     std::vector<bool> &visited_vertices,
-                     AdjacencyListGraph::ArrayType &results) {
-    visited_vertices[vertex] = true;
-
-    for (const auto adjacent_vertex : graph.at(vertex)) {
-        if (not visited_vertices[adjacent_vertex]) {
-            TopologicalSort(graph, adjacent_vertex, visited_vertices, results);
-        }
-    }
-
-    results.push_back(vertex);
-}
-
 auto TopologicalSort(const std::size_t number_vertices,
                      const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph::ArrayType results;

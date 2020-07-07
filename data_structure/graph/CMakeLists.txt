@@ -10,5 +10,8 @@ CompileTestExe(depth_first_search)
 CompileBenchmarkExe(detect_cycle)
 CompileTestExe(detect_cycle)
 
+CompileBenchmarkExe(strongly_connected_components)
+CompileTestExe(strongly_connected_components)
+
 CompileBenchmarkExe(topological_sort)
 CompileTestExe(topological_sort)

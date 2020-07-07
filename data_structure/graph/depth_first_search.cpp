@@ -5,30 +5,8 @@
 
 namespace {
 
-/** Depth First Search or DFS for a Graph
- *
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 22.3.
- * @reference   Depth First Search or DFS for a Graph
- *              https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
- * @reference   Graph implementation using STL for competitive programming | Set 1 (DFS of Unweighted and Undirected)
- *              https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-1-dfs-of-unweighted-and-undirected/
- * @reference   Applications of Depth First Search
- *              https://www.geeksforgeeks.org/applications-of-depth-first-search/
- */
-void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
-                                const std::size_t vertex,
-                                std::vector<bool> &visited_vertices,
-                                AdjacencyListGraph::ArrayType &results) {
-    visited_vertices[vertex] = true;
-    results.push_back(vertex);
+#include "depth_first_search.h"
 
-    for (const auto adjacent_vertex : graph.at(vertex)) {
-        if (not visited_vertices[adjacent_vertex]) {
-            DepthFirstSearch_Recursive(graph, adjacent_vertex, visited_vertices, results);
-        }
-    }
-}
 
 auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
                                 const DirectedEdgeArrayType &edges) {
