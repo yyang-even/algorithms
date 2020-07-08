@@ -1236,3 +1236,4 @@
 * https://www.geeksforgeeks.org/sum-of-degrees-of-all-nodes-of-a-undirected-graph/
 * https://www.geeksforgeeks.org/find-degree-particular-vertex-graph/
 * https://www.geeksforgeeks.org/strongly-connected-components/
+* https://www.geeksforgeeks.org/connectivity-in-a-directed-graph/
