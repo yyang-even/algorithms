@@ -1237,3 +1237,4 @@
 * https://www.geeksforgeeks.org/find-degree-particular-vertex-graph/
 * https://www.geeksforgeeks.org/strongly-connected-components/
 * https://www.geeksforgeeks.org/connectivity-in-a-directed-graph/
+* https://www.geeksforgeeks.org/program-to-count-number-of-connected-components-in-an-undirected-graph/
