@@ -7,7 +7,7 @@ typedef unsigned long InputType;
 
 /** Lines in The Plane
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.2.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.2.
  *
  * How many slices of pizza can a person obtain by making n straight cuts with a pizza knife?
  * What is the maximum number of regions defined by n lines in the plane?
@@ -33,7 +33,7 @@ InputType PlaneLines_Closedform(const InputType n) {
 
 /** Bent Lines in The Plane
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.2.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.2.
  *
  * Suppose that instead of straight lines we use bent lines, each containing one "zig."
  * What is the maximum number of regions determined by n such bent lines in the plane?
@@ -62,7 +62,7 @@ InputType PlaneBentLines_Closedform(const InputType n) {
 
 /** Bounded Regions in The Plane
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 6.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 6.
  *
  * Some of the regions defined by n lines in the plane are infinite, while others are bounded. What’s the maximum possible number of bounded regions?
  */
@@ -77,7 +77,7 @@ InputType BoundedRegionsPlaneLines_Closedform(const InputType n) {
 
 /** Zig-zag Lines in The Plane
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 13.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 13.
  *
  * What’s the maximum number of regions definable by n zig-zag lines, ZZ(2) = 12,
  * each of which consists of two parallel infinite half-lines joined by a straight segment?

@@ -12,7 +12,7 @@ using ArrayType = std::vector<int>;
 /** QuickSort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 7.
+ *              Introduction to Algorithms, Third Edition. Section 7.
  * @reference   https://www.geeksforgeeks.org/quick-sort/
  * @reference   When does the worst case of Quicksort occur?
  *              https://www.geeksforgeeks.org/when-does-the-worst-case-of-quicksort-occur/
@@ -241,7 +241,7 @@ auto QuickSortDoublyLinkedList(std::list<int> values) {
 
 
 /**
- * @reference   Anthony Williams. C++ Concurrency in Action: Practical Multithreading, 1st Edition. Chapter 4.4.1.
+ * @reference   Anthony Williams. C++ Concurrency in Action: Practical Multithreading, 1st Edition. Section 4.4.1.
  */
 auto QuickSortDoublyLinkedList_Sequential(std::list<int> values) {
     if (values.size() < 2) {

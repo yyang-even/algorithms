@@ -4,7 +4,7 @@
 /**The largest power of p that divides n!
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.4.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.4.
  *
  * We'd like to determine, for any given prime p, the largest power of p that divides n!; that is,
  * we want the exponent of p in n!'s unique factorization.

@@ -9,6 +9,8 @@ namespace {
 
 /** Strongly Connected Components
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 22.5.
  * @reference   https://www.geeksforgeeks.org/strongly-connected-components/
  *
  * A directed graph is strongly connected if there is a path between all pairs of vertices.
@@ -55,6 +57,11 @@ auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
 /**
  * @reference   Check if a graph is strongly connected | Set 1 (Kosaraju using DFS)
  *              https://www.geeksforgeeks.org/connectivity-in-a-directed-graph/
+ *
+ * @reference   Check if a given directed graph is strongly connected | Set 2 (Kosaraju using BFS)
+ *              https://www.geeksforgeeks.org/check-given-directed-graph-strongly-connected-set-2-kosaraju-using-bfs/
+ *
+ * @note    Simply replace DepthFirstSearch_Recursive() with BreadthFirstSearchSingleSource().
  */
 auto allVisited(const std::vector<bool> &visited_vertices) {
     for (const auto visited : visited_vertices) {

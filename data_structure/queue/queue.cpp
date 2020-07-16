@@ -6,7 +6,7 @@
 /** Implementing Queue using Arrays
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1.
+ *              Introduction to Algorithms, Third Edition. Section 10.1.
  * @reference   Queue | Set 1 (Introduction and Array Implementation)
  *              https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/
  * @reference   Queue in Standard Template Library (STL)
@@ -76,7 +76,7 @@ public:
 /** Implementing Queue using Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-3.
+ *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-3.
  * @reference   Queue | Set 2 (Linked List Implementation)
  *              https://www.geeksforgeeks.org/queue-set-2-linked-list-implementation/
  * @reference   Queue – Linked List Implementation
@@ -127,7 +127,7 @@ public:
 /** Implement Queue using Stacks
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-6.
+ *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-6.
  * @reference   https://www.geeksforgeeks.org/queue-using-stacks/
  *
  * Method 1 (By making enQueue operation costly) This method makes sure that oldest
@@ -205,7 +205,7 @@ public:
 /** Implement queue using priority queue or heap
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-7.
+ *              Introduction to Algorithms, Third Edition. Section 6.5. Exercises 6.5-7.
  */
 class HeapQueue {
     using ValueType = int;

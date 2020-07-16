@@ -14,7 +14,7 @@ using ArrayType = std::vector<int>;
 /** Insertion Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 2.1.
+ *              Introduction to Algorithms, Third Edition. Section 2.1.
  *
  * @reference   https://www.geeksforgeeks.org/insertion-sort/
  * @reference   An Insertion Sort time complexity question

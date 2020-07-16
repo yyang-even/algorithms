@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
 /** 0-1 Knapsack Problem
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 16.2. Exercises 16.2-2.
+ *              Introduction to Algorithms, Third Edition. Section 16.2. Exercises 16.2-2.
  * @reference   0-1 Knapsack Problem | DP-10
  *              https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
  *
@@ -121,7 +121,7 @@ auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
 /** Fractional Knapsack Problem
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 16.2.
+ *              Introduction to Algorithms, Third Edition. Section 16.2.
  * @reference   Fractional Knapsack Problem
  *              https://www.geeksforgeeks.org/fractional-knapsack-problem/
  *

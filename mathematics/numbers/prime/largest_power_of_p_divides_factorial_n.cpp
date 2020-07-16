@@ -10,7 +10,7 @@ typedef unsigned InputType;
 
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.4.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.4.
  */
 InputType LargestPowerOf2DividesFactorialN(const InputType n) {
     return n - CountSetBits_BrianKernighan(n);

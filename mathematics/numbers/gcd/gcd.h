@@ -4,7 +4,7 @@
 /** GCD - Greatest Common Divisor
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.1.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.1.
  * @reference   Euclidean algorithms (Basic and Extended)
  *              https://www.geeksforgeeks.org/euclidean-algorithms-basic-and-extended/
  * @reference   C Program for Basic Euclidean algorithms

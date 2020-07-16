@@ -3,7 +3,7 @@
 /** Primes Below N [1, n)
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.2.
  * @reference   Print all prime numbers less than or equal to N
  *              https://www.geeksforgeeks.org/print-all-prime-numbers-less-than-or-equal-to-n/
  * @reference   TCS Coding Practice Question | Prime Numbers upto N

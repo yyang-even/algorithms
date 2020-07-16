@@ -13,7 +13,7 @@ using TwoDimensionalArrayType =
 /** Optimal Binary Search Trees
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 15.5.
+ *              Introduction to Algorithms, Third Edition. Section 15.5.
  */
 auto OptimalBinarySearchTree(const ArrayType &key_probabilities,
                              const ArrayType &dummy_probabilities,

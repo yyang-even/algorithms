@@ -9,7 +9,7 @@ using ArrayType = std::array<int, N>;
 /** Shuffle a given array using Fisher–Yates shuffle Algorithm
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 5.3.
+ *              Introduction to Algorithms, Third Edition. Section 5.3.
  *
  * @reference   Shuffle a deck of cards
  *              https://www.geeksforgeeks.org/shuffle-a-deck-of-cards-3/
@@ -32,7 +32,7 @@ void ShuffleArray_InPlace(ArrayType<N> &array) {
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 5.3.
+ *              Introduction to Algorithms, Third Edition. Section 5.3.
  *
  * @complexity  O(nlgn)
  */

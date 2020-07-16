@@ -4,7 +4,7 @@
 /** Longest Common Subsequence
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 15.4.
+ *              Introduction to Algorithms, Third Edition. Section 15.4.
  * @reference   Longest Common Subsequence | DP-4
  *              https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
  * @reference   C++ Program for Longest Common Subsequence

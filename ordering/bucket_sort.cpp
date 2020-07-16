@@ -14,7 +14,7 @@ using ArrayType = std::vector<float>;
 /** Bucket Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 8.4.
+ *              Introduction to Algorithms, Third Edition. Section 8.4.
  * @reference   https://www.geeksforgeeks.org/bucket-sort-2/
  *
  * Bucket sort is mainly useful when input is uniformly distributed over a range.

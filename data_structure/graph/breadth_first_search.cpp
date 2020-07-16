@@ -8,7 +8,7 @@ namespace {
 /** Breadth First Search or BFS for a Graph
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 22.2.
+ *              Introduction to Algorithms, Third Edition. Section 22.2.
  * @reference   Breadth First Search or BFS for a Graph
  *              https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
  * @reference   BFS using vectors & queue as per the algorithm of CLRS

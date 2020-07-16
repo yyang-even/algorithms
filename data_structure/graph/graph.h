@@ -4,11 +4,19 @@
 struct DirectedEdge {
     std::size_t from;
     std::size_t to;
+    int weight;
+
+    DirectedEdge(const std::size_t source, const std::size_t destination, const int w = 0) :
+        from(source), to(destination), weight(w) {}
 };
 
 struct UndirectedEdge {
     std::size_t u;
     std::size_t v;
+    int weight;
+
+    UndirectedEdge(const std::size_t source, const std::size_t destination, const int w = 0) :
+        u(source), v(destination), weight(w) {}
 };
 
 using DirectedEdgeArrayType = std::vector<DirectedEdge>;
@@ -26,7 +34,7 @@ inline auto &operator<<(std::ostream &out, const UndirectedEdge &edge) {
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 22.
+ *              Introduction to Algorithms, Third Edition. Section 22.
  * @reference   Graph and its representations
  *              https://www.geeksforgeeks.org/graph-and-its-representations/
  * @reference   Mathematics | Graph Theory Basics – Set 1

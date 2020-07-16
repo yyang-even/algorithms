@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
 /** Merge k sorted arrays
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-9.
+ *              Introduction to Algorithms, Third Edition. Section 6.5. Exercises 6.5-9.
  * @reference   Merge k sorted arrays | Set 1
  *              https://www.geeksforgeeks.org/merge-k-sorted-arrays/
  *

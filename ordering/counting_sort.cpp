@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
 /** Counting Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 8.2.
+ *              Introduction to Algorithms, Third Edition. Section 8.2.
  * @reference   https://www.geeksforgeeks.org/counting-sort/
  * @reference   C Program for Counting Sort
  *              https://www.geeksforgeeks.org/c-program-for-counting-sort-2/

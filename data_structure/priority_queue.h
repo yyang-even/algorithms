@@ -10,7 +10,7 @@
 /** Priority Queue
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-3.
+ *              Introduction to Algorithms, Third Edition. Section 6.5. Exercises 6.5-3.
  *
  *              https://www.geeksforgeeks.org/priority-queue-set-1-introduction/
  *              Priority Queue in C++ Standard Template Library (STL)

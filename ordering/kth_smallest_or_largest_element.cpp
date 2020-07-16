@@ -77,7 +77,7 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 9.2.
+ *              Introduction to Algorithms, Third Edition. Section 9.2.
  * @reference   Quickselect Algorithm
  *              https://www.geeksforgeeks.org/quickselect-algorithm/
  */

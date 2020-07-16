@@ -8,7 +8,7 @@ namespace {
 /** Make a fair coin from a biased coin
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 5.1. Exercise 5.1-3.
+ *              Introduction to Algorithms, Third Edition. Section 5.1. Exercise 5.1-3.
  *
  *              https://www.geeksforgeeks.org/print-0-and-1-with-50-probability/
  *

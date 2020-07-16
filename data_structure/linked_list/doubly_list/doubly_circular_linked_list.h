@@ -8,7 +8,7 @@
 /** Doubly Circular Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.2.
+ *              Introduction to Algorithms, Third Edition. Section 10.2.
  * @reference   Doubly Circular Linked List | Set 1 (Introduction and Insertion)
  *              https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/
  *

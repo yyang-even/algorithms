@@ -4,7 +4,7 @@
 /** Implementing Stack using Arrays
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1.
+ *              Introduction to Algorithms, Third Edition. Section 10.1.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  * @reference   Difference between Stack and Queue Data Structures
@@ -40,7 +40,7 @@ public:
 /** Implementing Stack using Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
+ *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-2.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  * @reference   Implement a stack using singly linked list
@@ -74,7 +74,7 @@ public:
 /** Implement Stack using Queues
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-7.
+ *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-7.
  * @reference   https://www.geeksforgeeks.org/implement-stack-using-queue/
  */
 class PushCostlyTwoQueueStack {
@@ -171,7 +171,7 @@ public:
 /** Implement two stacks in an array
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.1. Exercises 10.1-2.
+ *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-2.
  * @reference   https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/
  */
 class OneArrayTwoStacks {
@@ -220,7 +220,7 @@ public:
 /** Implement stack using priority queue or heap
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.5. Exercises 6.5-7.
+ *              Introduction to Algorithms, Third Edition. Section 6.5. Exercises 6.5-7.
  * @reference   How to implement stack using priority queue or heap?
  *              https://www.geeksforgeeks.org/implement-stack-using-priority-queue-or-heap/
  */

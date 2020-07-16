@@ -23,7 +23,7 @@ inline auto operator>(const NodeType::PointerType lhs, const NodeType::PointerTy
 /** Huffman Coding
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 16.3.
+ *              Introduction to Algorithms, Third Edition. Section 16.3.
  * @reference   Huffman Coding | Greedy Algo-3
  *              https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
  * @reference   Huffman Coding using Priority Queue

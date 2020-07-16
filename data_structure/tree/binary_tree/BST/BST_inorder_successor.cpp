@@ -10,7 +10,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/inorder-successor-in-binary-search-tree/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 12.2.
+ *              Introduction to Algorithms, Third Edition. Section 12.2.
  */
 auto InorderSuccessor_WithoutParentPointer(BinaryTree::Node::PointerType current_node,
         const BinaryTree::Node::PointerType x_node) {

@@ -5,7 +5,7 @@
 /** Binary Heap
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.1. 6.2. 6.3. Problems 6-1.
+ *              Introduction to Algorithms, Third Edition. Section 6.1. 6.2. 6.3. Problems 6-1.
  *
  * @reference   https://www.geeksforgeeks.org/binary-heap/
  * @reference   Array Representation Of Binary Heap

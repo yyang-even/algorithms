@@ -5,7 +5,7 @@
 /** Reservoir Sampling
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 5.3. Exercises 5.3-7.
+ *              Introduction to Algorithms, Third Edition. Section 5.3. Exercises 5.3-7.
  *
  *              https://www.geeksforgeeks.org/reservoir-sampling/
  *

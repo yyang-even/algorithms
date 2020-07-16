@@ -12,7 +12,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 12.3.
+ *              Introduction to Algorithms, Third Edition. Section 12.3.
  */
 BinaryTree::Node::PointerType BSTDelete(const BinaryTree::Node::PointerType node,
                                         const BinaryTree::Node::ValueType x) {

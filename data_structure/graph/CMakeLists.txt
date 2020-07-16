@@ -13,6 +13,9 @@ CompileTestExe(detect_cycle)
 CompileBenchmarkExe(number_of_connected_components)
 CompileTestExe(number_of_connected_components)
 
+CompileBenchmarkExe(single_source_shortest_paths)
+CompileTestExe(single_source_shortest_paths)
+
 CompileBenchmarkExe(strongly_connected_components)
 CompileTestExe(strongly_connected_components)
 

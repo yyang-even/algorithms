@@ -5,7 +5,7 @@ namespace {
 
 /** Pretty Columns Print
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 3.4.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.4.
  *
  * We have n short lines of text that we'd like to arrange in m columns. For
  * aesthetic reasons, we want the columns to be arranged in decreasing order

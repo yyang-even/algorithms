@@ -6,7 +6,7 @@
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.2.
+ *              Introduction to Algorithms, Third Edition. Section 10.2.
  *
  * @reference   Linked List | Set 1 (Introduction)
  *              https://www.geeksforgeeks.org/linked-list-set-1-introduction/
@@ -435,7 +435,7 @@ public:
     /** Reverse a linked list
      *
      * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
-     *              Introduction to Algorithms, Third Edition. Chapter 10.2. Exercises 10.2-7.
+     *              Introduction to Algorithms, Third Edition. Section 10.2. Exercises 10.2-7.
      * @reference   https://www.geeksforgeeks.org/reverse-a-linked-list/
      * @reference   Recursively Reversing a linked list (A simple implementation)
      *              https://www.geeksforgeeks.org/recursively-reversing-a-linked-list-a-simple-implementation/

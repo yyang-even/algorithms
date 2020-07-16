@@ -5,7 +5,7 @@ namespace {
 
 /** Complete Graph on n Vertices
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.6.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.6.
  *
  * How many spanning trees are possible in the complete graph on n vertices {1,2,...,n}?
  * The complete graph has n(n-1)/2 edges, one edge joining each pair of distinct vertices;

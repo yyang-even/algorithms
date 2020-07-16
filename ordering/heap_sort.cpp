@@ -8,7 +8,7 @@ namespace {
 /** Heap Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.4.
+ *              Introduction to Algorithms, Third Edition. Section 6.4.
  *
  * @reference   https://www.geeksforgeeks.org/heap-sort/
  * @reference   Heap Sort for decreasing order using min heap
@@ -24,7 +24,7 @@ inline auto HeapSort_Recursive(const MaxHeap<int>::ArrayType &array) {
 /** Iterative Heap Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 6.2. Exercises 6.2-5.
+ *              Introduction to Algorithms, Third Edition. Section 6.2. Exercises 6.2-5.
  *
  * @reference   https://www.geeksforgeeks.org/iterative-heap-sort/
  */

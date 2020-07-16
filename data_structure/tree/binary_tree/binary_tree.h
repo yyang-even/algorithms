@@ -6,7 +6,7 @@
 /** Binary Tree
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.4.
+ *              Introduction to Algorithms, Third Edition. Section 10.4.
  * @reference   Binary Tree | Set 1 (Introduction)
  *              https://www.geeksforgeeks.org/binary-tree-set-1-introduction/
  * @reference   Binary Tree | Set 2 (Properties)

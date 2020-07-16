@@ -24,7 +24,7 @@ void ToMatrixChainStringWithParenthesis(const ArrayType::size_type i, const Arra
 /** Matrix-chain Multiplication (Minimum)
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 15.2.
+ *              Introduction to Algorithms, Third Edition. Section 15.2.
  * @reference   Matrix Chain Multiplication | DP-8
  *              https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
  * @reference   C Program for Matrix Chain Multiplication | DP-8

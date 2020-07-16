@@ -3,7 +3,7 @@
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 12.1.
+ *              Introduction to Algorithms, Third Edition. Section 12.1.
  * @reference   Check if a Binary Tree is BST : Simple and Efficient Approach
  *              https://www.geeksforgeeks.org/check-if-a-binary-tree-is-bst-simple-and-efficient-approach/
  */

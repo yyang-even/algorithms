@@ -6,7 +6,7 @@
 /** N-ary Tree
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 10.4.
+ *              Introduction to Algorithms, Third Edition. Section 10.4.
  * @reference   Left-Child Right-Sibling Representation of Tree
  *              https://www.geeksforgeeks.org/left-child-right-sibling-representation-tree/
  * @reference   Generic Trees(N-array Trees)

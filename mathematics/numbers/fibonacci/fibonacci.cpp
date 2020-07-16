@@ -5,7 +5,7 @@ namespace {
 
 /** Mathematics of Rabbit Breeding
  *
- * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Chapter 8.5.
+ * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Section 8.5.
  *
  * A pair of newly born rabbits, male and female, were placed in a hutch. In two months these rabbits
  * began their breeding cycle and produced one pair of rabbits, one male and one female. The original
@@ -43,7 +43,7 @@ namespace {
  */
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.1.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.1.
  *
  * How many ways T(n) are there to completely cover a 2*n rectangle with 2*1 dominoes?
  *
@@ -53,7 +53,7 @@ namespace {
  */
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 6.6.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  *
  * How many ways a(n) are there for light rays to pass through or be reflected after changing direction
  * n times?
@@ -73,7 +73,7 @@ namespace {
  */
 /**Spans-of-fans
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 7.3.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.3.
  *              https://en.wikipedia.org/wiki/Spanning_tree
  *
  * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as follows: Vertex
@@ -116,7 +116,7 @@ unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
 
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 6.6.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  * @reference   Print first n Fibonacci Numbers using direct formula
  *              https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
  *

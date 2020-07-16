@@ -11,7 +11,7 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/radix-sort/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 8.3.
+ *              Introduction to Algorithms, Third Edition. Section 8.3.
  * @reference   Radix Sort
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Radix/
  * @reference   C Program for Radix Sort

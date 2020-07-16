@@ -1238,3 +1238,8 @@
 * https://www.geeksforgeeks.org/strongly-connected-components/
 * https://www.geeksforgeeks.org/connectivity-in-a-directed-graph/
 * https://www.geeksforgeeks.org/program-to-count-number-of-connected-components-in-an-undirected-graph/
+* https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
+* https://www.geeksforgeeks.org/check-given-directed-graph-strongly-connected-set-2-kosaraju-using-bfs/
+* https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/
+* https://www.geeksforgeeks.org/bellman-ford-algorithm-simple-implementation/
+* https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/

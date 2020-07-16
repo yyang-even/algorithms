@@ -3,7 +3,7 @@
 /** Prime Factors of N
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 4.2.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.2.
  *
  * Fundamental Theorem of Arithmetic: There's only one way to write n as a product of primes in
  * nondecreasing order.

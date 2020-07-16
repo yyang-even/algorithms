@@ -9,6 +9,11 @@ namespace {
 /** Program to count Number of connected components in an undirected graph
  *
  * @reference   https://www.geeksforgeeks.org/program-to-count-number-of-connected-components-in-an-undirected-graph/
+ *
+ * @reference   Connected Components in an undirected graph
+ *              https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
+ *
+ * Given an undirected graph, print all connected components line by line.
  */
 auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
                                       const UndirectedEdgeArrayType &edges) {

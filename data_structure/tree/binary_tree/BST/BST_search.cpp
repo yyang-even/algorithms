@@ -10,7 +10,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Chapter 12.2.
+ *              Introduction to Algorithms, Third Edition. Section 12.2.
  */
 auto BSTSearch_Recursive(const BinaryTree::Node::PointerType node,
                          const BinaryTree::Node::ValueType x) {

@@ -11,7 +11,7 @@ using ArrayType = std::vector<unsigned>;
 /** Josephus Problem
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.3.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.3.
  * @reference   Josephus problem | Set 2 (A Simple Solution when k = 2)
  *              https://www.geeksforgeeks.org/josephus-problem-set-2-simple-solution-k-2/
  * @reference   Find last element after deleting every second element in array of n integers
@@ -42,7 +42,7 @@ unsigned JosephusProblem2_Recursive(const unsigned n) {
 
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1.3.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.3.
  * @reference   Josephus Problem Using Bit Magic
  *              https://www.geeksforgeeks.org/josephus-problem-using-bit-magic/
  * @reference   Lucky alive person in a circle | Set – 2
@@ -63,7 +63,7 @@ unsigned JosephusProblem2_Closedform(const unsigned n) {
 /** Penultimate Survivor
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 1, Exercises 15.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 15.
  *
  * Josephus had a friend who was saved by getting into the next-to-last position.
  * What is I(n), the number of the penultimate survivor when every second person is executed?
@@ -87,7 +87,7 @@ unsigned PenultimateSurvivor_Closedform(const unsigned n) {
 /** Authentic Josephus Problem
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 3.3.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.3.
  *
  *  Authentic Josephus Problem in which every third person is eliminated, instead of every second.
  */
@@ -146,7 +146,7 @@ auto JosephusK_Iterative(const unsigned n, const unsigned k) {
 
 /**
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
- *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Chapter 3.3.
+ *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.3.
  */
 unsigned JosephusK_Closedform(const unsigned n, const unsigned k) {
     double D = 1.0;
