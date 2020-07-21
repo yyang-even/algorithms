@@ -1,18 +1,29 @@
 #include "common_header.h"
 
 #include "graph.h"
+#include "topological_sort.h"
 
+
+using namespace graph;
 
 namespace {
 
-void Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge &edge) {
-    if (distances[edge.from] != std::numeric_limits<int>::max()) {
-        const auto new_weight = distances[edge.from] + edge.weight;
-        if (distances[edge.to] > new_weight) {
-            distances[edge.to] = new_weight;
-            parents[edge.to] = edge.from;
+void Relax(std::vector<int> &distances,
+           const std::size_t from, const std::size_t to, const int weight,
+           std::vector<int> *parents = nullptr) {
+    if (distances[from] != std::numeric_limits<int>::max()) {
+        const auto new_weight = distances[from] + weight;
+        if (distances[to] > new_weight) {
+            distances[to] = new_weight;
+            if (parents) {
+                (*parents)[to] = from;
+            }
         }
     }
+}
+
+void Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge &edge) {
+    Relax(distances, edge.from, edge.to, edge.weight, &parents);
 }
 
 /** Single-source Shortest Paths
@@ -120,6 +131,42 @@ auto PrintNegativeWeightCycle(const std::size_t number_vertices, const DirectedE
     return results;
 }
 
+
+/**
+ * @reference   Shortest Path in Directed Acyclic Graph
+ *              https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
+ */
+auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
+                                   const DirectedEdgeArrayType &edges,
+                                   const std::size_t source) {
+    assert(source < number_vertices);
+
+    WeightedAdjacencyListGraph graph{number_vertices, edges};
+
+    ArrayType topological_order;
+    graph.Visit([&topological_order](const auto & graph) {
+        GraphTraverse(graph,
+        [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
+            TopologicalSort(graph, source, visited_vertices, topological_order);
+            return true;
+        });
+    });
+
+    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    distances_from_source[source] = 0;
+
+    for (auto iter = topological_order.crbegin(); iter != topological_order.crend(); ++iter) {
+        const auto from = *iter;
+        graph.Visit([from, &distances_from_source](const auto & graph) {
+            for (const auto &node : graph[from]) {
+                Relax(distances_from_source, from, node.destination, node.weight);
+            }
+        });
+    }
+
+    return distances_from_source;
+}
+
 }//namespace
 
 
@@ -148,3 +195,12 @@ SIMPLE_TEST(hasNegativeCycle, TestSAMPLE2, true, 4, SAMPLE2);
 SIMPLE_BENCHMARK(PrintNegativeWeightCycle, 4, SAMPLE2, 0);
 
 SIMPLE_TEST(PrintNegativeWeightCycle, TestSAMPLE2, EXPECTED2, 4, SAMPLE2, 0);
+
+
+const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5}, {0, 2, 3}, {1, 3,  6}, {1, 2,  2}, {2, 4, 4}, {2, 5, 2}, {2, 3, 7}, {3, 4, -1}, {4, 5, -2}};
+const std::vector<int> EXPECTED3 = {std::numeric_limits<int>::max(), 0, 2, 6, 5, 3};
+
+
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_DAG, 6, SAMPLE3, 1);
+
+SIMPLE_TEST(SingleSourceShortestPaths_DAG, TestSAMPLE3, EXPECTED3, 6, SAMPLE3, 1);

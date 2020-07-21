@@ -1,6 +1,10 @@
 #pragma once
 
 
+namespace graph {
+
+using ArrayType = std::vector<std::size_t>;
+
 struct DirectedEdge {
     std::size_t from;
     std::size_t to;
@@ -31,6 +35,8 @@ inline auto &operator<<(std::ostream &out, const UndirectedEdge &edge) {
     return out << "(" << edge.u << ", " << edge.v << ")";
 }
 
+}//namespace graph
+
 
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -49,7 +55,6 @@ inline auto &operator<<(std::ostream &out, const UndirectedEdge &edge) {
 class AdjacencyListGraph {
 public:
     using RepresentationType = std::vector<std::list<std::size_t>>;
-    using ArrayType = std::vector<std::size_t>;
 
 
     AdjacencyListGraph(const std::size_t number_vertices):
@@ -65,11 +70,11 @@ public:
     }
 
 
-    void AddEdge(const DirectedEdge &edge) {
+    void AddEdge(const graph::DirectedEdge &edge) {
         adjacency_list.at(edge.from).push_back(edge.to);
     }
 
-    void AddEdge(const UndirectedEdge &edge) {
+    void AddEdge(const graph::UndirectedEdge &edge) {
         adjacency_list.at(edge.u).push_back(edge.v);
         adjacency_list.at(edge.v).push_back(edge.u);
     }
@@ -89,7 +94,6 @@ private:
 class AdjacencyMatrixGraph {
 public:
     using RepresentationType = std::vector<std::vector<bool>>;
-    using ArrayType = std::vector<std::size_t>;
 
 
     AdjacencyMatrixGraph(const std::size_t number_vertices):
@@ -105,11 +109,11 @@ public:
     }
 
 
-    void AddEdge(const DirectedEdge &edge) {
+    void AddEdge(const graph::DirectedEdge &edge) {
         adjacency_matrix.at(edge.from).at(edge.to) = true;
     }
 
-    void AddEdge(const UndirectedEdge &edge) {
+    void AddEdge(const graph::UndirectedEdge &edge) {
         adjacency_matrix.at(edge.u).at(edge.v) = true;
         adjacency_matrix.at(edge.v).at(edge.u) = true;
     }
@@ -126,9 +130,58 @@ private:
 };
 
 
-template <typename Traverser>
-static inline void GraphTraverse(const AdjacencyListGraph::RepresentationType &graph,
-                                 const Traverser traverser) {
+/**
+ * @reference   Graph implementation using STL for competitive programming | Set 2 (Weighted graph)
+ *              https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-2-weighted-graph/
+ */
+class WeightedAdjacencyListGraph {
+public:
+    struct Node {
+        std::size_t destination = 0;
+        int weight = 0;
+
+        Node(const std::size_t to, const int w) : destination(to), weight(w) {}
+    };
+
+    using RepresentationType = std::vector<std::list<Node>>;
+
+
+    WeightedAdjacencyListGraph(const std::size_t number_vertices):
+        adjacency_list(number_vertices, std::list<Node> {}) {
+    }
+
+    template <typename EdgeArrayType>
+    WeightedAdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+        WeightedAdjacencyListGraph(number_vertices) {
+        for (const auto &one_edge : edges) {
+            AddEdge(one_edge);
+        }
+    }
+
+
+    void AddEdge(const graph::DirectedEdge &edge) {
+        adjacency_list.at(edge.from).emplace_back(edge.to, edge.weight);
+    }
+
+    void AddEdge(const graph::UndirectedEdge &edge) {
+        adjacency_list.at(edge.u).emplace_back(edge.v, edge.weight);
+        adjacency_list.at(edge.v).emplace_back(edge.u, edge.weight);
+    }
+
+
+    template<typename Visitor>
+    auto Visit(const Visitor visitor) const {
+        return visitor(adjacency_list);
+    }
+
+
+private:
+    RepresentationType adjacency_list;
+};
+
+
+template <typename RepresentationType, typename Traverser>
+static inline void GraphTraverse(const RepresentationType &graph, const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i]) {
@@ -140,11 +193,10 @@ static inline void GraphTraverse(const AdjacencyListGraph::RepresentationType &g
 }
 
 template <typename EdgeArrayType, typename Traverser>
-static inline void GraphTraverse(const std::size_t number_vertices,
-                                 const EdgeArrayType &edges,
+static inline void GraphTraverse(const std::size_t number_vertices, const EdgeArrayType &edges,
                                  const Traverser traverser) {
     AdjacencyListGraph(number_vertices, edges).Visit(
-    [traverser](const AdjacencyListGraph::RepresentationType & graph) {
+    [traverser](const auto & graph) {
         GraphTraverse(graph, traverser);
     });
 }
@@ -154,7 +206,7 @@ static inline auto GraphTranspose(const AdjacencyListGraph::RepresentationType &
     AdjacencyListGraph transpose{graph.size()};
     for (std::size_t source = 0; source < graph.size(); ++source) {
         for (const auto adjacent_vertex : graph[source]) {
-            transpose.AddEdge(DirectedEdge{adjacent_vertex, source});
+            transpose.AddEdge(graph::DirectedEdge{adjacent_vertex, source});
         }
     }
 

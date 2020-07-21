@@ -8,7 +8,7 @@
  * @reference   https://www.geeksforgeeks.org/finding-in-and-out-degrees-of-all-vertices-in-a-graph/
  */
 static inline auto InDegrees(const AdjacencyListGraph::RepresentationType &graph) {
-    AdjacencyListGraph::ArrayType in_degrees(graph.size(), 0);
+    graph::ArrayType in_degrees(graph.size(), 0);
 
     for (std::size_t i = 0; i < graph.size(); ++i) {
         for (const auto adjacent_vertex : graph[i]) {
@@ -21,7 +21,7 @@ static inline auto InDegrees(const AdjacencyListGraph::RepresentationType &graph
 
 
 static inline auto OutDegrees(const AdjacencyListGraph::RepresentationType &graph) {
-    AdjacencyListGraph::ArrayType out_degrees(graph.size(), 0);
+    graph::ArrayType out_degrees(graph.size(), 0);
 
     std::transform(graph.cbegin(), graph.cend(), out_degrees.begin(),
     [](const auto & adjacent_vertices) {

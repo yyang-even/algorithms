@@ -1,5 +1,9 @@
 #include "common_header.h"
 
+#include "graph.h"
+
+
+using namespace graph;
 
 namespace {
 
@@ -71,7 +75,7 @@ SIMPLE_TEST(SumOfDegreesOfCycleGraph, TestSAMPLE1, 8, 4);
 
 
 const UndirectedEdgeArrayType SAMPLE1 = {{0, 1}, {1, 2}, {0, 3}, {1, 3}};
-const AdjacencyListGraph::ArrayType EXPECTED1 = {2, 3, 1, 2};
+const ArrayType EXPECTED1 = {2, 3, 1, 2};
 
 
 SIMPLE_BENCHMARK(InDegrees, 4, SAMPLE1);

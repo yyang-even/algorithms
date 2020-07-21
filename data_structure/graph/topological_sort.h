@@ -21,7 +21,7 @@ static inline auto TopologicalSort_Kahn(const AdjacencyListGraph::Representation
     }
 
     std::size_t number_visited_vertex = 0;
-    AdjacencyListGraph::ArrayType results;
+    graph::ArrayType results;
 
     while (not zero_indegree_vertex_queue.empty()) {
         const auto vertex = zero_indegree_vertex_queue.front();
@@ -55,12 +55,27 @@ static inline auto TopologicalSort_Kahn(const AdjacencyListGraph::Representation
 static inline void TopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
                                    const std::size_t vertex,
                                    std::vector<bool> &visited_vertices,
-                                   AdjacencyListGraph::ArrayType &results) {
+                                   graph::ArrayType &results) {
     visited_vertices[vertex] = true;
 
     for (const auto adjacent_vertex : graph.at(vertex)) {
         if (not visited_vertices[adjacent_vertex]) {
             TopologicalSort(graph, adjacent_vertex, visited_vertices, results);
+        }
+    }
+
+    results.push_back(vertex);
+}
+
+static inline void TopologicalSort(const WeightedAdjacencyListGraph::RepresentationType &graph,
+                                   const std::size_t vertex,
+                                   std::vector<bool> &visited_vertices,
+                                   graph::ArrayType &results) {
+    visited_vertices[vertex] = true;
+
+    for (const auto &adjacent_node : graph.at(vertex)) {
+        if (not visited_vertices[adjacent_node.destination]) {
+            TopologicalSort(graph, adjacent_node.destination, visited_vertices, results);
         }
     }
 

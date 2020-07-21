@@ -3,6 +3,8 @@
 #include "graph.h"
 
 
+using namespace graph;
+
 namespace {
 
 #include "depth_first_search.h"
@@ -10,7 +12,7 @@ namespace {
 
 auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
                                 const DirectedEdgeArrayType &edges) {
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
         DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
@@ -30,7 +32,7 @@ auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
 void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &graph,
                                 const std::size_t source,
                                 std::vector<bool> &visited_vertices,
-                                AdjacencyListGraph::ArrayType &results) {
+                                ArrayType &results) {
     std::stack<std::size_t> gray_vertex_stack;
     gray_vertex_stack.push(source);
 
@@ -51,7 +53,7 @@ void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &gr
 
 auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
                                 const DirectedEdgeArrayType &edges) {
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
         DepthFirstSearch_Iterative(graph, source, visited_vertices, results);
@@ -71,7 +73,7 @@ auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
 
 
 const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
-const AdjacencyListGraph::ArrayType EXPECTED1 = {0, 1, 2, 3};
+const ArrayType EXPECTED1 = {0, 1, 2, 3};
 
 
 SIMPLE_BENCHMARK(DepthFirstSearch_Recursive, 4, SAMPLE1);
@@ -80,7 +82,7 @@ SIMPLE_TEST(DepthFirstSearch_Recursive, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
 const DirectedEdgeArrayType SAMPLE2 = {{1, 0}, {2, 1}, {3, 4}, {4, 0}};
-const AdjacencyListGraph::ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
+const ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
 
 
 SIMPLE_BENCHMARK(DepthFirstSearch_Iterative, 5, SAMPLE2);

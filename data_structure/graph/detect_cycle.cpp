@@ -4,6 +4,8 @@
 #include "topological_sort.h"
 
 
+using namespace graph;
+
 namespace {
 
 /** Detect Cycle in a Directed Graph
@@ -104,7 +106,7 @@ auto DetectCycle_Undirected_DFS(const std::size_t number_vertices,
 bool DetectCycle_Undirected_BFS(const AdjacencyListGraph::RepresentationType &graph,
                                 const std::size_t source,
                                 std::vector<bool> &visited_vertices) {
-    AdjacencyListGraph::ArrayType parents(graph.size(), -1);
+    ArrayType parents(graph.size(), -1);
     std::queue<std::size_t> gray_vertex_queue;
     visited_vertices[source] = true;
     gray_vertex_queue.push(source);
@@ -175,7 +177,7 @@ auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType
         }
     }
 
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     for (std::size_t i = 0; i < visited_vertices.size(); ++i) {
         if (not visited_vertices[i]) {
             results.push_back(i);
@@ -210,7 +212,7 @@ SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE2, false, 4, SAMPLE2);
 
 
 const UndirectedEdgeArrayType SAMPLE3 = {{0, 1}, {0, 2}, {1, 2}, {0, 3}, {3, 4}};
-const AdjacencyListGraph::ArrayType EXPECTED3 = {0, 1, 2};
+const ArrayType EXPECTED3 = {0, 1, 2};
 
 const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}};
 

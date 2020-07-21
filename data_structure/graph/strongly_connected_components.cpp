@@ -5,6 +5,8 @@
 #include "topological_sort.h"
 
 
+using namespace graph;
+
 namespace {
 
 /** Strongly Connected Components
@@ -21,7 +23,7 @@ auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
         const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
-    AdjacencyListGraph::ArrayType finish_times_stack;
+    ArrayType finish_times_stack;
     graph.Visit(
     [&finish_times_stack](const AdjacencyListGraph::RepresentationType & graph) {
         GraphTraverse(graph,
@@ -33,14 +35,14 @@ auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
 
     const auto transpose = graph.Visit(GraphTranspose);
 
-    std::vector<AdjacencyListGraph::ArrayType> strongly_connected_components;
+    std::vector<ArrayType> strongly_connected_components;
     std::vector<bool> visited_vertices(number_vertices, false);
     while (not finish_times_stack.empty()) {
         const auto source = finish_times_stack.back();
         finish_times_stack.pop_back();
 
         if (not visited_vertices[source]) {
-            AdjacencyListGraph::ArrayType one_strongly_connected_component;
+            ArrayType one_strongly_connected_component;
             transpose.Visit(
             [source, &visited_vertices, &one_strongly_connected_component](const auto & graph) {
                 DepthFirstSearch_Recursive(graph, source, visited_vertices, one_strongly_connected_component);
@@ -77,7 +79,7 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
         const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
-    AdjacencyListGraph::ArrayType to_be_ignored;
+    ArrayType to_be_ignored;
     {
         std::vector<bool> visited_vertices(number_vertices, false);
         graph.Visit(
@@ -115,7 +117,7 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
 auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
-    AdjacencyListGraph::ArrayType to_be_ignored;
+    ArrayType to_be_ignored;
     std::vector<bool> visited_vertices_correct_direction(number_vertices, false);
     graph.Visit(
     [&visited_vertices_correct_direction, &to_be_ignored](const auto & graph) {
@@ -143,7 +145,7 @@ auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType 
 
 
 const DirectedEdgeArrayType SAMPLE1 = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}};
-const std::vector<AdjacencyListGraph::ArrayType> EXPECTED1 = {{0, 1, 2}, {3}, {4}};
+const std::vector<ArrayType> EXPECTED1 = {{0, 1, 2}, {3}, {4}};
 
 
 SIMPLE_BENCHMARK(StronglyConnectedComponents_Kosaraju, 5, SAMPLE1);

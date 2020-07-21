@@ -3,6 +3,8 @@
 #include "graph.h"
 
 
+using namespace graph;
+
 namespace {
 
 /** Breadth First Search or BFS for a Graph
@@ -32,7 +34,7 @@ namespace {
 void BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
                                     const std::size_t source,
                                     std::vector<bool> &visited_vertices,
-                                    AdjacencyListGraph::ArrayType &results) {
+                                    ArrayType &results) {
     std::queue<std::size_t> gray_vertex_queue;
     visited_vertices[source] = true;
     gray_vertex_queue.push(source);
@@ -53,7 +55,7 @@ void BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType
 
 auto BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
                                     const std::size_t source) {
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     std::vector<bool> visited_vertices(graph.size(), false);
     BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
 
@@ -71,7 +73,7 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
 
 auto BreadthFirstSearch(const std::size_t number_vertices,
                         const DirectedEdgeArrayType &edges) {
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
         BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
@@ -85,7 +87,7 @@ auto BreadthFirstSearch(const std::size_t number_vertices,
 
 
 const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
-const AdjacencyListGraph::ArrayType EXPECTED1 = {2, 0, 3, 1};
+const ArrayType EXPECTED1 = {2, 0, 3, 1};
 
 
 SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, 4, SAMPLE1, 2);
@@ -94,7 +96,7 @@ SIMPLE_TEST(BreadthFirstSearchSingleSource, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 
 
 
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {2, 6}};
-const AdjacencyListGraph::ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
+const ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
 
 
 SIMPLE_BENCHMARK(BreadthFirstSearch, 7, SAMPLE2);

@@ -1,5 +1,9 @@
 #include "common_header.h"
 
+#include "graph.h"
+
+
+using namespace graph;
 
 namespace {
 
@@ -8,7 +12,7 @@ namespace {
 
 auto TopologicalSort(const std::size_t number_vertices,
                      const DirectedEdgeArrayType &edges) {
-    AdjacencyListGraph::ArrayType results;
+    ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
         TopologicalSort(graph, source, visited_vertices, results);
@@ -32,9 +36,9 @@ auto TopologicalSort_Kahn(const std::size_t number_vertices,
  */
 void AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
                         std::vector<bool> &visited_vertices,
-                        AdjacencyListGraph::ArrayType &in_degrees,
-                        AdjacencyListGraph::ArrayType &one_result,
-                        std::vector<AdjacencyListGraph::ArrayType> &all_results) {
+                        ArrayType &in_degrees,
+                        ArrayType &one_result,
+                        std::vector<ArrayType> &all_results) {
     bool complete = true;
 
     for (std::size_t i = 0; i < graph.size(); ++i) {
@@ -65,8 +69,8 @@ void AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
 auto AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph) {
     std::vector<bool> visited_vertices(graph.size(), false);
     auto in_degrees = InDegrees(graph);
-    AdjacencyListGraph::ArrayType one_result;
-    std::vector<AdjacencyListGraph::ArrayType> all_results;
+    ArrayType one_result;
+    std::vector<ArrayType> all_results;
 
     AllTopologicalSort(graph, visited_vertices, in_degrees, one_result, all_results);
 
@@ -82,7 +86,7 @@ auto AllTopologicalSort(const std::size_t number_vertices,
 
 
 const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}};
-const AdjacencyListGraph::ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
+const ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
 
 
 SIMPLE_BENCHMARK(TopologicalSort, 6, SAMPLE1);
@@ -90,7 +94,7 @@ SIMPLE_BENCHMARK(TopologicalSort, 6, SAMPLE1);
 SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
 
 
-const AdjacencyListGraph::ArrayType EXPECTED2 = {4, 5, 2, 0, 3, 1};
+const ArrayType EXPECTED2 = {4, 5, 2, 0, 3, 1};
 
 
 SIMPLE_BENCHMARK(TopologicalSort_Kahn, 6, SAMPLE1);
@@ -98,7 +102,7 @@ SIMPLE_BENCHMARK(TopologicalSort_Kahn, 6, SAMPLE1);
 SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED2, 6, SAMPLE1);
 
 
-const std::vector<AdjacencyListGraph::ArrayType> EXPECTED3 = {
+const std::vector<ArrayType> EXPECTED3 = {
     {4, 5, 0, 2, 3, 1},
     {4, 5, 2, 0, 3, 1},
     {4, 5, 2, 3, 0, 1},

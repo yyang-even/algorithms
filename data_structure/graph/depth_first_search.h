@@ -1,5 +1,7 @@
 #pragma once
 
+#include "graph.h"
+
 
 /** Depth First Search or DFS for a Graph
  *
@@ -15,7 +17,7 @@
 static inline void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
         const std::size_t vertex,
         std::vector<bool> &visited_vertices,
-        AdjacencyListGraph::ArrayType &results) {
+        graph::ArrayType &results) {
     visited_vertices[vertex] = true;
     results.push_back(vertex);
 

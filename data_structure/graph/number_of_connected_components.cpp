@@ -4,6 +4,8 @@
 #include "depth_first_search.h"
 
 
+using namespace graph;
+
 namespace {
 
 /** Program to count Number of connected components in an undirected graph
@@ -20,7 +22,7 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
     unsigned count = 0;
     GraphTraverse(number_vertices, edges,
     [&count](const auto & graph, const auto source, auto & visited_vertices) {
-        AdjacencyListGraph::ArrayType results;
+        ArrayType results;
         DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
         ++count;
         return true;
