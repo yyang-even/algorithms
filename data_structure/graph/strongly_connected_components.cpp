@@ -107,6 +107,38 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
     return true;
 }
 
+
+/**
+ * @reference   Check if a directed graph is connected or not
+ *              https://www.geeksforgeeks.org/check-if-a-directed-graph-is-connected-or-not/
+ */
+auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+    const auto graph = AdjacencyListGraph{number_vertices, edges};
+
+    AdjacencyListGraph::ArrayType to_be_ignored;
+    std::vector<bool> visited_vertices_correct_direction(number_vertices, false);
+    graph.Visit(
+    [&visited_vertices_correct_direction, &to_be_ignored](const auto & graph) {
+        DepthFirstSearch_Recursive(graph, 0, visited_vertices_correct_direction, to_be_ignored);
+    });
+
+    const auto transpose = graph.Visit(GraphTranspose);
+
+    std::vector<bool> visited_vertices_reverse_direction(number_vertices, false);
+    transpose.Visit(
+    [&visited_vertices_reverse_direction, &to_be_ignored](const auto & graph) {
+        DepthFirstSearch_Recursive(graph, 0, visited_vertices_reverse_direction, to_be_ignored);
+    });
+
+    for (std::size_t i = 0; i < number_vertices; ++i) {
+        if (not visited_vertices_correct_direction[i] and not visited_vertices_reverse_direction[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -128,3 +160,16 @@ SIMPLE_BENCHMARK(isStronglyConnectedComponents_Kosaraju_DFS, 5, SAMPLE1);
 SIMPLE_TEST(isStronglyConnectedComponents_Kosaraju_DFS, TestSAMPLE1, false, 5, SAMPLE1);
 SIMPLE_TEST(isStronglyConnectedComponents_Kosaraju_DFS, TestSAMPLE2, true, 5, SAMPLE2);
 SIMPLE_TEST(isStronglyConnectedComponents_Kosaraju_DFS, TestSAMPLE3, false, 4, SAMPLE3);
+
+
+const DirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 2}, {1, 2}};
+const DirectedEdgeArrayType SAMPLE5 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+
+
+SIMPLE_BENCHMARK(isConnected, 5, SAMPLE1);
+
+SIMPLE_TEST(isConnected, TestSAMPLE1, true, 5, SAMPLE1);
+SIMPLE_TEST(isConnected, TestSAMPLE2, true, 5, SAMPLE2);
+SIMPLE_TEST(isConnected, TestSAMPLE3, true, 4, SAMPLE3);
+SIMPLE_TEST(isConnected, TestSAMPLE4, false, 4, SAMPLE4);
+SIMPLE_TEST(isConnected, TestSAMPLE5, true, 4, SAMPLE5);
