@@ -167,6 +167,74 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
     return distances_from_source;
 }
 
+
+/**
+ * @reference   Shortest path in an unweighted graph
+ *              https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
+ */
+auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const
+        AdjacencyListGraph::RepresentationType &graph,
+        const std::size_t source,
+        const std::size_t destination,
+        std::vector<int> &distances_from_source,
+        std::vector<int> &parents) {
+    std::queue<std::size_t> gray_vertex_queue;
+    gray_vertex_queue.push(source);
+
+    std::vector<bool> visited_vertices(graph.size(), false);
+    visited_vertices[source] = true;
+
+    while (not gray_vertex_queue.empty()) {
+        const auto vertex = gray_vertex_queue.front();
+        gray_vertex_queue.pop();
+
+        for (const auto adjacent_vertex : graph.at(vertex)) {
+            if (not visited_vertices[adjacent_vertex]) {
+                visited_vertices[adjacent_vertex] = true;
+                distances_from_source[adjacent_vertex] = distances_from_source[vertex] + 1;
+                parents[adjacent_vertex] = vertex;
+                gray_vertex_queue.push(adjacent_vertex);
+
+                if (adjacent_vertex == destination) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t number_vertices,
+        const UndirectedEdgeArrayType &edges,
+        const std::size_t source,
+        const std::size_t destination) {
+    assert(source < number_vertices);
+    assert(destination < number_vertices);
+
+    AdjacencyListGraph graph{number_vertices, edges};
+
+    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    distances_from_source[source] = 0;
+    std::vector<int> parents(number_vertices, -1);
+
+    const auto path_found = graph.Visit([source, destination, &distances_from_source,
+            &parents](const auto & graph) {
+        return SingleSourceShortestPaths_Unweighted_Undirected_BFS(graph, source, destination,
+                distances_from_source, parents);
+    });
+
+    ArrayType path;
+    if (path_found) {
+        for (int i = destination; i != -1; i = parents[i]) {
+            path.push_back(i);
+        }
+        std::reverse(path.begin(), path.end());
+    }
+
+    return path;
+}
+
 }//namespace
 
 
@@ -204,3 +272,13 @@ const std::vector<int> EXPECTED3 = {std::numeric_limits<int>::max(), 0, 2, 6, 5,
 SIMPLE_BENCHMARK(SingleSourceShortestPaths_DAG, 6, SAMPLE3, 1);
 
 SIMPLE_TEST(SingleSourceShortestPaths_DAG, TestSAMPLE3, EXPECTED3, 6, SAMPLE3, 1);
+
+
+const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 3}, {1, 2}, {3, 4}, {3, 7}, {4, 5}, {4, 6}, {4, 7}, {5, 6}, {6, 7}};
+const ArrayType EXPECTED4 = {0, 3, 7};
+
+
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, 8, SAMPLE4, 0, 7);
+
+SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
+            EXPECTED4, 8, SAMPLE4, 0, 7);

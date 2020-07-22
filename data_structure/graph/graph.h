@@ -136,18 +136,18 @@ private:
  */
 class WeightedAdjacencyListGraph {
 public:
-    struct Node {
+    struct AdjacentNode {
         std::size_t destination = 0;
         int weight = 0;
 
-        Node(const std::size_t to, const int w) : destination(to), weight(w) {}
+        AdjacentNode(const std::size_t to, const int w) : destination(to), weight(w) {}
     };
 
-    using RepresentationType = std::vector<std::list<Node>>;
+    using RepresentationType = std::vector<std::list<AdjacentNode>>;
 
 
     WeightedAdjacencyListGraph(const std::size_t number_vertices):
-        adjacency_list(number_vertices, std::list<Node> {}) {
+        adjacency_list(number_vertices, std::list<AdjacentNode> {}) {
     }
 
     template <typename EdgeArrayType>
