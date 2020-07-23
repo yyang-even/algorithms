@@ -1248,3 +1248,6 @@
 * https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-2-weighted-graph/
 * https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
 * https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
+* https://www.geeksforgeeks.org/find-if-there-is-a-path-between-two-vertices-in-a-given-graph/
+* https://www.geeksforgeeks.org/find-if-there-is-a-path-between-two-vertices-in-an-undirected-graph/
+* https://www.geeksforgeeks.org/number-of-paths-from-source-to-destination-in-a-directed-acyclic-graph/
