@@ -55,7 +55,7 @@ auto DetectCycle_DFS(const std::size_t number_vertices,
  */
 auto DetectCycle_Degrees(const std::size_t number_vertices,
                          const DirectedEdgeArrayType &edges) {
-    return not AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(TopologicalSort_Kahn)).first;
+    return not AdjacencyListGraph(number_vertices, edges).Visit(TopologicalSort_Kahn).first;
 }
 
 

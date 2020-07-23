@@ -16,6 +16,9 @@ CompileTestExe(number_of_connected_components)
 CompileBenchmarkExe(simple_paths)
 CompileTestExe(simple_paths)
 
+CompileBenchmarkExe(single_source_longest_paths)
+CompileTestExe(single_source_longest_paths)
+
 CompileBenchmarkExe(single_source_shortest_paths)
 CompileTestExe(single_source_shortest_paths)
 

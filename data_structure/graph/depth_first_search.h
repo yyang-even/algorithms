@@ -13,6 +13,9 @@
  *              https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-1-dfs-of-unweighted-and-undirected/
  * @reference   Applications of Depth First Search
  *              https://www.geeksforgeeks.org/applications-of-depth-first-search/
+ *
+ * @reference   DFS for a n-ary tree (acyclic graph) represented as adjacency list
+ *              https://www.geeksforgeeks.org/dfs-n-ary-tree-acyclic-graph-represented-adjacency-list/
  */
 static inline void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
         const std::size_t vertex,
