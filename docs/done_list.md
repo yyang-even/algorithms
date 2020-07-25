@@ -1253,3 +1253,5 @@
 * https://www.geeksforgeeks.org/number-of-paths-from-source-to-destination-in-a-directed-acyclic-graph/
 * https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/
 * https://www.geeksforgeeks.org/dfs-n-ary-tree-acyclic-graph-represented-adjacency-list/
+* https://www.geeksforgeeks.org/longest-path-directed-acyclic-graph-set-2/
+* https://www.geeksforgeeks.org/longest-path-in-a-directed-acyclic-graph-dynamic-programming/

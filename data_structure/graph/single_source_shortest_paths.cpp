@@ -265,7 +265,7 @@ SIMPLE_BENCHMARK(PrintNegativeWeightCycle, 4, SAMPLE2, 0);
 SIMPLE_TEST(PrintNegativeWeightCycle, TestSAMPLE2, EXPECTED2, 4, SAMPLE2, 0);
 
 
-const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5}, {0, 2, 3}, {1, 3,  6}, {1, 2,  2}, {2, 4, 4}, {2, 5, 2}, {2, 3, 7}, {3, 4, -1}, {4, 5, -2}};
+const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5}, {0, 2, 3}, {1, 3, 6}, {1, 2, 2}, {2, 4, 4}, {2, 5, 2}, {2, 3, 7}, {3, 4, -1}, {4, 5, -2}};
 const std::vector<int> EXPECTED3 = {std::numeric_limits<int>::max(), 0, 2, 6, 5, 3};
 
 
