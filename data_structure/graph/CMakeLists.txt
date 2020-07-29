@@ -10,6 +10,9 @@ CompileTestExe(depth_first_search)
 CompileBenchmarkExe(detect_cycle)
 CompileTestExe(detect_cycle)
 
+CompileBenchmarkExe(euler_tour)
+CompileTestExe(euler_tour)
+
 CompileBenchmarkExe(number_of_connected_components)
 CompileTestExe(number_of_connected_components)
 
