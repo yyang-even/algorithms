@@ -24,12 +24,10 @@ auto SingleSourceLongestPaths_DAG(const std::size_t number_vertices,
     WeightedAdjacencyListGraph graph{number_vertices, edges};
 
     ArrayType topological_order;
-    graph.Visit([&topological_order](const auto & graph) {
-        GraphTraverse(graph,
-        [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
-            TopologicalSort(graph, source, visited_vertices, topological_order);
-            return true;
-        });
+    GraphTraverse(graph,
+    [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
+        TopologicalSort(graph, source, visited_vertices, topological_order);
+        return true;
     });
 
     std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::min());

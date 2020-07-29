@@ -1255,3 +1255,9 @@
 * https://www.geeksforgeeks.org/dfs-n-ary-tree-acyclic-graph-represented-adjacency-list/
 * https://www.geeksforgeeks.org/longest-path-directed-acyclic-graph-set-2/
 * https://www.geeksforgeeks.org/longest-path-in-a-directed-acyclic-graph-dynamic-programming/
+* https://www.geeksforgeeks.org/minimum-cost-of-simple-path-between-two-nodes-in-a-directed-and-weighted-graph/
+* https://www.geeksforgeeks.org/c-program-to-implement-adjacency-matrix-of-a-given-graph/
+* https://www.geeksforgeeks.org/comparison-between-adjacency-list-and-adjacency-matrix-representation-of-graph/
+* https://www.geeksforgeeks.org/convert-adjacency-matrix-to-adjacency-list-representation-of-graph/
+* https://www.geeksforgeeks.org/c-program-for-detect-cycle-in-a-directed-graph/
+* https://www.geeksforgeeks.org/implementation-of-dfs-using-adjacency-matrix/

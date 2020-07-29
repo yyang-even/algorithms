@@ -75,6 +75,14 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
 
 
 /**
+ * @reference   Minimum Cost of Simple Path between two nodes in a Directed and Weighted Graph
+ *              https://www.geeksforgeeks.org/minimum-cost-of-simple-path-between-two-nodes-in-a-directed-and-weighted-graph/
+ *
+ * @note    This is a brute force solution.
+ */
+
+
+/**
  * @reference   Detect a negative cycle in a Graph | (Bellman Ford)
  *              https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/
  */
@@ -144,12 +152,10 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
     WeightedAdjacencyListGraph graph{number_vertices, edges};
 
     ArrayType topological_order;
-    graph.Visit([&topological_order](const auto & graph) {
-        GraphTraverse(graph,
-        [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
-            TopologicalSort(graph, source, visited_vertices, topological_order);
-            return true;
-        });
+    GraphTraverse(graph,
+    [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
+        TopologicalSort(graph, source, visited_vertices, topological_order);
+        return true;
     });
 
     std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());

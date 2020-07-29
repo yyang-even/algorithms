@@ -13,6 +13,8 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
  * @reference   Detect Cycle in a directed graph using colors
  *              https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
+ * @reference   C Program to Detect Cycle in a Directed Graph
+ *              https://www.geeksforgeeks.org/c-program-for-detect-cycle-in-a-directed-graph/
  */
 bool DetectCycle_DFS(const AdjacencyListGraph::RepresentationType &graph,
                      const std::size_t source,

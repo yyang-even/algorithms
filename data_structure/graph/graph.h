@@ -91,6 +91,12 @@ private:
 };
 
 
+/**
+ * @reference   C program to implement Adjacency Matrix of a given Graph
+ *              https://www.geeksforgeeks.org/c-program-to-implement-adjacency-matrix-of-a-given-graph/
+ * @reference   Comparison between Adjacency List and Adjacency Matrix representation of Graph
+ *              https://www.geeksforgeeks.org/comparison-between-adjacency-list-and-adjacency-matrix-representation-of-graph/
+ */
 class AdjacencyMatrixGraph {
 public:
     using RepresentationType = std::vector<std::vector<bool>>;
@@ -180,8 +186,14 @@ private:
 };
 
 
+/**
+ * @reference   Convert Adjacency Matrix to Adjacency List representation of Graph
+ *              https://www.geeksforgeeks.org/convert-adjacency-matrix-to-adjacency-list-representation-of-graph/
+ */
+
+
 template <typename RepresentationType, typename Traverser>
-static inline void GraphTraverse(const RepresentationType &graph, const Traverser traverser) {
+static inline void GraphTraverseHelper(const RepresentationType &graph, const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i]) {
@@ -192,13 +204,17 @@ static inline void GraphTraverse(const RepresentationType &graph, const Traverse
     }
 }
 
+template <typename GraphType, typename Traverser>
+static inline void GraphTraverse(const GraphType &graph, const Traverser traverser) {
+    graph.Visit([traverser](const auto & graph) {
+        GraphTraverseHelper(graph, traverser);
+    });
+}
+
 template <typename EdgeArrayType, typename Traverser>
 static inline void GraphTraverse(const std::size_t number_vertices, const EdgeArrayType &edges,
                                  const Traverser traverser) {
-    AdjacencyListGraph(number_vertices, edges).Visit(
-    [traverser](const auto & graph) {
-        GraphTraverse(graph, traverser);
-    });
+    GraphTraverse(AdjacencyListGraph{number_vertices, edges}, traverser);
 }
 
 

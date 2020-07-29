@@ -65,6 +65,36 @@ auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
 
 
 /**
+ * @reference   Implementation of DFS using adjacency matrix
+ *              https://www.geeksforgeeks.org/implementation-of-dfs-using-adjacency-matrix/
+ */
+void DepthFirstSearch_Recursive(const AdjacencyMatrixGraph::RepresentationType &graph,
+                                const std::size_t source,
+                                std::vector<bool> &visited_vertices, graph::ArrayType &results) {
+    visited_vertices[source] = true;
+    results.push_back(source);
+
+    for (std::size_t adjacent_vertex = 0; adjacent_vertex < graph.size(); ++adjacent_vertex) {
+        if (graph.at(source).at(adjacent_vertex) and not visited_vertices[adjacent_vertex]) {
+            DepthFirstSearch_Recursive(graph, adjacent_vertex, visited_vertices, results);
+        }
+    }
+}
+
+auto DepthFirstSearch_Recursive_AdjMatrix(const std::size_t number_vertices,
+        const DirectedEdgeArrayType &edges) {
+    ArrayType results;
+    GraphTraverse(AdjacencyMatrixGraph{number_vertices, edges},
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
+        return true;
+    });
+
+    return results;
+}
+
+
+/**
  * @reference   Print the DFS traversal step-wise (Backtracking also)
  *              https://www.geeksforgeeks.org/print-the-dfs-traversal-step-wise-backtracking-also/
  */
@@ -88,3 +118,8 @@ const ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
 SIMPLE_BENCHMARK(DepthFirstSearch_Iterative, 5, SAMPLE2);
 
 SIMPLE_TEST(DepthFirstSearch_Iterative, TestSAMPLE2, EXPECTED2, 5, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(DepthFirstSearch_Recursive_AdjMatrix, 4, SAMPLE1);
+
+SIMPLE_TEST(DepthFirstSearch_Recursive_AdjMatrix, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);

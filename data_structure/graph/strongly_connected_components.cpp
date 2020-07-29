@@ -24,13 +24,10 @@ auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
     ArrayType finish_times_stack;
-    graph.Visit(
-    [&finish_times_stack](const AdjacencyListGraph::RepresentationType & graph) {
-        GraphTraverse(graph,
-        [&finish_times_stack](const auto & graph, const auto source, auto & visited_vertices) {
-            TopologicalSort(graph, source, visited_vertices, finish_times_stack);
-            return true;
-        });
+    GraphTraverse(graph,
+    [&finish_times_stack](const auto & graph, const auto source, auto & visited_vertices) {
+        TopologicalSort(graph, source, visited_vertices, finish_times_stack);
+        return true;
     });
 
     const auto transpose = graph.Visit(GraphTranspose);
