@@ -71,12 +71,51 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
     });
 }
 
+
 auto BreadthFirstSearch(const std::size_t number_vertices,
                         const DirectedEdgeArrayType &edges) {
     ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
         BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
+        return true;
+    });
+
+    return results;
+}
+
+
+/**
+ * @reference   Implementation of BFS using adjacency matrix
+ *              https://www.geeksforgeeks.org/implementation-of-bfs-using-adjacency-matrix/
+ */
+void BreadthFirstSearch_AdjMatrix(const AdjacencyMatrixGraph::RepresentationType &graph,
+                                  const std::size_t source,
+                                  std::vector<bool> &visited_vertices, ArrayType &results) {
+    std::queue<std::size_t> gray_vertex_queue;
+    visited_vertices[source] = true;
+    gray_vertex_queue.push(source);
+
+    while (not gray_vertex_queue.empty()) {
+        const auto vertex = gray_vertex_queue.front();
+        results.push_back(vertex);
+        gray_vertex_queue.pop();
+
+        for (std::size_t adjacent_vertex = 0; adjacent_vertex < graph.size(); ++adjacent_vertex) {
+            if (graph.at(source).at(adjacent_vertex) and not visited_vertices[adjacent_vertex]) {
+                visited_vertices[adjacent_vertex] = true;
+                gray_vertex_queue.push(adjacent_vertex);
+            }
+        }
+    }
+}
+
+auto BreadthFirstSearch_AdjMatrix(const std::size_t number_vertices,
+                                  const DirectedEdgeArrayType &edges) {
+    ArrayType results;
+    GraphTraverse(AdjacencyMatrixGraph{number_vertices, edges},
+    [&results](const auto & graph, const auto source, auto & visited_vertices) {
+        BreadthFirstSearch_AdjMatrix(graph, source, visited_vertices, results);
         return true;
     });
 
@@ -102,3 +141,8 @@ const ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
 SIMPLE_BENCHMARK(BreadthFirstSearch, 7, SAMPLE2);
 
 SIMPLE_TEST(BreadthFirstSearch, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);
+
+
+SIMPLE_BENCHMARK(BreadthFirstSearch_AdjMatrix, 7, SAMPLE2);
+
+SIMPLE_TEST(BreadthFirstSearch_AdjMatrix, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);
