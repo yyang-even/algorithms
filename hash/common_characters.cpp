@@ -73,7 +73,7 @@ auto GetCommonChars(const std::string &X, const std::string &Y) {
     }
 
     std::string results;
-    for (int i = 0; i < 26; ++i) {
+    for (char i = 0; i < 26; ++i) {
         for (unsigned j = 0; j < common_chars[i]; ++j) {
             results.push_back('a' + i);
         }
@@ -106,8 +106,76 @@ auto CommonCharsOfStrings(const ArrayType &strings) {
     }
 
     std::string results;
-    for (int i = 0; i < 26; ++i) {
+    for (char i = 0; i < 26; ++i) {
         for (int j = 0; j < all_common_chars[i]; ++j) {
+            results.push_back('a' + i);
+        }
+    }
+
+    return results;
+}
+
+
+/**
+ * @reference   Find uncommon characters of the two strings
+ *              https://www.geeksforgeeks.org/find-uncommon-characters-two-strings/
+ *
+ * Find and print the uncommon characters of the two given strings in sorted order.
+ * Here uncommon character means that either the character is present in one string
+ * or it is present in other string but not in both. The strings contain only
+ * lowercase characters and can contain duplicates.
+ */
+auto UncommonChars_Hash(const std::string &X, const std::string &Y) {
+    assert(std::all_of(X.cbegin(), X.cend(), islower));
+    assert(std::all_of(Y.cbegin(), Y.cend(), islower));
+
+    std::unordered_map<std::string::value_type, int> char_map;
+    for (const auto c : X) {
+        char_map[c] = 1;
+    }
+
+    for (const auto c : Y) {
+        if (char_map[c] == 1) {
+            char_map[c] = -1;
+        } else if (char_map[c] != -1) {
+            char_map[c] = 2;
+        }
+    }
+
+    std::string results;
+    for (char i = 0; i < 26; ++i) {
+        const auto c = 'a' + i;
+        if (char_map[c] > 0) {
+            results.push_back(c);
+        }
+    }
+
+    return results;
+}
+
+
+/**
+ * @reference   Find uncommon characters of the two strings | Set 2
+ *              https://www.geeksforgeeks.org/find-uncommon-characters-of-the-two-strings-set-2/
+ */
+auto UncommonChars_Bits(const std::string &X, const std::string &Y) {
+    assert(std::all_of(X.cbegin(), X.cend(), islower));
+    assert(std::all_of(Y.cbegin(), Y.cend(), islower));
+
+    unsigned char_set_x = 0;
+    for (const auto c : X) {
+        char_set_x |= (1 << (c - 'a'));
+    }
+
+    unsigned char_set_y = 0;
+    for (const auto c : Y) {
+        char_set_y |= (1 << (c - 'a'));
+    }
+
+    auto uncommon_chars_set = char_set_x ^ char_set_y;
+    std::string results;
+    for (char i = 0; i < 26; ++i, uncommon_chars_set >>= 1) {
+        if ((uncommon_chars_set & 1) == 1) {
             results.push_back('a' + i);
         }
     }
@@ -146,3 +214,15 @@ SIMPLE_BENCHMARK(CommonCharsOfStrings, SAMPLE1);
 
 SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE1, "eegks", SAMPLE1);
 SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE2, "ae", SAMPLE2);
+
+
+SIMPLE_BENCHMARK(UncommonChars_Hash, "characters", "alphabets");
+
+SIMPLE_TEST(UncommonChars_Hash, TestSAMPLE1, "bclpr", "characters", "alphabets");
+SIMPLE_TEST(UncommonChars_Hash, TestSAMPLE2, "fioqruz", "geeksforgeeks", "geeksquiz");
+
+
+SIMPLE_BENCHMARK(UncommonChars_Bits, "characters", "alphabets");
+
+SIMPLE_TEST(UncommonChars_Bits, TestSAMPLE1, "bclpr", "characters", "alphabets");
+SIMPLE_TEST(UncommonChars_Bits, TestSAMPLE2, "fioqruz", "geeksforgeeks", "geeksquiz");
