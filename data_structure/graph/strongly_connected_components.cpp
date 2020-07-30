@@ -79,8 +79,7 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
     ArrayType to_be_ignored;
     {
         std::vector<bool> visited_vertices(number_vertices, false);
-        graph.Visit(
-        [&visited_vertices, &to_be_ignored](const auto & graph) {
+        graph.Visit([&visited_vertices, &to_be_ignored](const auto & graph) {
             DepthFirstSearch_Recursive(graph, 0, visited_vertices, to_be_ignored);
         });
 
@@ -93,8 +92,7 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
 
     {
         std::vector<bool> visited_vertices(number_vertices, false);
-        transpose.Visit(
-        [&visited_vertices, &to_be_ignored](const auto & graph) {
+        transpose.Visit([&visited_vertices, &to_be_ignored](const auto & graph) {
             DepthFirstSearch_Recursive(graph, 0, visited_vertices, to_be_ignored);
         });
 

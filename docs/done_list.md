@@ -1263,3 +1263,6 @@
 * https://www.geeksforgeeks.org/implementation-of-dfs-using-adjacency-matrix/
 * https://www.geeksforgeeks.org/implementation-of-bfs-using-adjacency-matrix/
 * https://www.geeksforgeeks.org/eulerian-path-and-circuit/
+* https://www.geeksforgeeks.org/euler-circuit-directed-graph/
+* https://www.geeksforgeeks.org/given-array-strings-find-strings-can-chained-form-circle/
+* https://www.geeksforgeeks.org/find-array-strings-can-chained-form-circle-set-2/
