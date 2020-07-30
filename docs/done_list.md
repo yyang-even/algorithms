@@ -1266,3 +1266,5 @@
 * https://www.geeksforgeeks.org/euler-circuit-directed-graph/
 * https://www.geeksforgeeks.org/given-array-strings-find-strings-can-chained-form-circle/
 * https://www.geeksforgeeks.org/find-array-strings-can-chained-form-circle-set-2/
+* https://www.geeksforgeeks.org/find-uncommon-characters-two-strings/
+* https://www.geeksforgeeks.org/find-uncommon-characters-of-the-two-strings-set-2/
