@@ -58,12 +58,16 @@ auto RemoveDuplicates_Bits(const std::string &input) {
  *              https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
  * @reference   Remove duplicates from a sorted array using STL in C++
  *              https://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-array-using-stl-in-c/
+ *
  * @reference   Remove duplicates from an unsorted array using STL in C++
  *              https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-array-using-stl-in-c/
+ *
+ * @reference   Remove duplicates from a string using STL in C++
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-a-string-using-stl-in-c/
+ * @reference   Remove all consecutive duplicates from a string using STL in C++
+ *              https://www.geeksforgeeks.org/remove-all-consecutive-duplicates-from-the-string-using-stl-in-c/
  */
 auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
-    assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));
-
     if (sorted_input.empty()) {
         return sorted_input;
     }
@@ -75,6 +79,7 @@ auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
         return result;
     });
 }
+
 
 /**
  * @reference   Duplicates Removal in Array using BST
@@ -107,3 +112,4 @@ SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE2, "chartes", "characters");
 SIMPLE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
 
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "Geks for geks", "Geeks for geeks");
