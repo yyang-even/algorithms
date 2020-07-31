@@ -1275,3 +1275,7 @@
 * https://www.geeksforgeeks.org/remove-odd-frequency-characters-from-the-string/
 * https://www.geeksforgeeks.org/sort-a-string-according-to-the-frequency-of-characters/
 * https://www.geeksforgeeks.org/program-to-check-if-all-characters-have-even-frequency/
+* https://www.geeksforgeeks.org/remove-all-consecutive-duplicates-from-the-string-using-stl-in-c/
+* https://www.geeksforgeeks.org/remove-duplicates-from-a-string-using-stl-in-c/
+* https://www.geeksforgeeks.org/quickly-merging-two-sorted-arrays-using-stdmerge-c-stl/
+* https://www.geeksforgeeks.org/count-pairs-two-sorted-arrays-whose-sum-equal-given-value-x/
