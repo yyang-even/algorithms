@@ -10,6 +10,10 @@ using ArrayType = std::vector<int>;
 /** Program for Mean and median of an unsorted array
  *
  * @reference   https://www.geeksforgeeks.org/program-for-mean-and-median-of-an-unsorted-array/
+ * @reference   Finding Median of unsorted Array in linear time using C++ STL
+ *              https://www.geeksforgeeks.org/finding-median-of-unsorted-array-in-linear-time-using-c-stl/
+ * @reference   Median of an unsorted array using Quick Select Algorithm
+ *              https://www.geeksforgeeks.org/median-of-an-unsorted-array-in-liner-time-on/
  *
  * Median of a sorted array of size n is defined as below:
  * It is middle element when n is odd and average of middle two elements when n is even.

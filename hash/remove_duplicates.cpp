@@ -56,6 +56,10 @@ auto RemoveDuplicates_Bits(const std::string &input) {
 /**
  * @reference   Remove duplicates from sorted array
  *              https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
+ * @reference   Remove duplicates from a sorted array using STL in C++
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-array-using-stl-in-c/
+ * @reference   Remove duplicates from an unsorted array using STL in C++
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-array-using-stl-in-c/
  */
 auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
     assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));

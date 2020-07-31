@@ -1268,3 +1268,10 @@
 * https://www.geeksforgeeks.org/find-array-strings-can-chained-form-circle-set-2/
 * https://www.geeksforgeeks.org/find-uncommon-characters-two-strings/
 * https://www.geeksforgeeks.org/find-uncommon-characters-of-the-two-strings-set-2/
+* https://www.geeksforgeeks.org/finding-median-of-unsorted-array-in-linear-time-using-c-stl/
+* https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-array-using-stl-in-c/
+* https://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-array-using-stl-in-c/
+* https://www.geeksforgeeks.org/median-of-an-unsorted-array-in-liner-time-on/
+* https://www.geeksforgeeks.org/remove-odd-frequency-characters-from-the-string/
+* https://www.geeksforgeeks.org/sort-a-string-according-to-the-frequency-of-characters/
+* https://www.geeksforgeeks.org/program-to-check-if-all-characters-have-even-frequency/

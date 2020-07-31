@@ -19,6 +19,9 @@ CompileTestExe(calculate_xor_of_all_numbers_1_to_n)
 CompileBenchmarkExe(case_conversion)
 CompileTestExe(case_conversion)
 
+CompileBenchmarkExe(check_all_chars_have_even_frequency)
+CompileTestExe(check_all_chars_have_even_frequency)
+
 CompileBenchmarkExe(check_if_alternate_pattern)
 CompileTestExe(check_if_alternate_pattern)
 

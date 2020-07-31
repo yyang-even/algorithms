@@ -102,6 +102,12 @@ auto RemoveCharactersWithEvenFrequency_Partition(const std::string &input) {
 }
 
 
+/**
+ * @reference   Remove odd frequency characters from the string
+ *              https://www.geeksforgeeks.org/remove-odd-frequency-characters-from-the-string/
+ */
+
+
 /** Remove characters from string that appears strictly less than K times
  *
  * @reference   https://www.geeksforgeeks.org/remove-characters-from-string-that-appears-strictly-less-than-k-times/

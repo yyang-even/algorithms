@@ -21,6 +21,9 @@ using ArrayType = std::vector<int>;
  *
  * Print the elements of an array in the decreasing frequency if 2 numbers
  * have same frequency then print the one which came first.
+ *
+ * @reference   Sort a string according to the frequency of characters
+ *              https://www.geeksforgeeks.org/sort-a-string-according-to-the-frequency-of-characters/
  */
 auto SortByFrequency(ArrayType elements) {
     using MinIndex_Count_Pair = std::pair<ArrayType::size_type, ArrayType::size_type>;
