@@ -192,6 +192,12 @@ private:
  */
 
 
+/**
+ * @reference   Convert Adjacency List to Adjacency Matrix representation of a Graph
+ *              https://www.geeksforgeeks.org/convert-adjacency-list-to-adjacency-matrix-representation-of-a-graph/
+ */
+
+
 template <typename RepresentationType, typename Traverser>
 static inline void GraphTraverseHelper(const RepresentationType &graph, const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);

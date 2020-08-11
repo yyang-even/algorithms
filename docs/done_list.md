@@ -1279,3 +1279,10 @@
 * https://www.geeksforgeeks.org/remove-duplicates-from-a-string-using-stl-in-c/
 * https://www.geeksforgeeks.org/quickly-merging-two-sorted-arrays-using-stdmerge-c-stl/
 * https://www.geeksforgeeks.org/count-pairs-two-sorted-arrays-whose-sum-equal-given-value-x/
+* https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+* https://www.geeksforgeeks.org/c-program-for-dijkstras-shortest-path-algorithm-greedy-algo-7/
+* https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
+* https://www.geeksforgeeks.org/convert-adjacency-list-to-adjacency-matrix-representation-of-a-graph/
+* https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-set-in-stl/
+* https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
+* https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/

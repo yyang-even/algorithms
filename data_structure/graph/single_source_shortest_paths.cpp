@@ -8,7 +8,7 @@ using namespace graph;
 
 namespace {
 
-void Relax(std::vector<int> &distances,
+bool Relax(std::vector<int> &distances,
            const std::size_t from, const std::size_t to, const int weight,
            std::vector<int> *parents = nullptr) {
     if (distances[from] != std::numeric_limits<int>::max()) {
@@ -18,8 +18,12 @@ void Relax(std::vector<int> &distances,
             if (parents) {
                 (*parents)[to] = from;
             }
+
+            return true;
         }
     }
+
+    return false;
 }
 
 void Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge &edge) {
@@ -141,6 +145,8 @@ auto PrintNegativeWeightCycle(const std::size_t number_vertices, const DirectedE
 
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 24.2.
  * @reference   Shortest Path in Directed Acyclic Graph
  *              https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
  */
@@ -241,6 +247,75 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t numbe
     return path;
 }
 
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 24.3.
+ * @reference   Dijkstra’s shortest path algorithm | Greedy Algo-7
+ *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+ * @reference   C / C++ Program for Dijkstra’s shortest path algorithm | Greedy Algo-7
+ *              https://www.geeksforgeeks.org/c-program-for-dijkstras-shortest-path-algorithm-greedy-algo-7/
+ * @reference   Dijkstra’s Algorithm for Adjacency List Representation | Greedy Algo-8
+ *              https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
+ * @reference   Dijkstra’s shortest path algorithm using set in STL
+ *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-set-in-stl/
+ * @reference   Dijkstra’s Shortest Path Algorithm using priority_queue of STL
+ *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
+ */
+using CostVertexPair = std::pair<int, std::size_t>;
+
+auto SingleSourceShortestPaths_Dijkstra(const WeightedAdjacencyListGraph::RepresentationType &graph,
+                                        const std::size_t source) {
+    std::vector<int> distances_from_source(graph.size(), std::numeric_limits<int>::max());
+    distances_from_source[source] = 0;
+
+    std::vector<int> parents(graph.size(), -1);
+
+    std::priority_queue<CostVertexPair, std::vector<CostVertexPair>, std::greater<CostVertexPair>>
+            open_list;
+    open_list.emplace(0, source);
+
+    std::vector<bool> closed_vertices(graph.size(), false);
+
+    while (not open_list.empty()) {
+        const auto from_vertex = open_list.top().second;
+        open_list.pop();
+
+        if (not closed_vertices[from_vertex]) {
+            for (const auto &node : graph[from_vertex]) {
+                if (Relax(distances_from_source, from_vertex, node.destination, node.weight, &parents)) {
+                    open_list.emplace(distances_from_source[node.destination], node.destination);
+                }
+            }
+        }
+        std::cout << distances_from_source << std::endl;
+
+        closed_vertices[from_vertex] = true;
+    }
+
+    return distances_from_source;
+}
+
+inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
+        const UndirectedEdgeArrayType &edges,
+        const std::size_t source) {
+    return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](const auto & graph) {
+        return SingleSourceShortestPaths_Dijkstra(graph, source);
+    });
+}
+
+/**
+ * @reference   Shortest path in a directed graph by Dijkstra’s algorithm
+ *              https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
+ */
+inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
+        const DirectedEdgeArrayType &edges,
+        const std::size_t source) {
+    return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](const auto & graph) {
+        return SingleSourceShortestPaths_Dijkstra(graph, source);
+    });
+}
+
 }//namespace
 
 
@@ -288,3 +363,16 @@ SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, 8, SAMPLE4
 
 SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
             EXPECTED4, 8, SAMPLE4, 0, 7);
+
+
+const UndirectedEdgeArrayType SAMPLE5 = {{0, 1, 4}, {0, 7, 8}, {1, 2, 8}, {1, 7, 11}, {2, 3, 7}, {2, 8, 2}, {2, 5, 4}, {3, 4, 9}, {3, 5, 14}, {4, 5, 10}, {5, 6, 2}, {6, 7, 1}, {6, 8, 6}, {7, 8, 7}};
+const std::vector<int> EXPECTED5 = {0, 4, 12, 19, 21, 11, 9, 8, 14};
+
+const DirectedEdgeArrayType SAMPLE6 = {{0, 1, 1}, {0, 2, 4}, {1, 2, 2}, {1, 3, 6}, {2, 3, 3}};
+const std::vector<int> EXPECTED6 = {0, 1, 3, 6};
+
+
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
+
+SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED5, 9, SAMPLE5, 0);
+SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPLE6, 0);
