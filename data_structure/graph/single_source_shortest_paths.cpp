@@ -261,15 +261,20 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t numbe
  *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-set-in-stl/
  * @reference   Dijkstra’s Shortest Path Algorithm using priority_queue of STL
  *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
+ * @reference   What are the differences between Bellman Ford’s and Dijkstra’s algorithms?
+ *              https://www.geeksforgeeks.org/what-are-the-differences-between-bellman-fords-and-dijkstras-algorithms/
  */
 using CostVertexPair = std::pair<int, std::size_t>;
 
 auto SingleSourceShortestPaths_Dijkstra(const WeightedAdjacencyListGraph::RepresentationType &graph,
-                                        const std::size_t source) {
+                                        const std::size_t source,
+                                        std::vector<int> *parents = nullptr) {
     std::vector<int> distances_from_source(graph.size(), std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
 
-    std::vector<int> parents(graph.size(), -1);
+    if (parents) {
+        (*parents)[source] = -1;
+    }
 
     std::priority_queue<CostVertexPair, std::vector<CostVertexPair>, std::greater<CostVertexPair>>
             open_list;
@@ -283,7 +288,7 @@ auto SingleSourceShortestPaths_Dijkstra(const WeightedAdjacencyListGraph::Repres
 
         if (not closed_vertices[from_vertex]) {
             for (const auto &node : graph[from_vertex]) {
-                if (Relax(distances_from_source, from_vertex, node.destination, node.weight, &parents)) {
+                if (Relax(distances_from_source, from_vertex, node.destination, node.weight, parents)) {
                     open_list.emplace(distances_from_source[node.destination], node.destination);
                 }
             }
@@ -307,6 +312,36 @@ inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices
     return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source);
     });
+}
+
+
+/**
+ * @reference   Printing Paths in Dijkstra’s Shortest Path Algorithm
+ *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+ */
+void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
+        const int i, ArrayType &path) {
+    if (i != -1) {
+        PrintOneSingleSourceShortestPath_Dijkstra(parents, parents[i], path);
+        path.push_back(i);
+    }
+}
+
+auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
+        const UndirectedEdgeArrayType &edges,
+        const std::size_t source) {
+    std::vector<int> parents(number_vertices, -1);
+    WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source, &parents](const auto & graph) {
+        return SingleSourceShortestPaths_Dijkstra(graph, source, &parents);
+    });
+
+    std::vector<ArrayType> results;
+    for (std::size_t i = 0; i < number_vertices; ++i) {
+        results.emplace_back();
+        PrintOneSingleSourceShortestPath_Dijkstra(parents, i, results.back());
+    }
+
+    return results;
 }
 
 }//namespace
@@ -360,6 +395,7 @@ SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
 
 const UndirectedEdgeArrayType SAMPLE5 = {{0, 1, 4}, {0, 7, 8}, {1, 2, 8}, {1, 7, 11}, {2, 3, 7}, {2, 8, 2}, {2, 5, 4}, {3, 4, 9}, {3, 5, 14}, {4, 5, 10}, {5, 6, 2}, {6, 7, 1}, {6, 8, 6}, {7, 8, 7}};
 const std::vector<int> EXPECTED5 = {0, 4, 12, 19, 21, 11, 9, 8, 14};
+const std::vector<ArrayType> EXPECTED_PATHS5 = {{0}, {0, 1}, {0, 1, 2}, {0, 1, 2, 3}, {0, 7, 6, 5, 4}, {0, 7, 6, 5}, {0, 7, 6}, {0, 7}, {0, 1, 2, 8}};
 
 const DirectedEdgeArrayType SAMPLE6 = {{0, 1, 1}, {0, 2, 4}, {1, 2, 2}, {1, 3, 6}, {2, 3, 3}};
 const std::vector<int> EXPECTED6 = {0, 1, 3, 6};
@@ -369,3 +405,8 @@ SIMPLE_BENCHMARK(SingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
 
 SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED5, 9, SAMPLE5, 0);
 SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPLE6, 0);
+
+
+SIMPLE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
+
+SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9, SAMPLE5, 0);

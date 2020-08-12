@@ -1286,3 +1286,5 @@
 * https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-set-in-stl/
 * https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
 * https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
+* https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+* https://www.geeksforgeeks.org/what-are-the-differences-between-bellman-fords-and-dijkstras-algorithms/
