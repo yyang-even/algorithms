@@ -1,0 +1,2 @@
+CompileBenchmarkExe(trie)
+CompileTestExe(trie)
