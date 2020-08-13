@@ -186,6 +186,52 @@ private:
 };
 
 
+class WeightedAdjacencyListInGraph {
+public:
+    struct AdjacentNode {
+        std::size_t source = 0;
+        int weight = 0;
+
+        AdjacentNode(const std::size_t to, const int w) : source(to), weight(w) {}
+    };
+
+    using RepresentationType = std::vector<std::list<AdjacentNode>>;
+
+
+    WeightedAdjacencyListInGraph(const std::size_t number_vertices):
+        adjacency_list(number_vertices, std::list<AdjacentNode> {}) {
+    }
+
+    template <typename EdgeArrayType>
+    WeightedAdjacencyListInGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+        WeightedAdjacencyListInGraph(number_vertices) {
+        for (const auto &one_edge : edges) {
+            AddEdge(one_edge);
+        }
+    }
+
+
+    void AddEdge(const graph::DirectedEdge &edge) {
+        adjacency_list.at(edge.to).emplace_back(edge.from, edge.weight);
+    }
+
+    void AddEdge(const graph::UndirectedEdge &edge) {
+        adjacency_list.at(edge.u).emplace_back(edge.v, edge.weight);
+        adjacency_list.at(edge.v).emplace_back(edge.u, edge.weight);
+    }
+
+
+    template<typename Visitor>
+    auto Visit(const Visitor visitor) const {
+        return visitor(adjacency_list);
+    }
+
+
+private:
+    RepresentationType adjacency_list;
+};
+
+
 /**
  * @reference   Convert Adjacency Matrix to Adjacency List representation of Graph
  *              https://www.geeksforgeeks.org/convert-adjacency-matrix-to-adjacency-list-representation-of-graph/

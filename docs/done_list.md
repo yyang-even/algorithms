@@ -1288,3 +1288,4 @@
 * https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
 * https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
 * https://www.geeksforgeeks.org/what-are-the-differences-between-bellman-fords-and-dijkstras-algorithms/
+* https://www.geeksforgeeks.org/karps-minimum-mean-average-weight-cycle-algorithm/
