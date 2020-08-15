@@ -1290,3 +1290,7 @@
 * https://www.geeksforgeeks.org/what-are-the-differences-between-bellman-fords-and-dijkstras-algorithms/
 * https://www.geeksforgeeks.org/karps-minimum-mean-average-weight-cycle-algorithm/
 * https://www.geeksforgeeks.org/trie-insert-and-search/
+* https://www.geeksforgeeks.org/advantages-trie-data-structure/
+* https://www.geeksforgeeks.org/trie-data-structure-using-smart-pointer-and-oop-in-c/
+* https://www.geeksforgeeks.org/trie-delete/
+* https://www.geeksforgeeks.org/counting-number-words-trie/
