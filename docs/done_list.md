@@ -1300,3 +1300,8 @@
 * https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie/
 * https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie-set-2-handling-duplicates/
 * https://www.geeksforgeeks.org/bottom-up-traversal-of-a-trie/
+* https://www.geeksforgeeks.org/insertion-in-a-trie-recursively/
+* https://www.geeksforgeeks.org/search-in-a-trie-recursively/
+* https://www.geeksforgeeks.org/implement-a-dictionary-using-trie/
+* https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/
+* https://www.geeksforgeeks.org/trie-memory-optimization-using-hash-map/

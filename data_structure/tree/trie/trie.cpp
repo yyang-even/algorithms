@@ -8,8 +8,22 @@ using ArrayType = std::vector<std::string>;
 namespace {
 
 inline auto TestSearch(const ArrayType &keys, const std::string &str) {
-    const auto dictionary = BuildTrie(keys);
-    return dictionary.Search(str);
+    return BuildTrie(keys).Search(str);
+}
+
+
+inline auto BuildTrie_Recursive(const std::vector<std::string> &keys) {
+    Trie dictionary;
+
+    for (const auto &one_key : keys) {
+        dictionary.Insert_Recursive(one_key);
+    }
+
+    return dictionary;
+}
+
+inline auto TestSearch_Recursive(const ArrayType &keys, const std::string &str) {
+    return BuildTrie_Recursive(keys).Search_Recursive(str);
 }
 
 }//namespace
@@ -52,3 +66,7 @@ const ArrayType SAMPLE1 = {"the", "a", "there", "answer", "any", "by", "bye", "t
 
 SIMPLE_TEST(TestSearch, TestSAMPLE1, true, SAMPLE1, "the");
 SIMPLE_TEST(TestSearch, TestSAMPLE2, false, SAMPLE1, "these");
+
+
+SIMPLE_TEST(TestSearch_Recursive, TestSAMPLE1, true, SAMPLE1, "the");
+SIMPLE_TEST(TestSearch_Recursive, TestSAMPLE2, false, SAMPLE1, "these");

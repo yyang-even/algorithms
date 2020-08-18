@@ -58,6 +58,15 @@ public:
     }
 
 
+    /**
+     * @reference   Insertion in a Trie recursively
+     *              https://www.geeksforgeeks.org/insertion-in-a-trie-recursively/
+     */
+    void Insert_Recursive(const std::string &key) {
+        Insert_Recursive_Helper(&root, key, 0);
+    }
+
+
     auto Search(const std::string &key) const {
         const auto *current = &root;
 
@@ -71,6 +80,15 @@ public:
         }
 
         return current and current->isEndOfWord;
+    }
+
+
+    /**
+     * @reference   Search in a trie Recursively
+     *              https://www.geeksforgeeks.org/search-in-a-trie-recursively/
+     */
+    auto Search_Recursive(const std::string &key) const {
+        return Search_Recursive_Helper(&root, key, 0);
     }
 
 
@@ -109,6 +127,35 @@ private:
     }
 
 
+    void Insert_Recursive_Helper(Node *node, const std::string &key, const std::string::size_type i) {
+        if (i < key.size()) {
+            const auto index = Node::ToIndex(key[i]);
+            if (not node->children[index]) {
+                node->children[index].reset(new Node{root.children.size()});
+            }
+
+            Insert_Recursive_Helper(node->children[index].get(), key, i + 1);
+        } else {
+            node->isEndOfWord = true;
+        }
+    }
+
+
+    bool Search_Recursive_Helper(const Node *node, const std::string &key,
+                                 const std::string::size_type i) const {
+        if (not node or i > key.size()) {
+            return false;
+        }
+
+        if (node->isEndOfWord and i == key.size()) {
+            return true;
+        }
+
+        const auto index = Node::ToIndex(key[i]);
+        return Search_Recursive_Helper(node->children[index].get(), key, i + 1);
+    }
+
+
     Node root;
 };
 
@@ -122,3 +169,17 @@ static inline auto BuildTrie(const std::vector<std::string> &keys) {
 
     return dictionary;
 }
+
+
+/**
+ * @reference   Implement a Dictionary using Trie
+ *              https://www.geeksforgeeks.org/implement-a-dictionary-using-trie/
+ * @reference   Data Structure for Dictionary and Spell Checker?
+ *              https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/
+ */
+
+
+/**
+ * @reference   Trie memory optimization using hash map
+ *              https://www.geeksforgeeks.org/trie-memory-optimization-using-hash-map/
+ */
