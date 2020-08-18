@@ -54,6 +54,31 @@ auto DisplayTrie(const ArrayType &keys) {
  * there are duplicates in input array, we need to print all the occurrences.
  */
 
+
+/** Bottom-up traversal of a Trie
+ *
+ * @reference   https://www.geeksforgeeks.org/bottom-up-traversal-of-a-trie/
+ */
+void Display_BottomUp(const Trie::Node *node, std::string &results) {
+    assert(node);
+
+    for (std::size_t i = 0; i < node->children.size(); ++i) {
+        if (node->children[i]) {
+            Display_BottomUp(node->children[i].get(), results);
+            results.push_back(Trie::Node::ToChar(i));
+        }
+    }
+}
+
+auto Display_BottomUp(const ArrayType &keys) {
+    std::string results;
+    BuildTrie(keys).Visit([&results](const auto & root) {
+        Display_BottomUp(&root, results);
+    });
+
+    return results;
+}
+
 }//namespace
 
 
@@ -76,3 +101,12 @@ SIMPLE_BENCHMARK(DisplayTrie, SAMPLE1);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE3, EXPECTED3, SAMPLE3);
+
+
+const ArrayType SAMPLE4 = {"thier", "there", "answer", "any"};
+const std::string EXPECTED4 = "rewsynaerereiht";
+
+
+SIMPLE_BENCHMARK(Display_BottomUp, SAMPLE4);
+
+SIMPLE_TEST(Display_BottomUp, TestSAMPLE4, EXPECTED4, SAMPLE4);
