@@ -28,6 +28,14 @@ public:
 
             return true;
         }
+
+        static std::vector<PointerType>::size_type ToIndex(const char c) {
+            return c - 'a';
+        }
+
+        static char ToChar(const std::vector<PointerType>::size_type i) {
+            return i + 'a';
+        }
     };
 
 
@@ -38,7 +46,7 @@ public:
         auto *current = &root;
 
         for (const auto c : key) {
-            const auto index = c - 'a';
+            const auto index = Node::ToIndex(c);
             if (not current->children[index]) {
                 current->children[index].reset(new Node{root.children.size()});
             }
@@ -54,7 +62,7 @@ public:
         const auto *current = &root;
 
         for (const auto c : key) {
-            const auto index = c - 'a';
+            const auto index = Node::ToIndex(c);
 
             if (not current->children[index]) {
                 return false;
@@ -91,7 +99,7 @@ private:
                 node->isEndOfWord = false;
             }
         } else {
-            const auto index = key[depth] - 'a';
+            const auto index = Node::ToIndex(key[depth]);
             if (DeleteHelper(node->children[index].get(), key, depth + 1)) {
                 node->children[index].reset();
             }

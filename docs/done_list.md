@@ -1294,3 +1294,8 @@
 * https://www.geeksforgeeks.org/trie-data-structure-using-smart-pointer-and-oop-in-c/
 * https://www.geeksforgeeks.org/trie-delete/
 * https://www.geeksforgeeks.org/counting-number-words-trie/
+* https://www.geeksforgeeks.org/check-if-the-given-string-of-words-can-be-formed-from-words-present-in-the-dictionary/
+* https://www.geeksforgeeks.org/trie-display-content/
+* https://www.geeksforgeeks.org/auto-complete-feature-using-trie/
+* https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie/
+* https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie-set-2-handling-duplicates/

@@ -15,6 +15,15 @@ inline auto TestSearch(const ArrayType &keys, const std::string &str) {
 }//namespace
 
 
+/**
+ * @reference   Check if the given string of words can be formed from words present in the dictionary
+ *              https://www.geeksforgeeks.org/check-if-the-given-string-of-words-can-be-formed-from-words-present-in-the-dictionary/
+ *
+ * Given a string array of M words and a dictionary of N words. The task is to check
+ * if the given string of words can be formed from words present in the dictionary.
+ */
+
+
 #ifdef WANT_TESTS
 TEST(TrieTest, TestDelete) {
     const ArrayType keys = {"the", "a", "there", "answer", "any", "by", "bye", "their", "hero", "heroplane"};
