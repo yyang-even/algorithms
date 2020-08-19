@@ -1,6 +1,9 @@
 CompileBenchmarkExe(auto-complete)
 CompileTestExe(auto-complete)
 
+CompileBenchmarkExe(boggle)
+CompileTestExe(boggle)
+
 CompileBenchmarkExe(trie)
 CompileTestExe(trie)
 
