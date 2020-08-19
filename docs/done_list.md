@@ -1305,3 +1305,4 @@
 * https://www.geeksforgeeks.org/implement-a-dictionary-using-trie/
 * https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/
 * https://www.geeksforgeeks.org/trie-memory-optimization-using-hash-map/
+* https://www.geeksforgeeks.org/print-strings-in-reverse-dictionary-order-using-trie/

@@ -79,6 +79,39 @@ auto Display_BottomUp(const ArrayType &keys) {
     return results;
 }
 
+
+/**
+ * @reference   Print Strings In Reverse Dictionary Order Using Trie
+ *              https://www.geeksforgeeks.org/print-strings-in-reverse-dictionary-order-using-trie/
+ */
+void Display_Reverse(const Trie::Node *node, std::string &prefix, ArrayType &results) {
+    assert(node);
+
+    if (node->isEndOfWord) {
+        results.push_back(prefix);
+    }
+
+    for (int i = node->children.size() - 1; i >= 0; --i) {
+        if (node->children[i]) {
+            prefix.push_back(Trie::Node::ToChar(i));
+
+            Display_Reverse(node->children[i].get(), prefix, results);
+
+            prefix.pop_back();
+        }
+    }
+}
+
+auto Display_Reverse(const ArrayType &keys) {
+    ArrayType results;
+    BuildTrie(keys).Visit([&results](const auto & root) {
+        std::string prefix;
+        Display_Reverse(&root, prefix, results);
+    });
+
+    return results;
+}
+
 }//namespace
 
 
@@ -87,9 +120,11 @@ const ArrayType EXPECTED1 = {"a", "answer", "any", "by", "bye", "the", "their", 
 
 const ArrayType SAMPLE2 = {"abc", "xy", "bcd"};
 const ArrayType EXPECTED2 = {"abc", "bcd", "xy"};
+const ArrayType EXPECTED_REVERSE2 = {"xy", "bcd", "abc"};
 
 const ArrayType SAMPLE3 = {"geeks", "for", "geeks", "a", "portal", "to", "learn", "can", "be", "computer", "science", "zoom", "yup", "fire", "in", "data"};
 const ArrayType EXPECTED3 = {"a", "be", "can", "computer", "data", "fire", "for", "geeks", "in", "learn", "portal", "science", "to", "yup", "zoom"};
+
 
 SIMPLE_BENCHMARK(CountUniqueWords, SAMPLE1);
 
@@ -103,10 +138,17 @@ SIMPLE_TEST(DisplayTrie, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-const ArrayType SAMPLE4 = {"thier", "there", "answer", "any"};
-const std::string EXPECTED4 = "rewsynaerereiht";
+const ArrayType SAMPLE4 = {"their", "there", "answer", "any"};
+const std::string EXPECTED4 = "rewsynariereht";
+const ArrayType EXPECTED_REVERSE4 = {"there", "their", "any", "answer"};
 
 
 SIMPLE_BENCHMARK(Display_BottomUp, SAMPLE4);
 
 SIMPLE_TEST(Display_BottomUp, TestSAMPLE4, EXPECTED4, SAMPLE4);
+
+
+SIMPLE_BENCHMARK(Display_Reverse, SAMPLE1);
+
+SIMPLE_TEST(Display_Reverse, TestSAMPLE2, EXPECTED_REVERSE2, SAMPLE2);
+SIMPLE_TEST(Display_Reverse, TestSAMPLE4, EXPECTED_REVERSE4, SAMPLE4);
