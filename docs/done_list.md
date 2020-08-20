@@ -1308,3 +1308,5 @@
 * https://www.geeksforgeeks.org/print-strings-in-reverse-dictionary-order-using-trie/
 * https://www.geeksforgeeks.org/boggle-find-possible-words-board-characters/
 * https://www.geeksforgeeks.org/boggle-set-2-using-trie/
+* https://www.geeksforgeeks.org/min-cost-path-dp-6/
+* https://www.geeksforgeeks.org/c-program-for-min-cost-path/

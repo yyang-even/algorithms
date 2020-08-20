@@ -6,6 +6,9 @@
 
 using namespace graph;
 
+using RowType = std::vector<unsigned>;
+using TableType = std::vector<RowType>;
+
 namespace {
 
 bool Relax(std::vector<int> &distances,
@@ -316,6 +319,42 @@ inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices
 
 
 /**
+ * @reference   Min Cost Path | DP-6
+ *              https://www.geeksforgeeks.org/min-cost-path-dp-6/
+ * @reference   C Program for Min Cost Path
+ *              https://www.geeksforgeeks.org/c-program-for-min-cost-path/
+ *
+ * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that returns cost
+ * of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix represents a cost to
+ * traverse through that cell. Total cost of a path to reach (m, n) is sum of all the costs on that
+ * path (including both source and destination). You can only traverse down, right and diagonally
+ * lower cells from a given cell, i.e., from a given cell (i, j), cells (i+1, j), (i, j+1) and
+ * (i+1, j+1) can be traversed. You may assume that all costs are positive integers.
+ */
+auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
+    assert(m < costs.size());
+    assert(n < costs.front().size());
+
+    for (std::size_t i = 1 ; i <= m ; ++i) {
+        costs[i][0] += costs[i - 1][0];
+    }
+
+    for (std::size_t j = 1 ; j <= n ; ++j) {
+        costs[0][j] += costs[0][j - 1];
+    }
+
+    for (std::size_t i = 1 ; i <= m ; ++i) {
+        for (std::size_t j = 1 ; j <= n ; ++j) {
+            costs[i][j] += std::min(costs[i - 1][j - 1],
+                                    std::min(costs[i - 1][j], costs[i][j - 1]));
+        }
+    }
+
+    return costs[m][n];
+}
+
+
+/**
  * @reference   Printing Paths in Dijkstra’s Shortest Path Algorithm
  *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
  */
@@ -410,3 +449,15 @@ SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPL
 SIMPLE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
 
 SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9, SAMPLE5, 0);
+
+
+const TableType COSTS1 = {
+    {1, 2, 3},
+    {4, 8, 2},
+    {1, 5, 3}
+};
+
+
+SIMPLE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
+
+SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8,  COSTS1, 2, 2);
