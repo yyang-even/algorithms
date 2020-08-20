@@ -1310,3 +1310,5 @@
 * https://www.geeksforgeeks.org/boggle-set-2-using-trie/
 * https://www.geeksforgeeks.org/min-cost-path-dp-6/
 * https://www.geeksforgeeks.org/c-program-for-min-cost-path/
+* https://www.geeksforgeeks.org/frequency-of-a-string-in-an-array-of-strings/
+* https://www.geeksforgeeks.org/find-the-longest-string-that-can-be-made-up-of-other-strings-from-the-array/

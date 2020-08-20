@@ -183,3 +183,9 @@ static inline auto BuildTrie(const std::vector<std::string> &keys) {
  * @reference   Trie memory optimization using hash map
  *              https://www.geeksforgeeks.org/trie-memory-optimization-using-hash-map/
  */
+
+
+/**
+ * @reference   Frequency of a string in an array of strings
+ *              https://www.geeksforgeeks.org/frequency-of-a-string-in-an-array-of-strings/
+ */

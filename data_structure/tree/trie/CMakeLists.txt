@@ -4,6 +4,9 @@ CompileTestExe(auto-complete)
 CompileBenchmarkExe(boggle)
 CompileTestExe(boggle)
 
+CompileBenchmarkExe(longest_concatenated_string)
+CompileTestExe(longest_concatenated_string)
+
 CompileBenchmarkExe(trie)
 CompileTestExe(trie)
 

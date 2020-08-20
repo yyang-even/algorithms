@@ -5,6 +5,8 @@
 
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 8-3.b. Problems 12-2.
  * @reference   Trie | (Display Content)
  *              https://www.geeksforgeeks.org/trie-display-content/
  *
