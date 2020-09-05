@@ -41,7 +41,7 @@ const ArrayType SAMPLE1 = {10, 22, 28, 29, 30, 40};
 const ArrayType SAMPLE2 = {1, 3, 4, 7, 10};
 
 
-SIMPLE_BENCHMARK(ClosestSumPair_TwoPointer, SAMPLE1, 54);
+SIMPLE_BENCHMARK(ClosestSumPair_TwoPointer, Sample1, SAMPLE1, 54);
 
 SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample1, std::make_pair(22, 30), SAMPLE1, 54);
 SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample2, std::make_pair(4, 10), SAMPLE2, 15);

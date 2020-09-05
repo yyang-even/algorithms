@@ -50,7 +50,7 @@ const UndirectedEdgeArrayType SAMPLE1 = {{1, 5}, {0, 2}, {2, 4}};
 const UndirectedEdgeArrayType SAMPLE2 = {{1, 0}, {2, 3}, {3, 4}};
 
 
-SIMPLE_BENCHMARK(CountNumberOfConnectedComponents, 6, SAMPLE1);
+SIMPLE_BENCHMARK(CountNumberOfConnectedComponents, Sample1, 6, SAMPLE1);
 
 SIMPLE_TEST(CountNumberOfConnectedComponents, TestSAMPLE1, 3, 6, SAMPLE1);
 SIMPLE_TEST(CountNumberOfConnectedComponents, TestSAMPLE2, 2, 5, SAMPLE2);

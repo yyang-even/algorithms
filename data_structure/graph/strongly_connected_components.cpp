@@ -143,7 +143,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}};
 const std::vector<ArrayType> EXPECTED1 = {{0, 1, 2}, {3}, {4}};
 
 
-SIMPLE_BENCHMARK(StronglyConnectedComponents_Kosaraju, 5, SAMPLE1);
+SIMPLE_BENCHMARK(StronglyConnectedComponents_Kosaraju, Sample1, 5, SAMPLE1);
 
 SIMPLE_TEST(StronglyConnectedComponents_Kosaraju, TestSAMPLE1, EXPECTED1, 5, SAMPLE1);
 
@@ -152,7 +152,7 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {1, 2}, {2, 3}, {3, 0}, {2, 4}, {
 const DirectedEdgeArrayType SAMPLE3 = {{0, 1}, {1, 2}, {2, 3}};
 
 
-SIMPLE_BENCHMARK(isStronglyConnectedComponents_Kosaraju_DFS, 5, SAMPLE1);
+SIMPLE_BENCHMARK(isStronglyConnectedComponents_Kosaraju_DFS, Sample1, 5, SAMPLE1);
 
 SIMPLE_TEST(isStronglyConnectedComponents_Kosaraju_DFS, TestSAMPLE1, false, 5, SAMPLE1);
 SIMPLE_TEST(isStronglyConnectedComponents_Kosaraju_DFS, TestSAMPLE2, true, 5, SAMPLE2);
@@ -163,7 +163,7 @@ const DirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 2}, {1, 2}};
 const DirectedEdgeArrayType SAMPLE5 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
 
 
-SIMPLE_BENCHMARK(isConnected, 5, SAMPLE1);
+SIMPLE_BENCHMARK(isConnected, Sample1, 5, SAMPLE1);
 
 SIMPLE_TEST(isConnected, TestSAMPLE1, true, 5, SAMPLE1);
 SIMPLE_TEST(isConnected, TestSAMPLE2, true, 5, SAMPLE2);

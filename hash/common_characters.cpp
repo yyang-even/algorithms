@@ -186,13 +186,13 @@ auto UncommonChars_Bits(const std::string &X, const std::string &Y) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(HaveCommonSubstring, "HELLO", "WORLD");
+SIMPLE_BENCHMARK(HaveCommonSubstring, Sample1, "HELLO", "WORLD");
 
 SIMPLE_TEST(HaveCommonSubstring, TestSAMPLE1, true, "HELLO", "WORLD");
 SIMPLE_TEST(HaveCommonSubstring, TestSAMPLE2, false, "HI", "ALL");
 
 
-SIMPLE_BENCHMARK(CountCommonChars, "HELLO", "WORLD");
+SIMPLE_BENCHMARK(CountCommonChars, Sample1, "HELLO", "WORLD");
 
 SIMPLE_TEST(CountCommonChars, TestSAMPLE1, 2, "HELLO", "WORLD");
 SIMPLE_TEST(CountCommonChars, TestSAMPLE2, 0, "HI", "ALL");
@@ -200,7 +200,7 @@ SIMPLE_TEST(CountCommonChars, TestSAMPLE3, 2, "abcd", "aad");
 SIMPLE_TEST(CountCommonChars, TestSAMPLE4, 8, "geeksforgeeks", "platformforgeeks");
 
 
-SIMPLE_BENCHMARK(GetCommonChars, "geeks", "forgeeks");
+SIMPLE_BENCHMARK(GetCommonChars, Sample1, "geeks", "forgeeks");
 
 SIMPLE_TEST(GetCommonChars, TestSAMPLE1, "eegks", "geeks", "forgeeks");
 SIMPLE_TEST(GetCommonChars, TestSAMPLE2, "hhh", "hhhhhello", "gfghhmh");
@@ -210,19 +210,19 @@ const ArrayType SAMPLE1 = {"geeksforgeeks", "gemkstones", "acknowledges", "aguel
 const ArrayType SAMPLE2 = {"apple", "orange"};
 
 
-SIMPLE_BENCHMARK(CommonCharsOfStrings, SAMPLE1);
+SIMPLE_BENCHMARK(CommonCharsOfStrings, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE1, "eegks", SAMPLE1);
 SIMPLE_TEST(CommonCharsOfStrings, TestSAMPLE2, "ae", SAMPLE2);
 
 
-SIMPLE_BENCHMARK(UncommonChars_Hash, "characters", "alphabets");
+SIMPLE_BENCHMARK(UncommonChars_Hash, Sample1, "characters", "alphabets");
 
 SIMPLE_TEST(UncommonChars_Hash, TestSAMPLE1, "bclpr", "characters", "alphabets");
 SIMPLE_TEST(UncommonChars_Hash, TestSAMPLE2, "fioqruz", "geeksforgeeks", "geeksquiz");
 
 
-SIMPLE_BENCHMARK(UncommonChars_Bits, "characters", "alphabets");
+SIMPLE_BENCHMARK(UncommonChars_Bits, Sample1, "characters", "alphabets");
 
 SIMPLE_TEST(UncommonChars_Bits, TestSAMPLE1, "bclpr", "characters", "alphabets");
 SIMPLE_TEST(UncommonChars_Bits, TestSAMPLE2, "fioqruz", "geeksforgeeks", "geeksquiz");

@@ -50,14 +50,14 @@ auto ToHex(const int number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ToOctal, 16);
+SIMPLE_BENCHMARK(ToOctal, Sample1, 16);
 
 SIMPLE_TEST(ToOctal, TestSAMPLE1, "20", 16);
 SIMPLE_TEST(ToOctal, TestSAMPLE2, "12", 10);
 SIMPLE_TEST(ToOctal, TestSAMPLE3, "41", 33);
 
 
-SIMPLE_BENCHMARK(ToHex, 942);
+SIMPLE_BENCHMARK(ToHex, Sample1, 942);
 
 SIMPLE_TEST(ToHex, TestSAMPLE1, "3AE", 942);
 SIMPLE_TEST(ToHex, TestSAMPLE2, "74", 116);

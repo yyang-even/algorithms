@@ -393,7 +393,7 @@ std::vector<int> {
 });
 
 
-SIMPLE_BENCHMARK(SingleSourceShortestPaths_BellmanFord, 5, SAMPLE1, 0);
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_BellmanFord, Sample1, 5, SAMPLE1, 0);
 
 SIMPLE_TEST(SingleSourceShortestPaths_BellmanFord, TestSAMPLE1, EXPECTED1, 5, SAMPLE1, 0);
 
@@ -402,13 +402,13 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1, 1}, {1, 2, -1}, {2, 3, -1}, {3, 0,
 const std::unordered_set<std::size_t> EXPECTED2 = {0, 1, 2, 3};
 
 
-SIMPLE_BENCHMARK(hasNegativeCycle, 5, SAMPLE1);
+SIMPLE_BENCHMARK(hasNegativeCycle, Sample1, 5, SAMPLE1);
 
 SIMPLE_TEST(hasNegativeCycle, TestSAMPLE1, false, 5, SAMPLE1);
 SIMPLE_TEST(hasNegativeCycle, TestSAMPLE2, true, 4, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(PrintNegativeWeightCycle, 4, SAMPLE2, 0);
+SIMPLE_BENCHMARK(PrintNegativeWeightCycle, Sample1, 4, SAMPLE2, 0);
 
 SIMPLE_TEST(PrintNegativeWeightCycle, TestSAMPLE2, EXPECTED2, 4, SAMPLE2, 0);
 
@@ -417,7 +417,7 @@ const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5}, {0, 2, 3}, {1, 3, 6}, {1, 2, 2
 const std::vector<int> EXPECTED3 = {std::numeric_limits<int>::max(), 0, 2, 6, 5, 3};
 
 
-SIMPLE_BENCHMARK(SingleSourceShortestPaths_DAG, 6, SAMPLE3, 1);
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_DAG, Sample1, 6, SAMPLE3, 1);
 
 SIMPLE_TEST(SingleSourceShortestPaths_DAG, TestSAMPLE3, EXPECTED3, 6, SAMPLE3, 1);
 
@@ -426,7 +426,7 @@ const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 3}, {1, 2}, {3, 4}, {3, 7},
 const ArrayType EXPECTED4 = {0, 3, 7};
 
 
-SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, 8, SAMPLE4, 0, 7);
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, Sample1, 8, SAMPLE4, 0, 7);
 
 SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
             EXPECTED4, 8, SAMPLE4, 0, 7);
@@ -440,13 +440,13 @@ const DirectedEdgeArrayType SAMPLE6 = {{0, 1, 1}, {0, 2, 4}, {1, 2, 2}, {1, 3, 6
 const std::vector<int> EXPECTED6 = {0, 1, 3, 6};
 
 
-SIMPLE_BENCHMARK(SingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_Dijkstra, Sample1, 9, SAMPLE5, 0);
 
 SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED5, 9, SAMPLE5, 0);
 SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPLE6, 0);
 
 
-SIMPLE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
+SIMPLE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, Sample1, 9, SAMPLE5, 0);
 
 SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9, SAMPLE5, 0);
 
@@ -458,6 +458,6 @@ const TableType COSTS1 = {
 };
 
 
-SIMPLE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
+SIMPLE_BENCHMARK(MinCostPath, Sample1, COSTS1, 2, 2);
 
 SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8,  COSTS1, 2, 2);

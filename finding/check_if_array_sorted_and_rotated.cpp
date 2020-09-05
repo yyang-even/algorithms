@@ -75,7 +75,7 @@ const ArrayType SAMPLE3 = {1, 2, 3};
 const ArrayType SAMPLE4 = {4, 9, 1, 5, 2};
 
 
-SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_LinearSearch, SAMPLE1);
+SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_LinearSearch, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE2, true, SAMPLE2);
@@ -83,7 +83,7 @@ SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE3, false, SAMPL
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE4, false, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_BinarySearch, SAMPLE1);
+SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_BinarySearch, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE2, true, SAMPLE2);

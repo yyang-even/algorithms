@@ -20,7 +20,7 @@ auto MinDiffBetweenShiftedTablesOfTwoNumbers(const unsigned a, const unsigned b,
 }//namespace
 
 
-SIMPLE_BENCHMARK(MinDiffBetweenShiftedTablesOfTwoNumbers, 20, 52, 5, 7);
+SIMPLE_BENCHMARK(MinDiffBetweenShiftedTablesOfTwoNumbers, Sample1, 20, 52, 5, 7);
 
 SIMPLE_TEST(MinDiffBetweenShiftedTablesOfTwoNumbers, TestSAMPLE1, 2u, 20, 52, 5, 7);
 SIMPLE_TEST(MinDiffBetweenShiftedTablesOfTwoNumbers, TestSAMPLE2, 1u, 6, 16, 5, 2);

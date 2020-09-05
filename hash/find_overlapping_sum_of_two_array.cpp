@@ -35,6 +35,6 @@ auto OverlappingSumOfArrays(const ArrayType &a1, const ArrayType &a2) {
 const ArrayType SAMPLE1 = {1, 5, 3, 8};
 const ArrayType SAMPLE2 = {5, 4, 6, 7};
 
-SIMPLE_BENCHMARK(OverlappingSumOfArrays, SAMPLE1, SAMPLE2);
+SIMPLE_BENCHMARK(OverlappingSumOfArrays, Sample1, SAMPLE1, SAMPLE2);
 
 SIMPLE_TEST(OverlappingSumOfArrays, TestSAMPLE1, 10, SAMPLE1, SAMPLE2);

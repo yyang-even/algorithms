@@ -30,6 +30,6 @@ auto RunLengthEncoding(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RunLengthEncoding, "wwwwaaadexxxxxx");
+SIMPLE_BENCHMARK(RunLengthEncoding, Sample1, "wwwwaaadexxxxxx");
 
 SIMPLE_TEST(RunLengthEncoding, TestSAMPLE1, "w4a3d1e1x6", "wwwwaaadexxxxxx");

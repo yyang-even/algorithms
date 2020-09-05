@@ -64,7 +64,7 @@ const ArrayType SAMPLE1 = {"geeks", "for", "geeksfor", "geeksforgeeks", "geeksfo
 const ArrayType SAMPLE2 = {"Hey", "you", "stop", "right", "there"};
 
 
-SIMPLE_BENCHMARK(LongestConcatenatedString, SAMPLE1);
+SIMPLE_BENCHMARK(LongestConcatenatedString, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE1, "geeksforgeeks", SAMPLE1);
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE2, "", SAMPLE2);

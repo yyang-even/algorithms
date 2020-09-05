@@ -82,7 +82,7 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(TestSwap, Swap_SubAdd, LOWER, UPPER);
+SIMPLE_BENCHMARK(TestSwap, Sample1, Swap_SubAdd, LOWER, UPPER);
 
 SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE1, true, Swap_SubAdd, 6, 13);
 SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE2, true, Swap_SubAdd, 13, 6);
@@ -92,7 +92,7 @@ SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE5, true, Swap_SubAdd, 6, 6);
 SIMPLE_TEST(TestSwap, TestSwapSubAddSAMPLE6, true, Swap_SubAdd, UPPER, UPPER);
 
 
-SIMPLE_BENCHMARK(TestSwap, Swap_Xor<unsigned>, LOWER, UPPER);
+SIMPLE_BENCHMARK(TestSwap, Sample2, Swap_Xor<unsigned>, LOWER, UPPER);
 
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE1, true, Swap_Xor<unsigned>, 6, 13);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE2, true, Swap_Xor<unsigned>, 13, 6);
@@ -102,7 +102,7 @@ SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, true, Swap_Xor<unsigned>, 13, 13);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<unsigned>, UPPER, UPPER);
 
 
-SIMPLE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
+SIMPLE_BENCHMARK(SwapBitRange, Sample1, 0b00101111, 1, 5, 3);
 
 SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011u, 0b00101111, 1, 5, 3);
 SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0u, 0b00101111, 0, 4, 5);

@@ -51,7 +51,7 @@ option(WANT_BENCHMARKS "We want benchmark executables" ON)
 
 # Do we want unit tests?
 option(WANT_TESTS "We want unit tests" ON)
-option(WANT_AUTO_TESTS "We want to run tests that have been changed" OFF)
+option(WANT_AUTO_TESTS "We want to run tests that have been changed" ON)
 if(WANT_TESTS)
     enable_testing()
     include(CTest)
@@ -65,6 +65,10 @@ if(WANT_TESTS)
     include_directories ("${GTEST_INCLUDE_DIRS}")
 endif(WANT_TESTS)
 
+if(WANT_BENCHMARKS)
+    set(BM_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/3rdParty/benchmark/include)
+    include_directories ("${BM_INCLUDE_DIRS}")
+endif(WANT_BENCHMARKS)
 
 # pthread
 if(WANT_BENCHMARKS OR WANT_TESTS)
@@ -89,8 +93,9 @@ function(CompileBenchmarkExe name)
     if(WANT_BENCHMARKS)
         set(target_name ${name}_benchmark)
         add_executable(${target_name} ${name}.cpp)
-        target_compile_definitions(${target_name} PRIVATE NONIUS_RUNNER)
+        target_compile_definitions(${target_name} PRIVATE WANT_BENCHMARKS)
         target_link_libraries(${target_name}
+            benchmark::benchmark_main
             ${PTHREAD_LIBRARY}
             ${ARGN})
     endif(WANT_BENCHMARKS)

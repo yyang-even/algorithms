@@ -132,33 +132,33 @@ auto BSTCeil_Iterative(BinaryTree::Node::PointerType node,
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(BSTSearch_Recursive, SAMPLE1, -1);
-SIMPLE_BENCHMARK(BSTSearch_Recursive, SAMPLE1, 1);
+SIMPLE_BENCHMARK(BSTSearch_Recursive, Sample1, SAMPLE1, -1);
+SIMPLE_BENCHMARK(BSTSearch_Recursive, Sample2, SAMPLE1, 1);
 
 SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE1, true, SAMPLE1, 4);
 SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE2, true, SAMPLE1, 1);
 SIMPLE_TEST(BSTSearch_Recursive, TestSAMPLE3, false, SAMPLE1, -1);
 
 
-SIMPLE_BENCHMARK(hasNode_iterative, SAMPLE1, -1);
-SIMPLE_BENCHMARK(hasNode_iterative, SAMPLE1, 1);
+SIMPLE_BENCHMARK(hasNode_iterative, Sample1, SAMPLE1, -1);
+SIMPLE_BENCHMARK(hasNode_iterative, Sample2, SAMPLE1, 1);
 
 SIMPLE_TEST(hasNode_iterative, TestSAMPLE1, true, SAMPLE1, 4);
 SIMPLE_TEST(hasNode_iterative, TestSAMPLE2, true, SAMPLE1, 1);
 SIMPLE_TEST(hasNode_iterative, TestSAMPLE3, false, SAMPLE1, -1);
 
 
-SIMPLE_BENCHMARK(MinimumNode, SAMPLE1);
+SIMPLE_BENCHMARK(MinimumNode, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MinimumNode, TestSAMPLE1, SAMPLE1->left->left, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(MaximumNode, SAMPLE1);
+SIMPLE_BENCHMARK(MaximumNode, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MaximumNode, TestSAMPLE1, SAMPLE1->right, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(BSTFloor_Recursive, SAMPLE1, 3);
+SIMPLE_BENCHMARK(BSTFloor_Recursive, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(BSTFloor_Recursive, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(BSTFloor_Recursive, TestSAMPLE2, 1, SAMPLE1, 1);
@@ -169,7 +169,7 @@ SIMPLE_TEST(BSTFloor_Recursive, TestSAMPLE6,
             std::numeric_limits<BinaryTree::Node::ValueType>::max(), SAMPLE1, 0);
 
 
-SIMPLE_BENCHMARK(BSTFloor_Iterative, SAMPLE1, 3);
+SIMPLE_BENCHMARK(BSTFloor_Iterative, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(BSTFloor_Iterative, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(BSTFloor_Iterative, TestSAMPLE2, 1, SAMPLE1, 1);
@@ -180,7 +180,7 @@ SIMPLE_TEST(BSTFloor_Iterative, TestSAMPLE6,
             std::numeric_limits<BinaryTree::Node::ValueType>::max(), SAMPLE1, 0);
 
 
-SIMPLE_BENCHMARK(BSTCeil_Recursive, SAMPLE1, 3);
+SIMPLE_BENCHMARK(BSTCeil_Recursive, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(BSTCeil_Recursive, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(BSTCeil_Recursive, TestSAMPLE2, 1, SAMPLE1, 1);
@@ -191,7 +191,7 @@ SIMPLE_TEST(BSTCeil_Recursive, TestSAMPLE6,
             std::numeric_limits<BinaryTree::Node::ValueType>::min(), SAMPLE1, 6);
 
 
-SIMPLE_BENCHMARK(BSTCeil_Iterative, SAMPLE1, 3);
+SIMPLE_BENCHMARK(BSTCeil_Iterative, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(BSTCeil_Iterative, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(BSTCeil_Iterative, TestSAMPLE2, 1, SAMPLE1, 1);

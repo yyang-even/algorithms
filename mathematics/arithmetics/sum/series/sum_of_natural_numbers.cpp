@@ -52,27 +52,27 @@ auto SumOfNaturalsInRange(const unsigned L, const unsigned R) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfNaturals, 7);
+SIMPLE_BENCHMARK(SumOfNaturals, Sample1, 7);
 
 SIMPLE_TEST(SumOfNaturals, TestSAMPLE1, 6, 3);
 SIMPLE_TEST(SumOfNaturals, TestSAMPLE2, 15, 5);
 
 
-SIMPLE_BENCHMARK(AverageOfNaturalNumbers, 7);
+SIMPLE_BENCHMARK(AverageOfNaturalNumbers, Sample1, 7);
 
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE1, 5.5, 10);
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE2, 4, 7);
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE3, 10.5, 20);
 
 
-SIMPLE_BENCHMARK(SumOfSumOfNaturals, 3);
+SIMPLE_BENCHMARK(SumOfSumOfNaturals, Sample1, 3);
 
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE1, 10, 3);
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE2, 4, 2);
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE3, 20, 4);
 
 
-SIMPLE_BENCHMARK(SumOfNaturalsInRange, 2, 5);
+SIMPLE_BENCHMARK(SumOfNaturalsInRange, Sample1, 2, 5);
 
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE1, 14, 2, 5);
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE2, 165, 10, 20);

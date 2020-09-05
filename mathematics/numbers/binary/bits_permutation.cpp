@@ -38,7 +38,7 @@ constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
 #ifdef __GNUC__
-SIMPLE_BENCHMARK(NextPermutation, UPPER);
+SIMPLE_BENCHMARK(NextPermutation, Sample1, UPPER);
 
 SIMPLE_TEST(NextPermutation, TestLOWER, 2u, LOWER);
 SIMPLE_TEST(NextPermutation, TestSAMPLE1, 0b00011001u, 0b00010110);
@@ -46,7 +46,7 @@ SIMPLE_TEST(NextPermutation, TestSAMPLE2, 0b00011100u, 0b00011010);
 #endif
 
 
-SIMPLE_BENCHMARK(NextPermutation_Division, UPPER);
+SIMPLE_BENCHMARK(NextPermutation_Division, Sample1, UPPER);
 
 SIMPLE_TEST(NextPermutation_Division, TestLOWER, 2u, LOWER);
 SIMPLE_TEST(NextPermutation_Division, TestUPPER, UPPER, UPPER);

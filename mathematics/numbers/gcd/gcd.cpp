@@ -77,8 +77,8 @@ auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(gcd, 12, 18);
-SIMPLE_BENCHMARK(gcd, 18, 12);
+SIMPLE_BENCHMARK(gcd, Sample1, 12, 18);
+SIMPLE_BENCHMARK(gcd, Sample2, 18, 12);
 
 SIMPLE_TEST(gcd, Test1, 6u, 12, 18);
 SIMPLE_TEST(gcd, Test2, 6u, 18, 12);
@@ -91,13 +91,13 @@ const auto EXPECTED1 = std::make_tuple(10u, 1, -1);
 const auto EXPECTED2 = std::make_tuple(5u, 1, -2);
 
 
-SIMPLE_BENCHMARK(gcd_Extended, 18, 12);
+SIMPLE_BENCHMARK(gcd_Extended, Sample1, 18, 12);
 
 SIMPLE_TEST(gcd_Extended, TestSample1, EXPECTED1, 30, 20);
 SIMPLE_TEST(gcd_Extended, TestSample2, EXPECTED2, 35, 15);
 
 
-SIMPLE_BENCHMARK(Gcd_Stein_Iterative, 18, 12);
+SIMPLE_BENCHMARK(Gcd_Stein_Iterative, Sample1, 18, 12);
 
 SIMPLE_TEST(Gcd_Stein_Iterative, Test1, 6u, 12, 18);
 SIMPLE_TEST(Gcd_Stein_Iterative, Test2, 6u, 18, 12);
@@ -108,7 +108,7 @@ SIMPLE_TEST(Gcd_Stein_Iterative, Test6, 17u, 17, 34);
 SIMPLE_TEST(Gcd_Stein_Iterative, Test7, 1u, 50, 49);
 
 
-SIMPLE_BENCHMARK(Gcd_Stein_Recursive, 18, 12);
+SIMPLE_BENCHMARK(Gcd_Stein_Recursive, Sample1, 18, 12);
 
 SIMPLE_TEST(Gcd_Stein_Recursive, Test1, 6u, 12, 18);
 SIMPLE_TEST(Gcd_Stein_Recursive, Test2, 6u, 18, 12);

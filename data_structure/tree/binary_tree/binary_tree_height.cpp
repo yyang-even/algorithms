@@ -36,16 +36,16 @@ std::size_t HeightOfCompleteTree(const std::size_t number_of_nodes) {
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(Height_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(Height_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Height_Recursive, TestSAMPLE1, 3, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(Height_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(Height_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Height_Iterative, TestSAMPLE1, 3, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(HeightOfCompleteTree, 5);
+SIMPLE_BENCHMARK(HeightOfCompleteTree, Sample1, 5);
 
 SIMPLE_TEST(HeightOfCompleteTree, TestSAMPLE1, 3, 5);

@@ -41,7 +41,7 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindKthNonrepeatingChar, "GeeksforGeeks", 3ul);
+SIMPLE_BENCHMARK(FindKthNonrepeatingChar, Sample1, "GeeksforGeeks", 3ul);
 
 SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE1, 'r', "GeeksforGeeks", 3ul);
 SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE2, 'o', "GeeksforGeeks", 2ul);

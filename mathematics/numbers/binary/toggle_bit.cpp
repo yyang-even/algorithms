@@ -40,19 +40,19 @@ auto ToggleLastBits(const unsigned num, const unsigned m) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ToggleBit, 0, 4);
+SIMPLE_BENCHMARK(ToggleBit, Sample1, 0, 4);
 
 SIMPLE_TEST(ToggleBit, TestSample1, 0b110u, 0b100, 1);
 SIMPLE_TEST(ToggleBit, TestSample2, 1u, 0, 0);
 SIMPLE_TEST(ToggleBit, TestSample3, 0b10u, 0, 1);
 
 
-SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, 0, 4);
+SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, Sample1, 0, 4);
 
 SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u, std::numeric_limits<InputType>::max(), 0);
 
 
-SIMPLE_BENCHMARK(ToggleLastBits, 21, 2);
+SIMPLE_BENCHMARK(ToggleLastBits, Sample1, 21, 2);
 
 SIMPLE_TEST(ToggleLastBits, TestSample1, 22u, 21, 2);
 SIMPLE_TEST(ToggleLastBits, TestSample2, 100u, 107, 4);

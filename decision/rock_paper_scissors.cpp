@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Rock Paper Scissors
  *
  * @reference   Rock Paper Scissors
@@ -20,10 +23,10 @@ int RockPaperScissors(const std::string &player1, const std::string &player2) {
     return 2;
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(RockPaperScissors, "scissors", "paper");
-SIMPLE_BENCHMARK(RockPaperScissors, "scissors", "rock");
-SIMPLE_BENCHMARK(RockPaperScissors, "rock", "rock");
+
+SIMPLE_BENCHMARK(RockPaperScissors, Sample1, "scissors", "paper");
 
 SIMPLE_TEST(RockPaperScissors, TestSample1, 1, "scissors", "paper");
 SIMPLE_TEST(RockPaperScissors, TestSample2, 2, "scissors", "rock");

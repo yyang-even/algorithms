@@ -39,14 +39,14 @@ auto SumOfFirstNOddNumbersInRange(const unsigned L, const unsigned R) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfFirstNOddNumbers, 10);
+SIMPLE_BENCHMARK(SumOfFirstNOddNumbers, Sample1, 10);
 
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE1, 100u, 10);
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE2, 25u, 5);
 SIMPLE_TEST(SumOfFirstNOddNumbers, TestSAMPLE3, 4u, 2);
 
 
-SIMPLE_BENCHMARK(SumOfFirstNOddNumbersInRange, 2, 5);
+SIMPLE_BENCHMARK(SumOfFirstNOddNumbersInRange, Sample1, 2, 5);
 
 SIMPLE_TEST(SumOfFirstNOddNumbersInRange, TestSAMPLE1, 8, 2, 5);
 SIMPLE_TEST(SumOfFirstNOddNumbersInRange, TestSAMPLE2, 40, 7, 13);

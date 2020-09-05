@@ -107,11 +107,9 @@ constexpr InputType SAMPLE3 = 189;
 constexpr InputType SAMPLE4 = 2600;
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_Mod, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Mod, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Mod, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_Mod, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_Mod, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Mod, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Mod, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Mod, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_Mod, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_Mod, TestUPPER, false, UPPER);
@@ -121,11 +119,9 @@ SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE3, false, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy5_Mod, TestSAMPLE4, true, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_LastDigit, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigit, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_LastDigit, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_LastDigit, TestUPPER, false, UPPER);
@@ -138,11 +134,9 @@ SIMPLE_TEST(isDivisibleBy5_LastDigit, TestSAMPLE5, true, -970991465);
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_LastDigit, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_Subtraction, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Subtraction, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_Subtraction, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_Subtraction, TestUPPER, false, UPPER);
@@ -152,11 +146,9 @@ SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE3, false, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy5_Subtraction, TestSAMPLE4, true, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_ToString, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_ToString, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_ToString, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_ToString, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_ToString, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_ToString, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_ToString, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_ToString, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_ToString, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_ToString, TestUPPER, false, UPPER);
@@ -166,11 +158,9 @@ SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE3, false, SAMPLE3);
 SIMPLE_TEST(isDivisibleBy5_ToString, TestSAMPLE4, true, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_Float, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Float, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_Float, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_Float, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_Float, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Float, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Float, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_Float, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_Float, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_Float, TestLOWERPlusOne, false, LOWER + 1);
@@ -186,11 +176,9 @@ MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_ToString, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_Float, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy5_LastDigitStrict, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy5_LastDigitStrict, Sample3, SAMPLE3);
 
 SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestLOWERPlusOne, false, LOWER + 1);

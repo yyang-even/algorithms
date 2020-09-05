@@ -39,7 +39,7 @@ unsigned long long CountDivisorsOfFactorial(const InputType n) {
 
 const InputType LOWER = 0;
 
-SIMPLE_BENCHMARK(CountDivisorsOfFactorial, LOWER);
+SIMPLE_BENCHMARK(CountDivisorsOfFactorial, Sample1, LOWER);
 
 SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE1, 0u, LOWER);
 SIMPLE_TEST(CountDivisorsOfFactorial, TestSAMPLE2, 1u, 1);

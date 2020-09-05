@@ -54,7 +54,7 @@ const std::vector<std::string> EXPECTED1 = {"abc", "acb", "cab"};
 const std::vector<std::string> EXPECTED2 = {"abcd", "acbd", "acdb", "cabd", "cadb", "cdab"};
 
 
-SIMPLE_BENCHMARK(InterleavingsOfTwoString, "abcde", "12345");
+SIMPLE_BENCHMARK(InterleavingsOfTwoString, Sample1, "abcde", "12345");
 
 SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE1, EXPECTED1, "ab", "c");
 SIMPLE_TEST(InterleavingsOfTwoString, TestSAMPLE2, EXPECTED2, "ab", "cd");

@@ -78,7 +78,7 @@ const ArrayType SAMPLE_BACK = {-1, 0, 1, 2, 4};
 const ArrayType UNDERFLOW = {2};
 
 
-SIMPLE_BENCHMARK(FindOneFixedPoint, SAMPLE1);
+SIMPLE_BENCHMARK(FindOneFixedPoint, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindOneFixedPoint, TestEMPTY, -1, EMPTY);
 SIMPLE_TEST(FindOneFixedPoint, TestSAMPLE1, 3, SAMPLE1);
@@ -92,7 +92,7 @@ SIMPLE_TEST(FindOneFixedPoint, TestUnderflow, -1, UNDERFLOW);
 const ArrayType SAMPLE5 = {-10, -5, 2, 2, 2, 3, 4, 7, 9, 12, 13};
 
 
-SIMPLE_BENCHMARK(FindOneFixedPointInArrayWithDuplicates, SAMPLE1);
+SIMPLE_BENCHMARK(FindOneFixedPointInArrayWithDuplicates, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestEMPTY, -1, EMPTY);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE1, 3, SAMPLE1);

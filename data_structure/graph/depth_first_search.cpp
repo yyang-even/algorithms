@@ -106,7 +106,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {
 const ArrayType EXPECTED1 = {0, 1, 2, 3};
 
 
-SIMPLE_BENCHMARK(DepthFirstSearch_Recursive, 4, SAMPLE1);
+SIMPLE_BENCHMARK(DepthFirstSearch_Recursive, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(DepthFirstSearch_Recursive, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
@@ -115,11 +115,11 @@ const DirectedEdgeArrayType SAMPLE2 = {{1, 0}, {2, 1}, {3, 4}, {4, 0}};
 const ArrayType EXPECTED2 = {0, 1, 2, 3, 4};
 
 
-SIMPLE_BENCHMARK(DepthFirstSearch_Iterative, 5, SAMPLE2);
+SIMPLE_BENCHMARK(DepthFirstSearch_Iterative, Sample1, 5, SAMPLE2);
 
 SIMPLE_TEST(DepthFirstSearch_Iterative, TestSAMPLE2, EXPECTED2, 5, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(DepthFirstSearch_Recursive_AdjMatrix, 4, SAMPLE1);
+SIMPLE_BENCHMARK(DepthFirstSearch_Recursive_AdjMatrix, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(DepthFirstSearch_Recursive_AdjMatrix, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);

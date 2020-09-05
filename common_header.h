@@ -25,8 +25,8 @@
 #include <utility>
 #include <vector>
 
-#ifdef NONIUS_RUNNER
-#include "nonius/nonius_single.h++"
+#ifdef WANT_BENCHMARKS
+#include "benchmark/benchmark.h"
 #endif
 #ifdef WANT_TESTS
 #include "gtest/gtest.h"
@@ -66,27 +66,25 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Itera
  * @reference   #ifdef inside #define
  *              https://stackoverflow.com/questions/5586429/ifdef-inside-define
  */
-#ifdef NONIUS_RUNNER
+#ifdef WANT_BENCHMARKS
 
-#define SIMPLE_BENCHMARK(func_name, inputs...) namespace {                      \
-    NONIUS_BENCHMARK((std::string(#func_name) + "(" + #inputs + ")"), []() {    \
-        return func_name(inputs);                                               \
-    })                                                                          \
-}
-
-#define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {                         \
-    NONIUS_BENCHMARK((std::string(#func_name) + "(Random)"), [](nonius::chronometer meter) {    \
-        const auto random_input = Random_Number(lowerBound, upperBound);                        \
-        meter.measure([&random_input]() { return func_name(random_input); });                   \
-    })                                                                                          \
+#define SIMPLE_BENCHMARK(func_name, case_name, inputs...) namespace {   \
+    static void BM_##func_name##_##case_name(benchmark::State& state) { \
+        for (auto _ : state)                                            \
+            func_name(inputs);                                          \
+    }                                                                   \
+                                                                        \
+    BENCHMARK(BM_##func_name##_##case_name);                            \
 }
 
 #else
 
 #define SIMPLE_BENCHMARK(func_name, inputs...) namespace {}
-#define RANDOM_BENCHMARK(func_name, lowerBound, upperBound) namespace {}
 
 #endif
+
+#define THE_BENCHMARK(func_name, inputs...) SIMPLE_BENCHMARK(func_name, Sample, inputs)
+#define SIMPLE_BENCHMARK0(func_name) SIMPLE_BENCHMARK(func_name, Void)
 
 
 #ifdef WANT_TESTS

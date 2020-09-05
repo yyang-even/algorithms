@@ -54,6 +54,6 @@ auto TestTail() {
 }//namespace
 
 
-SIMPLE_BENCHMARK(TestTail);
+SIMPLE_BENCHMARK0(TestTail);
 
 SIMPLE_TEST0(TestTail, TestSAMPLE1, true);

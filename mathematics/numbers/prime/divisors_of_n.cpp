@@ -42,7 +42,7 @@ const ArrayType EXPECTED2 = {1, 2, 4, 5, 10, 20, 25, 50, 100};
 const ArrayType EXPECTED3 = {1, 5, 25, 125};
 
 
-SIMPLE_BENCHMARK(DivisorsOfN_Pairs, 100);
+SIMPLE_BENCHMARK(DivisorsOfN_Pairs, Sample1, 100);
 
 SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE1, EXPECTED1, 10);
 SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE2, EXPECTED2, 100);

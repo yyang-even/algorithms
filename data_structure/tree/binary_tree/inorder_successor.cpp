@@ -41,7 +41,7 @@ auto InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(InorderSuccessor_Recursive, SAMPLE1, SAMPLE1);
+SIMPLE_BENCHMARK(InorderSuccessor_Recursive, Sample1, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(InorderSuccessor_Recursive, TestSAMPLE1,
             SAMPLE1->right, SAMPLE1, SAMPLE1);

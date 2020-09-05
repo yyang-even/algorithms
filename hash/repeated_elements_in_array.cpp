@@ -197,7 +197,7 @@ const ArrayType SAMPLE2 = {1, 1, 1, 1, 1};
 const ArrayType EXPECTED2 = {1};
 
 
-SIMPLE_BENCHMARK(FindRepeatedElements, SAMPLE1);
+SIMPLE_BENCHMARK(FindRepeatedElements, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -207,12 +207,12 @@ const ArrayType SAMPLE3 = {1, 2, 3, 1, 3, 6, 6};
 const ArrayType EXPECTED3 = {1, 3, 6};
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Sign, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Sign, Sample1, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicates_Inplace_Sign, TestSAMPLE1, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod, Sample1, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE1, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -222,7 +222,7 @@ const ArrayType SAMPLE4 = {0, 3, 1, 3, 0};
 const ArrayType EXPECTED4 = {3, 0};
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, SAMPLE3);
+SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, Sample1, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4, SAMPLE4);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -235,7 +235,7 @@ const ArrayType SAMPLE6 = {50, 40, 50};
 const ArrayType EXPECTED6 = {50};
 
 
-SIMPLE_BENCHMARK(FindAllDuplicates_BitArray, SAMPLE5);
+SIMPLE_BENCHMARK(FindAllDuplicates_BitArray, Sample1, SAMPLE5);
 
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample1, EXPECTED5, SAMPLE5);
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample2, EXPECTED6, SAMPLE6);

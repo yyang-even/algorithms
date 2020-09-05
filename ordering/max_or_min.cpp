@@ -96,7 +96,7 @@ const ArrayType VALUES4 = {4, 8, 12, 16};
 const ArrayType VALUES5 = {15, 0, 2, 15};
 
 
-SIMPLE_BENCHMARK(MaxElement_Bit, VALUES5);
+SIMPLE_BENCHMARK(MaxElement_Bit, Sample1, VALUES5);
 
 SIMPLE_TEST(MaxElement_Bit, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(MaxElement_Bit, TestSAMPLE2, 1u, VALUES2);
@@ -109,9 +109,8 @@ constexpr auto LOWER = std::numeric_limits<int>::min();
 constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(Min_Xor, -1, 0);
-SIMPLE_BENCHMARK(Min_Xor, -1, 1);
-SIMPLE_BENCHMARK(Min_Xor, LOWER, UPPER);
+SIMPLE_BENCHMARK(Min_Xor, Sample1, -1, 0);
+SIMPLE_BENCHMARK(Min_Xor, Sample2, -1, 1);
 
 SIMPLE_TEST(Min_Xor, TestSample1, -1, -1, 0);
 SIMPLE_TEST(Min_Xor, TestSample2, -1, -1, -1);
@@ -123,9 +122,8 @@ SIMPLE_TEST(Min_Xor, TestSample7, LOWER, LOWER, UPPER);
 SIMPLE_TEST(Min_Xor, TestSample8, LOWER, LOWER, LOWER);
 
 
-SIMPLE_BENCHMARK(Max_Xor, -1, 0);
-SIMPLE_BENCHMARK(Max_Xor, -1, 1);
-SIMPLE_BENCHMARK(Max_Xor, LOWER, UPPER);
+SIMPLE_BENCHMARK(Max_Xor, Sample1, -1, 0);
+SIMPLE_BENCHMARK(Max_Xor, Sample2, -1, 1);
 
 SIMPLE_TEST(Max_Xor, TestSample1, 0, -1, 0);
 SIMPLE_TEST(Max_Xor, TestSample2, -1, -1, -1);
@@ -137,9 +135,8 @@ SIMPLE_TEST(Max_Xor, TestSample7, UPPER, LOWER, UPPER);
 SIMPLE_TEST(Max_Xor, TestSample8, LOWER, LOWER, LOWER);
 
 
-SIMPLE_BENCHMARK(Min_QuickDirty, -1, 0);
-SIMPLE_BENCHMARK(Min_QuickDirty, -1, 1);
-SIMPLE_BENCHMARK(Min_QuickDirty, LOWER, UPPER);
+SIMPLE_BENCHMARK(Min_QuickDirty, Sample1, -1, 0);
+SIMPLE_BENCHMARK(Min_QuickDirty, Sample2, -1, 1);
 
 SIMPLE_TEST(Min_QuickDirty, TestSample1, -1, -1, 0);
 SIMPLE_TEST(Min_QuickDirty, TestSample2, -1, -1, -1);
@@ -150,9 +147,8 @@ SIMPLE_TEST(Min_QuickDirty, TestSample6, 0, 0, 0);
 SIMPLE_TEST(Min_QuickDirty, TestSample7, LOWER, LOWER, LOWER);
 
 
-SIMPLE_BENCHMARK(Max_QuickDirty, -1, 0);
-SIMPLE_BENCHMARK(Max_QuickDirty, -1, 1);
-SIMPLE_BENCHMARK(Max_QuickDirty, LOWER, UPPER);
+SIMPLE_BENCHMARK(Max_QuickDirty, Sample1, -1, 0);
+SIMPLE_BENCHMARK(Max_QuickDirty, Sample2, -1, 1);
 
 SIMPLE_TEST(Max_QuickDirty, TestSample1, 0, -1, 0);
 SIMPLE_TEST(Max_QuickDirty, TestSample2, -1, -1, -1);

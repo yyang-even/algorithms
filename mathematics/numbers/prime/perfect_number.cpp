@@ -20,7 +20,7 @@ auto isPerfectNumber(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(isPerfectNumber, 15);
+SIMPLE_BENCHMARK(isPerfectNumber, Sample1, 15);
 
 SIMPLE_TEST(isPerfectNumber, TestSAMPLE1, false, 15);
 SIMPLE_TEST(isPerfectNumber, TestSAMPLE2, true, 6);

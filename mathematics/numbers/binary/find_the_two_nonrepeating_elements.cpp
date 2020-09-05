@@ -67,7 +67,7 @@ const ArrayType SAMPLE5 = {6, 1, 3, 5, 1, 3, 7, 6};
 const ArrayType SAMPLE6 = {2, 3, 3, 4, 4, 5};
 
 
-SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::make_pair(7u, 9u), SAMPLE1);
 SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u), SAMPLE2);

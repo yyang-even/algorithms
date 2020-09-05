@@ -69,4 +69,4 @@ TEST(ApproximateMedianTest, TestSanity) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ApproximateMedian, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});
+SIMPLE_BENCHMARK(ApproximateMedian, Sample1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});

@@ -34,7 +34,7 @@ auto NumbersHavingFirstAndLastBitsSet(const ArrayType::value_type N) {
 const ArrayType EXPECTED1 = {1};
 const ArrayType EXPECTED2 = {1, 3, 5, 9};
 
-SIMPLE_BENCHMARK(NumbersHavingFirstAndLastBitsSet,
+SIMPLE_BENCHMARK(NumbersHavingFirstAndLastBitsSet, Sample1,
                  std::numeric_limits<ArrayType::value_type>::max());
 
 SIMPLE_TEST(NumbersHavingFirstAndLastBitsSet, TestSample1, EXPECTED1, 1);

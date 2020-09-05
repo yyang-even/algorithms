@@ -30,7 +30,7 @@ const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType SAMPLE2 = {2, 1, 9, 5};
 
 
-SIMPLE_BENCHMARK(CheckIfAllElementsDistinct, SAMPLE1);
+SIMPLE_BENCHMARK(CheckIfAllElementsDistinct, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CheckIfAllElementsDistinct, TestSAMPLE1, false, SAMPLE1);
 SIMPLE_TEST(CheckIfAllElementsDistinct, TestSAMPLE2, true, SAMPLE2);

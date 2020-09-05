@@ -49,7 +49,7 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = 1u << (BitsNumber<uint32_t> - 1u);
 
 
-SIMPLE_BENCHMARK(RoundUpToPowerOf2_Float, UPPER);
+SIMPLE_BENCHMARK(RoundUpToPowerOf2_Float, Sample1, UPPER);
 
 SIMPLE_TEST(RoundUpToPowerOf2_Float, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(RoundUpToPowerOf2_Float, TestUPPER, UPPER, UPPER);
@@ -58,7 +58,7 @@ SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE2, 8u, 8);
 SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE3, UPPER, UPPER - 1);
 
 
-SIMPLE_BENCHMARK(RoundUpToPowerOf2, UPPER);
+SIMPLE_BENCHMARK(RoundUpToPowerOf2, Sample1, UPPER);
 
 SIMPLE_TEST(RoundUpToPowerOf2, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(RoundUpToPowerOf2, TestUPPER, UPPER, UPPER);

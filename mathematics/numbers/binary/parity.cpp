@@ -108,8 +108,8 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(Parity_BrianKernighan, LOWER);
-SIMPLE_BENCHMARK(Parity_BrianKernighan, UPPER);
+SIMPLE_BENCHMARK(Parity_BrianKernighan, Sample1, LOWER);
+SIMPLE_BENCHMARK(Parity_BrianKernighan, Sample2, UPPER);
 
 SIMPLE_TEST(Parity_BrianKernighan, TestLOWER, false, LOWER);
 SIMPLE_TEST(Parity_BrianKernighan, TestUPPER, false, UPPER);
@@ -117,8 +117,8 @@ SIMPLE_TEST(Parity_BrianKernighan, TestSAMPLE1, false, 6);
 SIMPLE_TEST(Parity_BrianKernighan, TestSAMPLE2, true, 13);
 
 
-SIMPLE_BENCHMARK(Parity_LookupTable, LOWER);
-SIMPLE_BENCHMARK(Parity_LookupTable, UPPER);
+SIMPLE_BENCHMARK(Parity_LookupTable, Sample1, LOWER);
+SIMPLE_BENCHMARK(Parity_LookupTable, Sample2, UPPER);
 
 SIMPLE_TEST(Parity_LookupTable, TestLOWER, false, LOWER);
 SIMPLE_TEST(Parity_LookupTable, TestUPPER, false, UPPER);
@@ -128,8 +128,8 @@ SIMPLE_TEST(Parity_LookupTable, TestSAMPLE2, true, 13);
 MUTUAL_RANDOM_TEST(Parity_BrianKernighan, Parity_LookupTable, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ParityOfByte_64bit, LOWER);
-SIMPLE_BENCHMARK(ParityOfByte_64bit, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(ParityOfByte_64bit, Sample1, LOWER);
+SIMPLE_BENCHMARK(ParityOfByte_64bit, Sample2, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(ParityOfByte_64bit, TestLOWER, false, LOWER);
 SIMPLE_TEST(ParityOfByte_64bit, TestUPPER, false, static_cast<unsigned char>(UPPER));
@@ -137,8 +137,8 @@ SIMPLE_TEST(ParityOfByte_64bit, TestSAMPLE1, false, 6);
 SIMPLE_TEST(ParityOfByte_64bit, TestSAMPLE2, true, 13);
 
 
-SIMPLE_BENCHMARK(Parity_Multiply_32, LOWER);
-SIMPLE_BENCHMARK(Parity_Multiply_32, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(Parity_Multiply_32, Sample1, LOWER);
+SIMPLE_BENCHMARK(Parity_Multiply_32, Sample2, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(Parity_Multiply_32, TestLOWER, false, LOWER);
 SIMPLE_TEST(Parity_Multiply_32, TestUPPER, false, static_cast<unsigned char>(UPPER));
@@ -146,8 +146,8 @@ SIMPLE_TEST(Parity_Multiply_32, TestSAMPLE1, false, 6);
 SIMPLE_TEST(Parity_Multiply_32, TestSAMPLE2, true, 13);
 
 
-SIMPLE_BENCHMARK(Parity_Multiply_64, LOWER);
-SIMPLE_BENCHMARK(Parity_Multiply_64, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(Parity_Multiply_64, Sample1, LOWER);
+SIMPLE_BENCHMARK(Parity_Multiply_64, Sample2, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(Parity_Multiply_64, TestLOWER, false, LOWER);
 SIMPLE_TEST(Parity_Multiply_64, TestUPPER, false, static_cast<unsigned char>(UPPER));
@@ -158,8 +158,8 @@ MUTUAL_RANDOM_TEST(Parity_BrianKernighan, Parity_Multiply_32, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(Parity_Multiply_32, Parity_Multiply_64, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(Parity_Parallel, LOWER);
-SIMPLE_BENCHMARK(Parity_Parallel, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(Parity_Parallel, Sample1, LOWER);
+SIMPLE_BENCHMARK(Parity_Parallel, Sample2, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(Parity_Parallel, TestLOWER, false, LOWER);
 SIMPLE_TEST(Parity_Parallel, TestUPPER, false, static_cast<unsigned char>(UPPER));

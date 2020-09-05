@@ -100,19 +100,19 @@ const ArrayType SAMPLE2 = {1, 2, 3, 4, 5};
 const ArrayType EXPECTED2 = {120, 60, 40, 30, 24};
 
 
-SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth, SAMPLE1);
+SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth_Log, SAMPLE1);
+SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth_Log, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth_Log, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth_Log, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth_Power, SAMPLE1);
+SIMPLE_BENCHMARK(ProductArrayOfAllElementsExceptIth_Power, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth_Power, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ProductArrayOfAllElementsExceptIth_Power, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -128,7 +128,7 @@ const ArrayType SAMPLE5 = {2, 4, 1, 3, 5};
 const ArrayType EXPECTED5 = {3, 5, 0, 2, 4};
 
 
-SIMPLE_BENCHMARK(XorArrayOfAllElementsExceptIth, SAMPLE5);
+SIMPLE_BENCHMARK(XorArrayOfAllElementsExceptIth, Sample1, SAMPLE5);
 
 SIMPLE_TEST(XorArrayOfAllElementsExceptIth, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(XorArrayOfAllElementsExceptIth, TestSAMPLE4, EXPECTED4, SAMPLE4);

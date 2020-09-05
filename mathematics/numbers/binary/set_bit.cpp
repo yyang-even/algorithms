@@ -39,14 +39,14 @@ auto SetRightmostOffBit(const InputType num) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SetBit, 0, 4);
+SIMPLE_BENCHMARK(SetBit, Sample1, 0, 4);
 
 SIMPLE_TEST(SetBit, TestSample1, 0b110u, 0b100, 1);
 SIMPLE_TEST(SetBit, TestSample2, 1u, 0, 0);
 SIMPLE_TEST(SetBit, TestSample3, 0b10u, 0, 1);
 
 
-SIMPLE_BENCHMARK(SetRightmostOffBit, 7);
+SIMPLE_BENCHMARK(SetRightmostOffBit, Sample1, 7);
 
 SIMPLE_TEST(SetRightmostOffBit, TestSample1, 13u, 12);
 SIMPLE_TEST(SetRightmostOffBit, TestSample2, 7u, 7);

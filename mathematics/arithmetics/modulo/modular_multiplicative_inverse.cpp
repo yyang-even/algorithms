@@ -15,12 +15,12 @@ auto ModularMultiplicativeInverse_FermatsLittleTheorem(const int a, const int m)
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularMultiplicativeInverse, 3, 11);
+SIMPLE_BENCHMARK(ModularMultiplicativeInverse, Sample1, 3, 11);
 
 SIMPLE_TEST(ModularMultiplicativeInverse, TestSample1, 4, 3, 11);
 SIMPLE_TEST(ModularMultiplicativeInverse, TestSample2, 12, 10, 17);
 
 
-SIMPLE_BENCHMARK(ModularMultiplicativeInverse_FermatsLittleTheorem, 3, 11);
+SIMPLE_BENCHMARK(ModularMultiplicativeInverse_FermatsLittleTheorem, Sample1, 3, 11);
 
 SIMPLE_TEST(ModularMultiplicativeInverse_FermatsLittleTheorem, TestSample1, 4, 3, 11);

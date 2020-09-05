@@ -20,7 +20,7 @@ auto SumOfFirstNEvenNumbers(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfFirstNEvenNumbers, 10);
+SIMPLE_BENCHMARK(SumOfFirstNEvenNumbers, Sample1, 10);
 
 SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE1, 20u, 4);
 SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE2, 420u, 20);

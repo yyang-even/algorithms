@@ -59,16 +59,16 @@ static inline auto MakeSample3() {
 const auto SAMPLE3 = MakeSample3().GetRoot();
 
 
-SIMPLE_BENCHMARK(isBST_Recursive, SAMPLE1);
-SIMPLE_BENCHMARK(isBST_Recursive, SAMPLE2);
+SIMPLE_BENCHMARK(isBST_Recursive, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isBST_Recursive, Sample2, SAMPLE2);
 
 SIMPLE_TEST(isBST_Recursive, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isBST_Recursive, TestSAMPLE2, false, SAMPLE2);
 SIMPLE_TEST(isBST_Recursive, TestSAMPLE3, false, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(isBST_Recursive_Inorder, SAMPLE1);
-SIMPLE_BENCHMARK(isBST_Recursive_Inorder, SAMPLE2);
+SIMPLE_BENCHMARK(isBST_Recursive_Inorder, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isBST_Recursive_Inorder, Sample2, SAMPLE2);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE2, false, SAMPLE2);
@@ -79,7 +79,7 @@ const BinaryTree::ArrayType ARRAY1 = {19, 23, 25, 30, 45};
 const BinaryTree::ArrayType ARRAY2 = {19, 23, 30, 25, 45};
 
 
-SIMPLE_BENCHMARK(isBSTInorderRepresent, ARRAY1);
+SIMPLE_BENCHMARK(isBSTInorderRepresent, Sample1, ARRAY1);
 
 SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE1, true, ARRAY1);
 SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE2, false, ARRAY2);

@@ -207,52 +207,47 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr unsigned UPPER = HYPOTHETIC_MAX_STACK_DEPTH;
 
 
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, UPPER);
-RANDOM_BENCHMARK(NthFibonacci_GoldenRatio, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, Sample1, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, Sample2, UPPER);
 
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, UPPER);
-RANDOM_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, Sample1, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, Sample2, UPPER);
 
 SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(NthFibonacci_DP, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_DP, UPPER);
-RANDOM_BENCHMARK(NthFibonacci_DP, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_DP, Sample1, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_DP, Sample2, UPPER);
 
 SIMPLE_TEST(NthFibonacci_DP, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_DP, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_DP, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, UPPER);
-RANDOM_BENCHMARK(NthFibonacci_DP_Optimized, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, Sample1, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_DP_Optimized, Sample2, UPPER);
 
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_DP_Optimized, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, UPPER);
-RANDOM_BENCHMARK(NthFibonacci_TailRecursion, LOWER, UPPER);
+SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, Sample1, LOWER);
+SIMPLE_BENCHMARK(NthFibonacci_TailRecursion, Sample2, UPPER);
 
 SIMPLE_TEST(NthFibonacci_TailRecursion, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(SumOfFibonacci, 4);
+SIMPLE_BENCHMARK(SumOfFibonacci, Sample1, 4);
 
 SIMPLE_TEST(SumOfFibonacci, TestSAMPLE1, 4u, 3);
 SIMPLE_TEST(SumOfFibonacci, TestSAMPLE2, 7u, 4);

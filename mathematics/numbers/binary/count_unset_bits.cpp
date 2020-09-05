@@ -3,7 +3,7 @@
 #include "count_unset_bits.h"
 
 #ifdef __GNUG__
-SIMPLE_BENCHMARK(CountUnsetBits, 0);
+SIMPLE_BENCHMARK(CountUnsetBits, Sample1, 0);
 
 SIMPLE_TEST(CountUnsetBits, TestSample1, 0, 0);
 SIMPLE_TEST(CountUnsetBits, TestSample2, 3, 17);

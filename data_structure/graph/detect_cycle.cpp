@@ -201,13 +201,13 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
 
 
-SIMPLE_BENCHMARK(DetectCycle_DFS, 4, SAMPLE1);
+SIMPLE_BENCHMARK(DetectCycle_DFS, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE2, false, 4, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Degrees, 4, SAMPLE1);
+SIMPLE_BENCHMARK(DetectCycle_Degrees, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE2, false, 4, SAMPLE2);
@@ -219,19 +219,19 @@ const ArrayType EXPECTED3 = {0, 1, 2};
 const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}};
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_DFS, 5, SAMPLE3);
+SIMPLE_BENCHMARK(DetectCycle_Undirected_DFS, Sample1, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE3, true, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE4, false, 3, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_BFS, 5, SAMPLE3);
+SIMPLE_BENCHMARK(DetectCycle_Undirected_BFS, Sample1, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE3, true, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE4, false, 3, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_Degrees, 5, SAMPLE3);
+SIMPLE_BENCHMARK(DetectCycle_Undirected_Degrees, Sample1, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE3, EXPECTED3, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE4, {}, 3, SAMPLE4);

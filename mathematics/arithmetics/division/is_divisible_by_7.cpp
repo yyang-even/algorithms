@@ -67,9 +67,8 @@ constexpr auto LOWER = std::numeric_limits<int>::min();
 constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(isDivisibleBy7, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy7, UPPER);
-RANDOM_BENCHMARK(isDivisibleBy7, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy7, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy7, Sample2, UPPER);
 
 SIMPLE_TEST(isDivisibleBy7, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy7, TestUPPER, false, UPPER);
@@ -80,7 +79,7 @@ SIMPLE_TEST(isDivisibleBy7, TestSAMPLE4, true, -203);
 SIMPLE_TEST(isDivisibleBy7, TestSAMPLE5, false, -200);
 
 
-SIMPLE_BENCHMARK(isOctalDivisibleBy7, "112");
+SIMPLE_BENCHMARK(isOctalDivisibleBy7, Sample1, "112");
 
 SIMPLE_TEST(isOctalDivisibleBy7, TestSAMPLE1, false, "112");
 SIMPLE_TEST(isOctalDivisibleBy7, TestSAMPLE2, true, "25");

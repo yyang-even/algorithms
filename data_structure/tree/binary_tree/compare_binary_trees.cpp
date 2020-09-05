@@ -51,7 +51,7 @@ const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 4).Get
 const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), SAMPLE1->value).GetRoot();
 
 
-SIMPLE_BENCHMARK(isSameTree, SAMPLE1, SAMPLE1);
+SIMPLE_BENCHMARK(isSameTree, Sample1, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(isSameTree, TestSAMPLE1, true, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(isSameTree, TestSAMPLE2, true, EMPTY_TREE, EMPTY_TREE);
@@ -60,7 +60,7 @@ SIMPLE_TEST(isSameTree, TestSAMPLE4, false, SAMPLE1, CLONE_SAMPLE1);
 SIMPLE_TEST(isSameTree, TestSAMPLE5, true, EMPTY_TREE, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(areIdenticalTrees, SAMPLE1, SAMPLE1);
+SIMPLE_BENCHMARK(areIdenticalTrees, Sample1, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, EMPTY_TREE, EMPTY_TREE);
@@ -69,7 +69,7 @@ SIMPLE_TEST(areIdenticalTrees, TestSAMPLE4, true, SAMPLE1, CLONE_SAMPLE1);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE5, false, SAMPLE1, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(areIdenticalTrees_Iterative, SAMPLE1, SAMPLE1);
+SIMPLE_BENCHMARK(areIdenticalTrees_Iterative, Sample1, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(areIdenticalTrees_Iterative, TestSAMPLE1, true, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(areIdenticalTrees_Iterative, TestSAMPLE2, true, EMPTY_TREE, EMPTY_TREE);

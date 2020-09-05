@@ -44,19 +44,19 @@ auto ConditionallyAssign_Not(const int a, const int b, const bool x) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign, 5, 10, 1);
+SIMPLE_BENCHMARK(ConditionallyAssign, Sample1, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign, TestSample2, 5, 5, 10, 0);
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign_Arithmetic, 5, 10, 1);
+SIMPLE_BENCHMARK(ConditionallyAssign_Arithmetic, Sample1, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign_Arithmetic, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign_Arithmetic, TestSample2, 5, 5, 10, 0);
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign_Not, 5, 10, 1);
+SIMPLE_BENCHMARK(ConditionallyAssign_Not, Sample1, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign_Not, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign_Not, TestSample2, 5, 5, 10, 0);

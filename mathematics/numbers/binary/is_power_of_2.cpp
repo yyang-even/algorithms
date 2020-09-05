@@ -13,10 +13,8 @@ namespace {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPowerOf2, 1);
-SIMPLE_BENCHMARK(IsPowerOf2, 0);
-SIMPLE_BENCHMARK(IsPowerOf2, std::numeric_limits<int>::min());
-SIMPLE_BENCHMARK(IsPowerOf2, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(IsPowerOf2, Sample1, 1);
+SIMPLE_BENCHMARK(IsPowerOf2, Sample2, 0);
 
 SIMPLE_TEST(IsPowerOf2, TestSample1, true, 1);
 SIMPLE_TEST(IsPowerOf2, TestSample2, false, 0);

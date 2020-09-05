@@ -47,7 +47,7 @@ auto SumOfSquareSums(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfSquares, 7);
+SIMPLE_BENCHMARK(SumOfSquares, Sample1, 7);
 
 SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5u, 2);
 SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204u, 8);
@@ -55,19 +55,19 @@ SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385u, 10);
 SIMPLE_TEST(SumOfSquares, TestSAMPLE4, 55u, 5);
 
 
-SIMPLE_BENCHMARK(SumOfSquareSums, 7);
+SIMPLE_BENCHMARK(SumOfSquareSums, Sample1, 7);
 
 SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6u, 2);
 SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20u, 3);
 
 
-SIMPLE_BENCHMARK(SumOfSquares_2, 7);
+SIMPLE_BENCHMARK(SumOfSquares_2, Sample1, 7);
 
 SIMPLE_TEST(SumOfSquares_2, TestSAMPLE1, 5u, 2);
 SIMPLE_TEST(SumOfSquares_2, TestSAMPLE2, 204u, 8);
 SIMPLE_TEST(SumOfSquares_2, TestSAMPLE3, 385u, 10);
 
 
-SIMPLE_BENCHMARK(AverageOfSquaresOfNaturalNumbers, 7);
+SIMPLE_BENCHMARK(AverageOfSquaresOfNaturalNumbers, Sample1, 7);
 
 SIMPLE_TEST(AverageOfSquaresOfNaturalNumbers, TestSAMPLE1, 2.5, 2);

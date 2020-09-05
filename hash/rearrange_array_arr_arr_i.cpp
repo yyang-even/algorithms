@@ -33,7 +33,7 @@ const ArrayType SAMPLE3 = {0, 1, 2, 3};
 const ArrayType EXPECTED3 = {0, 1, 2, 3};
 
 
-SIMPLE_BENCHMARK(RearrangeArrayInPlace, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangeArrayInPlace, Sample1, SAMPLE1);
 
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE2, EXPECTED2, SAMPLE2);

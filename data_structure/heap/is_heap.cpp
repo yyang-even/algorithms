@@ -56,7 +56,7 @@ const MaxHeap<int>::ArrayType SAMPLE_ARRAY3 = {9};
 const MaxHeap<int>::ArrayType SAMPLE_ARRAY4 = {90, 15, 10, 7, 12, 2, 7, 3};
 
 
-SIMPLE_BENCHMARK(isMaxHeap_Recursive, SAMPLE_ARRAY1);
+SIMPLE_BENCHMARK(isMaxHeap_Recursive, Sample1, SAMPLE_ARRAY1);
 
 SIMPLE_TEST(isMaxHeap_Recursive, TestSample1, true, SAMPLE_ARRAY1);
 SIMPLE_TEST(isMaxHeap_Recursive, TestSample2, false, SAMPLE_ARRAY2);
@@ -64,7 +64,7 @@ SIMPLE_TEST(isMaxHeap_Recursive, TestSample3, true, SAMPLE_ARRAY3);
 SIMPLE_TEST(isMaxHeap_Recursive, TestSample4, true, SAMPLE_ARRAY4);
 
 
-SIMPLE_BENCHMARK(isMaxHeap_Iterative, SAMPLE_ARRAY1);
+SIMPLE_BENCHMARK(isMaxHeap_Iterative, Sample1, SAMPLE_ARRAY1);
 
 SIMPLE_TEST(isMaxHeap_Iterative, TestSample1, true, SAMPLE_ARRAY1);
 SIMPLE_TEST(isMaxHeap_Iterative, TestSample2, false, SAMPLE_ARRAY2);
@@ -76,7 +76,7 @@ const MinHeap<int>::ArrayType SAMPLE_ARRAY5 = {10, 15, 14, 25, 30};
 const MinHeap<int>::ArrayType SAMPLE_ARRAY6 = {30, 56, 22, 49, 30, 51, 2, 67};
 
 
-SIMPLE_BENCHMARK(isMinHeap_Iterative, SAMPLE_ARRAY5);
+SIMPLE_BENCHMARK(isMinHeap_Iterative, Sample1, SAMPLE_ARRAY5);
 
 SIMPLE_TEST(isMinHeap_Iterative, TestSample1, true, SAMPLE_ARRAY5);
 SIMPLE_TEST(isMinHeap_Iterative, TestSample2, false, SAMPLE_ARRAY6);
@@ -103,7 +103,7 @@ static inline auto MakeSampleTree2() {
 const auto SAMPLE_TREE2 = MakeSampleTree2().GetRoot();
 
 
-SIMPLE_BENCHMARK(isMaxHeap, SAMPLE_TREE1);
+SIMPLE_BENCHMARK(isMaxHeap, Sample1, SAMPLE_TREE1);
 
 SIMPLE_TEST(isMaxHeap, TestSample1, false, SAMPLE_TREE1);
 SIMPLE_TEST(isMaxHeap, TestSample2, true, SAMPLE_TREE2);

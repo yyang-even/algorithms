@@ -30,8 +30,8 @@ auto BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(BinaryTreeSearch_LevelOrder, SAMPLE1, 3);
-SIMPLE_BENCHMARK(BinaryTreeSearch_LevelOrder, SAMPLE1, -1);
+SIMPLE_BENCHMARK(BinaryTreeSearch_LevelOrder, Sample1, SAMPLE1, 3);
+SIMPLE_BENCHMARK(BinaryTreeSearch_LevelOrder, Sample2, SAMPLE1, -1);
 
 SIMPLE_TEST(BinaryTreeSearch_LevelOrder, TestSAMPLE1, true, SAMPLE1, 3);
 SIMPLE_TEST(BinaryTreeSearch_LevelOrder, TestSAMPLE2, false, SAMPLE1, -1);

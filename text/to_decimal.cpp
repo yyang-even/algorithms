@@ -74,7 +74,7 @@ int BinaryToDecimal_Recursive(const std::string &binary, const std::string::size
 }//namespace
 
 
-SIMPLE_BENCHMARK(HexToDecimal, "1A");
+SIMPLE_BENCHMARK(HexToDecimal, Sample1, "1A");
 
 SIMPLE_TEST(HexToDecimal, TestSAMPLE1, 26, "1A");
 SIMPLE_TEST(HexToDecimal, TestSAMPLE2, 43, "2B");
@@ -83,7 +83,7 @@ SIMPLE_TEST(HexToDecimal, TestSAMPLE4, 1298, "512");
 SIMPLE_TEST(HexToDecimal, TestSAMPLE5, 291, "123");
 
 
-SIMPLE_BENCHMARK(HexToDecimal_StringStream, "1A");
+SIMPLE_BENCHMARK(HexToDecimal_StringStream, Sample1, "1A");
 
 SIMPLE_TEST(HexToDecimal_StringStream, TestSAMPLE1, 26, "1A");
 SIMPLE_TEST(HexToDecimal_StringStream, TestSAMPLE2, 43, "2B");
@@ -92,14 +92,14 @@ SIMPLE_TEST(HexToDecimal_StringStream, TestSAMPLE4, 1298, "512");
 SIMPLE_TEST(HexToDecimal_StringStream, TestSAMPLE5, 291, "123");
 
 
-SIMPLE_BENCHMARK(OctalToDecimal, "67");
+SIMPLE_BENCHMARK(OctalToDecimal, Sample1, "67");
 
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE1, 55, "67");
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE2, 330, "512");
 SIMPLE_TEST(OctalToDecimal, TestSAMPLE3, 83, "123");
 
 
-SIMPLE_BENCHMARK(BinaryToDecimal, "111");
+SIMPLE_BENCHMARK(BinaryToDecimal, Sample1, "111");
 
 SIMPLE_TEST(BinaryToDecimal, TestSAMPLE1, 7, "111");
 SIMPLE_TEST(BinaryToDecimal, TestSAMPLE2, 10, "1010");
@@ -108,7 +108,7 @@ SIMPLE_TEST(BinaryToDecimal, TestSAMPLE4, 169, "10101001");
 SIMPLE_TEST(BinaryToDecimal, TestSAMPLE5, 9, "1001");
 
 
-SIMPLE_BENCHMARK(BinaryToDecimal_Recursive, "111");
+SIMPLE_BENCHMARK(BinaryToDecimal_Recursive, Sample1, "111");
 
 SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE1, 7, "111");
 SIMPLE_TEST(BinaryToDecimal_Recursive, TestSAMPLE2, 10, "1010");

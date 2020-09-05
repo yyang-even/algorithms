@@ -74,6 +74,6 @@ auto MinMeanWeightCycle(const std::size_t number_vertices, const DirectedEdgeArr
 const DirectedEdgeArrayType SAMPLE1 = {{0, 1, 1}, {0, 2, 10}, {1, 2, 3}, {2, 3, 2}, {3, 1, 0}, {3, 0, 8}};
 
 
-SIMPLE_BENCHMARK(MinMeanWeightCycle, 4, SAMPLE1);
+SIMPLE_BENCHMARK(MinMeanWeightCycle, Sample1, 4, SAMPLE1);
 
 SIMPLE_DOUBLE_TEST(MinMeanWeightCycle, TestSAMPLE1, 1.66667, 4, SAMPLE1);

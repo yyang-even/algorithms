@@ -56,14 +56,14 @@ const auto EMPTY_TREE = BinaryTree {} .GetRoot();
 const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 5).GetRoot();
 
 
-SIMPLE_BENCHMARK(isFullBinaryTree_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(isFullBinaryTree_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE0, true, EMPTY_TREE);
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE2, false, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(isFullBinaryTree_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(isFullBinaryTree_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isFullBinaryTree_Iterative, TestSAMPLE0, true, EMPTY_TREE);
 SIMPLE_TEST(isFullBinaryTree_Iterative, TestSAMPLE1, true, SAMPLE1);

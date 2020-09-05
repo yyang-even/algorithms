@@ -1,6 +1,7 @@
 #include "common_header.h"
 
-using InputType = int;
+
+namespace {
 
 /** The Modulo-3 Sequence
  *  @reference  The Modulo-3 Sequence
@@ -10,22 +11,24 @@ using InputType = int;
  * next number of the sequence is the sum of the previous 2 modulo 3.
  * Write a function that finds the nth number of the sequence.
  */
-InputType Modulo3Sequence(const InputType n) {
-    const std::vector<InputType> pattern = {1, 0, 1, 1, 2, 0, 2, 1};
+int Modulo3Sequence(const int n) {
+    const std::vector<int> pattern = {1, 0, 1, 1, 2, 0, 2, 1};
     return pattern[n % pattern.size()];
 }
 
+}//namespace
+
 
 constexpr auto LOWER = 1;
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType SAMPLE2 = 2;
-constexpr InputType SAMPLE3 = 3;
-constexpr InputType SAMPLE4 = 4;
-constexpr InputType SAMPLE5 = 5;
+constexpr auto UPPER = std::numeric_limits<int>::max();
+constexpr int SAMPLE2 = 2;
+constexpr int SAMPLE3 = 3;
+constexpr int SAMPLE4 = 4;
+constexpr int SAMPLE5 = 5;
 
-SIMPLE_BENCHMARK(Modulo3Sequence, LOWER);
-SIMPLE_BENCHMARK(Modulo3Sequence, UPPER);
-RANDOM_BENCHMARK(Modulo3Sequence, LOWER, UPPER);
+
+SIMPLE_BENCHMARK(Modulo3Sequence, Sample1, LOWER);
+SIMPLE_BENCHMARK(Modulo3Sequence, Sample2, UPPER);
 
 SIMPLE_TEST(Modulo3Sequence, TestLOWER, 0, LOWER);
 SIMPLE_TEST(Modulo3Sequence, TestSAMPLE2, 1, SAMPLE2);

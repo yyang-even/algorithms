@@ -15,7 +15,7 @@ auto AllHaveEvenFrequency(const std::string &characters) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(AllHaveEvenFrequency, "abaccaba");
+SIMPLE_BENCHMARK(AllHaveEvenFrequency, Sample1, "abaccaba");
 
 SIMPLE_TEST(AllHaveEvenFrequency, TestSAMPLE1, true, "abaccaba");
 SIMPLE_TEST(AllHaveEvenFrequency, TestSAMPLE2, false, "hthth");

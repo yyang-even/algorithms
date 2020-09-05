@@ -69,7 +69,7 @@ auto DegreeOfVertex(const std::size_t number_vertices, const UndirectedEdgeArray
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfDegreesOfCycleGraph, 4);
+SIMPLE_BENCHMARK(SumOfDegreesOfCycleGraph, Sample1, 4);
 
 SIMPLE_TEST(SumOfDegreesOfCycleGraph, TestSAMPLE1, 8, 4);
 
@@ -78,17 +78,17 @@ const UndirectedEdgeArrayType SAMPLE1 = {{0, 1}, {1, 2}, {0, 3}, {1, 3}};
 const ArrayType EXPECTED1 = {2, 3, 1, 2};
 
 
-SIMPLE_BENCHMARK(InDegrees, 4, SAMPLE1);
+SIMPLE_BENCHMARK(InDegrees, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(InDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(OutDegrees, 4, SAMPLE1);
+SIMPLE_BENCHMARK(OutDegrees, Sample1, 4, SAMPLE1);
 
 SIMPLE_TEST(OutDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(DegreeOfVertex, 4, SAMPLE1, 1);
+SIMPLE_BENCHMARK(DegreeOfVertex, Sample1, 4, SAMPLE1, 1);
 
 SIMPLE_TEST(DegreeOfVertex, TestSAMPLE1, EXPECTED1[0], 4, SAMPLE1, 0);
 SIMPLE_TEST(DegreeOfVertex, TestSAMPLE2, EXPECTED1[1], 4, SAMPLE1, 1);

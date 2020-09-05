@@ -44,7 +44,7 @@ constexpr auto LOWER = std::numeric_limits<InputType>::min() + 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
-SIMPLE_BENCHMARK(PrintInteger, -1);
+SIMPLE_BENCHMARK(PrintInteger, Sample1, -1);
 
 SIMPLE_TEST(PrintInteger, TestSample1, "-1", -1);
 SIMPLE_TEST(PrintInteger, TestSample2, "0", 0);

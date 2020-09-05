@@ -61,7 +61,7 @@ const ArrayType SAMPLE4 = { -10, 20, 9, 40};
 const ArrayType SAMPLE5 = {0, 20, 9, 40};
 
 
-SIMPLE_BENCHMARK(PairElementsProductAsN_Hash, SAMPLE1, 33);
+SIMPLE_BENCHMARK(PairElementsProductAsN_Hash, Sample1, SAMPLE1, 33);
 
 SIMPLE_TEST(PairElementsProductAsN_Hash, TestSample1, true, SAMPLE1, 400);
 SIMPLE_TEST(PairElementsProductAsN_Hash, TestSample2, false, SAMPLE2, 190);
@@ -75,7 +75,7 @@ const std::list<int> LIST_EVEN = {1, 2, 3, 4, 5, 6, 7};
 const std::list<int> LIST_ODD = {1, 2, 3, 4, 5, 6};
 
 
-SIMPLE_BENCHMARK(PairElementsProductAsN_TwoPointers, LIST1, 8);
+SIMPLE_BENCHMARK(PairElementsProductAsN_TwoPointers, Sample1, LIST1, 8);
 
 SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample1, true, LIST1, 8);
 SIMPLE_TEST(PairElementsProductAsN_TwoPointers, TestSample2, true, LIST_EVEN, 6);

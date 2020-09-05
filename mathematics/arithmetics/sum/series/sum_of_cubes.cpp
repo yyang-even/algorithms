@@ -43,19 +43,19 @@ auto SumOfEvenCubes(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfCubes, 7);
+SIMPLE_BENCHMARK(SumOfCubes, Sample1, 7);
 
 SIMPLE_TEST(SumOfCubes, TestSAMPLE1, 225u, 5);
 SIMPLE_TEST(SumOfCubes, TestSAMPLE2, 784u, 7);
 
 
-SIMPLE_BENCHMARK(SumOfOddCubes, 7);
+SIMPLE_BENCHMARK(SumOfOddCubes, Sample1, 7);
 
 SIMPLE_TEST(SumOfOddCubes, TestSAMPLE1, 28u, 2);
 SIMPLE_TEST(SumOfOddCubes, TestSAMPLE2, 496u, 4);
 
 
-SIMPLE_BENCHMARK(SumOfEvenCubes, 7);
+SIMPLE_BENCHMARK(SumOfEvenCubes, Sample1, 7);
 
 SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE1, 72u, 2);
 SIMPLE_TEST(SumOfEvenCubes, TestSAMPLE2, 800u, 4);

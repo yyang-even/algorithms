@@ -66,31 +66,31 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Iterative, UPPER);
+SIMPLE_BENCHMARK(ToBinaryString_Iterative, Sample1, UPPER);
 
 SIMPLE_TEST(ToBinaryString_Iterative, TestSample1, std::string(BitsNumber<unsigned>, '0'), LOWER);
 SIMPLE_TEST(ToBinaryString_Iterative, TestSample2, std::string(BitsNumber<unsigned>, '1'), UPPER);
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Recursive, UPPER);
+SIMPLE_BENCHMARK(ToBinaryString_Recursive, Sample1, UPPER);
 
 SIMPLE_TEST(ToBinaryString_Recursive, TestSample1, std::string(BitsNumber<unsigned>, '0'), LOWER);
 SIMPLE_TEST(ToBinaryString_Recursive, TestSample2, std::string(BitsNumber<unsigned>, '1'), UPPER);
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Bitset, UPPER);
+SIMPLE_BENCHMARK(ToBinaryString_Bitset, Sample1, UPPER);
 
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Iterative, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Recursive, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(OctalToBinary, "345");
+SIMPLE_BENCHMARK(OctalToBinary, Sample1, "345");
 
 SIMPLE_TEST(OctalToBinary, TestSAMPLE1, "011100101", "345");
 SIMPLE_TEST(OctalToBinary, TestSAMPLE2, "001010000", "120");
 
 
-SIMPLE_BENCHMARK(HexToBinary, "1AC5");
+SIMPLE_BENCHMARK(HexToBinary, Sample1, "1AC5");
 
 SIMPLE_TEST(HexToBinary, TestSAMPLE1, "0001101011000101", "1AC5");
 SIMPLE_TEST(HexToBinary, TestSAMPLE2, "0101110100011111", "5D1F");

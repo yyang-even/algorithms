@@ -22,11 +22,11 @@ auto testDeleteAll_Recursive() {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testDeleteAll);
+SIMPLE_BENCHMARK0(testDeleteAll);
 
 SIMPLE_TEST(testDeleteAll, TestSample, 0u);
 
 
-SIMPLE_BENCHMARK(testDeleteAll_Recursive);
+SIMPLE_BENCHMARK0(testDeleteAll_Recursive);
 
 SIMPLE_TEST(testDeleteAll_Recursive, TestSample, 0u);

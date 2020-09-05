@@ -56,16 +56,16 @@ const std::string EXPECTED_LOWER = "sanjaykanna";
 const std::string EXPECTED_TOGGLE = "sANJAykANNa";
 
 
-SIMPLE_BENCHMARK(TransformString, SAMPLE, ToLowerCase);
+SIMPLE_BENCHMARK(TransformString, Sample1, SAMPLE, ToLowerCase);
 
 SIMPLE_TEST(TransformString, TestSampleLower, EXPECTED_LOWER, SAMPLE, ToLowerCase);
 
 
-SIMPLE_BENCHMARK(TransformString, SAMPLE, ToUpperCase);
+SIMPLE_BENCHMARK(TransformString, Sample2, SAMPLE, ToUpperCase);
 
 SIMPLE_TEST(TransformString, TestSampleUpper, EXPECTED_UPPER, SAMPLE, ToUpperCase);
 
 
-SIMPLE_BENCHMARK(TransformString, SAMPLE, ToggleCase);
+SIMPLE_BENCHMARK(TransformString, Sample3, SAMPLE, ToggleCase);
 
 SIMPLE_TEST(TransformString, TestSampleToggle, EXPECTED_TOGGLE, SAMPLE, ToggleCase);

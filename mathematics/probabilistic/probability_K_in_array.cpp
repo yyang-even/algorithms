@@ -20,7 +20,7 @@ const ArrayType SAMPLE1 = {4, 7, 2, 0, 8, 7, 5};
 const ArrayType SAMPLE2 = {2, 3, 5, 1, 9, 8, 0, 7, 6, 5};
 
 
-SIMPLE_BENCHMARK(ProbabilityOfKinArray, SAMPLE2, 5);
+SIMPLE_BENCHMARK(ProbabilityOfKinArray, Sample1, SAMPLE2, 5);
 
 SIMPLE_TEST(ProbabilityOfKinArray, TestSample1, 0, SAMPLE1, 3);
 SIMPLE_TEST(ProbabilityOfKinArray, TestSample2, 0.2, SAMPLE2, 5);

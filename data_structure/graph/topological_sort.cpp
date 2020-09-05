@@ -89,7 +89,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {
 const ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
 
 
-SIMPLE_BENCHMARK(TopologicalSort, 6, SAMPLE1);
+SIMPLE_BENCHMARK(TopologicalSort, Sample1, 6, SAMPLE1);
 
 SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
 
@@ -97,7 +97,7 @@ SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
 const ArrayType EXPECTED2 = {4, 5, 2, 0, 3, 1};
 
 
-SIMPLE_BENCHMARK(TopologicalSort_Kahn, 6, SAMPLE1);
+SIMPLE_BENCHMARK(TopologicalSort_Kahn, Sample1, 6, SAMPLE1);
 
 SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED2, 6, SAMPLE1);
 
@@ -119,6 +119,6 @@ const std::vector<ArrayType> EXPECTED3 = {
 };
 
 
-SIMPLE_BENCHMARK(AllTopologicalSort, 6, SAMPLE1);
+SIMPLE_BENCHMARK(AllTopologicalSort, Sample1, 6, SAMPLE1);
 
 SIMPLE_TEST(AllTopologicalSort, TestSAMPLE1, EXPECTED3, 6, SAMPLE1);

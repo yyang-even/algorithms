@@ -56,19 +56,19 @@ auto ReverseDigits_Safe(int number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ReverseDigits_Iterative, 12345);
+SIMPLE_BENCHMARK(ReverseDigits_Iterative, Sample1, 12345);
 
 SIMPLE_TEST(ReverseDigits_Iterative, TestSAMPLE1, 54321, 12345);
 SIMPLE_TEST(ReverseDigits_Iterative, TestSAMPLE2, 6789, 9876);
 
 
-SIMPLE_BENCHMARK(ReverseDigits_Recursive, 12345);
+SIMPLE_BENCHMARK(ReverseDigits_Recursive, Sample1, 12345);
 
 SIMPLE_TEST(ReverseDigits_Recursive, TestSAMPLE1, 54321, 12345);
 SIMPLE_TEST(ReverseDigits_Recursive, TestSAMPLE2, 6789, 9876);
 
 
-SIMPLE_BENCHMARK(ReverseDigits_Safe, 12345);
+SIMPLE_BENCHMARK(ReverseDigits_Safe, Sample1, 12345);
 
 SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE1, 54321, 12345);
 SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE2, 6789, 9876);

@@ -165,7 +165,7 @@ constexpr uint32_t LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(LogBase2, UPPER);
+SIMPLE_BENCHMARK(LogBase2, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2, TestUPPER, 31u, UPPER);
@@ -173,7 +173,7 @@ SIMPLE_TEST(LogBase2, TestSAMPLE1, 3u, 8);
 SIMPLE_TEST(LogBase2, TestSAMPLE2, 4u, 17);
 
 
-SIMPLE_BENCHMARK(LogBase2_Float, UPPER);
+SIMPLE_BENCHMARK(LogBase2_Float, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_Float, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2_Float, TestUPPER, 31u, UPPER);
@@ -183,7 +183,7 @@ SIMPLE_TEST(LogBase2_Float, TestSAMPLE2, 4u, 17);
 MUTUAL_RANDOM_TEST(LogBase2, LogBase2_Float, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(LogBase2_LookupTable, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LookupTable, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_LookupTable, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2_LookupTable, TestUPPER, 31u, UPPER);
@@ -193,7 +193,7 @@ SIMPLE_TEST(LogBase2_LookupTable, TestSAMPLE2, 4u, 17);
 MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_Float, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(LogBase2_LgN_Branch, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LgN_Branch, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_LgN_Branch, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2_LgN_Branch, TestUPPER, 31u, UPPER);
@@ -203,7 +203,7 @@ SIMPLE_TEST(LogBase2_LgN_Branch, TestSAMPLE2, 4u, 17);
 MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_Branch, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(LogBase2_LgN_NoBranch, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LgN_NoBranch, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_LgN_NoBranch, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2_LgN_NoBranch, TestUPPER, 31u, UPPER);
@@ -213,7 +213,7 @@ SIMPLE_TEST(LogBase2_LgN_NoBranch, TestSAMPLE2, 4u, 17);
 MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_NoBranch, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(LogBase2_LgN_MultiplyAndLookup, UPPER);
+SIMPLE_BENCHMARK(LogBase2_LgN_MultiplyAndLookup, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestUPPER, 31u, UPPER);
@@ -223,21 +223,21 @@ SIMPLE_TEST(LogBase2_LgN_MultiplyAndLookup, TestSAMPLE2, 4u, 17);
 MUTUAL_RANDOM_TEST(LogBase2_LookupTable, LogBase2_LgN_MultiplyAndLookup, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(LogBase2_FloatInput, UPPER);
+SIMPLE_BENCHMARK(LogBase2_FloatInput, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_FloatInput, TestLOWER, 0, LOWER);
 SIMPLE_TEST(LogBase2_FloatInput, TestSAMPLE1, 3, 8);
 SIMPLE_TEST(LogBase2_FloatInput, TestSAMPLE2, 4, 17);
 
 
-SIMPLE_BENCHMARK(LogBase2_IEEE754Float, UPPER);
+SIMPLE_BENCHMARK(LogBase2_IEEE754Float, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase2_IEEE754Float, TestLOWER, 0, LOWER);
 SIMPLE_TEST(LogBase2_IEEE754Float, TestSAMPLE1, 3, 8);
 SIMPLE_TEST(LogBase2_IEEE754Float, TestSAMPLE2, 4, 17);
 
 
-SIMPLE_BENCHMARK(LogBase2ofPow2r, UPPER, 0);
+SIMPLE_BENCHMARK(LogBase2ofPow2r, Sample1, UPPER, 0);
 
 SIMPLE_TEST(LogBase2ofPow2r, TestLOWER, 0, LOWER, 0);
 SIMPLE_TEST(LogBase2ofPow2r, TestSAMPLE1, 3, 8, 0);

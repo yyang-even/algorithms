@@ -13,6 +13,6 @@ auto BirthdayParadox(const double probability) {
 }
 
 
-SIMPLE_BENCHMARK(BirthdayParadox, 0.70);
+SIMPLE_BENCHMARK(BirthdayParadox, Sample1, 0.70);
 
 SIMPLE_TEST(BirthdayParadox, TestSAMPLE, 30, 0.70);

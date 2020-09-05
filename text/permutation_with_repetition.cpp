@@ -41,6 +41,6 @@ auto PermutationWithRepetition(std::string input) {
 const std::vector<std::string> EXPECTED1 = {"aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc", "baa", "bab", "bac", "bba", "bbb", "bbc", "bca", "bcb", "bcc", "caa", "cab", "cac", "cba", "cbb", "cbc", "cca", "ccb", "ccc"};
 
 
-SIMPLE_BENCHMARK(PermutationWithRepetition, "ab4c12ed3");
+SIMPLE_BENCHMARK(PermutationWithRepetition, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(PermutationWithRepetition, TestSAMPLE1, EXPECTED1, "abc");

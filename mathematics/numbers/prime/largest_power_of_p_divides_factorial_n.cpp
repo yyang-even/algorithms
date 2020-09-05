@@ -30,9 +30,7 @@ constexpr auto LOWER = std::numeric_limits<InputType>::min();
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
-SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, 2, LOWER);
-SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, 2, UPPER);
-SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, 2, 10);
+SIMPLE_BENCHMARK(LargestPowerOfPDividesFactorialN, Sample1, 2, 10);
 
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE1, 0u, 3, 2);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE2, 8u, 2, 10);
@@ -42,9 +40,7 @@ SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestUPPER, LargestPowerOf2DividesF
             2, UPPER);
 
 
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, LOWER);
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, UPPER);
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
+SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN, Sample1, 10);
 
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0u, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8u, 10);
@@ -54,9 +50,7 @@ SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER, UPPER - BitsNumber<decl
 
 
 #ifdef __GNUC__
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN_BuiltIn, LOWER);
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN_BuiltIn, UPPER);
-SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN_BuiltIn, 10);
+SIMPLE_BENCHMARK(LargestPowerOf2DividesFactorialN_BuiltIn, Sample1, 10);
 
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE1, 0u, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE2, 8u, 10);

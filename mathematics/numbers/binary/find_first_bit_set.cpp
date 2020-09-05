@@ -32,7 +32,7 @@ constexpr auto LOWER = 1u;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
-SIMPLE_BENCHMARK(FindFirstBitSet, 4);
+SIMPLE_BENCHMARK(FindFirstBitSet, Sample1, 4);
 
 SIMPLE_TEST(FindFirstBitSet, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(FindFirstBitSet, TestSample1, 1u, 0b101);
@@ -44,13 +44,13 @@ SIMPLE_TEST(FindFirstBitSet, TestUPPER, 1u, UPPER);
 MUTUAL_RANDOM_TEST(FindFirstBitSet, ffs, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(PositionOfRightmostDifferentBit, 11, 9);
+SIMPLE_BENCHMARK(PositionOfRightmostDifferentBit, Sample1, 11, 9);
 
 SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample1, 2, 11, 9);
 SIMPLE_TEST(PositionOfRightmostDifferentBit, TestSample2, 5, 52, 4);
 
 
-SIMPLE_BENCHMARK(NumberFormedByRightmostBit, 4);
+SIMPLE_BENCHMARK(NumberFormedByRightmostBit, Sample1, 4);
 
 SIMPLE_TEST(NumberFormedByRightmostBit, TestSample1, 1u, 7);
 SIMPLE_TEST(NumberFormedByRightmostBit, TestSample2, 2u, 10);

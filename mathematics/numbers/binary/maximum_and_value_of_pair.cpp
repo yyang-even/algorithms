@@ -65,7 +65,7 @@ const ArrayType VALUES5 = {4, 8, 12, 16};
 const ArrayType VALUES6 = {4, 8, 16, 2};
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfPair_Value, VALUES5);
+SIMPLE_BENCHMARK(MaxAndValueOfPair_Value, Sample1, VALUES5);
 
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE2, 0u, VALUES2);
@@ -75,7 +75,7 @@ SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE5, 8u, VALUES5);
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE6, 0u, VALUES6);
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfPair_Pair, VALUES5);
+SIMPLE_BENCHMARK(MaxAndValueOfPair_Pair, Sample1, VALUES5);
 
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE1, EXPECTED0, VALUES1);
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE2, EXPECTED0, VALUES2);
@@ -85,7 +85,7 @@ SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE5, std::make_pair(8u, 12u), VALUES
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE6, EXPECTED0, VALUES6);
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfRange, 523641, 985624);
+SIMPLE_BENCHMARK(MaxAndValueOfRange, Sample1, 523641, 985624);
 
 SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE1, 8u, 1, 9);
 SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE2, 985622u, 523641, 985624);

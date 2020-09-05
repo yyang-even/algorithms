@@ -41,7 +41,7 @@ auto InorderSuccessor_WithoutParentPointer(BinaryTree::Node::PointerType current
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(InorderSuccessor_WithoutParentPointer, SAMPLE1, SAMPLE1);
+SIMPLE_BENCHMARK(InorderSuccessor_WithoutParentPointer, Sample1, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(InorderSuccessor_WithoutParentPointer, TestSAMPLE1,
             SAMPLE1->right, SAMPLE1, SAMPLE1);

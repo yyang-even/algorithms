@@ -45,13 +45,13 @@ const ArrayType EXPECTED1 = {0, 1, 4, 9, 16};
 const ArrayType EXPECTED2 = {0, 1, 4, 9, 16, 25};
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstN_Prev, 51);
+SIMPLE_BENCHMARK(SquaresOfFirstN_Prev, Sample1, 51);
 
 SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample1, EXPECTED1, 5);
 SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample2, EXPECTED2, 6);
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstN_Odd, 51);
+SIMPLE_BENCHMARK(SquaresOfFirstN_Odd, Sample1, 51);
 
 SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample1, EXPECTED1, 5);
 SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample2, EXPECTED2, 6);

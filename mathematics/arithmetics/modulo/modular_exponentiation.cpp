@@ -67,19 +67,19 @@ auto ModularExponentiation_Recursive(const int x, const unsigned y, const int p)
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularExponentiation, 2, 3, 5);
+SIMPLE_BENCHMARK(ModularExponentiation, Sample1, 2, 3, 5);
 
 SIMPLE_TEST(ModularExponentiation, TestSAMPLE1, 3, 2, 3, 5);
 SIMPLE_TEST(ModularExponentiation, TestSAMPLE2, 6, 2, 5, 13);
 
 
-SIMPLE_BENCHMARK(ModularExponentiation_Iterative, 2, 3, 5);
+SIMPLE_BENCHMARK(ModularExponentiation_Iterative, Sample1, 2, 3, 5);
 
 SIMPLE_TEST(ModularExponentiation_Iterative, TestSAMPLE1, 3, 2, 3, 5);
 SIMPLE_TEST(ModularExponentiation_Iterative, TestSAMPLE2, 6, 2, 5, 13);
 
 
-SIMPLE_BENCHMARK(ModularExponentiation_Recursive, 2, 3, 5);
+SIMPLE_BENCHMARK(ModularExponentiation_Recursive, Sample1, 2, 3, 5);
 
 SIMPLE_TEST(ModularExponentiation_Recursive, TestSAMPLE1, 3, 2, 3, 5);
 SIMPLE_TEST(ModularExponentiation_Recursive, TestSAMPLE2, 6, 2, 5, 13);

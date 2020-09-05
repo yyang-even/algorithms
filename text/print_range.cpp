@@ -123,19 +123,19 @@ begin:
 }//namespace
 
 
-SIMPLE_BENCHMARK(PrintRange1To100_Template);
+SIMPLE_BENCHMARK0(PrintRange1To100_Template);
 
 SIMPLE_TEST0(PrintRange1To1_Template, TestSAMPLE1, "1");
 SIMPLE_TEST0(PrintRange1To2_Template, TestSAMPLE2, "1,2");
 
 
-SIMPLE_BENCHMARK(PrintRange1ToN_Constructor, 100);
+SIMPLE_BENCHMARK(PrintRange1ToN_Constructor, Sample1, 100);
 
 SIMPLE_TEST(PrintRange1ToN_Constructor, TestSAMPLE1, "1", 1);
 SIMPLE_TEST(PrintRange1ToN_Constructor, TestSAMPLE2, "1,2", 2);
 
 
-SIMPLE_BENCHMARK(PrintRange1ToN_Goto, 100);
+SIMPLE_BENCHMARK(PrintRange1ToN_Goto, Sample1, 100);
 
 SIMPLE_TEST(PrintRange1ToN_Goto, TestSAMPLE1, "1", 1);
 SIMPLE_TEST(PrintRange1ToN_Goto, TestSAMPLE2, "1,2", 2);

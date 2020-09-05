@@ -3,7 +3,7 @@
 #include "set_all_bits_after_most_significant_bit.h"
 
 
-SIMPLE_BENCHMARK(SetAllBitsAfterMSB, 0);
+SIMPLE_BENCHMARK(SetAllBitsAfterMSB, Sample1, 0);
 
 SIMPLE_TEST(SetAllBitsAfterMSB, TestSample1, 0u, 0);
 SIMPLE_TEST(SetAllBitsAfterMSB, TestSample2, 1u, 1);

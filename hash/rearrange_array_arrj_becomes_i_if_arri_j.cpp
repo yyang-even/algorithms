@@ -44,7 +44,7 @@ const ArrayType SAMPLE4 = {3, 2, 1, 0};
 const ArrayType EXPECTED4 = {3, 2, 1, 0};
 
 
-SIMPLE_BENCHMARK(RearrangeArraySimple, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangeArraySimple, Sample1, SAMPLE1);
 
 SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -52,7 +52,7 @@ SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(RearrangeArrayInPlace, SAMPLE1);
+SIMPLE_BENCHMARK(RearrangeArrayInPlace, Sample1, SAMPLE1);
 
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE2, EXPECTED2, SAMPLE2);

@@ -59,7 +59,7 @@ const std::vector<ArrayType> SAMPLE_ARRAYS = {{1, 3, 5, 7, 9},
 const ArrayType EXPECTED_ARRAY = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 19, 20};
 
 
-SIMPLE_BENCHMARK(MergeKSortedArrays, SAMPLE_ARRAYS);
+SIMPLE_BENCHMARK(MergeKSortedArrays, Sample1, SAMPLE_ARRAYS);
 
 SIMPLE_TEST(MergeKSortedArrays, TestSAMPLE, EXPECTED_ARRAY, SAMPLE_ARRAYS);
 
@@ -72,7 +72,7 @@ const std::vector<ArrayType> SAMPLE_DIFF_SIZE_ARRAYS = {{1, 3, 5, 7, 9},
 const ArrayType EXPECTED_DIFF_SIZE_ARRAY = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20};
 
 
-SIMPLE_BENCHMARK(MergeKSortedArrays, SAMPLE_DIFF_SIZE_ARRAYS);
+SIMPLE_BENCHMARK(MergeKSortedArrays, Sample2, SAMPLE_DIFF_SIZE_ARRAYS);
 
 SIMPLE_TEST(MergeKSortedArrays, TestSampleDiffSize, EXPECTED_DIFF_SIZE_ARRAY,
             SAMPLE_DIFF_SIZE_ARRAYS);

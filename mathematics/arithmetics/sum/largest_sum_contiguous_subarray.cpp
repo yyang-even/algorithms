@@ -72,14 +72,14 @@ const ArrayType SAMPLE4 = {5, -2, -1, 3, -4};
 const ArrayType EXPECTED4 = {5, -2, -1, 3};
 
 
-SIMPLE_BENCHMARK(LargestSumContiguousSubarray_Kadane, SAMPLE2);
+SIMPLE_BENCHMARK(LargestSumContiguousSubarray_Kadane, Sample1, SAMPLE2);
 
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE1, -1, SAMPLE1);
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE2, 7, SAMPLE2);
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE4, 5, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(TheLargestSumContiguousSubarray, SAMPLE2);
+SIMPLE_BENCHMARK(TheLargestSumContiguousSubarray, Sample1, SAMPLE2);
 
 SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -87,7 +87,7 @@ SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE3, EXPECTED1, SAMPLE3);
 SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(LengthOfLargestSumContiguousSubarray, SAMPLE2);
+SIMPLE_BENCHMARK(LengthOfLargestSumContiguousSubarray, Sample1, SAMPLE2);
 
 SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -98,7 +98,7 @@ const ArrayType SAMPLE5 = {3, -4, 2, -3, -1, 7, -5};
 const ArrayType SAMPLE6 = {2, 6, 8, 1, 4};
 
 
-SIMPLE_BENCHMARK(SmallestSumContiguousSubarray, SAMPLE5);
+SIMPLE_BENCHMARK(SmallestSumContiguousSubarray, Sample1, SAMPLE5);
 
 SIMPLE_TEST(SmallestSumContiguousSubarray, TestSAMPLE5, -6, SAMPLE5);
 SIMPLE_TEST(SmallestSumContiguousSubarray, TestSAMPLE6, 1, SAMPLE6);

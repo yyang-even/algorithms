@@ -76,7 +76,7 @@ constexpr ArrayType<1> VALUES2 = {1};
 constexpr ArrayType<8> VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
 
 
-SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, VALUES3, 8);
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, Sample1, VALUES3, 8);
 
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE1, false, VALUES1, 16);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE2, false, VALUES2, 16);
@@ -85,7 +85,7 @@ SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE4, true, VALUES3, 8);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE5, false, VALUES3, 6);
 
 
-SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Sort, VALUES3, 8);
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Sort, Sample1, VALUES3, 8);
 
 SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE1, false, VALUES1, 16);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE2, false, VALUES2, 16);
@@ -99,7 +99,7 @@ const std::list<int> LIST2 = {1};
 const std::list<int> LIST3 = {1, 4, 45, 6, 10, -8, 9, 4};
 
 
-SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, LIST3, 8);
+SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, Sample3, LIST3, 8);
 
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE6, false, LIST1, 16);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE7, false, LIST2, 16);

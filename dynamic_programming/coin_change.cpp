@@ -127,7 +127,7 @@ const ArrayType SAMPLE2 = {2, 3, 5, 6};
 const ArrayType SAMPLE3 = {1, 5, 10};
 
 
-SIMPLE_BENCHMARK(CoinChange, SAMPLE1, 4);
+SIMPLE_BENCHMARK(CoinChange, Sample1, SAMPLE1, 4);
 
 SIMPLE_TEST(CoinChange, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(CoinChange, TestSAMPLE2, 5, SAMPLE2, 10);
@@ -135,7 +135,7 @@ SIMPLE_TEST(CoinChange, TestSAMPLE3, 2, SAMPLE3, 8);
 SIMPLE_TEST(CoinChange, TestSAMPLE4, 4, SAMPLE3, 10);
 
 
-SIMPLE_BENCHMARK(CoinChange_SpaceOptimized, SAMPLE1, 4);
+SIMPLE_BENCHMARK(CoinChange_SpaceOptimized, Sample1, SAMPLE1, 4);
 
 SIMPLE_TEST(CoinChange_SpaceOptimized, TestSAMPLE1, 4, SAMPLE1, 4);
 SIMPLE_TEST(CoinChange_SpaceOptimized, TestSAMPLE2, 5, SAMPLE2, 10);
@@ -149,7 +149,7 @@ const ArrayType SAMPLE7 = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
 const ArrayType SAMPLE9 = {1, 10, 25};
 
 
-SIMPLE_BENCHMARK(MinimumCoinChange, SAMPLE1, 4);
+SIMPLE_BENCHMARK(MinimumCoinChange, Sample1, SAMPLE1, 4);
 
 SIMPLE_TEST(MinimumCoinChange, TestSAMPLE1, 2, SAMPLE1, 4);
 SIMPLE_TEST(MinimumCoinChange, TestSAMPLE2, 2, SAMPLE2, 10);
@@ -163,7 +163,7 @@ SIMPLE_TEST(MinimumCoinChange, TestSAMPLE9, 5, SAMPLE9, 14);
 SIMPLE_TEST(MinimumCoinChange, TestSAMPLE10, 7, SAMPLE9, 88);
 
 
-SIMPLE_BENCHMARK(MinimumCoinChange_Greedy, SAMPLE7, 70);
+SIMPLE_BENCHMARK(MinimumCoinChange_Greedy, Sample1, SAMPLE7, 70);
 
 SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE7, 2, SAMPLE7, 70);
 SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE8, 3, SAMPLE7, 121);

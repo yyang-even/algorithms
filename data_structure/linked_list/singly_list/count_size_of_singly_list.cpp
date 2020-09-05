@@ -43,7 +43,7 @@ inline auto IsLengthEven_Vector(const std::vector<ListType::value_type> &array) 
 }//namespace
 
 
-SIMPLE_BENCHMARK(testCountSize_Iterative, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testCountSize_Iterative, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testCountSize_Iterative, TestEmpty, EMPTY_ARRAY.size(), EMPTY_ARRAY);
 SIMPLE_TEST(testCountSize_Iterative, TestSingle, SINGLE_ARRAY.size(), SINGLE_ARRAY);
@@ -52,7 +52,7 @@ SIMPLE_TEST(testCountSize_Iterative, TestOdd, ODD_ARRAY.size(), ODD_ARRAY);
 SIMPLE_TEST(testCountSize_Iterative, TestSample, SAMPLE_ARRAY.size(), SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testCountSize_Recursive, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testCountSize_Recursive, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testCountSize_Recursive, TestEmpty, EMPTY_ARRAY.size(), EMPTY_ARRAY);
 SIMPLE_TEST(testCountSize_Recursive, TestSingle, SINGLE_ARRAY.size(), SINGLE_ARRAY);
@@ -61,7 +61,7 @@ SIMPLE_TEST(testCountSize_Recursive, TestOdd, ODD_ARRAY.size(), ODD_ARRAY);
 SIMPLE_TEST(testCountSize_Recursive, TestSample, SAMPLE_ARRAY.size(), SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(IsLengthEven, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(IsLengthEven, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestEmpty, EMPTY_ARRAY);
 MUTUAL_SIMPLE_TEST(IsLengthEven_Vector, IsLengthEven, TestSingle, SINGLE_ARRAY);
