@@ -27,7 +27,7 @@ const ArrayType SAMPLE1 = {5, 8, 3, 7};
 const ArrayType SAMPLE2 = {6, 7, 9};
 
 
-SIMPLE_BENCHMARK(FirstDigitInProductOfArray, SAMPLE1);
+SIMPLE_BENCHMARK(FirstDigitInProductOfArray, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FirstDigitInProductOfArray, TestSAMPLE1, 8, SAMPLE1);
 SIMPLE_TEST(FirstDigitInProductOfArray, TestSAMPLE2, 3, SAMPLE2);

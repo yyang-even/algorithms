@@ -52,7 +52,7 @@ auto PermutationSTL(std::string input) {
 const std::vector<std::string> EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};
 
 
-SIMPLE_BENCHMARK(Permutation, "ab4c12ed3");
+SIMPLE_BENCHMARK(Permutation, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 
@@ -60,6 +60,6 @@ SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 const std::vector<std::string> EXPECTED2 = {"abc", "acb", "bac", "bca", "cab", "cba"};
 
 
-SIMPLE_BENCHMARK(PermutationSTL, "ab4c12ed3");
+SIMPLE_BENCHMARK(PermutationSTL, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(PermutationSTL, TestSAMPLE1, EXPECTED2, "abc");

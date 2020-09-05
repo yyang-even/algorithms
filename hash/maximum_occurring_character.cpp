@@ -95,13 +95,13 @@ auto MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_ty
 }//namespace
 
 
-SIMPLE_BENCHMARK(MaximumOccurringChar_Position, "sample string");
+SIMPLE_BENCHMARK(MaximumOccurringChar_Position, Sample1, "sample string");
 
 SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE1, 's', "sample string");
 SIMPLE_TEST(MaximumOccurringChar_Position, TestSAMPLE2, 't', "test");
 
 
-SIMPLE_BENCHMARK(MaximumOccurringChar_Alphabet, "test sample");
+SIMPLE_BENCHMARK(MaximumOccurringChar_Alphabet, Sample1, "test sample");
 
 SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE1, 'e', "test sample");
 SIMPLE_TEST(MaximumOccurringChar_Alphabet, TestSAMPLE2, 'a', "sample program");
@@ -111,7 +111,7 @@ const ArrayType SAMPLE1 = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3};
 const ArrayType SAMPLE2 = {2, 3, 3, 5, 3, 4, 1, 7};
 
 
-SIMPLE_BENCHMARK(MaximumRepeatingNumber_Inplace, SAMPLE1, 10);
+SIMPLE_BENCHMARK(MaximumRepeatingNumber_Inplace, Sample1, SAMPLE1, 10);
 
 SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE1, 2, SAMPLE1, 10);
 SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE2, 3, SAMPLE2, 8);

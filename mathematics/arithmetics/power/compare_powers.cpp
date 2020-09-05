@@ -22,7 +22,7 @@ auto ComparePowersX_YLessThanY_X(const int x, const int y) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ComparePowersX_YLessThanY_X, 2, 3);
+SIMPLE_BENCHMARK(ComparePowersX_YLessThanY_X, Sample1, 2, 3);
 
 SIMPLE_TEST(ComparePowersX_YLessThanY_X, TestSAMPLE1, true, 2, 3);
 SIMPLE_TEST(ComparePowersX_YLessThanY_X, TestSAMPLE2, false, 4, 5);

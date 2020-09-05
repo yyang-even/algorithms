@@ -52,7 +52,7 @@ const auto EXPECTED2 = std::make_pair(false, -9);
 const auto EXPECTED3 = std::make_pair(false, -1);
 
 
-SIMPLE_BENCHMARK(SafeAdd_Sign, 4, 5);
+SIMPLE_BENCHMARK(SafeAdd_Sign, Sample1, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Sign, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Sign, TestSAMPLE2, EXPECTED2, -4, -5);
@@ -61,7 +61,7 @@ SIMPLE_TEST(SafeAdd_Sign, TestOverflow, INVALID, std::numeric_limits<int>::max()
 SIMPLE_TEST(SafeAdd_Sign, TestUnderflow, INVALID, -5, std::numeric_limits<int>::min());
 
 
-SIMPLE_BENCHMARK(SafeAdd_Limits, 4, 5);
+SIMPLE_BENCHMARK(SafeAdd_Limits, Sample1, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE2, EXPECTED2, -4, -5);
@@ -70,7 +70,7 @@ SIMPLE_TEST(SafeAdd_Limits, TestOverflow, INVALID, std::numeric_limits<int>::max
 SIMPLE_TEST(SafeAdd_Limits, TestUnderflow, INVALID, -5, std::numeric_limits<int>::min());
 
 
-SIMPLE_BENCHMARK(SafeAdd_Unsigned, 4, 5);
+SIMPLE_BENCHMARK(SafeAdd_Unsigned, Sample1, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Unsigned, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Unsigned, TestOverflow, INVALID, std::numeric_limits<unsigned>::max(), 5);

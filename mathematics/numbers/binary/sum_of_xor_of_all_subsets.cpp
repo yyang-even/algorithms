@@ -25,7 +25,7 @@ const ArrayType VALUES1 = {1, 5, 6};
 const ArrayType VALUES2 = {1, 2};
 
 
-SIMPLE_BENCHMARK(SumOfXorOfAllSubsets, VALUES1);
+SIMPLE_BENCHMARK(SumOfXorOfAllSubsets, Sample1, VALUES1);
 
 SIMPLE_TEST(SumOfXorOfAllSubsets, TestSample1, 28u, VALUES1);
 SIMPLE_TEST(SumOfXorOfAllSubsets, TestSample2, 6u, VALUES2);

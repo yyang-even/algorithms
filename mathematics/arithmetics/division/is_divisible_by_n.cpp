@@ -38,11 +38,11 @@ const std::vector<unsigned> SAMPLE1 = {1, 0, 1, 0, 1};
 const std::vector<bool> EXPECTED1 = {false, false, false, false, true};
 
 
-SIMPLE_BENCHMARK(isDivisibleByN_DFA, SAMPLE1, 3);
+SIMPLE_BENCHMARK(isDivisibleByN_DFA, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(isDivisibleByN_DFA, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 
 
-SIMPLE_BENCHMARK(isDivisibleByN_DFALookupTable, SAMPLE1, 3);
+SIMPLE_BENCHMARK(isDivisibleByN_DFALookupTable, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(isDivisibleByN_DFALookupTable, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);

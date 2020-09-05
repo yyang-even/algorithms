@@ -50,7 +50,7 @@ const ArrayType SAMPLE6 = {30, 10, 9, 3, 35};
 const ArrayType SAMPLE7 = {30, 10, 9, 5, 25};
 
 
-SIMPLE_BENCHMARK(GreatestNumberInArrayAsProductOfTwoArrayElements, SAMPLE1);
+SIMPLE_BENCHMARK(GreatestNumberInArrayAsProductOfTwoArrayElements, Sample1, SAMPLE1);
 
 SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE1, 30, SAMPLE1);
 SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE2, -1, SAMPLE2);

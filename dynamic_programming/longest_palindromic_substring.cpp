@@ -126,21 +126,21 @@ const auto SAMPLE2 = "abaaba";
 const auto SAMPLE3 = "abababa";
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_DP, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubstring_DP, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE2, SAMPLE2, SAMPLE2);
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE3, SAMPLE3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_EvenOddCenter, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubstring_EvenOddCenter, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE2, SAMPLE2, SAMPLE2);
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE3, SAMPLE3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_Manacher, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubstring_Manacher, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_Manacher, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_Manacher, TestSAMPLE2, SAMPLE2, SAMPLE2);

@@ -63,13 +63,13 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 const auto EMPTY_TREE = BinaryTree {} .GetRoot();
 
 
-SIMPLE_BENCHMARK(CountLeaves_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(CountLeaves_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CountLeaves_Recursive, TestSAMPLE0, 0, EMPTY_TREE);
 SIMPLE_TEST(CountLeaves_Recursive, TestSAMPLE1, 3, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(CountLeaves_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(CountLeaves_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CountLeaves_Iterative, TestSAMPLE0, 0, EMPTY_TREE);
 SIMPLE_TEST(CountLeaves_Iterative, TestSAMPLE1, 3, SAMPLE1);

@@ -78,7 +78,7 @@ const ArrayType SAMPLE3 = {12, 1, 12, 3, 12, 1, 1, 2, 3, 3};
 const ArrayType SAMPLE4 = {10, 20, 10, 30, 10, 30, 30};
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElement_Hash, SAMPLE1, 3u);
+SIMPLE_BENCHMARK(FindTheUniqueElement_Hash, Sample1, SAMPLE1, 3u);
 
 SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample1, 5u, SAMPLE1, 3u);
 SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample2, 10u, SAMPLE2, 4u);
@@ -86,7 +86,7 @@ SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample3, 2u, SAMPLE3, 3u);
 SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample4, 20u, SAMPLE4, 3u);
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElement_Bits, SAMPLE1, 3u);
+SIMPLE_BENCHMARK(FindTheUniqueElement_Bits, Sample1, SAMPLE1, 3u);
 
 SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample1, 5u, SAMPLE1, 3u);
 SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample2, 10u, SAMPLE2, 4u);
@@ -94,7 +94,7 @@ SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample3, 2u, SAMPLE3, 3u);
 SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample4, 20u, SAMPLE4, 3u);
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElement3_Xor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheUniqueElement3_Xor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample3, 2u, SAMPLE3);

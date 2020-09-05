@@ -211,14 +211,14 @@ const auto SAMPLE3_Y = "010110110";
 const std::string EXPECTED3 = "010101";
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequence_DP, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequence_DP, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
             SAMPLE1_X, SAMPLE1_Y);
@@ -228,7 +228,7 @@ SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE3, EXPECTED3.size
             SAMPLE3_X, SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequence_Memoization, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequence_Memoization, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE1, EXPECTED1.size(),
             SAMPLE1_X, SAMPLE1_Y);
@@ -238,7 +238,7 @@ SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE3, EXPECTED3.size(),
             SAMPLE3_X, SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequenceString, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequenceString, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE1, EXPECTED1, SAMPLE1_X, SAMPLE1_Y);
 SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE2, EXPECTED2, SAMPLE2_X, SAMPLE2_Y);
@@ -258,7 +258,7 @@ const auto SAMPLE6_Y = "BDCABA";
 const std::unordered_set<std::string> EXPECTED6 = {"BCAB", "BCBA", "BDAB"};
 
 
-SIMPLE_BENCHMARK(AllLongestCommonSubsequenceStrings, SAMPLE4_X, SAMPLE4_Y);
+SIMPLE_BENCHMARK(AllLongestCommonSubsequenceStrings, Sample1, SAMPLE4_X, SAMPLE4_Y);
 
 SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE4, EXPECTED4, SAMPLE4_X, SAMPLE4_Y);
 SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE5, EXPECTED5, SAMPLE5_X, SAMPLE5_Y);
@@ -275,7 +275,7 @@ const auto SAMPLE8_Z = "bd1ea";
 const std::string EXPECTED8 = "b1e";
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree, Sample1, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
 
 SIMPLE_TEST(LongestCommonSubsequenceOfThree, TestSAMPLE7, SAMPLE7_X.size(),
             SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
@@ -283,7 +283,8 @@ SIMPLE_TEST(LongestCommonSubsequenceOfThree, TestSAMPLE8, EXPECTED8.size(),
             SAMPLE8_X, SAMPLE8_Y, SAMPLE8_Z);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree_Memoization, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree_Memoization, Sample1,
+                 SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
 
 SIMPLE_TEST(LongestCommonSubsequenceOfThree_Memoization, TestSAMPLE7, SAMPLE7_X.size(),
             SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);

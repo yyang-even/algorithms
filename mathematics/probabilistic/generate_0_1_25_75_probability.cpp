@@ -38,6 +38,6 @@ bool testGenerate25BiasedCoinFromFair() {
 }
 
 
-SIMPLE_BENCHMARK(Generate25BiasedCoinFromFair);
+SIMPLE_BENCHMARK0(Generate25BiasedCoinFromFair);
 
 SIMPLE_TEST0(testGenerate25BiasedCoinFromFair, TestSample, true);

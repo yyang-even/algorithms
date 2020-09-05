@@ -67,7 +67,7 @@ auto NthSuperUglyNumber(const ArrayType &primes, const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(NthUglyNumber, 150);
+SIMPLE_BENCHMARK(NthUglyNumber, Sample1, 150);
 
 SIMPLE_TEST(NthUglyNumber, TestSAMPLE1, 8, 7);
 SIMPLE_TEST(NthUglyNumber, TestSAMPLE2, 12, 10);
@@ -79,7 +79,7 @@ const ArrayType SAMPLE1 = {2, 3, 5};
 const ArrayType SAMPLE6 = {2, 5};
 const ArrayType SAMPLE7 = {3, 5, 7, 11, 13};
 
-SIMPLE_BENCHMARK(NthSuperUglyNumber, SAMPLE1, 150);
+SIMPLE_BENCHMARK(NthSuperUglyNumber, Sample1, SAMPLE1, 150);
 
 SIMPLE_TEST(NthSuperUglyNumber, TestSAMPLE1, 8, SAMPLE1, 7);
 SIMPLE_TEST(NthSuperUglyNumber, TestSAMPLE2, 12, SAMPLE1, 10);

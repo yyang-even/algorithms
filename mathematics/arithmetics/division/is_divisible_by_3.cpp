@@ -54,9 +54,8 @@ constexpr int LOWER = 2;
 constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(isDivisibleBy3, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy3, UPPER);
-RANDOM_BENCHMARK(isDivisibleBy3, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy3, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy3, Sample2, UPPER);
 
 SIMPLE_TEST(isDivisibleBy3, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy3, TestUPPER, false, UPPER);
@@ -71,7 +70,7 @@ const std::vector<unsigned> SAMPLE1 = {1, 1, 0, 0};
 const std::vector<unsigned> SAMPLE2 = {1, 0, 1, 0};
 
 
-SIMPLE_BENCHMARK(isDivisibleBy3_DFA, SAMPLE1);
+SIMPLE_BENCHMARK(isDivisibleBy3_DFA, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE2, false, SAMPLE2);

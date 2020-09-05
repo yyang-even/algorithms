@@ -118,19 +118,19 @@ const ArrayType SAMPLE2 = {8, 5, 10, 7, 9, 4, 15, 12, 90, 13};
 const ArrayType EXPECTED2 = {10, 10, 10, 15, 15, 90, 90};
 
 
-SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Multiset, SAMPLE1, 3);
+SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Multiset, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Multiset, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Multiset, TestSAMPLE2, EXPECTED2, SAMPLE2, 4);
 
 
-SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Deque, SAMPLE1, 3);
+SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Deque, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Deque, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Deque, TestSAMPLE2, EXPECTED2, SAMPLE2, 4);
 
 
-SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Stack, SAMPLE1, 3);
+SIMPLE_BENCHMARK(MaxOfAllSubarraysOfSizeK_Stack, Sample1, SAMPLE1, 3);
 
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Stack, TestSAMPLE1, EXPECTED1, SAMPLE1, 3);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_Stack, TestSAMPLE2, EXPECTED2, SAMPLE2, 4);

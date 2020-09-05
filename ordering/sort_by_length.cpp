@@ -56,25 +56,25 @@ const ArrayType SAMPLE2 = {"You", "are", "beautiful", "looking"};
 const ArrayType EXPECTED2 = {"You", "are", "looking", "beautiful"};
 
 
-SIMPLE_BENCHMARK(SortByLengths, SAMPLE1);
+SIMPLE_BENCHMARK(SortByLengths, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByLengths, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByLengths, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(SortByLengths_Stable, SAMPLE1);
+SIMPLE_BENCHMARK(SortByLengths_Stable, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByLengths_Stable, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByLengths_Stable, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(SortByLengths_Stable_Bucket, SAMPLE1);
+SIMPLE_BENCHMARK(SortByLengths_Stable_Bucket, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByLengths_Stable_Bucket, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByLengths_Stable_Bucket, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(SortByLengths_Stable_CountingSort, SAMPLE1);
+SIMPLE_BENCHMARK(SortByLengths_Stable_CountingSort, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByLengths_Stable_CountingSort, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByLengths_Stable_CountingSort, TestSAMPLE2, EXPECTED2, SAMPLE2);

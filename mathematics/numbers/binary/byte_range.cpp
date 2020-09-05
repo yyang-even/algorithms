@@ -90,7 +90,7 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(HasByteZero, UPPER);
+SIMPLE_BENCHMARK(HasByteZero, Sample1, UPPER);
 
 SIMPLE_TEST(HasByteZero, TestLOWER, true, LOWER);
 SIMPLE_TEST(HasByteZero, TestUPPER, false, UPPER);
@@ -98,7 +98,7 @@ SIMPLE_TEST(HasByteZero, TestSAMPLE1, true, 8);
 SIMPLE_TEST(HasByteZero, TestSAMPLE2, false, 0x88888888U);
 
 
-SIMPLE_BENCHMARK(HasByteZero_Pointer, UPPER);
+SIMPLE_BENCHMARK(HasByteZero_Pointer, Sample1, UPPER);
 
 SIMPLE_TEST(HasByteZero_Pointer, TestLOWER, true, LOWER);
 SIMPLE_TEST(HasByteZero_Pointer, TestUPPER, false, UPPER);
@@ -106,7 +106,7 @@ SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE1, true, 8);
 SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE2, false, 0x88888888U);
 
 
-SIMPLE_BENCHMARK(HasByteN, UPPER, 0xF);
+SIMPLE_BENCHMARK(HasByteN, Sample1, UPPER, 0xF);
 
 SIMPLE_TEST(HasByteN, TestLOWER, true, LOWER, 0);
 SIMPLE_TEST(HasByteN, TestUPPER, true, UPPER, 0xFF);

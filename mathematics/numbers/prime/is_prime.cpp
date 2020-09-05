@@ -257,7 +257,7 @@ auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPrime_OptimizedSchoolMethod, 18);
+SIMPLE_BENCHMARK(IsPrime_OptimizedSchoolMethod, Sample1, 18);
 
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample1, false, 12);
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample2, false, 15);
@@ -265,27 +265,27 @@ SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample3, false, 1);
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample4, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_Fermet, 11);
+SIMPLE_BENCHMARK(IsPrime_Fermet, Sample1, 11);
 
 SIMPLE_TEST(IsPrime_Fermet, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_MillerRabin, 11);
+SIMPLE_BENCHMARK(IsPrime_MillerRabin, Sample1, 11);
 
 SIMPLE_TEST(IsPrime_MillerRabin, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_SolovayStrassen, 11);
+SIMPLE_BENCHMARK(IsPrime_SolovayStrassen, Sample1, 11);
 
 SIMPLE_TEST(IsPrime_SolovayStrassen, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_LucasLehmerSeries, 7);
+SIMPLE_BENCHMARK(IsPrime_LucasLehmerSeries, Sample1, 7);
 
 SIMPLE_TEST(IsPrime_LucasLehmerSeries, TestSample1, true, 7);
 
 
-SIMPLE_BENCHMARK(IsPrime_Wilson, 11);
+SIMPLE_BENCHMARK(IsPrime_Wilson, Sample1, 11);
 
 SIMPLE_TEST(IsPrime_Wilson, TestSample1, true, 11);
 SIMPLE_TEST(IsPrime_Wilson, TestSample2, true, 5);
@@ -294,7 +294,7 @@ SIMPLE_TEST(IsPrime_Wilson, TestSample4, false, 4);
 SIMPLE_TEST(IsPrime_Wilson, TestSample5, true, 127);
 
 
-SIMPLE_BENCHMARK(IsPrime_Recursive, 18);
+SIMPLE_BENCHMARK(IsPrime_Recursive, Sample1, 18);
 
 SIMPLE_TEST(IsPrime_Recursive, TestSample1, false, 12);
 SIMPLE_TEST(IsPrime_Recursive, TestSample2, false, 15);

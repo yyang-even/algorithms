@@ -49,6 +49,6 @@ auto testLinkedList(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testLinkedList, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);

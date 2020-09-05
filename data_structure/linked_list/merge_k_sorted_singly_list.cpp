@@ -80,16 +80,16 @@ const std::vector<ListType> SAMPLE_DIFF_SIZE_LISTS = {{1, 3, 5, 7, 9},
 };
 const ListType EXPECTED_DIFF_SIZE_LIST = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20};
 
-SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, SAMPLE_LISTS);
-SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, SAMPLE_DIFF_SIZE_LISTS);
+SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, Sample1, SAMPLE_LISTS);
+SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, Sample2, SAMPLE_DIFF_SIZE_LISTS);
 
 SIMPLE_TEST(MergeKSorted_Lists_Recursive, TestSAMPLE, EXPECTED_LIST, SAMPLE_LISTS);
 SIMPLE_TEST(MergeKSorted_Lists_Recursive, TestSampleDiffSize, EXPECTED_DIFF_SIZE_LIST,
             SAMPLE_DIFF_SIZE_LISTS);
 
 
-SIMPLE_BENCHMARK(MergeKSorted_Lists_MinHeap, SAMPLE_LISTS);
-SIMPLE_BENCHMARK(MergeKSorted_Lists_MinHeap, SAMPLE_DIFF_SIZE_LISTS);
+SIMPLE_BENCHMARK(MergeKSorted_Lists_MinHeap, Sample1, SAMPLE_LISTS);
+SIMPLE_BENCHMARK(MergeKSorted_Lists_MinHeap, Sample2, SAMPLE_DIFF_SIZE_LISTS);
 
 SIMPLE_TEST(MergeKSorted_Lists_MinHeap, TestSAMPLE, EXPECTED_LIST, SAMPLE_LISTS);
 SIMPLE_TEST(MergeKSorted_Lists_MinHeap, TestSampleDiffSize, EXPECTED_DIFF_SIZE_LIST,

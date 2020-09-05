@@ -127,7 +127,7 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
 const std::forward_list<int> SAMPLE_SINGLY_LIST = {2, 2, 1, 8, 2, 3, 2, 7};
 
 
-SIMPLE_BENCHMARK(testDeleteWithKey, SAMPLE_SINGLY_LIST, 2, &DeleteWithKey_Singly);
+SIMPLE_BENCHMARK(testDeleteWithKey, Sample1, SAMPLE_SINGLY_LIST, 2, &DeleteWithKey_Singly);
 
 SIMPLE_TEST(testDeleteWithKey, TestSinglySample1, true, SAMPLE_SINGLY_LIST, 2,
             &DeleteWithKey_Singly);
@@ -140,7 +140,7 @@ SIMPLE_TEST(testDeleteWithKey, TestSinglySample3, true, SAMPLE_SINGLY_LIST, 7,
 const std::list<int> SAMPLE_DOUBLY_LIST = {2, 2, 1, 8, 2, 3, 2, 7};
 
 
-SIMPLE_BENCHMARK(testDeleteWithKey, SAMPLE_DOUBLY_LIST, 2, &DeleteWithKey_Doubly);
+SIMPLE_BENCHMARK(testDeleteWithKey, Sample2, SAMPLE_DOUBLY_LIST, 2, &DeleteWithKey_Doubly);
 
 SIMPLE_TEST(testDeleteWithKey, TestDoublySample1, true, SAMPLE_DOUBLY_LIST, 2,
             &DeleteWithKey_Doubly);

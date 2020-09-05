@@ -85,13 +85,13 @@ constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 MUTUAL_RANDOM_TEST(TwosComplement_ByOnesComplement, TwosComplement_ByMinusOperator, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(OnesComplement, "0111");
+SIMPLE_BENCHMARK(OnesComplement, Sample1, "0111");
 
 SIMPLE_TEST(OnesComplement, TestSample1, "1000", "0111");
 SIMPLE_TEST(OnesComplement, TestSample2, "0011", "1100");
 
 
-SIMPLE_BENCHMARK(TwosComplement, "0111");
+SIMPLE_BENCHMARK(TwosComplement, Sample1, "0111");
 
 SIMPLE_TEST(TwosComplement, TestSample1, "1001", "0111");
 SIMPLE_TEST(TwosComplement, TestSample2, "0100", "1100");
@@ -101,7 +101,7 @@ SIMPLE_TEST(TwosComplement, TestSample5, "0111100", "1000100");
 SIMPLE_TEST(TwosComplement, TestSample6, "11111011", "00000101");
 
 
-SIMPLE_BENCHMARK(TwosComplement_Efficient, "0111");
+SIMPLE_BENCHMARK(TwosComplement_Efficient, Sample1, "0111");
 
 SIMPLE_TEST(TwosComplement_Efficient, TestSample1, "1001", "0111");
 SIMPLE_TEST(TwosComplement_Efficient, TestSample2, "0100", "1100");

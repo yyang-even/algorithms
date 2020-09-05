@@ -86,7 +86,7 @@ inline auto GetMiddle(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testGetMid_Size, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetMid_Size, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestEven, EVEN_ARRAY);
@@ -94,7 +94,7 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestOdd, ODD_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Size, TestSample, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testGetMid_TwoPointers, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetMid_TwoPointers, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestEven, EVEN_ARRAY);
@@ -102,7 +102,7 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestOdd, ODD_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_TwoPointers, TestSample, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testGetMid_Odd, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetMid_Odd, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestEven, EVEN_ARRAY);
@@ -110,7 +110,7 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestOdd, ODD_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSample, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testGetBeforeMiddle_TwoPointersSTL, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testGetBeforeMiddle_TwoPointersSTL, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestEven, EVEN_ARRAY);
@@ -118,7 +118,7 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestOdd, ODD_A
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(GetMiddle_Recursive, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(GetMiddle_Recursive, Sample1, SAMPLE_ARRAY);
 
 MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, GetMiddle_Recursive, TestEven, EVEN_ARRAY);

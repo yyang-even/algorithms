@@ -227,21 +227,21 @@ auto isBinaryPalindrome(const unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(isPalindrome_Iterative, "aba");
+SIMPLE_BENCHMARK(isPalindrome_Iterative, Sample1, "aba");
 
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE2, true, "abbccbba");
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE3, false, "geeks");
 
 
-SIMPLE_BENCHMARK(isPalindrome_Recursive, "aba");
+SIMPLE_BENCHMARK(isPalindrome_Recursive, Sample1, "aba");
 
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE2, true, "abbccbba");
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE3, false, "geeks");
 
 
-SIMPLE_BENCHMARK(isPalindrome_Stack, "aba");
+SIMPLE_BENCHMARK(isPalindrome_Stack, Sample1, "aba");
 
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE2, true, "abbccbba");
@@ -253,56 +253,56 @@ const ListType SAMPLE2 = {1, 2, 2, 1};
 const ListType SAMPLE3 = {2, 2, 1};
 
 
-SIMPLE_BENCHMARK(isSinglyListPalindrome_Stack, SAMPLE1);
+SIMPLE_BENCHMARK(isSinglyListPalindrome_Stack, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE2, true, SAMPLE2);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE3, false, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(isIntPalindrome_Reverse, 121);
+SIMPLE_BENCHMARK(isIntPalindrome_Reverse, Sample1, 121);
 
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE1, true, 121);
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE3, false, 211);
 
 
-SIMPLE_BENCHMARK(isIntPalindrome_Recursive, 121);
+SIMPLE_BENCHMARK(isIntPalindrome_Recursive, Sample1, 121);
 
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE1, true, 121);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE3, false, 211);
 
 
-SIMPLE_BENCHMARK(isEvenDigitsIntPalindrome, 123321);
+SIMPLE_BENCHMARK(isEvenDigitsIntPalindrome, Sample1, 123321);
 
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE1, true, 123321);
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE3, false, 1234);
 
 
-SIMPLE_BENCHMARK(isOctalPalindrome_Reverse, 0121);
+SIMPLE_BENCHMARK(isOctalPalindrome_Reverse, Sample1, 0121);
 
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE1, true, 0121);
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE2, true, 01221);
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE3, false, 0211);
 
 
-SIMPLE_BENCHMARK(isOctalPalindrome_Recursive, 0121);
+SIMPLE_BENCHMARK(isOctalPalindrome_Recursive, Sample1, 0121);
 
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE1, true, 0121);
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE2, true, 01221);
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE3, false, 0211);
 
 
-SIMPLE_BENCHMARK(isActualBinaryPalindrome_Reverse, 0b101);
+SIMPLE_BENCHMARK(isActualBinaryPalindrome_Reverse, Sample1, 0b101);
 
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE1, true, 0b101);
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE2, true, 0b1001);
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE3, false, 0b1011);
 
 
-SIMPLE_BENCHMARK(isBinaryPalindrome, 0b101);
+SIMPLE_BENCHMARK(isBinaryPalindrome, Sample1, 0b101);
 
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE1, false, 0b101);
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE2, true, -1);

@@ -90,7 +90,7 @@ const ArrayType VALUES1 = {};
 const ArrayType VALUES2 = {10, 20, 80, 30, 60, 50, 110, 100, 130, 170};
 
 
-SIMPLE_BENCHMARK(LinearSearch_Iterative, VALUES2, 110);
+SIMPLE_BENCHMARK(LinearSearch_Iterative, Sample1, VALUES2, 110);
 
 SIMPLE_TEST(LinearSearch_Iterative, TestEmpty, VALUES1.cend(), VALUES1, 10);
 SIMPLE_TEST(LinearSearch_Iterative, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
@@ -99,7 +99,7 @@ SIMPLE_TEST(LinearSearch_Iterative, TestLast, std::prev(VALUES2.cend()), VALUES2
 SIMPLE_TEST(LinearSearch_Iterative, TestNotExist, VALUES2.cend(), VALUES2, 999);
 
 
-SIMPLE_BENCHMARK(LinearSearch_Recursive, VALUES2, 110);
+SIMPLE_BENCHMARK(LinearSearch_Recursive, Sample1, VALUES2, 110);
 
 SIMPLE_TEST(LinearSearch_Recursive, TestEmpty, VALUES1.cend(), VALUES1, 10);
 SIMPLE_TEST(LinearSearch_Recursive, TestBegin, VALUES2.cbegin(), VALUES2, VALUES2.front());
@@ -108,7 +108,7 @@ SIMPLE_TEST(LinearSearch_Recursive, TestLast, std::prev(VALUES2.cend()), VALUES2
 SIMPLE_TEST(LinearSearch_Recursive, TestNotExist, VALUES2.cend(), VALUES2, 999);
 
 
-SIMPLE_BENCHMARK(LinearSearch_Sentinel, VALUES2, 110);
+SIMPLE_BENCHMARK(LinearSearch_Sentinel, Sample1, VALUES2, 110);
 
 SIMPLE_TEST(LinearSearch_Sentinel, TestBegin, 0, VALUES2, VALUES2.front());
 SIMPLE_TEST(LinearSearch_Sentinel, TestSample1, 6, VALUES2, 110);
@@ -120,7 +120,7 @@ const ArrayType SAMPLE1 = {3, 4, 1, 2};
 const ArrayType SAMPLE2 = {1, 2, 3};
 
 
-SIMPLE_BENCHMARK(TotalFine, SAMPLE1, 15);
+SIMPLE_BENCHMARK(TotalFine, Sample1, SAMPLE1, 15);
 
 SIMPLE_TEST(TotalFine, TestSample1, 500, SAMPLE1, 15);
 SIMPLE_TEST(TotalFine, TestSample2, 500, SAMPLE2, 16);

@@ -60,25 +60,25 @@ auto isCountOfDivisorsOdd(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare, 2500);
+SIMPLE_BENCHMARK(IsPerfectSquare, Sample1, 2500);
 
 SIMPLE_TEST(IsPerfectSquare, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare_Multiply, 2500);
+SIMPLE_BENCHMARK(IsPerfectSquare_Multiply, Sample1, 2500);
 
 SIMPLE_TEST(IsPerfectSquare_Multiply, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare_Multiply, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare_Sum, 2500);
+SIMPLE_BENCHMARK(IsPerfectSquare_Sum, Sample1, 2500);
 
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(isCountOfDivisorsOdd, 100);
+SIMPLE_BENCHMARK(isCountOfDivisorsOdd, Sample1, 100);
 
 SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE1, false, 10);
 SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE2, true, 100);

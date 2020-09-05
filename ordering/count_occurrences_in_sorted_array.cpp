@@ -40,7 +40,7 @@ auto CountOccurrencesInSortedArray_STL(const ArrayType &values, const ArrayType:
 const ArrayType VALUES1 = {1, 1, 2, 2, 2, 2, 3};
 
 
-SIMPLE_BENCHMARK(CountOccurrencesInSortedArray_STL, VALUES1, 2);
+SIMPLE_BENCHMARK(CountOccurrencesInSortedArray_STL, Sample1, VALUES1, 2);
 
 SIMPLE_TEST(CountOccurrencesInSortedArray_STL, TestSAMPLE1, 2, VALUES1, 1);
 SIMPLE_TEST(CountOccurrencesInSortedArray_STL, TestSAMPLE2, 4, VALUES1, 2);

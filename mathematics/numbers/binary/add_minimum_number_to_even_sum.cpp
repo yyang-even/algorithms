@@ -33,7 +33,7 @@ const ArrayType SAMPLE1 = {1, 2, 3, 4, 5, 6, 7, 8};
 const ArrayType SAMPLE2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
-SIMPLE_BENCHMARK(AddMinimumNumberToEvenSum, SAMPLE1);
+SIMPLE_BENCHMARK(AddMinimumNumberToEvenSum, Sample1, SAMPLE1);
 
 SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample1, 2u, SAMPLE1);
 SIMPLE_TEST(AddMinimumNumberToEvenSum, TestSample2, 1u, SAMPLE2);

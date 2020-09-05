@@ -169,9 +169,8 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, LOWER);
-SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, UPPER);
-RANDOM_BENCHMARK(CountSetBits_BrianKernighan, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_BrianKernighan, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_BrianKernighan, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountSetBits_BrianKernighan, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
@@ -183,9 +182,8 @@ MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, __builtin_popcount, LOWER, UPPER
 #endif
 
 
-SIMPLE_BENCHMARK(CountSetBits_LookupTable, LOWER);
-SIMPLE_BENCHMARK(CountSetBits_LookupTable, UPPER);
-RANDOM_BENCHMARK(CountSetBits_LookupTable, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountSetBits_LookupTable, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_LookupTable, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_LookupTable, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountSetBits_LookupTable, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
@@ -195,8 +193,8 @@ SIMPLE_TEST(CountSetBits_LookupTable, TestSAMPLE2, 3u, 13);
 MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_LookupTable, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, LOWER);
-SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, UPPER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
@@ -206,8 +204,8 @@ SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE2, 3u, 13);
 MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, LOWER);
-SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, UPPER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
@@ -217,8 +215,8 @@ SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE2, 3u, 13);
 MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountSetBitsFromMSB, LOWER, CHAR_BIT);
-SIMPLE_BENCHMARK(CountSetBitsFromMSB, UPPER, CHAR_BIT);
+SIMPLE_BENCHMARK(CountSetBitsFromMSB, Sample1, LOWER, CHAR_BIT);
+SIMPLE_BENCHMARK(CountSetBitsFromMSB, Sample2, UPPER, CHAR_BIT);
 
 SIMPLE_TEST(CountSetBitsFromMSB, TestLOWER, 0u, LOWER, CHAR_BIT);
 SIMPLE_TEST(CountSetBitsFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT), -1ULL, CHAR_BIT);
@@ -226,8 +224,8 @@ SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE1, 2u, 0x06FFFFFFFFFFFFFFULL, CHAR_BI
 SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE2, 3u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
 
 
-SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, LOWER, CHAR_BIT);
-SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, UPPER, CHAR_BIT);
+SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, Sample1, LOWER, CHAR_BIT);
+SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, Sample2, UPPER, CHAR_BIT);
 
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64u, LOWER, CHAR_BIT);
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER,
@@ -236,13 +234,13 @@ SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14u, 0x06FFFFFFFFFFFFFF
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
 
 
-SIMPLE_BENCHMARK(AreBitAnagram, 8, 4);
+SIMPLE_BENCHMARK(AreBitAnagram, Sample1, 8, 4);
 
 SIMPLE_TEST(AreBitAnagram, TestSAMPLE1, true, 8, 4);
 SIMPLE_TEST(AreBitAnagram, TestSAMPLE2, false, 5, 4);
 
 
-SIMPLE_BENCHMARK(AreNumberAndItsComplementAnagram, 4294967295);
+SIMPLE_BENCHMARK(AreNumberAndItsComplementAnagram, Sample1, 4294967295);
 
 SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE1, true, 4294967295);
 SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE2, false, 4);

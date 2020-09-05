@@ -35,7 +35,7 @@ const ArrayType SAMPLE1 = {3, 5, 6, 1};
 const ArrayType SAMPLE2 = {3, 3};
 
 
-SIMPLE_BENCHMARK(SumOfMaxAndAndMaxOrSubSequences, SAMPLE1);
+SIMPLE_BENCHMARK(SumOfMaxAndAndMaxOrSubSequences, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SumOfMaxAndAndMaxOrSubSequences, TestSample1, 13, SAMPLE1);
 SIMPLE_TEST(SumOfMaxAndAndMaxOrSubSequences, TestSample2, 6, SAMPLE2);

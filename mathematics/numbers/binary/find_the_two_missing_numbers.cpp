@@ -74,14 +74,14 @@ const ArrayType SAMPLE2 = {1, 2, 4};
 const ArrayType SAMPLE3 = {1, 2};
 
 
-SIMPLE_BENCHMARK(FindTheTwoMissingNumbersSum, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheTwoMissingNumbersSum, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample1, std::make_pair(2u, 4u), SAMPLE1);
 SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample2, std::make_pair(3u, 5u), SAMPLE2);
 SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample3, std::make_pair(3u, 4u), SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindTheTwoMissingNumbersXor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheTwoMissingNumbersXor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample1, std::make_pair(2u, 4u), SAMPLE1);
 SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample2, std::make_pair(3u, 5u), SAMPLE2);

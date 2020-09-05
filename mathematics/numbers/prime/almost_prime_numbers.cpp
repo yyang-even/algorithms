@@ -119,14 +119,14 @@ const std::vector<unsigned> EXPECTED2 = {1024, 1536};
 const std::vector<unsigned> EXPECTED3 = {4, 6, 9, 10, 14, 15, 21, 22, 25, 26};
 
 
-SIMPLE_BENCHMARK(KAlmostPrimeNumbers_LeastPrimeFactor, 10, 2);
+SIMPLE_BENCHMARK(KAlmostPrimeNumbers_LeastPrimeFactor, Sample1, 10, 2);
 
 SIMPLE_TEST(KAlmostPrimeNumbers_LeastPrimeFactor, TestSAMPLE1, EXPECTED1, 2, 5);
 SIMPLE_TEST(KAlmostPrimeNumbers_LeastPrimeFactor, TestSAMPLE2, EXPECTED2, 10, 2);
 SIMPLE_TEST(KAlmostPrimeNumbers_LeastPrimeFactor, TestSAMPLE3, EXPECTED3, 2, 10);
 
 
-SIMPLE_BENCHMARK(KAlmostPrimeNumbers_Counter, 10, 2);
+SIMPLE_BENCHMARK(KAlmostPrimeNumbers_Counter, Sample1, 10, 2);
 
 SIMPLE_TEST(KAlmostPrimeNumbers_Counter, TestSAMPLE1, EXPECTED1, 2, 5);
 SIMPLE_TEST(KAlmostPrimeNumbers_Counter, TestSAMPLE2, EXPECTED2, 10, 2);
@@ -136,18 +136,18 @@ SIMPLE_TEST(KAlmostPrimeNumbers_Counter, TestSAMPLE3, EXPECTED3, 2, 10);
 const std::vector<unsigned> EXPECTED4 = {6, 10, 14, 15, 21, 22, 26, 33, 34, 35, 38, 39, 46};
 
 
-SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, 50);
+SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, Sample1, 50);
 
 SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, TestSAMPLE1, EXPECTED4,
             50);
 
 
-SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, 50);
+SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, Sample1, 50);
 
 SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, TestSAMPLE1, EXPECTED4, 50);
 
 
-SIMPLE_BENCHMARK(CountOfAlmostPrimesBelowN, 21);
+SIMPLE_BENCHMARK(CountOfAlmostPrimesBelowN, Sample1, 21);
 
 SIMPLE_TEST(CountOfAlmostPrimesBelowN, TestSAMPLE1, 2u, 10);
 SIMPLE_TEST(CountOfAlmostPrimesBelowN, TestSAMPLE2, 8u, 21);

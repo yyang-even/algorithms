@@ -54,7 +54,7 @@ const ArrayType VALUES4 = {1, 3, 4, 2, 6, 5, 8, 7};
 const ArrayType VALUES5 = {4, 4, 4, 4, 4};
 
 
-SIMPLE_BENCHMARK(Mean, VALUES4);
+SIMPLE_BENCHMARK(Mean, Sample1, VALUES4);
 
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE2, 1.5, VALUES2);
@@ -66,14 +66,14 @@ SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE5, 4, VALUES5);
 const auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(Average_NoOverflow, UPPER, UPPER);
+SIMPLE_BENCHMARK(Average_NoOverflow, Sample1, UPPER, UPPER);
 
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE1, UPPER, UPPER, UPPER);
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE2, 3, 2, 4);
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE3, 9, 10, 9);
 
 
-SIMPLE_BENCHMARK(Average_Bit, UPPER, UPPER);
+SIMPLE_BENCHMARK(Average_Bit, Sample1, UPPER, UPPER);
 
 SIMPLE_TEST(Average_Bit, TestSAMPLE1, UPPER, UPPER, UPPER);
 SIMPLE_TEST(Average_Bit, TestSAMPLE2, 3, 2, 4);

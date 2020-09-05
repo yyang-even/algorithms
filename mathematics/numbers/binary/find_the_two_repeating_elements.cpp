@@ -59,11 +59,11 @@ auto FindTheTwoRepeatingElementsInplace(ArrayType elements) {
 
 const ArrayType SAMPLE1 = {4, 2, 4, 5, 2, 3, 1};
 
-SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsXor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsXor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheTwoRepeatingElementsXor, TestSample1, std::make_pair(2, 4), SAMPLE1);
 
 
-SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsInplace, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsInplace, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheTwoRepeatingElementsInplace, TestSample1, std::make_pair(4, 2), SAMPLE1);

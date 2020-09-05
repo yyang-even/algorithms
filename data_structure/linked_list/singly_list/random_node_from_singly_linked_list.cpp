@@ -22,4 +22,4 @@ auto RandomNodeFromSinglyLinkedList(const ArrayType &stream) {
 
 
 ArrayType VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
-SIMPLE_BENCHMARK(RandomNodeFromSinglyLinkedList, VALUES);
+SIMPLE_BENCHMARK(RandomNodeFromSinglyLinkedList, Sample1, VALUES);

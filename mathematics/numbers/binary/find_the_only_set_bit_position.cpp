@@ -23,7 +23,7 @@ auto FindPositionOfTheOnlySetBit(const InputType v) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindPositionOfTheOnlySetBit, 128);
+SIMPLE_BENCHMARK(FindPositionOfTheOnlySetBit, Sample1, 128);
 
 SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample1, 1u, 1);
 SIMPLE_TEST(FindPositionOfTheOnlySetBit, TestSample2, 8u, 128);

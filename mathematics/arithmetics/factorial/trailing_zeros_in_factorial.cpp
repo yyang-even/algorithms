@@ -74,9 +74,8 @@ constexpr unsigned SAMPLE3 = 21;
 constexpr unsigned SAMPLE4 = 100;
 
 
-SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, LOWER);
-SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, UPPER);
-RANDOM_BENCHMARK(CountTrailing0sInFactorialOf, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, Sample2, UPPER);
 
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE1, 1u, SAMPLE1);
@@ -85,7 +84,7 @@ SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE3, 4u, SAMPLE3);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE4, 24u, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, 10);
+SIMPLE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, Sample1, 10);
 
 SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE1, 10, 2);
 SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE2, 25, 6);
@@ -96,7 +95,7 @@ const std::vector<unsigned> EXPECTED1 = {5, 6, 7, 8, 9};
 const std::vector<unsigned> EXPECTED2 = {10, 11, 12, 13, 14};
 
 
-SIMPLE_BENCHMARK(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, 2);
+SIMPLE_BENCHMARK(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, Sample1, 2);
 
 SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE1, EXPECTED1, 1);
 SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE2, EXPECTED2, 2);

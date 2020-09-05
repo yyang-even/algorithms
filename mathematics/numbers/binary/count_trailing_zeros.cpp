@@ -168,8 +168,8 @@ constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 constexpr auto NUM_BITS = BitsNumber<uint32_t>;
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_Linear, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_Linear, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_Linear, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Linear, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_Linear, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_Linear, TestUPPER, 0u, UPPER);
@@ -179,8 +179,8 @@ SIMPLE_TEST(CountTrailingZeros_Linear, TestSAMPLE2, 4u, 16);
 SIMPLE_TEST(CountTrailingZeros_Linear, TestSAMPLE3, 6u, 64);
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Parallel, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_Parallel, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_Parallel, TestUPPER, 0u, UPPER);
@@ -190,8 +190,8 @@ SIMPLE_TEST(CountTrailingZeros_Parallel, TestSAMPLE1, 3u, 0b1101000);
 MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_Parallel, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_BinarySearch, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestUPPER, 0u, UPPER);
@@ -201,8 +201,8 @@ SIMPLE_TEST(CountTrailingZeros_BinarySearch, TestSAMPLE1, 3u, 0b1101000);
 MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_BinarySearch, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_Float, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_Float, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_Float, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Float, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_Float, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_Float, TestUPPER, 0u, UPPER);
@@ -210,8 +210,8 @@ SIMPLE_TEST(CountTrailingZeros_Float, TestWorstCase, NUM_BITS - 1, 1 << (NUM_BIT
 SIMPLE_TEST(CountTrailingZeros_Float, TestSAMPLE1, 3u, 0b1101000);
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_ModulusAndLookup, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestUPPER, 0u, UPPER);
@@ -221,8 +221,8 @@ SIMPLE_TEST(CountTrailingZeros_ModulusAndLookup, TestSAMPLE1, 3u, 0b1101000);
 MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_ModulusAndLookup, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_MultiplyAndLookup, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_MultiplyAndLookup, TestUPPER, 0u, UPPER);
@@ -241,8 +241,8 @@ MUTUAL_RANDOM_TEST(__builtin_ctz, CountTrailingZeros_MultiplyAndLookup, LOWER, U
 #endif
 
 
-SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, UPPER);
-SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, 1 << (NUM_BITS - 1));
+SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, Sample1, UPPER);
+SIMPLE_BENCHMARK(CountTrailingZeros_Bitset, Sample2, 1 << (NUM_BITS - 1));
 
 SIMPLE_TEST(CountTrailingZeros_Bitset, TestLOWER, NUM_BITS, LOWER);
 SIMPLE_TEST(CountTrailingZeros_Bitset, TestUPPER, 0u, UPPER);
@@ -254,7 +254,7 @@ SIMPLE_TEST(CountTrailingZeros_Bitset, TestSAMPLE3, 6u, 64);
 MUTUAL_RANDOM_TEST(CountTrailingZeros_Linear, CountTrailingZeros_Bitset, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountChangedBitsAfterAdd1, 5);
+SIMPLE_BENCHMARK(CountChangedBitsAfterAdd1, Sample1, 5);
 
 SIMPLE_TEST(CountChangedBitsAfterAdd1, TestSAMPLE1, 2u, 5);
 SIMPLE_TEST(CountChangedBitsAfterAdd1, TestSAMPLE2, 2u, 1);

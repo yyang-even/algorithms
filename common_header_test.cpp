@@ -2,13 +2,13 @@
 
 
 #ifdef WANT_TESTS
-#define RandomNumberTest(testName, from, to) namespace {                        \
-    TEST(Random_NumberTest, testName) {                                         \
-        const auto random_number = Random_Number(from, to);                     \
-                                                                                \
-        EXPECT_LE(static_cast<decltype(random_number)>(from), random_number);   \
-        EXPECT_GE(static_cast<decltype(random_number)>(to), random_number);     \
-    }                                                                           \
+#define RandomNumberTest(testName, from, to) namespace {                                            \
+    TEST(Random_NumberTest, testName) {                                                             \
+        const auto random_number = Random_Number(from, to);                                         \
+                                                                                                    \
+        EXPECT_LE(static_cast<std::remove_const_t<decltype(random_number)>>(from), random_number);  \
+        EXPECT_GE(static_cast<std::remove_const_t<decltype(random_number)>>(to), random_number);    \
+    }                                                                                               \
 }
 
 RandomNumberTest(TestSameType, 0, 20);
@@ -33,7 +33,9 @@ static auto ZeroUnsignedFunction() {
     return unsigned_value;
 }
 
-SIMPLE_BENCHMARK(ZeroUnsignedFunction);
+SIMPLE_BENCHMARK0(ZeroUnsignedFunction);
+SIMPLE_BENCHMARK(ZeroUnsignedFunction, Sample0);
+THE_BENCHMARK(ZeroUnsignedFunction);
 
 SIMPLE_TEST(ZeroUnsignedFunction, TestSignedConstant, 5);
 SIMPLE_TEST(ZeroUnsignedFunction, TestUnsignedConstant, 5u);
@@ -49,8 +51,9 @@ static auto TemplateFunction(T v) {
 
 const auto SingleBuiltinArgumentFunction = TemplateFunction<int>;
 
-SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, 5);
-SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, signed_value);
+THE_BENCHMARK(SingleBuiltinArgumentFunction, 5);
+SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, Sample1, 5);
+SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, Sample2, signed_value);
 
 SIMPLE_TEST(SingleBuiltinArgumentFunction, TestConstant, 5, 5);
 SIMPLE_TEST(SingleBuiltinArgumentFunction, TestSignedVariable, signed_value, signed_value);
@@ -64,8 +67,8 @@ static auto TwoArgumentsFunction(const int, const int) {
     return signed_value;
 }
 
-SIMPLE_BENCHMARK(TwoArgumentsFunction, 5, 5);
-SIMPLE_BENCHMARK(TwoArgumentsFunction, signed_value, signed_value);
+SIMPLE_BENCHMARK(TwoArgumentsFunction, Sample1, 5, 5);
+SIMPLE_BENCHMARK(TwoArgumentsFunction, Sample2, signed_value, signed_value);
 
 SIMPLE_TEST(TwoArgumentsFunction, TestConstant, 5, 5, 5);
 SIMPLE_TEST(TwoArgumentsFunction, TestSignedVariable, signed_value, signed_value, signed_value);
@@ -79,8 +82,8 @@ static auto ThreeArgumentsFunction(const int, const int, const int) {
     return signed_value;
 }
 
-SIMPLE_BENCHMARK(ThreeArgumentsFunction, 5, 5, 5);
-SIMPLE_BENCHMARK(ThreeArgumentsFunction, signed_value, signed_value, signed_value);
+SIMPLE_BENCHMARK(ThreeArgumentsFunction, Sample1, 5, 5, 5);
+SIMPLE_BENCHMARK(ThreeArgumentsFunction, Sample2, signed_value, signed_value, signed_value);
 
 SIMPLE_TEST(ThreeArgumentsFunction, TestConstant, 5, 5, 5, 5);
 SIMPLE_TEST(ThreeArgumentsFunction, TestSignedVariable, signed_value, signed_value, signed_value,
@@ -95,8 +98,8 @@ static unsigned SignedUnsignedFunction(const int v) {
     return v;
 }
 
-SIMPLE_BENCHMARK(SignedUnsignedFunction, 5);
-SIMPLE_BENCHMARK(SignedUnsignedFunction, signed_value);
+SIMPLE_BENCHMARK(SignedUnsignedFunction, Sample1, 5);
+SIMPLE_BENCHMARK(SignedUnsignedFunction, Sample2, signed_value);
 
 SIMPLE_TEST(SignedUnsignedFunction, TestSignedConstant, 5, 5);
 SIMPLE_TEST(SignedUnsignedFunction, TestUnsignedConstant, 5u, 5);
@@ -138,8 +141,8 @@ static auto ZeroVectorMultiFunction() {
     return vector_multi_values;
 }
 
-SIMPLE_BENCHMARK(ZeroVectorSingleFunction);
-SIMPLE_BENCHMARK(ZeroVectorMultiFunction);
+SIMPLE_BENCHMARK(ZeroVectorSingleFunction, void);
+SIMPLE_BENCHMARK(ZeroVectorMultiFunction, void);
 
 SIMPLE_TEST0(ZeroVectorSingleFunction, TestConstantReturn, {5});
 SIMPLE_TEST0(ZeroVectorSingleFunction, TestInitializerReturnSingle, initializer_list_single_value);
@@ -152,12 +155,12 @@ SIMPLE_TEST0(ZeroVectorMultiFunction, TestVariableSingle, vector_multi_values);
 
 const auto VectorFunction = TemplateFunction<std::vector<ValueType>>;
 
-SIMPLE_BENCHMARK(VectorFunction, {5});
-SIMPLE_BENCHMARK(VectorFunction, {5, 5, 5});
-SIMPLE_BENCHMARK(VectorFunction, initializer_list_single_value);
-SIMPLE_BENCHMARK(VectorFunction, initializer_list_multi_values);
-SIMPLE_BENCHMARK(VectorFunction, vector_single_value);
-SIMPLE_BENCHMARK(VectorFunction, vector_multi_values);
+SIMPLE_BENCHMARK(VectorFunction, Sample1, {5});
+SIMPLE_BENCHMARK(VectorFunction, Sample2, {5, 5, 5});
+SIMPLE_BENCHMARK(VectorFunction, Sample3, initializer_list_single_value);
+SIMPLE_BENCHMARK(VectorFunction, Sample4, initializer_list_multi_values);
+SIMPLE_BENCHMARK(VectorFunction, Sample5, vector_single_value);
+SIMPLE_BENCHMARK(VectorFunction, Sample6, vector_multi_values);
 
 //SIMPLE_TEST(VectorFunction, TestConstant, 5, 5);
 SIMPLE_TEST(VectorFunction, TestConstantReturnSingle, {5}, vector_single_value);
@@ -181,12 +184,12 @@ MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableMulti, vector_mul
 
 const auto ListFunction = TemplateFunction<std::list<ValueType>>;
 
-SIMPLE_BENCHMARK(ListFunction, {5});
-SIMPLE_BENCHMARK(ListFunction, {5, 5, 5});
-SIMPLE_BENCHMARK(ListFunction, initializer_list_single_value);
-SIMPLE_BENCHMARK(ListFunction, initializer_list_multi_values);
-SIMPLE_BENCHMARK(ListFunction, list_single_value);
-SIMPLE_BENCHMARK(ListFunction, list_multi_values);
+SIMPLE_BENCHMARK(ListFunction, Sample1, {5});
+SIMPLE_BENCHMARK(ListFunction, Sample2, {5, 5, 5});
+SIMPLE_BENCHMARK(ListFunction, Sample3, initializer_list_single_value);
+SIMPLE_BENCHMARK(ListFunction, Sample4, initializer_list_multi_values);
+SIMPLE_BENCHMARK(ListFunction, Sample5, list_single_value);
+SIMPLE_BENCHMARK(ListFunction, Sample6, list_multi_values);
 
 //SIMPLE_TEST(ListFunction, TestConstant, 5, 5);
 SIMPLE_TEST(ListFunction, TestConstantReturn, {5}, list_single_value);

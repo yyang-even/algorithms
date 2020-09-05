@@ -109,21 +109,18 @@ const decltype(PreorderTraversal_Iterative(SAMPLE1)) EXPECTED_PREORDER =
 {1, 2, 6, 7, 3, 4, 8, 5, 9, 10, 11};
 
 
-SIMPLE_BENCHMARK(LevelOrderTraversal_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(LevelOrderTraversal_Iterative, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(LevelOrderTraversal_Iterative, Sample2, SAMPLE2);
 
 SIMPLE_TEST(LevelOrderTraversal_Iterative, TestSAMPLE1, EXPECTED_LEVELORDER, SAMPLE1);
+SIMPLE_TEST(LevelOrderTraversal_Iterative, TestSAMPLE2, EXPECTED_LEVELORDER, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(PreorderTraversal_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(PreorderTraversal_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(PreorderTraversal_Iterative, TestSAMPLE1, EXPECTED_PREORDER, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(LevelOrderTraversal_Iterative, SAMPLE2);
-
-SIMPLE_TEST(LevelOrderTraversal_Iterative, TestSAMPLE2, EXPECTED_LEVELORDER, SAMPLE2);
-
-
-SIMPLE_BENCHMARK(PreorderTraversal_Recursive, SAMPLE2);
+SIMPLE_BENCHMARK(PreorderTraversal_Recursive, Sample2, SAMPLE2);
 
 SIMPLE_TEST(PreorderTraversal_Recursive, TestSAMPLE2, EXPECTED_PREORDER, SAMPLE2);

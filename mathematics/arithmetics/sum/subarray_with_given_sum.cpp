@@ -119,7 +119,7 @@ const ArrayType SAMPLE3 = {1, 4};
 const ArrayType SAMPLE4 = {15, 2, 4, 8, 9, 5, 10};
 
 
-SIMPLE_BENCHMARK(FindSubarrayWithGivenSum, SAMPLE1, 33);
+SIMPLE_BENCHMARK(FindSubarrayWithGivenSum, Sample1, SAMPLE1, 33);
 
 SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample1, std::make_pair(2, 4), SAMPLE1, 33);
 SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample2, std::make_pair(1, 4), SAMPLE2, 7);
@@ -132,7 +132,7 @@ const ArrayType SAMPLE6 = {10, 2, -2, -20, 10};
 const ArrayType SAMPLE7 = { -10, 0, 2, -2, -20, 10};
 
 
-SIMPLE_BENCHMARK(FindSubarrayWithGivenSum_Map, SAMPLE6, 33);
+SIMPLE_BENCHMARK(FindSubarrayWithGivenSum_Map, Sample1, SAMPLE6, 33);
 
 SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample1, std::make_pair(2, 4), SAMPLE1, 33);
 SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample2, std::make_pair(1, 4), SAMPLE2, 7);
@@ -148,7 +148,7 @@ const ArrayType SAMPLE9 = {4, 2, 0, 1, 6};
 const ArrayType SAMPLE10 = { -3, 2, 3, 1, 6};
 
 
-SIMPLE_BENCHMARK(FindSubarrayWith0Sum, SAMPLE8);
+SIMPLE_BENCHMARK(FindSubarrayWith0Sum, Sample1, SAMPLE8);
 
 SIMPLE_TEST(FindSubarrayWith0Sum, TestSample8, true, SAMPLE8);
 SIMPLE_TEST(FindSubarrayWith0Sum, TestSample9, true, SAMPLE9);
@@ -158,7 +158,7 @@ SIMPLE_TEST(FindSubarrayWith0Sum, TestSample10, false, SAMPLE10);
 const ArrayType SAMPLE11 = {9, 4, 20, 3, 10, 5};
 
 
-SIMPLE_BENCHMARK(NumberOfSubarraysWithGivenSum, SAMPLE6, -10);
+SIMPLE_BENCHMARK(NumberOfSubarraysWithGivenSum, Sample1, SAMPLE6, -10);
 
 SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample6, 3u, SAMPLE6, -10);
 SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample7, 0u, SAMPLE7, 20);
@@ -170,7 +170,7 @@ const ArrayType SAMPLE13 = {1, 2, 3};
 const ArrayType SAMPLE14 = {1, 0, 3};
 
 
-SIMPLE_BENCHMARK(LengthOfLargestSubarrayWith0Sum, SAMPLE12);
+SIMPLE_BENCHMARK(LengthOfLargestSubarrayWith0Sum, Sample1, SAMPLE12);
 
 SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5u, SAMPLE12);
 SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0u, SAMPLE13);
@@ -182,7 +182,7 @@ const ArrayType SAMPLE16 = {1, 1, 1, 1};
 const ArrayType SAMPLE17 = {0, 0, 1, 1, 0};
 
 
-SIMPLE_BENCHMARK(LargestSubarrayWithEqual0sAnd1s, SAMPLE15);
+SIMPLE_BENCHMARK(LargestSubarrayWithEqual0sAnd1s, Sample1, SAMPLE15);
 
 SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample15, 6, SAMPLE15);
 SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample16, 0, SAMPLE16);

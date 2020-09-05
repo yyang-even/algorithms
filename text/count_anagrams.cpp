@@ -75,13 +75,13 @@ auto AreAnagrams(const std::string &s1, const std::string &s2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountAnagrams, "forxxorfxdofr", "for");
+SIMPLE_BENCHMARK(CountAnagrams, Sample1, "forxxorfxdofr", "for");
 
 SIMPLE_TEST(CountAnagrams, TestSAMPLE1, 3, "forxxorfxdofr", "for");
 SIMPLE_TEST(CountAnagrams, TestSAMPLE2, 4, "aabaabaa", "aaba");
 
 
-SIMPLE_BENCHMARK(AreAnagrams, "abcd", "dabc");
+SIMPLE_BENCHMARK(AreAnagrams, Sample1, "abcd", "dabc");
 
 SIMPLE_TEST(AreAnagrams, TestSAMPLE1, true, "abcd", "dabc");
 SIMPLE_TEST(AreAnagrams, TestSAMPLE2, true, "geeksforgeeks", "forgeeksgeeks");

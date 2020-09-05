@@ -123,7 +123,7 @@ const uint32_t LOWER = 0;
 constexpr auto UPPER = BitsNumber<uint32_t> - 1;
 
 
-SIMPLE_BENCHMARK(Modulus2Power, 1, UPPER);
+SIMPLE_BENCHMARK(Modulus2Power, Sample1, 1, UPPER);
 
 SIMPLE_TEST(Modulus2Power, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2Power, TestUPPER, UPPER, UPPER, UPPER);
@@ -131,7 +131,7 @@ SIMPLE_TEST(Modulus2Power, TestSAMPLE1, 51u, 179, 7);
 SIMPLE_TEST(Modulus2Power, TestSAMPLE2, 0u, 708, 2);
 
 
-SIMPLE_BENCHMARK(Modulus2PowerMinus1, 1, UPPER);
+SIMPLE_BENCHMARK(Modulus2PowerMinus1, Sample1, 1, UPPER);
 
 SIMPLE_TEST(Modulus2PowerMinus1, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2PowerMinus1, TestUPPER, UPPER, UPPER, UPPER);
@@ -139,7 +139,7 @@ SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE1, 52u, 179, 7);
 SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE2, 0u, 708, 2);
 
 
-SIMPLE_BENCHMARK(Modulus2PowerMinus1_Parallel, 1, UPPER);
+SIMPLE_BENCHMARK(Modulus2PowerMinus1_Parallel, Sample1, 1, UPPER);
 
 SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestUPPER, UPPER, UPPER, UPPER);

@@ -42,7 +42,7 @@ const ArrayType SAMPLE1 = {3, 1, 3};
 const ArrayType SAMPLE2 = {4, 3, 6, 2, 1, 1};
 
 
-SIMPLE_BENCHMARK(FindTheRepeatingAndMissing, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheRepeatingAndMissing, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheRepeatingAndMissing, TestSample1, std::make_pair(3u, 2u), SAMPLE1);
 SIMPLE_TEST(FindTheRepeatingAndMissing, TestSample2, std::make_pair(5u, 1u), SAMPLE2);

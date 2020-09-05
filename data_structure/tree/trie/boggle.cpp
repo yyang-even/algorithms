@@ -94,6 +94,6 @@ const BoardType BOARD1 = {
 const OutputType EXPECTED1 = {"gee", "geeks", "quiz"};
 
 
-SIMPLE_BENCHMARK(Boggle, KEYS1, BOARD1);
+SIMPLE_BENCHMARK(Boggle, Sample1, KEYS1, BOARD1);
 
 SIMPLE_TEST(Boggle, TestSAMPLE1, EXPECTED1, KEYS1, BOARD1);

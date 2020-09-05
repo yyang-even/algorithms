@@ -54,7 +54,7 @@ const ArrayType SAMPLE3 = {1, 2, 90, 10, 110};
 const ArrayType SAMPLE4 = {80, 2, 6, 3, 100};
 
 
-SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort, SAMPLE1);
+SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample1, 8, SAMPLE1);
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample2, 2, SAMPLE2);
@@ -62,7 +62,7 @@ SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample3, 109, SAMPLE3);
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort, TestSample4, 98, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort_SubarraySum, SAMPLE1);
+SIMPLE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort_SubarraySum, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample1, 8, SAMPLE1);
 SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSample2, 2, SAMPLE2);

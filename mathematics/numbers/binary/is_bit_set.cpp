@@ -25,7 +25,7 @@ bool IsBitSet(const unsigned num, const unsigned position) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsBitSet, 0, 4);
+SIMPLE_BENCHMARK(IsBitSet, Sample1, 0, 4);
 
 SIMPLE_TEST(IsBitSet, TestSample1, true, 0b101, 0);
 SIMPLE_TEST(IsBitSet, TestSample2, false, 0, 0);

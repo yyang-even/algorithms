@@ -23,7 +23,7 @@ auto testGetReverseN_TwoPointers(const std::vector<int> &array, const std::size_
 }//namespace
 
 
-SIMPLE_BENCHMARK(testGetReverseN_Iterative, SAMPLE_ARRAY, 5);
+SIMPLE_BENCHMARK(testGetReverseN_Iterative, Sample1, SAMPLE_ARRAY, 5);
 
 SIMPLE_TEST(testGetReverseN_Iterative, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
             SAMPLE_ARRAY, 0);
@@ -33,7 +33,7 @@ SIMPLE_TEST(testGetReverseN_Iterative, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.siz
             SAMPLE_ARRAY, 5);
 
 
-SIMPLE_BENCHMARK(testGetReverseN_Recursive, SAMPLE_ARRAY, 5);
+SIMPLE_BENCHMARK(testGetReverseN_Recursive, Sample1, SAMPLE_ARRAY, 5);
 
 SIMPLE_TEST(testGetReverseN_Recursive, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
             SAMPLE_ARRAY, 0);
@@ -43,7 +43,7 @@ SIMPLE_TEST(testGetReverseN_Recursive, TestSample, SAMPLE_ARRAY[SAMPLE_ARRAY.siz
             SAMPLE_ARRAY, 5);
 
 
-SIMPLE_BENCHMARK(testGetReverseN_TwoPointers, SAMPLE_ARRAY, 5);
+SIMPLE_BENCHMARK(testGetReverseN_TwoPointers, Sample1, SAMPLE_ARRAY, 5);
 
 SIMPLE_TEST(testGetReverseN_TwoPointers, TestSampleHead, SAMPLE_ARRAY[SAMPLE_ARRAY.size() - 1],
             SAMPLE_ARRAY, 0);

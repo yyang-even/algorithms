@@ -100,7 +100,7 @@ const ArrayType VALUES6 = {1, 20, 6, 4, 5};
 const ArrayType VALUES7 = {2, 4, 1, 3, 5};
 
 
-SIMPLE_BENCHMARK(CountInversions_MergeSort, VALUES6);
+SIMPLE_BENCHMARK(CountInversions_MergeSort, Sample1, VALUES6);
 
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE2, 0u, VALUES2);
@@ -111,7 +111,7 @@ SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE6, 5u, VALUES6);
 SIMPLE_TEST(CountInversions_MergeSort, TestSAMPLE7, 3u, VALUES7);
 
 
-SIMPLE_BENCHMARK(CountInversions_Multiset, VALUES6);
+SIMPLE_BENCHMARK(CountInversions_Multiset, Sample1, VALUES6);
 
 SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(CountInversions_Multiset, TestSAMPLE2, 0u, VALUES2);

@@ -30,19 +30,19 @@ auto Equal_Complement(const unsigned lhs, const unsigned rhs) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Equal_Xor, 0, 4);
+SIMPLE_BENCHMARK(Equal_Xor, Sample1, 0, 4);
 
 SIMPLE_TEST(Equal_Xor, TestSample1, true, 1233, 1233);
 SIMPLE_TEST(Equal_Xor, TestSample2, false, 123, 321);
 
 
-SIMPLE_BENCHMARK(Equal_Subtract, 0, 4);
+SIMPLE_BENCHMARK(Equal_Subtract, Sample1, 0, 4);
 
 SIMPLE_TEST(Equal_Subtract, TestSample1, true, 1233, 1233);
 SIMPLE_TEST(Equal_Subtract, TestSample2, false, 123, 321);
 
 
-SIMPLE_BENCHMARK(Equal_Complement, 0, 4);
+SIMPLE_BENCHMARK(Equal_Complement, Sample1, 0, 4);
 
 SIMPLE_TEST(Equal_Complement, TestSample1, true, 1233, 1233);
 SIMPLE_TEST(Equal_Complement, TestSample2, false, 123, 321);

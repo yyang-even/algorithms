@@ -110,22 +110,22 @@ const auto SAMPLE2_RHS = SetNode(CloneBinaryTree(BinaryTreeDeletion_Subtree(
                                                      CloneBinaryTree(SAMPLE0), 5).GetRoot()).GetRoot(), 5);
 
 
-SIMPLE_BENCHMARK(BinaryTreeDeletion_Subtree, CloneBinaryTree(SAMPLE0), 4);
+SIMPLE_BENCHMARK(BinaryTreeDeletion_Subtree, Sample1, CloneBinaryTree(SAMPLE0), 4);
 
 
-SIMPLE_BENCHMARK(BinaryTreeDeletion_BottomShrink, CloneBinaryTree(SAMPLE0), 4);
+SIMPLE_BENCHMARK(BinaryTreeDeletion_BottomShrink, Sample1, CloneBinaryTree(SAMPLE0), 4);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1_LHS, SAMPLE1_RHS);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2_LHS, SAMPLE2_RHS);
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, CloneBinaryTree(SAMPLE0));
+SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, Sample1, CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE3, true, EMPTY_TREE,
             DeleteEntireTree_Recursive_Postorder(CloneBinaryTree(SAMPLE0)).GetRoot());
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, CloneBinaryTree(SAMPLE0));
+SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, Sample1, CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE4, true, EMPTY_TREE,
             DeleteEntireTree_Iterative_LevelOrder(CloneBinaryTree(SAMPLE0)).GetRoot());

@@ -15,7 +15,7 @@ auto SumOfGeometricSeries(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfGeometricSeries, 5);
+SIMPLE_BENCHMARK(SumOfGeometricSeries, Sample1, 5);
 
 SIMPLE_TEST(SumOfGeometricSeries, TestSAMPLE1, 31, 4);
 SIMPLE_TEST(SumOfGeometricSeries, TestSAMPLE2, 1023, 9);

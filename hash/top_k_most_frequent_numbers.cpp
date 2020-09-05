@@ -91,7 +91,7 @@ const std::vector<ArrayType> EXPECTED1 = {{1}, {1}, {1, 2}, {1, 2, 3}, {1, 3, 2}
 const std::vector<ArrayType> EXPECTED2 = {{1}, {1}, {1}, {1}, {1}, {3}, {3}, {3}, {3}, {3}, {2}};
 
 
-SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers_Stream, SAMPLE, 4);
+SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers_Stream, Sample1, SAMPLE, 4);
 
 SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE1, EXPECTED1, SAMPLE, 4);
 SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE2, EXPECTED2, SAMPLE, 1);
@@ -103,7 +103,7 @@ const ArrayType SAMPLE2 = {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};
 const ArrayType EXPECTED_ARRAY2 = {5, 11, 7, 10};
 
 
-SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers, SAMPLE1, 2);
+SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers, Sample1, SAMPLE1, 2);
 
 SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE1, EXPECTED_ARRAY1, SAMPLE1, 2);
 SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE2, EXPECTED_ARRAY2, SAMPLE2, 4);

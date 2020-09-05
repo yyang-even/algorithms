@@ -33,7 +33,7 @@ const ArrayType EXPECTED1 = {5, 6, 1};
 const ArrayType SAMPLE2 = {2, 5, 5, 2};
 const ArrayType EXPECTED2 = {5, 2};
 
-SIMPLE_BENCHMARK(LastOccurrenceOfElementsInRelativeOrder, SAMPLE1);
+SIMPLE_BENCHMARK(LastOccurrenceOfElementsInRelativeOrder, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LastOccurrenceOfElementsInRelativeOrder, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LastOccurrenceOfElementsInRelativeOrder, TestSAMPLE2, EXPECTED2, SAMPLE2);

@@ -18,7 +18,7 @@ auto Increment(const InputType num) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Increment, 4);
+SIMPLE_BENCHMARK(Increment, Sample1, 4);
 
 SIMPLE_TEST(Increment, TestSample1, 4u, 3);
 SIMPLE_TEST(Increment, TestSample2, 10u, 9);

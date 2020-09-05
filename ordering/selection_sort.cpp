@@ -168,7 +168,7 @@ const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 const auto SelectionSort_Int = SelectionSort<ArrayType::value_type>;
 
-SIMPLE_BENCHMARK(SelectionSort_Int, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Int, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_Int, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_Int, TestSAMPLE2, VALUES2, VALUES2);
@@ -177,7 +177,7 @@ SIMPLE_TEST(SelectionSort_Int, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_Int, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_Concise, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Concise, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE2, VALUES2, VALUES2);
@@ -186,7 +186,7 @@ SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_Concise, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_Stable, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Stable, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_Stable, TestSAMPLE2, VALUES2, VALUES2);
@@ -203,7 +203,7 @@ const std::vector<std::string> VALUES24 = {"paper", "soap", "floppy", "flower"};
 const std::vector<std::string> EXPECTED24 = {"floppy", "flower", "paper", "soap"};
 
 
-SIMPLE_BENCHMARK(SelectionSort, VALUES24);
+SIMPLE_BENCHMARK(SelectionSort, Sample1, VALUES24);
 
 SIMPLE_TEST(SelectionSort, TestSAMPLE21, VALUES21, VALUES21);
 SIMPLE_TEST(SelectionSort, TestSAMPLE22, VALUES22, VALUES22);
@@ -211,7 +211,7 @@ SIMPLE_TEST(SelectionSort, TestSAMPLE23, EXPECTED23, VALUES23);
 SIMPLE_TEST(SelectionSort, TestSAMPLE24, EXPECTED24, VALUES24);
 
 
-SIMPLE_BENCHMARK(SelectionSort_Recursive, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_Recursive, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
@@ -220,7 +220,7 @@ SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_MinMax, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_MinMax, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE2, VALUES2, VALUES2);
@@ -229,7 +229,7 @@ SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(SelectionSort_MinMax, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_SinglyList_Iterative, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_SinglyList_Iterative, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE2, VALUES2, VALUES2);
@@ -238,7 +238,7 @@ SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE4, EXPECTED4, VALUES4)
 SIMPLE_TEST(SelectionSort_SinglyList_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(SelectionSort_SinglyList_Recursive, VALUES5);
+SIMPLE_BENCHMARK(SelectionSort_SinglyList_Recursive, Sample1, VALUES5);
 
 SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(SelectionSort_SinglyList_Recursive, TestSAMPLE2, VALUES2, VALUES2);

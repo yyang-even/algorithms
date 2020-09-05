@@ -48,6 +48,6 @@ inline auto TestMakeFairCoinfromBiasedCoin() {
 }//namespace
 
 
-SIMPLE_BENCHMARK(MakeFairCoinfromBiasedCoin);
+SIMPLE_BENCHMARK0(MakeFairCoinfromBiasedCoin);
 
 SIMPLE_TEST0(TestMakeFairCoinfromBiasedCoin, TestSample, true);

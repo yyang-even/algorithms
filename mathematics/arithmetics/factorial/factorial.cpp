@@ -86,9 +86,8 @@ const InputType SAMPLE1 = 1;
 const InputType SAMPLE2 = 6;
 
 
-SIMPLE_BENCHMARK(Factorial_Iterative, LOWER);
-SIMPLE_BENCHMARK(Factorial_Iterative, UPPER);
-RANDOM_BENCHMARK(Factorial_Iterative, LOWER, UPPER);
+SIMPLE_BENCHMARK(Factorial_Iterative, Sample1, LOWER);
+SIMPLE_BENCHMARK(Factorial_Iterative, Sample2, UPPER);
 
 SIMPLE_TEST(Factorial_Iterative, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(Factorial_Iterative, TestUPPER, 479001600u, UPPER);
@@ -96,9 +95,8 @@ SIMPLE_TEST(Factorial_Iterative, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(Factorial_Iterative, TestSAMPLE2, 720u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Factorial_OneLine, LOWER);
-SIMPLE_BENCHMARK(Factorial_OneLine, UPPER);
-RANDOM_BENCHMARK(Factorial_OneLine, LOWER, UPPER);
+SIMPLE_BENCHMARK(Factorial_OneLine, Sample1, LOWER);
+SIMPLE_BENCHMARK(Factorial_OneLine, Sample2, UPPER);
 
 SIMPLE_TEST(Factorial_OneLine, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(Factorial_OneLine, TestUPPER, 479001600u, UPPER);
@@ -106,9 +104,8 @@ SIMPLE_TEST(Factorial_OneLine, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(Factorial_OneLine, TestSAMPLE2, 720u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Factorial_Recursive, LOWER);
-SIMPLE_BENCHMARK(Factorial_Recursive, UPPER);
-RANDOM_BENCHMARK(Factorial_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(Factorial_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(Factorial_Recursive, Sample2, UPPER);
 
 SIMPLE_TEST(Factorial_Recursive, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(Factorial_Recursive, TestUPPER, 479001600u, UPPER);
@@ -116,9 +113,8 @@ SIMPLE_TEST(Factorial_Recursive, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(Factorial_Recursive, TestSAMPLE2, 720u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Factorial_TailRecursive, LOWER);
-SIMPLE_BENCHMARK(Factorial_TailRecursive, UPPER);
-RANDOM_BENCHMARK(Factorial_TailRecursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(Factorial_TailRecursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(Factorial_TailRecursive, Sample2, UPPER);
 
 SIMPLE_TEST(Factorial_TailRecursive, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(Factorial_TailRecursive, TestUPPER, 479001600u, UPPER);
@@ -126,9 +122,8 @@ SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE2, 720u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Factorial_LookupTable, LOWER);
-SIMPLE_BENCHMARK(Factorial_LookupTable, UPPER);
-RANDOM_BENCHMARK(Factorial_LookupTable, LOWER, UPPER);
+SIMPLE_BENCHMARK(Factorial_LookupTable, Sample1, LOWER);
+SIMPLE_BENCHMARK(Factorial_LookupTable, Sample2, UPPER);
 
 SIMPLE_TEST(Factorial_LookupTable, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(Factorial_LookupTable, TestUPPER, 479001600u, UPPER);
@@ -136,9 +131,8 @@ SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE1, 1u, SAMPLE1);
 SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE2, 720u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FactorialOfLargeNumber, LOWER);
-SIMPLE_BENCHMARK(FactorialOfLargeNumber, UPPER);
-RANDOM_BENCHMARK(FactorialOfLargeNumber, LOWER, 300);
+SIMPLE_BENCHMARK(FactorialOfLargeNumber, Sample1, LOWER);
+SIMPLE_BENCHMARK(FactorialOfLargeNumber, Sample2, UPPER);
 
 SIMPLE_TEST(FactorialOfLargeNumber, TestLOWER, "1", LOWER);
 SIMPLE_TEST(FactorialOfLargeNumber, TestUPPER, "479001600", UPPER);

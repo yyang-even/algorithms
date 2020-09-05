@@ -69,7 +69,7 @@ const ArrayType SAMPLE3 = {2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
 const ArrayType SAMPLE4 = {7, 3, 5, 4, 5, 3, 4};
 
 
-SIMPLE_BENCHMARK(FindTheOddNumber, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOddNumber, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheOddNumber, TestSample1, 3u, SAMPLE1);
 SIMPLE_TEST(FindTheOddNumber, TestSample2, 5u, SAMPLE2);
@@ -82,7 +82,7 @@ const ArrayType SORTED_SAMPLE2 = {1, 1, 2, 4, 4, 5, 5, 6, 6};
 const ArrayType SORTED_SAMPLE3 = {1, 1, 2, 2, 4, 4, 5, 5, 6};
 
 
-SIMPLE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, SORTED_SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, Sample1, SORTED_SAMPLE1);
 
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestFront, SORTED_SAMPLE1.front(),
             SORTED_SAMPLE1);

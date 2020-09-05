@@ -75,7 +75,7 @@ auto AllDivisorsOf(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountDivisorsOfN, 25);
+SIMPLE_BENCHMARK(CountDivisorsOfN, Sample1, 25);
 
 SIMPLE_TEST(CountDivisorsOfN, TestSAMPLE1, 3, 25);
 SIMPLE_TEST(CountDivisorsOfN, TestSAMPLE2, 8, 24);
@@ -83,7 +83,7 @@ SIMPLE_TEST(CountDivisorsOfN, TestSAMPLE3, 6, 18);
 SIMPLE_TEST(CountDivisorsOfN, TestSAMPLE4, 9, 100);
 
 
-SIMPLE_BENCHMARK(IsCountDivisorsOfNPrime, 13);
+SIMPLE_BENCHMARK(IsCountDivisorsOfNPrime, Sample1, 13);
 
 SIMPLE_TEST(IsCountDivisorsOfNPrime, TestSAMPLE1, true, 13);
 SIMPLE_TEST(IsCountDivisorsOfNPrime, TestSAMPLE2, false, 8);
@@ -95,7 +95,7 @@ const ArrayType EXPECTED1 = {1, 2, 3, 6};
 const ArrayType EXPECTED2 = {1, 2, 5, 10};
 
 
-SIMPLE_BENCHMARK(AllDivisorsOf, 10);
+SIMPLE_BENCHMARK(AllDivisorsOf, Sample1, 10);
 
 SIMPLE_TEST(AllDivisorsOf, TestSAMPLE1, EXPECTED1, 6);
 SIMPLE_TEST(AllDivisorsOf, TestSAMPLE2, EXPECTED2, 10);

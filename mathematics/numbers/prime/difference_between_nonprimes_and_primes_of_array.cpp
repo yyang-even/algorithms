@@ -66,7 +66,7 @@ const ArrayType SAMPLE1 = {1, 3, 5, 10, 15, 7};
 const ArrayType SAMPLE2 = {1, 3, 5, 10, 15, 7, 17};
 
 
-SIMPLE_BENCHMARK(DifferenceBetweenSumOfNonprimesAndPrimes, SAMPLE1);
+SIMPLE_BENCHMARK(DifferenceBetweenSumOfNonprimesAndPrimes, Sample1, SAMPLE1);
 
 SIMPLE_TEST(DifferenceBetweenSumOfNonprimesAndPrimes, TestSample1, 10, SAMPLE1);
 SIMPLE_TEST(DifferenceBetweenSumOfNonprimesAndPrimes, TestSample2, 7, SAMPLE2);
@@ -75,7 +75,7 @@ SIMPLE_TEST(DifferenceBetweenSumOfNonprimesAndPrimes, TestSample2, 7, SAMPLE2);
 const ArrayType SAMPLE3 = { -1, 3, 5, 10, 15, 7};
 
 
-SIMPLE_BENCHMARK(DifferenceBetweenProductOfNonprimesAndPrimes, SAMPLE1);
+SIMPLE_BENCHMARK(DifferenceBetweenProductOfNonprimesAndPrimes, Sample1, SAMPLE1);
 
 SIMPLE_TEST(DifferenceBetweenProductOfNonprimesAndPrimes, TestSample1, 45, SAMPLE1);
 SIMPLE_TEST(DifferenceBetweenProductOfNonprimesAndPrimes, TestSample3, 255, SAMPLE3);

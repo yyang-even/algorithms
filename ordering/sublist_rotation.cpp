@@ -61,7 +61,7 @@ const ListType SampleArray3 = {20, 45, 32, 34, 22, 28};
 const ListType ExpectedArray3 = {20, 45, 34, 22, 28, 32};
 
 
-SIMPLE_BENCHMARK(SublistRightRotate_SinglyList, SampleArray, 2, 5, 2);
+SIMPLE_BENCHMARK(SublistRightRotate_SinglyList, Sample1, SampleArray, 2, 5, 2);
 
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample, ExpectedArray, SampleArray, 2, 5, 2);
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample1, ExpectedArray1, SampleArray1, 1, 6, 2);
@@ -74,7 +74,7 @@ const ListType ExpectedArray4 = {2, 3, 4, 1, 6, 7, 8, 5, 10, 11, 12, 9, 14, 15, 
 const ListType ExpectedArray5 = {2, 3, 1, 5, 6, 4, 8, 9, 7, 11, 12, 10, 14, 15, 13};
 
 
-SIMPLE_BENCHMARK(BlockwiseRightRotate_SinglyList, SampleArray4, 4, -1);
+SIMPLE_BENCHMARK(BlockwiseRightRotate_SinglyList, Sample1, SampleArray4, 4, -1);
 
 SIMPLE_TEST(BlockwiseRightRotate_SinglyList, TestSample4, ExpectedArray4, SampleArray4, 4, -1);
 SIMPLE_TEST(BlockwiseRightRotate_SinglyList, TestSample5, ExpectedArray5, SampleArray4, 3, -1);

@@ -48,8 +48,7 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(CountTotalBits_Log, UPPER);
-RANDOM_BENCHMARK(CountTotalBits_Log, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTotalBits_Log, Sample1, UPPER);
 
 SIMPLE_TEST(CountTotalBits_Log, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE1, 4u, 13);
@@ -58,9 +57,8 @@ SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE3, 13u, 4096);
 SIMPLE_TEST(CountTotalBits_Log, TestSAMPLE4, 7u, 65);
 
 
-SIMPLE_BENCHMARK(CountTotalBits_Loop, LOWER);
-SIMPLE_BENCHMARK(CountTotalBits_Loop, UPPER);
-RANDOM_BENCHMARK(CountTotalBits_Loop, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountTotalBits_Loop, Sample1, LOWER);
+SIMPLE_BENCHMARK(CountTotalBits_Loop, Sample2, UPPER);
 
 SIMPLE_TEST(CountTotalBits_Loop, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(CountTotalBits_Loop, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
@@ -72,8 +70,7 @@ SIMPLE_TEST(CountTotalBits_Loop, TestSAMPLE4, 7u, 65);
 MUTUAL_RANDOM_TEST(CountTotalBits_Log, CountTotalBits_Loop, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(CountLeadingZeros_Loop, 16);
-RANDOM_BENCHMARK(CountLeadingZeros_Loop, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountLeadingZeros_Loop, Sample1, 16);
 
 SIMPLE_TEST(CountLeadingZeros_Loop, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
 SIMPLE_TEST(CountLeadingZeros_Loop, TestSAMPLE1, 27u, 16);
@@ -81,8 +78,7 @@ SIMPLE_TEST(CountLeadingZeros_Loop, TestSAMPLE2, 26u, 33);
 SIMPLE_TEST(CountLeadingZeros_Loop, TestUpper, 0u, UPPER);
 
 
-SIMPLE_BENCHMARK(CountLeadingZeros_BinarySearch, 16);
-RANDOM_BENCHMARK(CountLeadingZeros_BinarySearch, LOWER, UPPER);
+SIMPLE_BENCHMARK(CountLeadingZeros_BinarySearch, Sample1, 16);
 
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE1, 27u, 16);

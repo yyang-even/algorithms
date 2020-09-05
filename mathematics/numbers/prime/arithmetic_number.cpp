@@ -23,7 +23,7 @@ auto isArithmeticNumber(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(isArithmeticNumber, 6);
+SIMPLE_BENCHMARK(isArithmeticNumber, Sample1, 6);
 
 SIMPLE_TEST(isArithmeticNumber, TestSAMPLE1, true, 6);
 SIMPLE_TEST(isArithmeticNumber, TestSAMPLE2, false, 2);

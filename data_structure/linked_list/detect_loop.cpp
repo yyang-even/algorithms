@@ -278,9 +278,9 @@ auto FindTheDuplicate_FloydsCycleFinding(const std::vector<unsigned> &values) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyList);
-SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyCircular);
-SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyMakeLoop, 3);
+SIMPLE_BENCHMARK0(testDetectLoop_Hash_SinglyList);
+SIMPLE_BENCHMARK0(testDetectLoop_Hash_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_Hash_SinglyMakeLoop, Sample1, 3);
 
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyCircular, TestSample, true);
@@ -289,9 +289,9 @@ SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample2, true, 3);
 SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
 
 
-SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyList);
-SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyCircular);
-SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, 3);
+SIMPLE_BENCHMARK0(testDetectLoop_FloydsCycleFinding_SinglyList);
+SIMPLE_BENCHMARK0(testDetectLoop_FloydsCycleFinding_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, Sample1, 3);
 
 SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_FloydsCycleFinding_SinglyCircular, TestSample, true);
@@ -301,9 +301,9 @@ SIMPLE_TEST(testDetectLoop_FloydsCycleFinding_SinglyMakeLoop, TestSample3, true,
             SAMPLE_ARRAY.size() - 1);
 
 
-SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyList);
-SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyCircular);
-SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyMakeLoop, 3);
+SIMPLE_BENCHMARK0(testDetectLoop_NextFlag_SinglyList);
+SIMPLE_BENCHMARK0(testDetectLoop_NextFlag_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_NextFlag_SinglyMakeLoop, Sample1, 3);
 
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyCircular, TestSample, true);
@@ -312,16 +312,16 @@ SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample2, true, 3);
 SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
 
 
-SIMPLE_BENCHMARK(testDetectLoop_DoublyList);
-SIMPLE_BENCHMARK(testDetectLoop_DoublyCircular);
+SIMPLE_BENCHMARK0(testDetectLoop_DoublyList);
+SIMPLE_BENCHMARK0(testDetectLoop_DoublyCircular);
 
 SIMPLE_TEST0(testDetectLoop_DoublyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_DoublyCircular, TestSample, true);
 
 
-SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyList);
-SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyCircular);
-SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyMakeLoop, 3);
+SIMPLE_BENCHMARK0(testDetectLoop_Reverse_SinglyList);
+SIMPLE_BENCHMARK0(testDetectLoop_Reverse_SinglyCircular);
+SIMPLE_BENCHMARK(testDetectLoop_Reverse_SinglyMakeLoop, Sample1, 3);
 
 SIMPLE_TEST0(testDetectLoop_Reverse_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_Reverse_SinglyCircular, TestSample, true);
@@ -334,7 +334,7 @@ const std::vector<unsigned> SAMPLE1 = {1, 4, 3, 4, 2};
 const std::vector<unsigned> SAMPLE2 = {1, 3, 2, 1};
 
 
-SIMPLE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample1, 4u, SAMPLE1);
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample2, 1u, SAMPLE2);

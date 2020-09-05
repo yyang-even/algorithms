@@ -47,7 +47,7 @@ constexpr auto LOWER = 1u;
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(CheckForBitsAlternatePattern_Simple, 1);
+SIMPLE_BENCHMARK(CheckForBitsAlternatePattern_Simple, Sample1, 1);
 
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample1, false, 15);
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample2, false, 12);
@@ -57,7 +57,7 @@ SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestLOWER, true, LOWER);
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestUPPER, false, UPPER);
 
 
-SIMPLE_BENCHMARK(CheckForBitsAlternatePattern, 1);
+SIMPLE_BENCHMARK(CheckForBitsAlternatePattern, Sample1, 1);
 
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample1, false, 15);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample2, false, 12);

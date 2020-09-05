@@ -18,21 +18,21 @@ auto SetOrClearOneBit(const unsigned n, const unsigned p, const bool is_set) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SetOrClear, true, 0b0110, 0b1101);
-SIMPLE_BENCHMARK(SetOrClear, false, 0b0110, 0b1101);
+SIMPLE_BENCHMARK(SetOrClear, Sample1, true, 0b0110, 0b1101);
+SIMPLE_BENCHMARK(SetOrClear, Sample2, false, 0b0110, 0b1101);
 
 SIMPLE_TEST(SetOrClear, TestSample1, 0b1111u, true, 0b0110, 0b1101);
 SIMPLE_TEST(SetOrClear, TestSample2, 0b1001u, false, 0b0110, 0b1101);
 
 
-SIMPLE_BENCHMARK(SetOrClear_Superscalar, true, 0b0110, 0b1101);
-SIMPLE_BENCHMARK(SetOrClear_Superscalar, false, 0b0110, 0b1101);
+SIMPLE_BENCHMARK(SetOrClear_Superscalar, Sample1, true, 0b0110, 0b1101);
+SIMPLE_BENCHMARK(SetOrClear_Superscalar, Sample2, false, 0b0110, 0b1101);
 
 SIMPLE_TEST(SetOrClear_Superscalar, TestSample1, 0b1111u, true, 0b0110, 0b1101);
 SIMPLE_TEST(SetOrClear_Superscalar, TestSample2, 0b1001u, false, 0b0110, 0b1101);
 
 
-SIMPLE_BENCHMARK(SetOrClearOneBit, 7, 2, 0);
+SIMPLE_BENCHMARK(SetOrClearOneBit, Sample1, 7, 2, 0);
 
 SIMPLE_TEST(SetOrClearOneBit, TestSample1, 3u, 7, 2, 0);
 SIMPLE_TEST(SetOrClearOneBit, TestSample2, 15u, 7, 3, 1);

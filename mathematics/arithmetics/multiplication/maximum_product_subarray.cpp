@@ -124,7 +124,7 @@ const ArrayType VALUES4 = { -1, -3, -10, 0, 60};
 const ArrayType VALUES5 = { -2, -3, 0, -2, -40};
 
 
-SIMPLE_BENCHMARK(MaximumProductSubarray, VALUES2);
+SIMPLE_BENCHMARK(MaximumProductSubarray, Sample1, VALUES2);
 
 SIMPLE_TEST(MaximumProductSubarray, TestSAMPLE1, 0, VALUES1);
 SIMPLE_TEST(MaximumProductSubarray, TestSAMPLE2, 112, VALUES2);
@@ -133,7 +133,7 @@ SIMPLE_TEST(MaximumProductSubarray, TestSAMPLE4, 60, VALUES4);
 SIMPLE_TEST(MaximumProductSubarray, TestSAMPLE5, 80, VALUES5);
 
 
-SIMPLE_BENCHMARK(MaximumProductSubarray_TwoWays, VALUES2);
+SIMPLE_BENCHMARK(MaximumProductSubarray_TwoWays, Sample1, VALUES2);
 
 SIMPLE_TEST(MaximumProductSubarray_TwoWays, TestSAMPLE1, 0, VALUES1);
 SIMPLE_TEST(MaximumProductSubarray_TwoWays, TestSAMPLE2, 112, VALUES2);
@@ -142,7 +142,7 @@ SIMPLE_TEST(MaximumProductSubarray_TwoWays, TestSAMPLE4, 60, VALUES4);
 SIMPLE_TEST(MaximumProductSubarray_TwoWays, TestSAMPLE5, 80, VALUES5);
 
 
-SIMPLE_BENCHMARK(MaximumProductSubarray_Swap, VALUES2);
+SIMPLE_BENCHMARK(MaximumProductSubarray_Swap, Sample1, VALUES2);
 
 SIMPLE_TEST(MaximumProductSubarray_Swap, TestSAMPLE1, 0, VALUES1);
 SIMPLE_TEST(MaximumProductSubarray_Swap, TestSAMPLE2, 112, VALUES2);

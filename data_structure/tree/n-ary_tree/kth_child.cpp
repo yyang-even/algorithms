@@ -37,7 +37,7 @@ const auto SAMPLE1 = MakeTheSampleTree<n_ary_tree::array_representation::Node>()
 const auto SAMPLE2 = MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
 
 
-SIMPLE_BENCHMARK(KthChild, SAMPLE1, 1, 2);
+SIMPLE_BENCHMARK(KthChild, Sample1, SAMPLE1, 1, 2);
 
 SIMPLE_TEST(KthChild, TestSAMPLE10, -1, SAMPLE1, 0, 0);
 SIMPLE_TEST(KthChild, TestSAMPLE11, 2, SAMPLE1, 1, 0);
@@ -46,7 +46,7 @@ SIMPLE_TEST(KthChild, TestSAMPLE13, 5, SAMPLE1, 1, 3);
 SIMPLE_TEST(KthChild, TestSAMPLE14, -1, SAMPLE1, 1, 9);
 
 
-SIMPLE_BENCHMARK(KthChild, SAMPLE2, 1, 2);
+SIMPLE_BENCHMARK(KthChild, Sample2, SAMPLE2, 1, 2);
 
 SIMPLE_TEST(KthChild, TestSAMPLE20, -1, SAMPLE2, 0, 0);
 SIMPLE_TEST(KthChild, TestSAMPLE21, 2, SAMPLE2, 1, 0);

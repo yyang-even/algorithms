@@ -67,14 +67,14 @@ const ArrayType EXPECTED2 = {"Geeks", "for", "Geeks"};
 const ArrayType EXPECTED3 = {"a", "computer", "science", "portal"};
 
 
-SIMPLE_BENCHMARK(SplitIntoWords, "One two         three\n    four\tfive  ");
+SIMPLE_BENCHMARK(SplitIntoWords, Sample1, "One two         three\n    four\tfive  ");
 
 SIMPLE_TEST(SplitIntoWords, TestSAMPLE1, EXPECTED1, "One two         three\n    four\tfive  ");
 SIMPLE_TEST(SplitIntoWords, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
 SIMPLE_TEST(SplitIntoWords, TestSAMPLE3, EXPECTED3, "a computer science portal");
 
 
-SIMPLE_BENCHMARK(SplitIntoWords_strtok, "One two         three\n    four\tfive  ");
+SIMPLE_BENCHMARK(SplitIntoWords_strtok, Sample1, "One two         three\n    four\tfive  ");
 
 SIMPLE_TEST(SplitIntoWords_strtok, TestSAMPLE1, EXPECTED1,
             "One two         three\n    four\tfive  ");
@@ -82,7 +82,7 @@ SIMPLE_TEST(SplitIntoWords_strtok, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
 SIMPLE_TEST(SplitIntoWords_strtok, TestSAMPLE3, EXPECTED3, "a computer science portal");
 
 
-SIMPLE_BENCHMARK(SplitIntoWords_StringStream, "One two         three\n    four\tfive  ");
+SIMPLE_BENCHMARK(SplitIntoWords_StringStream, Sample1, "One two         three\n    four\tfive  ");
 
 SIMPLE_TEST(SplitIntoWords_StringStream, TestSAMPLE1, EXPECTED1,
             "One two         three\n    four\tfive  ");

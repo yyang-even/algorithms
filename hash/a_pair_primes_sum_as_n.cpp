@@ -43,7 +43,7 @@ auto PairPrimesSumAsN(const InputType N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(PairPrimesSumAsN, 74);
+SIMPLE_BENCHMARK(PairPrimesSumAsN, Sample1, 74);
 
 SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE1, std::make_pair(31ul, 43ul), 74);
 SIMPLE_TEST(PairPrimesSumAsN, TestSAMPLE2, std::make_pair(503ul, 521ul), 1024);

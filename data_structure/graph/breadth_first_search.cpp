@@ -129,7 +129,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {
 const ArrayType EXPECTED1 = {2, 0, 3, 1};
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, 4, SAMPLE1, 2);
+SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, Sample1, 4, SAMPLE1, 2);
 
 SIMPLE_TEST(BreadthFirstSearchSingleSource, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 2);
 
@@ -138,11 +138,11 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {
 const ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearch, 7, SAMPLE2);
+SIMPLE_BENCHMARK(BreadthFirstSearch, Sample1, 7, SAMPLE2);
 
 SIMPLE_TEST(BreadthFirstSearch, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearch_AdjMatrix, 7, SAMPLE2);
+SIMPLE_BENCHMARK(BreadthFirstSearch_AdjMatrix, Sample1, 7, SAMPLE2);
 
 SIMPLE_TEST(BreadthFirstSearch_AdjMatrix, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);

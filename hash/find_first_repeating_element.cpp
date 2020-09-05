@@ -121,25 +121,25 @@ const InitializerType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
 const InitializerType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, SAMPLE1);
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
 SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, "geeksforgeeks");
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, Sample1, "geeksforgeeks");
 
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE1, 'e', "geeksforgeeks");
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE2, 'l', "hello geeks");
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, "geeksforgeeks");
+SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, Sample1, "geeksforgeeks");
 
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e', "geeksforgeeks");
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a', "abcfdeacf");
 
 
-SIMPLE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
+SIMPLE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, EMPTY);
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);

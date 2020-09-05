@@ -31,7 +31,7 @@ const std::vector<int> EXPECTED1 = {2, 6, 3, 14};
 const std::vector<int> EXPECTED2 = {125, 4, 24, 5543, 111};
 
 
-SIMPLE_BENCHMARK(ConvertToIntArray, "2, 6, 3, 14");
+SIMPLE_BENCHMARK(ConvertToIntArray, Sample1, "2, 6, 3, 14");
 
 SIMPLE_TEST(ConvertToIntArray, TestSAMPLE1, EXPECTED1, "2, 6, 3, 14");
 SIMPLE_TEST(ConvertToIntArray, TestSAMPLE2, EXPECTED2, "125, 4, 24, 5543, 111");

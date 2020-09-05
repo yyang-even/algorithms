@@ -107,21 +107,21 @@ auto FindFirstNonrepeatingCharFromStream_Queue(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingChar, "GeeksforGeeks");
+SIMPLE_BENCHMARK(FindFirstNonrepeatingChar, Sample1, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE1, 'f', "GeeksforGeeks");
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE2, 'G', "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE3, 'd', "aabbccd");
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, "GeeksforGeeks");
+SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, Sample1, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, "GGGGGGGGkkksf", "GeeksforGeeks");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE2, "GGGGGGGGG", "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE3, "abcd", "aabbccd");
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, "GeeksforGeeks");
+SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, Sample1, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, "GGGGGGGGkkksf",
             "GeeksforGeeks");

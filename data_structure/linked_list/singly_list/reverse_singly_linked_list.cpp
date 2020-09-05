@@ -46,31 +46,31 @@ auto testReverse_Circular(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testReverse_Iterative, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testReverse_Iterative, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Iterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Iterative, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_Recursive, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testReverse_Recursive, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Recursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Recursive, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testReverse_TwoPointers, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_TwoPointers, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_TwoPointers, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_Stack, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testReverse_Stack, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Stack, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Stack, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_Circular, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testReverse_Circular, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Circular, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(testReverse_Circular, TestSample, EXPECTED_REVERSE_ARRAY, SAMPLE_ARRAY);

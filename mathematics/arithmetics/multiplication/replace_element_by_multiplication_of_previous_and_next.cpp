@@ -38,6 +38,6 @@ const ArrayType SAMPLE1 = {2, 3, 4, 5, 6};
 const ArrayType EXPECTED1 = {6, 8, 15, 24, 30};
 
 
-SIMPLE_BENCHMARK(ReplaceElementByMultiplicationOfPreviousAndNext, SAMPLE1);
+SIMPLE_BENCHMARK(ReplaceElementByMultiplicationOfPreviousAndNext, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ReplaceElementByMultiplicationOfPreviousAndNext, TestSAMPLE1, EXPECTED1, SAMPLE1);

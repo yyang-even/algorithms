@@ -87,16 +87,14 @@ const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 5).Get
 const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE2), 4).GetRoot();
 
 
-SIMPLE_BENCHMARK(isPerfect_Recursive, SAMPLE1);
-SIMPLE_BENCHMARK(isPerfect_Recursive, SAMPLE3);
+SIMPLE_BENCHMARK(isPerfect_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isPerfect_Recursive, TestSAMPLE1, false, SAMPLE1);
 SIMPLE_TEST(isPerfect_Recursive, TestSAMPLE2, false, SAMPLE2);
 SIMPLE_TEST(isPerfect_Recursive, TestSAMPLE3, true, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(isPerfect_Iterative, SAMPLE1);
-SIMPLE_BENCHMARK(isPerfect_Iterative, SAMPLE3);
+SIMPLE_BENCHMARK(isPerfect_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(isPerfect_Iterative, TestSAMPLE1, false, SAMPLE1);
 SIMPLE_TEST(isPerfect_Iterative, TestSAMPLE2, false, SAMPLE2);
