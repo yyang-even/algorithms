@@ -42,7 +42,7 @@ auto Multiply_Recursive(int x, int y) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Multiply_Recursive, 3, 4);
+SIMPLE_BENCHMARK(Multiply_Recursive, Sample1, 3, 4);
 
 SIMPLE_TEST(Multiply_Recursive, TestSAMPLE1, -55, 5, -11);
 SIMPLE_TEST(Multiply_Recursive, TestSAMPLE2, -55, -5, 11);
@@ -50,7 +50,7 @@ SIMPLE_TEST(Multiply_Recursive, TestSAMPLE3, 55, 5, 11);
 SIMPLE_TEST(Multiply_Recursive, TestSAMPLE4, 55, -5, -11);
 
 
-SIMPLE_BENCHMARK(Multiply_RussianPeasant, 3, 4);
+SIMPLE_BENCHMARK(Multiply_RussianPeasant, Sample1, 3, 4);
 
 SIMPLE_TEST(Multiply_RussianPeasant, TestSAMPLE1, 55u, 5, 11);
 SIMPLE_TEST(Multiply_RussianPeasant, TestSAMPLE2, 18u, 18, 1);

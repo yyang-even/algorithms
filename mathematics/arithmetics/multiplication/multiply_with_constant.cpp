@@ -41,21 +41,21 @@ auto Multiply15(const unsigned n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Multiply7, 4);
+SIMPLE_BENCHMARK(Multiply7, Sample1, 4);
 
 SIMPLE_TEST(Multiply7, TestSAMPLE1, 28u, 4);
 
 
-SIMPLE_BENCHMARK(Multiply10, 5);
+SIMPLE_BENCHMARK(Multiply10, Sample1, 5);
 
 SIMPLE_TEST(Multiply10, TestSAMPLE1, 50u, 5);
 
 
-SIMPLE_BENCHMARK(Multiply12, 5);
+SIMPLE_BENCHMARK(Multiply12, Sample1, 5);
 
 SIMPLE_TEST(Multiply12, TestSAMPLE1, 60u, 5);
 
 
-SIMPLE_BENCHMARK(Multiply15, 7);
+SIMPLE_BENCHMARK(Multiply15, Sample1, 7);
 
 SIMPLE_TEST(Multiply15, TestSAMPLE1, 105u, 7);

@@ -92,48 +92,48 @@ auto Add1_2sComplement(const int x) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Sum_Printf, 3, 4);
+SIMPLE_BENCHMARK(Sum_Printf, Sample1, 3, 4);
 
 SIMPLE_TEST(Sum_Printf, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Printf, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Printf, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_HalfAdder_Iterative, 3, 4);
+SIMPLE_BENCHMARK(Sum_HalfAdder_Iterative, Sample1, 3, 4);
 
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_HalfAdder_Recursive, 3, 4);
+SIMPLE_BENCHMARK(Sum_HalfAdder_Recursive, Sample1, 3, 4);
 
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_Pointer, 3, 4);
+SIMPLE_BENCHMARK(Sum_Pointer, Sample1, 3, 4);
 
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_Loop, 3, 4);
+SIMPLE_BENCHMARK(Sum_Loop, Sample1, 3, 4);
 
 SIMPLE_TEST(Sum_Loop, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Add1_HalfAdder, 4);
+SIMPLE_BENCHMARK(Add1_HalfAdder, Sample1, 4);
 
 SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE1, 7, 6);
 SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE2, 14, 13);
 
 
-SIMPLE_BENCHMARK(Add1_2sComplement, 4);
+SIMPLE_BENCHMARK(Add1_2sComplement, Sample1, 4);
 
 SIMPLE_TEST(Add1_2sComplement, TestSAMPLE1, 7, 6);
 SIMPLE_TEST(Add1_2sComplement, TestSAMPLE2, 14, 13);

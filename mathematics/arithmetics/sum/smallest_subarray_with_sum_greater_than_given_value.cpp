@@ -44,7 +44,7 @@ const ArrayType SAMPLE4 = {1, 2, 4};
 const ArrayType SAMPLE5 = {9, 1, 2, 4};
 
 
-SIMPLE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, SAMPLE1, 51);
+SIMPLE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, Sample1, SAMPLE1, 51);
 
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample1, 3u, SAMPLE1, 51);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample2, 1u, SAMPLE2, 9);

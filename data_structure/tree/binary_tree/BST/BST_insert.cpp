@@ -64,13 +64,13 @@ auto BSTInsert_Iterative(const BinaryTree::Node::PointerType root_node,
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(BSTInsert_Recursive, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
+SIMPLE_BENCHMARK(BSTInsert_Recursive, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE1, true,
             BSTInsert_Recursive(CloneBinaryTree(SAMPLE1).GetRoot(), 14));
 
 
-SIMPLE_BENCHMARK(BSTInsert_Iterative, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
+SIMPLE_BENCHMARK(BSTInsert_Iterative, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE2, true,
             BSTInsert_Iterative(CloneBinaryTree(SAMPLE1).GetRoot(), 14));

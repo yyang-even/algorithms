@@ -1,2 +1,2 @@
 " Make: Simple project build
-set makeprg=scripts/astyle_and_build.sh
+set makeprg=~/projects/yyLinuxScripts/git/astyle_and_build.sh

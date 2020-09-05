@@ -145,16 +145,14 @@ constexpr auto UPPER = OUTPUT_NUMBER_BITS - 1;
 constexpr InputType SAMPLE = 8;
 
 
-SIMPLE_BENCHMARK(HanoiTower_Recursive, LOWER);
-SIMPLE_BENCHMARK(HanoiTower_Recursive, UPPER);
-SIMPLE_BENCHMARK(HanoiTower_Recursive, SAMPLE);
-RANDOM_BENCHMARK(HanoiTower_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(HanoiTower_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(HanoiTower_Recursive, Sample2, UPPER);
+SIMPLE_BENCHMARK(HanoiTower_Recursive, Sample3, SAMPLE);
 
 
-SIMPLE_BENCHMARK(HanoiTower_Closedform, LOWER);
-SIMPLE_BENCHMARK(HanoiTower_Closedform, UPPER);
-SIMPLE_BENCHMARK(HanoiTower_Closedform, SAMPLE);
-RANDOM_BENCHMARK(HanoiTower_Closedform, LOWER, UPPER);
+SIMPLE_BENCHMARK(HanoiTower_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(HanoiTower_Closedform, Sample2, UPPER);
+SIMPLE_BENCHMARK(HanoiTower_Closedform, Sample3, SAMPLE);
 
 
 SIMPLE_TEST(HanoiTower_Recursive, TestLOWER, 0u, LOWER);
@@ -172,16 +170,14 @@ MUTUAL_RANDOM_TEST(HanoiTower_Recursive, HanoiTower_Closedform, LOWER, UPPER);
 constexpr InputType IndirectHanoiTowerUPPER = OUTPUT_NUMBER_BITS / 3;
 
 
-SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, LOWER);
-SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, IndirectHanoiTowerUPPER);
-SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, SAMPLE);
-RANDOM_BENCHMARK(IndirectHanoiTower_Recursive, LOWER, IndirectHanoiTowerUPPER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, Sample2, IndirectHanoiTowerUPPER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Recursive, Sample3, SAMPLE);
 
 
-SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, LOWER);
-SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, IndirectHanoiTowerUPPER);
-SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, SAMPLE);
-RANDOM_BENCHMARK(IndirectHanoiTower_Closedform, LOWER, IndirectHanoiTowerUPPER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, Sample2, IndirectHanoiTowerUPPER);
+SIMPLE_BENCHMARK(IndirectHanoiTower_Closedform, Sample3, SAMPLE);
 
 
 SIMPLE_TEST(IndirectHanoiTower_Recursive, TestLOWER, 0u, LOWER);
@@ -202,25 +198,22 @@ MUTUAL_RANDOM_TEST(IndirectHanoiTower_Recursive, IndirectHanoiTower_Closedform, 
 const InputType DoubleHanoiTowerUPPER = UPPER - 2;
 
 
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, LOWER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, DoubleHanoiTowerUPPER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, SAMPLE);
-RANDOM_BENCHMARK(DoubleHanoiTower_A_Recursive, LOWER, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, Sample2, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, Sample3, SAMPLE);
 
 
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, LOWER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, DoubleHanoiTowerUPPER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, SAMPLE);
-RANDOM_BENCHMARK(DoubleHanoiTower_A_Closedform, LOWER, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, Sample2, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, Sample3, SAMPLE);
 
 
 const InputType DoubleHanoiTowerBLOWER = 1;
 
 
-SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, DoubleHanoiTowerBLOWER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, DoubleHanoiTowerUPPER);
-SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, SAMPLE);
-RANDOM_BENCHMARK(DoubleHanoiTower_B_Closedform, LOWER, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, Sample1, DoubleHanoiTowerBLOWER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, Sample2, DoubleHanoiTowerUPPER);
+SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, Sample3, SAMPLE);
 
 
 SIMPLE_TEST(DoubleHanoiTower_A_Recursive, TestLOWER, 0u, LOWER);
@@ -244,7 +237,7 @@ SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerUPPER, 9223372036
 SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestSAMPLE, 1019u, SAMPLE);
 
 
-SIMPLE_BENCHMARK(HanoiTower_4Rods_Recursive, 3);
+SIMPLE_BENCHMARK(HanoiTower_4Rods_Recursive, Sample1, 3);
 
 SIMPLE_TEST(HanoiTower_4Rods_Recursive, TestSample1, 5u, 3);
 SIMPLE_TEST(HanoiTower_4Rods_Recursive, TestSample2, 9u, 4);

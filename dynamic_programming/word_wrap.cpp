@@ -126,13 +126,13 @@ const ArrayType SAMPLE2 = {3, 2, 2};
 const OutputType EXPECTED2 = {{1, 1}, {2, 2}, {3, 3}};
 
 
-SIMPLE_BENCHMARK(WordWrap, SAMPLE1, 6);
+SIMPLE_BENCHMARK(WordWrap, Sample1, SAMPLE1, 6);
 
 SIMPLE_TEST(WordWrap, TestSAMPLE1, EXPECTED1, SAMPLE1, 6);
 SIMPLE_TEST(WordWrap, TestSAMPLE2, EXPECTED2, SAMPLE2, 3);
 
 
-SIMPLE_BENCHMARK(WordWrap_SpaceOptimized, SAMPLE1, 6);
+SIMPLE_BENCHMARK(WordWrap_SpaceOptimized, Sample1, SAMPLE1, 6);
 
 SIMPLE_TEST(WordWrap_SpaceOptimized, TestSAMPLE1, EXPECTED1, SAMPLE1, 6);
 SIMPLE_TEST(WordWrap_SpaceOptimized, TestSAMPLE2, EXPECTED2, SAMPLE2, 3);

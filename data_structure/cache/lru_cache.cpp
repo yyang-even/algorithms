@@ -133,7 +133,7 @@ const ArrayType SAMPLE3 = {0, 0, 0, 2, 3, 0, 5, 7, 1, 2, 0, 8};
 const ArrayType SAMPLE4 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 0, 0};
 
 
-SIMPLE_BENCHMARK(LRU, SAMPLE1, 4);
+SIMPLE_BENCHMARK(LRU, Sample1, SAMPLE1, 4);
 
 SIMPLE_TEST(LRU, TestSAMPLE1, 6, SAMPLE1, 4);
 SIMPLE_TEST(LRU, TestSAMPLE2, 2, SAMPLE2, 3);

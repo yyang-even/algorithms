@@ -32,16 +32,16 @@ auto Subtract_Recursive(const int x, const int y) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Subtract_Iterative, 29, 13);
+SIMPLE_BENCHMARK(Subtract_Iterative, Sample1, 29, 13);
 
 SIMPLE_TEST(Subtract_Iterative, TestSAMPLE1, 16, 29, 13);
 
 
-SIMPLE_BENCHMARK(Subtract_Recursive, 29, 13);
+SIMPLE_BENCHMARK(Subtract_Recursive, Sample1, 29, 13);
 
 SIMPLE_TEST(Subtract_Recursive, TestSAMPLE1, 16, 29, 13);
 
 
-SIMPLE_BENCHMARK(Subtract_Bits, 29, 13);
+SIMPLE_BENCHMARK(Subtract_Bits, Sample1, 29, 13);
 
 SIMPLE_TEST(Subtract_Bits, TestSAMPLE1, 16, 29, 13);

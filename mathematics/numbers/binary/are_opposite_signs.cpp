@@ -7,9 +7,8 @@ constexpr auto LOWER = std::numeric_limits<int>::min();
 constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(AreOppositeSigns, -1, 0);
-SIMPLE_BENCHMARK(AreOppositeSigns, -1, 1);
-SIMPLE_BENCHMARK(AreOppositeSigns, LOWER, UPPER);
+SIMPLE_BENCHMARK(AreOppositeSigns, Sample1, -1, 0);
+SIMPLE_BENCHMARK(AreOppositeSigns, Sample2, -1, 1);
 
 SIMPLE_TEST(AreOppositeSigns, TestSample1, true, -1, 0);
 SIMPLE_TEST(AreOppositeSigns, TestSample2, false, -1, -1);

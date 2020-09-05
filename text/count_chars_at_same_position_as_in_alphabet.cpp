@@ -25,7 +25,7 @@ auto CountCharsAtSamePositionAsInAlphabet(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountCharsAtSamePositionAsInAlphabet, "geeksforgeeks");
+SIMPLE_BENCHMARK(CountCharsAtSamePositionAsInAlphabet, Sample1, "geeksforgeeks");
 
 SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE1, 3ul, "ABcED");
 SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE2, 1ul, "geeksforgeeks");

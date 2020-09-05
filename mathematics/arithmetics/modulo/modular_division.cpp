@@ -22,7 +22,7 @@ unsigned ModularDivision(unsigned a, const unsigned b, const unsigned m) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularDivision, 8, 4, 5);
+SIMPLE_BENCHMARK(ModularDivision, Sample1, 8, 4, 5);
 
 SIMPLE_TEST(ModularDivision, TestSample1, 2u, 8, 4, 5);
 SIMPLE_TEST(ModularDivision, TestSample2, 1u, 8, 3, 5);

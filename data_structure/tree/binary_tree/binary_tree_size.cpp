@@ -41,11 +41,11 @@ auto Size_Iterative(const BinaryTree::Node::PointerType root_node) {
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(Size_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(Size_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Size_Recursive, TestSAMPLE1, 5, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(Size_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(Size_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Size_Iterative, TestSAMPLE1, 5, SAMPLE1);

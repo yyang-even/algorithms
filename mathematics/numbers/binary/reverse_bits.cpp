@@ -180,7 +180,7 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(ReverseBits, UPPER);
+SIMPLE_BENCHMARK(ReverseBits, Sample1, UPPER);
 
 SIMPLE_TEST(ReverseBits, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseBits, TestUPPER, UPPER, UPPER);
@@ -188,7 +188,7 @@ SIMPLE_TEST(ReverseBits, TestSAMPLE1, 0XB0000000u, 0b1101);
 SIMPLE_TEST(ReverseBits, TestSAMPLE2, 0X80u, 0X01000000);
 
 
-SIMPLE_BENCHMARK(ReverseBits_32_LookupTable, UPPER);
+SIMPLE_BENCHMARK(ReverseBits_32_LookupTable, Sample1, UPPER);
 
 SIMPLE_TEST(ReverseBits_32_LookupTable, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseBits_32_LookupTable, TestUPPER, UPPER, UPPER);
@@ -198,7 +198,7 @@ SIMPLE_TEST(ReverseBits_32_LookupTable, TestSAMPLE2, 0X80u, 0X01000000);
 MUTUAL_RANDOM_TEST(ReverseBits, ReverseBits_32_LookupTable, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseBitsInByte_3, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(ReverseBitsInByte_3, Sample1, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(ReverseBitsInByte_3, TestLOWER, static_cast<unsigned char>(0),
             static_cast<unsigned char>(LOWER));
@@ -210,7 +210,7 @@ SIMPLE_TEST(ReverseBitsInByte_3, TestSAMPLE2, static_cast<unsigned char>(0X80),
             static_cast<unsigned char>(0X01));
 
 
-SIMPLE_BENCHMARK(ReverseBitsInByte_4, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(ReverseBitsInByte_4, Sample1, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(ReverseBitsInByte_4, TestLOWER, static_cast<unsigned char>(0),
             static_cast<unsigned char>(LOWER));
@@ -224,7 +224,7 @@ SIMPLE_TEST(ReverseBitsInByte_4, TestSAMPLE2, static_cast<unsigned char>(0X80),
 MUTUAL_RANDOM_TEST(ReverseBitsInByte_3, ReverseBitsInByte_4, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseBitsInByte_7, static_cast<unsigned char>(UPPER));
+SIMPLE_BENCHMARK(ReverseBitsInByte_7, Sample1, static_cast<unsigned char>(UPPER));
 
 SIMPLE_TEST(ReverseBitsInByte_7, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(ReverseBitsInByte_7, TestUPPER, 0XFFu, static_cast<unsigned char>(UPPER));
@@ -234,7 +234,7 @@ SIMPLE_TEST(ReverseBitsInByte_7, TestSAMPLE2, 0X80u, 0X01);
 MUTUAL_RANDOM_TEST(ReverseBitsInByte_7, ReverseBitsInByte_4, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseBits_32_Parallel, UPPER);
+SIMPLE_BENCHMARK(ReverseBits_32_Parallel, Sample1, UPPER);
 
 SIMPLE_TEST(ReverseBits_32_Parallel, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseBits_32_Parallel, TestUPPER, UPPER, UPPER);
@@ -244,7 +244,7 @@ SIMPLE_TEST(ReverseBits_32_Parallel, TestSAMPLE2, 0X80u, 0X01000000);
 MUTUAL_RANDOM_TEST(ReverseBits, ReverseBits_32_Parallel, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseNBits_Parallel_Uint32, UPPER);
+SIMPLE_BENCHMARK(ReverseNBits_Parallel_Uint32, Sample1, UPPER);
 
 SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestUPPER, UPPER, UPPER);
@@ -254,19 +254,19 @@ SIMPLE_TEST(ReverseNBits_Parallel_Uint32, TestSAMPLE2, 0X80u, 0X01000000);
 MUTUAL_RANDOM_TEST(ReverseBits, ReverseNBits_Parallel_Uint32, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(ReverseBytes_String, 0x12345678);
+SIMPLE_BENCHMARK(ReverseBytes_String, Sample1, 0x12345678);
 
 SIMPLE_TEST(ReverseBytes_String, TestSAMPLE1, 0x78563412u, 0x12345678);
 SIMPLE_TEST(ReverseBytes_String, TestSAMPLE2, 0x21436587u, 0x87654321);
 
 
-SIMPLE_BENCHMARK(ReverseBytes_Shift, 0x12345678);
+SIMPLE_BENCHMARK(ReverseBytes_Shift, Sample1, 0x12345678);
 
 SIMPLE_TEST(ReverseBytes_Shift, TestSAMPLE1, 0x78563412u, 0x12345678);
 SIMPLE_TEST(ReverseBytes_Shift, TestSAMPLE2, 0x21436587u, 0x87654321);
 
 
-SIMPLE_BENCHMARK(ReverseActualBits, 0x12345678);
+SIMPLE_BENCHMARK(ReverseActualBits, Sample1, 0x12345678);
 
 SIMPLE_TEST(ReverseActualBits, TestSAMPLE1, 0b1101, 0b1011);
 SIMPLE_TEST(ReverseActualBits, TestSAMPLE2, 0b101, 0b1010);

@@ -78,14 +78,14 @@ const ArrayType SAMPLE3 =
 const OutputType EXPECTED3 = {0, 3, 7, 10};
 
 
-SIMPLE_BENCHMARK(ActivitySelection_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(ActivitySelection_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(ActivitySelection_Iterative, SAMPLE1);
+SIMPLE_BENCHMARK(ActivitySelection_Iterative, Sample1, SAMPLE1);
 
 SIMPLE_TEST(ActivitySelection_Iterative, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ActivitySelection_Iterative, TestSAMPLE2, EXPECTED2, SAMPLE2);

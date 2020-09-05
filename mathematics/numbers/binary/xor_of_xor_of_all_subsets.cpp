@@ -26,7 +26,7 @@ const SetType SAMPLE_SET = {1, 2, 3};
 const SetType SINGLE_SET = {5};
 
 
-SIMPLE_BENCHMARK(FindXorOfXorOfAllSubsets, SAMPLE_SET);
+SIMPLE_BENCHMARK(FindXorOfXorOfAllSubsets, Sample1, SAMPLE_SET);
 
 SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample1, 0u, SAMPLE_SET);
 SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample2, *SINGLE_SET.cbegin(), SINGLE_SET);

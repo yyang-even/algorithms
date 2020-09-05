@@ -106,7 +106,7 @@ const ArrayType SAMPLE3 = {10, 20, 30, 40, 30};
 const ArrayType SAMPLE4 = {10, 20, 30};
 
 
-SIMPLE_BENCHMARK(MatrixChainMultiplication, SAMPLE1);
+SIMPLE_BENCHMARK(MatrixChainMultiplication, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE1, 2010, SAMPLE1);
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE2, 26000, SAMPLE2);
@@ -114,7 +114,7 @@ SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE3, 30000, SAMPLE3);
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE4, 6000, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(MatrixChainMultiplicationString, SAMPLE1);
+SIMPLE_BENCHMARK(MatrixChainMultiplicationString, Sample1, SAMPLE1);
 
 SIMPLE_TEST(MatrixChainMultiplicationString, TestSAMPLE2, "((A1(A2A3))A4)", SAMPLE2);
 SIMPLE_TEST(MatrixChainMultiplicationString, TestSAMPLE3, "(((A1A2)A3)A4)", SAMPLE3);

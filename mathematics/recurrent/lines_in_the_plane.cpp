@@ -115,20 +115,18 @@ constexpr InputType UPPER2 = InputType(1) << ((BitsNumber<InputType> / 2) - 1);
 constexpr InputType BoundedRegionsPlaneLinesLOWER = 1;
 
 
-SIMPLE_BENCHMARK(PlaneLines_Recursive, LOWER);
-SIMPLE_BENCHMARK(PlaneLines_Recursive, UPPER);
-SIMPLE_BENCHMARK(PlaneLines_Recursive, SAMPLE);
-RANDOM_BENCHMARK(PlaneLines_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(PlaneLines_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneLines_Recursive, Sample2, UPPER);
+SIMPLE_BENCHMARK(PlaneLines_Recursive, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneLines_Recursive, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneLines_Recursive, TestUPPER, 8390657u, UPPER);
 SIMPLE_TEST(PlaneLines_Recursive, TestSAMPLE, 106u, SAMPLE);
 
 
-SIMPLE_BENCHMARK(PlaneLines_Closedform, LOWER);
-SIMPLE_BENCHMARK(PlaneLines_Closedform, UPPER2);
-SIMPLE_BENCHMARK(PlaneLines_Closedform, SAMPLE);
-RANDOM_BENCHMARK(PlaneLines_Closedform, LOWER, UPPER2);
+SIMPLE_BENCHMARK(PlaneLines_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneLines_Closedform, Sample2, UPPER2);
+SIMPLE_BENCHMARK(PlaneLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneLines_Closedform, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneLines_Closedform, TestUPPER2, 2305843010287435777ul, UPPER2);
@@ -137,20 +135,18 @@ SIMPLE_TEST(PlaneLines_Closedform, TestSAMPLE, 106u, SAMPLE);
 MUTUAL_RANDOM_TEST(PlaneLines_Recursive, PlaneLines_Closedform, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(PlaneBentLines_Recursive, LOWER);
-SIMPLE_BENCHMARK(PlaneBentLines_Recursive, UPPER);
-SIMPLE_BENCHMARK(PlaneBentLines_Recursive, SAMPLE);
-RANDOM_BENCHMARK(PlaneBentLines_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(PlaneBentLines_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneBentLines_Recursive, Sample2, UPPER);
+SIMPLE_BENCHMARK(PlaneBentLines_Recursive, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneBentLines_Recursive, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneBentLines_Recursive, TestUPPER, 33550337u, UPPER);
 SIMPLE_TEST(PlaneBentLines_Recursive, TestSAMPLE, 379u, SAMPLE);
 
 
-SIMPLE_BENCHMARK(PlaneBentLines_Closedform, LOWER);
-SIMPLE_BENCHMARK(PlaneBentLines_Closedform, UPPER2);
-SIMPLE_BENCHMARK(PlaneBentLines_Closedform, SAMPLE);
-RANDOM_BENCHMARK(PlaneBentLines_Closedform, LOWER, UPPER2);
+SIMPLE_BENCHMARK(PlaneBentLines_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneBentLines_Closedform, Sample2, UPPER2);
+SIMPLE_BENCHMARK(PlaneBentLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneBentLines_Closedform, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneBentLines_Closedform, TestUPPER2, 9223372034707292161ul, UPPER2);
@@ -159,10 +155,9 @@ SIMPLE_TEST(PlaneBentLines_Closedform, TestSAMPLE, 379u, SAMPLE);
 MUTUAL_RANDOM_TEST(PlaneBentLines_Recursive, PlaneBentLines_Closedform, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, LOWER);
-SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, UPPER);
-SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, SAMPLE);
-RANDOM_BENCHMARK(PlaneZigzagLines_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, Sample2, UPPER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Recursive, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneZigzagLines_Recursive, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneZigzagLines_Recursive, TestUPPER, 75483137u, UPPER);
@@ -173,10 +168,9 @@ constexpr InputType PlaneZigzagLinesClosedformUPPER = InputType(1) << ((
                                                           BitsNumber<InputType> / 2) - 2);
 
 
-SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, LOWER);
-SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, PlaneZigzagLinesClosedformUPPER);
-SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, SAMPLE);
-RANDOM_BENCHMARK(PlaneZigzagLines_Closedform, LOWER, PlaneZigzagLinesClosedformUPPER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, Sample2, PlaneZigzagLinesClosedformUPPER);
+SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneZigzagLines_Closedform, TestLOWER, 1u, LOWER);
 SIMPLE_TEST(PlaneZigzagLines_Closedform, TestPlaneZigzagLinesClosedformUPPER, 5188146766972715009ul,
@@ -186,10 +180,9 @@ SIMPLE_TEST(PlaneZigzagLines_Closedform, TestSAMPLE, 834u, SAMPLE);
 MUTUAL_RANDOM_TEST(PlaneZigzagLines_Recursive, PlaneZigzagLines_Closedform, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, BoundedRegionsPlaneLinesLOWER);
-SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, UPPER2);
-SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, SAMPLE);
-RANDOM_BENCHMARK(BoundedRegionsPlaneLines_Closedform, LOWER, UPPER2);
+SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample1, BoundedRegionsPlaneLinesLOWER);
+SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample2, UPPER2);
+SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(BoundedRegionsPlaneLines_Closedform, TestBoundedRegionsPlaneLinesLOWER, 0u,
             BoundedRegionsPlaneLinesLOWER);

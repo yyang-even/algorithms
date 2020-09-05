@@ -501,7 +501,7 @@ const std::forward_list<ArrayType::value_type> LIST1 = INITIALIZER1;
 const std::forward_list<ArrayType::value_type> LIST_UNDERFLOW = INITIALIZER_UNDERFLOW;
 
 
-SIMPLE_BENCHMARK(BinarySearch_Recursive, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Recursive, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Recursive, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarySearch_Recursive, TestBegin, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -512,7 +512,7 @@ SIMPLE_TEST(BinarySearch_Recursive, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_Iterative, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Iterative, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Iterative, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarySearch_Iterative, TestBegin, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -523,7 +523,7 @@ SIMPLE_TEST(BinarySearch_Iterative, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_Meta, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Meta, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Meta, TestBegin, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Meta, TestSample1, ARRAY1, 10);
@@ -533,7 +533,7 @@ SIMPLE_TEST(BinarySearch_Meta, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY_UNDE
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_Uniform5, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Uniform5, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Uniform5, TestBegin, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
 MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_Uniform5, TestSample1, ARRAY1, 10);
@@ -546,7 +546,7 @@ SIMPLE_TEST(BinarySearch_Uniform1, TestUnderflow, ARRAY_UNDERFLOW.cend(), ARRAY_
 const ArrayType VALUES3 = {2, 3, 3, 5, 5, 5, 6, 6};
 
 
-SIMPLE_BENCHMARK(BinarSearch_First_Iterative, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarSearch_First_Iterative, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarSearch_First_Iterative, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin2, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -560,7 +560,7 @@ SIMPLE_TEST(BinarSearch_First_Iterative, TestUnderflow, ARRAY_UNDERFLOW.cend(), 
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_First_Recursive, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_First_Recursive, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_First_Recursive, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarySearch_First_Recursive, TestBegin2, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -574,7 +574,7 @@ SIMPLE_TEST(BinarySearch_First_Recursive, TestUnderflow, ARRAY_UNDERFLOW.cend(),
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarSearch_Last_Iterative, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarSearch_Last_Iterative, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarSearch_Last_Iterative, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarSearch_Last_Iterative, TestBegin2, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -589,7 +589,7 @@ SIMPLE_TEST(BinarSearch_Last_Iterative, TestUnderflow, ARRAY_UNDERFLOW.cend(), A
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_Last_Recursive, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Last_Recursive, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Last_Recursive, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(BinarySearch_Last_Recursive, TestBegin2, ARRAY1.cbegin(), ARRAY1, ARRAY1.front());
@@ -604,7 +604,7 @@ SIMPLE_TEST(BinarySearch_Last_Recursive, TestUnderflow, ARRAY_UNDERFLOW.cend(), 
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(UpperBound_BinarySearch, ARRAY1, 10);
+SIMPLE_BENCHMARK(UpperBound_BinarySearch, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(UpperBound_BinarySearch, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(UpperBound_BinarySearch, TestBegin2, ARRAY1.cbegin(), ARRAY1, ARRAY1.front() - 1);
@@ -618,7 +618,7 @@ SIMPLE_TEST(UpperBound_BinarySearch, TestUnderflow, ARRAY_UNDERFLOW.cbegin(), AR
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(GreatestLesser_BinarySearch, ARRAY1, 10);
+SIMPLE_BENCHMARK(GreatestLesser_BinarySearch, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(GreatestLesser_BinarySearch, TestEmpty, ARRAY_EMPTY.cend(), ARRAY_EMPTY, 10);
 SIMPLE_TEST(GreatestLesser_BinarySearch, TestBegin2, ARRAY1.cbegin(), ARRAY1,
@@ -634,7 +634,7 @@ SIMPLE_TEST(GreatestLesser_BinarySearch, TestUnderflow, ARRAY_UNDERFLOW.cend(), 
             ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_Randomized_Iterative, ARRAY1, 10);
+SIMPLE_BENCHMARK(BinarySearch_Randomized_Iterative, Sample1, ARRAY1, 10);
 
 SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestBegin, ARRAY1.cbegin(), ARRAY1,
             ARRAY1.front());
@@ -647,7 +647,7 @@ SIMPLE_TEST(BinarySearch_Randomized_Iterative, TestUnderflow, ARRAY_UNDERFLOW.ce
             ARRAY_UNDERFLOW, ARRAY_UNDERFLOW.front() - 1);
 
 
-SIMPLE_BENCHMARK(BinarySearch_SinglyList, LIST1, 10);
+SIMPLE_BENCHMARK(BinarySearch_SinglyList, Sample1, LIST1, 10);
 
 SIMPLE_TEST(BinarySearch_SinglyList, TestEmpty, LIST_EMPTY.cend(), LIST_EMPTY, 10);
 SIMPLE_TEST(BinarySearch_SinglyList, TestBegin, LIST1.cbegin(), LIST1, LIST1.front());

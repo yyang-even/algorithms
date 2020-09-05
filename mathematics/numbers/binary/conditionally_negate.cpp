@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 /** Conditionally negate a value without branching
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -17,14 +20,15 @@ int NegateIfFalse(const bool b_dont_negate, const int num) {
     return (b_dont_negate ^ (b_dont_negate - 1)) * num;
 }
 
+}//namespace
+
 
 constexpr auto LOWER = std::numeric_limits<int>::min();
 constexpr auto UPPER = std::numeric_limits<int>::max();
 
-SIMPLE_BENCHMARK(NegateIfTrue, true, -1);
-SIMPLE_BENCHMARK(NegateIfTrue, true, 0);
-SIMPLE_BENCHMARK(NegateIfTrue, false, LOWER);
-SIMPLE_BENCHMARK(NegateIfTrue, false, UPPER);
+
+SIMPLE_BENCHMARK(NegateIfTrue, Sample1, true, -1);
+SIMPLE_BENCHMARK(NegateIfTrue, Sample2, true, 0);
 
 SIMPLE_TEST(NegateIfTrue, TestSample1, 1, true, -1);
 SIMPLE_TEST(NegateIfTrue, TestSample2, 0, true, 0);
@@ -37,10 +41,9 @@ SIMPLE_TEST(NegateIfTrue, TestSample8, 1, false, 1);
 SIMPLE_TEST(NegateIfTrue, TestSample9, LOWER, false, LOWER);
 SIMPLE_TEST(NegateIfTrue, TestSample10, UPPER, false, UPPER);
 
-SIMPLE_BENCHMARK(NegateIfFalse, true, -1);
-SIMPLE_BENCHMARK(NegateIfFalse, true, 0);
-SIMPLE_BENCHMARK(NegateIfFalse, false, LOWER);
-SIMPLE_BENCHMARK(NegateIfFalse, false, UPPER);
+
+SIMPLE_BENCHMARK(NegateIfFalse, Sample1, true, -1);
+SIMPLE_BENCHMARK(NegateIfFalse, Sample2, true, 0);
 
 SIMPLE_TEST(NegateIfFalse, TestSample1, 1, false, -1);
 SIMPLE_TEST(NegateIfFalse, TestSample2, 0, false, 0);

@@ -66,13 +66,13 @@ const ArrayType SAMPLE1 = {1, 2, 3, 4, 5, 6};
 const ArrayType SAMPLE2 = {1, 3, 5, 7, 9};
 
 
-SIMPLE_BENCHMARK(Multiplication_Recersive, SAMPLE1);
+SIMPLE_BENCHMARK(Multiplication_Recersive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE1, 720, SAMPLE1);
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE2, 945, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Multiplication_Modulo, SAMPLE1);
+SIMPLE_BENCHMARK(Multiplication_Modulo, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE1, 720, SAMPLE1);
 SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE2, 945, SAMPLE2);

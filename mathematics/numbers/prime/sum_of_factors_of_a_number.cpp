@@ -19,7 +19,7 @@ inline auto HaveSameSumsOfProperDivisors(const unsigned N1, const unsigned N2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfFactorsOfN, 1100);
+SIMPLE_BENCHMARK(SumOfFactorsOfN, Sample1, 1100);
 
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE1, 28, 12);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE2, 168, 60);
@@ -30,7 +30,7 @@ SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE6, 14, 13);
 SIMPLE_TEST(SumOfFactorsOfN, TestSAMPLE7, 60, 24);
 
 
-SIMPLE_BENCHMARK(HaveSameSumsOfProperDivisors, 559, 703);
+SIMPLE_BENCHMARK(HaveSameSumsOfProperDivisors, Sample1, 559, 703);
 
 SIMPLE_TEST(HaveSameSumsOfProperDivisors, TestSAMPLE1, true, 559, 703);
 SIMPLE_TEST(HaveSameSumsOfProperDivisors, TestSAMPLE2, false, 36, 57);

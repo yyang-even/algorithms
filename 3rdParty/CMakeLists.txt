@@ -1,6 +1,13 @@
 #Ignore warnings in third party libraries.
 set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -w")
 
-if (WANT_TESTS)
+if(WANT_TESTS)
     add_subdirectory(googletest)
-endif (WANT_TESTS)
+endif(WANT_TESTS)
+
+if(WANT_BENCHMARKS)
+    set(BENCHMARK_ENABLE_TESTING OFF)
+    set(BENCHMARK_ENABLE_GTEST_TESTS OFF)
+    set(BENCHMARK_ENABLE_INSTALL OFF)
+    add_subdirectory(benchmark)
+endif(WANT_BENCHMARKS)

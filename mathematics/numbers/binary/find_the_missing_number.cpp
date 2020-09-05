@@ -169,13 +169,13 @@ const ArrayType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
 const ArrayType SAMPLE2 = {1, 2, 4, 5, 6};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sum, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sum, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample2, 3u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Xor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Xor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample2, 3u, SAMPLE2);
@@ -185,7 +185,7 @@ const ArrayType SAMPLE3 = {13, 12, 11, 15};
 const ArrayType SAMPLE4 = {33, 36, 35, 34};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumberRange_Xor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheMissingNumberRange_Xor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3u, SAMPLE2);
@@ -193,7 +193,7 @@ SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14u, SAMPLE3);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, SAMPLE2);
+SIMPLE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, Sample1, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_SortedRange_BinarySearch, TestSample2, 3, SAMPLE2);
 
@@ -202,14 +202,14 @@ const ArrayType SAMPLE5 = {2, 3, 4, 5, 6};
 const ArrayType SAMPLE6 = {1, 2, 3, 4, 5};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, SAMPLE2);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, Sample1, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestBegin, 1, SAMPLE5);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1, SAMPLE6);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, SAMPLE2);
+SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, Sample1, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);

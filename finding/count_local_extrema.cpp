@@ -35,7 +35,7 @@ const ArrayType SAMPLE2 = {1, 2, 3};
 const ArrayType SAMPLE3 = {1, 0, 2, 1};
 
 
-SIMPLE_BENCHMARK(CountLocalExtrema, SAMPLE1);
+SIMPLE_BENCHMARK(CountLocalExtrema, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CountLocalExtrema, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(CountLocalExtrema, TestSAMPLE2, 0, SAMPLE2);

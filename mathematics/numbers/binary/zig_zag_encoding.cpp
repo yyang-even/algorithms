@@ -29,9 +29,9 @@ int ZigZagDecoding(const unsigned num) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ZigZagEncoding, 0);
-SIMPLE_BENCHMARK(ZigZagEncoding, 1);
-SIMPLE_BENCHMARK(ZigZagEncoding, -1);
+SIMPLE_BENCHMARK(ZigZagEncoding, Sample1, 0);
+SIMPLE_BENCHMARK(ZigZagEncoding, Sample2, 1);
+SIMPLE_BENCHMARK(ZigZagEncoding, Sample3, -1);
 
 SIMPLE_TEST(ZigZagEncoding, TestSample1, 0u, 0);
 SIMPLE_TEST(ZigZagEncoding, TestSample2, 1u, -1);
@@ -41,9 +41,9 @@ SIMPLE_TEST(ZigZagEncoding, TestSample5, 4294967294u, 2147483647);
 SIMPLE_TEST(ZigZagEncoding, TestSample6, 4294967295u, -2147483648);
 
 
-SIMPLE_BENCHMARK(ZigZagDecoding, 0);
-SIMPLE_BENCHMARK(ZigZagDecoding, 1);
-SIMPLE_BENCHMARK(ZigZagDecoding, -1);
+SIMPLE_BENCHMARK(ZigZagDecoding, Sample1, 0);
+SIMPLE_BENCHMARK(ZigZagDecoding, Sample2, 1);
+SIMPLE_BENCHMARK(ZigZagDecoding, Sample3, -1);
 
 SIMPLE_TEST(ZigZagDecoding, TestSample1, 0, 0);
 SIMPLE_TEST(ZigZagDecoding, TestSample2, -1, 1);

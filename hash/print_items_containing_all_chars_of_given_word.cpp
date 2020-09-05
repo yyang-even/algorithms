@@ -46,6 +46,6 @@ const ArrayType SAMPLE = {"geeksforgeeks", "unsorted", "sunday", "just", "sss"};
 const ArrayType EXPECTED = {"unsorted", "sunday"};
 
 
-SIMPLE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, SAMPLE, "sun");
+SIMPLE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, Sample1, SAMPLE, "sun");
 
 SIMPLE_TEST(ItemsContainingAllCharsOfGivenWord, TestSAMPLE1, EXPECTED, SAMPLE, "sun");

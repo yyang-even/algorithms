@@ -71,10 +71,8 @@ constexpr InputType SAMPLE3 = 0b1111; //-1
 constexpr InputType SAMPLE4 = 0b1000; //-8
 constexpr InputType SAMPLE5 = 0b0111; //7
 
-SIMPLE_BENCHMARK(SignExtend_Const_4Bits, 1);
-SIMPLE_BENCHMARK(SignExtend_Const_4Bits, 0);
-SIMPLE_BENCHMARK(SignExtend_Const_4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtend_Const_4Bits, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, Sample1, 1);
+SIMPLE_BENCHMARK(SignExtend_Const_4Bits, Sample2, 0);
 
 SIMPLE_TEST(SignExtend_Const_4Bits, TestSample1, 0, SAMPLE1);
 SIMPLE_TEST(SignExtend_Const_4Bits, TestSample2, 1, SAMPLE2);
@@ -85,10 +83,8 @@ SIMPLE_TEST(SignExtend_Const_4Bits, TestSample6, 0, LOWER);
 SIMPLE_TEST(SignExtend_Const_4Bits, TestSample7, -1, UPPER);
 
 
-SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, 1);
-SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, 0);
-SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, Sample1, 1);
+SIMPLE_BENCHMARK(SignExtend_Variable_4Bits, Sample2, 0);
 
 SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample1, 0, SAMPLE1);
 SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample2, 1, SAMPLE2);
@@ -99,10 +95,8 @@ SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample6, 0, LOWER);
 SIMPLE_TEST(SignExtend_Variable_4Bits, TestSample7, -1, UPPER);
 
 
-SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, 1);
-SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, 0);
-SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, LOWER);
-SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, Sample1, 1);
+SIMPLE_BENCHMARK(SignExtend_Variable_Dirty_4Bits, Sample2, 0);
 
 SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample1, 0, SAMPLE1);
 SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample2, 1, SAMPLE2);

@@ -90,7 +90,7 @@ const ArrayType SAMPLE4R = {0, 2, 4, -3, 2, 1};
 const OutputType EXPECTED4 = {{6, 2}, {4, 4}, {6, 2}, {7, 1}};
 
 
-SIMPLE_BENCHMARK(FindAllPairsSumAsN_Hash, SAMPLE1L, SAMPLE1R, 8);
+SIMPLE_BENCHMARK(FindAllPairsSumAsN_Hash, Sample1, SAMPLE1L, SAMPLE1R, 8);
 
 SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample1, EXPECTED1, SAMPLE1L, SAMPLE1R, 8);
 SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample2, EXPECTED2, SAMPLE2L, SAMPLE2R, 9);
@@ -102,7 +102,7 @@ const OutputType EXPECTED_SORTED1 = {{4, 4}, {5, 3}};
 const OutputType EXPECTED_SORTED2 = {{1, 8}, {4, 5}, {5, 4}};
 
 
-SIMPLE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, SAMPLE1L, SAMPLE1R, 8);
+SIMPLE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, Sample1, SAMPLE1L, SAMPLE1R, 8);
 
 SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1,
             SAMPLE1L, SAMPLE1R, 8);

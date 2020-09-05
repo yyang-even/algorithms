@@ -26,10 +26,10 @@ auto RandomNumberFromStream(const Container &stream) {
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
-SIMPLE_BENCHMARK(ReservoirSampling, VALUES, 3);
+SIMPLE_BENCHMARK(ReservoirSampling, Sample1, VALUES, 3);
 
 
-SIMPLE_BENCHMARK(RandomNumberFromStream, VALUES);
+SIMPLE_BENCHMARK(RandomNumberFromStream, Sample1, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP

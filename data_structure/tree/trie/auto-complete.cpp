@@ -50,7 +50,7 @@ const ArrayType EXPECTED1 = {"hel", "hell", "hello", "help", "helping", "helps"}
 const ArrayType EXPECTED2 = {"cat"};
 
 
-SIMPLE_BENCHMARK(AutoComplete, SAMPLE1, "hel");
+SIMPLE_BENCHMARK(AutoComplete, Sample1, SAMPLE1, "hel");
 
 SIMPLE_TEST(AutoComplete, TestSAMPLE1, EXPECTED1, SAMPLE1, "hel");
 SIMPLE_TEST(AutoComplete, TestSAMPLE2, EXPECTED2, SAMPLE1, EXPECTED2.front());

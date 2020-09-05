@@ -74,7 +74,7 @@ const ArrayType DECREASING = {100, 80, 60, 50, 20};
 const ArrayType ALL_SAME = {10, 10, 10, 10, 10};
 
 
-SIMPLE_BENCHMARK(FindOnePeakElement, SAMPLE1);
+SIMPLE_BENCHMARK(FindOnePeakElement, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindOnePeakElement, TestSAMPLE1, 20, SAMPLE1);
 SIMPLE_TEST(FindOnePeakElement, TestINCREASING, INCREASING.back(), INCREASING);

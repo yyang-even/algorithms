@@ -135,7 +135,7 @@ const ArrayType SAMPLE6 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 const ArrayType SAMPLE7 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, SAMPLE1);
+SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, Sample1, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE1, SAMPLE1);
@@ -153,10 +153,10 @@ MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllEleme
                    TestSAMPLE7, SAMPLE7);
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_STL, SAMPLE1);
+SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_STL, Sample1, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, SAMPLE1);
+SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, Sample1, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE1, SAMPLE1);
@@ -182,14 +182,14 @@ const ArrayType VALUES3 = {1, 1, 1, 2, 3, 4, 9, 9, 10};
 const std::vector<ValueCountPair> EXPECTED3 = {{10, 1}, {9, 2}, {4, 1}, {3, 1}, {2, 1}, {1, 3}};
 
 
-SIMPLE_BENCHMARK(SortAndCount, VALUES1);
+SIMPLE_BENCHMARK(SortAndCount, Sample1, VALUES1);
 
 SIMPLE_TEST(SortAndCount, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(SortAndCount, TestSAMPLE2, EXPECTED2, VALUES2);
 SIMPLE_TEST(SortAndCount, TestSAMPLE3, EXPECTED3, VALUES3);
 
 
-SIMPLE_BENCHMARK(SortAndCount_BucketSort, VALUES1);
+SIMPLE_BENCHMARK(SortAndCount_BucketSort, Sample1, VALUES1);
 
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE2, EXPECTED2, VALUES2);

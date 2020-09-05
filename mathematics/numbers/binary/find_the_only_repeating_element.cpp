@@ -91,28 +91,28 @@ const ArrayType SAMPLE2 = {1, 5, 1, 2, 3, 4};
 const ArrayType SAMPLE3 = {9, 8, 2, 6, 1, 8, 5, 3, 4, 7};
 
 
-SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Sum, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Sum, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sum, TestSample1, 3, SAMPLE1);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sum, TestSample2, 1, SAMPLE2);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sum, TestSample3, 8, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Hash, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Hash, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Hash, TestSample1, 3, SAMPLE1);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Hash, TestSample2, 1, SAMPLE2);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Hash, TestSample3, 8, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Xor, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Xor, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Xor, TestSample1, 3, SAMPLE1);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Xor, TestSample2, 1, SAMPLE2);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Xor, TestSample3, 8, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_InPlace, SAMPLE1);
+SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_InPlace, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindTheOnlyRepeatingElement_InPlace, TestSample1, 3, SAMPLE1);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_InPlace, TestSample2, 1, SAMPLE2);
@@ -124,7 +124,7 @@ const ArrayType SAMPLE5 = {1, 2, 3, 4, 4};
 const ArrayType SAMPLE6 = {1, 2, 3, 3, 4};
 
 
-SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Sorted_BinarySearch, SAMPLE6);
+SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Sorted_BinarySearch, Sample1, SAMPLE6);
 
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestFront, SAMPLE4.front(), SAMPLE4);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestBack, SAMPLE5.back(), SAMPLE5);

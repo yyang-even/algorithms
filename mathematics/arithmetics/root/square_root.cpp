@@ -88,25 +88,25 @@ auto SquareRoot_Log(const double N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SquareRoot_BinarySearch, 49);
+SIMPLE_BENCHMARK(SquareRoot_BinarySearch, Sample1, 49);
 
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE1, 7, 50);
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE2, 7, 49);
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE3, 3, 11);
 
 
-SIMPLE_BENCHMARK(SquareRoot_Double_BinarySearch, 50, 3);
+SIMPLE_BENCHMARK(SquareRoot_Double_BinarySearch, Sample1, 50, 3);
 
 SIMPLE_DOUBLE_TEST(SquareRoot_Double_BinarySearch, TestSAMPLE1, 7.071, 50, 3);
 SIMPLE_DOUBLE_TEST(SquareRoot_Double_BinarySearch, TestSAMPLE2, 3.1622, 10, 4);
 
 
-SIMPLE_BENCHMARK(PerfectSquareRoot_Babylonian, 49);
+SIMPLE_BENCHMARK(PerfectSquareRoot_Babylonian, Sample1, 49);
 
 SIMPLE_TEST(PerfectSquareRoot_Babylonian, TestSAMPLE2, 7, 49);
 
 
-SIMPLE_BENCHMARK(SquareRoot_Log, 49);
+SIMPLE_BENCHMARK(SquareRoot_Log, Sample1, 49);
 
 SIMPLE_DOUBLE_TEST(SquareRoot_Log, TestSAMPLE1, 3.464101615137755, 12);
 SIMPLE_DOUBLE_TEST(SquareRoot_Log, TestSAMPLE2, 7, 49);

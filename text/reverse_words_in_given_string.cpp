@@ -62,7 +62,7 @@ auto ReverseWordsInGivenString_Stack(std::string input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ReverseWordsInGivenString, "geeks quiz practice code");
+SIMPLE_BENCHMARK(ReverseWordsInGivenString, Sample1, "geeks quiz practice code");
 
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");
@@ -73,7 +73,7 @@ SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE3, "much very program this like
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE4, "  much very  ", "  very much  ");
 
 
-SIMPLE_BENCHMARK(ReverseWordsInGivenString_Stack, "geeks quiz practice code");
+SIMPLE_BENCHMARK(ReverseWordsInGivenString_Stack, Sample1, "geeks quiz practice code");
 
 SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");

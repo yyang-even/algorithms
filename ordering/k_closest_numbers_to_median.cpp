@@ -72,7 +72,7 @@ const InitializerType VALUES2 = {24, 8, 42, 75, 29, 38, 57};
 const OutputType EXPECTED4 = {29, 38};
 
 
-SIMPLE_BENCHMARK(KClosestElementsToMedian_Index, VALUES1, 3);
+SIMPLE_BENCHMARK(KClosestElementsToMedian_Index, Sample1, VALUES1, 3);
 
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE1, EXPECTED1, VALUES1, 1);
@@ -88,7 +88,7 @@ const ArrayType VALUES3 = {1, 2, 3, 4, 9, 99, 999};
 const OutputType EXPECTED5 = {2, 3, 4};
 
 
-SIMPLE_BENCHMARK(KClosestElementsToMedian_Differences, VALUES1, 3);
+SIMPLE_BENCHMARK(KClosestElementsToMedian_Differences, Sample1, VALUES1, 3);
 
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE1, EXPECTED1, VALUES1, 1);

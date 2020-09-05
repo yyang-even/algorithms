@@ -47,9 +47,8 @@ auto IsPowerOf8_Const(const unsigned num) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPowerOf4, 1);
-SIMPLE_BENCHMARK(IsPowerOf4, 0);
-SIMPLE_BENCHMARK(IsPowerOf4, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(IsPowerOf4, Sample1, 1);
+SIMPLE_BENCHMARK(IsPowerOf4, Sample2, 0);
 
 SIMPLE_TEST(IsPowerOf4, TestSample1, true, 1);
 SIMPLE_TEST(IsPowerOf4, TestSample2, false, 0);
@@ -59,7 +58,7 @@ SIMPLE_TEST(IsPowerOf4, TestSample5, true, 16);
 SIMPLE_TEST(IsPowerOf4, TestSample6, true, 64);
 
 
-SIMPLE_BENCHMARK(IsPowerOfPowerOf2, 8, 2);
+SIMPLE_BENCHMARK(IsPowerOfPowerOf2, Sample1, 8, 2);
 
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample1, false, 0, 2);
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample2, true, 8, 2);
@@ -69,7 +68,7 @@ SIMPLE_TEST(IsPowerOfPowerOf2, TestSample5, true, 256, 16);
 SIMPLE_TEST(IsPowerOfPowerOf2, TestSample6, true, 64, 8);
 
 
-SIMPLE_BENCHMARK(IsPowerOf8, 8);
+SIMPLE_BENCHMARK(IsPowerOf8, Sample1, 8);
 
 SIMPLE_TEST(IsPowerOf8, TestSample1, true, 64);
 SIMPLE_TEST(IsPowerOf8, TestSample2, false, 75);
@@ -77,7 +76,7 @@ SIMPLE_TEST(IsPowerOf8, TestSample3, false, 14);
 SIMPLE_TEST(IsPowerOf8, TestSample4, false, 65);
 
 
-SIMPLE_BENCHMARK(IsPowerOf8_Const, 8);
+SIMPLE_BENCHMARK(IsPowerOf8_Const, Sample1, 8);
 
 SIMPLE_TEST(IsPowerOf8_Const, TestSample1, true, 64);
 SIMPLE_TEST(IsPowerOf8_Const, TestSample2, false, 75);

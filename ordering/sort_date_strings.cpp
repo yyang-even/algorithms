@@ -128,7 +128,7 @@ const std::vector<Date> EXPECTED2 = {{ 3, 12, 2000}, {18, 11, 2001}, { 9,  7, 20
 };
 
 
-SIMPLE_BENCHMARK(SortDates, SAMPLE1);
+SIMPLE_BENCHMARK(SortDates, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortDates, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortDates, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -142,12 +142,12 @@ const ArrayType EXPECTED3 = {"11 Jun 1996", "01 Jan 1997", "12 Aug 2005",
                             };
 
 
-SIMPLE_BENCHMARK(SortDateStrings_Int, SAMPLE3);
+SIMPLE_BENCHMARK(SortDateStrings_Int, Sample1, SAMPLE3);
 
 SIMPLE_TEST(SortDateStrings_Int, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(SortDates_RadixSort, SAMPLE1);
+SIMPLE_BENCHMARK(SortDates_RadixSort, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortDates_RadixSort, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortDates_RadixSort, TestSAMPLE2, EXPECTED2, SAMPLE2);

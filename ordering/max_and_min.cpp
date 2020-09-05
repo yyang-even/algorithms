@@ -114,7 +114,7 @@ const ArrayType VALUES3 = {4, 8, 12, 16};
 const ArrayType VALUES4 = {15, 0, 2, 15};
 
 
-SIMPLE_BENCHMARK(MaxAndMin_Linear, VALUES4);
+SIMPLE_BENCHMARK(MaxAndMin_Linear, Sample1, VALUES4);
 
 SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
 SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
@@ -122,7 +122,7 @@ SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
 SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
 
 
-SIMPLE_BENCHMARK(MaxAndMin_Tournament, VALUES4);
+SIMPLE_BENCHMARK(MaxAndMin_Tournament, Sample1, VALUES4);
 
 SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
 SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
@@ -130,7 +130,7 @@ SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3)
 SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
 
 
-SIMPLE_BENCHMARK(MaxAndMin_Pair, VALUES4);
+SIMPLE_BENCHMARK(MaxAndMin_Pair, Sample1, VALUES4);
 
 SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
 SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);

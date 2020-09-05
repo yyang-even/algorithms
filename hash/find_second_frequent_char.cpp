@@ -37,7 +37,7 @@ auto FindSecondFrequentChar(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindSecondFrequentChar, "geeksforgee");
+SIMPLE_BENCHMARK(FindSecondFrequentChar, Sample1, "geeksforgee");
 
 SIMPLE_TEST(FindSecondFrequentChar, TestSAMPLE1, 'g', "geeksforgee");
 SIMPLE_TEST(FindSecondFrequentChar, TestSAMPLE2, 'b', "aabababa");

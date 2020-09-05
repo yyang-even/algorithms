@@ -63,10 +63,10 @@ auto ShuffleArray_BySorting(const ArrayType<N> &array) {
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
-SIMPLE_BENCHMARK(ShuffleArray_InPlace, VALUES);
+SIMPLE_BENCHMARK(ShuffleArray_InPlace, Sample1, VALUES);
 
 
-SIMPLE_BENCHMARK(ShuffleArray_BySorting, VALUES);
+SIMPLE_BENCHMARK(ShuffleArray_BySorting, Sample1, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP

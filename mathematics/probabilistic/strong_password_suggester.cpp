@@ -88,8 +88,8 @@ const std::string VALID_PASSWORD = "Rakesh@1995kumar";
 const std::string INVALID_PASSWORD = "keshav123";
 
 
-SIMPLE_BENCHMARK(StrongPasswordSuggester, INVALID_PASSWORD);
-SIMPLE_BENCHMARK(StrongPasswordSuggester, VALID_PASSWORD);
+SIMPLE_BENCHMARK(StrongPasswordSuggester, Sample1, INVALID_PASSWORD);
+SIMPLE_BENCHMARK(StrongPasswordSuggester, Sample2, VALID_PASSWORD);
 
 SIMPLE_TEST(testStrongPasswordSuggester, TestValid, true, VALID_PASSWORD);
 SIMPLE_TEST(testStrongPasswordSuggester, TestInvalid, true, INVALID_PASSWORD);

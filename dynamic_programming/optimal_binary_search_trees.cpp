@@ -110,7 +110,7 @@ const ArrayType SAMPLE2_P = {0, 4, 6, 8, 2, 10, 12, 14};
 const ArrayType SAMPLE2_Q = {6, 6, 6, 6, 5, 5, 5, 5};
 
 
-SIMPLE_BENCHMARK(OptimalBinarySearchTree, SAMPLE1_P, SAMPLE1_Q);
+SIMPLE_BENCHMARK(OptimalBinarySearchTree, Sample1, SAMPLE1_P, SAMPLE1_Q);
 
 SIMPLE_TEST(OptimalBinarySearchTree, TestSAMPLE1, 275, SAMPLE1_P, SAMPLE1_Q);
 SIMPLE_TEST(OptimalBinarySearchTree, TestSAMPLE2, 312, SAMPLE2_P, SAMPLE2_Q);
@@ -120,7 +120,7 @@ const ArrayType SAMPLE3 = {34, 50};
 const ArrayType SAMPLE4 = {34, 8, 50};
 
 
-SIMPLE_BENCHMARK(OptimalBinarySearchTreeSimplified, SAMPLE3);
+SIMPLE_BENCHMARK(OptimalBinarySearchTreeSimplified, Sample1, SAMPLE3);
 
 SIMPLE_TEST(OptimalBinarySearchTreeSimplified, TestSAMPLE3, 118, SAMPLE3);
 SIMPLE_TEST(OptimalBinarySearchTreeSimplified, TestSAMPLE4, 142, SAMPLE4);
@@ -150,6 +150,6 @@ const auto SAMPLE1_LHS = MakeTheSampleTree();
 const auto SAMPLE1_RHS = ConstructOptimalBinarySearchTree(SAMPLE1_P, SAMPLE1_Q);
 
 
-SIMPLE_BENCHMARK(ConstructOptimalBinarySearchTree, SAMPLE1_P, SAMPLE1_Q);
+SIMPLE_BENCHMARK(ConstructOptimalBinarySearchTree, Sample1, SAMPLE1_P, SAMPLE1_Q);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1_LHS, SAMPLE1_RHS);

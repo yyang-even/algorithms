@@ -136,7 +136,7 @@ const ArrayType SAMPLE2R = {4, 7, 8};
 const ArrayType EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
 
-SIMPLE_BENCHMARK(MergeTwoSortedArrays, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(MergeTwoSortedArrays, Sample1, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArrays, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArrays, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
@@ -152,14 +152,14 @@ const ArrayType SAMPLE4R = {2, 3, 8, 13};
 const std::pair<ArrayType, ArrayType> EXPECTED_PAIR4 = {{1, 2, 3, 5, 8, 9}, {10, 13, 15, 20}};
 
 
-SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace, Sample1, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
 SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L, SAMPLE4R);
 
 
-SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace_Heap, SAMPLE1L, SAMPLE1R);
+SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace_Heap, Sample1, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
@@ -173,7 +173,7 @@ const ArrayType SAMPLE5R = {16, 17, 19, 20, 22};
 const ArrayType EXPECTED5 = {10, 12, 13, 14, 16, 17, 18, 19, 20, 22};
 
 
-SIMPLE_BENCHMARK(MergeTwoSortedArraysToOne, SAMPLE1LToOne, SAMPLE1R);
+SIMPLE_BENCHMARK(MergeTwoSortedArraysToOne, Sample1, SAMPLE1LToOne, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArraysToOne, TestSAMPLE1, EXPECTED1, SAMPLE1LToOne, SAMPLE1R);
 SIMPLE_TEST(MergeTwoSortedArraysToOne, TestSAMPLE2, EXPECTED2, SAMPLE2LToOne, SAMPLE2R);
@@ -185,7 +185,7 @@ const ArrayType SAMPLE2LToOnePartition = {NA, 5, NA, 8, NA, 9};
 const ArrayType SAMPLE5LToOnePartition = {10, 12, NA, NA, 13, 14, 18, NA, NA, NA};
 
 
-SIMPLE_BENCHMARK(MergeTwoSortedArraysToOne_Partition,
+SIMPLE_BENCHMARK(MergeTwoSortedArraysToOne_Partition, SAMPLE1,
                  SAMPLE1LToOnePartition, SAMPLE1R);
 
 SIMPLE_TEST(MergeTwoSortedArraysToOne_Partition, TestSAMPLE1, EXPECTED1,

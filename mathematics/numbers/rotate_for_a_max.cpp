@@ -27,7 +27,7 @@ long long RotateForMax(long long n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RotateForMax, 56789);
+SIMPLE_BENCHMARK(RotateForMax, Sample1, 56789);
 
 SIMPLE_TEST(RotateForMax, TestSample1, 68957, 56789);
 SIMPLE_TEST(RotateForMax, TestSample2, 85821534, 38458215);

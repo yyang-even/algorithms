@@ -88,7 +88,7 @@ const auto EXPECTED_BACK = ArrayType(std::prev(SAMPLE1.cend(), EXPECTED1.size())
 const ArrayType EXPECTED2 = {42, 45, 39, 48};
 
 
-SIMPLE_BENCHMARK(FindKClosestElementsToX, SAMPLE1, 35, EXPECTED1.size());
+SIMPLE_BENCHMARK(FindKClosestElementsToX, Sample1, SAMPLE1, 35, EXPECTED1.size());
 
 SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE1, EXPECTED1, SAMPLE1, 35, EXPECTED1.size());
 SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_FRONT, EXPECTED_FRONT, SAMPLE1, SAMPLE1.front() - 1,
@@ -104,7 +104,7 @@ const ArrayType SAMPLE4 = {-10, -50, 20, 17, 80};
 const ArrayType EXPECTED4 = {17, 20};
 
 
-SIMPLE_BENCHMARK(FindKClosestElementsToX_Unsorted, SAMPLE3, 5, EXPECTED3.size());
+SIMPLE_BENCHMARK(FindKClosestElementsToX_Unsorted, Sample1, SAMPLE3, 5, EXPECTED3.size());
 
 SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5, EXPECTED3.size());
 SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20,

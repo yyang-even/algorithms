@@ -49,6 +49,6 @@ const ArrayType SampleArray = {2, 6, 3, 12, 56, 8};
 const ArrayType ExpectedSortedArray = {2, 3, 6, 8, 12, 56};
 
 
-SIMPLE_BENCHMARK(SortNearlySortedArray, SampleArray, 3);
+SIMPLE_BENCHMARK(SortNearlySortedArray, Sample1, SampleArray, 3);
 
 SIMPLE_TEST(SortNearlySortedArray, TestSample, ExpectedSortedArray, SampleArray, 3);

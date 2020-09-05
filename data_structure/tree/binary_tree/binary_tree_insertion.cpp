@@ -46,6 +46,6 @@ const auto SAMPLE1 = LevelOrderInsert(
                          BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE0), 4).GetRoot(), 4);
 
 
-SIMPLE_BENCHMARK(LevelOrderInsert, CloneBinaryTree(SAMPLE0).GetRoot(), 4);
+SIMPLE_BENCHMARK(LevelOrderInsert, Sample1, CloneBinaryTree(SAMPLE0).GetRoot(), 4);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE0, SAMPLE1);

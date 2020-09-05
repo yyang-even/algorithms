@@ -68,7 +68,7 @@ const auto SAMPLE2 = MakeSample2();
 const auto SAMPLE3 = MakeTheSampleTree<NodeType>();
 
 
-SIMPLE_BENCHMARK(CompanyPartyPlanning, SAMPLE3);
+SIMPLE_BENCHMARK(CompanyPartyPlanning, Sample1, SAMPLE3);
 
 SIMPLE_TEST(CompanyPartyPlanning, TestSAMPLE0, 0, SAMPLE0);
 SIMPLE_TEST(CompanyPartyPlanning, TestSAMPLE1, SAMPLE1->value, SAMPLE1);

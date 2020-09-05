@@ -87,19 +87,19 @@ const auto SAMPLE2 = "GEEKSFORGEEKS";
 const std::string EXPECTED2 = "EEGEE";
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequence, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubsequence, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequence, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubsequence, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequenceString_LCS, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubsequenceString_LCS, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, SAMPLE1);
+SIMPLE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);

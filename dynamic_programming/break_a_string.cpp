@@ -49,7 +49,7 @@ const ArrayType SAMPLE2 = {2, 8};
 const ArrayType SAMPLE3 = {2, 8, 10};
 
 
-SIMPLE_BENCHMARK(BreakString, 20, SAMPLE3);
+SIMPLE_BENCHMARK(BreakString, Sample1, 20, SAMPLE3);
 
 SIMPLE_TEST(BreakString, TestSAMPLE1, 20, 20, SAMPLE1);
 SIMPLE_TEST(BreakString, TestSAMPLE2, 28, 20, SAMPLE2);

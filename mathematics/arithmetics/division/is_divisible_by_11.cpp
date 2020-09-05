@@ -91,11 +91,10 @@ constexpr InputType SAMPLE3 = 60;
 constexpr InputType SAMPLE4 = 6600;
 
 
-SIMPLE_BENCHMARK(isDivisibleBy11, LOWER);
-SIMPLE_BENCHMARK(isDivisibleBy11, UPPER);
-SIMPLE_BENCHMARK(isDivisibleBy11, SAMPLE3);
-SIMPLE_BENCHMARK(isDivisibleBy11, SAMPLE4);
-RANDOM_BENCHMARK(isDivisibleBy11, LOWER, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy11, Sample1, LOWER);
+SIMPLE_BENCHMARK(isDivisibleBy11, Sample2, UPPER);
+SIMPLE_BENCHMARK(isDivisibleBy11, Sample3, SAMPLE3);
+SIMPLE_BENCHMARK(isDivisibleBy11, Sample4, SAMPLE4);
 
 SIMPLE_TEST(isDivisibleBy11, TestLOWER, false, LOWER);
 SIMPLE_TEST(isDivisibleBy11, TestUPPER, false, UPPER);
@@ -109,7 +108,7 @@ SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, true, 0);
 const std::vector<bool> EXPECTED_RESULTS = {true, true, false, true};
 
 
-SIMPLE_BENCHMARK(SubstringDivisibilityBy11, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
+SIMPLE_BENCHMARK(SubstringDivisibilityBy11, Sample1, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
 
 SIMPLE_TEST(SubstringDivisibilityBy11, TestLOWER, EXPECTED_RESULTS,
 "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});

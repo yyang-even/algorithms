@@ -99,28 +99,28 @@ const ArrayType SAMPLE2 = {15, 12, 13, 10};
 const ArrayType SAMPLE3 = {1, 2, 3, 4, 5 };
 
 
-SIMPLE_BENCHMARK(Sum_Recursive, SAMPLE1);
+SIMPLE_BENCHMARK(Sum_Recursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Sum_Recursive, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_Recursive, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(Sum_Recursive, TestSAMPLE3, 15, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(Sum_TailRecursive, SAMPLE1);
+SIMPLE_BENCHMARK(Sum_TailRecursive, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(Sum_TailRecursive, TestSAMPLE3, 15, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(Sum_Goto, SAMPLE1);
+SIMPLE_BENCHMARK(Sum_Goto, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Sum_Goto, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_Goto, TestSAMPLE2, 50, SAMPLE2);
 SIMPLE_TEST(Sum_Goto, TestSAMPLE3, 15, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(Sum_SinglyCircularList, SAMPLE1);
+SIMPLE_BENCHMARK(Sum_SinglyCircularList, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Sum_SinglyCircularList, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(Sum_SinglyCircularList, TestSAMPLE2, 50, SAMPLE2);

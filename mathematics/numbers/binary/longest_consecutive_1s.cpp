@@ -29,7 +29,7 @@ auto LengthOfLongestConsecutive1s(unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(LengthOfLongestConsecutive1s, 14);
+SIMPLE_BENCHMARK(LengthOfLongestConsecutive1s, Sample1, 14);
 
 SIMPLE_TEST(LengthOfLongestConsecutive1s, TestSAMPLE1, 3, 14);
 SIMPLE_TEST(LengthOfLongestConsecutive1s, TestSAMPLE2, 4, 222);

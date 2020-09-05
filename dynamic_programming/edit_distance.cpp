@@ -180,7 +180,7 @@ auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1, const std::str
 }//namespace
 
 
-SIMPLE_BENCHMARK(EditDistance, "geek", "gesek");
+SIMPLE_BENCHMARK(EditDistance, Sample1, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance, TestSAMPLE2, 1, "cat", "cut");
@@ -188,7 +188,7 @@ SIMPLE_TEST(EditDistance, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(EditDistance_SpaceOptimized, "geek", "gesek");
+SIMPLE_BENCHMARK(EditDistance_SpaceOptimized, Sample1, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE2, 1, "cat", "cut");
@@ -196,7 +196,7 @@ SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(EditDistance_Memoization, "geek", "gesek");
+SIMPLE_BENCHMARK(EditDistance_Memoization, Sample1, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE2, 1, "cat", "cut");
@@ -204,7 +204,7 @@ SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(areKDistanceApart, "geeksforgeeks", "geeksforgeek", 1);
+SIMPLE_BENCHMARK(areKDistanceApart, Sample1, "geeksforgeeks", "geeksforgeek", 1);
 
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE1, true, "geeksforgeeks", "geeksforgeek", 1);
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE2, false, "nishant", "nisha", 1);
@@ -212,7 +212,7 @@ SIMPLE_TEST(areKDistanceApart, TestSAMPLE3, false, "practice", "prac", 3);
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE4, true, "Ping", "Paging", 2);
 
 
-SIMPLE_BENCHMARK(areOneDistanceApart, "geeks", "geek");
+SIMPLE_BENCHMARK(areOneDistanceApart, Sample1, "geeks", "geek");
 
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE1, true, "geeks", "geek");
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE2, false, "geeks", "geeks");
@@ -220,7 +220,7 @@ SIMPLE_TEST(areOneDistanceApart, TestSAMPLE3, false, "peaks", "geeks");
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE4, true, "geaks", "geeks");
 
 
-SIMPLE_BENCHMARK(EditDistanceWithInsertAndDeleteOnly, "cat", "cut");
+SIMPLE_BENCHMARK(EditDistanceWithInsertAndDeleteOnly, Sample1, "cat", "cut");
 
 SIMPLE_TEST(EditDistanceWithInsertAndDeleteOnly, TestSAMPLE1, 2, "cat", "cut");
 SIMPLE_TEST(EditDistanceWithInsertAndDeleteOnly, TestSAMPLE2, 1, "acb", "ab");

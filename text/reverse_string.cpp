@@ -109,7 +109,7 @@ auto Reverse_BitSubtract(std::string input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Reverse, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse, TestSAMPLE2, "a", "a");
@@ -117,7 +117,7 @@ SIMPLE_TEST(Reverse, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse, TestSAMPLE4, "cba", "abc");
 
 
-SIMPLE_BENCHMARK(Reverse_Recursive, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse_Recursive, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse_Recursive, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_Recursive, TestSAMPLE2, "a", "a");
@@ -125,7 +125,7 @@ SIMPLE_TEST(Reverse_Recursive, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse_Recursive, TestSAMPLE4, "cba", "abc");
 
 
-SIMPLE_BENCHMARK(Reverse_Xor, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse_Xor, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE2, "a", "a");
@@ -133,7 +133,7 @@ SIMPLE_TEST(Reverse_Xor, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse_Xor, TestSAMPLE4, "cba", "abc");
 
 
-SIMPLE_BENCHMARK(Reverse_Stack, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse_Stack, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse_Stack, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_Stack, TestSAMPLE2, "a", "a");
@@ -141,7 +141,7 @@ SIMPLE_TEST(Reverse_Stack, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse_Stack, TestSAMPLE4, "cba", "abc");
 
 
-SIMPLE_BENCHMARK(Reverse_Variable, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse_Variable, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse_Variable, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_Variable, TestSAMPLE2, "a", "a");
@@ -149,7 +149,7 @@ SIMPLE_TEST(Reverse_Variable, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse_Variable, TestSAMPLE4, "cba", "abc");
 
 
-SIMPLE_BENCHMARK(Reverse_BitSubtract, "ab4c12ed3");
+SIMPLE_BENCHMARK(Reverse_BitSubtract, Sample1, "ab4c12ed3");
 
 SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE2, "a", "a");

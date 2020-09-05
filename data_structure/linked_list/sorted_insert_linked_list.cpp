@@ -70,7 +70,7 @@ auto testSortedInsert_SinglyCircular_Convert(std::vector<int> array) {
 const std::vector<int> EXPECTED_SORTED_INSERT_ARRAY = { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15, 18};
 
 
-SIMPLE_BENCHMARK(testSortedInsert_Singly, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testSortedInsert_Singly, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_Singly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
 
@@ -83,7 +83,7 @@ const std::forward_list<int> SAMPLE_LIST = {EXPECTED_SORTED_INSERT_ARRAY.cbegin(
 const std::forward_list<int> EXPECTED4 = { -8, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 18};
 
 
-SIMPLE_BENCHMARK(SortedInsert_STL, SAMPLE_LIST, 10);
+SIMPLE_BENCHMARK(SortedInsert_STL, Sample1, SAMPLE_LIST, 10);
 
 SIMPLE_TEST(SortedInsert_STL, TestSample1, SINGLE_ITEM_LIST, EMPTY_LIST, SINGLE_ITEM_LIST.front());
 SIMPLE_TEST(SortedInsert_STL, TestSample2, EXPECTED2, SINGLE_ITEM_LIST, EXPECTED2.front());
@@ -91,18 +91,18 @@ SIMPLE_TEST(SortedInsert_STL, TestSample3, EXPECTED3, SINGLE_ITEM_LIST, 8);
 SIMPLE_TEST(SortedInsert_STL, TestSample4, EXPECTED4, SAMPLE_LIST, 10);
 
 
-SIMPLE_BENCHMARK(testSortedInsert_Doubly, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testSortedInsert_Doubly, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_Doubly, TestSample, EXPECTED_SORTED_INSERT_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_SinglyCircular, TestSample, EXPECTED_SORTED_INSERT_ARRAY,
             SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular_Convert, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testSortedInsert_SinglyCircular_Convert, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testSortedInsert_SinglyCircular_Convert, TestSample, EXPECTED_SORTED_INSERT_ARRAY,
             SAMPLE_ARRAY);

@@ -92,7 +92,7 @@ TEST(RandomNumber0to6Test, TestSanity) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RandomNumber1to7);
+SIMPLE_BENCHMARK0(RandomNumber1to7);
 
 
-SIMPLE_BENCHMARK(RandomNumber0to6);
+SIMPLE_BENCHMARK0(RandomNumber0to6);

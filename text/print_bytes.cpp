@@ -1,9 +1,12 @@
 #include "common_header.h"
 
+#include <iomanip>
+
 
 namespace {
 
 typedef const unsigned char *Byte_Pointer;
+
 /**
  * @reference   How will you show memory representation of C variables?
  *              https://www.geeksforgeeks.org/how-will-you-show-memory-representation-of-c-variables/
@@ -58,19 +61,19 @@ auto HexToChar(const std::string &hex) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(PrintInt_Cpp, -1);
+SIMPLE_BENCHMARK(PrintInt_Cpp, Sample1, -1);
 
 SIMPLE_TEST(PrintInt_Cpp, TestSample1, std::string(sizeof(int) * 2, 'f'), -1);
 SIMPLE_TEST(PrintInt_Cpp, TestSample2, std::string(sizeof(int) * 2, '0'), 0);
 
 
-SIMPLE_BENCHMARK(PrintInt_C, -1);
+SIMPLE_BENCHMARK(PrintInt_C, Sample1, -1);
 
 SIMPLE_TEST(PrintInt_C, TestSample1, std::string(sizeof(int) * 2, 'f'), -1);
 SIMPLE_TEST(PrintInt_C, TestSample2, std::string(sizeof(int) * 2, '0'), 0);
 
 
-SIMPLE_BENCHMARK(HexToChar, "6765656b73");
+SIMPLE_BENCHMARK(HexToChar, Sample1, "6765656b73");
 
 SIMPLE_TEST(HexToChar, TestSample1, "geeks", "6765656b73");
 SIMPLE_TEST(HexToChar, TestSample2, "avengers", "6176656e67657273");

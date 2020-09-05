@@ -159,7 +159,7 @@ const ArrayType SAMPLE4 = {50, 3, 10, 7, 40, 80};
 const ArrayType EXPECTED4 = {3, 7, 40, 80};
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_DP, SAMPLE1);
+SIMPLE_BENCHMARK(LongestIncreasingSubsequence_DP, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -167,7 +167,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMP
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_NLogN, SAMPLE1);
+SIMPLE_BENCHMARK(LongestIncreasingSubsequence_NLogN, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -175,7 +175,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE3, EXPECTED3.size(), S
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_Sort, SAMPLE1);
+SIMPLE_BENCHMARK(LongestIncreasingSubsequence_Sort, Sample1, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -183,7 +183,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE3, EXPECTED3.size(), SA
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_DP, SAMPLE1);
+SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_DP, Sample1, SAMPLE1);
 
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -191,7 +191,7 @@ SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE3, EXPECTED3, SAMPLE3)
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_NLogN, SAMPLE1);
+SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_NLogN, Sample1, SAMPLE1);
 
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE2, EXPECTED2, SAMPLE2);

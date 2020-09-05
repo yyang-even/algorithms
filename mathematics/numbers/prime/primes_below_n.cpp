@@ -181,24 +181,24 @@ const std::vector<InputType> RESULT1 = {2, 3, 5, 7, 11};
 const std::vector<InputType> RESULT2 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
 
 
-SIMPLE_BENCHMARK(PrimesBelowN, LOWER);
-SIMPLE_BENCHMARK(PrimesBelowN, SAMPLE1);
+SIMPLE_BENCHMARK(PrimesBelowN, Sample1, LOWER);
+SIMPLE_BENCHMARK(PrimesBelowN, Sample2, SAMPLE1);
 
 SIMPLE_TEST(PrimesBelowN, TestLOWER, {}, LOWER);
 SIMPLE_TEST(PrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
 SIMPLE_TEST(PrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, LOWER);
-SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, SAMPLE1);
+SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, Sample1, LOWER);
+SIMPLE_BENCHMARK(PrimesBelowN_SieveOfSundaram, Sample2, SAMPLE1);
 
 SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestLOWER, {}, LOWER);
 SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestSAMPLE1, RESULT1, SAMPLE1);
 SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestSAMPLE2, RESULT2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(SumOfPrimesBelowN, LOWER);
-SIMPLE_BENCHMARK(SumOfPrimesBelowN, SAMPLE1);
+SIMPLE_BENCHMARK(SumOfPrimesBelowN, Sample1, LOWER);
+SIMPLE_BENCHMARK(SumOfPrimesBelowN, Sample2, SAMPLE1);
 
 SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 2u, LOWER);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28u, SAMPLE1);
@@ -207,16 +207,16 @@ SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE3, 17u, 10);
 SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE4, 28u, 11);
 
 
-SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, LOWER);
-SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, SAMPLE1);
+SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, Sample1, LOWER);
+SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, Sample2, SAMPLE1);
 
 SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2u, LOWER);
 SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30u, 5);
 SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210u, 7);
 
 
-SIMPLE_BENCHMARK(ProductOfFirstNPrimes, LOWER);
-SIMPLE_BENCHMARK(ProductOfFirstNPrimes, SAMPLE1);
+SIMPLE_BENCHMARK(ProductOfFirstNPrimes, Sample1, LOWER);
+SIMPLE_BENCHMARK(ProductOfFirstNPrimes, Sample2, SAMPLE1);
 
 SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310u, 5);
 SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30u, 3);
@@ -229,7 +229,7 @@ const std::vector<InputType> RESULT4 = {11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 
 const std::vector<InputType> RESULT5 = {2, 3, 5, 7};
 
 
-SIMPLE_BENCHMARK(PrimesInRange, 10, 20);
+SIMPLE_BENCHMARK(PrimesInRange, Sample1, 10, 20);
 
 SIMPLE_TEST(PrimesInRange, TestSAMPLE3, RESULT3, 10, 20);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE4, RESULT4, 10, 100);
@@ -240,7 +240,7 @@ SIMPLE_TEST(PrimesInRange, TestSAMPLE8, {}, 14, 14);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE9, {19}, 19, 19);
 
 
-SIMPLE_BENCHMARK(SumOfPrimesInRange, 1, 6);
+SIMPLE_BENCHMARK(SumOfPrimesInRange, Sample1, 1, 6);
 
 SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10u, 1, 6);
 SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36u, 4, 13);
@@ -249,8 +249,8 @@ SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36u, 4, 13);
 const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
 
 
-SIMPLE_BENCHMARK(SegmentedPrimesBelowN, LOWER);
-SIMPLE_BENCHMARK(SegmentedPrimesBelowN, SAMPLE1);
+SIMPLE_BENCHMARK(SegmentedPrimesBelowN, Sample1, LOWER);
+SIMPLE_BENCHMARK(SegmentedPrimesBelowN, Sample2, SAMPLE1);
 
 SIMPLE_TEST(SegmentedPrimesBelowN, TestLOWER, {}, LOWER);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);

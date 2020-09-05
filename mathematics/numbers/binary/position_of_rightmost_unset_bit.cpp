@@ -41,7 +41,7 @@ auto PositionOfRightmostCommonBit(const InputType lhs, const InputType rhs) {
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
-SIMPLE_BENCHMARK(PositionOfRightmostUnsetBit, 4);
+SIMPLE_BENCHMARK(PositionOfRightmostUnsetBit, Sample1, 4);
 
 SIMPLE_TEST(PositionOfRightmostUnsetBit, TestLOWER, 1, 0);
 SIMPLE_TEST(PositionOfRightmostUnsetBit, TestSample1, 1, 0b110);
@@ -50,7 +50,7 @@ SIMPLE_TEST(PositionOfRightmostUnsetBit, TestSample3, -1, 1);
 SIMPLE_TEST(PositionOfRightmostUnsetBit, TestUpper, -1, UPPER);
 
 
-SIMPLE_BENCHMARK(PositionOfRightmostCommonBit, 10, 9);
+SIMPLE_BENCHMARK(PositionOfRightmostCommonBit, Sample1, 10, 9);
 
 SIMPLE_TEST(PositionOfRightmostCommonBit, TestSample1, 3, 10, 9);
 SIMPLE_TEST(PositionOfRightmostCommonBit, TestSample2, 4, 16, 7);

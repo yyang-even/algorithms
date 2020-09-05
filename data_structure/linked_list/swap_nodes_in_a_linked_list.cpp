@@ -37,7 +37,7 @@ const std::vector<int> EXPECTED_ARRAY3 = {-1, 10, 15, 13, 12, 20, 14, 100};  //a
 const std::vector<int> EXPECTED_ARRAY4 = {-1, 10, 14, 12, 13, 20, 15, 100};  //tail
 
 
-SIMPLE_BENCHMARK(testSwapNodes, 12, 20);
+SIMPLE_BENCHMARK(testSwapNodes, Sample1, 12, 20);
 
 SIMPLE_TEST(testSwapNodes, TestSample1, EXPECTED_ARRAY1, 12, 20);
 SIMPLE_TEST(testSwapNodes, TestSample2, EXPECTED_ARRAY2, 10, 20);
@@ -45,7 +45,7 @@ SIMPLE_TEST(testSwapNodes, TestSample3, EXPECTED_ARRAY3, 12, 13);
 SIMPLE_TEST(testSwapNodes, TestSample4, EXPECTED_ARRAY4, 15, 14);
 
 
-SIMPLE_BENCHMARK(testSwapNodes_Clever, 12, 20);
+SIMPLE_BENCHMARK(testSwapNodes_Clever, Sample1, 12, 20);
 
 SIMPLE_TEST(testSwapNodes_Clever, TestSample1, EXPECTED_ARRAY1, 12, 20);
 SIMPLE_TEST(testSwapNodes_Clever, TestSample2, EXPECTED_ARRAY2, 10, 20);

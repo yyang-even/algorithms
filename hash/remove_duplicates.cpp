@@ -97,19 +97,19 @@ auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates, "geeksforgeeks");
+SIMPLE_BENCHMARK(RemoveDuplicates, Sample1, "geeksforgeeks");
 
 SIMPLE_TEST(RemoveDuplicates, TestSAMPLE1, "geksfor", "geeksforgeeks");
 SIMPLE_TEST(RemoveDuplicates, TestSAMPLE2, "chartes", "characters");
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_Bits, "geeksforgeeks");
+SIMPLE_BENCHMARK(RemoveDuplicates_Bits, Sample1, "geeksforgeeks");
 
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE1, "geksfor", "geeksforgeeks");
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE2, "chartes", "characters");
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
+SIMPLE_BENCHMARK(RemoveDuplicates_Sorted, Sample1, "122344455");
 
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "Geks for geks", "Geeks for geeks");

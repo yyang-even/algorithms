@@ -43,7 +43,7 @@ constexpr InputType LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<InputType>::max();
 
 
-SIMPLE_BENCHMARK(LogBase10, UPPER);
+SIMPLE_BENCHMARK(LogBase10, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase10, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase10, TestUPPER, 9u, UPPER);
@@ -51,7 +51,7 @@ SIMPLE_TEST(LogBase10, TestSAMPLE1, 2u, 100);
 SIMPLE_TEST(LogBase10, TestSAMPLE2, 4u, 87000);
 
 
-SIMPLE_BENCHMARK(LogBase10_Enum, UPPER);
+SIMPLE_BENCHMARK(LogBase10_Enum, Sample1, UPPER);
 
 SIMPLE_TEST(LogBase10_Enum, TestLOWER, 0u, LOWER);
 SIMPLE_TEST(LogBase10_Enum, TestUPPER, 9u, UPPER);

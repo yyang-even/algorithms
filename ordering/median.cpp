@@ -88,7 +88,7 @@ const InitializerType VALUES4 = {1, 3, 4, 2, 6, 5, 8, 7};
 const InitializerType VALUES5 = {4, 4, 4, 4, 4};
 
 
-SIMPLE_BENCHMARK(Median, VALUES5);
+SIMPLE_BENCHMARK(Median, Sample1, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE2, 1.5, VALUES2);
@@ -97,7 +97,7 @@ SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE5, 4, VALUES5);
 
 
-SIMPLE_BENCHMARK(Median_SinglyList_TwoPointers, VALUES5);
+SIMPLE_BENCHMARK(Median_SinglyList_TwoPointers, Sample1, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE2, 1.5, VALUES2);
@@ -106,7 +106,7 @@ SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE5, 4, VALUES5);
 
 
-SIMPLE_BENCHMARK(Median_Unsorted_QuickSelect, VALUES5);
+SIMPLE_BENCHMARK(Median_Unsorted_QuickSelect, Sample1, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE2, 1.5, VALUES2);

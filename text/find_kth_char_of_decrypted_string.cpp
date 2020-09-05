@@ -36,7 +36,7 @@ auto FindKthCharOfDecryptedString(const std::string &encoded, const std::string:
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindKthCharOfDecryptedString, "ab4c12ed3", 21ul);
+SIMPLE_BENCHMARK(FindKthCharOfDecryptedString, Sample1, "ab4c12ed3", 21ul);
 
 SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE1, 'c', "a2b2c3", 5ul);
 SIMPLE_TEST(FindKthCharOfDecryptedString, TestSAMPLE2, 'c', "ab4c2ed3", 9ul);

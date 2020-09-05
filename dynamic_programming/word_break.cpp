@@ -103,7 +103,7 @@ const std::unordered_set<std::string> DICTIONARY1 =
 {"mobile", "samsung", "sam", "sung", "man", "mango", "icecream", "and", "go", "i", "like", "ice", "cream"};
 
 
-SIMPLE_BENCHMARK(WordBreak, "ilike", DICTIONARY1);
+SIMPLE_BENCHMARK(WordBreak, Sample1, "ilike", DICTIONARY1);
 
 SIMPLE_TEST(WordBreak, TestSAMPLE0, true, "", DICTIONARY1);
 SIMPLE_TEST(WordBreak, TestSAMPLE1, true, "ilike", DICTIONARY1);
@@ -121,7 +121,7 @@ const ArrayType EXPECTED2 =
 {"i like sam sung mobile", "i like samsung mobile"};
 
 
-SIMPLE_BENCHMARK(AllWayToWordBreak, "ilikeicecreamandmango", DICTIONARY1);
+SIMPLE_BENCHMARK(AllWayToWordBreak, Sample1, "ilikeicecreamandmango", DICTIONARY1);
 
 SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE1, EXPECTED1, "ilikeicecreamandmango", DICTIONARY1);
 SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE2, EXPECTED2, "ilikesamsungmobile", DICTIONARY1);
@@ -131,7 +131,7 @@ const std::unordered_set<std::string> DICTIONARY2 =
 {"Cat", "Mat", "Ca", "tM", "at", "C", "Dog", "og", "Do"};
 
 
-SIMPLE_BENCHMARK(MinimumWordBreak, "CatMat", DICTIONARY1);
+SIMPLE_BENCHMARK(MinimumWordBreak, Sample1, "CatMat", DICTIONARY1);
 
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE0, 0, "", DICTIONARY2);
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE1, 1, "CatMat", DICTIONARY2);

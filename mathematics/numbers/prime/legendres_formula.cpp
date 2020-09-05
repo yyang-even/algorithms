@@ -34,13 +34,13 @@ auto LargestPowerOfKInNFactorial(unsigned k, const unsigned n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(LegendresFormula, 3, 7);
+SIMPLE_BENCHMARK(LegendresFormula, Sample1, 3, 7);
 
 SIMPLE_TEST(LegendresFormula, TestSAMPLE1, 2, 3, 7);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE2, 4, 3, 10);
 
 
-SIMPLE_BENCHMARK(LargestPowerOfKInNFactorial, 3, 7);
+SIMPLE_BENCHMARK(LargestPowerOfKInNFactorial, Sample1, 3, 7);
 
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE1, 2, 3, 7);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE2, 4, 3, 10);

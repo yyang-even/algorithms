@@ -81,14 +81,14 @@ const ArrayType SAMPLE3 = {2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12};
 const ArrayType EXPECTED3 = {3, 3, 3, 3, 2, 2, 2, 12, 12, 4, 5};
 
 
-SIMPLE_BENCHMARK(SortByFrequency, SAMPLE1);
+SIMPLE_BENCHMARK(SortByFrequency, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByFrequency, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByFrequency, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(SortByFrequency, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(SortByFrequency_Stable, SAMPLE1);
+SIMPLE_BENCHMARK(SortByFrequency_Stable, Sample1, SAMPLE1);
 
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE1, EXPECTED_STABLE1, SAMPLE1);
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE2, EXPECTED_STABLE2, SAMPLE2);

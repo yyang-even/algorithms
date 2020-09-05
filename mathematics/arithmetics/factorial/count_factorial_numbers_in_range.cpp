@@ -41,9 +41,7 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(CountFactorialNumInRange, LOWER, 1);
-SIMPLE_BENCHMARK(CountFactorialNumInRange, LOWER, UPPER);
-SIMPLE_BENCHMARK(CountFactorialNumInRange, 2, 10);
+SIMPLE_BENCHMARK(CountFactorialNumInRange, Sample1, 2, 10);
 
 SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE1, 1u, 0, 1);
 SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE2, 2u, 12, 122);

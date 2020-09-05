@@ -18,7 +18,7 @@ auto CountEqualSumAndXor(const InputType n) {
 }
 
 
-SIMPLE_BENCHMARK(CountEqualSumAndXor, 7);
+SIMPLE_BENCHMARK(CountEqualSumAndXor, Sample1, 7);
 
 SIMPLE_TEST(CountEqualSumAndXor, TestSample1, 4, 12);
 SIMPLE_TEST(CountEqualSumAndXor, TestSample2, 1, 7);

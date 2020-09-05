@@ -196,10 +196,9 @@ constexpr unsigned LOWER = 1;
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(JosephusProblem2_Recursive, LOWER);
-SIMPLE_BENCHMARK(JosephusProblem2_Recursive, UPPER);
-SIMPLE_BENCHMARK(JosephusProblem2_Recursive, 15);
-RANDOM_BENCHMARK(JosephusProblem2_Recursive, LOWER, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2_Recursive, Sample1, LOWER);
+SIMPLE_BENCHMARK(JosephusProblem2_Recursive, Sample2, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2_Recursive, Sample3, 15);
 
 SIMPLE_TEST(JosephusProblem2_Recursive, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem2_Recursive, TestUPPER, UPPER, UPPER);
@@ -208,10 +207,9 @@ SIMPLE_TEST(JosephusProblem2_Recursive, TestSample2, 3, 5);
 SIMPLE_TEST(JosephusProblem2_Recursive, TestSample3, 5, 10);
 
 
-SIMPLE_BENCHMARK(JosephusProblem2_Closedform, LOWER);
-SIMPLE_BENCHMARK(JosephusProblem2_Closedform, UPPER);
-SIMPLE_BENCHMARK(JosephusProblem2_Closedform, 15);
-RANDOM_BENCHMARK(JosephusProblem2_Closedform, LOWER, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2_Closedform, Sample1, LOWER);
+SIMPLE_BENCHMARK(JosephusProblem2_Closedform, Sample2, UPPER);
+SIMPLE_BENCHMARK(JosephusProblem2_Closedform, Sample3, 15);
 
 SIMPLE_TEST(JosephusProblem2_Closedform, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem2_Closedform, TestUPPER, UPPER, UPPER);
@@ -226,18 +224,17 @@ MUTUAL_RANDOM_TEST(JosephusProblem2_Recursive, JosephusProblem2_Closedform, LOWE
 const unsigned LOWER2 = 2;
 
 
-SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, LOWER2);
-SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, UPPER);
-SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, 15);
-RANDOM_BENCHMARK(PenultimateSurvivor_Closedform, LOWER2, UPPER);
+SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, Sample1, LOWER2);
+SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, Sample2, UPPER);
+SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, Sample3, 15);
 
 SIMPLE_TEST(PenultimateSurvivor_Closedform, TestLOWER2, 2, LOWER2);
 SIMPLE_TEST(PenultimateSurvivor_Closedform, TestUPPER, UPPER / 2, UPPER);
 SIMPLE_TEST(PenultimateSurvivor_Closedform, TestSample1, 7, 15);
 
 
-SIMPLE_BENCHMARK(JosephusProblem3, LOWER);
-SIMPLE_BENCHMARK(JosephusProblem3, 15);
+SIMPLE_BENCHMARK(JosephusProblem3, Sample1, LOWER);
+SIMPLE_BENCHMARK(JosephusProblem3, Sample2, 15);
 
 SIMPLE_TEST(JosephusProblem3, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem3, TestSample1, 5, 15);
@@ -246,12 +243,7 @@ SIMPLE_TEST(JosephusProblem3, TestSample1, 5, 15);
 const unsigned UPPER_K = HYPOTHETIC_MAX_STACK_DEPTH;
 
 
-SIMPLE_BENCHMARK(JosephusK_Recursive, LOWER, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Recursive, LOWER, 2);
-SIMPLE_BENCHMARK(JosephusK_Recursive, UPPER_K, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Recursive, UPPER_K, 2);
-SIMPLE_BENCHMARK(JosephusK_Recursive, 15, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Recursive, 15, 2);
+SIMPLE_BENCHMARK(JosephusK_Recursive, Sample1, 15, 2);
 
 SIMPLE_TEST(JosephusK_Recursive, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Recursive, TestSample1, 15, 15, 2);
@@ -262,12 +254,7 @@ SIMPLE_TEST(JosephusK_Recursive, TestSample4, 3, 5, 2);
 SIMPLE_TEST(JosephusK_Recursive, TestSample5, 2, 7, 4);
 
 
-SIMPLE_BENCHMARK(JosephusK_Closedform, LOWER, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Closedform, LOWER, 2);
-SIMPLE_BENCHMARK(JosephusK_Closedform, UPPER_K, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Closedform, UPPER_K, 2);
-SIMPLE_BENCHMARK(JosephusK_Closedform, 15, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Closedform, 15, 2);
+SIMPLE_BENCHMARK(JosephusK_Closedform, Sample1, 15, 2);
 
 SIMPLE_TEST(JosephusK_Closedform, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Closedform, TestSample1, 15, 15, 2);
@@ -278,12 +265,7 @@ SIMPLE_TEST(JosephusK_Closedform, TestSample4, 3, 5, 2);
 SIMPLE_TEST(JosephusK_Closedform, TestSample5, 2, 7, 4);
 
 
-SIMPLE_BENCHMARK(JosephusK_Iterative, LOWER, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Iterative, LOWER, 2);
-SIMPLE_BENCHMARK(JosephusK_Iterative, UPPER_K, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Iterative, UPPER_K, 2);
-SIMPLE_BENCHMARK(JosephusK_Iterative, 15, UPPER_K);
-SIMPLE_BENCHMARK(JosephusK_Iterative, 15, 2);
+SIMPLE_BENCHMARK(JosephusK_Iterative, Sample1, 15, 2);
 
 SIMPLE_TEST(JosephusK_Iterative, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Iterative, TestSample1, 15, 15, 2);
@@ -298,7 +280,7 @@ const ArrayType EXPECTED1 = {2, 4, 6, 8, 10, 3, 7, 1, 9, 5};
 const ArrayType EXPECTED2 = {3, 6, 2, 7, 5, 1, 4};
 
 
-SIMPLE_BENCHMARK(JosephusPermutation, 15, 2);
+SIMPLE_BENCHMARK(JosephusPermutation, Sample1, 15, 2);
 
 SIMPLE_TEST(JosephusPermutation, TestSample1, EXPECTED1, 10, 2);
 SIMPLE_TEST(JosephusPermutation, TestSample2, EXPECTED2, 7, 3);

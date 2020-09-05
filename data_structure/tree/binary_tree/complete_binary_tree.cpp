@@ -72,8 +72,8 @@ static inline auto MakeIncompleteTree6() {
 const auto SAMPLE6 = MakeIncompleteTree6().GetRoot();
 
 
-SIMPLE_BENCHMARK(isCompleteBinaryTree, SAMPLE1);
-SIMPLE_BENCHMARK(isCompleteBinaryTree, SAMPLE6);
+SIMPLE_BENCHMARK(isCompleteBinaryTree, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isCompleteBinaryTree, Sample6, SAMPLE6);
 
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE2, true, SAMPLE2);

@@ -33,7 +33,7 @@ auto SumOfPrimeDivisors(const unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfPrimeDivisors, 60);
+SIMPLE_BENCHMARK(SumOfPrimeDivisors, Sample1, 60);
 
 SIMPLE_TEST(SumOfPrimeDivisors, TestSAMPLE1, 10, 60);
 SIMPLE_TEST(SumOfPrimeDivisors, TestSAMPLE2, 16, 39);

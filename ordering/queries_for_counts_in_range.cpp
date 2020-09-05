@@ -67,11 +67,11 @@ const std::vector<Query> QUERIES = {{1, 4}, {9, 12}};
 const std::vector<ArrayType::difference_type> EXPECTED = {4, 2};
 
 
-SIMPLE_BENCHMARK(QueriesForCountsInRange_Sort, VALUES, QUERIES);
+SIMPLE_BENCHMARK(QueriesForCountsInRange_Sort, Sample1, VALUES, QUERIES);
 
 SIMPLE_TEST(QueriesForCountsInRange_Sort, TestSAMPLE1, EXPECTED, VALUES, QUERIES);
 
 
-SIMPLE_BENCHMARK(QueriesForCountsInRange_CountingSort, VALUES, QUERIES);
+SIMPLE_BENCHMARK(QueriesForCountsInRange_CountingSort, Sample1, VALUES, QUERIES);
 
 SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED, VALUES, QUERIES);

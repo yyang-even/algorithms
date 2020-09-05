@@ -76,21 +76,21 @@ auto testLinkedList_isCircular(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testLinkedList, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testLinkedList_Size, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList_Size, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_Size, TestSample, true, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testLinkedList_CountSize, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList_CountSize, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_CountSize, TestSample, true, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testLinkedList_isCircular, SAMPLE_ARRAY);
+SIMPLE_BENCHMARK(testLinkedList_isCircular, Sample1, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_isCircular, TestSample, true, SAMPLE_ARRAY);

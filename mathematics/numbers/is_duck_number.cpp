@@ -26,7 +26,7 @@ auto IsDuckNumber(const std::string &number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsDuckNumber, "707069");
+SIMPLE_BENCHMARK(IsDuckNumber, Sample1, "707069");
 
 SIMPLE_TEST(IsDuckNumber, TestSample1, true, "707069");
 SIMPLE_TEST(IsDuckNumber, TestSample2, true, "3210");

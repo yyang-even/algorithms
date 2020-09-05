@@ -126,12 +126,12 @@ const ArrayType SAMPLE3 = {"geeks", "for", "geeks", "a", "portal", "to", "learn"
 const ArrayType EXPECTED3 = {"a", "be", "can", "computer", "data", "fire", "for", "geeks", "in", "learn", "portal", "science", "to", "yup", "zoom"};
 
 
-SIMPLE_BENCHMARK(CountUniqueWords, SAMPLE1);
+SIMPLE_BENCHMARK(CountUniqueWords, Sample1, SAMPLE1);
 
 SIMPLE_TEST(CountUniqueWords, TestSAMPLE1, 8, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(DisplayTrie, SAMPLE1);
+SIMPLE_BENCHMARK(DisplayTrie, Sample1, SAMPLE1);
 
 SIMPLE_TEST(DisplayTrie, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -143,12 +143,12 @@ const std::string EXPECTED4 = "rewsynariereht";
 const ArrayType EXPECTED_REVERSE4 = {"there", "their", "any", "answer"};
 
 
-SIMPLE_BENCHMARK(Display_BottomUp, SAMPLE4);
+SIMPLE_BENCHMARK(Display_BottomUp, Sample1, SAMPLE4);
 
 SIMPLE_TEST(Display_BottomUp, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(Display_Reverse, SAMPLE1);
+SIMPLE_BENCHMARK(Display_Reverse, Sample1, SAMPLE1);
 
 SIMPLE_TEST(Display_Reverse, TestSAMPLE2, EXPECTED_REVERSE2, SAMPLE2);
 SIMPLE_TEST(Display_Reverse, TestSAMPLE4, EXPECTED_REVERSE4, SAMPLE4);

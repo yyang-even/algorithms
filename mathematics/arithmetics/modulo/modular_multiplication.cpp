@@ -28,7 +28,7 @@ auto ModularMultiplication(long long a, long long b, const long long mod) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularMultiplication, 426, 964, 235);
+SIMPLE_BENCHMARK(ModularMultiplication, Sample1, 426, 964, 235);
 
 SIMPLE_TEST(ModularMultiplication, TestSample1, 119, 426, 964, 235);
 SIMPLE_TEST(ModularMultiplication, TestSample2, 4652135769797794,

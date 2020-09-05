@@ -37,7 +37,7 @@ const ArrayType SampleArray3 = {1, 3, 2, 4};
 const ArrayType SampleArray4 = {1, 4, 2, 3};
 
 
-SIMPLE_BENCHMARK(IsKSorted, SampleArray1, 2);
+SIMPLE_BENCHMARK(IsKSorted, Sample1, SampleArray1, 2);
 
 SIMPLE_TEST(IsKSorted, TestSample1, true, SampleArray1, 2);
 SIMPLE_TEST(IsKSorted, TestSample2, false, SampleArray2, 3);
@@ -45,7 +45,7 @@ SIMPLE_TEST(IsKSorted, TestSample3, true, SampleArray3, 1);
 SIMPLE_TEST(IsKSorted, TestSample4, false, SampleArray4, 1);
 
 
-SIMPLE_BENCHMARK(IsAlmostSorted_Bubble, SampleArray3);
+SIMPLE_BENCHMARK(IsAlmostSorted_Bubble, Sample1, SampleArray3);
 
 SIMPLE_TEST(IsAlmostSorted_Bubble, TestSample3, true, SampleArray3);
 SIMPLE_TEST(IsAlmostSorted_Bubble, TestSample4, false, SampleArray4);

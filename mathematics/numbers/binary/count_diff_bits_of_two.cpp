@@ -24,7 +24,7 @@ auto CountDiffBits(const InputType a, const InputType b) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountDiffBits, 10, 20);
+SIMPLE_BENCHMARK(CountDiffBits, Sample1, 10, 20);
 
 SIMPLE_TEST(CountDiffBits, TestSample1, 4u, 10, 20);
 SIMPLE_TEST(CountDiffBits, TestSample2, 3u, 10, 7);

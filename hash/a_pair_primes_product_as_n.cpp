@@ -26,7 +26,7 @@ auto PairPrimesProductAsN(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(PairPrimesProductAsN, 74);
+SIMPLE_BENCHMARK(PairPrimesProductAsN, Sample1, 74);
 
 SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE1, std::make_pair(3ul, 5ul), 15);
 SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE2, std::make_pair(3ul, 13ul), 39);

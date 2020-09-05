@@ -252,31 +252,31 @@ const InitializerType SampleArray2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 const InitializerType ExpectedArray2 = {4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3};
 
 
-SIMPLE_BENCHMARK(LeftRotate_Simple, SampleArray, 2);
+SIMPLE_BENCHMARK(LeftRotate_Simple, Sample1, SampleArray, 2);
 
 SIMPLE_TEST(LeftRotate_Simple, TestSample, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_Simple, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-SIMPLE_BENCHMARK(LeftRotate_GCD, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_GCD, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_GCD, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_GCD, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Recursive, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Recursive, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Iterative, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Iterative, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
-SIMPLE_BENCHMARK(LeftRotate_Reversal, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_Reversal, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_Reversal, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_Reversal, TestSample2, ExpectedArray2, SampleArray2, 3);
@@ -288,7 +288,7 @@ const InitializerType SampleArray4 = {121, 232, 33, 43, 5};
 const InitializerType ExpectedArrayR2 = {43, 5, 121, 232, 33};
 
 
-SIMPLE_BENCHMARK(RightRotate_Reversal, SampleArray3, 3);
+SIMPLE_BENCHMARK(RightRotate_Reversal, Sample1, SampleArray3, 3);
 
 SIMPLE_TEST(RightRotate_Reversal, TestSample, ExpectedArrayR1, SampleArray3, 3);
 SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArray4, 2);
@@ -297,14 +297,14 @@ SIMPLE_TEST(RightRotate_Reversal, TestSample2, ExpectedArrayR2, SampleArray4, 2)
 const InitializerType ExpectedArray3 = {2, 3, 4, 5, 6, 7, 1};
 
 
-SIMPLE_BENCHMARK(LeftRotate_SinglyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_SinglyList, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_SinglyList, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_SinglyList, TestSample2, ExpectedArray2, SampleArray2, 3);
 SIMPLE_TEST(LeftRotate_SinglyList, TestSample3, ExpectedArray3, SampleArray, 1);
 
 
-SIMPLE_BENCHMARK(LeftRotate_DoublyList, SampleArray2, 3);
+SIMPLE_BENCHMARK(LeftRotate_DoublyList, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_DoublyList, TestSample1, ExpectedArray, SampleArray, 2);
 SIMPLE_TEST(LeftRotate_DoublyList, TestSample2, ExpectedArray2, SampleArray2, 3);
@@ -320,11 +320,11 @@ const std::vector<ArrayType> ExpectedMultiple5 = {{3, 5, 7, 9, 1},
 };
 
 
-SIMPLE_BENCHMARK(MultipleLeftRotate_2n, SampleArray5, SampleQuery5);
+SIMPLE_BENCHMARK(MultipleLeftRotate_2n, Sample1, SampleArray5, SampleQuery5);
 
 SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
 
 
-SIMPLE_BENCHMARK(MultipleLeftRotate_n, SampleArray5, SampleQuery5);
+SIMPLE_BENCHMARK(MultipleLeftRotate_n, Sample1, SampleArray5, SampleQuery5);
 
 SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);

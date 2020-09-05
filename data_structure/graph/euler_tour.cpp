@@ -164,7 +164,7 @@ const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}, {2, 0}};
 const UndirectedEdgeArrayType SAMPLE5 = {};
 
 
-SIMPLE_BENCHMARK(isEulerian, 5, SAMPLE1);
+SIMPLE_BENCHMARK(isEulerian, Sample1, 5, SAMPLE1);
 
 SIMPLE_TEST(isEulerian, TestSAMPLE1, EulerianType::path, 5, SAMPLE1);
 SIMPLE_TEST(isEulerian, TestSAMPLE2, EulerianType::circuit, 5, SAMPLE2);
@@ -178,7 +178,7 @@ const DirectedEdgeArrayType SAMPLE7 = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}, {
 const DirectedEdgeArrayType SAMPLE8 = {};
 
 
-SIMPLE_BENCHMARK(isEulerianCircuit, 5, SAMPLE7);
+SIMPLE_BENCHMARK(isEulerianCircuit, Sample1, 5, SAMPLE7);
 
 SIMPLE_TEST(isEulerianCircuit, TestSAMPLE6, false, 5, SAMPLE6);
 SIMPLE_TEST(isEulerianCircuit, TestSAMPLE7, true, 5, SAMPLE7);
@@ -195,7 +195,7 @@ const std::vector<std::string> SAMPLE_STRINGS7 = {"abc", "efg", "cde", "ghi", "i
 const std::vector<std::string> SAMPLE_STRINGS8 = {"ijk", "kji", "abc", "cba"};
 
 
-SIMPLE_BENCHMARK(CanStringsFormACircle, SAMPLE_STRINGS1);
+SIMPLE_BENCHMARK(CanStringsFormACircle, Sample1, SAMPLE_STRINGS1);
 
 SIMPLE_TEST(CanStringsFormACircle, TestSAMPLE1, true, SAMPLE_STRINGS1);
 SIMPLE_TEST(CanStringsFormACircle, TestSAMPLE2, true, SAMPLE_STRINGS2);
