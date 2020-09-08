@@ -60,7 +60,7 @@ if(WANT_TESTS)
     #################################
     #gtest
     #################################
-    set(gtest_force_shared_crt ON)
+    set(gtest_force_shared_crt ON CACHE BOOL "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
     set(GTEST_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/3rdParty/googletest/include)
     include_directories ("${GTEST_INCLUDE_DIRS}")
 endif(WANT_TESTS)
