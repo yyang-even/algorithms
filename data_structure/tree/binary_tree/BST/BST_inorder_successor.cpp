@@ -13,7 +13,7 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Section 12.2.
  */
 auto InorderSuccessor_WithoutParentPointer(BinaryTree::Node::PointerType current_node,
-        const BinaryTree::Node::PointerType x_node) {
+                                           const BinaryTree::Node::PointerType x_node) {
     assert(x_node);
 
     if (x_node->right) {

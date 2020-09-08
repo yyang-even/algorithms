@@ -46,7 +46,7 @@ auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
  * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal/
  */
 auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType current_node,
-        BinaryTree::ArrayType &outputs) {
+                                            BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
     std::stack<BinaryTree::Node::PointerType> reverse_outputs;
 
@@ -73,7 +73,7 @@ auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType curren
  * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
  */
 auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current_node,
-        BinaryTree::ArrayType &outputs) {
+                                           BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
 
     while (current_node or not remaining_nodes.empty()) {
@@ -101,7 +101,7 @@ auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current
  *              https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
  */
 auto PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType current_node,
-        BinaryTree::ArrayType &outputs) {
+                                                 BinaryTree::ArrayType &outputs) {
     std::stack<std::pair<BinaryTree::Node::PointerType, int>> remaining_node_pairs;
 
     if (current_node) {
@@ -325,7 +325,7 @@ void GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned leve
 }
 
 auto ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
-        BinaryTree::ArrayType &outputs) {
+                                          BinaryTree::ArrayType &outputs) {
     const auto height = Height_Recursive(root_node);
     for (auto i = height; i; --i) {
         GetGivenLevel(root_node, i, outputs);
@@ -334,7 +334,7 @@ auto ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType ro
 
 
 auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::PointerType root_node,
-        BinaryTree::ArrayType &outputs) {
+                                          BinaryTree::ArrayType &outputs) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
     std::stack<BinaryTree::Node::PointerType> outputs_stack;
 

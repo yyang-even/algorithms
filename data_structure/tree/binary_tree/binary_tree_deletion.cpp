@@ -107,7 +107,7 @@ const auto SAMPLE1_RHS = BinaryTreeDeletion_BottomShrink(CloneBinaryTree(SAMPLE0
 const auto SAMPLE2_LHS = BinaryTreeDeletion_BottomShrink(
                              CloneBinaryTree(SAMPLE0), SAMPLE0->value).GetRoot();
 const auto SAMPLE2_RHS = SetNode(CloneBinaryTree(BinaryTreeDeletion_Subtree(
-                                     CloneBinaryTree(SAMPLE0), 5).GetRoot()).GetRoot(), 5);
+                                                     CloneBinaryTree(SAMPLE0), 5).GetRoot()).GetRoot(), 5);
 
 
 SIMPLE_BENCHMARK(BinaryTreeDeletion_Subtree, CloneBinaryTree(SAMPLE0), 4);

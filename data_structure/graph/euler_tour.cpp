@@ -29,7 +29,7 @@ auto FirstNonZeroDegreeVertex(const AdjacencyListGraph::RepresentationType &grap
 }
 
 auto haveAllNonZeroDegreeVerticesBeenVisited(const AdjacencyListGraph::RepresentationType &graph,
-        const std::vector<bool> &visited_vertices) {
+                                             const std::vector<bool> &visited_vertices) {
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i] and not graph[i].empty()) {
             return false;

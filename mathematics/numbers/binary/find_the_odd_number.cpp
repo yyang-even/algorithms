@@ -32,7 +32,7 @@ auto FindTheOddNumber(const ArrayType &values) {
  * element appears only once. Find that element in O(log n) complexity.
  */
 auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values, const ArrayType::size_type low,
-        const ArrayType::size_type high) {
+                                          const ArrayType::size_type high) {
     if (low == high) {
         return low;
     }

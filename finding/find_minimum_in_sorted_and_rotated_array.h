@@ -11,7 +11,7 @@
  *              https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
  */
 static inline auto FindMinInSortedAndRotatedArray(const ArrayType::const_iterator cbegin,
-        const ArrayType::size_type length) {
+                                                  const ArrayType::size_type length) {
     if (length) {
         const auto half = length / 2;
         const auto mid = cbegin + half;

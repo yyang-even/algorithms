@@ -20,7 +20,7 @@ namespace {
  * subgraph.
  */
 auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
-        const DirectedEdgeArrayType &edges) {
+                                          const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
     ArrayType finish_times_stack;
@@ -73,7 +73,7 @@ auto allVisited(const std::vector<bool> &visited_vertices) {
 }
 
 auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertices,
-        const DirectedEdgeArrayType &edges) {
+                                                const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
     ArrayType to_be_ignored;

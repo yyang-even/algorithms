@@ -2,7 +2,7 @@
 
 template<typename Compare>
 auto CountAllOccurrencesInSortedArray_STL(const std::vector<int> &values,
-        const Compare compare) {
+                                          const Compare compare) {
     assert(not values.empty());
     assert(std::is_sorted(values.cbegin(), values.cend(), compare));
 

@@ -33,7 +33,7 @@ auto QueriesForCountsInRange_Sort(ArrayType values, const std::vector<Query> &qu
  *              Introduction to Algorithms, Third Edition. Exercises 8.2-4.
  */
 auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
-        const std::vector<Query> &queries) {
+                                          const std::vector<Query> &queries) {
     std::vector<ArrayType::difference_type> output;
 
     if (values.empty()) {

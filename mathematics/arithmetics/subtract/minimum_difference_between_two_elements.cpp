@@ -13,7 +13,7 @@ using PairArrayType = std::vector<std::pair<ArrayType::value_type, ArrayType::va
  * Given an unsorted array, find the minimum difference between any pair in given array.
  */
 auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
-        PairArrayType *const closest_pairs = nullptr) {
+                                         PairArrayType *const closest_pairs = nullptr) {
     assert(elements.size() > 1);
 
     std::sort(elements.begin(), elements.end());

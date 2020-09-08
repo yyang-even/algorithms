@@ -170,7 +170,7 @@ SIMPLE_TEST(PlaneZigzagLines_Recursive, TestSAMPLE, 834u, SAMPLE);
 
 
 constexpr InputType PlaneZigzagLinesClosedformUPPER = InputType(1) << ((
-            BitsNumber<InputType> / 2) - 2);
+                                                          BitsNumber<InputType> / 2) - 2);
 
 
 SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, LOWER);

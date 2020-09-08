@@ -43,7 +43,7 @@
  * the old page we cannot remove it and if all the old pages are having same frequency
  * then take last.
  */
-template <typename T, typename Compare = std::less<T> >
+template <typename T, typename Compare = std::less<T>>
 class BinaryHeap {
 public:
     using ArrayType = typename std::vector<T>;
@@ -125,7 +125,7 @@ private:
 
 
     void buildHeap(const std::function<SizeType(BinaryHeap<T, Compare>*,
-                   SizeType, const SizeType)> heapify) {
+                                                SizeType, const SizeType)> heapify) {
         if (not heap.empty()) {
             for (int i = indexOfFirstLeave(heap.size()) - 1; i >= 0; --i) {
                 heapify(this, i, heap.size());
@@ -286,6 +286,6 @@ template <typename T, typename Compare>
 const Compare BinaryHeap<T, Compare>::compare;
 
 template <typename T>
-using MaxHeap = BinaryHeap<T, std::greater<T> > ;
+using MaxHeap = BinaryHeap<T, std::greater<T>> ;
 template <typename T>
-using MinHeap = BinaryHeap<T, std::less<T> > ;
+using MinHeap = BinaryHeap<T, std::less<T>> ;

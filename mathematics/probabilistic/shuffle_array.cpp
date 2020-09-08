@@ -40,7 +40,7 @@ template <std::size_t N>
 auto ShuffleArray_BySorting(const ArrayType<N> &array) {
     const int PRIORITY_BOUND = pow(array.size(), 3.0);
 
-    std::vector<std::pair<int, typename ArrayType<N>::size_type> > priorities;
+    std::vector<std::pair<int, typename ArrayType<N>::size_type>> priorities;
     for (typename ArrayType<N>::size_type i = 0; i < array.size(); ++i) {
         priorities.emplace_back(Random_Number(0, PRIORITY_BOUND), i);
     }

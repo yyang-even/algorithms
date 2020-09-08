@@ -11,7 +11,7 @@ auto findCeil(const std::vector<int> &prefixs, const int value) {
 }
 
 auto RandomNumberInArbitraryProbability_Ceil(const std::vector<int> &numbers,
-        std::vector<int> frequencies) {
+                                             std::vector<int> frequencies) {
     assert(numbers.size() == frequencies.size());
 
     const auto prefixs = PrefixSumArray(std::move(frequencies));

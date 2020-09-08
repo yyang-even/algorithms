@@ -2,7 +2,7 @@
 
 
 static inline auto InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
-        BinaryTree::ArrayType &outputs) {
+                                              BinaryTree::ArrayType &outputs) {
     if (not node) {
         return;
     }
@@ -14,7 +14,7 @@ static inline auto InorderTraversal_Recursive(const BinaryTree::Node::PointerTyp
 
 
 static inline auto LevelOrderTraversal_LevelAware_Helper(const BinaryTree::Node::PointerType
-        root_node,
+                                                         root_node,
 const std::function<bool(BinaryTree::Node &)> on_each_node = {},
 const std::function<bool(void)> on_level_change = {}) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;

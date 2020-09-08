@@ -42,7 +42,7 @@ auto FindOneFixedPoint(const ArrayType &elements) {
  *              https://www.geeksforgeeks.org/find-fixed-point-array-duplicates-allowed/
  */
 auto FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements,
-        const int low, const int high) {
+                                            const int low, const int high) {
     if (high < low) {
         return -1;
     }

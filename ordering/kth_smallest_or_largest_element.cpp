@@ -125,7 +125,7 @@ auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size
  *              https://www.geeksforgeeks.org/kth-smallest-element-in-the-array-using-constant-space-when-array-cant-be-modified/
  */
 ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
-        const ArrayType::value_type max, const ArrayType &elements, const ArrayType::size_type K) {
+                                               const ArrayType::value_type max, const ArrayType &elements, const ArrayType::size_type K) {
     assert(K <= elements.size());
 
     const auto mid = (min + max) / 2;

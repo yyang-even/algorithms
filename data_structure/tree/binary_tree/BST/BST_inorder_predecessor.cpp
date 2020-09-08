@@ -12,7 +12,7 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Exercises 12.2-3.
  */
 auto InorderPredecessor_WithoutParentPointer(BinaryTree::Node::PointerType current_node,
-        const BinaryTree::Node::PointerType x_node) {
+                                             const BinaryTree::Node::PointerType x_node) {
     assert(x_node);
 
     if (x_node->left) {

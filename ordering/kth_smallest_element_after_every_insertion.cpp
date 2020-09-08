@@ -17,8 +17,8 @@ using ArrayType = std::vector<int>;
 auto KthSmallestElementAfterEveryInsertion(const ArrayType stream, const ArrayType::size_type k) {
     assert(k < stream.size());
 
-    std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type> >
-    heap(stream.cbegin(), stream.cbegin() + k);
+    std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type>>
+            heap(stream.cbegin(), stream.cbegin() + k);
     ArrayType kth_smallest_array(k - 1, 0);
 
     for (auto iter = stream.cbegin() + k; iter != stream.cend(); ++iter) {

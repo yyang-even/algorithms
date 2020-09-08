@@ -38,7 +38,7 @@ BinaryTree::Node::PointerType BSTDelete(const BinaryTree::Node::PointerType node
 }
 
 BinaryTree::Node::PointerType BSTDelete_Optimized(const BinaryTree::Node::PointerType node,
-        const BinaryTree::Node::ValueType x) {
+                                                  const BinaryTree::Node::ValueType x) {
     if (node) {
         if (x < node->value) {
             node->left = BSTDelete(node->left, x);

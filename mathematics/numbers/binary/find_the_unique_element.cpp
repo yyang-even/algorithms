@@ -20,7 +20,7 @@ using ArrayType = std::vector<unsigned>;
  * that occurs once. Expected time complexity is O(n) and O(1) extra space.
  */
 ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
-        const ArrayType::size_type) {
+                                                const ArrayType::size_type) {
     const auto counters = ToFrequencyHashTable(elements);
 
     for (auto iter = counters.cbegin(); iter != counters.cend(); ++iter) {

@@ -80,7 +80,7 @@ auto RemovePunctuations_Partition(const std::string &input) {
  * @reference   https://www.geeksforgeeks.org/remove-characters-from-the-first-string-which-are-present-in-the-second-string/
  */
 auto RemoveCharactersPresentInTheSecond_Partition(const std::string &input,
-        const std::string &mask) {
+                                                  const std::string &mask) {
     const auto counter = ToUnorderedSet(mask);
 
     return RemoveCharacters_Partition(input, [&counter](const auto c) {
@@ -123,7 +123,7 @@ auto RemoveCharactersWithEvenFrequency_Partition(const std::string &input) {
  *              https://www.geeksforgeeks.org/remove-elements-from-the-array-whose-frequency-lies-in-the-range-l-r/
  */
 auto RemoveCharactersAppearLessThanK_Partition(const std::string &input,
-        const std::string::size_type K) {
+                                               const std::string::size_type K) {
     const auto counter = ToFrequencyHashTable(input);
 
     return RemoveCharacters_Partition(input, [&counter, K](const auto c) {

@@ -11,8 +11,8 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/inorder-succesor-node-binary-tree/
  */
 BinaryTree::Node::PointerType InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
-        const BinaryTree::Node::PointerType x_node,
-        BinaryTree::Node::PointerType &successor) {
+                                                         const BinaryTree::Node::PointerType x_node,
+                                                         BinaryTree::Node::PointerType &successor) {
     if (node) {
         const auto right_result = InorderSuccessor_Recursive(node->right, x_node, successor);
 

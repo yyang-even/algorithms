@@ -12,7 +12,7 @@ using ArrayType = std::vector<unsigned>;
  * Given an array of integers and a number x, find the smallest subarray with sum greater than the given value.
  */
 auto SmallestSubarrayWithSumGreaterThanGivenValue(const ArrayType &integers,
-        const ArrayType::value_type x) {
+                                                  const ArrayType::value_type x) {
     assert(not integers.empty());
 
     auto start = integers.cbegin();

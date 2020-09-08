@@ -189,7 +189,7 @@ unsigned LongestCommonSubsequenceOfThree_Memoization(
 }
 
 auto LongestCommonSubsequenceOfThree_Memoization(const std::string &X,
-        const std::string &Y, const std::string &Z) {
+                                                 const std::string &Y, const std::string &Z) {
     ThreeDimensionalArrayType LCS_table;
     return LongestCommonSubsequenceOfThree_Memoization(
                X, X.size(), Y, Y.size(), Z, Z.size(), LCS_table);

@@ -89,7 +89,7 @@ auto MedianOfTwoSortedArrays_SameSize(const ArrayType &array_one, const ArrayTyp
  *              https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
  */
 double MedianOfTwoSortedArrays_DiffSize_Merge(const ArrayType &array_one,
-        const ArrayType &array_two) {
+                                              const ArrayType &array_two) {
     assert(not(array_one.empty() and array_two.empty()));
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
@@ -139,9 +139,9 @@ auto MedianOf3(const ArrayType::value_type x, const ArrayType::value_type smalle
  *              https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
  */
 double MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType::const_iterator &cbegin_shorter,
-        const ArrayType::size_type length_shorter,
-        const ArrayType::const_iterator &cbegin_longer,
-        const ArrayType::size_type length_longer) {
+                                                const ArrayType::size_type length_shorter,
+                                                const ArrayType::const_iterator &cbegin_longer,
+                                                const ArrayType::size_type length_longer) {
     if (length_shorter == 0) {
         return Median_Sorted(cbegin_longer, length_longer);
     }
@@ -197,23 +197,23 @@ double MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType::const_iterator 
 
     if (*iter_shorter <= *iter_longer) {
         return MedianOfTwoSortedArrays_DiffSize_Complex(iter_shorter, half_shorter + 1,
-                cbegin_longer, length_longer - index_shorter);
+                                                        cbegin_longer, length_longer - index_shorter);
     }
     return MedianOfTwoSortedArrays_DiffSize_Complex(cbegin_shorter, half_shorter + 1,
-            std::next(cbegin_longer, index_shorter), length_longer - index_shorter);
+                                                    std::next(cbegin_longer, index_shorter), length_longer - index_shorter);
 }
 
 auto MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType &array_one,
-        const ArrayType &array_two) {
+                                              const ArrayType &array_two) {
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
 
     if (array_one.size() > array_two.size()) {
         return MedianOfTwoSortedArrays_DiffSize_Complex(array_two.cbegin(), array_two.size(),
-                array_one.cbegin(), array_one.size());
+                                                        array_one.cbegin(), array_one.size());
     }
     return MedianOfTwoSortedArrays_DiffSize_Complex(array_one.cbegin(), array_one.size(),
-            array_two.cbegin(), array_two.size());
+                                                    array_two.cbegin(), array_two.size());
 }
 
 
@@ -222,7 +222,7 @@ auto MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType &array_one,
  * @reference   https://www.geeksforgeeks.org/median-two-sorted-arrays-different-sizes-ologminn-m/
  */
 double MedianOfTwoSortedArrays_DiffSize_Half(const ArrayType &array_one,
-        const ArrayType &array_two) {
+                                             const ArrayType &array_two) {
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
 

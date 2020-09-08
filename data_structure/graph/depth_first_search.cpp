@@ -82,7 +82,7 @@ void DepthFirstSearch_Recursive(const AdjacencyMatrixGraph::RepresentationType &
 }
 
 auto DepthFirstSearch_Recursive_AdjMatrix(const std::size_t number_vertices,
-        const DirectedEdgeArrayType &edges) {
+                                          const DirectedEdgeArrayType &edges) {
     ArrayType results;
     GraphTraverse(AdjacencyMatrixGraph{number_vertices, edges},
     [&results](const auto & graph, const auto source, auto & visited_vertices) {

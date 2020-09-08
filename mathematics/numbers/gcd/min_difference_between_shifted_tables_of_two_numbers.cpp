@@ -11,7 +11,7 @@ namespace {
  * shifted infinite tables of ‘a’ and ‘b’, given shifts ‘x’ and ‘y’, where x, y >= 0.
  */
 auto MinDiffBetweenShiftedTablesOfTwoNumbers(const unsigned a, const unsigned b,
-        const int x, const int y) {
+                                             const int x, const int y) {
     const auto g = std::gcd(a, b);
     const auto diff = abs(x - y) % g;
     return std::min(diff, g - diff);

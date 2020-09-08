@@ -51,9 +51,9 @@ void Relax(std::vector<int> &distances, std::vector<int> &parents, const Directe
  * than Dijkstra.
  */
 auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
-        const DirectedEdgeArrayType &edges,
-        const std::size_t source,
-        std::pair<int, std::vector<int>> *negative_cycle_pair = nullptr) {
+                                           const DirectedEdgeArrayType &edges,
+                                           const std::size_t source,
+                                           std::pair<int, std::vector<int>> *negative_cycle_pair = nullptr) {
     assert(source < number_vertices);
 
     std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
@@ -221,9 +221,9 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
 }
 
 auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t number_vertices,
-        const UndirectedEdgeArrayType &edges,
-        const std::size_t source,
-        const std::size_t destination) {
+                                                         const UndirectedEdgeArrayType &edges,
+                                                         const std::size_t source,
+                                                         const std::size_t destination) {
     assert(source < number_vertices);
     assert(destination < number_vertices);
 
@@ -310,8 +310,8 @@ auto SingleSourceShortestPaths_Dijkstra(const WeightedAdjacencyListGraph::Repres
  */
 template <typename EdgeArrayType>
 inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
-        const EdgeArrayType &edges,
-        const std::size_t source) {
+                                               const EdgeArrayType &edges,
+                                               const std::size_t source) {
     return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source);
     });
@@ -359,7 +359,7 @@ auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
  *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
  */
 void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
-        const int i, ArrayType &path) {
+                                               const int i, ArrayType &path) {
     if (i != -1) {
         PrintOneSingleSourceShortestPath_Dijkstra(parents, parents[i], path);
         path.push_back(i);
@@ -367,8 +367,8 @@ void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
 }
 
 auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
-        const UndirectedEdgeArrayType &edges,
-        const std::size_t source) {
+                                             const UndirectedEdgeArrayType &edges,
+                                             const std::size_t source) {
     std::vector<int> parents(number_vertices, -1);
     WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source, &parents](const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source, &parents);

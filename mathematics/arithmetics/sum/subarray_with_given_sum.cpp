@@ -16,7 +16,7 @@ using ArrayType = std::vector<int>;
  */
 const auto NOT_FOUND = std::make_pair(-1, -1);
 std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
-        const ArrayType::value_type SUM) {
+                                             const ArrayType::value_type SUM) {
     assert(not integers.empty());
 
     auto start = integers.cbegin();
@@ -42,7 +42,7 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
 std::pair<int, int> FindSubarrayWithGivenSum_Map(const ArrayType &integers,
-        const ArrayType::value_type SUM) {
+                                                 const ArrayType::value_type SUM) {
     const auto all_such_arrays = AllSubarraysWithGivenSum(integers, SUM);
 
     if (all_such_arrays.empty()) {

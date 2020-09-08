@@ -85,7 +85,7 @@ protected:
     }
 
     const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
-            const Node::ValueType key) const {
+                                                   const Node::ValueType key) const {
         return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 

@@ -28,8 +28,8 @@ auto SortNearlySortedArray(ArrayType array, const ArrayType::size_type k) {
     assert(k < array.size() and IsKSorted(array, k));
 
     auto read_iter = array.cbegin() + k + 1;
-    std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type> >
-    heap{array.cbegin(), read_iter};
+    std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type>>
+            heap{array.cbegin(), read_iter};
 
     for (auto write_iter = array.begin(); write_iter != array.end(); ++write_iter) {
         *write_iter = heap.top();

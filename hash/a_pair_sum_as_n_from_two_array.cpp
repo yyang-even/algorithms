@@ -63,7 +63,7 @@ auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2
 }
 
 auto FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1, ArrayType arr2,
-        const ArrayType::value_type SUM) {
+                                         const ArrayType::value_type SUM) {
     std::sort(arr1.begin(), arr1.end());
     std::sort(arr2.begin(), arr2.end());
 

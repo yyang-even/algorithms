@@ -15,7 +15,7 @@ using ArrayType = std::vector<int>;
  * random number with probability proportional to its frequency of occurrence.
  */
 auto RandomNumberInArbitraryProbability_Simple(const ArrayType &numbers,
-        const ArrayType &frequencies) {
+                                               const ArrayType &frequencies) {
     assert(numbers.size() == frequencies.size());
 
     ArrayType samples;

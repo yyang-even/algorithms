@@ -144,7 +144,7 @@ auto QuickSort_Hoare(ArrayType values) {
 
 auto QuickSort_Iterative(ArrayType values) {
     if (values.size() > 1) {
-        std::stack<std::pair<const ArrayType::iterator, const ArrayType::iterator> > range_stack;
+        std::stack<std::pair<const ArrayType::iterator, const ArrayType::iterator>> range_stack;
         range_stack.emplace(values.begin(), values.end());
 
         while (not range_stack.empty()) {
