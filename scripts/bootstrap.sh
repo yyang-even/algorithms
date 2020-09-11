@@ -7,9 +7,7 @@
 THIS_DIR=$(dirname "$0")
 $THIS_DIR/dependencies.sh
 
-
 echo "Setup submodules."
 git submodule update --init
-
 
 pre-commit install

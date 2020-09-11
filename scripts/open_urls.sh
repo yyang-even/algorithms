@@ -4,7 +4,6 @@
 # This script opens all the URLs in the given file
 #
 
-
 _term() {
     echo "Caught SIGTERM signal!"
     echo "Killing child processes: $(jobs -p)"
@@ -24,7 +23,6 @@ OpenUrlAndSleep() {
     sleep $SLEEP_SECONDS
 }
 
-
 if [ $# -ne 1 ]; then
     echo "Usage: $(basename $0) <file>"
     exit 1
@@ -40,9 +38,9 @@ echo "  number of lines: " $NUMBER_LINES
 echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
 
 while IFS=" " read -r field1 url; do
-    no_space_url="${url// }"
+    no_space_url="${url// /}"
     if [ ! -z "$no_space_url" ]; then
         OpenUrlAndSleep "$no_space_url"
         OpenUrlAndSleep "$no_space_url?ref=rp"
     fi
-done <"$FILE"
+done < "$FILE"

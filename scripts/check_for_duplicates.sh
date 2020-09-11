@@ -4,18 +4,15 @@
 # This script checks for duplicates
 #
 
-
 FILE="docs/done_list.md"
-
 
 echo "Checking for duplicate entries in" "$FILE"
 sort "$FILE" | uniq --repeated
 
-
 echo ""
 echo "Checking for duplicate references."
 while IFS=" " read -r field1 url; do
-    no_space_url="${url// }"
+    no_space_url="${url// /}"
     if [ ! -z "$no_space_url" ]; then
         grep_output=$(git grep --name-only "$no_space_url")
         line_count=$(echo "$grep_output" | wc -l)
@@ -26,4 +23,4 @@ while IFS=" " read -r field1 url; do
             echo ""
         fi
     fi
-done <"$FILE"
+done < "$FILE"
