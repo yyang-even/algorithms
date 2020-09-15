@@ -1,14 +1,14 @@
-CompileBenchmarkExe(factorial)
-CompileTestExe(factorial)
+compile_benchmark(factorial)
+compile_test(factorial)
 
-CompileBenchmarkExe(count_factorial_numbers_in_range)
-CompileTestExe(count_factorial_numbers_in_range)
+compile_benchmark(count_factorial_numbers_in_range)
+compile_test(count_factorial_numbers_in_range)
 
-CompileBenchmarkExe(count_digits_in_a_factorial)
-CompileTestExe(count_digits_in_a_factorial)
+compile_benchmark(count_digits_in_a_factorial)
+compile_test(count_digits_in_a_factorial)
 
-CompileBenchmarkExe(trailing_zeros_in_factorial)
-CompileTestExe(trailing_zeros_in_factorial)
+compile_benchmark(trailing_zeros_in_factorial)
+compile_test(trailing_zeros_in_factorial)
 
-CompileBenchmarkExe(count_divisors_of_factorial)
-CompileTestExe(count_divisors_of_factorial)
+compile_benchmark(count_divisors_of_factorial)
+compile_test(count_divisors_of_factorial)

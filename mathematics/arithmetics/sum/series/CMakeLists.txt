@@ -1,20 +1,20 @@
-CompileBenchmarkExe(squares_of_first_n_numbers)
-CompileTestExe(squares_of_first_n_numbers)
+compile_benchmark(squares_of_first_n_numbers)
+compile_test(squares_of_first_n_numbers)
 
-CompileBenchmarkExe(sum_of_cubes)
-CompileTestExe(sum_of_cubes)
+compile_benchmark(sum_of_cubes)
+compile_test(sum_of_cubes)
 
-CompileBenchmarkExe(sum_of_first_n_even_numbers)
-CompileTestExe(sum_of_first_n_even_numbers)
+compile_benchmark(sum_of_first_n_even_numbers)
+compile_test(sum_of_first_n_even_numbers)
 
-CompileBenchmarkExe(sum_of_first_n_odd_numbers)
-CompileTestExe(sum_of_first_n_odd_numbers)
+compile_benchmark(sum_of_first_n_odd_numbers)
+compile_test(sum_of_first_n_odd_numbers)
 
-CompileBenchmarkExe(sum_of_geometric_series)
-CompileTestExe(sum_of_geometric_series)
+compile_benchmark(sum_of_geometric_series)
+compile_test(sum_of_geometric_series)
 
-CompileBenchmarkExe(sum_of_natural_numbers)
-CompileTestExe(sum_of_natural_numbers)
+compile_benchmark(sum_of_natural_numbers)
+compile_test(sum_of_natural_numbers)
 
-CompileBenchmarkExe(sum_of_squares)
-CompileTestExe(sum_of_squares)
+compile_benchmark(sum_of_squares)
+compile_test(sum_of_squares)

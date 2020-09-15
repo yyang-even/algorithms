@@ -1,36 +1,36 @@
 add_subdirectory(BST)
 
-CompileBenchmarkExe(binary_tree_deletion)
-CompileTestExe(binary_tree_deletion)
+compile_benchmark(binary_tree_deletion)
+compile_test(binary_tree_deletion)
 
-CompileBenchmarkExe(binary_tree_height)
-CompileTestExe(binary_tree_height)
+compile_benchmark(binary_tree_height)
+compile_test(binary_tree_height)
 
-CompileBenchmarkExe(binary_tree_insertion)
-CompileTestExe(binary_tree_insertion)
+compile_benchmark(binary_tree_insertion)
+compile_test(binary_tree_insertion)
 
-CompileBenchmarkExe(binary_tree_search)
-CompileTestExe(binary_tree_search)
+compile_benchmark(binary_tree_search)
+compile_test(binary_tree_search)
 
-CompileBenchmarkExe(binary_tree_size)
-CompileTestExe(binary_tree_size)
+compile_benchmark(binary_tree_size)
+compile_test(binary_tree_size)
 
-CompileTestExe(binary_tree_traversals)
+compile_test(binary_tree_traversals)
 
-CompileBenchmarkExe(compare_binary_trees)
-CompileTestExe(compare_binary_trees)
+compile_benchmark(compare_binary_trees)
+compile_test(compare_binary_trees)
 
-CompileBenchmarkExe(complete_binary_tree)
-CompileTestExe(complete_binary_tree)
+compile_benchmark(complete_binary_tree)
+compile_test(complete_binary_tree)
 
-CompileBenchmarkExe(count_binary_tree_leaves)
-CompileTestExe(count_binary_tree_leaves)
+compile_benchmark(count_binary_tree_leaves)
+compile_test(count_binary_tree_leaves)
 
-CompileBenchmarkExe(full_binary_tree)
-CompileTestExe(full_binary_tree)
+compile_benchmark(full_binary_tree)
+compile_test(full_binary_tree)
 
-CompileBenchmarkExe(inorder_successor)
-CompileTestExe(inorder_successor)
+compile_benchmark(inorder_successor)
+compile_test(inorder_successor)
 
-CompileBenchmarkExe(perfect_binary_tree)
-CompileTestExe(perfect_binary_tree)
+compile_benchmark(perfect_binary_tree)
+compile_test(perfect_binary_tree)

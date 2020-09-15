@@ -1,11 +1,11 @@
-CompileBenchmarkExe(max_difference_between_two_elements_no_sort)
-CompileTestExe(max_difference_between_two_elements_no_sort)
+compile_benchmark(max_difference_between_two_elements_no_sort)
+compile_test(max_difference_between_two_elements_no_sort)
 
-CompileBenchmarkExe(minimum_difference_between_two_elements)
-CompileTestExe(minimum_difference_between_two_elements)
+compile_benchmark(minimum_difference_between_two_elements)
+compile_test(minimum_difference_between_two_elements)
 
-CompileBenchmarkExe(subtract)
-CompileTestExe(subtract)
+compile_benchmark(subtract)
+compile_test(subtract)
 
-CompileBenchmarkExe(subtract_1)
-CompileTestExe(subtract_1)
+compile_benchmark(subtract_1)
+compile_test(subtract_1)

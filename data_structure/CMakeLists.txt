@@ -1,8 +1,8 @@
-CompileTestExe(deque)
+compile_test(deque)
 
-CompileTestExe(priority_queue)
+compile_test(priority_queue)
 
-CompileTestExe(stack)
+compile_test(stack)
 
 add_subdirectory(array)
 add_subdirectory(cache)

@@ -1,98 +1,98 @@
-CompileBenchmarkExe(bubble_sort)
-CompileTestExe(bubble_sort)
+compile_benchmark(bubble_sort)
+compile_test(bubble_sort)
 
-CompileBenchmarkExe(bucket_sort)
-CompileTestExe(bucket_sort)
+compile_benchmark(bucket_sort)
+compile_test(bucket_sort)
 
-CompileBenchmarkExe(count_inversions)
-CompileTestExe(count_inversions)
+compile_benchmark(count_inversions)
+compile_test(count_inversions)
 
-CompileBenchmarkExe(count_occurrences_in_sorted_array)
-CompileTestExe(count_occurrences_in_sorted_array)
+compile_benchmark(count_occurrences_in_sorted_array)
+compile_test(count_occurrences_in_sorted_array)
 
-CompileBenchmarkExe(counting_sort)
-CompileTestExe(counting_sort)
+compile_benchmark(counting_sort)
+compile_test(counting_sort)
 
-CompileBenchmarkExe(dutch_national_flag)
-CompileTestExe(dutch_national_flag)
+compile_benchmark(dutch_national_flag)
+compile_test(dutch_national_flag)
 
-CompileBenchmarkExe(heap_sort)
-CompileTestExe(heap_sort)
+compile_benchmark(heap_sort)
+compile_test(heap_sort)
 
-CompileBenchmarkExe(insertion_sort)
-CompileTestExe(insertion_sort)
+compile_benchmark(insertion_sort)
+compile_test(insertion_sort)
 
-CompileBenchmarkExe(is_k_sorted_array)
-CompileTestExe(is_k_sorted_array)
+compile_benchmark(is_k_sorted_array)
+compile_test(is_k_sorted_array)
 
-CompileBenchmarkExe(is_sorted)
-CompileTestExe(is_sorted)
+compile_benchmark(is_sorted)
+compile_test(is_sorted)
 
-CompileBenchmarkExe(kth_smallest_element_after_every_insertion)
-CompileTestExe(kth_smallest_element_after_every_insertion)
+compile_benchmark(kth_smallest_element_after_every_insertion)
+compile_test(kth_smallest_element_after_every_insertion)
 
-CompileBenchmarkExe(kth_smallest_or_largest_element)
-CompileTestExe(kth_smallest_or_largest_element)
+compile_benchmark(kth_smallest_or_largest_element)
+compile_test(kth_smallest_or_largest_element)
 
-CompileBenchmarkExe(k_closest_numbers_to_median)
-CompileTestExe(k_closest_numbers_to_median)
+compile_benchmark(k_closest_numbers_to_median)
+compile_test(k_closest_numbers_to_median)
 
-CompileBenchmarkExe(k_largest_or_smallest_elements)
-CompileTestExe(k_largest_or_smallest_elements)
+compile_benchmark(k_largest_or_smallest_elements)
+compile_test(k_largest_or_smallest_elements)
 
-CompileBenchmarkExe(maximum_of_all_subarrays_of_size_k)
-CompileTestExe(maximum_of_all_subarrays_of_size_k)
+compile_benchmark(maximum_of_all_subarrays_of_size_k)
+compile_test(maximum_of_all_subarrays_of_size_k)
 
-CompileBenchmarkExe(max_and_min)
-CompileTestExe(max_and_min)
+compile_benchmark(max_and_min)
+compile_test(max_and_min)
 
-CompileBenchmarkExe(max_or_min)
-CompileTestExe(max_or_min)
+compile_benchmark(max_or_min)
+compile_test(max_or_min)
 
-CompileBenchmarkExe(median)
-CompileTestExe(median)
+compile_benchmark(median)
+compile_test(median)
 
-CompileBenchmarkExe(merge_k_sorted_array)
-CompileTestExe(merge_k_sorted_array)
+compile_benchmark(merge_k_sorted_array)
+compile_test(merge_k_sorted_array)
 
-CompileBenchmarkExe(merge_sort)
-CompileTestExe(merge_sort)
+compile_benchmark(merge_sort)
+compile_test(merge_sort)
 
-CompileBenchmarkExe(merge_two_sorted_arrays)
-CompileTestExe(merge_two_sorted_arrays)
+compile_benchmark(merge_two_sorted_arrays)
+compile_test(merge_two_sorted_arrays)
 
-CompileBenchmarkExe(partition)
-CompileTestExe(partition)
+compile_benchmark(partition)
+compile_test(partition)
 
-CompileBenchmarkExe(queries_for_counts_in_range)
-CompileTestExe(queries_for_counts_in_range)
+compile_benchmark(queries_for_counts_in_range)
+compile_test(queries_for_counts_in_range)
 
-CompileBenchmarkExe(quick_sort)
-CompileTestExe(quick_sort)
+compile_benchmark(quick_sort)
+compile_test(quick_sort)
 
-CompileBenchmarkExe(radix_sort)
-CompileTestExe(radix_sort)
+compile_benchmark(radix_sort)
+compile_test(radix_sort)
 
-CompileBenchmarkExe(rotation)
-CompileTestExe(rotation)
+compile_benchmark(rotation)
+compile_test(rotation)
 
-CompileBenchmarkExe(selection_sort)
-CompileTestExe(selection_sort)
+compile_benchmark(selection_sort)
+compile_test(selection_sort)
 
-CompileBenchmarkExe(sort_by_frequency)
-CompileTestExe(sort_by_frequency)
+compile_benchmark(sort_by_frequency)
+compile_test(sort_by_frequency)
 
-CompileBenchmarkExe(sort_by_length)
-CompileTestExe(sort_by_length)
+compile_benchmark(sort_by_length)
+compile_test(sort_by_length)
 
-CompileBenchmarkExe(sort_date_strings)
-CompileTestExe(sort_date_strings)
+compile_benchmark(sort_date_strings)
+compile_test(sort_date_strings)
 
-CompileBenchmarkExe(sort_nearly_sorted_array)
-CompileTestExe(sort_nearly_sorted_array)
+compile_benchmark(sort_nearly_sorted_array)
+compile_test(sort_nearly_sorted_array)
 
-CompileBenchmarkExe(sorted_insert)
-CompileTestExe(sorted_insert)
+compile_benchmark(sorted_insert)
+compile_test(sorted_insert)
 
-CompileBenchmarkExe(sublist_rotation)
-CompileTestExe(sublist_rotation)
+compile_benchmark(sublist_rotation)
+compile_test(sublist_rotation)

@@ -1,23 +1,23 @@
-CompileBenchmarkExe(count_digits_in_integer)
-CompileTestExe(count_digits_in_integer)
+compile_benchmark(count_digits_in_integer)
+compile_test(count_digits_in_integer)
 
-CompileBenchmarkExe(detect_integer_overflow)
-CompileTestExe(detect_integer_overflow)
+compile_benchmark(detect_integer_overflow)
+compile_test(detect_integer_overflow)
 
-CompileBenchmarkExe(is_duck_number)
-CompileTestExe(is_duck_number)
+compile_benchmark(is_duck_number)
+compile_test(is_duck_number)
 
-CompileBenchmarkExe(large_integer)
-CompileTestExe(large_integer)
+compile_benchmark(large_integer)
+compile_test(large_integer)
 
-CompileBenchmarkExe(perfect_square)
-CompileTestExe(perfect_square)
+compile_benchmark(perfect_square)
+compile_test(perfect_square)
 
-CompileBenchmarkExe(reverse_digits)
-CompileTestExe(reverse_digits)
+compile_benchmark(reverse_digits)
+compile_test(reverse_digits)
 
-CompileBenchmarkExe(rotate_for_a_max)
-CompileTestExe(rotate_for_a_max)
+compile_benchmark(rotate_for_a_max)
+compile_test(rotate_for_a_max)
 
 add_subdirectory(binary)
 add_subdirectory(fibonacci)

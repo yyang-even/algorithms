@@ -1,11 +1,11 @@
-CompileBenchmarkExe(activity_selection)
-CompileTestExe(activity_selection)
+compile_benchmark(activity_selection)
+compile_test(activity_selection)
 
-CompileBenchmarkExe(huffman_codes)
-CompileTestExe(huffman_codes)
+compile_benchmark(huffman_codes)
+compile_test(huffman_codes)
 
-CompileBenchmarkExe(offline_caching)
-CompileTestExe(offline_caching)
+compile_benchmark(offline_caching)
+compile_test(offline_caching)
 
-CompileBenchmarkExe(task_scheduling)
-CompileTestExe(task_scheduling)
+compile_benchmark(task_scheduling)
+compile_test(task_scheduling)

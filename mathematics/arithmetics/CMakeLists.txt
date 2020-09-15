@@ -1,5 +1,5 @@
-CompileBenchmarkExe(mean)
-CompileTestExe(mean)
+compile_benchmark(mean)
+compile_test(mean)
 
 add_subdirectory(division)
 add_subdirectory(factorial)

@@ -1,30 +1,30 @@
-CompileBenchmarkExe(approximate_median)
-CompileTestExe(approximate_median)
+compile_benchmark(approximate_median)
+compile_test(approximate_median)
 
-CompileBenchmarkExe(birthday_paradox)
-CompileTestExe(birthday_paradox)
+compile_benchmark(birthday_paradox)
+compile_test(birthday_paradox)
 
-CompileBenchmarkExe(equal_probability_random_number)
-CompileTestExe(equal_probability_random_number)
+compile_benchmark(equal_probability_random_number)
+compile_test(equal_probability_random_number)
 
-CompileBenchmarkExe(fair_coin_from_biased_coin)
-CompileTestExe(fair_coin_from_biased_coin)
+compile_benchmark(fair_coin_from_biased_coin)
+compile_test(fair_coin_from_biased_coin)
 
-CompileBenchmarkExe(generate_0_1_25_75_probability)
-CompileTestExe(generate_0_1_25_75_probability)
+compile_benchmark(generate_0_1_25_75_probability)
+compile_test(generate_0_1_25_75_probability)
 
-CompileBenchmarkExe(probability_K_in_array)
-CompileTestExe(probability_K_in_array)
+compile_benchmark(probability_K_in_array)
+compile_test(probability_K_in_array)
 
-CompileBenchmarkExe(random_number_generator_in_arbitrary_probability)
-CompileTestExe(random_number_generator_in_arbitrary_probability)
+compile_benchmark(random_number_generator_in_arbitrary_probability)
+compile_test(random_number_generator_in_arbitrary_probability)
 
-CompileBenchmarkExe(reservoir_sampling)
-CompileTerminalApp(reservoir_sampling)
+compile_benchmark(reservoir_sampling)
+compile_app(reservoir_sampling)
 
-CompileBenchmarkExe(shuffle_array)
-CompileTerminalApp(shuffle_array)
+compile_benchmark(shuffle_array)
+compile_app(shuffle_array)
 
-CompileBenchmarkExe(strong_password_suggester)
-CompileTestExe(strong_password_suggester)
-CompileTerminalApp(strong_password_suggester)
+compile_benchmark(strong_password_suggester)
+compile_test(strong_password_suggester)
+compile_app(strong_password_suggester)

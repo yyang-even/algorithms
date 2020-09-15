@@ -1,2 +1,2 @@
-CompileBenchmarkExe(complete_graph_on_n)
-CompileTestExe(complete_graph_on_n)
+compile_benchmark(complete_graph_on_n)
+compile_test(complete_graph_on_n)

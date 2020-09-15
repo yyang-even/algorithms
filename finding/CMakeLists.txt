@@ -1,29 +1,29 @@
-CompileBenchmarkExe(binary_search)
-CompileTestExe(binary_search)
+compile_benchmark(binary_search)
+compile_test(binary_search)
 
-CompileBenchmarkExe(check_if_array_sorted_and_rotated)
-CompileTestExe(check_if_array_sorted_and_rotated)
+compile_benchmark(check_if_array_sorted_and_rotated)
+compile_test(check_if_array_sorted_and_rotated)
 
-CompileBenchmarkExe(count_local_extrema)
-CompileTestExe(count_local_extrema)
+compile_benchmark(count_local_extrema)
+compile_test(count_local_extrema)
 
-CompileBenchmarkExe(find_fixed_point)
-CompileTestExe(find_fixed_point)
+compile_benchmark(find_fixed_point)
+compile_test(find_fixed_point)
 
-CompileBenchmarkExe(find_k_closest_elements_to_X)
-CompileTestExe(find_k_closest_elements_to_X)
+compile_benchmark(find_k_closest_elements_to_X)
+compile_test(find_k_closest_elements_to_X)
 
-CompileBenchmarkExe(find_minimum_in_sorted_and_rotated_array)
-CompileTestExe(find_minimum_in_sorted_and_rotated_array)
+compile_benchmark(find_minimum_in_sorted_and_rotated_array)
+compile_test(find_minimum_in_sorted_and_rotated_array)
 
-CompileBenchmarkExe(find_peak_element)
-CompileTestExe(find_peak_element)
+compile_benchmark(find_peak_element)
+compile_test(find_peak_element)
 
-CompileBenchmarkExe(linear_search)
-CompileTestExe(linear_search)
+compile_benchmark(linear_search)
+compile_test(linear_search)
 
-CompileBenchmarkExe(median_of_two_sorted_arrays)
-CompileTestExe(median_of_two_sorted_arrays)
+compile_benchmark(median_of_two_sorted_arrays)
+compile_test(median_of_two_sorted_arrays)
 
-CompileBenchmarkExe(next_greater_element)
-CompileTestExe(next_greater_element)
+compile_benchmark(next_greater_element)
+compile_test(next_greater_element)

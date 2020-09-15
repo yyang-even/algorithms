@@ -1,4 +1,4 @@
-CompileBenchmarkExe(FIFO_cache)
-CompileTestExe(FIFO_cache)
+compile_benchmark(FIFO_cache)
+compile_test(FIFO_cache)
 
-CompileTestExe(queue)
+compile_test(queue)

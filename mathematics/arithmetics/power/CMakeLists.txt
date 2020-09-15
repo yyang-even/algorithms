@@ -1,5 +1,5 @@
-CompileBenchmarkExe(compare_powers)
-CompileTestExe(compare_powers)
+compile_benchmark(compare_powers)
+compile_test(compare_powers)
 
-CompileBenchmarkExe(power)
-CompileTestExe(power)
+compile_benchmark(power)
+compile_test(power)

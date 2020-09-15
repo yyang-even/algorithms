@@ -1,50 +1,50 @@
-CompileBenchmarkExe(almost_prime_numbers)
-CompileTestExe(almost_prime_numbers)
+compile_benchmark(almost_prime_numbers)
+compile_test(almost_prime_numbers)
 
-CompileBenchmarkExe(arithmetic_number)
-CompileTestExe(arithmetic_number)
+compile_benchmark(arithmetic_number)
+compile_test(arithmetic_number)
 
-CompileBenchmarkExe(count_divisors_of_n)
-CompileTestExe(count_divisors_of_n)
+compile_benchmark(count_divisors_of_n)
+compile_test(count_divisors_of_n)
 
-CompileBenchmarkExe(count_perfect_divisors)
-CompileTestExe(count_perfect_divisors)
+compile_benchmark(count_perfect_divisors)
+compile_test(count_perfect_divisors)
 
-CompileBenchmarkExe(difference_between_nonprimes_and_primes_of_array)
-CompileTestExe(difference_between_nonprimes_and_primes_of_array)
+compile_benchmark(difference_between_nonprimes_and_primes_of_array)
+compile_test(difference_between_nonprimes_and_primes_of_array)
 
-CompileBenchmarkExe(divisors_of_n)
-CompileTestExe(divisors_of_n)
+compile_benchmark(divisors_of_n)
+compile_test(divisors_of_n)
 
-CompileBenchmarkExe(is_prime)
-CompileTestExe(is_prime)
+compile_benchmark(is_prime)
+compile_test(is_prime)
 
-CompileBenchmarkExe(largest_power_of_p_divides_factorial_n)
-CompileTestExe(largest_power_of_p_divides_factorial_n)
+compile_benchmark(largest_power_of_p_divides_factorial_n)
+compile_test(largest_power_of_p_divides_factorial_n)
 
-CompileBenchmarkExe(least_prime_factor_of_numbers_till_n)
-CompileTestExe(least_prime_factor_of_numbers_till_n)
+compile_benchmark(least_prime_factor_of_numbers_till_n)
+compile_test(least_prime_factor_of_numbers_till_n)
 
-CompileBenchmarkExe(legendres_formula)
-CompileTestExe(legendres_formula)
+compile_benchmark(legendres_formula)
+compile_test(legendres_formula)
 
-CompileBenchmarkExe(perfect_number)
-CompileTestExe(perfect_number)
+compile_benchmark(perfect_number)
+compile_test(perfect_number)
 
-CompileBenchmarkExe(prime_factors_of_n)
-CompileTestExe(prime_factors_of_n)
+compile_benchmark(prime_factors_of_n)
+compile_test(prime_factors_of_n)
 
-CompileBenchmarkExe(primes_below_n)
-CompileTestExe(primes_below_n)
+compile_benchmark(primes_below_n)
+compile_test(primes_below_n)
 
-CompileBenchmarkExe(sum_of_divisors_of_factorial)
-CompileTestExe(sum_of_divisors_of_factorial)
+compile_benchmark(sum_of_divisors_of_factorial)
+compile_test(sum_of_divisors_of_factorial)
 
-CompileBenchmarkExe(sum_of_factors_of_a_number)
-CompileTestExe(sum_of_factors_of_a_number)
+compile_benchmark(sum_of_factors_of_a_number)
+compile_test(sum_of_factors_of_a_number)
 
-CompileBenchmarkExe(sum_of_prime_divisors_of_a_number)
-CompileTestExe(sum_of_prime_divisors_of_a_number)
+compile_benchmark(sum_of_prime_divisors_of_a_number)
+compile_test(sum_of_prime_divisors_of_a_number)
 
-CompileBenchmarkExe(ugly_numbers)
-CompileTestExe(ugly_numbers)
+compile_benchmark(ugly_numbers)
+compile_test(ugly_numbers)

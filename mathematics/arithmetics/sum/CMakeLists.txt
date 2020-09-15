@@ -1,25 +1,25 @@
-CompileBenchmarkExe(closest_sum_pair_to_x)
-CompileTestExe(closest_sum_pair_to_x)
+compile_benchmark(closest_sum_pair_to_x)
+compile_test(closest_sum_pair_to_x)
 
-CompileBenchmarkExe(largest_sum_contiguous_subarray)
-CompileTestExe(largest_sum_contiguous_subarray)
+compile_benchmark(largest_sum_contiguous_subarray)
+compile_test(largest_sum_contiguous_subarray)
 
-CompileBenchmarkExe(max_sum_of_subarray_of_size_k)
-CompileTestExe(max_sum_of_subarray_of_size_k)
+compile_benchmark(max_sum_of_subarray_of_size_k)
+compile_test(max_sum_of_subarray_of_size_k)
 
-CompileBenchmarkExe(prefix_sum_array)
-CompileTestExe(prefix_sum_array)
+compile_benchmark(prefix_sum_array)
+compile_test(prefix_sum_array)
 
-CompileBenchmarkExe(smallest_subarray_with_sum_greater_than_given_value)
-CompileTestExe(smallest_subarray_with_sum_greater_than_given_value)
+compile_benchmark(smallest_subarray_with_sum_greater_than_given_value)
+compile_test(smallest_subarray_with_sum_greater_than_given_value)
 
-CompileBenchmarkExe(subarray_with_given_sum)
-CompileTestExe(subarray_with_given_sum)
+compile_benchmark(subarray_with_given_sum)
+compile_test(subarray_with_given_sum)
 
-CompileBenchmarkExe(sum)
-CompileTestExe(sum)
+compile_benchmark(sum)
+compile_test(sum)
 
-CompileBenchmarkExe(sum_of_nodes)
-CompileTestExe(sum_of_nodes)
+compile_benchmark(sum_of_nodes)
+compile_test(sum_of_nodes)
 
 add_subdirectory(series)

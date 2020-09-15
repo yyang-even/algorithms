@@ -1,44 +1,44 @@
-CompileBenchmarkExe(0-1_knapsack_problem)
-CompileTestExe(0-1_knapsack_problem)
+compile_benchmark(0-1_knapsack_problem)
+compile_test(0-1_knapsack_problem)
 
-CompileBenchmarkExe(break_a_string)
-CompileTestExe(break_a_string)
+compile_benchmark(break_a_string)
+compile_test(break_a_string)
 
-CompileBenchmarkExe(coin_change)
-CompileTestExe(coin_change)
+compile_benchmark(coin_change)
+compile_test(coin_change)
 
-CompileBenchmarkExe(company_party_planning)
-CompileTestExe(company_party_planning)
+compile_benchmark(company_party_planning)
+compile_test(company_party_planning)
 
-CompileBenchmarkExe(edit_distance)
-CompileTestExe(edit_distance)
+compile_benchmark(edit_distance)
+compile_test(edit_distance)
 
-CompileBenchmarkExe(longest_common_subsequence)
-CompileTestExe(longest_common_subsequence)
+compile_benchmark(longest_common_subsequence)
+compile_test(longest_common_subsequence)
 
-CompileBenchmarkExe(longest_common_substring)
-CompileTestExe(longest_common_substring)
+compile_benchmark(longest_common_substring)
+compile_test(longest_common_substring)
 
-CompileBenchmarkExe(longest_increasing_subsequence)
-CompileTestExe(longest_increasing_subsequence)
+compile_benchmark(longest_increasing_subsequence)
+compile_test(longest_increasing_subsequence)
 
-CompileBenchmarkExe(longest_palindromic_subsequence)
-CompileTestExe(longest_palindromic_subsequence)
+compile_benchmark(longest_palindromic_subsequence)
+compile_test(longest_palindromic_subsequence)
 
-CompileBenchmarkExe(longest_palindromic_substring)
-CompileTestExe(longest_palindromic_substring)
+compile_benchmark(longest_palindromic_substring)
+compile_test(longest_palindromic_substring)
 
-CompileBenchmarkExe(matrix_chain_multiplication)
-CompileTestExe(matrix_chain_multiplication)
+compile_benchmark(matrix_chain_multiplication)
+compile_test(matrix_chain_multiplication)
 
-CompileBenchmarkExe(optimal_binary_search_trees)
-CompileTestExe(optimal_binary_search_trees)
+compile_benchmark(optimal_binary_search_trees)
+compile_test(optimal_binary_search_trees)
 
-CompileBenchmarkExe(rod_cutting)
-CompileTestExe(rod_cutting)
+compile_benchmark(rod_cutting)
+compile_test(rod_cutting)
 
-CompileBenchmarkExe(word_break)
-CompileTestExe(word_break)
+compile_benchmark(word_break)
+compile_test(word_break)
 
-CompileBenchmarkExe(word_wrap)
-CompileTestExe(word_wrap)
+compile_benchmark(word_wrap)
+compile_test(word_wrap)

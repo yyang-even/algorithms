@@ -1,17 +1,17 @@
-CompileBenchmarkExe(modular_division)
-CompileTestExe(modular_division)
+compile_benchmark(modular_division)
+compile_test(modular_division)
 
-CompileBenchmarkExe(modular_exponentiation)
-CompileTestExe(modular_exponentiation)
+compile_benchmark(modular_exponentiation)
+compile_test(modular_exponentiation)
 
-CompileBenchmarkExe(modular_multiplication)
-CompileTestExe(modular_multiplication)
+compile_benchmark(modular_multiplication)
+compile_test(modular_multiplication)
 
-CompileBenchmarkExe(modular_multiplicative_inverse)
-CompileTestExe(modular_multiplicative_inverse)
+compile_benchmark(modular_multiplicative_inverse)
+compile_test(modular_multiplicative_inverse)
 
-CompileBenchmarkExe(modulo)
-CompileTestExe(modulo)
+compile_benchmark(modulo)
+compile_test(modulo)
 
-CompileBenchmarkExe(the_modulo_3_sequence)
-CompileTestExe(the_modulo_3_sequence)
+compile_benchmark(the_modulo_3_sequence)
+compile_test(the_modulo_3_sequence)

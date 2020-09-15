@@ -1,25 +1,25 @@
-CompileBenchmarkExe(array_linked_list)
-CompileTestExe(array_linked_list)
+compile_benchmark(array_linked_list)
+compile_test(array_linked_list)
 
-CompileBenchmarkExe(count_size_of_singly_list)
-CompileTestExe(count_size_of_singly_list)
+compile_benchmark(count_size_of_singly_list)
+compile_test(count_size_of_singly_list)
 
-CompileBenchmarkExe(delete_all_singly_list)
-CompileTestExe(delete_all_singly_list)
+compile_benchmark(delete_all_singly_list)
+compile_test(delete_all_singly_list)
 
-CompileBenchmarkExe(get_nth_node)
-CompileTestExe(get_nth_node)
+compile_benchmark(get_nth_node)
+compile_test(get_nth_node)
 
-CompileBenchmarkExe(nth_node_from_the_end)
-CompileTestExe(nth_node_from_the_end)
+compile_benchmark(nth_node_from_the_end)
+compile_test(nth_node_from_the_end)
 
-CompileBenchmarkExe(random_node_from_singly_linked_list)
+compile_benchmark(random_node_from_singly_linked_list)
 
-CompileBenchmarkExe(reverse_singly_linked_list)
-CompileTestExe(reverse_singly_linked_list)
+compile_benchmark(reverse_singly_linked_list)
+compile_test(reverse_singly_linked_list)
 
-CompileBenchmarkExe(singly_circular_linked_list)
-CompileTestExe(singly_circular_linked_list)
+compile_benchmark(singly_circular_linked_list)
+compile_test(singly_circular_linked_list)
 
-CompileBenchmarkExe(singly_linked_list)
-CompileTestExe(singly_linked_list)
+compile_benchmark(singly_linked_list)
+compile_test(singly_linked_list)

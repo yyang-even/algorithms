@@ -1,11 +1,11 @@
-CompileBenchmarkExe(doubly_linked_list)
-CompileTestExe(doubly_linked_list)
+compile_benchmark(doubly_linked_list)
+compile_test(doubly_linked_list)
 
-CompileBenchmarkExe(doubly_circular_linked_list)
-CompileTestExe(doubly_circular_linked_list)
+compile_benchmark(doubly_circular_linked_list)
+compile_test(doubly_circular_linked_list)
 
-CompileBenchmarkExe(reverse_doubly_list)
-CompileTestExe(reverse_doubly_list)
+compile_benchmark(reverse_doubly_list)
+compile_test(reverse_doubly_list)
 
-CompileBenchmarkExe(xor_linked_list)
-CompileTestExe(xor_linked_list)
+compile_benchmark(xor_linked_list)
+compile_test(xor_linked_list)

@@ -1,32 +1,32 @@
-CompileBenchmarkExe(breadth_first_search)
-CompileTestExe(breadth_first_search)
+compile_benchmark(breadth_first_search)
+compile_test(breadth_first_search)
 
-CompileBenchmarkExe(degree_of_graph)
-CompileTestExe(degree_of_graph)
+compile_benchmark(degree_of_graph)
+compile_test(degree_of_graph)
 
-CompileBenchmarkExe(depth_first_search)
-CompileTestExe(depth_first_search)
+compile_benchmark(depth_first_search)
+compile_test(depth_first_search)
 
-CompileBenchmarkExe(detect_cycle)
-CompileTestExe(detect_cycle)
+compile_benchmark(detect_cycle)
+compile_test(detect_cycle)
 
-CompileBenchmarkExe(euler_tour)
-CompileTestExe(euler_tour)
+compile_benchmark(euler_tour)
+compile_test(euler_tour)
 
-CompileBenchmarkExe(number_of_connected_components)
-CompileTestExe(number_of_connected_components)
+compile_benchmark(number_of_connected_components)
+compile_test(number_of_connected_components)
 
-CompileBenchmarkExe(simple_paths)
-CompileTestExe(simple_paths)
+compile_benchmark(simple_paths)
+compile_test(simple_paths)
 
-CompileBenchmarkExe(single_source_longest_paths)
-CompileTestExe(single_source_longest_paths)
+compile_benchmark(single_source_longest_paths)
+compile_test(single_source_longest_paths)
 
-CompileBenchmarkExe(single_source_shortest_paths)
-CompileTestExe(single_source_shortest_paths)
+compile_benchmark(single_source_shortest_paths)
+compile_test(single_source_shortest_paths)
 
-CompileBenchmarkExe(strongly_connected_components)
-CompileTestExe(strongly_connected_components)
+compile_benchmark(strongly_connected_components)
+compile_test(strongly_connected_components)
 
-CompileBenchmarkExe(topological_sort)
-CompileTestExe(topological_sort)
+compile_benchmark(topological_sort)
+compile_test(topological_sort)

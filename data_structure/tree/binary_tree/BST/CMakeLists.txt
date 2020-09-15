@@ -1,20 +1,20 @@
-CompileBenchmarkExe(binary_tree_to_BST)
-CompileTestExe(binary_tree_to_BST)
+compile_benchmark(binary_tree_to_BST)
+compile_test(binary_tree_to_BST)
 
-CompileBenchmarkExe(BST_delete)
-CompileTestExe(BST_delete)
+compile_benchmark(BST_delete)
+compile_test(BST_delete)
 
-CompileBenchmarkExe(BST_inorder_predecessor)
-CompileTestExe(BST_inorder_predecessor)
+compile_benchmark(BST_inorder_predecessor)
+compile_test(BST_inorder_predecessor)
 
-CompileBenchmarkExe(BST_inorder_successor)
-CompileTestExe(BST_inorder_successor)
+compile_benchmark(BST_inorder_successor)
+compile_test(BST_inorder_successor)
 
-CompileBenchmarkExe(BST_insert)
-CompileTestExe(BST_insert)
+compile_benchmark(BST_insert)
+compile_test(BST_insert)
 
-CompileBenchmarkExe(BST_search)
-CompileTestExe(BST_search)
+compile_benchmark(BST_search)
+compile_test(BST_search)
 
-CompileBenchmarkExe(is_BST)
-CompileTestExe(is_BST)
+compile_benchmark(is_BST)
+compile_test(is_BST)

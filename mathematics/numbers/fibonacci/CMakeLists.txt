@@ -1,2 +1,2 @@
-CompileBenchmarkExe(fibonacci)
-CompileTestExe(fibonacci)
+compile_benchmark(fibonacci)
+compile_test(fibonacci)

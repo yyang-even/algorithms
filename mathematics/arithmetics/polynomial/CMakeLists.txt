@@ -1,2 +1,2 @@
-CompileBenchmarkExe(horner_method)
-CompileTestExe(horner_method)
+compile_benchmark(horner_method)
+compile_test(horner_method)

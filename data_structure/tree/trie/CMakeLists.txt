@@ -1,14 +1,14 @@
-CompileBenchmarkExe(auto-complete)
-CompileTestExe(auto-complete)
+compile_benchmark(auto-complete)
+compile_test(auto-complete)
 
-CompileBenchmarkExe(boggle)
-CompileTestExe(boggle)
+compile_benchmark(boggle)
+compile_test(boggle)
 
-CompileBenchmarkExe(longest_concatenated_string)
-CompileTestExe(longest_concatenated_string)
+compile_benchmark(longest_concatenated_string)
+compile_test(longest_concatenated_string)
 
-CompileBenchmarkExe(trie)
-CompileTestExe(trie)
+compile_benchmark(trie)
+compile_test(trie)
 
-CompileBenchmarkExe(trie_traversal)
-CompileTestExe(trie_traversal)
+compile_benchmark(trie_traversal)
+compile_test(trie_traversal)

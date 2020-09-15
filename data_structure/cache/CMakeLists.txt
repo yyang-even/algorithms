@@ -1,7 +1,7 @@
-CompileTestExe(lfu_cache)
+compile_test(lfu_cache)
 
-CompileBenchmarkExe(lru_cache)
-CompileTestExe(lru_cache)
+compile_benchmark(lru_cache)
+compile_test(lru_cache)
 
-CompileBenchmarkExe(second_chance_cache)
-CompileTestExe(second_chance_cache)
+compile_benchmark(second_chance_cache)
+compile_test(second_chance_cache)

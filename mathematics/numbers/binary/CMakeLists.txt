@@ -1,196 +1,196 @@
-CompileBenchmarkExe(abs)
-CompileTestExe(abs)
+compile_benchmark(abs)
+compile_test(abs)
 
-CompileBenchmarkExe(add_minimum_number_to_even_sum)
-CompileTestExe(add_minimum_number_to_even_sum)
+compile_benchmark(add_minimum_number_to_even_sum)
+compile_test(add_minimum_number_to_even_sum)
 
-CompileBenchmarkExe(are_all_bits_set)
-CompileTestExe(are_all_bits_set)
+compile_benchmark(are_all_bits_set)
+compile_test(are_all_bits_set)
 
-CompileBenchmarkExe(are_opposite_signs)
-CompileTestExe(are_opposite_signs)
+compile_benchmark(are_opposite_signs)
+compile_test(are_opposite_signs)
 
-CompileBenchmarkExe(byte_range)
-CompileTestExe(byte_range)
+compile_benchmark(byte_range)
+compile_test(byte_range)
 
-CompileBenchmarkExe(calculate_xor_of_all_numbers_1_to_n)
-CompileTestExe(calculate_xor_of_all_numbers_1_to_n)
+compile_benchmark(calculate_xor_of_all_numbers_1_to_n)
+compile_test(calculate_xor_of_all_numbers_1_to_n)
 
-CompileBenchmarkExe(case_conversion)
-CompileTestExe(case_conversion)
+compile_benchmark(case_conversion)
+compile_test(case_conversion)
 
-CompileBenchmarkExe(check_all_chars_have_even_frequency)
-CompileTestExe(check_all_chars_have_even_frequency)
+compile_benchmark(check_all_chars_have_even_frequency)
+compile_test(check_all_chars_have_even_frequency)
 
-CompileBenchmarkExe(check_if_alternate_pattern)
-CompileTestExe(check_if_alternate_pattern)
+compile_benchmark(check_if_alternate_pattern)
+compile_test(check_if_alternate_pattern)
 
-CompileBenchmarkExe(check_only_first_and_last_bits_set)
-CompileTestExe(check_only_first_and_last_bits_set)
+compile_benchmark(check_only_first_and_last_bits_set)
+compile_test(check_only_first_and_last_bits_set)
 
-CompileBenchmarkExe(conditionally_set_or_clear)
-CompileTestExe(conditionally_set_or_clear)
+compile_benchmark(conditionally_set_or_clear)
+compile_test(conditionally_set_or_clear)
 
-CompileBenchmarkExe(conditionally_negate)
-CompileTestExe(conditionally_negate)
+compile_benchmark(conditionally_negate)
+compile_test(conditionally_negate)
 
-CompileBenchmarkExe(count_diff_bits_of_two)
-CompileTestExe(count_diff_bits_of_two)
+compile_benchmark(count_diff_bits_of_two)
+compile_test(count_diff_bits_of_two)
 
-CompileBenchmarkExe(count_equal_sum_and_xor)
-CompileTestExe(count_equal_sum_and_xor)
+compile_benchmark(count_equal_sum_and_xor)
+compile_test(count_equal_sum_and_xor)
 
-CompileBenchmarkExe(count_set_bits)
-CompileTestExe(count_set_bits)
+compile_benchmark(count_set_bits)
+compile_test(count_set_bits)
 
-CompileBenchmarkExe(count_total_bits)
-CompileTestExe(count_total_bits)
+compile_benchmark(count_total_bits)
+compile_test(count_total_bits)
 
-CompileBenchmarkExe(count_trailing_zeros)
-CompileTestExe(count_trailing_zeros)
+compile_benchmark(count_trailing_zeros)
+compile_test(count_trailing_zeros)
 
-CompileBenchmarkExe(count_unset_bits)
-CompileTestExe(count_unset_bits)
+compile_benchmark(count_unset_bits)
+compile_test(count_unset_bits)
 
-CompileBenchmarkExe(clear_all_bits_except_the_last_set_bit)
-CompileTestExe(clear_all_bits_except_the_last_set_bit)
+compile_benchmark(clear_all_bits_except_the_last_set_bit)
+compile_test(clear_all_bits_except_the_last_set_bit)
 
-CompileBenchmarkExe(clear_bit)
-CompileTestExe(clear_bit)
+compile_benchmark(clear_bit)
+compile_test(clear_bit)
 
-CompileBenchmarkExe(endianness)
-CompileTestExe(endianness)
+compile_benchmark(endianness)
+compile_test(endianness)
 
-CompileBenchmarkExe(equal)
-CompileTestExe(equal)
+compile_benchmark(equal)
+compile_test(equal)
 
-CompileBenchmarkExe(find_first_bit_set)
-CompileTestExe(find_first_bit_set)
+compile_benchmark(find_first_bit_set)
+compile_test(find_first_bit_set)
 
-CompileBenchmarkExe(find_most_significant_bit)
-CompileTestExe(find_most_significant_bit)
+compile_benchmark(find_most_significant_bit)
+compile_test(find_most_significant_bit)
 
-CompileTerminalApp(find_stack_growth_direction)
+compile_app(find_stack_growth_direction)
 
-CompileBenchmarkExe(find_the_missing_number)
-CompileTestExe(find_the_missing_number)
+compile_benchmark(find_the_missing_number)
+compile_test(find_the_missing_number)
 
-CompileBenchmarkExe(find_the_odd_number)
-CompileTestExe(find_the_odd_number)
+compile_benchmark(find_the_odd_number)
+compile_test(find_the_odd_number)
 
-CompileBenchmarkExe(find_the_only_repeating_element)
-CompileTestExe(find_the_only_repeating_element)
+compile_benchmark(find_the_only_repeating_element)
+compile_test(find_the_only_repeating_element)
 
-CompileBenchmarkExe(find_the_only_set_bit_position)
-CompileTestExe(find_the_only_set_bit_position)
+compile_benchmark(find_the_only_set_bit_position)
+compile_test(find_the_only_set_bit_position)
 
-CompileBenchmarkExe(find_the_repeating_and_the_missing)
-CompileTestExe(find_the_repeating_and_the_missing)
+compile_benchmark(find_the_repeating_and_the_missing)
+compile_test(find_the_repeating_and_the_missing)
 
-CompileBenchmarkExe(find_the_two_missing_numbers)
-CompileTestExe(find_the_two_missing_numbers)
+compile_benchmark(find_the_two_missing_numbers)
+compile_test(find_the_two_missing_numbers)
 
-CompileBenchmarkExe(find_the_two_nonrepeating_elements)
-CompileTestExe(find_the_two_nonrepeating_elements)
+compile_benchmark(find_the_two_nonrepeating_elements)
+compile_test(find_the_two_nonrepeating_elements)
 
-CompileBenchmarkExe(find_the_two_repeating_elements)
-CompileTestExe(find_the_two_repeating_elements)
+compile_benchmark(find_the_two_repeating_elements)
+compile_test(find_the_two_repeating_elements)
 
-CompileBenchmarkExe(find_the_unique_element)
-CompileTestExe(find_the_unique_element)
+compile_benchmark(find_the_unique_element)
+compile_test(find_the_unique_element)
 
-CompileBenchmarkExe(increment)
-CompileTestExe(increment)
+compile_benchmark(increment)
+compile_test(increment)
 
-CompileBenchmarkExe(is_bit_set)
-CompileTestExe(is_bit_set)
+compile_benchmark(is_bit_set)
+compile_test(is_bit_set)
 
-CompileBenchmarkExe(is_divisible_by_power_of_2)
-CompileTestExe(is_divisible_by_power_of_2)
+compile_benchmark(is_divisible_by_power_of_2)
+compile_test(is_divisible_by_power_of_2)
 
-CompileBenchmarkExe(is_negative)
-CompileTestExe(is_negative)
+compile_benchmark(is_negative)
+compile_test(is_negative)
 
-CompileBenchmarkExe(is_power_of_2)
-CompileTestExe(is_power_of_2)
+compile_benchmark(is_power_of_2)
+compile_test(is_power_of_2)
 
-CompileBenchmarkExe(is_power_of_power_of_2)
-CompileTestExe(is_power_of_power_of_2)
+compile_benchmark(is_power_of_power_of_2)
+compile_test(is_power_of_power_of_2)
 
-CompileBenchmarkExe(log_base_2)
-CompileTestExe(log_base_2)
+compile_benchmark(log_base_2)
+compile_test(log_base_2)
 
-CompileBenchmarkExe(longest_consecutive_1s)
-CompileTestExe(longest_consecutive_1s)
+compile_benchmark(longest_consecutive_1s)
+compile_test(longest_consecutive_1s)
 
-CompileBenchmarkExe(masked_bits_merge)
-CompileTestExe(masked_bits_merge)
+compile_benchmark(masked_bits_merge)
+compile_test(masked_bits_merge)
 
-CompileBenchmarkExe(maximum_and_value_of_pair)
-CompileTestExe(maximum_and_value_of_pair)
+compile_benchmark(maximum_and_value_of_pair)
+compile_test(maximum_and_value_of_pair)
 
-CompileBenchmarkExe(modulus)
-CompileTestExe(modulus)
+compile_benchmark(modulus)
+compile_test(modulus)
 
-CompileBenchmarkExe(morton_number)
-CompileTestExe(morton_number)
+compile_benchmark(morton_number)
+compile_test(morton_number)
 
-CompileBenchmarkExe(numbers_having_first_and_last_bits_set)
-CompileTestExe(numbers_having_first_and_last_bits_set)
+compile_benchmark(numbers_having_first_and_last_bits_set)
+compile_test(numbers_having_first_and_last_bits_set)
 
-CompileBenchmarkExe(parity)
-CompileTestExe(parity)
+compile_benchmark(parity)
+compile_test(parity)
 
-CompileBenchmarkExe(bits_permutation)
-CompileTestExe(bits_permutation)
+compile_benchmark(bits_permutation)
+compile_test(bits_permutation)
 
-CompileBenchmarkExe(position_of_rightmost_unset_bit)
-CompileTestExe(position_of_rightmost_unset_bit)
+compile_benchmark(position_of_rightmost_unset_bit)
+compile_test(position_of_rightmost_unset_bit)
 
-CompileBenchmarkExe(reverse_bits)
-CompileTestExe(reverse_bits)
+compile_benchmark(reverse_bits)
+compile_test(reverse_bits)
 
-CompileBenchmarkExe(rotate_bits)
-CompileTestExe(rotate_bits)
+compile_benchmark(rotate_bits)
+compile_test(rotate_bits)
 
-CompileBenchmarkExe(round_up_to_power_of_2)
-CompileTestExe(round_up_to_power_of_2)
+compile_benchmark(round_up_to_power_of_2)
+compile_test(round_up_to_power_of_2)
 
-CompileBenchmarkExe(set_all_bits_after_most_significant_bit)
-CompileTestExe(set_all_bits_after_most_significant_bit)
+compile_benchmark(set_all_bits_after_most_significant_bit)
+compile_test(set_all_bits_after_most_significant_bit)
 
-CompileBenchmarkExe(set_bit)
-CompileTestExe(set_bit)
+compile_benchmark(set_bit)
+compile_test(set_bit)
 
-CompileBenchmarkExe(sign_extending)
-CompileTestExe(sign_extending)
+compile_benchmark(sign_extending)
+compile_test(sign_extending)
 
-CompileBenchmarkExe(subsequences_with_max_and_and_max_or)
-CompileTestExe(subsequences_with_max_and_and_max_or)
+compile_benchmark(subsequences_with_max_and_and_max_or)
+compile_test(subsequences_with_max_and_and_max_or)
 
-CompileBenchmarkExe(sum_of_xor_of_all_subsets)
-CompileTestExe(sum_of_xor_of_all_subsets)
+compile_benchmark(sum_of_xor_of_all_subsets)
+compile_test(sum_of_xor_of_all_subsets)
 
-CompileBenchmarkExe(swap)
-CompileTestExe(swap)
+compile_benchmark(swap)
+compile_test(swap)
 
-CompileBenchmarkExe(swap_nibbles)
-CompileTestExe(swap_nibbles)
+compile_benchmark(swap_nibbles)
+compile_test(swap_nibbles)
 
-CompileBenchmarkExe(swap_odd_even_bits)
-CompileTestExe(swap_odd_even_bits)
+compile_benchmark(swap_odd_even_bits)
+compile_test(swap_odd_even_bits)
 
-CompileBenchmarkExe(toggle_all_bits_after_most_significant_bit)
-CompileTestExe(toggle_all_bits_after_most_significant_bit)
+compile_benchmark(toggle_all_bits_after_most_significant_bit)
+compile_test(toggle_all_bits_after_most_significant_bit)
 
-CompileBenchmarkExe(toggle_bit)
-CompileTestExe(toggle_bit)
+compile_benchmark(toggle_bit)
+compile_test(toggle_bit)
 
-CompileBenchmarkExe(twos_complement)
-CompileTestExe(twos_complement)
+compile_benchmark(twos_complement)
+compile_test(twos_complement)
 
-CompileBenchmarkExe(xor_of_xor_of_all_subsets)
-CompileTestExe(xor_of_xor_of_all_subsets)
+compile_benchmark(xor_of_xor_of_all_subsets)
+compile_test(xor_of_xor_of_all_subsets)
 
-CompileBenchmarkExe(zig_zag_encoding)
-CompileTestExe(zig_zag_encoding)
+compile_benchmark(zig_zag_encoding)
+compile_test(zig_zag_encoding)

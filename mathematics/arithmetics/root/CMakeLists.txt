@@ -1,2 +1,2 @@
-CompileBenchmarkExe(square_root)
-CompileTestExe(square_root)
+compile_benchmark(square_root)
+compile_test(square_root)

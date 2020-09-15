@@ -1,77 +1,77 @@
-CompileBenchmarkExe(binary_conversion_to)
-CompileTestExe(binary_conversion_to)
+compile_benchmark(binary_conversion_to)
+compile_test(binary_conversion_to)
 
-CompileBenchmarkExe(convert_to_int_array)
-CompileTestExe(convert_to_int_array)
+compile_benchmark(convert_to_int_array)
+compile_test(convert_to_int_array)
 
-CompileBenchmarkExe(count_anagrams)
-CompileTestExe(count_anagrams)
+compile_benchmark(count_anagrams)
+compile_test(count_anagrams)
 
-CompileBenchmarkExe(count_chars_at_same_position_as_in_alphabet)
-CompileTestExe(count_chars_at_same_position_as_in_alphabet)
+compile_benchmark(count_chars_at_same_position_as_in_alphabet)
+compile_test(count_chars_at_same_position_as_in_alphabet)
 
-CompileBenchmarkExe(count_strings_with_consonant_and_vowels_at_alternate_position)
-CompileTestExe(count_strings_with_consonant_and_vowels_at_alternate_position)
+compile_benchmark(count_strings_with_consonant_and_vowels_at_alternate_position)
+compile_test(count_strings_with_consonant_and_vowels_at_alternate_position)
 
-CompileBenchmarkExe(count_words_in_given_string)
-CompileTestExe(count_words_in_given_string)
+compile_benchmark(count_words_in_given_string)
+compile_test(count_words_in_given_string)
 
-CompileBenchmarkExe(decimal_conversion_to)
-CompileTestExe(decimal_conversion_to)
+compile_benchmark(decimal_conversion_to)
+compile_test(decimal_conversion_to)
 
-CompileBenchmarkExe(find_kth_char_of_decrypted_string)
-CompileTestExe(find_kth_char_of_decrypted_string)
+compile_benchmark(find_kth_char_of_decrypted_string)
+compile_test(find_kth_char_of_decrypted_string)
 
-CompileBenchmarkExe(interleavings_of_two_strings)
-CompileTestExe(interleavings_of_two_strings)
+compile_benchmark(interleavings_of_two_strings)
+compile_test(interleavings_of_two_strings)
 
-CompileBenchmarkExe(is_palindrome)
-CompileTestExe(is_palindrome)
+compile_benchmark(is_palindrome)
+compile_test(is_palindrome)
 
-CompileBenchmarkExe(pangram_checking)
-CompileTestExe(pangram_checking)
+compile_benchmark(pangram_checking)
+compile_test(pangram_checking)
 
-CompileBenchmarkExe(permutation)
-CompileTestExe(permutation)
+compile_benchmark(permutation)
+compile_test(permutation)
 
-CompileBenchmarkExe(permutation_with_repetition)
-CompileTestExe(permutation_with_repetition)
+compile_benchmark(permutation_with_repetition)
+compile_test(permutation_with_repetition)
 
-CompileTerminalApp(pretty_print)
-CompileTestExe(pretty_print)
+compile_app(pretty_print)
+compile_test(pretty_print)
 
-CompileBenchmarkExe(print_bytes)
-CompileTestExe(print_bytes)
+compile_benchmark(print_bytes)
+compile_test(print_bytes)
 
-CompileBenchmarkExe(print_integer)
-CompileTestExe(print_integer)
+compile_benchmark(print_integer)
+compile_test(print_integer)
 
-CompileBenchmarkExe(print_range)
-CompileTestExe(print_range)
+compile_benchmark(print_range)
+compile_test(print_range)
 
-CompileBenchmarkExe(remove_characters)
-CompileTestExe(remove_characters)
+compile_benchmark(remove_characters)
+compile_test(remove_characters)
 
-CompileBenchmarkExe(reverse_string)
-CompileTestExe(reverse_string)
+compile_benchmark(reverse_string)
+compile_test(reverse_string)
 
-CompileBenchmarkExe(reverse_words_in_given_string)
-CompileTestExe(reverse_words_in_given_string)
+compile_benchmark(reverse_words_in_given_string)
+compile_test(reverse_words_in_given_string)
 
-CompileBenchmarkExe(run_length_encoding)
-CompileTestExe(run_length_encoding)
+compile_benchmark(run_length_encoding)
+compile_test(run_length_encoding)
 
-CompileBenchmarkExe(split_into_words)
-CompileTestExe(split_into_words)
+compile_benchmark(split_into_words)
+compile_test(split_into_words)
 
-CompileBenchmarkExe(string_comparison)
-CompileTestExe(string_comparison)
+compile_benchmark(string_comparison)
+compile_test(string_comparison)
 
-CompileBenchmarkExe(tail)
-CompileTestExe(tail)
+compile_benchmark(tail)
+compile_test(tail)
 
-CompileBenchmarkExe(to_binary)
-CompileTestExe(to_binary)
+compile_benchmark(to_binary)
+compile_test(to_binary)
 
-CompileBenchmarkExe(to_decimal)
-CompileTestExe(to_decimal)
+compile_benchmark(to_decimal)
+compile_test(to_decimal)
