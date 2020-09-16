@@ -14,9 +14,6 @@ if (WANT_BENCHMARKS)
         CACHE BOOL "Enable building the unit tests which depend on gtest")
     set(BENCHMARK_ENABLE_INSTALL
         OFF
-        CACHE
-            BOOL
-            "Enable installation of benchmark. (Projects embedding benchmark may want to turn this OFF.)"
-    )
+        CACHE BOOL "Enable installation of benchmark.")
     add_subdirectory(benchmark)
 endif (WANT_BENCHMARKS)

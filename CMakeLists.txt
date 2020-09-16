@@ -10,10 +10,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -std=c++17")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -g")
 
 # Turn on warnings
-#
+# ~~~
 # @reference    Warnings: -Weverything and the Kitchen Sink
-# https://embeddedartistry.com/blog/2017/3/7/clang-weverything
-#
+#               https://embeddedartistry.com/blog/2017/3/7/clang-weverything
+# ~~~
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Wextra")
 
@@ -33,10 +33,10 @@ include_directories("${PROJECT_SOURCE_DIR}")
 option(BUILD_SHARED_LIBS "Build libraries as .dll's/.so's" true)
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS) # mark un-advanced
 
-#
+# ~~~
 # @reference    -Werror is Not Your Friend
-# https://embeddedartistry.com/blog/2017/5/3/-werror-is-not-your-friend
-#
+#               https://embeddedartistry.com/blog/2017/5/3/-werror-is-not-your-friend
+# ~~~
 option(WARNINGS_AS_ERRORS "Treat all warnings as build errors" ON)
 if (WARNINGS_AS_ERRORS)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Werror")
@@ -53,9 +53,7 @@ if (WANT_TESTS)
     include(CTest)
     mark_as_advanced(BUILD_TESTING)
 
-    # ##############################################################################################
-    # gtest
-    # ##############################################################################################
+    # cmake-lint: disable=C0103
     set(gtest_force_shared_crt
         ON
         CACHE BOOL "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
@@ -95,6 +93,7 @@ function (compile_benchmark name)
     endif (WANT_BENCHMARKS)
 endfunction (compile_benchmark)
 
+# compile_test
 function (compile_test name)
     if (WANT_TESTS)
         set(target_name ${name}_test)
@@ -115,6 +114,7 @@ function (compile_test name)
     endif (WANT_TESTS)
 endfunction (compile_test)
 
+# compile_app
 function (compile_app name)
     if (WANT_TERMINAL_APP)
         set(target_name ${name}_app)
