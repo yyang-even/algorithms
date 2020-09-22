@@ -74,21 +74,50 @@ auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
     return a > b ? Gcd_Stein_Recursive((a - b) >> 1, b) : Gcd_Stein_Recursive((b - a) >> 1, a);
 }
 
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 31.2-4.
+ */
+unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
+    if (m > n) {
+        std::swap(m, n);
+    }
+
+    while (m > 0) {
+        const auto original_m = m;
+        m = n % m;
+        n = original_m;
+    }
+
+    return n;
+}
+
 }//namespace
 
 
 SIMPLE_BENCHMARK(gcd, Sample1, 12, 18);
 SIMPLE_BENCHMARK(gcd, Sample2, 18, 12);
 
-SIMPLE_TEST(gcd, Test1, 6u, 12, 18);
-SIMPLE_TEST(gcd, Test2, 6u, 18, 12);
-SIMPLE_TEST(gcd, Test3, 5u, 10, 15);
-SIMPLE_TEST(gcd, Test4, 5u, 35, 10);
-SIMPLE_TEST(gcd, Test5, 1u, 31, 2);
+SIMPLE_TEST(gcd, Test1, 6, 12, 18);
+SIMPLE_TEST(gcd, Test2, 6, 18, 12);
+SIMPLE_TEST(gcd, Test3, 5, 10, 15);
+SIMPLE_TEST(gcd, Test4, 5, 35, 10);
+SIMPLE_TEST(gcd, Test5, 1, 31, 2);
 
 
-const auto EXPECTED1 = std::make_tuple(10u, 1, -1);
-const auto EXPECTED2 = std::make_tuple(5u, 1, -2);
+SIMPLE_BENCHMARK(gcd_Euclid_Iterative, Sample1, 12, 18);
+SIMPLE_BENCHMARK(gcd_Euclid_Iterative, Sample2, 18, 12);
+
+SIMPLE_TEST(gcd_Euclid_Iterative, Test1, 6, 12, 18);
+SIMPLE_TEST(gcd_Euclid_Iterative, Test2, 6, 18, 12);
+SIMPLE_TEST(gcd_Euclid_Iterative, Test3, 5, 10, 15);
+SIMPLE_TEST(gcd_Euclid_Iterative, Test4, 5, 35, 10);
+SIMPLE_TEST(gcd_Euclid_Iterative, Test5, 1, 31, 2);
+
+
+const auto EXPECTED1 = std::make_tuple(10, 1, -1);
+const auto EXPECTED2 = std::make_tuple(5, 1, -2);
 
 
 SIMPLE_BENCHMARK(gcd_Extended, Sample1, 18, 12);
@@ -99,21 +128,21 @@ SIMPLE_TEST(gcd_Extended, TestSample2, EXPECTED2, 35, 15);
 
 SIMPLE_BENCHMARK(Gcd_Stein_Iterative, Sample1, 18, 12);
 
-SIMPLE_TEST(Gcd_Stein_Iterative, Test1, 6u, 12, 18);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test2, 6u, 18, 12);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test3, 5u, 10, 15);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test4, 5u, 35, 10);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test5, 1u, 31, 2);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test6, 17u, 17, 34);
-SIMPLE_TEST(Gcd_Stein_Iterative, Test7, 1u, 50, 49);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test1, 6, 12, 18);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test2, 6, 18, 12);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test3, 5, 10, 15);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test4, 5, 35, 10);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test5, 1, 31, 2);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test6, 17, 17, 34);
+SIMPLE_TEST(Gcd_Stein_Iterative, Test7, 1, 50, 49);
 
 
 SIMPLE_BENCHMARK(Gcd_Stein_Recursive, Sample1, 18, 12);
 
-SIMPLE_TEST(Gcd_Stein_Recursive, Test1, 6u, 12, 18);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test2, 6u, 18, 12);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test3, 5u, 10, 15);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test4, 5u, 35, 10);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test5, 1u, 31, 2);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test6, 17u, 17, 34);
-SIMPLE_TEST(Gcd_Stein_Recursive, Test7, 1u, 50, 49);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test1, 6, 12, 18);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test2, 6, 18, 12);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test3, 5, 10, 15);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test4, 5, 35, 10);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test5, 1, 31, 2);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test6, 17, 17, 34);
+SIMPLE_TEST(Gcd_Stein_Recursive, Test7, 1, 50, 49);
