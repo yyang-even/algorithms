@@ -4,6 +4,9 @@ compile_test(modular_division)
 compile_benchmark(modular_exponentiation)
 compile_test(modular_exponentiation)
 
+compile_benchmark(modular_linear_equations)
+compile_test(modular_linear_equations)
+
 compile_benchmark(modular_multiplication)
 compile_test(modular_multiplication)
 

@@ -1315,3 +1315,4 @@
 * https://www.geeksforgeeks.org/lcm-of-given-array-elements/
 * https://www.geeksforgeeks.org/inbuilt-function-calculating-lcm-cpp/
 * https://www.geeksforgeeks.org/stdgcd-c-inbuilt-function-finding-gcd/
+* https://www.geeksforgeeks.org/number-solutions-modular-equations/
