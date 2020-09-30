@@ -8,6 +8,8 @@ namespace {
 
 /** Primality Test
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 31.8.
  * @reference   Prime Numbers
  *              https://www.geeksforgeeks.org/prime-numbers/
  * @reference   Primality Test | Set 1 (Introduction and School Method)
@@ -109,6 +111,7 @@ auto millerTest(unsigned d, const unsigned n) {
 
     return false;
 }
+
 auto IsPrime_MillerRabin(const unsigned n) {
     if (n <= 1u) {
         return false;
