@@ -1315,3 +1315,8 @@
 * https://www.geeksforgeeks.org/lcm-of-given-array-elements/
 * https://www.geeksforgeeks.org/inbuilt-function-calculating-lcm-cpp/
 * https://www.geeksforgeeks.org/stdgcd-c-inbuilt-function-finding-gcd/
+* https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/optimized-naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/c-program-for-naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/c-program-for-rabin-karp-algorithm-for-pattern-searching/
