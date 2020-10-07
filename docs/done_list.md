@@ -1320,3 +1320,4 @@
 * https://www.geeksforgeeks.org/c-program-for-naive-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/c-program-for-rabin-karp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/

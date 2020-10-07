@@ -126,6 +126,65 @@ auto StringMatcing_RabinKarp(const std::string &text, const std::string &pattern
     return shifts;
 }
 
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 32.3.
+ * @reference   Finite Automata algorithm for Pattern Searching
+ *              https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/
+ */
+std::string::size_type getNextState(const std::string &pattern,
+                                    const std::string::size_type state, const int c) {
+    if (state < pattern.size() and c == pattern[state]) {
+        return state + 1;
+    }
+
+    for (auto next_state = state; next_state > 0; --next_state) {
+        const auto next_state_minus_1 = next_state - 1;
+        if (pattern[next_state_minus_1] == c) {
+            std::string::size_type i = 0;
+            for (; i < next_state_minus_1; ++i) {
+                if (pattern[i] != pattern[state - next_state_minus_1 + i]) {
+                    break;
+                }
+            }
+
+            if (i == next_state_minus_1) {
+                return next_state;
+            }
+        }
+    }
+
+    return 0;
+}
+
+auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D = 256) {
+    std::vector<ArrayType> transition_fucntion_table(pattern.size() + 1, ArrayType(RADIX_D, 0));
+
+    for (std::string::size_type state = 0; state <= pattern.size(); ++state) {
+        for (int c = 0; c < RADIX_D; ++c) {
+            transition_fucntion_table[state][c] = getNextState(pattern, state, c);
+        }
+    }
+
+    return transition_fucntion_table;
+}
+
+auto StringMatcing_FiniteAutomata(const std::string &text, const std::string &pattern) {
+    const auto TRANSITION_FUCNTION_TABLE = createTransitionFunctionTable(pattern);
+
+    ArrayType shifts;
+    unsigned state = 0;
+    for (std::string::size_type i = 0; i < text.size(); ++i) {
+        state = TRANSITION_FUCNTION_TABLE[state][text[i]];
+        if (state == pattern.size()) {
+            shifts.push_back(i + 1 - pattern.size());
+        }
+    }
+
+    return shifts;
+}
+
 }//namespace
 
 
@@ -154,3 +213,11 @@ SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA",
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
+
+
+THE_BENCHMARK(StringMatcing_FiniteAutomata, "AABAACAADAABAABA", "AABA");
+
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA", "AABA");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
