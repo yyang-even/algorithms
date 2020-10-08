@@ -171,6 +171,8 @@ auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D
 }
 
 auto StringMatcing_FiniteAutomata(const std::string &text, const std::string &pattern) {
+    assert(text.size() >= pattern.size());
+
     const auto TRANSITION_FUCNTION_TABLE = createTransitionFunctionTable(pattern);
 
     ArrayType shifts;
@@ -179,6 +181,56 @@ auto StringMatcing_FiniteAutomata(const std::string &text, const std::string &pa
         state = TRANSITION_FUCNTION_TABLE[state][text[i]];
         if (state == pattern.size()) {
             shifts.push_back(i + 1 - pattern.size());
+        }
+    }
+
+    return shifts;
+}
+
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 32.4.
+ * @reference   KMP Algorithm for Pattern Searching
+ *              https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+ */
+auto computeLongestPrefixSuffix(const std::string &pattern) {
+    ArrayType longest_prefix_suffix = {0};
+    std::string::size_type number_chars_matched = 0;
+
+    for (std::string::size_type i = 1; i < pattern.size(); ++i) {
+        while (number_chars_matched > 0 and pattern[number_chars_matched] != pattern[i]) {
+            number_chars_matched = longest_prefix_suffix[number_chars_matched - 1];
+        }
+
+        if (pattern[number_chars_matched] == pattern[i]) {
+            ++number_chars_matched;
+        }
+
+        longest_prefix_suffix.push_back(number_chars_matched);
+    }
+
+    return longest_prefix_suffix;
+}
+
+auto StringMatcing_KMP(const std::string &text, const std::string &pattern) {
+    assert(text.size() >= pattern.size());
+
+    ArrayType shifts;
+    const auto LONGEST_PREFIX_SUFFIX = computeLongestPrefixSuffix(pattern);
+    std::string::size_type number_chars_matched = 0;
+    for (std::string::size_type i = 0; i < text.size(); ++i) {
+        while (number_chars_matched > 0 and pattern[number_chars_matched] != text[i]) {
+            number_chars_matched = LONGEST_PREFIX_SUFFIX[number_chars_matched - 1];
+        }
+
+        if (pattern[number_chars_matched] == text[i]) {
+            ++number_chars_matched;
+        }
+
+        if (number_chars_matched == pattern.size()) {
+            shifts.push_back(i + 1 - pattern.size());
+            number_chars_matched = LONGEST_PREFIX_SUFFIX.back();
         }
     }
 
@@ -200,6 +252,7 @@ SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA", "AA
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
 
 
 THE_BENCHMARK(StringMatcing_OptimizedNaive, "ABCEABCDABCEABCD", "ABCD");
@@ -213,6 +266,7 @@ SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA",
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
 
 
 THE_BENCHMARK(StringMatcing_FiniteAutomata, "AABAACAADAABAABA", "AABA");
@@ -221,3 +275,14 @@ SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE1, EXPECTED1, "AABAACAADAABA
 SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
 SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE5, EXPECTED2,
+            "ABABDABACDABABCABAB", "ABABCABAB");
+
+
+THE_BENCHMARK(StringMatcing_KMP, "AABAACAADAABAABA", "AABA");
+
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA", "AABA");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
