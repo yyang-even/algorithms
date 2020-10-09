@@ -1322,3 +1322,4 @@
 * https://www.geeksforgeeks.org/c-program-for-rabin-karp-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/pattern-searching-set-5-efficient-constructtion-of-finite-automata/

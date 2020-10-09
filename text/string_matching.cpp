@@ -158,7 +158,7 @@ std::string::size_type getNextState(const std::string &pattern,
     return 0;
 }
 
-auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D = 256) {
+auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D) {
     std::vector<ArrayType> transition_fucntion_table(pattern.size() + 1, ArrayType(RADIX_D, 0));
 
     for (std::string::size_type state = 0; state <= pattern.size(); ++state) {
@@ -170,10 +170,37 @@ auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D
     return transition_fucntion_table;
 }
 
-auto StringMatcing_FiniteAutomata(const std::string &text, const std::string &pattern) {
+/**
+ * @reference   Pattern Searching | Set 6 (Efficient Construction of Finite Automata)
+ *              https://www.geeksforgeeks.org/pattern-searching-set-5-efficient-constructtion-of-finite-automata/
+ */
+auto createTransitionFunctionTable_Optimized(const std::string &pattern, const int RADIX_D) {
+    std::vector<ArrayType> transition_fucntion_table(pattern.size() + 1, ArrayType(RADIX_D, 0));
+    transition_fucntion_table[0][pattern[0]] = 1;
+
+    std::string::size_type longest_prefix_suffix = 0;
+    for (std::string::size_type i = 1; i <= pattern.size(); ++i) {
+        for (int j = 0; j < RADIX_D; ++j) {
+            transition_fucntion_table[i][j] = transition_fucntion_table[longest_prefix_suffix][j];
+        }
+
+        transition_fucntion_table[i][pattern[i]] = i + 1;
+
+        if (i < pattern.size()) {
+            longest_prefix_suffix = transition_fucntion_table[longest_prefix_suffix][pattern[i]];
+        }
+    }
+
+    return transition_fucntion_table;
+}
+
+template <typename TransitionTableCreator>
+auto StringMatcing_FiniteAutomata(const TransitionTableCreator transition_table_creator,
+                                  const std::string &text, const std::string &pattern) {
     assert(text.size() >= pattern.size());
 
-    const auto TRANSITION_FUCNTION_TABLE = createTransitionFunctionTable(pattern);
+    const int RADIX_D = 256;
+    const auto TRANSITION_FUCNTION_TABLE = transition_table_creator(pattern, RADIX_D);
 
     ArrayType shifts;
     unsigned state = 0;
@@ -244,6 +271,7 @@ const ArrayType EXPECTED1 = {0, 9, 12};
 const ArrayType EXPECTED2 = {10};
 const ArrayType EXPECTED3 = {4, 12};
 const ArrayType EXPECTED4 = {0, 10};
+const ArrayType EXPECTED6 = {8};
 
 
 THE_BENCHMARK(StringMatcing_Naive, "AABAACAADAABAABA", "AABA");
@@ -253,6 +281,7 @@ SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", 
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
 SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_Naive, TestSAMPLE6, EXPECTED6, "cabababcababaca", "ababaca");
 
 
 THE_BENCHMARK(StringMatcing_OptimizedNaive, "ABCEABCDABCEABCD", "ABCD");
@@ -267,16 +296,41 @@ SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEX
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
 SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_RabinKarp, TestSAMPLE6, EXPECTED6, "cabababcababaca", "ababaca");
 
 
-THE_BENCHMARK(StringMatcing_FiniteAutomata, "AABAACAADAABAABA", "AABA");
+SIMPLE_BENCHMARK(StringMatcing_FiniteAutomata, BMSampleA1, createTransitionFunctionTable,
+                 "AABAACAADAABAABA", "AABA");
 
-SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA", "AABA");
-SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
-SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
-SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
-SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE5, EXPECTED2,
-            "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE1a, EXPECTED1,
+            createTransitionFunctionTable, "AABAACAADAABAABA", "AABA");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE2a, EXPECTED2,
+            createTransitionFunctionTable, "THIS IS A TEST TEXT", "TEST");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE3a, EXPECTED3,
+            createTransitionFunctionTable, "ABCEABCDABCEABCD", "ABCD");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE4a, EXPECTED4,
+            createTransitionFunctionTable, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE5a, EXPECTED2,
+            createTransitionFunctionTable, "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE6a, EXPECTED6,
+            createTransitionFunctionTable, "cabababcababaca", "ababaca");
+
+
+SIMPLE_BENCHMARK(StringMatcing_FiniteAutomata, BMSampleB1, createTransitionFunctionTable_Optimized,
+                 "AABAACAADAABAABA", "AABA");
+
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE1b, EXPECTED1,
+            createTransitionFunctionTable_Optimized, "AABAACAADAABAABA", "AABA");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE2b, EXPECTED2,
+            createTransitionFunctionTable_Optimized, "THIS IS A TEST TEXT", "TEST");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE3b, EXPECTED3,
+            createTransitionFunctionTable_Optimized, "ABCEABCDABCEABCD", "ABCD");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE4b, EXPECTED4,
+            createTransitionFunctionTable_Optimized, "GEEKS FOR GEEKS", "GEEKS");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE5b, EXPECTED2,
+            createTransitionFunctionTable_Optimized, "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_FiniteAutomata, TestSAMPLE6b, EXPECTED6,
+            createTransitionFunctionTable_Optimized, "cabababcababaca", "ababaca");
 
 
 THE_BENCHMARK(StringMatcing_KMP, "AABAACAADAABAABA", "AABA");
@@ -286,3 +340,4 @@ SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "T
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE6, EXPECTED6, "cabababcababaca", "ababaca");
