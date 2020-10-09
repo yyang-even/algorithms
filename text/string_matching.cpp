@@ -171,6 +171,8 @@ auto createTransitionFunctionTable(const std::string &pattern, const int RADIX_D
 }
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 32.4-8.
  * @reference   Pattern Searching | Set 6 (Efficient Construction of Finite Automata)
  *              https://www.geeksforgeeks.org/pattern-searching-set-5-efficient-constructtion-of-finite-automata/
  */
@@ -264,6 +266,29 @@ auto StringMatcing_KMP(const std::string &text, const std::string &pattern) {
     return shifts;
 }
 
+
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 32.4-7.
+ * @reference   A Program to check if strings are rotations of each other or not
+ *              https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+ * @reference   Check if strings are rotations of each other or not | Set 2
+ *              https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/
+ *
+ * Given a string s1 and a string s2, write a snippet to say whether s2 is a rotation of s1?
+ *
+ * @reference   Pattern Searching using C++ library
+ *              https://www.geeksforgeeks.org/pattern-searching-using-c-library/
+ */
+auto AreRotations(const std::string &lhs, const std::string &rhs) {
+    if (lhs.size() != rhs.size()) {
+        return false;
+    }
+
+    const auto concatenation = lhs + rhs;
+    return concatenation.find(lhs) != std::string::npos;
+}
+
 }//namespace
 
 
@@ -341,3 +366,8 @@ SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB", "ABABCABAB");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE6, EXPECTED6, "cabababcababaca", "ababaca");
+
+
+THE_BENCHMARK(AreRotations, "ABACD", "CDABA");
+
+SIMPLE_TEST(AreRotations, TestSAMPLE1, true, "ABACD", "CDABA");

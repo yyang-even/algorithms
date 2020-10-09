@@ -1323,3 +1323,6 @@
 * https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
 * https://www.geeksforgeeks.org/pattern-searching-set-5-efficient-constructtion-of-finite-automata/
+* https://www.geeksforgeeks.org/pattern-searching-using-c-library/
+* https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+* https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/
