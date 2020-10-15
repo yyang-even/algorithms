@@ -33,7 +33,8 @@ auto CompanyPartyPlanning(const NodeType::PointerType node, TableType &max_profi
     for (auto child = node->left_child; child; child = child->right_sibling) {
         profit_without_node += CompanyPartyPlanning(child, max_profits);
 
-        for (auto grandchild = child->left_child; grandchild; grandchild = grandchild->right_sibling) {
+        for (auto grandchild = child->left_child; grandchild;
+             grandchild = grandchild->right_sibling) {
             profit_with_node += CompanyPartyPlanning(grandchild, max_profits);
         }
     }

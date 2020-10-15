@@ -14,7 +14,8 @@ using ArrayType = std::vector<int>;
  * Given an infinite stream of integers, find the k’th largest
  * element at any point of time. It may be assumed that 1 <= k <= n.
  */
-auto KthSmallestElementAfterEveryInsertion(const ArrayType stream, const ArrayType::size_type k) {
+auto KthSmallestElementAfterEveryInsertion(const ArrayType stream,
+                                           const ArrayType::size_type k) {
     assert(k < stream.size());
 
     std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type>>
@@ -42,4 +43,5 @@ const ArrayType EXPECTED_ARRAY = {0, 0, 10, 11, 20, 40, 50,  50};
 
 SIMPLE_BENCHMARK(KthSmallestElementAfterEveryInsertion, Sample1, SAMPLE_ARRAY, 3);
 
-SIMPLE_TEST(KthSmallestElementAfterEveryInsertion, TestSAMPLE, EXPECTED_ARRAY, SAMPLE_ARRAY, 3);
+SIMPLE_TEST(KthSmallestElementAfterEveryInsertion, TestSAMPLE, EXPECTED_ARRAY,
+            SAMPLE_ARRAY, 3);

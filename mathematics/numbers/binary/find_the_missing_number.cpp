@@ -20,11 +20,13 @@ auto FindTheMissingNumber_Sum(const ArrayType &integers) {
 
     const auto N = integers.size() + 1u;
     const auto sum = N * (N + 1) / 2;
-    return std::accumulate(integers.cbegin(), integers.cend(), sum, std::minus<ArrayType::value_type> {});
+    return std::accumulate(integers.cbegin(), integers.cend(), sum,
+                           std::minus<ArrayType::value_type> {});
 }
 
 
-auto FindTheMissingNumber_Xor(const ArrayType &integers, ArrayType::value_type min = 1) {
+auto FindTheMissingNumber_Xor(const ArrayType &integers,
+                              ArrayType::value_type min = 1) {
     assert(not integers.empty());
 
     const ArrayType::value_type N = integers.size() + min;
@@ -206,11 +208,13 @@ SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, Sample1, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1, SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1,
+            SAMPLE6);
 
 
 SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, Sample1, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast, SAMPLE6.size() + 1, SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast, SAMPLE6.size() + 1,
+            SAMPLE6);
