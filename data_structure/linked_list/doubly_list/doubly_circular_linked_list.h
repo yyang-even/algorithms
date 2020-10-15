@@ -77,7 +77,8 @@ public:
     }
 
 
-    void InsertBefore_Helper(const Node::PointerType next, const Node::PointerType new_node) {
+    void InsertBefore_Helper(const Node::PointerType next,
+                             const Node::PointerType new_node) {
         assert(next);
         assert(new_node);
 

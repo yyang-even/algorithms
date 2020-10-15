@@ -66,11 +66,14 @@ DimensionsOfMultidimensionalArray_EnableIf(const T &elements, ArrayType &outputs
 }
 
 
-TestDimensionsOfTwoDimensionalArray(DimensionsOfMultidimensionalArray, TestSAMPLE1, 5, 8);
-TestDimensionsOfThreeDimensionalArray(DimensionsOfMultidimensionalArray, TestSAMPLE2, 5, 8, 3);
-
-
-TestDimensionsOfTwoDimensionalArray(DimensionsOfMultidimensionalArray_EnableIf, TestSAMPLE3, 5, 8);
-TestDimensionsOfThreeDimensionalArray(DimensionsOfMultidimensionalArray_EnableIf, TestSAMPLE4,
+TestDimensionsOfTwoDimensionalArray(DimensionsOfMultidimensionalArray, TestSAMPLE1,
+                                    5, 8);
+TestDimensionsOfThreeDimensionalArray(DimensionsOfMultidimensionalArray, TestSAMPLE2,
                                       5, 8, 3);
+
+
+TestDimensionsOfTwoDimensionalArray(DimensionsOfMultidimensionalArray_EnableIf,
+                                    TestSAMPLE3, 5, 8);
+TestDimensionsOfThreeDimensionalArray(DimensionsOfMultidimensionalArray_EnableIf,
+                                      TestSAMPLE4, 5, 8, 3);
 #endif
