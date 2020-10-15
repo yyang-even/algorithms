@@ -27,7 +27,10 @@ auto CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string &st
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountStringsWithConsonantAndVowelsAtAlternatePosition, Sample1, "s$$e$");
+SIMPLE_BENCHMARK(CountStringsWithConsonantAndVowelsAtAlternatePosition, Sample1,
+                 "s$$e$");
 
-SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE1, 2205ul, "s$$e$");
-SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE2, 5ul, "y$s");
+SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE1, 2205ul,
+            "s$$e$");
+SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE2, 5ul,
+            "y$s");

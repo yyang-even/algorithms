@@ -80,7 +80,8 @@ auto WordWrap(const ArrayType &word_lengths, const ArrayType::value_type M) {
  * @reference   Word Wrap problem ( Space optimized solution )
  *              https://www.geeksforgeeks.org/word-wrap-problem-space-optimized-solution/
  */
-auto WordWrap_SpaceOptimized(const ArrayType &word_lengths, const ArrayType::value_type M) {
+auto WordWrap_SpaceOptimized(const ArrayType &word_lengths,
+                             const ArrayType::value_type M) {
     ArrayType::value_type costs[word_lengths.size()] = {};
     ArrayType::size_type line_ends[word_lengths.size()] = {};
     line_ends[word_lengths.size() - 1] = word_lengths.size() - 1;
