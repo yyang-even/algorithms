@@ -22,7 +22,8 @@ using OutputType = std::vector<ArrayType::size_type>;
  * of activities that can be performed by a single person, assuming that a person can only
  * work on a single activity at a time.
  */
-void ActivitySelection_Recursive(const ArrayType &activities, const ArrayType::size_type i,
+void ActivitySelection_Recursive(const ArrayType &activities,
+                                 const ArrayType::size_type i,
                                  OutputType &selected_activities) {
     auto j = i + 1;
     for (; j < activities.size() and activities[j].first < activities[i].second; ++j);
@@ -40,7 +41,8 @@ auto ActivitySelection_Recursive(const ArrayType &activities) {
     }));
 
     OutputType selected_activities = {0};
-    ActivitySelection_Recursive(activities, selected_activities.front(), selected_activities);
+    ActivitySelection_Recursive(activities, selected_activities.front(),
+                                selected_activities);
     return selected_activities;
 }
 

@@ -20,7 +20,8 @@ int GreatestNumberInArrayAsProductOfTwoArrayElements(ArrayType elements) {
 
     std::sort(elements.begin(), elements.end());
 
-    for (auto product_iter = elements.crbegin(); product_iter != elements.crend(); ++product_iter) {
+    for (auto product_iter = elements.crbegin(); product_iter != elements.crend();
+         ++product_iter) {
         ArrayType::value_type elem_sqrt = sqrt(*product_iter);
         for (auto factor_iter = elements.cbegin();
              factor_iter != elements.cend() and * factor_iter <= elem_sqrt; ++factor_iter) {

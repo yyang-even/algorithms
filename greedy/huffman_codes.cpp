@@ -16,7 +16,8 @@ using NodeType = BinaryTreeNode<Data>;
 using CodesMap = std::unordered_map<std::string::value_type, std::string>;
 
 
-inline auto operator>(const NodeType::PointerType lhs, const NodeType::PointerType rhs) {
+inline auto operator>(const NodeType::PointerType lhs,
+                      const NodeType::PointerType rhs) {
     return lhs->value.frequency > rhs->value.frequency;
 }
 
@@ -55,7 +56,8 @@ auto BuildHuffmanTree(const std::string &characters, const ArrayType &frequencie
     return min_frequency_queue.top();
 }
 
-void HuffmanCodes(const NodeType::PointerType node, const std::string &prefix, CodesMap &codes) {
+void HuffmanCodes(const NodeType::PointerType node, const std::string &prefix,
+                  CodesMap &codes) {
     bool is_leaf = true;
 
     if (node->left) {

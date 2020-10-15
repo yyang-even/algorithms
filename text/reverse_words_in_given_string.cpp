@@ -43,7 +43,8 @@ auto ReverseWordsInGivenString_Stack(std::string input) {
     static const auto *delimiters = " ";
 
     std::stack<const char *> words_stack;
-    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), delimiters); token != nullptr;
+    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), delimiters);
+         token != nullptr;
          token = std::strtok(nullptr, delimiters)) {
         words_stack.push(token);
     }
@@ -67,7 +68,8 @@ SIMPLE_BENCHMARK(ReverseWordsInGivenString, Sample1, "geeks quiz practice code")
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE2,
-            "practice of lot a needs coding at good getting", "getting good at coding needs a lot of practice");
+            "practice of lot a needs coding at good getting",
+            "getting good at coding needs a lot of practice");
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE3, "much very program this like i",
             "i like this program very much");
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE4, "  much very  ", "  very much  ");
@@ -78,7 +80,9 @@ SIMPLE_BENCHMARK(ReverseWordsInGivenString_Stack, Sample1, "geeks quiz practice 
 SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");
 SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE2,
-            "practice of lot a needs coding at good getting", "getting good at coding needs a lot of practice");
-SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE3, "much very program this like i",
+            "practice of lot a needs coding at good getting",
+            "getting good at coding needs a lot of practice");
+SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE3,
+            "much very program this like i",
             "i like this program very much");
 SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE4, "much very", "  very much  ");
