@@ -13,7 +13,8 @@ namespace {
  * Note: Frequency of encrypted substring can be of more than one digit. For example,
  * in “ab12c3”, ab is repeated 12 times. No leading 0 is present in frequency of substring.
  */
-auto FindKthCharOfDecryptedString(const std::string &encoded, const std::string::size_type K) {
+auto FindKthCharOfDecryptedString(const std::string &encoded,
+                                  const std::string::size_type K) {
     std::string decrypted;
 
     for (std::string::size_type i = 0ul; decrypted.size() < K and i < encoded.size();) {
