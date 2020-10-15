@@ -46,9 +46,10 @@ const ArrayType SAMPLE5 = {9, 1, 2, 4};
 
 SIMPLE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, Sample1, SAMPLE1, 51);
 
-SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample1, 3u, SAMPLE1, 51);
-SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample2, 1u, SAMPLE2, 9);
-SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample3, 4u, SAMPLE3, 280);
+SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample1, 3, SAMPLE1, 51);
+SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample2, 1, SAMPLE2, 9);
+SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample3, 4,
+            SAMPLE3, 280);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample4,
             static_cast<ArrayType::difference_type>(SAMPLE4.size() + 1), SAMPLE4, 8);
-SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample5, 1u, SAMPLE5, 8);
+SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample5, 1, SAMPLE5, 8);

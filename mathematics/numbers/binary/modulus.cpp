@@ -104,7 +104,8 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         {0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff}
     };
 
-    const unsigned int divisor = (1 << s) - 1; // so divisor is either 1, 3, 7, 15, 31, ...).
+    const unsigned int divisor =
+        (1 << s) - 1; // so divisor is either 1, 3, 7, 15, 31, ...).
     unsigned int result;
 
     result = (num & M[s]) + ((num >> s) & M[s]);
