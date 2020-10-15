@@ -8,10 +8,14 @@
  *
  * @param is_set    if (is_set) bits |= mask; else bits &= ~mask;
  */
-unsigned SetOrClear(const bool is_set, const unsigned mask, const unsigned bits) {
+static inline unsigned SetOrClear(const bool is_set,
+                                  const unsigned mask,
+                                  const unsigned bits) {
     return bits ^ ((-is_set ^ bits) & mask);
 }
 
-unsigned SetOrClear_Superscalar(const bool is_set, const unsigned mask, const unsigned bits) {
+static inline unsigned SetOrClear_Superscalar(const bool is_set,
+                                              const unsigned mask,
+                                              const unsigned bits) {
     return (bits & ~mask) | (-is_set & mask);
 }

@@ -224,9 +224,12 @@ const ArrayType EXPECTED4 = {3, 0};
 
 SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, Sample1, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4, SAMPLE4);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2, SAMPLE2);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4,
+            SAMPLE4);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2,
+            SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3,
+            SAMPLE3);
 
 
 const ArrayType SAMPLE5 = {1, 5, 1, 10, 12, 10};

@@ -67,13 +67,15 @@ inline auto RandomNumber1of3(const int x, const int y, const int z,
 }//namespace
 
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Simple, Sample1, NUMBERS, FREQUENCIES);
+SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Simple, Sample1, NUMBERS,
+                 FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestSample, true,
             RandomNumberInArbitraryProbability_Simple);
 
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Ceil, Sample1, NUMBERS, FREQUENCIES);
+SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Ceil, Sample1, NUMBERS,
+                 FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestCeil, true,
             RandomNumberInArbitraryProbability_Ceil);

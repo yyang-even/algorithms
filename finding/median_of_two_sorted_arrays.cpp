@@ -7,12 +7,15 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-auto MedianOf4(const ArrayType::value_type smaller_one, const ArrayType::value_type greater_one,
-               const ArrayType::value_type smaller_two, const ArrayType::value_type greater_two) {
+auto MedianOf4(const ArrayType::value_type smaller_one,
+               const ArrayType::value_type greater_one,
+               const ArrayType::value_type smaller_two,
+               const ArrayType::value_type greater_two) {
     assert(smaller_one <= greater_one);
     assert(smaller_two <= greater_two);
 
-    return std::make_pair(std::max(smaller_one, smaller_two), std::min(greater_one, greater_two));
+    return std::make_pair(std::max(smaller_one, smaller_two),
+                          std::min(greater_one, greater_two));
 }
 
 /** Median of two sorted arrays of same size
@@ -73,12 +76,14 @@ auto MedianOfTwoSortedArrays_SameSize(const ArrayType::const_iterator &cbegin_on
     }
 }
 
-auto MedianOfTwoSortedArrays_SameSize(const ArrayType &array_one, const ArrayType &array_two) {
+auto MedianOfTwoSortedArrays_SameSize(const ArrayType &array_one,
+                                      const ArrayType &array_two) {
     assert(array_one.size() == array_two.size());
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
 
-    return MedianOfTwoSortedArrays_SameSize(array_one.cbegin(), array_two.cbegin(), array_one.size());
+    return MedianOfTwoSortedArrays_SameSize(
+               array_one.cbegin(), array_two.cbegin(), array_one.size());
 }
 
 
@@ -138,10 +143,11 @@ auto MedianOf3(const ArrayType::value_type x, const ArrayType::value_type smalle
  * @reference   Median of two sorted arrays of different sizes | Set 1 (Linear)
  *              https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
  */
-double MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType::const_iterator &cbegin_shorter,
-                                                const ArrayType::size_type length_shorter,
-                                                const ArrayType::const_iterator &cbegin_longer,
-                                                const ArrayType::size_type length_longer) {
+double MedianOfTwoSortedArrays_DiffSize_Complex(
+    const ArrayType::const_iterator &cbegin_shorter,
+    const ArrayType::size_type length_shorter,
+    const ArrayType::const_iterator &cbegin_longer,
+    const ArrayType::size_type length_longer) {
     if (length_shorter == 0) {
         return Median_Sorted(cbegin_longer, length_longer);
     }
@@ -277,7 +283,8 @@ const ArrayType SAMPLE3_TWO = {2, 9};
 
 SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_SameSize, Sample1, SAMPLE1_ONE, SAMPLE1_TWO);
 
-SIMPLE_TEST(MedianOfTwoSortedArrays_SameSize, TestSAMPLE1, 16, SAMPLE1_ONE, SAMPLE1_TWO);
+SIMPLE_TEST(MedianOfTwoSortedArrays_SameSize, TestSAMPLE1, 16,
+            SAMPLE1_ONE, SAMPLE1_TWO);
 SIMPLE_TEST(MedianOfTwoSortedArrays_SameSize, TestSAMPLE2, 5, SAMPLE2_ONE, SAMPLE2_TWO);
 SIMPLE_TEST(MedianOfTwoSortedArrays_SameSize, TestSAMPLE3, 5, SAMPLE3_ONE, SAMPLE3_TWO);
 
@@ -286,16 +293,17 @@ const ArrayType SAMPLE4_ONE = {1, 12, 15, 26, 38};
 const ArrayType SAMPLE4_TWO = {2, 13, 24};
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Merge, Sample1, SAMPLE4_ONE, SAMPLE4_TWO);
+SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Merge, Sample1,
+                 SAMPLE4_ONE, SAMPLE4_TWO);
 
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE1, 16, SAMPLE1_ONE,
-                   SAMPLE1_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE2, 5, SAMPLE2_ONE,
-                   SAMPLE2_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE3, 5.5, SAMPLE3_ONE,
-                   SAMPLE3_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE4, 14, SAMPLE4_ONE,
-                   SAMPLE4_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE1, 16,
+                   SAMPLE1_ONE, SAMPLE1_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE2, 5,
+                   SAMPLE2_ONE, SAMPLE2_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE3, 5.5,
+                   SAMPLE3_ONE, SAMPLE3_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE4, 14,
+                   SAMPLE4_ONE, SAMPLE4_TWO);
 
 
 const ArrayType EMPTY = {};
@@ -304,22 +312,23 @@ const ArrayType CASE2_TWO = {5, 10, 12, 15, 20};
 const ArrayType CASE3_TWO = {5, 8, 10, 20};
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Complex, Sample1, SAMPLE4_ONE, SAMPLE4_TWO);
+SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Complex, Sample1,
+                 SAMPLE4_ONE, SAMPLE4_TWO);
 
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE1, 16, SAMPLE1_ONE,
-                   SAMPLE1_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE2, 5, SAMPLE2_ONE,
-                   SAMPLE2_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase4, 5.5, SAMPLE3_ONE,
-                   SAMPLE3_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE4, 14, SAMPLE4_ONE,
-                   SAMPLE4_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE1, 16,
+                   SAMPLE1_ONE, SAMPLE1_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE2, 5,
+                   SAMPLE2_ONE, SAMPLE2_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase4, 5.5,
+                   SAMPLE3_ONE, SAMPLE3_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE4, 14,
+                   SAMPLE4_ONE, SAMPLE4_TWO);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE4_Reverse, 14,
                    SAMPLE4_TWO, SAMPLE4_ONE);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase0, 13,
                    EMPTY, SAMPLE4_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase1, CASE1_ONE.front(),
-                   CASE1_ONE, CASE1_ONE);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase1,
+                   CASE1_ONE.front(), CASE1_ONE, CASE1_ONE);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase2, 13.5,
                    CASE1_ONE, CASE2_TWO);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase3, 10,
@@ -330,16 +339,17 @@ SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase6, 8.5,
                    SAMPLE3_TWO, CASE3_TWO);
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Half, Sample1, SAMPLE4_ONE, SAMPLE4_TWO);
+SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Half, Sample1, SAMPLE4_ONE,
+                 SAMPLE4_TWO);
 
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE1, 16, SAMPLE1_ONE,
-                   SAMPLE1_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE2, 5, SAMPLE2_ONE,
-                   SAMPLE2_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestCase4, 5.5, SAMPLE3_ONE,
-                   SAMPLE3_TWO);
-SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE4, 14, SAMPLE4_ONE,
-                   SAMPLE4_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE1, 16,
+                   SAMPLE1_ONE, SAMPLE1_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE2, 5,
+                   SAMPLE2_ONE, SAMPLE2_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestCase4, 5.5,
+                   SAMPLE3_ONE, SAMPLE3_TWO);
+SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE4, 14,
+                   SAMPLE4_ONE, SAMPLE4_TWO);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE4_Reverse, 14,
                    SAMPLE4_TWO, SAMPLE4_ONE);
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestCase0, 13,
