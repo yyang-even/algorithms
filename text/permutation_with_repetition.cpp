@@ -10,7 +10,8 @@ namespace {
  * Given a string of length n, print all permutation of the given string. Repetition of
  * characters is allowed. Print these permutations in lexicographically sorted order.
  */
-void PermutationWithRepetitionHelper(const std::string &input, const std::string &buffer,
+void PermutationWithRepetitionHelper(const std::string &input,
+                                     const std::string &buffer,
                                      const std::string::iterator buffer_iter, std::vector<std::string> &outputs) {
     for (const auto c : input) {
         *buffer_iter = c;

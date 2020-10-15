@@ -45,7 +45,8 @@ auto ModularExponentiation_Iterative(int x, unsigned y, const int p) {
 }
 
 
-long ModularExponentiation_Recursive_Helper(const int x, const unsigned y, const int p) {
+long ModularExponentiation_Recursive_Helper(const int x, const unsigned y,
+                                            const int p) {
     assert(x % p == x);
 
     if (x == 0) {
