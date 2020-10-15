@@ -100,7 +100,8 @@ InputType LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
         8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
     };
 
-    return MultiplyDeBruijnBitPosition[(uint32_t)(SetAllBitsAfterMSB(num) * 0x07C4ACDDU) >> 27];
+    return MultiplyDeBruijnBitPosition[(uint32_t)(SetAllBitsAfterMSB(
+                                                      num) * 0x07C4ACDDU) >> 27];
 }
 
 
