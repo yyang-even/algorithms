@@ -50,7 +50,8 @@ inline auto Median_Unsorted(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/finding-median-in-a-sorted-linked-list/
  */
-double Median_SinglyList_TwoPointers(const std::forward_list<ArrayType::value_type> &sorted_list) {
+double Median_SinglyList_TwoPointers(const std::forward_list<ArrayType::value_type>
+                                     &sorted_list) {
     assert(not sorted_list.empty());
     assert(std::is_sorted(sorted_list.cbegin(), sorted_list.cend()));
 
