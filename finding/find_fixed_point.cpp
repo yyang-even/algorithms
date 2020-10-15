@@ -59,7 +59,8 @@ auto FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements,
         return result_of_left_side;
     }
 
-    return FindOneFixedPointInArrayWithDuplicates(elements, std::max(elements[mid], mid + 1), high);
+    return FindOneFixedPointInArrayWithDuplicates(elements, std::max(elements[mid],
+                                                  mid + 1), high);
 }
 
 auto FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements) {
@@ -96,9 +97,11 @@ SIMPLE_BENCHMARK(FindOneFixedPointInArrayWithDuplicates, Sample1, SAMPLE1);
 
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestEMPTY, -1, EMPTY);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE1, 3, SAMPLE1);
-SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, Test_FRONT, SAMPLE_FRONT.front(), SAMPLE_FRONT);
+SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, Test_FRONT, SAMPLE_FRONT.front(),
+            SAMPLE_FRONT);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE3, -1, SAMPLE3);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE4, 3, SAMPLE4);
-SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, Test_BACK, SAMPLE_BACK.back(), SAMPLE_BACK);
+SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, Test_BACK, SAMPLE_BACK.back(),
+            SAMPLE_BACK);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestUnderflow, -1, UNDERFLOW);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE5, 2, SAMPLE5);

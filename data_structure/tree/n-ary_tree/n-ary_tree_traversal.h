@@ -9,7 +9,8 @@
  */
 static inline auto LevelOrderTraversal_Iterative_Helper(
     const n_ary_tree::array_representation::Node::PointerType root,
-const std::function<bool(const n_ary_tree::array_representation::Node::PointerType)> on_each_node = {}) {
+    const std::function<bool(const n_ary_tree::array_representation::Node::PointerType)>
+on_each_node = {}) {
     std::queue<std::remove_const_t<decltype(root)>> remaining_nodes;
     PushIfNotNull(remaining_nodes, root);
 
