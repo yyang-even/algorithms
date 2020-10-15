@@ -58,7 +58,8 @@ TEST(RandomNumber1to7Test, TestSanity) {
 
     bool result = true;
     for (auto iter = counters.cbegin() + 1; iter != counters.cend(); ++iter) {
-        if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
+        if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or
+            AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
             result = false;
         }
     }
@@ -80,7 +81,8 @@ TEST(RandomNumber0to6Test, TestSanity) {
 
     bool result = true;
     for (auto iter = counters.cbegin(); iter != counters.cend(); ++iter) {
-        if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
+        if (AVERAGE_SAMPLE_SIZE - TOLERATION > *iter or
+            AVERAGE_SAMPLE_SIZE + TOLERATION < *iter) {
             result = false;
         }
     }
