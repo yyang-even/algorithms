@@ -97,5 +97,7 @@ const std::vector<unsigned> EXPECTED2 = {10, 11, 12, 13, 14};
 
 SIMPLE_BENCHMARK(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, Sample1, 2);
 
-SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE1, EXPECTED1, 1);
-SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE2, EXPECTED2, 2);
+SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE1,
+            EXPECTED1, 1);
+SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE2,
+            EXPECTED2, 2);

@@ -60,7 +60,8 @@ auto ProductArrayOfAllElementsExceptIth_Log(const ArrayType &elements) {
 
 auto ProductArrayOfAllElementsExceptIth_Power(const ArrayType &elements) {
     const auto the_product =
-        std::accumulate(elements.cbegin(), elements.cend(), 1, std::multiplies<ArrayType::value_type> {});
+        std::accumulate(elements.cbegin(), elements.cend(), 1,
+                        std::multiplies<ArrayType::value_type> {});
 
     ArrayType products;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
@@ -80,7 +81,8 @@ auto ProductArrayOfAllElementsExceptIth_Power(const ArrayType &elements) {
  */
 auto XorArrayOfAllElementsExceptIth(const ArrayType &elements) {
     const auto the_xor =
-        std::accumulate(elements.cbegin(), elements.cend(), 0, std::bit_xor<ArrayType::value_type> {});
+        std::accumulate(elements.cbegin(), elements.cend(), 0,
+                        std::bit_xor<ArrayType::value_type> {});
 
     ArrayType results;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {

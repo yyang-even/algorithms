@@ -56,7 +56,8 @@ unsigned MergeSort(const ArrayType::iterator begin, const ArrayType::size_type n
         const auto middle_begin = begin + middle;
         const auto left_inversion_count = MergeSort(begin, middle);
         const auto right_inversion_count = MergeSort(middle_begin, n - middle);
-        return left_inversion_count + right_inversion_count + Merge(begin, middle_begin, begin + n);
+        return left_inversion_count + right_inversion_count + Merge(begin, middle_begin,
+                                                                    begin + n);
     }
     return 0u;
 }
@@ -81,7 +82,8 @@ auto CountInversions_Multiset(const ArrayType &values) {
 
         for (; iter != values.cend(); ++iter) {
             visited_nodes.emplace(*iter);
-            inversion_count += std::distance(visited_nodes.upper_bound(*iter), visited_nodes.cend());
+            inversion_count += std::distance(visited_nodes.upper_bound(*iter),
+                                             visited_nodes.cend());
         }
     }
 
