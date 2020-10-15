@@ -66,4 +66,5 @@ SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample4, true, 5);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestLOWER, true, LOWER);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestUPPER, false, UPPER);
 
-MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple, CheckForBitsAlternatePattern, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple, CheckForBitsAlternatePattern,
+                   LOWER, UPPER);

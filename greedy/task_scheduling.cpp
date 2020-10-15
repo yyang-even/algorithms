@@ -35,7 +35,8 @@ auto TaskScheduling(ArrayType jobs) {
     std::vector<int> slots(jobs.size(), -1);
 
     for (ArrayType::size_type i = 0; i < jobs.size(); ++i) {
-        for (int j = std::min(static_cast<int>(jobs.size()), jobs[i].deadline) - 1; j >= 0; --j) {
+        for (int j = std::min(static_cast<int>(jobs.size()), jobs[i].deadline) - 1; j >= 0;
+             --j) {
             if (slots[j] < 0) {
                 slots[j] = i;
                 break;
