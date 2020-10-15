@@ -17,7 +17,8 @@ using ArrayType = std::vector<std::string>;
  * "geeksforgeeks", "utensils", "just" and "sss", then the program should
  * print "sunday" and "utensils".
  */
-auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items, const std::string &word) {
+auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items,
+                                        const std::string &word) {
     const auto counters = ToFrequencyHashTable(word);
 
     ArrayType output;

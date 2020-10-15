@@ -56,10 +56,13 @@ SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, Sample1, 5);
 SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, Sample2, signed_value);
 
 SIMPLE_TEST(SingleBuiltinArgumentFunction, TestConstant, 5, 5);
-SIMPLE_TEST(SingleBuiltinArgumentFunction, TestSignedVariable, signed_value, signed_value);
+SIMPLE_TEST(SingleBuiltinArgumentFunction, TestSignedVariable, signed_value,
+            signed_value);
 
-MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction, TestConstant, 5);
-MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction, TestSignedVariable,
+MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction,
+                   TestConstant, 5);
+MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction,
+                   TestSignedVariable,
                    signed_value);
 
 
@@ -71,10 +74,12 @@ SIMPLE_BENCHMARK(TwoArgumentsFunction, Sample1, 5, 5);
 SIMPLE_BENCHMARK(TwoArgumentsFunction, Sample2, signed_value, signed_value);
 
 SIMPLE_TEST(TwoArgumentsFunction, TestConstant, 5, 5, 5);
-SIMPLE_TEST(TwoArgumentsFunction, TestSignedVariable, signed_value, signed_value, signed_value);
+SIMPLE_TEST(TwoArgumentsFunction, TestSignedVariable, signed_value, signed_value,
+            signed_value);
 
 MUTUAL_SIMPLE_TEST(TwoArgumentsFunction, TwoArgumentsFunction, TestConstant, 5, 5);
-MUTUAL_SIMPLE_TEST(TwoArgumentsFunction, TwoArgumentsFunction, TestSignedVariable, signed_value,
+MUTUAL_SIMPLE_TEST(TwoArgumentsFunction, TwoArgumentsFunction, TestSignedVariable,
+                   signed_value,
                    signed_value);
 
 
@@ -83,14 +88,18 @@ static auto ThreeArgumentsFunction(const int, const int, const int) {
 }
 
 SIMPLE_BENCHMARK(ThreeArgumentsFunction, Sample1, 5, 5, 5);
-SIMPLE_BENCHMARK(ThreeArgumentsFunction, Sample2, signed_value, signed_value, signed_value);
+SIMPLE_BENCHMARK(ThreeArgumentsFunction, Sample2, signed_value, signed_value,
+                 signed_value);
 
 SIMPLE_TEST(ThreeArgumentsFunction, TestConstant, 5, 5, 5, 5);
-SIMPLE_TEST(ThreeArgumentsFunction, TestSignedVariable, signed_value, signed_value, signed_value,
+SIMPLE_TEST(ThreeArgumentsFunction, TestSignedVariable, signed_value, signed_value,
+            signed_value,
             signed_value);
 
-MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestConstant, 5, 5, 5);
-MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestSignedVariable, signed_value,
+MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestConstant, 5, 5,
+                   5);
+MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestSignedVariable,
+                   signed_value,
                    signed_value, signed_value);
 
 
@@ -104,13 +113,18 @@ SIMPLE_BENCHMARK(SignedUnsignedFunction, Sample2, signed_value);
 SIMPLE_TEST(SignedUnsignedFunction, TestSignedConstant, 5, 5);
 SIMPLE_TEST(SignedUnsignedFunction, TestUnsignedConstant, 5u, 5);
 SIMPLE_TEST(SignedUnsignedFunction, TestSignedVariable, signed_value, signed_value);
-SIMPLE_TEST(SignedUnsignedFunction, TestUnsignedVariable, unsigned_value, unsigned_value);
+SIMPLE_TEST(SignedUnsignedFunction, TestUnsignedVariable, unsigned_value,
+            unsigned_value);
 
-MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SignedUnsignedFunction, TestConstant, 5);
-MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SignedUnsignedFunction, TestSignedVariable,
+MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SignedUnsignedFunction, TestConstant,
+                   5);
+MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SignedUnsignedFunction,
+                   TestSignedVariable,
                    signed_value);
-MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestConstant, 5);
-MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestSignedVariable,
+MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, TestConstant,
+                   5);
+MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction,
+                   TestSignedVariable,
                    signed_value);
 
 MUTUAL_RANDOM_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, 1, 5);
@@ -145,11 +159,13 @@ SIMPLE_BENCHMARK(ZeroVectorSingleFunction, void);
 SIMPLE_BENCHMARK(ZeroVectorMultiFunction, void);
 
 SIMPLE_TEST0(ZeroVectorSingleFunction, TestConstantReturn, {5});
-SIMPLE_TEST0(ZeroVectorSingleFunction, TestInitializerReturnSingle, initializer_list_single_value);
+SIMPLE_TEST0(ZeroVectorSingleFunction, TestInitializerReturnSingle,
+             initializer_list_single_value);
 SIMPLE_TEST0(ZeroVectorSingleFunction, TestVariableSingle, vector_single_value);
 
 SIMPLE_TEST0(ZeroVectorMultiFunction, TestConstantReturn, {5, 5, 5, 5});
-SIMPLE_TEST0(ZeroVectorMultiFunction, TestInitializerReturnSingle, initializer_list_multi_values);
+SIMPLE_TEST0(ZeroVectorMultiFunction, TestInitializerReturnSingle,
+             initializer_list_multi_values);
 SIMPLE_TEST0(ZeroVectorMultiFunction, TestVariableSingle, vector_multi_values);
 
 
@@ -171,15 +187,19 @@ SIMPLE_TEST(VectorFunction, TestInitializerReturnSingle, initializer_list_single
             initializer_list_single_value);
 SIMPLE_TEST(VectorFunction, TestInitializerReturnMulti, initializer_list_multi_values,
             initializer_list_multi_values);
-SIMPLE_TEST(VectorFunction, TestVariableSingle, vector_single_value, vector_single_value);
-SIMPLE_TEST(VectorFunction, TestVariableMulti, vector_multi_values, vector_multi_values);
+SIMPLE_TEST(VectorFunction, TestVariableSingle, vector_single_value,
+            vector_single_value);
+SIMPLE_TEST(VectorFunction, TestVariableMulti, vector_multi_values,
+            vector_multi_values);
 
 MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestInitializerReturnSingle,
                    initializer_list_single_value);
 MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestInitializerReturnMulti,
                    initializer_list_multi_values);
-MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableSingle, vector_single_value);
-MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableMulti, vector_multi_values);
+MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableSingle,
+                   vector_single_value);
+MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableMulti,
+                   vector_multi_values);
 
 
 const auto ListFunction = TemplateFunction<std::list<ValueType>>;
@@ -219,14 +239,18 @@ std::list<ValueType> NonconstVectorToList(std::vector<ValueType> array) {
     return ContainerCast(array);
 }
 
-SIMPLE_TEST(ConstVectorToList, TestInitializerReturnSingle, initializer_list_single_value,
+SIMPLE_TEST(ConstVectorToList, TestInitializerReturnSingle,
+            initializer_list_single_value,
             initializer_list_single_value);
-SIMPLE_TEST(ConstVectorToList, TestInitializerReturnMulti, initializer_list_multi_values,
+SIMPLE_TEST(ConstVectorToList, TestInitializerReturnMulti,
+            initializer_list_multi_values,
             initializer_list_multi_values);
 
-SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnSingle, initializer_list_single_value,
+SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnSingle,
+            initializer_list_single_value,
             initializer_list_single_value);
-SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnMulti, initializer_list_multi_values,
+SIMPLE_TEST(NonconstVectorToList, TestInitializerReturnMulti,
+            initializer_list_multi_values,
             initializer_list_multi_values);
 
 MUTUAL_SIMPLE_TEST(ListFunction, ConstVectorToList, TestInitializerReturnSingle,
