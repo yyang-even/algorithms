@@ -74,7 +74,8 @@ int main(int, char **) {
     ShuffleArray_InPlace(VALUES);
     std::cout << "Shuffled array in place: " << VALUES << std::endl;
 
-    std::cout << "Shuffled array by sorting: " << ShuffleArray_BySorting(VALUES) << std::endl;
+    std::cout << "Shuffled array by sorting: " << ShuffleArray_BySorting(
+                  VALUES) << std::endl;
 
     return EXIT_SUCCESS;
 }

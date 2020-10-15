@@ -41,13 +41,15 @@ template <typename FromType, typename ToType>
 static inline auto Random_Number(const FromType from, const ToType to) {
     static const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
     static std::default_random_engine generator(SEED);
-    std::uniform_int_distribution<std::common_type_t<FromType, ToType>> distribution(from, to);
+    std::uniform_int_distribution<std::common_type_t<FromType, ToType>>
+            distribution(from, to);
     return distribution(generator);
 }
 
 
 template <typename Iterator>
-static inline bool isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
+static inline bool isThereMoreThanOneElements(const Iterator cbegin,
+                                              const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
 }
 

@@ -5,7 +5,8 @@
 
 namespace {
 
-auto LevelOrderTraversal_Iterative(const n_ary_tree::array_representation::Node::PointerType root) {
+auto LevelOrderTraversal_Iterative(
+    const n_ary_tree::array_representation::Node::PointerType root) {
     std::vector<n_ary_tree::array_representation::Node::ValueType> result;
     LevelOrderTraversal_Iterative_Helper(root,
     [&result](const auto node) {
@@ -102,7 +103,8 @@ auto LevelOrderTraversal_Iterative(
 
 
 const auto SAMPLE1 = MakeTheSampleTree<n_ary_tree::array_representation::Node>();
-const auto SAMPLE2 = MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
+const auto SAMPLE2 =
+    MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
 const decltype(LevelOrderTraversal_Iterative(SAMPLE1)) EXPECTED_LEVELORDER =
 {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 const decltype(PreorderTraversal_Iterative(SAMPLE1)) EXPECTED_PREORDER =
