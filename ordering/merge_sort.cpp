@@ -56,7 +56,8 @@ auto MergeSort(ArrayType values) {
  * to create sorted subarrays of size 4, and so on.
  */
 auto MergeSort_Iterative(ArrayType values) {
-    for (ArrayType::size_type current_size = 1; current_size < values.size(); current_size *= 2) {
+    for (ArrayType::size_type current_size = 1; current_size < values.size();
+         current_size *= 2) {
         for (ArrayType::size_type i = 0ul; i < (values.size() - 1);) {
             const auto begin = values.begin() + i;
             const auto mid = begin + current_size;
@@ -101,7 +102,8 @@ void Merge_O1(const ArrayType::iterator begin, const ArrayType::iterator middle,
 auto MergeSort_O1(ArrayType values) {
     if (not values.empty()) {
         const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
-        MergeSort<ArrayType>(values.begin(), values.size(), [max_element](const ArrayType::iterator begin,
+        MergeSort<ArrayType>(values.begin(),
+                             values.size(), [max_element](const ArrayType::iterator begin,
         const ArrayType::iterator middle, const ArrayType::iterator end) {
             Merge_O1(begin, middle, end, max_element);
         });

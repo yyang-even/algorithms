@@ -98,7 +98,9 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
             }
             if (first_node or last_node) {
                 SinglyLinkedList::Node::PointerType prev = nullptr;
-                for (slow_ptr = head; slow_ptr != fast_ptr; slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next) {
+                for (slow_ptr = head;
+                     slow_ptr != fast_ptr;
+                     slow_ptr = slow_ptr->next, fast_ptr = fast_ptr->next) {
                     prev = slow_ptr;
                 }
                 if (first_node) {
@@ -123,7 +125,8 @@ auto testDetectLoop_FloydsCycleFinding_SinglyList() {
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
     SinglyLinkedList::Node::PointerType last_node = nullptr;
-    return not(DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node, &last_node) or
+    return not(DetectLoop_FloydsCycleFinding(
+                   list.GetHead(), &loop_length, &first_node, &last_node) or
                loop_length or first_node or last_node);
 }
 
@@ -132,8 +135,10 @@ auto testDetectLoop_FloydsCycleFinding_SinglyCircular() {
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
     SinglyLinkedList::Node::PointerType last_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node, &last_node) and
-           loop_length == SAMPLE_ARRAY.size() and first_node == list.GetHead() and
+    return DetectLoop_FloydsCycleFinding(
+               list.GetHead(), &loop_length, &first_node, &last_node) and
+           loop_length == SAMPLE_ARRAY.size() and
+           first_node == list.GetHead() and
            last_node->next == first_node;
 }
 
@@ -143,8 +148,10 @@ auto testDetectLoop_FloydsCycleFinding_SinglyMakeLoop(const std::size_t index) {
     std::size_t loop_length = 0;
     SinglyLinkedList::Node::PointerType first_node = nullptr;
     SinglyLinkedList::Node::PointerType last_node = nullptr;
-    return DetectLoop_FloydsCycleFinding(list.GetHead(), &loop_length, &first_node, &last_node) and
-           loop_length == (SAMPLE_ARRAY.size() - index) and first_node == list.At(index) and
+    return DetectLoop_FloydsCycleFinding(
+               list.GetHead(), &loop_length, &first_node, &last_node) and
+           loop_length == (SAMPLE_ARRAY.size() - index) and
+           first_node == list.At(index) and
            last_node->next == first_node;
 }
 
@@ -286,7 +293,8 @@ SIMPLE_TEST0(testDetectLoop_Hash_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_Hash_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample2, true, 3);
-SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testDetectLoop_Hash_SinglyMakeLoop, TestSample3, true,
+            SAMPLE_ARRAY.size() - 1);
 
 
 SIMPLE_BENCHMARK0(testDetectLoop_FloydsCycleFinding_SinglyList);
@@ -309,7 +317,8 @@ SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyList, TestSample, true);
 SIMPLE_TEST0(testDetectLoop_NextFlag_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample2, true, 3);
-SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testDetectLoop_NextFlag_SinglyMakeLoop, TestSample3, true,
+            SAMPLE_ARRAY.size() - 1);
 
 
 SIMPLE_BENCHMARK0(testDetectLoop_DoublyList);
@@ -327,7 +336,8 @@ SIMPLE_TEST0(testDetectLoop_Reverse_SinglyList, TestSample, false);
 SIMPLE_TEST0(testDetectLoop_Reverse_SinglyCircular, TestSample, true);
 SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample1, true, 2);
 SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample2, true, 3);
-SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample3, true, SAMPLE_ARRAY.size() - 1);
+SIMPLE_TEST(testDetectLoop_Reverse_SinglyMakeLoop, TestSample3, true,
+            SAMPLE_ARRAY.size() - 1);
 
 
 const std::vector<unsigned> SAMPLE1 = {1, 4, 3, 4, 2};
