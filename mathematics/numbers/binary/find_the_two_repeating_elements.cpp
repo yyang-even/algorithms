@@ -28,7 +28,8 @@ auto FindTheTwoRepeatingElementsXor(const ArrayType &elements) {
         xor_of_all ^= (i ^ elements[i]);
     }
 
-    const auto last_set_bit = ClearAllBitsExceptTheLastSetBit(xor_of_all ^ elements[N + 1ul]);
+    const auto last_set_bit = ClearAllBitsExceptTheLastSetBit(xor_of_all ^ elements[N +
+                                                                1ul]);
 
     for (ArrayType::size_type i = 0ul; i <= N; ++i) {
         divideElement<ArrayType::value_type>(i, last_set_bit, x, y);
@@ -66,4 +67,5 @@ SIMPLE_TEST(FindTheTwoRepeatingElementsXor, TestSample1, std::make_pair(2, 4), S
 
 SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsInplace, Sample1, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoRepeatingElementsInplace, TestSample1, std::make_pair(4, 2), SAMPLE1);
+SIMPLE_TEST(FindTheTwoRepeatingElementsInplace, TestSample1, std::make_pair(4, 2),
+            SAMPLE1);

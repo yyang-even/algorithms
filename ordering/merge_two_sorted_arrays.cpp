@@ -102,7 +102,8 @@ auto MergeTwoSortedArrays_InPlace_Heap(ArrayType L, ArrayType R) {
  * Merge B into A in sorted order.
  */
 auto MergeTwoSortedArraysToOne(ArrayType L, const ArrayType &R) {
-    MergeTwoSortedArrays(L.crbegin() + R.size(), L.crend(), R.crbegin(), R.crend(), L.rbegin(),
+    MergeTwoSortedArrays(L.crbegin() + R.size(), L.crend(), R.crbegin(), R.crend(),
+                         L.rbegin(),
                          std::greater<ArrayType::value_type>());
     return L;
 }
@@ -154,16 +155,22 @@ const std::pair<ArrayType, ArrayType> EXPECTED_PAIR4 = {{1, 2, 3, 5, 8, 9}, {10,
 
 SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace, Sample1, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L, SAMPLE4R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L,
+            SAMPLE1R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L,
+            SAMPLE3R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L,
+            SAMPLE4R);
 
 
 SIMPLE_BENCHMARK(MergeTwoSortedArrays_InPlace_Heap, Sample1, SAMPLE1L, SAMPLE1R);
 
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L, SAMPLE1R);
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L, SAMPLE3R);
-SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L, SAMPLE4R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE1, EXPECTED_PAIR1, SAMPLE1L,
+            SAMPLE1R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE3, EXPECTED_PAIR3, SAMPLE3L,
+            SAMPLE3R);
+SIMPLE_TEST(MergeTwoSortedArrays_InPlace_Heap, TestSAMPLE4, EXPECTED_PAIR4, SAMPLE4L,
+            SAMPLE4R);
 
 
 const ArrayType SAMPLE1LToOne = {1, 3, 5, 7, NA, NA, NA, NA};
