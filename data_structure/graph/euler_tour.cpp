@@ -28,7 +28,8 @@ auto FirstNonZeroDegreeVertex(const AdjacencyListGraph::RepresentationType &grap
     return non_zero_degree_vertex;
 }
 
-auto haveAllNonZeroDegreeVerticesBeenVisited(const AdjacencyListGraph::RepresentationType &graph,
+auto haveAllNonZeroDegreeVerticesBeenVisited(const
+                                             AdjacencyListGraph::RepresentationType &graph,
                                              const std::vector<bool> &visited_vertices) {
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i] and not graph[i].empty()) {
@@ -46,7 +47,8 @@ auto haveAllNonZeroDegreeVerticesBeenVisited(const AdjacencyListGraph::Represent
  * Eulerian Path is a path in graph that visits every edge exactly once.
  * Eulerian Circuit is an Eulerian Path which starts and ends on the same vertex.
  */
-auto areAllNoneZeroDegreeVerticesConnected(const AdjacencyListGraph::RepresentationType &graph) {
+auto areAllNoneZeroDegreeVerticesConnected(const AdjacencyListGraph::RepresentationType
+                                           &graph) {
     const auto non_zero_degree_vertex = FirstNonZeroDegreeVertex(graph);
     if (non_zero_degree_vertex == graph.size()) {
         return true;
@@ -54,12 +56,14 @@ auto areAllNoneZeroDegreeVerticesConnected(const AdjacencyListGraph::Representat
 
     std::vector<bool> visited_vertices(graph.size(), false);
     ArrayType to_be_ignored;
-    DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices, to_be_ignored);
+    DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices,
+                               to_be_ignored);
 
     return haveAllNonZeroDegreeVerticesBeenVisited(graph, visited_vertices);
 }
 
-auto isEulerian(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
+auto isEulerian(const std::size_t number_vertices,
+                const UndirectedEdgeArrayType &edges) {
     AdjacencyListGraph graph{number_vertices, edges};
 
     if (not graph.Visit(areAllNoneZeroDegreeVerticesConnected)) {
@@ -98,7 +102,8 @@ auto areAllNonZeroDegreeVerticesStronglyConnected(
     ArrayType to_be_ignored;
     {
         std::vector<bool> visited_vertices(graph.size(), false);
-        DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices, to_be_ignored);
+        DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices,
+                                   to_be_ignored);
 
         if (not haveAllNonZeroDegreeVerticesBeenVisited(graph, visited_vertices)) {
             return false;
@@ -110,13 +115,15 @@ auto areAllNonZeroDegreeVerticesStronglyConnected(
     std::vector<bool> visited_vertices(graph.size(), false);
     transpose.Visit(
     [non_zero_degree_vertex, &visited_vertices, &to_be_ignored](const auto & graph) {
-        DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices, to_be_ignored);
+        DepthFirstSearch_Recursive(graph, non_zero_degree_vertex, visited_vertices,
+                                   to_be_ignored);
     });
 
     return haveAllNonZeroDegreeVerticesBeenVisited(graph, visited_vertices);
 }
 
-auto isEulerianCircuit(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+auto isEulerianCircuit(const std::size_t number_vertices,
+                       const DirectedEdgeArrayType &edges) {
     AdjacencyListGraph graph{number_vertices, edges};
 
     if (not graph.Visit(areAllNonZeroDegreeVerticesStronglyConnected)) {

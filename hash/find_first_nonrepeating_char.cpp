@@ -116,7 +116,8 @@ SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE3, 'd', "aabbccd");
 
 SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, Sample1, "GeeksforGeeks");
 
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, "GGGGGGGGkkksf", "GeeksforGeeks");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, "GGGGGGGGkkksf",
+            "GeeksforGeeks");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE2, "GGGGGGGGG", "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE3, "abcd", "aabbccd");
 
@@ -125,5 +126,6 @@ SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, Sample1, "GeeksforGe
 
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, "GGGGGGGGkkksf",
             "GeeksforGeeks");
-SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE2, "GGGGGGGGG", "GeeksQuiz");
+SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE2, "GGGGGGGGG",
+            "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE3, "abcd", "aabbccd");

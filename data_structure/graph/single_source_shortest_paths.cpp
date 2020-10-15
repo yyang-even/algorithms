@@ -29,7 +29,8 @@ bool Relax(std::vector<int> &distances,
     return false;
 }
 
-void Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge &edge) {
+void Relax(std::vector<int> &distances, std::vector<int> &parents,
+           const DirectedEdge &edge) {
     Relax(distances, edge.from, edge.to, edge.weight, &parents);
 }
 
@@ -56,7 +57,8 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
                                            std::pair<int, std::vector<int>> *negative_cycle_pair = nullptr) {
     assert(source < number_vertices);
 
-    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices,
+                                           std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
     std::vector<int> parents(number_vertices, -1);
 
@@ -68,7 +70,8 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
 
     for (const auto &one_edge : edges) {
         if (distances_from_source[one_edge.from] != std::numeric_limits<int>::max() and
-            distances_from_source[one_edge.to] > distances_from_source[one_edge.from] + one_edge.weight) {
+            distances_from_source[one_edge.to] > distances_from_source[one_edge.from] +
+            one_edge.weight) {
             if (negative_cycle_pair) {
                 negative_cycle_pair->first = one_edge.to;
                 negative_cycle_pair->second = parents;
@@ -93,12 +96,14 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
  * @reference   Detect a negative cycle in a Graph | (Bellman Ford)
  *              https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/
  */
-auto hasNegativeCycle(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+auto hasNegativeCycle(const std::size_t number_vertices,
+                      const DirectedEdgeArrayType &edges) {
     std::vector<bool> visited_vertices(number_vertices, false);
 
     for (std::size_t i = 0; i < number_vertices; ++i) {
         if (not visited_vertices[i]) {
-            const auto result_pair = SingleSourceShortestPaths_BellmanFord(number_vertices, edges, i);
+            const auto result_pair = SingleSourceShortestPaths_BellmanFord(number_vertices, edges,
+                                     i);
             if (not result_pair.first) {
                 return true;
             }
@@ -121,10 +126,12 @@ auto hasNegativeCycle(const std::size_t number_vertices, const DirectedEdgeArray
  * @reference   Print negative weight cycle in a Directed Graph
  *              https://www.geeksforgeeks.org/print-negative-weight-cycle-in-a-directed-graph/
  */
-auto PrintNegativeWeightCycle(const std::size_t number_vertices, const DirectedEdgeArrayType &edges,
+auto PrintNegativeWeightCycle(const std::size_t number_vertices,
+                              const DirectedEdgeArrayType &edges,
                               const std::size_t source) {
     std::pair<int, std::vector<int>> negative_cycle_pair{};
-    const auto result_pair = SingleSourceShortestPaths_BellmanFord(number_vertices, edges, source,
+    const auto result_pair = SingleSourceShortestPaths_BellmanFord(number_vertices, edges,
+                             source,
                              &negative_cycle_pair);
 
     std::unordered_set<std::size_t> results;
@@ -167,10 +174,12 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
         return true;
     });
 
-    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices,
+                                           std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
 
-    for (auto iter = topological_order.crbegin(); iter != topological_order.crend(); ++iter) {
+    for (auto iter = topological_order.crbegin(); iter != topological_order.crend();
+         ++iter) {
         const auto from = *iter;
         graph.Visit([from, &distances_from_source](const auto & graph) {
             for (const auto &node : graph[from]) {
@@ -220,7 +229,8 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
     return false;
 }
 
-auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t number_vertices,
+auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t
+                                                         number_vertices,
                                                          const UndirectedEdgeArrayType &edges,
                                                          const std::size_t source,
                                                          const std::size_t destination) {
@@ -229,7 +239,8 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t numbe
 
     AdjacencyListGraph graph{number_vertices, edges};
 
-    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices,
+                                           std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
     std::vector<int> parents(number_vertices, -1);
 
@@ -269,7 +280,8 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t numbe
  */
 using CostVertexPair = std::pair<int, std::size_t>;
 
-auto SingleSourceShortestPaths_Dijkstra(const WeightedAdjacencyListGraph::RepresentationType &graph,
+auto SingleSourceShortestPaths_Dijkstra(const
+                                        WeightedAdjacencyListGraph::RepresentationType &graph,
                                         const std::size_t source,
                                         std::vector<int> *parents = nullptr) {
     std::vector<int> distances_from_source(graph.size(), std::numeric_limits<int>::max());
@@ -312,7 +324,8 @@ template <typename EdgeArrayType>
 inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
                                                const EdgeArrayType &edges,
                                                const std::size_t source) {
-    return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](const auto & graph) {
+    return WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source](
+    const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source);
     });
 }
@@ -370,7 +383,8 @@ auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
                                              const UndirectedEdgeArrayType &edges,
                                              const std::size_t source) {
     std::vector<int> parents(number_vertices, -1);
-    WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source, &parents](const auto & graph) {
+    WeightedAdjacencyListGraph{number_vertices, edges}.Visit([source,
+    &parents](const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source, &parents);
     });
 
@@ -395,7 +409,8 @@ std::vector<int> {
 
 SIMPLE_BENCHMARK(SingleSourceShortestPaths_BellmanFord, Sample1, 5, SAMPLE1, 0);
 
-SIMPLE_TEST(SingleSourceShortestPaths_BellmanFord, TestSAMPLE1, EXPECTED1, 5, SAMPLE1, 0);
+SIMPLE_TEST(SingleSourceShortestPaths_BellmanFord, TestSAMPLE1, EXPECTED1, 5, SAMPLE1,
+            0);
 
 
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1, 1}, {1, 2, -1}, {2, 3, -1}, {3, 0, -1}};
@@ -426,7 +441,8 @@ const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 3}, {1, 2}, {3, 4}, {3, 7},
 const ArrayType EXPECTED4 = {0, 3, 7};
 
 
-SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, Sample1, 8, SAMPLE4, 0, 7);
+SIMPLE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, Sample1, 8,
+                 SAMPLE4, 0, 7);
 
 SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
             EXPECTED4, 8, SAMPLE4, 0, 7);
@@ -448,7 +464,8 @@ SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPL
 
 SIMPLE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, Sample1, 9, SAMPLE5, 0);
 
-SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9, SAMPLE5, 0);
+SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9,
+            SAMPLE5, 0);
 
 
 const TableType COSTS1 = {

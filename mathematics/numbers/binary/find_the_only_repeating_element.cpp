@@ -62,8 +62,9 @@ auto FindTheOnlyRepeatingElement_InPlace(ArrayType elements) {
  * Given a sorted array of n elements containing elements in range from 1 to n-1 i.e.
  * One element occurs twice, the task is to find the repeating element in an array.
  */
-ArrayType::value_type FindTheOnlyRepeatingElement_Sorted_BinarySearch(const ArrayType &elements,
-        const ArrayType::size_type low, const ArrayType::size_type high) {
+ArrayType::value_type FindTheOnlyRepeatingElement_Sorted_BinarySearch(
+    const ArrayType &elements,
+    const ArrayType::size_type low, const ArrayType::size_type high) {
     if (low > high) {
         return 0;
     }
@@ -80,7 +81,8 @@ ArrayType::value_type FindTheOnlyRepeatingElement_Sorted_BinarySearch(const Arra
 }
 
 auto FindTheOnlyRepeatingElement_Sorted_BinarySearch(const ArrayType &elements) {
-    return FindTheOnlyRepeatingElement_Sorted_BinarySearch(elements, 0, elements.size() - 1);
+    return FindTheOnlyRepeatingElement_Sorted_BinarySearch(elements, 0,
+                                                           elements.size() - 1);
 }
 
 }//namespace
@@ -126,6 +128,8 @@ const ArrayType SAMPLE6 = {1, 2, 3, 3, 4};
 
 SIMPLE_BENCHMARK(FindTheOnlyRepeatingElement_Sorted_BinarySearch, Sample1, SAMPLE6);
 
-SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestFront, SAMPLE4.front(), SAMPLE4);
-SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestBack, SAMPLE5.back(), SAMPLE5);
+SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestFront, SAMPLE4.front(),
+            SAMPLE4);
+SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestBack, SAMPLE5.back(),
+            SAMPLE5);
 SIMPLE_TEST(FindTheOnlyRepeatingElement_Sorted_BinarySearch, TestSample6, 3, SAMPLE6);

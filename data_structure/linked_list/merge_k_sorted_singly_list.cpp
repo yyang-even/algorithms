@@ -14,7 +14,8 @@ using ListType = std::forward_list<int>;
  *
  * Given K sorted linked lists of size N each, merge them and print the sorted output.
  */
-std::vector<ListType>::iterator MergeKSorted_Lists_Recursive(const std::vector<ListType>::iterator
+std::vector<ListType>::iterator MergeKSorted_Lists_Recursive(const
+        std::vector<ListType>::iterator
         begin, const std::vector<ListType>::size_type size) {
     if (size <= 1) {
     } else if (size == 2) {
