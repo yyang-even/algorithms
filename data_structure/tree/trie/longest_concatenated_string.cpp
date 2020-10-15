@@ -20,7 +20,8 @@ enum class WordType {
     concatenated
 };
 
-WordType CheckWordType(const Trie::Node *root, const std::string &word, std::string::size_type i) {
+WordType CheckWordType(const Trie::Node *root, const std::string &word,
+                       std::string::size_type i) {
     assert(root);
 
     const auto *current = root;

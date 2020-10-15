@@ -14,7 +14,8 @@ namespace {
  * where d is itself a power of 2.
  */
 auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
-    return IsPowerOf2(n) and (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
+    return IsPowerOf2(n) and
+           (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
 }
 
 
