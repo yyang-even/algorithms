@@ -39,7 +39,8 @@ auto ClosestProductPair_Sort_Bound(ArrayType elements, const ArrayType::value_ty
 }
 
 
-auto ClosestProductPair_TwoPointer(const ArrayType &elements, const ArrayType::value_type x) {
+auto ClosestProductPair_TwoPointer(const ArrayType &elements,
+                                   const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
     auto diff = std::numeric_limits<ArrayType::value_type>::max();
@@ -73,11 +74,15 @@ const ArrayType SAMPLE1 = {2, 3, 5, 9};
 
 SIMPLE_BENCHMARK(ClosestProductPair_Sort_Bound, Sample1, SAMPLE1, 47);
 
-SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample1, std::make_pair(5, 9), SAMPLE1, 47);
-SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample2, std::make_pair(2, 3), SAMPLE1, 8);
+SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample1, std::make_pair(5, 9), SAMPLE1,
+            47);
+SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample2, std::make_pair(2, 3), SAMPLE1,
+            8);
 
 
 SIMPLE_BENCHMARK(ClosestProductPair_TwoPointer, Sample1, SAMPLE1, 47);
 
-SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample1, std::make_pair(5, 9), SAMPLE1, 47);
-SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample2, std::make_pair(2, 5), SAMPLE1, 8);
+SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample1, std::make_pair(5, 9), SAMPLE1,
+            47);
+SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample2, std::make_pair(2, 5), SAMPLE1,
+            8);

@@ -49,7 +49,8 @@ SIMPLE_TEST(ToggleBit, TestSample3, 0b10u, 0, 1);
 
 SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, Sample1, 0, 4);
 
-SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u, std::numeric_limits<InputType>::max(), 0);
+SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u,
+            std::numeric_limits<InputType>::max(), 0);
 
 
 SIMPLE_BENCHMARK(ToggleLastBits, Sample1, 21, 2);

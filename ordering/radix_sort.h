@@ -4,7 +4,8 @@
 
 
 template <typename ArrayType>
-static inline auto RadixSort(ArrayType values, const typename ArrayType::value_type base = 10) {
+static inline auto RadixSort(ArrayType values,
+                             const typename ArrayType::value_type base = 10) {
     if (values.empty()) {
         return values;
     }

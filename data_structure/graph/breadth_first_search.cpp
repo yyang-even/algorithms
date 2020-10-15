@@ -101,7 +101,9 @@ void BreadthFirstSearch_AdjMatrix(const AdjacencyMatrixGraph::RepresentationType
         results.push_back(vertex);
         gray_vertex_queue.pop();
 
-        for (std::size_t adjacent_vertex = 0; adjacent_vertex < graph.size(); ++adjacent_vertex) {
+        for (std::size_t adjacent_vertex = 0;
+             adjacent_vertex < graph.size();
+             ++adjacent_vertex) {
             if (graph.at(source).at(adjacent_vertex) and not visited_vertices[adjacent_vertex]) {
                 visited_vertices[adjacent_vertex] = true;
                 gray_vertex_queue.push(adjacent_vertex);
