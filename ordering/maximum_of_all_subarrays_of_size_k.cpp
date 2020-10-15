@@ -17,11 +17,13 @@ using ArrayType = std::vector<int>;
  * @reference   Sum of minimum and maximum elements of all subarrays of size k.
  *              https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/
  */
-auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements, const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements,
+                                       const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 
-    std::multiset<ArrayType::value_type> subarray_set(elements.cbegin(), elements.cbegin() + K);
+    std::multiset<ArrayType::value_type>
+    subarray_set(elements.cbegin(), elements.cbegin() + K);
     ArrayType result = {*subarray_set.crbegin()};
     for (auto i = K; i < elements.size(); ++i) {
         subarray_set.erase(subarray_set.find(elements[i - K]));
@@ -33,7 +35,8 @@ auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements, const ArrayTyp
 }
 
 
-auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements, const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements,
+                                    const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 
@@ -73,7 +76,8 @@ auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements, const ArrayType::
  * @reference   Sliding Window Maximum (Maximum of all subarrays of size k) using stack in O(n) time
  *              https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k-using-stack-in-on-time/
  */
-auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements, const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements,
+                                    const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 

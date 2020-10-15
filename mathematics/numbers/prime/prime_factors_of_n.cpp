@@ -100,7 +100,9 @@ auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
  */
 using Query = std::pair<unsigned, unsigned>;
 auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
-    const auto max_number = std::max_element(queries.cbegin(), queries.cend(), [](const auto & lhs,
+    const auto max_number =
+        std::max_element(queries.cbegin(), queries.cend(),
+                         [](const auto & lhs,
     const auto & rhs) {
         return lhs.first < rhs.first;
     });
@@ -170,4 +172,5 @@ const std::vector<unsigned> EXPECTED_QUERIES = {2, 5, 3, 2};
 
 SIMPLE_BENCHMARK(QueryNthPrimeFactorOfNumbers, Sample1, SAMPLE_QUERIES);
 
-SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES, SAMPLE_QUERIES);
+SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES,
+            SAMPLE_QUERIES);
