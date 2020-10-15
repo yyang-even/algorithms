@@ -59,7 +59,8 @@ auto CountFrequenciesOfAllElements_STL(const ArrayType &elements) {
 
 
 auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
-    std::transform(elements.cbegin(), elements.cend(), elements.begin(), [](const auto elem) {
+    std::transform(elements.cbegin(), elements.cend(), elements.begin(),
+    [](const auto elem) {
         return elem - 1;
     });
 
@@ -91,7 +92,8 @@ auto SortAndCount(ArrayType values) {
 
 
 auto SortAndCount_BucketSort(const ArrayType &values) {
-    std::map<ArrayType::value_type, ArrayType::size_type, std::greater<ArrayType::value_type>> buckets;
+    std::map<ArrayType::value_type, ArrayType::size_type, std::greater<ArrayType::value_type>>
+            buckets;
     for (const auto v : values) {
         ++buckets[v];
     }
@@ -137,19 +139,26 @@ const ArrayType SAMPLE7 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, Sample1, SAMPLE1);
 
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE1, SAMPLE1);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE2, SAMPLE2);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE3, SAMPLE3);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE4, SAMPLE4);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE5, SAMPLE5);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE6, SAMPLE6);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Sign,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Sign,
                    TestSAMPLE7, SAMPLE7);
 
 
@@ -158,19 +167,26 @@ SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_STL, Sample1, SAMPLE1);
 
 SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, Sample1, SAMPLE1);
 
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE1, SAMPLE1);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE2, SAMPLE2);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE3, SAMPLE3);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE4, SAMPLE4);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE5, SAMPLE5);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE6, SAMPLE6);
-MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL, CountFrequenciesOfAllElements_InPlace_Mod,
+MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
+                   CountFrequenciesOfAllElements_InPlace_Mod,
                    TestSAMPLE7, SAMPLE7);
 
 

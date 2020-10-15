@@ -108,4 +108,5 @@ SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1,
             SAMPLE1L, SAMPLE1R, 8);
 SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample2, EXPECTED_SORTED2,
             SAMPLE2L, SAMPLE2R, 9);
-SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample3, EXPECTED3, SAMPLE3L, SAMPLE3R, 8);
+SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample3, EXPECTED3,
+            SAMPLE3L, SAMPLE3R, 8);

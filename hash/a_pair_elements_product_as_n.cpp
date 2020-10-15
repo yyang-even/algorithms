@@ -16,7 +16,8 @@ using ArrayType = std::vector<int>;
  * @reference   Check if a pair with given product exists in Linked list
  *              https://www.geeksforgeeks.org/check-if-a-pair-with-given-product-exists-in-linked-list/
  */
-auto PairElementsProductAsN_Hash(const ArrayType &elements, const ArrayType::value_type N) {
+auto PairElementsProductAsN_Hash(const ArrayType &elements,
+                                 const ArrayType::value_type N) {
     return PairElementsProductAsN(elements, N, nullptr);
 }
 

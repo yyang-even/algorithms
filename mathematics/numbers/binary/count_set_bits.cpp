@@ -197,29 +197,34 @@ SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample1, LOWER);
 SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, BitsNumber<decltype(UPPER)>,
+            UPPER);
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE1, 2u, 6);
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE2, 3u, 13);
 
-MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32,
+                   LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample1, LOWER);
 SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, BitsNumber<decltype(UPPER)>,
+            UPPER);
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE1, 2u, 6);
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE2, 3u, 13);
 
-MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned,
+                   LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(CountSetBitsFromMSB, Sample1, LOWER, CHAR_BIT);
 SIMPLE_BENCHMARK(CountSetBitsFromMSB, Sample2, UPPER, CHAR_BIT);
 
 SIMPLE_TEST(CountSetBitsFromMSB, TestLOWER, 0u, LOWER, CHAR_BIT);
-SIMPLE_TEST(CountSetBitsFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT), -1ULL, CHAR_BIT);
+SIMPLE_TEST(CountSetBitsFromMSB, TestUPPER, static_cast<unsigned>(CHAR_BIT),
+            -1ULL, CHAR_BIT);
 SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE1, 2u, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
 SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE2, 3u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
 
@@ -227,11 +232,13 @@ SIMPLE_TEST(CountSetBitsFromMSB, TestSAMPLE2, 3u, 0x13FFFFFFFFFFFFFFULL, CHAR_BI
 SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, Sample1, LOWER, CHAR_BIT);
 SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, Sample2, UPPER, CHAR_BIT);
 
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64u, LOWER, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64, LOWER, CHAR_BIT);
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER,
             static_cast<unsigned>(CHAR_BIT), -1ULL, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14u, 0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13u, 0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14,
+            0x06FFFFFFFFFFFFFFULL, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13,
+            0x13FFFFFFFFFFFFFFULL, CHAR_BIT);
 
 
 SIMPLE_BENCHMARK(AreBitAnagram, Sample1, 8, 4);

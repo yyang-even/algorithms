@@ -53,7 +53,8 @@ auto RandomChar(const std::string &chars) {
     return chars[Random_Number(0ul, chars.size() - 1ul)];
 }
 
-void randomInsertIfNot(const bool criteria, const std::string &char_set, std::string &password) {
+void randomInsertIfNot(const bool criteria, const std::string &char_set,
+                       std::string &password) {
     if (not criteria) {
         password.insert(Random_Number(0ul, password.size() - 1ul), 1,
                         RandomChar(char_set));
