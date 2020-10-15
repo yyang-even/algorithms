@@ -41,7 +41,8 @@ static inline auto LargestSumContiguousSubarray_Kadane(const Container &array,
     }
 
     if (max_sum_subarray) {
-        *max_sum_subarray = Container(array.cbegin() + max_start, array.cbegin() + max_last + 1);
+        *max_sum_subarray = Container(array.cbegin() + max_start,
+                                      array.cbegin() + max_last + 1);
     }
 
     return max_so_far;

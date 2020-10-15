@@ -83,9 +83,12 @@ const std::string EXPECTED3 = "abcdez";
 
 SIMPLE_BENCHMARK(LongestCommonSubstring, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
-SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
-SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
-SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
+SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE1, EXPECTED1.size(),
+            SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE2, EXPECTED2.size(),
+            SAMPLE2_X, SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE3, EXPECTED3.size(),
+            SAMPLE3_X, SAMPLE3_Y);
 
 
 SIMPLE_BENCHMARK(LongestCommonSubstring_SpaceOptimized, Sample1, SAMPLE1_X, SAMPLE1_Y);
