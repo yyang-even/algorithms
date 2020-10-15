@@ -156,12 +156,14 @@ SIMPLE_BENCHMARK(HanoiTower_Closedform, Sample3, SAMPLE);
 
 
 SIMPLE_TEST(HanoiTower_Recursive, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(HanoiTower_Recursive, TestUPPER, std::numeric_limits<unsigned long>::max() / 2, UPPER);
+SIMPLE_TEST(HanoiTower_Recursive, TestUPPER,
+            std::numeric_limits<unsigned long>::max() / 2, UPPER);
 SIMPLE_TEST(HanoiTower_Recursive, TestSAMPLE, 255u, SAMPLE);
 
 
 SIMPLE_TEST(HanoiTower_Closedform, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(HanoiTower_Closedform, TestUPPER, std::numeric_limits<unsigned long>::max() / 2, UPPER);
+SIMPLE_TEST(HanoiTower_Closedform, TestUPPER,
+            std::numeric_limits<unsigned long>::max() / 2, UPPER);
 SIMPLE_TEST(HanoiTower_Closedform, TestSAMPLE, 255u, SAMPLE);
 
 MUTUAL_RANDOM_TEST(HanoiTower_Recursive, HanoiTower_Closedform, LOWER, UPPER);
@@ -217,24 +219,25 @@ SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, Sample3, SAMPLE);
 
 
 SIMPLE_TEST(DoubleHanoiTower_A_Recursive, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(DoubleHanoiTower_A_Recursive, TestDoubleHanoiTowerUPPER, 4611686018427387902ull,
-            DoubleHanoiTowerUPPER);
+SIMPLE_TEST(DoubleHanoiTower_A_Recursive, TestDoubleHanoiTowerUPPER,
+            4611686018427387902ull, DoubleHanoiTowerUPPER);
 SIMPLE_TEST(DoubleHanoiTower_A_Recursive, TestSAMPLE, 510u, SAMPLE);
 
 
 SIMPLE_TEST(DoubleHanoiTower_A_Closedform, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(DoubleHanoiTower_A_Closedform, TestDoubleHanoiTowerUPPER, 4611686018427387902ull,
-            DoubleHanoiTowerUPPER);
+SIMPLE_TEST(DoubleHanoiTower_A_Closedform, TestDoubleHanoiTowerUPPER,
+            4611686018427387902ull, DoubleHanoiTowerUPPER);
 SIMPLE_TEST(DoubleHanoiTower_A_Closedform, TestSAMPLE, 510u, SAMPLE);
 
-MUTUAL_RANDOM_TEST(DoubleHanoiTower_A_Recursive, DoubleHanoiTower_A_Closedform, LOWER,
-                   DoubleHanoiTowerUPPER);
+MUTUAL_RANDOM_TEST(DoubleHanoiTower_A_Recursive, DoubleHanoiTower_A_Closedform,
+                   LOWER, DoubleHanoiTowerUPPER);
 
 
-SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerBLOWER, 3u, DoubleHanoiTowerBLOWER);
-SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerUPPER, 9223372036854775803ull,
-            DoubleHanoiTowerUPPER);
-SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestSAMPLE, 1019u, SAMPLE);
+SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerBLOWER, 3,
+            DoubleHanoiTowerBLOWER);
+SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestDoubleHanoiTowerUPPER,
+            9223372036854775803ull, DoubleHanoiTowerUPPER);
+SIMPLE_TEST(DoubleHanoiTower_B_Closedform, TestSAMPLE, 1019, SAMPLE);
 
 
 SIMPLE_BENCHMARK(HanoiTower_4Rods_Recursive, Sample1, 3);

@@ -84,7 +84,8 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
 auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
-    return *KthSmallest_QuickSelect(elements.begin(), elements.end(), elements.cbegin() + K);
+    return *KthSmallest_QuickSelect(elements.begin(), elements.end(),
+                                    elements.cbegin() + K);
 }
 
 
@@ -94,7 +95,8 @@ auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
  * @reference   QuickSelect (A Simple Iterative Implementation)
  *              https://www.geeksforgeeks.org/quickselect-a-simple-iterative-implementation/
  */
-auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size_type K) {
+auto KthSmallest_QuickSelect_Iterative(ArrayType elements,
+                                       const ArrayType::size_type K) {
     assert(K < elements.size());
 
     auto begin = elements.begin();
@@ -125,7 +127,9 @@ auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size
  *              https://www.geeksforgeeks.org/kth-smallest-element-in-the-array-using-constant-space-when-array-cant-be-modified/
  */
 ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
-                                               const ArrayType::value_type max, const ArrayType &elements, const ArrayType::size_type K) {
+                                               const ArrayType::value_type max,
+                                               const ArrayType &elements,
+                                               const ArrayType::size_type K) {
     assert(K <= elements.size());
 
     const auto mid = (min + max) / 2;
@@ -196,7 +200,8 @@ SIMPLE_BENCHMARK(KthSmallest_QuickSelect_Iterative, Sample1, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE1, 5, VALUES1, 1);
-SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE2, 19,
+            VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE3, 14, VALUES2, 3);
 
 

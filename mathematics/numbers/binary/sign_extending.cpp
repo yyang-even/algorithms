@@ -107,5 +107,7 @@ SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample6, 0, LOWER);
 SIMPLE_TEST(SignExtend_Variable_Dirty_4Bits, TestSample7, -1, UPPER);
 
 MUTUAL_RANDOM_TEST(SignExtend_Const_4Bits, SignExtend_Variable_4Bits, LOWER, UPPER);
-MUTUAL_RANDOM_TEST(SignExtend_Const_4Bits, SignExtend_Variable_Dirty_4Bits, LOWER, UPPER);
-MUTUAL_RANDOM_TEST(SignExtend_Variable_Dirty_4Bits, SignExtend_Variable_4Bits, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(SignExtend_Const_4Bits, SignExtend_Variable_Dirty_4Bits,
+                   LOWER, UPPER);
+MUTUAL_RANDOM_TEST(SignExtend_Variable_Dirty_4Bits, SignExtend_Variable_4Bits,
+                   LOWER, UPPER);
