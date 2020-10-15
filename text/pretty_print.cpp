@@ -18,7 +18,8 @@ std::string PrettyColumnsPrint(const unsigned n, const unsigned m) {
     if (m == 0) {
         return "Columns number cannot be zero.";
     } else {
-        std::cout << "Arrange " << n << " short lines of text in " << m << " columns." << std::endl;
+        std::cout << "Arrange " << n << " short lines of text in " << m << " columns." <<
+                  std::endl;
         const unsigned short_column_lines = n / m;
         const unsigned long_column_lines = std::ceil(double(n) / double(m));
         const unsigned num_long_columns = n % m;
