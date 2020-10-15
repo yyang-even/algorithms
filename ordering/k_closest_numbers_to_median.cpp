@@ -40,12 +40,14 @@ auto KClosestElementsToMedian_Index(ArrayType elements, const ArrayType::size_ty
  *
  * @note    Here, closest means smallest absolute differences.
  */
-auto KClosestElementsToMedian_Differences(ArrayType elements, const ArrayType::size_type K) {
+auto KClosestElementsToMedian_Differences(ArrayType elements,
+                                          const ArrayType::size_type K) {
     const auto median = Median_QuickSelect(elements);
 
     using DiffValuePair = std::pair<ArrayType::value_type, ArrayType::value_type>;
     std::vector<DiffValuePair> diff_array(elements.size());
-    std::transform(elements.cbegin(), elements.cend(), diff_array.begin(), [median](const auto v) {
+    std::transform(elements.cbegin(), elements.cend(),
+    diff_array.begin(), [median](const auto v) {
         return std::make_pair(std::abs(v - median), v);
     });
 
@@ -78,10 +80,12 @@ SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE1, EXPECTED1, VALUES1, 1);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE2, EXPECTED2, VALUES1, 2);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE3, EXPECTED3, VALUES1, 3);
-SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE4, VALUES1, VALUES1, VALUES1.size());
+SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE4, VALUES1, VALUES1,
+            VALUES1.size());
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE5, EXPECTED1, VALUES2, 1);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE6, EXPECTED4, VALUES2, 2);
-SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE7, VALUES2, VALUES2, VALUES2.size());
+SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE7, VALUES2, VALUES2,
+            VALUES2.size());
 
 
 const ArrayType VALUES3 = {1, 2, 3, 4, 9, 99, 999};
@@ -94,8 +98,10 @@ SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE1, EXPECTED1, VALUES1, 1);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE2, EXPECTED2, VALUES1, 2);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE3, EXPECTED3, VALUES1, 3);
-SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE4, VALUES1, VALUES1, VALUES1.size());
+SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE4, VALUES1, VALUES1,
+            VALUES1.size());
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE5, EXPECTED1, VALUES2, 1);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE6, EXPECTED2, VALUES2, 2);
-SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE7, VALUES2, VALUES2, VALUES2.size());
+SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE7, VALUES2, VALUES2,
+            VALUES2.size());
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE8, EXPECTED5, VALUES3, 3);
