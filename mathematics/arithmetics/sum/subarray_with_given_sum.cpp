@@ -72,7 +72,8 @@ bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * Given an unsorted array of integers, find number of subarrays having sum exactly
  * equal to a given number k.
  */
-auto NumberOfSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
+auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
+                                   const ArrayType::value_type SUM) {
     return AllSubarraysWithGivenSum(integers, SUM).size();
 }
 
@@ -134,12 +135,17 @@ const ArrayType SAMPLE7 = { -10, 0, 2, -2, -20, 10};
 
 SIMPLE_BENCHMARK(FindSubarrayWithGivenSum_Map, Sample1, SAMPLE6, 33);
 
-SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample1, std::make_pair(2, 4), SAMPLE1, 33);
-SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample2, std::make_pair(1, 4), SAMPLE2, 7);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample1, std::make_pair(2, 4), SAMPLE1,
+            33);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample2, std::make_pair(1, 4), SAMPLE2,
+            7);
 SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample3, NOT_FOUND, SAMPLE3, 0);
-SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample4, std::make_pair(1, 4), SAMPLE4, 23);
-SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample5, std::make_pair(3, 3), SAMPLE4, 8);
-SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample6, std::make_pair(0, 3), SAMPLE6, -10);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample4, std::make_pair(1, 4), SAMPLE4,
+            23);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample5, std::make_pair(3, 3), SAMPLE4,
+            8);
+SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample6, std::make_pair(0, 3), SAMPLE6,
+            -10);
 SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample7, NOT_FOUND, SAMPLE7, 20);
 
 

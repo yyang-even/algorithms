@@ -107,7 +107,8 @@ public:
     }
 
 private:
-    bool DeleteHelper(Node *node, const std::string &key, const std::string::size_type depth = 0) {
+    bool DeleteHelper(Node *node, const std::string &key,
+                      const std::string::size_type depth = 0) {
         if (not node) {
             return false;
         }
@@ -127,7 +128,8 @@ private:
     }
 
 
-    void Insert_Recursive_Helper(Node *node, const std::string &key, const std::string::size_type i) {
+    void Insert_Recursive_Helper(Node *node, const std::string &key,
+                                 const std::string::size_type i) {
         if (i < key.size()) {
             const auto index = Node::ToIndex(key[i]);
             if (not node->children[index]) {

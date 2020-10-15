@@ -54,18 +54,21 @@ public:
 
     BinaryTree() = default;
     explicit BinaryTree(const Node::ValueType v): root(new Node(v)) {}
-    explicit BinaryTree(const BinaryTree::Node::PointerType source_root): root(source_root) {}
+    explicit BinaryTree(const BinaryTree::Node::PointerType source_root):
+        root(source_root) {}
 
 private:
     Node::PointerType root;
 };
 
-static inline auto SetLeftChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
+static inline auto SetLeftChild(BinaryTree::Node &node,
+                                const BinaryTree::Node::ValueType v) {
     node.left = std::make_shared<BinaryTree::Node>(v);
     return node.left;
 }
 
-static inline auto SetRightChild(BinaryTree::Node &node, const BinaryTree::Node::ValueType v) {
+static inline auto SetRightChild(BinaryTree::Node &node,
+                                 const BinaryTree::Node::ValueType v) {
     node.right = std::make_shared<BinaryTree::Node>(v);
     return node.right;
 }
@@ -103,7 +106,9 @@ static inline auto CheckType(const BinaryTree::Node &node) {
         case 0:
             return BinaryTree::Node::Type::leaf;
         case 1:
-            return node.left ? BinaryTree::Node::Type::left_sided : BinaryTree::Node::Type::right_sided;
+            return node.left ?
+                   BinaryTree::Node::Type::left_sided :
+                   BinaryTree::Node::Type::right_sided;
         case 2:
             return BinaryTree::Node::Type::full;
     }

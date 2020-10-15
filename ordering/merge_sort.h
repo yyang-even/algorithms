@@ -2,7 +2,8 @@
 
 
 template <typename ArrayType>
-void MergeSort(const typename ArrayType::iterator begin, const typename ArrayType::size_type n,
+void MergeSort(const typename ArrayType::iterator begin,
+               const typename ArrayType::size_type n,
                const std::function<void(const typename ArrayType::iterator,
                                         const typename ArrayType::iterator,
                                         const typename ArrayType::iterator)> merge) {
