@@ -1,7 +1,8 @@
 #pragma once
 
 template<typename ArrayType>
-auto PairElementsProductAsN(const ArrayType &elements, const typename ArrayType::value_type N,
+auto PairElementsProductAsN(const ArrayType &elements,
+                            const typename ArrayType::value_type N,
                             std::pair<typename ArrayType::value_type, typename ArrayType::value_type> *output) {
     std::unordered_set<typename ArrayType::value_type> value_set{};
 

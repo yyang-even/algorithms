@@ -15,7 +15,8 @@ namespace {
  * Given a binary tree, delete a node from it by making sure that tree shrinks from
  * the bottom (i.e. the deleted node is replaced by bottom most and rightmost node).
  */
-auto BinaryTreeDeletion_BottomShrink(BinaryTree binary_tree, const BinaryTree::Node::ValueType x) {
+auto BinaryTreeDeletion_BottomShrink(BinaryTree binary_tree,
+                                     const BinaryTree::Node::ValueType x) {
     std::queue<BinaryTree::Node::PointerType *> remaining_nodes;
     auto *last_visited_node = &binary_tree.GetMutableRoot();
     if (*last_visited_node) {
@@ -102,12 +103,15 @@ auto DeleteEntireTree_Iterative_LevelOrder(BinaryTree binary_tree) {
 
 const auto SAMPLE0 = MakeTheSampleCompleteTree().GetRoot();
 const auto EMPTY_TREE = BinaryTree {} .GetRoot();
-const auto SAMPLE1_LHS = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE0), 5).GetRoot();
-const auto SAMPLE1_RHS = BinaryTreeDeletion_BottomShrink(CloneBinaryTree(SAMPLE0), 5).GetRoot();
-const auto SAMPLE2_LHS = BinaryTreeDeletion_BottomShrink(
-                             CloneBinaryTree(SAMPLE0), SAMPLE0->value).GetRoot();
-const auto SAMPLE2_RHS = SetNode(CloneBinaryTree(BinaryTreeDeletion_Subtree(
-                                                     CloneBinaryTree(SAMPLE0), 5).GetRoot()).GetRoot(), 5);
+const auto SAMPLE1_LHS =
+    BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE0), 5).GetRoot();
+const auto SAMPLE1_RHS =
+    BinaryTreeDeletion_BottomShrink(CloneBinaryTree(SAMPLE0), 5).GetRoot();
+const auto SAMPLE2_LHS =
+    BinaryTreeDeletion_BottomShrink(CloneBinaryTree(SAMPLE0), SAMPLE0->value).GetRoot();
+const auto SAMPLE2_RHS =
+    SetNode(CloneBinaryTree(BinaryTreeDeletion_Subtree(
+                                CloneBinaryTree(SAMPLE0), 5).GetRoot()).GetRoot(), 5);
 
 
 SIMPLE_BENCHMARK(BinaryTreeDeletion_Subtree, Sample1, CloneBinaryTree(SAMPLE0), 4);
@@ -119,13 +123,15 @@ SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1_LHS, SAMPLE1_RHS);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2_LHS, SAMPLE2_RHS);
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, Sample1, CloneBinaryTree(SAMPLE0));
+SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, Sample1,
+                 CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE3, true, EMPTY_TREE,
             DeleteEntireTree_Recursive_Postorder(CloneBinaryTree(SAMPLE0)).GetRoot());
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, Sample1, CloneBinaryTree(SAMPLE0));
+SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, Sample1,
+                 CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE4, true, EMPTY_TREE,
             DeleteEntireTree_Iterative_LevelOrder(CloneBinaryTree(SAMPLE0)).GetRoot());

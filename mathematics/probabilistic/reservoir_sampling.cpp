@@ -35,7 +35,8 @@ SIMPLE_BENCHMARK(RandomNumberFromStream, Sample1, VALUES);
 #ifdef WANT_TERMINAL_APP
 int main(int, char **) {
     std::cout << "Selected Samples: " << ReservoirSampling(VALUES, 3) << std::endl;
-    std::cout << "Selected Random Number from Stream: " << RandomNumberFromStream(VALUES) << std::endl;
+    std::cout << "Selected Random Number from Stream: " << RandomNumberFromStream(
+                  VALUES) << std::endl;
 
     return EXIT_SUCCESS;
 }

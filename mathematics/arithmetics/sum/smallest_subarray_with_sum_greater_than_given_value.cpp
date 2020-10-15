@@ -48,7 +48,8 @@ SIMPLE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, Sample1, SAMPLE1,
 
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample1, 3u, SAMPLE1, 51);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample2, 1u, SAMPLE2, 9);
-SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample3, 4u, SAMPLE3, 280);
+SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample3, 4u, SAMPLE3,
+            280);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample4,
             static_cast<ArrayType::difference_type>(SAMPLE4.size() + 1), SAMPLE4, 8);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample5, 1u, SAMPLE5, 8);
