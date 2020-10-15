@@ -67,10 +67,12 @@ SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE2, EXPECTED2, -4, -5);
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE3, EXPECTED3, 4, -5);
 SIMPLE_TEST(SafeAdd_Limits, TestOverflow, INVALID, std::numeric_limits<int>::max(), 5);
-SIMPLE_TEST(SafeAdd_Limits, TestUnderflow, INVALID, -5, std::numeric_limits<int>::min());
+SIMPLE_TEST(SafeAdd_Limits, TestUnderflow, INVALID, -5,
+            std::numeric_limits<int>::min());
 
 
 SIMPLE_BENCHMARK(SafeAdd_Unsigned, Sample1, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Unsigned, TestSAMPLE1, EXPECTED1, 4, 5);
-SIMPLE_TEST(SafeAdd_Unsigned, TestOverflow, INVALID, std::numeric_limits<unsigned>::max(), 5);
+SIMPLE_TEST(SafeAdd_Unsigned, TestOverflow, INVALID,
+            std::numeric_limits<unsigned>::max(), 5);

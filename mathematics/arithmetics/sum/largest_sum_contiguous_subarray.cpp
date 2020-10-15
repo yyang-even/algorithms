@@ -89,9 +89,12 @@ SIMPLE_TEST(TheLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 SIMPLE_BENCHMARK(LengthOfLargestSumContiguousSubarray, Sample1, SAMPLE2);
 
-SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
-SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
-SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE1, EXPECTED1.size(),
+            SAMPLE1);
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE2, EXPECTED2.size(),
+            SAMPLE2);
+SIMPLE_TEST(LengthOfLargestSumContiguousSubarray, TestSAMPLE4, EXPECTED4.size(),
+            SAMPLE4);
 
 
 const ArrayType SAMPLE5 = {3, -4, 2, -3, -1, 7, -5};

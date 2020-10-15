@@ -83,7 +83,8 @@ auto UniquePrimeFactorsOf(const unsigned N) {
  * @reference   Print all prime factors and their powers
  *              https://www.geeksforgeeks.org/print-all-prime-factors-and-their-powers/
  */
-auto PrimeFactorsOfN_Sieve(unsigned N, const std::vector<unsigned> &smallest_prime_factors) {
+auto PrimeFactorsOfN_Sieve(unsigned N,
+                           const std::vector<unsigned> &smallest_prime_factors) {
     std::vector<unsigned> output;
     while (N != 1) {
         const auto prime_factor = smallest_prime_factors[N];
