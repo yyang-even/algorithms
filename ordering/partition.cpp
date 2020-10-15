@@ -164,7 +164,8 @@ auto RearrangeZeros(ArrayType input) {
  * positive numbers they appear at the end of the array. If there are more negative
  * numbers, they too appear in the end of the array.
  */
-auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(
+    ArrayType input) {
     auto positive_iter = Partition<ArrayType>(input.begin(), input.end(), isNegative);
 
     for (auto negative_iter = input.begin();
@@ -181,7 +182,8 @@ auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(Arra
  * @reference   Positive elements at even and negative at odd positions (Relative order not maintained)
  *              https://www.geeksforgeeks.org/positive-elements-at-even-and-negative-at-odd-positions-relative-order-not-maintained/
  */
-auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable(
+    ArrayType input) {
     ArrayType::size_type positive = 0;
     ArrayType::size_type negative = 1;
     while (true) {
@@ -208,7 +210,8 @@ auto isPositiveAndNegativeAlternative(const ArrayType::const_iterator iter,
     }
 }
 
-auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(ArrayType input) {
+auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(
+    ArrayType input) {
     auto is_even_position = true;
     for (auto iter = input.begin(); iter != input.end();
          ++iter, is_even_position = not is_even_position) {
@@ -317,20 +320,26 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_STL, TestSAMPLE2, EXPECTED2, SAM
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Insertion, Sample1, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE1, EXPECTED1,
+            SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE2, EXPECTED2,
+            SAMPLE2);
 
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge_Stable, Sample1, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE1, EXPECTED1,
+            SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE2, EXPECTED2,
+            SAMPLE2);
 
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_MergeReverse, Sample1, SAMPLE1);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE1, EXPECTED1, SAMPLE1);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE1, EXPECTED1,
+            SAMPLE1);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE2, EXPECTED2,
+            SAMPLE2);
 
 
 const ArrayType SAMPLE3 = {1, -1, 3, 2, -7, -5, 11, 6 };
@@ -342,8 +351,10 @@ const ArrayType EXPECTED4 = {7, 9, 10, 11, -5, -3, -4, -1};
 
 SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple_Stable, Sample1, SAMPLE3);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE3, EXPECTED3, SAMPLE3);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE4, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE3, EXPECTED3,
+            SAMPLE3);
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE4, EXPECTED4,
+            SAMPLE4);
 
 
 const ArrayType SAMPLE5 = { -1, 2, -3, 4, 5, 6, -7, 8, 9};
@@ -353,12 +364,15 @@ const ArrayType SAMPLE6 = { -5, 7, -3, -4, 9, 10, -1, -11};
 const ArrayType EXPECTED6 = {10, -3, 7, -1, 9, -5, -4, -11};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, Sample1,
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
+                 Sample1,
                  SAMPLE5);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE5,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
+            TestSAMPLE5,
             EXPECTED5, SAMPLE5);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable, TestSAMPLE6,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
+            TestSAMPLE6,
             EXPECTED6, SAMPLE6);
 
 
@@ -366,21 +380,27 @@ const ArrayType EXPECTED5_Stable = {2, -1, 4, -3, 5, -7, 6, 8, 9};
 const ArrayType EXPECTED6_Stable = {7, -5, 10, -4, 9, -3, -1, -11};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, Sample1,
-                 SAMPLE5);
+SIMPLE_BENCHMARK(
+    RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, Sample1,
+    SAMPLE5);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE5,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable,
+            TestSAMPLE5,
             EXPECTED5_Stable, SAMPLE5);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable, TestSAMPLE6,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable,
+            TestSAMPLE6,
             EXPECTED6_Stable, SAMPLE6);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, Sample1,
+SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
+                 Sample1,
                  SAMPLE5);
 
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, TestSAMPLE5,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
+            TestSAMPLE5,
             EXPECTED5_Stable, SAMPLE5);
-SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable, TestSAMPLE6,
+SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
+            TestSAMPLE6,
             EXPECTED6_Stable, SAMPLE6);
 
 

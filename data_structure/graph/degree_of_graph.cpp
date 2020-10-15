@@ -31,12 +31,14 @@ auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
 }
 
 
-auto InDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
+auto InDegrees(const std::size_t number_vertices,
+               const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(InDegrees));
 }
 
 
-auto OutDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
+auto OutDegrees(const std::size_t number_vertices,
+                const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(OutDegrees));
 }
 
@@ -58,7 +60,8 @@ auto DegreeOfVertex(const AdjacencyMatrixGraph::RepresentationType &graph,
     return out_degree;
 }
 
-auto DegreeOfVertex(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges,
+auto DegreeOfVertex(const std::size_t number_vertices,
+                    const UndirectedEdgeArrayType &edges,
                     const std::size_t source) {
     return AdjacencyMatrixGraph(number_vertices, edges).Visit(
     [source](const auto & graph) {
