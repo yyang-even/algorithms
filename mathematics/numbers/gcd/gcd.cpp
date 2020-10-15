@@ -73,7 +73,9 @@ auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
         return Gcd_Stein_Recursive(a, b >> 1);
     }
 
-    return a > b ? Gcd_Stein_Recursive((a - b) >> 1, b) : Gcd_Stein_Recursive((b - a) >> 1, a);
+    return a > b ?
+           Gcd_Stein_Recursive((a - b) >> 1, b) :
+           Gcd_Stein_Recursive((b - a) >> 1, a);
 }
 
 

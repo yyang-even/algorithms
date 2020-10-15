@@ -87,7 +87,9 @@ unsigned char ReverseBitsInByte_4(const unsigned char byte) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 unsigned char ReverseBitsInByte_7(const unsigned char byte) {
-    return ((byte * 0x0802LU & 0x22110LU) | (byte * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16;
+    return ((byte * 0x0802LU & 0x22110LU) | (byte * 0x8020LU & 0x88440LU)) *
+           0x10101LU >>
+           16;
 }
 
 
@@ -143,7 +145,8 @@ unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
 auto ReverseBytes_String(unsigned num) {
     auto *begin = reinterpret_cast<unsigned char *>(&num);
 
-    Reverse_TwoPointers(begin, begin + sizeof(num), [](unsigned char &lhs, unsigned char &rhs) {
+    Reverse_TwoPointers(begin, begin + sizeof(num),
+    [](unsigned char &lhs, unsigned char &rhs) {
         std::swap(lhs, rhs);
     });
 
@@ -156,7 +159,10 @@ auto ReverseBytes_String(unsigned num) {
  *              https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
  */
 auto ReverseBytes_Shift(const unsigned num) {
-    return (num << 24) | (((num >> 16) << 24) >> 16) | (((num << 16) >> 24) << 16) | (num >> 24);
+    return (num << 24) |
+           (((num >> 16) << 24) >> 16) |
+           (((num << 16) >> 24) << 16) |
+           (num >> 24);
 }
 
 

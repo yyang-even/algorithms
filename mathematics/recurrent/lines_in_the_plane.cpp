@@ -173,18 +173,21 @@ SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, Sample2, PlaneZigzagLinesClosedfor
 SIMPLE_BENCHMARK(PlaneZigzagLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(PlaneZigzagLines_Closedform, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(PlaneZigzagLines_Closedform, TestPlaneZigzagLinesClosedformUPPER, 5188146766972715009ul,
-            PlaneZigzagLinesClosedformUPPER);
+SIMPLE_TEST(PlaneZigzagLines_Closedform, TestPlaneZigzagLinesClosedformUPPER,
+            5188146766972715009ul, PlaneZigzagLinesClosedformUPPER);
 SIMPLE_TEST(PlaneZigzagLines_Closedform, TestSAMPLE, 834u, SAMPLE);
 
-MUTUAL_RANDOM_TEST(PlaneZigzagLines_Recursive, PlaneZigzagLines_Closedform, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(PlaneZigzagLines_Recursive, PlaneZigzagLines_Closedform,
+                   LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample1, BoundedRegionsPlaneLinesLOWER);
+SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample1,
+                 BoundedRegionsPlaneLinesLOWER);
 SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample2, UPPER2);
 SIMPLE_BENCHMARK(BoundedRegionsPlaneLines_Closedform, Sample3, SAMPLE);
 
 SIMPLE_TEST(BoundedRegionsPlaneLines_Closedform, TestBoundedRegionsPlaneLinesLOWER, 0u,
             BoundedRegionsPlaneLinesLOWER);
-SIMPLE_TEST(BoundedRegionsPlaneLines_Closedform, TestUPPER2, 2305843005992468481ul, UPPER2);
+SIMPLE_TEST(BoundedRegionsPlaneLines_Closedform, TestUPPER2, 2305843005992468481ul,
+            UPPER2);
 SIMPLE_TEST(BoundedRegionsPlaneLines_Closedform, TestSAMPLE, 78u, SAMPLE);

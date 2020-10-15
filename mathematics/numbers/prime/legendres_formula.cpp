@@ -25,7 +25,8 @@ auto LargestPowerOfKInNFactorial(unsigned k, const unsigned n) {
 
     auto x = std::numeric_limits<unsigned>::max();
     for (const auto &factor_count_pair : factor_count_map) {
-        x = std::min(x, LegendresFormula(factor_count_pair.first, n) / factor_count_pair.second);
+        x =
+            std::min(x, LegendresFormula(factor_count_pair.first, n) / factor_count_pair.second);
     }
 
     return x;

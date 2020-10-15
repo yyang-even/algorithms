@@ -20,8 +20,10 @@ auto OptimalBinarySearchTree(const ArrayType &key_probabilities,
                              TwoDimensionalArrayType *const roots = nullptr) {
     assert(key_probabilities.size() == dummy_probabilities.size());
 
-    ArrayType::value_type min_costs[dummy_probabilities.size()][dummy_probabilities.size()] = {};
-    ArrayType::value_type sum_probabilities[dummy_probabilities.size()][dummy_probabilities.size()] = {};
+    ArrayType::value_type
+    min_costs[dummy_probabilities.size()][dummy_probabilities.size()] = {};
+    ArrayType::value_type
+    sum_probabilities[dummy_probabilities.size()][dummy_probabilities.size()] = {};
 
     for (ArrayType::size_type i = 0; i < dummy_probabilities.size(); ++i) {
         min_costs[i + 1][i] = dummy_probabilities[i];
