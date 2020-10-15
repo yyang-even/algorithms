@@ -14,7 +14,8 @@ class LFU_Cache {
     using KeyType = int;
     using ValueCountPair = std::pair<int, unsigned>;
     using MapType = std::unordered_map<KeyType, ValueCountPair>;
-    using HeapType = std::vector<std::pair<ValueCountPair::second_type, MapType::const_iterator>>;
+    using HeapType =
+        std::vector<std::pair<ValueCountPair::second_type, MapType::const_iterator>>;
     using SizeType = MapType::size_type;
 
     MapType cache_map;

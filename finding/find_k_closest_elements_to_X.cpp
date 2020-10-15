@@ -49,7 +49,8 @@ auto FindKClosestElementsToX(const ArrayType &elements, const ArrayType::value_t
  *
  * @reference   https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
  */
-auto FindKClosestElementsToX_Unsorted(const ArrayType &elements, const ArrayType::value_type X,
+auto FindKClosestElementsToX_Unsorted(const ArrayType &elements,
+                                      const ArrayType::value_type X,
                                       const ArrayType::size_type K) {
     assert(elements.size() >= K);
 
@@ -82,20 +83,23 @@ auto FindKClosestElementsToX_Unsorted(const ArrayType &elements, const ArrayType
 
 const ArrayType SAMPLE1 = {12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56};
 const ArrayType EXPECTED1 = {39, 30, 42, 45};
-const auto EXPECTED_FRONT = ArrayType(SAMPLE1.cbegin(), std::next(SAMPLE1.cbegin(),
-                                      EXPECTED1.size()));
-const auto EXPECTED_BACK = ArrayType(std::prev(SAMPLE1.cend(), EXPECTED1.size()), SAMPLE1.cend());
+const auto EXPECTED_FRONT =
+    ArrayType(SAMPLE1.cbegin(), std::next(SAMPLE1.cbegin(), EXPECTED1.size()));
+const auto EXPECTED_BACK =
+    ArrayType(std::prev(SAMPLE1.cend(), EXPECTED1.size()), SAMPLE1.cend());
 const ArrayType EXPECTED2 = {42, 45, 39, 48};
 
 
 SIMPLE_BENCHMARK(FindKClosestElementsToX, Sample1, SAMPLE1, 35, EXPECTED1.size());
 
-SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE1, EXPECTED1, SAMPLE1, 35, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_FRONT, EXPECTED_FRONT, SAMPLE1, SAMPLE1.front() - 1,
+SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE1, EXPECTED1, SAMPLE1, 35,
             EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_BACK, EXPECTED_BACK, SAMPLE1, SAMPLE1.back() + 1,
-            EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE2, EXPECTED2, SAMPLE1, 43, EXPECTED2.size());
+SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_FRONT, EXPECTED_FRONT, SAMPLE1,
+            SAMPLE1.front() - 1, EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE_BACK, EXPECTED_BACK, SAMPLE1,
+            SAMPLE1.back() + 1, EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX, TestSAMPLE2, EXPECTED2, SAMPLE1, 43,
+            EXPECTED2.size());
 
 
 const ArrayType SAMPLE3 = {10, 2, 14, 4, 7, 6};
@@ -104,8 +108,10 @@ const ArrayType SAMPLE4 = {-10, -50, 20, 17, 80};
 const ArrayType EXPECTED4 = {17, 20};
 
 
-SIMPLE_BENCHMARK(FindKClosestElementsToX_Unsorted, Sample1, SAMPLE3, 5, EXPECTED3.size());
+SIMPLE_BENCHMARK(FindKClosestElementsToX_Unsorted, Sample1, SAMPLE3,
+                 5, EXPECTED3.size());
 
-SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5, EXPECTED3.size());
+SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5,
+            EXPECTED3.size());
 SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20,
             EXPECTED4.size());

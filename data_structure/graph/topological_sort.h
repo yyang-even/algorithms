@@ -10,7 +10,8 @@
  * @reference   Kahn’s algorithm for Topological Sorting
  *              https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
  */
-static inline auto TopologicalSort_Kahn(const AdjacencyListGraph::RepresentationType &graph) {
+static inline auto TopologicalSort_Kahn(
+    const AdjacencyListGraph::RepresentationType &graph) {
     auto in_degrees = InDegrees(graph);
 
     std::queue<std::size_t> zero_indegree_vertex_queue;
@@ -67,10 +68,11 @@ static inline void TopologicalSort(const AdjacencyListGraph::RepresentationType 
     results.push_back(vertex);
 }
 
-static inline void TopologicalSort(const WeightedAdjacencyListGraph::RepresentationType &graph,
-                                   const std::size_t vertex,
-                                   std::vector<bool> &visited_vertices,
-                                   graph::ArrayType &results) {
+static inline void TopologicalSort(
+    const WeightedAdjacencyListGraph::RepresentationType &graph,
+    const std::size_t vertex,
+    std::vector<bool> &visited_vertices,
+    graph::ArrayType &results) {
     visited_vertices[vertex] = true;
 
     for (const auto &adjacent_node : graph.at(vertex)) {
