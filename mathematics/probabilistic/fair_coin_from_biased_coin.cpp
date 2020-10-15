@@ -42,7 +42,8 @@ inline auto TestMakeFairCoinfromBiasedCoin() {
         counter += MakeFairCoinfromBiasedCoin();
     }
 
-    return (HALF_SAMPLE_SIZE - TOLERATION) <= counter and (HALF_SAMPLE_SIZE + TOLERATION) >= counter;
+    return (HALF_SAMPLE_SIZE - TOLERATION) <= counter and
+           (HALF_SAMPLE_SIZE + TOLERATION) >= counter;
 }
 
 }//namespace

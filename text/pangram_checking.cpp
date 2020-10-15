@@ -72,13 +72,18 @@ auto CheckPangramConvertibleInK(const std::string &sentence, int K) {
 
 SIMPLE_BENCHMARK(CheckPangram, Sample1, "The quick brown fox jumps over the lazy dog.");
 
-SIMPLE_TEST(CheckPangram, TestSAMPLE1, true, "The quick brown fox jumps over the lazy dog.");
-SIMPLE_TEST(CheckPangram, TestSAMPLE2, false, "The quick brown fox jumps over the dog.");
+SIMPLE_TEST(CheckPangram, TestSAMPLE1, true,
+            "The quick brown fox jumps over the lazy dog.");
+SIMPLE_TEST(CheckPangram, TestSAMPLE2, false,
+            "The quick brown fox jumps over the dog.");
 
 
-SIMPLE_BENCHMARK(CheckPangramConvertibleInK, Sample1, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas", 24);
+SIMPLE_BENCHMARK(CheckPangramConvertibleInK, Sample1,
+                 "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas", 24);
 
-SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE1, true, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
+SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE1, true,
+            "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
             24);
-SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE2, false, "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
+SIMPLE_TEST(CheckPangramConvertibleInK, TestSAMPLE2, false,
+            "qwqqwqeqqwdsdadsdasadsfsdsdsdasasas",
             4);

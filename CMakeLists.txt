@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 2.8.12.2)
 
 project(Algorithms)
 
-# ##################################################################################################
+# ######################################################################################
 # gcc
-# ##################################################################################################
+# ######################################################################################
 # Using C++17
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -std=c++17")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -g")
@@ -20,15 +20,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Wextra")
 # Obtain all the diagnostics required by the standard as errors rather than warnings
 # set(CMAKE_CXX_FLAGS       "${CMAKE_CXX_FLAGS}       -pedantic-errors")
 
-# Turn warning about any return statement with no return value in a function whose return type is
-# not void
+# Turn warning about any return statement with no return value in a function whose
+# return type is not void
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Werror=return-type")
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-# ##################################################################################################
+# ######################################################################################
 # Options
-# ##################################################################################################
+# ######################################################################################
 # define option explicitly for pretty ccmake/cmake-gui
 option(BUILD_SHARED_LIBS "Build libraries as .dll's/.so's" true)
 mark_as_advanced(CLEAR BUILD_SHARED_LIBS) # mark un-advanced
@@ -56,7 +56,8 @@ if (WANT_TESTS)
     # cmake-lint: disable=C0103
     set(gtest_force_shared_crt
         ON
-        CACHE BOOL "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
+        CACHE BOOL
+              "Use shared run-time lib even when Google Test is built as static lib.")
     set(GTEST_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/3rdParty/googletest/include)
     include_directories("${GTEST_INCLUDE_DIRS}")
 endif (WANT_TESTS)
@@ -81,15 +82,16 @@ if (WANT_BENCHMARKS OR WANT_TESTS)
     endif (UNIX)
 endif ()
 
-# ##################################################################################################
+# ######################################################################################
 # Functions
-# ##################################################################################################
+# ######################################################################################
 function (compile_benchmark name)
     if (WANT_BENCHMARKS)
         set(target_name ${name}_benchmark)
         add_executable(${target_name} ${name}.cpp)
         target_compile_definitions(${target_name} PRIVATE WANT_BENCHMARKS)
-        target_link_libraries(${target_name} benchmark::benchmark_main ${PTHREAD_LIBRARY} ${ARGN})
+        target_link_libraries(${target_name} benchmark::benchmark_main
+                              ${PTHREAD_LIBRARY} ${ARGN})
     endif (WANT_BENCHMARKS)
 endfunction (compile_benchmark)
 
@@ -124,9 +126,9 @@ function (compile_app name)
     endif (WANT_TERMINAL_APP)
 endfunction (compile_app)
 
-# ##################################################################################################
+# ######################################################################################
 # Subdirectories
-# ##################################################################################################
+# ######################################################################################
 add_subdirectory(3rdParty)
 add_subdirectory(decision)
 add_subdirectory(data_structure)
@@ -138,8 +140,8 @@ add_subdirectory(mathematics)
 add_subdirectory(ordering)
 add_subdirectory(text)
 
-# ##################################################################################################
+# ######################################################################################
 # Top Level Tests
-# ##################################################################################################
+# ######################################################################################
 compile_benchmark(common_header_test)
 compile_test(common_header_test)
