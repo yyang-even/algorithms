@@ -17,7 +17,8 @@ auto CheckIfArraySortedAndRotated(const ArrayType &values,
     }
 
     const auto is_first_part_sorted = std::is_sorted(values.cbegin(), minimum_element);
-    const auto is_second_part_sorted = std::is_sorted(std::next(minimum_element), values.cend());
+    const auto is_second_part_sorted = std::is_sorted(std::next(minimum_element),
+                                                      values.cend());
     return is_first_part_sorted and is_second_part_sorted and
            values.back() < *std::prev(minimum_element);
 }

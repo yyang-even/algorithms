@@ -11,7 +11,8 @@ using ArrayType = std::vector<int>;
  * @reference   LRU Approximation (Second Chance Algorithm)
  *              https://www.geeksforgeeks.org/lru-approximation-second-chance-algorithm/
  */
-auto SecondChanceCache(const ArrayType &requests, const ArrayType::size_type cache_size) {
+auto SecondChanceCache(const ArrayType &requests,
+                       const ArrayType::size_type cache_size) {
     ArrayType cache;
     std::vector<bool> second_chances;
     ArrayType::size_type front_index = 0;

@@ -25,7 +25,8 @@ auto LongestCommonSubsequence_DP(const std::string &X, const std::string &Y) {
  * @reference   A Space Optimized Solution of LCS
  *              https://www.geeksforgeeks.org/space-optimized-solution-lcs/
  */
-auto LongestCommonSubsequence_SpaceOptimized(const std::string &X, const std::string &Y) {
+auto LongestCommonSubsequence_SpaceOptimized(const std::string &X,
+                                             const std::string &Y) {
     auto row_size = 2;  //work around a GCC bug.
     unsigned LCS_table[row_size][Y.size() + 1] = {};
 
@@ -95,7 +96,8 @@ auto LongestCommonSubsequenceString(const std::string &X, const std::string &Y) 
  * @reference   Printing Longest Common Subsequence | Set 2 (Printing All)
  *              https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
  */
-auto AllLongestCommonSubsequenceStrings(const std::string &X, const std::string::size_type x_i,
+auto AllLongestCommonSubsequenceStrings(const std::string &X,
+                                        const std::string::size_type x_i,
                                         const std::string &Y, const std::string::size_type y_i,
                                         TwoDimensionalArrayType &LCS_table) {
     if (x_i == 0 or y_i == 0)
@@ -103,7 +105,8 @@ auto AllLongestCommonSubsequenceStrings(const std::string &X, const std::string:
 
     std::unordered_set<std::string> all_lcs;
     if (X[x_i - 1] == Y[y_i - 1]) {
-        const auto all_sub_lcs = AllLongestCommonSubsequenceStrings(X, x_i - 1, Y, y_i - 1, LCS_table);
+        const auto all_sub_lcs = AllLongestCommonSubsequenceStrings(X, x_i - 1, Y, y_i - 1,
+                                                                    LCS_table);
         for (const auto &one_sub_lcs : all_sub_lcs) {
             all_lcs.emplace(one_sub_lcs + X[x_i - 1]);
         }
@@ -176,11 +179,13 @@ unsigned LongestCommonSubsequenceOfThree_Memoization(
     if (LCS_table[x_i - 1][y_i - 1].find(z_i - 1) == LCS_table[x_i - 1][y_i - 1].cend()) {
         if (X[x_i - 1] == Y[y_i - 1] and Y[y_i - 1] == Z[z_i - 1]) {
             LCS_table[x_i - 1][y_i - 1][z_i - 1] =
-                1 + LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i - 1, Z, z_i - 1, LCS_table);
+                1 + LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i - 1, Z, z_i - 1,
+                                                                LCS_table);
         } else
             LCS_table[x_i - 1][y_i - 1][z_i - 1] =
                 std::max(
-                    std::max(LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i - 1, Z, z_i, LCS_table),
+                    std::max(LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i - 1, Z, z_i,
+                             LCS_table),
                              LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i, Z, z_i, LCS_table)),
                     LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i, Z, z_i - 1, LCS_table));
     }
@@ -213,12 +218,16 @@ const std::string EXPECTED3 = "010101";
 
 SIMPLE_BENCHMARK(LongestCommonSubsequence_DP, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
-SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
-SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
-SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X,
+            SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X,
+            SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X,
+            SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, Sample1, SAMPLE1_X, SAMPLE1_Y);
+SIMPLE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, Sample1, SAMPLE1_X,
+                 SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
             SAMPLE1_X, SAMPLE1_Y);
@@ -240,9 +249,12 @@ SIMPLE_TEST(LongestCommonSubsequence_Memoization, TestSAMPLE3, EXPECTED3.size(),
 
 SIMPLE_BENCHMARK(LongestCommonSubsequenceString, Sample1, SAMPLE1_X, SAMPLE1_Y);
 
-SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE1, EXPECTED1, SAMPLE1_X, SAMPLE1_Y);
-SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE2, EXPECTED2, SAMPLE2_X, SAMPLE2_Y);
-SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE3, EXPECTED3, SAMPLE3_X, SAMPLE3_Y);
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE1, EXPECTED1, SAMPLE1_X,
+            SAMPLE1_Y);
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE2, EXPECTED2, SAMPLE2_X,
+            SAMPLE2_Y);
+SIMPLE_TEST(LongestCommonSubsequenceString, TestSAMPLE3, EXPECTED3, SAMPLE3_X,
+            SAMPLE3_Y);
 
 
 const auto SAMPLE4_X = "AGTGATG";
@@ -260,9 +272,12 @@ const std::unordered_set<std::string> EXPECTED6 = {"BCAB", "BCBA", "BDAB"};
 
 SIMPLE_BENCHMARK(AllLongestCommonSubsequenceStrings, Sample1, SAMPLE4_X, SAMPLE4_Y);
 
-SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE4, EXPECTED4, SAMPLE4_X, SAMPLE4_Y);
-SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE5, EXPECTED5, SAMPLE5_X, SAMPLE5_Y);
-SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE6, EXPECTED6, SAMPLE6_X, SAMPLE6_Y);
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE4, EXPECTED4, SAMPLE4_X,
+            SAMPLE4_Y);
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE5, EXPECTED5, SAMPLE5_X,
+            SAMPLE5_Y);
+SIMPLE_TEST(AllLongestCommonSubsequenceStrings, TestSAMPLE6, EXPECTED6, SAMPLE6_X,
+            SAMPLE6_Y);
 
 
 const std::string SAMPLE7_X = "geeks";
@@ -275,7 +290,8 @@ const auto SAMPLE8_Z = "bd1ea";
 const std::string EXPECTED8 = "b1e";
 
 
-SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree, Sample1, SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);
+SIMPLE_BENCHMARK(LongestCommonSubsequenceOfThree, Sample1, SAMPLE7_X, SAMPLE7_Y,
+                 SAMPLE7_Z);
 
 SIMPLE_TEST(LongestCommonSubsequenceOfThree, TestSAMPLE7, SAMPLE7_X.size(),
             SAMPLE7_X, SAMPLE7_Y, SAMPLE7_Z);

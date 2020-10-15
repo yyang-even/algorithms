@@ -26,7 +26,8 @@ auto TopologicalSort(const std::size_t number_vertices,
 
 auto TopologicalSort_Kahn(const std::size_t number_vertices,
                           const DirectedEdgeArrayType &edges) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(TopologicalSort_Kahn)).second;
+    return AdjacencyListGraph(number_vertices,
+                              edges).Visit(ToLambda(TopologicalSort_Kahn)).second;
 }
 
 
