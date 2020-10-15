@@ -305,7 +305,8 @@ public:
         if (head) {
             auto left = head;
             auto right = tail;
-            for (; left != right and left->Prev() != right; left = left->Next(), right = right->Prev()) {
+            for (; left != right and
+                 left->Prev() != right; left = left->Next(), right = right->Prev()) {
                 std::swap(left->value, right->value);
             }
         }
