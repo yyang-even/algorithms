@@ -81,7 +81,8 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string &input) {
         }
     }
 
-    std::vector<std::pair<std::string::size_type, std::string::value_type>> index_char_array;
+    std::vector<std::pair<std::string::size_type, std::string::value_type>>
+            index_char_array;
     for (const auto &value_index_pair : index_map) {
         index_char_array.emplace_back(value_index_pair.second, value_index_pair.first);
     }
@@ -124,5 +125,6 @@ SIMPLE_TEST(GetAllElementsOccurredOnlyOnce, TestSAMPLE2, "HoGks", "Hello Geeks")
 
 SIMPLE_BENCHMARK(GetAllElementsOccurredOnlyOnce_Linear, Sample1, "Geeks for Geeks");
 
-SIMPLE_TEST(GetAllElementsOccurredOnlyOnce_Linear, TestSAMPLE1, "for", "Geeks for Geeks");
+SIMPLE_TEST(GetAllElementsOccurredOnlyOnce_Linear, TestSAMPLE1, "for",
+            "Geeks for Geeks");
 SIMPLE_TEST(GetAllElementsOccurredOnlyOnce_Linear, TestSAMPLE2, "HoGks", "Hello Geeks");

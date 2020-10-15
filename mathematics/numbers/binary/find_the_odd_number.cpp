@@ -20,7 +20,8 @@ using ArrayType = std::vector<unsigned>;
  * @complexity  O(n)
  */
 auto FindTheOddNumber(const ArrayType &values) {
-    return std::accumulate(values.cbegin(), values.cend(), 0u, std::bit_xor<ArrayType::value_type> {});
+    return std::accumulate(values.cbegin(), values.cend(), 0u,
+                           std::bit_xor<ArrayType::value_type> {});
 }
 
 
@@ -31,7 +32,8 @@ auto FindTheOddNumber(const ArrayType &values) {
  * Given a sorted array in which all elements appear twice (one after one) and one
  * element appears only once. Find that element in O(log n) complexity.
  */
-auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values, const ArrayType::size_type low,
+auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values,
+                                          const ArrayType::size_type low,
                                           const ArrayType::size_type high) {
     if (low == high) {
         return low;
@@ -87,4 +89,5 @@ SIMPLE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, Sample1, SORTED_SAMPLE1);
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestFront, SORTED_SAMPLE1.front(),
             SORTED_SAMPLE1);
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestSample2, 2, SORTED_SAMPLE2);
-SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestBack, SORTED_SAMPLE3.back(), SORTED_SAMPLE3);
+SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestBack, SORTED_SAMPLE3.back(),
+            SORTED_SAMPLE3);

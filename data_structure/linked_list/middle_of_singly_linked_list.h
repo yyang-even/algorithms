@@ -1,8 +1,9 @@
 #pragma once
 
 
-auto GetBeforeMiddle_TwoPointersSTL(const std::forward_list<int>::const_iterator cbefore_begin,
-                                    const std::forward_list<int>::const_iterator cend) {
+auto GetBeforeMiddle_TwoPointersSTL(
+    const std::forward_list<int>::const_iterator cbefore_begin,
+    const std::forward_list<int>::const_iterator cend) {
     auto slow_ptr = cbefore_begin;
     auto fast_ptr = std::next(cbefore_begin);
 

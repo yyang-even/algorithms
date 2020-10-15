@@ -34,7 +34,8 @@ auto KthChild(const n_ary_tree::child_sibling_representation::Node::PointerType 
 
 
 const auto SAMPLE1 = MakeTheSampleTree<n_ary_tree::array_representation::Node>();
-const auto SAMPLE2 = MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
+const auto SAMPLE2 =
+    MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
 
 
 SIMPLE_BENCHMARK(KthChild, Sample1, SAMPLE1, 1, 2);
