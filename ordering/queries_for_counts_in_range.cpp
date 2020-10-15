@@ -74,4 +74,5 @@ SIMPLE_TEST(QueriesForCountsInRange_Sort, TestSAMPLE1, EXPECTED, VALUES, QUERIES
 
 SIMPLE_BENCHMARK(QueriesForCountsInRange_CountingSort, Sample1, VALUES, QUERIES);
 
-SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED, VALUES, QUERIES);
+SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED, VALUES,
+            QUERIES);

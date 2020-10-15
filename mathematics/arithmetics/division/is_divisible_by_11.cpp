@@ -108,7 +108,8 @@ SIMPLE_TEST(isDivisibleBy11, TestSAMPLE5, true, 0);
 const std::vector<bool> EXPECTED_RESULTS = {true, true, false, true};
 
 
-SIMPLE_BENCHMARK(SubstringDivisibilityBy11, Sample1, "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
+SIMPLE_BENCHMARK(SubstringDivisibilityBy11, Sample1, "122164154695",
+std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
 
 SIMPLE_TEST(SubstringDivisibilityBy11, TestLOWER, EXPECTED_RESULTS,
 "122164154695", std::vector<Query> {{0, 3}, {1, 2}, {5, 9}, {0, 11}});
