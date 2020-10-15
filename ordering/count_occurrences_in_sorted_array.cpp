@@ -27,7 +27,8 @@ using ArrayType = std::vector<int>;
  *
  * @highlight   The use of std::equal_range()
  */
-auto CountOccurrencesInSortedArray_STL(const ArrayType &values, const ArrayType::value_type x) {
+auto CountOccurrencesInSortedArray_STL(const ArrayType &values,
+                                       const ArrayType::value_type x) {
     assert(std::is_sorted(values.cbegin(), values.cend()));
 
     const auto lower_upper_pair = std::equal_range(values.cbegin(), values.cend(), x);

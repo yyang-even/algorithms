@@ -11,8 +11,10 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
  */
 auto isBST_Recursive(const BinaryTree::Node::PointerType node,
-                     const BinaryTree::Node::ValueType min = std::numeric_limits<BinaryTree::Node::ValueType>::min(),
-                     const BinaryTree::Node::ValueType max = std::numeric_limits<BinaryTree::Node::ValueType>::max()) {
+                     const BinaryTree::Node::ValueType min =
+                         std::numeric_limits<BinaryTree::Node::ValueType>::min(),
+                     const BinaryTree::Node::ValueType max =
+                         std::numeric_limits<BinaryTree::Node::ValueType>::max()) {
     if (not node) {
         return true;
     }

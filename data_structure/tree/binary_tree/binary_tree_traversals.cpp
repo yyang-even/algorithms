@@ -100,8 +100,9 @@ auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current
  * @reference   Iterative Postorder traversal | Set 3
  *              https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
  */
-auto PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType current_node,
-                                                 BinaryTree::ArrayType &outputs) {
+auto PostorderTraversal_Iterative_OneStack_Count(
+    BinaryTree::Node::PointerType current_node,
+    BinaryTree::ArrayType &outputs) {
     std::stack<std::pair<BinaryTree::Node::PointerType, int>> remaining_node_pairs;
 
     if (current_node) {
@@ -141,8 +142,10 @@ auto PostorderTraversal_Iterative_Hash(const BinaryTree::Node::PointerType root_
     auto current_node = root_node;
     std::unordered_set<BinaryTree::Node *> visited_nodes;
 
-    while (current_node and visited_nodes.find(current_node.get()) == visited_nodes.cend()) {
-        if (current_node->left and visited_nodes.find(current_node->left.get()) == visited_nodes.cend()) {
+    while (current_node and
+           visited_nodes.find(current_node.get()) == visited_nodes.cend()) {
+        if (current_node->left and
+            visited_nodes.find(current_node->left.get()) == visited_nodes.cend()) {
             current_node = current_node->left;
         } else if (current_node->right and
                    visited_nodes.find(current_node->right.get()) == visited_nodes.cend()) {
@@ -162,7 +165,8 @@ auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node
     parent_map.emplace(current_node.get(), nullptr);
 
     while (current_node) {
-        if (current_node->left and parent_map.find(current_node->left.get()) == parent_map.cend()) {
+        if (current_node->left and
+            parent_map.find(current_node->left.get()) == parent_map.cend()) {
             parent_map.emplace(current_node->left.get(), current_node);
             current_node = current_node->left;
         } else if (current_node->right and
@@ -298,7 +302,8 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 
 auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
                                     BinaryTree::ArrayType &outputs) {
-    LevelOrderTraversal_LevelAware_Helper(root_node, [&outputs](const BinaryTree::Node & node) {
+    LevelOrderTraversal_LevelAware_Helper(root_node,
+    [&outputs](const BinaryTree::Node & node) {
         outputs.push_back(node.value);
         return true;
     });
@@ -449,7 +454,8 @@ BinaryTreeTraversalTest(PostorderTraversal_Iterative_TwoStacks, EXPECTED_POSTORD
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack, EXPECTED_POSTORDER);
 
 
-BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count, EXPECTED_POSTORDER);
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count,
+                        EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_Hash, EXPECTED_POSTORDER);
@@ -473,8 +479,10 @@ BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
 
 
-BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive, EXPECTED_REVERSE_LEVELORDER);
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive,
+                        EXPECTED_REVERSE_LEVELORDER);
 
 
-BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative, EXPECTED_REVERSE_LEVELORDER);
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative,
+                        EXPECTED_REVERSE_LEVELORDER);
 #endif

@@ -8,7 +8,8 @@
  * @reference   https://www.geeksforgeeks.org/total-number-divisors-given-number/
  */
 static inline auto CountPrimeFactors(unsigned N,
-const std::function<void(const unsigned prime, const unsigned count)> for_each_prime_factor = {}) {
+                                     const std::function<void(const unsigned prime, const unsigned count)>
+for_each_prime_factor = {}) {
     const auto prime_factors = PrimesBelowN(N + 1);
 
     for (const auto prime : prime_factors) {
