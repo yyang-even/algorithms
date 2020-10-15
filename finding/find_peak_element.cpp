@@ -19,7 +19,8 @@ using ArrayType = std::vector<int>;
  * @reference   Find the maximum element in an array which is first increasing and then decreasing
  *              https://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
  */
-auto FindOnePeakElement(const ArrayType &elements, const ArrayType::const_iterator cbegin,
+auto FindOnePeakElement(const ArrayType &elements,
+                        const ArrayType::const_iterator cbegin,
                         const ArrayType::size_type length) {
     const auto half = length / 2;
     const auto mid = cbegin + half;
