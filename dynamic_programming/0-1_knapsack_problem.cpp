@@ -30,7 +30,8 @@ auto Knapsack01(const ArrayType &weights, const ArrayType &values,
     for (ArrayType::size_type i = 1; i <= weights.size(); ++i) {
         for (ArrayType::value_type capacity = 1; capacity <= W; ++capacity) {
             if (weights[i - 1] <= capacity)
-                max_values[i][capacity] = std::max(values[i - 1] + max_values[i - 1][capacity - weights[i - 1]],
+                max_values[i][capacity] = std::max(values[i - 1] + max_values[i - 1][capacity -
+                                                   weights[i - 1]],
                                                    max_values[i - 1][capacity]);
             else {
                 max_values[i][capacity] = max_values[i - 1][capacity];
@@ -182,7 +183,8 @@ auto FractionalKnapsack01Queries(const ArrayType &weights, const ArrayType &valu
                (rhs.first / static_cast<double>(rhs.second));
     });
 
-    const auto prefix_sums = PrefixSumArray(std::move(items), [](const auto & lhs, const auto & rhs) {
+    const auto prefix_sums = PrefixSumArray(std::move(items), [](const auto & lhs,
+    const auto & rhs) {
         return std::make_pair(lhs.first + rhs.first, lhs.second + rhs.second);
     });
 
@@ -240,33 +242,46 @@ SIMPLE_TEST(Knapsack01, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
 SIMPLE_TEST(Knapsack01, TestSAMPLE4, 9, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
-SIMPLE_BENCHMARK(Knapsack01_SpaceOptimized, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+SIMPLE_BENCHMARK(Knapsack01_SpaceOptimized, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES,
+                 50);
 
-SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE1, 220, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
-SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE2, 11, SAMPLE2_WEIGHT, SAMPLE2_VALUES, 10);
-SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
-SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE4, 9, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
+SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE1, 220, SAMPLE1_WEIGHT, SAMPLE1_VALUES,
+            50);
+SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE2, 11, SAMPLE2_WEIGHT, SAMPLE2_VALUES,
+            10);
+SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES,
+            60);
+SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE4, 9, SAMPLE4_WEIGHT, SAMPLE4_VALUES,
+            7);
 
 
 SIMPLE_BENCHMARK(Knapsack01_OneDimension, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
-SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE1, 220, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
-SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE2, 11, SAMPLE2_WEIGHT, SAMPLE2_VALUES, 10);
-SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
+SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE1, 220, SAMPLE1_WEIGHT, SAMPLE1_VALUES,
+            50);
+SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE2, 11, SAMPLE2_WEIGHT, SAMPLE2_VALUES,
+            10);
+SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES,
+            60);
 SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE4, 9, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
 SIMPLE_BENCHMARK(Knapsack01ItemIndices, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
-SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE1, EXPECTED1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
-SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE2, EXPECTED2, SAMPLE2_WEIGHT, SAMPLE2_VALUES, 10);
-SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE3, EXPECTED3, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
-SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE4, EXPECTED4, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
+SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE1, EXPECTED1, SAMPLE1_WEIGHT,
+            SAMPLE1_VALUES, 50);
+SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE2, EXPECTED2, SAMPLE2_WEIGHT,
+            SAMPLE2_VALUES, 10);
+SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE3, EXPECTED3, SAMPLE3_WEIGHT,
+            SAMPLE3_VALUES, 60);
+SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE4, EXPECTED4, SAMPLE4_WEIGHT,
+            SAMPLE4_VALUES, 7);
 
 
 SIMPLE_BENCHMARK(FractionalKnapsack01, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
-SIMPLE_DOUBLE_TEST(FractionalKnapsack01, TestSAMPLE1, 240, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+SIMPLE_DOUBLE_TEST(FractionalKnapsack01, TestSAMPLE1, 240, SAMPLE1_WEIGHT,
+                   SAMPLE1_VALUES, 50);
 
 
 const ArrayType SAMPLE5_VALUES = {2, 8, 9};

@@ -38,7 +38,8 @@ class ArrayCircularQueue {
     }
 
 public:
-    ArrayCircularQueue(const std::size_t cap = 1024): CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
+    ArrayCircularQueue(const std::size_t cap = 1024):
+        CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
 
     void Enqueue(const ValueType v) {
         assert(size < CAPACITY);
