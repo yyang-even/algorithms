@@ -48,7 +48,8 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 const auto EMPTY_TREE = BinaryTree {} .GetRoot();
 const auto CLONE_SAMPLE1 = CloneBinaryTree(SAMPLE1).GetRoot();
 const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 4).GetRoot();
-const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), SAMPLE1->value).GetRoot();
+const auto SAMPLE3 =
+    BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), SAMPLE1->value).GetRoot();
 
 
 SIMPLE_BENCHMARK(isSameTree, Sample1, SAMPLE1, SAMPLE1);

@@ -27,7 +27,8 @@ auto isFullBinaryTree_Recursive(const BinaryTree::Node::PointerType node) {
     }
 
     if (node_type == BinaryTree::Node::Type::full) {
-        return isFullBinaryTree_Recursive(node->left) and isFullBinaryTree_Recursive(node->right);
+        return isFullBinaryTree_Recursive(node->left) and
+               isFullBinaryTree_Recursive(node->right);
     }
 
     return false;

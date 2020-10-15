@@ -48,7 +48,8 @@ auto BucketSort(ArrayType elements) {
     auto iter = elements.begin();
     for (auto &b : buckets) {
         std::sort(b.begin(), b.end());
-        iter = std::copy(std::make_move_iterator(b.cbegin()), std::make_move_iterator(b.cend()), iter);
+        iter =
+            std::copy(std::make_move_iterator(b.cbegin()), std::make_move_iterator(b.cend()), iter);
     }
 
     return elements;
@@ -82,7 +83,8 @@ auto BucketSort_Mixed(ArrayType elements) {
     auto iter = elements.begin();
     iter = std::transform(std::make_move_iterator(negatives.crbegin()),
                           std::make_move_iterator(negatives.crend()), iter, std::negate<ArrayType::value_type> {});
-    std::copy(std::make_move_iterator(positives.cbegin()), std::make_move_iterator(positives.cend()),
+    std::copy(std::make_move_iterator(positives.cbegin()),
+              std::make_move_iterator(positives.cend()),
               iter);
 
     return elements;
@@ -99,7 +101,8 @@ auto BucketSort_Mixed(ArrayType elements) {
  * how to sort the array in O(n) time.
  */
 auto SortVariableLengthItems_Ints(const std::vector<int> &elements) {
-    return BucketSort_STL(elements, CountDigits_Iterative, [](const auto begin, const auto end) {
+    return BucketSort_STL(elements, CountDigits_Iterative,
+    [](const auto begin, const auto end) {
         const auto sorted = RadixSort(std::vector<int>(begin, end));
         std::copy(sorted.cbegin(), sorted.cend(), begin);
     });

@@ -27,7 +27,8 @@ auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CheckIfOnlyFirstAndLastBitsSet, Sample1, std::numeric_limits<unsigned>::max());
+SIMPLE_BENCHMARK(CheckIfOnlyFirstAndLastBitsSet, Sample1,
+                 std::numeric_limits<unsigned>::max());
 
 SIMPLE_TEST(CheckIfOnlyFirstAndLastBitsSet, TestSample1, true, 1);
 SIMPLE_TEST(CheckIfOnlyFirstAndLastBitsSet, TestSample2, false, 0);
