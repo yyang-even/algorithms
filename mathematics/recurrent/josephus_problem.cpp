@@ -218,7 +218,8 @@ SIMPLE_TEST(JosephusProblem2_Closedform, TestSample2, 3, 5);
 SIMPLE_TEST(JosephusProblem2_Closedform, TestSample3, 5, 10);
 
 
-MUTUAL_RANDOM_TEST(JosephusProblem2_Recursive, JosephusProblem2_Closedform, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(JosephusProblem2_Recursive, JosephusProblem2_Closedform, LOWER,
+                   UPPER);
 
 
 const unsigned LOWER2 = 2;

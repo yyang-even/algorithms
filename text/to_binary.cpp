@@ -31,7 +31,8 @@ auto ToBinaryString_Iterative(const unsigned n) {
  * @reference   Decimal to Binary using recursion and without using power operator
  *              https://www.geeksforgeeks.org/decimal-to-binary-using-recursion-and-without-using-power-operator/
  */
-void ToBinaryString_Recursive_Helper(const unsigned n, const unsigned i, std::string &output) {
+void ToBinaryString_Recursive_Helper(const unsigned n, const unsigned i,
+                                     std::string &output) {
     if (i > 1u) {
         ToBinaryString_Recursive_Helper(n / 2u, i - 1, output);
     }
@@ -68,14 +69,18 @@ constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 SIMPLE_BENCHMARK(ToBinaryString_Iterative, Sample1, UPPER);
 
-SIMPLE_TEST(ToBinaryString_Iterative, TestSample1, std::string(BitsNumber<unsigned>, '0'), LOWER);
-SIMPLE_TEST(ToBinaryString_Iterative, TestSample2, std::string(BitsNumber<unsigned>, '1'), UPPER);
+SIMPLE_TEST(ToBinaryString_Iterative, TestSample1, std::string(BitsNumber<unsigned>,
+            '0'), LOWER);
+SIMPLE_TEST(ToBinaryString_Iterative, TestSample2, std::string(BitsNumber<unsigned>,
+            '1'), UPPER);
 
 
 SIMPLE_BENCHMARK(ToBinaryString_Recursive, Sample1, UPPER);
 
-SIMPLE_TEST(ToBinaryString_Recursive, TestSample1, std::string(BitsNumber<unsigned>, '0'), LOWER);
-SIMPLE_TEST(ToBinaryString_Recursive, TestSample2, std::string(BitsNumber<unsigned>, '1'), UPPER);
+SIMPLE_TEST(ToBinaryString_Recursive, TestSample1, std::string(BitsNumber<unsigned>,
+            '0'), LOWER);
+SIMPLE_TEST(ToBinaryString_Recursive, TestSample2, std::string(BitsNumber<unsigned>,
+            '1'), UPPER);
 
 
 SIMPLE_BENCHMARK(ToBinaryString_Bitset, Sample1, UPPER);
