@@ -44,8 +44,10 @@ protected:
 
         for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
             auto sorted_elements = elements;
-            std::rotate(sorted_elements.begin(), std::next(sorted_elements.begin(), i), sorted_elements.end());
-            EXPECT_EQ_AND_PRINT_INPUTS(minimum_element, FindMinInSortedAndRotatedArray, sorted_elements);
+            std::rotate(sorted_elements.begin(), std::next(sorted_elements.begin(), i),
+                        sorted_elements.end());
+            EXPECT_EQ_AND_PRINT_INPUTS(minimum_element, FindMinInSortedAndRotatedArray,
+                                       sorted_elements);
         }
     }
 };

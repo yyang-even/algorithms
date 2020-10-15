@@ -9,7 +9,8 @@ auto ToDecimal(const std::string &number, const int base,
                const std::function<int(const char)> to_decimal) {
     int power_of_base = 1;
     int decimal_result = 0;
-    for (auto r_iter = number.crbegin(); r_iter != number.crend(); ++r_iter, power_of_base *= base) {
+    for (auto r_iter = number.crbegin(); r_iter != number.crend();
+         ++r_iter, power_of_base *= base) {
         decimal_result += to_decimal(*r_iter) * power_of_base;
     }
 
@@ -62,7 +63,8 @@ auto BinaryToDecimal(const std::string &binary) {
  * @reference   Recursive Program for Binary to Decimal
  *              https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
  */
-int BinaryToDecimal_Recursive(const std::string &binary, const std::string::size_type i = 0) {
+int BinaryToDecimal_Recursive(const std::string &binary,
+                              const std::string::size_type i = 0) {
     if (i == binary.size()) {
         return 0;
     }

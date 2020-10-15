@@ -75,7 +75,8 @@ auto EditDistance_SpaceOptimized(const std::string &str1, const std::string &str
  * @reference   Edit Distance | DP using Memoization
  *              https://www.geeksforgeeks.org/edit-distance-dp-using-memoization/
  */
-unsigned EditDistance_Memoization(const std::string &str1, const std::string::size_type i,
+unsigned EditDistance_Memoization(const std::string &str1,
+                                  const std::string::size_type i,
                                   const std::string &str2, const std::string::size_type j,
                                   TwoDimensionalArrayType &min_distances) {
     if (i == 0) {
@@ -90,7 +91,8 @@ unsigned EditDistance_Memoization(const std::string &str1, const std::string::si
     }
 
     if (str1[i - 1] == str2[j - 1]) {
-        return min_distances[i][j] = EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances);
+        return min_distances[i][j] = EditDistance_Memoization(str1, i - 1, str2, j - 1,
+                                                              min_distances);
     }
 
     return min_distances[i][j] = 1 + std::min(
@@ -109,7 +111,8 @@ auto EditDistance_Memoization(const std::string &str1, const std::string &str2) 
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
  */
-auto areKDistanceApart(const std::string &str1, const std::string &str2, const unsigned K) {
+auto areKDistanceApart(const std::string &str1, const std::string &str2,
+                       const unsigned K) {
     const auto length_diff =
         str1.size() > str2.size() ? str1.size() - str2.size() : str2.size() - str1.size();
     if (length_diff > K) {
@@ -172,7 +175,8 @@ auto areOneDistanceApart(const std::string &str1, const std::string &str2) {
  * Consider a variation of edit distance where we are allowed only two operations insert
  * and delete, find edit distance in this variation.
  */
-auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1, const std::string &str2) {
+auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
+                                         const std::string &str2) {
     const auto LCS = LongestCommonSubsequence(str1, str2);
     return (str1.size() - LCS) + (str2.size() - LCS);
 }
