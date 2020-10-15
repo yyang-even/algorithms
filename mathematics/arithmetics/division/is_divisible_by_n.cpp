@@ -18,7 +18,8 @@ auto stateTransitionTable(const unsigned N) {
     return table;
 }
 
-auto isDivisibleByN_DFALookupTable(const std::vector<unsigned> &stream, const unsigned N) {
+auto isDivisibleByN_DFALookupTable(const std::vector<unsigned> &stream,
+                                   const unsigned N) {
     const auto state_transition_table = stateTransitionTable(N);
     std::vector<bool> outputs;
     unsigned remainder = 0;

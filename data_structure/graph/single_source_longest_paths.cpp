@@ -30,10 +30,13 @@ auto SingleSourceLongestPaths_DAG(const std::size_t number_vertices,
         return true;
     });
 
-    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::min());
+    std::vector<int>
+    distances_from_source(number_vertices, std::numeric_limits<int>::min());
     distances_from_source[source] = 0;
 
-    for (auto iter = topological_order.crbegin(); iter != topological_order.crend(); ++iter) {
+    for (auto iter = topological_order.crbegin();
+         iter != topological_order.crend();
+         ++iter) {
         const auto from = *iter;
         graph.Visit([from, &distances_from_source](const auto & graph) {
             if (distances_from_source[from] != std::numeric_limits<int>::min()) {
@@ -59,17 +62,20 @@ auto SingleSourceLongestPaths_DAG(const std::size_t number_vertices,
  * find the length of the longest directed path in Graph.
  * Note: Length of a directed path is the number of edges in it.
  */
-void LengthOfTheLongestPath_Unweighted_DAG_DFS(const AdjacencyListGraph::RepresentationType &graph,
-                                               const std::size_t source,
-                                               std::vector<bool> &visited_vertices, ArrayType &longest_paths) {
+void LengthOfTheLongestPath_Unweighted_DAG_DFS(
+    const AdjacencyListGraph::RepresentationType &graph,
+    const std::size_t source,
+    std::vector<bool> &visited_vertices, ArrayType &longest_paths) {
     visited_vertices[source] = true;
 
     for (const auto adjacent_vertex : graph.at(source)) {
         if (not visited_vertices[adjacent_vertex]) {
-            LengthOfTheLongestPath_Unweighted_DAG_DFS(graph, adjacent_vertex, visited_vertices, longest_paths);
+            LengthOfTheLongestPath_Unweighted_DAG_DFS(
+                graph, adjacent_vertex, visited_vertices, longest_paths);
         }
 
-        longest_paths[source] = std::max(longest_paths[source], 1 + longest_paths[adjacent_vertex]);
+        longest_paths[source] =
+            std::max(longest_paths[source], 1 + longest_paths[adjacent_vertex]);
     }
 }
 
@@ -79,7 +85,8 @@ auto LengthOfTheLongestPath_Unweighted_DAG_DFS(const std::size_t number_vertices
 
     GraphTraverse(number_vertices, edges,
     [&longest_paths](const auto & graph, const auto source, auto & visited_vertices) {
-        LengthOfTheLongestPath_Unweighted_DAG_DFS(graph, source, visited_vertices, longest_paths);
+        LengthOfTheLongestPath_Unweighted_DAG_DFS(
+            graph, source, visited_vertices, longest_paths);
         return true;
     });
 
