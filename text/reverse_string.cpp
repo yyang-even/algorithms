@@ -49,7 +49,8 @@ auto Reverse(const std::string &input) {
 }
 
 
-void Reverse_Recursive(const std::string::iterator begin, const std::string::iterator last) {
+void Reverse_Recursive(const std::string::iterator begin,
+                       const std::string::iterator last) {
     if (begin < last) {
         std::iter_swap(begin, last);
         Reverse_Recursive(begin + 1, last - 1);
@@ -88,7 +89,8 @@ auto Reverse_Stack(std::string input) {
 
 
 auto Reverse_Variable(std::string input) {
-    constexpr auto minus_one = std::numeric_limits<int>::min() / std::numeric_limits<int>::max();
+    constexpr auto minus_one = std::numeric_limits<int>::min() /
+                               std::numeric_limits<int>::max();
 
     for (std::string::size_type i = 0; i < input.size() / 2; ++i) {
         std::swap(input[i], input[input.size() + (minus_one * i) + minus_one]);
