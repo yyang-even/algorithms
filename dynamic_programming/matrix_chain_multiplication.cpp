@@ -7,7 +7,8 @@ using ArrayType = std::vector<unsigned>;
 using TwoDimensionalArrayType =
     std::unordered_map<std::size_t, std::unordered_map<std::size_t, ArrayType::size_type>>;
 
-void ToMatrixChainStringWithParenthesis(const ArrayType::size_type i, const ArrayType::size_type j,
+void ToMatrixChainStringWithParenthesis(const ArrayType::size_type i,
+                                        const ArrayType::size_type j,
                                         TwoDimensionalArrayType &break_points,
                                         std::stringstream &out) {
     if (i == j) {
@@ -45,7 +46,8 @@ auto MatrixChainMultiplication(const ArrayType &dimensions,
     const auto total_chain_size = dimensions.size() - 1;
     ArrayType::value_type min_costs[dimensions.size()][dimensions.size()] = {};
 
-    for (ArrayType::size_type chain_length = 2; chain_length < dimensions.size(); ++chain_length) {
+    for (ArrayType::size_type chain_length = 2; chain_length < dimensions.size();
+         ++chain_length) {
         for (ArrayType::size_type i = 1; i <= dimensions.size() - chain_length; ++i) {
             const auto j = i + chain_length - 1;
             min_costs[i][j] = std::numeric_limits<ArrayType::value_type>::max();
