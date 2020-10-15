@@ -22,10 +22,12 @@ namespace {
  * characters. Note that we can move to any of 8 adjacent characters, but a word should not have
  * multiple instances of the same cell.
  */
-void Boggle(const Trie::Node::PointerType node, const BoardType &board, const int i, const int j,
+void Boggle(const Trie::Node::PointerType node, const BoardType &board, const int i,
+            const int j,
             std::vector<BoolRowType> &visited, std::string &prefix, OutputType &results);
 
-void BoggleHelper(const Trie::Node *node, const BoardType &board, const int i, const int j,
+void BoggleHelper(const Trie::Node *node, const BoardType &board, const int i,
+                  const int j,
                   std::vector<BoolRowType> &visited, std::string &prefix, OutputType &results) {
     assert(node);
 
@@ -38,7 +40,8 @@ void BoggleHelper(const Trie::Node *node, const BoardType &board, const int i, c
     }
 }
 
-void Boggle(const Trie::Node::PointerType node, const BoardType &board, const int i, const int j,
+void Boggle(const Trie::Node::PointerType node, const BoardType &board, const int i,
+            const int j,
             std::vector<BoolRowType> &visited, std::string &prefix, OutputType &results) {
     assert(node);
     assert(i < static_cast<int>(board.size()));
@@ -69,7 +72,8 @@ void Boggle(const Trie::Node::PointerType node, const BoardType &board, const in
 auto Boggle(const ArrayType &keys, const BoardType &board) {
     return BuildTrie(keys).Visit([&keys, &board](const auto & root) {
         std::string prefix;
-        auto visited = std::vector<BoolRowType>(board.size(), BoolRowType(board.front().size(), false));
+        auto visited = std::vector<BoolRowType>(board.size(), BoolRowType(board.front().size(),
+                                                false));
         OutputType results;
 
         for (std::size_t i = 0; i < board.size(); ++i) {
