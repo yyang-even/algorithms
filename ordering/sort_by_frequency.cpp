@@ -39,7 +39,8 @@ auto SortByFrequency(ArrayType elements) {
         }
     }
 
-    std::sort(elements.begin(), elements.end(), [&counter](const auto & lhs, const auto & rhs) {
+    std::sort(elements.begin(), elements.end(),
+    [&counter](const auto & lhs, const auto & rhs) {
         const auto &lhs_index_count_pair = counter.at(lhs);
         const auto &rhs_index_count_pair = counter.at(rhs);
         if (lhs_index_count_pair.second == rhs_index_count_pair.second) {
@@ -59,7 +60,8 @@ auto SortByFrequency(ArrayType elements) {
  */
 auto SortByFrequency_Stable(ArrayType elements) {
     const auto counter = ToFrequencyHashTable(elements);
-    std::stable_sort(elements.begin(), elements.end(), [&counter](const auto & lhs, const auto & rhs) {
+    std::stable_sort(elements.begin(), elements.end(),
+    [&counter](const auto & lhs, const auto & rhs) {
         return counter.at(lhs) > counter.at(rhs);
     });
 

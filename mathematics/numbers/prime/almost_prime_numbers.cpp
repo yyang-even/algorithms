@@ -18,7 +18,8 @@ namespace {
  * The task is to print first n numbers that are k prime.
  */
 auto KAlmostPrimeNumbers_LeastPrimeFactor(const unsigned K, unsigned N) {
-    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(std::numeric_limits<short>::max());
+    const auto smallest_prime_factors =
+        LeastPrimeFactorOfNumbers(std::numeric_limits<short>::max());
 
     std::vector<unsigned> outputs;
     for (unsigned number = 2; N; ++number) {
@@ -33,7 +34,8 @@ auto KAlmostPrimeNumbers_LeastPrimeFactor(const unsigned K, unsigned N) {
 
 
 auto KAlmostPrimeNumbers_Counter(const unsigned K, unsigned N) {
-    const auto prime_factor_counters = SieveOfEratosthenes_Count(std::numeric_limits<short>::max());
+    const auto prime_factor_counters =
+        SieveOfEratosthenes_Count(std::numeric_limits<short>::max());
 
     std::vector<unsigned> outputs;
     for (unsigned number = 2; N; ++number) {
@@ -65,11 +67,13 @@ auto KAlmostPrimeNumbers_Counter(const unsigned K, unsigned N) {
  * Given a number N. The task is to find all such numbers less than N and are a product of exactly two distinct prime numbers.
  */
 auto NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor(const unsigned N) {
-    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(std::numeric_limits<short>::max());
+    const auto smallest_prime_factors =
+        LeastPrimeFactorOfNumbers(std::numeric_limits<short>::max());
 
     std::vector<unsigned> outputs;
     for (unsigned i = 6; i <= N; ++i) {
-        if (PrimeFactorsOfN_Sieve(i, smallest_prime_factors).size() == 2 and not IsPerfectSquare(i)) {
+        if (PrimeFactorsOfN_Sieve(i, smallest_prime_factors).size() == 2 and
+            not IsPerfectSquare(i)) {
             outputs.push_back(i);
         }
     }
@@ -79,7 +83,8 @@ auto NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor(const unsigne
 
 
 auto NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter(const unsigned N) {
-    const auto prime_factor_counters = SieveOfEratosthenes_Count(std::numeric_limits<short>::max());
+    const auto prime_factor_counters =
+        SieveOfEratosthenes_Count(std::numeric_limits<short>::max());
 
     std::vector<unsigned> outputs;
     for (unsigned i = 6; i <= N; ++i) {
@@ -136,15 +141,17 @@ SIMPLE_TEST(KAlmostPrimeNumbers_Counter, TestSAMPLE3, EXPECTED3, 2, 10);
 const std::vector<unsigned> EXPECTED4 = {6, 10, 14, 15, 21, 22, 26, 33, 34, 35, 38, 39, 46};
 
 
-SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, Sample1, 50);
+SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, Sample1,
+                 50);
 
-SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, TestSAMPLE1, EXPECTED4,
-            50);
+SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_LeastPrimeFactor, TestSAMPLE1,
+            EXPECTED4, 50);
 
 
 SIMPLE_BENCHMARK(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, Sample1, 50);
 
-SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, TestSAMPLE1, EXPECTED4, 50);
+SIMPLE_TEST(NumbersLessThanNHaveExactlyTwoDistinctPrimes_Counter, TestSAMPLE1,
+            EXPECTED4, 50);
 
 
 SIMPLE_BENCHMARK(CountOfAlmostPrimesBelowN, Sample1, 21);

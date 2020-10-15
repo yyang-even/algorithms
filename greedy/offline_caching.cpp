@@ -18,11 +18,14 @@ using ArrayType = std::vector<int>;
  * @reference   Advantages and Disadvantages of various Page Replacement algorithms
  *              https://www.geeksforgeeks.org/advantages-and-disadvantages-of-various-page-replacement-algorithms/
  */
-auto FurthestInFuture(const ArrayType &requests, const ArrayType::size_type cache_size) {
+auto FurthestInFuture(const ArrayType &requests,
+                      const ArrayType::size_type cache_size) {
     std::unordered_set<ArrayType::value_type> cache;
 
     unsigned cache_hit = 0;
-    for (auto requests_iter = requests.cbegin(); requests_iter != requests.cend(); ++requests_iter) {
+    for (auto requests_iter = requests.cbegin();
+         requests_iter != requests.cend();
+         ++requests_iter) {
         if (cache.find(*requests_iter) != cache.cend()) {
             ++cache_hit;
         } else {

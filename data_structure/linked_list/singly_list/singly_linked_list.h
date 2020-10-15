@@ -86,7 +86,8 @@ protected:
 
     const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
                                                    const Node::ValueType key) const {
-        return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
+        return (not node or
+                node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 
     std::size_t countSize_RecursiveHelper(const Node::PointerType node) const {
@@ -282,7 +283,8 @@ public:
     }
 
 
-    auto Search_Iterative(const Node::ValueType key, Node::PointerType *prev = nullptr) const {
+    auto Search_Iterative(const Node::ValueType key,
+                          Node::PointerType *prev = nullptr) const {
         auto iter = head;
         while (iter and iter->value != key) {
             if (prev) {
@@ -728,7 +730,9 @@ public:
 
         Node::PointerType *node_x = nullptr;
         Node::PointerType *node_y = nullptr;
-        for (auto current = &head; *current and not(node_x and node_y); current = &((*current)->next)) {
+        for (auto current = &head;
+             *current and not(node_x and node_y);
+             current = &((*current)->next)) {
             if ((*current)->value == x) {
                 node_x = current;
             } else if ((*current)->value == y) {

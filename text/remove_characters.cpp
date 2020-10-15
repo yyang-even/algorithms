@@ -59,7 +59,8 @@ auto RemoveSpaces_Partition(const std::string &input) {
  *
  * @reference   https://www.geeksforgeeks.org/remove-all-occurrences-of-a-character-in-a-string/
  */
-auto RemoveCharactersByKey_Partition(const std::string &input, const std::string::value_type key) {
+auto RemoveCharactersByKey_Partition(const std::string &input,
+                                     const std::string::value_type key) {
     return RemoveCharacters_Partition(input, [key](const auto c) {
         return key != c;
     });
@@ -153,25 +154,31 @@ auto RemoveNonalphabetsCharacters_Partition(const std::string &input) {
 
 SIMPLE_BENCHMARK(RemoveSpaces_TwoPointers, Sample1, "g  eeks   for ge  eeks  ");
 
-SIMPLE_TEST(RemoveSpaces_TwoPointers, TestSAMPLE1, "geeksforgeeeks", "g  eeks   for ge  eeks  ");
+SIMPLE_TEST(RemoveSpaces_TwoPointers, TestSAMPLE1, "geeksforgeeeks",
+            "g  eeks   for ge  eeks  ");
 
 
 SIMPLE_BENCHMARK(RemoveSpaces_StringStream, Sample1, "g  eeks   for ge  eeks  ");
 
-SIMPLE_TEST(RemoveSpaces_StringStream, TestSAMPLE1, "geeksforgeeeks", "g  eeks   for ge  eeks  ");
+SIMPLE_TEST(RemoveSpaces_StringStream, TestSAMPLE1, "geeksforgeeeks",
+            "g  eeks   for ge  eeks  ");
 
 
 SIMPLE_BENCHMARK(RemoveSpaces_Partition, Sample1, "g  eeks   for ge  eeks  ");
 
-SIMPLE_TEST(RemoveSpaces_Partition, TestSAMPLE1, "geeksforgeeeks", "g  eeks   for ge  eeks  ");
+SIMPLE_TEST(RemoveSpaces_Partition, TestSAMPLE1, "geeksforgeeeks",
+            "g  eeks   for ge  eeks  ");
 
 
-SIMPLE_BENCHMARK(RemoveCharactersByKey_Partition, Sample1, "g  eeks   for ge  eeks  ", ' ');
+SIMPLE_BENCHMARK(RemoveCharactersByKey_Partition, Sample1,
+                 "g  eeks   for ge  eeks  ", ' ');
 
 SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE1, "geeksforgeeeks",
             "g  eeks   for ge  eeks  ", ' ');
-SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE2, "gksforgks", "geeksforgeeks", 'e');
-SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE3, "eeksforeeks", "geeksforgeeks", 'g');
+SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE2, "gksforgks",
+            "geeksforgeeks", 'e');
+SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE3, "eeksforeeks",
+            "geeksforgeeks", 'g');
 
 
 SIMPLE_BENCHMARK(RemovePunctuations_Partition, Sample1, "%welcome' to @geeksforgeek<s");
@@ -182,7 +189,8 @@ SIMPLE_TEST(RemovePunctuations_Partition, TestSAMPLE2, "Hello he said and went",
             "Hello!!!, he said ---and went.");
 
 
-SIMPLE_BENCHMARK(RemoveCharactersPresentInTheSecond_Partition, Sample1, "geeksforgeeks", "mask");
+SIMPLE_BENCHMARK(RemoveCharactersPresentInTheSecond_Partition, Sample1,
+                 "geeksforgeeks", "mask");
 
 SIMPLE_TEST(RemoveCharactersPresentInTheSecond_Partition, TestSAMPLE1, "geeforgee",
             "geeksforgeeks", "mask");
@@ -190,18 +198,23 @@ SIMPLE_TEST(RemoveCharactersPresentInTheSecond_Partition, TestSAMPLE1, "geeforge
 
 SIMPLE_BENCHMARK(RemoveCharactersWithEvenFrequency_Partition, Sample1, "aabbbddeeecc");
 
-SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE1, "bbbeee", "aabbbddeeecc");
-SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE2, "zzzweee", "zzzxxweeerr");
+SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE1, "bbbeee",
+            "aabbbddeeecc");
+SIMPLE_TEST(RemoveCharactersWithEvenFrequency_Partition, TestSAMPLE2, "zzzweee",
+            "zzzxxweeerr");
 
 
-SIMPLE_BENCHMARK(RemoveCharactersAppearLessThanK_Partition, Sample1, "geeksforgeeks", 3);
+SIMPLE_BENCHMARK(RemoveCharactersAppearLessThanK_Partition, Sample1,
+                 "geeksforgeeks", 3);
 
 SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE1, "geeksgeeks",
             "geeksforgeeks", 2);
-SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE2, "eeee", "geeksforgeeks", 3);
+SIMPLE_TEST(RemoveCharactersAppearLessThanK_Partition, TestSAMPLE2, "eeee",
+            "geeksforgeeks", 3);
 
 
-SIMPLE_BENCHMARK(RemoveNonalphabetsCharacters_Partition, Sample1, "$Gee*k;s..fo, r'Ge^eks?");
+SIMPLE_BENCHMARK(RemoveNonalphabetsCharacters_Partition, Sample1,
+                 "$Gee*k;s..fo, r'Ge^eks?");
 
 SIMPLE_TEST(RemoveNonalphabetsCharacters_Partition, TestSAMPLE1, "GeeksforGeeks",
             "$Gee*k;s..fo, r'Ge^eks?");

@@ -69,7 +69,8 @@ auto SelectionSort_Stable(ArrayType values) {
 }
 
 
-void SelectionSort_Recursive(const ArrayType::iterator begin, const ArrayType::iterator end) {
+void SelectionSort_Recursive(const ArrayType::iterator begin,
+                             const ArrayType::iterator end) {
     if (begin != end) {
         std::iter_swap(begin, std::min_element(begin, end));
         SelectionSort_Recursive(std::next(begin), end);
@@ -92,7 +93,8 @@ auto SelectionSort_MinMax(ArrayType values) {
         for (; isThereMoreThanOneElements(left, right); ++left) {
             const auto min_max_pair = std::minmax_element(left, right);
             std::iter_swap(min_max_pair.first, left);
-            std::iter_swap(min_max_pair.second == left ? min_max_pair.first : min_max_pair.second, --right);
+            std::iter_swap(min_max_pair.second == left ? min_max_pair.first : min_max_pair.second,
+                           --right);
         }
     }
 
@@ -122,7 +124,8 @@ void SelectionSort_SinglyList_Helper(std::forward_list<ArrayType::value_type> &l
     l.splice_after(cbefore_begin, l, cbefore_min);
 }
 
-auto SelectionSort_SinglyList_Iterative(std::forward_list<ArrayType::value_type> values) {
+auto SelectionSort_SinglyList_Iterative(
+    std::forward_list<ArrayType::value_type> values) {
     auto iter = values.cbegin();
     for (auto cbefore_iter = values.cbefore_begin(); iter != values.cend();
          iter = std::next(cbefore_iter)) {
@@ -147,7 +150,8 @@ void SelectionSort_SinglyList_Recursive(std::forward_list<ArrayType::value_type>
     }
 }
 
-auto SelectionSort_SinglyList_Recursive(std::forward_list<ArrayType::value_type> values) {
+auto SelectionSort_SinglyList_Recursive(
+    std::forward_list<ArrayType::value_type> values) {
     SelectionSort_SinglyList_Recursive(values, values.cbefore_begin());
     return values;
 }

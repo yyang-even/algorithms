@@ -69,12 +69,14 @@ auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
  * @reference   Block swap algorithm for array rotation
  *              https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
  */
-void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2, ArrayType::size_type n) {
+void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2,
+               ArrayType::size_type n) {
     while (n--) {
         std::iter_swap(begin1++, begin2++);
     }
 }
-void LeftRotate_BlockSwap_Recursive(const ArrayType::iterator begin, const ArrayType::size_type d,
+void LeftRotate_BlockSwap_Recursive(const ArrayType::iterator begin,
+                                    const ArrayType::size_type d,
                                     const ArrayType::size_type n) {
     if (d == 0 or d == n) {
         return;
@@ -177,7 +179,8 @@ auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
  */
 auto LeftRotate_SinglyList(std::forward_list<int> elements,
                            const std::forward_list<int>::size_type k) {
-    return SublistLeftRotate_SinglyList(elements, elements.cbefore_begin(), elements.cend(), k);
+    return SublistLeftRotate_SinglyList(
+               elements, elements.cbefore_begin(), elements.cend(), k);
 }
 
 
@@ -267,13 +270,15 @@ SIMPLE_TEST(LeftRotate_GCD, TestSample2, ExpectedArray2, SampleArray2, 3);
 SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Recursive, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample2, ExpectedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample2, ExpectedArray2,
+            SampleArray2, 3);
 
 
 SIMPLE_BENCHMARK(LeftRotate_BlockSwap_Iterative, Sample1, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample2, ExpectedArray2, SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample2, ExpectedArray2,
+            SampleArray2, 3);
 
 
 SIMPLE_BENCHMARK(LeftRotate_Reversal, Sample1, SampleArray2, 3);
@@ -322,9 +327,11 @@ const std::vector<ArrayType> ExpectedMultiple5 = {{3, 5, 7, 9, 1},
 
 SIMPLE_BENCHMARK(MultipleLeftRotate_2n, Sample1, SampleArray5, SampleQuery5);
 
-SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
+SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5,
+            SampleArray5, SampleQuery5);
 
 
 SIMPLE_BENCHMARK(MultipleLeftRotate_n, Sample1, SampleArray5, SampleQuery5);
 
-SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
+SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5,
+            SampleArray5, SampleQuery5);
