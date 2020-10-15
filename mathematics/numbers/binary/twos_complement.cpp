@@ -82,7 +82,8 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-MUTUAL_RANDOM_TEST(TwosComplement_ByOnesComplement, TwosComplement_ByMinusOperator, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(TwosComplement_ByOnesComplement, TwosComplement_ByMinusOperator,
+                   LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(OnesComplement, Sample1, "0111");

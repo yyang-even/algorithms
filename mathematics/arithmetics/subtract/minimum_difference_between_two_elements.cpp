@@ -4,7 +4,8 @@
 namespace {
 
 using ArrayType = std::vector<int>;
-using PairArrayType = std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>>;
+using PairArrayType =
+    std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>>;
 
 /** Find minimum difference between any two elements
  *

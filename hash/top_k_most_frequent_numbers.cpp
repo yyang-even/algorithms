@@ -16,7 +16,8 @@ using ArrayType = std::vector<int>;
  * We basically need to print top k numbers sorted by frequency when input stream has included
  * k distinct elements, else need to print all distinct elements sorted by frequency.
  */
-auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType::size_type K) {
+auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream,
+                                        const ArrayType::size_type K) {
     assert(K);
 
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> frequency_map;
@@ -58,7 +59,8 @@ auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType
  * numbers should be displayed in decreasing order of their frequencies. It is assumed
  * that the array consists of k numbers with most occurrences.
  */
-auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size_type K) {
+auto FindTopKMostFrequentNumbers(const ArrayType &numbers,
+                                 const ArrayType::size_type K) {
     assert(K);
 
     const auto frequency_map = ToFrequencyHashTable(numbers);
@@ -71,7 +73,8 @@ auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size
     const auto compare_function = [](const auto & lhs, const auto & rhs) {
         return lhs->second == rhs->second ? lhs->first > rhs->first : lhs->second > rhs->second;
     };
-    const auto kth = std::next(number_frequency_array.begin(), std::min(frequency_map.size(), K));
+    const auto kth = std::next(number_frequency_array.begin(),
+                               std::min(frequency_map.size(), K));
     std::partial_sort(number_frequency_array.begin(), kth, number_frequency_array.end(),
                       compare_function);
 
