@@ -78,7 +78,8 @@ auto RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
  *      increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
  */
-auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const RangeArray &ranges) {
+auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
+                               const RangeArray &ranges) {
     const auto prefix_sums = RangesOfAdditions(size, 100, ranges);
     return *std::max_element(prefix_sums.cbegin(), prefix_sums.cend());
 }
