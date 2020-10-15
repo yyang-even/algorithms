@@ -35,7 +35,8 @@ inline static auto CountingSort(const std::vector<int> &values, const std::size_
  *              https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
  */
 template <typename ArrayType, typename ToIndexFunc>
-static inline auto CountingSort_STL(const ArrayType &values, const ToIndexFunc to_index) {
+static inline auto CountingSort_STL(const ArrayType &values,
+                                    const ToIndexFunc to_index) {
     if (values.empty()) {
         return values;
     }

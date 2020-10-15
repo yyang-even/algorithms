@@ -69,9 +69,15 @@ const ArrayType SAMPLE6 = {2, 3, 3, 4, 4, 5};
 
 SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, Sample1, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::make_pair(7u, 9u), SAMPLE1);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u), SAMPLE2);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::make_pair(100u, 5000u), SAMPLE3);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::make_pair(10u, 20u), SAMPLE4);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::make_pair(7u, 5u), SAMPLE5);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample6, std::make_pair(5u, 2u), SAMPLE6);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::make_pair(7u, 9u),
+            SAMPLE1);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u),
+            SAMPLE2);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::make_pair(100u, 5000u),
+            SAMPLE3);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::make_pair(10u, 20u),
+            SAMPLE4);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::make_pair(7u, 5u),
+            SAMPLE5);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample6, std::make_pair(5u, 2u),
+            SAMPLE6);

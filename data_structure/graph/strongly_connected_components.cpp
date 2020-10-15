@@ -42,7 +42,8 @@ auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
             ArrayType one_strongly_connected_component;
             transpose.Visit(
             [source, &visited_vertices, &one_strongly_connected_component](const auto & graph) {
-                DepthFirstSearch_Recursive(graph, source, visited_vertices, one_strongly_connected_component);
+                DepthFirstSearch_Recursive(
+                    graph, source, visited_vertices, one_strongly_connected_component);
             });
 
             strongly_connected_components.push_back(std::move(one_strongly_connected_component));
@@ -109,7 +110,8 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
  * @reference   Check if a directed graph is connected or not
  *              https://www.geeksforgeeks.org/check-if-a-directed-graph-is-connected-or-not/
  */
-auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+auto isConnected(const std::size_t number_vertices,
+                 const DirectedEdgeArrayType &edges) {
     const auto graph = AdjacencyListGraph{number_vertices, edges};
 
     ArrayType to_be_ignored;
@@ -128,7 +130,8 @@ auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType 
     });
 
     for (std::size_t i = 0; i < number_vertices; ++i) {
-        if (not visited_vertices_correct_direction[i] and not visited_vertices_reverse_direction[i]) {
+        if (not visited_vertices_correct_direction[i] and
+            not visited_vertices_reverse_direction[i]) {
             return false;
         }
     }

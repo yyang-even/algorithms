@@ -17,7 +17,8 @@ auto BeforeLowerBound(const std::forward_list<int>::const_iterator cbefore_begin
 
 auto BeforeLowerBound(const std::forward_list<int> &sorted_list,
                       const std::forward_list<int>::value_type n) {
-    return BeforeLowerBound(sorted_list.cbefore_begin(), sorted_list.cbegin(), sorted_list.cend(), n);
+    return BeforeLowerBound(sorted_list.cbefore_begin(), sorted_list.cbegin(),
+                            sorted_list.cend(), n);
 }
 
 
