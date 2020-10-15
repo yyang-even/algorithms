@@ -18,9 +18,11 @@ LargeInteger MultiplyLargeIntegers(const LargeInteger &a, const LargeInteger &b)
 
 
 SIMPLE_BENCHMARK(AddLargeIntegers, Sample1, LargeInteger("0"), LargeInteger("0"));
-SIMPLE_BENCHMARK(AddLargeIntegers, Sample2, LargeInteger("0"), LargeInteger("10000000"));
+SIMPLE_BENCHMARK(AddLargeIntegers, Sample2, LargeInteger("0"),
+                 LargeInteger("10000000"));
 
-SIMPLE_TEST(AddLargeIntegers, TestSAMPLE1, LargeInteger("0"), LargeInteger("0"), LargeInteger("0"));
+SIMPLE_TEST(AddLargeIntegers, TestSAMPLE1, LargeInteger("0"), LargeInteger("0"),
+            LargeInteger("0"));
 SIMPLE_TEST(AddLargeIntegers, TestSAMPLE2, LargeInteger("17"), LargeInteger("8"),
             LargeInteger("9"));
 SIMPLE_TEST(AddLargeIntegers, TestSAMPLE3, LargeInteger("210"), LargeInteger("10"),
@@ -30,14 +32,17 @@ SIMPLE_TEST(AddLargeIntegers, TestSAMPLE4, LargeInteger("1000000000000000"),
 
 
 SIMPLE_BENCHMARK(MultiplyLargeIntegers, Sample1, LargeInteger("0"), LargeInteger("0"));
-SIMPLE_BENCHMARK(MultiplyLargeIntegers, Sample2, LargeInteger("1"), LargeInteger("10000000"));
-SIMPLE_BENCHMARK(MultiplyLargeIntegers, Sample3, LargeInteger("18"), LargeInteger("10000000"));
+SIMPLE_BENCHMARK(MultiplyLargeIntegers, Sample2, LargeInteger("1"),
+                 LargeInteger("10000000"));
+SIMPLE_BENCHMARK(MultiplyLargeIntegers, Sample3, LargeInteger("18"),
+                 LargeInteger("10000000"));
 
 SIMPLE_TEST(MultiplyLargeIntegers, TestSAMPLE1, LargeInteger("0"), LargeInteger("0"),
             LargeInteger("0"));
 SIMPLE_TEST(MultiplyLargeIntegers, TestSAMPLE2, LargeInteger("72"), LargeInteger("8"),
             LargeInteger("9"));
-SIMPLE_TEST(MultiplyLargeIntegers, TestSAMPLE3, LargeInteger("2000"), LargeInteger("10"),
+SIMPLE_TEST(MultiplyLargeIntegers, TestSAMPLE3, LargeInteger("2000"),
+            LargeInteger("10"),
             LargeInteger("200"));
 SIMPLE_TEST(MultiplyLargeIntegers, TestSAMPLE4, LargeInteger("999999999999999"),
             LargeInteger("999999999999999"), LargeInteger("1"));

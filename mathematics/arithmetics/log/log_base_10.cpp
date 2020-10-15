@@ -19,7 +19,8 @@ InputType LogBase10(const InputType num) {
         1000000, 10000000, 100000000, 1000000000
     };
 
-    const auto t = (LogBase2_LookupTable(num) + 1) * 1233 >> 12; //log10(v) = log2(v) / log2(10)
+    const auto t = (LogBase2_LookupTable(num) + 1) * 1233 >>
+                   12; //log10(v) = log2(v) / log2(10)
     return t - (num < PowersOf10[t]);
 }
 
