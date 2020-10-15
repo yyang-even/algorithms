@@ -256,7 +256,8 @@ public:
 
         const auto right_child_index = right(i);
         if (compare(values[i], values[left_child_index]) and
-            (right_child_index >= values.size() or compare(values[i], values[right_child_index])) and
+            (right_child_index >= values.size() or
+             compare(values[i], values[right_child_index])) and
             isHeap_Recursive(values, left_child_index) and
             isHeap_Recursive(values, right_child_index)) {
             return true;

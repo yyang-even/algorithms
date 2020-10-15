@@ -125,21 +125,24 @@ constexpr auto UPPER = std::numeric_limits<uint16_t>::max();
 SIMPLE_BENCHMARK(MortonNumber, Sample1, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER, UPPER);
+SIMPLE_TEST(MortonNumber, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER,
+            UPPER);
 SIMPLE_TEST(MortonNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
 SIMPLE_BENCHMARK(MortonNumber_Lookup, Sample1, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber_Lookup, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber_Lookup, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER, UPPER);
+SIMPLE_TEST(MortonNumber_Lookup, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER,
+            UPPER);
 SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_Lookup, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 
 SIMPLE_BENCHMARK(MortonNumber_Multiply, Sample1, 0b101, 0b1110);
 
 SIMPLE_TEST(MortonNumber_Multiply, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber_Multiply, TestUPPER, std::numeric_limits<unsigned short>::max(),
+SIMPLE_TEST(MortonNumber_Multiply, TestUPPER,
+            std::numeric_limits<unsigned short>::max(),
             std::numeric_limits<unsigned char>::max(), std::numeric_limits<unsigned char>::max());
 SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
@@ -147,7 +150,8 @@ SIMPLE_TEST(MortonNumber_Multiply, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);
 SIMPLE_BENCHMARK(MortonNumber_MagicNumber, Sample1, LOWER, UPPER);
 
 SIMPLE_TEST(MortonNumber_MagicNumber, TestLOWER, 0u, LOWER, LOWER);
-SIMPLE_TEST(MortonNumber_MagicNumber, TestUPPER, std::numeric_limits<uint32_t>::max(), UPPER,
+SIMPLE_TEST(MortonNumber_MagicNumber, TestUPPER, std::numeric_limits<uint32_t>::max(),
+            UPPER,
             UPPER);
 SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE1, 0b10111001u, 0b101, 0b1110);
 SIMPLE_TEST(MortonNumber_MagicNumber, TestSAMPLE2, 0b01110110u, 0b1110, 0b101);

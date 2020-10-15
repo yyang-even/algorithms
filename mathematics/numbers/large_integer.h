@@ -160,7 +160,8 @@ public:
 
 private:
 
-    static void addDigits(unsigned char &add_to, const unsigned char addend, unsigned char &carry) {
+    static void addDigits(unsigned char &add_to, const unsigned char addend,
+                          unsigned char &carry) {
         add_to += (addend + carry);
         if (add_to >= 10) {
             add_to -= 10;
