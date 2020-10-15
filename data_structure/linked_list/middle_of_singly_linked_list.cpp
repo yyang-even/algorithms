@@ -112,10 +112,12 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSample, SAMPLE_ARRAY);
 
 SIMPLE_BENCHMARK(testGetBeforeMiddle_TwoPointersSTL, Sample1, SAMPLE_ARRAY);
 
-MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle, SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle,
+                   SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestEven, EVEN_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestOdd, ODD_ARRAY);
-MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample, SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample,
+                   SAMPLE_ARRAY);
 
 
 SIMPLE_BENCHMARK(GetMiddle_Recursive, Sample1, SAMPLE_ARRAY);

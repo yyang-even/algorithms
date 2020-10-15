@@ -28,7 +28,8 @@ auto DeleteWithKey_Singly(std::forward_list<int> single_list,
  * @reference   Delete all occurrences of a given key in a doubly linked list
  *              https://www.geeksforgeeks.org/delete-occurrences-given-key-doubly-linked-list/
  */
-auto DeleteWithKey_Doubly(std::list<int> doubly_list, const std::list<int>::value_type key) {
+auto DeleteWithKey_Doubly(std::list<int> doubly_list,
+                          const std::list<int>::value_type key) {
     for (auto iter = doubly_list.cbegin(); iter != doubly_list.cend();) {
         if (*iter == key) {
             iter = doubly_list.erase(iter);
@@ -127,7 +128,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
 const std::forward_list<int> SAMPLE_SINGLY_LIST = {2, 2, 1, 8, 2, 3, 2, 7};
 
 
-SIMPLE_BENCHMARK(testDeleteWithKey, Sample1, SAMPLE_SINGLY_LIST, 2, &DeleteWithKey_Singly);
+SIMPLE_BENCHMARK(testDeleteWithKey, Sample1, SAMPLE_SINGLY_LIST, 2,
+                 &DeleteWithKey_Singly);
 
 SIMPLE_TEST(testDeleteWithKey, TestSinglySample1, true, SAMPLE_SINGLY_LIST, 2,
             &DeleteWithKey_Singly);
@@ -140,7 +142,8 @@ SIMPLE_TEST(testDeleteWithKey, TestSinglySample3, true, SAMPLE_SINGLY_LIST, 7,
 const std::list<int> SAMPLE_DOUBLY_LIST = {2, 2, 1, 8, 2, 3, 2, 7};
 
 
-SIMPLE_BENCHMARK(testDeleteWithKey, Sample2, SAMPLE_DOUBLY_LIST, 2, &DeleteWithKey_Doubly);
+SIMPLE_BENCHMARK(testDeleteWithKey, Sample2, SAMPLE_DOUBLY_LIST, 2,
+                 &DeleteWithKey_Doubly);
 
 SIMPLE_TEST(testDeleteWithKey, TestDoublySample1, true, SAMPLE_DOUBLY_LIST, 2,
             &DeleteWithKey_Doubly);

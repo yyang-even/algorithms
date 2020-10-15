@@ -14,7 +14,8 @@ inline auto IsKSorted(const ArrayType &values, const ArrayType::difference_type 
 
     for (ArrayType::size_type i = 0; i < values.size(); ++i) {
         const auto iter = std::lower_bound(sorted.cbegin(), sorted.cend(), values[i]);
-        if (K < abs(std::distance(sorted.cbegin(), iter) - static_cast<ArrayType::difference_type>(i))) {
+        if (K < abs(std::distance(sorted.cbegin(),
+                                  iter) - static_cast<ArrayType::difference_type>(i))) {
             return false;
         }
     }

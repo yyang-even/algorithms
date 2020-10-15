@@ -22,7 +22,8 @@ auto SortByLengths(ArrayType strings) {
 
 
 auto SortByLengths_Stable(ArrayType strings) {
-    std::stable_sort(strings.begin(), strings.end(), [](const auto & lhs, const auto & rhs) {
+    std::stable_sort(strings.begin(), strings.end(), [](const auto & lhs,
+    const auto & rhs) {
         return lhs.length() < rhs.length();
     });
 

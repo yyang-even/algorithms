@@ -183,7 +183,8 @@ class OneArrayTwoStacks {
     int top2;
 
 public:
-    OneArrayTwoStacks(const std::size_t cap = 2048) : CAPACITY(cap), buffer(cap, 0), top2(cap) {}
+    OneArrayTwoStacks(const std::size_t cap = 2048) : CAPACITY(cap), buffer(cap, 0),
+        top2(cap) {}
 
     void Push1(const ValueType v) {
         assert(top1 < top2 - 1);

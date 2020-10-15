@@ -42,7 +42,8 @@ auto DetectCycle_DFS(const std::size_t number_vertices,
     bool result = false;
 
     GraphTraverse(number_vertices, edges,
-    [&in_stack_vertices, &result](const auto & graph, const auto source, auto & visited_vertices) {
+                  [&in_stack_vertices, &result](const auto & graph, const auto source,
+    auto & visited_vertices) {
         result = DetectCycle_DFS(graph, source, visited_vertices, in_stack_vertices);
         return not result;
     });
@@ -153,7 +154,8 @@ auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
  * and print all the nodes that are involved in any of the cycles. If there is no cycle in the graph
  * then print -1.
  */
-auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType &graph) {
+auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType
+                                    &graph) {
     auto degrees = OutDegrees(graph);
 
     std::vector<bool> visited_vertices(graph.size(), false);
@@ -191,7 +193,8 @@ auto DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType
 
 auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
                                     const UndirectedEdgeArrayType &edges) {
-    return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(DetectCycle_Undirected_Degrees));
+    return AdjacencyListGraph(number_vertices,
+                              edges).Visit(ToLambda(DetectCycle_Undirected_Degrees));
 }
 
 }//namespace
