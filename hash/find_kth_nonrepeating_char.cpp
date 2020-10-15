@@ -32,7 +32,8 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
         }
     }
 
-    std::nth_element(nonrepeating_char_indice.begin(), nonrepeating_char_indice.begin() + K - 1,
+    std::nth_element(nonrepeating_char_indice.begin(),
+                     nonrepeating_char_indice.begin() + K - 1,
                      nonrepeating_char_indice.end());
 
     return input[nonrepeating_char_indice[K - 1]];

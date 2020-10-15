@@ -101,5 +101,7 @@ SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE2, EXPECTED2, SAM
 
 SIMPLE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, Sample1, SAMPLE1);
 
-SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
-SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
+SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
+            SAMPLE1);
+SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(),
+            SAMPLE2);

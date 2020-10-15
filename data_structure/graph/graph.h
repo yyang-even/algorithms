@@ -19,7 +19,9 @@ struct UndirectedEdge {
     std::size_t v;
     int weight;
 
-    UndirectedEdge(const std::size_t source, const std::size_t destination, const int w = 0) :
+    UndirectedEdge(const std::size_t source,
+                   const std::size_t destination,
+                   const int w = 0) :
         u(source), v(destination), weight(w) {}
 };
 
@@ -157,7 +159,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    WeightedAdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+    WeightedAdjacencyListGraph(const std::size_t number_vertices,
+                               const EdgeArrayType &edges):
         WeightedAdjacencyListGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -203,7 +206,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    WeightedAdjacencyListInGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+    WeightedAdjacencyListInGraph(const std::size_t number_vertices,
+                                 const EdgeArrayType &edges):
         WeightedAdjacencyListInGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -245,7 +249,8 @@ private:
 
 
 template <typename RepresentationType, typename Traverser>
-static inline void GraphTraverseHelper(const RepresentationType &graph, const Traverser traverser) {
+static inline void GraphTraverseHelper(const RepresentationType &graph,
+                                       const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i]) {
@@ -264,7 +269,8 @@ static inline void GraphTraverse(const GraphType &graph, const Traverser travers
 }
 
 template <typename EdgeArrayType, typename Traverser>
-static inline void GraphTraverse(const std::size_t number_vertices, const EdgeArrayType &edges,
+static inline void GraphTraverse(const std::size_t number_vertices,
+                                 const EdgeArrayType &edges,
                                  const Traverser traverser) {
     GraphTraverse(AdjacencyListGraph{number_vertices, edges}, traverser);
 }
