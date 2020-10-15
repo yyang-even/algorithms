@@ -17,10 +17,11 @@
  * @reference   DFS for a n-ary tree (acyclic graph) represented as adjacency list
  *              https://www.geeksforgeeks.org/dfs-n-ary-tree-acyclic-graph-represented-adjacency-list/
  */
-static inline void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
-                                              const std::size_t vertex,
-                                              std::vector<bool> &visited_vertices,
-                                              graph::ArrayType &results) {
+static inline void DepthFirstSearch_Recursive(
+    const AdjacencyListGraph::RepresentationType &graph,
+    const std::size_t vertex,
+    std::vector<bool> &visited_vertices,
+    graph::ArrayType &results) {
     visited_vertices[vertex] = true;
     results.push_back(vertex);
 
