@@ -20,7 +20,8 @@ namespace {
  * graph.
  */
 auto ShortestPaths(const WeightedAdjacencyListInGraph::RepresentationType &graph) {
-    std::vector<std::vector<int>> shortest_paths(graph.size() + 1, std::vector<int>(graph.size(), -1));
+    std::vector<std::vector<int>>
+                               shortest_paths(graph.size() + 1, std::vector<int>(graph.size(), -1));
     shortest_paths[0][0] = 0;
 
     for (std::size_t i = 1; i <= graph.size(); ++i) {
@@ -41,7 +42,8 @@ auto ShortestPaths(const WeightedAdjacencyListInGraph::RepresentationType &graph
     return shortest_paths;
 }
 
-auto MinMeanWeightCycle(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+auto MinMeanWeightCycle(const std::size_t number_vertices,
+                        const DirectedEdgeArrayType &edges) {
     const auto shortest_paths =
         WeightedAdjacencyListInGraph{number_vertices, edges}.Visit(ShortestPaths);
 
