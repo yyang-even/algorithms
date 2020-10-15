@@ -64,7 +64,8 @@ auto isReachable(const std::size_t number_vertices, const DirectedEdgeArrayType 
  * @reference   Number of paths from source to destination in a directed acyclic graph
  *              https://www.geeksforgeeks.org/number-of-paths-from-source-to-destination-in-a-directed-acyclic-graph/
  */
-auto NumberPaths_DAG(const std::size_t number_vertices, const DirectedEdgeArrayType &edges,
+auto NumberPaths_DAG(const std::size_t number_vertices,
+                     const DirectedEdgeArrayType &edges,
                      const std::size_t source, const std::size_t destination) {
     assert(source < number_vertices);
     assert(destination < number_vertices);
@@ -76,7 +77,9 @@ auto NumberPaths_DAG(const std::size_t number_vertices, const DirectedEdgeArrayT
     ArrayType number_of_paths(number_vertices, 0);
     number_of_paths[destination] = 1;
 
-    for (auto iter = topological_order.crbegin(); iter != topological_order.crend(); ++iter) {
+    for (auto iter = topological_order.crbegin();
+         iter != topological_order.crend();
+         ++iter) {
         const auto from = *iter;
         graph.Visit([from, &number_of_paths](const auto & graph) {
             for (const auto &adjacent_vertex : graph[from]) {
