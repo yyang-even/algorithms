@@ -8,6 +8,9 @@
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 10.2.
  *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 4.
+ *
  * @reference   Linked List | Set 1 (Introduction)
  *              https://www.geeksforgeeks.org/linked-list-set-1-introduction/
  * @reference   Linked List | Set 2 (Inserting a node)
