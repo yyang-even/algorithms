@@ -1326,3 +1326,5 @@
 * https://www.geeksforgeeks.org/pattern-searching-using-c-library/
 * https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
 * https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/
+* https://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
+* https://www.geeksforgeeks.org/flatten-a-multi-level-linked-list-set-2-depth-wise/

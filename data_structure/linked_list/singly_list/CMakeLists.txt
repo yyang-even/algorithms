@@ -7,6 +7,9 @@ compile_test(count_size_of_singly_list)
 compile_benchmark(delete_all_singly_list)
 compile_test(delete_all_singly_list)
 
+compile_benchmark(flatten_multilevel_linked_list)
+compile_test(flatten_multilevel_linked_list)
+
 compile_benchmark(get_nth_node)
 compile_test(get_nth_node)
 
