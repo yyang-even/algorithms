@@ -3,6 +3,18 @@
 #include "common_header.h"
 
 
+template<typename Pointer>
+static inline auto CopyToArray(const Pointer head) {
+    std::vector<typename Pointer::element_type::ValueType> array;
+
+    for (auto iter = head; iter; iter = iter->next) {
+        array.push_back(iter->value);
+    }
+
+    return array;
+}
+
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -303,15 +315,7 @@ public:
     }
 
     auto CopyToArray() const {
-        std::vector<Node::ValueType> array;
-        auto iter = head;
-
-        while (iter) {
-            array.push_back(iter->value);
-            iter = iter->next;
-        }
-
-        return array;
+        return ::CopyToArray(head);
     }
 
     Node::ValueType PopHead() {
