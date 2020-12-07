@@ -86,7 +86,8 @@ auto SortDateStrings_Int(const ArrayType &dates) {
     });
 
     ArrayType outputs(dates.size());
-    std::transform(sort_me.cbegin(), sort_me.cend(), outputs.begin(), [](const auto & pair) {
+    std::transform(sort_me.cbegin(), sort_me.cend(), outputs.begin(),
+    [](const auto & pair) {
         return *(pair.second);
     });
 

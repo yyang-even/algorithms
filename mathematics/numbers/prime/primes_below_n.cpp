@@ -52,7 +52,8 @@ auto ProductOfPrimesBetween1ToN(const InputType N) {
 auto ProductOfFirstNPrimes(const InputType N) {
     const auto primes = PrimesBelowN(std::numeric_limits<short>::max());
     assert(N < primes.size());
-    return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
+    return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL,
+                           std::multiplies<InputType> {});
 }
 
 
@@ -88,8 +89,10 @@ auto primesInRange(const InputType low, const InputType high,
 
     std::vector<bool> prime_marks(high - low + 1, true);
     for (const auto prime : base_primes) {
-        for (InputType i = static_cast<InputType>(ceil(static_cast<double>(low) / prime)) * prime;
-             i <= high; i += prime) {
+        for (InputType i =
+                 static_cast<InputType>(ceil(static_cast<double>(low) / prime)) * prime;
+             i <= high;
+             i += prime) {
             prime_marks[i - low] = false;
         }
     }

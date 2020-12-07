@@ -8,6 +8,8 @@ namespace {
 
 /** Stein’s Algorithm for finding GCD
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Problems 31-1.
  * @reference   https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
  *
  * Stein’s algorithm or binary GCD algorithm is an algorithm that computes the
@@ -71,7 +73,9 @@ auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
         return Gcd_Stein_Recursive(a, b >> 1);
     }
 
-    return a > b ? Gcd_Stein_Recursive((a - b) >> 1, b) : Gcd_Stein_Recursive((b - a) >> 1, a);
+    return a > b ?
+           Gcd_Stein_Recursive((a - b) >> 1, b) :
+           Gcd_Stein_Recursive((b - a) >> 1, a);
 }
 
 

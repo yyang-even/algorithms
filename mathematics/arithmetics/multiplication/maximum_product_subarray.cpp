@@ -75,9 +75,12 @@ auto MaximumProductSubarray_TwoWays(const ArrayType &array) {
         return 0;
     }
 
-    const auto forward_product_pair = MaximumProductSubarrayHelper(array.cbegin(), array.cend());
-    const auto backward_product_pair = MaximumProductSubarrayHelper(array.crbegin(), array.crend());
-    const auto max_product = std::max(forward_product_pair.second, backward_product_pair.second);
+    const auto forward_product_pair =
+        MaximumProductSubarrayHelper(array.cbegin(), array.cend());
+    const auto backward_product_pair =
+        MaximumProductSubarrayHelper(array.crbegin(), array.crend());
+    const auto max_product =
+        std::max(forward_product_pair.second, backward_product_pair.second);
 
     return (forward_product_pair.first or backward_product_pair.first) ?
            std::max(0, max_product) : max_product;

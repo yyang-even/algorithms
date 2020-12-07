@@ -41,6 +41,8 @@ public:
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-2.
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 4.
  * @reference   Stack Data Structure (Introduction and Program)
  *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  * @reference   Implement a stack using singly linked list
@@ -183,7 +185,8 @@ class OneArrayTwoStacks {
     int top2;
 
 public:
-    OneArrayTwoStacks(const std::size_t cap = 2048) : CAPACITY(cap), buffer(cap, 0), top2(cap) {}
+    OneArrayTwoStacks(const std::size_t cap = 2048):
+        CAPACITY(cap), buffer(cap, 0), top2(cap) {}
 
     void Push1(const ValueType v) {
         assert(top1 < top2 - 1);

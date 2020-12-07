@@ -3,10 +3,25 @@
 #include "common_header.h"
 
 
+template<typename Pointer>
+static inline auto CopyToArray(const Pointer head) {
+    std::vector<typename Pointer::element_type::ValueType> array;
+
+    for (auto iter = head; iter; iter = iter->next) {
+        array.push_back(iter->value);
+    }
+
+    return array;
+}
+
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 10.2.
+ *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 4.
  *
  * @reference   Linked List | Set 1 (Introduction)
  *              https://www.geeksforgeeks.org/linked-list-set-1-introduction/
@@ -86,7 +101,8 @@ protected:
 
     const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
                                                    const Node::ValueType key) const {
-        return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
+        return (not node or
+                node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 
     std::size_t countSize_RecursiveHelper(const Node::PointerType node) const {
@@ -282,7 +298,8 @@ public:
     }
 
 
-    auto Search_Iterative(const Node::ValueType key, Node::PointerType *prev = nullptr) const {
+    auto Search_Iterative(const Node::ValueType key,
+                          Node::PointerType *prev = nullptr) const {
         auto iter = head;
         while (iter and iter->value != key) {
             if (prev) {
@@ -298,15 +315,7 @@ public:
     }
 
     auto CopyToArray() const {
-        std::vector<Node::ValueType> array;
-        auto iter = head;
-
-        while (iter) {
-            array.push_back(iter->value);
-            iter = iter->next;
-        }
-
-        return array;
+        return ::CopyToArray(head);
     }
 
     Node::ValueType PopHead() {
@@ -728,7 +737,9 @@ public:
 
         Node::PointerType *node_x = nullptr;
         Node::PointerType *node_y = nullptr;
-        for (auto current = &head; *current and not(node_x and node_y); current = &((*current)->next)) {
+        for (auto current = &head;
+             *current and not(node_x and node_y);
+             current = &((*current)->next)) {
             if ((*current)->value == x) {
                 node_x = current;
             } else if ((*current)->value == y) {

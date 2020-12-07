@@ -67,6 +67,9 @@ compile_test(split_into_words)
 compile_benchmark(string_comparison)
 compile_test(string_comparison)
 
+compile_benchmark(string_matching)
+compile_test(string_matching)
+
 compile_benchmark(tail)
 compile_test(tail)
 

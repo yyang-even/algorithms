@@ -151,7 +151,8 @@ inline auto isIntPalindrome_Reverse(const unsigned number) {
 }
 
 
-auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base, unsigned &copy) {
+auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base,
+                                  unsigned &copy) {
     if (number < base) {
         return number == copy % base;
     }
@@ -216,8 +217,10 @@ auto isBinaryPalindrome(const unsigned number) {
     unsigned least_significant = 1;
     unsigned most_significant = 1 << (BitsNumber<decltype(number)> - 1);
 
-    for (; least_significant < most_significant; least_significant <<= 1, most_significant >>= 1)
-        if (static_cast<bool>(number & least_significant) != static_cast<bool>(number & most_significant)) {
+    for (; least_significant < most_significant;
+         least_significant <<= 1, most_significant >>= 1)
+        if (static_cast<bool>(number & least_significant) !=
+            static_cast<bool>(number & most_significant)) {
             return false;
         }
 
@@ -306,7 +309,8 @@ SIMPLE_BENCHMARK(isBinaryPalindrome, Sample1, 0b101);
 
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE1, false, 0b101);
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE2, true, -1);
-SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE3, true, (1 << (BitsNumber<unsigned> - 1)) + 1);
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE3, true,
+            (1 << (BitsNumber<unsigned> - 1)) + 1);
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE4, true,
             (1 << ((BitsNumber<unsigned> / 2) - 1)) + (1 << (BitsNumber<unsigned> / 2)));
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE5, false, 0b1011);

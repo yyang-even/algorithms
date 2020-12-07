@@ -5,6 +5,8 @@ namespace {
 
 /** Modular Exponentiation (Power in Modular Arithmetic)
  *
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 31.6.
  * @reference   https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
  *
  * Given three numbers x, y and p, compute (x^y) % p.
@@ -25,6 +27,10 @@ auto ModularExponentiation(const int x, const unsigned y, const int p) {
 }
 
 
+/**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Exercises 31.6-2.
+ */
 auto ModularExponentiation_Iterative(int x, unsigned y, const int p) {
 
     long results = 1;
@@ -39,7 +45,8 @@ auto ModularExponentiation_Iterative(int x, unsigned y, const int p) {
 }
 
 
-long ModularExponentiation_Recursive_Helper(const int x, const unsigned y, const int p) {
+long ModularExponentiation_Recursive_Helper(const int x, const unsigned y,
+                                            const int p) {
     assert(x % p == x);
 
     if (x == 0) {

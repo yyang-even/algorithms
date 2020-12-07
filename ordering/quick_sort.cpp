@@ -93,7 +93,8 @@ auto partition_Hoare(const ArrayType::iterator begin, const ArrayType::iterator 
     return right;
 }
 
-auto partition_RandomizedHoare(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_RandomizedHoare(const ArrayType::iterator begin,
+                               const ArrayType::iterator end) {
     const auto random_pivot_index = Random_Number(0, end - begin - 1);
     std::iter_swap(begin, begin + random_pivot_index);
     return partition_Hoare(begin, end);
@@ -112,9 +113,11 @@ auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator 
             greater.push_back(std::move(*iter));
         }
     }
-    std::copy(std::make_move_iterator(smaller.begin()), std::make_move_iterator(smaller.end()), begin);
+    std::copy(std::make_move_iterator(smaller.begin()),
+              std::make_move_iterator(smaller.end()), begin);
     *mid = std::move(*pivot);
-    std::copy(std::make_move_iterator(greater.begin()), std::make_move_iterator(greater.end()),
+    std::copy(std::make_move_iterator(greater.begin()),
+              std::make_move_iterator(greater.end()),
               std::next(mid));
 
     return mid;
@@ -252,7 +255,8 @@ auto QuickSortDoublyLinkedList_Sequential(std::list<int> values) {
     result.splice(result.cbegin(), values, values.cbegin());
     const auto &pivot = *result.cbegin();
 
-    const auto divide_point = std::partition(values.begin(), values.end(), [&pivot](const auto & t) {
+    const auto divide_point = std::partition(values.begin(), values.end(),
+    [&pivot](const auto & t) {
         return t < pivot;
     });
 
@@ -278,14 +282,16 @@ auto QuickSortDoublyLinkedList_NaiveAsync(std::list<int> values) {
     result.splice(result.cbegin(), values, values.cbegin());
     const auto &pivot = *result.cbegin();
 
-    const auto divide_point = std::partition(values.begin(), values.end(), [&pivot](const auto & t) {
+    const auto divide_point = std::partition(values.begin(), values.end(),
+    [&pivot](const auto & t) {
         return t < pivot;
     });
 
     std::list<int> lower_part;
     lower_part.splice(lower_part.cend(), values, values.cbegin(), divide_point);
 
-    auto new_lowers = std::async(QuickSortDoublyLinkedList_NaiveAsync, std::move(lower_part));
+    auto new_lowers =
+        std::async(QuickSortDoublyLinkedList_NaiveAsync, std::move(lower_part));
     auto new_highers = QuickSortDoublyLinkedList_NaiveAsync(std::move(values));
 
     result.splice(result.cend(), new_highers);
@@ -331,7 +337,8 @@ auto QuickSort_3Way(ArrayType values) {
 }
 
 
-auto partition_DualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+auto partition_DualPivots(const ArrayType::iterator begin,
+                          const ArrayType::iterator end) {
     const auto smaller_pivot = begin;
     auto smallers_end = std::next(begin);
     auto greaters_begin = std::prev(end);
@@ -356,7 +363,8 @@ auto partition_DualPivots(const ArrayType::iterator begin, const ArrayType::iter
 
     return std::make_pair(smallers_end, greaters_begin);
 }
-void QuickSort_DualPivots(const ArrayType::iterator begin, const ArrayType::iterator end) {
+void QuickSort_DualPivots(const ArrayType::iterator begin,
+                          const ArrayType::iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
         const auto mid_pair = partition_DualPivots(begin, end);
         QuickSort_DualPivots(begin, mid_pair.first);

@@ -80,9 +80,11 @@ SIMPLE_TEST(CountLeadingZeros_Loop, TestUpper, 0u, UPPER);
 
 SIMPLE_BENCHMARK(CountLeadingZeros_BinarySearch, Sample1, 16);
 
-SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
+SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>,
+            LOWER);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE1, 27u, 16);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE2, 26u, 33);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestUpper, 0u, UPPER);
 
-MUTUAL_RANDOM_TEST(CountLeadingZeros_Loop, CountLeadingZeros_BinarySearch, LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountLeadingZeros_Loop, CountLeadingZeros_BinarySearch,
+                   LOWER, UPPER);

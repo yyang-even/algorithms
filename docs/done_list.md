@@ -1315,4 +1315,16 @@
 * https://www.geeksforgeeks.org/lcm-of-given-array-elements/
 * https://www.geeksforgeeks.org/inbuilt-function-calculating-lcm-cpp/
 * https://www.geeksforgeeks.org/stdgcd-c-inbuilt-function-finding-gcd/
-* https://www.geeksforgeeks.org/number-solutions-modular-equations/
+* https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/optimized-naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/c-program-for-naive-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/rabin-karp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/c-program-for-rabin-karp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/finite-automata-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+* https://www.geeksforgeeks.org/pattern-searching-set-5-efficient-constructtion-of-finite-automata/
+* https://www.geeksforgeeks.org/pattern-searching-using-c-library/
+* https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+* https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/
+* https://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
+* https://www.geeksforgeeks.org/flatten-a-multi-level-linked-list-set-2-depth-wise/
