@@ -48,6 +48,8 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
 
 
 /**
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 4.
  * @reference   Detect loop in a linked list
  *              https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
  * @reference   How does Floyd’s slow and fast pointers approach work?

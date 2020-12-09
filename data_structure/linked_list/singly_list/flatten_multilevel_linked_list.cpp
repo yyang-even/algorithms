@@ -70,6 +70,16 @@ MultiLevelNode::PointerType FlattenMultilevelLinkedList_Depthwise(
 }
 
 
+/** List Unflattening
+ *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 4.
+ *
+ * Unflatten the list created by the previous problem and restore the data structure
+ * to its original condition.
+ */
+
+
 auto ToList(const ArrayType &an_array) {
     MultiLevelNode::PointerType head, current;
     for (const auto value : an_array) {
