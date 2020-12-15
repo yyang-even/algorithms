@@ -16,6 +16,8 @@ namespace {
  *              https://www.geeksforgeeks.org/dfs-traversal-of-a-tree-using-recursion/
  * @reference   BFS vs DFS for Binary Tree
  *              https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 5.
  */
 auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
                                  BinaryTree::ArrayType &outputs) {

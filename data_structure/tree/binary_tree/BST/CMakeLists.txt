@@ -18,3 +18,6 @@ compile_test(BST_search)
 
 compile_benchmark(is_BST)
 compile_test(is_BST)
+
+compile_benchmark(lowest_common_ancestor)
+compile_test(lowest_common_ancestor)

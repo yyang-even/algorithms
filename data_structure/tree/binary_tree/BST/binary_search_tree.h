@@ -5,6 +5,9 @@
 
 /** Binary Search Tree
  *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 5.
+ *
  * @reference   How to handle duplicates in Binary Search Tree?
  *              https://www.geeksforgeeks.org/how-to-handle-duplicates-in-binary-search-tree/
  * @reference   Applications of BST
