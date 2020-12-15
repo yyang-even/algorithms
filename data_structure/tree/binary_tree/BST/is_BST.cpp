@@ -28,6 +28,36 @@ auto isBST_Recursive(const BinaryTree::Node::PointerType node,
 }
 
 
+/**
+ * @reference   Iterative approach to check if a Binary Tree is BST or not
+ *              https://www.geeksforgeeks.org/iterative-approach-to-check-if-a-binary-tree-is-bst-or-not/
+ */
+auto isBST_Iterative_Inorder(const BinaryTree::Node::PointerType root) {
+    std::stack<BinaryTree::Node::PointerType> remaining_nodes;
+    BinaryTree::Node::PointerType previous_node;
+
+    for (auto current_node = root;
+         current_node or not remaining_nodes.empty();
+         current_node = current_node->right) {
+        while (current_node) {
+            remaining_nodes.push(current_node);
+            current_node = current_node->left;
+        }
+
+        current_node = remaining_nodes.top();
+        remaining_nodes.pop();
+
+        if (previous_node and current_node->value <= previous_node->value) {
+            return false;
+        }
+
+        previous_node = current_node;
+    }
+
+    return true;
+}
+
+
 /** Check if an array represents Inorder of Binary Search tree or not
  *
  * @reference   https://www.geeksforgeeks.org/check-array-represents-inorder-binary-search-tree-not/
@@ -75,6 +105,14 @@ SIMPLE_BENCHMARK(isBST_Recursive_Inorder, Sample2, SAMPLE2);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE2, false, SAMPLE2);
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE3, false, SAMPLE3);
+
+
+SIMPLE_BENCHMARK(isBST_Iterative_Inorder, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isBST_Iterative_Inorder, Sample2, SAMPLE2);
+
+SIMPLE_TEST(isBST_Iterative_Inorder, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(isBST_Iterative_Inorder, TestSAMPLE2, false, SAMPLE2);
+SIMPLE_TEST(isBST_Iterative_Inorder, TestSAMPLE3, false, SAMPLE3);
 
 
 const BinaryTree::ArrayType ARRAY1 = {19, 23, 25, 30, 45};
