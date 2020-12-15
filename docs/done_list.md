@@ -1329,3 +1329,8 @@
 * https://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
 * https://www.geeksforgeeks.org/flatten-a-multi-level-linked-list-set-2-depth-wise/
 * https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
+* https://www.geeksforgeeks.org/print-path-root-given-node-binary-tree/
+* https://www.geeksforgeeks.org/find-distance-root-given-node-binary-tree/
+* https://www.geeksforgeeks.org/iterative-program-to-find-distance-of-a-node-from-root/
+* https://www.geeksforgeeks.org/get-level-of-a-node-in-a-binary-tree/
+* https://www.geeksforgeeks.org/get-level-node-binary-tree-iterative-approach/
