@@ -60,6 +60,11 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  *
  * Given a binary tree (not a binary search tree) and two values say n1 and n2,
  * write a program to find the least common ancestor.
+ *
+ * @reference   Print the path common to the two paths from the root to the two given nodes
+ *              https://www.geeksforgeeks.org/print-path-common-two-paths-root-two-given-nodes/
+ * @reference   Print common nodes on path from root (or common ancestors)
+ *              https://www.geeksforgeeks.org/print-common-nodes-path-root-common-ancestors/
  */
 auto LowestCommonAncestor_CommonPath(const BinaryTree::Node::PointerType root,
                                      const BinaryTree::Node::ValueType x,
@@ -95,6 +100,12 @@ auto LowestCommonAncestor_SingleTraversal(const BinaryTree::Node::PointerType no
 
     return left_LCA ? left_LCA : right_LCA;
 }
+
+
+/**
+ * @reference   Lowest Common Ancestor in a Binary Tree | Set 2 (Using Parent Pointer)
+ *              https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
+ */
 
 
 template <typename LCA>

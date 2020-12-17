@@ -52,3 +52,9 @@ BinaryTreeSearch_Preorder(const BinaryTree::Node::PointerType node,
 
     return false;
 }
+
+
+/**
+ * @reference   Print Ancestors of a given node in Binary Tree
+ *              https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
+ */

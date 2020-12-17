@@ -39,6 +39,12 @@ auto BinaryTreePath_Preorder(const BinaryTree::Node::PointerType root_node,
 
 
 /**
+ * @reference   Check if two nodes are in same subtree of the root node
+ *              https://www.geeksforgeeks.org/check-if-two-nodes-are-in-same-subtree-of-the-root-node/
+ */
+
+
+/**
  * @reference   Iterative program to find distance of a node from root
  *              https://www.geeksforgeeks.org/iterative-program-to-find-distance-of-a-node-from-root/
  *

@@ -1336,3 +1336,8 @@
 * https://www.geeksforgeeks.org/get-level-node-binary-tree-iterative-approach/
 * https://www.geeksforgeeks.org/iterative-approach-to-check-if-a-binary-tree-is-bst-or-not/
 * https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+* https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
+* https://www.geeksforgeeks.org/print-path-common-two-paths-root-two-given-nodes/
+* https://www.geeksforgeeks.org/print-common-nodes-path-root-common-ancestors/
+* https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
+* https://www.geeksforgeeks.org/check-if-two-nodes-are-in-same-subtree-of-the-root-node/
