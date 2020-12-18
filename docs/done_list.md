@@ -1341,3 +1341,4 @@
 * https://www.geeksforgeeks.org/print-common-nodes-path-root-common-ancestors/
 * https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
 * https://www.geeksforgeeks.org/check-if-two-nodes-are-in-same-subtree-of-the-root-node/
+* https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
