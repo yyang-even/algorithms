@@ -1342,3 +1342,5 @@
 * https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
 * https://www.geeksforgeeks.org/check-if-two-nodes-are-in-same-subtree-of-the-root-node/
 * https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
+* https://www.geeksforgeeks.org/check-if-a-binary-tree-is-subtree-of-another-binary-tree/
+* https://www.geeksforgeeks.org/check-binary-tree-subtree-another-binary-tree-set-2/

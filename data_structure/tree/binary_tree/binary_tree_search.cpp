@@ -7,8 +7,6 @@
 
 namespace {
 
-using ArrayType = std::vector<BinaryTree::Node::ValueType>;
-
 /** Iterative Search for a key ‘x’ in Binary Tree
  *
  * @reference   https://www.geeksforgeeks.org/iterative-search-for-a-key-x-in-binary-tree/
@@ -29,7 +27,7 @@ auto BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
 
 auto BinaryTreePath_Preorder(const BinaryTree::Node::PointerType root_node,
                              const BinaryTree::Node::ValueType x) {
-    ArrayType path;
+    BinaryTree::ArrayType path;
     if (not BinaryTreeSearch_Preorder(root_node, x, &path)) {
         path.clear();
     }
@@ -87,7 +85,7 @@ SIMPLE_TEST(BinaryTreeSearch_Preorder, TestSAMPLE1, true, SAMPLE1, 3);
 SIMPLE_TEST(BinaryTreeSearch_Preorder, TestSAMPLE2, false, SAMPLE1, -1);
 
 
-const ArrayType EXPECTED1 = {1, 2, 5};
+const BinaryTree::ArrayType EXPECTED1 = {1, 2, 5};
 
 
 THE_BENCHMARK(BinaryTreePath_Preorder, SAMPLE1, 5);

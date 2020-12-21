@@ -35,5 +35,8 @@ compile_test(inorder_successor)
 compile_benchmark(is_balanced)
 compile_test(is_balanced)
 
+compile_benchmark(is_subtree)
+compile_test(is_subtree)
+
 compile_benchmark(perfect_binary_tree)
 compile_test(perfect_binary_tree)

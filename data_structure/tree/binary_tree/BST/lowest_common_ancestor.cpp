@@ -6,8 +6,6 @@
 
 namespace {
 
-using ArrayType = std::vector<BinaryTree::Node::ValueType>;
-
 /**
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
@@ -69,11 +67,11 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
 auto LowestCommonAncestor_CommonPath(const BinaryTree::Node::PointerType root,
                                      const BinaryTree::Node::ValueType x,
                                      const BinaryTree::Node::ValueType y) {
-    ArrayType path_x, path_y;
+    BinaryTree::ArrayType path_x, path_y;
     BinaryTreeSearch_Preorder(root, x, &path_x);
     BinaryTreeSearch_Preorder(root, y, &path_y);
 
-    ArrayType::size_type i = 0;
+    BinaryTree::ArrayType::size_type i = 0;
     for (; i < path_x.size() and i < path_y.size(); ++i) {
         if (path_x[i] != path_y[i]) {
             break;
