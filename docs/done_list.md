@@ -1344,3 +1344,6 @@
 * https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
 * https://www.geeksforgeeks.org/check-if-a-binary-tree-is-subtree-of-another-binary-tree/
 * https://www.geeksforgeeks.org/check-binary-tree-subtree-another-binary-tree-set-2/
+* https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+* https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
+* https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/

@@ -21,3 +21,6 @@ compile_test(is_BST)
 
 compile_benchmark(lowest_common_ancestor)
 compile_test(lowest_common_ancestor)
+
+compile_benchmark(to_balanced_BST)
+compile_test(to_balanced_BST)

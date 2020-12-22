@@ -47,7 +47,7 @@ const auto SAMPLE_BINARY_TREE = MakeTheSampleCompleteTree().GetRoot();
 const auto SAMPLE_BST = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(ToBST, Sample1, CloneBinaryTree(SAMPLE_BINARY_TREE).GetRoot());
+THE_BENCHMARK(ToBST, CloneBinaryTree(SAMPLE_BINARY_TREE).GetRoot());
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true,
             SAMPLE_BST, ToBST(CloneBinaryTree(SAMPLE_BINARY_TREE).GetRoot()));
