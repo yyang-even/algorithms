@@ -38,6 +38,16 @@ auto SortedListToBalancedBST(const ListType &sorted_list) {
 
 
 /**
+ * @reference   In-place conversion of Sorted DLL to Balanced BST
+ *              https://www.geeksforgeeks.org/in-place-conversion-of-sorted-dll-to-balanced-bst/
+ *
+ * Given a Doubly Linked List which has data members sorted in ascending order. Construct a
+ * Balanced Binary Search Tree which has same data members as the given Doubly Linked List.
+ * The tree must be constructed in-place (No new node should be allocated for tree conversion)
+ */
+
+
+/**
  * @reference   Sorted Array to Balanced BST
  *              https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
  */

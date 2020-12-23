@@ -1347,3 +1347,7 @@
 * https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
 * https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
 * https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/
+* https://www.geeksforgeeks.org/in-place-conversion-of-sorted-dll-to-balanced-bst/
+* https://www.geeksforgeeks.org/flatten-bst-to-sorted-list-increasing-order/
+* https://www.geeksforgeeks.org/flatten-bst-to-sorted-list-decreasing-order/
+* https://www.geeksforgeeks.org/convert-a-binary-search-tree-into-a-skewed-tree-in-increasing-or-decreasing-order/
