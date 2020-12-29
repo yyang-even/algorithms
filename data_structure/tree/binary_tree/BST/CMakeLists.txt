@@ -16,6 +16,9 @@ compile_test(BST_insert)
 compile_benchmark(BST_search)
 compile_test(BST_search)
 
+compile_benchmark(BST_to_heap)
+compile_test(BST_to_heap)
+
 compile_benchmark(flatten_BST)
 compile_test(flatten_BST)
 

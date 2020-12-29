@@ -1351,3 +1351,7 @@
 * https://www.geeksforgeeks.org/flatten-bst-to-sorted-list-increasing-order/
 * https://www.geeksforgeeks.org/flatten-bst-to-sorted-list-decreasing-order/
 * https://www.geeksforgeeks.org/convert-a-binary-search-tree-into-a-skewed-tree-in-increasing-or-decreasing-order/
+* https://www.geeksforgeeks.org/skewed-binary-tree/
+* https://www.geeksforgeeks.org/convert-bst-min-heap/
+* https://www.geeksforgeeks.org/convert-bst-to-max-heap/
+* https://www.geeksforgeeks.org/in-place-convert-bst-into-a-min-heap/
