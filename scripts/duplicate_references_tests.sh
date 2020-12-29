@@ -1,10 +1,10 @@
 #!/bin/bash
 
 oneTimeSetUp() {
-    THIS_DIR=$(dirname "$0")
-    source "$THIS_DIR/utils.sh"
+    git checkout --quiet master
 
     PROJECT_ROOT_DIR=$(git rev-parse --show-toplevel)
+
     pushd "$PROJECT_ROOT_DIR"
 }
 
@@ -13,7 +13,7 @@ oneTimeTearDown() {
 }
 
 testNumberOfDuplicateReferencesAreExpected() {
-    ALL_REFERENCES=$(GetAllReferenceURLs)
+    ALL_REFERENCES=$(git grep --only-matching -E "[^ ]+://[^ ]+" -- */ | cut -d ":" -f 3-)
 
     actual=$(echo "$ALL_REFERENCES" | sort | uniq -D | wc -l)
 

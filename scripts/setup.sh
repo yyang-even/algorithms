@@ -28,5 +28,5 @@ popd
 
 ../yyLinuxConfig/scripts/setup_ctags_for.sh
 
-./scripts/open_urls.sh docs/done_list.md
+./scripts/open_reference_urls.sh
 QuietRun popd
