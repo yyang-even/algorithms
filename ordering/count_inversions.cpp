@@ -10,6 +10,8 @@ using ArrayType = std::vector<int>;
  * @reference   Count Inversions in an array | Set 1 (Using Merge Sort)
  *              https://www.geeksforgeeks.org/counting-inversions/
  * @reference   https://www.cp.eng.chula.ac.th/~prabhas//teaching/algo/algo2008/count-inv.htm
+ * @reference   C/C++ Program to Count Inversions in an array | Set 1 (Using Merge Sort)
+ *              https://www.geeksforgeeks.org/c-program-for-count-inversions-in-an-array-set-1-using-merge-sort/
  *
  * Inversion Count for an array indicates – how far (or close) the array is from being sorted.
  * If array is already sorted then inversion count is 0. If array is sorted in reverse order

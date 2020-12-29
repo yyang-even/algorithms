@@ -132,6 +132,8 @@ auto MergeSort_O1(ArrayType values) {
 /** Merge Sort for Linked Lists
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-for-linked-list/
+ * @reference   C Program for Merge Sort for Linked Lists
+ *              https://www.geeksforgeeks.org/c-program-for-merge-sort-for-linked-lists/
  */
 void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
     if (not l.empty() and std::next(l.cbegin()) != l.cend()) {

@@ -32,6 +32,12 @@
  *              https://www.geeksforgeeks.org/priority-queue-of-pairs-in-c-ordered-by-first/
  * @reference   Why is Binary Heap Preferred over BST for Priority Queue?
  *              https://www.geeksforgeeks.org/why-is-binary-heap-preferred-over-bst-for-priority-queue/
+ * @reference   Complexity analysis of various operations of Binary Min Heap
+ *              https://www.geeksforgeeks.org/complexity-analysis-of-various-operations-of-binary-min-heap/
+ * @reference   Difference between Min Heap and Max Heap
+ *              https://www.geeksforgeeks.org/difference-between-min-heap-and-max-heap/
+ * @reference   Applications of Heap Data Structure
+ *              https://www.geeksforgeeks.org/applications-of-heap-data-structure/
  */
 /** LFU (Least Frequently Used) Cache Implementation
  *

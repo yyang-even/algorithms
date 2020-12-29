@@ -30,6 +30,10 @@ namespace {
  *
  * @reference   Real-time application of Data Structures
  *              https://www.geeksforgeeks.org/real-time-application-of-data-structures/
+ *
+ * @reference   Six Degrees of Kevin Bacon
+ *              John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 5.
  */
 void BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
                                     const std::size_t source,

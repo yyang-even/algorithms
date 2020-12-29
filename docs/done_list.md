@@ -1355,3 +1355,10 @@
 * https://www.geeksforgeeks.org/convert-bst-min-heap/
 * https://www.geeksforgeeks.org/convert-bst-to-max-heap/
 * https://www.geeksforgeeks.org/in-place-convert-bst-into-a-min-heap/
+* https://www.geeksforgeeks.org/complexity-analysis-of-various-operations-of-binary-min-heap/
+* https://www.geeksforgeeks.org/difference-between-min-heap-and-max-heap/
+* https://www.geeksforgeeks.org/applications-of-heap-data-structure/
+* https://www.geeksforgeeks.org/c-program-to-sort-an-array-in-ascending-order/
+* https://www.geeksforgeeks.org/c-program-for-count-inversions-in-an-array-set-1-using-merge-sort/
+* https://www.geeksforgeeks.org/c-program-for-count-set-bits-in-an-integer/
+* https://www.geeksforgeeks.org/c-program-for-merge-sort-for-linked-lists/

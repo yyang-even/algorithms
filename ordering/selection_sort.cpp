@@ -23,6 +23,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/c-program-for-sorting-dates-using-selection-sort/
  * @reference   C program to sort an array using pointers
  *              https://www.geeksforgeeks.org/c-program-to-sort-an-array-using-pointers/
+ * @reference   C program to sort an array in ascending order
+ *              https://www.geeksforgeeks.org/c-program-to-sort-an-array-in-ascending-order/
  *
  * @complexity: O(n^2)
  */
