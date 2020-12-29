@@ -9,9 +9,10 @@ set -ex
 source ~/.bash_util.sh
 
 THIS_DIR=$(dirname "$0")
+source "$THIS_DIR/utils.sh"
 
 QuietRun pushd "$THIS_DIR"
-PROJECT_ROOT_DIR=$(git rev-parse --show-toplevel)
+PROJECT_ROOT_DIR=$(GetProjectRootDir)
 QuietRun popd
 
 QuietRun pushd "$PROJECT_ROOT_DIR"
@@ -28,5 +29,5 @@ popd
 
 ../yyLinuxConfig/scripts/setup_ctags_for.sh
 
-./scripts/open_urls.sh docs/done_list.md
+./scripts/open_reference_urls.sh
 QuietRun popd

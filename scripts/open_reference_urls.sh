@@ -1,8 +1,11 @@
 #!/bin/bash
 
 #
-# This script opens all the URLs in the given file
+# This script opens all the reference URLs
 #
+
+THIS_DIR=$(dirname "$0")
+source "$THIS_DIR/utils.sh"
 
 _term() {
     echo "Caught SIGTERM signal!"
@@ -23,24 +26,18 @@ OpenUrlAndSleep() {
     sleep $SLEEP_SECONDS
 }
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $(basename $0) <file>"
-    exit 1
-fi
-
 trap _term SIGTERM SIGINT
 
-FILE="$1"
-NUMBER_LINES=$(wc -l "$FILE" | awk '{ print $1 }')
+UNIQUE_REFERENCES=$(GetAllReferenceURLs | sort --unique)
+NUMBER_LINES=$(echo "$UNIQUE_REFERENCES" | wc -l)
 
-echo "Processing URL file: " "$FILE"
-echo "  number of lines: " $NUMBER_LINES
-echo "  estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
+echo "Number of URLs: " $NUMBER_LINES
+echo "Estimated time to finish: " $(($NUMBER_LINES * $SLEEP_SECONDS * 2)) " seconds"
 
-while IFS=" " read -r field1 url; do
+while IFS= read -r url; do
     no_space_url="${url// /}"
     if [ ! -z "$no_space_url" ]; then
         OpenUrlAndSleep "$no_space_url"
         OpenUrlAndSleep "$no_space_url?ref=rp"
     fi
-done < "$FILE"
+done <<< "$UNIQUE_REFERENCES"
