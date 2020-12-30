@@ -1,4 +1,6 @@
-source ~/.bash_util.sh
+QuietRun() {
+    "$@" > /dev/null
+}
 
 GetProjectRootDir() {
     git rev-parse --show-toplevel
