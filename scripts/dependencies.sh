@@ -7,3 +7,5 @@
 echo "Installing dependencies."
 sudo apt-get update
 sudo apt-get --yes install libboost-all-dev
+
+sudo apt-get --yes install shunit2
