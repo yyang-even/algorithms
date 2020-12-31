@@ -13,6 +13,9 @@ namespace {
  * input string is “GeeksforGeeks”, then output should be ‘f’ and if input string is
  * “GeeksQuiz”, then output should be ‘G’.
  *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 6.
+ *
  * @reference   Find the last non repeating character in string
  *              https://www.geeksforgeeks.org/find-the-last-non-repeating-character-in-string/
  */

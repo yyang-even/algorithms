@@ -79,6 +79,8 @@ auto RemovePunctuations_Partition(const std::string &input) {
 /** Remove characters from the first string which are present in the second string
  *
  * @reference   https://www.geeksforgeeks.org/remove-characters-from-the-first-string-which-are-present-in-the-second-string/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 6.
  */
 auto RemoveCharactersPresentInTheSecond_Partition(const std::string &input,
                                                   const std::string &mask) {

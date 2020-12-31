@@ -12,6 +12,8 @@ namespace {
  *
  * @reference   Print words of a string in reverse order
  *              https://www.geeksforgeeks.org/print-words-string-reverse-order/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 6.
  */
 auto ReverseWordsInGivenString(std::string input) {
     auto word_begin = input.begin();
