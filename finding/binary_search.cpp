@@ -31,6 +31,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/binary-search-preferred-ternary-search/
  * @reference   Binary search in sorted vector of pairs
  *              https://www.geeksforgeeks.org/binary-search-sorted-vector-pairs/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 7.
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length, const ArrayType::const_iterator cend,

@@ -1,0 +1,128 @@
+#include "common_header.h"
+
+
+namespace {
+
+using ArrayType = std::unordered_multiset<std::string>;
+
+/** Print all possible combinations of r elements in a given array of size n
+ *
+ * @reference   https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+ *
+ * @reference   Make all combinations of size k
+ *              https://www.geeksforgeeks.org/make-combinations-size-k/
+ *
+ * Given two numbers n and k and you have to find all possible combination of k numbers from 1...n.
+ */
+void CombinationsOfLength_Start(const std::string &elements,
+                                const std::string::size_type length,
+                                const std::string::size_type start,
+                                std::string &one_combination,
+                                ArrayType &results) {
+    assert(length <= elements.size());
+
+    for (auto i = start; i < elements.size(); ++i) {
+        one_combination.push_back(elements[i]);
+        if (one_combination.size() == length) {
+            results.insert(one_combination);
+        } else if (one_combination.size() < length) {
+            CombinationsOfLength_Start(elements, length, i + 1, one_combination, results);
+        }
+        one_combination.pop_back();
+    }
+}
+
+auto CombinationsOfLength_Start(const std::string &elements,
+                                const std::string::size_type length) {
+    std::string one_combination;
+    ArrayType results;
+    CombinationsOfLength_Start(elements, length, 0, one_combination, results);
+
+    return results;
+}
+
+
+void CombinationsOfLength_Include(const std::string &elements,
+                                  const std::string::size_type length,
+                                  const std::string::size_type start,
+                                  std::string &one_combination,
+                                  ArrayType &results) {
+    if (start < elements.size()) {
+        one_combination.push_back(elements[start]);
+        if (one_combination.size() == length) {
+            results.insert(one_combination);
+        } else if (one_combination.size() < length) {
+            CombinationsOfLength_Include(elements, length, start + 1, one_combination, results);
+        }
+        one_combination.pop_back();
+
+        if (one_combination.size() < length) {
+            CombinationsOfLength_Include(elements, length, start + 1, one_combination, results);
+        }
+    }
+}
+
+auto CombinationsOfLength_Include(const std::string &elements,
+                                  const std::string::size_type length) {
+    std::string one_combination;
+    ArrayType results;
+    CombinationsOfLength_Include(elements, length, 0, one_combination, results);
+
+    return results;
+}
+
+
+/** Combinations of a String
+ *
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 7.
+ */
+void AllCombinations(const std::string &elements,
+                     const std::string::size_type start,
+                     std::string &one_combination,
+                     ArrayType &results) {
+    for (auto i = start; i < elements.size(); ++i) {
+        one_combination.push_back(elements[i]);
+        results.insert(one_combination);
+        AllCombinations(elements, i + 1, one_combination, results);
+        one_combination.pop_back();
+    }
+}
+
+auto AllCombinations(const std::string &elements) {
+    std::string one_combination;
+    ArrayType results;
+    AllCombinations(elements, 0, one_combination, results);
+
+    return results;
+}
+
+}//namespace
+
+
+const ArrayType EXPECTED1 = {"a"};
+const ArrayType EXPECTED2 = {"a", "b", "ab"};
+const ArrayType EXPECTED3 = {"w", "x", "y", "z", "wx", "xy", "yz", "wxy", "xyz", "wxyz", "xz", "wxz", "wy", "wyz", "wz"};
+const ArrayType EXPECTED4 = {"wx", "xy", "yz", "xz", "wy", "wz"};
+const ArrayType EXPECTED5 = {"123", "124", "125", "134", "135", "145", "234", "235", "245", "345"};
+
+
+THE_BENCHMARK(CombinationsOfLength_Start, "abcd", 2);
+
+SIMPLE_TEST(CombinationsOfLength_Start, TestSAMPLE1, EXPECTED1, "a", 1);
+SIMPLE_TEST(CombinationsOfLength_Start, TestSAMPLE4, EXPECTED4, "wxyz", 2);
+SIMPLE_TEST(CombinationsOfLength_Start, TestSAMPLE5, EXPECTED5, "12345", 3);
+
+
+THE_BENCHMARK(CombinationsOfLength_Include, "abcd", 2);
+
+SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE1, EXPECTED1, "a", 1);
+SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE4, EXPECTED4, "wxyz", 2);
+SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE5, EXPECTED5, "12345", 3);
+
+
+THE_BENCHMARK(AllCombinations, "abcd");
+
+SIMPLE_TEST(AllCombinations, TestSAMPLE1, EXPECTED1, "a");
+SIMPLE_TEST(AllCombinations, TestSAMPLE2, EXPECTED2, "ab");
+SIMPLE_TEST(AllCombinations, TestSAMPLE3, EXPECTED3, "wxyz");

@@ -1,6 +1,9 @@
 compile_benchmark(binary_conversion_to)
 compile_test(binary_conversion_to)
 
+compile_benchmark(combination)
+compile_test(combination)
+
 compile_benchmark(convert_to_int_array)
 compile_test(convert_to_int_array)
 
