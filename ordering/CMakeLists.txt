@@ -64,6 +64,9 @@ compile_test(merge_sort)
 compile_benchmark(merge_two_sorted_arrays)
 compile_test(merge_two_sorted_arrays)
 
+compile_benchmark(pancake_sort)
+compile_test(pancake_sort)
+
 compile_benchmark(partition)
 compile_test(partition)
 
