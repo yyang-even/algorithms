@@ -60,6 +60,8 @@ auto SelectionSort_Concise(ArrayType values) {
 /**
  * @reference   Stable Selection Sort
  *              https://www.geeksforgeeks.org/stable-selection-sort/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 8.
  */
 auto SelectionSort_Stable(ArrayType values) {
     for (auto i = values.begin(); i != values.end(); ++i) {

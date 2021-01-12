@@ -40,6 +40,9 @@ compile_test(k_closest_numbers_to_median)
 compile_benchmark(k_largest_or_smallest_elements)
 compile_test(k_largest_or_smallest_elements)
 
+compile_benchmark(make_a_sort_stable)
+compile_test(make_a_sort_stable)
+
 compile_benchmark(maximum_of_all_subarrays_of_size_k)
 compile_test(maximum_of_all_subarrays_of_size_k)
 

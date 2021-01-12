@@ -61,6 +61,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/time-complexities-of-all-sorting-algorithms/
  * @reference   Asymptotic Analysis and comparison of sorting algorithms
  *              https://www.geeksforgeeks.org/asymptotic-analysis-comparison-sorting-algorithms/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 8.
  *
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
