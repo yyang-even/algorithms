@@ -4,6 +4,7 @@
 namespace {
 
 /** Complete Graph on n Vertices
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.6.
  *
@@ -24,8 +25,8 @@ unsigned long long CompleteGraphOnN(const unsigned n) {
 
 SIMPLE_BENCHMARK(CompleteGraphOnN, Sample1, 1);
 
-SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0u, 0);
-SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1u, 1);
-SIMPLE_TEST(CompleteGraphOnN, TestSample3, 1u, 2);
-SIMPLE_TEST(CompleteGraphOnN, TestSample4, 3u, 3);
-SIMPLE_TEST(CompleteGraphOnN, TestSample5, 16u, 4);
+SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0, 0);
+SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1, 1);
+SIMPLE_TEST(CompleteGraphOnN, TestSample3, 1, 2);
+SIMPLE_TEST(CompleteGraphOnN, TestSample4, 3, 3);
+SIMPLE_TEST(CompleteGraphOnN, TestSample5, 16, 4);

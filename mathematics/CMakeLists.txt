@@ -1,5 +1,4 @@
 add_subdirectory(arithmetics)
-add_subdirectory(graph)
 add_subdirectory(numbers)
 add_subdirectory(probabilistic)
 add_subdirectory(recurrent)

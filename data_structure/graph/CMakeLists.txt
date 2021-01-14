@@ -1,6 +1,9 @@
 compile_benchmark(breadth_first_search)
 compile_test(breadth_first_search)
 
+compile_benchmark(complete_graph_on_n)
+compile_test(complete_graph_on_n)
+
 compile_benchmark(degree_of_graph)
 compile_test(degree_of_graph)
 
