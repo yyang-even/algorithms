@@ -1,0 +1,2 @@
+compile_benchmark(circle_drawing)
+compile_test(circle_drawing)
