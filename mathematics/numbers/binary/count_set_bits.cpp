@@ -13,6 +13,8 @@ using InputType = unsigned;
  *              https://www.geeksforgeeks.org/count-set-bits-of-number-using-recursion/
  * @reference   C/C++ Program to Count set bits in an integer
  *              https://www.geeksforgeeks.org/c-program-for-count-set-bits-in-an-integer/
+ * @reference   John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 13.
  *
  * Write an efficient program to count number of 1s in binary representation of an integer.
  */
