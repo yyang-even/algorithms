@@ -1,2 +1,5 @@
+compile_benchmark(are_rectangles_overlap)
+compile_test(are_rectangles_overlap)
+
 compile_benchmark(circle_drawing)
 compile_test(circle_drawing)
