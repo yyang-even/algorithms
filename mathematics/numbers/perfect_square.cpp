@@ -5,6 +5,8 @@
 
 namespace {
 
+using ArrayType = std::vector<unsigned>;
+
 /** Check if a number is perfect square without finding square root
  *
  * @reference   https://www.geeksforgeeks.org/check-if-a-number-is-perfect-square-without-finding-square-root/
@@ -57,29 +59,94 @@ auto isCountOfDivisorsOdd(const unsigned N) {
     return IsPerfectSquare(N);
 }
 
+
+/** Number of perfect squares between two given numbers
+ *
+ * @reference   https://www.geeksforgeeks.org/find-number-perfect-squares-two-given-numbers/
+ *
+ * Given two given numbers a and b where 1<=a<=b, find the number of perfect
+ * squares between a and b (a and b inclusive).
+ *
+ * @reference   Count Open Lockers
+ *              John Mongan, Eric Giguere, Noah Kindler.
+ *              Programming Interviews Exposed, Third Edition. Chapter 13.
+ *
+ * Suppose you are in a hallway lined with 100 closed lockers. You begin by opening all 100
+ * lockers. Next, you close every second locker. Then you go to every third locker and close
+ * it if it is open or open it if it's closed --- call this toggling the lockers. You continue
+ * toggling every nth locker on pass number n. After your hundredth pass of the hallway, in
+ * which you toggle only locker number 100, how many lockers are open?
+ */
+auto CountPerfectSquares(const unsigned a, const unsigned b) {
+    assert(a <= b);
+
+    return std::floor(std::sqrt(b)) - std::ceil(std::sqrt(a)) + 1;
+}
+
+
+/**
+ * @reference   Print all perfect squares from the given range
+ *              https://www.geeksforgeeks.org/print-all-perfect-squares-from-the-given-range/
+ */
+auto AllPerfectSquares(const unsigned a, const unsigned b) {
+    assert(a <= b);
+    ArrayType results;
+
+    unsigned diff = std::ceil(std::sqrt(a));
+    auto perfect_square = diff * diff;
+    for (diff = diff * 2 + 1; perfect_square >= a and perfect_square <= b; diff += 2) {
+        results.push_back(perfect_square);
+        perfect_square += diff;
+    }
+
+    return results;
+}
+
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare, Sample1, 2500);
+THE_BENCHMARK(IsPerfectSquare, 2500);
 
 SIMPLE_TEST(IsPerfectSquare, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare_Multiply, Sample1, 2500);
+THE_BENCHMARK(IsPerfectSquare_Multiply, 2500);
 
 SIMPLE_TEST(IsPerfectSquare_Multiply, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare_Multiply, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(IsPerfectSquare_Sum, Sample1, 2500);
+THE_BENCHMARK(IsPerfectSquare_Sum, 2500);
 
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE1, true, 2500);
 SIMPLE_TEST(IsPerfectSquare_Sum, TestSAMPLE2, false, 2555);
 
 
-SIMPLE_BENCHMARK(isCountOfDivisorsOdd, Sample1, 100);
+THE_BENCHMARK(isCountOfDivisorsOdd, 100);
 
 SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE1, false, 10);
 SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE2, true, 100);
 SIMPLE_TEST(isCountOfDivisorsOdd, TestSAMPLE3, false, 125);
+
+
+const ArrayType EXPECTED1 = {1, 4, 9, 16, 25, 36, 49, 64, 81, 100};
+const ArrayType EXPECTED2 = {4};
+const ArrayType EXPECTED3 = {9, 16, 25};
+const ArrayType EXPECTED4 = {4, 9, 16};
+
+
+THE_BENCHMARK(CountPerfectSquares, 1, 100);
+
+SIMPLE_TEST(CountPerfectSquares, TestSAMPLE1, EXPECTED1.size(), 1, 100);
+SIMPLE_TEST(CountPerfectSquares, TestSAMPLE2, EXPECTED2.size(), 3, 8);
+SIMPLE_TEST(CountPerfectSquares, TestSAMPLE3, EXPECTED3.size(), 9, 25);
+SIMPLE_TEST(CountPerfectSquares, TestSAMPLE4, EXPECTED4.size(), 2, 24);
+
+
+THE_BENCHMARK(AllPerfectSquares, 1, 100);
+
+SIMPLE_TEST(AllPerfectSquares, TestSAMPLE1, EXPECTED1, 1, 100);
+SIMPLE_TEST(AllPerfectSquares, TestSAMPLE2, EXPECTED2, 3, 8);
+SIMPLE_TEST(AllPerfectSquares, TestSAMPLE3, EXPECTED3, 9, 25);
+SIMPLE_TEST(AllPerfectSquares, TestSAMPLE4, EXPECTED4, 2, 24);
