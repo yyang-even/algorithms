@@ -69,7 +69,7 @@ auto isCountOfDivisorsOdd(const unsigned N) {
  *
  * @reference   Count Open Lockers
  *              John Mongan, Eric Giguere, Noah Kindler.
- *              Programming Interviews Exposed, Third Edition. Chapter 13.
+ *              Programming Interviews Exposed, Third Edition. Chapter 14.
  *
  * Suppose you are in a hallway lined with 100 closed lockers. You begin by opening all 100
  * lockers. Next, you close every second locker. Then you go to every third locker and close
