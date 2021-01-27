@@ -4,6 +4,8 @@
 /** Find the minimum element in a sorted and rotated array
  *
  * @reference   https://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
+ * @reference   Section VI. Five Algorithm Approaches.
+ *              Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *
  * Assumes that all elements are distinct.
  *
