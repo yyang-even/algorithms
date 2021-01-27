@@ -19,6 +19,9 @@ compile_test(a_pair_sum_as_n_from_two_array)
 compile_benchmark(check_all_elements_distinct)
 compile_test(check_all_elements_distinct)
 
+compile_benchmark(check_if_one_string_can_be_formed_from_another)
+compile_test(check_if_one_string_can_be_formed_from_another)
+
 compile_benchmark(common_characters)
 compile_test(common_characters)
 
