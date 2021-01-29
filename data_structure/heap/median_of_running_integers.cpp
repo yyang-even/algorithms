@@ -10,6 +10,8 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
  * @reference   Median in a stream of integers (running integers)
  *              https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
+ * @reference   Section VI. Five Algorithm Approaches.
+ *              Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *
  * Given that integers are being read from a data stream. Find median of all the elements
  * read so far starting from the first integer till the last integer. This is also called

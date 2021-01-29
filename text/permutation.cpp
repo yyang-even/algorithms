@@ -10,6 +10,8 @@ namespace {
  *              https://www.geeksforgeeks.org/permutations-of-a-given-string-using-stl/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
+ * @reference   Section VI. Five Algorithm Approaches.
+ *              Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *
  * A permutation, also called an "arrangement number" or "order", is a rearrangement
  * of the elements of an ordered list S into a one-to-one correspondence with S itself.
