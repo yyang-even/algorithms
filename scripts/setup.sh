@@ -25,7 +25,7 @@ mkdir build
 pushd build
 ccmake ..
 popd
-./scripts/astyle_and_build.sh
+make -j2
 
 ../yyLinuxConfig/scripts/setup_ctags_for.sh
 

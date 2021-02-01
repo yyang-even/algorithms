@@ -20,6 +20,8 @@ namespace {
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-reverse-a-string/
  * @reference   Program to reverse a string (Iterative and Recursive)
  *              https://www.geeksforgeeks.org/program-reverse-string-iterative-recursive/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 1.2.
  *
  * @reference   Reverse string without using any temporary variable
  *              https://www.geeksforgeeks.org/reverse-string-without-using-any-temporary-variable/

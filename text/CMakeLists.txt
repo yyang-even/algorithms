@@ -84,3 +84,6 @@ compile_test(to_binary)
 
 compile_benchmark(to_decimal)
 compile_test(to_decimal)
+
+compile_benchmark(urlify)
+compile_test(urlify)
