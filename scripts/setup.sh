@@ -23,7 +23,7 @@ echo "Setting up project \"$PROJECT_NAME\"."
 
 mkdir build
 pushd build
-ccmake ..
+cmake ..
 popd
 make -j2
 
