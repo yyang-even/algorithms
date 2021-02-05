@@ -278,6 +278,8 @@ auto StringMatcing_KMP(const std::string &text, const std::string &pattern) {
  *              https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
  * @reference   Check if strings are rotations of each other or not | Set 2
  *              https://www.geeksforgeeks.org/check-strings-rotations-not-set-2/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 1.8.
  *
  * Given a string s1 and a string s2, write a snippet to say whether s2 is a rotation of s1?
  *
@@ -289,8 +291,24 @@ auto AreRotations(const std::string &lhs, const std::string &rhs) {
         return false;
     }
 
-    const auto concatenation = lhs + rhs;
-    return concatenation.find(lhs) != std::string::npos;
+    const auto concatenation = lhs + lhs;
+    return concatenation.find(rhs) != std::string::npos;
+}
+
+
+/**
+ * @reference   Check if two numbers are bit rotations of each other or not
+ *              https://www.geeksforgeeks.org/check-two-numbers-bit-rotations-not/
+ */
+auto AreBitsRotations(const uint32_t lhs, const uint32_t rhs) {
+    for (auto concatenation = lhs | (static_cast<uint64_t>(lhs) << 32);
+         concatenation >= rhs; concatenation >>= 1) {
+        if (static_cast<uint32_t>(concatenation) == rhs) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 }//namespace
@@ -376,11 +394,20 @@ SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE1, EXPECTED1, "AABAACAADAABAABA", "AABA
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE2, EXPECTED2, "THIS IS A TEST TEXT", "TEST");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE3, EXPECTED3, "ABCEABCDABCEABCD", "ABCD");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE4, EXPECTED4, "GEEKS FOR GEEKS", "GEEKS");
-SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE5, EXPECTED2, "ABABDABACDABABCABAB",
-            "ABABCABAB");
+SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE5, EXPECTED2,
+            "ABABDABACDABABCABAB", "ABABCABAB");
 SIMPLE_TEST(StringMatcing_KMP, TestSAMPLE6, EXPECTED6, "cabababcababaca", "ababaca");
 
 
 THE_BENCHMARK(AreRotations, "ABACD", "CDABA");
 
 SIMPLE_TEST(AreRotations, TestSAMPLE1, true, "ABACD", "CDABA");
+SIMPLE_TEST(AreRotations, TestSAMPLE2, true, "ABCD", "CDAB");
+SIMPLE_TEST(AreRotations, TestSAMPLE3, false, "ABCD", "ACBD");
+
+
+THE_BENCHMARK(AreBitsRotations, 122, 2147483678);
+
+SIMPLE_TEST(AreBitsRotations, TestSAMPLE1, true, 122, 2147483678);
+SIMPLE_TEST(AreBitsRotations, TestSAMPLE2, true, 1, 8);
+SIMPLE_TEST(AreBitsRotations, TestSAMPLE3, false, 0b101, 0b111);
