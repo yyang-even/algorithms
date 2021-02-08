@@ -8,6 +8,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using ListType = std::forward_list<int>;
 
 /** Remove duplicates from a given string
  *
@@ -100,6 +101,118 @@ auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
  */
 
 
+/** Remove duplicates from an unsorted linked list
+ *
+ * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
+ *
+ * Write a removeDuplicates() function which takes a list and deletes any duplicate nodes
+ * from the list. The list is not sorted.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 2.1.
+ *
+ * @reference   Remove duplicates from an unsorted doubly linked list
+ *              https://www.geeksforgeeks.org/remove-duplicates-unsorted-doubly-linked-list/
+ */
+auto RemoveDuplicates_UnsortedLinkedList(ListType a_list) {
+    std::unordered_set<ListType::value_type> seen_values;
+    auto previous = a_list.cbefore_begin();
+    for (auto current = a_list.cbegin(); current != a_list.cend();) {
+        if (seen_values.find(*current) != seen_values.cend()) {
+            current = a_list.erase_after(previous);
+        } else {
+            seen_values.insert(*(current++));
+            ++previous;
+        }
+    }
+
+    return a_list;
+}
+
+
+/**
+ * @reference   Remove duplicates from a sorted linked list
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-a-sorted-linked-list/
+ *
+ * @reference   Remove duplicates from a sorted doubly linked list
+ *              https://www.geeksforgeeks.org/remove-duplicates-sorted-doubly-linked-list/
+ */
+auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
+    assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
+
+    for (auto current = a_list.cbegin();
+         current != a_list.cend() and std::next(current) != a_list.cend();) {
+        if (*current == *std::next(current)) {
+            a_list.erase_after(current);
+        } else {
+            ++current;
+        }
+    }
+
+    return a_list;
+}
+
+
+void RemoveDuplicates_SortedLinkedList_Recursive_Helper(ListType &a_list,
+                                                        const ListType::const_iterator current) {
+    if (current != a_list.cend() and std::next(current) != a_list.cend()) {
+        if (*current == *std::next(current)) {
+            a_list.erase_after(current);
+            RemoveDuplicates_SortedLinkedList_Recursive_Helper(a_list, current);
+        } else {
+            RemoveDuplicates_SortedLinkedList_Recursive_Helper(a_list, std::next(current));
+        }
+    }
+}
+
+auto RemoveDuplicates_SortedLinkedList_Recursive(ListType a_list) {
+    assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
+    RemoveDuplicates_SortedLinkedList_Recursive_Helper(a_list, a_list.cbegin());
+    return a_list;
+}
+
+
+/**
+ * @reference   Remove duplicates from a sorted linked list using recursion
+ *              https://www.geeksforgeeks.org/remove-duplicates-sorted-linked-list-using-recursion/
+ */
+
+
+auto RemoveDuplicates_UnsortedLinkedList_Sort(ListType a_list,
+                                              const std::function<ListType(ListType)> remove_consecutive_duplicates) {
+    a_list.sort();
+    return remove_consecutive_duplicates(std::move(a_list));
+}
+
+
+/**
+ * @reference   Find unique elements in linked list
+ *              https://www.geeksforgeeks.org/find-unique-elements-linked-list/
+ *
+ * Given a linked list. We need to find unique elements in the linked list i.e, those
+ * elements which are not repeated in the linked list or those elements whose frequency
+ * is 1. If No such elements are present in list so Print "No Unique Elements".
+ */
+
+/**
+ * @reference   Remove all occurrences of duplicates from a sorted Linked List
+ *              https://www.geeksforgeeks.org/remove-occurrences-duplicates-sorted-linked-list/
+ *
+ * Given a sorted linked list, delete all nodes that have duplicate numbers (all
+ * occurrences), leaving only numbers that appear once in the original list.
+ */
+
+
+/**
+ * @reference   Count minimum frequency elements in a linked list
+ *              https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
+ *
+ * Given a linked list containing duplicate elements. The task is to find the count of
+ * all minimum occurring elements in the given linked list. That is the count of all
+ * such elements whose frequency is minimum in the matrix.
+ */
+
+
 /**
  * @reference   Find sum of non-repeating (distinct) elements in an array
  *              https://www.geeksforgeeks.org/find-sum-non-repeating-distinct-elements-array/
@@ -121,6 +234,8 @@ auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
 /**
  * @reference   Count distinct elements in an array
  *              https://www.geeksforgeeks.org/count-distinct-elements-in-an-array/
+ * @reference   Count duplicates in a given linked list
+ *              https://www.geeksforgeeks.org/count-duplicates-in-a-given-linked-list/
  */
 
 
@@ -175,26 +290,6 @@ auto FindAllDuplicates_BitArray(const ArrayType &elements) {
 
     return output;
 }
-
-
-/**
- * @reference   Find unique elements in linked list
- *              https://www.geeksforgeeks.org/find-unique-elements-linked-list/
- *
- * Given a linked list. We need to find unique elements in the linked list i.e, those
- * elements which are not repeated in the linked list or those elements whose frequency
- * is 1. If No such elements are present in list so Print "No Unique Elements".
- */
-
-
-/**
- * @reference   Count minimum frequency elements in a linked list
- *              https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
- *
- * Given a linked list containing duplicate elements. The task is to find the count of
- * all minimum occurring elements in the given linked list. That is the count of all
- * such elements whose frequency is minimum in the matrix.
- */
 
 
 /**
@@ -283,31 +378,65 @@ auto FindDuplicates_Inplace_Mod_SecondOccurrence(ArrayType values) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates, Sample1, "geeksforgeeks");
+THE_BENCHMARK(RemoveDuplicates, "geeksforgeeks");
 
 SIMPLE_TEST(RemoveDuplicates, TestSAMPLE1, "geksfor", "geeksforgeeks");
 SIMPLE_TEST(RemoveDuplicates, TestSAMPLE2, "chartes", "characters");
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_Bits, Sample1, "geeksforgeeks");
+THE_BENCHMARK(RemoveDuplicates_Bits, "geeksforgeeks");
 
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE1, "geksfor", "geeksforgeeks");
 SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE2, "chartes", "characters");
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_Sorted, Sample1, "122344455");
+THE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
 
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "Geks for geks", "Geeks for geeks");
 
 
+const ListType SAMPLE_L1 = {12, 11, 12, 21, 41, 43, 21};
+const ListType EXPECTED_L1 = {12, 11, 21, 41, 43};
+const ListType EXPECTED_SL1 = {11, 12, 21, 41, 43};
+
+const ListType SAMPLE_L2 = {10, 12, 11, 11, 12, 11, 10};
+const ListType EXPECTED_L2 = {10, 12, 11};
+const ListType EXPECTED_SL2 = {10, 11, 12};
+
+
+THE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList, SAMPLE_L1);
+
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList, TestSAMPLE1, EXPECTED_L1, SAMPLE_L1);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList, TestSAMPLE2, EXPECTED_L2, SAMPLE_L2);
+
+
+SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort, BM_SAMPLE1, SAMPLE_L1,
+                 RemoveDuplicates_SortedLinkedList);
+
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE1, EXPECTED_SL1,
+            SAMPLE_L1, RemoveDuplicates_SortedLinkedList);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE2, EXPECTED_SL2,
+            SAMPLE_L2, RemoveDuplicates_SortedLinkedList);
+
+
+SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort, BM_SAMPLE2, SAMPLE_L1,
+                 RemoveDuplicates_SortedLinkedList_Recursive);
+
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE3, EXPECTED_SL1,
+            SAMPLE_L1, RemoveDuplicates_SortedLinkedList_Recursive);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE4, EXPECTED_SL2,
+            SAMPLE_L2, RemoveDuplicates_SortedLinkedList_Recursive);
+
+
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
 const ArrayType EXPECTED1 = {10, 45};
+
 const ArrayType SAMPLE2 = {1, 1, 1, 1, 1};
 const ArrayType EXPECTED2 = {1};
 
 
-SIMPLE_BENCHMARK(FindRepeatedElements, Sample1, SAMPLE1);
+THE_BENCHMARK(FindRepeatedElements, SAMPLE1);
 
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(FindRepeatedElements, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -317,12 +446,12 @@ const ArrayType SAMPLE3 = {1, 2, 3, 1, 3, 6, 6};
 const ArrayType EXPECTED3 = {1, 3, 6};
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Sign, Sample1, SAMPLE3);
+THE_BENCHMARK(FindDuplicates_Inplace_Sign, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicates_Inplace_Sign, TestSAMPLE1, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod, Sample1, SAMPLE3);
+THE_BENCHMARK(FindDuplicates_Inplace_Mod, SAMPLE3);
 
 SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE1, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(FindDuplicates_Inplace_Mod, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -332,23 +461,24 @@ const ArrayType SAMPLE4 = {0, 3, 1, 3, 0};
 const ArrayType EXPECTED4 = {3, 0};
 
 
-SIMPLE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, Sample1, SAMPLE3);
+THE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4,
-            SAMPLE4);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2,
-            SAMPLE2);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3,
-            SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1,
+            EXPECTED4, SAMPLE4);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2,
+            EXPECTED2, SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3,
+            EXPECTED3, SAMPLE3);
 
 
 const ArrayType SAMPLE5 = {1, 5, 1, 10, 12, 10};
 const ArrayType EXPECTED5 = {1, 10};
+
 const ArrayType SAMPLE6 = {50, 40, 50};
 const ArrayType EXPECTED6 = {50};
 
 
-SIMPLE_BENCHMARK(FindAllDuplicates_BitArray, Sample1, SAMPLE5);
+THE_BENCHMARK(FindAllDuplicates_BitArray, SAMPLE5);
 
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample1, EXPECTED5, SAMPLE5);
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample2, EXPECTED6, SAMPLE6);
