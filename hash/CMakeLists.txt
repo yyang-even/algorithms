@@ -70,8 +70,5 @@ compile_test(rearrange_array_arr_arr_i)
 compile_benchmark(remove_duplicates)
 compile_test(remove_duplicates)
 
-compile_benchmark(repeated_elements_in_array)
-compile_test(repeated_elements_in_array)
-
 compile_benchmark(top_k_most_frequent_numbers)
 compile_test(top_k_most_frequent_numbers)
