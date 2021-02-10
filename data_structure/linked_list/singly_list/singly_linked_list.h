@@ -144,9 +144,11 @@ protected:
      * @reference   https://www.geeksforgeeks.org/in-a-linked-list-given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
      * @reference   Delete a Node from linked list without head pointer
      *              https://www.geeksforgeeks.org/delete-a-node-from-linked-list-without-head-pointer/
+     * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+     *              Questions 2.3.
      *
      * Given a pointer to a node to be deleted, delete the node.
-     * Note that we don’t have pointer to head node.
+     * Note: that we don’t have pointer to head node.
      */
     static void deleteNode_WithoutHead(Node &to_be_deleted, std::size_t &size) {
         assert(to_be_deleted.next);
@@ -230,8 +232,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/insert-a-node-at-a-specific-position-in-a-linked-list/
      *
-     * Given a singly linked list, a position and an element, the task is to write
-     * a program to insert that element in a linked list at a given position.
+     * Given a singly linked list, a position and an element, the task is to write a
+     * program to insert that element in a linked list at a given position.
      */
     void InsertAt_Simple(std::size_t position, const Node::ValueType v) {
         ++size;
@@ -278,7 +280,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
      *
-     * Given a sorted linked list and a value to insert, write a function to insert the value in sorted way.
+     * Given a sorted linked list and a value to insert, write a function to insert the
+     * value in sorted way.
      */
     void SortedInsert(const Node::ValueType v) {
         auto *current = &head;
@@ -346,10 +349,10 @@ public:
      *
      * Given a Singly Linked List, write a function to delete a given node.
      * Your function must follow following constraints:
-     * 1) It must accept pointer to the start node as first parameter and
-     * node to be deleted as second parameter i.e., pointer to head node is not global.
-     * 2) It should not return pointer to the head node.
-     * 3) It should not accept pointer to pointer to head node.
+     *  1) It must accept pointer to the start node as first parameter and node to be
+     *  deleted as second parameter i.e., pointer to head node is not global.
+     *  2) It should not return pointer to the head node.
+     *  3) It should not accept pointer to pointer to head node.
      *
      * You may assume that the Linked List never becomes empty.
      */
@@ -370,8 +373,9 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-function-to-delete-a-linked-list/
      *
-     * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one by one.
-     * Main point here is not to access next of the current pointer if current pointer is deleted.
+     * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one
+     * by one. Main point here is not to access next of the current pointer if current
+     * pointer is deleted.
      *
      * @reference   Delete a linked list using recursion
      *              https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
@@ -395,8 +399,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/delete-last-occurrence-of-an-item-from-linked-list/
      *
-     * Given a liked list and a key to be deleted. Delete last occurrence of key from linked.
-     * The list may have duplicates.
+     * Given a liked list and a key to be deleted. Delete last occurrence of key from
+     * linked. The list may have duplicates.
      */
     void DeleteLastOfKey(const Node::ValueType key) {
         if (head) {
@@ -455,8 +459,8 @@ public:
      * @reference   C Program for Reverse a linked list
      *              https://www.geeksforgeeks.org/c-program-for-reverse-a-linked-list/
      *
-     * Given pointer to the head node of a linked list, the task is to reverse
-     * the linked list. We need to reverse the list by changing links between nodes.
+     * Given pointer to the head node of a linked list, the task is to reverse the
+     * linked list. We need to reverse the list by changing links between nodes.
      *
      * @complexity  O(n)
      */
@@ -544,8 +548,9 @@ public:
      * An interesting method to print reverse of a linked list
      * @reference   https://www.geeksforgeeks.org/an-interesting-method-to-print-reverse-of-a-linked-list/
      *
-     * Carriage return (“r”) : It commands a printer (cursor or the display of a system console),
-     * to move the position of the cursor to the first position on the same line.
+     * Carriage return ("r"): It commands a printer (cursor or the display of a system
+     * console), to move the position of the cursor to the first position on the same
+     * line.
      */
 
 
@@ -553,8 +558,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-function-to-get-nth-node-in-a-linked-list/
      *
-     * Write a GetNth() function that takes a linked list and an integer index
-     * and returns the data value stored in the node at that index position.
+     * Write a GetNth() function that takes a linked list and an integer index and
+     * returns the data value stored in the node at that index position.
      */
     auto At(std::size_t index) const {
         assert(index < size);
@@ -588,9 +593,11 @@ public:
      * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
      * @reference   Recursive Approach to find nth node from the end in the linked list
      *              https://www.geeksforgeeks.org/recursive-approach-to-find-nth-node-from-the-end-in-the-linked-list/
+     * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+     *              Questions 2.2.
      *
-     * Given a Linked List and a number n, write a function that returns the value
-     * at the n’th node from end of the Linked List.
+     * Given a Linked List and a number n, write a function that returns the value at
+     * the n'th node from end of the Linked List.
      */
     auto GetReverseN_Iterative(const std::size_t index) const {
         return GetN_Iterative(size - index - 1);
@@ -646,11 +653,10 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/
      *
-     * Given a singly linked list, find middle of the linked list. For example,
-     * if given linked list is 1->2->3->4->5 then output should be 3.
-     * If there are even nodes, then there would be two middle nodes, we need
-     * to print second middle element. For example, if given linked list is
-     * 1->2->3->4->5->6 then output should be 4.
+     * Given a singly linked list, find middle of the linked list. For example, if given
+     * linked list is 1->2->3->4->5 then output should be 3. If there are even nodes,
+     * then there would be two middle nodes, we need to print second middle element. For
+     * example, if given linked list is 1->2->3->4->5->6 then output should be 4.
      */
     auto GetMid_Size() const {
         return GetN_Iterative(size / 2);
@@ -693,10 +699,10 @@ public:
      * @reference   Swap nodes in a linked list without swapping data
      *              https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
      *
-     * Given a linked list and two keys in it, swap nodes for two given keys. Nodes should be swapped
-     * by changing links. Swapping data of nodes may be expensive in many situations when data contains
-     * many fields.
-     * It may be assumed that all keys in linked list are distinct.
+     * Given a linked list and two keys in it, swap nodes for two given keys. Nodes
+     * should be swapped by changing links. Swapping data of nodes may be expensive
+     * in many situations when data contains many fields. It may be assumed that all
+     * keys in linked list are distinct.
      */
     void Swap(const Node::ValueType x, const Node::ValueType y) {
         assert(x != y);

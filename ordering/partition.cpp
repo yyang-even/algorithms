@@ -244,6 +244,8 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(
  *              https://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
  * @reference   Sort a linked list of 0s, 1s and 2s by changing links
  *              https://www.geeksforgeeks.org/sort-linked-list-0s-1s-2s-changing-links/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 2.4.
  */
 auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
                                       const std::forward_list<int>::value_type x) {
