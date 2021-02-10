@@ -26,3 +26,6 @@ compile_test(singly_circular_linked_list)
 
 compile_benchmark(singly_linked_list)
 compile_test(singly_linked_list)
+
+compile_benchmark(sum_linked_list_numbers)
+compile_test(sum_linked_list_numbers)
