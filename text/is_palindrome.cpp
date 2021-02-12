@@ -100,9 +100,11 @@ auto isPalindrome_Stack(const std::string &a_string) {
 /** Function to check if a singly linked list is palindrome
  *
  * @reference   https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 2.7.
  *
- * @note    If no stack is allowed, then we can reverse the second half of the list, and restore it later.
- *                                  or we can use function call stack.
+ * @note    If no stack is allowed, then we can reverse the second half of the list, and
+ * restore it later. Or we can use function call stack.
  */
 auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     std::stack<ListType::value_type> the_stack;
@@ -200,8 +202,8 @@ inline auto isOctalPalindrome_Recursive(const unsigned number) {
  * @reference   Check if actual binary representation of a number is palindrome
  *              https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
  *
- * Given a non-negative integer n. The problem is to check if binary representation of n is
- * palindrome or not. Note that the actual binary representation of the number is being
+ * Given a non-negative integer n. The problem is to check if binary representation of n
+ * is palindrome or not. Note that the actual binary representation of the number is being
  * considered for palindrome checking, no leading 0’s are being considered.
  */
 inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {

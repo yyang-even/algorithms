@@ -57,27 +57,31 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  * @reference   Finding a Loop in a Singly Linked List
  *              https://blog.ostermiller.org/find-loop-singly-linked-list
  *
- * This solution is “Floyd’s Cycle-Finding Algorithm” as published in “Non-deterministic Algorithms”
- * by Robert W. Floyd in 1967. It is also called “The Tortoise and the Hare Algorithm”.
+ * This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic
+ * Algorithms" by Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare
+ * Algorithm".
  *
  * @reference   Find first node of loop in a linked list
  *              https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 2.6.
  *
- * Write a function findFirstLoopNode() that checks whether a given Linked List contains loop.
- * If loop is present then it returns point to first node of loop. Else it returns NULL.
+ * Write a function findFirstLoopNode() that checks whether a given Linked List contains
+ * loop. If loop is present then it returns point to first node of loop. Else it returns
+ * NULL.
  *
  * @reference   Detect and Remove Loop in a Linked List
  *              https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
  *
- * Write a function detectAndRemoveLoop() that checks whether a given Linked List contains loop and
- * if loop is present then removes the loop and returns true. If the list doesn’t contain loop then
- * it returns false.
+ * Write a function detectAndRemoveLoop() that checks whether a given Linked List
+ * contains loop and if loop is present then removes the loop and returns true. If
+ * the list doesn't contain loop then it returns false.
  *
  * @reference   Find length of loop in linked list
  *              https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/
  *
- * Write a function detectAndCountLoop() that checks whether a given Linked List contains loop and
- * if loop is present then returns count of nodes in loop.
+ * Write a function detectAndCountLoop() that checks whether a given Linked List contains
+ * loop and if loop is present then returns count of nodes in loop.
  */
 auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType head,
                                    std::size_t *loop_length = nullptr,
@@ -256,15 +260,16 @@ auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
  *
  * @reference   https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-3/
  *
- * Given an array arr[] containing n + 1 integers where each integer is between 1 and n (inclusive).
- * There is only one duplicate element, find the duplicate element in O(n) time complexity and O(1) space.
+ * Given an array arr[] containing n + 1 integers where each integer is between 1 and n
+ * (inclusive). There is only one duplicate element, find the duplicate element in O(n)
+ * time complexity and O(1) space.
  *
  * @reference   Find duplicates in constant array with elements 0 to N-1 in O(1) space
  *              https://www.geeksforgeeks.org/find-duplicates-constant-array-elements-0-n-1-o1-space/
  *
- * Given a constant array of n elements which contains elements from 0 to n-1, with any of these numbers
- * appearing any number of times. Find any one of these repeating numbers in O(n) and using only constant
- * memory space.
+ * Given a constant array of n elements which contains elements from 0 to n-1, with any
+ * of these numbers appearing any number of times. Find any one of these repeating
+ * numbers in O(n) and using only constant memory space.
  */
 auto FindTheDuplicate_FloydsCycleFinding(const std::vector<unsigned> &values) {
     auto slow_ptr = values.front();
