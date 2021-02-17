@@ -20,6 +20,8 @@ typedef unsigned InputType;
  *              https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/
  * @reference   Time Complexity Analysis | Tower Of Hanoi (Recursion)
  *              https://www.geeksforgeeks.org/time-complexity-analysis-tower-hanoi-recursion/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 3.4.
  */
 
 /**

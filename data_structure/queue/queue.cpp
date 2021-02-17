@@ -129,6 +129,8 @@ public:
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-6.
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 3.5.
  * @reference   https://www.geeksforgeeks.org/queue-using-stacks/
  *
  * Method 1 (By making enQueue operation costly) This method makes sure that oldest
@@ -169,6 +171,8 @@ public:
         return v;
     }
 };
+
+
 /**
  * Queue can also be implemented using one user stack and one Function Call Stack.
  */
