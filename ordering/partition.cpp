@@ -78,8 +78,8 @@ auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
  * @reference   Partition negative and positive without comparison with 0
  *              https://www.geeksforgeeks.org/partition-negative-positive-without-comparison-0/
  *
- * An array contains both positive and negative numbers in random order. Rearrange
- * the array elements so that all negative numbers appear before all positive numbers.
+ * An array contains both positive and negative numbers in random order. Rearrange the
+ * array elements so that all negative numbers appear before all positive numbers.
  */
 auto isNegative(const ArrayType::value_type v) {
     return v < 0;
@@ -130,16 +130,16 @@ auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  * @reference   Move all zeroes to end of array | Set-2 (Using single traversal)
  *              https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/
  *
- * Given an array of random numbers, Push all the zero’s of a given array to the end
- * of the array. For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0},
- * it should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other
+ * Given an array of random numbers, Push all the zero's of a given array to the end of
+ * the array. For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0}, it
+ * should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other
  * elements should be same. Expected time complexity is O(n) and extra space is O(1).
  *
  * @reference   Move all values equal to K to the end of the Array
  *              https://www.geeksforgeeks.org/move-all-values-equal-to-k-to-the-end-of-the-array/
  *
- * Given an array arr[] of size N and an integer K, the task is to print the array
- * after moving all value equal to K at the end of the array.
+ * Given an array arr[] of size N and an integer K, the task is to print the array after
+ * moving all value equal to K at the end of the array.
  */
 auto RearrangeZeros(ArrayType input) {
     Partition<ArrayType>(input.begin(), input.end(), [](const ArrayType::value_type v) {
@@ -158,11 +158,11 @@ auto RearrangeZeros(ArrayType input) {
  * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 2
  *              https://www.geeksforgeeks.org/rearrange-array-in-alternating-positive-negative-items-with-o1-extra-space-set-2/
  *
- * An array contains both positive and negative numbers in random order. Rearrange
- * the array elements so that positive and negative numbers are placed alternatively.
- * Number of positive and negative numbers need not be equal. If there are more
- * positive numbers they appear at the end of the array. If there are more negative
- * numbers, they too appear in the end of the array.
+ * An array contains both positive and negative numbers in random order. Rearrange the
+ * array elements so that positive and negative numbers are placed alternatively. Number
+ * of positive and negative numbers need not be equal. If there are more positive numbers
+ * they appear at the end of the array. If there are more negative numbers, they too
+ * appear in the end of the array.
  */
 auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(
     ArrayType input) {
@@ -235,10 +235,10 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(
  *
  * @reference   https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
  *
- * Given a linked list and a value x, partition it such that all nodes less than x come first,
- * then all nodes with value equal to x and finally nodes with value greater than or equal to x.
- * The original relative order of the nodes in each of the three partitions should be preserved.
- * The partition must work in-place.
+ * Given a linked list and a value x, partition it such that all nodes less than x come
+ * first, then all nodes with value equal to x and finally nodes with value greater than
+ * or equal to x. The original relative order of the nodes in each of the three partitions
+ * should be preserved. The partition must work in-place.
  *
  * @reference   Sort a linked list of 0s, 1s and 2s
  *              https://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
@@ -278,11 +278,11 @@ auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
  *
  * @reference   https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
  *
- * Given a linked list and a value x, partition a linked list around a value x, such
- * that all nodes less than x come before all nodes greater than or equal to x. If x
- * is contained within the list the values of x only need to be after the elements
- * less than x (see below). The partition element x can appear anywhere in the “right
- * partition”; it does not need to appear between the left and right partitions.
+ * Given a linked list and a value x, partition a linked list around a value x, such that
+ * all nodes less than x come before all nodes greater than or equal to x. If x is
+ * contained within the list the values of x only need to be after the elements less than
+ * x (see below). The partition element x can appear anywhere in the "right partition";
+ * it does not need to appear between the left and right partitions.
  */
 auto Partition_SinglyList_Unstable(std::forward_list<int> elements,
                                    const std::forward_list<int>::value_type x) {

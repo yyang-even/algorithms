@@ -139,7 +139,8 @@ public:
  *
  * Method 2 (By making deQueue operation costly) In this method, in en-queue operation,
  * the new element is entered at the top of stack1. In de-queue operation, if stack2
- * is empty then all the elements are moved to stack2 and finally top of stack2 is returned.
+ * is empty then all the elements are moved to stack2 and finally top of stack2 is
+ * returned.
  *
  * Method 2 is definitely better than method 1.
  */

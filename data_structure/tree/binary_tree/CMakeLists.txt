@@ -40,3 +40,6 @@ compile_test(is_subtree)
 
 compile_benchmark(perfect_binary_tree)
 compile_test(perfect_binary_tree)
+
+compile_benchmark(print_level_nodes_line_by_line)
+compile_test(print_level_nodes_line_by_line)

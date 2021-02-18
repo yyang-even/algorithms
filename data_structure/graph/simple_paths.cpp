@@ -11,6 +11,9 @@ namespace {
 /** Find if there is a path between two vertices in a directed graph
  *
  * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-path-between-two-vertices-in-a-given-graph/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 4.2.
+ *
  * @reference   Find if there is a path between two vertices in an undirected graph
  *              https://www.geeksforgeeks.org/find-if-there-is-a-path-between-two-vertices-in-an-undirected-graph/
  */

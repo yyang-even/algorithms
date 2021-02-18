@@ -10,9 +10,9 @@ typedef unsigned InputType;
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.1.
  *
- * We are given a tower of eight disks, initially stacked in decreasing size on one of three pegs.
- * The objective is to transfer the entire tower to one of the other pegs, moving only one disk
- * at a time and never moving a larger one onto a smaller.
+ * We are given a tower of eight disks, initially stacked in decreasing size on one of
+ * three pegs. The objective is to transfer the entire tower to one of the other pegs,
+ * moving only one disk at a time and never moving a larger one onto a smaller.
  *
  * @reference   Recursive Functions
  *              https://www.geeksforgeeks.org/recursive-functions/
@@ -55,9 +55,10 @@ unsigned long HanoiTower_Closedform(const InputType n) {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 2.
  *
- * Find the shortest sequence of moves that transfers a tower of n disks from the left peg A to the right peg B,
- * if direct moves between A and B are disallowed. (Each move must be to or from the middle peg.
- * As usual, a larger disk must never appear above a smaller one.)
+ * Find the shortest sequence of moves that transfers a tower of n disks from the left
+ * peg A to the right peg B, if direct moves between A and B are disallowed. (Each move
+ * must be to or from the middle peg.  As usual, a larger disk must never appear above
+ * a smaller one.)
  *
  * @reference   Twisted Tower of Hanoi Problem
  *              https://www.geeksforgeeks.org/twisted-tower-of-hanoi-problem/
@@ -90,11 +91,12 @@ unsigned long IndirectHanoiTower_Closedform(const InputType n) {
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 11.
  *
  * A Double Tower of Hanoi contains 2n disks of n different sizes, two of each size.
- * As usual, we’re required to move only one disk at a time, without putting a larger one over a smaller one.
- *      a. How many moves does it take to transfer a double tower from one peg to another,
- *      if disks of equal size are indistinguishable from each other?
- *      b. What if we are required to reproduce the original top-to-bottom order of all
- *      the equal-size disks in the final arrangement?
+ * As usual, we're required to move only one disk at a time, without putting a larger
+ * one over a smaller one.
+ *  a. How many moves does it take to transfer a double tower from one peg to another,
+ *  if disks of equal size are indistinguishable from each other?
+ *  b. What if we are required to reproduce the original top-to-bottom order of all the
+ *  equal-size disks in the final arrangement?
  */
 
 /**

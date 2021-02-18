@@ -48,8 +48,9 @@ auto RemoveDuplicates(const std::string &input) {
  *
  * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
  *
- * Given a string str of lowercase characters, the task is to remove duplicates and return
- * a resultant string without modifying the order of characters in the original string.
+ * Given a string str of lowercase characters, the task is to remove duplicates and
+ * return a resultant string without modifying the order of characters in the original
+ * string.
  */
 auto RemoveDuplicates_Bits(const std::string &input) {
     std::bitset < 'z' - 'a' > hash_table;

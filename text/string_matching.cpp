@@ -281,7 +281,8 @@ auto StringMatcing_KMP(const std::string &text, const std::string &pattern) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.8.
  *
- * Given a string s1 and a string s2, write a snippet to say whether s2 is a rotation of s1?
+ * Given a string s1 and a string s2, write a snippet to say whether s2 is a rotation
+ * of s1?
  *
  * @reference   Pattern Searching using C++ library
  *              https://www.geeksforgeeks.org/pattern-searching-using-c-library/
