@@ -61,15 +61,17 @@ private:
     Node::PointerType root;
 };
 
-static inline auto SetLeftChild(BinaryTree::Node &node,
-                                const BinaryTree::Node::ValueType v) {
-    node.left = std::make_shared<BinaryTree::Node>(v);
+template <typename NodeType>
+static inline auto SetLeftChild(NodeType &node,
+                                const typename NodeType::ValueType v) {
+    node.left = std::make_shared<NodeType>(v);
     return node.left;
 }
 
-static inline auto SetRightChild(BinaryTree::Node &node,
-                                 const BinaryTree::Node::ValueType v) {
-    node.right = std::make_shared<BinaryTree::Node>(v);
+template <typename NodeType>
+static inline auto SetRightChild(NodeType &node,
+                                 const typename NodeType::ValueType v) {
+    node.right = std::make_shared<NodeType>(v);
     return node.right;
 }
 
@@ -114,3 +116,16 @@ static inline auto CheckType(const BinaryTree::Node &node) {
     }
     return BinaryTree::Node::Type::unknown;
 }
+
+
+struct BinaryTreeNodeWithParent {
+    using ValueType = int;
+    using PointerType = std::shared_ptr<BinaryTreeNodeWithParent>;
+
+    PointerType left;
+    PointerType right;
+    std::weak_ptr<BinaryTreeNodeWithParent> parent;
+    ValueType value{};
+
+    explicit BinaryTreeNodeWithParent(const ValueType v) : value(v) {}
+};

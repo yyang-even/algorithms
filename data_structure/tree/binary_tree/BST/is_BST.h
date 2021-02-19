@@ -6,6 +6,8 @@
  *              Introduction to Algorithms, Third Edition. Section 12.1.
  * @reference   Check if a Binary Tree is BST : Simple and Efficient Approach
  *              https://www.geeksforgeeks.org/check-if-a-binary-tree-is-bst-simple-and-efficient-approach/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 4.5.
  */
 static bool isBST_Recursive_Inorder(const BinaryTree::Node::PointerType node,
                                     BinaryTree::Node::PointerType &previous_node) {
