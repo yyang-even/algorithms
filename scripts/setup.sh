@@ -24,8 +24,8 @@ echo "Setting up project \"$PROJECT_NAME\"."
 mkdir build
 pushd build
 cmake ..
-popd
 make -j2
+popd
 
 ../yyLinuxConfig/scripts/setup_ctags_for.sh
 

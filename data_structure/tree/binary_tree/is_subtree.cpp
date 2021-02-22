@@ -9,6 +9,8 @@ namespace {
 /** Check if a binary tree is subtree of another binary tree | Set 1
  *
  * @reference   https://www.geeksforgeeks.org/check-if-a-binary-tree-is-subtree-of-another-binary-tree/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 4.8.
  */
 auto isSubtree(const BinaryTree::Node::PointerType origin,
                const BinaryTree::Node::PointerType candidate) {
