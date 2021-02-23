@@ -58,6 +58,9 @@ compile_test(clear_all_bits_except_the_last_set_bit)
 compile_benchmark(clear_bit)
 compile_test(clear_bit)
 
+compile_benchmark(clear_bits_range)
+compile_test(clear_bits_range)
+
 compile_benchmark(endianness)
 compile_test(endianness)
 
@@ -101,6 +104,9 @@ compile_test(find_the_unique_element)
 
 compile_benchmark(increment)
 compile_test(increment)
+
+compile_benchmark(insert_bits)
+compile_test(insert_bits)
 
 compile_benchmark(is_bit_set)
 compile_test(is_bit_set)
@@ -162,6 +168,9 @@ compile_test(set_all_bits_after_most_significant_bit)
 compile_benchmark(set_bit)
 compile_test(set_bit)
 
+compile_benchmark(set_bits_range)
+compile_test(set_bits_range)
+
 compile_benchmark(sign_extending)
 compile_test(sign_extending)
 
@@ -185,6 +194,9 @@ compile_test(toggle_all_bits_after_most_significant_bit)
 
 compile_benchmark(toggle_bit)
 compile_test(toggle_bit)
+
+compile_benchmark(toggle_bits_range)
+compile_test(toggle_bits_range)
 
 compile_benchmark(twos_complement)
 compile_test(twos_complement)

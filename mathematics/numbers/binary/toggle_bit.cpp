@@ -3,8 +3,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Toggling a bit at nth position
  *
  * @reference   Bitwise Hacks for Competitive Programming
@@ -13,8 +11,10 @@ using InputType = unsigned;
  *              https://www.geeksforgeeks.org/toggling-k-th-bit-number/
  * @reference   Bitwise Operators in C/C++
  *              https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+ * @reference   Program to toggle K-th bit of a number N
+ *              https://www.geeksforgeeks.org/program-to-toggle-k-th-bit-of-a-number-n/
  */
-auto ToggleBit(const InputType num, const InputType position) {
+auto ToggleBit(const unsigned num, const unsigned position) {
     return num ^ (1 << position);
 }
 
@@ -23,7 +23,7 @@ auto ToggleBit(const InputType num, const InputType position) {
  *
  * @reference   https://www.geeksforgeeks.org/toggle-bits-number-except-k-th-bit/
  */
-auto ToggleAllBitsExceptKth(const InputType num, const InputType position) {
+auto ToggleAllBitsExceptKth(const unsigned num, const unsigned position) {
     return ~(num ^ (1 << position));
 }
 
@@ -50,7 +50,7 @@ SIMPLE_TEST(ToggleBit, TestSample3, 0b10u, 0, 1);
 SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, Sample1, 0, 4);
 
 SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u,
-            std::numeric_limits<InputType>::max(), 0);
+            std::numeric_limits<unsigned>::max(), 0);
 
 
 SIMPLE_BENCHMARK(ToggleLastBits, Sample1, 21, 2);

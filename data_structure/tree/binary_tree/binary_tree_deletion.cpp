@@ -12,8 +12,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/deletion-binary-tree/
  *
- * Given a binary tree, delete a node from it by making sure that tree shrinks from
- * the bottom (i.e. the deleted node is replaced by bottom most and rightmost node).
+ * Given a binary tree, delete a node from it by making sure that tree shrinks from the
+ * bottom (i.e. the deleted node is replaced by bottom most and rightmost node).
  */
 auto BinaryTreeDeletion_BottomShrink(BinaryTree binary_tree,
                                      const BinaryTree::Node::ValueType x) {

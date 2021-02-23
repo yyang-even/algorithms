@@ -5,8 +5,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** How to set a bit in the number ‘num’
  *
  * @reference   Bitwise Hacks for Competitive Programming
@@ -15,8 +13,11 @@ typedef unsigned InputType;
  *              https://www.geeksforgeeks.org/set-k-th-bit-given-number/
  * @reference   How to turn on a particular bit in a number?
  *              https://www.geeksforgeeks.org/turn-particular-bit-number-2/
+ *
+ * @reference   Set, Clear and Toggle a given bit of a number in C
+ *              https://www.geeksforgeeks.org/set-clear-and-toggle-a-given-bit-of-a-number-in-c/
  */
-auto SetBit(const InputType num, const InputType position) {
+auto SetBit(const unsigned num, const unsigned position) {
     return num | (1 << position);
 }
 
@@ -29,7 +30,7 @@ auto SetBit(const InputType num, const InputType position) {
  * @reference   Set the rightmost unset bit
  *              https://www.geeksforgeeks.org/set-rightmost-unset-bit-2/
  */
-auto SetRightmostOffBit(const InputType num) {
+auto SetRightmostOffBit(const unsigned num) {
     if (AreAllBitsSet(num)) {
         return num;
     }
