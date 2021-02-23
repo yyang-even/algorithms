@@ -24,8 +24,8 @@ static inline auto RightmostNode(NodePointerType current_node) {
  * @reference   Find distance from root to given node in a binary tree
  *              https://www.geeksforgeeks.org/find-distance-root-given-node-binary-tree/
  *
- * Given root of a binary tree and a key x in it, find distance of the given key from root.
- * Distance means number of edges between two nodes.
+ * Given root of a binary tree and a key x in it, find distance of the given key from
+ * root. Distance means number of edges between two nodes.
  *
  * @reference   Get Level of a node in a Binary Tree
  *              https://www.geeksforgeeks.org/get-level-of-a-node-in-a-binary-tree/

@@ -9,8 +9,10 @@ namespace {
  *
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
- *              How to turn off a particular bit in a number?
+ * @reference   How to turn off a particular bit in a number?
  *              https://www.geeksforgeeks.org/how-to-turn-off-a-particular-bit-in-a-number/
+ * @reference   Program to clear K-th bit of a number N
+ *              https://www.geeksforgeeks.org/program-to-clear-k-th-bit-of-a-number-n/
  */
 auto ClearBit(const unsigned num, const unsigned position) {
     return num & (~(1 << position));

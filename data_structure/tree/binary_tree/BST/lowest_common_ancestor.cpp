@@ -12,8 +12,8 @@ namespace {
  * @reference   Lowest Common Ancestor in a Binary Search Tree.
  *              https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
  *
- * Given values of two values n1 and n2 in a Binary Search Tree, find the Lowest
- * Common Ancestor (LCA). You may assume that both the values exist in the tree.
+ * Given values of two values n1 and n2 in a Binary Search Tree, find the Lowest Common
+ * Ancestor (LCA). You may assume that both the values exist in the tree.
  */
 auto LowestCommonAncestor_BST_Recursive(const BinaryTree::Node::PointerType node,
                                         const BinaryTree::Node::ValueType x,
@@ -56,8 +56,8 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  * @reference   Lowest Common Ancestor in a Binary Tree | Set 1
  *              https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
  *
- * Given a binary tree (not a binary search tree) and two values say n1 and n2,
- * write a program to find the least common ancestor.
+ * Given a binary tree (not a binary search tree) and two values say n1 and n2, write a
+ * program to find the least common ancestor.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.7.
