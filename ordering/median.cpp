@@ -26,12 +26,13 @@ using ArrayType = std::vector<int>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 9.3-9.
  *
- * Professor Olay is consulting for an oil company, which is planning a large pipeline running east
- * to west through an oil field of n wells, The company wants to connect a spur pipeline from each
- * well directly to the main pipeline along a shortest route (either north or south). Given the x-
- * and y-coordinate of the wells, how should the professor pick the optimal location of the main
- * pipeline, which would be the one that minimizes the total length of the spurs? Show how to
- * determine the optimal location in linear time.
+ * Professor Olay is consulting for an oil company, which is planning a large pipeline
+ * running east to west through an oil field of n wells, The company wants to connect a
+ * spur pipeline from each well directly to the main pipeline along a shortest route
+ * (either north or south). Given the x- and y-coordinate of the wells, how should the
+ * professor pick the optimal location of the main pipeline, which would be the one that
+ * minimizes the total length of the spurs? Show how to determine the optimal location
+ * in linear time.
  */
 double Median(const ArrayType &sorted_array) {
     assert(not sorted_array.empty());
@@ -59,7 +60,7 @@ double Median_SinglyList_TwoPointers(
     auto slow_ptr = sorted_list.cbegin();
     auto prev_slow = sorted_list.cbefore_begin();
 
-    while (fast_ptr != sorted_list.cend() and std::next(fast_ptr) != sorted_list.cend()) {
+    while (isThereMoreThanOneElements(fast_ptr, sorted_list.cend())) {
         fast_ptr = std::next(fast_ptr, 2);
         ++slow_ptr;
         ++prev_slow;

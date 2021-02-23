@@ -111,7 +111,7 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     auto slow_ptr = a_list.cbegin();
     auto fast_ptr = slow_ptr;
 
-    while (fast_ptr != a_list.cend() and std::next(fast_ptr) != a_list.cend()) {
+    while (isThereMoreThanOneElements(fast_ptr, a_list.cend())) {
         the_stack.push(*slow_ptr);
         ++slow_ptr;
         std::advance(fast_ptr, 2);

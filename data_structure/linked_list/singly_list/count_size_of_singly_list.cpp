@@ -31,7 +31,7 @@ auto testCountSize_Recursive(const std::vector<int> &array) {
  */
 auto IsLengthEven(const ListType &l) {
     auto iter = l.cbegin();
-    for (; iter != l.cend() and std::next(iter) != l.cend(); std::advance(iter, 2));
+    for (; isThereMoreThanOneElements(iter, l.cend()); std::advance(iter, 2));
     return iter == l.cend();
 }
 

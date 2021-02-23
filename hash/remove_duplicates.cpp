@@ -142,7 +142,7 @@ auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
     assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
 
     for (auto current = a_list.cbegin();
-         current != a_list.cend() and std::next(current) != a_list.cend();) {
+         isThereMoreThanOneElements(current, a_list.cend());) {
         if (*current == *std::next(current)) {
             a_list.erase_after(current);
         } else {
@@ -156,7 +156,7 @@ auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
 
 void RemoveDuplicates_SortedLinkedList_Recursive_Helper(ListType &a_list,
                                                         const ListType::const_iterator current) {
-    if (current != a_list.cend() and std::next(current) != a_list.cend()) {
+    if (isThereMoreThanOneElements(current, a_list.cend())) {
         if (*current == *std::next(current)) {
             a_list.erase_after(current);
             RemoveDuplicates_SortedLinkedList_Recursive_Helper(a_list, current);

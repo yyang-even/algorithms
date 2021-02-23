@@ -38,8 +38,11 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/quicksort-tail-call-optimization-reducing-worst-case-space-log-n/
  * @reference   Hoare’s vs Lomuto partition scheme in QuickSort
  *              https://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/
- * Hoare’s scheme is more efficient than Lomuto’s partition scheme because it does three times fewer
- * swaps on average, and it creates efficient partitions even when all values are equal.
+ *
+ * Hoare's scheme is more efficient than Lomuto's partition scheme because it does three
+ * times fewer swaps on average, and it creates efficient partitions even when all values
+ * are equal.
+ *
  * @reference   QuickSort using Random Pivoting
  *              https://www.geeksforgeeks.org/quicksort-using-random-pivoting/
  * @reference   Stable QuickSort
@@ -156,7 +159,7 @@ auto QuickSort_Iterative(ArrayType values) {
             const auto range = range_stack.top();
             range_stack.pop();
             const auto mid = partition_Lomuto(range.first, range.second);
-            if (range.first != mid and std::next(range.first) != mid) {
+            if (isThereMoreThanOneElements(range.first, mid)) {
                 range_stack.emplace(range.first, mid);
             }
             const auto mid_plus_one = mid + 1;
@@ -246,7 +249,8 @@ auto QuickSortDoublyLinkedList(std::list<int> values) {
 
 
 /**
- * @reference   Anthony Williams. C++ Concurrency in Action: Practical Multithreading, 1st Edition. Section 4.4.1.
+ * @reference   Anthony Williams. C++ Concurrency in Action: Practical Multithreading, 1st Edition.
+ *              Section 4.4.1.
  */
 auto QuickSortDoublyLinkedList_Sequential(std::list<int> values) {
     if (values.size() < 2) {
