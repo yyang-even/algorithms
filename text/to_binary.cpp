@@ -61,6 +61,41 @@ auto OctalToBinary(const std::string &octal) {
     return ToBinary<3>(octal, OctalDigitToDecimal);
 }
 
+
+/** Converting a Real Number (between 0 and 1) to Binary String
+ *
+ * @reference   https://www.geeksforgeeks.org/converting-a-real-number-between-0-and-1-to-binary-string/
+ *
+ * Given a real number between 0 and 1 (e.g., 0.72) that is passed in as a double, print
+ * the binary representation. If the number cannot be represented accurately in binary
+ * with at most 32 characters, print "ERROR."
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 5.2.
+ */
+const std::string ERROR_STR = "ERROR";
+
+auto RealToBinary(double number) {
+    assert(0 <= number and number <= 1);
+
+    std::string result = "0.";
+    while (number > 0) {
+        if (result.size() >= 32) {
+            return ERROR_STR;
+        }
+
+        number *= 2;
+        if (number >= 1) {
+            result.push_back('1');
+            --number;
+        } else {
+            result.push_back('0');
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -100,3 +135,9 @@ SIMPLE_BENCHMARK(HexToBinary, Sample1, "1AC5");
 
 SIMPLE_TEST(HexToBinary, TestSAMPLE1, "0001101011000101", "1AC5");
 SIMPLE_TEST(HexToBinary, TestSAMPLE2, "0101110100011111", "5D1F");
+
+
+SIMPLE_BENCHMARK(RealToBinary, Sample1, 0.625);
+
+SIMPLE_TEST(RealToBinary, TestSAMPLE1, "0.101", 0.625);
+SIMPLE_TEST(RealToBinary, TestSAMPLE2, ERROR_STR, 0.72);
