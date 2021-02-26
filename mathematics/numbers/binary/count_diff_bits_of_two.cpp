@@ -5,8 +5,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Count number of bits to be flipped to convert A to B
  *
  * @reference   https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
@@ -15,9 +13,13 @@ typedef unsigned InputType;
  * @reference   Count number of bits to be flipped to convert A to B | Set-2
  *              https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
  *
- * Given two numbers ‘a’ and b’. Write a program to count number of bits needed to be flipped to convert ‘a’ to ‘b’.
+ * Given two numbers 'a' and 'b'. Write a program to count number of bits needed to be
+ * flipped to convert 'a' to 'b'.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 5.5.
  */
-auto CountDiffBits(const InputType a, const InputType b) {
+auto CountDiffBits(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a ^ b);
 }
 
