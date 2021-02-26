@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "is_bit_set.h"
+
 
 namespace {
 
@@ -10,8 +12,8 @@ using ArrayType = std::vector<unsigned>;
  * @reference   https://www.geeksforgeeks.org/find-the-missing-number/
  *
  * You are given a list of n-1 integers and these integers are in the range of 1 to n.
- * There are no duplicates in list. One of the integers is missing in the list.
- * Write an efficient code to find the missing integer.
+ * There are no duplicates in list. One of the integers is missing in the list. Write an
+ * efficient code to find the missing integer.
  *
  * @complexity  O(n)
  */
@@ -55,6 +57,45 @@ auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
 }
 
 
+/**
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 5.7.
+ *
+ * An array A contains all the integers from 0 through n, except for one number which is
+ * missing. In this problem, we cannot access an entire integer in A with a single
+ * operation. The elements of A are represented in binary, and the only operation we can
+ * use to access them is "fetch the jth bit of A[i]," which takes constant time. Write
+ * code to find the missing integer. Can you do it in 0(n) time?
+ */
+unsigned FindTheMissingNumber_Partition_Helper(const ArrayType::iterator begin,
+                                               const ArrayType::iterator end,
+                                               const unsigned column = 0) {
+    if (column >= BitsNumber<ArrayType::value_type>) {
+        return 0;
+    }
+
+    const auto zeros_begin = std::partition(begin, end, [column](const auto n) {
+        return IsBitSet(n, column);
+    });
+
+    const auto ones_size = std::distance(begin, zeros_begin);
+    const auto zeros_size = std::distance(zeros_begin, end);
+
+    if (zeros_size <= ones_size) {
+        const auto result = FindTheMissingNumber_Partition_Helper(zeros_begin, end, column + 1);
+        return (result << 1) | 0;
+    } else {
+        const auto result = FindTheMissingNumber_Partition_Helper(begin, zeros_begin,
+                                                                  column + 1);
+        return (result << 1) | 1;
+    }
+}
+
+auto FindTheMissingNumber_Partition(ArrayType integers) {
+    return FindTheMissingNumber_Partition_Helper(integers.begin(), integers.end());
+}
+
+
 /** Find missing element in a sorted array of consecutive numbers
  *
  * @reference   https://www.geeksforgeeks.org/find-missing-element-in-a-sorted-array-of-consecutive-numbers/
@@ -93,16 +134,16 @@ int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-missing-number-in-a-sorted-array/
  *
- * Given a list of n-1 integers and these integers are in the range of 1 to n. There
- * are no duplicates in list. One of the integers is missing in the list. Write an
- * efficient code to find the missing integer.
+ * Given a list of n-1 integers and these integers are in the range of 1 to n. There are
+ * no duplicates in list. One of the integers is missing in the list. Write an efficient
+ * code to find the missing integer.
  *
  * @reference   Find the missing number in a sorted array of limited range
  *              https://www.geeksforgeeks.org/find-missing-number-sorted-array-limited-range/
  *
- * Given a sorted array of size n and given that there are numbers from 1 to n+1 with
- * one missing, the missing number is to be found. It may be assumed that array has
- * distinct elements.
+ * Given a sorted array of size n and given that there are numbers from 1 to n+1 with one
+ * missing, the missing number is to be found. It may be assumed that array has distinct
+ * elements.
  */
 int FindTheMissingNumber_Sorted_BinarySearch(const ArrayType &values) {
     assert(not values.empty());
@@ -171,23 +212,29 @@ const ArrayType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
 const ArrayType SAMPLE2 = {1, 2, 4, 5, 6};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sum, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheMissingNumber_Sum, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample2, 3u, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Xor, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheMissingNumber_Xor, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample2, 3u, SAMPLE2);
+
+
+THE_BENCHMARK(FindTheMissingNumber_Partition, SAMPLE1);
+
+SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample1, 5u, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample2, 3u, SAMPLE2);
 
 
 const ArrayType SAMPLE3 = {13, 12, 11, 15};
 const ArrayType SAMPLE4 = {33, 36, 35, 34};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumberRange_Xor, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheMissingNumberRange_Xor, SAMPLE1);
 
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5u, SAMPLE1);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3u, SAMPLE2);
@@ -195,7 +242,7 @@ SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14u, SAMPLE3);
 SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, Sample1, SAMPLE2);
+THE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_SortedRange_BinarySearch, TestSample2, 3, SAMPLE2);
 
@@ -204,17 +251,17 @@ const ArrayType SAMPLE5 = {2, 3, 4, 5, 6};
 const ArrayType SAMPLE6 = {1, 2, 3, 4, 5};
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, Sample1, SAMPLE2);
+THE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1,
-            SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast,
+            SAMPLE6.size() + 1, SAMPLE6);
 
 
-SIMPLE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, Sample1, SAMPLE2);
+THE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast, SAMPLE6.size() + 1,
-            SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast,
+            SAMPLE6.size() + 1, SAMPLE6);
