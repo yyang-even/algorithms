@@ -76,6 +76,9 @@ auto isCountOfDivisorsOdd(const unsigned N) {
  * it if it is open or open it if it's closed --- call this toggling the lockers. You continue
  * toggling every nth locker on pass number n. After your hundredth pass of the hallway, in
  * which you toggle only locker number 100, how many lockers are open?
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 6.6.
  */
 auto CountPerfectSquares(const unsigned a, const unsigned b) {
     assert(a <= b);
