@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "mathematics/numbers/binary/are_opposite_signs.h"
+#include "mathematics/arithmetics/subtract/negate.h"
 
 
 namespace {
@@ -63,10 +64,27 @@ int Division_Log(int dividend, int divisor) {
     return sign * std::exp(std::log(dividend) - std::log(divisor));
 }
 
+
+auto Division_Plus(const int dividend, const int divisor) {
+    assert(divisor);
+
+    const auto abs_divisor = std::abs(divisor);
+    const auto negate_divisor = Negate(abs_divisor);
+
+    int quotient = 0;
+    for (int abs_dividend = std::abs(dividend);
+         abs_dividend >= abs_divisor;
+         abs_dividend += negate_divisor) {
+        ++quotient;
+    }
+
+    return AreOppositeSigns(dividend, divisor) ? Negate(quotient) : quotient;
+}
+
 }//namespace
 
 
-SIMPLE_BENCHMARK(Division_Subtract, Sample1, 10, 3);
+THE_BENCHMARK(Division_Subtract, 10, 3);
 
 SIMPLE_TEST(Division_Subtract, TestSAMPLE1, 3, 10, 3);
 SIMPLE_TEST(Division_Subtract, TestSAMPLE2, -5, 43, -8);
@@ -74,7 +92,7 @@ SIMPLE_TEST(Division_Subtract, TestSAMPLE3, 0, 0, -8);
 SIMPLE_TEST(Division_Subtract, TestSAMPLE4, 3, 3, 1);
 
 
-SIMPLE_BENCHMARK(Division_Bit, Sample1, 10, 3);
+THE_BENCHMARK(Division_Bit, 10, 3);
 
 SIMPLE_TEST(Division_Bit, TestSAMPLE1, 3, 10, 3);
 SIMPLE_TEST(Division_Bit, TestSAMPLE2, -5, 43, -8);
@@ -82,9 +100,17 @@ SIMPLE_TEST(Division_Bit, TestSAMPLE3, 0, 0, -8);
 SIMPLE_TEST(Division_Bit, TestSAMPLE4, 3, 3, 1);
 
 
-SIMPLE_BENCHMARK(Division_Log, Sample1, 10, 3);
+THE_BENCHMARK(Division_Log, 10, 3);
 
 SIMPLE_TEST(Division_Log, TestSAMPLE1, 3, 10, 3);
 SIMPLE_TEST(Division_Log, TestSAMPLE2, -5, 43, -8);
 SIMPLE_TEST(Division_Log, TestSAMPLE3, 0, 0, -8);
 SIMPLE_TEST(Division_Log, TestSAMPLE4, 3, 3, 1);
+
+
+THE_BENCHMARK(Division_Plus, 10, 3);
+
+SIMPLE_TEST(Division_Plus, TestSAMPLE1, 3, 10, 3);
+SIMPLE_TEST(Division_Plus, TestSAMPLE2, -5, 43, -8);
+SIMPLE_TEST(Division_Plus, TestSAMPLE3, 0, 0, -8);
+SIMPLE_TEST(Division_Plus, TestSAMPLE4, 3, 3, 1);
