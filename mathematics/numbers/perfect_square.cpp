@@ -71,11 +71,12 @@ auto isCountOfDivisorsOdd(const unsigned N) {
  *              John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 14.
  *
- * Suppose you are in a hallway lined with 100 closed lockers. You begin by opening all 100
- * lockers. Next, you close every second locker. Then you go to every third locker and close
- * it if it is open or open it if it's closed --- call this toggling the lockers. You continue
- * toggling every nth locker on pass number n. After your hundredth pass of the hallway, in
- * which you toggle only locker number 100, how many lockers are open?
+ * Suppose you are in a hallway lined with 100 closed lockers. You begin by opening all
+ * 100 lockers. Next, you close every second locker. Then you go to every third locker
+ * and close it if it is open or open it if it's closed --- call this toggling the
+ * lockers. You continue toggling every nth locker on pass number n. After your hundredth
+ * pass of the hallway, in which you toggle only locker number 100, how many lockers are
+ * open?
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 6.6.

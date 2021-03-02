@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "subtract.h"
+#include "negate.h"
 
 
 namespace {
@@ -9,8 +10,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/subtract-two-numbers-without-using-arithmetic-operators/
  *
- * Write a function subtract(x, y) that returns x-y where x and y are integers.
- * The function should not use any of the arithmetic operators (+, ++, –, -, .. etc).
+ * Write a function subtract(x, y) that returns x-y where x and y are integers. The
+ * function should not use any of the arithmetic operators (+, ++, --, -, .. etc).
  */
 auto Subtract_Iterative(int x, int y) {
     while (y) {
@@ -22,6 +23,7 @@ auto Subtract_Iterative(int x, int y) {
     return x;
 }
 
+
 auto Subtract_Recursive(const int x, const int y) {
     if (not y) {
         return x;
@@ -29,19 +31,33 @@ auto Subtract_Recursive(const int x, const int y) {
     return Subtract_Recursive(x ^ y, (~x & y) << 1);
 }
 
+
+auto Subtract_Plus(const int x, const int y) {
+    return x + Negate(y);
+}
+
 }//namespace
 
 
-SIMPLE_BENCHMARK(Subtract_Iterative, Sample1, 29, 13);
+THE_BENCHMARK(Subtract_Iterative, 29, 13);
 
 SIMPLE_TEST(Subtract_Iterative, TestSAMPLE1, 16, 29, 13);
+SIMPLE_TEST(Subtract_Iterative, TestSAMPLE2, 6, 4, -2);
 
 
-SIMPLE_BENCHMARK(Subtract_Recursive, Sample1, 29, 13);
+THE_BENCHMARK(Subtract_Recursive, 29, 13);
 
 SIMPLE_TEST(Subtract_Recursive, TestSAMPLE1, 16, 29, 13);
+SIMPLE_TEST(Subtract_Recursive, TestSAMPLE2, 6, 4, -2);
 
 
-SIMPLE_BENCHMARK(Subtract_Bits, Sample1, 29, 13);
+THE_BENCHMARK(Subtract_Bits, 29, 13);
 
 SIMPLE_TEST(Subtract_Bits, TestSAMPLE1, 16, 29, 13);
+SIMPLE_TEST(Subtract_Bits, TestSAMPLE2, 6, 4, -2);
+
+
+THE_BENCHMARK(Subtract_Plus, 29, 13);
+
+SIMPLE_TEST(Subtract_Plus, TestSAMPLE1, 16, 29, 13);
+SIMPLE_TEST(Subtract_Plus, TestSAMPLE2, 6, 4, -2);
