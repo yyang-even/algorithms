@@ -4,5 +4,14 @@ compile_test(are_rectangles_overlap)
 compile_benchmark(circle_drawing)
 compile_test(circle_drawing)
 
+compile_benchmark(cut_two_squares_in_half)
+compile_test(cut_two_squares_in_half)
+
+compile_benchmark(is_point_inside_rectangle)
+compile_test(is_point_inside_rectangle)
+
+compile_benchmark(slope_of_line)
+compile_test(slope_of_line)
+
 compile_benchmark(two_lines_intersect)
 compile_test(two_lines_intersect)
