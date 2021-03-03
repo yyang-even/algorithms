@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "line.h"
+
 
 namespace {
 
@@ -10,15 +12,6 @@ namespace {
  *
  * Given two lines on a Cartesian plane, determine whether the two lines would intersect.
  */
-struct Line {
-    double slope;
-    double y_intercept;
-};
-
-inline auto &operator<<(std::ostream &out, const Line &a_line) {
-    return out << "(" << a_line.slope << ", " << a_line.y_intercept << ")";
-}
-
 auto WouldTwoLinesIntersect(const Line &a_line, const Line &another_line) {
     return std::abs(a_line.slope - another_line.slope) >
            std::numeric_limits<double>::epsilon() or

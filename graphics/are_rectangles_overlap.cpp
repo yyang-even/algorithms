@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "graphics.h"
+#include "point.h"
 
 
 namespace {
@@ -11,8 +11,8 @@ namespace {
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 13.
  *
- * Given two rectangles, find if the given two rectangles overlap or not.
- * It may be assumed that the rectangles are parallel to the coordinate axis.
+ * Given two rectangles, find if the given two rectangles overlap or not. It may be
+ * assumed that the rectangles are parallel to the coordinate axis.
  */
 auto areRectanglesOverlap(const Point &top_left_1, const Point &bottom_right_1,
                           const Point &top_left_2, const Point &bottom_right_2) {
