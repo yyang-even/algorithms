@@ -4,13 +4,47 @@
 
 
 struct Line {
-    double slope;
-    double y_intercept;
+    double slope = 0.0;
+    double intercept = 0.0;
+    bool infinite_slope = false;
+
+    Line() = default;
+    Line(const double s, const double i): slope(s), intercept(i) {}
+    Line(const Point &a, const Point &b) {
+        if (Equal(a.x, b.x)) {
+            infinite_slope = true;
+            intercept = a.x;
+        } else {
+            slope = Slope(a, b);
+            intercept = b.y - slope * b.x;
+        }
+    }
 };
 
-static inline auto &operator<<(std::ostream &out, const Line &a_line) {
-    return out << "(" << a_line.slope << ", " << a_line.y_intercept << ")";
+static inline auto operator==(const Line &a_line, const Line &another_line) {
+    return a_line.infinite_slope == another_line.infinite_slope and
+           Equal(a_line.intercept, another_line.intercept) and
+           Equal(a_line.slope, another_line.slope);
 }
+
+static inline auto operator!=(const Line &a_line, const Line &another_line) {
+    return not(a_line == another_line);
+}
+
+static inline auto &operator<<(std::ostream &out, const Line &a_line) {
+    return out << std::boolalpha << "(" <<
+           (infinite_slope ? infinite_slope : a_line.slope) <<
+           ", " << a_line.intercept << ")";
+}
+
+class LineHashType {
+public:
+    auto operator()(const Line &l) const {
+        return (std::hash<bool>()(l.infinite_slope)) ^
+               (std::hash<double>()(l.intercept)) ^
+               (std::hash<double>()(l.slope));
+    }
+};
 
 
 struct LineSegment {

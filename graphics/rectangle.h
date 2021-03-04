@@ -44,5 +44,5 @@ static inline auto Contains(const Rectangle &a_square, const Point &a_point) {
 
 
 static inline auto isSquare(const Square &s) {
-    return (s.right - s.left) == (s.top - s.bottom);
+    return Equal((s.right - s.left), (s.top - s.bottom));
 }

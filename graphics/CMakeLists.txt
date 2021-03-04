@@ -7,6 +7,9 @@ compile_test(circle_drawing)
 compile_benchmark(cut_two_squares_in_half)
 compile_test(cut_two_squares_in_half)
 
+compile_benchmark(find_max_points_line)
+compile_test(find_max_points_line)
+
 compile_benchmark(is_point_inside_rectangle)
 compile_test(is_point_inside_rectangle)
 
