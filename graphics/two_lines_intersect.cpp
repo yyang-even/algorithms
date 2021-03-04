@@ -15,7 +15,7 @@ namespace {
 auto WouldTwoLinesIntersect(const Line &a_line, const Line &another_line) {
     return std::abs(a_line.slope - another_line.slope) >
            std::numeric_limits<double>::epsilon() or
-           std::abs(a_line.y_intercept - another_line.y_intercept) <
+           std::abs(a_line.intercept - another_line.intercept) <
            std::numeric_limits<double>::epsilon();
 }
 

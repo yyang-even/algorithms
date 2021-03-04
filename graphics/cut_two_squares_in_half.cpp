@@ -9,7 +9,7 @@ namespace {
 /** Cut two squares in half with one line
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
- *              Questions 7.3.
+ *              Questions 7.5.
  *
  * Given two squares on a two-dimensional plane, find a line that would cut these two
  * squares in half. Assume that the top and the bottom sides of the square run parallel
@@ -20,18 +20,17 @@ auto IntersectPoints(const Point &a_middle, const Square &a_square,
     assert(Contains(a_square, a_middle));
     assert(isSquare(a_square));
 
-    if (a_middle.x == another_middle.x)
+    if (Equal(a_middle.x, another_middle.x))
         return std::make_pair(Point{a_middle.x, a_square.top}, Point{a_middle.x, a_square.bottom});
 
-    const auto abs_slope = std::abs(Slope(a_middle, another_middle));
+    const auto slope = Slope(a_middle, another_middle);
+    const auto abs_slope = std::abs(slope);
 
-    if (abs_slope == 1) {
-        return std::make_pair(Point{a_square.left, a_square.bottom}, Point{a_square.right, a_square.top});
-    } else if (abs_slope < 1) {
-        const auto diff = abs_slope * (a_square.right - a_square.left) / 2.0;
+    if (abs_slope <= 1) {
+        const auto diff = slope * (a_square.right - a_square.left) / 2.0;
         return std::make_pair(Point{a_square.left, a_middle.y - diff}, Point{a_square.right, a_middle.y + diff});
     } else {
-        const auto diff = (a_square.top - a_square.bottom) / 2 / abs_slope;
+        const auto diff = (a_square.top - a_square.bottom) / 2 / slope;
         return std::make_pair(Point{a_middle.x - diff, a_square.bottom}, Point{a_middle.x + diff, a_square.top});
     }
 }
@@ -53,9 +52,9 @@ auto CutTwoSquaresWithOneLine(const Square &a_square, const Square &another_squa
                                               };
 
     for (const auto *a_point : points) {
-        if (a_point->x < start->x or (a_point->x == start->x and a_point->y < start->y)) {
+        if (a_point->x < start->x or (Equal(a_point->x, start->x) and a_point->y < start->y)) {
             start = a_point;
-        } else if (a_point->x > end->x or (a_point->x == end->x and a_point->y > end->y)) {
+        } else if (a_point->x > end->x or (Equal(a_point->x, end->x) and a_point->y > end->y)) {
             end = a_point;
         }
     }
@@ -77,6 +76,14 @@ const auto SAMPLE5 = CreateSquare(6, 4, 4);
 const LineSegment EXPECTED4 = {{0, 2}, {10, 7}};
 const auto SAMPLE6 = CreateSquare(4, 6, 4);
 const LineSegment EXPECTED5 = {{2, 0}, {7, 10}};
+const auto SAMPLE7 = CreateSquare(-1, 1, 2);
+const LineSegment EXPECTED7 = {{-1, 3}, {2, 0}};
+const auto SAMPLE8 = CreateSquare(-2, 0, 2);
+const auto SAMPLE9 = CreateSquare(-4, 2, 2);
+const LineSegment EXPECTED9 = {{-4, 4}, {0, 0}};
+const auto SAMPLE10 = CreateSquare(-8, 0, 8);
+const auto SAMPLE11 = CreateSquare(-8, 6, 4);
+const LineSegment EXPECTED11 = {{-7, 10}, {-2, 0}};
 
 
 THE_BENCHMARK(CutTwoSquaresWithOneLine, SAMPLE1, SAMPLE1);
@@ -90,3 +97,9 @@ SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE6, EXPECTED4, SAMPLE4, SAMPLE5);
 SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE7, EXPECTED4, SAMPLE5, SAMPLE4);
 SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE8, EXPECTED5, SAMPLE4, SAMPLE6);
 SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE9, EXPECTED5, SAMPLE6, SAMPLE4);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE10, EXPECTED7, SAMPLE1, SAMPLE7);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE11, EXPECTED7, SAMPLE7, SAMPLE1);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE12, EXPECTED9, SAMPLE8, SAMPLE9);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE13, EXPECTED9, SAMPLE9, SAMPLE8);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE14, EXPECTED11, SAMPLE10, SAMPLE11);
+SIMPLE_TEST(CutTwoSquaresWithOneLine, TestSAMPLE15, EXPECTED11, SAMPLE11, SAMPLE10);
