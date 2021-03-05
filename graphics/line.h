@@ -33,7 +33,7 @@ static inline auto operator!=(const Line &a_line, const Line &another_line) {
 
 static inline auto &operator<<(std::ostream &out, const Line &a_line) {
     return out << std::boolalpha << "(" <<
-           (infinite_slope ? infinite_slope : a_line.slope) <<
+           (a_line.infinite_slope ? a_line.infinite_slope : a_line.slope) <<
            ", " << a_line.intercept << ")";
 }
 
