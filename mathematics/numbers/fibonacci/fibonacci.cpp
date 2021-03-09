@@ -7,13 +7,13 @@ namespace {
  *
  * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Section 8.5.
  *
- * A pair of newly born rabbits, male and female, were placed in a hutch. In two months these rabbits
- * began their breeding cycle and produced one pair of rabbits, one male and one female. The original
- * rabbits and their offspring continued to breed in their manner, that is, the first pair of
- * offspring appearing at the parental age of two months and then a new pair every month thereafter
- * ------ always one male and one female. All rabbits survived the first year.
- *  What then is the total number of pairs of rabbits at the beginning of each month during the first
- *  year?
+ * A pair of newly born rabbits, male and female, were placed in a hutch. In two months
+ * these rabbits began their breeding cycle and produced one pair of rabbits, one male
+ * and one female. The original rabbits and their offspring continued to breed in their
+ * manner, that is, the first pair of offspring appearing at the parental age of two
+ * months and then a new pair every month thereafter ----- always one male and one
+ * female. All rabbits survived the first year. What then is the total number of pairs
+ * of rabbits at the beginning of each month during the first year?
  *
  *  1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377,...
  */
@@ -32,8 +32,9 @@ namespace {
  *              https://www.geeksforgeeks.org/c-program-for-fibonacci-numbers/
  *
  * The Fibonacci numbers are the numbers in the following integer sequence.
- *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……..
- * In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the recurrence relation
+ *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ......
+ * In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the
+ * recurrence relation
  *      Fn = Fn-1 + Fn-2
  * with seed values
  *      F0 = 0 and F1 = 1.
@@ -55,17 +56,19 @@ namespace {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  *
- * How many ways a(n) are there for light rays to pass through or be reflected after changing direction
- * n times?
+ * How many ways a(n) are there for light rays to pass through or be reflected after
+ * changing direction n times?
  *
  *      a(n) = F(n+2)
  */
 /**
+ * @reference   Count ways to reach the n’th stair
+ *              https://www.geeksforgeeks.org/count-ways-reach-nth-stair/
  * @reference   Count number of possible paths up ladder
  *              https://stackoverflow.com/questions/12255193/count-number-of-possible-paths-up-ladder
  *
- * A ladder has n steps, one can climb the ladder using any combination of steps of 1 or steps of 2.
- * How many possible ways are there for one to climb the ladder?
+ * A ladder has n steps, one can climb the ladder using any combination of steps of 1 or
+ * steps of 2. How many possible ways are there for one to climb the ladder?
  *
  *      L(n) = F(n+1)
  *
@@ -76,9 +79,9 @@ namespace {
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.3.
  *              https://en.wikipedia.org/wiki/Spanning_tree
  *
- * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as follows: Vertex
- * 0 is connected by an edge to each of the order n vertices, and vertex k is connected by an edge to
- * vertex k+1, for 1 <= k < n.
+ * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as
+ * follows: Vertex 0 is connected by an edge to each of the order n vertices, and vertex
+ * k is connected by an edge to vertex k+1, for 1 <= k < n.
  * How many spanning trees f(n) are in such a graph?
  *
  * f(n) = f(n-1) + f(n-1) + f(n-2) + f(n-3) +...+ f(1) + 1
@@ -95,8 +98,8 @@ namespace {
  * @reference   The Magic of Fibonacci Numbers
  *              https://www.geeksforgeeks.org/magic-fibonacci-numbers/
  *
- * When we take any two successive (one after the other) Fibonacci Numbers,
- * their ratio is very close to the Golden Ratio.
+ * When we take any two successive (one after the other) Fibonacci Numbers, their ratio
+ * is very close to the Golden Ratio.
  */
 const double GOLDEN_RATIO = 1.61803;
 unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
@@ -195,10 +198,40 @@ auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
  *
  * @reference   https://www.geeksforgeeks.org/sum-fibonacci-numbers/
  *
- * Given a number positive number n, find value of f0 + f1 + f2 + … + fn where fi indicates i’th Fibonacci number.
+ * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi
+ * indicates i'th Fibonacci number.
  */
 auto SumOfFibonacci(const unsigned n) {
     return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
+}
+
+
+/**
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 9.1.
+ * @reference   Count ways to reach the nth stair using step 1, 2 or 3
+ *              https://www.geeksforgeeks.org/count-ways-reach-nth-stair-using-step-1-2-3/
+ *
+ * A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or
+ * 3 steps at a time. Implement a method to count how many possible ways the child can
+ * run up the stairs.
+ */
+auto FindWaysToRunUpStairs_DP(const unsigned n) {
+    unsigned long f_n_minus_3 = 0;
+    unsigned long f_n_minus_2 = 1;
+    unsigned long f_n_minus_1 = 1;
+    if (n < 2) {
+        return f_n_minus_1;
+    }
+
+    for (unsigned i = 2; i <= n; ++i) {
+        const auto f_n = f_n_minus_1 + f_n_minus_2 + f_n_minus_3;
+        f_n_minus_3 = f_n_minus_2;
+        f_n_minus_2 = f_n_minus_1;
+        f_n_minus_1 = f_n;
+    }
+
+    return f_n_minus_1;
 }
 
 }//namespace
@@ -248,7 +281,16 @@ SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE2, 144, 12);
 
 
-SIMPLE_BENCHMARK(SumOfFibonacci, Sample1, 4);
+THE_BENCHMARK(SumOfFibonacci, 4);
 
 SIMPLE_TEST(SumOfFibonacci, TestSAMPLE1, 4u, 3);
 SIMPLE_TEST(SumOfFibonacci, TestSAMPLE2, 7u, 4);
+
+
+THE_BENCHMARK(FindWaysToRunUpStairs_DP, 4);
+
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE1, 7, 4);
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE2, 4, 3);
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE3, 1, 0);
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE4, 1, 1);
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE5, 2, 2);
