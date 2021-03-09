@@ -10,6 +10,9 @@ compile_test(coin_change)
 compile_benchmark(company_party_planning)
 compile_test(company_party_planning)
 
+compile_benchmark(count_possible_paths_from_11_to_MN)
+compile_test(count_possible_paths_from_11_to_MN)
+
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
