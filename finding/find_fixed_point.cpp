@@ -9,10 +9,13 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-a-fixed-point-in-a-given-array/
  *
- * Given an array of n distinct integers sorted in ascending order, write a function
- * that returns a Fixed Point in the array, if there is any Fixed Point present in
- * array, else returns -1. Fixed Point in an array is an index i such that arr[i] is
- * equal to i. Note that integers in array can be negative.
+ * Given an array of n distinct integers sorted in ascending order, write a function that
+ * returns a Fixed Point in the array, if there is any Fixed Point present in array, else
+ * returns -1. Fixed Point in an array is an index i such that arr[i] is equal to i. Note
+ * that integers in array can be negative.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 9.3.
  */
 auto FindOneFixedPoint(const ArrayType &elements, const int low, const int high) {
     if (high >= low) {
@@ -79,7 +82,7 @@ const ArrayType SAMPLE_BACK = {-1, 0, 1, 2, 4};
 const ArrayType UNDERFLOW = {2};
 
 
-SIMPLE_BENCHMARK(FindOneFixedPoint, Sample1, SAMPLE1);
+THE_BENCHMARK(FindOneFixedPoint, SAMPLE1);
 
 SIMPLE_TEST(FindOneFixedPoint, TestEMPTY, -1, EMPTY);
 SIMPLE_TEST(FindOneFixedPoint, TestSAMPLE1, 3, SAMPLE1);
@@ -93,7 +96,7 @@ SIMPLE_TEST(FindOneFixedPoint, TestUnderflow, -1, UNDERFLOW);
 const ArrayType SAMPLE5 = {-10, -5, 2, 2, 2, 3, 4, 7, 9, 12, 13};
 
 
-SIMPLE_BENCHMARK(FindOneFixedPointInArrayWithDuplicates, Sample1, SAMPLE1);
+THE_BENCHMARK(FindOneFixedPointInArrayWithDuplicates, SAMPLE1);
 
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestEMPTY, -1, EMPTY);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE1, 3, SAMPLE1);
