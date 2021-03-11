@@ -47,10 +47,10 @@ void Relax(std::vector<int> &distances,
  * Given a graph and a source vertex src in graph, find shortest paths from src to all
  * vertices in the given graph. The graph may contain negative weight edges.
  *
- * Dijkstra doesn’t work for Graphs with negative weight edges, Bellman-Ford works for
+ * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for
  * such graphs. Bellman-Ford is also simpler than Dijkstra and suites well for
- * distributed systems. But time complexity of Bellman-Ford is O(VE), which is more
- * than Dijkstra.
+ * distributed systems. But time complexity of Bellman-Ford is O(VE), which is more than
+ * Dijkstra.
  */
 auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
                                            const DirectedEdgeArrayType &edges,
@@ -103,14 +103,14 @@ auto hasNegativeCycle(const std::size_t number_vertices,
 
     for (std::size_t i = 0; i < number_vertices; ++i) {
         if (not visited_vertices[i]) {
-            const auto result_pair =
+            const auto &[no_negative_cycle, distances_from_source] =
                 SingleSourceShortestPaths_BellmanFord(number_vertices, edges, i);
-            if (not result_pair.first) {
+            if (not no_negative_cycle) {
                 return true;
             }
 
             for (std::size_t i = 0; i < number_vertices; ++i) {
-                if (result_pair.second[i] != std::numeric_limits<int>::max()) {
+                if (distances_from_source[i] != std::numeric_limits<int>::max()) {
                     visited_vertices[i] = true;
                 }
             }
@@ -339,12 +339,13 @@ inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices
  * @reference   C Program for Min Cost Path
  *              https://www.geeksforgeeks.org/c-program-for-min-cost-path/
  *
- * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that returns cost
- * of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix represents a cost to
- * traverse through that cell. Total cost of a path to reach (m, n) is sum of all the costs on that
- * path (including both source and destination). You can only traverse down, right and diagonally
- * lower cells from a given cell, i.e., from a given cell (i, j), cells (i+1, j), (i, j+1) and
- * (i+1, j+1) can be traversed. You may assume that all costs are positive integers.
+ * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that
+ * returns cost of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix
+ * represents a cost to traverse through that cell. Total cost of a path to reach (m, n)
+ * is sum of all the costs on that path (including both source and destination). You can
+ * only traverse down, right and diagonally lower cells from a given cell, i.e., from a
+ * given cell (i, j), cells (i+1, j), (i, j+1) and (i+1, j+1) can be traversed. You may
+ * assume that all costs are positive integers.
  */
 auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
     assert(m < costs.size());

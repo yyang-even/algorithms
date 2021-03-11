@@ -112,10 +112,10 @@ public:
     }
 
 
-    void InsertAfter(const std::pair<Node::PointerType, Node::PointerType>
-                     &prev_prev_pair, const ValueType v) {
-        const auto prev = prev_prev_pair.first;
-        const auto prev_prev = prev_prev_pair.second;
+    void InsertAfter(
+        const std::pair<Node::PointerType, Node::PointerType> &prev_prev_pair,
+        const ValueType v) {
+        const auto [prev, prev_prev] = prev_prev_pair;
         assert(prev);
 
         const auto new_node = new Node(v);

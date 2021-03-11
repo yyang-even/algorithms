@@ -7,8 +7,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/least-frequently-used-lfu-cache-implementation/
  *
- * Least Frequently Used (LFU) is a caching algorithm in which the least frequently
- * used cache block is removed whenever the cache is overflowed.
+ * Least Frequently Used (LFU) is a caching algorithm in which the least frequently used
+ * cache block is removed whenever the cache is overflowed.
  */
 class LFU_Cache {
     using KeyType = int;
@@ -35,18 +35,20 @@ public:
     auto Get(const KeyType key) {
         auto iter = cache_map.find(key);
         if (iter != cache_map.cend()) {
-            ++iter->second.second;
-            return iter->second.first;
+            auto &[value, count] = iter->second;
+            ++count;
+            return value;
         }
         return -1;
     }
 
 
-    void Set(const KeyType key, const ValueCountPair::first_type value) {
+    void Set(const KeyType key, const ValueCountPair::first_type new_value) {
         const auto iter = cache_map.find(key);
         if (iter != cache_map.cend()) {
-            iter->second.first = value;
-            ++iter->second.second;
+            auto &[value, count] = iter->second;
+            value = new_value;
+            ++count;
         } else {
             if (Size() >= CAPICITY) {
                 HeapType heap;
@@ -58,7 +60,7 @@ public:
                 });
                 cache_map.erase(heap.front().second);
             }
-            cache_map.emplace(key, ValueCountPair{value, 0});
+            cache_map.emplace(key, ValueCountPair{new_value, 0});
         }
     }
 };

@@ -114,8 +114,8 @@ auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
  *              https://www.geeksforgeeks.org/0-1-knapsack-queries/
  *
  * Given an integer array W[] consisting of weights of the items and some queries
- * consisting of capacity C of knapsack, for each query find maximum weight we can
- * put in the knapsack. Value of C does’t exceed a certain integer C_MAX.
+ * consisting of capacity C of knapsack, for each query find maximum weight we can put in
+ * the knapsack. Value of C does’t exceed a certain integer C_MAX.
  */
 
 
@@ -128,11 +128,11 @@ auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
  *
  * Given weights and values of n items, we need to put these items in a knapsack of
  * capacity W to get the maximum total value in the knapsack.
- * In the 0-1 Knapsack problem, we are not allowed to break items. We either take
- * the whole item or don’t take it.
- * In Fractional Knapsack, we can break items for maximizing the total value of
- * knapsack. This problem in which we can break an item is also called the
- * fractional knapsack problem.
+ * In the 0-1 Knapsack problem, we are not allowed to break items. We either take the
+ * whole item or don’t take it.
+ * In Fractional Knapsack, we can break items for maximizing the total value of knapsack.
+ * This problem in which we can break an item is also called the fractional knapsack
+ * problem.
  */
 auto FractionalKnapsack01(const ArrayType &weights, const ArrayType &values,
                           ArrayType::value_type W) {
@@ -149,12 +149,12 @@ auto FractionalKnapsack01(const ArrayType &weights, const ArrayType &values,
     });
 
     auto final_value = 0.0;
-    for (const auto &ration_index_pair : ratios) {
-        if (weights[ration_index_pair.second] <= W) {
-            W -= weights[ration_index_pair.second];
-            final_value += values[ration_index_pair.second];
+    for (const auto [ration, index] : ratios) {
+        if (weights[index] <= W) {
+            W -= weights[index];
+            final_value += values[index];
         } else {
-            final_value += ration_index_pair.first * W;
+            final_value += ration * W;
             break;
         }
     }
