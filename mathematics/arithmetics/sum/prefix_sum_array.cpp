@@ -14,18 +14,18 @@ using RangeArray = std::vector<RangeType>;
  * @reference   Constant time range add operation on an array
  *              https://www.geeksforgeeks.org/constant-time-range-add-operation-array/
  *
- * Given an array of size N which is initialized with all zeros. We are given many
- * range add queries, which should be applied to this array. We need to print final
- * updated array as our result.
+ * Given an array of size N which is initialized with all zeros. We are given many range
+ * add queries, which should be applied to this array. We need to print final updated
+ * array as our result.
  */
 auto RangesOfAdditions(const ArrayType::size_type size, const ArrayType::value_type d,
                        const RangeArray &ranges) {
     ArrayType elements(size, 0);
 
-    for (const auto &a_range : ranges) {
-        elements[a_range.first] += d;
-        if (a_range.second + 1 < size) {
-            elements[a_range.second + 1] -= d;
+    for (const auto [left, right] : ranges) {
+        elements[left] += d;
+        if (right + 1 < size) {
+            elements[right + 1] -= d;
         }
     }
 
@@ -57,8 +57,8 @@ auto RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
  * @reference   Prefix Sum Array – Implementation and Applications in Competitive Programming
  *              https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/
  *
- * Consider an array of size n with all initial values as 0. Perform given ‘m’ add
- * operations from index ‘a’ to ‘b’ and evaluate highest element in array. An add
+ * Consider an array of size n with all initial values as 0. Perform given 'm' add
+ * operations from index 'a' to 'b' and evaluate highest element in array. An add
  * operation adds 100 to all elements from a to b (both inclusive).
  *
  * @reference   Maximum occurred integer in n ranges
@@ -73,8 +73,8 @@ auto RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
  * @reference   Maximum value in an array after m range increment operations
  *              https://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/
  *
- * Consider an array of size n with all initial values as 0, we need to perform
- * following m range increment operations.
+ * Consider an array of size n with all initial values as 0, we need to perform following
+ * m range increment operations.
  *      increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
  */

@@ -17,7 +17,7 @@ using ArrayType = std::vector<int>;
  * numbers that occurred only once in the array.
  * Note: Duplicates appear side by side every time. Might be few numbers can occur one
  * time and just assume this is a right rotating array (just say an array can rotate k
- * times towards right). Order of the elements in the output doesn’t matter.
+ * times towards right). Order of the elements in the output doesn't matter.
  */
 auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
     assert(elements.size() > 1ul);
@@ -52,9 +52,9 @@ auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/print-all-distinct-characters-of-a-string-in-order-3-methods/
  *
- * Given a string, find the all distinct (or non-repeating characters) in it. For example, if the input
- * string is “Geeks for Geeks”, then output should be ‘for’ and if input string is “Geeks Quiz”, then
- * output should be ‘GksQuiz’.
+ * Given a string, find the all distinct (or non-repeating characters) in it. For example,
+ * if the input string is "Geeks for Geeks", then output should be 'for' and if input
+ * string is "Geeks Quiz", then output should be 'GksQuiz'.
  */
 auto GetAllElementsOccurredOnlyOnce(const std::string &input) {
     const auto counter = ToFrequencyHashTable(input);
@@ -83,8 +83,8 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string &input) {
 
     std::vector<std::pair<std::string::size_type, std::string::value_type>>
             index_char_array;
-    for (const auto &value_index_pair : index_map) {
-        index_char_array.emplace_back(value_index_pair.second, value_index_pair.first);
+    for (const auto [value, index] : index_map) {
+        index_char_array.emplace_back(index, value);
     }
 
     std::sort(index_char_array.begin(), index_char_array.end());

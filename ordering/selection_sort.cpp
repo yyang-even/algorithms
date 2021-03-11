@@ -95,10 +95,9 @@ auto SelectionSort_MinMax(ArrayType values) {
         auto left = values.begin();
         auto right = values.end();
         for (; isThereMoreThanOneElements(left, right); ++left) {
-            const auto min_max_pair = std::minmax_element(left, right);
-            std::iter_swap(min_max_pair.first, left);
-            std::iter_swap(min_max_pair.second == left ? min_max_pair.first : min_max_pair.second,
-                           --right);
+            const auto [min, max] = std::minmax_element(left, right);
+            std::iter_swap(min, left);
+            std::iter_swap(max == left ? min : max, --right);
         }
     }
 

@@ -52,9 +52,10 @@ void AllDivisorsOf(const PrimeCountPairsType::const_iterator iter,
     if (iter == cend) {
         results.push_back(current_divisor);
     } else {
-        for (unsigned i = 0; i < iter->second; ++i) {
+        const auto [prime, count] = *iter;
+        for (unsigned i = 0; i < count; ++i) {
             AllDivisorsOf(std::next(iter), cend, current_divisor, results);
-            current_divisor *= iter->first;
+            current_divisor *= prime;
         }
     }
 }

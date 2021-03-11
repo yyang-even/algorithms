@@ -9,9 +9,9 @@ namespace {
  * @reference   First non-repeating character using one traversal of string | Set 2
  *              https://www.geeksforgeeks.org/first-non-repeating-character-using-one-traversal-of-string-set-2/
  *
- * Given a string, find the first non-repeating character in it. For example, if the
- * input string is “GeeksforGeeks”, then output should be ‘f’ and if input string is
- * “GeeksQuiz”, then output should be ‘G’.
+ * Given a string, find the first non-repeating character in it. For example, if the input
+ * string is "GeeksforGeeks", then output should be 'f' and if input string is "GeeksQuiz",
+ * then output should be 'G'.
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 6.
@@ -32,9 +32,9 @@ auto FindFirstNonrepeatingChar(const std::string &input) {
             iter->second = input.size();
         }
     }
-    for (const auto elem : counters) {
-        if (elem.second < first_nonrepeated_index) {
-            first_nonrepeated_index = elem.second;
+    for (const auto [_, index] : counters) {
+        if (index < first_nonrepeated_index) {
+            first_nonrepeated_index = index;
         }
     }
 
@@ -46,8 +46,8 @@ auto FindFirstNonrepeatingChar(const std::string &input) {
  *
  * @reference   https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
  *
- * Given a stream of characters, find the first non-repeating character from stream.
- * You need to tell the first non-repeating character in O(1) time at any moment.
+ * Given a stream of characters, find the first non-repeating character from stream. You
+ * need to tell the first non-repeating character in O(1) time at any moment.
  */
 auto FindFirstNonrepeatingCharFromStream(const std::string &input) {
     std::unordered_map<std::string::value_type,

@@ -10,10 +10,10 @@ static auto BucketSort_STL(ArrayType elements,
     }
 
     auto iter = elements.begin();
-    for (auto &key_value_pair : buckets) {
-        sort_func(key_value_pair.second.begin(), key_value_pair.second.end());
-        iter = std::copy(std::make_move_iterator(key_value_pair.second.cbegin()),
-                         std::make_move_iterator(key_value_pair.second.cend()), iter);
+    for (auto &[_, values] : buckets) {
+        sort_func(values.begin(), values.end());
+        iter = std::copy(std::make_move_iterator(values.cbegin()),
+                         std::make_move_iterator(values.cend()), iter);
     }
 
     return elements;

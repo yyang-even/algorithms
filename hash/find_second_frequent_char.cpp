@@ -9,8 +9,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
  *
- * Given a string, find the second most frequent character in it. Expected
- * time complexity is O(n) where n is the length of the input string.
+ * Given a string, find the second most frequent character in it. Expected time
+ * complexity is O(n) where n is the length of the input string.
  */
 auto FindSecondFrequentChar(const std::string &input) {
     assert(input.size() > 1ul);
@@ -19,15 +19,15 @@ auto FindSecondFrequentChar(const std::string &input) {
 
     std::string::size_type first_frequency = 0ul, second_frequency = 0ul;
     std::string::value_type first{}, second{};
-    for (const auto &elem : counters) {
-        if (elem.second > first_frequency) {
+    for (const auto [key, count] : counters) {
+        if (count > first_frequency) {
             second_frequency = first_frequency;
             second = first;
-            first_frequency = elem.second;
-            first = elem.first;
-        } else if (elem.second > second_frequency) {
-            second_frequency = elem.second;
-            second = elem.first;
+            first_frequency = count;
+            first = key;
+        } else if (count > second_frequency) {
+            second_frequency = count;
+            second = key;
         }
     }
 

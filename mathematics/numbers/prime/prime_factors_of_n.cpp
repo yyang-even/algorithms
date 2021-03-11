@@ -30,12 +30,11 @@ auto PrimeFactorsOfN_Sieve(const unsigned N) {
  * @reference   https://www.geeksforgeeks.org/pollards-rho-algorithm-prime-factorization/
  *
  * Given a positive integer n, and that it is composite, find a divisor of it.
- * @note    Algorithm will run indefinitely for prime numbers.
- *          The algorithm may not find the factors and return a failure for composite n.
- *          In that case, we use a different set of x, y and c and try again.
- *          The above algorithm only finds a divisor. To find a prime factor, we may
- *          recursively factorize the divisor d, run algorithm for d and n/d. The cycle
- *          length is typically of the order √d.
+ * @note    Algorithm will run indefinitely for prime numbers. The algorithm may not find
+ *  the factors and return a failure for composite n. In that case, we use a different set
+ *  of x, y and c and try again. The above algorithm only finds a divisor. To find a prime
+ *  factor, we may recursively factorize the divisor d, run algorithm for d and n/d. The
+ *  cycle length is typically of the order √d.
  */
 long OneDivisorOfN_PollardsRho(const long N) {
     if (N < 4) {
@@ -95,24 +94,24 @@ auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/n-th-prime-factor-of-a-given-number/
  *
- * Given Q queries which consist of two integers, one is number(1 <= number <= 106) and the other is N,
- * the task is to find the N-th prime factor of the given number.
+ * Given Q queries which consist of two integers, one is number(1 <= number <= 106) and
+ * the other is N, the task is to find the N-th prime factor of the given number.
  */
 using Query = std::pair<unsigned, unsigned>;
+
 auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
     const auto max_number =
         std::max_element(queries.cbegin(), queries.cend(),
-                         [](const auto & lhs,
-    const auto & rhs) {
+    [](const auto & lhs, const auto & rhs) {
         return lhs.first < rhs.first;
     });
 
     const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(max_number->first);
 
     std::vector<unsigned> outputs;
-    for (const auto &query : queries) {
-        const auto prime_factors = PrimeFactorsOfN_Sieve(query.first, smallest_prime_factors);
-        outputs.push_back(prime_factors[query.second - 1]);
+    for (const auto [number, N] : queries) {
+        const auto prime_factors = PrimeFactorsOfN_Sieve(number, smallest_prime_factors);
+        outputs.push_back(prime_factors[N - 1]);
     }
 
     return outputs;

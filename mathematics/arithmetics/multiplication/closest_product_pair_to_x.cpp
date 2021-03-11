@@ -8,8 +8,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/closest-product-pair-array/
  *
- * Given an array of non negative integers and a number x,
- * find a pair in array whose product is closest to x.
+ * Given an array of non negative integers and a number x, find a pair in array whose
+ * product is closest to x.
  */
 auto ClosestProductPair_Sort_Bound(ArrayType elements, const ArrayType::value_type x) {
     std::sort(elements.begin(), elements.end());
@@ -17,20 +17,20 @@ auto ClosestProductPair_Sort_Bound(ArrayType elements, const ArrayType::value_ty
     auto diff = std::numeric_limits<ArrayType::value_type>::max();
     std::pair<ArrayType::value_type, ArrayType::value_type> output;
     for (auto iter = elements.cbegin(); iter != elements.cend(); ++iter) {
-        const auto lower_upper_pair = std::equal_range(std::next(iter), elements.cend(), *iter);
-        if (lower_upper_pair.first != elements.cend()) {
-            const auto lower_diff = std::abs((*iter * *lower_upper_pair.first) - x);
+        const auto [lower, upper] = std::equal_range(std::next(iter), elements.cend(), *iter);
+        if (lower != elements.cend()) {
+            const auto lower_diff = std::abs((*iter * *lower) - x);
             if (lower_diff < diff) {
                 diff = lower_diff;
-                output = std::make_pair(*iter, *lower_upper_pair.first);
+                output = std::make_pair(*iter, *lower);
             }
         }
 
-        if (lower_upper_pair.second != elements.cend()) {
-            const auto upper_diff = std::abs((*iter * *lower_upper_pair.second) - x);
+        if (upper != elements.cend()) {
+            const auto upper_diff = std::abs((*iter * *upper) - x);
             if (upper_diff < diff) {
                 diff = upper_diff;
-                output = std::make_pair(*iter, *lower_upper_pair.second);
+                output = std::make_pair(*iter, *upper);
             }
         }
     }

@@ -11,24 +11,26 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/find-unique-element-element-occurs-k-times-except-one/
  *
- * Given an array which contains all elements occurring k times, but one occurs only once. Find that unique element.
+ * Given an array which contains all elements occurring k times, but one occurs only
+ * once. Find that unique element.
  *
  * @reference   Find the element that appears once
  *              https://www.geeksforgeeks.org/find-the-element-that-appears-once/
  *
- * Given an array where every element occurs three times, except one element which occurs only once. Find the element
- * that occurs once. Expected time complexity is O(n) and O(1) extra space.
+ * Given an array where every element occurs three times, except one element which occurs
+ * only once. Find the element that occurs once. Expected time complexity is O(n) and O(1)
+ * extra space.
  */
 ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
                                                 const ArrayType::size_type) {
     const auto counters = ToFrequencyHashTable(elements);
 
-    for (auto iter = counters.cbegin(); iter != counters.cend(); ++iter) {
-        if (iter->second == 1u) {
-            return iter->first;
+    for (const auto [key, count] : counters) {
+        if (count == 1) {
+            return key;
         }
     }
-    return 0u;
+    return 0;
 }
 
 

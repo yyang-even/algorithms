@@ -11,8 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum/
  *
- * Given an unsorted array of nonnegative integers, find a continuous
- * subarray which adds to a given number.
+ * Given an unsorted array of nonnegative integers, find a continuous subarray which adds
+ * to a given number.
  */
 const auto NOT_FOUND = std::make_pair(-1, -1);
 std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
@@ -57,8 +57,8 @@ std::pair<int, int> FindSubarrayWithGivenSum_Map(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
  *
- * Given an array of positive and negative numbers, find if there is a subarray
- * (of size at-least one) with 0 sum.
+ * Given an array of positive and negative numbers, find if there is a subarray (of size
+ * at-least one) with 0 sum.
  */
 bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
@@ -69,8 +69,8 @@ bool FindSubarrayWith0Sum(const ArrayType &integers) {
  *
  * @reference   https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
  *
- * Given an unsorted array of integers, find number of subarrays having sum exactly
- * equal to a given number k.
+ * Given an unsorted array of integers, find number of subarrays having sum exactly equal
+ * to a given number k.
  */
 auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
                                    const ArrayType::value_type SUM) {
@@ -88,8 +88,8 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
     const auto all_such_arrays = AllSubarraysWithGivenSum(integers, 0);
     ArrayType::size_type largest_length = 0;
 
-    for (const auto pair : all_such_arrays) {
-        const auto length = pair.second - pair.first + 1ul;
+    for (const auto [left, right] : all_such_arrays) {
+        const auto length = right - left + 1ul;
         if (length > largest_length) {
             largest_length = length;
         }

@@ -79,9 +79,9 @@ auto LRU(const ArrayType &requests, const ArrayType::size_type cache_size) {
         } else {
             if (requests_in_cache.size() == cache_size) {
                 auto LRU_index = std::numeric_limits<ArrayType::size_type>::max();
-                for (const auto &request_index_pair : requests_in_cache) {
-                    if (request_index_pair.second < LRU_index) {
-                        LRU_index = request_index_pair.second;
+                for (const auto [_, index] : requests_in_cache) {
+                    if (index < LRU_index) {
+                        LRU_index = index;
                     }
                 }
 

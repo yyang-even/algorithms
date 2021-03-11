@@ -7,13 +7,13 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/count-occurences-of-anagrams/
  *
- * Given a word and a text, return the count of the occurences of anagrams of the word
- * in the text(For eg: anagrams of word for are for, ofr, rof etc.)
+ * Given a word and a text, return the count of the occurences of anagrams of the word in
+ * the text(For eg: anagrams of word for are for, ofr, rof etc.)
  */
 auto AreAllCharZero(
     const std::unordered_map<std::string::value_type, int> &char_counts) {
-    for (const auto &pair : char_counts) {
-        if (pair.second) {
+    for (const auto [_, count] : char_counts) {
+        if (count) {
             return false;
         }
     }

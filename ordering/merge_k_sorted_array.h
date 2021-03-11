@@ -20,13 +20,13 @@ void MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays,
             std::move(first_elements));
 
     while (not heap.empty()) {
-        const auto elem = heap.top();
+        const auto [top_array_ptr, top_array_iter] = heap.top();
         heap.pop();
-        *(out_iter++) = *elem.second;
+        *(out_iter++) = *top_array_iter;
 
-        const auto next = std::next(elem.second);
-        if (next != elem.first->cend()) {
-            heap.emplace(elem.first, next);
+        const auto next = std::next(top_array_iter);
+        if (next != top_array_ptr->cend()) {
+            heap.emplace(top_array_ptr, next);
         }
     }
 }

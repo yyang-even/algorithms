@@ -31,9 +31,9 @@ using ArrayType = std::vector<int>;
  * @reference   Tournament Tree (Winner Tree) and Binary Heap
  *              https://www.geeksforgeeks.org/tournament-tree-and-binary-heap/
  *
- * Given an array and a number k where k is smaller than size of array,
- * we need to find the k’th smallest element in the given array.
- * It is given that all array elements are distinct.
+ * Given an array and a number k where k is smaller than size of array, we need to find
+ * the k'th smallest element in the given array. It is given that all array elements are
+ * distinct.
  */
 auto KthSmallest_Sort(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
@@ -153,8 +153,8 @@ ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
 }
 
 auto KthSmallest_BinarySearch(const ArrayType &elements, const ArrayType::size_type K) {
-    const auto min_max = std::minmax_element(elements.cbegin(), elements.cend());
-    return KthSmallest_BinarySearch(*(min_max.first), *(min_max.second), elements, K + 1);
+    const auto [min, max] = std::minmax_element(elements.cbegin(), elements.cend());
+    return KthSmallest_BinarySearch(*min, *max, elements, K + 1);
 }
 
 }//namespace

@@ -75,10 +75,10 @@ auto CountingSort(const ArrayType &values) {
         return values;
     }
 
-    const auto min_max_pair = std::minmax_element(values.cbegin(), values.cend());
-    const auto RANGE = *min_max_pair.second - *min_max_pair.first + 1;
+    const auto [min_iter, max_iter] = std::minmax_element(values.cbegin(), values.cend());
+    const auto RANGE = *max_iter - *min_iter + 1;
 
-    return CountingSort(values, RANGE, [min = *min_max_pair.first](const auto v) {
+    return CountingSort(values, RANGE, [min = *min_iter](const auto v) {
         return v - min;
     });
 }

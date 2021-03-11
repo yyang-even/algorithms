@@ -156,15 +156,15 @@ auto QuickSort_Iterative(ArrayType values) {
         range_stack.emplace(values.begin(), values.end());
 
         while (not range_stack.empty()) {
-            const auto range = range_stack.top();
+            const auto [lower, upper] = range_stack.top();
             range_stack.pop();
-            const auto mid = partition_Lomuto(range.first, range.second);
-            if (isThereMoreThanOneElements(range.first, mid)) {
-                range_stack.emplace(range.first, mid);
+            const auto mid = partition_Lomuto(lower, upper);
+            if (isThereMoreThanOneElements(lower, mid)) {
+                range_stack.emplace(lower, mid);
             }
             const auto mid_plus_one = mid + 1;
-            if (isThereMoreThanOneElements(mid_plus_one, range.second)) {
-                range_stack.emplace(mid_plus_one, range.second);
+            if (isThereMoreThanOneElements(mid_plus_one, upper)) {
+                range_stack.emplace(mid_plus_one, upper);
             }
         }
     }

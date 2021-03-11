@@ -56,11 +56,12 @@ auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin,
         return std::make_pair(*max_iter, *min_iter);
     } else {
         const auto half = size / 2;
-        const auto left_result = MaxAndMin_Tournament(cbegin, half);
-        const auto right_result = MaxAndMin_Tournament(std::next(cbegin, half), size - half);
+        const auto [left_max, left_min] = MaxAndMin_Tournament(cbegin, half);
+        const auto [right_max, right_min] = MaxAndMin_Tournament(std::next(cbegin, half),
+                                                                 size - half);
 
-        return std::make_pair(std::max(left_result.first, right_result.first),
-                              std::min(left_result.second, right_result.second));
+        return std::make_pair(std::max(left_max, right_max),
+                              std::min(left_min, right_min));
     }
 }
 auto MaxAndMin_Tournament(const ArrayType &values) {

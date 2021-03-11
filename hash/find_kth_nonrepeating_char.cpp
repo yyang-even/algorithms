@@ -7,10 +7,9 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/kth-non-repeating-character/
  *
- * Given a string and a number k, find the k’th non-repeating character
- * in the string. Consider a large input string with lacs of characters
- * and a small character set. How to find the character by only doing
- * only one traversal of input string?
+ * Given a string and a number k, find the k'th non-repeating character in the string.
+ * Consider a large input string with lots of characters and a small character set. How
+ * to find the character by only doing only one traversal of input string?
  */
 auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_type K) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;
@@ -26,9 +25,9 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
     }
 
     std::vector<std::string::size_type> nonrepeating_char_indice;
-    for (const auto elem : counters) {
-        if (elem.second != input.size()) {
-            nonrepeating_char_indice.push_back(elem.second);
+    for (const auto [_, index] : counters) {
+        if (index != input.size()) {
+            nonrepeating_char_indice.push_back(index);
         }
     }
 

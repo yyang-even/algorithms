@@ -16,9 +16,9 @@ const auto AllSubarraysWithGivenSum(const ArrayType &integers,
         }
 
         const auto expected_subarray_sum = current_sum - SUM;
-        const auto range = sum_index_map.equal_range(expected_subarray_sum);
-        if (range.first != sum_index_map.cend()) {
-            for (auto iter = range.first; iter != range.second; ++iter) {
+        const auto [lower, upper] = sum_index_map.equal_range(expected_subarray_sum);
+        if (lower != sum_index_map.cend()) {
+            for (auto iter = lower; iter != upper; ++iter) {
                 outputs.emplace_back(iter->second + 1, i);
             }
         }

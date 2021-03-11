@@ -29,8 +29,8 @@ auto MakeSortStable(const ArrayType &elements) {
     });
 
     ArrayType result;
-    for (const auto &element_sequence_pair : elements_with_sequence) {
-        result.push_back(std::move(element_sequence_pair.first));
+    for (const auto [element, _] : elements_with_sequence) {
+        result.push_back(std::move(element));
     }
 
     return result;

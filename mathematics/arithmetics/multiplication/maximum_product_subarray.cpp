@@ -10,8 +10,8 @@ using ArrayType = std::vector<int>;
  * @reference   Maximum Product Subarray
  *              https://www.geeksforgeeks.org/maximum-product-subarray/
  *
- * Given an array that contains both positive and negative integers,
- * find the product of the maximum product subarray.
+ * Given an array that contains both positive and negative integers, find the product of
+ * the maximum product subarray.
  *
  * @complexity  O(n)
  */
@@ -75,14 +75,14 @@ auto MaximumProductSubarray_TwoWays(const ArrayType &array) {
         return 0;
     }
 
-    const auto forward_product_pair =
+    const auto [forward_product_has_zero, forward_product_max_product] =
         MaximumProductSubarrayHelper(array.cbegin(), array.cend());
-    const auto backward_product_pair =
+    const auto [backward_product_has_zero, backward_product_max_product] =
         MaximumProductSubarrayHelper(array.crbegin(), array.crend());
     const auto max_product =
-        std::max(forward_product_pair.second, backward_product_pair.second);
+        std::max(forward_product_max_product, backward_product_max_product);
 
-    return (forward_product_pair.first or backward_product_pair.first) ?
+    return (forward_product_has_zero or backward_product_has_zero) ?
            std::max(0, max_product) : max_product;
 }
 

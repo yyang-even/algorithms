@@ -12,15 +12,16 @@ using Query = std::pair<ArrayType::size_type, ArrayType::size_type>;
  *
  * @reference   https://www.geeksforgeeks.org/queries-counts-array-elements-values-given-range/
  *
- * Given an unsorted array of size n, find no of elements between two elements i and j (both inclusive).
+ * Given an unsorted array of size n, find no of elements between two elements i and j
+ * (both inclusive).
  */
 auto QueriesForCountsInRange_Sort(ArrayType values, const std::vector<Query> &queries) {
     std::sort(values.begin(), values.end());
 
     std::vector<ArrayType::difference_type> output;
-    for (const auto &range_pair : queries) {
-        const auto lower = std::lower_bound(values.cbegin(), values.cend(), range_pair.first);
-        const auto upper = std::upper_bound(values.cbegin(), values.cend(), range_pair.second);
+    for (const auto [i, j] : queries) {
+        const auto lower = std::lower_bound(values.cbegin(), values.cend(), i);
+        const auto upper = std::upper_bound(values.cbegin(), values.cend(), j);
         output.push_back(upper - lower);
     }
 
@@ -40,19 +41,17 @@ auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
         return output;
     }
 
-    const auto min_max_pair = std::minmax_element(values.cbegin(), values.cend());
-    const auto RANGE = *min_max_pair.second - *min_max_pair.first + 1;
-    const auto ToIndex = [min = *min_max_pair.first](const auto v) {
+    const auto [min_iter, max_iter] = std::minmax_element(values.cbegin(), values.cend());
+    const auto RANGE = *max_iter - *min_iter + 1;
+    const auto ToIndex = [min = *min_iter](const auto v) {
         return v - min;
     };
 
     const auto counter = ToCountingArray(values, RANGE, ToIndex);
 
-    for (const auto &range_pair : queries) {
-        const auto lower = counter[ToIndex(
-                                       std::max<ArrayType::size_type>(range_pair.first, *min_max_pair.first))];
-        const auto upper = counter[ToIndex(
-                                       std::min<ArrayType::size_type>(range_pair.second, *min_max_pair.second))];
+    for (const auto [left, right] : queries) {
+        const auto lower = counter[ToIndex(std::max<ArrayType::size_type>(left, *min_iter))];
+        const auto upper = counter[ToIndex(std::min<ArrayType::size_type>(right, *max_iter))];
         output.push_back(upper - lower + 1);
     }
 

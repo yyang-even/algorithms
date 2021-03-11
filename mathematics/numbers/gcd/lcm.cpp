@@ -10,12 +10,14 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Exercise 4.2.
  *
- * The best way known to compute lcm(m, n) is to compute gcd(m, n) first and then to divide mn by the gcd.
+ * The best way known to compute lcm(m, n) is to compute gcd(m, n) first and then to
+ * divide mn by the gcd.
  *
  * @reference   Program to find LCM of two numbers
  *              https://www.geeksforgeeks.org/program-to-find-lcm-of-two-numbers/
  *
- * LCM (Least Common Multiple) of two numbers is the smallest number which can be divided by both numbers.
+ * LCM (Least Common Multiple) of two numbers is the smallest number which can be divided
+ * by both numbers.
  *
  * @reference   TCS Coding Practice Question | LCM of 2 Numbers
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-lcm-of-2-numbers/
@@ -33,10 +35,10 @@ unsigned LCM(const unsigned m, const unsigned n) {
  *              https://www.geeksforgeeks.org/program-to-find-lcm-of-2-numbers-without-using-gcd/
  */
 auto LCM_MOD(const unsigned m, const unsigned n) {
-    const auto min_max_pair = std::minmax(m, n);
+    const auto [min, max] = std::minmax(m, n);
 
-    auto lcm = min_max_pair.second;
-    for (; lcm % min_max_pair.first != 0; lcm += min_max_pair.second);
+    auto lcm = max;
+    for (; lcm % min != 0; lcm += max);
 
     return lcm;
 }
