@@ -17,6 +17,9 @@ namespace {
  * the elements of an ordered list S into a one-to-one correspondence with S itself. A
  * string of length n has n! permutation.
  *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 9.5.
+ *
  * @complexity  O(n * n!)
  */
 void PermutationHelper(const std::string &input, std::string::iterator start,
@@ -31,6 +34,7 @@ void PermutationHelper(const std::string &input, std::string::iterator start,
         }
     }
 }
+
 auto Permutation(std::string input) {
     std::vector<std::string> outputs;
     PermutationHelper(input, input.begin(), input.begin() + input.size() - 1ul, outputs);
@@ -56,7 +60,7 @@ auto PermutationSTL(std::string input) {
 const std::vector<std::string> EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};
 
 
-SIMPLE_BENCHMARK(Permutation, Sample1, "ab4c12ed3");
+THE_BENCHMARK(Permutation, "ab4c12ed3");
 
 SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 
@@ -64,6 +68,6 @@ SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 const std::vector<std::string> EXPECTED2 = {"abc", "acb", "bac", "bca", "cab", "cba"};
 
 
-SIMPLE_BENCHMARK(PermutationSTL, Sample1, "ab4c12ed3");
+THE_BENCHMARK(PermutationSTL, "ab4c12ed3");
 
 SIMPLE_TEST(PermutationSTL, TestSAMPLE1, EXPECTED2, "abc");
