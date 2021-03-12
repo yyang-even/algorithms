@@ -19,8 +19,8 @@ using ArrayType = std::vector<int>;
  * @reference   Sort elements by frequency | Set 5 (using Java Map)
  *              https://www.geeksforgeeks.org/sort-elements-by-frequency-set-5-using-java-map/
  *
- * Print the elements of an array in the decreasing frequency if 2 numbers
- * have same frequency then print the one which came first.
+ * Print the elements of an array in the decreasing frequency if 2 numbers have same
+ * frequency then print the one which came first.
  *
  * @reference   Sort a string according to the frequency of characters
  *              https://www.geeksforgeeks.org/sort-a-string-according-to-the-frequency-of-characters/
@@ -31,8 +31,7 @@ auto SortByFrequency(ArrayType elements) {
 
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
         const auto elem = elements[i];
-        auto iter = counter.find(elem);
-        if (iter == counter.end()) {
+        if (const auto iter = counter.find(elem); iter == counter.end()) {
             counter.emplace(elem, MinIndex_Count_Pair{i, 1});
         } else {
             ++(iter->second.second);
@@ -55,8 +54,8 @@ auto SortByFrequency(ArrayType elements) {
 
 
 /**
- * Print the elements of an array in the decreasing frequency if 2 numbers
- * have same frequency then keeps their relative order.
+ * Print the elements of an array in the decreasing frequency if 2 numbers have same
+ * frequency then keeps their relative order.
  */
 auto SortByFrequency_Stable(ArrayType elements) {
     const auto counter = ToFrequencyHashTable(elements);
@@ -83,14 +82,14 @@ const ArrayType SAMPLE3 = {2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12};
 const ArrayType EXPECTED3 = {3, 3, 3, 3, 2, 2, 2, 12, 12, 4, 5};
 
 
-SIMPLE_BENCHMARK(SortByFrequency, Sample1, SAMPLE1);
+THE_BENCHMARK(SortByFrequency, SAMPLE1);
 
 SIMPLE_TEST(SortByFrequency, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortByFrequency, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(SortByFrequency, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(SortByFrequency_Stable, Sample1, SAMPLE1);
+THE_BENCHMARK(SortByFrequency_Stable, SAMPLE1);
 
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE1, EXPECTED_STABLE1, SAMPLE1);
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE2, EXPECTED_STABLE2, SAMPLE2);

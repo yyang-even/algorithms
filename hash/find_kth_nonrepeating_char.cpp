@@ -14,12 +14,9 @@ namespace {
 auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_type K) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;
 
-    for (std::string::size_type i = 0ul; i < input.size(); ++i) {
+    for (std::string::size_type i = 0; i < input.size(); ++i) {
         const auto c = input[i];
-        auto iter = counters.find(c);
-        if (iter == counters.cend()) {
-            counters.emplace(c, i);
-        } else {
+        if (const auto [iter, inserted] = counters.emplace(c, i); not inserted) {
             iter->second = input.size();
         }
     }
@@ -41,7 +38,7 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindKthNonrepeatingChar, Sample1, "GeeksforGeeks", 3ul);
+THE_BENCHMARK(FindKthNonrepeatingChar, "GeeksforGeeks", 3);
 
-SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE1, 'r', "GeeksforGeeks", 3ul);
-SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE2, 'o', "GeeksforGeeks", 2ul);
+SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE1, 'r', "GeeksforGeeks", 3);
+SIMPLE_TEST(FindKthNonrepeatingChar, TestSAMPLE2, 'o', "GeeksforGeeks", 2);

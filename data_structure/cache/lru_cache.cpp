@@ -31,8 +31,7 @@ public:
 
 
     auto Get(const KeyValuePair::first_type key) {
-        auto iter = cache_map.find(key);
-        if (iter != cache_map.cend()) {
+        if (const auto iter = cache_map.find(key); iter != cache_map.cend()) {
             const auto value = iter->second->second;
             cache_queue.splice(cache_queue.cbegin(), cache_queue, iter->second);
             iter->second = cache_queue.cbegin();
@@ -43,8 +42,7 @@ public:
 
 
     void Set(const KeyValuePair::first_type key, const KeyValuePair::second_type value) {
-        const auto iter = cache_map.find(key);
-        if (iter != cache_map.cend()) {
+        if (const auto iter = cache_map.find(key); iter != cache_map.cend()) {
             cache_queue.erase(iter->second);
             cache_queue.emplace_back(key, value);
             iter->second = cache_queue.cbegin();
@@ -133,7 +131,7 @@ const ArrayType SAMPLE3 = {0, 0, 0, 2, 3, 0, 5, 7, 1, 2, 0, 8};
 const ArrayType SAMPLE4 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 0, 0};
 
 
-SIMPLE_BENCHMARK(LRU, Sample1, SAMPLE1, 4);
+THE_BENCHMARK(LRU, SAMPLE1, 4);
 
 SIMPLE_TEST(LRU, TestSAMPLE1, 6, SAMPLE1, 4);
 SIMPLE_TEST(LRU, TestSAMPLE2, 2, SAMPLE2, 3);

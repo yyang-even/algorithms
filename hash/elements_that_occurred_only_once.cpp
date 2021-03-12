@@ -70,9 +70,7 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string &input) {
     std::unordered_map<std::string::value_type, std::string::size_type> index_map;
     for (std::string::size_type i = 0; i < input.size(); ++i) {
         const auto c = input[i];
-        const auto iter = counter.find(c);
-        if (iter == counter.cend()) {
-            counter.emplace(c);
+        if (const auto [iter, inserted] = counter.emplace(c); inserted) {
             if (c != ' ') {
                 index_map.emplace(c, i);
             }
@@ -109,7 +107,7 @@ const ArrayType SAMPLE3 = {3, 7, 7, 8, 8, 9, 1, 1, 4, 2, 2, 3};
 const ArrayType SAMPLE4 = {1, -9, -8, 4, 4, 5, 5, -1, 1};
 
 
-SIMPLE_BENCHMARK(ElementsThatOccurredOnlyOnce, Sample1, SAMPLE1);
+THE_BENCHMARK(ElementsThatOccurredOnlyOnce, SAMPLE1);
 
 SIMPLE_TEST(ElementsThatOccurredOnlyOnce, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ElementsThatOccurredOnlyOnce, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -117,13 +115,13 @@ SIMPLE_TEST(ElementsThatOccurredOnlyOnce, TestSAMPLE3, EXPECTED1, SAMPLE3);
 SIMPLE_TEST(ElementsThatOccurredOnlyOnce, TestSAMPLE4, EXPECTED2, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(GetAllElementsOccurredOnlyOnce, Sample1, "Geeks for Geeks");
+THE_BENCHMARK(GetAllElementsOccurredOnlyOnce, "Geeks for Geeks");
 
 SIMPLE_TEST(GetAllElementsOccurredOnlyOnce, TestSAMPLE1, "for", "Geeks for Geeks");
 SIMPLE_TEST(GetAllElementsOccurredOnlyOnce, TestSAMPLE2, "HoGks", "Hello Geeks");
 
 
-SIMPLE_BENCHMARK(GetAllElementsOccurredOnlyOnce_Linear, Sample1, "Geeks for Geeks");
+THE_BENCHMARK(GetAllElementsOccurredOnlyOnce_Linear, "Geeks for Geeks");
 
 SIMPLE_TEST(GetAllElementsOccurredOnlyOnce_Linear, TestSAMPLE1, "for",
             "Geeks for Geeks");
