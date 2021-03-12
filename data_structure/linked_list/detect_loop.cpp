@@ -20,10 +20,8 @@ DetectLoop_Hash(const SinglyLinkedList::Node::PointerType head) {
     std::unordered_set<SinglyLinkedList::Node *> visited_nodes;
 
     for (auto current = head; current; current = current->next) {
-        if (visited_nodes.find(current.get()) != visited_nodes.cend()) {
+        if (not visited_nodes.insert(current.get()).second) {
             return current;
-        } else {
-            visited_nodes.insert(current.get());
         }
     }
 
@@ -74,8 +72,8 @@ auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  *              https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
  *
  * Write a function detectAndRemoveLoop() that checks whether a given Linked List
- * contains loop and if loop is present then removes the loop and returns true. If
- * the list doesn't contain loop then it returns false.
+ * contains loop and if loop is present then removes the loop and returns true. If the
+ * list doesn't contain loop then it returns false.
  *
  * @reference   Find length of loop in linked list
  *              https://www.geeksforgeeks.org/find-length-of-loop-in-linked-list/
@@ -351,7 +349,7 @@ const std::vector<unsigned> SAMPLE1 = {1, 4, 3, 4, 2};
 const std::vector<unsigned> SAMPLE2 = {1, 3, 2, 1};
 
 
-SIMPLE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, SAMPLE1);
 
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample1, 4u, SAMPLE1);
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample2, 1u, SAMPLE2);
