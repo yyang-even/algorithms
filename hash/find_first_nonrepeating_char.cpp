@@ -23,15 +23,13 @@ auto FindFirstNonrepeatingChar(const std::string &input) {
     std::unordered_map<std::string::value_type, std::string::size_type> counters;
     auto first_nonrepeated_index = input.size();
 
-    for (std::string::size_type i = 0ul; i < input.size(); ++i) {
+    for (std::string::size_type i = 0; i < input.size(); ++i) {
         const auto c = input[i];
-        auto iter = counters.find(c);
-        if (iter == counters.cend()) {
-            counters.emplace(c, i);
-        } else {
+        if (const auto [iter, inserted] = counters.emplace(c, i); not inserted) {
             iter->second = input.size();
         }
     }
+
     for (const auto [_, index] : counters) {
         if (index < first_nonrepeated_index) {
             first_nonrepeated_index = index;
@@ -56,11 +54,10 @@ auto FindFirstNonrepeatingCharFromStream(const std::string &input) {
     std::string outputs;
 
     for (const auto c : input) {
-        const auto iter = char_map.find(c);
-        if (iter == char_map.cend()) {
+        const auto [iter, inserted] = char_map.emplace(c, std::prev(nonreapting_chars.cend()));
+        if (inserted) {
             //first occurrence
             nonreapting_chars.emplace_back(c);
-            char_map.emplace(c, std::prev(nonreapting_chars.cend()));
         } else if (iter->second != nonreapting_chars.cend()) {
             //second occurrence
             nonreapting_chars.erase(iter->second);
@@ -86,9 +83,7 @@ auto FindFirstNonrepeatingCharFromStream_Queue(const std::string &input) {
     std::string outputs;
 
     for (const auto c : input) {
-        const auto iter = frequency_map.find(c);
-        if (iter == frequency_map.cend()) {
-            frequency_map.emplace(c, 1);
+        if (const auto [iter, inserted] = frequency_map.emplace(c, 1); inserted) {
             char_queue.push(c);
         } else {
             ++(iter->second);
@@ -110,14 +105,14 @@ auto FindFirstNonrepeatingCharFromStream_Queue(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingChar, Sample1, "GeeksforGeeks");
+THE_BENCHMARK(FindFirstNonrepeatingChar, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE1, 'f', "GeeksforGeeks");
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE2, 'G', "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingChar, TestSAMPLE3, 'd', "aabbccd");
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream, Sample1, "GeeksforGeeks");
+THE_BENCHMARK(FindFirstNonrepeatingCharFromStream, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE1, "GGGGGGGGkkksf",
             "GeeksforGeeks");
@@ -125,7 +120,7 @@ SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE2, "GGGGGGGGG", "Geek
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream, TestSAMPLE3, "abcd", "aabbccd");
 
 
-SIMPLE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, Sample1, "GeeksforGeeks");
+THE_BENCHMARK(FindFirstNonrepeatingCharFromStream_Queue, "GeeksforGeeks");
 
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, "GGGGGGGGkkksf",
             "GeeksforGeeks");
