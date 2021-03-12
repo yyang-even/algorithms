@@ -15,8 +15,7 @@ auto CanSecondStringBeFormedFromFirst(const std::string &given_str,
     }
 
     for (const auto c : given_str) {
-        const auto iter = char_counts.find(c);
-        if (iter != char_counts.cend()) {
+        if (const auto iter = char_counts.find(c); iter != char_counts.cend()) {
             if (--iter->second == 0) {
                 char_counts.erase(iter);
                 if (char_counts.empty()) {

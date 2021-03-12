@@ -35,11 +35,7 @@ auto RemoveDuplicates(const std::string &input) {
     std::unordered_set<std::string::value_type> hash_table;
 
     return RemoveCharacters_TwoPointers(input, [&hash_table](const auto c) {
-        if (hash_table.find(c) == hash_table.cend()) {
-            hash_table.emplace(c);
-            return true;
-        }
-        return false;
+        return hash_table.emplace(c).second;
     });
 }
 
@@ -48,9 +44,8 @@ auto RemoveDuplicates(const std::string &input) {
  *
  * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
  *
- * Given a string str of lowercase characters, the task is to remove duplicates and
- * return a resultant string without modifying the order of characters in the original
- * string.
+ * Given a string str of lowercase characters, the task is to remove duplicates and return
+ * a resultant string without modifying the order of characters in the original string.
  */
 auto RemoveDuplicates_Bits(const std::string &input) {
     std::bitset < 'z' - 'a' > hash_table;
@@ -119,10 +114,9 @@ auto RemoveDuplicates_UnsortedLinkedList(ListType a_list) {
     std::unordered_set<ListType::value_type> seen_values;
     auto previous = a_list.cbefore_begin();
     for (auto current = a_list.cbegin(); current != a_list.cend();) {
-        if (seen_values.find(*current) != seen_values.cend()) {
+        if (not seen_values.insert(*(current++)).second) {
             current = a_list.erase_after(previous);
         } else {
-            seen_values.insert(*(current++));
             ++previous;
         }
     }
@@ -257,9 +251,9 @@ auto FindRepeatedElements(const ArrayType &values) {
 
     ArrayType output;
     for (const auto elem : values) {
-        auto iter = counters.find(elem);
-        if (iter->second > 1) {
-            iter->second = 0;
+        auto &count = counters.find(elem)->second;
+        if (count > 1) {
+            count = 0;
             output.push_back(elem);
         }
     }
@@ -298,8 +292,8 @@ auto FindAllDuplicates_BitArray(const ArrayType &elements) {
  * @reference   Print all the duplicates in the input string
  *              https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
  *
- * Write an efficient C program to print all the duplicates and their counts in the
- * input string.
+ * Write an efficient C program to print all the duplicates and their counts in the input
+ * string.
  */
 
 

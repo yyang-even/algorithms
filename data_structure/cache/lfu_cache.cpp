@@ -33,8 +33,7 @@ public:
 
 
     auto Get(const KeyType key) {
-        auto iter = cache_map.find(key);
-        if (iter != cache_map.cend()) {
+        if (const auto iter = cache_map.find(key); iter != cache_map.cend()) {
             auto &[value, count] = iter->second;
             ++count;
             return value;
@@ -44,8 +43,7 @@ public:
 
 
     void Set(const KeyType key, const ValueCountPair::first_type new_value) {
-        const auto iter = cache_map.find(key);
-        if (iter != cache_map.cend()) {
+        if (const auto iter = cache_map.find(key); iter != cache_map.cend()) {
             auto &[value, count] = iter->second;
             value = new_value;
             ++count;

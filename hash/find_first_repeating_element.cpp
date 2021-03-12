@@ -15,19 +15,16 @@ using ArrayType = std::vector<int>;
  * @reference   Find the first repeated word in a string
  *              https://www.geeksforgeeks.org/find-first-repeated-word-string/
  *
- * Given an array of integers, find the first repeating element in it.
- * We need to find the element that occurs more than once and whose
- * index of first occurrence is smallest.
+ * Given an array of integers, find the first repeating element in it. We need to find
+ * the element that occurs more than once and whose index of first occurrence is smallest.
  */
 auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
     ArrayType::value_type first_repeated = -1;
 
     for (auto iter = elements.crbegin(); iter != elements.crend(); ++iter) {
-        if (counters.find(*iter) != counters.cend()) {
+        if (not counters.insert(*iter).second) {
             first_repeated = *iter;
-        } else {
-            counters.insert(*iter);
         }
     }
 
@@ -39,24 +36,22 @@ auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
  *
- * Given a string, find the first repeated character in it. We need to find the character that
- * occurs more than once and whose index of second occurrence is smallest.
+ * Given a string, find the first repeated character in it. We need to find the character
+ * that occurs more than once and whose index of second occurrence is smallest.
  *
  * @reference   Efficiently find first repeated character in a string without using any additional data structure in one traversal
  *              https://www.geeksforgeeks.org/efficiently-find-first-repeated-character-string-without-using-additional-data-structure-one-traversal/
  *
- * Implement a space efficient algorithm to check First repeated character in a string without
- * using any additional data structure in one traversal. Use additional data structures like
- * count array, hash, etc is not allowed.
+ * Implement a space efficient algorithm to check First repeated character in a string
+ * without using any additional data structure in one traversal. Use additional data
+ * structures like count array, hash, etc is not allowed.
  */
 auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string &str) {
     std::unordered_set<ArrayType::value_type> counters;
 
     for (const auto c : str) {
-        if (counters.find(c) != counters.cend()) {
+        if (not counters.insert(c).second) {
             return c;
-        } else {
-            counters.insert(c);
         }
     }
 
@@ -98,10 +93,8 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(
     auto min_index = std::numeric_limits<std::size_t>::max();
     int first_duplicate_element = -1;
     for (const auto element : l) {
-        const auto map_iter = occurrence_map.find(element);
-        if (map_iter == occurrence_map.cend()) {
-            occurrence_map.emplace(element, index);
-        } else if (map_iter->second < min_index) {
+        const auto [map_iter, inserted] = occurrence_map.emplace(element, index);
+        if (not inserted and map_iter->second < min_index) {
             min_index = map_iter->second;
             first_duplicate_element = element;
         }
@@ -121,14 +114,13 @@ const InitializerType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
 const InitializerType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, Sample1, SAMPLE1);
+THE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, SAMPLE1);
 
 SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
 SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, Sample1,
-                 "geeksforgeeks");
+THE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, "geeksforgeeks");
 
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE1, 'e',
             "geeksforgeeks");
@@ -136,8 +128,7 @@ SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE2, 'l',
             "hello geeks");
 
 
-SIMPLE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, Sample1,
-                 "geeksforgeeks");
+THE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, "geeksforgeeks");
 
 SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e',
             "geeksforgeeks");
@@ -145,8 +136,7 @@ SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a',
             "abcfdeacf");
 
 
-SIMPLE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, Sample1,
-                 SAMPLE1);
+THE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
 
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1,
             EMPTY);
