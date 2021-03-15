@@ -1,9 +1,11 @@
 #include "common_header.h"
 
+#include "mathematics/matrix/matrix.h"
+
 
 namespace {
 
-using MatrixType = std::vector<std::vector<bool>>;
+using MazeType = MatrixTypeTemplate<bool>;
 
 /** Count all possible paths from top left to bottom right of a mXn matrix
  *
@@ -77,7 +79,7 @@ auto CountPossiblePaths_Combinatorics(const unsigned M, const unsigned N) {
  * How many unique paths would there be? An obstacle and empty space are marked as 1
  * and 0 respectively in the grid.
  */
-auto CountPossiblePathsWithObstacle(const MatrixType &maze) {
+auto CountPossiblePathsWithObstacle(const MazeType &maze) {
     assert(not maze.empty());
     assert(not maze.front().empty());
 
@@ -132,13 +134,13 @@ SIMPLE_TEST(CountPossiblePaths_Combinatorics, TestSAMPLE2, 3, 2, 3);
 SIMPLE_TEST(CountPossiblePaths_Combinatorics, TestSAMPLE3, 6, 3, 3);
 
 
-const MatrixType SAMPLE1 = {
+const MazeType SAMPLE1 = {
     { 0, 0, 0 },
     { 0, 1, 0 },
     { 0, 0, 0 }
 };
 
-const MatrixType SAMPLE2 = {
+const MazeType SAMPLE2 = {
     { 0, 0, 0 },
     { 1, 1, 0 },
     { 0, 0, 0 }

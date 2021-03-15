@@ -14,6 +14,9 @@ using ArrayType = std::vector<int>;
  * Given a value N, if we want to make change for N cents, and we have infinite supply
  * of each of S = {S1, S2, .. , Sm} valued coins, how many ways can we make the change?
  * The order of coins doesn’t matter.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 9.8.
  */
 auto CoinChange(const ArrayType &coins, const ArrayType::value_type N) {
     unsigned counts[N + 1][coins.size()] = {};
@@ -57,8 +60,9 @@ auto CoinChange_SpaceOptimized(const ArrayType &coins, const ArrayType::value_ty
  * @reference   Find minimum number of coins that make a given value
  *              https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
  *
- * Given a value V, if we want to make change for V cents, and we have infinite supply of each of
- * C = {C1, C2, .. , Cm} valued coins, what is the minimum number of coins to make the change?
+ * Given a value V, if we want to make change for V cents, and we have infinite supply of
+ * each of C = {C1, C2, .. , Cm} valued coins, what is the minimum number of coins to
+ * make the change?
  */
 auto MinimumCoinChange(const ArrayType &coins, const ArrayType::value_type N) {
     std::vector<unsigned> min_counts(N + 1, std::numeric_limits<unsigned>::max() - 1);
@@ -78,9 +82,9 @@ auto MinimumCoinChange(const ArrayType &coins, const ArrayType::value_type N) {
  * @reference   Coin Change | BFS Approach
  *              https://www.geeksforgeeks.org/coin-change-bfs-approach/
  *
- * Given an integer X and an array arr[] of length N consisting of positive integers, the task
- * is to pick minimum number of integers from the array such that they sum up to N. Any number
- * can be chosen infinite number of times. If no answer exists then print -1.
+ * Given an integer X and an array arr[] of length N consisting of positive integers, the
+ * task is to pick minimum number of integers from the array such that they sum up to N.
+ * Any number can be chosen infinite number of times. If no answer exists then print -1.
  *
  * @note    This approach is less efficient than the DP solution above.
  */
@@ -92,16 +96,16 @@ auto MinimumCoinChange(const ArrayType &coins, const ArrayType::value_type N) {
  * @reference   Greedy Algorithm to find Minimum number of Coins
  *              https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/
  *
- * Given a value V, if we want to make a change for V Rs, and we have an infinite supply of each
- * of the denominations in Indian currency, i.e., we have an infinite supply of
- * {1, 2, 5, 10, 20, 50, 100, 500, 1000} valued coins/notes, what is the minimum number of coins
- * and/or notes needed to make the change?
+ * Given a value V, if we want to make a change for V Rs, and we have an infinite supply
+ * of each of the denominations in Indian currency, i.e., we have an infinite supply of
+ * {1, 2, 5, 10, 20, 50, 100, 500, 1000} valued coins/notes, what is the minimum number of
+ * coins and/or notes needed to make the change?
  *
  * @reference   Find out the minimum number of coins required to pay total amount
  *              https://www.geeksforgeeks.org/find-out-the-minimum-number-of-coins-required-to-pay-total-amount/
  *
- * Given a total amount of N and unlimited number of coins worth 1,  10 and 25 currency coins.
- * Find out the minimum number of coins you need to use to pay exactly amount N.
+ * Given a total amount of N and unlimited number of coins worth 1,  10 and 25 currency
+ * coins. Find out the minimum number of coins you need to use to pay exactly amount N.
  *
  * @note    This approach may not work for all denominations.
  */

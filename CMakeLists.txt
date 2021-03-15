@@ -130,6 +130,7 @@ endfunction (compile_app)
 # Subdirectories
 # ######################################################################################
 add_subdirectory(3rdParty)
+add_subdirectory(backtracking)
 add_subdirectory(decision)
 add_subdirectory(data_structure)
 add_subdirectory(dynamic_programming)

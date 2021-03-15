@@ -1,5 +1,7 @@
 #pragma once
 
+#include "mathematics/matrix/matrix.h"
+
 
 namespace graph {
 
@@ -101,7 +103,7 @@ private:
  */
 class AdjacencyMatrixGraph {
 public:
-    using RepresentationType = std::vector<std::vector<bool>>;
+    using RepresentationType = MatrixTypeTemplate<bool>;
 
 
     AdjacencyMatrixGraph(const std::size_t number_vertices):
