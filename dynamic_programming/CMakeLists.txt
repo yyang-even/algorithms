@@ -1,6 +1,9 @@
 compile_benchmark(0-1_knapsack_problem)
 compile_test(0-1_knapsack_problem)
 
+compile_benchmark(boolean_parenthesization)
+compile_test(boolean_parenthesization)
+
 compile_benchmark(box_stacking)
 compile_test(box_stacking)
 
