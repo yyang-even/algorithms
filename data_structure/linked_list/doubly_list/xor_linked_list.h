@@ -25,7 +25,7 @@ public:
         ValueType value;
         PointerType prev_xor_next = nullptr;
 
-        static std::size_t node_alive;
+        static inline std::size_t node_alive = 0;
 
         explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
@@ -180,5 +180,3 @@ public:
         return array;
     }
 };
-
-std::size_t XorLinkedList::Node::node_alive = 0;

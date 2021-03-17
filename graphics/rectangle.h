@@ -4,10 +4,10 @@
 
 
 struct Rectangle {
-    double left;
-    double top;
-    double right;
-    double bottom;
+    double left{};
+    double top{};
+    double right{};
+    double bottom{};
 };
 
 using Square = Rectangle;

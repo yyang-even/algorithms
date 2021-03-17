@@ -4,9 +4,9 @@
 namespace {
 
 struct Job {
-    char id;
-    int deadline;
-    int profit;
+    char id{};
+    int deadline{};
+    int profit{};
 };
 
 using ArrayType = std::vector<Job>;
@@ -65,7 +65,7 @@ const ArrayType SAMPLE2 = {{'a', 4, 20}, {'b', 1, 10}, {'c', 1, 40}, {'d', 1, 30
 const std::string EXPECTED2 = "ca";
 
 
-SIMPLE_BENCHMARK(TaskScheduling, Sample1, SAMPLE1);
+THE_BENCHMARK(TaskScheduling, SAMPLE1);
 
 SIMPLE_TEST(TaskScheduling, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(TaskScheduling, TestSAMPLE2, EXPECTED2, SAMPLE2);

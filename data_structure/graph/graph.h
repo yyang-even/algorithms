@@ -8,18 +8,18 @@ namespace graph {
 using ArrayType = std::vector<std::size_t>;
 
 struct DirectedEdge {
-    std::size_t from;
-    std::size_t to;
-    int weight;
+    std::size_t from = 0;
+    std::size_t to = 0;
+    int weight = 0;
 
     DirectedEdge(const std::size_t source, const std::size_t destination, const int w = 0) :
         from(source), to(destination), weight(w) {}
 };
 
 struct UndirectedEdge {
-    std::size_t u;
-    std::size_t v;
-    int weight;
+    std::size_t u = 0;
+    std::size_t v = 0;
+    int weight = 0;
 
     UndirectedEdge(const std::size_t source,
                    const std::size_t destination,

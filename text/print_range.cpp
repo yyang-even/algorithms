@@ -53,17 +53,14 @@ const auto PrintRange1To100_Template = PrintRange1ToN_Template<100>;
  *              https://www.geeksforgeeks.org/print-a-character-n-times-without-using-loop-recursion-or-goto-in-cpp/
  */
 struct NumberPrinter {
-    static unsigned i;
-    static std::string result;
+    static inline unsigned i = 0;
+    static inline std::string result;
 
     NumberPrinter() {
         result.append(std::to_string(i++));
         result.push_back(',');
     }
 };
-
-unsigned NumberPrinter::i = 1;
-std::string NumberPrinter::result;
 
 auto PrintRange1ToN_Constructor(const unsigned N) {
     NumberPrinter::i = 1;

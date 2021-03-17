@@ -2,8 +2,8 @@
 
 
 struct Point {
-    double x;
-    double y;
+    double x{};
+    double y{};
 };
 
 static inline auto Equal(const double x, const double y) {

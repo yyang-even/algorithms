@@ -12,7 +12,9 @@ using ArrayType = std::vector<std::string>;
  *              https://www.geeksforgeeks.org/how-to-sort-an-array-of-dates-in-cc/
  */
 struct Date {
-    int day, month, year;
+    int day = 0;
+    int month = 0;
+    int year = 0;
 };
 
 inline auto &operator<<(std::ostream &out, const Date &date) {

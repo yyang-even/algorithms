@@ -22,7 +22,7 @@ public:
 
         ValueType value;
 
-        static std::size_t node_alive;
+        static inline std::size_t node_alive = 0;
 
         explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
@@ -152,16 +152,18 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/create-doubly-linked-list-using-double-pointer-inserting-nodes-list-remains-ascending-order/
      *
-     * A Doubly linked list is a linked list that consists of a set of sequentially linked records called nodes.
-     * Each node contains two fields that are references to the previous and to the next node in the sequence of nodes.
-     * The task is to create a doubly linked list by inserting nodes such that list remains in ascending order on
-     * printing from left to right. Also, we need to maintain two pointers, head (points to first node) and tail
-     * (points to last node).
+     * A Doubly linked list is a linked list that consists of a set of sequentially linked
+     * records called nodes. Each node contains two fields that are references to the
+     * previous and to the next node in the sequence of nodes. The task is to create a
+     * doubly linked list by inserting nodes such that list remains in ascending order on
+     * printing from left to right. Also, we need to maintain two pointers, head (points
+     * to first node) and tail (points to last node).
      *
      * @reference   Insert value in sorted way in a sorted doubly linked list
      *              https://www.geeksforgeeks.org/insert-value-sorted-way-sorted-doubly-linked-list/
      *
-     * Given a sorted doubly linked list and a value to insert, write a function to insert the value in sorted way.
+     * Given a sorted doubly linked list and a value to insert, write a function to insert
+     * the value in sorted way.
      */
     void SortedInsert(const ValueType v) {
         auto current = head;
@@ -264,8 +266,8 @@ public:
      * @reference   Delete a Doubly Linked List node at a given position
      *              https://www.geeksforgeeks.org/delete-doubly-linked-list-node-given-position/
      *
-     * Given a doubly linked list and a position n. The task is to delete the node at
-     * the given position n from the beginning.
+     * Given a doubly linked list and a position n. The task is to delete the node at the
+     * given position n from the beginning.
      */
     void DeleteAt(const std::size_t index) {
         const auto del = At(index);
@@ -312,5 +314,3 @@ public:
         }
     }
 };
-
-std::size_t DoublyLinkedList::Node::node_alive = 0;

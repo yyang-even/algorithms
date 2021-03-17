@@ -8,8 +8,8 @@ namespace {
 using ArrayType = std::vector<int>;
 
 struct Data {
-    std::string::value_type character;
-    ArrayType::value_type frequency;
+    std::string::value_type character{};
+    ArrayType::value_type frequency{};
 };
 
 using NodeType = BinaryTreeNode<Data>;
@@ -92,6 +92,6 @@ const ArrayType SAMPLE1_FREQ = {45, 13, 12, 16, 9, 5};
 const CodesMap EXPECTED1 = {{'a', "0"}, {'b', "101"}, {'c', "100"}, {'d', "111"}, {'e', "1101"}, {'f', "1100"}};
 
 
-SIMPLE_BENCHMARK(HuffmanCoding, Sample1, SAMPLE1_CHAR, SAMPLE1_FREQ);
+THE_BENCHMARK(HuffmanCoding, SAMPLE1_CHAR, SAMPLE1_FREQ);
 
 SIMPLE_TEST(HuffmanCoding, TestSAMPLE0, EXPECTED1, SAMPLE1_CHAR, SAMPLE1_FREQ);

@@ -57,7 +57,7 @@ public:
         ValueType value;
         PointerType next = nullptr;
 
-        static std::size_t node_alive;
+        static inline std::size_t node_alive = 0;
 
         explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
@@ -459,8 +459,8 @@ public:
      * @reference   C Program for Reverse a linked list
      *              https://www.geeksforgeeks.org/c-program-for-reverse-a-linked-list/
      *
-     * Given pointer to the head node of a linked list, the task is to reverse the
-     * linked list. We need to reverse the list by changing links between nodes.
+     * Given pointer to the head node of a linked list, the task is to reverse the linked
+     * list. We need to reverse the list by changing links between nodes.
      *
      * @complexity  O(n)
      */
@@ -596,8 +596,8 @@ public:
      * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
      *              Questions 2.2.
      *
-     * Given a Linked List and a number n, write a function that returns the value at
-     * the n'th node from end of the Linked List.
+     * Given a Linked List and a number n, write a function that returns the value at the
+     * n'th node from end of the Linked List.
      */
     auto GetReverseN_Iterative(const std::size_t index) const {
         return GetN_Iterative(size - index - 1);
@@ -700,9 +700,9 @@ public:
      *              https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
      *
      * Given a linked list and two keys in it, swap nodes for two given keys. Nodes
-     * should be swapped by changing links. Swapping data of nodes may be expensive
-     * in many situations when data contains many fields. It may be assumed that all
-     * keys in linked list are distinct.
+     * should be swapped by changing links. Swapping data of nodes may be expensive in
+     * many situations when data contains many fields. It may be assumed that all keys
+     * in linked list are distinct.
      */
     void Swap(const Node::ValueType x, const Node::ValueType y) {
         assert(x != y);
@@ -780,5 +780,3 @@ public:
      *              https://www.geeksforgeeks.org/recursive-insertion-and-traversal-linked-list/
      */
 };
-
-std::size_t SinglyLinkedList::Node::node_alive = 0;

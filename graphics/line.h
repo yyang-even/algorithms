@@ -48,8 +48,8 @@ public:
 
 
 struct LineSegment {
-    Point a;
-    Point b;
+    Point a{};
+    Point b{};
 };
 
 static inline auto &operator<<(std::ostream &out, const LineSegment &a_line) {

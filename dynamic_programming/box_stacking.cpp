@@ -4,9 +4,9 @@
 namespace {
 
 struct Box {
-    int height;
-    int width;
-    int depth;
+    int height = 0;
+    int width = 0;
+    int depth = 0;
 };
 
 using ArrayType = std::vector<Box>;
