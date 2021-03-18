@@ -5,7 +5,7 @@
 
 namespace {
 
-using ArrayType = std::vector<unsigned>;
+using ArrayType = std::vector<int>;
 
 /** Find the Missing Number
  *
@@ -107,8 +107,8 @@ int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
     assert(not values.empty());
     assert(std::is_sorted(values.cbegin(), values.cend()));
 
-    ArrayType::size_type low = 0;
-    auto high = values.size() - 1;
+    int low = 0;
+    int high = values.size() - 1;
 
     while (high > low) {
         const auto mid = (low + high) / 2;
@@ -183,12 +183,12 @@ int FindTheMissingNumber_Sorted_BinaryLast(const ArrayType &values) {
     if (values.front() != 1) {
         return 1;
     }
-    if (values.back() != values.size() + 1) {
+    if (values.back() != static_cast<int>(values.size() + 1)) {
         return values.size() + 1;
     }
 
-    ArrayType::size_type low = 0;
-    auto high = values.size() - 1;
+    int low = 0;
+    int high = values.size() - 1;
 
     while (high >= low) {
         const auto mid = (low + high) / 2;
@@ -204,6 +204,77 @@ int FindTheMissingNumber_Sorted_BinaryLast(const ArrayType &values) {
 
     return -1;
 }
+
+
+/**
+ * @reference   Find the smallest positive number missing from an unsorted array : Hashing Implementation
+ *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-hashing-implementation/
+ * @reference   Find the smallest positive number missing from an unsorted array | Set 3
+ *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-set-3/
+ *
+ * Given an unsorted array with both positive and negative elements including 0. The task
+ * is to find the smallest positive number missing from the array in O(N) time.
+ */
+auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
+    std::unordered_set<ArrayType::value_type> counter;
+
+    for (const auto n : elements) {
+        if (n > 0) {
+            counter.insert(n);
+        }
+    }
+
+    int result = 1;
+    for (; counter.find(result) != counter.cend(); ++result);
+
+    return result;
+}
+
+
+/**
+ * @reference   Find the smallest positive number missing from an unsorted array | Set 1
+ *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array/
+ * @reference   Find the smallest positive number missing from an unsorted array | Set 2
+ *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-set-2/
+ *
+ * You are given an unsorted array with both positive and negative elements. You have to
+ * find the smallest positive number missing from the array in O(n) time using constant
+ * extra space. You can modify the original array.
+ */
+int FindTheSmallestPositiveMissingNumber_InPlace(ArrayType elements) {
+    for (const auto n : elements) {
+        for (auto current_value = n;
+             n > 0 and n <= static_cast<int>(elements.size()) and
+             elements[current_value - 1] != current_value;) {
+            std::swap(current_value, elements[current_value - 1]);
+        }
+    }
+
+    for (int i = 0; i < static_cast<int>(elements.size()); ++i) {
+        if (elements[i] != i + 1) {
+            return i + 1;
+        }
+    }
+
+    return elements.size() + 1;
+}
+
+
+/**
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 10.3.
+ *
+ * Given an input file with four billion non-negative integers, provide and algorithm to
+ * generate an integer which is not contained in the file. Assume you have 1GB of memory
+ * available for this task.
+ *
+ * @hint    Use std::vector<bool>
+ *
+ * What if you have only 10MB of memory? Assume that all the values are distinct and we
+ * now have no more than one billion non-negative integers.
+ *
+ * @hint    Divide up the integers into blocks of some size.
+ */
 
 }//namespace
 
@@ -265,3 +336,21 @@ SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast,
             SAMPLE6.size() + 1, SAMPLE6);
+
+
+const ArrayType SAMPLE7 = {-5, 2, 0, -1, -10, 15};
+const ArrayType SAMPLE8 = {1, 1, 1, 0, -1, -2};
+
+
+THE_BENCHMARK(FindTheSmallestPositiveMissingNumber_Hash, SAMPLE7);
+
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_Hash, TestSample6, 6, SAMPLE6);
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_Hash, TestSample7, 1, SAMPLE7);
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_Hash, TestSample8, 2, SAMPLE8);
+
+
+THE_BENCHMARK(FindTheSmallestPositiveMissingNumber_InPlace, SAMPLE7);
+
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_InPlace, TestSample6, 6, SAMPLE6);
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_InPlace, TestSample7, 1, SAMPLE7);
+SIMPLE_TEST(FindTheSmallestPositiveMissingNumber_InPlace, TestSample8, 2, SAMPLE8);
