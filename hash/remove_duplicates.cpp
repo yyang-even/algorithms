@@ -265,6 +265,8 @@ auto FindRepeatedElements(const ArrayType &values) {
 /**
  * @reference   Find Duplicates of array using bit array
  *              https://www.geeksforgeeks.org/find-duplicates-of-array-using-bit-array/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 10.4.
  *
  * You have an array of N numbers, where N is at most 32,000. The array may have
  * duplicates entries and you do not know what N is. With only 4 Kilobytes of memory

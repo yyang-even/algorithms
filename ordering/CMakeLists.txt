@@ -16,6 +16,9 @@ compile_test(counting_sort)
 compile_benchmark(dutch_national_flag)
 compile_test(dutch_national_flag)
 
+compile_benchmark(group_anagrams)
+compile_test(group_anagrams)
+
 compile_benchmark(heap_sort)
 compile_test(heap_sort)
 
