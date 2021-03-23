@@ -66,8 +66,7 @@ auto PrintRange1ToN_Constructor(const unsigned N) {
     NumberPrinter::i = 1;
     NumberPrinter::result.clear();
 
-    NumberPrinter a[N];
-    (void)(a);
+    [[maybe_unused]] NumberPrinter a[N];
     NumberPrinter::result.pop_back();
 
     return NumberPrinter::result;
@@ -126,13 +125,13 @@ SIMPLE_TEST0(PrintRange1To1_Template, TestSAMPLE1, "1");
 SIMPLE_TEST0(PrintRange1To2_Template, TestSAMPLE2, "1,2");
 
 
-SIMPLE_BENCHMARK(PrintRange1ToN_Constructor, Sample1, 100);
+THE_BENCHMARK(PrintRange1ToN_Constructor, 100);
 
 SIMPLE_TEST(PrintRange1ToN_Constructor, TestSAMPLE1, "1", 1);
 SIMPLE_TEST(PrintRange1ToN_Constructor, TestSAMPLE2, "1,2", 2);
 
 
-SIMPLE_BENCHMARK(PrintRange1ToN_Goto, Sample1, 100);
+THE_BENCHMARK(PrintRange1ToN_Goto, 100);
 
 SIMPLE_TEST(PrintRange1ToN_Goto, TestSAMPLE1, "1", 1);
 SIMPLE_TEST(PrintRange1ToN_Goto, TestSAMPLE2, "1,2", 2);
