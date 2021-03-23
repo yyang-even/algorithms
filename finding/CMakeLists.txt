@@ -30,3 +30,6 @@ compile_test(next_greater_element)
 
 compile_benchmark(search_in_sorted_and_rotated_array)
 compile_test(search_in_sorted_and_rotated_array)
+
+compile_benchmark(sparse_search)
+compile_test(sparse_search)

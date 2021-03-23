@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "finding.h"
+
 
 namespace {
 
@@ -18,8 +20,6 @@ using ArrayType = std::vector<int>;
  * write code to find an element in the array. You may assume that the array was
  * originally sorted in increasing order.
  */
-const int NOT_FOUND = -1;
-
 auto SearchRotatedArray(const ArrayType &elements, const ArrayType::value_type key,
                         const int left, const int right) {
     if (left > right) {

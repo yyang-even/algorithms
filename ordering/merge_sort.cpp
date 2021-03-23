@@ -27,8 +27,8 @@ using ArrayType = std::vector<int>;
  * @reference   Sort an array when two halves are sorted
  *              https://www.geeksforgeeks.org/sort-array-two-halves-sorted/
  *
- * Given an integer array of which both first half and second half are sorted. Task is
- * to merge two sorted halves of array into single sorted array.
+ * Given an integer array of which both first half and second half are sorted. Task is to
+ * merge two sorted halves of array into single sorted array.
  *
  * @complexity: O(n*lgn)
  */
@@ -51,9 +51,9 @@ auto MergeSort(ArrayType values) {
  * @reference   C Program for Iterative Merge Sort
  *              https://www.geeksforgeeks.org/c-program-for-iterative-merge-sort/
  *
- * Merge subarrays in bottom up manner. First merge subarrays of size 1
- * to create sorted subarrays of size 2, then merge subarrays of size 2
- * to create sorted subarrays of size 4, and so on.
+ * Merge subarrays in bottom up manner. First merge subarrays of size 1 to create sorted
+ * subarrays of size 2, then merge subarrays of size 2 to create sorted subarrays of size
+ * 4, and so on.
  */
 auto MergeSort_Iterative(ArrayType values) {
     for (ArrayType::size_type current_size = 1;
@@ -75,7 +75,8 @@ auto MergeSort_Iterative(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-with-o1-extra-space-merge-and-on-lg-n-time/
  *
- * How to modify the algorithm so that merge works in O(1) extra space and algorithm still works in O(n Log n) time.
+ * How to modify the algorithm so that merge works in O(1) extra space and algorithm still
+ * works in O(n Log n) time.
  */
 void Merge_O1(const ArrayType::iterator begin, const ArrayType::iterator middle,
               const ArrayType::iterator end, const ArrayType::value_type max) {
@@ -124,8 +125,11 @@ auto MergeSort_O1(ArrayType values) {
  * into the main memory of a computing device (usually RAM) and instead they must reside
  * in the slower external memory (usually a hard drive). External sorting typically uses
  * a hybrid sort-merge strategy. In the sorting phase, chunks of data small enough to fit
- * in main memory are read, sorted, and written out to a temporary file. In the merge phase,
- * the sorted sub-files are combined into a single larger file.
+ * in main memory are read, sorted, and written out to a temporary file. In the merge
+ * phase, the sorted sub-files are combined into a single larger file.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 11.4.
  */
 
 
@@ -243,7 +247,7 @@ const InitializerType EXPECTED4 = {1, 2, 3};
 const InitializerType VALUES5 = {4, 3, 2, 1};
 const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
-SIMPLE_BENCHMARK(MergeSort, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort, VALUES5);
 
 SIMPLE_TEST(MergeSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -252,7 +256,7 @@ SIMPLE_TEST(MergeSort, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_O1, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_O1, VALUES5);
 
 SIMPLE_TEST(MergeSort_O1, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_O1, TestSAMPLE2, VALUES2, VALUES2);
@@ -261,7 +265,7 @@ SIMPLE_TEST(MergeSort_O1, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_O1, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_Iterative, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_Iterative, VALUES5);
 
 SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE2, VALUES2, VALUES2);
@@ -270,7 +274,7 @@ SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_SinglyList, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_SinglyList, VALUES5);
 
 SIMPLE_TEST(MergeSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
@@ -279,7 +283,7 @@ SIMPLE_TEST(MergeSort_SinglyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_SinglyList_Iterative, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_SinglyList_Iterative, VALUES5);
 
 SIMPLE_TEST(MergeSort_SinglyList_Iterative, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_SinglyList_Iterative, TestSAMPLE2, VALUES2, VALUES2);
@@ -288,7 +292,7 @@ SIMPLE_TEST(MergeSort_SinglyList_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_SinglyList_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_DoublyList, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_DoublyList, VALUES5);
 
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE2, VALUES2, VALUES2);
@@ -297,7 +301,7 @@ SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(MergeSort_DoublyList, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(MergeSort_3Way, Sample1, VALUES5);
+THE_BENCHMARK(MergeSort_3Way, VALUES5);
 
 SIMPLE_TEST(MergeSort_3Way, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MergeSort_3Way, TestSAMPLE2, VALUES2, VALUES2);
