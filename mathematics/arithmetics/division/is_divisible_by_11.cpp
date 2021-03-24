@@ -3,21 +3,20 @@
 
 namespace {
 
-typedef int InputType;
-
 /**Is divisible by 11
  *
  * @reference   Grade 7:  The Learning Equation Math
  *              11.04 Divisibility Rules
  *              http://staff.argyll.epsb.ca/jreed/math7/strand1/1104.htm
  *
- * The (sum of the odd numbered digits) - (sum of the even numbered digits) is divisible by 11.
+ * The (sum of the odd numbered digits) - (sum of the even numbered digits) is divisible
+ * by 11.
  */
 auto isDivisibleBy11(int num) {
     if (num < 0) {
         num = -num;
     }
-    if (num == 0 || num == 11) {
+    if (num == 0 or num == 11) {
         return true;
     }
     if (num < 22) {
@@ -47,8 +46,10 @@ auto isDivisibleBy11(int num) {
  * @reference   Sub-string Divisibility by 11 Queries
  *              https://www.geeksforgeeks.org/sub-string-divisibility-11-queries/
  *
- * Given a large number, n (having number digits up to 10^6) and various queries of the below form :
- * Query(l, r) :  find if the sub-string between the indices l and r (Both inclusive) are divisible by 11.
+ * Given a large number, n (having number digits up to 10^6) and various queries of the
+ * below form :
+ *  Query(l, r) : find if the sub-string between the indices l and r (Both inclusive)
+ *                are divisible by 11.
  *
  * @highlight   The use of inline keyword to silence the -Wunused-function warning.
  */
@@ -83,12 +84,12 @@ auto SubstringDivisibilityBy11(const std::string &test_string,
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType SAMPLE1 = -120;
-constexpr InputType SAMPLE2 = -121;
-constexpr InputType SAMPLE3 = 60;
-constexpr InputType SAMPLE4 = 6600;
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
+constexpr int SAMPLE1 = -120;
+constexpr int SAMPLE2 = -121;
+constexpr int SAMPLE3 = 60;
+constexpr int SAMPLE4 = 6600;
 
 
 SIMPLE_BENCHMARK(isDivisibleBy11, Sample1, LOWER);

@@ -30,7 +30,7 @@ namespace {
  *
  * This is also a probabilistic test.
  * This method is quite complicated and inefficient as compared to other primality tests.
- * And the main problems are factors of ‘n-1’ and choosing appropriate ‘a’.
+ * And the main problems are factors of 'n-1' and choosing appropriate 'a'.
  *
  * @reference   Vantieghems Theorem for Primality Test
  *              https://www.geeksforgeeks.org/vantieghems-theorem-primality-test/
@@ -47,21 +47,22 @@ namespace {
  * @reference   Composite Number
  *              https://www.geeksforgeeks.org/composite-number/
  *
- * Given a positive integer, check if the number is prime or not. A prime is a natural number
- * greater than 1 that has no positive divisors other than 1 and itself.
+ * Given a positive integer, check if the number is prime or not. A prime is a natural
+ * number greater than 1 that has no positive divisors other than 1 and itself.
  *
  * @reference   Euclid’s lemma
  *              https://www.geeksforgeeks.org/euclids-lemma/
  *
- * Euclid’s lemma states that if a prime p divides the product of two numbers (x*y), it must
- * divide at least one of those numbers.
+ * Euclid's lemma states that if a prime p divides the product of two numbers (x*y), it
+ * must divide at least one of those numbers.
  */
 
 
 /**
- * If a given number is prime, then this method always returns true. If given number is composite
- * (or non-prime), then it may return true or false, but the probability of producing incorrect
- * result for composite is low and can be reduced by doing more iterations.
+ * If a given number is prime, then this method always returns true. If given number is
+ * composite (or non-prime), then it may return true or false, but the probability of
+ * producing incorrect result for composite is low and can be reduced by doing more
+ * iterations.
  */
 auto IsPrime_Fermet(const unsigned n) {
     if (n <= 1u or n == 4u) {
@@ -86,7 +87,8 @@ auto IsPrime_Fermet(const unsigned n) {
 
 
 /**
- * This method is a probabilistic method (Like Fermat), but it generally preferred over Fermat’s method.
+ * This method is a probabilistic method (Like Fermat), but it generally preferred over
+ * Fermat’s method.
  */
 auto millerTest(unsigned d, const unsigned n) {
     const auto a = Random_Number(2, n - 2);
@@ -139,8 +141,8 @@ auto IsPrime_MillerRabin(const unsigned n) {
 
 
 /**
- * The Solovay–Strassen primality test is a probabilistic test to
- * determine if a number is composite or probably prime.
+ * The Solovay-Strassen primality test is a probabilistic test to determine if a number is
+ * composite or probably prime.
  */
 int calculateJacobian(long long a, long long n) {
     if (!a) {
@@ -169,7 +171,7 @@ int calculateJacobian(long long a, long long n) {
 
         while (a % 2 == 0) {
             a = a / 2;
-            if (n % 8 == 3 || n % 8 == 5) {
+            if (n % 8 == 3 or n % 8 == 5) {
                 ans = -ans;
             }
 
@@ -177,7 +179,7 @@ int calculateJacobian(long long a, long long n) {
 
         std::swap(a, n);
 
-        if (a % 4 == 3 && n % 4 == 3) {
+        if (a % 4 == 3 and n % 4 == 3) {
             ans = -ans;
         }
         a = a % n;
@@ -220,8 +222,8 @@ auto IsPrime_SolovayStrassen(long long n) {
 
 
 /**
- * Lucas-Lehmer series is used to check primality of prime numbers of
- * the form n = 2^p – 1 where p is an integer.
+ * Lucas-Lehmer series is used to check primality of prime numbers of the form n = 2^p - 1
+ * where p is an integer.
  */
 auto IsPrime_LucasLehmerSeries(unsigned long long p) {
     const unsigned long long n = pow(2, p) - 1;
@@ -260,7 +262,7 @@ auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(IsPrime_OptimizedSchoolMethod, Sample1, 18);
+THE_BENCHMARK(IsPrime_OptimizedSchoolMethod, 18);
 
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample1, false, 12);
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample2, false, 15);
@@ -268,27 +270,27 @@ SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample3, false, 1);
 SIMPLE_TEST(IsPrime_OptimizedSchoolMethod, TestSample4, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_Fermet, Sample1, 11);
+THE_BENCHMARK(IsPrime_Fermet, 11);
 
 SIMPLE_TEST(IsPrime_Fermet, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_MillerRabin, Sample1, 11);
+THE_BENCHMARK(IsPrime_MillerRabin, 11);
 
 SIMPLE_TEST(IsPrime_MillerRabin, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_SolovayStrassen, Sample1, 11);
+THE_BENCHMARK(IsPrime_SolovayStrassen, 11);
 
 SIMPLE_TEST(IsPrime_SolovayStrassen, TestSample1, true, 11);
 
 
-SIMPLE_BENCHMARK(IsPrime_LucasLehmerSeries, Sample1, 7);
+THE_BENCHMARK(IsPrime_LucasLehmerSeries, 7);
 
 SIMPLE_TEST(IsPrime_LucasLehmerSeries, TestSample1, true, 7);
 
 
-SIMPLE_BENCHMARK(IsPrime_Wilson, Sample1, 11);
+THE_BENCHMARK(IsPrime_Wilson, 11);
 
 SIMPLE_TEST(IsPrime_Wilson, TestSample1, true, 11);
 SIMPLE_TEST(IsPrime_Wilson, TestSample2, true, 5);
@@ -297,7 +299,7 @@ SIMPLE_TEST(IsPrime_Wilson, TestSample4, false, 4);
 SIMPLE_TEST(IsPrime_Wilson, TestSample5, true, 127);
 
 
-SIMPLE_BENCHMARK(IsPrime_Recursive, Sample1, 18);
+THE_BENCHMARK(IsPrime_Recursive, 18);
 
 SIMPLE_TEST(IsPrime_Recursive, TestSample1, false, 12);
 SIMPLE_TEST(IsPrime_Recursive, TestSample2, false, 15);

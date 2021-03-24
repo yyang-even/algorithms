@@ -13,5 +13,5 @@
  *              Questions 5.4.
  */
 static inline auto IsPowerOf2(const unsigned num) {
-    return num && !(num & (num - 1));
+    return num and !(num & (num - 1));
 }
