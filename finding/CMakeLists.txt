@@ -31,5 +31,8 @@ compile_test(next_greater_element)
 compile_benchmark(search_in_sorted_and_rotated_array)
 compile_test(search_in_sorted_and_rotated_array)
 
+compile_benchmark(search_row_wise_and_column_wise_sorted_matrix)
+compile_test(search_row_wise_and_column_wise_sorted_matrix)
+
 compile_benchmark(sparse_search)
 compile_test(sparse_search)
