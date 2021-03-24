@@ -5,8 +5,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Factorial
  *
  * @reference   Program for factorial of a number
@@ -16,11 +14,10 @@ typedef unsigned InputType;
  * @reference   One line function for factorial of a number
  *              https://www.geeksforgeeks.org/one-line-function-for-factorial-of-a-number/
  *
- * Factorial of a non-negative integer, is multiplication of all integers
- * smaller than or equal to n.
- * For example factorial of 6 is 6*5*4*3*2*1 which is 720.
+ * Factorial of a non-negative integer, is multiplication of all integers smaller than or
+ * equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
  */
-unsigned long Factorial_Recursive(const InputType num) {
+unsigned long Factorial_Recursive(const int num) {
     if (num > 1) {
         return Factorial_Recursive(num - 1) * num;
     }
@@ -29,7 +26,7 @@ unsigned long Factorial_Recursive(const InputType num) {
 
 
 unsigned long Factorial_OneLine(const unsigned n) {
-    return (n == 1u || n == 0u) ? 1u : n * Factorial_OneLine(n - 1);
+    return (n == 1u or n == 0u) ? 1u : n * Factorial_OneLine(n - 1);
 }
 
 
@@ -37,14 +34,14 @@ unsigned long Factorial_OneLine(const unsigned n) {
  * @reference   Tail Recursion
  *              https://www.geeksforgeeks.org/tail-recursion/
  */
-unsigned long Factorial_TailRecursive(const InputType num, unsigned long factorial) {
+unsigned long Factorial_TailRecursive(const int num, unsigned long factorial) {
     if (num < 2) {
         return factorial;
     }
 
     return Factorial_TailRecursive(num - 1, num * factorial);
 }
-unsigned long Factorial_TailRecursive(const InputType num) {
+unsigned long Factorial_TailRecursive(const int num) {
     return Factorial_TailRecursive(num, 1);
 }
 
@@ -64,14 +61,14 @@ auto Factorial_LookupTable(const unsigned n) {
  *              https://www.geeksforgeeks.org/factorial-large-number/
  *
  * How to compute factorial of 100 using a C/C++ program?
- * Factorial of 100 has 158 digits. It is not possible to store these many digits
- * even if we use long long int. Following is a simple solution where we use an
- * array to store individual digits of the result. The idea is to use basic
- * mathematics for multiplication.
+ *
+ * Factorial of 100 has 158 digits. It is not possible to store these many digits even if
+ * we use long long int. Following is a simple solution where we use an array to store
+ * individual digits of the result. The idea is to use basic mathematics for multiplication.
  */
-std::string FactorialOfLargeNumber(const InputType num) {
+std::string FactorialOfLargeNumber(const int num) {
     LargeInteger result("1");
-    for (InputType i = 2; i <= num; ++i) {
+    for (int i = 2; i <= num; ++i) {
         result = result * i;
     }
     return result.ToString();
@@ -80,10 +77,10 @@ std::string FactorialOfLargeNumber(const InputType num) {
 }//namespace
 
 
-const InputType LOWER = 0;
-const InputType UPPER = 12;
-const InputType SAMPLE1 = 1;
-const InputType SAMPLE2 = 6;
+const int LOWER = 0;
+const int UPPER = 12;
+const int SAMPLE1 = 1;
+const int SAMPLE2 = 6;
 
 
 SIMPLE_BENCHMARK(Factorial_Iterative, Sample1, LOWER);

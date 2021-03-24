@@ -4,23 +4,21 @@
 
 namespace {
 
-typedef int InputType;
-
 /** Multiply the given number by 2 such that it is divisible by 10
  *
  * @reference   https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
  *
- * Given a number, the only operation allowed is to multiply the number by 2.
- * Calculate the minimum number of operations to make the number divisible by 10.
+ * Given a number, the only operation allowed is to multiply the number by 2. Calculate
+ * the minimum number of operations to make the number divisible by 10.
  * NOTE: If it is not possible to convert then print -1.
  */
 
-auto isDivisibleBy5_Mod(const InputType n) {
+auto isDivisibleBy5_Mod(const int n) {
     return n % 5 == 0;
 }
 
 
-auto isDivisibleBy5_LastDigit(const InputType n) {
+auto isDivisibleBy5_LastDigit(const int n) {
     const auto last_digit = n % 10;
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -31,16 +29,15 @@ auto isDivisibleBy5_LastDigit(const InputType n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  *
- * Given a positive number n, write a function isMultipleof5(int n)
- * that returns true if n is multiple of 5, otherwise false.
- * You are not allowed to use % and / operators.
+ * Given a positive number n, write a function isMultipleof5(int n) that returns true if
+ * n is multiple of 5, otherwise false. You are not allowed to use % and / operators.
 */
 /** Repeatedly subtract 5 from n
  *
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-auto isDivisibleBy5_Subtraction(InputType n) {
+auto isDivisibleBy5_Subtraction(int n) {
     if (n < 0) {
         n = -n;
     }
@@ -57,9 +54,9 @@ auto isDivisibleBy5_Subtraction(InputType n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-auto isDivisibleBy5_ToString(const InputType n) {
+auto isDivisibleBy5_ToString(const int n) {
     const auto str_n = std::to_string(n);
-    return str_n.back() == '0' || str_n.back() == '5';
+    return str_n.back() == '0' or str_n.back() == '5';
 }
 
 
@@ -68,13 +65,13 @@ auto isDivisibleBy5_ToString(const InputType n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  *
- * A number n can be a multiple of 5 in two cases. When last digit of n is 5 or 10.
- * If last bit in binary equivalent of n is set (which can be the case when last digit is 5)
+ * A number n can be a multiple of 5 in two cases. When last digit of n is 5 or 10.  If
+ * last bit in binary equivalent of n is set (which can be the case when last digit is 5)
  * then we multiply by 2 using n<<=1 to make sure that if the number is multiple of 5 then
- * we have the last digit as 0. Once we do that, our work is to just check if the last digit
- * is 0 or not, which we can do using float and integer comparison trick.
+ * we have the last digit as 0. Once we do that, our work is to just check if the last
+ * digit is 0 or not, which we can do using float and integer comparison trick.
  */
-auto isDivisibleBy5_Float(const InputType n) {
+auto isDivisibleBy5_Float(const int n) {
     //Make it unsigned to prevent integer overflow error
     unsigned positive_n = n;
     if (n < 0) {
@@ -91,7 +88,7 @@ auto isDivisibleBy5_Float(const InputType n) {
 }
 
 
-auto isDivisibleBy5_LastDigitStrict(const InputType n) {
+auto isDivisibleBy5_LastDigitStrict(const int n) {
     const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -99,12 +96,12 @@ auto isDivisibleBy5_LastDigitStrict(const InputType n) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
-constexpr InputType SAMPLE1 = -4;
-constexpr InputType SAMPLE2 = -40;
-constexpr InputType SAMPLE3 = 189;
-constexpr InputType SAMPLE4 = 2600;
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
+constexpr int SAMPLE1 = -4;
+constexpr int SAMPLE2 = -40;
+constexpr int SAMPLE3 = 189;
+constexpr int SAMPLE4 = 2600;
 
 
 SIMPLE_BENCHMARK(isDivisibleBy5_Mod, Sample1, LOWER);

@@ -239,9 +239,10 @@ double MedianOfTwoSortedArrays_DiffSize_Half(const ArrayType &array_one,
         i_one = (min_index + max_index) / 2;
         i_two = ((length_one + length_two + 1) / 2) - i_one;
 
-        if (i_one < length_one && i_two > 0 && array_two[i_two - 1] > array_one[i_one]) {
+        if (i_one < length_one and i_two > 0 and array_two[i_two - 1] > array_one[i_one]) {
             min_index = i_one + 1;
-        } else if (i_one > 0 && i_two < length_two && array_two[i_two] < array_one[i_one - 1]) {
+        } else if (i_one > 0 and i_two < length_two and
+                   array_two[i_two] < array_one[i_one - 1]) {
             max_index = i_one - 1;
         } else {
             if (i_one == 0) {
@@ -281,7 +282,7 @@ const ArrayType SAMPLE3_ONE = {3, 8};
 const ArrayType SAMPLE3_TWO = {2, 9};
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_SameSize, Sample1, SAMPLE1_ONE, SAMPLE1_TWO);
+THE_BENCHMARK(MedianOfTwoSortedArrays_SameSize, SAMPLE1_ONE, SAMPLE1_TWO);
 
 SIMPLE_TEST(MedianOfTwoSortedArrays_SameSize, TestSAMPLE1, 16,
             SAMPLE1_ONE, SAMPLE1_TWO);
@@ -293,8 +294,7 @@ const ArrayType SAMPLE4_ONE = {1, 12, 15, 26, 38};
 const ArrayType SAMPLE4_TWO = {2, 13, 24};
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Merge, Sample1,
-                 SAMPLE4_ONE, SAMPLE4_TWO);
+THE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Merge, SAMPLE4_ONE, SAMPLE4_TWO);
 
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Merge, TestSAMPLE1, 16,
                    SAMPLE1_ONE, SAMPLE1_TWO);
@@ -312,8 +312,7 @@ const ArrayType CASE2_TWO = {5, 10, 12, 15, 20};
 const ArrayType CASE3_TWO = {5, 8, 10, 20};
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Complex, Sample1,
-                 SAMPLE4_ONE, SAMPLE4_TWO);
+THE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Complex, SAMPLE4_ONE, SAMPLE4_TWO);
 
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestSAMPLE1, 16,
                    SAMPLE1_ONE, SAMPLE1_TWO);
@@ -339,8 +338,7 @@ SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Complex, TestCase6, 8.5,
                    SAMPLE3_TWO, CASE3_TWO);
 
 
-SIMPLE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Half, Sample1, SAMPLE4_ONE,
-                 SAMPLE4_TWO);
+THE_BENCHMARK(MedianOfTwoSortedArrays_DiffSize_Half, SAMPLE4_ONE, SAMPLE4_TWO);
 
 SIMPLE_DOUBLE_TEST(MedianOfTwoSortedArrays_DiffSize_Half, TestSAMPLE1, 16,
                    SAMPLE1_ONE, SAMPLE1_TWO);
