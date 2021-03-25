@@ -22,6 +22,10 @@ using OutputType = std::vector<ArrayType::size_type>;
  * of activities that can be performed by a single person, assuming that a person can only
  * work on a single activity at a time.
  */
+const auto activity_comparator = [](const auto &lhs, const auto &rhs) {
+    return lhs.second < rhs.second;
+};
+
 void ActivitySelection_Recursive(const ArrayType &activities,
                                  const ArrayType::size_type i,
                                  OutputType &selected_activities) {
@@ -35,10 +39,7 @@ void ActivitySelection_Recursive(const ArrayType &activities,
 }
 
 auto ActivitySelection_Recursive(const ArrayType &activities) {
-    assert(std::is_sorted(activities.cbegin(), activities.cend(),
-    [](const auto & lhs, const auto & rhs) {
-        return lhs.second < rhs.second;
-    }));
+    assert(std::is_sorted(activities.cbegin(), activities.cend(), activity_comparator));
 
     OutputType selected_activities = {0};
     ActivitySelection_Recursive(
@@ -48,10 +49,7 @@ auto ActivitySelection_Recursive(const ArrayType &activities) {
 
 
 auto ActivitySelection_Iterative(const ArrayType &activities) {
-    assert(std::is_sorted(activities.cbegin(), activities.cend(),
-    [](const auto & lhs, const auto & rhs) {
-        return lhs.second < rhs.second;
-    }));
+    assert(std::is_sorted(activities.cbegin(), activities.cend(), activity_comparator));
 
     ArrayType::size_type i = 0;
     OutputType selected_activities = {i};
@@ -64,6 +62,24 @@ auto ActivitySelection_Iterative(const ArrayType &activities) {
     }
 
     return selected_activities;
+}
+
+
+/**
+ * @reference   Maximum Length Chain of Pairs | DP-20
+ *              https://www.geeksforgeeks.org/maximum-length-chain-of-pairs-dp-20/
+ * @reference   Maximum Length Chain of Pairs | Set-2
+ *              https://www.geeksforgeeks.org/maximum-length-chain-of-pairs-set-2/
+ *
+ * Given an array of pairs of numbers of size N. In every pair, the first number is
+ * always smaller than the second number. A pair (c, d) can follow another pair (a, b)
+ * if b < c. The chain of pairs can be formed in this fashion. The task is to find the
+ * length of the longest chain which can be formed from a given set of pairs.
+ */
+auto MaxLengthChainPairs(ArrayType activities) {
+    std::sort(activities.begin(), activities.end(), activity_comparator);
+
+    return ActivitySelection_Iterative(activities).size();
 }
 
 }//namespace
@@ -80,15 +96,28 @@ const ArrayType SAMPLE3 =
 const OutputType EXPECTED3 = {0, 3, 7, 10};
 
 
-SIMPLE_BENCHMARK(ActivitySelection_Recursive, Sample1, SAMPLE1);
+THE_BENCHMARK(ActivitySelection_Recursive, SAMPLE1);
 
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(ActivitySelection_Recursive, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(ActivitySelection_Iterative, Sample1, SAMPLE1);
+THE_BENCHMARK(ActivitySelection_Iterative, SAMPLE1);
 
 SIMPLE_TEST(ActivitySelection_Iterative, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ActivitySelection_Iterative, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(ActivitySelection_Iterative, TestSAMPLE3, EXPECTED3, SAMPLE3);
+
+
+const ArrayType SAMPLE4 = {{5, 24}, {39, 60}, {15, 28}, {27, 40}, {50, 90}};
+const ArrayType SAMPLE5 = {{5, 10}, {1, 11}};
+
+
+THE_BENCHMARK(MaxLengthChainPairs, SAMPLE1);
+
+SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
+SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
+SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE3, EXPECTED3.size(), SAMPLE3);
+SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE4, 3, SAMPLE4);
+SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE5, 1, SAMPLE5);

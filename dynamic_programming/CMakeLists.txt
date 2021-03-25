@@ -10,6 +10,9 @@ compile_test(box_stacking)
 compile_benchmark(break_a_string)
 compile_test(break_a_string)
 
+compile_benchmark(circus_tower)
+compile_test(circus_tower)
+
 compile_benchmark(coin_change)
 compile_test(coin_change)
 
