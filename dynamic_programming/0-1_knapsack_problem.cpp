@@ -185,7 +185,7 @@ auto FractionalKnapsack01Queries(const ArrayType &weights, const ArrayType &valu
 
     const auto prefix_sums = PrefixSumArray(std::move(items),
     [](const auto & lhs, const auto & rhs) {
-        return std::make_pair(lhs.first + rhs.first, lhs.second + rhs.second);
+        return std::pair(lhs.first + rhs.first, lhs.second + rhs.second);
     });
 
     std::vector<double> max_values;

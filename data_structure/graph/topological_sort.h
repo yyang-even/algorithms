@@ -38,7 +38,7 @@ static inline auto TopologicalSort_Kahn(
         ++number_visited_vertex;
     }
 
-    return std::make_pair(number_visited_vertex == graph.size(), results);
+    return std::pair(number_visited_vertex == graph.size(), results);
 }
 
 

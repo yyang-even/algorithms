@@ -10,7 +10,7 @@ static inline auto PairElementsProductAsN(const ArrayType &elements,
     for (const auto elem : elements) {
         if (elem == 0 and N == 0) {
             if (output) {
-                *output = std::make_pair(elem, elem);
+                *output = std::pair(elem, elem);
             }
             return true;
         }
@@ -19,7 +19,7 @@ static inline auto PairElementsProductAsN(const ArrayType &elements,
             const auto pair = N / elem;
             if (value_set.find(pair) != value_set.cend()) {
                 if (output) {
-                    *output = std::make_pair(pair, elem);
+                    *output = std::pair(pair, elem);
                 }
                 return true;
             }

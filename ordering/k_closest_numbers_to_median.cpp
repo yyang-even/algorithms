@@ -16,8 +16,8 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  * Describe an O(n)-time algorithm that, given a set S of n distinct numbers and a positive
  * integer k <= n, determines the k numbers in S that are closest to the median of S.
  *
- * @note    Since in this problem, the terms median and closest is not well defined, so there
- *          could be different ways to interpret this problem.
+ * @note    Since in this problem, the terms median and closest is not well defined, so
+ *  there could be different ways to interpret this problem.
  */
 /**
  * @note    Here, closest means the elements that have nearest index when S is sorted.
@@ -48,7 +48,7 @@ auto KClosestElementsToMedian_Differences(ArrayType elements,
     std::vector<DiffValuePair> diff_array(elements.size());
     std::transform(elements.cbegin(), elements.cend(), diff_array.begin(),
     [median](const auto v) {
-        return std::make_pair(std::abs(v - median), v);
+        return std::pair(std::abs(v - median), v);
     });
 
     const auto kth = diff_array.begin() + K;
@@ -74,7 +74,7 @@ const InitializerType VALUES2 = {24, 8, 42, 75, 29, 38, 57};
 const OutputType EXPECTED4 = {29, 38};
 
 
-SIMPLE_BENCHMARK(KClosestElementsToMedian_Index, Sample1, VALUES1, 3);
+THE_BENCHMARK(KClosestElementsToMedian_Index, VALUES1, 3);
 
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Index, TestSAMPLE1, EXPECTED1, VALUES1, 1);
@@ -92,7 +92,7 @@ const ArrayType VALUES3 = {1, 2, 3, 4, 9, 99, 999};
 const OutputType EXPECTED5 = {2, 3, 4};
 
 
-SIMPLE_BENCHMARK(KClosestElementsToMedian_Differences, Sample1, VALUES1, 3);
+THE_BENCHMARK(KClosestElementsToMedian_Differences, VALUES1, 3);
 
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE0, {}, VALUES1, 0);
 SIMPLE_TEST(KClosestElementsToMedian_Differences, TestSAMPLE1, EXPECTED1, VALUES1, 1);

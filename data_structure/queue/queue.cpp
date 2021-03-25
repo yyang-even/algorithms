@@ -225,7 +225,7 @@ class HeapQueue {
 
 public:
     void Enqueue(const ValueType v) {
-        queue.push(std::make_pair(++counter, v));
+        queue.push(std::pair(++counter, v));
     }
 
     auto Dequeue() {

@@ -156,7 +156,7 @@ public:
         Node::PointerType prev = nullptr;
         auto iter = head;
         for (; iter and iter->value != v; iter = iter->Next(prev));
-        return std::make_pair(iter, prev);
+        return std::pair(iter, prev);
     }
 
 

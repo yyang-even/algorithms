@@ -69,7 +69,7 @@ auto MergeTwoSortedArrays_InPlace(ArrayType L, ArrayType R) {
         }
     }
 
-    return std::make_pair(L, R);
+    return std::pair(L, R);
 }
 
 
@@ -90,7 +90,7 @@ auto MergeTwoSortedArrays_InPlace_Heap(ArrayType L, ArrayType R) {
     std::make_heap(R.begin(), R.end());
     sort_heap(R.begin(), R.end());
 
-    return std::make_pair(L, R);
+    return std::pair(L, R);
 }
 
 

@@ -7,12 +7,12 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/check-for-integer-overflow/
  *
- * Write a “C” function, int addOvf(int* result, int a, int b) If there is no overflow,
- * the function places the resultant = sum a+b in “result” and returns 0. Otherwise it
+ * Write a "C" function, int addOvf(int* result, int a, int b) If there is no overflow,
+ * the function places the resultant = sum a+b in "result" and returns 0. Otherwise it
  * returns -1. The solution of casting to long and adding to find detecting the overflow
  * is not allowed.
  */
-const auto INVALID = std::make_pair(true, 0);
+const auto INVALID = std::pair(true, 0);
 
 auto SafeAdd_Sign(const int lhs, const int rhs) {
     const auto sum = lhs + rhs;
@@ -20,7 +20,7 @@ auto SafeAdd_Sign(const int lhs, const int rhs) {
         (lhs < 0 and rhs < 0 and sum > 0)) {    //underflow
         return INVALID;
     }
-    return std::make_pair(false, sum);
+    return std::pair(false, sum);
 }
 
 
@@ -32,7 +32,7 @@ auto SafeAdd_Limits(const int lhs, const int rhs) {
         (rhs < 0 and lhs < std::numeric_limits<int>::min() - rhs)) {    //underflow
         return INVALID;
     }
-    return std::make_pair(false, lhs + rhs);
+    return std::pair(false, lhs + rhs);
 }
 
 
@@ -47,12 +47,12 @@ auto SafeAdd_Unsigned(const unsigned lhs, const unsigned rhs) {
 }//namespace
 
 
-const auto EXPECTED1 = std::make_pair(false, 9);
-const auto EXPECTED2 = std::make_pair(false, -9);
-const auto EXPECTED3 = std::make_pair(false, -1);
+const auto EXPECTED1 = std::pair(false, 9);
+const auto EXPECTED2 = std::pair(false, -9);
+const auto EXPECTED3 = std::pair(false, -1);
 
 
-SIMPLE_BENCHMARK(SafeAdd_Sign, Sample1, 4, 5);
+THE_BENCHMARK(SafeAdd_Sign, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Sign, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Sign, TestSAMPLE2, EXPECTED2, -4, -5);
@@ -61,7 +61,7 @@ SIMPLE_TEST(SafeAdd_Sign, TestOverflow, INVALID, std::numeric_limits<int>::max()
 SIMPLE_TEST(SafeAdd_Sign, TestUnderflow, INVALID, -5, std::numeric_limits<int>::min());
 
 
-SIMPLE_BENCHMARK(SafeAdd_Limits, Sample1, 4, 5);
+THE_BENCHMARK(SafeAdd_Limits, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Limits, TestSAMPLE2, EXPECTED2, -4, -5);
@@ -71,7 +71,7 @@ SIMPLE_TEST(SafeAdd_Limits, TestUnderflow, INVALID,
             -5, std::numeric_limits<int>::min());
 
 
-SIMPLE_BENCHMARK(SafeAdd_Unsigned, Sample1, 4, 5);
+THE_BENCHMARK(SafeAdd_Unsigned, 4, 5);
 
 SIMPLE_TEST(SafeAdd_Unsigned, TestSAMPLE1, EXPECTED1, 4, 5);
 SIMPLE_TEST(SafeAdd_Unsigned, TestOverflow, INVALID,

@@ -23,7 +23,7 @@ auto ClosestSumPair_TwoPointer(const ArrayType &elements,
             const auto new_diff = std::abs(sum - x);
             if (new_diff < diff) {
                 diff = new_diff;
-                output = std::make_pair(*left, *right);
+                output = std::pair(*left, *right);
             } else if (sum < x) {
                 ++left;
             } else {
@@ -42,8 +42,7 @@ const ArrayType SAMPLE1 = {10, 22, 28, 29, 30, 40};
 const ArrayType SAMPLE2 = {1, 3, 4, 7, 10};
 
 
-SIMPLE_BENCHMARK(ClosestSumPair_TwoPointer, Sample1, SAMPLE1, 54);
+THE_BENCHMARK(ClosestSumPair_TwoPointer, SAMPLE1, 54);
 
-SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample1, std::make_pair(22, 30),
-            SAMPLE1, 54);
-SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample2, std::make_pair(4, 10), SAMPLE2, 15);
+SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample1, std::pair(22, 30), SAMPLE1, 54);
+SIMPLE_TEST(ClosestSumPair_TwoPointer, TestSample2, std::pair(4, 10), SAMPLE2, 15);

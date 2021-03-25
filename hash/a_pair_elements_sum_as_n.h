@@ -11,7 +11,7 @@ auto PairOfElementsSumAsN_Hashmap(const ArrayType &values,
         const auto pair = target - element;
         if (value_set.find(pair) != value_set.cend()) {
             if (output) {
-                *output = std::make_pair(pair, element);
+                *output = std::pair(pair, element);
             }
             return true;
         }

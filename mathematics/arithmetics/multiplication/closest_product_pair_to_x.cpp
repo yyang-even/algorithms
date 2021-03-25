@@ -22,7 +22,7 @@ auto ClosestProductPair_Sort_Bound(ArrayType elements, const ArrayType::value_ty
             const auto lower_diff = std::abs((*iter * *lower) - x);
             if (lower_diff < diff) {
                 diff = lower_diff;
-                output = std::make_pair(*iter, *lower);
+                output = std::pair(*iter, *lower);
             }
         }
 
@@ -30,7 +30,7 @@ auto ClosestProductPair_Sort_Bound(ArrayType elements, const ArrayType::value_ty
             const auto upper_diff = std::abs((*iter * *upper) - x);
             if (upper_diff < diff) {
                 diff = upper_diff;
-                output = std::make_pair(*iter, *upper);
+                output = std::pair(*iter, *upper);
             }
         }
     }
@@ -54,7 +54,7 @@ auto ClosestProductPair_TwoPointer(const ArrayType &elements,
             const auto new_diff = std::abs(product - x);
             if (new_diff < diff) {
                 diff = new_diff;
-                output = std::make_pair(*left, *right);
+                output = std::pair(*left, *right);
             } else if (product < x) {
                 ++left;
             } else {
@@ -72,17 +72,13 @@ auto ClosestProductPair_TwoPointer(const ArrayType &elements,
 const ArrayType SAMPLE1 = {2, 3, 5, 9};
 
 
-SIMPLE_BENCHMARK(ClosestProductPair_Sort_Bound, Sample1, SAMPLE1, 47);
+THE_BENCHMARK(ClosestProductPair_Sort_Bound, SAMPLE1, 47);
 
-SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample1, std::make_pair(5, 9),
-            SAMPLE1, 47);
-SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample2, std::make_pair(2, 3),
-            SAMPLE1, 8);
+SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample1, std::pair(5, 9), SAMPLE1, 47);
+SIMPLE_TEST(ClosestProductPair_Sort_Bound, TestSample2, std::pair(2, 3), SAMPLE1, 8);
 
 
-SIMPLE_BENCHMARK(ClosestProductPair_TwoPointer, Sample1, SAMPLE1, 47);
+THE_BENCHMARK(ClosestProductPair_TwoPointer, SAMPLE1, 47);
 
-SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample1, std::make_pair(5, 9),
-            SAMPLE1, 47);
-SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample2, std::make_pair(2, 5),
-            SAMPLE1, 8);
+SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample1, std::pair(5, 9), SAMPLE1, 47);
+SIMPLE_TEST(ClosestProductPair_TwoPointer, TestSample2, std::pair(2, 5), SAMPLE1, 8);

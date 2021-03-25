@@ -188,7 +188,7 @@ class HeapStack {
 
 public:
     void Push(const ValueType v) {
-        queue.push(std::make_pair(queue.size(), v));
+        queue.push(std::pair(queue.size(), v));
     }
 
     auto Pop() {

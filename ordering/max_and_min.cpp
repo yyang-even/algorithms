@@ -22,7 +22,7 @@ auto MaxAndMin_Linear(const ArrayType &values) {
     assert(not values.empty());
 
     if (values.size() == 1) {
-        return std::make_pair(values.front(), values.front());
+        return std::pair(values.front(), values.front());
     }
     auto min_iter = values.cbegin();
     auto max_iter = std::next(min_iter);
@@ -38,14 +38,14 @@ auto MaxAndMin_Linear(const ArrayType &values) {
         }
     }
 
-    return std::make_pair(*max_iter, *min_iter);
+    return std::pair(*max_iter, *min_iter);
 }
 
 
 auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin,
                           const ArrayType::size_type size) {
     if (size == 1) {
-        return std::make_pair(*cbegin, *cbegin);
+        return std::pair(*cbegin, *cbegin);
     } else if (size == 2) {
         auto min_iter = cbegin;
         auto max_iter = std::next(min_iter);
@@ -53,15 +53,15 @@ auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin,
             std::swap(min_iter, max_iter);
         }
 
-        return std::make_pair(*max_iter, *min_iter);
+        return std::pair(*max_iter, *min_iter);
     } else {
         const auto half = size / 2;
         const auto [left_max, left_min] = MaxAndMin_Tournament(cbegin, half);
         const auto [right_max, right_min] = MaxAndMin_Tournament(std::next(cbegin, half),
                                                                  size - half);
 
-        return std::make_pair(std::max(left_max, right_max),
-                              std::min(left_min, right_min));
+        return std::pair(std::max(left_max, right_max),
+                         std::min(left_min, right_min));
     }
 }
 auto MaxAndMin_Tournament(const ArrayType &values) {
@@ -98,7 +98,7 @@ auto MaxAndMin_Pair(const ArrayType &values) {
         }
     }
 
-    return std::make_pair(*max_iter, *min_iter);
+    return std::pair(*max_iter, *min_iter);
 }
 
 
@@ -116,25 +116,25 @@ const ArrayType VALUES3 = {4, 8, 12, 16};
 const ArrayType VALUES4 = {15, 0, 2, 15};
 
 
-SIMPLE_BENCHMARK(MaxAndMin_Linear, Sample1, VALUES4);
+THE_BENCHMARK(MaxAndMin_Linear, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
-
-
-SIMPLE_BENCHMARK(MaxAndMin_Tournament, Sample1, VALUES4);
-
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::pair(15u, 0u), VALUES4);
 
 
-SIMPLE_BENCHMARK(MaxAndMin_Pair, Sample1, VALUES4);
+THE_BENCHMARK(MaxAndMin_Tournament, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::make_pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::make_pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::make_pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::make_pair(15u, 0u), VALUES4);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::pair(15u, 0u), VALUES4);
+
+
+THE_BENCHMARK(MaxAndMin_Pair, VALUES4);
+
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::pair(15u, 0u), VALUES4);

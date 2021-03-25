@@ -328,7 +328,7 @@ auto partition_3Way(const ArrayType::iterator begin, const ArrayType::iterator e
         }
     }
 
-    return std::make_pair(smallers_end, greaters_begin);
+    return std::pair(smallers_end, greaters_begin);
 }
 void QuickSort_3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
@@ -367,7 +367,7 @@ auto partition_DualPivots(const ArrayType::iterator begin,
     std::iter_swap(smaller_pivot, std::prev(smallers_end));
     std::iter_swap(greater_pivot, greaters_begin);
 
-    return std::make_pair(smallers_end, greaters_begin);
+    return std::pair(smallers_end, greaters_begin);
 }
 void QuickSort_DualPivots(const ArrayType::iterator begin,
                           const ArrayType::iterator end) {
@@ -397,7 +397,7 @@ const InitializerType VALUES5 = {4, 3, 2, 1};
 const InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 
-SIMPLE_BENCHMARK(QuickSort_Lomuto, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_Lomuto, VALUES5);
 
 SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE2, VALUES2, VALUES2);
@@ -406,7 +406,7 @@ SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort_Lomuto, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSort_Iterative, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_Iterative, VALUES5);
 
 SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE2, VALUES2, VALUES2);
@@ -415,7 +415,7 @@ SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort_Iterative, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSort_Hoare, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_Hoare, VALUES5);
 
 SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE2, VALUES2, VALUES2);
@@ -424,7 +424,7 @@ SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort_Hoare, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSort_RandomizedHoare, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_RandomizedHoare, VALUES5);
 
 SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE2, VALUES2, VALUES2);
@@ -433,7 +433,7 @@ SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSort_RandomizedHoare, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortStable, Sample1, VALUES5);
+THE_BENCHMARK(QuickSortStable, VALUES5);
 
 SIMPLE_TEST(QuickSortStable, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE2, VALUES2, VALUES2);
@@ -442,7 +442,7 @@ SIMPLE_TEST(QuickSortStable, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortStable, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortSinglyLinkedList, Sample1, VALUES5);
+THE_BENCHMARK(QuickSortSinglyLinkedList, VALUES5);
 
 SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample2, VALUES2, VALUES2);
@@ -451,7 +451,7 @@ SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortDoublyLinkedList, Sample1, VALUES5);
+THE_BENCHMARK(QuickSortDoublyLinkedList, VALUES5);
 
 SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample1, VALUES1,
             VALUES1);
@@ -461,7 +461,7 @@ SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample4, EXPECTED4, VALUES4);
 SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortDoublyLinkedList_Sequential, Sample1, VALUES5);
+THE_BENCHMARK(QuickSortDoublyLinkedList_Sequential, VALUES5);
 
 SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample2, VALUES2, VALUES2);
@@ -470,7 +470,7 @@ SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample4, EXPECTED4, VALUES
 SIMPLE_TEST(QuickSortDoublyLinkedList_Sequential, TestSample5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(QuickSortDoublyLinkedList_NaiveAsync, Sample1, VALUES5);
+THE_BENCHMARK(QuickSortDoublyLinkedList_NaiveAsync, VALUES5);
 
 SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample2, VALUES2, VALUES2);
@@ -483,7 +483,7 @@ const InitializerType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
 const InitializerType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
 
 
-SIMPLE_BENCHMARK(QuickSort_3Way, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_3Way, VALUES5);
 
 SIMPLE_TEST(QuickSort_3Way, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_3Way, TestSAMPLE2, VALUES2, VALUES2);
@@ -497,7 +497,7 @@ const InitializerType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
 const InitializerType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
 
 
-SIMPLE_BENCHMARK(QuickSort_DualPivots, Sample1, VALUES5);
+THE_BENCHMARK(QuickSort_DualPivots, VALUES5);
 
 SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSort_DualPivots, TestSAMPLE2, VALUES2, VALUES2);

@@ -21,17 +21,17 @@ auto IntersectPoints(const Point &a_middle, const Square &a_square,
     assert(isSquare(a_square));
 
     if (Equal(a_middle.x, another_middle.x))
-        return std::make_pair(Point{a_middle.x, a_square.top}, Point{a_middle.x, a_square.bottom});
+        return std::pair(Point{a_middle.x, a_square.top}, Point{a_middle.x, a_square.bottom});
 
     const auto slope = Slope(a_middle, another_middle);
     const auto abs_slope = std::abs(slope);
 
     if (abs_slope <= 1) {
         const auto diff = slope * (a_square.right - a_square.left) / 2.0;
-        return std::make_pair(Point{a_square.left, a_middle.y - diff}, Point{a_square.right, a_middle.y + diff});
+        return std::pair(Point{a_square.left, a_middle.y - diff}, Point{a_square.right, a_middle.y + diff});
     } else {
         const auto diff = (a_square.top - a_square.bottom) / 2 / slope;
-        return std::make_pair(Point{a_middle.x - diff, a_square.bottom}, Point{a_middle.x + diff, a_square.top});
+        return std::pair(Point{a_middle.x - diff, a_square.bottom}, Point{a_middle.x + diff, a_square.top});
     }
 }
 

@@ -12,13 +12,13 @@ namespace {
  *
  * Given a number N (greater than 2). The task is to find two distinct prime numbers whose
  * product will be equal to the given number. There may be several combinations possible.
- * Print only first such pair.
- * If it is not possible to express N as a product of two distinct primes, print “Not Possible”.
+ * Print only first such pair. If it is not possible to express N as a product of two
+ * distinct primes, print "Not Possible".
  */
 auto PairPrimesProductAsN(const unsigned N) {
     assert(N > 2);
     const auto primes = PrimesBelowN(N);
-    auto output = std::make_pair(1ul, 1ul);
+    auto output = std::pair(1ul, 1ul);
     PairElementsProductAsN(primes, N, &output);
     return output;
 }
@@ -26,7 +26,7 @@ auto PairPrimesProductAsN(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(PairPrimesProductAsN, Sample1, 74);
+THE_BENCHMARK(PairPrimesProductAsN, 74);
 
-SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE1, std::make_pair(3ul, 5ul), 15);
-SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE2, std::make_pair(3ul, 13ul), 39);
+SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE1, std::pair(3ul, 5ul), 15);
+SIMPLE_TEST(PairPrimesProductAsN, TestSAMPLE2, std::pair(3ul, 13ul), 39);

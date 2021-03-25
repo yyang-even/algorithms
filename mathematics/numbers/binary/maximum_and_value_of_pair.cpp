@@ -30,7 +30,7 @@ auto MaxAndValueOfPair_Pair(const ArrayType &elements) {
         }
     }
 
-    return std::make_pair(pair.front(), pair.back());
+    return std::pair(pair.front(), pair.back());
 }
 
 
@@ -38,8 +38,9 @@ auto MaxAndValueOfPair_Pair(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/maximum-bitwise-and-pair-from-given-range/
  *
- * Given a range [L, R], the task is to find a pair (X, Y) such that L ≤ X < Y ≤ R and
- * X & Y is maximum among all the possible pairs then print the bitwise AND of the found pair.
+ * Given a range [L, R], the task is to find a pair (X, Y) such that L <= X < Y <= R and
+ * X & Y is maximum among all the possible pairs then print the bitwise AND of the found
+ * pair.
  */
 unsigned MaxAndValueOfRange(const unsigned L, const unsigned R) {
     if (L == R) {
@@ -57,7 +58,7 @@ unsigned MaxAndValueOfRange(const unsigned L, const unsigned R) {
 
 
 const ArrayType VALUES1 = {};
-const auto EXPECTED0 = std::make_pair(0u, 0u);
+const auto EXPECTED0 = std::pair(0u, 0u);
 const ArrayType VALUES2 = {1};
 const ArrayType VALUES3 = {1, 2};
 const ArrayType VALUES4 = {4, 8, 6, 2};
@@ -65,7 +66,7 @@ const ArrayType VALUES5 = {4, 8, 12, 16};
 const ArrayType VALUES6 = {4, 8, 16, 2};
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfPair_Value, Sample1, VALUES5);
+THE_BENCHMARK(MaxAndValueOfPair_Value, VALUES5);
 
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE2, 0u, VALUES2);
@@ -75,17 +76,17 @@ SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE5, 8u, VALUES5);
 SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE6, 0u, VALUES6);
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfPair_Pair, Sample1, VALUES5);
+THE_BENCHMARK(MaxAndValueOfPair_Pair, VALUES5);
 
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE1, EXPECTED0, VALUES1);
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE2, EXPECTED0, VALUES2);
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE3, EXPECTED0, VALUES3);
-SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE4, std::make_pair(4u, 6u), VALUES4);
-SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE5, std::make_pair(8u, 12u), VALUES5);
+SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE4, std::pair(4u, 6u), VALUES4);
+SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE5, std::pair(8u, 12u), VALUES5);
 SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE6, EXPECTED0, VALUES6);
 
 
-SIMPLE_BENCHMARK(MaxAndValueOfRange, Sample1, 523641, 985624);
+THE_BENCHMARK(MaxAndValueOfRange, 523641, 985624);
 
 SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE1, 8u, 1, 9);
 SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE2, 985622u, 523641, 985624);

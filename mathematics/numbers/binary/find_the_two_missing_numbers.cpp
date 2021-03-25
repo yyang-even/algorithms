@@ -4,6 +4,9 @@
 
 #include "clear_all_bits_except_the_last_set_bit.h"
 
+
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Find Two Missing Numbers
@@ -37,7 +40,7 @@ auto FindTheTwoMissingNumbersSum(const ArrayType &elements) {
     }
 
     const auto total_smallers_sum = average * (average + 1) / 2;
-    return std::make_pair<ArrayType::value_type, ArrayType::value_type>(
+    return std::pair<ArrayType::value_type, ArrayType::value_type>(
                total_smallers_sum - sum_of_smallers,
                total_sum - total_smallers_sum - sum_of_greaters);
 }
@@ -65,8 +68,10 @@ auto FindTheTwoMissingNumbersXor(const ArrayType &elements) {
     divideElement<ArrayType::value_type>(N - 1, last_set_bit, x, y);
     divideElement<ArrayType::value_type>(N, last_set_bit, x, y);
 
-    return std::make_pair(x, y);
+    return std::pair(x, y);
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {1, 3, 5, 6};
@@ -74,15 +79,15 @@ const ArrayType SAMPLE2 = {1, 2, 4};
 const ArrayType SAMPLE3 = {1, 2};
 
 
-SIMPLE_BENCHMARK(FindTheTwoMissingNumbersSum, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheTwoMissingNumbersSum, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample1, std::make_pair(2u, 4u), SAMPLE1);
-SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample2, std::make_pair(3u, 5u), SAMPLE2);
-SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample3, std::make_pair(3u, 4u), SAMPLE3);
+SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample1, std::pair(2u, 4u), SAMPLE1);
+SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample2, std::pair(3u, 5u), SAMPLE2);
+SIMPLE_TEST(FindTheTwoMissingNumbersSum, TestSample3, std::pair(3u, 4u), SAMPLE3);
 
 
-SIMPLE_BENCHMARK(FindTheTwoMissingNumbersXor, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheTwoMissingNumbersXor, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample1, std::make_pair(2u, 4u), SAMPLE1);
-SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample2, std::make_pair(3u, 5u), SAMPLE2);
-SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample3, std::make_pair(3u, 4u), SAMPLE3);
+SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample1, std::pair(2u, 4u), SAMPLE1);
+SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample2, std::pair(3u, 5u), SAMPLE2);
+SIMPLE_TEST(FindTheTwoMissingNumbersXor, TestSample3, std::pair(3u, 4u), SAMPLE3);

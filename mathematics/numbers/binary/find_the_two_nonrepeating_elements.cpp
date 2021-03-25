@@ -11,9 +11,9 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/find-two-non-repeating-elements-in-an-array-of-repeating-elements/
  *
- * Given an array in which all numbers except two are repeated once. (i.e. we
- * have 2n+2 numbers and n numbers are occurring twice and remaining two have
- * occurred once). Find those two numbers in the most efficient way.
+ * Given an array in which all numbers except two are repeated once. (i.e. we have 2n+2
+ * numbers and n numbers are occurring twice and remaining two have occurred once). Find
+ * those two numbers in the most efficient way.
  *
  * @complexity  O(n)
  */
@@ -23,16 +23,16 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Two odd occurring elements in an array where all other occur even times
  *              https://www.geeksforgeeks.org/two-odd-occurring-elements-array-occur-even-times/
  *
- * Given an unsorted array that contains even number of occurrences for all
- * numbers except two numbers. Find the two numbers which have odd occurrences
- * in O(n) time complexity and O(1) extra space.
+ * Given an unsorted array that contains even number of occurrences for all numbers except
+ * two numbers. Find the two numbers which have odd occurrences in O(n) time complexity
+ * and O(1) extra space.
  */
 /** Find Unique pair in an array with pairs of numbers
  *
  * @reference   https://www.geeksforgeeks.org/find-unique-pair-array-pairs-numbers/
  *
- * Given an array where every element appears twice except a
- * pair (two elements). Find the elements of this unique pair.
+ * Given an array where every element appears twice except a pair (two elements). Find
+ * the elements of this unique pair.
  */
 auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
     ArrayType::value_type xor_of_all = 0u;
@@ -53,7 +53,7 @@ auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
         }
     }
 
-    return std::make_pair(x, y);
+    return std::pair(x, y);
 }
 
 }//namespace
@@ -67,17 +67,12 @@ const ArrayType SAMPLE5 = {6, 1, 3, 5, 1, 3, 7, 6};
 const ArrayType SAMPLE6 = {2, 3, 3, 4, 4, 5};
 
 
-SIMPLE_BENCHMARK(FindTheTwoNonrepeatingElements, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheTwoNonrepeatingElements, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::make_pair(7u, 9u),
-            SAMPLE1);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::make_pair(45u, 34u),
-            SAMPLE2);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::make_pair(100u, 5000u),
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample1, std::pair(7u, 9u), SAMPLE1);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample2, std::pair(45u, 34u), SAMPLE2);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample3, std::pair(100u, 5000u),
             SAMPLE3);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::make_pair(10u, 20u),
-            SAMPLE4);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::make_pair(7u, 5u),
-            SAMPLE5);
-SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample6, std::make_pair(5u, 2u),
-            SAMPLE6);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample4, std::pair(10u, 20u), SAMPLE4);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample5, std::pair(7u, 5u), SAMPLE5);
+SIMPLE_TEST(FindTheTwoNonrepeatingElements, TestSample6, std::pair(5u, 2u), SAMPLE6);

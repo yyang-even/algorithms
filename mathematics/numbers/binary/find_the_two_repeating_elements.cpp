@@ -4,6 +4,9 @@
 
 #include "clear_all_bits_except_the_last_set_bit.h"
 
+
+namespace {
+
 using ArrayType = std::vector<int>;
 
 /** Find the two repeating elements in a given array
@@ -11,8 +14,9 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/find-the-two-repeating-elements-in-a-given-array/
  *
  * You are given an array of n+2 elements. All elements of the array are in range 1 to n.
- * And all elements occur once except two numbers which occur twice. Find the two repeating numbers.
- * For example, array = {4, 2, 4, 5, 2, 3, 1} and n = 5
+ * And all elements occur once except two numbers which occur twice. Find the two
+ * repeating numbers.
+ *  For example, array = {4, 2, 4, 5, 2, 3, 1} and n = 5
  * The above array has n + 2 = 7 elements with all elements occurring once except 2 and 4
  * which occur twice. So the output should be 4 2.
  */
@@ -37,7 +41,7 @@ auto FindTheTwoRepeatingElementsXor(const ArrayType &elements) {
     }
     divideElement<ArrayType::value_type>(elements[N + 1ul], last_set_bit, x, y);
 
-    return std::make_pair(x, y);
+    return std::pair(x, y);
 }
 
 
@@ -54,18 +58,19 @@ auto FindTheTwoRepeatingElementsInplace(ArrayType elements) {
         }
     }
 
-    return std::make_pair(repeating_elments[0], repeating_elments[1]);
+    return std::pair(repeating_elments[0], repeating_elments[1]);
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {4, 2, 4, 5, 2, 3, 1};
 
-SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsXor, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheTwoRepeatingElementsXor, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoRepeatingElementsXor, TestSample1, std::make_pair(2, 4), SAMPLE1);
+SIMPLE_TEST(FindTheTwoRepeatingElementsXor, TestSample1, std::pair(2, 4), SAMPLE1);
 
 
-SIMPLE_BENCHMARK(FindTheTwoRepeatingElementsInplace, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheTwoRepeatingElementsInplace, SAMPLE1);
 
-SIMPLE_TEST(FindTheTwoRepeatingElementsInplace, TestSample1, std::make_pair(4, 2),
-            SAMPLE1);
+SIMPLE_TEST(FindTheTwoRepeatingElementsInplace, TestSample1, std::pair(4, 2), SAMPLE1);

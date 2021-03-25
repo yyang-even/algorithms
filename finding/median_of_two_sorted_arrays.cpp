@@ -14,8 +14,8 @@ auto MedianOf4(const ArrayType::value_type smaller_one,
     assert(smaller_one <= greater_one);
     assert(smaller_two <= greater_two);
 
-    return std::make_pair(std::max(smaller_one, smaller_two),
-                          std::min(greater_one, greater_two));
+    return std::pair(std::max(smaller_one, smaller_two),
+                     std::min(greater_one, greater_two));
 }
 
 /** Median of two sorted arrays of same size
