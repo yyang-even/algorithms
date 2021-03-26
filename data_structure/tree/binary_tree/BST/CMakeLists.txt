@@ -28,5 +28,8 @@ compile_test(is_BST)
 compile_benchmark(lowest_common_ancestor)
 compile_test(lowest_common_ancestor)
 
+compile_benchmark(rank_of_element_in_stream)
+compile_test(rank_of_element_in_stream)
+
 compile_benchmark(to_balanced_BST)
 compile_test(to_balanced_BST)

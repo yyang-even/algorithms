@@ -8,7 +8,7 @@ using ArrayType = std::vector<HeightWeightPair>;
 
 /**
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
- *              Questions 11.6.
+ *              Questions 11.7.
  *
  * A circus is designing a tower routine consisting of people standing atop one another's
  * shoulders. For practical and aesthetic reasons, each person must be both shorter and
