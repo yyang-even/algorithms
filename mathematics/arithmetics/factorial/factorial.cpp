@@ -3,6 +3,7 @@
 #include "factorial.h"
 #include "mathematics/numbers/large_integer.h"
 
+
 namespace {
 
 /** Factorial
@@ -17,7 +18,7 @@ namespace {
  * Factorial of a non-negative integer, is multiplication of all integers smaller than or
  * equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
  */
-unsigned long Factorial_Recursive(const int num) {
+constexpr unsigned long Factorial_Recursive(const int num) {
     if (num > 1) {
         return Factorial_Recursive(num - 1) * num;
     }
@@ -25,7 +26,7 @@ unsigned long Factorial_Recursive(const int num) {
 }
 
 
-unsigned long Factorial_OneLine(const unsigned n) {
+constexpr unsigned long Factorial_OneLine(const unsigned n) {
     return (n == 1u or n == 0u) ? 1u : n * Factorial_OneLine(n - 1);
 }
 
@@ -34,14 +35,16 @@ unsigned long Factorial_OneLine(const unsigned n) {
  * @reference   Tail Recursion
  *              https://www.geeksforgeeks.org/tail-recursion/
  */
-unsigned long Factorial_TailRecursive(const int num, unsigned long factorial) {
+constexpr unsigned long
+Factorial_TailRecursive(const int num, unsigned long factorial) {
     if (num < 2) {
         return factorial;
     }
 
     return Factorial_TailRecursive(num - 1, num * factorial);
 }
-unsigned long Factorial_TailRecursive(const int num) {
+
+constexpr unsigned long Factorial_TailRecursive(const int num) {
     return Factorial_TailRecursive(num, 1);
 }
 
@@ -49,8 +52,8 @@ unsigned long Factorial_TailRecursive(const int num) {
 /**
  * @reference   Agner Fog. Optimizing software in C++. Section 14.1.
  */
-auto Factorial_LookupTable(const unsigned n) {
-    static const unsigned FACTORIAL_TABLE[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
+constexpr auto Factorial_LookupTable(const unsigned n) {
+    constexpr unsigned FACTORIAL_TABLE[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
     assert(n < (sizeof(FACTORIAL_TABLE) / sizeof(*FACTORIAL_TABLE)));
     return FACTORIAL_TABLE[n];
 }

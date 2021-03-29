@@ -176,8 +176,8 @@ auto NthFibonacci_DP_Optimized(const unsigned n) {
  * @reference   Tail Recursion for Fibonacci
  *              https://www.geeksforgeeks.org/tail-recursion-fibonacci/
  */
-auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
-                                const unsigned b = 1) {
+constexpr auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
+                                          const unsigned b = 1) {
     if (n == 0) {
         return a;
     }
