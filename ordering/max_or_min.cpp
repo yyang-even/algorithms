@@ -52,6 +52,8 @@ auto MaxElement_Bit(ArrayType values) {
  *              https://www.geeksforgeeks.org/compute-the-minimum-or-maximum-max-of-two-integers-without-branching/
  * @reference   What are the differences between bitwise and logical AND operators in C/C++?
  *              https://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.4.
  */
 int Min_Xor(const int x, const int y) {
     return y ^ ((x ^ y) & -(x < y));
@@ -96,7 +98,7 @@ const ArrayType VALUES4 = {4, 8, 12, 16};
 const ArrayType VALUES5 = {15, 0, 2, 15};
 
 
-SIMPLE_BENCHMARK(MaxElement_Bit, Sample1, VALUES5);
+THE_BENCHMARK(MaxElement_Bit, VALUES5);
 
 SIMPLE_TEST(MaxElement_Bit, TestSAMPLE1, 0u, VALUES1);
 SIMPLE_TEST(MaxElement_Bit, TestSAMPLE2, 1u, VALUES2);

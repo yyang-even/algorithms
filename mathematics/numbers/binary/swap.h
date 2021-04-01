@@ -7,9 +7,11 @@
  *              https://graphics.stanford.edu/~seander/bithacks.html
  * @reference   How to swap two numbers without using a temporary variable?
  *              https://www.geeksforgeeks.org/swap-two-numbers-without-using-temporary-variable/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.1.
  */
 template <typename T>
-void Swap_Xor(T &a, T &b) {
+static inline void Swap_Xor(T &a, T &b) {
     if (a != b) {
         a ^= b;
         b ^= a;

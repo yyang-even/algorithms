@@ -49,6 +49,9 @@ compile_test(find_overlapping_sum_of_two_array)
 compile_benchmark(find_second_frequent_char)
 compile_test(find_second_frequent_char)
 
+compile_benchmark(game_of_master_mind)
+compile_test(game_of_master_mind)
+
 compile_benchmark(last_occurrence_of_elements_in_relative_order)
 compile_test(last_occurrence_of_elements_in_relative_order)
 

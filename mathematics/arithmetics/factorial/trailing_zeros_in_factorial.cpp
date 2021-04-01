@@ -8,6 +8,8 @@ namespace {
 /**
  * @reference   Count trailing zeros in factorial of a number
  *              https://www.geeksforgeeks.org/count-trailing-zeroes-factorial-number/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.3.
  *
  * Given an integer n, write a function that returns count of trailing zeros in n!.
  */
@@ -50,7 +52,8 @@ auto SmallestNumberWhoseFactorialContainsYTrailingZeros(const unsigned Y) {
  *
  * @reference   https://www.geeksforgeeks.org/numbers-whose-factorials-end-with-n-zeros/
  *
- * Given an integer n, we need to find the number of positive integers whose factorial ends with n zeros.
+ * Given an integer n, we need to find the number of positive integers whose factorial
+ * ends with n zeros.
  */
 auto FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch(const unsigned N) {
     auto lower_bound = SmallestNumberWhoseFactorialContainsYTrailingZeros(N);
@@ -84,7 +87,7 @@ SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE3, 4u, SAMPLE3);
 SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE4, 24u, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, Sample1, 10);
+THE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, 10);
 
 SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE1, 10, 2);
 SIMPLE_TEST(SmallestNumberWhoseFactorialContainsYTrailingZeros, TestSAMPLE2, 25, 6);
@@ -95,7 +98,7 @@ const std::vector<unsigned> EXPECTED1 = {5, 6, 7, 8, 9};
 const std::vector<unsigned> EXPECTED2 = {10, 11, 12, 13, 14};
 
 
-SIMPLE_BENCHMARK(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, Sample1, 2);
+THE_BENCHMARK(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, 2);
 
 SIMPLE_TEST(FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch, TestSAMPLE1,
             EXPECTED1, 1);

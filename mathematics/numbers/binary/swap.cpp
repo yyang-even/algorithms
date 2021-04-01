@@ -45,15 +45,17 @@ auto TestSwap(std::function<void(unsigned &, unsigned &)> swap,
  * @reference   Swap bits in a given number
  *              https://www.geeksforgeeks.org/swap-bits-in-a-given-number/
  *
- * As an example of swapping ranges of bits suppose we have have number=00101111 (expressed in binary)
- * and we want to swap the bit_length=3 consecutive bits starting at i = 1 (the second bit from the right)
- * with the 3 consecutive bits starting at j = 5; the result would be r=11100011 (binary).
+ * As an example of swapping ranges of bits suppose we have have number=00101111
+ * (expressed in binary) and we want to swap the bit_length=3 consecutive bits starting
+ * at i = 1 (the second bit from the right) with the 3 consecutive bits starting at
+ * j = 5; the result would be r=11100011 (binary).
  *
  * @reference   How to swap two bits in a given integer?
  *              https://www.geeksforgeeks.org/how-to-swap-two-bits-in-a-given-integer/
  *
- * Given an integer n and two bit positions p1 and p2 inside it, swap bits at the given positions.
- * The given positions are from least significant bit (lsb). For example, the position for lsb is 0.
+ * Given an integer n and two bit positions p1 and p2 inside it, swap bits at the given
+ * positions. The given positions are from least significant bit (lsb). For example, the
+ * position for lsb is 0.
  */
 unsigned SwapBitRange(const unsigned number, const unsigned i, const unsigned j,
                       const unsigned bit_length) {
@@ -102,7 +104,7 @@ SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE5, true, Swap_Xor<unsigned>, 13, 13);
 SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<unsigned>, UPPER, UPPER);
 
 
-SIMPLE_BENCHMARK(SwapBitRange, Sample1, 0b00101111, 1, 5, 3);
+THE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
 
 SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011u, 0b00101111, 1, 5, 3);
 SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0u, 0b00101111, 0, 4, 5);

@@ -62,6 +62,14 @@ auto DetectCycle_Degrees(const std::size_t number_vertices,
 }
 
 
+/**
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 16.4.
+ *
+ * Design a class which provides a lock only if there are no possible deadlocks.
+ */
+
+
 /** Detect cycle in an undirected graph
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -150,9 +158,9 @@ auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
  * @reference   Detect cycle in the graph using degrees of nodes of graph
  *              https://www.geeksforgeeks.org/detect-cycle-in-the-graph-using-degrees-of-nodes-of-graph/
  *
- * Given a graph, the task is to detect a cycle in the graph using degrees of the nodes in the graph
- * and print all the nodes that are involved in any of the cycles. If there is no cycle in the graph
- * then print -1.
+ * Given a graph, the task is to detect a cycle in the graph using degrees of the nodes
+ * in the graph and print all the nodes that are involved in any of the cycles. If there
+ * is no cycle in the graph then print -1.
  */
 auto DetectCycle_Undirected_Degrees(
     const AdjacencyListGraph::RepresentationType &graph) {
@@ -202,18 +210,21 @@ auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
 
 const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 2}, {2, 3}};
+const DirectedEdgeArrayType SAMPLE5 = {{1, 2}, {2, 3}, {3, 4}, {1, 3}, {3, 5}, {7, 5}, {5, 9}, {9, 2}};
 
 
-SIMPLE_BENCHMARK(DetectCycle_DFS, Sample1, 4, SAMPLE1);
+THE_BENCHMARK(DetectCycle_DFS, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE2, false, 4, SAMPLE2);
+SIMPLE_TEST(DetectCycle_DFS, TestSAMPLE5, true, 10, SAMPLE5);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Degrees, Sample1, 4, SAMPLE1);
+THE_BENCHMARK(DetectCycle_Degrees, 4, SAMPLE1);
 
 SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE1, true, 4, SAMPLE1);
 SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE2, false, 4, SAMPLE2);
+SIMPLE_TEST(DetectCycle_Degrees, TestSAMPLE5, true, 10, SAMPLE5);
 
 
 const UndirectedEdgeArrayType SAMPLE3 = {{0, 1}, {0, 2}, {1, 2}, {0, 3}, {3, 4}};
@@ -222,19 +233,19 @@ const ArrayType EXPECTED3 = {0, 1, 2};
 const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}};
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_DFS, Sample1, 5, SAMPLE3);
+THE_BENCHMARK(DetectCycle_Undirected_DFS, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE3, true, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_DFS, TestSAMPLE4, false, 3, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_BFS, Sample1, 5, SAMPLE3);
+THE_BENCHMARK(DetectCycle_Undirected_BFS, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE3, true, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE4, false, 3, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(DetectCycle_Undirected_Degrees, Sample1, 5, SAMPLE3);
+THE_BENCHMARK(DetectCycle_Undirected_Degrees, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE3, EXPECTED3, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE4, {}, 3, SAMPLE4);
