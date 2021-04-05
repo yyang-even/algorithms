@@ -37,6 +37,9 @@ compile_test(interleavings_of_two_strings)
 compile_benchmark(is_palindrome)
 compile_test(is_palindrome)
 
+compile_benchmark(number_to_words)
+compile_test(number_to_words)
+
 compile_benchmark(pangram_checking)
 compile_test(pangram_checking)
 

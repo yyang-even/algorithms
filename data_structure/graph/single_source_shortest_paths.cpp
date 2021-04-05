@@ -310,7 +310,6 @@ auto SingleSourceShortestPaths_Dijkstra(
                 }
             }
         }
-        std::cout << distances_from_source << std::endl;
 
         closed_vertices[from_vertex] = true;
     }
