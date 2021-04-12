@@ -11,9 +11,9 @@ using ArrayType = std::array<int, N>;
  *
  * @reference   https://www.geeksforgeeks.org/select-a-random-number-from-stream-with-o1-space/
  *
- * Given a stream of numbers, generate a random number from the stream.
- * You are allowed to use only O(1) space and the input is in the form of stream,
- * so can’t store the previously seen numbers.
+ * Given a stream of numbers, generate a random number from the stream. You are allowed
+ * to use only O(1) space and the input is in the form of stream, so can't store the
+ * previously seen numbers.
  */
 template <typename Container>
 auto RandomNumberFromStream(const Container &stream) {
@@ -26,10 +26,10 @@ auto RandomNumberFromStream(const Container &stream) {
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
-SIMPLE_BENCHMARK(ReservoirSampling, Sample1, VALUES, 3);
+THE_BENCHMARK(ReservoirSampling, VALUES, 3);
 
 
-SIMPLE_BENCHMARK(RandomNumberFromStream, Sample1, VALUES);
+THE_BENCHMARK(RandomNumberFromStream, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP

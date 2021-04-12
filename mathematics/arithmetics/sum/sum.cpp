@@ -12,8 +12,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/to-find-sum-of-two-numbers-without-using-any-operator/
  *
- * Write a C program to find sum of positive integers without using any operator.
- * Only use of printf() is allowed. No other library function can be used.
+ * Write a C program to find sum of positive integers without using any operator. Only
+ * use of printf() is allowed. No other library function can be used.
  */
 auto Sum_Printf(const unsigned a, const unsigned b) {
     return printf("%*c%*c", a, ' ', b, ' ');
@@ -24,8 +24,11 @@ auto Sum_Printf(const unsigned a, const unsigned b) {
  *
  * @reference   https://www.geeksforgeeks.org/add-two-numbers-without-using-arithmetic-operators/
  *
- * Write a function Add() that returns sum of two integers. The function should
- * not use any of the arithmetic operators (+, ++, --, -, .. etc).
+ * Write a function Add() that returns sum of two integers. The function should not use
+ * any of the arithmetic operators (+, ++, --, -, .. etc).
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 18.1.
  */
 auto Sum_HalfAdder_Iterative(int a, int b) {
     while (b) {
@@ -49,8 +52,8 @@ auto Sum_HalfAdder_Recursive(const int a, const int b) {
  *
  * @reference   https://www.geeksforgeeks.org/how-to-sum-two-integers-without-using-arithmetic-operators-in-cc/
  *
- * Given two integers a and b, how can we evaluate the sum a + b without using
- * operators such as +, -, ++, --, …?
+ * Given two integers a and b, how can we evaluate the sum a + b without using operators
+ * such as +, -, ++, --, ...?
  */
 auto Sum_Pointer(const int a, const int b) {
     const char *p = reinterpret_cast<char *>(a);
@@ -77,7 +80,9 @@ auto Sum_Loop(int a, int b) {
  *
  * @reference   https://www.geeksforgeeks.org/add-1-to-a-given-number/
  *
- * Write a program to add one to a given number. The use of operators like ‘+’, ‘-‘, ‘*’, ‘/’, ‘++’, ‘–‘ …etc are not allowed.
+ * Write a program to add one to a given number. The use of operators like '+', '-', '*',
+ * '/', '++', '--' ...etc are not allowed.
+ *
  * ~x = -(x+1)
  */
 auto Add1_HalfAdder(const int x) {
@@ -92,48 +97,48 @@ auto Add1_2sComplement(const int x) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(Sum_Printf, Sample1, 3, 4);
+THE_BENCHMARK(Sum_Printf, 3, 4);
 
 SIMPLE_TEST(Sum_Printf, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Printf, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Printf, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_HalfAdder_Iterative, Sample1, 3, 4);
+THE_BENCHMARK(Sum_HalfAdder_Iterative, 3, 4);
 
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_HalfAdder_Recursive, Sample1, 3, 4);
+THE_BENCHMARK(Sum_HalfAdder_Recursive, 3, 4);
 
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_Pointer, Sample1, 3, 4);
+THE_BENCHMARK(Sum_Pointer, 3, 4);
 
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Pointer, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Sum_Loop, Sample1, 3, 4);
+THE_BENCHMARK(Sum_Loop, 3, 4);
 
 SIMPLE_TEST(Sum_Loop, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_Loop, TestSAMPLE3, 47, 15, 32);
 
 
-SIMPLE_BENCHMARK(Add1_HalfAdder, Sample1, 4);
+THE_BENCHMARK(Add1_HalfAdder, 4);
 
 SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE1, 7, 6);
 SIMPLE_TEST(Add1_HalfAdder, TestSAMPLE2, 14, 13);
 
 
-SIMPLE_BENCHMARK(Add1_2sComplement, Sample1, 4);
+THE_BENCHMARK(Add1_2sComplement, 4);
 
 SIMPLE_TEST(Add1_2sComplement, TestSAMPLE1, 7, 6);
 SIMPLE_TEST(Add1_2sComplement, TestSAMPLE2, 14, 13);
