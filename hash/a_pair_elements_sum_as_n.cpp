@@ -12,8 +12,8 @@ using ArrayType = std::array<int, N>;
  *
  * @reference   https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
  *
- * Given an array A[] of n numbers and another number x, determines
- * whether or not there exist two elements in A whose sum is exactly x.
+ * Given an array A[] of n numbers and another number x, determines whether or not there
+ * exist two elements in A whose sum is exactly x.
  *
  * @complexity: O(n)
  */
@@ -32,8 +32,9 @@ auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) 
  * @reference   Find pairs with given sum in doubly linked list
  *              https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/
  *
- * Given a sorted doubly linked list of positive distinct elements, the task is to find pairs in doubly linked
- * list whose sum is equal to given value x, without using any extra space?
+ * Given a sorted doubly linked list of positive distinct elements, the task is to find
+ * pairs in doubly linked list whose sum is equal to given value x, without using any
+ * extra space?
  */
 template <std::size_t N>
 auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
@@ -64,8 +65,11 @@ auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
  * @reference   Count pairs with given sum | Set 2
  *              https://www.geeksforgeeks.org/count-pairs-with-given-sum-set-2/
  *
- * Given an array of integers, and a number ‘sum’, find the number of
- * pairs of integers in the array whose sum is equal to ‘sum’.
+ * Given an array of integers, and a number 'sum', find the number of pairs of integers
+ * in the array whose sum is equal to 'sum'.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.12.
  */
 
 }//namespace
@@ -85,7 +89,7 @@ SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE4, true, VALUES3, 8);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Hashmap, TestSAMPLE5, false, VALUES3, 6);
 
 
-SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Sort, Sample1, VALUES3, 8);
+THE_BENCHMARK(HasPairOfElementsSumAsN_Sort, VALUES3, 8);
 
 SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE1, false, VALUES1, 16);
 SIMPLE_TEST(HasPairOfElementsSumAsN_Sort, TestSAMPLE2, false, VALUES2, 16);

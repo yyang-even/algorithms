@@ -26,6 +26,28 @@ void FlattenBSTtoSortedList_Decreasing(const BinaryTree::Node::PointerType node,
 
 
 /**
+ * @reference   Convert a given Binary Tree to Doubly Linked List | Set 1
+ *              https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+ * @reference   Convert a given Binary Tree to Doubly Linked List | Set 2
+ *              https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
+ * @reference   Convert a given Binary Tree to Doubly Linked List | Set 3
+ *              https://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
+ * @reference   Convert a given Binary Tree to Doubly Linked List | Set 4
+ *              https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-4/
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.13.
+ *
+ * @reference   The Great Tree-List Recursion Problem.
+ *              https://www.geeksforgeeks.org/the-great-tree-list-recursion-problem/
+ * @reference   Convert a Binary Tree to a Circular Doubly Link List
+ *              https://www.geeksforgeeks.org/convert-a-binary-tree-to-a-circular-doubly-link-list/
+ * @reference   Convert a given Binary Tree to Circular Doubly Linked List | Set 2
+ *              https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-circular-doubly-linked-list-set-2/
+ */
+
+
+/**
  * @reference   Convert a Binary Search Tree into a Skewed tree in increasing or decreasing order
  *              https://www.geeksforgeeks.org/convert-a-binary-search-tree-into-a-skewed-tree-in-increasing-or-decreasing-order/
  *

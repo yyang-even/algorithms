@@ -7,14 +7,18 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/generate-integer-from-1-to-7-with-equal-probability/
  *
- * Given a function foo() that returns integers from 1 to 5 with equal probability,
- * write a function that returns integers from 1 to 7 with equal probability using
- * foo() only. Minimize the number of calls to foo() method. Also, use of any other
- * library function is not allowed and no floating point arithmetic allowed.
+ * Given a function foo() that returns integers from 1 to 5 with equal probability, write
+ * a function that returns integers from 1 to 7 with equal probability using foo() only.
+ * Minimize the number of calls to foo() method. Also, use of any other library function
+ * is not allowed and no floating point arithmetic allowed.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.11.
  */
 inline auto foo() {
     return Random_Number(1, 5);
 }
+
 auto RandomNumber1to7() {
     const auto i = foo() * 5 + foo() - 5;
     if (i < 22) {
@@ -28,13 +32,14 @@ auto RandomNumber1to7() {
  *
  * @reference   https://www.geeksforgeeks.org/implement-random-0-6-generator-using-the-given-random-0-1-generator/
  *
- * Given a function random01Generator() that gives you randomly either 0 or 1,
- * implement a function that utilizes this function and generate numbers between
- * 0 and 6(both inclusive). All numbers should have same probabilities of occurrence.
+ * Given a function random01Generator() that gives you randomly either 0 or 1, implement a
+ * function that utilizes this function and generate numbers between 0 and 6(both inclusive).
+ * All numbers should have same probabilities of occurrence.
  */
 inline auto boo() {
     return Random_Number(0, 1);
 }
+
 auto RandomNumber0to6() {
     const auto i = boo() * 2 * 2 + boo() * 2 + boo();
     if (i < 7) {

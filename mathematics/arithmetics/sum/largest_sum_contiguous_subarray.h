@@ -8,8 +8,11 @@
  * @reference   Size of The Subarray With Maximum Sum
  *              https://www.geeksforgeeks.org/size-subarray-maximum-sum/
  *
- * Write an efficient C program to find the sum of contiguous subarray within
- * a one-dimensional array of numbers which has the largest sum.
+ * Write an efficient C program to find the sum of contiguous subarray within a
+ * one-dimensional array of numbers which has the largest sum.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.8.
  *
  * @complexity  O(n)
  */

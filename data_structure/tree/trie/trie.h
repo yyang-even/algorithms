@@ -190,4 +190,16 @@ static inline auto BuildTrie(const std::vector<std::string> &keys) {
 /**
  * @reference   Frequency of a string in an array of strings
  *              https://www.geeksforgeeks.org/frequency-of-a-string-in-an-array-of-strings/
+ *
+ * You are given a collection of strings and a list of queries. For every query there is
+ * a string given. We need to print the number of times the given string occurs in the
+ * collection of strings.
+ *
+ * @reference   Calculate the frequency of each word in the given string
+ *              https://www.geeksforgeeks.org/calculate-the-frequency-of-each-word-in-the-given-string/
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.9.
+ *
+ * Design a method to find the frequency of occurrences of any given word in a book.
  */

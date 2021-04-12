@@ -7,8 +7,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/reverse-words-in-a-given-string/
  *
- * Example: Let the input string be “i like this program very much”. The
- * function should change the string to “much very program this like i”
+ * Example: Let the input string be "i like this program very much". The function should
+ * change the string to "much very program this like i".
  *
  * @reference   Print words of a string in reverse order
  *              https://www.geeksforgeeks.org/print-words-string-reverse-order/
@@ -45,7 +45,7 @@ auto ReverseWordsInGivenString_Stack(std::string input) {
     static const auto *delimiters = " ";
 
     std::stack<const char *> words_stack;
-    for (auto *token = std::strtok(const_cast<char *>(input.c_str()), delimiters);
+    for (auto *token = std::strtok(input.data(), delimiters);
          token != nullptr;
          token = std::strtok(nullptr, delimiters)) {
         words_stack.push(token);
@@ -65,7 +65,7 @@ auto ReverseWordsInGivenString_Stack(std::string input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ReverseWordsInGivenString, Sample1, "geeks quiz practice code");
+THE_BENCHMARK(ReverseWordsInGivenString, "geeks quiz practice code");
 
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");
@@ -77,7 +77,7 @@ SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE3, "much very program this like
 SIMPLE_TEST(ReverseWordsInGivenString, TestSAMPLE4, "  much very  ", "  very much  ");
 
 
-SIMPLE_BENCHMARK(ReverseWordsInGivenString_Stack, Sample1, "geeks quiz practice code");
+THE_BENCHMARK(ReverseWordsInGivenString_Stack, "geeks quiz practice code");
 
 SIMPLE_TEST(ReverseWordsInGivenString_Stack, TestSAMPLE1, "code practice quiz geeks",
             "geeks quiz practice code");

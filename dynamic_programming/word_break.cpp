@@ -10,8 +10,8 @@ using ArrayType = std::vector<std::string>;
  * @reference   Word Break Problem | DP-32
  *              https://www.geeksforgeeks.org/word-break-problem-dp-32/
  *
- * Given an input string and a dictionary of words, find out if the input string
- * can be segmented into a space-separated sequence of dictionary words.
+ * Given an input string and a dictionary of words, find out if the input string can be
+ * segmented into a space-separated sequence of dictionary words.
  */
 bool WordBreak(const std::string &a_string,
                const std::unordered_set<std::string> &words) {
@@ -44,9 +44,9 @@ bool WordBreak(const std::string &a_string,
  * @reference   Word Break Problem using Backtracking
  *              https://www.geeksforgeeks.org/word-break-problem-using-backtracking/
  *
- * Given a valid sentence without any spaces between the words and a dictionary of
- * valid English words, find all possible ways to break the sentence in individual
- * dictionary words.
+ * Given a valid sentence without any spaces between the words and a dictionary of valid
+ * English words, find all possible ways to break the sentence in individual dictionary
+ * words.
  */
 void AllWayToWordBreak(const std::string &a_string,
                        const std::unordered_set<std::string> &words,
@@ -77,8 +77,8 @@ auto AllWayToWordBreak(const std::string &a_string,
  * @reference   Minimum Word Break
  *              https://www.geeksforgeeks.org/minimum-word-break/
  *
- * Given a string s, break s such that every substring of the partition
- * can be found in the dictionary. Return the minimum break needed.
+ * Given a string s, break s such that every substring of the partition can be found in
+ * the dictionary. Return the minimum break needed.
  */
 bool MinimumWordBreak(const std::string &a_string,
                       const std::unordered_set<std::string> &words) {
@@ -101,6 +101,16 @@ bool MinimumWordBreak(const std::string &a_string,
     return word_breaks[a_string.size()] - 1;
 }
 
+
+/**
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 17.14.
+ *
+ * Given a dictionary (a list of words), design an algorithm to find the optimal way of
+ * "unconcatenating" a sequence of words. In this case, "optimal" is defined to be the
+ * parsing which minimizes the number of unrecognized sequences of characters.
+ */
+
 }//namespace
 
 
@@ -108,7 +118,7 @@ const std::unordered_set<std::string> DICTIONARY1 =
 {"mobile", "samsung", "sam", "sung", "man", "mango", "icecream", "and", "go", "i", "like", "ice", "cream"};
 
 
-SIMPLE_BENCHMARK(WordBreak, Sample1, "ilike", DICTIONARY1);
+THE_BENCHMARK(WordBreak, "ilike", DICTIONARY1);
 
 SIMPLE_TEST(WordBreak, TestSAMPLE0, true, "", DICTIONARY1);
 SIMPLE_TEST(WordBreak, TestSAMPLE1, true, "ilike", DICTIONARY1);
@@ -126,7 +136,7 @@ const ArrayType EXPECTED2 =
 {"i like sam sung mobile", "i like samsung mobile"};
 
 
-SIMPLE_BENCHMARK(AllWayToWordBreak, Sample1, "ilikeicecreamandmango", DICTIONARY1);
+THE_BENCHMARK(AllWayToWordBreak, "ilikeicecreamandmango", DICTIONARY1);
 
 SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE1, EXPECTED1,
             "ilikeicecreamandmango", DICTIONARY1);
@@ -138,7 +148,7 @@ const std::unordered_set<std::string> DICTIONARY2 =
 {"Cat", "Mat", "Ca", "tM", "at", "C", "Dog", "og", "Do"};
 
 
-SIMPLE_BENCHMARK(MinimumWordBreak, Sample1, "CatMat", DICTIONARY1);
+THE_BENCHMARK(MinimumWordBreak, "CatMat", DICTIONARY1);
 
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE0, 0, "", DICTIONARY2);
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE1, 1, "CatMat", DICTIONARY2);

@@ -91,7 +91,7 @@ auto TailString_Strtok(std::string lines, const unsigned K) {
     assert(K);
 
     std::queue<std::string> line_queue;
-    for (auto *token = strtok(const_cast<char *>(lines.c_str()), "\n");
+    for (auto *token = strtok(lines.data(), "\n");
          token; token = strtok(nullptr, "\n")) {
         if (line_queue.size() >= K) {
             line_queue.pop();
