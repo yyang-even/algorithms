@@ -1,3 +1,6 @@
+compile_benchmark(count_2s_in_range)
+compile_test(count_2s_in_range)
+
 compile_benchmark(count_digits_in_integer)
 compile_test(count_digits_in_integer)
 

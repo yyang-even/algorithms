@@ -17,7 +17,10 @@ using ArrayType = std::array<int, N>;
  *              https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
  *
  * Given an array, write a program to generate a random permutation of array elements.
- * This question is also asked as “shuffle a deck of cards” or “randomize a given array”.
+ * This question is also asked as "shuffle a deck of cards" or "randomize a given array".
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 18.2.
  *
  * @complexity  O(n)
  */
@@ -63,10 +66,10 @@ auto ShuffleArray_BySorting(const ArrayType<N> &array) {
 ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
-SIMPLE_BENCHMARK(ShuffleArray_InPlace, Sample1, VALUES);
+THE_BENCHMARK(ShuffleArray_InPlace, VALUES);
 
 
-SIMPLE_BENCHMARK(ShuffleArray_BySorting, Sample1, VALUES);
+THE_BENCHMARK(ShuffleArray_BySorting, VALUES);
 
 
 #ifdef WANT_TERMINAL_APP
