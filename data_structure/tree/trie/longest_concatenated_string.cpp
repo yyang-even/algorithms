@@ -3,16 +3,19 @@
 #include "trie.h"
 
 
-using ArrayType = std::vector<std::string>;
-
 namespace {
+
+using ArrayType = std::vector<std::string>;
 
 /**
  * @reference   Find the longest string that can be made up of other strings from the array
  *              https://www.geeksforgeeks.org/find-the-longest-string-that-can-be-made-up-of-other-strings-from-the-array/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 18.7.
  *
- * Given an array of strings arr[], the task is to find the largest string in the array which
- * is made up of the other strings from the array after concatenating one after another.
+ * Given an array of strings arr[], the task is to find the largest string in the array
+ * which is made up of the other strings from the array after concatenating one after
+ * another.
  */
 enum class WordType {
     not_a_word,
@@ -66,7 +69,7 @@ const ArrayType SAMPLE1 = {"geeks", "for", "geeksfor", "geeksforgeeks", "geeksfo
 const ArrayType SAMPLE2 = {"Hey", "you", "stop", "right", "there"};
 
 
-SIMPLE_BENCHMARK(LongestConcatenatedString, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestConcatenatedString, SAMPLE1);
 
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE1, "geeksforgeeks", SAMPLE1);
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE2, "", SAMPLE2);

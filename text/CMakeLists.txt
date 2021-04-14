@@ -102,3 +102,6 @@ compile_test(to_decimal)
 
 compile_benchmark(urlify)
 compile_test(urlify)
+
+compile_benchmark(word_ladder)
+compile_test(word_ladder)

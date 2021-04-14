@@ -22,9 +22,11 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  *              https://www.geeksforgeeks.org/to-find-smallest-and-second-smallest-element-in-an-array/
  * @reference   Find the first, second and third minimum elements in an array
  *              https://www.geeksforgeeks.org/find-the-first-second-and-third-minimum-elements-in-an-array/
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 18.6.
  *
- * Write an efficient program for printing k largest elements in an array.
- * Elements in array can be in any order.
+ * Write an efficient program for printing k largest elements in an array. Elements in
+ * array can be in any order.
  *
  * @reference   Find the largest pair sum in an unsorted array
  *              https://www.geeksforgeeks.org/find-the-largest-pair-sum-in-an-unsorted-array/
@@ -36,8 +38,8 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  * @reference   Minimum product pair an array of positive Integers
  *              https://www.geeksforgeeks.org/minimum-product-pair-an-array-of-positive-integers/
  *
- * Given an array of positive integers. We are required to write a program to print the minimum
- * product of any two numbers of the given array.
+ * Given an array of positive integers. We are required to write a program to print the
+ * minimum product of any two numbers of the given array.
  *
  * @highlight   Use of std::make_heap() and std::pop_heap()
  *              Use of std::make_reverse_iterator()
@@ -120,8 +122,8 @@ auto KSmallestElements_MaxHeap(const ArrayType &values, ArrayType::size_type K) 
  * @reference   k smallest elements in same order using O(1) extra space
  *              https://www.geeksforgeeks.org/k-smallest-elements-order-using-o1-extra-space/
  *
- * We are given an array of m-elements, we need to find n smallest elements from
- * the array but they must be in the same order as they are in given array.
+ * We are given an array of m-elements, we need to find n smallest elements from the
+ * array but they must be in the same order as they are in given array.
  */
 auto StableKSmallestElements_Sort(const ArrayType &values,
                                   const ArrayType::size_type K) {
@@ -171,14 +173,14 @@ const InitializerType VALUES1 = {1, 23, 12, 9, 30, 2, 50};
 const InitializerType EXPECTED1 = {1, 2, 9};
 
 
-SIMPLE_BENCHMARK(KSmallestElements_Sort, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(KSmallestElements_Sort, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_Sort, TestEmpty, EMPTY, VALUES1, EMPTY.size());
 SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE1, EXPECTED1, VALUES1, EXPECTED1.size());
 SIMPLE_TEST(KSmallestElements_Sort, TestSAMPLE2, VALUES1, VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(KSmallestElements_MinHeap, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(KSmallestElements_MinHeap, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_MinHeap, TestEmpty, EMPTY, VALUES1, EMPTY.size());
 SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE1, EXPECTED1,
@@ -186,7 +188,7 @@ SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE1, EXPECTED1,
 SIMPLE_TEST(KSmallestElements_MinHeap, TestSAMPLE2, VALUES1, VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(KSmallestElements_QuickSelect, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(KSmallestElements_QuickSelect, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_QuickSelect, TestSAMPLE1, EXPECTED1,
             VALUES1, EXPECTED1.size());
@@ -194,7 +196,7 @@ SIMPLE_TEST(KSmallestElements_QuickSelect, TestSAMPLE2, VALUES1,
             VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(KSmallestElements_MaxHeap, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(KSmallestElements_MaxHeap, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE1, EXPECTED1,
             VALUES1, EXPECTED1.size());
@@ -205,7 +207,7 @@ const ArrayType VALUES2 = {1, 5, 8, 9, 6, 7, 3, 4, 2, 0};
 const InitializerType EXPECTED2 = {1, 3, 4, 2, 0};
 
 
-SIMPLE_BENCHMARK(StableKSmallestElements_Sort, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(StableKSmallestElements_Sort, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE1, EXPECTED1,
             VALUES1, EXPECTED1.size());
@@ -215,7 +217,7 @@ SIMPLE_TEST(StableKSmallestElements_Sort, TestSAMPLE3, VALUES1,
             VALUES1, VALUES1.size());
 
 
-SIMPLE_BENCHMARK(StableKSmallestElements_Insertion, Sample1, VALUES1, EXPECTED1.size());
+THE_BENCHMARK(StableKSmallestElements_Insertion, VALUES1, EXPECTED1.size());
 
 SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE1, EXPECTED1,
             VALUES1, EXPECTED1.size());

@@ -12,6 +12,8 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
  * @reference   Section VI. Five Algorithm Approaches.
  *              Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 18.9.
  *
  * Given that integers are being read from a data stream. Find median of all the elements
  * read so far starting from the first integer till the last integer. This is also called
@@ -22,7 +24,7 @@ using ArrayType = std::vector<int>;
  * when the input size is odd, we take the middle element of sorted data. If the input size
  * is even, we pick average of middle two elements in sorted stream.
  */
-auto MedianOfRunningintegers(const ArrayType &ints) {
+auto MedianOfRunningIntegers(const ArrayType &ints) {
     assert(not ints.empty());
     std::vector<double> outputs;
 
@@ -76,6 +78,6 @@ const ArrayType SAMPLE_ARRAY = {5, 15, 10, 20, 3};
 const std::vector<double> EXPECTED_ARRAY = {5, 10, 10, 12.5, 10};
 
 
-SIMPLE_BENCHMARK(MedianOfRunningintegers, Sample1, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
+THE_BENCHMARK(MedianOfRunningIntegers, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
 
-SIMPLE_TEST(MedianOfRunningintegers, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
+SIMPLE_TEST(MedianOfRunningIntegers, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
