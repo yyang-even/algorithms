@@ -3,6 +3,7 @@
 #include "data_structure/linked_list/singly_list/singly_linked_list.h"
 #include "data_structure/linked_list/singly_list/singly_circular_linked_list.h"
 
+
 /** Implementing Queue using Arrays
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -27,7 +28,7 @@
 class ArrayCircularQueue {
     using ValueType = int;
 
-    const std::size_t CAPACITY;
+    std::size_t CAPACITY;
     std::vector<ValueType> buffer;
     std::size_t size = 0;
     std::size_t front = 0;

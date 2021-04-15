@@ -10,7 +10,7 @@
 class OneArrayTwoStacks {
     using ValueType = int;
 
-    const std::size_t CAPACITY;
+    std::size_t CAPACITY;
     std::vector<ValueType> buffer;
     int top1 = -1;
     int top2;
@@ -69,8 +69,8 @@ public:
     using ValueType = int;
 
 private:
-    const std::size_t K;
-    const std::size_t CAPACITY;
+    std::size_t K;
+    std::size_t CAPACITY;
     std::vector<ValueType> buffer;
     std::vector<int> tops;
     std::vector<int> nexts;

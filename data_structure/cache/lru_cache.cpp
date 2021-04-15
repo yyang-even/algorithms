@@ -17,7 +17,7 @@ class LRU_Cache {
 
     QueueType cache_queue;
     std::unordered_map<KeyValuePair::first_type, QueueType::const_iterator> cache_map;
-    const QueueType::size_type CAPICITY = 0;
+    QueueType::size_type CAPICITY = 0;
 
 public:
     LRU_Cache(const QueueType::size_type capicity = 1024): CAPICITY(capicity) {

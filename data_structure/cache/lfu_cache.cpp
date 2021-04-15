@@ -19,7 +19,7 @@ class LFU_Cache {
     using SizeType = MapType::size_type;
 
     MapType cache_map;
-    const SizeType CAPICITY = 0;
+    SizeType CAPICITY = 0;
 
 public:
     LFU_Cache(const SizeType capicity = 1024): CAPICITY(capicity) {

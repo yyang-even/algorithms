@@ -13,7 +13,7 @@
 class CircularArrayDeque {
     using BufferType = std::vector<int>;
 
-    const BufferType::size_type CAPACITY;
+    BufferType::size_type CAPACITY;
     BufferType buffer;
     BufferType::size_type size = 0;
     BufferType::size_type front = 0;
