@@ -1,3 +1,6 @@
+compile_benchmark(max_black_border)
+compile_test(max_black_border)
+
 compile_benchmark(reverse_matrix)
 compile_test(reverse_matrix)
 
