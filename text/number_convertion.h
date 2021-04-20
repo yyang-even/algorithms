@@ -1,5 +1,7 @@
 #pragma once
 
+#include <charconv>
+
 
 static inline auto CreateHexDigitToDecimalMap() {
     std::unordered_map<char, int> hex_digit_to_decimal_map;
@@ -68,4 +70,18 @@ static inline auto CreateBinaryToHexDigitMap() {
     }
 
     return binary_to_hex_digit_map;
+}
+
+
+static inline auto from_string_view(const std::string_view sv, const int base = 10) {
+    int value{};
+
+    const auto result = std::from_chars(sv.data(), sv.data() + sv.size(), value, base);
+    if (result.ec == std::errc::invalid_argument) {
+        throw std::invalid_argument{"invalid_argument"};
+    } else if (result.ec == std::errc::result_out_of_range) {
+        throw std::out_of_range{"out_of_range"};
+    }
+
+    return value;
 }
