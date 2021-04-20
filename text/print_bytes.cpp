@@ -5,7 +5,7 @@
 
 namespace {
 
-typedef const unsigned char *Byte_Pointer;
+using Byte_Pointer = const unsigned char *;
 
 /**
  * @reference   How will you show memory representation of C variables?
@@ -15,11 +15,12 @@ typedef const unsigned char *Byte_Pointer;
  * @reference   StringStream in C++ for Decimal to Hexadecimal and back
  *              https://www.geeksforgeeks.org/stringstream-c-decimal-hexadecimal-back/
  *
- * Write a C program to show memory representation of C variables like int, float, pointer, etc.
+ * Write a C program to show memory representation of C variables like int, float,
+ * pointer, etc.
  */
 std::string PrintBytes_C(const Byte_Pointer bytes, const size_t len) {
     std::string str_out(len * 2, '0');
-    char *buff = (char *)str_out.data();
+    auto *buff = str_out.data();
     for (size_t i = 0; i < len; ++i, buff += 2) {
         sprintf(buff, "%.2x", bytes[i]);
     }
@@ -49,6 +50,8 @@ std::string PrintInt_Cpp(const int num) {
  * @reference   https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
  */
 auto HexToChar(const std::string &hex) {
+    assert(hex.size() % 2 == 0);
+
     std::string result;
     for (std::string::size_type i = 0; i < hex.size(); i += 2) {
         const auto c = std::stoul(hex.substr(i, 2), nullptr, 16);
@@ -61,19 +64,19 @@ auto HexToChar(const std::string &hex) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(PrintInt_Cpp, Sample1, -1);
+THE_BENCHMARK(PrintInt_Cpp, -1);
 
 SIMPLE_TEST(PrintInt_Cpp, TestSample1, std::string(sizeof(int) * 2, 'f'), -1);
 SIMPLE_TEST(PrintInt_Cpp, TestSample2, std::string(sizeof(int) * 2, '0'), 0);
 
 
-SIMPLE_BENCHMARK(PrintInt_C, Sample1, -1);
+THE_BENCHMARK(PrintInt_C, -1);
 
 SIMPLE_TEST(PrintInt_C, TestSample1, std::string(sizeof(int) * 2, 'f'), -1);
 SIMPLE_TEST(PrintInt_C, TestSample2, std::string(sizeof(int) * 2, '0'), 0);
 
 
-SIMPLE_BENCHMARK(HexToChar, Sample1, "6765656b73");
+THE_BENCHMARK(HexToChar, "6765656b73");
 
 SIMPLE_TEST(HexToChar, TestSample1, "geeks", "6765656b73");
 SIMPLE_TEST(HexToChar, TestSample2, "avengers", "6176656e67657273");

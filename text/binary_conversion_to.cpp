@@ -13,7 +13,7 @@ auto BinaryIntegerTo(const std::string &binary, const unsigned base,
     const auto end = start + length;
 
     std::string result;
-    for (std::string::size_type substr_size = (remainder == 0 ? base : remainder);
+    for (auto substr_size = (remainder == 0 ? base : remainder);
          start < end; substr_size = base) {
         result.push_back(binary_to_digit_map.at(binary.substr(start, substr_size)));
         start += substr_size;
@@ -24,7 +24,8 @@ auto BinaryIntegerTo(const std::string &binary, const unsigned base,
 
 
 auto BinaryIntegerToOctal(const std::string &binary,
-                          std::string::size_type start, const std::string::size_type length) {
+                          const std::string::size_type start,
+                          const std::string::size_type length) {
     static const auto binary_to_octal_digit_map = CreateBinaryToOctalDigitMap();
 
     return BinaryIntegerTo(binary, 3, start, length, binary_to_octal_digit_map);
@@ -36,16 +37,17 @@ auto BinaryIntegerToOctal(const std::string &binary) {
 
 
 auto BinaryIntegerToHex(const std::string &binary,
-                        std::string::size_type start, const std::string::size_type length) {
+                        const std::string::size_type start,
+                        const std::string::size_type length) {
     static const auto binary_to_hex_digit_map = CreateBinaryToHexDigitMap();
 
     return BinaryIntegerTo(binary, 4, start, length, binary_to_hex_digit_map);
 }
 
 
+template <typename BinaryIntegerToFunc>
 auto BinaryTo(const std::string &binary, const unsigned base,
-              const std::function<std::string(const std::string &, std::string::size_type, const std::string::size_type)>
-              binary_integer_to) {
+              const BinaryIntegerToFunc binary_integer_to) {
     const auto dot_position = binary.find('.');
     if (dot_position == std::string::npos) {
         return binary_integer_to(binary, 0, binary.size());
@@ -99,13 +101,13 @@ auto HexToOct(const std::string &hex) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(BinaryIntegerToOctal, Sample1, "110001110");
+THE_BENCHMARK(BinaryIntegerToOctal, "110001110");
 
 SIMPLE_TEST(BinaryIntegerToOctal, TestSAMPLE1, "616", "110001110");
 SIMPLE_TEST(BinaryIntegerToOctal, TestSAMPLE2, "16", "1110");
 
 
-SIMPLE_BENCHMARK(BinaryToOctal, Sample1, "110001110");
+THE_BENCHMARK(BinaryToOctal, "110001110");
 
 SIMPLE_TEST(BinaryToOctal, TestSAMPLE1, "616", "110001110");
 SIMPLE_TEST(BinaryToOctal, TestSAMPLE2, "16", "1110");
@@ -113,14 +115,14 @@ SIMPLE_TEST(BinaryToOctal, TestSAMPLE3, "1712241.26633",
             "1111001010010100001.010110110011011");
 
 
-SIMPLE_BENCHMARK(BinaryToHex, Sample1, "110001110");
+THE_BENCHMARK(BinaryToHex, "110001110");
 
 SIMPLE_TEST(BinaryToHex, TestSAMPLE1, "18E", "110001110");
 SIMPLE_TEST(BinaryToHex, TestSAMPLE2, "794A1.5B36",
             "1111001010010100001.010110110011011");
 
 
-SIMPLE_BENCHMARK(HexToOct, Sample1, "1AC");
+THE_BENCHMARK(HexToOct, "1AC");
 
 SIMPLE_TEST(HexToOct, TestSAMPLE1, "0654", "1AC");
 SIMPLE_TEST(HexToOct, TestSAMPLE2, "056437", "5D1F");
