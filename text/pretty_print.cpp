@@ -4,53 +4,51 @@
 namespace {
 
 /** Pretty Columns Print
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.4.
  *
- * We have n short lines of text that we'd like to arrange in m columns. For
- * aesthetic reasons, we want the columns to be arranged in decreasing order
- * of length (actually non-increasing order); and the lengths should be
- * approximately the same --- no two columns should differ by more than one
- * line's worth of text. Furthermore we want to distribute the lines of text
- * column-wise.
+ * We have n short lines of text that we'd like to arrange in m columns. For aesthetic
+ * reasons, we want the columns to be arranged in decreasing order of length (actually
+ * non-increasing order); and the lengths should be approximately the same --- no two
+ * columns should differ by more than one line's worth of text. Furthermore we want to
+ * distribute the lines of text column-wise.
  */
-std::string PrettyColumnsPrint(const unsigned n, const unsigned m) {
-    if (m == 0) {
-        return "Columns number cannot be zero.";
-    } else {
-        std::cout << "Arrange " << n << " short lines of text in " << m << " columns." <<
-                  std::endl;
-        const unsigned short_column_lines = n / m;
-        const unsigned long_column_lines = std::ceil(double(n) / double(m));
-        const unsigned num_long_columns = n % m;
-        //Use the array to track the current line index of each column.
-        std::vector<unsigned> line_indice(m);
-        for (unsigned i = 0, line_index = 1; i < m; ++i) {
-            line_indice[i] = line_index;
-            if (i < num_long_columns) {
-                line_index += long_column_lines;
-            } else {
-                line_index += short_column_lines;
-            }
-        }
+auto PrettyColumnsPrint(const unsigned n, const unsigned m) {
+    assert(m);
 
-        std::stringstream output;
-        for (unsigned i = 0; i < short_column_lines; ++i) {
-            for (unsigned j = 0; j < m; ++j) {
-                output << "line " << line_indice[j]++ << "\t";
-            }
-            output << std::endl;
+    std::cout << "Arrange " << n << " short lines of text in " << m << " columns." <<
+              std::endl;
+    const unsigned short_column_lines = n / m;
+    const unsigned long_column_lines = std::ceil(double(n) / double(m));
+    const unsigned num_long_columns = n % m;
+    //Use the array to track the current line index of each column.
+    std::vector<unsigned> line_indice(m);
+    for (unsigned i = 0, line_index = 1; i < m; ++i) {
+        line_indice[i] = line_index;
+        if (i < num_long_columns) {
+            line_index += long_column_lines;
+        } else {
+            line_index += short_column_lines;
         }
-
-        if (num_long_columns) {
-            for (unsigned i = 0; i < num_long_columns; ++i) {
-                output << "line " << line_indice[i]++ << "\t";
-            }
-            output << std::endl;
-        }
-
-        return output.str();
     }
+
+    std::stringstream output;
+    for (unsigned i = 0; i < short_column_lines; ++i) {
+        for (unsigned j = 0; j < m; ++j) {
+            output << "line " << line_indice[j]++ << "\t";
+        }
+        output << std::endl;
+    }
+
+    if (num_long_columns) {
+        for (unsigned i = 0; i < num_long_columns; ++i) {
+            output << "line " << line_indice[i]++ << "\t";
+        }
+        output << std::endl;
+    }
+
+    return output.str();
 }
 
 template <typename T>

@@ -6,8 +6,8 @@ void Reverse_TwoPointers(const Iterator begin, const Iterator end,
     if (begin != end) {
         auto l_iter = begin;
         auto r_iter = std::prev(end);
-        for (; l_iter < r_iter; ++l_iter, --r_iter) {
-            swap(*l_iter, *r_iter);
+        while (l_iter < r_iter) {
+            swap(*l_iter++, *r_iter--);
         }
     }
 }

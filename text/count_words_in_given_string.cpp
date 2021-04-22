@@ -41,15 +41,15 @@ auto CountWordsInGivenString_StringStream(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountWordsInGivenString, Sample1,
-                 "One two         three\n    four\tfive  ");
+THE_BENCHMARK(CountWordsInGivenString,
+              "One two         three\n    four\tfive  ");
 
-SIMPLE_TEST(CountWordsInGivenString, TestSAMPLE1, 5u,
+SIMPLE_TEST(CountWordsInGivenString, TestSAMPLE1, 5,
             "One two         three\n    four\tfive  ");
 
 
-SIMPLE_BENCHMARK(CountWordsInGivenString_StringStream, Sample1,
-                 "One two         three\n    four\tfive  ");
+THE_BENCHMARK(CountWordsInGivenString_StringStream,
+              "One two         three\n    four\tfive  ");
 
-SIMPLE_TEST(CountWordsInGivenString_StringStream, TestSAMPLE1, 5u,
+SIMPLE_TEST(CountWordsInGivenString_StringStream, TestSAMPLE1, 5,
             "One two         three\n    four\tfive  ");

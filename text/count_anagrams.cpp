@@ -3,6 +3,8 @@
 
 namespace {
 
+using HashTable = std::unordered_map<std::string::value_type, int>;
+
 /** Count Occurences of Anagrams
  *
  * @reference   https://www.geeksforgeeks.org/count-occurences-of-anagrams/
@@ -10,8 +12,7 @@ namespace {
  * Given a word and a text, return the count of the occurences of anagrams of the word in
  * the text(For eg: anagrams of word for are for, ofr, rof etc.)
  */
-auto AreAllCharZero(
-    const std::unordered_map<std::string::value_type, int> &char_counts) {
+auto AreAllCharZero(const HashTable &char_counts) {
     for (const auto [_, count] : char_counts) {
         if (count) {
             return false;
@@ -22,7 +23,9 @@ auto AreAllCharZero(
 }
 
 auto CountAnagrams(const std::string &text, const std::string &word) {
-    std::unordered_map<std::string::value_type, int> char_counts;
+    assert(word.size() <= text.size());
+
+    HashTable char_counts;
     for (std::string::size_type i = 0; i < word.size(); ++i) {
         ++(char_counts[text[i]]);
         --(char_counts[word[i]]);
@@ -67,7 +70,7 @@ auto AreAnagrams(const std::string &s1, const std::string &s2) {
         return false;
     }
 
-    std::unordered_map<std::string::value_type, int> char_counts;
+    HashTable char_counts;
     for (std::string::size_type i = 0; i < s1.size(); ++i) {
         ++(char_counts[s1[i]]);
         --(char_counts[s2[i]]);
@@ -79,13 +82,13 @@ auto AreAnagrams(const std::string &s1, const std::string &s2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountAnagrams, Sample1, "forxxorfxdofr", "for");
+THE_BENCHMARK(CountAnagrams, "forxxorfxdofr", "for");
 
 SIMPLE_TEST(CountAnagrams, TestSAMPLE1, 3, "forxxorfxdofr", "for");
 SIMPLE_TEST(CountAnagrams, TestSAMPLE2, 4, "aabaabaa", "aaba");
 
 
-SIMPLE_BENCHMARK(AreAnagrams, Sample1, "abcd", "dabc");
+THE_BENCHMARK(AreAnagrams, "abcd", "dabc");
 
 SIMPLE_TEST(AreAnagrams, TestSAMPLE1, true, "abcd", "dabc");
 SIMPLE_TEST(AreAnagrams, TestSAMPLE2, true, "geeksforgeeks", "forgeeksgeeks");

@@ -30,7 +30,7 @@ struct OneToNPrinter {
 template <>
 struct OneToNPrinter<1> {
     static void Print(std::string &result) {
-        result.push_back('0' + 1);
+        result.push_back('1');
     }
 };
 

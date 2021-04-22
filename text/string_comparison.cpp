@@ -23,7 +23,7 @@ auto CaseInsensitiveCompare(const std::string &lhs, const std::string &rhs) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CaseInsensitiveCompare, Sample1, "Geeks", "geeks");
+THE_BENCHMARK(CaseInsensitiveCompare, "Geeks", "geeks");
 
 SIMPLE_TEST(CaseInsensitiveCompare, TestSAMPLE1, true, "Geeks", "geeks");
 SIMPLE_TEST(CaseInsensitiveCompare, TestSAMPLE2, false, "Geek", "geeksforgeeks");

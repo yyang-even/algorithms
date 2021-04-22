@@ -90,7 +90,7 @@ auto TailString_Rfind(const std::string &lines, unsigned K) {
 auto TailString_Strtok(std::string lines, const unsigned K) {
     assert(K);
 
-    std::queue<std::string> line_queue;
+    std::queue<std::string_view> line_queue;
     for (auto *token = strtok(lines.data(), "\n");
          token; token = strtok(nullptr, "\n")) {
         if (line_queue.size() >= K) {
@@ -104,7 +104,7 @@ auto TailString_Strtok(std::string lines, const unsigned K) {
         return lines;
     }
 
-    auto result = line_queue.front();
+    std::string result{line_queue.front()};
     for (line_queue.pop(); not line_queue.empty(); line_queue.pop()) {
         result.push_back('\n');
         result.append(line_queue.front());

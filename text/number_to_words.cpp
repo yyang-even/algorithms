@@ -14,7 +14,7 @@ namespace {
  * Write code to convert a given number into words. For example, if "1234" is given as
  * input, output should be "one thousand two hundred thirty four".
  */
-std::string SegmentToWords(int number) {
+auto SegmentToWords(int number) {
     assert(number > 0 and number < 1000);
 
     constexpr const char *DIGITS[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
