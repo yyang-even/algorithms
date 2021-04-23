@@ -39,26 +39,27 @@ namespace {
  *              https://www.geeksforgeeks.org/program-to-copy-the-contents-of-one-array-into-another-in-the-reverse-order/
  */
 template <typename SwapFunc>
-auto Reverse(std::string input, const SwapFunc swap) {
+inline auto Reverse(std::string input, const SwapFunc swap) {
     Reverse_TwoPointers(input.begin(), input.end(), swap);
 
     return input;
 }
 
 
-auto Reverse(const std::string &input) {
-    return Reverse(input, ToLambda(std::swap));
+inline auto Reverse(std::string input) {
+    return Reverse(std::move(input), ToLambda(std::swap));
 }
 
 
-void Reverse_Recursive(const std::string::iterator begin,
-                       const std::string::iterator last) {
+inline void Reverse_Recursive(const std::string::iterator begin,
+                              const std::string::iterator last) {
     if (begin < last) {
         std::iter_swap(begin, last);
         Reverse_Recursive(std::next(begin), std::prev(last));
     }
 }
-auto Reverse_Recursive(std::string input) {
+
+inline auto Reverse_Recursive(std::string input) {
     if (not input.empty()) {
         Reverse_Recursive(input.begin(), std::prev(input.end()));
     }
@@ -66,8 +67,8 @@ auto Reverse_Recursive(std::string input) {
 }
 
 
-auto Reverse_Xor(const std::string &input) {
-    return Reverse(input, Swap_Xor<std::string::value_type>);
+inline auto Reverse_Xor(std::string input) {
+    return Reverse(std::move(input), Swap_Xor<std::string::value_type>);
 }
 
 
@@ -91,8 +92,8 @@ auto Reverse_Stack(std::string input) {
 
 
 auto Reverse_Variable(std::string input) {
-    constexpr auto minus_one = std::numeric_limits<int>::min() /
-                               std::numeric_limits<int>::max();
+    static constexpr auto minus_one = std::numeric_limits<int>::min() /
+                                      std::numeric_limits<int>::max();
 
     for (std::string::size_type i = 0; i < input.size() / 2; ++i) {
         std::swap(input[i], input[input.size() + (minus_one * i) + minus_one]);
@@ -102,7 +103,7 @@ auto Reverse_Variable(std::string input) {
 }
 
 
-auto Reverse_BitSubtract(std::string input) {
+inline auto Reverse_BitSubtract(std::string input) {
     for (std::string::size_type i = 0; i < input.size() / 2; ++i) {
         std::swap(input[i], input[Subtract_Bits(input.size(), (i + 1))]);
     }

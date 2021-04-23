@@ -10,12 +10,12 @@ namespace {
  * Given an expression string exp, write a program to examine whether the pairs and the
  * orders of "{", "}", "(", ")", "[", "]" are correct in exp.
  */
-auto AreBracketsBalanced_Stack(const std::string &expression) {
+auto AreBracketsBalanced_Stack(const std::string_view expression) {
     std::stack<char> brackets_stack;
     static const std::unordered_map<char, char> BRACKETS_MAP = {{')', '('}, {']', '['}, {'}', '{'}};
 
     for (const auto c : expression) {
-        if (std::string{"([{"}.find(c) != std::string::npos)
+        if (std::string_view{"([{"}.find(c) != std::string_view::npos)
             brackets_stack.push(c);
         else {
             if (brackets_stack.empty()) {
@@ -40,7 +40,7 @@ auto AreBracketsBalanced_Stack(const std::string &expression) {
  * Given a string str of length N, consisting of '(' and ')' only, the task is to check
  * whether it is balanced or not.
  */
-auto AreParenthesesBalanced(const std::string &expression) {
+constexpr auto AreParenthesesBalanced(const std::string_view expression) {
     int count = 0;
     for (const auto c : expression) {
         if (c == '(') {
@@ -55,7 +55,6 @@ auto AreParenthesesBalanced(const std::string &expression) {
 
     return count == 0;
 }
-
 
 }//namespace
 

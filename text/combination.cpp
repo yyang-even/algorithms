@@ -17,9 +17,9 @@ using ArrayType = std::unordered_multiset<std::string>;
  * Given two numbers n and k and you have to find all possible combination of k numbers
  * from 1...n.
  */
-void CombinationsOfLength_Start(const std::string &elements,
-                                const std::string::size_type length,
-                                const std::string::size_type start,
+void CombinationsOfLength_Start(const std::string_view elements,
+                                const std::size_t length,
+                                const std::size_t start,
                                 std::string &one_combination,
                                 ArrayType &results) {
     assert(length <= elements.size());
@@ -35,8 +35,8 @@ void CombinationsOfLength_Start(const std::string &elements,
     }
 }
 
-auto CombinationsOfLength_Start(const std::string &elements,
-                                const std::string::size_type length) {
+inline auto CombinationsOfLength_Start(const std::string_view elements,
+                                       const std::size_t length) {
     std::string one_combination;
     ArrayType results;
     CombinationsOfLength_Start(elements, length, 0, one_combination, results);
@@ -45,9 +45,9 @@ auto CombinationsOfLength_Start(const std::string &elements,
 }
 
 
-void CombinationsOfLength_Include(const std::string &elements,
-                                  const std::string::size_type length,
-                                  const std::string::size_type start,
+void CombinationsOfLength_Include(const std::string_view elements,
+                                  const std::size_t length,
+                                  const std::size_t start,
                                   std::string &one_combination,
                                   ArrayType &results) {
     if (start < elements.size()) {
@@ -65,8 +65,8 @@ void CombinationsOfLength_Include(const std::string &elements,
     }
 }
 
-auto CombinationsOfLength_Include(const std::string &elements,
-                                  const std::string::size_type length) {
+inline auto CombinationsOfLength_Include(const std::string_view elements,
+                                         const std::size_t length) {
     std::string one_combination;
     ArrayType results;
     CombinationsOfLength_Include(elements, length, 0, one_combination, results);
@@ -84,8 +84,8 @@ auto CombinationsOfLength_Include(const std::string &elements,
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.4.
  */
-void AllCombinations_Recursive(const std::string &elements,
-                               const std::string::size_type start,
+void AllCombinations_Recursive(const std::string_view elements,
+                               const std::size_t start,
                                std::string &one_combination,
                                ArrayType &results) {
     for (auto i = start; i < elements.size(); ++i) {
@@ -96,7 +96,7 @@ void AllCombinations_Recursive(const std::string &elements,
     }
 }
 
-auto AllCombinations_Recursive(const std::string &elements) {
+inline auto AllCombinations_Recursive(const std::string_view elements) {
     std::string one_combination;
     ArrayType results;
     AllCombinations_Recursive(elements, 0, one_combination, results);
@@ -113,7 +113,7 @@ auto AllCombinations_Recursive(const std::string &elements) {
  * @reference   Printing all subsets of {1,2,3,...n} without using array or loop
  *              https://www.geeksforgeeks.org/printing-all-subsets-of-123-n-without-using-array-or-loop/
  */
-auto AllCombinations_BitMask(const std::string &elements) {
+auto AllCombinations_BitMask(const std::string_view elements) {
     assert(elements.size() < BitsNumber<unsigned long long>);
 
     const auto power_set_size = 1ull << elements.size();
@@ -137,10 +137,10 @@ auto AllCombinations_BitMask(const std::string &elements) {
  * @reference   Recursive program to generate power set
  *              https://www.geeksforgeeks.org/recursive-program-to-generate-power-set/
  */
-void AllCombinations_Recursive_Copy(const std::string &elements,
+void AllCombinations_Recursive_Copy(const std::string_view elements,
                                     ArrayType &results,
-                                    const std::string::size_type index = 0,
-                                    const std::string subset = "") {
+                                    const std::size_t index = 0,
+                                    const std::string &subset = "") {
     if (index == elements.size()) {
         if (not subset.empty()) {
             results.insert(subset);
@@ -152,7 +152,7 @@ void AllCombinations_Recursive_Copy(const std::string &elements,
     AllCombinations_Recursive_Copy(elements, results, index + 1, subset);
 }
 
-auto AllCombinations_Recursive_Copy(const std::string &elements) {
+inline auto AllCombinations_Recursive_Copy(const std::string_view elements) {
     ArrayType results;
     AllCombinations_Recursive_Copy(elements, results);
 

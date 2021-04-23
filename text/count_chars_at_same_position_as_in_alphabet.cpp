@@ -1,20 +1,20 @@
 #include "common_header.h"
 
+
 namespace {
 
 /** Count characters at same position as in English alphabet
  *
  * @reference   https://www.geeksforgeeks.org/count-characters-at-same-position-as-in-english-alphabet/
  *
- * Given a string of lower and uppercase characters, the task is to find
- * that how many characters are at same position as in English alphabet.
+ * Given a string of lower and uppercase characters, the task is to find that how many
+ * characters are at same position as in English alphabet.
  */
-auto CountCharsAtSamePositionAsInAlphabet(const std::string &input) {
-    std::string::size_type count = 0ul;
+constexpr auto CountCharsAtSamePositionAsInAlphabet(const std::string_view input) {
+    auto count = 0;
 
-    for (std::string::size_type i = 0; i < input.size(); ++i) {
-        if (i == static_cast<std::string::size_type>(input[i] - 'a')
-            or i == static_cast<std::string::size_type>(input[i] - 'A')) {
+    for (int i = 0; static_cast<std::string_view::size_type>(i) < input.size(); ++i) {
+        if (i == (input[i] - 'a') or i == (input[i] - 'A')) {
             ++count;
         }
     }
@@ -25,9 +25,9 @@ auto CountCharsAtSamePositionAsInAlphabet(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountCharsAtSamePositionAsInAlphabet, Sample1, "geeksforgeeks");
+THE_BENCHMARK(CountCharsAtSamePositionAsInAlphabet, "geeksforgeeks");
 
-SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE1, 3ul, "ABcED");
-SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE2, 1ul, "geeksforgeeks");
-SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE3, 3ul, "alphabetical");
-SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE4, 5ul, "AbgdeF");
+SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE1, 3, "ABcED");
+SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE2, 1, "geeksforgeeks");
+SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE3, 3, "alphabetical");
+SIMPLE_TEST(CountCharsAtSamePositionAsInAlphabet, TestSAMPLE4, 5, "AbgdeF");

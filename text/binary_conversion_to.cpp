@@ -23,22 +23,22 @@ auto BinaryIntegerTo(const std::string &binary, const unsigned base,
 }
 
 
-auto BinaryIntegerToOctal(const std::string &binary,
-                          const std::string::size_type start,
-                          const std::string::size_type length) {
+inline auto BinaryIntegerToOctal(const std::string &binary,
+                                 const std::string::size_type start,
+                                 const std::string::size_type length) {
     static const auto binary_to_octal_digit_map = CreateBinaryToOctalDigitMap();
 
     return BinaryIntegerTo(binary, 3, start, length, binary_to_octal_digit_map);
 }
 
-auto BinaryIntegerToOctal(const std::string &binary) {
+inline auto BinaryIntegerToOctal(const std::string &binary) {
     return BinaryIntegerToOctal(binary, 0, binary.size());
 }
 
 
-auto BinaryIntegerToHex(const std::string &binary,
-                        const std::string::size_type start,
-                        const std::string::size_type length) {
+inline auto BinaryIntegerToHex(const std::string &binary,
+                               const std::string::size_type start,
+                               const std::string::size_type length) {
     static const auto binary_to_hex_digit_map = CreateBinaryToHexDigitMap();
 
     return BinaryIntegerTo(binary, 4, start, length, binary_to_hex_digit_map);
@@ -70,7 +70,7 @@ auto BinaryTo(const std::string &binary, const unsigned base,
  *
  * @reference   https://www.geeksforgeeks.org/convert-binary-number-octal/
  */
-auto BinaryToOctal(const std::string &binary) {
+inline auto BinaryToOctal(const std::string &binary) {
     return BinaryTo(binary, 3, ToLambda(BinaryIntegerToOctal));
 }
 
@@ -79,7 +79,7 @@ auto BinaryToOctal(const std::string &binary) {
  * @reference   Convert a binary number to hexadecimal number
  *              https://www.geeksforgeeks.org/convert-binary-number-hexadecimal-number/
  */
-auto BinaryToHex(const std::string &binary) {
+inline auto BinaryToHex(const std::string &binary) {
     return BinaryTo(binary, 4, BinaryIntegerToHex);
 }
 
@@ -88,7 +88,7 @@ auto BinaryToHex(const std::string &binary) {
  * @reference   Program to Convert Hexadecimal to Octal
  *              https://www.geeksforgeeks.org/program-to-convert-hexadecimal-to-octal/
  */
-auto HexToOct(const std::string &hex) {
+inline auto HexToOct(const std::string &hex) {
     return BinaryToOctal(HexToBinary(hex));
 }
 

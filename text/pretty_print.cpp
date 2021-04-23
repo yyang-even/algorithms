@@ -52,7 +52,7 @@ auto PrettyColumnsPrint(const unsigned n, const unsigned m) {
 }
 
 template <typename T>
-void GetOneInput(T &input, const std::string &inputName) {
+inline void GetOneInput(T &input, const std::string_view inputName) {
     std::cout << "Enter \"" << inputName << "\": ";
     std::cin >> input;
     if (!std::cin) {

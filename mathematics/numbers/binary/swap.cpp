@@ -19,7 +19,7 @@ namespace {
  *
  * Swap two values without using a temporary variable.
  */
-void Swap_SubAdd(unsigned &a, unsigned &b) {
+constexpr inline void Swap_SubAdd(unsigned &a, unsigned &b) {
     if (a != b) {
         a -= b;
         b += a;
@@ -28,8 +28,9 @@ void Swap_SubAdd(unsigned &a, unsigned &b) {
 }
 
 
-auto TestSwap(std::function<void(unsigned &, unsigned &)> swap,
-              const unsigned a, const unsigned b) {
+template <typename SwapFunc>
+constexpr inline auto TestSwap(const SwapFunc swap,
+                               const unsigned a, const unsigned b) {
     unsigned swapped_a = b;
     unsigned swapped_b = a;
     swap(swapped_a, swapped_b);
@@ -57,8 +58,10 @@ auto TestSwap(std::function<void(unsigned &, unsigned &)> swap,
  * positions. The given positions are from least significant bit (lsb). For example, the
  * position for lsb is 0.
  */
-unsigned SwapBitRange(const unsigned number, const unsigned i, const unsigned j,
-                      const unsigned bit_length) {
+constexpr unsigned SwapBitRange(const unsigned number,
+                                const unsigned i,
+                                const unsigned j,
+                                const unsigned bit_length) {
     constexpr auto NUM_BITS = BitsNumber<decltype(number)>;
     if (i + bit_length >= NUM_BITS or
         j + bit_length >= NUM_BITS or
@@ -67,7 +70,7 @@ unsigned SwapBitRange(const unsigned number, const unsigned i, const unsigned j,
         (i < j and i + bit_length > j)) {
         return 0;
     }
-    unsigned int xor_mask = ((number >> i) ^ (number >> j)) & ((1U << bit_length) - 1U);
+    const unsigned xor_mask = ((number >> i) ^ (number >> j)) & ((1U << bit_length) - 1);
     return number ^ ((xor_mask << i) | (xor_mask << j));
 }
 

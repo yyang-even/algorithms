@@ -2,11 +2,11 @@
 
 #include "a_pair_elements_sum_as_n.h"
 
+
 namespace {
 
 template <std::size_t N>
 using ArrayType = std::array<int, N>;
-
 
 /** Given an array A[] and a number x, check for pair in A[] with sum as x
  *
@@ -18,7 +18,8 @@ using ArrayType = std::array<int, N>;
  * @complexity: O(n)
  */
 template <typename ArrayType>
-auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
+constexpr inline auto
+HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
     return PairOfElementsSumAsN_Hashmap<ArrayType>(values, target, nullptr);
 }
 
@@ -37,7 +38,7 @@ auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) 
  * extra space?
  */
 template <std::size_t N>
-auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
+constexpr auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
     if (values.size() > 1) {
         std::sort(values.begin(), values.end());
 
@@ -75,9 +76,9 @@ auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values, const int target) {
 }//namespace
 
 
-constexpr ArrayType<0> VALUES1 = {};
-constexpr ArrayType<1> VALUES2 = {1};
-constexpr ArrayType<8> VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
+static constexpr ArrayType<0> VALUES1 = {};
+static constexpr ArrayType<1> VALUES2 = {1};
+static constexpr ArrayType<8> VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
 
 
 SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, Sample1, VALUES3, 8);

@@ -1,5 +1,6 @@
 #pragma once
 
+
 static auto ToCountingArray(const std::vector<int> &values, const std::size_t range,
                             const std::function<std::size_t(const int)> to_index) {
     assert(not values.empty());
@@ -35,8 +36,8 @@ inline static auto CountingSort(const std::vector<int> &values, const std::size_
  *              https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
  */
 template <typename ArrayType, typename ToIndexFunc>
-static inline auto CountingSort_STL(const ArrayType &values,
-                                    const ToIndexFunc to_index) {
+static constexpr inline auto
+CountingSort_STL(const ArrayType &values, const ToIndexFunc to_index) {
     if (values.empty()) {
         return values;
     }

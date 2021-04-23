@@ -9,17 +9,19 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/program-multiplication-array-elements/
  *
- * We are given an array and we have to calculate the product of an array using both iterative and recursive method.
+ * We are given an array and we have to calculate the product of an array using both
+ * iterative and recursive method.
  */
-auto Multiplication_Recersive(const ArrayType::const_iterator cbegin,
-                              const ArrayType::const_iterator cend) {
+inline auto Multiplication_Recersive(const ArrayType::const_iterator cbegin,
+                                     const ArrayType::const_iterator cend) {
     if (cbegin == cend) {
-        return 1ll;
+        return 1;
     } else {
         return Multiplication_Recersive(cbegin + 1, cend) * (*cbegin);
     }
 }
-auto Multiplication_Recersive(const ArrayType &elements) {
+
+inline auto Multiplication_Recersive(const ArrayType &elements) {
     return Multiplication_Recersive(elements.cbegin(), elements.cend());
 }
 
@@ -34,8 +36,8 @@ auto Multiplication_Recersive(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/program-for-product-of-array/
  *
- * The above code may cause overflow. Therefore it is always desired to compute product under modulo.
- * The reason of its working is simple distributive property of modulo.
+ * The above code may cause overflow. Therefore it is always desired to compute product
+ * under modulo. The reason of its working is simple distributive property of modulo.
  * ( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
  *
  * @reference   Modulo 10^9+7 (1000000007)
@@ -49,7 +51,7 @@ auto Multiplication_Recersive(const ArrayType &elements) {
  *              https://www.geeksforgeeks.org/how-to-avoid-overflow-in-modular-multiplication/
  */
 auto Multiplication_Modulo(const ArrayType &elements) {
-    constexpr ArrayType::value_type MOD = LARGE_PRIME;
+    static constexpr ArrayType::value_type MOD = LARGE_PRIME;
 
     ArrayType::value_type result = 1;
     for (const auto e : elements) {
@@ -66,13 +68,13 @@ const ArrayType SAMPLE1 = {1, 2, 3, 4, 5, 6};
 const ArrayType SAMPLE2 = {1, 3, 5, 7, 9};
 
 
-SIMPLE_BENCHMARK(Multiplication_Recersive, Sample1, SAMPLE1);
+THE_BENCHMARK(Multiplication_Recersive, SAMPLE1);
 
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE1, 720, SAMPLE1);
 SIMPLE_TEST(Multiplication_Recersive, TestSAMPLE2, 945, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(Multiplication_Modulo, Sample1, SAMPLE1);
+THE_BENCHMARK(Multiplication_Modulo, SAMPLE1);
 
 SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE1, 720, SAMPLE1);
 SIMPLE_TEST(Multiplication_Modulo, TestSAMPLE2, 945, SAMPLE2);

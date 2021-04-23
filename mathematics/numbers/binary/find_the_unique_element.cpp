@@ -36,8 +36,8 @@ ArrayType::value_type FindTheUniqueElement_Hash(const ArrayType &elements,
 
 auto FindTheUniqueElement_Bits(const ArrayType &elements,
                                const ArrayType::size_type K) {
-    constexpr auto NUMBER_BITS = BitsNumber<ArrayType::value_type>;
-    std::vector<ArrayType::value_type> counters(NUMBER_BITS, 0u);
+    static constexpr auto NUMBER_BITS = BitsNumber<ArrayType::value_type>;
+    std::vector<ArrayType::value_type> counters(NUMBER_BITS, 0);
 
     for (size_t i = 0; i < NUMBER_BITS; ++i) {
         const auto mask = 1u << i;
@@ -48,7 +48,7 @@ auto FindTheUniqueElement_Bits(const ArrayType &elements,
         }
     }
 
-    ArrayType::value_type result = 0u;
+    ArrayType::value_type result = 0;
     for (size_t i = 0; i < NUMBER_BITS; ++i) {
         result += (counters[i] % K) * (1u << i);
     }
@@ -59,7 +59,7 @@ auto FindTheUniqueElement_Bits(const ArrayType &elements,
 
 auto FindTheUniqueElement3_Xor(const ArrayType &elements) {
     ArrayType::value_type ones = 0, twos = 0;
-    ArrayType::value_type common_bit_mask;
+    ArrayType::value_type common_bit_mask{};
 
     for (const auto value : elements) {
         twos |= (ones & value);
@@ -81,24 +81,24 @@ const ArrayType SAMPLE3 = {12, 1, 12, 3, 12, 1, 1, 2, 3, 3};
 const ArrayType SAMPLE4 = {10, 20, 10, 30, 10, 30, 30};
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElement_Hash, Sample1, SAMPLE1, 3u);
+THE_BENCHMARK(FindTheUniqueElement_Hash, SAMPLE1, 3);
 
-SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample1, 5u, SAMPLE1, 3u);
-SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample2, 10u, SAMPLE2, 4u);
-SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample3, 2u, SAMPLE3, 3u);
-SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample4, 20u, SAMPLE4, 3u);
-
-
-SIMPLE_BENCHMARK(FindTheUniqueElement_Bits, Sample1, SAMPLE1, 3u);
-
-SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample1, 5u, SAMPLE1, 3u);
-SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample2, 10u, SAMPLE2, 4u);
-SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample3, 2u, SAMPLE3, 3u);
-SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample4, 20u, SAMPLE4, 3u);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample1, 5, SAMPLE1, 3);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample2, 10, SAMPLE2, 4);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample3, 2, SAMPLE3, 3);
+SIMPLE_TEST(FindTheUniqueElement_Hash, TestSample4, 20, SAMPLE4, 3);
 
 
-SIMPLE_BENCHMARK(FindTheUniqueElement3_Xor, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheUniqueElement_Bits, SAMPLE1, 3);
 
-SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample1, 5u, SAMPLE1);
-SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample3, 2u, SAMPLE3);
-SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample4, 20u, SAMPLE4);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample1, 5, SAMPLE1, 3);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample2, 10, SAMPLE2, 4);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample3, 2, SAMPLE3, 3);
+SIMPLE_TEST(FindTheUniqueElement_Bits, TestSample4, 20, SAMPLE4, 3);
+
+
+THE_BENCHMARK(FindTheUniqueElement3_Xor, SAMPLE1);
+
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample1, 5, SAMPLE1);
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample3, 2, SAMPLE3);
+SIMPLE_TEST(FindTheUniqueElement3_Xor, TestSample4, 20, SAMPLE4);

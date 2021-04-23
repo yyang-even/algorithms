@@ -9,13 +9,14 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/strong-password-suggester-program/
  *
- * Given a password entered by the user, check its strength and suggest some password if it is not strong.
+ * Given a password entered by the user, check its strength and suggest some password if
+ * it is not strong.
  * Criteria for strong password is as follows:
- * A password is strong if it has:
- * 1. At least 8 characters.
- * 2. At least one special char.
- * 3. At least one number.
- * 4. At least one upper and one lower case char.
+ *  A password is strong if it has:
+ *      1. At least 8 characters.
+ *      2. At least one special char.
+ *      3. At least one number.
+ *      4. At least one upper and one lower case char.
  */
 static const std::string SPECIALS {"@#$_()!"};
 
@@ -25,21 +26,21 @@ struct PasswordCriteria {
     bool digit = false;
     bool special = false;
 
-    static const std::string::size_type REQUIRED_PASSWORD_LENGTH = 8;
+    static constexpr std::size_t REQUIRED_PASSWORD_LENGTH = 8;
 
-    auto is_strong_password() const {
+    constexpr auto is_strong_password() const {
         return lower_case and upper_case and digit and special;
     }
 };
 
-auto CheckPassword(const std::string &password) {
+constexpr auto CheckPassword(const std::string_view password) {
     PasswordCriteria criteria;
     for (const auto c : password) {
-        if (islower(c)) {
+        if (std::islower(c)) {
             criteria.lower_case = true;
-        } else if (isupper(c)) {
+        } else if (std::isupper(c)) {
             criteria.upper_case = true;
-        } else if (isdigit(c)) {
+        } else if (std::isdigit(c)) {
             criteria.digit = true;
         } else {
             criteria.special = true;
@@ -49,14 +50,14 @@ auto CheckPassword(const std::string &password) {
     return criteria;
 }
 
-auto RandomChar(const std::string &chars) {
-    return chars[Random_Number(0ul, chars.size() - 1ul)];
+inline auto RandomChar(const std::string_view chars) {
+    return chars[Random_Number(0, chars.size() - 1)];
 }
 
-void randomInsertIfNot(const bool criteria, const std::string &char_set,
-                       std::string &password) {
+inline void randomInsertIfNot(const bool criteria, const std::string_view char_set,
+                              std::string &password) {
     if (not criteria) {
-        password.insert(Random_Number(0ul, password.size() - 1ul), 1,
+        password.insert(Random_Number(0, password.size() - 1), 1,
                         RandomChar(char_set));
     }
 }
@@ -72,7 +73,7 @@ auto FixPassword(const PasswordCriteria &criteria, std::string &password) {
     }
 }
 
-auto StrongPasswordSuggester(std::string password) {
+inline auto StrongPasswordSuggester(std::string password) {
     const auto criteria = CheckPassword(password);
     FixPassword(criteria, password);
     return password;

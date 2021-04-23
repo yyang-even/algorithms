@@ -49,8 +49,8 @@ static inline auto Random_Number(const FromType from, const ToType to) {
 
 
 template <typename Iterator>
-static inline bool isThereMoreThanOneElements(const Iterator cbegin,
-                                              const Iterator cend) {
+static constexpr inline bool
+isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
 }
 
@@ -165,16 +165,16 @@ static inline bool isThereMoreThanOneElements(const Iterator cbegin,
 
 //Constants
 template <typename T>
-constexpr auto BitsNumber = sizeof(T) * CHAR_BIT;
+static constexpr auto BitsNumber = sizeof(T) * CHAR_BIT;
 
-const auto Void = [](auto &&...) {};
-const auto Copy = [](auto v) {
-    return std::move(v);
+constexpr auto Void = [](auto &&...) {};
+constexpr auto Copy = [](auto v) {
+    return v;
 };
 
-constexpr auto LARGE_PRIME = 1000000007;
+static constexpr auto LARGE_PRIME = 1000000007;
 
-const unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
+static constexpr unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
 static const std::string DIGIT_CHARS {"0123456789"};
 static const std::string LOWERCASE_CHARS {"abcdefghijklmnopqrstuvwxyz"};

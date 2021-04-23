@@ -3,20 +3,18 @@
 
 namespace {
 
-typedef int InputType;
-
 /** Compute the sign of an integer
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute the sign of an integer
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-bool IsNegative_Portable(const InputType num) {
-    return 1 & ((unsigned InputType)num >> (BitsNumber<decltype(num)> - 1));
+constexpr inline bool IsNegative_Portable(const int num) {
+    return 1 & ((unsigned int)num >> (BitsNumber<decltype(num)> - 1));
 }
 
 
-inline auto IsNegative(const InputType num) {
+constexpr inline auto IsNegative(const int num) {
     return num < 0;
 }
 
@@ -25,7 +23,7 @@ inline auto IsNegative(const InputType num) {
  *
  * @reference   https://www.geeksforgeeks.org/check-number-positive-negative-zero-using-bit-operators/
  */
-int IsNegativeOrZeroOrPositive(const InputType num) {
+constexpr inline int IsNegativeOrZeroOrPositive(const int num) {
     constexpr auto BITS_NUM = BitsNumber<decltype(num)> - 1;
     return 1 + (num >> BITS_NUM) - (-num >> BITS_NUM);
 }
@@ -33,8 +31,8 @@ int IsNegativeOrZeroOrPositive(const InputType num) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
 SIMPLE_BENCHMARK(IsNegative_Portable, Sample1, -1);
@@ -48,7 +46,7 @@ SIMPLE_TEST(IsNegative_Portable, TestSample4, false, UPPER);
 MUTUAL_RANDOM_TEST(IsNegative_Portable, IsNegative, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(IsNegativeOrZeroOrPositive, Sample1, UPPER);
+THE_BENCHMARK(IsNegativeOrZeroOrPositive, UPPER);
 
 SIMPLE_TEST(IsNegativeOrZeroOrPositive, TestSample1, 0, -1);
 SIMPLE_TEST(IsNegativeOrZeroOrPositive, TestSample2, 0, -20);

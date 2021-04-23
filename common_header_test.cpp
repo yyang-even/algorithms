@@ -26,10 +26,10 @@ TEST(BitsNumberTest, TestSanity) {
 #endif
 
 
-const int signed_value = 5;
-const unsigned unsigned_value = 5u;
+constexpr int signed_value = 5;
+constexpr unsigned unsigned_value = 5;
 
-static auto ZeroUnsignedFunction() {
+static constexpr inline auto ZeroUnsignedFunction() {
     return unsigned_value;
 }
 
@@ -44,7 +44,7 @@ SIMPLE_TEST(ZeroUnsignedFunction, TestUnsignedVariable, unsigned_value);
 
 
 template <typename T>
-static auto TemplateFunction(T v) {
+static constexpr inline auto TemplateFunction(T v) {
     return v;
 }
 
@@ -65,7 +65,7 @@ MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction,
                    TestSignedVariable, signed_value);
 
 
-static auto TwoArgumentsFunction(const int, const int) {
+static constexpr inline auto TwoArgumentsFunction(const int, const int) {
     return signed_value;
 }
 
@@ -81,7 +81,7 @@ MUTUAL_SIMPLE_TEST(TwoArgumentsFunction, TwoArgumentsFunction, TestSignedVariabl
                    signed_value, signed_value);
 
 
-static auto ThreeArgumentsFunction(const int, const int, const int) {
+static constexpr inline auto ThreeArgumentsFunction(const int, const int, const int) {
     return signed_value;
 }
 
@@ -99,7 +99,7 @@ MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestSignedVar
                    signed_value, signed_value, signed_value);
 
 
-static unsigned SignedUnsignedFunction(const int v) {
+static constexpr inline unsigned SignedUnsignedFunction(const int v) {
     return v;
 }
 
@@ -126,7 +126,7 @@ MUTUAL_RANDOM_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, 1, 5);
 
 const auto DoubleFunction = TemplateFunction<double>;
 
-const double double_value = 5.0;
+constexpr double double_value = 5.0;
 
 SIMPLE_DOUBLE_TEST(DoubleFunction, TestConstant, 5.0, 5.0);
 SIMPLE_DOUBLE_TEST(DoubleFunction, TestSignedVariable, double_value, double_value);
@@ -141,11 +141,11 @@ const std::initializer_list<ValueType> initializer_list_multi_values = {signed_v
 const std::vector<ValueType> vector_multi_values = initializer_list_multi_values;
 const std::list<ValueType> list_multi_values = initializer_list_multi_values;
 
-static auto ZeroVectorSingleFunction() {
+static inline auto ZeroVectorSingleFunction() {
     return vector_single_value;
 }
 
-static auto ZeroVectorMultiFunction() {
+static inline auto ZeroVectorMultiFunction() {
     return vector_multi_values;
 }
 
@@ -225,11 +225,13 @@ MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableSingle, list_single_v
 MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableMulti, list_multi_values);
 
 
-std::list<ValueType> ConstVectorToList(const std::vector<ValueType> &array) {
+static inline std::list<ValueType>
+ConstVectorToList(const std::vector<ValueType> &array) {
     return ContainerCast(array);
 }
 
-std::list<ValueType> NonconstVectorToList(std::vector<ValueType> array) {
+static inline std::list<ValueType>
+NonconstVectorToList(std::vector<ValueType> array) {
     return ContainerCast(array);
 }
 

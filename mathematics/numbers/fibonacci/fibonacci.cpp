@@ -102,7 +102,8 @@ namespace {
  * is very close to the Golden Ratio.
  */
 const double GOLDEN_RATIO = 1.61803;
-unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
+
+constexpr inline unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     if (n < 2) {
         return n;
     } else if (n == 2) {
@@ -125,10 +126,10 @@ unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  *
  * @note    It may not work perfect due to floating point precision errors.
  */
-unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
-    constexpr double square_root_of_5 = std::sqrt(5.0);
-    constexpr double phi = (1.0 + square_root_of_5) / 2.0;
-    constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
+inline unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
+    static constexpr double square_root_of_5 = std::sqrt(5.0);
+    static constexpr double phi = (1.0 + square_root_of_5) / 2.0;
+    static constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
 
     return (std::pow(phi, n) - std::pow(phi_hat, n)) / square_root_of_5;
 }
@@ -146,7 +147,7 @@ unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
  * @reference   Tabulation vs Memoization
  *              https://www.geeksforgeeks.org/tabulation-vs-memoization/
  */
-auto NthFibonacci_DP(const unsigned n) {
+inline auto NthFibonacci_DP(const unsigned n) {
     std::vector<unsigned> fibonaccis = {0, 1};
     for (unsigned i = 1; i < n; ++i) {
         fibonaccis.push_back(fibonaccis[i] + fibonaccis[i - 1]);
@@ -156,7 +157,7 @@ auto NthFibonacci_DP(const unsigned n) {
 }
 
 
-auto NthFibonacci_DP_Optimized(const unsigned n) {
+constexpr auto NthFibonacci_DP_Optimized(const unsigned n) {
     unsigned f_n_minus_2 = 0, f_n_minus_1 = 1;
     if (n == 0) {
         return f_n_minus_2;
@@ -201,7 +202,7 @@ constexpr auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0
  * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi
  * indicates i'th Fibonacci number.
  */
-auto SumOfFibonacci(const unsigned n) {
+inline auto SumOfFibonacci(const unsigned n) {
     return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
 }
 
@@ -216,7 +217,7 @@ auto SumOfFibonacci(const unsigned n) {
  * 3 steps at a time. Implement a method to count how many possible ways the child can
  * run up the stairs.
  */
-auto FindWaysToRunUpStairs_DP(const unsigned n) {
+constexpr auto FindWaysToRunUpStairs_DP(const unsigned n) {
     unsigned long f_n_minus_3 = 0;
     unsigned long f_n_minus_2 = 1;
     unsigned long f_n_minus_1 = 1;
@@ -283,8 +284,8 @@ SIMPLE_TEST(NthFibonacci_TailRecursion, TestSAMPLE2, 144, 12);
 
 THE_BENCHMARK(SumOfFibonacci, 4);
 
-SIMPLE_TEST(SumOfFibonacci, TestSAMPLE1, 4u, 3);
-SIMPLE_TEST(SumOfFibonacci, TestSAMPLE2, 7u, 4);
+SIMPLE_TEST(SumOfFibonacci, TestSAMPLE1, 4, 3);
+SIMPLE_TEST(SumOfFibonacci, TestSAMPLE2, 7, 4);
 
 
 THE_BENCHMARK(FindWaysToRunUpStairs_DP, 4);

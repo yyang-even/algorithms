@@ -13,7 +13,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
  */
-auto CaseInsensitiveCompare(const std::string &lhs, const std::string &rhs) {
+inline auto
+CaseInsensitiveCompare(const std::string_view lhs, const std::string_view rhs) {
     return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), rhs.cend(),
     [](const auto a, const auto b) {
         return std::tolower(a) == std::tolower(b);

@@ -20,7 +20,7 @@ namespace {
  */
 template <unsigned N>
 struct OneToNPrinter {
-    static void Print(std::string &result) {
+    static inline void Print(std::string &result) {
         OneToNPrinter < N - 1 >::Print(result);
         result.push_back(',');
         result.append(std::to_string(N));
@@ -29,13 +29,13 @@ struct OneToNPrinter {
 
 template <>
 struct OneToNPrinter<1> {
-    static void Print(std::string &result) {
+    static inline void Print(std::string &result) {
         result.push_back('1');
     }
 };
 
 template <unsigned N>
-auto PrintRange1ToN_Template() {
+inline auto PrintRange1ToN_Template() {
     std::string result;
     OneToNPrinter<N>::Print(result);
     return result;

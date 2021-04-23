@@ -32,7 +32,8 @@ void CombinationsOfParentheses(const unsigned number_pairs,
         }
     }
 }
-auto CombinationsOfParentheses(const unsigned number_pairs) {
+
+inline auto CombinationsOfParentheses(const unsigned number_pairs) {
     assert(number_pairs != 0);
 
     std::string one_combination;

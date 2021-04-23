@@ -23,7 +23,7 @@ using ListType = std::list<unsigned>;
  * @reference   Check whether the given floating point number is a palindrome
  *              https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
  */
-auto isPalindrome_Iterative(const std::string &a_string) {
+constexpr auto isPalindrome_Iterative(const std::string_view a_string) {
     assert(not a_string.empty());
 
     auto left = a_string.cbegin();
@@ -44,8 +44,8 @@ auto isPalindrome_Iterative(const std::string &a_string) {
  * @reference   Program to check if an array is palindrome or not using Recursion
  *              https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-recursion/
  */
-auto isPalindrome_Recursive(const std::string::const_iterator left,
-                            const std::string::const_iterator right) {
+inline auto isPalindrome_Recursive(const std::string_view::const_iterator left,
+                                   const std::string_view::const_iterator right) {
     if (left >= right) {
         return true;
     }
@@ -57,7 +57,7 @@ auto isPalindrome_Recursive(const std::string::const_iterator left,
     return isPalindrome_Recursive(std::next(left), std::prev(right));
 }
 
-auto isPalindrome_Recursive(const std::string &a_string) {
+inline auto isPalindrome_Recursive(const std::string_view a_string) {
     return isPalindrome_Recursive(a_string.cbegin(), std::prev(a_string.cend()));
 }
 
@@ -74,10 +74,10 @@ auto isPalindrome_Recursive(const std::string &a_string) {
  * @reference   Check whether the given string is Palindrome using Stack
  *              https://www.geeksforgeeks.org/check-whether-the-given-string-is-palindrome-using-stack/
  */
-auto isPalindrome_Stack(const std::string &a_string) {
-    std::stack<std::string::value_type> the_stack;
+auto isPalindrome_Stack(const std::string_view a_string) {
+    std::stack<std::string_view::value_type> the_stack;
     const auto mid = a_string.size() / 2;
-    std::string::size_type i = 0;
+    std::string_view::size_type i = 0;
     for (; i < mid; ++i) {
         the_stack.push(a_string[i]);
     }
@@ -143,18 +143,19 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
  * @reference   To check a number is palindrome or not without using any extra space
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
  */
-inline auto isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
+constexpr inline auto
+isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
     const unsigned reversed_number = ReverseDigits(number, base);
     return reversed_number == number;
 }
 
-inline auto isIntPalindrome_Reverse(const unsigned number) {
+constexpr inline auto isIntPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 10);
 }
 
 
-auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base,
-                                  unsigned &copy) {
+constexpr auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base,
+                                            unsigned &copy) {
     if (number < base) {
         return number == copy % base;
     }
@@ -167,7 +168,7 @@ auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base,
     return (number % base) == (copy % base);
 }
 
-auto isIntPalindrome_Recursive(const unsigned number) {
+constexpr inline auto isIntPalindrome_Recursive(const unsigned number) {
     auto copy = number;
     return isNumberPalindrome_Recursive(number, 10, copy);
 }
@@ -177,7 +178,7 @@ auto isIntPalindrome_Recursive(const unsigned number) {
  * @reference   Check if a number with even number of digits is palindrome or not
  *              https://www.geeksforgeeks.org/check-if-a-number-with-even-number-of-digits-is-palindrome-or-not/
  */
-auto isEvenDigitsIntPalindrome(const unsigned number) {
+constexpr inline auto isEvenDigitsIntPalindrome(const unsigned number) {
     assert(CountDigits_Iterative(number) % 2 == 0);
     return number % 11 == 0;
 }
@@ -187,12 +188,12 @@ auto isEvenDigitsIntPalindrome(const unsigned number) {
  * @reference   Check if number is palindrome or not in Octal
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-octal/
  */
-inline auto isOctalPalindrome_Reverse(const unsigned number) {
+constexpr inline auto isOctalPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 8);
 }
 
 
-inline auto isOctalPalindrome_Recursive(const unsigned number) {
+constexpr inline auto isOctalPalindrome_Recursive(const unsigned number) {
     auto copy = number;
     return isNumberPalindrome_Recursive(number, 8, copy);
 }
@@ -206,7 +207,7 @@ inline auto isOctalPalindrome_Recursive(const unsigned number) {
  * is palindrome or not. Note that the actual binary representation of the number is being
  * considered for palindrome checking, no leading 0’s are being considered.
  */
-inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {
+constexpr inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 2);
 }
 
@@ -215,7 +216,7 @@ inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {
  *
  * @reference   https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
  */
-auto isBinaryPalindrome(const unsigned number) {
+constexpr auto isBinaryPalindrome(const unsigned number) {
     unsigned least_significant = 1;
     unsigned most_significant = 1 << (BitsNumber<decltype(number)> - 1);
 
@@ -232,21 +233,21 @@ auto isBinaryPalindrome(const unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(isPalindrome_Iterative, Sample1, "aba");
+THE_BENCHMARK(isPalindrome_Iterative, "aba");
 
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE2, true, "abbccbba");
 SIMPLE_TEST(isPalindrome_Iterative, TestSAMPLE3, false, "geeks");
 
 
-SIMPLE_BENCHMARK(isPalindrome_Recursive, Sample1, "aba");
+THE_BENCHMARK(isPalindrome_Recursive, "aba");
 
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE2, true, "abbccbba");
 SIMPLE_TEST(isPalindrome_Recursive, TestSAMPLE3, false, "geeks");
 
 
-SIMPLE_BENCHMARK(isPalindrome_Stack, Sample1, "aba");
+THE_BENCHMARK(isPalindrome_Stack, "aba");
 
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE2, true, "abbccbba");
@@ -258,56 +259,56 @@ const ListType SAMPLE2 = {1, 2, 2, 1};
 const ListType SAMPLE3 = {2, 2, 1};
 
 
-SIMPLE_BENCHMARK(isSinglyListPalindrome_Stack, Sample1, SAMPLE1);
+THE_BENCHMARK(isSinglyListPalindrome_Stack, SAMPLE1);
 
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE2, true, SAMPLE2);
 SIMPLE_TEST(isSinglyListPalindrome_Stack, TestSAMPLE3, false, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(isIntPalindrome_Reverse, Sample1, 121);
+THE_BENCHMARK(isIntPalindrome_Reverse, 121);
 
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE1, true, 121);
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isIntPalindrome_Reverse, TestSAMPLE3, false, 211);
 
 
-SIMPLE_BENCHMARK(isIntPalindrome_Recursive, Sample1, 121);
+THE_BENCHMARK(isIntPalindrome_Recursive, 121);
 
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE1, true, 121);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE3, false, 211);
 
 
-SIMPLE_BENCHMARK(isEvenDigitsIntPalindrome, Sample1, 123321);
+THE_BENCHMARK(isEvenDigitsIntPalindrome, 123321);
 
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE1, true, 123321);
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isEvenDigitsIntPalindrome, TestSAMPLE3, false, 1234);
 
 
-SIMPLE_BENCHMARK(isOctalPalindrome_Reverse, Sample1, 0121);
+THE_BENCHMARK(isOctalPalindrome_Reverse, 0121);
 
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE1, true, 0121);
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE2, true, 01221);
 SIMPLE_TEST(isOctalPalindrome_Reverse, TestSAMPLE3, false, 0211);
 
 
-SIMPLE_BENCHMARK(isOctalPalindrome_Recursive, Sample1, 0121);
+THE_BENCHMARK(isOctalPalindrome_Recursive, 0121);
 
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE1, true, 0121);
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE2, true, 01221);
 SIMPLE_TEST(isOctalPalindrome_Recursive, TestSAMPLE3, false, 0211);
 
 
-SIMPLE_BENCHMARK(isActualBinaryPalindrome_Reverse, Sample1, 0b101);
+THE_BENCHMARK(isActualBinaryPalindrome_Reverse, 0b101);
 
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE1, true, 0b101);
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE2, true, 0b1001);
 SIMPLE_TEST(isActualBinaryPalindrome_Reverse, TestSAMPLE3, false, 0b1011);
 
 
-SIMPLE_BENCHMARK(isBinaryPalindrome, Sample1, 0b101);
+THE_BENCHMARK(isBinaryPalindrome, 0b101);
 
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE1, false, 0b101);
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE2, true, -1);

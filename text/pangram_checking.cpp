@@ -3,7 +3,7 @@
 
 namespace {
 
-auto toCharCounters(const std::string &sentence) {
+auto toCharCounters(const std::string_view sentence) {
     std::vector<bool> counters(LOWERCASE_CHARS.size(), false);
 
     std::vector<bool>::size_type index;
@@ -21,6 +21,7 @@ auto toCharCounters(const std::string &sentence) {
 
     return counters;
 }
+
 /** Pangram Checking
  *
  * @reference   https://www.geeksforgeeks.org/pangram-checking/
@@ -28,7 +29,7 @@ auto toCharCounters(const std::string &sentence) {
  * Given a string check if it is Pangram or not. A pangram is a sentence containing every
  * letter in the English Alphabet.
  */
-auto CheckPangram(const std::string &sentence) {
+auto CheckPangram(const std::string_view sentence) {
     const auto counters = toCharCounters(sentence);
 
     for (const auto count : counters) {
@@ -53,7 +54,7 @@ auto CheckPangram(const std::string &sentence) {
  * Note: Given that length of string is greater than 26 always and in one operation we
  * have to remove an existing element to add a new element.
  */
-auto CheckPangramConvertibleInK(const std::string &sentence, int K) {
+auto CheckPangramConvertibleInK(const std::string_view sentence, int K) {
     assert(sentence.size() > LOWERCASE_CHARS.size());
 
     const auto counters = toCharCounters(sentence);

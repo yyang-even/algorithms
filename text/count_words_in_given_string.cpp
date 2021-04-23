@@ -12,8 +12,8 @@ namespace {
  * Given a string, count number of words in it. The words are separated by following
  * characters: space (' ') or new line ('\n') or tab ('\t') or a combination of these.
  */
-auto CountWordsInGivenString(const std::string &input) {
-    std::string::size_type count = 0;
+constexpr auto CountWordsInGivenString(const std::string_view input) {
+    auto count = 0;
     auto in_word = false;
 
     for (const auto c : input) {
@@ -32,7 +32,7 @@ auto CountWordsInGivenString(const std::string &input) {
 auto CountWordsInGivenString_StringStream(const std::string &input) {
     std::stringstream ss(input);
 
-    std::string::size_type count = 0;
+    auto count = 0;
     for (std::string word; ss >> word; ++count);
 
     return count;

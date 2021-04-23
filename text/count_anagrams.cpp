@@ -3,7 +3,7 @@
 
 namespace {
 
-using HashTable = std::unordered_map<std::string::value_type, int>;
+using HashTable = std::unordered_map<char, int>;
 
 /** Count Occurences of Anagrams
  *
@@ -12,7 +12,7 @@ using HashTable = std::unordered_map<std::string::value_type, int>;
  * Given a word and a text, return the count of the occurences of anagrams of the word in
  * the text(For eg: anagrams of word for are for, ofr, rof etc.)
  */
-auto AreAllCharZero(const HashTable &char_counts) {
+inline auto AreAllCharZero(const HashTable &char_counts) {
     for (const auto [_, count] : char_counts) {
         if (count) {
             return false;
@@ -22,11 +22,11 @@ auto AreAllCharZero(const HashTable &char_counts) {
     return true;
 }
 
-auto CountAnagrams(const std::string &text, const std::string &word) {
+auto CountAnagrams(const std::string_view text, const std::string_view word) {
     assert(word.size() <= text.size());
 
     HashTable char_counts;
-    for (std::string::size_type i = 0; i < word.size(); ++i) {
+    for (std::size_t i = 0; i < word.size(); ++i) {
         ++(char_counts[text[i]]);
         --(char_counts[word[i]]);
     }
@@ -65,13 +65,13 @@ auto CountAnagrams(const std::string &text, const std::string &word) {
  * Note: If there are repetitions, then counts of repeated elements must also be same for
  * two array to be equal.
  */
-auto AreAnagrams(const std::string &s1, const std::string &s2) {
+auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
     if (s1.size() != s2.size()) {
         return false;
     }
 
     HashTable char_counts;
-    for (std::string::size_type i = 0; i < s1.size(); ++i) {
+    for (std::size_t i = 0; i < s1.size(); ++i) {
         ++(char_counts[s1[i]]);
         --(char_counts[s2[i]]);
     }

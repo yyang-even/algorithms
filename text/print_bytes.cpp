@@ -3,7 +3,6 @@
 #include <iomanip>
 
 #include "number_convertion.h"
-#include "text.h"
 
 
 namespace {
@@ -30,12 +29,12 @@ std::string PrintBytes_C(const Byte_Pointer bytes, const size_t len) {
     return str_out;
 }
 
-std::string PrintInt_C(const int num) {
+inline std::string PrintInt_C(const int num) {
     return PrintBytes_C((Byte_Pointer)(&num), sizeof(num));
 }
 
 
-std::string PrintBytes_Cpp(const Byte_Pointer bytes, const size_t len) {
+inline std::string PrintBytes_Cpp(const Byte_Pointer bytes, const size_t len) {
     std::stringstream ss_out;
     for (size_t i = 0; i < len; ++i) {
         ss_out << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>(bytes[i]);
@@ -43,7 +42,7 @@ std::string PrintBytes_Cpp(const Byte_Pointer bytes, const size_t len) {
     return ss_out.str();
 }
 
-std::string PrintInt_Cpp(const int num) {
+inline std::string PrintInt_Cpp(const int num) {
     return PrintBytes_Cpp(reinterpret_cast<Byte_Pointer>(&num), sizeof(num));
 }
 
@@ -52,12 +51,12 @@ std::string PrintInt_Cpp(const int num) {
  *
  * @reference   https://www.geeksforgeeks.org/convert-hexadecimal-value-string-ascii-value-string/
  */
-auto HexToChar(const std::string &hex) {
+auto HexToChar(const std::string_view hex) {
     assert(hex.size() % 2 == 0);
 
     std::string result;
-    for (std::string::size_type i = 0; i < hex.size(); i += 2) {
-        const auto c = from_string_view(sub_string(hex, i, 2), 16);
+    for (std::size_t i = 0; i < hex.size(); i += 2) {
+        const auto c = from_string_view(hex.substr(i, 2), 16);
         result.push_back(c);
     }
 

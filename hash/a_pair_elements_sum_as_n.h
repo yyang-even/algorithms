@@ -2,9 +2,9 @@
 
 
 template<typename ArrayType>
-auto PairOfElementsSumAsN_Hashmap(const ArrayType &values,
-                                  const typename ArrayType::value_type target,
-                                  std::pair<typename ArrayType::value_type, typename ArrayType::value_type> *output) {
+static inline auto PairOfElementsSumAsN_Hashmap(const ArrayType &values,
+                                                const typename ArrayType::value_type target,
+                                                std::pair<typename ArrayType::value_type, typename ArrayType::value_type> *output) {
     std::unordered_set<typename ArrayType::value_type> value_set {};
 
     for (const auto element : values) {

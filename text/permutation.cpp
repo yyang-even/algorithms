@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string>;
+
 /** Write a program to print all permutations of a given string
  *
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
@@ -23,7 +25,7 @@ namespace {
  * @complexity  O(n * n!)
  */
 void PermutationHelper(const std::string &input, std::string::iterator start,
-                       std::string::iterator last, std::vector<std::string> &outputs) {
+                       std::string::iterator last, ArrayType &outputs) {
     if (start == last) {
         outputs.push_back(input);
     } else {
@@ -35,15 +37,17 @@ void PermutationHelper(const std::string &input, std::string::iterator start,
     }
 }
 
-auto Permutation(std::string input) {
-    std::vector<std::string> outputs;
-    PermutationHelper(input, input.begin(), input.begin() + input.size() - 1ul, outputs);
+inline auto Permutation(std::string input) {
+    assert(not input.empty());
+
+    ArrayType outputs;
+    PermutationHelper(input, input.begin(), std::prev(input.end()), outputs);
     return outputs;
 }
 
 
 auto PermutationSTL(std::string input) {
-    std::vector<std::string> outputs;
+    ArrayType outputs;
 
     std::sort(input.begin(), input.end());
 
@@ -57,7 +61,7 @@ auto PermutationSTL(std::string input) {
 }//namespace
 
 
-const std::vector<std::string> EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};
+const ArrayType EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};
 
 
 THE_BENCHMARK(Permutation, "ab4c12ed3");
@@ -65,7 +69,7 @@ THE_BENCHMARK(Permutation, "ab4c12ed3");
 SIMPLE_TEST(Permutation, TestSAMPLE1, EXPECTED1, "abc");
 
 
-const std::vector<std::string> EXPECTED2 = {"abc", "acb", "bac", "bca", "cab", "cba"};
+const ArrayType EXPECTED2 = {"abc", "acb", "bac", "bca", "cab", "cba"};
 
 
 THE_BENCHMARK(PermutationSTL, "ab4c12ed3");

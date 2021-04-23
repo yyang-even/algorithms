@@ -1,7 +1,6 @@
 #include "common_header.h"
 
 #include "number_convertion.h"
-#include "text.h"
 
 
 namespace {
@@ -16,22 +15,22 @@ namespace {
  * Note: Frequency of encrypted substring can be of more than one digit. For example,
  * in "ab12c3", ab is repeated 12 times. No leading 0 is present in frequency of substring.
  */
-auto FindKthCharOfDecryptedString(const std::string &encoded,
-                                  const std::string::size_type K) {
+auto FindKthCharOfDecryptedString(const std::string_view encoded,
+                                  const std::size_t K) {
     assert(K > 0);
 
     std::string decrypted;
 
-    for (std::string::size_type i = 0; decrypted.size() < K and i < encoded.size();) {
+    for (std::size_t i = 0; decrypted.size() < K and i < encoded.size();) {
         const auto frequency_start = encoded.find_first_of(DIGIT_CHARS, i);
-        const auto substring = sub_string(encoded, i, frequency_start - i);
+        const auto substring = encoded.substr(i, frequency_start - i);
 
         i = encoded.find_first_of(LOWERCASE_CHARS, frequency_start);
-        if (i == std::string::npos) {
+        if (i == std::string_view::npos) {
             i = encoded.size();
         }
         const auto frequency =
-            from_string_view(sub_string(encoded, frequency_start, i - frequency_start));
+            from_string_view(encoded.substr(frequency_start, i - frequency_start));
         for (auto j = 0; j < frequency and decrypted.size() < K; ++j) {
             decrypted.append(substring);
         }

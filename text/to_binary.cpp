@@ -18,7 +18,7 @@ namespace {
  *
  * Write a program to print Binary representation of a given number.
  */
-auto ToBinaryString_Iterative(const unsigned n) {
+inline auto ToBinaryString_Iterative(const unsigned n) {
     std::string output;
     for (unsigned i = 1 << (BitsNumber<decltype(n)> - 1); i; i >>= 1) {
         output.push_back(static_cast<bool>(n & i) + '0');
@@ -31,24 +31,24 @@ auto ToBinaryString_Iterative(const unsigned n) {
  * @reference   Decimal to Binary using recursion and without using power operator
  *              https://www.geeksforgeeks.org/decimal-to-binary-using-recursion-and-without-using-power-operator/
  */
-void ToBinaryString_Recursive_Helper(const unsigned n,
-                                     const unsigned i,
-                                     std::string &output) {
-    if (i > 1u) {
-        ToBinaryString_Recursive_Helper(n / 2u, i - 1, output);
+inline void ToBinaryString_Recursive_Helper(const unsigned n,
+                                            const unsigned i,
+                                            std::string &output) {
+    if (i > 1) {
+        ToBinaryString_Recursive_Helper(n / 2, i - 1, output);
     }
 
     output.push_back(static_cast<bool>(n & 1) + '0');
 }
 
-auto ToBinaryString_Recursive(const unsigned n) {
+inline auto ToBinaryString_Recursive(const unsigned n) {
     std::string output;
     ToBinaryString_Recursive_Helper(n, BitsNumber<decltype(n)>, output);
     return output;
 }
 
 
-auto ToBinaryString_Bitset(const unsigned n) {
+inline auto ToBinaryString_Bitset(const unsigned n) {
     return std::bitset<BitsNumber<decltype(n)>>(n).to_string();
 }
 
@@ -57,7 +57,7 @@ auto ToBinaryString_Bitset(const unsigned n) {
  *
  * @reference   https://www.geeksforgeeks.org/program-to-convert-octal-number-to-binary-number/
  */
-auto OctalToBinary(const std::string &octal) {
+inline auto OctalToBinary(const std::string &octal) {
     return ToBinary<3>(octal, OctalDigitToDecimal);
 }
 
@@ -103,7 +103,7 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Iterative, Sample1, UPPER);
+THE_BENCHMARK(ToBinaryString_Iterative, UPPER);
 
 SIMPLE_TEST(ToBinaryString_Iterative, TestSample1,
             std::string(BitsNumber<unsigned>, '0'), LOWER);
@@ -111,7 +111,7 @@ SIMPLE_TEST(ToBinaryString_Iterative, TestSample2,
             std::string(BitsNumber<unsigned>, '1'), UPPER);
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Recursive, Sample1, UPPER);
+THE_BENCHMARK(ToBinaryString_Recursive, UPPER);
 
 SIMPLE_TEST(ToBinaryString_Recursive, TestSample1,
             std::string(BitsNumber<unsigned>, '0'), LOWER);
@@ -119,25 +119,25 @@ SIMPLE_TEST(ToBinaryString_Recursive, TestSample2,
             std::string(BitsNumber<unsigned>, '1'), UPPER);
 
 
-SIMPLE_BENCHMARK(ToBinaryString_Bitset, Sample1, UPPER);
+THE_BENCHMARK(ToBinaryString_Bitset, UPPER);
 
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Iterative, LOWER, UPPER);
 MUTUAL_RANDOM_TEST(ToBinaryString_Bitset, ToBinaryString_Recursive, LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(OctalToBinary, Sample1, "345");
+THE_BENCHMARK(OctalToBinary, "345");
 
 SIMPLE_TEST(OctalToBinary, TestSAMPLE1, "011100101", "345");
 SIMPLE_TEST(OctalToBinary, TestSAMPLE2, "001010000", "120");
 
 
-SIMPLE_BENCHMARK(HexToBinary, Sample1, "1AC5");
+THE_BENCHMARK(HexToBinary, "1AC5");
 
 SIMPLE_TEST(HexToBinary, TestSAMPLE1, "0001101011000101", "1AC5");
 SIMPLE_TEST(HexToBinary, TestSAMPLE2, "0101110100011111", "5D1F");
 
 
-SIMPLE_BENCHMARK(RealToBinary, Sample1, 0.625);
+THE_BENCHMARK(RealToBinary, 0.625);
 
 SIMPLE_TEST(RealToBinary, TestSAMPLE1, "0.101", 0.625);
 SIMPLE_TEST(RealToBinary, TestSAMPLE2, ERROR_STR, 0.72);

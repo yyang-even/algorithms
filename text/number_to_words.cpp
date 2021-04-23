@@ -17,9 +17,9 @@ namespace {
 auto SegmentToWords(int number) {
     assert(number > 0 and number < 1000);
 
-    constexpr const char *DIGITS[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
-    constexpr const char *TEENS[] = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    constexpr const char *TENS[] = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    static constexpr const char *DIGITS[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    static constexpr const char *TEENS[] = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    static constexpr const char *TENS[] = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
     std::string result;
 
@@ -52,7 +52,7 @@ auto SegmentToWords(int number) {
 }
 
 std::string ToWords(int number) {
-    constexpr const char *SHORT_SCALES[] = {"", " Thousand", " Million", " Billion", " Trillion"};
+    static constexpr const char *SHORT_SCALES[] = {"", " Thousand", " Million", " Billion", " Trillion"};
 
     if (number == 0) {
         return "Zero";

@@ -25,7 +25,7 @@ auto DecimalTo(int number, const int base,
  * @reference   Decimal to octal conversion with minimum use of arithmetic operators
  *              https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
  */
-auto ToOctal(const int number) {
+inline auto ToOctal(const int number) {
     return DecimalTo(number, 8, [](const int digit) {
         return '0' + digit;
     });
@@ -38,7 +38,7 @@ auto ToOctal(const int number) {
  * @reference   Convert Decimal To Hexa-Decimal including negative numbers
  *              https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
  */
-auto ToHex(const int number) {
+inline auto ToHex(const int number) {
     return DecimalTo(number, 16, [](const int digit) {
         if (digit < 10) {
             return '0' + digit;
@@ -51,14 +51,14 @@ auto ToHex(const int number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ToOctal, Sample1, 16);
+THE_BENCHMARK(ToOctal, 16);
 
 SIMPLE_TEST(ToOctal, TestSAMPLE1, "20", 16);
 SIMPLE_TEST(ToOctal, TestSAMPLE2, "12", 10);
 SIMPLE_TEST(ToOctal, TestSAMPLE3, "41", 33);
 
 
-SIMPLE_BENCHMARK(ToHex, Sample1, 942);
+THE_BENCHMARK(ToHex, 942);
 
 SIMPLE_TEST(ToHex, TestSAMPLE1, "3AE", 942);
 SIMPLE_TEST(ToHex, TestSAMPLE2, "74", 116);

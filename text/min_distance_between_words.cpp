@@ -28,7 +28,7 @@ unsigned MinDistanceBetweenWords(std::string text,
         return 0;
     }
 
-    constexpr auto *delimiters = " ";
+    static constexpr auto *delimiters = " ";
 
     std::vector<std::string_view> words;
     for (auto *token = std::strtok(text.data(), delimiters);

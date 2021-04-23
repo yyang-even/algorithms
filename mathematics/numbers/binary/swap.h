@@ -11,7 +11,7 @@
  *              Questions 17.1.
  */
 template <typename T>
-static inline void Swap_Xor(T &a, T &b) {
+static constexpr inline void Swap_Xor(T &a, T &b) {
     if (a != b) {
         a ^= b;
         b ^= a;

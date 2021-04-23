@@ -14,10 +14,11 @@ namespace {
  * such a string is always possible, i.e. There is no need to care about the characters
  * other than "$".
  */
-auto CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string &str) {
-    std::string::size_type total = 1;
+constexpr inline auto
+CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string_view str) {
+    std::size_t total = 1;
 
-    for (std::string::size_type i = 0; i < str.size(); ++i) {
+    for (std::size_t i = 0; i < str.size(); ++i) {
         if (str[i] == '$') {
             total *= (i % 2 ? 5 : 21);
         }

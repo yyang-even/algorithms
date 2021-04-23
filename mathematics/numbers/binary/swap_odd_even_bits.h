@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Swap all odd and even bits
  *
  * @reference   https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/
@@ -15,6 +16,6 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.6.
  */
-inline constexpr auto SwapOddAndEvenBits(const unsigned num) {
+static inline constexpr auto SwapOddAndEvenBits(const unsigned num) {
     return ((num >> 1) & 0x55555555) | ((num & 0x55555555) << 1);
 }

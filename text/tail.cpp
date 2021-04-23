@@ -40,10 +40,10 @@ std::string tail(std::ifstream &file, unsigned N) {
 }
 
 auto TestTail() {
-    const std::string HEAD = "1\n2\n3\n4\n5\n";
-    const std::string TAIL = "6\n7\n8\n9\n10\n";
-    const auto file_str = HEAD + TAIL;
-    const std::string filename = "tail_test.txt";
+    static const std::string HEAD = "1\n2\n3\n4\n5\n";
+    static const std::string TAIL = "6\n7\n8\n9\n10\n";
+    static const auto file_str = HEAD + TAIL;
+    static const std::string filename = "tail_test.txt";
     {
         std::ofstream file(filename);
         file << file_str;

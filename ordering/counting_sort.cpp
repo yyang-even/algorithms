@@ -42,7 +42,7 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/
  */
 auto CountingSort_NoNegative(const ArrayType &values) {
-    constexpr ArrayType::value_type MAXIMUM = 1 << 8;
+    static constexpr ArrayType::value_type MAXIMUM = 1 << 8;
 
     assert(std::all_of(values.cbegin(), values.cend(), [](const auto v) {
         return v >= 0 and v < MAXIMUM;
@@ -84,7 +84,7 @@ auto CountingSort(const ArrayType &values) {
 }
 
 
-auto CountingSort_STL(const ArrayType &values) {
+inline auto CountingSort_STL(const ArrayType &values) {
     return CountingSort_STL(values, Copy);
 }
 
@@ -104,7 +104,7 @@ const InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
 const InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
-SIMPLE_BENCHMARK(CountingSort_NoNegative, Sample1, VALUES6);
+THE_BENCHMARK(CountingSort_NoNegative, VALUES6);
 
 SIMPLE_TEST(CountingSort_NoNegative, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(CountingSort_NoNegative, TestSAMPLE2, VALUES2, VALUES2);
@@ -118,7 +118,7 @@ const InitializerType VALUES7 = {-5, -10, 0, -3, 8, 5, -1, 10};
 const InitializerType EXPECTED7 = {-10, -5, -3, -1, 0, 5, 8, 10};
 
 
-SIMPLE_BENCHMARK(CountingSort, Sample1, VALUES6);
+THE_BENCHMARK(CountingSort, VALUES6);
 
 SIMPLE_TEST(CountingSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(CountingSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -129,7 +129,7 @@ SIMPLE_TEST(CountingSort, TestSAMPLE6, EXPECTED6, VALUES6);
 SIMPLE_TEST(CountingSort, TestSAMPLE7, EXPECTED7, VALUES7);
 
 
-SIMPLE_BENCHMARK(CountingSort_STL, Sample1, VALUES6);
+THE_BENCHMARK(CountingSort_STL, VALUES6);
 
 SIMPLE_TEST(CountingSort_STL, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(CountingSort_STL, TestSAMPLE2, VALUES2, VALUES2);
