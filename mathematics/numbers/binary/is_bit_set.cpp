@@ -3,7 +3,7 @@
 #include "is_bit_set.h"
 
 
-SIMPLE_BENCHMARK(IsBitSet, Sample1, 0, 4);
+THE_BENCHMARK(IsBitSet, 0, 4);
 
 SIMPLE_TEST(IsBitSet, TestSample1, true, 0b101, 0);
 SIMPLE_TEST(IsBitSet, TestSample2, false, 0, 0);
