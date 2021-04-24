@@ -2,7 +2,9 @@
 
 #include "count_unset_bits.h"
 
-using InputType = unsigned;
+
+#ifdef __GNUG__
+namespace {
 
 /** Equal Sum and XOR
  *
@@ -12,13 +14,14 @@ using InputType = unsigned;
  *
  * Given a positive integer n, find count of positive integers i such that 0 <= i <= n and n+i = n^i.
  */
-#ifdef __GNUG__
-auto CountEqualSumAndXor(const InputType n) {
+constexpr inline auto CountEqualSumAndXor(const unsigned n) {
     return 1 << CountUnsetBits(n);
 }
 
+}//namespace
 
-SIMPLE_BENCHMARK(CountEqualSumAndXor, Sample1, 7);
+
+THE_BENCHMARK(CountEqualSumAndXor, 7);
 
 SIMPLE_TEST(CountEqualSumAndXor, TestSample1, 4, 12);
 SIMPLE_TEST(CountEqualSumAndXor, TestSample2, 1, 7);
