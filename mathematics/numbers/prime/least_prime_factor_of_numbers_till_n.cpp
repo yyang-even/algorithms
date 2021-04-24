@@ -2,8 +2,10 @@
 
 #include "least_prime_factor_of_numbers_till_n.h"
 
+
 const std::vector<unsigned> RESULT1 = {0, 1, 2, 3, 2, 5, 2, 7, 2, 3, 2};
 
-SIMPLE_BENCHMARK(LeastPrimeFactorOfNumbers, Sample1, 10);
+
+THE_BENCHMARK(LeastPrimeFactorOfNumbers, 10);
 
 SIMPLE_TEST(LeastPrimeFactorOfNumbers, TestSample1, RESULT1, 10);

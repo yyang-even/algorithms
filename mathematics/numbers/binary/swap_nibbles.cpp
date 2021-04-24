@@ -3,6 +3,6 @@
 #include "swap_nibbles.h"
 
 
-SIMPLE_BENCHMARK(SwapNibbles, Sample1, 100);
+THE_BENCHMARK(SwapNibbles, 100);
 
-SIMPLE_TEST(SwapNibbles, TestSAMPLE1, 70u, 100);
+SIMPLE_TEST(SwapNibbles, TestSAMPLE1, 70, 100);
