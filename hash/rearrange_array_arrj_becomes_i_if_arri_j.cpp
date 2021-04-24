@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+
+namespace {
+
 using ArrayType = std::vector<unsigned>;
 
 /** Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’ | Set 1
@@ -20,18 +23,21 @@ auto RearrangeArraySimple(const ArrayType &elements) {
     return output;
 }
 
+
 auto RearrangeArrayInPlace(ArrayType elements) {
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
         elements[elements[i] % elements.size()] += i * elements.size();
     }
 
     std::transform(elements.cbegin(), elements.cend(),
-    elements.begin(), [&elements](const ArrayType::value_type v) {
+    elements.begin(), [&elements](const auto v) {
         return v / elements.size();
     });
 
     return elements;
 }
+
+}//namespace
 
 
 const ArrayType SAMPLE1 = {1, 3, 0, 2};
@@ -44,7 +50,7 @@ const ArrayType SAMPLE4 = {3, 2, 1, 0};
 const ArrayType EXPECTED4 = {3, 2, 1, 0};
 
 
-SIMPLE_BENCHMARK(RearrangeArraySimple, Sample1, SAMPLE1);
+THE_BENCHMARK(RearrangeArraySimple, SAMPLE1);
 
 SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangeArraySimple, TestSAMPLE2, EXPECTED2, SAMPLE2);
