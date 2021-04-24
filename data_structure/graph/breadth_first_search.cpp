@@ -70,7 +70,7 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
                                     const DirectedEdgeArrayType &edges,
                                     const std::size_t source) {
     return AdjacencyListGraph(number_vertices, edges).Visit(
-    [source](const AdjacencyListGraph::RepresentationType & graph) {
+    [source](const auto & graph) {
         return BreadthFirstSearchSingleSource(graph, source);
     });
 }

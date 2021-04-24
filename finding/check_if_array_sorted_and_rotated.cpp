@@ -32,7 +32,7 @@ auto CheckIfArraySortedAndRotated(const ArrayType &values,
  * as sorted and rotated, i.e., there should at least one rotation.
  */
 auto CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
-    return CheckIfArraySortedAndRotated(values, [](const ArrayType & values) {
+    return CheckIfArraySortedAndRotated(values, [](const auto & values) {
         return std::min_element(values.cbegin(), values.cend());
     });
 }
@@ -43,7 +43,7 @@ auto CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
  *              https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated-using-binary-search/
  */
 auto CheckIfArraySortedAndRotated_BinarySearch(const ArrayType &values) {
-    return CheckIfArraySortedAndRotated(values, [](const ArrayType & values) {
+    return CheckIfArraySortedAndRotated(values, [](const auto & values) {
         return FindMinInSortedAndRotatedArray(values.cbegin(), values.size());
     });
 }

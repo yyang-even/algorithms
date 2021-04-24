@@ -86,7 +86,7 @@ auto Sum_SinglyCircularList(const ArrayType &elements) {
     const auto list = SinglyCircularLinkedList{elements};
     SinglyCircularLinkedList::Node::ValueType sum = 0;
     list.OrderlessTraversal(
-    [&sum](const SinglyCircularLinkedList::Node::PointerType current) {
+    [&sum](const auto current) {
         sum += current->value;
     });
     return sum;

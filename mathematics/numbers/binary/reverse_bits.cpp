@@ -146,7 +146,7 @@ auto ReverseBytes_String(unsigned num) {
     auto *begin = reinterpret_cast<unsigned char *>(&num);
 
     Reverse_TwoPointers(begin, begin + sizeof(num),
-    [](unsigned char &lhs, unsigned char &rhs) {
+    [](auto & lhs, auto & rhs) {
         std::swap(lhs, rhs);
     });
 

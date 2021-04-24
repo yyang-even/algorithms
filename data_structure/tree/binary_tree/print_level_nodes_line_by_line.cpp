@@ -21,7 +21,7 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
 auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_node) {
     ArrayType results;
     LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&results](const BinaryTree::Node & node) {
+    [&results](const auto & node) {
         results.back().push_back(node.value);
         return true;
     },

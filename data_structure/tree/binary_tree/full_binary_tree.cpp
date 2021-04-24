@@ -41,7 +41,7 @@ auto isFullBinaryTree_Recursive(const BinaryTree::Node::PointerType node) {
  */
 auto isFullBinaryTree_Iterative(const BinaryTree::Node::PointerType root_node) {
     return LevelOrderTraversal_LevelAware_Helper(root_node,
-    [](const BinaryTree::Node & node) {
+    [](const auto & node) {
         const auto node_type = CheckType(node);
 
         return node_type == BinaryTree::Node::Type::leaf or

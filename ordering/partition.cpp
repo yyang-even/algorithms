@@ -43,7 +43,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     const auto R = ArrayType(middle, end);
 
     MergeTwoSortedArrays(L.cbegin(), L.cend(), R.cbegin(), R.cend(), begin,
-    [](const ArrayType::value_type lv, const ArrayType::value_type rv) {
+    [](const auto lv, const auto rv) {
         if (lv < 0) {
             return true;
         } else if (rv < 0) {
@@ -142,7 +142,7 @@ auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  * moving all value equal to K at the end of the array.
  */
 auto RearrangeZeros(ArrayType input) {
-    Partition<ArrayType>(input.begin(), input.end(), [](const ArrayType::value_type v) {
+    Partition<ArrayType>(input.begin(), input.end(), [](const auto v) {
         return static_cast<bool>(v);
     });
 

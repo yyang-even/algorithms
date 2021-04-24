@@ -28,7 +28,7 @@ auto CountLeaves_Recursive(const BinaryTree::Node::PointerType node) {
 auto CountLeaves_Iterative(const BinaryTree::Node::PointerType root_node) {
     unsigned leaves_count = 0;
     LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&leaves_count](const BinaryTree::Node & node) {
+    [&leaves_count](const auto & node) {
         if (not node.left and not node.right) {
             ++leaves_count;
         }

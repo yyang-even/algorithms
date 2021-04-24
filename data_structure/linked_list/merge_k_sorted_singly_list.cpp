@@ -45,7 +45,7 @@ auto MergeKSorted_Lists_MinHeap(std::vector<ListType> k_lists) {
         }
     }
 
-    const auto compare = [](ListType * const lhs, ListType * const rhs) {
+    const auto compare = [](const auto * lhs, const auto * rhs) {
         return  lhs->front() > rhs->front();
     };
     std::priority_queue<ListType *, std::vector<ListType *>, decltype(compare)>

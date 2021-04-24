@@ -13,7 +13,7 @@ void MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays,
         }
     }
 
-    const auto compare = [](const Node & lhs, const Node & rhs) {
+    const auto compare = [](const auto & lhs, const auto & rhs) {
         return  *lhs.second > *rhs.second;
     };
     std::priority_queue<Node, std::vector<Node>, decltype(compare)> heap(compare,

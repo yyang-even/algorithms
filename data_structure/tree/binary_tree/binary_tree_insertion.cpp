@@ -21,7 +21,7 @@ auto LevelOrderInsert(const BinaryTree::Node::PointerType root_node,
     assert(root_node);
 
     LevelOrderTraversal_LevelAware_Helper(root_node,
-    [x](BinaryTree::Node & node) {
+    [x](auto & node) {
         if (not node.left) {
             node.left = std::make_shared<BinaryTree::Node>(x);
             return false;

@@ -120,7 +120,7 @@ auto MergeTwoSortedArraysToOne(ArrayType L, const ArrayType &R) {
  */
 constexpr ArrayType::value_type NA = 0;
 auto MergeTwoSortedArraysToOne_Partition(ArrayType L, const ArrayType &R) {
-    std::stable_partition(L.begin(), L.end(), [](const ArrayType::value_type v) {
+    std::stable_partition(L.begin(), L.end(), [](const auto v) {
         return v != NA;
     });
     return MergeTwoSortedArraysToOne(L, R);

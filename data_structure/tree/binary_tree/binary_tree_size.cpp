@@ -27,7 +27,7 @@ unsigned Size_Recursive(const BinaryTree::Node::PointerType node) {
 auto Size_Iterative(const BinaryTree::Node::PointerType root_node) {
     unsigned size = 0;
     LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&size](const BinaryTree::Node &) {
+    [&size](const auto &) {
         ++size;
         return true;
     }, {});

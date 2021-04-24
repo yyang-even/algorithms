@@ -106,7 +106,7 @@ public:
 
     auto CountSize() const {
         std::size_t count = 0;
-        OrderlessTraversal([&count](const Node::PointerType) {
+        OrderlessTraversal([&count](const auto) {
             ++count;
         });
         return count;
@@ -304,7 +304,7 @@ public:
         }
 
         Node::PointerType iter = nullptr;
-        OrderlessTraversal([&iter](const Node::PointerType current) {
+        OrderlessTraversal([&iter](const auto current) {
             iter = current;
         });
         return iter == tail;

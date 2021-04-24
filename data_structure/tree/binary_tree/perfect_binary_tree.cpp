@@ -47,7 +47,7 @@ auto isPerfect_Recursive(const BinaryTree::Node::PointerType root_node) {
 auto isPerfect_Iterative(const BinaryTree::Node::PointerType root_node) {
     bool has_leaf_node_found = false;
     return LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&has_leaf_node_found](const BinaryTree::Node & node) {
+    [&has_leaf_node_found](const auto & node) {
         const auto node_type = CheckType(node);
 
         if (node_type == BinaryTree::Node::Type::leaf) {

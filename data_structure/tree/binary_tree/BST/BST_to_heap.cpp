@@ -36,7 +36,7 @@ auto ToMinHeap(const BinaryTree::Node::PointerType root) {
     assert(std::is_sorted(inorder_array.cbegin(), inorder_array.cend()));
 
     auto cbegin = inorder_array.cbegin();
-    LevelOrderTraversal_LevelAware_Helper(root, [&cbegin](BinaryTree::Node & node) {
+    LevelOrderTraversal_LevelAware_Helper(root, [&cbegin](auto & node) {
         node.value = *(cbegin++);
         return true;
     });

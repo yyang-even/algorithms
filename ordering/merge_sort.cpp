@@ -92,12 +92,12 @@ void Merge_O1(const ArrayType::iterator begin, const ArrayType::iterator middle,
     }
 
     std::transform(L_iter, middle, iter, iter,
-    [max](const ArrayType::value_type v1, const ArrayType::value_type v2) {
+    [max](const auto v1, const auto v2) {
         return v2 + (v1 % max) * max;
     });
 
     // Restore to original values
-    std::transform(begin, R_iter, begin, [max](const ArrayType::value_type v) {
+    std::transform(begin, R_iter, begin, [max](const auto v) {
         return v / max;
     });
 }
@@ -105,9 +105,7 @@ auto MergeSort_O1(ArrayType values) {
     if (not values.empty()) {
         const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
         MergeSort<ArrayType>(values.begin(), values.size(),
-                             [max_element](const ArrayType::iterator begin,
-                                           const ArrayType::iterator middle,
-        const ArrayType::iterator end) {
+        [max_element](const auto begin, const auto middle, const auto end) {
             Merge_O1(begin, middle, end, max_element);
         });
     }

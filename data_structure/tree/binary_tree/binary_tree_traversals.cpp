@@ -306,7 +306,7 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
                                     BinaryTree::ArrayType &outputs) {
     LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&outputs](const BinaryTree::Node & node) {
+    [&outputs](const auto & node) {
         outputs.push_back(node.value);
         return true;
     });

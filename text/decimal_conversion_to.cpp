@@ -26,7 +26,7 @@ auto DecimalTo(int number, const int base,
  *              https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
  */
 inline auto ToOctal(const int number) {
-    return DecimalTo(number, 8, [](const int digit) {
+    return DecimalTo(number, 8, [](const auto digit) {
         return '0' + digit;
     });
 }
@@ -39,7 +39,7 @@ inline auto ToOctal(const int number) {
  *              https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
  */
 inline auto ToHex(const int number) {
-    return DecimalTo(number, 16, [](const int digit) {
+    return DecimalTo(number, 16, [](const auto digit) {
         if (digit < 10) {
             return '0' + digit;
         } else {

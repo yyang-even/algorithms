@@ -332,13 +332,13 @@ public:
     }
 
     void Delete(const Node::ValueType key) {
-        deleteHelper([key](const Node & node) {
+        deleteHelper([key](const auto & node) {
             return node.value == key;
         });
     }
 
     void Delete(const Node &target_node) {
-        deleteHelper([&target_node](const Node & node) {
+        deleteHelper([&target_node](const auto & node) {
             return &node == &target_node;
         });
     }
@@ -361,7 +361,7 @@ public:
             if (head.get() == &target_node) {
                 deleteNode_WithoutHead(*head, size);
             } else {
-                delete_Nonhead(head, [&target_node](const Node & node) {
+                delete_Nonhead(head, [&target_node](const auto & node) {
                     return &node == &target_node;
                 });
             }
