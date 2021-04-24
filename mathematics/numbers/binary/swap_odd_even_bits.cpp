@@ -7,8 +7,8 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(SwapOddAndEvenBits, Sample1, UPPER);
+THE_BENCHMARK(SwapOddAndEvenBits, UPPER);
 
 SIMPLE_TEST(SwapOddAndEvenBits, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(SwapOddAndEvenBits, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(SwapOddAndEvenBits, TestSAMPLE1, 0b00101011u, 0b00010111);
+SIMPLE_TEST(SwapOddAndEvenBits, TestSAMPLE1, 0b00101011, 0b00010111);
