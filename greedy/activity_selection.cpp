@@ -22,7 +22,7 @@ using OutputType = std::vector<ArrayType::size_type>;
  * of activities that can be performed by a single person, assuming that a person can only
  * work on a single activity at a time.
  */
-const auto activity_comparator = [](const auto &lhs, const auto &rhs) {
+constexpr auto activity_comparator = [](const auto &lhs, const auto &rhs) {
     return lhs.second < rhs.second;
 };
 

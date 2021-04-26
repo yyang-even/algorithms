@@ -70,7 +70,7 @@ auto FindTopKMostFrequentNumbers(const ArrayType &numbers,
         number_frequency_array.push_back(iter);
     }
 
-    const auto compare_function = [](const auto & lhs, const auto & rhs) {
+    constexpr auto compare_function = [](const auto & lhs, const auto & rhs) {
         return lhs->second == rhs->second ? lhs->first > rhs->first : lhs->second > rhs->second;
     };
     const auto kth = std::next(number_frequency_array.begin(),

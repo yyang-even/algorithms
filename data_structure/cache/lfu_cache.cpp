@@ -69,7 +69,7 @@ public:
 TEST(LFU_CacheTest, TestSanity) {
     const auto CAPICITY = 2u;
     LFU_Cache lfu_cache{CAPICITY};
-    const auto ToValue = [](const auto key) {
+    constexpr auto ToValue = [](const auto key) {
         return key * 10;
     };
 

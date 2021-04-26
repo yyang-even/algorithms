@@ -100,7 +100,7 @@ auto LRU(const ArrayType &requests, const ArrayType::size_type cache_size) {
 TEST(LRU_CacheTest, TestSanity) {
     const auto CAPICITY = 2u;
     LRU_Cache lru_cache{CAPICITY};
-    const auto ToValue = [](const auto key) {
+    constexpr auto ToValue = [](const auto key) {
         return key * 10;
     };
 
