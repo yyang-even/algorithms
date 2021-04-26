@@ -4,7 +4,7 @@
 
 
 template<typename Pointer>
-static inline auto CopyToArray(const Pointer head) {
+static constexpr inline auto CopyToArray(const Pointer head) {
     std::vector<typename Pointer::element_type::ValueType> array;
 
     for (auto iter = head; iter; iter = iter->next) {
@@ -59,9 +59,10 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        explicit Node(const ValueType v = 0): value(v) {
+        constexpr explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
+
         ~Node() {
             --node_alive;
         }
@@ -156,6 +157,7 @@ protected:
         to_be_deleted = *(to_be_deleted.next);
         --size;
     }
+
 public:
     using ValueType = Node::ValueType;
     friend class SinglyCircularLinkedList;
@@ -190,7 +192,7 @@ public:
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 
@@ -384,6 +386,7 @@ public:
         head = tail = nullptr;
         size = 0;
     }
+
     void DeleteAllOneByOne_Recursive() {
         if (head != tail) {
             head = head->next;
@@ -571,6 +574,7 @@ public:
 
         return target;
     }
+
     auto GetN_Iterative(const std::size_t index) const {
 
         return At(index)->value;

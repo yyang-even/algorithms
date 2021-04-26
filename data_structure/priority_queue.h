@@ -7,6 +7,7 @@
 #include "data_structure/linked_list/singly_list/singly_linked_list.h"
 #include "data_structure/linked_list/sorted_insert_linked_list.h"
 
+
 /** Priority Queue
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -36,6 +37,7 @@ using MinPriorityQueue = MinHeap<T>;
 class SinglyLinkedListMinPriorityQueue : protected SinglyLinkedList {
 public:
     SinglyLinkedListMinPriorityQueue() = default;
+    explicit
     SinglyLinkedListMinPriorityQueue(const std::vector<Node::ValueType> &array) {
         for (const auto elem : array) {
             SortedInsert(elem);
@@ -65,11 +67,13 @@ public:
 class SinglyLinkedListMinPriorityQueue_STL {
     using ListType = std::forward_list<int>;
     ListType sorted_list;
+
 public:
     SinglyLinkedListMinPriorityQueue_STL() = default;
+    explicit
     SinglyLinkedListMinPriorityQueue_STL(std::vector<ListType::value_type> array) {
         std::sort(array.begin(), array.end());
-        sorted_list = ContainerCast(array);
+        sorted_list = ContainerCast<ListType>(std::move(array));
     }
 
     void Push(const ListType::value_type v) {
@@ -85,7 +89,8 @@ public:
     }
 
     auto MoveToSortedArray() {
-        std::vector<ListType::value_type> array = ContainerCast(sorted_list);
+        auto array =
+            ContainerCast<std::vector<ListType::value_type>>(std::move(sorted_list));
         sorted_list.clear();
         return array;
     }

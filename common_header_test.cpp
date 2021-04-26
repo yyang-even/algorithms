@@ -225,14 +225,14 @@ MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableSingle, list_single_v
 MUTUAL_SIMPLE_TEST(ListFunction, ListFunction, TestVariableMulti, list_multi_values);
 
 
-static inline std::list<ValueType>
+static inline auto
 ConstVectorToList(const std::vector<ValueType> &array) {
-    return ContainerCast(array);
+    return ContainerCast<std::list<ValueType>>(array);
 }
 
-static inline std::list<ValueType>
+static inline auto
 NonconstVectorToList(std::vector<ValueType> array) {
-    return ContainerCast(array);
+    return ContainerCast<std::list<ValueType>>(std::move(array));
 }
 
 SIMPLE_TEST(ConstVectorToList, TestInitializerReturnSingle,

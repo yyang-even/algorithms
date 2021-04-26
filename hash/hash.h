@@ -15,6 +15,5 @@ static constexpr inline auto ToFrequencyHashTable(const Container &container) {
 
 template <typename Container>
 static constexpr inline auto ToUnorderedSet(const Container &container) {
-    return std::unordered_set<typename Container::value_type>(
-               container.cbegin(), container.cend());
+    return ContainerCast<std::unordered_set<typename Container::value_type>>(container);
 }
