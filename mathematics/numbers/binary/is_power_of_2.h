@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Compute the sign of an integer
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -12,6 +13,6 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.4.
  */
-static inline auto IsPowerOf2(const unsigned num) {
+static constexpr inline auto IsPowerOf2(const unsigned num) {
     return num and !(num & (num - 1));
 }

@@ -3,8 +3,6 @@
 
 namespace {
 
-typedef unsigned InputType;
-
 /** Computing parity the naive way
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -15,7 +13,7 @@ typedef unsigned InputType;
  *
  * 1 if an odd number of bits set, 0 otherwise.
  */
-auto Parity_BrianKernighan(InputType n) {
+auto Parity_BrianKernighan(unsigned n) {
     bool parity = false;  // parity will be the parity of n
 
     while (n) {
@@ -35,7 +33,7 @@ auto Parity_BrianKernighan(InputType n) {
  * @reference   Compute the parity of a number using XOR and table look-up
  *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
-auto Parity_LookupTable(const InputType n) {
+auto Parity_LookupTable(const unsigned n) {
     static const bool ParityTable256[256] = {
 #   define P2(n) n, n^1, n^1, n
 #   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)

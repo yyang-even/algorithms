@@ -1,8 +1,7 @@
 #include "common_header.h"
 
-namespace {
 
-typedef int InputType;
+namespace {
 
 /** Compute the integer absolute value (abs) without branching
  *
@@ -12,13 +11,13 @@ typedef int InputType;
  * @reference   Compute the integer absolute value (abs) without branching
  *              https://www.geeksforgeeks.org/compute-the-integer-absolute-value-abs-without-branching/
  */
-unsigned Absolute(const InputType num) {
+constexpr inline unsigned Absolute(const int num) {
     const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num + mask) ^ mask;
 }
 
 
-unsigned Abs_Patented(const InputType num) {
+constexpr inline unsigned Abs_Patented(const int num) {
     const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num ^ mask) - mask;
 }
@@ -26,27 +25,23 @@ unsigned Abs_Patented(const InputType num) {
 }//namespace
 
 
-constexpr auto LOWER = std::numeric_limits<InputType>::min();
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto LOWER = std::numeric_limits<int>::min();
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
 SIMPLE_BENCHMARK(Absolute, Sample1, -1);
 SIMPLE_BENCHMARK(Absolute, Sample2, 0);
 
-SIMPLE_TEST(Absolute, TestSample1, 1u, -1);
-SIMPLE_TEST(Absolute, TestSample2, 1u, -1);
-SIMPLE_TEST(Absolute, TestSample3, 0u, 0);
-SIMPLE_TEST(Absolute, TestSample4, static_cast<unsigned>(UPPER) + 1, LOWER);
-SIMPLE_TEST(Absolute, TestSample5, static_cast<unsigned>(UPPER), UPPER);
+SIMPLE_TEST(Absolute, TestSample1, 1, -1);
+SIMPLE_TEST(Absolute, TestSample2, 1, -1);
+SIMPLE_TEST(Absolute, TestSample3, 0, 0);
+SIMPLE_TEST(Absolute, TestSample5, UPPER, UPPER);
 
 
 SIMPLE_BENCHMARK(Abs_Patented, Sample1, -1);
 SIMPLE_BENCHMARK(Abs_Patented, Sample2, 0);
 
-SIMPLE_TEST(Abs_Patented, TestSample1, 1u, -1);
-SIMPLE_TEST(Abs_Patented, TestSample2, 1u, -1);
-SIMPLE_TEST(Abs_Patented, TestSample3, 0u, 0);
-SIMPLE_TEST(Abs_Patented, TestSample4, static_cast<unsigned>(UPPER) + 1, LOWER);
-SIMPLE_TEST(Abs_Patented, TestSample5, static_cast<unsigned>(UPPER), UPPER);
-
-MUTUAL_RANDOM_TEST(Absolute, Abs_Patented, LOWER, UPPER);
+SIMPLE_TEST(Abs_Patented, TestSample1, 1, -1);
+SIMPLE_TEST(Abs_Patented, TestSample2, 1, -1);
+SIMPLE_TEST(Abs_Patented, TestSample3, 0, 0);
+SIMPLE_TEST(Abs_Patented, TestSample5, UPPER, UPPER);

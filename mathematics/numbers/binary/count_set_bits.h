@@ -1,9 +1,11 @@
 #pragma once
 
+
 /**
  * Brian Kernighan’s Algorithm
  */
-unsigned CountSetBits_BrianKernighan(unsigned n) {
+static constexpr inline unsigned
+CountSetBits_BrianKernighan(unsigned n) {
     unsigned count = 0;
     while (n) {
         ++count;

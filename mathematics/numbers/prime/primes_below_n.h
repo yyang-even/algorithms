@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Primes Below N [1, n)
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -18,25 +19,27 @@
  * @reference   Segmented Sieve
  *              https://www.geeksforgeeks.org/segmented-sieve/
  *
- * @note    Time complexity (or number of operations) by Segmented Sieve is same as Simple Sieve.
- *          It has advantages for large ‘n’ as it has better locality of reference and requires.
+ * @note    Time complexity (or number of operations) by Segmented Sieve is same as
+ *  Simple Sieve. It has advantages for large 'n' as it has better locality of reference
+ *  and requires.
  *
  * @reference   Bitwise Sieve
  *              https://www.geeksforgeeks.org/bitwise-sieve/
  *
- * A positive integer p is called prime if it has just two divisors, namely 1 and p.
- * By convention, 1 isn't prime, so the sequence of primes starts out like this:
+ * A positive integer p is called prime if it has just two divisors, namely 1 and p. By
+ * convention, 1 isn't prime, so the sequence of primes starts out like this:
  *  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,...
  *
  * Sieve of Eratosthenes:
- * First write down all integers from 2 through N.
- * Next circle 2, marking it prime, and cross out all other multiples of 2.
- * The repeatedly circle the smallest uncircled, uncrossed number and cross out its other multiples.
- * When everything has been circled or crossed out, the circled numbers are the primes.
+ *  First write down all integers from 2 through N. Next circle 2, marking it prime, and
+ *  cross out all other multiples of 2. The repeatedly circle the smallest uncircled,
+ *  uncrossed number and cross out its other multiples. When everything has been circled
+ *  or crossed out, the circled numbers are the primes.
  */
 template <typename Function>
-auto SieveOfEratosthenes_VectorBool(const unsigned long N,
-                                    const Function for_each_prime_function) {
+static constexpr inline auto
+SieveOfEratosthenes_VectorBool(const unsigned long N,
+                               const Function for_each_prime_function) {
     assert(N > 2);
 
     std::vector<bool> prime_marks(N, true);
@@ -60,7 +63,7 @@ auto SieveOfEratosthenes_VectorBool(const unsigned long N,
     return prime_marks;
 }
 
-auto PrimesBelowN(const unsigned long N) {
+static inline auto PrimesBelowN(const unsigned long N) {
     std::vector<unsigned long> primes;
     if (N > 2) {
         SieveOfEratosthenes_VectorBool(N, [&primes](const auto prime) {
@@ -71,7 +74,8 @@ auto PrimesBelowN(const unsigned long N) {
 }
 
 
-auto SieveOfEratosthenes_UniqueCount(const unsigned long N) {
+static inline auto
+SieveOfEratosthenes_UniqueCount(const unsigned long N) {
     assert(N > 2);
 
     std::vector<unsigned char> prime_marks(N, 0);
@@ -92,7 +96,8 @@ auto SieveOfEratosthenes_UniqueCount(const unsigned long N) {
 }
 
 
-auto SieveOfEratosthenes_Count(const unsigned long N) {
+static inline auto
+SieveOfEratosthenes_Count(const unsigned long N) {
     assert(N > 2);
 
     std::vector<unsigned char> prime_marks(N, 0);

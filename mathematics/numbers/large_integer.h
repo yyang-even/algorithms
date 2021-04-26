@@ -2,9 +2,10 @@
 
 #include "common_header.h"
 
+
 class LargeInteger {
 
-    typedef std::vector<unsigned char> NumData;
+    using NumData = std::vector<unsigned char>;
 
     //Number are stored in reverse digit order
     NumData m_nums;
@@ -183,7 +184,7 @@ private:
 };
 
 
-std::ostream &operator<<(std::ostream &os, const LargeInteger &num) {
+inline std::ostream &operator<<(std::ostream &os, const LargeInteger &num) {
     os << num.ToString();
     return os;
 }
