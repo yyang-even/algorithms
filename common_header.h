@@ -39,6 +39,7 @@
 /** A function return a random number in range [from, to]
  */
 template <typename FromType, typename ToType>
+[[nodiscard]]
 static inline auto Random_Number(const FromType from, const ToType to) {
     static const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
     static std::default_random_engine generator(SEED);
@@ -49,9 +50,19 @@ static inline auto Random_Number(const FromType from, const ToType to) {
 
 
 template <typename Iterator>
+[[nodiscard]]
 static constexpr inline bool
 isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
+}
+
+
+template <typename ToContainer, typename FromContainer>
+[[nodiscard]]
+static constexpr inline auto
+ContainerCast(FromContainer a_container) {
+    return ToContainer(std::make_move_iterator(a_container.begin()),
+                       std::make_move_iterator(a_container.end()));
 }
 
 
@@ -158,9 +169,6 @@ isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
         return not F(std::forward<decltype(args)>(args)...);        \
     }
-
-
-#define ContainerCast(from_container) {std::make_move_iterator(from_container.cbegin()), std::make_move_iterator(from_container.cend())}
 
 
 //Constants
