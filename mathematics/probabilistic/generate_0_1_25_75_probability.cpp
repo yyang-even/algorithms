@@ -22,12 +22,12 @@ inline auto Generate25BiasedCoinFromFair() {
 
 
 inline bool testGenerate25BiasedCoinFromFair() {
-    static const auto TOTAL_SAMPLE_SIZE = 4000000;
-    static const auto SAMPLE_SIZE0 = TOTAL_SAMPLE_SIZE / 4;
-    static const auto SAMPLE_SIZE1 = SAMPLE_SIZE0 * 3;
-    static const double ERROR_RATE = 0.01;
-    static const int TOLERATION0 = SAMPLE_SIZE0 * ERROR_RATE;
-    static const auto TOLERATION1 = TOLERATION0 * 3;
+    static constexpr auto TOTAL_SAMPLE_SIZE = 4000000;
+    static constexpr auto SAMPLE_SIZE0 = TOTAL_SAMPLE_SIZE / 4;
+    static constexpr auto SAMPLE_SIZE1 = SAMPLE_SIZE0 * 3;
+    static constexpr double ERROR_RATE = 0.01;
+    static constexpr int TOLERATION0 = SAMPLE_SIZE0 * ERROR_RATE;
+    static constexpr auto TOLERATION1 = TOLERATION0 * 3;
 
     std::array<int, 2> counters {};
     for (int i = 0; i < TOTAL_SAMPLE_SIZE; ++i) {

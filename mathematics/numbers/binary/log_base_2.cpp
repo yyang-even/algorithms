@@ -52,7 +52,7 @@ unsigned LogBase2_Float(const unsigned num) {
  */
 auto LogBase2_LgN_Branch(uint32_t num) {
     static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
-    static const unsigned int S[] = {1, 2, 4, 8, 16};
+    static constexpr unsigned int S[] = {1, 2, 4, 8, 16};
 
     unsigned result = 0;
     for (int i = 4; i >= 0; i--) {

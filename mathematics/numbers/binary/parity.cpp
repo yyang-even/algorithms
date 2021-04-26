@@ -34,7 +34,7 @@ auto Parity_BrianKernighan(unsigned n) {
  *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
 auto Parity_LookupTable(const unsigned n) {
-    static const bool ParityTable256[256] = {
+    static constexpr bool ParityTable256[256] = {
 #   define P2(n) n, n^1, n^1, n
 #   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
 #   define P6(n) P4(n), P4(n^1), P4(n^1), P4(n)

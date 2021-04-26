@@ -36,7 +36,7 @@ int SignExtend_Const_4Bits(const int x) {
 
 template <unsigned B>
 inline int SignExtend_Variable(int x) {
-    static const int mask = 1U << (B - 1);
+    static constexpr int mask = 1U << (B - 1);
     x = x & ((1U << B) - 1);
     return (x ^ mask) - mask;
 }

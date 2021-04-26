@@ -55,7 +55,7 @@ auto SortDates(std::vector<Date> dates) {
 auto ToInt(const std::string &date) {
     assert(date.length() == 11);
 
-    static const std::unordered_map<std::string, int> MonthsMap = {
+    static const std::unordered_map<std::string_view, int> MonthsMap = {
         {"Jan", 1},
         {"Feb", 2},
         {"Mar", 3},

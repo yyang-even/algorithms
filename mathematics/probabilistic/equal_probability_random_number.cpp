@@ -51,10 +51,10 @@ auto RandomNumber0to6() {
 
 #ifdef WANT_TESTS
 TEST(RandomNumber1to7Test, TestSanity) {
-    static const auto SAMPLE_SIZE = 7000000;
-    static const auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
-    static const double ERROR_RATE = 0.01;
-    static const int TOLERATION = AVERAGE_SAMPLE_SIZE * ERROR_RATE;
+    static constexpr auto SAMPLE_SIZE = 7000000;
+    static constexpr auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
+    static constexpr double ERROR_RATE = 0.01;
+    static constexpr int TOLERATION = AVERAGE_SAMPLE_SIZE * ERROR_RATE;
 
     std::array<int, 8> counters {};
     for (int i = 0; i < SAMPLE_SIZE; ++i) {
@@ -74,10 +74,10 @@ TEST(RandomNumber1to7Test, TestSanity) {
 
 
 TEST(RandomNumber0to6Test, TestSanity) {
-    static const auto SAMPLE_SIZE = 7000000;
-    static const auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
-    static const double ERROR_RATE = 0.01;
-    static const int TOLERATION = AVERAGE_SAMPLE_SIZE * ERROR_RATE;
+    static constexpr auto SAMPLE_SIZE = 7000000;
+    static constexpr auto AVERAGE_SAMPLE_SIZE = SAMPLE_SIZE / 7;
+    static constexpr double ERROR_RATE = 0.01;
+    static constexpr int TOLERATION = AVERAGE_SAMPLE_SIZE * ERROR_RATE;
 
     std::array<int, 7> counters {};
     for (int i = 0; i < SAMPLE_SIZE; ++i) {

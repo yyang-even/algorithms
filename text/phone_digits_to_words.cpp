@@ -16,9 +16,9 @@ using ResultType = std::unordered_multiset<std::string>;
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
  */
-static const std::vector<std::string> CharKeys = { "0",    "1",    "abc",  "def", "ghi",
-                                                   "jkl", "mno", "pqrs", "tuv", "wxyz"
-                                                 };
+const std::vector<std::string_view> CharKeys = { "0",    "1",    "abc",  "def", "ghi",
+                                                 "jkl", "mno", "pqrs", "tuv", "wxyz"
+                                               };
 
 void AllPossibleWordsFromPhoneDigits_Recursive(const ArrayType &phone_digits,
                                                std::string &one_word,

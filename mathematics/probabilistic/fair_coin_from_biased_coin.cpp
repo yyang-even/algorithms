@@ -32,10 +32,10 @@ auto MakeFairCoinfromBiasedCoin() {
 }
 
 inline auto TestMakeFairCoinfromBiasedCoin() {
-    static const int SAMPLE_SIZE = 2000000;
-    static const int HALF_SAMPLE_SIZE = SAMPLE_SIZE / 2;
-    static const double ERROR_RATE = 0.01;
-    static const int TOLERATION = SAMPLE_SIZE * ERROR_RATE;
+    static constexpr int SAMPLE_SIZE = 2000000;
+    static constexpr int HALF_SAMPLE_SIZE = SAMPLE_SIZE / 2;
+    static constexpr double ERROR_RATE = 0.01;
+    static constexpr int TOLERATION = SAMPLE_SIZE * ERROR_RATE;
 
     int counter = 0;
     for (int i = 0; i < SAMPLE_SIZE; ++i) {

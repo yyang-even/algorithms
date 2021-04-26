@@ -19,12 +19,12 @@ namespace {
  */
 constexpr char CASE_DIFF = 'a' - 'A';
 auto ToLowerCase(const char c) {
-    static const bool IS_SET = true;
+    static constexpr bool IS_SET = true;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
 
 auto ToUpperCase(const char c) {
-    static const bool IS_SET = false;
+    static constexpr bool IS_SET = false;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
 

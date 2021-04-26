@@ -44,7 +44,7 @@ unsigned Modulus2PowerMinus1(unsigned num, const unsigned s) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
-    static const unsigned int M[] = {
+    static constexpr unsigned int M[] = {
         0x00000000, 0x55555555, 0x33333333, 0xc71c71c7,
         0x0f0f0f0f, 0xc1f07c1f, 0x3f03f03f, 0xf01fc07f,
         0x00ff00ff, 0x07fc01ff, 0x3ff003ff, 0xffc007ff,
@@ -55,7 +55,7 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         0x0fffffff, 0x1fffffff, 0x3fffffff, 0x7fffffff
     };
 
-    static const unsigned int Q[][6] = {
+    static constexpr unsigned int Q[][6] = {
         { 0,  0,  0,  0,  0,  0}, {16,  8,  4,  2,  1,  1}, {16,  8,  4,  2,  2,  2},
         {15,  6,  3,  3,  3,  3}, {16,  8,  4,  4,  4,  4}, {15,  5,  5,  5,  5,  5},
         {12,  6,  6,  6,  6,  6}, {14,  7,  7,  7,  7,  7}, {16,  8,  8,  8,  8,  8},
@@ -69,7 +69,7 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         {30, 30, 30, 30, 30, 30}, {31, 31, 31, 31, 31, 31}
     };
 
-    static const unsigned int R[][6] = {
+    static constexpr unsigned int R[][6] = {
         {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000},
         {0x0000ffff, 0x000000ff, 0x0000000f, 0x00000003, 0x00000001, 0x00000001},
         {0x0000ffff, 0x000000ff, 0x0000000f, 0x00000003, 0x00000003, 0x00000003},

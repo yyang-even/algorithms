@@ -36,7 +36,7 @@ auto SplitIntoWords(const std::string &sentence) {
 
 
 auto SplitIntoWords_strtok(std::string sentence) {
-    static const auto *delimiters = " \n\t";
+    static constexpr auto *delimiters = " \n\t";
 
     ArrayType outputs;
     for (auto *token = std::strtok(sentence.data(), delimiters);

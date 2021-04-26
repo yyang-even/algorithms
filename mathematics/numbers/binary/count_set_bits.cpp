@@ -34,12 +34,13 @@ using InputType = unsigned;
  * @reference   Count set bits in an integer using Lookup Table
  *              https://www.geeksforgeeks.org/count-set-bits-integer-using-lookup-table/
  */
-static const unsigned char BitsSetTable256[256] = {
+constexpr unsigned char BitsSetTable256[256] = {
 #define B2(n) n,     n+1,     n+1,     n+2
 #define B4(n) B2(n), B2(n+1), B2(n+1), B2(n+2)
 #define B6(n) B4(n), B4(n+1), B4(n+1), B4(n+2)
     B6(0), B6(1), B6(1), B6(2)
 };
+
 InputType CountSetBits_LookupTable(const InputType n) {
     auto *p = reinterpret_cast<const unsigned char *>(&n);
     auto num_bytes = sizeof(InputType);

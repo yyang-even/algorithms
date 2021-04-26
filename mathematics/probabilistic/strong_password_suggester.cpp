@@ -18,7 +18,7 @@ namespace {
  *      3. At least one number.
  *      4. At least one upper and one lower case char.
  */
-static const std::string SPECIALS {"@#$_()!"};
+const std::string_view SPECIALS {"@#$_()!"};
 
 struct PasswordCriteria {
     bool lower_case = false;

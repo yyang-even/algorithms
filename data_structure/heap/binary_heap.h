@@ -57,7 +57,7 @@ public:
 
 private:
     ArrayType heap;
-    static const Compare compare;
+    static constexpr Compare compare{};
 
     static SizeType parent(const SizeType i) {
         assert(i);

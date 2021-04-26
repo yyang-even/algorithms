@@ -49,11 +49,11 @@ auto ApproximateMedian(const ArrayType &values) {
 
 #ifdef WANT_TESTS
 TEST(ApproximateMedianTest, TestSanity) {
-    static const auto TOTAL_SAMPLE_SIZE = 100000;
+    static constexpr auto TOTAL_SAMPLE_SIZE = 100000;
     const ArrayType values = {1, 13, 4, 12, 5, 8, 15, 9, 7, 11, 6, 10, 3, 2, 14};
     auto sorted_array = values;
     std::sort(sorted_array.begin(), sorted_array.end());
-    static const double ERROR_RATE = 2.0 / (values.size() * values.size());
+    const double ERROR_RATE = 2.0 / (values.size() * values.size());
 
     std::array<int, 2> counters {};
     for (int i = 0; i < TOTAL_SAMPLE_SIZE; ++i) {
