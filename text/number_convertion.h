@@ -29,7 +29,7 @@ static inline auto HexDigitToDecimal(const char digit) {
 }
 
 
-const auto BinaryDigitToDecimal = OctalDigitToDecimal;
+constexpr auto BinaryDigitToDecimal = OctalDigitToDecimal;
 
 
 static inline auto CreateBinaryToOctalDigitMap() {

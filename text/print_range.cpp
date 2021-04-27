@@ -41,9 +41,9 @@ inline auto PrintRange1ToN_Template() {
     return result;
 }
 
-const auto PrintRange1To1_Template = PrintRange1ToN_Template<1>;
-const auto PrintRange1To2_Template = PrintRange1ToN_Template<2>;
-const auto PrintRange1To100_Template = PrintRange1ToN_Template<100>;
+constexpr auto PrintRange1To1_Template = PrintRange1ToN_Template<1>;
+constexpr auto PrintRange1To2_Template = PrintRange1ToN_Template<2>;
+constexpr auto PrintRange1To100_Template = PrintRange1ToN_Template<100>;
 
 
 /**

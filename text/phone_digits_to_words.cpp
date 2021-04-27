@@ -10,8 +10,8 @@ using ResultType = std::unordered_multiset<std::string>;
  *
  * @reference   https://www.geeksforgeeks.org/find-possible-words-phone-digits/
  *
- * Given a keypad as shown in the diagram, and an n digit number, list all
- * words which are possible by pressing these numbers.
+ * Given a keypad as shown in the diagram, and an n digit number, list all words which
+ * are possible by pressing these numbers.
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
@@ -36,7 +36,7 @@ void AllPossibleWordsFromPhoneDigits_Recursive(const ArrayType &phone_digits,
     }
 }
 
-auto AllPossibleWordsFromPhoneDigits_Recursive(const ArrayType &phone_digits) {
+inline auto AllPossibleWordsFromPhoneDigits_Recursive(const ArrayType &phone_digits) {
     std::string one_word;
     ResultType results;
     AllPossibleWordsFromPhoneDigits_Recursive(phone_digits, one_word, results);
@@ -60,7 +60,7 @@ auto AllPossibleWordsFromPhoneDigits_Iterative(const ArrayType &phone_digits) {
                 return results;
             }
 
-            const auto &current_char_keys =  CharKeys[phone_digits[i]];
+            const auto current_char_keys =  CharKeys[phone_digits[i]];
             if (one_word[i] == current_char_keys.back()) {
                 one_word[i] = current_char_keys.front();
             } else {

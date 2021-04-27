@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string>;
+
 /** Print all permutations with repetition of characters
  *
  * @reference   https://www.geeksforgeeks.org/print-all-permutations-with-repetition-of-characters/
@@ -13,11 +15,11 @@ namespace {
 void PermutationWithRepetitionHelper(const std::string &input,
                                      const std::string &buffer,
                                      const std::string::iterator buffer_iter,
-                                     std::vector<std::string> &outputs) {
+                                     ArrayType &outputs) {
     for (const auto c : input) {
         *buffer_iter = c;
 
-        const auto next = buffer_iter + 1;
+        const auto next = std::next(buffer_iter);
         if (next == buffer.end()) {
             outputs.push_back(buffer);
         } else {
@@ -29,7 +31,7 @@ void PermutationWithRepetitionHelper(const std::string &input,
 auto PermutationWithRepetition(std::string input) {
     std::sort(input.begin(), input.end());
 
-    std::vector<std::string> outputs;
+    ArrayType outputs;
     auto buffer = input;
 
     PermutationWithRepetitionHelper(input, buffer, buffer.begin(), outputs);
@@ -40,9 +42,9 @@ auto PermutationWithRepetition(std::string input) {
 }//namespace
 
 
-const std::vector<std::string> EXPECTED1 = {"aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc", "baa", "bab", "bac", "bba", "bbb", "bbc", "bca", "bcb", "bcc", "caa", "cab", "cac", "cba", "cbb", "cbc", "cca", "ccb", "ccc"};
+const ArrayType EXPECTED1 = {"aaa", "aab", "aac", "aba", "abb", "abc", "aca", "acb", "acc", "baa", "bab", "bac", "bba", "bbb", "bbc", "bca", "bcb", "bcc", "caa", "cab", "cac", "cba", "cbb", "cbc", "cca", "ccb", "ccc"};
 
 
-SIMPLE_BENCHMARK(PermutationWithRepetition, Sample1, "ab4c12ed3");
+THE_BENCHMARK(PermutationWithRepetition, "ab4c12ed3");
 
 SIMPLE_TEST(PermutationWithRepetition, TestSAMPLE1, EXPECTED1, "abc");

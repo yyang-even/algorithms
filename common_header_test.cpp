@@ -49,7 +49,7 @@ static constexpr inline auto TemplateFunction(T v) {
 }
 
 
-const auto SingleBuiltinArgumentFunction = TemplateFunction<int>;
+constexpr auto SingleBuiltinArgumentFunction = TemplateFunction<int>;
 
 THE_BENCHMARK(SingleBuiltinArgumentFunction, 5);
 SIMPLE_BENCHMARK(SingleBuiltinArgumentFunction, Sample1, 5);
@@ -124,7 +124,7 @@ MUTUAL_SIMPLE_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction,
 MUTUAL_RANDOM_TEST(SignedUnsignedFunction, SingleBuiltinArgumentFunction, 1, 5);
 
 
-const auto DoubleFunction = TemplateFunction<double>;
+constexpr auto DoubleFunction = TemplateFunction<double>;
 
 constexpr double double_value = 5.0;
 
@@ -133,11 +133,11 @@ SIMPLE_DOUBLE_TEST(DoubleFunction, TestSignedVariable, double_value, double_valu
 
 
 using ValueType = int;
-const std::initializer_list<ValueType> initializer_list_single_value = {signed_value};
+constexpr std::initializer_list<ValueType> initializer_list_single_value = {signed_value};
 const std::vector<ValueType> vector_single_value = initializer_list_single_value;
 const std::list<ValueType> list_single_value = initializer_list_single_value;
 
-const std::initializer_list<ValueType> initializer_list_multi_values = {signed_value, signed_value, signed_value, signed_value};
+constexpr std::initializer_list<ValueType> initializer_list_multi_values = {signed_value, signed_value, signed_value, signed_value};
 const std::vector<ValueType> vector_multi_values = initializer_list_multi_values;
 const std::list<ValueType> list_multi_values = initializer_list_multi_values;
 
@@ -163,7 +163,7 @@ SIMPLE_TEST0(ZeroVectorMultiFunction, TestInitializerReturnSingle,
 SIMPLE_TEST0(ZeroVectorMultiFunction, TestVariableSingle, vector_multi_values);
 
 
-const auto VectorFunction = TemplateFunction<std::vector<ValueType>>;
+constexpr auto VectorFunction = TemplateFunction<std::vector<ValueType>>;
 
 SIMPLE_BENCHMARK(VectorFunction, Sample1, {5});
 SIMPLE_BENCHMARK(VectorFunction, Sample2, {5, 5, 5});
@@ -196,7 +196,7 @@ MUTUAL_SIMPLE_TEST(VectorFunction, VectorFunction, TestVariableMulti,
                    vector_multi_values);
 
 
-const auto ListFunction = TemplateFunction<std::list<ValueType>>;
+constexpr auto ListFunction = TemplateFunction<std::list<ValueType>>;
 
 SIMPLE_BENCHMARK(ListFunction, Sample1, {5});
 SIMPLE_BENCHMARK(ListFunction, Sample2, {5, 5, 5});
