@@ -5,7 +5,7 @@
 
 namespace {
 
-auto ToDecimal(const std::string &number, const int base,
+auto ToDecimal(const std::string_view number, const int base,
                const std::function<int(const char)> to_decimal) {
     int result = 0;
     int sign = 1;
@@ -40,7 +40,7 @@ auto ToDecimal(const std::string &number, const int base,
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 6.
  */
-auto DecToDecimal(const std::string &dec) {
+inline auto DecToDecimal(const std::string_view dec) {
     return ToDecimal(dec, 10, HexDigitToDecimal);
 }
 
@@ -49,8 +49,9 @@ auto DecToDecimal(const std::string &dec) {
  * @reference   Recursive Implementation of atoi()
  *              https://www.geeksforgeeks.org/recursive-implementation-of-atoi/
  */
-auto DecToDecimal_Recursive(const std::string::const_reverse_iterator crbegin,
-                            const std::string::size_type n) {
+constexpr inline auto
+DecToDecimal_Recursive(const std::string_view::const_reverse_iterator crbegin,
+                       const std::string_view::size_type n) {
     if (n == 0) {
         return 0;
     }
@@ -61,7 +62,7 @@ auto DecToDecimal_Recursive(const std::string::const_reverse_iterator crbegin,
     return DecToDecimal_Recursive(std::next(crbegin), n - 1) * 10 + *crbegin - '0';
 }
 
-auto DecToDecimal_Recursive(const std::string &dec) {
+constexpr inline auto DecToDecimal_Recursive(const std::string_view dec) {
     return DecToDecimal_Recursive(dec.crbegin(), dec.size());
 }
 
@@ -70,7 +71,7 @@ auto DecToDecimal_Recursive(const std::string &dec) {
  *
  * @reference   https://www.geeksforgeeks.org/program-for-hexadecimal-to-decimal/
  */
-auto HexToDecimal(const std::string &hex) {
+inline auto HexToDecimal(const std::string_view hex) {
     return ToDecimal(hex, 16, HexDigitToDecimal);
 }
 
@@ -79,10 +80,9 @@ auto HexToDecimal(const std::string &hex) {
  * @reference   StringStream in C++ for Decimal to Hexadecimal and back
  *              https://www.geeksforgeeks.org/stringstream-c-decimal-hexadecimal-back/
  */
-auto HexToDecimal_StringStream(const std::string &hex) {
+inline auto HexToDecimal_StringStream(const std::string &hex) {
     int decimal_result = 0;
-    std::stringstream ss;
-    ss << hex;
+    std::stringstream ss(hex);
     ss >> std::hex >> decimal_result;
 
     return decimal_result;
@@ -93,7 +93,7 @@ auto HexToDecimal_StringStream(const std::string &hex) {
  *
  * @reference   https://www.geeksforgeeks.org/program-octal-decimal-conversion/
  */
-auto OctalToDecimal(const std::string &octal) {
+inline auto OctalToDecimal(const std::string_view octal) {
     return ToDecimal(octal, 8, OctalDigitToDecimal);
 }
 
@@ -102,7 +102,7 @@ auto OctalToDecimal(const std::string &octal) {
  *
  * @reference   https://www.geeksforgeeks.org/program-binary-decimal-conversion/
  */
-auto BinaryToDecimal(const std::string &binary) {
+inline auto BinaryToDecimal(const std::string_view binary) {
     return ToDecimal(binary, 2, BinaryDigitToDecimal);
 }
 
@@ -111,8 +111,8 @@ auto BinaryToDecimal(const std::string &binary) {
  * @reference   Recursive Program for Binary to Decimal
  *              https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
  */
-int BinaryToDecimal_Recursive(const std::string &binary,
-                              const std::string::size_type i = 0) {
+constexpr inline int BinaryToDecimal_Recursive(const std::string_view binary,
+                                               const std::string_view::size_type i = 0) {
     if (i == binary.size()) {
         return 0;
     }

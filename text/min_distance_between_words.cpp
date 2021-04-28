@@ -22,8 +22,8 @@ namespace {
  * @hint    Use a hash table of each word and the locations where it occurs.
  */
 unsigned MinDistanceBetweenWords(std::string text,
-                                 const std::string &w1,
-                                 const std::string &w2) {
+                                 const std::string_view &w1,
+                                 const std::string_view &w2) {
     if (w1 == w2) {
         return 0;
     }

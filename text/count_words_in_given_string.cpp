@@ -17,7 +17,7 @@ constexpr auto CountWordsInGivenString(const std::string_view input) {
     auto in_word = false;
 
     for (const auto c : input) {
-        if (c == ' ' or c == '\n' or c == '\t') {
+        if (std::isspace(c)) {
             in_word = false;
         } else if (not in_word) {
             in_word = true;

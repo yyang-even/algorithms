@@ -7,27 +7,27 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/print-long-int-number-c-using-putchar/
  *
- * Write a C function print(n) that takes a long int number n as argument, and prints it on console.
- * The only allowed library function is putchar(), no other function like itoa() or printf() is
- * allowed. Use of loops is also not allowed.
+ * Write a C function print(n) that takes a long int number n as argument, and prints it
+ * on console. The only allowed library function is putchar(), no other function like
+ * itoa() or printf() is allowed. Use of loops is also not allowed.
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 6.
  */
-void put_char(std::string &stream, const char c) {
+inline void put_char(std::string &stream, const char c) {
     stream.push_back(c);
 }
 
-void PrintIntegerHelper(std::string &stream, const unsigned num) {
-    const auto next_n = num / 10u;
+inline void PrintIntegerHelper(std::string &stream, const unsigned num) {
+    const auto next_n = num / 10;
     if (next_n) {
         PrintIntegerHelper(stream, next_n);
     }
 
-    put_char(stream, num % 10u + '0');
+    put_char(stream, num % 10 + '0');
 }
 
-auto PrintInteger(int num) {
+inline auto PrintInteger(int num) {
     std::string stream;
 
     if (num < 0) {

@@ -9,13 +9,13 @@ using ArrayType = std::vector<std::string>;
  *
  * @reference   https://www.geeksforgeeks.org/split-a-sentence-into-words-in-cpp/
  */
-auto SplitIntoWords(const std::string &sentence) {
+auto SplitIntoWords(const std::string_view sentence) {
     ArrayType outputs;
     std::string word;
     auto in_word = false;
 
     for (const auto c : sentence) {
-        if (c == ' ' or c == '\n' or c == '\t') {
+        if (std::isspace(c)) {
             if (in_word) {
                 outputs.push_back(std::move(word));
                 word.clear();

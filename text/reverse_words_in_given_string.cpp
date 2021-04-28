@@ -54,7 +54,7 @@ auto ReverseWordsInGivenString_Stack(std::string input) {
     std::string output;
     for (; not words_stack.empty(); words_stack.pop()) {
         if (not output.empty()) {
-            output.append(1, ' ');
+            output.push_back(' ');
         }
         output.append(words_stack.top());
     }
