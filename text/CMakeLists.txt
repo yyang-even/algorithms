@@ -79,9 +79,6 @@ compile_test(reverse_words_in_given_string)
 compile_benchmark(run_length_encoding)
 compile_test(run_length_encoding)
 
-compile_benchmark(simple_compression)
-compile_test(simple_compression)
-
 compile_benchmark(split_into_words)
 compile_test(split_into_words)
 

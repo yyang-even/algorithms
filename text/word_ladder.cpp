@@ -3,7 +3,7 @@
 
 namespace {
 
-using DictType = std::unordered_set<std::string>;
+using DictType = std::unordered_set<std::string_view>;
 
 /** Word Ladder (Length of shortest chain to reach a target word)
  *
@@ -17,7 +17,7 @@ using DictType = std::unordered_set<std::string>;
  * word i.e., it exists in the dictionary. It may be assumed that the 'target' word
  * exists in dictionary and length of all dictionary words is same.
  */
-auto WordLadder(const std::string &start, const std::string &target,
+auto WordLadder(const std::string &start, const std::string_view target,
                 DictType dictionary) {
     assert(not start.empty());
     assert(start.size() == target.size());
@@ -35,7 +35,7 @@ auto WordLadder(const std::string &start, const std::string &target,
         ++chain_length;
 
         for (auto level_size = adjacent_words.size(); level_size-- > 0;) {
-            auto word = adjacent_words.front();
+            auto word = std::move(adjacent_words.front());
             adjacent_words.pop();
 
             for (std::size_t i = 0; i < start.size(); ++i) {
