@@ -28,8 +28,8 @@ using ArrayType = std::vector<int>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 8.3-4.
  */
-auto RadixSort_BaseN(const ArrayType &values) {
-    return RadixSort(values, values.size());
+inline auto RadixSort_BaseN(ArrayType values) {
+    return RadixSort(std::move(values), values.size());
 }
 
 }//namespace
@@ -46,7 +46,7 @@ const ArrayType VALUES6 = {170, 45, 75, 90, 802, 24, 2, 66};
 const ArrayType EXPECTED6 = {2, 24, 45, 66, 75, 90, 170, 802};
 
 
-SIMPLE_BENCHMARK(RadixSort, Sample1, VALUES6);
+THE_BENCHMARK(RadixSort, VALUES6);
 
 SIMPLE_TEST(RadixSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(RadixSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -62,7 +62,7 @@ const ArrayType VALUES8 = {7, 0, 2};
 const ArrayType EXPECTED8 = {0, 2, 7};
 
 
-SIMPLE_BENCHMARK(RadixSort_BaseN, Sample1, VALUES7);
+THE_BENCHMARK(RadixSort_BaseN, VALUES7);
 
 SIMPLE_TEST(RadixSort_BaseN, TestSAMPLE7, EXPECTED7, VALUES7);
 SIMPLE_TEST(RadixSort_BaseN, TestSAMPLE8, EXPECTED8, VALUES8);

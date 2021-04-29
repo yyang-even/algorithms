@@ -1,8 +1,9 @@
 #pragma once
 
 
-static auto ToCountingArray(const std::vector<int> &values, const std::size_t range,
-                            const std::function<std::size_t(const int)> to_index) {
+static inline auto
+ToCountingArray(const std::vector<int> &values, const std::size_t range,
+                const std::function<std::size_t(const int)> to_index) {
     assert(not values.empty());
 
     std::vector<int> counter(range, 0);
@@ -18,13 +19,18 @@ static auto ToCountingArray(const std::vector<int> &values, const std::size_t ra
 }
 
 
-inline static auto CountingSort(const std::vector<int> &values, const std::size_t range,
-                                const std::function<std::size_t(const int)> to_index) {
+static inline auto
+CountingSort(std::vector<int> values, const std::size_t range,
+             const std::function<std::size_t(const int)> to_index) {
+    if (values.empty()) {
+        return values;
+    }
+
     auto counter = ToCountingArray(values, range, to_index);
 
     std::vector<int> outputs(values.size(), 0);
-    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
-        outputs[--counter[to_index(*riter)]] = *riter;
+    for (auto riter = values.rbegin(); riter != values.rend(); ++riter) {
+        outputs[--counter[to_index(*riter)]] = std::move(*riter);
     }
 
     return outputs;
@@ -37,7 +43,7 @@ inline static auto CountingSort(const std::vector<int> &values, const std::size_
  */
 template <typename ArrayType, typename ToIndexFunc>
 static constexpr inline auto
-CountingSort_STL(const ArrayType &values, const ToIndexFunc to_index) {
+CountingSort_STL(ArrayType values, const ToIndexFunc to_index) {
     if (values.empty()) {
         return values;
     }
@@ -53,8 +59,8 @@ CountingSort_STL(const ArrayType &values, const ToIndexFunc to_index) {
     }
 
     ArrayType outputs(values.size());
-    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
-        outputs[--counter[to_index(*riter)]] = *riter;
+    for (auto riter = values.rbegin(); riter != values.rend(); ++riter) {
+        outputs[--counter[to_index(*riter)]] = std::move(*riter);
     }
 
     return outputs;

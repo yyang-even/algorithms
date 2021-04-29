@@ -11,19 +11,18 @@ using ArrayType = std::vector<int>;
  * @reference   C Program for Pancake sorting
  *              https://www.geeksforgeeks.org/c-program-for-pancake-sorting/
  *
- * Given an unsorted array, sort the given array. You are allowed to do only
- * following operation on array.
+ * Given an unsorted array, sort the given array. You are allowed to do only following
+ * operation on array.
  *
  * flip(arr, i): Reverse array from 0 to i
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 8.
  *
- * Imagine you have a stack of n pancakes, each with a different diameter.
- * You also have a pancake flipper. You can insert your flipper into the
- * stack at any point, lift up all the pancakes in the substack above the
- * flipper and flip them over as a unit. Sort all the pancakes by size
- * (largest at the bottom ).
+ * Imagine you have a stack of n pancakes, each with a different diameter. You also have
+ * a pancake flipper. You can insert your flipper into the stack at any point, lift up
+ * all the pancakes in the substack above the flipper and flip them over as a unit. Sort
+ * all the pancakes by size (largest at the bottom ).
  */
 auto PancakeSort(ArrayType elements) {
     for (auto iter = elements.end(); iter != elements.begin(); --iter) {
@@ -51,7 +50,7 @@ const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
 
-SIMPLE_BENCHMARK(PancakeSort, Sample1, VALUES5);
+THE_BENCHMARK(PancakeSort, VALUES5);
 
 SIMPLE_TEST(PancakeSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(PancakeSort, TestSAMPLE2, VALUES2, VALUES2);

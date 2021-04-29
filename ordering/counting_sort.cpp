@@ -41,28 +41,14 @@ using ArrayType = std::vector<int>;
  * @reference   Sorting without comparison of elements
  *              https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/
  */
-auto CountingSort_NoNegative(const ArrayType &values) {
+auto CountingSort_NoNegative(ArrayType values) {
     static constexpr ArrayType::value_type MAXIMUM = 1 << 8;
 
     assert(std::all_of(values.cbegin(), values.cend(), [](const auto v) {
         return v >= 0 and v < MAXIMUM;
     }));
 
-    ArrayType::value_type counter[MAXIMUM] = {};
-    for (const auto v : values) {
-        ++counter[v];
-    }
-
-    for (ArrayType::value_type i = 1; i < MAXIMUM; ++i) {
-        counter[i] += counter[i - 1];
-    }
-
-    ArrayType outputs(values.size(), 0);
-    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
-        outputs[--counter[*riter]] = *riter;
-    }
-
-    return outputs;
+    return CountingSort(std::move(values), MAXIMUM, Copy);
 }
 
 
@@ -70,7 +56,7 @@ auto CountingSort_NoNegative(const ArrayType &values) {
  * @reference   C++14 Language Extensions: Generalized lambda captures
  *              https://isocpp.org/wiki/faq/cpp14-language#lambda-captures
  */
-auto CountingSort(const ArrayType &values) {
+inline auto CountingSort(ArrayType values) {
     if (values.empty()) {
         return values;
     }
@@ -78,14 +64,14 @@ auto CountingSort(const ArrayType &values) {
     const auto [min_iter, max_iter] = std::minmax_element(values.cbegin(), values.cend());
     const auto RANGE = *max_iter - *min_iter + 1;
 
-    return CountingSort(values, RANGE, [min = *min_iter](const auto v) {
+    return CountingSort(std::move(values), RANGE, [min = *min_iter](const auto v) {
         return v - min;
     });
 }
 
 
-inline auto CountingSort_STL(const ArrayType &values) {
-    return CountingSort_STL(values, Copy);
+inline auto CountingSort_STL(ArrayType values) {
+    return CountingSort_STL(std::move(values), Copy);
 }
 
 }//namespace

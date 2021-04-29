@@ -40,12 +40,12 @@ auto SortByFrequency(ArrayType elements) {
 
     std::sort(elements.begin(), elements.end(),
     [&counter](const auto & lhs, const auto & rhs) {
-        const auto &lhs_index_count_pair = counter.at(lhs);
-        const auto &rhs_index_count_pair = counter.at(rhs);
-        if (lhs_index_count_pair.second == rhs_index_count_pair.second) {
-            return lhs_index_count_pair.first < rhs_index_count_pair.first;
+        const auto [lhs_index, lhs_count] = counter.at(lhs);
+        const auto [rhs_index, rhs_count] = counter.at(rhs);
+        if (lhs_count == rhs_count) {
+            return lhs_index < rhs_index;
         } else {
-            return lhs_index_count_pair.second > rhs_index_count_pair.second;
+            return lhs_count > rhs_count;
         }
     });
 
@@ -57,7 +57,7 @@ auto SortByFrequency(ArrayType elements) {
  * Print the elements of an array in the decreasing frequency if 2 numbers have same
  * frequency then keeps their relative order.
  */
-auto SortByFrequency_Stable(ArrayType elements) {
+inline auto SortByFrequency_Stable(ArrayType elements) {
     const auto counter = ToFrequencyHashTable(elements);
     std::stable_sort(elements.begin(), elements.end(),
     [&counter](const auto & lhs, const auto & rhs) {
