@@ -502,9 +502,9 @@ auto BinarySearch_SinglyList(
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType INITIALIZER_EMPTY = {};
-const InitializerType INITIALIZER1 = {2, 3, 4, 10, 40};
-const InitializerType INITIALIZER_UNDERFLOW = {2};
+constexpr InitializerType INITIALIZER_EMPTY = {};
+constexpr InitializerType INITIALIZER1 = {2, 3, 4, 10, 40};
+constexpr InitializerType INITIALIZER_UNDERFLOW = {2};
 
 const ArrayType ARRAY_EMPTY = INITIALIZER_EMPTY;
 const ArrayType ARRAY1 = INITIALIZER1;

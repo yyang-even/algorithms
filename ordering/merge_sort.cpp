@@ -237,13 +237,13 @@ auto MergeSort_3Way(ArrayType values) {
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType VALUES1 = {};
-const InitializerType VALUES2 = {1};
-const InitializerType VALUES3 = {1, 2};
-const InitializerType VALUES4 = {2, 3, 1};
-const InitializerType EXPECTED4 = {1, 2, 3};
-const InitializerType VALUES5 = {4, 3, 2, 1};
-const InitializerType EXPECTED5 = {1, 2, 3, 4};
+constexpr InitializerType VALUES1 = {};
+constexpr InitializerType VALUES2 = {1};
+constexpr InitializerType VALUES3 = {1, 2};
+constexpr InitializerType VALUES4 = {2, 3, 1};
+constexpr InitializerType EXPECTED4 = {1, 2, 3};
+constexpr InitializerType VALUES5 = {4, 3, 2, 1};
+constexpr InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 THE_BENCHMARK(MergeSort, VALUES5);
 

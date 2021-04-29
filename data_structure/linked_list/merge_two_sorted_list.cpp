@@ -69,15 +69,15 @@ auto SortedMergeList_Doubly_STL(std::list<ListType::value_type> L,
 
 using InitializerType = std::initializer_list<ListType::value_type>;
 
-const InitializerType EMPTY = {};
+constexpr InitializerType EMPTY = {};
 
-const InitializerType SAMPLE1L = {1, 3, 5, 7};
-const InitializerType SAMPLE1R = {2, 4, 6, 8};
-const InitializerType EXPECTED1 = {1, 2, 3, 4, 5, 6, 7, 8};
+constexpr InitializerType SAMPLE1L = {1, 3, 5, 7};
+constexpr InitializerType SAMPLE1R = {2, 4, 6, 8};
+constexpr InitializerType EXPECTED1 = {1, 2, 3, 4, 5, 6, 7, 8};
 
-const InitializerType SAMPLE2L = {5, 8, 9};
-const InitializerType SAMPLE2R = {4, 7, 8};
-const InitializerType EXPECTED2 = {4, 5, 7, 8, 8, 9};
+constexpr InitializerType SAMPLE2L = {5, 8, 9};
+constexpr InitializerType SAMPLE2R = {4, 7, 8};
+constexpr InitializerType EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
 
 SIMPLE_BENCHMARK(SortedMergeList_Single_STL, Sample1, SAMPLE1L, SAMPLE1R);

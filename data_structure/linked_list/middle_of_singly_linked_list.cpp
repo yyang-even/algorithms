@@ -36,10 +36,10 @@ inline auto GetMiddle_Recursive(const ListType &l) {
 
 using InitializerType = std::initializer_list<ListType::value_type>;
 
-const InitializerType SINGLE_ARRAY = {1};
-const InitializerType EVEN_ARRAY = {1, 3};
-const InitializerType ODD_ARRAY = {1, 2, 3};
-const InitializerType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+constexpr InitializerType SINGLE_ARRAY = {1};
+constexpr InitializerType EVEN_ARRAY = {1, 3};
+constexpr InitializerType ODD_ARRAY = {1, 2, 3};
+constexpr InitializerType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
 inline auto testGetMid_Size(const std::vector<int> &array) {

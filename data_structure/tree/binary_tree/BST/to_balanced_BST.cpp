@@ -100,11 +100,11 @@ inline auto TestToBalancedBST(const ToBST to_bst,
 }
 
 
-const InitializerType SAMPLE1 = {};
-const InitializerType SAMPLE2 = {1};
-const InitializerType SAMPLE3 = {1, 2};
-const InitializerType SAMPLE4 = {1, 2, 3};
-const InitializerType SAMPLE5 = {1, 2, 3, 4, 5, 6, 7};
+constexpr InitializerType SAMPLE1 = {};
+constexpr InitializerType SAMPLE2 = {1};
+constexpr InitializerType SAMPLE3 = {1, 2};
+constexpr InitializerType SAMPLE4 = {1, 2, 3};
+constexpr InitializerType SAMPLE5 = {1, 2, 3, 4, 5, 6, 7};
 
 
 THE_BENCHMARK(SortedListToBalancedBST, SAMPLE4);

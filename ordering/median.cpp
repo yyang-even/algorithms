@@ -6,6 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using ListType = std::forward_list<ArrayType::value_type>;
 
 /** Program for Mean and median of an unsorted array
  *
@@ -51,8 +52,7 @@ inline auto Median_Unsorted(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/finding-median-in-a-sorted-linked-list/
  */
-double Median_SinglyList_TwoPointers(
-    const std::forward_list<ArrayType::value_type> &sorted_list) {
+double Median_SinglyList_TwoPointers(const ListType &sorted_list) {
     assert(not sorted_list.empty());
     assert(std::is_sorted(sorted_list.cbegin(), sorted_list.cend()));
 
@@ -73,7 +73,7 @@ double Median_SinglyList_TwoPointers(
     }
 }
 
-inline auto Median_Unsorted_List(std::forward_list<ArrayType::value_type> values) {
+inline auto Median_Unsorted_List(ListType values) {
     values.sort();
     return Median_SinglyList_TwoPointers(values);
 }
@@ -83,14 +83,14 @@ inline auto Median_Unsorted_List(std::forward_list<ArrayType::value_type> values
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType VALUES1 = {1};
-const InitializerType VALUES2 = {1, 2};
-const InitializerType VALUES3 = {2, 3, 1};
-const InitializerType VALUES4 = {1, 3, 4, 2, 6, 5, 8, 7};
-const InitializerType VALUES5 = {4, 4, 4, 4, 4};
+constexpr InitializerType VALUES1 = {1};
+constexpr InitializerType VALUES2 = {1, 2};
+constexpr InitializerType VALUES3 = {2, 3, 1};
+constexpr InitializerType VALUES4 = {1, 3, 4, 2, 6, 5, 8, 7};
+constexpr InitializerType VALUES5 = {4, 4, 4, 4, 4};
 
 
-SIMPLE_BENCHMARK(Median, Sample1, VALUES5);
+THE_BENCHMARK(Median, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE2, 1.5, VALUES2);
@@ -99,7 +99,7 @@ SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Median_Unsorted, TestSAMPLE5, 4, VALUES5);
 
 
-SIMPLE_BENCHMARK(Median_SinglyList_TwoPointers, Sample1, VALUES5);
+THE_BENCHMARK(Median_SinglyList_TwoPointers, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE2, 1.5, VALUES2);
@@ -108,7 +108,7 @@ SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_List, TestSAMPLE5, 4, VALUES5);
 
 
-SIMPLE_BENCHMARK(Median_Unsorted_QuickSelect, Sample1, VALUES5);
+THE_BENCHMARK(Median_Unsorted_QuickSelect, VALUES5);
 
 SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Median_Unsorted_QuickSelect, TestSAMPLE2, 1.5, VALUES2);

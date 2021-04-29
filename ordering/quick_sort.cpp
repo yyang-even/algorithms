@@ -388,13 +388,13 @@ auto QuickSort_DualPivots(ArrayType values) {
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType VALUES1 = {};
-const InitializerType VALUES2 = {1};
-const InitializerType VALUES3 = {1, 2};
-const InitializerType VALUES4 = {2, 3, 1};
-const InitializerType EXPECTED4 = {1, 2, 3};
-const InitializerType VALUES5 = {4, 3, 2, 1};
-const InitializerType EXPECTED5 = {1, 2, 3, 4};
+constexpr InitializerType VALUES1 = {};
+constexpr InitializerType VALUES2 = {1};
+constexpr InitializerType VALUES3 = {1, 2};
+constexpr InitializerType VALUES4 = {2, 3, 1};
+constexpr InitializerType EXPECTED4 = {1, 2, 3};
+constexpr InitializerType VALUES5 = {4, 3, 2, 1};
+constexpr InitializerType EXPECTED5 = {1, 2, 3, 4};
 
 
 THE_BENCHMARK(QuickSort_Lomuto, VALUES5);
@@ -479,8 +479,8 @@ SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample4, EXPECTED4, VALUES
 SIMPLE_TEST(QuickSortDoublyLinkedList_NaiveAsync, TestSample5, EXPECTED5, VALUES5);
 
 
-const InitializerType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
-const InitializerType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
+constexpr InitializerType VALUES6 = {4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4};
+constexpr InitializerType EXPECTED6 = {1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 9, 9, 9};
 
 
 THE_BENCHMARK(QuickSort_3Way, VALUES5);
@@ -493,8 +493,8 @@ SIMPLE_TEST(QuickSort_3Way, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(QuickSort_3Way, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-const InitializerType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
-const InitializerType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
+constexpr InitializerType VALUES7 = {24, 8, 42, 75, 29, 77, 38, 57};
+constexpr InitializerType EXPECTED7 = {8, 24, 29, 38, 42, 57, 75, 77};
 
 
 THE_BENCHMARK(QuickSort_DualPivots, VALUES5);

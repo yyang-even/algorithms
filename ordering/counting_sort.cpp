@@ -93,15 +93,15 @@ inline auto CountingSort_STL(const ArrayType &values) {
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType VALUES1 = {};
-const InitializerType VALUES2 = {1};
-const InitializerType VALUES3 = {1, 2};
-const InitializerType VALUES4 = {2, 3, 1};
-const InitializerType EXPECTED4 = {1, 2, 3};
-const InitializerType VALUES5 = {4, 3, 2, 1};
-const InitializerType EXPECTED5 = {1, 2, 3, 4};
-const InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
-const InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
+constexpr InitializerType VALUES1 = {};
+constexpr InitializerType VALUES2 = {1};
+constexpr InitializerType VALUES3 = {1, 2};
+constexpr InitializerType VALUES4 = {2, 3, 1};
+constexpr InitializerType EXPECTED4 = {1, 2, 3};
+constexpr InitializerType VALUES5 = {4, 3, 2, 1};
+constexpr InitializerType EXPECTED5 = {1, 2, 3, 4};
+constexpr InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
+constexpr InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
 THE_BENCHMARK(CountingSort_NoNegative, VALUES6);
@@ -114,8 +114,8 @@ SIMPLE_TEST(CountingSort_NoNegative, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(CountingSort_NoNegative, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-const InitializerType VALUES7 = {-5, -10, 0, -3, 8, 5, -1, 10};
-const InitializerType EXPECTED7 = {-10, -5, -3, -1, 0, 5, 8, 10};
+constexpr InitializerType VALUES7 = {-5, -10, 0, -3, 8, 5, -1, 10};
+constexpr InitializerType EXPECTED7 = {-10, -5, -3, -1, 0, 5, 8, 10};
 
 
 THE_BENCHMARK(CountingSort, VALUES6);

@@ -66,11 +66,11 @@ auto KClosestElementsToMedian_Differences(ArrayType elements,
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType VALUES1 = {24, 8, 42, 75, 29, 77, 38, 57};
+constexpr InitializerType VALUES1 = {24, 8, 42, 75, 29, 77, 38, 57};
 const OutputType EXPECTED1 = {38};
 const OutputType EXPECTED2 = {38, 42};
 const OutputType EXPECTED3 = {29, 38, 42};
-const InitializerType VALUES2 = {24, 8, 42, 75, 29, 38, 57};
+constexpr InitializerType VALUES2 = {24, 8, 42, 75, 29, 38, 57};
 const OutputType EXPECTED4 = {29, 38};
 
 

@@ -109,9 +109,9 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType EMPTY = {};
-const InitializerType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
-const InitializerType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
+constexpr InitializerType EMPTY = {};
+constexpr InitializerType SAMPLE1 = {10, 5, 3, 4, 3, 5, 6};
+constexpr InitializerType SAMPLE2 = {6, 10, 5, 4, 9, 120, 4, 6, 10};
 
 
 THE_BENCHMARK(FindFirstRepeatingElement_FirstAppearance, SAMPLE1);

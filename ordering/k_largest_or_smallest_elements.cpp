@@ -168,9 +168,9 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
 
-const InitializerType EMPTY = {};
-const InitializerType VALUES1 = {1, 23, 12, 9, 30, 2, 50};
-const InitializerType EXPECTED1 = {1, 2, 9};
+constexpr InitializerType EMPTY = {};
+constexpr InitializerType VALUES1 = {1, 23, 12, 9, 30, 2, 50};
+constexpr InitializerType EXPECTED1 = {1, 2, 9};
 
 
 THE_BENCHMARK(KSmallestElements_Sort, VALUES1, EXPECTED1.size());
@@ -204,7 +204,7 @@ SIMPLE_TEST(KSmallestElements_MaxHeap, TestSAMPLE2, VALUES1, VALUES1, VALUES1.si
 
 
 const ArrayType VALUES2 = {1, 5, 8, 9, 6, 7, 3, 4, 2, 0};
-const InitializerType EXPECTED2 = {1, 3, 4, 2, 0};
+constexpr InitializerType EXPECTED2 = {1, 3, 4, 2, 0};
 
 
 THE_BENCHMARK(StableKSmallestElements_Sort, VALUES1, EXPECTED1.size());
