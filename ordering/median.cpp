@@ -35,7 +35,7 @@ using ListType = std::forward_list<ArrayType::value_type>;
  * minimizes the total length of the spurs? Show how to determine the optimal location
  * in linear time.
  */
-double Median(const ArrayType &sorted_array) {
+inline double Median(const ArrayType &sorted_array) {
     assert(not sorted_array.empty());
     assert(std::is_sorted(sorted_array.cbegin(), sorted_array.cend()));
 

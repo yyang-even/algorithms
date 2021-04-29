@@ -48,21 +48,7 @@ auto CountingSort_NoNegative(const ArrayType &values) {
         return v >= 0 and v < MAXIMUM;
     }));
 
-    ArrayType::value_type counter[MAXIMUM] = {};
-    for (const auto v : values) {
-        ++counter[v];
-    }
-
-    for (ArrayType::value_type i = 1; i < MAXIMUM; ++i) {
-        counter[i] += counter[i - 1];
-    }
-
-    ArrayType outputs(values.size(), 0);
-    for (auto riter = values.crbegin(); riter != values.crend(); ++riter) {
-        outputs[--counter[*riter]] = *riter;
-    }
-
-    return outputs;
+    return CountingSort(values, MAXIMUM, Copy);
 }
 
 
@@ -70,7 +56,7 @@ auto CountingSort_NoNegative(const ArrayType &values) {
  * @reference   C++14 Language Extensions: Generalized lambda captures
  *              https://isocpp.org/wiki/faq/cpp14-language#lambda-captures
  */
-auto CountingSort(const ArrayType &values) {
+inline auto CountingSort(const ArrayType &values) {
     if (values.empty()) {
         return values;
     }
