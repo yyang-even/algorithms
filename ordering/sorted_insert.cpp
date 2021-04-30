@@ -11,7 +11,7 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/search-insert-and-delete-in-a-sorted-array/
  */
-auto SortedInsert(ArrayType elements, const ArrayType::value_type x) {
+inline auto SortedInsert(ArrayType elements, const ArrayType::value_type x) {
     elements.push_back(x);
     SortedInsert(elements.begin(), std::prev(elements.end()));
     return elements;
@@ -26,7 +26,7 @@ const ArrayType EXPECTED_FRONT = {11, 12, 16, 20, 40, 50, 70};
 const ArrayType EXPECTED_BACK = {12, 16, 20, 40, 50, 70, 80};
 
 
-SIMPLE_BENCHMARK(SortedInsert, Sample1, SAMPLE1, 26);
+THE_BENCHMARK(SortedInsert, SAMPLE1, 26);
 
 SIMPLE_TEST(SortedInsert, TestSAMPLE1, EXPECTED_MID, SAMPLE1, 26);
 SIMPLE_TEST(SortedInsert, TestFront, EXPECTED_FRONT, SAMPLE1, EXPECTED_FRONT.front());
