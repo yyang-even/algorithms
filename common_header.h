@@ -184,6 +184,7 @@ static constexpr auto LARGE_PRIME = 1000000007;
 
 static constexpr unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 
-static const std::string DIGIT_CHARS {"0123456789"};
-static const std::string LOWERCASE_CHARS {"abcdefghijklmnopqrstuvwxyz"};
-static const std::string UPPERCASE_CHARS {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+static constexpr std::string_view DIGIT_CHARS {"0123456789"};
+static constexpr std::string_view LOWERCASE_CHARS {"abcdefghijklmnopqrstuvwxyz"};
+static constexpr std::string_view UPPERCASE_CHARS {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+static constexpr auto *SPACES = " \n\t";
