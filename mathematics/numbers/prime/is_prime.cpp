@@ -72,7 +72,7 @@ auto IsPrime_Fermet(const unsigned n) {
         return true;
     }
 
-    const static auto K = 3;
+    static constexpr auto K = 3;
     auto i = 0;
     while (++i <= K) {
         const auto a = Random_Number(2, n - 2);
@@ -130,7 +130,7 @@ auto IsPrime_MillerRabin(const unsigned n) {
         d /= 2u;
     }
 
-    const static auto K = 3;
+    static constexpr auto K = 3;
     for (auto i = 0; i < K; ++i)
         if (!millerTest(d, n)) {
             return false;
@@ -207,7 +207,7 @@ auto IsPrime_SolovayStrassen(long long n) {
         return false;
     }
 
-    const static auto K = 3;
+    static constexpr auto K = 3;
     for (auto i = 0; i < K; ++i) {
         const auto a = Random_Number(2, n - 1);
         const auto jacobian = (n + calculateJacobian(a, n)) % n;

@@ -16,6 +16,7 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.6.
  */
-static inline constexpr auto SwapOddAndEvenBits(const unsigned num) {
+static constexpr inline auto
+SwapOddAndEvenBits(const unsigned num) {
     return ((num >> 1) & 0x55555555) | ((num & 0x55555555) << 1);
 }
