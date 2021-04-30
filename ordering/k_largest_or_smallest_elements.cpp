@@ -52,8 +52,8 @@ auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
     assert(K <= values.size());
 
     std::sort(values.begin(), values.end());
-    return OutputType{std::make_move_iterator(values.cbegin()),
-                      std::make_move_iterator(values.cbegin() + K)};
+    return OutputType{std::make_move_iterator(values.begin()),
+                      std::make_move_iterator(values.begin() + K)};
 }
 
 

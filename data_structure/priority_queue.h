@@ -31,8 +31,6 @@ using MinPriorityQueue = MinHeap<T>;
  *
  * @reference   Priority Queue using doubly linked list
  *              https://www.geeksforgeeks.org/priority-queue-using-doubly-linked-list/
- *
- * @highlight   The use of std::make_move_iterator().
  */
 class SinglyLinkedListMinPriorityQueue : protected SinglyLinkedList {
 public:
