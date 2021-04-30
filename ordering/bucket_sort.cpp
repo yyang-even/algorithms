@@ -22,11 +22,12 @@ using ArrayType = std::vector<float>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 8.4-4.
  *
- * We are given n points in the unit circle, p(i) = (x(i), y(i)), such that 0 < x(i) ^ 2 + y(i) ^ 2 <= 1
- * for i = 1, 2,..., n. Suppose that the points are uniformly distributed; that is, the probability of
- * finding a point in any region of the circle is proportional to the area of the region. Design an
- * algorithm with an average-case running time of O(n) to sort the n points by their distances d(i) =
- * sqrt(x(i) ^ 2 + y(i) ^ 2) from the origin.
+ * We are given n points in the unit circle, p(i) = (x(i), y(i)), such that
+ * 0 < x(i) ^ 2 + y(i) ^ 2 <= 1 for i = 1, 2,..., n. Suppose that the points are
+ * uniformly distributed; that is, the probability of finding a point in any region of
+ * the circle is proportional to the area of the region. Design an algorithm with an
+ * average-case running time of O(n) to sort the n points by their distances
+ * d(i) = sqrt(x(i) ^ 2 + y(i) ^ 2) from the origin.
  *
  * @reference   How to sort a big array with many repetitions?
  *              https://www.geeksforgeeks.org/how-to-sort-a-big-array-with-many-repetitions/
@@ -42,23 +43,24 @@ auto BucketSort(ArrayType elements) {
 
     for (const auto elem : elements) {
         const ArrayType::size_type index = elem * elements.size();
-        buckets[index].push_back(elem);
+        buckets[index].push_back(std::move(elem));
     }
 
     auto iter = elements.begin();
     for (auto &b : buckets) {
         std::sort(b.begin(), b.end());
-        iter =
-            std::copy(std::make_move_iterator(b.cbegin()), std::make_move_iterator(b.cend()), iter);
+        iter = std::copy(std::make_move_iterator(b.begin()),
+                         std::make_move_iterator(b.end()), iter);
     }
 
     return elements;
 }
 
 
-auto BucketSort_STL(const ArrayType &elements) {
-    return BucketSort_STL(elements, [&elements](const auto & elem) {
-        return elem * elements.size();
+inline auto BucketSort_STL(const ArrayType &elements) {
+    const auto size = elements.size();
+    return BucketSort_STL(std::move(elements), [size](const auto & elem) {
+        return elem * size;
     }, ToLambda(std::sort));
 }
 
@@ -81,10 +83,11 @@ auto BucketSort_Mixed(ArrayType elements) {
     negatives = BucketSort(std::move(negatives));
 
     auto iter = elements.begin();
-    iter = std::transform(std::make_move_iterator(negatives.crbegin()),
-                          std::make_move_iterator(negatives.crend()), iter, std::negate<ArrayType::value_type> {});
-    std::copy(std::make_move_iterator(positives.cbegin()),
-              std::make_move_iterator(positives.cend()),
+    iter = std::transform(std::make_move_iterator(negatives.rbegin()),
+                          std::make_move_iterator(negatives.rend()), iter,
+                          std::negate<ArrayType::value_type> {});
+    std::copy(std::make_move_iterator(positives.begin()),
+              std::make_move_iterator(positives.end()),
               iter);
 
     return elements;
@@ -100,8 +103,8 @@ auto BucketSort_Mixed(ArrayType elements) {
  * of digits, but the total number of digits over all the integers in the array is n. Show
  * how to sort the array in O(n) time.
  */
-auto SortVariableLengthItems_Ints(const std::vector<int> &elements) {
-    return BucketSort_STL(elements, CountDigits_Iterative,
+inline auto SortVariableLengthItems_Ints(std::vector<int> elements) {
+    return BucketSort_STL(std::move(elements), CountDigits_Iterative,
     [](const auto begin, const auto end) {
         const auto sorted = RadixSort(std::vector<int>(begin, end));
         std::copy(sorted.cbegin(), sorted.cend(), begin);
@@ -115,12 +118,12 @@ const ArrayType VALUES1 = {0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434};
 const ArrayType EXPECTED1 = {0.1234, 0.3434, 0.565, 0.656, 0.665, 0.897};
 
 
-SIMPLE_BENCHMARK(BucketSort, Sample1, VALUES1);
+THE_BENCHMARK(BucketSort, VALUES1);
 
 SIMPLE_TEST(BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
 
 
-SIMPLE_BENCHMARK(BucketSort_STL, Sample1, VALUES1);
+THE_BENCHMARK(BucketSort_STL, VALUES1);
 
 SIMPLE_TEST(BucketSort_STL, TestSAMPLE1, EXPECTED1, VALUES1);
 
@@ -129,7 +132,7 @@ const ArrayType VALUES2 = {-0.897, 0.565, 0.656, -0.1234, 0, 0.3434};
 const ArrayType EXPECTED2 = {-0.897, -0.1234, 0, 0.3434, 0.565, 0.656};
 
 
-SIMPLE_BENCHMARK(BucketSort_Mixed, Sample1, VALUES2);
+THE_BENCHMARK(BucketSort_Mixed, VALUES2);
 
 SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE2, EXPECTED2, VALUES2);
@@ -139,6 +142,6 @@ const std::vector<int> VALUES3 = {6666, 999, 888, 11, 22, 33, 7, 0};
 const std::vector<int> EXPECTED3 = {0, 7, 11, 22, 33, 888, 999, 6666};
 
 
-SIMPLE_BENCHMARK(SortVariableLengthItems_Ints, Sample1, VALUES3);
+THE_BENCHMARK(SortVariableLengthItems_Ints, VALUES3);
 
 SIMPLE_TEST(SortVariableLengthItems_Ints, TestSAMPLE3, EXPECTED3, VALUES3);
