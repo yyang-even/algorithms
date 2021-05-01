@@ -35,7 +35,7 @@ using ArrayType = std::vector<int>;
  * the k'th smallest element in the given array. It is given that all array elements are
  * distinct.
  */
-auto KthSmallest_Sort(ArrayType elements, const ArrayType::size_type K) {
+inline auto KthSmallest_Sort(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
     std::sort(elements.begin(), elements.end());
@@ -46,13 +46,12 @@ auto KthSmallest_Sort(ArrayType elements, const ArrayType::size_type K) {
 auto KthSmallest_MinHeap(ArrayType elements, ArrayType::size_type K) {
     assert(K < elements.size());
 
-    const auto compare = std::greater<ArrayType::value_type> {};
+    static constexpr auto compare = std::greater<ArrayType::value_type> {};
     std::make_heap(elements.begin(), elements.end(), compare);
 
     auto end = elements.end();
     do {
-        std::pop_heap(elements.begin(), end, compare);
-        --end;
+        std::pop_heap(elements.begin(), end--, compare);
     } while (K--);
 
     return *end;
@@ -81,7 +80,7 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
  * @reference   Quickselect Algorithm
  *              https://www.geeksforgeeks.org/quickselect-algorithm/
  */
-auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
+inline auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
     return *KthSmallest_QuickSelect(elements.begin(), elements.end(),
@@ -152,7 +151,10 @@ ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
     return mid;
 }
 
-auto KthSmallest_BinarySearch(const ArrayType &elements, const ArrayType::size_type K) {
+inline auto KthSmallest_BinarySearch(const ArrayType &elements,
+                                     const ArrayType::size_type K) {
+    assert(not elements.empty());
+
     const auto [min, max] = std::minmax_element(elements.cbegin(), elements.cend());
     return KthSmallest_BinarySearch(*min, *max, elements, K + 1);
 }
@@ -164,7 +166,7 @@ const ArrayType VALUES1 = {12, 3, 5, 7, 19};
 const ArrayType VALUES2 = {19, -10, 20, 14, 2, 16, 10};
 
 
-SIMPLE_BENCHMARK(KthSmallest_Sort, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_Sort, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_Sort, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_Sort, TestSAMPLE1, 5, VALUES1, 1);
@@ -172,7 +174,7 @@ SIMPLE_TEST(KthSmallest_Sort, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_Sort, TestSAMPLE3, 14, VALUES2, 3);
 
 
-SIMPLE_BENCHMARK(KthSmallest_MinHeap, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_MinHeap, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_MinHeap, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_MinHeap, TestSAMPLE1, 5, VALUES1, 1);
@@ -180,7 +182,7 @@ SIMPLE_TEST(KthSmallest_MinHeap, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_MinHeap, TestSAMPLE3, 14, VALUES2, 3);
 
 
-SIMPLE_BENCHMARK(KthSmallest_MaxHeap, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_MaxHeap, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_MaxHeap, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_MaxHeap, TestSAMPLE1, 5, VALUES1, 1);
@@ -188,7 +190,7 @@ SIMPLE_TEST(KthSmallest_MaxHeap, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_MaxHeap, TestSAMPLE3, 14, VALUES2, 3);
 
 
-SIMPLE_BENCHMARK(KthSmallest_QuickSelect, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_QuickSelect, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE1, 5, VALUES1, 1);
@@ -196,7 +198,7 @@ SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 
 SIMPLE_TEST(KthSmallest_QuickSelect, TestSAMPLE3, 14, VALUES2, 3);
 
 
-SIMPLE_BENCHMARK(KthSmallest_QuickSelect_Iterative, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_QuickSelect_Iterative, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE1, 5, VALUES1, 1);
@@ -209,7 +211,7 @@ const ArrayType VALUES3 = {7, 10, 4, 3, 20, 15};
 const ArrayType VALUES4 = {12, 3, 5, 7, 19};
 
 
-SIMPLE_BENCHMARK(KthSmallest_BinarySearch, Sample1, VALUES1, 1);
+THE_BENCHMARK(KthSmallest_BinarySearch, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE1, 5, VALUES1, 1);

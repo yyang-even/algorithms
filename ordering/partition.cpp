@@ -142,7 +142,7 @@ auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  * moving all value equal to K at the end of the array.
  */
 auto RearrangeZeros(ArrayType input) {
-    Partition<ArrayType>(input.begin(), input.end(), [](const auto v) {
+    Partition(input.begin(), input.end(), [](const auto v) {
         return static_cast<bool>(v);
     });
 
@@ -166,7 +166,7 @@ auto RearrangeZeros(ArrayType input) {
  */
 auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(
     ArrayType input) {
-    auto positive_iter = Partition<ArrayType>(input.begin(), input.end(), isNegative);
+    auto positive_iter = Partition(input.begin(), input.end(), isNegative);
 
     for (auto negative_iter = input.begin();
          positive_iter != input.end() and negative_iter < positive_iter and * negative_iter < 0;

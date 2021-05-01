@@ -70,9 +70,10 @@ using ArrayType = std::vector<int>;
  * @complexity  T(n) = T(k) + T(n-k-1) + O(n)
  * @complexity  O(nLogn)
  */
-auto partition_Lomuto(const ArrayType::iterator begin, const ArrayType::iterator end) {
+inline auto
+partition_Lomuto(const ArrayType::iterator begin, const ArrayType::iterator end) {
     const auto pivot = std::prev(end);
-    const auto mid = Partition<ArrayType>(begin, pivot, [pivot](const auto v) {
+    const auto mid = Partition(begin, pivot, [pivot](const auto v) {
         return v <= *pivot;
     });
     std::iter_swap(pivot, mid);
@@ -98,8 +99,8 @@ auto partition_Hoare(const ArrayType::iterator begin, const ArrayType::iterator 
     return right;
 }
 
-auto partition_RandomizedHoare(const ArrayType::iterator begin,
-                               const ArrayType::iterator end) {
+inline auto partition_RandomizedHoare(const ArrayType::iterator begin,
+                                      const ArrayType::iterator end) {
     const auto random_pivot_index = Random_Number(0, end - begin - 1);
     std::iter_swap(begin, begin + random_pivot_index);
     return partition_Hoare(begin, end);
@@ -130,22 +131,24 @@ auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator 
 
 
 template <typename PartitionFunc>
-void QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
-               const PartitionFunc partition) {
+constexpr inline void
+QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
+          const PartitionFunc partition) {
     if (isThereMoreThanOneElements(begin, end)) {
         const auto mid = partition(begin, end);
         QuickSort(begin, mid, partition);
         QuickSort(std::next(mid), end, partition);
     }
 }
-auto QuickSort_Lomuto(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partition_Lomuto);
+
+inline auto QuickSort_Lomuto(ArrayType values) {
+    QuickSort(values.begin(), values.end(), partition_Lomuto);
     return values;
 }
 
 
-auto QuickSort_Hoare(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partition_Hoare);
+inline auto QuickSort_Hoare(ArrayType values) {
+    QuickSort(values.begin(), values.end(), partition_Hoare);
     return values;
 }
 
@@ -173,14 +176,14 @@ auto QuickSort_Iterative(ArrayType values) {
 }
 
 
-auto QuickSort_RandomizedHoare(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partition_RandomizedHoare);
+inline auto QuickSort_RandomizedHoare(ArrayType values) {
+    QuickSort(values.begin(), values.end(), partition_RandomizedHoare);
     return values;
 }
 
 
-auto QuickSortStable(ArrayType values) {
-    QuickSort(values.begin(), values.end(), &partitionStable);
+inline auto QuickSortStable(ArrayType values) {
+    QuickSort(values.begin(), values.end(), partitionStable);
     return values;
 }
 
@@ -189,14 +192,15 @@ auto QuickSortStable(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
  */
-auto GetLastNodeBeforeEnd(const std::forward_list<int> &values) {
+inline auto GetLastNodeBeforeEnd(const std::forward_list<int> &values) {
     auto before_end = values.cbefore_begin();
     for (auto next = values.cbegin(); next != values.cend(); ++next, ++before_end);
     return before_end;
 }
-void quickSortSinglyLinkedList(std::forward_list<int> &values,
-                               const std::forward_list<int>::const_iterator before_begin,
-                               std::forward_list<int>::const_iterator last) {
+
+inline void quickSortSinglyLinkedList(std::forward_list<int> &values,
+                                      const std::forward_list<int>::const_iterator before_begin,
+                                      std::forward_list<int>::const_iterator last) {
     const auto begin = std::next(before_begin);
     if (before_begin != last and begin != last) {
         const auto before_mid = Partition_SinglyList(values, before_begin, begin, last);
@@ -204,7 +208,8 @@ void quickSortSinglyLinkedList(std::forward_list<int> &values,
         quickSortSinglyLinkedList(values, std::next(before_mid), last);
     }
 }
-auto QuickSortSinglyLinkedList(std::forward_list<int> values) {
+
+inline auto QuickSortSinglyLinkedList(std::forward_list<int> values) {
     quickSortSinglyLinkedList(values, values.cbefore_begin(), GetLastNodeBeforeEnd(values));
     return values;
 }
@@ -233,16 +238,18 @@ auto partitionDoublyLinkedList(std::list<int> &values,
 
     return pivot;
 }
-void quickSortDoublyLinkedList(std::list<int> &values,
-                               std::list<int>::const_iterator begin,
-                               const std::list<int>::const_iterator end) {
+
+inline void quickSortDoublyLinkedList(std::list<int> &values,
+                                      std::list<int>::const_iterator begin,
+                                      const std::list<int>::const_iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
         auto mid = partitionDoublyLinkedList(values, begin, end);
         quickSortDoublyLinkedList(values, begin, mid);
         quickSortDoublyLinkedList(values, ++mid, end);
     }
 }
-auto QuickSortDoublyLinkedList(std::list<int> values) {
+
+inline auto QuickSortDoublyLinkedList(std::list<int> values) {
     quickSortDoublyLinkedList(values, values.cbegin(), values.cend());
     return values;
 }
@@ -330,14 +337,17 @@ auto partition_3Way(const ArrayType::iterator begin, const ArrayType::iterator e
 
     return std::pair(smallers_end, greaters_begin);
 }
-void QuickSort_3Way(const ArrayType::iterator begin, const ArrayType::iterator end) {
+
+inline void QuickSort_3Way(const ArrayType::iterator begin,
+                           const ArrayType::iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
-        const auto mid_pair = partition_3Way(begin, end);
-        QuickSort_3Way(begin, mid_pair.first);
-        QuickSort_3Way(mid_pair.second, end);
+        const auto [smallers_end, greaters_begin] = partition_3Way(begin, end);
+        QuickSort_3Way(begin, smallers_end);
+        QuickSort_3Way(greaters_begin, end);
     }
 }
-auto QuickSort_3Way(ArrayType values) {
+
+inline auto QuickSort_3Way(ArrayType values) {
     QuickSort_3Way(values.begin(), values.end());
     return values;
 }
@@ -369,16 +379,18 @@ auto partition_DualPivots(const ArrayType::iterator begin,
 
     return std::pair(smallers_end, greaters_begin);
 }
-void QuickSort_DualPivots(const ArrayType::iterator begin,
-                          const ArrayType::iterator end) {
+
+inline void QuickSort_DualPivots(const ArrayType::iterator begin,
+                                 const ArrayType::iterator end) {
     if (isThereMoreThanOneElements(begin, end)) {
-        const auto mid_pair = partition_DualPivots(begin, end);
-        QuickSort_DualPivots(begin, mid_pair.first);
-        QuickSort_DualPivots(mid_pair.first, mid_pair.second);
-        QuickSort_DualPivots(mid_pair.second, end);
+        const auto [smallers_end, greaters_begin] = partition_DualPivots(begin, end);
+        QuickSort_DualPivots(begin, smallers_end);
+        QuickSort_DualPivots(smallers_end, greaters_begin);
+        QuickSort_DualPivots(greaters_begin, end);
     }
 }
-auto QuickSort_DualPivots(ArrayType values) {
+
+inline auto QuickSort_DualPivots(ArrayType values) {
     QuickSort_DualPivots(values.begin(), values.end());
     return values;
 }
@@ -453,8 +465,7 @@ SIMPLE_TEST(QuickSortSinglyLinkedList, TestSample5, EXPECTED5, VALUES5);
 
 THE_BENCHMARK(QuickSortDoublyLinkedList, VALUES5);
 
-SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample1, VALUES1,
-            VALUES1);
+SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample1, VALUES1, VALUES1);
 SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample2, VALUES2, VALUES2);
 SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample3, VALUES3, VALUES3);
 SIMPLE_TEST(QuickSortDoublyLinkedList, TestSample4, EXPECTED4, VALUES4);

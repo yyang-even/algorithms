@@ -1,8 +1,10 @@
 #pragma once
 
-auto KthSmallest_QuickSelect(const ArrayType::iterator begin,
-                             const ArrayType::iterator end,
-                             const ArrayType::const_iterator target) {
+
+static inline auto
+KthSmallest_QuickSelect(const ArrayType::iterator begin,
+                        const ArrayType::iterator end,
+                        const ArrayType::const_iterator target) {
     const auto pivot = std::prev(end);
     const auto partition_point = std::partition(begin, pivot, [pivot](const auto v) {
         return v <= *pivot;

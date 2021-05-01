@@ -9,14 +9,15 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/program-check-array-sorted-not-iterative-recursive/
  */
-auto isSortedRecursive(const ArrayType::const_iterator cbegin,
-                       const ArrayType::const_iterator cend) {
+inline auto isSortedRecursive(const ArrayType::const_iterator cbegin,
+                              const ArrayType::const_iterator cend) {
     if (cbegin == cend) {
         return true;
     }
     return *(cbegin - 1) > *cbegin ? false : isSortedRecursive(cbegin + 1, cend);
 }
-bool isSortedRecursive(const ArrayType &values) {
+
+inline bool isSortedRecursive(const ArrayType &values) {
     return values.size() > 1 ? isSortedRecursive(values.cbegin() + 1, values.cend()) : true;
 }
 
@@ -42,7 +43,7 @@ const ArrayType VALUES4 = {2, 3, 1};
 const ArrayType VALUES5 = {4, 3, 2, 1};
 
 
-SIMPLE_BENCHMARK(isSortedRecursive, Sample1, VALUES5);
+THE_BENCHMARK(isSortedRecursive, VALUES5);
 
 SIMPLE_TEST(isSortedRecursive, TestSAMPLE1, true, VALUES1);
 SIMPLE_TEST(isSortedRecursive, TestSAMPLE2, true, VALUES2);
@@ -51,7 +52,7 @@ SIMPLE_TEST(isSortedRecursive, TestSAMPLE4, false, VALUES4);
 SIMPLE_TEST(isSortedRecursive, TestSAMPLE5, false, VALUES5);
 
 
-SIMPLE_BENCHMARK(isSortedIterative, Sample1, VALUES5);
+THE_BENCHMARK(isSortedIterative, VALUES5);
 
 SIMPLE_TEST(isSortedIterative, TestSAMPLE1, true, VALUES1);
 SIMPLE_TEST(isSortedIterative, TestSAMPLE2, true, VALUES2);

@@ -30,7 +30,7 @@ using ArrayType = std::vector<int>;
  *
  * @complexity: O(n^2)
  */
-auto InsertionSort_STL(ArrayType values) {
+inline auto InsertionSort_STL(ArrayType values) {
     for (auto iter = values.begin(); iter != values.end(); ++iter) {
         SortedInsert(values.begin(), iter);
     }
@@ -38,16 +38,18 @@ auto InsertionSort_STL(ArrayType values) {
     return values;
 }
 
+
 /** Sort 3 numbers
  *
  * @reference   https://www.geeksforgeeks.org/sort-3-numbers/
  *
  * Given three numbers, how to sort them?
- * How to write our own sort function that does minimum comparison and does not use extra variables?
+ * How to write our own sort function that does minimum comparison and does not use extra
+ * variables?
  * The idea is to use insertion sort as insertion sort works best for small arrays.
  */
-auto InsertionSort(ArrayType values) {
-    return InsertionSort(values, std::greater<ArrayType::value_type> {});
+inline auto InsertionSort(ArrayType values) {
+    return InsertionSort(std::move(values), std::greater<ArrayType::value_type> {});
 }
 
 
@@ -71,7 +73,8 @@ void InsertionSort_Recursive(ArrayType &values, const int n) {
         values[i + 1] = std::move(key_value);
     }
 }
-auto InsertionSort_Recursive(ArrayType values) {
+
+inline auto InsertionSort_Recursive(ArrayType values) {
     InsertionSort_Recursive(values, values.size());
     return values;
 }
@@ -102,6 +105,7 @@ auto UpperBound(const int target, const ArrayType::const_iterator begin,
         return (target > *begin) ? begin + 1 : begin;
     }
 }
+
 auto BinaryInsertionSort(ArrayType values) {
     for (ArrayType::size_type j = 1; j < values.size(); ++j) {
         auto key_value = std::move(values[j]);
@@ -129,7 +133,7 @@ auto BinaryInsertionSort(ArrayType values) {
  *
  * @reference   https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
  */
-auto InsertionSort_SinglyList(std::forward_list<ArrayType::value_type> values) {
+inline auto InsertionSort_SinglyList(std::forward_list<ArrayType::value_type> values) {
     std::forward_list<ArrayType::value_type> sorted_list;
     while (not values.empty()) {
         SortedInsert_STL(sorted_list, values, values.cbefore_begin(), values.cbegin());
@@ -154,7 +158,7 @@ constexpr InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
 constexpr InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
-SIMPLE_BENCHMARK(InsertionSort, Sample1, VALUES6);
+THE_BENCHMARK(InsertionSort, VALUES6);
 
 SIMPLE_TEST(InsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -164,7 +168,7 @@ SIMPLE_TEST(InsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(InsertionSort_Recursive, Sample1, VALUES6);
+THE_BENCHMARK(InsertionSort_Recursive, VALUES6);
 
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
@@ -174,7 +178,7 @@ SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(BinaryInsertionSort, Sample1, VALUES6);
+THE_BENCHMARK(BinaryInsertionSort, VALUES6);
 
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -184,7 +188,7 @@ SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BinaryInsertionSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(InsertionSort_STL, Sample1, VALUES6);
+THE_BENCHMARK(InsertionSort_STL, VALUES6);
 
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE2, VALUES2, VALUES2);
@@ -194,7 +198,7 @@ SIMPLE_TEST(InsertionSort_STL, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(InsertionSort_STL, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(InsertionSort_SinglyList, Sample1, VALUES6);
+THE_BENCHMARK(InsertionSort_SinglyList, VALUES6);
 
 SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(InsertionSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
