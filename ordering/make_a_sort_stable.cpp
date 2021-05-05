@@ -15,9 +15,8 @@ using ArrayType = std::vector<int>;
 auto MakeSortStable(const ArrayType &elements) {
     std::vector<std::pair<ArrayType::value_type, ArrayType::size_type>>
             elements_with_sequence;
-    ArrayType::size_type i = 0;
-    for (const auto e : elements) {
-        elements_with_sequence.emplace_back(e, i);
+    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
+        elements_with_sequence.emplace_back(elements[i], i);
     }
 
     std::sort(elements_with_sequence.begin(), elements_with_sequence.end(),
@@ -48,7 +47,7 @@ const ArrayType VALUES5 = {4, 3, 2, 1};
 const ArrayType EXPECTED5 = {1, 2, 3, 4};
 
 
-SIMPLE_BENCHMARK(MakeSortStable, Sample1, VALUES5);
+THE_BENCHMARK(MakeSortStable, VALUES5);
 
 SIMPLE_TEST(MakeSortStable, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(MakeSortStable, TestSAMPLE2, VALUES2, VALUES2);

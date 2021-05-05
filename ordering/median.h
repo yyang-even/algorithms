@@ -1,6 +1,7 @@
 #pragma once
 
-double Median_QuickSelect(std::vector<int> &elements) {
+
+static inline double Median_QuickSelect(std::vector<int> &elements) {
     assert(not elements.empty());
 
     if (elements.size() % 2 == 0) {
@@ -16,13 +17,13 @@ double Median_QuickSelect(std::vector<int> &elements) {
     }
 }
 
-auto Median_Unsorted_QuickSelect(std::vector<int> elements) {
+static inline auto Median_Unsorted_QuickSelect(std::vector<int> elements) {
     return Median_QuickSelect(elements);
 }
 
 
-double Median_Sorted(const std::vector<int>::const_iterator cbegin,
-                     const std::vector<int>::size_type length) {
+static inline double Median_Sorted(const std::vector<int>::const_iterator cbegin,
+                                   const std::vector<int>::size_type length) {
     const auto mid = std::next(cbegin, length / 2);
     if (length % 2 == 0) {
         return (*std::prev(mid) + *mid) / 2.0;

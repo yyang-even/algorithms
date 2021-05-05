@@ -35,7 +35,7 @@ auto MinDiffPairOf2SortedArrays(const ArrayType &one, const ArrayType &another) 
     return result;
 }
 
-auto MinDiffPairOf2UnsortedArrays(ArrayType one, ArrayType another) {
+inline auto MinDiffPairOf2UnsortedArrays(ArrayType one, ArrayType another) {
     std::sort(one.begin(), one.end());
     std::sort(another.begin(), another.end());
 

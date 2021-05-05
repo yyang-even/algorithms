@@ -55,7 +55,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
 }
 
 auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
-    MergeSort<ArrayType>(input.begin(), input.size(), Merge);
+    MergeSort(input.begin(), input.size(), Merge);
     return input;
 }
 
@@ -117,7 +117,7 @@ void MergeReverse(const ArrayType::iterator begin, const ArrayType::iterator mid
     std::reverse(left_mid, right_mid);
 }
 auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
-    MergeSort<ArrayType>(input.begin(), input.size(), MergeReverse);
+    MergeSort(input.begin(), input.size(), MergeReverse);
     return input;
 }
 

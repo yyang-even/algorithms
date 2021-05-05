@@ -29,7 +29,7 @@ auto MedianOfRunningIntegers(const ArrayType &ints) {
     std::vector<double> outputs;
 
     std::priority_queue<ArrayType::value_type> smaller_half;
-    std::priority_queue<ArrayType::value_type, std::vector<ArrayType::value_type>, std::greater<ArrayType::value_type>>
+    std::priority_queue<ArrayType::value_type, ArrayType, std::greater<ArrayType::value_type>>
             greater_half;
 
     double median = ints.front();

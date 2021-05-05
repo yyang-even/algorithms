@@ -21,8 +21,8 @@ using ArrayType = std::vector<int>;
  */
 auto BubbleSort(ArrayType values) {
     const int last_i = static_cast<int>(values.size()) - 1;
-    for (int i = 0, j, last_j; i < last_i; ++i) {
-        for (j = 1, last_j = values.size() - i; j < last_j; ++j) {
+    for (int i = 0; i < last_i; ++i) {
+        for (int j = 1, last_j = values.size() - i; j < last_j; ++j) {
             if (values[j - 1] > values[j]) {
                 std::swap(values[j - 1], values[j]);
             }
@@ -40,10 +40,10 @@ auto BubbleSort(ArrayType values) {
  */
 auto BubbleSort_Optimized(ArrayType values) {
     const int last_i = static_cast<int>(values.size()) - 1;
-    bool swapped;
 
-    for (int i = 0, j, last_j; i < last_i; ++i) {
-        for (j = 1, last_j = values.size() - i, swapped = false; j < last_j; ++j) {
+    for (int i = 0; i < last_i; ++i) {
+        bool swapped = false;
+        for (int j = 1, last_j = values.size() - i; j < last_j; ++j) {
             if (values[j - 1] > values[j]) {
                 std::swap(values[j - 1], values[j]);
                 swapped = true;
@@ -67,9 +67,9 @@ auto BubbleSort_Optimized(ArrayType values) {
  *
  * @complexity: O(n^2)
  */
-void BubbleSort_Recursive(ArrayType &values, const typename ArrayType::size_type n) {
+void BubbleSort_Recursive(ArrayType &values, const ArrayType::size_type n) {
     if (n > 1) {
-        for (typename ArrayType::size_type i = 1; i < n; ++i) {
+        for (ArrayType::size_type i = 1; i < n; ++i) {
             if (values[i - 1] > values[i]) {
                 std::swap(values[i - 1], values[i]);
             }
@@ -78,7 +78,8 @@ void BubbleSort_Recursive(ArrayType &values, const typename ArrayType::size_type
         BubbleSort_Recursive(values, n - 1);
     }
 }
-auto BubbleSort_Recursive(ArrayType values) {
+
+inline auto BubbleSort_Recursive(ArrayType values) {
     BubbleSort_Recursive(values, values.size());
     return values;
 }
@@ -98,7 +99,7 @@ auto BubbleSort_SinglyList(std::forward_list<int> values) {
             auto before_iter = values.cbefore_begin();
             auto iter = std::next(before_iter);
             auto next = std::next(iter);
-            for (; next != last;) {
+            while (next != last) {
                 if (*iter > *next) {
                     values.splice_after(next, values, before_iter);
                     swapped = true;
@@ -160,7 +161,7 @@ constexpr InitializerType VALUES6 = {1, 2, 3, 1, 2, 2};
 constexpr InitializerType EXPECTED6 = {1, 1, 2, 2, 2, 3};
 
 
-SIMPLE_BENCHMARK(BubbleSort, Sample1, VALUES6);
+THE_BENCHMARK(BubbleSort, VALUES6);
 
 SIMPLE_TEST(BubbleSort, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort, TestSAMPLE2, VALUES2, VALUES2);
@@ -170,7 +171,7 @@ SIMPLE_TEST(BubbleSort, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(BubbleSort_Optimized, Sample1, VALUES6);
+THE_BENCHMARK(BubbleSort_Optimized, VALUES6);
 
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE2, VALUES2, VALUES2);
@@ -180,7 +181,7 @@ SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Optimized, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(BubbleSort_Recursive, Sample1, VALUES6);
+THE_BENCHMARK(BubbleSort_Recursive, VALUES6);
 
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE2, VALUES2, VALUES2);
@@ -190,7 +191,7 @@ SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_Recursive, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(BubbleSort_SinglyList, Sample1, VALUES6);
+THE_BENCHMARK(BubbleSort_SinglyList, VALUES6);
 
 SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE2, VALUES2, VALUES2);
@@ -200,7 +201,7 @@ SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(BubbleSort_SinglyList, TestSAMPLE6, EXPECTED6, VALUES6);
 
 
-SIMPLE_BENCHMARK(BubbleSort_TwoStacks, Sample1, VALUES6);
+THE_BENCHMARK(BubbleSort_TwoStacks, VALUES6);
 
 SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(BubbleSort_TwoStacks, TestSAMPLE2, VALUES2, VALUES2);

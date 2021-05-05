@@ -2,8 +2,8 @@
 
 
 template <typename Iterator>
-void MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays,
-                        Iterator out_iter) {
+static constexpr inline void
+MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays, Iterator out_iter) {
     using Node = std::pair<const std::vector<int> *, std::vector<int>::const_iterator>;
 
     std::vector<Node> first_elements;
@@ -16,8 +16,8 @@ void MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays,
     constexpr auto compare = [](const auto & lhs, const auto & rhs) {
         return  *lhs.second > *rhs.second;
     };
-    std::priority_queue<Node, std::vector<Node>, decltype(compare)> heap(compare,
-            std::move(first_elements));
+    std::priority_queue<Node, std::vector<Node>, decltype(compare)>
+    heap(compare, std::move(first_elements));
 
     while (not heap.empty()) {
         const auto [top_array_ptr, top_array_iter] = heap.top();

@@ -45,11 +45,10 @@ auto KClosestElementsToMedian_Differences(ArrayType elements,
     const auto median = Median_QuickSelect(elements);
 
     using DiffValuePair = std::pair<ArrayType::value_type, ArrayType::value_type>;
-    std::vector<DiffValuePair> diff_array(elements.size());
-    std::transform(elements.cbegin(), elements.cend(), diff_array.begin(),
-    [median](const auto v) {
-        return std::pair(std::abs(v - median), v);
-    });
+    std::vector<DiffValuePair> diff_array;
+    for (const auto v : elements) {
+        diff_array.emplace_back(std::abs(v - median), v);
+    }
 
     const auto kth = diff_array.begin() + K;
     std::nth_element(diff_array.begin(), kth, diff_array.end());

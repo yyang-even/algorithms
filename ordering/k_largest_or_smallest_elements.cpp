@@ -48,7 +48,7 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Problems 9-1.a.
  */
-auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
+inline auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
     assert(K <= values.size());
 
     std::sort(values.begin(), values.end());
@@ -64,7 +64,7 @@ auto KSmallestElements_Sort(ArrayType values, const ArrayType::size_type K) {
 auto KSmallestElements_MinHeap(ArrayType values, ArrayType::size_type K) {
     assert(K <= values.size());
 
-    const auto compare = std::greater<ArrayType::value_type> {};
+    static constexpr auto compare = std::greater<ArrayType::value_type> {};
     std::make_heap(values.begin(), values.end(), compare);
 
     auto end = values.end();
@@ -81,7 +81,7 @@ auto KSmallestElements_MinHeap(ArrayType values, ArrayType::size_type K) {
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Problems 9-1.c.
  */
-auto KSmallestElements_QuickSelect(ArrayType values, ArrayType::size_type K) {
+inline auto KSmallestElements_QuickSelect(ArrayType values, ArrayType::size_type K) {
     assert(K and K <= values.size());
 
     const auto kth =

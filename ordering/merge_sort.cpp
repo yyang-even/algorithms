@@ -32,15 +32,16 @@ using ArrayType = std::vector<int>;
  *
  * @complexity: O(n*lgn)
  */
-void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
-           const ArrayType::iterator end) {
+inline void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
+                  const ArrayType::iterator end) {
     const auto L = ArrayType(begin, middle);
     const auto R = ArrayType(middle, end);
 
     MergeTwoSortedArrays(L, R, begin);
 }
-auto MergeSort(ArrayType values) {
-    MergeSort<ArrayType>(values.begin(), values.size(), Merge);
+
+inline auto MergeSort(ArrayType values) {
+    MergeSort(values.begin(), values.size(), Merge);
     return values;
 }
 
@@ -59,7 +60,7 @@ auto MergeSort_Iterative(ArrayType values) {
     for (ArrayType::size_type current_size = 1;
          current_size < values.size();
          current_size *= 2) {
-        for (ArrayType::size_type i = 0ul; i < (values.size() - 1);) {
+        for (ArrayType::size_type i = 0; i < (values.size() - 1);) {
             const auto begin = values.begin() + i;
             const auto mid = begin + current_size;
             i += current_size * 2;
@@ -101,10 +102,11 @@ void Merge_O1(const ArrayType::iterator begin, const ArrayType::iterator middle,
         return v / max;
     });
 }
-auto MergeSort_O1(ArrayType values) {
+
+inline auto MergeSort_O1(ArrayType values) {
     if (not values.empty()) {
         const auto max_element = *std::max_element(values.cbegin(), values.cend()) + 1;
-        MergeSort<ArrayType>(values.begin(), values.size(),
+        MergeSort(values.begin(), values.size(),
         [max_element](const auto begin, const auto middle, const auto end) {
             Merge_O1(begin, middle, end, max_element);
         });
@@ -137,7 +139,7 @@ auto MergeSort_O1(ArrayType values) {
  * @reference   C Program for Merge Sort for Linked Lists
  *              https://www.geeksforgeeks.org/c-program-for-merge-sort-for-linked-lists/
  */
-void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
+inline void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
     if (not l.empty() and std::next(l.cbegin()) != l.cend()) {
         const auto before_mid = GetBeforeMiddle_TwoPointersSTL(l.cbefore_begin(), l.cend());
         std::forward_list<int> right;
@@ -147,7 +149,8 @@ void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
         l.merge(std::move(right));
     }
 }
-auto MergeSort_SinglyList(std::forward_list<int> values) {
+
+inline auto MergeSort_SinglyList(std::forward_list<int> values) {
     MergeSort_SinglyListHelper(values);
     return values;
 }
@@ -187,7 +190,7 @@ auto MergeSort_SinglyList_Iterative(std::forward_list<int> values) {
  *
  * @reference   https://www.geeksforgeeks.org/merge-sort-for-doubly-linked-list/
  */
-void MergeSort_DoublyListHelper(std::list<int> &l) {
+inline void MergeSort_DoublyListHelper(std::list<int> &l) {
     if (l.size() > 1) {
         auto mid = std::next(l.cbegin(), l.size() / 2);
         std::list<int> right;
@@ -197,7 +200,8 @@ void MergeSort_DoublyListHelper(std::list<int> &l) {
         l.merge(std::move(right));
     }
 }
-auto MergeSort_DoublyList(std::list<int> values) {
+
+inline auto MergeSort_DoublyList(std::list<int> values) {
     MergeSort_DoublyListHelper(values);
     return values;
 }
@@ -207,8 +211,10 @@ auto MergeSort_DoublyList(std::list<int> values) {
  *
  * @reference   https://www.geeksforgeeks.org/3-way-merge-sort/
  */
-void Merge_3Way(const ArrayType::iterator begin, const ArrayType::iterator middle1,
-                const ArrayType::iterator middle2, const ArrayType::iterator end) {
+inline void Merge_3Way(const ArrayType::iterator begin,
+                       const ArrayType::iterator middle1,
+                       const ArrayType::iterator middle2,
+                       const ArrayType::iterator end) {
     MergeKSortedArrays({ArrayType(begin, middle1), ArrayType(middle1, middle2), ArrayType(middle2, end)},
                        begin);
 }
@@ -227,7 +233,7 @@ void MergeSort_3Way(const ArrayType::iterator begin, const ArrayType::size_type 
     }
 }
 
-auto MergeSort_3Way(ArrayType values) {
+inline auto MergeSort_3Way(ArrayType values) {
     MergeSort_3Way(values.begin(), values.size());
     return values;
 }
@@ -244,6 +250,7 @@ constexpr InitializerType VALUES4 = {2, 3, 1};
 constexpr InitializerType EXPECTED4 = {1, 2, 3};
 constexpr InitializerType VALUES5 = {4, 3, 2, 1};
 constexpr InitializerType EXPECTED5 = {1, 2, 3, 4};
+
 
 THE_BENCHMARK(MergeSort, VALUES5);
 

@@ -12,8 +12,8 @@ using ArrayType = std::vector<int>;
  * @reference   Dutch National Flag
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Flag/
  *
- * You are given an array of 0s and 1s in random order. Segregate 0s on left side and
- * 1s on right side of the array. Traverse array only once.
+ * You are given an array of 0s and 1s in random order. Segregate 0s on left side and 1s
+ * on right side of the array. Traverse array only once.
  *
  * @reference   Segregate Even and Odd numbers
  *              https://www.geeksforgeeks.org/segregate-even-and-odd-numbers/
@@ -25,7 +25,7 @@ using ArrayType = std::vector<int>;
  * Given an array A[], write a function that segregates even and odd numbers. The
  * functions should put all even numbers first, and then odd numbers.
  */
-auto Segregate0sAnd1sCount(ArrayType values) {
+inline auto Segregate0sAnd1sCount(ArrayType values) {
     const auto number_of_0s = std::count(values.cbegin(), values.cend(), 0);
     std::fill_n(values.begin(), number_of_0s, 0);
     std::fill(values.begin() + number_of_0s, values.end(), 1);
@@ -55,8 +55,8 @@ auto Segregate0sAnd1sDNF(ArrayType values) {
  * @reference   Sort an array of 0s, 1s and 2s
  *              https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
  *
- * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[].
- * The functions should put all 0s first, then all 1s and all 2s in last.
+ * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[]. The
+ * functions should put all 0s first, then all 1s and all 2s in last.
  *
  * @reference   Sorting objects using In-Place sorting algorithm
  *              https://www.geeksforgeeks.org/sorting-objects-using-in-place-sorting-algorithm/
@@ -88,9 +88,9 @@ auto Sort0s1s2s(ArrayType values) {
  * @reference   Move all zeros to start and ones to end in an Array of random integers
  *              https://www.geeksforgeeks.org/move-all-zeros-to-start-and-ones-to-end-in-an-array-of-random-integers/
  *
- * Given an array arr[] of random integers, the task is to push all the zero’s in the array
- * to the start and all the one’s to the end of the array. Note that the order of all the
- * other elements should be the same.
+ * Given an array arr[] of random integers, the task is to push all the zero's in the
+ * array to the start and all the one's to the end of the array. Note that the order of
+ * all the other elements should be the same.
  */
 
 }//namespace
@@ -105,7 +105,7 @@ const ArrayType VALUES5 = {0, 1, 0, 1, 0, 0, 1, 1, 1, 0};
 const ArrayType EXPECTED5 = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
 
 
-SIMPLE_BENCHMARK(Segregate0sAnd1sCount, Sample1, VALUES5);
+THE_BENCHMARK(Segregate0sAnd1sCount, VALUES5);
 
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE2, VALUES2, VALUES2);
@@ -114,7 +114,7 @@ SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
-SIMPLE_BENCHMARK(Segregate0sAnd1sDNF, Sample1, VALUES5);
+THE_BENCHMARK(Segregate0sAnd1sDNF, VALUES5);
 
 SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(Segregate0sAnd1sDNF, TestSAMPLE2, VALUES2, VALUES2);
@@ -129,7 +129,7 @@ const ArrayType VALUES7 = {0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1};
 const ArrayType EXPECTED7 = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2};
 
 
-SIMPLE_BENCHMARK(Sort0s1s2s, Sample1, VALUES5);
+THE_BENCHMARK(Sort0s1s2s, VALUES5);
 
 SIMPLE_TEST(Sort0s1s2s, TestSAMPLE1, VALUES1, VALUES1);
 SIMPLE_TEST(Sort0s1s2s, TestSAMPLE2, VALUES2, VALUES2);
