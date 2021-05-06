@@ -6,7 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
-using Query = std::pair<ArrayType::size_type, ArrayType::size_type>;
+using Query = std::pair<ArrayType::value_type, ArrayType::value_type>;
 
 /** Queries for counts of array elements with values in given range
  *
@@ -50,8 +50,8 @@ auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
     const auto counter = ToCountingArray(values, RANGE, ToIndex);
 
     for (const auto [left, right] : queries) {
-        const auto lower = counter[ToIndex(std::max<ArrayType::size_type>(left, *min_iter))];
-        const auto upper = counter[ToIndex(std::min<ArrayType::size_type>(right, *max_iter))];
+        const auto lower = counter[ToIndex(std::max(left, *min_iter))];
+        const auto upper = counter[ToIndex(std::min(right, *max_iter))];
         output.push_back(upper - lower + 1);
     }
 
@@ -66,12 +66,12 @@ const std::vector<Query> QUERIES = {{1, 4}, {9, 12}};
 const std::vector<ArrayType::difference_type> EXPECTED = {4, 2};
 
 
-SIMPLE_BENCHMARK(QueriesForCountsInRange_Sort, Sample1, VALUES, QUERIES);
+THE_BENCHMARK(QueriesForCountsInRange_Sort, VALUES, QUERIES);
 
 SIMPLE_TEST(QueriesForCountsInRange_Sort, TestSAMPLE1, EXPECTED, VALUES, QUERIES);
 
 
-SIMPLE_BENCHMARK(QueriesForCountsInRange_CountingSort, Sample1, VALUES, QUERIES);
+THE_BENCHMARK(QueriesForCountsInRange_CountingSort, VALUES, QUERIES);
 
 SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED,
             VALUES, QUERIES);

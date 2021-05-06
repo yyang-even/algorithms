@@ -41,7 +41,7 @@ using ArrayType = std::vector<int>;
  * @reference   Sorting without comparison of elements
  *              https://www.geeksforgeeks.org/sorting-without-comparison-of-elements/
  */
-auto CountingSort_NoNegative(ArrayType values) {
+inline auto CountingSort_NoNegative(ArrayType values) {
     static constexpr ArrayType::value_type MAXIMUM = 1 << 8;
 
     assert(std::all_of(values.cbegin(), values.cend(), [](const auto v) {

@@ -21,6 +21,8 @@ namespace {
 inline auto HeapSort_Recursive(const MaxHeap<int>::ArrayType &array) {
     return MaxHeap<int>(array).ToSortedArray();
 }
+
+
 /** Iterative Heap Sort
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -43,7 +45,7 @@ const MaxHeap<int>::ArrayType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 const MaxHeap<int>::ArrayType EXPECTED_ARRAY = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
-SIMPLE_BENCHMARK(HeapSort_Recursive, Sample1, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
+THE_BENCHMARK(HeapSort_Recursive, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
 
 SIMPLE_TEST(HeapSort_Recursive, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(HeapSort_Recursive, TestSingle, SINGLE_ARRAY, SINGLE_ARRAY);
@@ -52,7 +54,7 @@ SIMPLE_TEST(HeapSort_Recursive, TestOdd, ODD_ARRAY, ODD_ARRAY);
 SIMPLE_TEST(HeapSort_Recursive, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(HeapSort_Iterative, Sample1, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
+THE_BENCHMARK(HeapSort_Iterative, {7, 8, 5, 6, 3, 7, 5, 1, 5, 6, 7, 6, 4, 6, 2, 1, 3, 4, 6, 5, 7, 8, 9});
 
 SIMPLE_TEST(HeapSort_Iterative, TestEmpty, EMPTY_ARRAY, EMPTY_ARRAY);
 SIMPLE_TEST(HeapSort_Iterative, TestSingle, SINGLE_ARRAY, SINGLE_ARRAY);

@@ -54,7 +54,7 @@ void Merge(const ArrayType::iterator begin, const ArrayType::iterator middle,
     });
 }
 
-auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
+inline auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
     MergeSort(input.begin(), input.size(), Merge);
     return input;
 }
@@ -81,14 +81,16 @@ auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
  * An array contains both positive and negative numbers in random order. Rearrange the
  * array elements so that all negative numbers appear before all positive numbers.
  */
-auto isNegative(const ArrayType::value_type v) {
+constexpr inline auto isNegative(const ArrayType::value_type v) {
     return v < 0;
 }
-auto RearrangePositiveAndNegativeNumbers_STL(ArrayType input) {
+
+inline auto RearrangePositiveAndNegativeNumbers_STL(ArrayType input) {
     std::stable_partition(input.begin(), input.end(), isNegative);
 
     return input;
 }
+
 
 auto RearrangePositiveAndNegativeNumbers_Insertion(ArrayType input) {
     for (ArrayType::size_type j = 1; j < input.size(); ++j) {
@@ -105,18 +107,19 @@ auto RearrangePositiveAndNegativeNumbers_Insertion(ArrayType input) {
 }
 
 
-auto isPositive(const ArrayType::value_type v) {
+constexpr inline auto isPositive(const ArrayType::value_type v) {
     return v > 0;
 }
-void MergeReverse(const ArrayType::iterator begin, const ArrayType::iterator middle,
-                  const ArrayType::iterator end) {
+
+inline void MergeReverse(const ArrayType::iterator begin,
+                         const ArrayType::iterator middle,
+                         const ArrayType::iterator end) {
     const auto left_mid = std::find_if(begin, middle, isPositive);
     const auto right_mid = std::find_if(middle, end, isPositive);
-    std::reverse(left_mid, middle);
-    std::reverse(middle, right_mid);
-    std::reverse(left_mid, right_mid);
+    std::rotate(left_mid, middle, right_mid);
 }
-auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
+
+inline auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
     MergeSort(input.begin(), input.size(), MergeReverse);
     return input;
 }
@@ -141,10 +144,8 @@ auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  * Given an array arr[] of size N and an integer K, the task is to print the array after
  * moving all value equal to K at the end of the array.
  */
-auto RearrangeZeros(ArrayType input) {
-    Partition(input.begin(), input.end(), [](const auto v) {
-        return static_cast<bool>(v);
-    });
+inline auto RearrangeZeros(ArrayType input) {
+    Partition(input.begin(), input.end(), Copy);
 
     return input;
 }
@@ -201,8 +202,8 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable(
 }
 
 
-auto isPositiveAndNegativeAlternative(const ArrayType::const_iterator iter,
-                                      const bool is_even_position) {
+inline auto isPositiveAndNegativeAlternative(const ArrayType::const_iterator iter,
+                                             const bool is_even_position) {
     if (is_even_position) {
         return *iter >= 0;
     } else {
@@ -274,7 +275,7 @@ auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
 }
 
 
-/** Partitioning a linked list around a given value and If we don’t care about making the elements of the list “stable”
+/** Partitioning a linked list around a given value and If we don’t care about making the elements of the list "stable"
  *
  * @reference   https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
  *
@@ -314,13 +315,13 @@ const ArrayType SAMPLE2 = {12, 11, -13, -5, 6, -7, 5, -3, -6};
 const ArrayType EXPECTED2 = { -13, -5, -7, -3, -6, 12, 11, 6, 5};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_STL, Sample1, SAMPLE1);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbers_STL, SAMPLE1);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_STL, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_STL, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Insertion, Sample1, SAMPLE1);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Insertion, SAMPLE1);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE1, EXPECTED1,
             SAMPLE1);
@@ -328,7 +329,7 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Insertion, TestSAMPLE2, EXPECTED
             SAMPLE2);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge_Stable, Sample1, SAMPLE1);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Merge_Stable, SAMPLE1);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE1, EXPECTED1,
             SAMPLE1);
@@ -336,7 +337,7 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Merge_Stable, TestSAMPLE2, EXPEC
             SAMPLE2);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_MergeReverse, Sample1, SAMPLE1);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbers_MergeReverse, SAMPLE1);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_MergeReverse, TestSAMPLE1, EXPECTED1,
             SAMPLE1);
@@ -351,7 +352,7 @@ const ArrayType SAMPLE4 = { -5, 7, -3, -4, 9, 10, -1, 11};
 const ArrayType EXPECTED4 = {7, 9, 10, 11, -5, -3, -4, -1};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple_Stable, Sample1, SAMPLE3);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbers_Simple_Stable, SAMPLE3);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbers_Simple_Stable, TestSAMPLE3, EXPECTED3,
             SAMPLE3);
@@ -366,8 +367,8 @@ const ArrayType SAMPLE6 = { -5, 7, -3, -4, 9, 10, -1, -11};
 const ArrayType EXPECTED6 = {10, -3, 7, -1, 9, -5, -4, -11};
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
-                 Sample1, SAMPLE5);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
+              SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable,
             TestSAMPLE5, EXPECTED5, SAMPLE5);
@@ -379,9 +380,8 @@ const ArrayType EXPECTED5_Stable = {2, -1, 4, -3, 5, -7, 6, 8, 9};
 const ArrayType EXPECTED6_Stable = {7, -5, 10, -4, 9, -3, -1, -11};
 
 
-SIMPLE_BENCHMARK(
-    RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable,
-    Sample1, SAMPLE5);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable,
+              SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable,
             TestSAMPLE5, EXPECTED5_Stable, SAMPLE5);
@@ -389,8 +389,8 @@ SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unsta
             TestSAMPLE6, EXPECTED6_Stable, SAMPLE6);
 
 
-SIMPLE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
-                 Sample1, SAMPLE5);
+THE_BENCHMARK(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
+              SAMPLE5);
 
 SIMPLE_TEST(RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable,
             TestSAMPLE5, EXPECTED5_Stable, SAMPLE5);
@@ -408,7 +408,7 @@ const ArrayType SAMPLE9 = {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9};
 const ArrayType EXPECTED9 = {1, 9, 8, 4, 2, 7, 6, 9, 0, 0, 0, 0};
 
 
-SIMPLE_BENCHMARK(RearrangeZeros, Sample1, SAMPLE7);
+THE_BENCHMARK(RearrangeZeros, SAMPLE7);
 
 SIMPLE_TEST(RearrangeZeros, TestSAMPLE7, EXPECTED7, SAMPLE7);
 SIMPLE_TEST(RearrangeZeros, TestSAMPLE8, EXPECTED8, SAMPLE8);
@@ -425,7 +425,7 @@ const std::forward_list<int> LIST4 = {2, 1, 2, 1, 1, 2, 0, 1, 0};
 const std::forward_list<int> EXPECTED_LIST4 = {0, 0, 1, 1, 1, 1, 2, 2, 2};
 
 
-SIMPLE_BENCHMARK(Partition_3Way_SinglyList_Stable, Sample1, LIST1, 3);
+THE_BENCHMARK(Partition_3Way_SinglyList_Stable, LIST1, 3);
 
 SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList1, EXPECTED_LIST1, LIST1, 3);
 SIMPLE_TEST(Partition_3Way_SinglyList_Stable, TestList2, EXPECTED_LIST2, LIST2, 3);
@@ -437,6 +437,6 @@ const std::forward_list<int> LIST5 = {3, 5, 10, 2, 8, 2, 1};
 const std::forward_list<int> EXPECTED_LIST5 = {1, 2, 2, 3, 5, 10, 8};
 
 
-SIMPLE_BENCHMARK(Partition_SinglyList_Unstable, Sample1, LIST5, 5);
+THE_BENCHMARK(Partition_SinglyList_Unstable, LIST5, 5);
 
 SIMPLE_TEST(Partition_SinglyList_Unstable, TestList5, EXPECTED_LIST5, LIST5, 5);

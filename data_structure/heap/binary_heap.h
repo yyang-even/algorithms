@@ -57,22 +57,22 @@ public:
 
 private:
     ArrayType heap;
-    static constexpr Compare compare{};
+    static constexpr inline Compare compare{};
 
-    static SizeType parent(const SizeType i) {
+    static constexpr SizeType parent(const SizeType i) {
         assert(i);
         return (i - 1) / 2;
     }
 
-    static SizeType left(const SizeType i) {
+    static constexpr SizeType left(const SizeType i) {
         return (2 * i + 1);
     }
 
-    static SizeType right(const SizeType i) {
+    static constexpr SizeType right(const SizeType i) {
         return (2 * i + 2);
     }
 
-    static SizeType indexOfFirstLeave(const SizeType n) {
+    static constexpr SizeType indexOfFirstLeave(const SizeType n) {
         return n / 2;
     }
 
@@ -81,12 +81,12 @@ private:
      * @reference   Height of a complete binary tree (or Heap) with N nodes
      *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
      */
-    static SizeType height(const SizeType n) {
+    static constexpr SizeType height(const SizeType n) {
         return std::ceil(std::log2(n + 1)) - 1;
     }
 
 
-    SizeType heapify_Recursive(SizeType i, const SizeType heap_size) {
+    SizeType heapify_Recursive(const SizeType i, const SizeType heap_size) {
         const auto l = left(i);
         const auto r = right(i);
         SizeType best = i;
@@ -191,7 +191,6 @@ public:
     }
 
 
-
     bool Empty() const {
         return heap.empty();
     }
@@ -272,6 +271,7 @@ public:
         return false;
     }
 
+
     static auto isHeap_Iterative(const ArrayType &values) {
         for (SizeType i = 0; i < indexOfFirstLeave(values.size()); ++i) {
             if (not compare(values[i], values[left(i)])) {
@@ -288,9 +288,6 @@ public:
         return true;
     }
 };
-
-template <typename T, typename Compare>
-const Compare BinaryHeap<T, Compare>::compare;
 
 template <typename T>
 using MaxHeap = BinaryHeap<T, std::greater<T>> ;

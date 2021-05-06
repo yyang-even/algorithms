@@ -3,9 +3,9 @@
 
 namespace {
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 using ResultType =
-    std::unordered_map<std::string, std::unordered_multiset<std::string>>;
+    std::unordered_map<std::string, std::unordered_multiset<std::string_view>>;
 
 /** Given a sequence of words, print all anagrams together | Set 1
  *
@@ -18,7 +18,7 @@ using ResultType =
 auto GroupAnagrams_Sort(const ArrayType &words) {
     std::vector<std::pair<std::string, std::size_t>> sorted_words;
     for (std::size_t i = 0; i < words.size(); ++i) {
-        auto a_word = words[i];
+        std::string a_word{words[i]};
         std::sort(a_word.begin(), a_word.end());
         sorted_words.emplace_back(std::move(a_word), i);
     }
@@ -45,7 +45,7 @@ auto GroupAnagrams_Hash(const ArrayType &words) {
     ResultType buckets;
 
     for (const auto &original_word : words) {
-        auto sorted_word = original_word;
+        std::string sorted_word{original_word};
         std::sort(sorted_word.begin(), sorted_word.end());
         buckets[sorted_word].insert(original_word);
     }

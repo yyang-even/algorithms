@@ -11,7 +11,7 @@ using ListType = std::forward_list<int>;
  *
  * @reference   https://www.geeksforgeeks.org/rotate-the-sub-list-of-a-linked-list-from-position-m-to-n-to-the-right-by-k-places/
  *
- * Given a linked list and two positions ‘m’ and ‘n’. The task is to rotate the sublist
+ * Given a linked list and two positions 'm' and 'n'. The task is to rotate the sublist
  * from position m to n, to the right by k places.
  */
 auto SublistRightRotate_SinglyList(ListType elements,
@@ -20,9 +20,9 @@ auto SublistRightRotate_SinglyList(ListType elements,
                                    const ListType::difference_type k) {
     assert(m and n and m < n);
 
-    auto cbefore_begin = std::next(elements.cbefore_begin(), m - 1);
+    const auto cbefore_begin = std::next(elements.cbefore_begin(), m - 1);
     const auto length = n - m + 1;
-    auto cend = std::next(cbefore_begin, length + 1);
+    const auto cend = std::next(cbefore_begin, length + 1);
 
     return SublistLeftRotate_SinglyList(
                elements, cbefore_begin, cend, length - (k % (length)));
@@ -33,8 +33,9 @@ auto SublistRightRotate_SinglyList(ListType elements,
  *
  * @reference   https://www.geeksforgeeks.org/rotate-linked-list-block-wise/
  *
- * Given a Linked List of length n and block length k rotate in circular manner towards right/left
- * each block by a number d. If d is positive rotate towards right else rotate towards left.
+ * Given a Linked List of length n and block length k rotate in circular manner towards
+ * right/left each block by a number d. If d is positive rotate towards right else rotate
+ * towards left.
  */
 auto BlockwiseRightRotate_SinglyList(std::forward_list<int> elements,
                                      const std::forward_list<int>::size_type k, const int d) {
@@ -62,7 +63,7 @@ const ListType SampleArray3 = {20, 45, 32, 34, 22, 28};
 const ListType ExpectedArray3 = {20, 45, 34, 22, 28, 32};
 
 
-SIMPLE_BENCHMARK(SublistRightRotate_SinglyList, Sample1, SampleArray, 2, 5, 2);
+THE_BENCHMARK(SublistRightRotate_SinglyList, SampleArray, 2, 5, 2);
 
 SIMPLE_TEST(SublistRightRotate_SinglyList, TestSample, ExpectedArray,
             SampleArray, 2, 5, 2);
@@ -79,7 +80,7 @@ const ListType ExpectedArray4 = {2, 3, 4, 1, 6, 7, 8, 5, 10, 11, 12, 9, 14, 15, 
 const ListType ExpectedArray5 = {2, 3, 1, 5, 6, 4, 8, 9, 7, 11, 12, 10, 14, 15, 13};
 
 
-SIMPLE_BENCHMARK(BlockwiseRightRotate_SinglyList, Sample1, SampleArray4, 4, -1);
+THE_BENCHMARK(BlockwiseRightRotate_SinglyList, SampleArray4, 4, -1);
 
 SIMPLE_TEST(BlockwiseRightRotate_SinglyList, TestSample4, ExpectedArray4,
             SampleArray4, 4, -1);
