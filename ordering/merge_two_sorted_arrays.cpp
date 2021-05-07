@@ -16,7 +16,7 @@ using ArrayType = std::vector<int>;
  * @reference   Quickly merging two sorted arrays using std::merge() in C++ STL
  *              https://www.geeksforgeeks.org/quickly-merging-two-sorted-arrays-using-stdmerge-c-stl/
  */
-auto MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R) {
+inline auto MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R) {
     ArrayType output(L.size() + R.size(), 0);
     MergeTwoSortedArrays(L, R, output.begin());
 
@@ -34,17 +34,17 @@ auto MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R) {
  * numbers (after complete sorting) are in the first array and the remaining numbers are
  * in the second array. Extra space allowed in O(1).
  */
-ArrayType::size_type nextGap(const ArrayType::size_type gap) {
-    if (gap <= 1ul) {
+constexpr inline ArrayType::size_type nextGap(const ArrayType::size_type gap) {
+    if (gap <= 1) {
         return 0;
     }
-    return (gap / 2ul) + (gap % 2ul);
+    return (gap / 2) + (gap % 2);
 }
 
 auto MergeTwoSortedArrays_InPlace(ArrayType L, ArrayType R) {
     for (auto gap = nextGap(L.size() + R.size()); gap; gap = nextGap(gap)) {
-        ArrayType::size_type i = 0ul;
-        ArrayType::size_type j = gap > L.size() ? gap - L.size() : 0ul;
+        ArrayType::size_type i = 0;
+        ArrayType::size_type j = gap > L.size() ? gap - L.size() : 0;
 
         // comparing elements in the first array.
         for (auto i_plus_gap = i + gap; i_plus_gap < L.size(); ++i, ++i_plus_gap)
@@ -60,7 +60,7 @@ auto MergeTwoSortedArrays_InPlace(ArrayType L, ArrayType R) {
 
         if (j < R.size()) {
             //comparing elements in the second array.
-            j = 0ul;
+            j = 0;
             for (auto j_plus_gap = j + gap; j_plus_gap < R.size(); ++j, ++j_plus_gap) {
                 if (R[j] > R[j_plus_gap]) {
                     std::swap(R[j], R[j_plus_gap]);
@@ -88,7 +88,7 @@ auto MergeTwoSortedArrays_InPlace_Heap(ArrayType L, ArrayType R) {
     }
 
     std::make_heap(R.begin(), R.end());
-    sort_heap(R.begin(), R.end());
+    std::sort_heap(R.begin(), R.end());
 
     return std::pair(L, R);
 }
@@ -103,7 +103,7 @@ auto MergeTwoSortedArrays_InPlace_Heap(ArrayType L, ArrayType R) {
  * Given two sorted arrays, A and B, where A has a large enough buffer at the end to hold
  * B. Merge B into A in sorted order.
  */
-auto MergeTwoSortedArraysToOne(ArrayType L, const ArrayType &R) {
+inline auto MergeTwoSortedArraysToOne(ArrayType L, const ArrayType &R) {
     MergeTwoSortedArrays(L.crbegin() + R.size(), L.crend(), R.crbegin(), R.crend(),
                          L.rbegin(), std::greater<ArrayType::value_type>());
     return L;
@@ -119,7 +119,8 @@ auto MergeTwoSortedArraysToOne(ArrayType L, const ArrayType &R) {
  * first array of size m+n such that the output is sorted.
  */
 constexpr ArrayType::value_type NA = 0;
-auto MergeTwoSortedArraysToOne_Partition(ArrayType L, const ArrayType &R) {
+
+inline auto MergeTwoSortedArraysToOne_Partition(ArrayType L, const ArrayType &R) {
     std::stable_partition(L.begin(), L.end(), [](const auto v) {
         return v != NA;
     });

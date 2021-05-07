@@ -22,8 +22,7 @@ auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements,
     assert(K);
     assert(elements.size() >= K);
 
-    std::multiset<ArrayType::value_type>
-    subarray_set(elements.cbegin(), elements.cbegin() + K);
+    std::multiset subarray_set(elements.cbegin(), elements.cbegin() + K);
     ArrayType result = {*subarray_set.crbegin()};
     for (auto i = K; i < elements.size(); ++i) {
         subarray_set.erase(subarray_set.find(elements[i - K]));

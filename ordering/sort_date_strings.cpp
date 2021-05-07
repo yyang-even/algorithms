@@ -2,10 +2,12 @@
 
 #include "counting_sort.h"
 
+#include "text/number_convertion.h"
+
 
 namespace {
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 
 /**
  * @reference   How to sort an array of dates in C/C++?
@@ -21,11 +23,11 @@ inline auto &operator<<(std::ostream &out, const Date &date) {
     return out << '(' << date.day << ", " << date.month << ", " << date.year << ')';
 }
 
-inline bool operator==(const Date &lhs, const Date &rhs) {
+constexpr inline bool operator==(const Date &lhs, const Date &rhs) {
     return lhs.year == rhs.year and lhs.month == rhs.month and lhs.day == rhs.day;
 }
 
-auto SortDates(std::vector<Date> dates) {
+inline auto SortDates(std::vector<Date> dates) {
     std::sort(dates.begin(), dates.end(), [](const auto & lhs, const auto & rhs) {
         if (lhs.year == rhs.year) {
             if (lhs.month == rhs.month) {
@@ -52,7 +54,7 @@ auto SortDates(std::vector<Date> dates) {
  *     Domain of mmm is [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec].
  *     And, yyyy is a four digit integer.
  */
-auto ToInt(const std::string &date) {
+inline auto ToInt(const std::string_view &date) {
     assert(date.length() == 11);
 
     static const std::unordered_map<std::string_view, int> MonthsMap = {
@@ -70,9 +72,9 @@ auto ToInt(const std::string &date) {
         {"Dec", 12}
     };
 
-    const auto day = std::stoi(date.substr(0, 2));
+    const auto day = from_string_view(date.substr(0, 2));
     const auto month = MonthsMap.at(date.substr(3, 3));
-    const auto year = std::stoi(date.substr(7, 4));
+    const auto year = from_string_view(date.substr(7, 4));
 
     return year * 10000 + month * 100 + day;
 }
@@ -131,7 +133,7 @@ const std::vector<Date> EXPECTED2 = {{ 3, 12, 2000}, {18, 11, 2001}, { 9,  7, 20
 };
 
 
-SIMPLE_BENCHMARK(SortDates, Sample1, SAMPLE1);
+THE_BENCHMARK(SortDates, SAMPLE1);
 
 SIMPLE_TEST(SortDates, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortDates, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -145,12 +147,12 @@ const ArrayType EXPECTED3 = {"11 Jun 1996", "01 Jan 1997", "12 Aug 2005",
                             };
 
 
-SIMPLE_BENCHMARK(SortDateStrings_Int, Sample1, SAMPLE3);
+THE_BENCHMARK(SortDateStrings_Int, SAMPLE3);
 
 SIMPLE_TEST(SortDateStrings_Int, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(SortDates_RadixSort, Sample1, SAMPLE1);
+THE_BENCHMARK(SortDates_RadixSort, SAMPLE1);
 
 SIMPLE_TEST(SortDates_RadixSort, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SortDates_RadixSort, TestSAMPLE2, EXPECTED2, SAMPLE2);

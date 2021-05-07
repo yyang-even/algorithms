@@ -12,7 +12,7 @@ using ArrayType = std::vector<std::string>;
  *              https://www.geeksforgeeks.org/check-if-there-is-any-common-character-in-two-given-strings/
  */
 auto HaveCommonSubstring(const std::string &X, const std::string &Y) {
-    std::unordered_set<std::string::value_type> one_set_characters(X.cbegin(), X.cend());
+    std::unordered_set one_set_characters(X.cbegin(), X.cend());
     for (const auto c : Y) {
         if (one_set_characters.find(c) != one_set_characters.cend()) {
             return true;

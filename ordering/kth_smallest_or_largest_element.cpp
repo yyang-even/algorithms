@@ -62,7 +62,7 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
     assert(K < elements.size());
 
     auto iter = elements.cbegin() + K + 1;
-    std::priority_queue<ArrayType::value_type> heap{elements.cbegin(), iter};
+    std::priority_queue heap{elements.cbegin(), iter};
     for (; iter != elements.cend(); ++iter) {
         if (*iter < heap.top()) {
             heap.pop();

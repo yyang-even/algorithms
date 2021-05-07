@@ -48,7 +48,7 @@ auto StringMatcing_Naive(const std::string_view text, const std::string_view pat
 auto StringMatcing_OptimizedNaive(const std::string_view text,
                                   const std::string_view pattern) {
     assert(text.size() >= pattern.size());
-    assert(std::unordered_set<char>(pattern.cbegin(), pattern.cend()).size() ==
+    assert(std::unordered_set(pattern.cbegin(), pattern.cend()).size() ==
            pattern.size());
 
     ArrayType shifts;

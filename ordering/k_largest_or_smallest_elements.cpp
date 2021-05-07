@@ -96,7 +96,7 @@ auto KSmallestElements_MaxHeap(const ArrayType &values, ArrayType::size_type K) 
     assert(K and K <= values.size());
 
     auto iter = values.cbegin() + K;
-    std::priority_queue<ArrayType::value_type> heap{values.cbegin(), iter};
+    std::priority_queue heap{values.cbegin(), iter};
     for (; iter != values.cend(); ++iter) {
         if (*iter < heap.top()) {
             heap.pop();

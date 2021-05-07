@@ -37,7 +37,7 @@ using ArrayType = std::vector<unsigned>;
  * Given an array of n-elements, we have to find the largest element among them without
  * using any conditional operator like greater than or less than.
  */
-auto MaxElement_Bit(ArrayType values) {
+inline auto MaxElement_Bit(ArrayType values) {
     values.push_back(std::numeric_limits<ArrayType::value_type>::max());
     return MaxAndValueOfPair_Value(values);
 }
@@ -55,26 +55,26 @@ auto MaxElement_Bit(ArrayType values) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.4.
  */
-int Min_Xor(const int x, const int y) {
+constexpr inline int Min_Xor(const int x, const int y) {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 
-int Max_Xor(const int x, const int y) {
+constexpr inline int Max_Xor(const int x, const int y) {
     return x ^ ((x ^ y) & -(x < y));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-int Min_QuickDirty(const int x, const int y) {
-    auto diff = x - y;
+constexpr inline int Min_QuickDirty(const int x, const int y) {
+    const auto diff = x - y;
     return y + ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-int Max_QuickDirty(const int x, const int y) {
-    auto diff = x - y;
+constexpr inline int Max_QuickDirty(const int x, const int y) {
+    const auto diff = x - y;
     return x - ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
@@ -100,11 +100,11 @@ const ArrayType VALUES5 = {15, 0, 2, 15};
 
 THE_BENCHMARK(MaxElement_Bit, VALUES5);
 
-SIMPLE_TEST(MaxElement_Bit, TestSAMPLE1, 0u, VALUES1);
-SIMPLE_TEST(MaxElement_Bit, TestSAMPLE2, 1u, VALUES2);
-SIMPLE_TEST(MaxElement_Bit, TestSAMPLE3, 2u, VALUES3);
-SIMPLE_TEST(MaxElement_Bit, TestSAMPLE4, 16u, VALUES4);
-SIMPLE_TEST(MaxElement_Bit, TestSAMPLE5, 15u, VALUES5);
+SIMPLE_TEST(MaxElement_Bit, TestSAMPLE1, 0, VALUES1);
+SIMPLE_TEST(MaxElement_Bit, TestSAMPLE2, 1, VALUES2);
+SIMPLE_TEST(MaxElement_Bit, TestSAMPLE3, 2, VALUES3);
+SIMPLE_TEST(MaxElement_Bit, TestSAMPLE4, 16, VALUES4);
+SIMPLE_TEST(MaxElement_Bit, TestSAMPLE5, 15, VALUES5);
 
 
 constexpr auto LOWER = std::numeric_limits<int>::min();

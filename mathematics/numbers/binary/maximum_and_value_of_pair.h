@@ -1,5 +1,6 @@
 #pragma once
 
+
 static inline auto MaxAndValueOfPair_Value(const ArrayType &elements) {
     ArrayType::value_type result = 0;
 

@@ -10,7 +10,7 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/check-two-given-sets-disjoint/
  */
 auto AreTwoSetsDisjoint_Hash(const ArrayType &lhs, const ArrayType &rhs) {
-    const std::unordered_set<ArrayType::value_type> lhs_set(lhs.cbegin(), lhs.cend());
+    const std::unordered_set lhs_set(lhs.cbegin(), lhs.cend());
     for (const auto element : rhs) {
         if (lhs_set.find(element) != lhs_set.cend()) {
             return false;

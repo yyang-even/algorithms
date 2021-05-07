@@ -26,10 +26,10 @@ using ArrayType = std::vector<int>;
  *
  * @complexity  O(nk*lgk)
  */
-auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
+inline auto MergeKSortedArrays(const std::vector<ArrayType> &k_arrays) {
     ArrayType final_sorted_array;
 
-    MergeKSortedArrays(k_arrays, std::back_insert_iterator<ArrayType>(final_sorted_array));
+    MergeKSortedArrays(k_arrays, std::back_insert_iterator(final_sorted_array));
 
     return final_sorted_array;
 }

@@ -15,7 +15,7 @@ using OutputType = std::vector<std::pair<ArrayType::value_type, ArrayType::value
  */
 auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
                              const ArrayType::value_type SUM) {
-    std::unordered_set<int> array1_set(arr1.cbegin(), arr1.cend());
+    std::unordered_set array1_set(arr1.cbegin(), arr1.cend());
     OutputType outputs;
 
     for (const auto elem : arr2) {
