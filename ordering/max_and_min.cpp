@@ -3,7 +3,7 @@
 
 namespace {
 
-using ArrayType = std::vector<unsigned>;
+using ArrayType = std::vector<int>;
 
 /** Maximum and minimum of an array using minimum number of comparisons
  *
@@ -64,7 +64,8 @@ auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin,
                          std::min(left_min, right_min));
     }
 }
-auto MaxAndMin_Tournament(const ArrayType &values) {
+
+inline auto MaxAndMin_Tournament(const ArrayType &values) {
     assert(not values.empty());
 
     return MaxAndMin_Tournament(values.cbegin(), values.size());
@@ -118,23 +119,23 @@ const ArrayType VALUES4 = {15, 0, 2, 15};
 
 THE_BENCHMARK(MaxAndMin_Linear, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::pair(15u, 0u), VALUES4);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE1, std::pair(1, 1), VALUES1);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE2, std::pair(2, 1), VALUES2);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE3, std::pair(16, 4), VALUES3);
+SIMPLE_TEST(MaxAndMin_Linear, TestSAMPLE4, std::pair(15, 0), VALUES4);
 
 
 THE_BENCHMARK(MaxAndMin_Tournament, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::pair(15u, 0u), VALUES4);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE1, std::pair(1, 1), VALUES1);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE2, std::pair(2, 1), VALUES2);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE3, std::pair(16, 4), VALUES3);
+SIMPLE_TEST(MaxAndMin_Tournament, TestSAMPLE4, std::pair(15, 0), VALUES4);
 
 
 THE_BENCHMARK(MaxAndMin_Pair, VALUES4);
 
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::pair(1u, 1u), VALUES1);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::pair(2u, 1u), VALUES2);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::pair(16u, 4u), VALUES3);
-SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::pair(15u, 0u), VALUES4);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::pair(1, 1), VALUES1);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::pair(2, 1), VALUES2);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::pair(16, 4), VALUES3);
+SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::pair(15, 0), VALUES4);
