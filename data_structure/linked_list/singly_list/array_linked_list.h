@@ -22,7 +22,7 @@ public:
         ValueType value;
         PointerType next = NULL_PTR;
 
-        explicit Node(const ValueType v = 0): value(v) {
+        constexpr explicit Node(const ValueType v = 0): value(v) {
         }
     };
 
@@ -63,6 +63,7 @@ public:
         }
         nodes.back().next = Node::NULL_PTR;
     }
+
     explicit ArrayLinkedList(const std::vector<ValueType> &array): ArrayLinkedList() {
         assert(array.size() <= CAPACITY);
 
@@ -72,12 +73,12 @@ public:
     }
 
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return not size;
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 
@@ -154,7 +155,7 @@ public:
     }
 
     void Delete(const ValueType v) {
-        Node::PointerType prev_del = Node::NULL_PTR;
+        auto prev_del = Node::NULL_PTR;
         const auto key = Search(v, &prev_del);
         if (key != Node::NULL_PTR) {
             if (key == head) {

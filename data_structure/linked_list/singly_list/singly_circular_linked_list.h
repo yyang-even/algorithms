@@ -31,20 +31,24 @@ protected:
 
 public:
     SinglyCircularLinkedList() = default;
+
     explicit SinglyCircularLinkedList(const std::vector<ValueType> &array) {
         for (const auto elem : array) {
             PushBack(elem);
         }
     }
+
     SinglyCircularLinkedList(SinglyCircularLinkedList &&list): tail(std::move(list.tail)),
         size(list.size) {
     }
+
     SinglyCircularLinkedList &operator=(SinglyCircularLinkedList &&list) {
         std::swap(tail, list.tail);
         std::swap(size, list.size);
 
         return *this;
     }
+
     /**
      * @reference   Convert singly linked list into circular linked list
      *              https://www.geeksforgeeks.org/convert-singly-linked-list-circular-linked-list/
@@ -81,12 +85,12 @@ public:
     }
 
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return not size;
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 
@@ -125,6 +129,7 @@ public:
             InsertAfterHelper(tail, new_node);
         }
     }
+
     void PushFront(const ValueType v) {
         const auto new_node = std::make_shared<Node>(v);
         PushFront(new_node);
@@ -216,13 +221,9 @@ public:
     const auto CopyToArray() const {
         std::vector<Node::ValueType> array;
 
-        if (tail) {
-            auto current = tail;
-            do {
-                current = current->next;
-                array.push_back(current->value);
-            } while (current != tail);
-        }
+        OrderlessTraversal([&array](const auto node) {
+            array.push_back(node->value);
+        });
 
         return array;
     }
@@ -236,6 +237,7 @@ public:
         const auto prev_del = SearchPrev(v);
         DeleteAfter(prev_del);
     }
+
     void DeleteAfter(const Node::PointerType prev_del) {
         assert(prev_del);
 

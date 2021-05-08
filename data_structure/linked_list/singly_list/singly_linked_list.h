@@ -102,8 +102,8 @@ protected:
 
     const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
                                                    const Node::ValueType key) const {
-        return (not node or
-                node->value == key) ? node : search_RecursiveHelper(node->next, key);
+        return (not node or node->value == key) ?
+               node : search_RecursiveHelper(node->next, key);
     }
 
     std::size_t countSize_RecursiveHelper(const Node::PointerType node) const {
@@ -238,23 +238,14 @@ public:
      * program to insert that element in a linked list at a given position.
      */
     void InsertAt_Simple(std::size_t position, const Node::ValueType v) {
-        ++size;
-        assert(position and position <= size);
+        assert(position and position <= size + 1);
 
         const auto new_node = std::make_shared<Node>(v);
         if (position == 1) {
-            new_node->next = head;
-            head = new_node;
+            InsertFront(v);
         } else {
-            auto current = head;
-            while (--position > 1) {
-                current = current->next;
-            }
-            new_node->next = current->next;
-            current->next = new_node;
-            if (not new_node->next) {
-                tail = new_node;
-            }
+            const auto prev = At(position - 2);
+            InsertAfter(*prev, v);
         }
     }
 
@@ -319,9 +310,11 @@ public:
         return search_RecursiveHelper(head, key);
     }
 
+
     auto CopyToArray() const {
         return ::CopyToArray(head);
     }
+
 
     Node::ValueType PopHead() {
         assert(head);
@@ -332,6 +325,7 @@ public:
 
         return v;
     }
+
 
     void Delete(const Node::ValueType key) {
         deleteHelper([key](const auto & node) {
@@ -508,7 +502,7 @@ public:
 
         auto current = head;
         while (current->next) {
-            auto next = current->next;
+            const auto next = current->next;
             current->next = next->next;
             next->next = head;
             head = next;
@@ -564,7 +558,7 @@ public:
      * Write a GetNth() function that takes a linked list and an integer index and
      * returns the data value stored in the node at that index position.
      */
-    auto At(std::size_t index) const {
+    Node::PointerType At(std::size_t index) const {
         assert(index < size);
 
         auto target = head;
@@ -576,7 +570,6 @@ public:
     }
 
     auto GetN_Iterative(const std::size_t index) const {
-
         return At(index)->value;
     }
 
@@ -592,7 +585,7 @@ public:
      */
 
 
-    /** Program for n’th node from the end of a Linked List
+    /** Program for n'th node from the end of a Linked List
      *
      * @reference   https://www.geeksforgeeks.org/nth-node-from-the-end-of-a-linked-list/
      * @reference   Recursive Approach to find nth node from the end in the linked list
@@ -713,10 +706,10 @@ public:
         assert(size > 1);
 
         Node::PointerType prev_x = nullptr;
-        auto current_x = Search_Iterative(x, &prev_x);
+        const auto current_x = Search_Iterative(x, &prev_x);
 
         Node::PointerType prev_y = nullptr;
-        auto current_y = Search_Iterative(y, &prev_y);
+        const auto current_y = Search_Iterative(y, &prev_y);
 
         assert(current_x and current_y);
 
@@ -774,7 +767,7 @@ public:
      * @reference   Make a loop at k-th position in a linked list
      *              https://www.geeksforgeeks.org/make-loop-k-th-position-linked-list/
      */
-    void MakeLoopAt(const std::size_t index) {
+    void MakeLoopAt(const std::size_t index) const {
         tail->next = At(index);
     }
 
