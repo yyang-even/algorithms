@@ -76,9 +76,9 @@ auto sum_SameSize(const ListType &longer_list,
     return result;
 }
 
-void addCarryToRemaining(const ListType::const_iterator cbegin,
-                         const ListType::const_iterator cend,
-                         int &carry, ListType &result) {
+inline void addCarryToRemaining(const ListType::const_iterator cbegin,
+                                const ListType::const_iterator cend,
+                                int &carry, ListType &result) {
     if (cbegin != cend) {
         addCarryToRemaining(std::next(cbegin), cend, carry, result);
         const auto digit_sum = *cbegin + carry;
@@ -159,7 +159,7 @@ auto Sum_MostFirst_Stack(const ListType &lhs, const ListType &rhs) {
  * @reference   Add Two Numbers Represented by Linked Lists | Set 3
  *              https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists-set-3/
  */
-auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
+inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
     lhs.reverse();
     rhs.reverse();
 

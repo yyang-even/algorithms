@@ -3,10 +3,6 @@
 
 namespace {
 
-const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const std::vector<int> EXPECTED_ARRAY = {26, 24, -3, -2, -1, 1, 8, 6, 7, 4, 5, 23, 9, 10, 11, 12, 13, -26};
-
-
 auto testLinkedList_Helper(const std::vector<int> &array) {
     ArrayLinkedList list {array};
 
@@ -40,7 +36,7 @@ auto testLinkedList_Helper(const std::vector<int> &array) {
 }
 
 
-auto testLinkedList(const std::vector<int> &array) {
+inline auto testLinkedList(const std::vector<int> &array) {
     const auto list = testLinkedList_Helper(array);
 
     return list.CopyToArray();
@@ -49,6 +45,10 @@ auto testLinkedList(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testLinkedList, Sample1, SAMPLE_ARRAY);
+const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+const std::vector<int> EXPECTED_ARRAY = {26, 24, -3, -2, -1, 1, 8, 6, 7, 4, 5, 23, 9, 10, 11, 12, 13, -26};
+
+
+THE_BENCHMARK(testLinkedList, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);

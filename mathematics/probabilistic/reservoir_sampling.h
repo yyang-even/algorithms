@@ -2,6 +2,7 @@
 
 #include "common_header.h"
 
+
 /** Reservoir Sampling
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -24,10 +25,11 @@
  * @complexity  O(n)
  */
 template <typename Container>
-auto ReservoirSampling(const Container &stream, const typename Container::size_type k) {
+static constexpr inline auto
+ReservoirSampling(const Container &stream, const typename Container::size_type k) {
     std::vector<typename Container::value_type> samples;
     auto iter = stream.cbegin();
-    typename Container::size_type i = 0ul;
+    typename Container::size_type i = 0;
     for (; i < k; ++i, ++iter) {
         samples.push_back(*iter);
     }

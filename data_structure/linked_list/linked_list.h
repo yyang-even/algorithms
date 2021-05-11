@@ -2,6 +2,7 @@
 
 
 template <typename NodePointer>
-void Advance(NodePointer &current, unsigned distance) {
+static constexpr inline void
+Advance(NodePointer &current, unsigned distance) {
     for (; distance--; current = current->next);
 }

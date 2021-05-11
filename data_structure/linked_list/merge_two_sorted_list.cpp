@@ -11,15 +11,13 @@ using ListType = std::forward_list<int>;
  * @reference   Merge two sorted lists (in-place)
  *              https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
  *
- * Write a SortedMerge() function that takes two lists, each of which is
- * sorted in increasing order, and merges the two together into one list
- * which is in increasing order. SortedMerge() should return the new list.
- * The new list should be made by splicing together the nodes of the first
- * two lists.
- * There are many cases to deal with: either ‘a’ or ‘b’ may be empty,
- * during processing either ‘a’ or ‘b’ may run out first, and finally
- * there’s the problem of starting the result list empty, and building
- * it up while going through ‘a’ and ‘b’.
+ * Write a SortedMerge() function that takes two lists, each of which is sorted in
+ * increasing order, and merges the two together into one list which is in increasing
+ * order. SortedMerge() should return the new list. The new list should be made by
+ * splicing together the nodes of the first two lists. There are many cases to deal
+ * with: either 'a' or 'b' may be empty, during processing either 'a' or 'b' may run out
+ * first, and finally there's the problem of starting the result list empty, and building
+ * it up while going through 'a' and 'b'.
  */
 auto SortedMergeList_Single_STL(ListType L, ListType R) {
     assert(std::is_sorted(L.cbegin(), L.cend()));
@@ -80,7 +78,7 @@ constexpr InitializerType SAMPLE2R = {4, 7, 8};
 constexpr InitializerType EXPECTED2 = {4, 5, 7, 8, 8, 9};
 
 
-SIMPLE_BENCHMARK(SortedMergeList_Single_STL, Sample1, SAMPLE1L, SAMPLE1R);
+THE_BENCHMARK(SortedMergeList_Single_STL, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
@@ -88,7 +86,7 @@ SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
 SIMPLE_TEST(SortedMergeList_Single_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
 
 
-SIMPLE_BENCHMARK(SortedMergeList_Doubly_STL, Sample1, SAMPLE1L, SAMPLE1R);
+THE_BENCHMARK(SortedMergeList_Doubly_STL, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
 SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);

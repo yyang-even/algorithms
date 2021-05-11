@@ -29,7 +29,7 @@ std::vector<ListType>::iterator MergeKSorted_Lists_Recursive(
     return begin;
 }
 
-auto MergeKSorted_Lists_Recursive(std::vector<ListType> k_lists) {
+inline auto MergeKSorted_Lists_Recursive(std::vector<ListType> k_lists) {
     return *MergeKSorted_Lists_Recursive(k_lists.begin(), k_lists.size());
 }
 
@@ -45,7 +45,7 @@ auto MergeKSorted_Lists_MinHeap(std::vector<ListType> k_lists) {
         }
     }
 
-    constexpr auto compare = [](const auto * lhs, const auto * rhs) {
+    static constexpr auto compare = [](const auto * lhs, const auto * rhs) {
         return  lhs->front() > rhs->front();
     };
     std::priority_queue<ListType *, std::vector<ListType *>, decltype(compare)>
@@ -81,6 +81,7 @@ const std::vector<ListType> SAMPLE_DIFF_SIZE_LISTS = {{1, 3, 5, 7, 9},
     {10, 12, 13, 14, 15, 16, 20}
 };
 const ListType EXPECTED_DIFF_SIZE_LIST = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20};
+
 
 SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, Sample1, SAMPLE_LISTS);
 SIMPLE_BENCHMARK(MergeKSorted_Lists_Recursive, Sample2, SAMPLE_DIFF_SIZE_LISTS);

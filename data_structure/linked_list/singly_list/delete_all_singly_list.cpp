@@ -5,14 +5,14 @@
 
 namespace {
 
-auto testDeleteAll() {
+inline auto testDeleteAll() {
     const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
     SinglyLinkedList list {SAMPLE_ARRAY};
     list.DeleteAllOneByOne();
     return SinglyLinkedList::Node::node_alive;
 }
 
-auto testDeleteAll_Recursive() {
+inline auto testDeleteAll_Recursive() {
     const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
     SinglyLinkedList list {SAMPLE_ARRAY};
     list.DeleteAllOneByOne_Recursive();
@@ -24,9 +24,9 @@ auto testDeleteAll_Recursive() {
 
 SIMPLE_BENCHMARK0(testDeleteAll);
 
-SIMPLE_TEST(testDeleteAll, TestSample, 0u);
+SIMPLE_TEST(testDeleteAll, TestSample, 0);
 
 
 SIMPLE_BENCHMARK0(testDeleteAll_Recursive);
 
-SIMPLE_TEST(testDeleteAll_Recursive, TestSample, 0u);
+SIMPLE_TEST(testDeleteAll_Recursive, TestSample, 0);

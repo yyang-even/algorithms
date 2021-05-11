@@ -9,7 +9,7 @@ struct MultiLevelNode {
     using ValueType = int;
     using PointerType = std::shared_ptr<MultiLevelNode>;
 
-    explicit MultiLevelNode(const ValueType v = 0): value(v) {
+    constexpr explicit MultiLevelNode(const ValueType v = 0): value(v) {
     }
 
     ValueType value;
@@ -19,7 +19,6 @@ struct MultiLevelNode {
 
 using ArrayType = std::vector<MultiLevelNode::ValueType>;
 
-
 /**
  * @reference   Doubly Linked List Flattening
  *              John Mongan, Eric Giguere, Noah Kindler.
@@ -28,12 +27,13 @@ using ArrayType = std::vector<MultiLevelNode::ValueType>;
  * @reference   Flatten a multilevel linked list
  *              https://www.geeksforgeeks.org/flatten-a-linked-list-with-next-and-child-pointers/
  *
- * Given a linked list where in addition to the next pointer, each node has a child pointer,
- * which may or may not point to a separate list. These child lists may have one or more
- * children of their own, and so on, to produce a multilevel data structure, as shown in
- * below figure.You are given the head of the first level of the list. Flatten the list so
- * that all the nodes appear in a single-level linked list. You need to flatten the list in
- * way that all nodes at first level should come first, then nodes of second level, and so on.
+ * Given a linked list where in addition to the next pointer, each node has a child
+ * pointer, which may or may not point to a separate list. These child lists may have
+ * one or more children of their own, and so on, to produce a multilevel data structure,
+ * as shown in below figure.You are given the head of the first level of the list.
+ * Flatten the list so that all the nodes appear in a single-level linked list. You need
+ * to flatten the list in way that all nodes at first level should come first, then nodes
+ * of second level, and so on.
  */
 auto FlattenMultilevelLinkedList_Levelwise(const MultiLevelNode::PointerType head) {
     std::queue<MultiLevelNode::PointerType> children_queue;
@@ -75,8 +75,8 @@ MultiLevelNode::PointerType FlattenMultilevelLinkedList_Depthwise(
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 4.
  *
- * Unflatten the list created by the previous problem and restore the data structure
- * to its original condition.
+ * Unflatten the list created by the previous problem and restore the data structure to
+ * its original condition.
  */
 
 
