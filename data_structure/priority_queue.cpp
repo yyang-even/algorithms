@@ -7,7 +7,7 @@ namespace {
 
 using ArrayType = MinPriorityQueue<int>::ArrayType;
 
-auto testPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
+inline auto testPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
     MinPriorityQueue<int> priority_queue{array};
 
     //No-op
@@ -19,7 +19,7 @@ auto testPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
 }
 
 
-auto testListPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
+inline auto testListPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
     SinglyLinkedListMinPriorityQueue priority_queue{array};
     priority_queue.Pop();
 
@@ -27,7 +27,7 @@ auto testListPriorityQueue(const MinPriorityQueue<int>::ArrayType &array) {
 }
 
 
-auto testListPriorityQueue_STL(const MinPriorityQueue<int>::ArrayType &array) {
+inline auto testListPriorityQueue_STL(const MinPriorityQueue<int>::ArrayType &array) {
     SinglyLinkedListMinPriorityQueue_STL priority_queue{array};
     priority_queue.Pop();
 

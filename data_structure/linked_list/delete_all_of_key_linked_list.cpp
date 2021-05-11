@@ -43,8 +43,9 @@ auto DeleteWithKey_Doubly(std::list<int> doubly_list,
 
 
 template <typename ListType, typename DeleteFunc>
-auto testDeleteWithKey(const ListType &list, const typename ListType::value_type key,
-                       const DeleteFunc delete_func) {
+constexpr inline auto testDeleteWithKey(const ListType &list,
+                                        const typename ListType::value_type key,
+                                        const DeleteFunc delete_func) {
     auto expected = list;
     expected.remove(key);
 
@@ -59,7 +60,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  * @reference   Count of Prime Nodes of a Singly Linked List
  *              https://www.geeksforgeeks.org/count-of-prime-nodes-of-a-singly-linked-list/
  *
- * Given a singly linked list containing N nodes, the task is to find the total count of prime numbers.
+ * Given a singly linked list containing N nodes, the task is to find the total count of
+ * prime numbers.
  */
 
 
@@ -85,16 +87,16 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  * @reference   Delete all the nodes from the list that are greater than x
  *              https://www.geeksforgeeks.org/delete-nodes-list-greater-x/
  *
- * Given a doubly linked list containing N nodes and a number X, the task is to delete all the nodes
- * from the list that are greater than the given value X.
+ * Given a doubly linked list containing N nodes and a number X, the task is to delete
+ * all the nodes from the list that are greater than the given value X.
  *
  * @reference   Delete all the nodes from the list which are less than K
  *              https://www.geeksforgeeks.org/delete-all-the-nodes-from-the-list-which-are-less-than-k/
  * @reference   Delete all the nodes from a doubly linked list that are smaller than a given value
  *              https://www.geeksforgeeks.org/delete-all-the-nodes-from-a-doubly-linked-list-that-are-smaller-than-a-given-value/
  *
- * Given a Linked List and a key K. The task is to write a program to delete all the nodes from the
- * list that are lesser than the key K.
+ * Given a Linked List and a key K. The task is to write a program to delete all the
+ * nodes from the list that are lesser than the key K.
  */
 
 
@@ -108,7 +110,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  * @reference   Delete all Prime Nodes from a Circular Singly Linked List
  *              https://www.geeksforgeeks.org/delete-all-prime-nodes-from-a-circular-singly-linked-list/
  *
- * Given a singly linked list containing N nodes, the task is to delete all nodes from the list which are prime.
+ * Given a singly linked list containing N nodes, the task is to delete all nodes from
+ * the list which are prime.
  */
 
 
@@ -118,8 +121,8 @@ auto testDeleteWithKey(const ListType &list, const typename ListType::value_type
  * @reference   Delete all nodes from the doubly linked list which are divisible by K
  *              https://www.geeksforgeeks.org/delete-all-nodes-from-the-doubly-linked-list-which-are-divisible-by-k/
  *
- * Given a Linked List and a key K. The task is to write a program to delete all the nodes from
- * the list that are divisible by K.
+ * Given a Linked List and a key K. The task is to write a program to delete all the
+ * nodes from the list that are divisible by K.
  */
 
 }//namespace

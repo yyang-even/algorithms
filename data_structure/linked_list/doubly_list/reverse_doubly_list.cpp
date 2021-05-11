@@ -4,7 +4,7 @@
 
 namespace {
 
-bool testReverse(std::vector<int> array) {
+inline bool testReverse(std::vector<int> array) {
     DoublyLinkedList list {array};
     list.Reverse();
 
@@ -14,7 +14,7 @@ bool testReverse(std::vector<int> array) {
 }
 
 
-bool testReverse_Recursive(std::vector<int> array) {
+inline bool testReverse_Recursive(std::vector<int> array) {
     DoublyLinkedList list {array};
     list.Reverse_Recursive();
 
@@ -24,7 +24,7 @@ bool testReverse_Recursive(std::vector<int> array) {
 }
 
 
-bool testReverse_TwoPointers(std::vector<int> array) {
+inline bool testReverse_TwoPointers(std::vector<int> array) {
     DoublyLinkedList list {array};
     list.Reverse_TwoPointers();
 
@@ -34,7 +34,7 @@ bool testReverse_TwoPointers(std::vector<int> array) {
 }
 
 
-bool testReverse_Circular(std::vector<int> array) {
+inline bool testReverse_Circular(std::vector<int> array) {
     DoublyCircularLinkedList list {array};
     list.Reverse();
 
@@ -49,21 +49,21 @@ bool testReverse_Circular(std::vector<int> array) {
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
-SIMPLE_BENCHMARK(testReverse, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testReverse, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse, TestSample, true, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_Recursive, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testReverse_Recursive, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Recursive, TestSample, true, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_TwoPointers, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testReverse_TwoPointers, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_TwoPointers, TestSample, true, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testReverse_Circular, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testReverse_Circular, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testReverse_Circular, TestSample, true, SAMPLE_ARRAY);

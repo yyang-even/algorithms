@@ -34,14 +34,6 @@ inline auto GetMiddle_Recursive(const ListType &l) {
 }
 
 
-using InitializerType = std::initializer_list<ListType::value_type>;
-
-constexpr InitializerType SINGLE_ARRAY = {1};
-constexpr InitializerType EVEN_ARRAY = {1, 3};
-constexpr InitializerType ODD_ARRAY = {1, 2, 3};
-constexpr InitializerType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-
-
 inline auto testGetMid_Size(const std::vector<int> &array) {
     SinglyLinkedList list {array};
     return list.GetMid_Size();
@@ -61,7 +53,7 @@ inline auto testGetMid_Odd(const std::vector<int> &array) {
 
 
 inline auto testGetBeforeMiddle_TwoPointersSTL(std::vector<int> array) {
-    auto l = ContainerCast<ListType>(std::move(array));
+    const auto l = ContainerCast<ListType>(std::move(array));
     auto before_mid = GetBeforeMiddle_TwoPointersSTL(l.cbefore_begin(), l.cend());
     return *(++before_mid);
 }
@@ -84,6 +76,14 @@ inline auto GetMiddle(const std::vector<int> &array) {
 }
 
 }//namespace
+
+
+using InitializerType = std::initializer_list<ListType::value_type>;
+
+constexpr InitializerType SINGLE_ARRAY = {1};
+constexpr InitializerType EVEN_ARRAY = {1, 3};
+constexpr InitializerType ODD_ARRAY = {1, 2, 3};
+constexpr InitializerType SAMPLE_ARRAY = {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
 THE_BENCHMARK(testGetMid_Size, SAMPLE_ARRAY);

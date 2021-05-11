@@ -12,9 +12,10 @@
  * @reference   Doubly Circular Linked List | Set 1 (Introduction and Insertion)
  *              https://www.geeksforgeeks.org/doubly-circular-linked-list-set-1-introduction-and-insertion/
  *
- * Circular Doubly Linked List has properties of both doubly linked list and circular linked list in which
- * two consecutive elements are linked or connected by previous and next pointer and the last node points
- * to first node by next pointer and also the first node points to last node by previous pointer.
+ * Circular Doubly Linked List has properties of both doubly linked list and circular
+ * linked list in which two consecutive elements are linked or connected by previous and
+ * next pointer and the last node points to first node by next pointer and also the first
+ * node points to last node by previous pointer.
  */
 class DoublyCircularLinkedList {
 public:
@@ -53,12 +54,12 @@ public:
     }
 
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return not size;
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 

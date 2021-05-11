@@ -8,10 +8,11 @@
  * @reference   https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
  *
  * A complete binary tree is a binary tree in which every level, except possibly the last,
- * is completely filled, and all nodes are as far left as possible. See the following examples.
- * A node is ‘Full Node’ if both left and right children are not empty (or not NULL).
- * The approach is to do a level order traversal starting from the root. In the traversal,
- * once a node is found which is NOT a Full Node, all the following nodes must be leaf nodes.
+ * is completely filled, and all nodes are as far left as possible. See the following
+ * examples. A node is 'Full Node' if both left and right children are not empty (or not
+ * NULL). The approach is to do a level order traversal starting from the root. In the
+ * traversal, once a node is found which is NOT a Full Node, all the following nodes must
+ * be leaf nodes.
  */
 static inline auto isCompleteBinaryTree(const BinaryTree::Node::PointerType root_node) {
     bool has_nonfull_node_found = false;

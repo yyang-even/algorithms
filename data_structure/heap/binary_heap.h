@@ -290,6 +290,7 @@ public:
 };
 
 template <typename T>
-using MaxHeap = BinaryHeap<T, std::greater<T>> ;
+using MaxHeap = BinaryHeap<T, std::greater<T>>;
+
 template <typename T>
-using MinHeap = BinaryHeap<T, std::less<T>> ;
+using MinHeap = BinaryHeap<T, std::less<T>>;

@@ -24,23 +24,28 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        explicit Node(const ValueType v = 0): value(v) {
+        constexpr explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
+
         ~Node() {
             --node_alive;
         }
 
-        PointerType &Next() {
+        constexpr PointerType &Next() {
             return next;
         }
-        const PointerType &Next() const {
+
+        constexpr const PointerType &Next() const {
             return next;
         }
-        PointerType &Prev() {
+
+
+        constexpr PointerType &Prev() {
             return prev;
         }
-        const PointerType &Prev() const {
+
+        constexpr const PointerType &Prev() const {
             return prev;
         }
 
@@ -82,12 +87,12 @@ public:
     }
 
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return not size;
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 
@@ -292,16 +297,19 @@ public:
         std::swap(head, tail);
     }
 
+
     void Reverse_Recursive() {
         Reverse_Recursive(head);
         std::swap(head, tail);
     }
+
     void Reverse_Recursive(const Node::PointerType current) {
         if (current) {
             std::swap(current->Next(), current->Prev());
             Reverse_Recursive(current->Prev());
         }
     }
+
 
     void Reverse_TwoPointers() {
         if (head) {

@@ -3,11 +3,9 @@
 
 namespace {
 
-const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
-const std::vector<int> EXPECTED_ARRAY = {27, -4, 24, -3, -2, -1, 1, 0, 8, 6, 2, 3, 7, 4, 5, 23, 9, 10, 11, 12, 13, 25, -27};
+using ArrayType = std::vector<int>;
 
-
-auto testLinkedList_Helper(const std::vector<int> &array) {
+auto testLinkedList_Helper(const ArrayType &array) {
     XorLinkedList list {array};
 
     list.PushFront(-1);
@@ -35,14 +33,14 @@ auto testLinkedList_Helper(const std::vector<int> &array) {
 }
 
 
-auto testLinkedList(const std::vector<int> &array) {
+inline auto testLinkedList(const ArrayType &array) {
     const auto list = testLinkedList_Helper(array);
 
     return list.CopyToArray();
 }
 
 
-auto testLinkedList_ReverseOrder(const std::vector<int> &array) {
+inline auto testLinkedList_ReverseOrder(const ArrayType &array) {
     const auto list = testLinkedList_Helper(array);
 
     auto output = list.CopyToArray_Reverse();
@@ -51,7 +49,7 @@ auto testLinkedList_ReverseOrder(const std::vector<int> &array) {
 }
 
 
-auto testLinkedList_Size(const std::vector<int> &array) {
+inline auto testLinkedList_Size(const ArrayType &array) {
     const auto list = testLinkedList_Helper(array);
 
     return list.Size() ==  XorLinkedList::Node::node_alive;
@@ -60,16 +58,20 @@ auto testLinkedList_Size(const std::vector<int> &array) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(testLinkedList, Sample1, SAMPLE_ARRAY);
+const ArrayType SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
+const ArrayType EXPECTED_ARRAY = {27, -4, 24, -3, -2, -1, 1, 0, 8, 6, 2, 3, 7, 4, 5, 23, 9, 10, 11, 12, 13, 25, -27};
+
+
+THE_BENCHMARK(testLinkedList, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testLinkedList_ReverseOrder, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testLinkedList_ReverseOrder, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_ReverseOrder, TestSample, EXPECTED_ARRAY, SAMPLE_ARRAY);
 
 
-SIMPLE_BENCHMARK(testLinkedList_Size, Sample1, SAMPLE_ARRAY);
+THE_BENCHMARK(testLinkedList_Size, SAMPLE_ARRAY);
 
 SIMPLE_TEST(testLinkedList_Size, TestSample, true, SAMPLE_ARRAY);

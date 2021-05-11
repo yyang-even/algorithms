@@ -28,8 +28,7 @@ const std::function<bool(void)> on_level_change = {}) {
         }
 
         for (auto number_nodes_at_current_level = remaining_nodes.size();
-             number_nodes_at_current_level;
-             --number_nodes_at_current_level) {
+             number_nodes_at_current_level--;) {
             const auto node = remaining_nodes.front();
             remaining_nodes.pop();
 

@@ -27,27 +27,32 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        explicit Node(const ValueType v = 0): value(v) {
+        constexpr explicit Node(const ValueType v = 0): value(v) {
             ++node_alive;
         }
+
         ~Node() {
             --node_alive;
         }
 
-        static PointerType Xor(const PointerType lhs, const PointerType rhs) {
+
+        static constexpr PointerType Xor(const PointerType lhs, const PointerType rhs) {
             return reinterpret_cast<PointerType>(reinterpret_cast<unsigned long>(lhs) ^
                                                  reinterpret_cast<unsigned long>(rhs));
         }
 
-        PointerType Next(const PointerType prev) const {
+        constexpr PointerType Next(const PointerType prev) const {
             return Xor(prev_xor_next, prev);
         }
-        PointerType Next(PointerType &prev) {
+
+        constexpr PointerType Next(PointerType &prev) {
             const auto next = Xor(prev_xor_next, prev);
             prev = this;
             return next;
         }
-        PointerType Prev(PointerType &next) {
+
+
+        constexpr PointerType Prev(PointerType &next) {
             return Next(next);
         }
     };
@@ -84,12 +89,12 @@ public:
     }
 
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return not size;
     }
 
 
-    auto Size() const {
+    constexpr auto Size() const {
         return size;
     }
 
@@ -152,7 +157,7 @@ public:
     }
 
 
-    const auto Search(const ValueType v) const {
+    constexpr auto Search(const ValueType v) const {
         Node::PointerType prev = nullptr;
         auto iter = head;
         for (; iter and iter->value != v; iter = iter->Next(prev));
