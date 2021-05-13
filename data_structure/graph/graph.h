@@ -12,7 +12,9 @@ struct DirectedEdge {
     std::size_t to = 0;
     int weight = 0;
 
-    DirectedEdge(const std::size_t source, const std::size_t destination, const int w = 0) :
+    constexpr DirectedEdge(const std::size_t source,
+                           const std::size_t destination,
+                           const int w = 0) :
         from(source), to(destination), weight(w) {}
 };
 
@@ -21,9 +23,9 @@ struct UndirectedEdge {
     std::size_t v = 0;
     int weight = 0;
 
-    UndirectedEdge(const std::size_t source,
-                   const std::size_t destination,
-                   const int w = 0) :
+    constexpr UndirectedEdge(const std::size_t source,
+                             const std::size_t destination,
+                             const int w = 0) :
         u(source), v(destination), weight(w) {}
 };
 
@@ -66,7 +68,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    AdjacencyListGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+    constexpr AdjacencyListGraph(const std::size_t number_vertices,
+                                 const EdgeArrayType &edges):
         AdjacencyListGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -85,7 +88,7 @@ public:
 
 
     template<typename Visitor>
-    auto Visit(const Visitor visitor) const {
+    constexpr auto Visit(const Visitor visitor) const {
         return visitor(adjacency_list);
     }
 
@@ -111,7 +114,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    AdjacencyMatrixGraph(const std::size_t number_vertices, const EdgeArrayType &edges):
+    constexpr AdjacencyMatrixGraph(const std::size_t number_vertices,
+                                   const EdgeArrayType &edges):
         AdjacencyMatrixGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -130,7 +134,7 @@ public:
 
 
     template<typename Visitor>
-    auto Visit(const Visitor visitor) const {
+    constexpr auto Visit(const Visitor visitor) const {
         return visitor(adjacency_matrix);
     }
 
@@ -150,7 +154,8 @@ public:
         std::size_t destination = 0;
         int weight = 0;
 
-        AdjacentNode(const std::size_t to, const int w) : destination(to), weight(w) {}
+        constexpr AdjacentNode(const std::size_t to, const int w) :
+            destination(to), weight(w) {}
     };
 
     using RepresentationType = std::vector<std::list<AdjacentNode>>;
@@ -161,8 +166,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    WeightedAdjacencyListGraph(const std::size_t number_vertices,
-                               const EdgeArrayType &edges):
+    constexpr WeightedAdjacencyListGraph(const std::size_t number_vertices,
+                                         const EdgeArrayType &edges):
         WeightedAdjacencyListGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -181,7 +186,7 @@ public:
 
 
     template<typename Visitor>
-    auto Visit(const Visitor visitor) const {
+    constexpr auto Visit(const Visitor visitor) const {
         return visitor(adjacency_list);
     }
 
@@ -197,7 +202,8 @@ public:
         std::size_t source = 0;
         int weight = 0;
 
-        AdjacentNode(const std::size_t to, const int w) : source(to), weight(w) {}
+        constexpr AdjacentNode(const std::size_t to, const int w) :
+            source(to), weight(w) {}
     };
 
     using RepresentationType = std::vector<std::list<AdjacentNode>>;
@@ -208,8 +214,8 @@ public:
     }
 
     template <typename EdgeArrayType>
-    WeightedAdjacencyListInGraph(const std::size_t number_vertices,
-                                 const EdgeArrayType &edges):
+    constexpr WeightedAdjacencyListInGraph(const std::size_t number_vertices,
+                                           const EdgeArrayType &edges):
         WeightedAdjacencyListInGraph(number_vertices) {
         for (const auto &one_edge : edges) {
             AddEdge(one_edge);
@@ -228,7 +234,7 @@ public:
 
 
     template<typename Visitor>
-    auto Visit(const Visitor visitor) const {
+    constexpr auto Visit(const Visitor visitor) const {
         return visitor(adjacency_list);
     }
 
@@ -251,8 +257,9 @@ private:
 
 
 template <typename RepresentationType, typename Traverser>
-static inline void GraphTraverseHelper(const RepresentationType &graph,
-                                       const Traverser traverser) {
+static constexpr inline void
+GraphTraverseHelper(const RepresentationType &graph,
+                    const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);
     for (std::size_t i = 0; i < graph.size(); ++i) {
         if (not visited_vertices[i]) {
@@ -264,16 +271,18 @@ static inline void GraphTraverseHelper(const RepresentationType &graph,
 }
 
 template <typename GraphType, typename Traverser>
-static inline void GraphTraverse(const GraphType &graph, const Traverser traverser) {
+static constexpr inline void
+GraphTraverse(const GraphType &graph, const Traverser traverser) {
     graph.Visit([traverser](const auto & graph) {
         GraphTraverseHelper(graph, traverser);
     });
 }
 
 template <typename EdgeArrayType, typename Traverser>
-static inline void GraphTraverse(const std::size_t number_vertices,
-                                 const EdgeArrayType &edges,
-                                 const Traverser traverser) {
+static constexpr inline void
+GraphTraverse(const std::size_t number_vertices,
+              const EdgeArrayType &edges,
+              const Traverser traverser) {
     GraphTraverse(AdjacencyListGraph{number_vertices, edges}, traverser);
 }
 

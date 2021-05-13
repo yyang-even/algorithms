@@ -57,8 +57,9 @@ void BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType
     }
 }
 
-auto BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
-                                    const std::size_t source) {
+inline auto
+BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType &graph,
+                               const std::size_t source) {
     ArrayType results;
     std::vector<bool> visited_vertices(graph.size(), false);
     BreadthFirstSearchSingleSource(graph, source, visited_vertices, results);
@@ -66,9 +67,10 @@ auto BreadthFirstSearchSingleSource(const AdjacencyListGraph::RepresentationType
     return results;
 }
 
-auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
-                                    const DirectedEdgeArrayType &edges,
-                                    const std::size_t source) {
+inline auto
+BreadthFirstSearchSingleSource(const std::size_t number_vertices,
+                               const DirectedEdgeArrayType &edges,
+                               const std::size_t source) {
     return AdjacencyListGraph(number_vertices, edges).Visit(
     [source](const auto & graph) {
         return BreadthFirstSearchSingleSource(graph, source);
@@ -76,8 +78,9 @@ auto BreadthFirstSearchSingleSource(const std::size_t number_vertices,
 }
 
 
-auto BreadthFirstSearch(const std::size_t number_vertices,
-                        const DirectedEdgeArrayType &edges) {
+inline auto
+BreadthFirstSearch(const std::size_t number_vertices,
+                   const DirectedEdgeArrayType &edges) {
     ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -116,8 +119,9 @@ void BreadthFirstSearch_AdjMatrix(const AdjacencyMatrixGraph::RepresentationType
     }
 }
 
-auto BreadthFirstSearch_AdjMatrix(const std::size_t number_vertices,
-                                  const DirectedEdgeArrayType &edges) {
+inline auto
+BreadthFirstSearch_AdjMatrix(const std::size_t number_vertices,
+                             const DirectedEdgeArrayType &edges) {
     ArrayType results;
     GraphTraverse(AdjacencyMatrixGraph{number_vertices, edges},
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -135,7 +139,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {
 const ArrayType EXPECTED1 = {2, 0, 3, 1};
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearchSingleSource, Sample1, 4, SAMPLE1, 2);
+THE_BENCHMARK(BreadthFirstSearchSingleSource, 4, SAMPLE1, 2);
 
 SIMPLE_TEST(BreadthFirstSearchSingleSource, TestSAMPLE1, EXPECTED1, 4, SAMPLE1, 2);
 
@@ -144,11 +148,11 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {1, 4}, {2, 5}, {
 const ArrayType EXPECTED2 = {0, 1, 2, 3, 4, 5, 6};
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearch, Sample1, 7, SAMPLE2);
+THE_BENCHMARK(BreadthFirstSearch, 7, SAMPLE2);
 
 SIMPLE_TEST(BreadthFirstSearch, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(BreadthFirstSearch_AdjMatrix, Sample1, 7, SAMPLE2);
+THE_BENCHMARK(BreadthFirstSearch_AdjMatrix, 7, SAMPLE2);
 
 SIMPLE_TEST(BreadthFirstSearch_AdjMatrix, TestSAMPLE2, EXPECTED2, 7, SAMPLE2);

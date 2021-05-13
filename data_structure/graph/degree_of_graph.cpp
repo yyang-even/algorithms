@@ -14,7 +14,7 @@ namespace {
  * @reference   Sum of degrees of all nodes of a undirected graph
  *              https://www.geeksforgeeks.org/sum-of-degrees-of-all-nodes-of-a-undirected-graph/
  */
-auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edges) {
+constexpr inline auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edges) {
     return number_edges * 2;
 }
 
@@ -23,22 +23,22 @@ auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edges) {
  *
  * @reference   https://www.geeksforgeeks.org/degree-of-a-cycle-graph/
  *
- * Given the number of vertices in a Cycle Graph. The task is to find the
- * Degree and the number of Edges of the cycle graph.
+ * Given the number of vertices in a Cycle Graph. The task is to find the Degree and the
+ * number of Edges of the cycle graph.
  */
-auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
+constexpr inline auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
     return SumOfDegreesOfUndirectedGraph(number_vertices);
 }
 
 
-auto InDegrees(const std::size_t number_vertices,
-               const UndirectedEdgeArrayType &edges) {
+inline auto InDegrees(const std::size_t number_vertices,
+                      const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(InDegrees));
 }
 
 
-auto OutDegrees(const std::size_t number_vertices,
-                const UndirectedEdgeArrayType &edges) {
+inline auto OutDegrees(const std::size_t number_vertices,
+                       const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(OutDegrees));
 }
 
@@ -72,7 +72,7 @@ auto DegreeOfVertex(const std::size_t number_vertices,
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfDegreesOfCycleGraph, Sample1, 4);
+THE_BENCHMARK(SumOfDegreesOfCycleGraph, 4);
 
 SIMPLE_TEST(SumOfDegreesOfCycleGraph, TestSAMPLE1, 8, 4);
 
@@ -81,17 +81,17 @@ const UndirectedEdgeArrayType SAMPLE1 = {{0, 1}, {1, 2}, {0, 3}, {1, 3}};
 const ArrayType EXPECTED1 = {2, 3, 1, 2};
 
 
-SIMPLE_BENCHMARK(InDegrees, Sample1, 4, SAMPLE1);
+THE_BENCHMARK(InDegrees, 4, SAMPLE1);
 
 SIMPLE_TEST(InDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(OutDegrees, Sample1, 4, SAMPLE1);
+THE_BENCHMARK(OutDegrees, 4, SAMPLE1);
 
 SIMPLE_TEST(OutDegrees, TestSAMPLE1, EXPECTED1, 4, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(DegreeOfVertex, Sample1, 4, SAMPLE1, 1);
+THE_BENCHMARK(DegreeOfVertex, 4, SAMPLE1, 1);
 
 SIMPLE_TEST(DegreeOfVertex, TestSAMPLE1, EXPECTED1[0], 4, SAMPLE1, 0);
 SIMPLE_TEST(DegreeOfVertex, TestSAMPLE2, EXPECTED1[1], 4, SAMPLE1, 1);

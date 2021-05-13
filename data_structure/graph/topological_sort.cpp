@@ -10,8 +10,8 @@ namespace {
 #include "topological_sort.h"
 
 
-auto TopologicalSort(const std::size_t number_vertices,
-                     const DirectedEdgeArrayType &edges) {
+inline auto TopologicalSort(const std::size_t number_vertices,
+                            const DirectedEdgeArrayType &edges) {
     ArrayType results;
     GraphTraverse(number_vertices, edges,
     [&results](const auto & graph, const auto source, auto & visited_vertices) {
@@ -24,8 +24,8 @@ auto TopologicalSort(const std::size_t number_vertices,
 }
 
 
-auto TopologicalSort_Kahn(const std::size_t number_vertices,
-                          const DirectedEdgeArrayType &edges) {
+inline auto TopologicalSort_Kahn(const std::size_t number_vertices,
+                                 const DirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit
            (ToLambda(TopologicalSort_Kahn)).second;
 }
@@ -67,7 +67,7 @@ void AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph,
     }
 }
 
-auto AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph) {
+inline auto AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph) {
     std::vector<bool> visited_vertices(graph.size(), false);
     auto in_degrees = InDegrees(graph);
     ArrayType one_result;
@@ -78,8 +78,8 @@ auto AllTopologicalSort(const AdjacencyListGraph::RepresentationType &graph) {
     return all_results;
 }
 
-auto AllTopologicalSort(const std::size_t number_vertices,
-                        const DirectedEdgeArrayType &edges) {
+inline auto AllTopologicalSort(const std::size_t number_vertices,
+                               const DirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(AllTopologicalSort));
 }
 
@@ -90,7 +90,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {
 const ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
 
 
-SIMPLE_BENCHMARK(TopologicalSort, Sample1, 6, SAMPLE1);
+THE_BENCHMARK(TopologicalSort, 6, SAMPLE1);
 
 SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
 
@@ -98,7 +98,7 @@ SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
 const ArrayType EXPECTED2 = {4, 5, 2, 0, 3, 1};
 
 
-SIMPLE_BENCHMARK(TopologicalSort_Kahn, Sample1, 6, SAMPLE1);
+THE_BENCHMARK(TopologicalSort_Kahn, 6, SAMPLE1);
 
 SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED2, 6, SAMPLE1);
 
@@ -120,6 +120,6 @@ const std::vector<ArrayType> EXPECTED3 = {
 };
 
 
-SIMPLE_BENCHMARK(AllTopologicalSort, Sample1, 6, SAMPLE1);
+THE_BENCHMARK(AllTopologicalSort, 6, SAMPLE1);
 
 SIMPLE_TEST(AllTopologicalSort, TestSAMPLE1, EXPECTED3, 6, SAMPLE1);

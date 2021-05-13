@@ -16,14 +16,14 @@ namespace {
 /**
  * t(n) = n^(n-2)
  */
-unsigned long long CompleteGraphOnN(const unsigned n) {
+constexpr inline unsigned long long CompleteGraphOnN(const unsigned n) {
     return std::pow(n, n - 2);
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(CompleteGraphOnN, Sample1, 1);
+THE_BENCHMARK(CompleteGraphOnN, 1);
 
 SIMPLE_TEST(CompleteGraphOnN, TestSample1, 0, 0);
 SIMPLE_TEST(CompleteGraphOnN, TestSample2, 1, 1);

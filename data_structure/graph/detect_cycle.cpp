@@ -36,8 +36,8 @@ bool DetectCycle_DFS(const AdjacencyListGraph::RepresentationType &graph,
     return false;
 }
 
-auto DetectCycle_DFS(const std::size_t number_vertices,
-                     const DirectedEdgeArrayType &edges) {
+inline auto DetectCycle_DFS(const std::size_t number_vertices,
+                            const DirectedEdgeArrayType &edges) {
     std::vector<bool> in_stack_vertices(number_vertices, false);
     bool result = false;
 
@@ -56,8 +56,8 @@ auto DetectCycle_DFS(const std::size_t number_vertices,
  * @reference   Detect Cycle in a Directed Graph using BFS
  *              https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/
  */
-auto DetectCycle_Degrees(const std::size_t number_vertices,
-                         const DirectedEdgeArrayType &edges) {
+inline auto DetectCycle_Degrees(const std::size_t number_vertices,
+                                const DirectedEdgeArrayType &edges) {
     return not AdjacencyListGraph(number_vertices, edges).Visit(TopologicalSort_Kahn).first;
 }
 
@@ -96,8 +96,8 @@ bool DetectCycle_Undirected_DFS(const AdjacencyListGraph::RepresentationType &gr
     return false;
 }
 
-auto DetectCycle_Undirected_DFS(const std::size_t number_vertices,
-                                const UndirectedEdgeArrayType &edges) {
+inline auto DetectCycle_Undirected_DFS(const std::size_t number_vertices,
+                                       const UndirectedEdgeArrayType &edges) {
     bool result = false;
 
     GraphTraverse(number_vertices, edges,
@@ -140,8 +140,8 @@ bool DetectCycle_Undirected_BFS(const AdjacencyListGraph::RepresentationType &gr
     return false;
 }
 
-auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
-                                const UndirectedEdgeArrayType &edges) {
+inline auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
+                                       const UndirectedEdgeArrayType &edges) {
     bool result = false;
 
     GraphTraverse(number_vertices, edges,
@@ -199,8 +199,8 @@ auto DetectCycle_Undirected_Degrees(
     return results;
 }
 
-auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
-                                    const UndirectedEdgeArrayType &edges) {
+inline auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
+                                           const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit
            (ToLambda(DetectCycle_Undirected_Degrees));
 }
