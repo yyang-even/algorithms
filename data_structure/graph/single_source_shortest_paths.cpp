@@ -3,11 +3,12 @@
 #include "graph.h"
 #include "topological_sort.h"
 
+#include "mathematics/matrix/matrix.h"
+
 
 using namespace graph;
 
-using RowType = std::vector<unsigned>;
-using TableType = std::vector<RowType>;
+using TableType = MatrixTypeTemplate<unsigned>;
 
 namespace {
 
@@ -29,9 +30,9 @@ bool Relax(std::vector<int> &distances,
     return false;
 }
 
-void Relax(std::vector<int> &distances,
-           std::vector<int> &parents,
-           const DirectedEdge &edge) {
+inline void Relax(std::vector<int> &distances,
+                  std::vector<int> &parents,
+                  const DirectedEdge &edge) {
     Relax(distances, edge.from, edge.to, edge.weight, &parents);
 }
 
@@ -322,9 +323,10 @@ auto SingleSourceShortestPaths_Dijkstra(
  *              https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
  */
 template <typename EdgeArrayType>
-inline auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
-                                               const EdgeArrayType &edges,
-                                               const std::size_t source) {
+constexpr inline auto
+SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
+                                   const EdgeArrayType &edges,
+                                   const std::size_t source) {
     return WeightedAdjacencyListGraph{number_vertices, edges}.Visit(
     [source](const auto & graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source);
@@ -373,8 +375,8 @@ auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
  * @reference   Printing Paths in Dijkstra’s Shortest Path Algorithm
  *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
  */
-void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
-                                               const int i, ArrayType &path) {
+inline void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
+                                                      const int i, ArrayType &path) {
     if (i != -1) {
         PrintOneSingleSourceShortestPath_Dijkstra(parents, parents[i], path);
         path.push_back(i);

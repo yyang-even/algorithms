@@ -49,8 +49,9 @@ auto isReachable(const AdjacencyListGraph::RepresentationType &graph,
     return false;
 }
 
-auto isReachable(const std::size_t number_vertices, const DirectedEdgeArrayType &edges,
-                 const std::size_t source, const std::size_t destination) {
+inline auto isReachable(const std::size_t number_vertices,
+                        const DirectedEdgeArrayType &edges,
+                        const std::size_t source, const std::size_t destination) {
     assert(source < number_vertices);
     assert(destination < number_vertices);
 
@@ -100,7 +101,7 @@ auto NumberPaths_DAG(const std::size_t number_vertices,
 const DirectedEdgeArrayType SAMPLE1 = {{0, 1}, {0, 2}, {1, 2}, {2, 0}, {2, 3}, {3, 3}};
 
 
-SIMPLE_BENCHMARK(isReachable, Sample1, 4, SAMPLE1, 1, 3);
+THE_BENCHMARK(isReachable, 4, SAMPLE1, 1, 3);
 
 SIMPLE_TEST(isReachable, TestSAMPLE1, true, 4, SAMPLE1, 1, 3);
 SIMPLE_TEST(isReachable, TestSAMPLE2, false, 4, SAMPLE1, 3, 1);
@@ -109,6 +110,6 @@ SIMPLE_TEST(isReachable, TestSAMPLE2, false, 4, SAMPLE1, 3, 1);
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {2, 3}, {3, 4}};
 
 
-SIMPLE_BENCHMARK(NumberPaths_DAG, Sample1, 5, SAMPLE2, 0, 4);
+THE_BENCHMARK(NumberPaths_DAG, 5, SAMPLE2, 0, 4);
 
 SIMPLE_TEST(NumberPaths_DAG, TestSAMPLE2, 3, 5, SAMPLE2, 0, 4);

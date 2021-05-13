@@ -58,8 +58,8 @@ auto SingleSourceLongestPaths_DAG(const std::size_t number_vertices,
  * @reference   Longest path in a directed Acyclic graph | Dynamic Programming
  *              https://www.geeksforgeeks.org/longest-path-in-a-directed-acyclic-graph-dynamic-programming/
  *
- * Given a directed graph G with N vertices and M edges. The task is to
- * find the length of the longest directed path in Graph.
+ * Given a directed graph G with N vertices and M edges. The task is to find the length
+ * of the longest directed path in Graph.
  * Note: Length of a directed path is the number of edges in it.
  */
 void LengthOfTheLongestPath_Unweighted_DAG_DFS(
@@ -79,8 +79,9 @@ void LengthOfTheLongestPath_Unweighted_DAG_DFS(
     }
 }
 
-auto LengthOfTheLongestPath_Unweighted_DAG_DFS(const std::size_t number_vertices,
-                                               const DirectedEdgeArrayType &edges) {
+inline auto
+LengthOfTheLongestPath_Unweighted_DAG_DFS(const std::size_t number_vertices,
+                                          const DirectedEdgeArrayType &edges) {
     ArrayType longest_paths(number_vertices, 0);
 
     GraphTraverse(number_vertices, edges,
@@ -100,7 +101,7 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1, 5}, {0, 2, 3}, {1, 3, 6}, {1, 2, 2
 const std::vector<int> EXPECTED1 = {std::numeric_limits<int>::min(), 0, 2, 9, 8, 10};
 
 
-SIMPLE_BENCHMARK(SingleSourceLongestPaths_DAG, Sample1, 6, SAMPLE1, 1);
+THE_BENCHMARK(SingleSourceLongestPaths_DAG, 6, SAMPLE1, 1);
 
 SIMPLE_TEST(SingleSourceLongestPaths_DAG, TestSAMPLE1, EXPECTED1, 6, SAMPLE1, 1);
 
@@ -109,7 +110,7 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {2, 1}, {1, 3}, {2, 3}};
 const DirectedEdgeArrayType SAMPLE3 = {{0, 2}, {0, 3}, {1, 2}, {1, 3}, {3, 2}, {4, 1}, {4, 2}, {4, 0}};
 
 
-SIMPLE_BENCHMARK(LengthOfTheLongestPath_Unweighted_DAG_DFS, Sample1, 4, SAMPLE2);
+THE_BENCHMARK(LengthOfTheLongestPath_Unweighted_DAG_DFS, 4, SAMPLE2);
 
 SIMPLE_TEST(LengthOfTheLongestPath_Unweighted_DAG_DFS, TestSAMPLE2, 3, 4, SAMPLE2);
 SIMPLE_TEST(LengthOfTheLongestPath_Unweighted_DAG_DFS, TestSAMPLE3, 3, 5, SAMPLE3);

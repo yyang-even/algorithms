@@ -152,9 +152,9 @@ auto isEulerianCircuit(const std::size_t number_vertices,
  * A string X can be put before another string Y in circle if the last character of X is
  * same as first character of Y.
  */
-auto CanStringsFormACircle(const std::vector<std::string> &words) {
+auto CanStringsFormACircle(const std::vector<std::string_view> &words) {
     DirectedEdgeArrayType edges;
-    for (const auto &one_word : words) {
+    for (const auto one_word : words) {
         edges.emplace_back(one_word.front() - 'a', one_word.back() - 'a');
     }
 
@@ -171,7 +171,7 @@ const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {1, 2}, {2, 0}};
 const UndirectedEdgeArrayType SAMPLE5 = {};
 
 
-SIMPLE_BENCHMARK(isEulerian, Sample1, 5, SAMPLE1);
+THE_BENCHMARK(isEulerian, 5, SAMPLE1);
 
 SIMPLE_TEST(isEulerian, TestSAMPLE1, EulerianType::path, 5, SAMPLE1);
 SIMPLE_TEST(isEulerian, TestSAMPLE2, EulerianType::circuit, 5, SAMPLE2);
@@ -185,24 +185,24 @@ const DirectedEdgeArrayType SAMPLE7 = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}, {
 const DirectedEdgeArrayType SAMPLE8 = {};
 
 
-SIMPLE_BENCHMARK(isEulerianCircuit, Sample1, 5, SAMPLE7);
+THE_BENCHMARK(isEulerianCircuit, 5, SAMPLE7);
 
 SIMPLE_TEST(isEulerianCircuit, TestSAMPLE6, false, 5, SAMPLE6);
 SIMPLE_TEST(isEulerianCircuit, TestSAMPLE7, true, 5, SAMPLE7);
 SIMPLE_TEST(isEulerianCircuit, TestSAMPLE8, true, 5, SAMPLE8);
 
 
-const std::vector<std::string> SAMPLE_STRINGS1 = {"geek", "king"};
-const std::vector<std::string> SAMPLE_STRINGS2 = {"for", "geek", "rig", "kaf"};
-const std::vector<std::string> SAMPLE_STRINGS3 = {"aab", "bac", "aaa", "cda"};
-const std::vector<std::string> SAMPLE_STRINGS4 = {"aaa", "bbb", "baa", "aab"};
-const std::vector<std::string> SAMPLE_STRINGS5 = {"aaa"};
-const std::vector<std::string> SAMPLE_STRINGS6 = {"aaa", "bbb"};
-const std::vector<std::string> SAMPLE_STRINGS7 = {"abc", "efg", "cde", "ghi", "ija"};
-const std::vector<std::string> SAMPLE_STRINGS8 = {"ijk", "kji", "abc", "cba"};
+const std::vector<std::string_view> SAMPLE_STRINGS1 = {"geek", "king"};
+const std::vector<std::string_view> SAMPLE_STRINGS2 = {"for", "geek", "rig", "kaf"};
+const std::vector<std::string_view> SAMPLE_STRINGS3 = {"aab", "bac", "aaa", "cda"};
+const std::vector<std::string_view> SAMPLE_STRINGS4 = {"aaa", "bbb", "baa", "aab"};
+const std::vector<std::string_view> SAMPLE_STRINGS5 = {"aaa"};
+const std::vector<std::string_view> SAMPLE_STRINGS6 = {"aaa", "bbb"};
+const std::vector<std::string_view> SAMPLE_STRINGS7 = {"abc", "efg", "cde", "ghi", "ija"};
+const std::vector<std::string_view> SAMPLE_STRINGS8 = {"ijk", "kji", "abc", "cba"};
 
 
-SIMPLE_BENCHMARK(CanStringsFormACircle, Sample1, SAMPLE_STRINGS1);
+THE_BENCHMARK(CanStringsFormACircle, SAMPLE_STRINGS1);
 
 SIMPLE_TEST(CanStringsFormACircle, TestSAMPLE1, true, SAMPLE_STRINGS1);
 SIMPLE_TEST(CanStringsFormACircle, TestSAMPLE2, true, SAMPLE_STRINGS2);
