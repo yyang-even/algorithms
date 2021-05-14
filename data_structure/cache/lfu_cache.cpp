@@ -22,7 +22,7 @@ class LFU_Cache {
     SizeType CAPICITY = 0;
 
 public:
-    LFU_Cache(const SizeType capicity = 1024): CAPICITY(capicity) {
+    explicit LFU_Cache(const SizeType capicity = 1024): CAPICITY(capicity) {
         assert(CAPICITY);
     }
 
@@ -67,7 +67,7 @@ public:
 
 
 TEST(LFU_CacheTest, TestSanity) {
-    const auto CAPICITY = 2u;
+    constexpr auto CAPICITY = 2u;
     LFU_Cache lfu_cache{CAPICITY};
     constexpr auto ToValue = [](const auto key) {
         return key * 10;

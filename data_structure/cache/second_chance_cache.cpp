@@ -53,7 +53,7 @@ const ArrayType SAMPLE2 = {2, 5, 10, 1, 2, 2, 6, 9, 1, 2, 10, 2, 6, 1, 2, 1, 6, 
 const ArrayType SAMPLE4 = {2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2};
 
 
-SIMPLE_BENCHMARK(SecondChanceCache, Sample1, SAMPLE1, 3);
+THE_BENCHMARK(SecondChanceCache, SAMPLE1, 3);
 
 SIMPLE_TEST(SecondChanceCache, TestSAMPLE1, 9, SAMPLE1, 3);
 SIMPLE_TEST(SecondChanceCache, TestSAMPLE2, 13, SAMPLE2, 3);

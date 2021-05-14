@@ -87,7 +87,7 @@ public:
     }
 
     auto MoveToSortedArray() {
-        auto array =
+        const auto array =
             ContainerCast<std::vector<ListType::value_type>>(std::move(sorted_list));
         sorted_list.clear();
         return array;

@@ -43,8 +43,7 @@ public:
 
     void Set(const KeyValuePair::first_type key, const KeyValuePair::second_type value) {
         if (const auto iter = cache_map.find(key); iter != cache_map.cend()) {
-            cache_queue.erase(iter->second);
-            cache_queue.emplace_back(key, value);
+            cache_queue.splice(cache_queue.cbegin(), cache_queue, iter->second);
             iter->second = cache_queue.cbegin();
         } else {
             if (Size() >= CAPICITY) {
@@ -98,7 +97,7 @@ auto LRU(const ArrayType &requests, const ArrayType::size_type cache_size) {
 
 #ifdef WANT_TESTS
 TEST(LRU_CacheTest, TestSanity) {
-    const auto CAPICITY = 2u;
+    constexpr auto CAPICITY = 2u;
     LRU_Cache lru_cache{CAPICITY};
     constexpr auto ToValue = [](const auto key) {
         return key * 10;
