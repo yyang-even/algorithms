@@ -5,7 +5,7 @@
 
 namespace {
 
-auto LevelOrderTraversal_Iterative(
+inline auto LevelOrderTraversal_Iterative(
     const n_ary_tree::array_representation::Node::PointerType root) {
     std::vector<n_ary_tree::array_representation::Node::ValueType> result;
     LevelOrderTraversal_Iterative_Helper(root,
@@ -70,7 +70,8 @@ on_each_node = {}) {
     return true;
 }
 
-auto PreorderTraversal_Recursive(
+inline auto
+PreorderTraversal_Recursive(
     const n_ary_tree::child_sibling_representation::Node::PointerType root) {
     std::vector<n_ary_tree::child_sibling_representation::Node::ValueType> result;
     PreorderTraversal_Recursive_Helper(root,
@@ -85,7 +86,8 @@ auto PreorderTraversal_Recursive(
 }
 
 
-auto LevelOrderTraversal_Iterative(
+inline auto
+LevelOrderTraversal_Iterative(
     const n_ary_tree::child_sibling_representation::Node::PointerType root) {
     std::vector<n_ary_tree::child_sibling_representation::Node::ValueType> result;
     LevelOrderTraversal_Iterative_Helper(root,
@@ -118,11 +120,11 @@ SIMPLE_TEST(LevelOrderTraversal_Iterative, TestSAMPLE1, EXPECTED_LEVELORDER, SAM
 SIMPLE_TEST(LevelOrderTraversal_Iterative, TestSAMPLE2, EXPECTED_LEVELORDER, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(PreorderTraversal_Iterative, Sample1, SAMPLE1);
+THE_BENCHMARK(PreorderTraversal_Iterative, SAMPLE1);
 
 SIMPLE_TEST(PreorderTraversal_Iterative, TestSAMPLE1, EXPECTED_PREORDER, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(PreorderTraversal_Recursive, Sample2, SAMPLE2);
+THE_BENCHMARK(PreorderTraversal_Recursive, SAMPLE2);
 
 SIMPLE_TEST(PreorderTraversal_Recursive, TestSAMPLE2, EXPECTED_PREORDER, SAMPLE2);

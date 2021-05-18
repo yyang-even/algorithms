@@ -9,8 +9,9 @@ namespace {
  * @reference   Left-Child Right-Sibling Representation of Tree
  *              https://www.geeksforgeeks.org/left-child-right-sibling-representation-tree/
  */
-auto KthChild(const n_ary_tree::array_representation::Node::PointerType root,
-              const n_ary_tree::array_representation::Node::ValueType x, const std::size_t k) {
+inline auto
+KthChild(const n_ary_tree::array_representation::Node::PointerType root,
+         const n_ary_tree::array_representation::Node::ValueType x, const std::size_t k) {
     const auto parent = Search(root, x);
     if (parent and parent->children.size() > k) {
         return parent->children[k]->value;

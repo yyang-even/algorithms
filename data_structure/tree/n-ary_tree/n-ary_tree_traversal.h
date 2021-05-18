@@ -16,7 +16,7 @@ on_each_node = {}) {
 
     while (not remaining_nodes.empty()) {
         for (auto current_level_nodes_number = remaining_nodes.size();
-             current_level_nodes_number; --current_level_nodes_number) {
+             current_level_nodes_number--;) {
 
             const auto current_node = remaining_nodes.front();
             if (on_each_node and not on_each_node(current_node)) {
@@ -43,7 +43,7 @@ on_each_node = {}) {
 
     while (not remaining_nodes.empty()) {
         for (auto current_level_nodes_number = remaining_nodes.size();
-             current_level_nodes_number; --current_level_nodes_number) {
+             current_level_nodes_number--;) {
 
             auto current_node = remaining_nodes.front();
             if (on_each_node and not on_each_node(current_node)) {
