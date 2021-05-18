@@ -2,8 +2,8 @@
 
 
 template <typename NodeType>
-static inline void CopyBinaryTree(const BinaryTree::Node::PointerType source_node,
-                                  NodeType &new_node) {
+static constexpr inline void
+CopyBinaryTree(const BinaryTree::Node::PointerType source_node, NodeType &new_node) {
     assert(source_node);
 
     if (source_node->left) {
@@ -18,7 +18,8 @@ static inline void CopyBinaryTree(const BinaryTree::Node::PointerType source_nod
 }
 
 template <typename NodeType>
-static inline auto CopyBinaryTree(const BinaryTree::Node::PointerType source_root) {
+static constexpr inline auto
+CopyBinaryTree(const BinaryTree::Node::PointerType source_root) {
     assert(source_root);
 
     const auto destination_root = std::make_shared<NodeType>(source_root->value);

@@ -39,7 +39,7 @@ const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE2), 4).Get
  * 4   5 6
  */
 static inline auto MakeCompleteTree4() {
-    auto binary_tree = CloneBinaryTree(SAMPLE1);
+    const auto binary_tree = CloneBinaryTree(SAMPLE1);
     auto &right_child_of_root = *(binary_tree.GetRoot()->right);
     SetLeftChild(right_child_of_root, 6);
 
@@ -62,7 +62,7 @@ const auto SAMPLE5 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 4).Get
  *       6   7
  */
 static inline auto MakeIncompleteTree6() {
-    auto binary_tree = CloneBinaryTree(SAMPLE3);
+    const auto binary_tree = CloneBinaryTree(SAMPLE3);
     auto &right_child_of_root = *(binary_tree.GetRoot()->right);
     SetLeftChild(right_child_of_root, 6);
     SetRightChild(right_child_of_root, 7);

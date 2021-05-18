@@ -35,7 +35,7 @@ struct BinaryTreeNode {
     PointerType right;
     ValueType value{};
 
-    explicit BinaryTreeNode(ValueType v) : value(std::move(v)) {}
+    constexpr explicit BinaryTreeNode(ValueType v) : value(std::move(v)) {}
 };
 
 
@@ -62,15 +62,15 @@ private:
 };
 
 template <typename NodeType>
-static inline auto SetLeftChild(NodeType &node,
-                                const typename NodeType::ValueType v) {
+static constexpr inline auto
+SetLeftChild(NodeType &node, const typename NodeType::ValueType v) {
     node.left = std::make_shared<NodeType>(v);
     return node.left;
 }
 
 template <typename NodeType>
-static inline auto SetRightChild(NodeType &node,
-                                 const typename NodeType::ValueType v) {
+static constexpr inline auto
+SetRightChild(NodeType &node, const typename NodeType::ValueType v) {
     node.right = std::make_shared<NodeType>(v);
     return node.right;
 }
@@ -91,7 +91,7 @@ static inline auto SetNode(const BinaryTree::Node::PointerType node,
  * 4   5
  */
 static inline auto MakeTheSampleCompleteTree() {
-    BinaryTree binary_tree{1};
+    const BinaryTree binary_tree{1};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
     SetRightChild(root, 3);
@@ -127,5 +127,5 @@ struct BinaryTreeNodeWithParent {
     PointerType::weak_type parent;
     ValueType value{};
 
-    explicit BinaryTreeNodeWithParent(const ValueType v) : value(v) {}
+    constexpr explicit BinaryTreeNodeWithParent(const ValueType v) : value(v) {}
 };

@@ -106,7 +106,7 @@ auto ToMinHeap_InPlace(const BinaryTree::Node::PointerType root) {
  * 4   5
  */
 static inline auto MakeTheExpectedMinHeap() {
-    BinaryTree binary_tree{1};
+    const BinaryTree binary_tree{1};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
     SetRightChild(root, 3);

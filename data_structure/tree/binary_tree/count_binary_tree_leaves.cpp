@@ -10,7 +10,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-get-count-of-leaf-nodes-in-a-binary-tree/
  */
-auto CountLeaves_Recursive(const BinaryTree::Node::PointerType node) {
+inline auto CountLeaves_Recursive(const BinaryTree::Node::PointerType node) {
     if (not node) {
         return 0;
     }
@@ -25,7 +25,7 @@ auto CountLeaves_Recursive(const BinaryTree::Node::PointerType node) {
  * @reference   Iterative program to count leaf nodes in a Binary Tree
  *              https://www.geeksforgeeks.org/iterative-program-count-leaf-nodes-binary-tree/
  */
-auto CountLeaves_Iterative(const BinaryTree::Node::PointerType root_node) {
+inline auto CountLeaves_Iterative(const BinaryTree::Node::PointerType root_node) {
     unsigned leaves_count = 0;
     LevelOrderTraversal_LevelAware_Helper(root_node,
     [&leaves_count](const auto & node) {
@@ -63,13 +63,13 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 const auto EMPTY_TREE = BinaryTree {} .GetRoot();
 
 
-SIMPLE_BENCHMARK(CountLeaves_Recursive, Sample1, SAMPLE1);
+THE_BENCHMARK(CountLeaves_Recursive, SAMPLE1);
 
 SIMPLE_TEST(CountLeaves_Recursive, TestSAMPLE0, 0, EMPTY_TREE);
 SIMPLE_TEST(CountLeaves_Recursive, TestSAMPLE1, 3, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(CountLeaves_Iterative, Sample1, SAMPLE1);
+THE_BENCHMARK(CountLeaves_Iterative, SAMPLE1);
 
 SIMPLE_TEST(CountLeaves_Iterative, TestSAMPLE0, 0, EMPTY_TREE);
 SIMPLE_TEST(CountLeaves_Iterative, TestSAMPLE1, 3, SAMPLE1);
