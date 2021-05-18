@@ -56,7 +56,7 @@ auto isBalanced(const BinaryTree::Node::PointerType node,
  * 4   5
  */
 inline auto MakeTheSampleUnbalancedTree() {
-    BinaryTree binary_tree{1};
+    const BinaryTree binary_tree{1};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
     SetLeftChild(left_child, 4);

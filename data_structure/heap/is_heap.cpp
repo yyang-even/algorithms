@@ -92,7 +92,7 @@ const auto SAMPLE_TREE1 = MakeTheSampleCompleteTree().GetRoot();
  * 2   1
  */
 static inline auto MakeSampleTree2() {
-    BinaryTree binary_tree{5};
+    const BinaryTree binary_tree{5};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 3);
     SetRightChild(root, 4);

@@ -39,7 +39,7 @@ auto isFullBinaryTree_Recursive(const BinaryTree::Node::PointerType node) {
  * @reference   Check whether a binary tree is a full binary tree or not | Iterative Approach
  *              https://www.geeksforgeeks.org/check-whether-binary-tree-full-binary-tree-not-iterative-approach/
  */
-auto isFullBinaryTree_Iterative(const BinaryTree::Node::PointerType root_node) {
+inline auto isFullBinaryTree_Iterative(const BinaryTree::Node::PointerType root_node) {
     return LevelOrderTraversal_LevelAware_Helper(root_node,
     [](const auto & node) {
         const auto node_type = CheckType(node);
@@ -57,14 +57,14 @@ const auto EMPTY_TREE = BinaryTree {} .GetRoot();
 const auto SAMPLE2 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 5).GetRoot();
 
 
-SIMPLE_BENCHMARK(isFullBinaryTree_Recursive, Sample1, SAMPLE1);
+THE_BENCHMARK(isFullBinaryTree_Recursive, SAMPLE1);
 
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE0, true, EMPTY_TREE);
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isFullBinaryTree_Recursive, TestSAMPLE2, false, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(isFullBinaryTree_Iterative, Sample1, SAMPLE1);
+THE_BENCHMARK(isFullBinaryTree_Iterative, SAMPLE1);
 
 SIMPLE_TEST(isFullBinaryTree_Iterative, TestSAMPLE0, true, EMPTY_TREE);
 SIMPLE_TEST(isFullBinaryTree_Iterative, TestSAMPLE1, true, SAMPLE1);

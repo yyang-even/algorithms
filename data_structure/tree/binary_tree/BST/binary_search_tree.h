@@ -31,7 +31,7 @@
  * 1   3
  */
 static inline auto MakeTheSampleBST() {
-    BinaryTree binary_tree{4};
+    const BinaryTree binary_tree{4};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
     SetRightChild(root, 5);

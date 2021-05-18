@@ -18,7 +18,7 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.4.
  */
-auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_node) {
+inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_node) {
     ArrayType results;
     LevelOrderTraversal_LevelAware_Helper(root_node,
     [&results](const auto & node) {

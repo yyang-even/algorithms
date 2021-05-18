@@ -138,7 +138,7 @@ SIMPLE_TEST(OptimalBinarySearchTreeSimplified, TestSAMPLE4, 142, SAMPLE4);
  *   3
  */
 static inline auto MakeTheSampleTree() {
-    BinaryTree binary_tree{2};
+    const BinaryTree binary_tree{2};
     auto &root = *binary_tree.GetRoot();
     SetLeftChild(root, 1);
     auto &right_child = *SetRightChild(root, 5);

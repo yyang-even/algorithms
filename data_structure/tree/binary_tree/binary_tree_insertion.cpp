@@ -16,8 +16,8 @@ namespace {
  * Given a binary tree and a key, insert the key into the binary tree at first position
  * available in level order.
  */
-auto LevelOrderInsert(const BinaryTree::Node::PointerType root_node,
-                      const BinaryTree::Node::ValueType x) {
+inline auto LevelOrderInsert(const BinaryTree::Node::PointerType root_node,
+                             const BinaryTree::Node::ValueType x) {
     assert(root_node);
 
     LevelOrderTraversal_LevelAware_Helper(root_node,
@@ -46,6 +46,6 @@ const auto SAMPLE1 = LevelOrderInsert(
                          BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE0), 4).GetRoot(), 4);
 
 
-SIMPLE_BENCHMARK(LevelOrderInsert, Sample1, CloneBinaryTree(SAMPLE0).GetRoot(), 4);
+THE_BENCHMARK(LevelOrderInsert, CloneBinaryTree(SAMPLE0).GetRoot(), 4);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE0, SAMPLE1);

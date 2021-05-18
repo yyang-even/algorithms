@@ -62,7 +62,7 @@ auto isBST_Iterative_Inorder(const BinaryTree::Node::PointerType root) {
  *
  * @reference   https://www.geeksforgeeks.org/check-array-represents-inorder-binary-search-tree-not/
  */
-auto isBSTInorderRepresent(const BinaryTree::ArrayType &array) {
+inline auto isBSTInorderRepresent(const BinaryTree::ArrayType &array) {
     return std::is_sorted(array.cbegin(), array.cend());
 }
 
@@ -79,7 +79,7 @@ const auto SAMPLE2 = MakeTheSampleCompleteTree().GetRoot();
  * 1   4
  */
 static inline auto MakeSample3() {
-    BinaryTree binary_tree{3};
+    const BinaryTree binary_tree{3};
     auto &root = *binary_tree.GetRoot();
     auto &left_child = *SetLeftChild(root, 2);
     SetRightChild(root, 5);
@@ -119,7 +119,7 @@ const BinaryTree::ArrayType ARRAY1 = {19, 23, 25, 30, 45};
 const BinaryTree::ArrayType ARRAY2 = {19, 23, 30, 25, 45};
 
 
-SIMPLE_BENCHMARK(isBSTInorderRepresent, Sample1, ARRAY1);
+THE_BENCHMARK(isBSTInorderRepresent, ARRAY1);
 
 SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE1, true, ARRAY1);
 SIMPLE_TEST(isBSTInorderRepresent, TestSAMPLE2, false, ARRAY2);
