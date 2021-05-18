@@ -42,7 +42,7 @@ const ArrayType SAMPLE1 = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
 const ArrayType SAMPLE2 = {7, 1, 1};
 
 
-SIMPLE_BENCHMARK(FIFOCache, Sample1, SAMPLE1, 4);
+THE_BENCHMARK(FIFOCache, SAMPLE1, 4);
 
 SIMPLE_TEST(FIFOCache, TestSAMPLE1, 7, SAMPLE1, 4);
 SIMPLE_TEST(FIFOCache, TestSAMPLE2, 2, SAMPLE2, 3);

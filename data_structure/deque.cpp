@@ -19,30 +19,30 @@ class CircularArrayDeque {
     BufferType::size_type front = 0;
     BufferType::size_type rear = 0;
 
-    void advance(BufferType::size_type &index, const int step) const {
+    constexpr void advance(BufferType::size_type &index, const int step) const {
         index = (index + step + CAPACITY) % CAPACITY;
     }
 
-    auto next(BufferType::size_type index) const {
+    constexpr auto next(BufferType::size_type index) const {
         advance(index, 1);
         return index;
     }
 
-    auto prev(BufferType::size_type index) const {
+    constexpr auto prev(BufferType::size_type index) const {
         advance(index, -1);
         return index;
     }
 
 
 public:
-    CircularArrayDeque(const BufferType::size_type cap = 1024):
+    explicit CircularArrayDeque(const BufferType::size_type cap = 1024):
         CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
 
-    auto Full() const {
+    constexpr auto Full() const {
         return size >= CAPACITY;
     }
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return size == 0;
     }
 
@@ -147,7 +147,7 @@ public:
 namespace {
 
 template <typename Deque>
-auto testDequeHelper() {
+constexpr auto testDequeHelper() {
     Deque deque;
 
     deque.EndequeFront(-1);

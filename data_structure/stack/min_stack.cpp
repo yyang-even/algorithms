@@ -156,7 +156,7 @@ namespace {
 using ArrayType = std::vector<std::pair<MinStack::ValueType, MinStack::ValueType>>;
 
 template <typename MinStackType>
-auto testMinStack(MinStackType &stack) {
+constexpr auto testMinStack(MinStackType &stack) {
     stack.Push(5);
     stack.Push(4);
     stack.Push(6);

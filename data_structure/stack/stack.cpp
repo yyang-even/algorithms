@@ -181,6 +181,8 @@ class HeapStack {
     using ValueType = int;
     using KeyValuePair = std::pair<std::size_t, ValueType>;
 
+    std::size_t index = 0;
+
     std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
     queue{[](const auto & lhs, const auto & rhs) {
             return lhs.first < rhs.first;
@@ -188,7 +190,7 @@ class HeapStack {
 
 public:
     void Push(const ValueType v) {
-        queue.push(std::pair(queue.size(), v));
+        queue.push(std::pair(index++, v));
     }
 
     auto Pop() {
@@ -209,7 +211,7 @@ namespace {
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
 template <typename Stack>
-auto testStackHelper() {
+constexpr auto testStackHelper() {
     Stack stack;
     stack.Push(0);
     stack.Push(1);
@@ -231,32 +233,32 @@ auto testStackHelper() {
 }
 
 
-auto testArrayStack() {
+inline auto testArrayStack() {
     return testStackHelper<ArrayStack>();
 }
 
 
-auto testListStack() {
+inline auto testListStack() {
     return testStackHelper<ListStack>();
 }
 
 
-auto testPushCostlyTwoQueueStack() {
+inline auto testPushCostlyTwoQueueStack() {
     return testStackHelper<PushCostlyTwoQueueStack>();
 }
 
 
-auto testPopCostlyTwoQueueStack() {
+inline auto testPopCostlyTwoQueueStack() {
     return testStackHelper<PopCostlyTwoQueueStack>();
 }
 
 
-auto testPushCostlyOneQueueStack() {
+inline auto testPushCostlyOneQueueStack() {
     return testStackHelper<PushCostlyOneQueueStack>();
 }
 
 
-auto testHeapStack() {
+inline auto testHeapStack() {
     return testStackHelper<HeapStack>();
 }
 

@@ -45,7 +45,7 @@ auto SortStack(StackType original_stack) {
  * Given a stack, sort it using recursion. Use of any loop constructs like while, for,
  * ...etc is not allowed.
  */
-void SortedInsert(StackType &sorted_stack, const StackType::value_type v) {
+inline void SortedInsert(StackType &sorted_stack, const StackType::value_type v) {
     if (not sorted_stack.empty() and sorted_stack.top() > v) {
         const auto temp = sorted_stack.top();
         sorted_stack.pop();
@@ -56,7 +56,7 @@ void SortedInsert(StackType &sorted_stack, const StackType::value_type v) {
     }
 }
 
-void SortStack_Recursive_Helper(StackType &a_stack) {
+inline void SortStack_Recursive_Helper(StackType &a_stack) {
     if (not a_stack.empty()) {
         const auto v = a_stack.top();
         a_stack.pop();
@@ -66,7 +66,7 @@ void SortStack_Recursive_Helper(StackType &a_stack) {
     }
 }
 
-auto SortStack_Recursive(StackType original_stack) {
+inline auto SortStack_Recursive(StackType original_stack) {
     SortStack_Recursive_Helper(original_stack);
     return original_stack;
 }

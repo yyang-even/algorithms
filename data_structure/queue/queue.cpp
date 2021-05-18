@@ -34,12 +34,12 @@ class ArrayCircularQueue {
     std::size_t front = 0;
     std::size_t rear;
 
-    void advance(std::size_t &index) const {
+    constexpr void advance(std::size_t &index) const {
         index = (index + 1) % CAPACITY;
     }
 
 public:
-    ArrayCircularQueue(const std::size_t cap = 1024):
+    explicit ArrayCircularQueue(const std::size_t cap = 1024):
         CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
 
     void Enqueue(const ValueType v) {
@@ -69,7 +69,7 @@ public:
         return buffer[rear];
     }
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return size == 0;
     }
 };
@@ -120,7 +120,7 @@ public:
         return buffer.PopHead();
     }
 
-    auto Empty() const {
+    constexpr auto Empty() const {
         return buffer.Empty();
     }
 };
@@ -226,7 +226,7 @@ class HeapQueue {
 
 public:
     void Enqueue(const ValueType v) {
-        queue.push(std::pair(++counter, v));
+        queue.push(std::pair(counter++, v));
     }
 
     auto Dequeue() {
@@ -246,7 +246,7 @@ public:
 namespace {
 
 template <typename Queue>
-auto testQueueHelper() {
+constexpr auto testQueueHelper() {
     Queue queue;
     queue.Enqueue(0);
     queue.Enqueue(1);

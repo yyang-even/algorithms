@@ -16,7 +16,7 @@ class OneArrayTwoStacks {
     int top2;
 
 public:
-    OneArrayTwoStacks(const std::size_t cap = 2048):
+    explicit OneArrayTwoStacks(const std::size_t cap = 2048):
         CAPACITY(cap), buffer(cap, 0), top2(cap) {}
 
     void Push1(const ValueType v) {
@@ -77,7 +77,7 @@ private:
     int free_list_begin = 0;
 
 public:
-    kStacks(const std::size_t k = 3, const std::size_t cap = 2048):
+    explicit kStacks(const std::size_t k = 3, const std::size_t cap = 2048):
         K(k), CAPACITY(cap), buffer(cap, 0), tops(k, -1), nexts(cap, 0) {
         for (std::size_t i = 0; i < cap; ++i) {
             nexts[i] = i + 1;

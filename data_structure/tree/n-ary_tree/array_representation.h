@@ -23,7 +23,8 @@ struct Node {
 };
 
 
-auto AddChild(Node &parent, Node::ValueType v) {
+static inline auto
+AddChild(Node &parent, Node::ValueType v) {
     parent.children.emplace_back(std::make_shared<Node>(std::move(v)));
     return parent.children.back();
 }
