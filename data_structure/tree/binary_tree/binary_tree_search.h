@@ -2,7 +2,8 @@
 
 
 template <typename NodePointerType>
-static inline auto LeftmostNode(NodePointerType current_node) {
+static constexpr inline auto
+LeftmostNode(NodePointerType current_node) {
     if (current_node)
         for (; current_node->left; current_node = current_node->left);
     return current_node;
@@ -10,7 +11,8 @@ static inline auto LeftmostNode(NodePointerType current_node) {
 
 
 template <typename NodePointerType>
-static inline auto RightmostNode(NodePointerType current_node) {
+static constexpr inline auto
+RightmostNode(NodePointerType current_node) {
     if (current_node)
         for (; current_node->right; current_node = current_node->right);
     return current_node;

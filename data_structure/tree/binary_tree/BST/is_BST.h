@@ -9,8 +9,9 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.5.
  */
-static bool isBST_Recursive_Inorder(const BinaryTree::Node::PointerType node,
-                                    BinaryTree::Node::PointerType &previous_node) {
+static inline bool
+isBST_Recursive_Inorder(const BinaryTree::Node::PointerType node,
+                        BinaryTree::Node::PointerType &previous_node) {
     if (node) {
         if (not isBST_Recursive_Inorder(node->left, previous_node)) {
             return false;

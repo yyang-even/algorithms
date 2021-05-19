@@ -32,7 +32,8 @@ static inline auto BSTSearch_Iterative(BinaryTree::Node::PointerType current_nod
  *              Introduction to Algorithms, Third Edition. Exercises 12.2-2.
  */
 template <typename NodePointerType>
-static inline auto MinimumNode(const NodePointerType root_node) {
+static constexpr inline auto
+MinimumNode(const NodePointerType root_node) {
     return LeftmostNode(root_node);
 }
 
@@ -46,6 +47,7 @@ static inline auto MinimumNode(const NodePointerType root_node) {
  *              Introduction to Algorithms, Third Edition. Exercises 12.2-2.
  */
 template <typename NodePointerType>
-static inline auto MaximumNode(const NodePointerType root_node) {
+static constexpr inline auto
+MaximumNode(const NodePointerType root_node) {
     return RightmostNode(root_node);
 }

@@ -36,12 +36,11 @@ auto BSTInsert_Recursive(const BinaryTree::Node::PointerType node,
 auto BSTInsert_Iterative(const BinaryTree::Node::PointerType root_node,
                          const BinaryTree::Node::ValueType x) {
     const auto new_node = std::make_shared<BinaryTree::Node>(x);
-    if (not root_node) {
-        return std::make_shared<BinaryTree::Node>(x);
-    }
 
     auto current_node = root_node;
-    while (CheckType(*current_node) != BinaryTree::Node::Type::leaf) {
+    BinaryTree::Node::PointerType parent;
+    while (current_node) {
+        parent = current_node;
         if (x < current_node->value) {
             current_node = current_node->left;
         } else {
@@ -49,10 +48,12 @@ auto BSTInsert_Iterative(const BinaryTree::Node::PointerType root_node,
         }
     }
 
-    if (x < current_node->value) {
-        current_node->left = new_node;
+    if (not parent) {
+        return new_node;
+    } else if (x < parent->value) {
+        parent->left = new_node;
     } else {
-        current_node->right = new_node;
+        parent->right = new_node;
     }
 
     return root_node;
@@ -64,13 +65,13 @@ auto BSTInsert_Iterative(const BinaryTree::Node::PointerType root_node,
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(BSTInsert_Recursive, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
+THE_BENCHMARK(BSTInsert_Recursive, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE1, true,
             BSTInsert_Recursive(CloneBinaryTree(SAMPLE1).GetRoot(), 14));
 
 
-SIMPLE_BENCHMARK(BSTInsert_Iterative, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
+THE_BENCHMARK(BSTInsert_Iterative, CloneBinaryTree(SAMPLE1).GetRoot(), -1);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE2, true,
             BSTInsert_Iterative(CloneBinaryTree(SAMPLE1).GetRoot(), 14));
