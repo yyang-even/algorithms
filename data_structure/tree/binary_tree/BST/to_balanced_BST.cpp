@@ -29,7 +29,7 @@ auto SortedListToBalancedBSTHelper(ListType::const_iterator &cbegin, const int s
     return root;
 }
 
-auto SortedListToBalancedBST(const ListType &sorted_list) {
+inline auto SortedListToBalancedBST(const ListType &sorted_list) {
     assert(std::is_sorted(sorted_list.cbegin(), sorted_list.cend()));
 
     auto cbegin = sorted_list.cbegin();
@@ -69,7 +69,7 @@ auto SortedArrayToBalancedBSTHelper(const BinaryTree::ArrayType &sorted_array,
     return root;
 }
 
-auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) {
+inline auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) {
     assert(std::is_sorted(sorted_array.cbegin(), sorted_array.cend()));
 
     return SortedArrayToBalancedBSTHelper(sorted_array, 0, sorted_array.size() - 1);
@@ -86,8 +86,8 @@ auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) {
 
 
 template <typename ToBST>
-inline auto TestToBalancedBST(const ToBST to_bst,
-                              const InitializerType &sorted_sequence) {
+constexpr inline auto
+TestToBalancedBST(const ToBST to_bst, const InitializerType &sorted_sequence) {
     const auto root = to_bst(sorted_sequence);
 
     BinaryTree::ArrayType inorder_array;

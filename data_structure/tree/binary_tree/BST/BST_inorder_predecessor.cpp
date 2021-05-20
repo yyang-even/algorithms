@@ -40,7 +40,7 @@ auto InorderPredecessor_WithoutParentPointer(BinaryTree::Node::PointerType curre
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(InorderPredecessor_WithoutParentPointer, Sample1, SAMPLE1, SAMPLE1);
+THE_BENCHMARK(InorderPredecessor_WithoutParentPointer, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(InorderPredecessor_WithoutParentPointer, TestSAMPLE1,
             SAMPLE1->left->right, SAMPLE1, SAMPLE1);

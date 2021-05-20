@@ -27,10 +27,11 @@ struct BinaryTreeNode {
     ValueType value{};
     int size_of_left_subtree{};
 
-    explicit BinaryTreeNode(const ValueType v) : value(v) {}
+    constexpr explicit BinaryTreeNode(const ValueType v) : value(v) {}
 };
 
-auto Insert(const BinaryTreeNode::PointerType node, const BinaryTreeNode::ValueType x) {
+inline auto
+Insert(const BinaryTreeNode::PointerType node, const BinaryTreeNode::ValueType x) {
     if (not node) {
         return std::make_shared<BinaryTreeNode>(x);
     }

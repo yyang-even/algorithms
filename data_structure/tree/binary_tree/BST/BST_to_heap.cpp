@@ -17,17 +17,17 @@ using QueueType = std::queue<BinaryTree::Node::PointerType>;
  * @reference   Convert BST to Min Heap
  *              https://www.geeksforgeeks.org/convert-bst-min-heap/
  *
- * Given a binary search tree which is also a complete binary tree. The problem is to convert
- * the given BST into a Min Heap with the condition that all the values in the left subtree
- * of a node should be less than all the values in the right subtree of the node. This
- * condition is applied on all the nodes in the so converted Min Heap.
+ * Given a binary search tree which is also a complete binary tree. The problem is to
+ * convert the given BST into a Min Heap with the condition that all the values in the
+ * left subtree of a node should be less than all the values in the right subtree of the
+ * node. This condition is applied on all the nodes in the so converted Min Heap.
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
  *
- * You are given a set of integers in an unordered binary tree. Use an array sorting routine
- * to transform the tree into a heap that uses a balanced binary tree as its underling data
- * structure.
+ * You are given a set of integers in an unordered binary tree. Use an array sorting
+ * routine to transform the tree into a heap that uses a balanced binary tree as its
+ * underling data structure.
  */
 auto ToMinHeap(const BinaryTree::Node::PointerType root) {
     BinaryTree::ArrayType inorder_array;
@@ -55,7 +55,7 @@ auto ToMinHeap(const BinaryTree::Node::PointerType root) {
  * @reference   Convert BST into a Min-Heap without using array
  *              https://www.geeksforgeeks.org/in-place-convert-bst-into-a-min-heap/
  */
-auto NextChild(BinaryTree::Node::PointerType &head, QueueType &parent_nodes) {
+inline auto NextChild(BinaryTree::Node::PointerType &head, QueueType &parent_nodes) {
     assert(head);
 
     const auto child = head;
@@ -88,7 +88,7 @@ auto SortedListToHeap(BinaryTree::Node::PointerType head) {
     return root;
 }
 
-auto ToMinHeap_InPlace(const BinaryTree::Node::PointerType root) {
+inline auto ToMinHeap_InPlace(const BinaryTree::Node::PointerType root) {
     const auto sorted_list =
         FlattenBSTtoSortedList(root, FlattenBSTtoSortedList_Increasing);
 

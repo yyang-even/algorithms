@@ -37,9 +37,9 @@ BinaryTree::Node::PointerType BSTDelete(const BinaryTree::Node::PointerType node
     return node;
 }
 
-BinaryTree::Node::PointerType BSTDelete_Optimized(
-    const BinaryTree::Node::PointerType node,
-    const BinaryTree::Node::ValueType x) {
+BinaryTree::Node::PointerType
+BSTDelete_Optimized(const BinaryTree::Node::PointerType node,
+                    const BinaryTree::Node::ValueType x) {
     if (node) {
         if (x < node->value) {
             node->left = BSTDelete(node->left, x);
@@ -77,7 +77,7 @@ BinaryTree::Node::PointerType BSTDelete_Optimized(
 const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
 
 
-SIMPLE_BENCHMARK(BSTDelete, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), 4);
+THE_BENCHMARK(BSTDelete, CloneBinaryTree(SAMPLE1).GetRoot(), 4);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE0, true,
             BSTDelete(CloneBinaryTree(SAMPLE1).GetRoot(), 0));
@@ -93,7 +93,7 @@ SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE5, true,
             BSTDelete(CloneBinaryTree(SAMPLE1).GetRoot(), 5));
 
 
-SIMPLE_BENCHMARK(BSTDelete_Optimized, Sample1, CloneBinaryTree(SAMPLE1).GetRoot(), 4);
+THE_BENCHMARK(BSTDelete_Optimized, CloneBinaryTree(SAMPLE1).GetRoot(), 4);
 
 SIMPLE_TEST(isBST_Recursive_Inorder, TestSAMPLE00, true,
             BSTDelete_Optimized(CloneBinaryTree(SAMPLE1).GetRoot(), 0));

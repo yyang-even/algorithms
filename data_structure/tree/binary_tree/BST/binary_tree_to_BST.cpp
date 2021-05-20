@@ -14,11 +14,11 @@ namespace {
  * @reference   Binary Tree to Binary Search Tree Conversion using STL set
  *              https://www.geeksforgeeks.org/binary-tree-binary-search-tree-conversion-using-stl-set/
  *
- * Given a Binary Tree, convert it to a Binary Search Tree. The conversion must
- * be done in such a way that keeps the original structure of Binary Tree.
+ * Given a Binary Tree, convert it to a Binary Search Tree. The conversion must be done
+ * in such a way that keeps the original structure of Binary Tree.
  */
-void copyToBST(BinaryTree::ArrayType::const_iterator &iter,
-               const BinaryTree::Node::PointerType node) {
+inline void copyToBST(BinaryTree::ArrayType::const_iterator &iter,
+                      const BinaryTree::Node::PointerType node) {
     if (node) {
         copyToBST(iter, node->left);
 
