@@ -7,7 +7,7 @@
 
 namespace {
 
-/** Iterative Search for a key ‘x’ in Binary Tree
+/** Iterative Search for a key 'x' in Binary Tree
  *
  * @reference   https://www.geeksforgeeks.org/iterative-search-for-a-key-x-in-binary-tree/
  * @reference   Search a node in Binary Tree
@@ -16,8 +16,9 @@ namespace {
  * Given a Binary Tree and a key to be searched in it, write an iterative method that
  * returns true if key is present in Binary Tree, else false.
  */
-auto BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
-                                 const BinaryTree::Node::ValueType x) {
+inline auto
+BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
+                            const BinaryTree::Node::ValueType x) {
     return not LevelOrderTraversal_LevelAware_Helper(root_node,
     [x](const auto & node) {
         return node.value != x;
@@ -25,8 +26,9 @@ auto BinaryTreeSearch_LevelOrder(const BinaryTree::Node::PointerType root_node,
 }
 
 
-auto BinaryTreePath_Preorder(const BinaryTree::Node::PointerType root_node,
-                             const BinaryTree::Node::ValueType x) {
+inline auto
+BinaryTreePath_Preorder(const BinaryTree::Node::PointerType root_node,
+                        const BinaryTree::Node::ValueType x) {
     BinaryTree::ArrayType path;
     if (not BinaryTreeSearch_Preorder(root_node, x, &path)) {
         path.clear();
@@ -49,8 +51,9 @@ auto BinaryTreePath_Preorder(const BinaryTree::Node::PointerType root_node,
  * @reference   Get level of a node in binary tree | iterative approach
  *              https://www.geeksforgeeks.org/get-level-node-binary-tree-iterative-approach/
  */
-auto BinaryTreeDistance_LevelOrder(const BinaryTree::Node::PointerType root_node,
-                                   const BinaryTree::Node::ValueType x) {
+inline auto
+BinaryTreeDistance_LevelOrder(const BinaryTree::Node::PointerType root_node,
+                              const BinaryTree::Node::ValueType x) {
     int distance = -1;
     if (LevelOrderTraversal_LevelAware_Helper(root_node,
     [x](const auto & node) {
