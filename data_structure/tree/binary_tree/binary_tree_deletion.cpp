@@ -56,7 +56,7 @@ auto BinaryTreeDeletion_BottomShrink(BinaryTree binary_tree,
  *
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-delete-a-tree/
  */
-void DeleteEntireTree_Recursive_Postorder(BinaryTree::Node::PointerType &node) {
+inline void DeleteEntireTree_Recursive_Postorder(BinaryTree::Node::PointerType &node) {
     if (node) {
         DeleteEntireTree_Recursive_Postorder(node->left);
         DeleteEntireTree_Recursive_Postorder(node->right);
@@ -64,7 +64,7 @@ void DeleteEntireTree_Recursive_Postorder(BinaryTree::Node::PointerType &node) {
     }
 }
 
-auto DeleteEntireTree_Recursive_Postorder(BinaryTree binary_tree) {
+inline auto DeleteEntireTree_Recursive_Postorder(BinaryTree binary_tree) {
     DeleteEntireTree_Recursive_Postorder(binary_tree.GetMutableRoot());
     return binary_tree;
 }
@@ -114,24 +114,22 @@ const auto SAMPLE2_RHS =
                                 CloneBinaryTree(SAMPLE0), 5)).GetRoot(), 5);
 
 
-SIMPLE_BENCHMARK(BinaryTreeDeletion_Subtree, Sample1, CloneBinaryTree(SAMPLE0), 4);
+THE_BENCHMARK(BinaryTreeDeletion_Subtree, CloneBinaryTree(SAMPLE0), 4);
 
 
-SIMPLE_BENCHMARK(BinaryTreeDeletion_BottomShrink, Sample1, CloneBinaryTree(SAMPLE0), 4);
+THE_BENCHMARK(BinaryTreeDeletion_BottomShrink, CloneBinaryTree(SAMPLE0), 4);
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1_LHS, SAMPLE1_RHS);
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2_LHS, SAMPLE2_RHS);
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, Sample1,
-                 CloneBinaryTree(SAMPLE0));
+THE_BENCHMARK(DeleteEntireTree_Recursive_Postorder, CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE3, true, EMPTY_TREE,
             DeleteEntireTree_Recursive_Postorder(CloneBinaryTree(SAMPLE0)).GetRoot());
 
 
-SIMPLE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, Sample1,
-                 CloneBinaryTree(SAMPLE0));
+THE_BENCHMARK(DeleteEntireTree_Iterative_LevelOrder, CloneBinaryTree(SAMPLE0));
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE4, true, EMPTY_TREE,
             DeleteEntireTree_Iterative_LevelOrder(CloneBinaryTree(SAMPLE0)).GetRoot());

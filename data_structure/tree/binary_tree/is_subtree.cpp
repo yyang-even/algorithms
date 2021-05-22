@@ -40,7 +40,7 @@ auto isSubtree(const BinaryTree::Node::PointerType origin,
  * @reference   Check if a binary tree is subtree of another binary tree | Set 2
  *              https://www.geeksforgeeks.org/check-binary-tree-subtree-another-binary-tree-set-2/
  */
-const auto NULL_MARK = -1;
+constexpr auto NULL_MARK = -1;
 
 auto InorderTraversalWithNullMark(const BinaryTree::Node::PointerType node,
                                   BinaryTree::ArrayType &outputs) {
@@ -55,8 +55,8 @@ auto InorderTraversalWithNullMark(const BinaryTree::Node::PointerType node,
     InorderTraversalWithNullMark(node->right, outputs);
 }
 
-auto isSubtree_String(const BinaryTree::Node::PointerType origin,
-                      const BinaryTree::Node::PointerType candidate) {
+inline auto isSubtree_String(const BinaryTree::Node::PointerType origin,
+                             const BinaryTree::Node::PointerType candidate) {
     BinaryTree::ArrayType origin_inorder, candidate_inorder;
     InorderTraversalWithNullMark(origin, origin_inorder);
     InorderTraversalWithNullMark(candidate, candidate_inorder);

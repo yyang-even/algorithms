@@ -10,10 +10,10 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/inorder-succesor-node-binary-tree/
  */
-BinaryTree::Node::PointerType InorderSuccessor_Recursive(
-    const BinaryTree::Node::PointerType node,
-    const BinaryTree::Node::PointerType x_node,
-    BinaryTree::Node::PointerType &successor) {
+BinaryTree::Node::PointerType
+InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
+                           const BinaryTree::Node::PointerType x_node,
+                           BinaryTree::Node::PointerType &successor) {
     if (node) {
         const auto right_result = InorderSuccessor_Recursive(node->right, x_node, successor);
 
@@ -30,8 +30,8 @@ BinaryTree::Node::PointerType InorderSuccessor_Recursive(
     return BinaryTree::Node::PointerType{};
 }
 
-auto InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
-                                const BinaryTree::Node::PointerType x_node) {
+inline auto InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
+                                       const BinaryTree::Node::PointerType x_node) {
     BinaryTree::Node::PointerType successor;
     return InorderSuccessor_Recursive(node, x_node, successor);
 }
@@ -42,7 +42,7 @@ auto InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(InorderSuccessor_Recursive, Sample1, SAMPLE1, SAMPLE1);
+THE_BENCHMARK(InorderSuccessor_Recursive, SAMPLE1, SAMPLE1);
 
 SIMPLE_TEST(InorderSuccessor_Recursive, TestSAMPLE1,
             SAMPLE1->right, SAMPLE1, SAMPLE1);
