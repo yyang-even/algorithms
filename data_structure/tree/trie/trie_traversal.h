@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "trie.h"
 
 
@@ -13,11 +12,12 @@
  * @reference   Sorting array of strings (or words) using Trie
  *              https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie/
  *
- * Given an array of strings, print them in alphabetical (dictionary) order.
- * If there are duplicates in input array, we need to print them only once.
+ * Given an array of strings, print them in alphabetical (dictionary) order. If there
+ * are duplicates in input array, we need to print them only once.
  */
-void Display(const Trie::Node *node, std::string &prefix,
-             std::vector<std::string> &results) {
+static inline void
+Display(const Trie::Node *node, std::string &prefix,
+        std::vector<std::string> &results) {
     assert(node);
 
     if (node->isEndOfWord) {

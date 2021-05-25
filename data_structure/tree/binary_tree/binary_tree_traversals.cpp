@@ -303,8 +303,9 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 }
 
 
-auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
-                                    BinaryTree::ArrayType &outputs) {
+inline auto
+LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
+                               BinaryTree::ArrayType &outputs) {
     LevelOrderTraversal_LevelAware_Helper(root_node,
     [&outputs](const auto & node) {
         outputs.push_back(node.value);
@@ -317,11 +318,12 @@ auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_nod
  *
  * @reference   https://www.geeksforgeeks.org/reverse-level-order-traversal/
  *
- * The idea is to print last level first, then second last level, and so on.
- * Like Level order traversal, every level is printed from left to right.
+ * The idea is to print last level first, then second last level, and so on. Like Level
+ * order traversal, every level is printed from left to right.
  */
-void GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned level,
-                   BinaryTree::ArrayType &outputs) {
+inline void
+GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned level,
+              BinaryTree::ArrayType &outputs) {
     if (node) {
         if (level == 1) {
             outputs.push_back(node->value);
@@ -332,8 +334,9 @@ void GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned leve
     }
 }
 
-auto ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
-                                          BinaryTree::ArrayType &outputs) {
+inline auto
+ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
+                                     BinaryTree::ArrayType &outputs) {
     const auto height = Height_Recursive(root_node);
     for (auto i = height; i; --i) {
         GetGivenLevel(root_node, i, outputs);
@@ -409,7 +412,8 @@ auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
 
 
 template <typename TraversalFunction>
-auto TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
+constexpr inline auto
+TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
     BinaryTree::ArrayType outputs;
     traversal(binary_tree.GetRoot(), outputs);
     return outputs;

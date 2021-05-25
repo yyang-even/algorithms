@@ -17,7 +17,7 @@ public:
         std::vector<PointerType> children;
         bool isEndOfWord = false;
 
-        Node(const std::size_t size): children(size, PointerType{}) {}
+        explicit Node(const std::size_t size): children(size, PointerType{}) {}
 
         auto Empty() const {
             for (const auto &kid : children) {
@@ -29,20 +29,20 @@ public:
             return true;
         }
 
-        static std::vector<PointerType>::size_type ToIndex(const char c) {
+        static constexpr std::vector<PointerType>::size_type ToIndex(const char c) {
             return c - 'a';
         }
 
-        static char ToChar(const std::vector<PointerType>::size_type i) {
+        static constexpr char ToChar(const std::vector<PointerType>::size_type i) {
             return i + 'a';
         }
     };
 
 
-    Trie(const std::size_t size = 26): root(size) {}
+    explicit Trie(const std::size_t size = 26): root(size) {}
 
 
-    void Insert(const std::string &key) {
+    void Insert(const std::string_view key) {
         auto *current = &root;
 
         for (const auto c : key) {
@@ -62,12 +62,12 @@ public:
      * @reference   Insertion in a Trie recursively
      *              https://www.geeksforgeeks.org/insertion-in-a-trie-recursively/
      */
-    void Insert_Recursive(const std::string &key) {
+    void Insert_Recursive(const std::string_view key) {
         Insert_Recursive_Helper(&root, key, 0);
     }
 
 
-    auto Search(const std::string &key) const {
+    auto Search(const std::string_view key) const {
         const auto *current = &root;
 
         for (const auto c : key) {
@@ -87,7 +87,7 @@ public:
      * @reference   Search in a trie Recursively
      *              https://www.geeksforgeeks.org/search-in-a-trie-recursively/
      */
-    auto Search_Recursive(const std::string &key) const {
+    auto Search_Recursive(const std::string_view key) const {
         return Search_Recursive_Helper(&root, key, 0);
     }
 
@@ -96,19 +96,19 @@ public:
      * @reference   Trie | (Delete)
      *              https://www.geeksforgeeks.org/trie-delete/
      */
-    void Delete(const std::string &key) {
+    void Delete(const std::string_view key) {
         DeleteHelper(&root, key);
     }
 
 
     template<typename Visitor>
-    auto Visit(const Visitor visitor) const {
+    constexpr auto Visit(const Visitor visitor) const {
         return visitor(root);
     }
 
 private:
-    bool DeleteHelper(Node *node, const std::string &key,
-                      const std::string::size_type depth = 0) {
+    bool DeleteHelper(Node *node, const std::string_view key,
+                      const std::size_t depth = 0) {
         if (not node) {
             return false;
         }
@@ -128,8 +128,8 @@ private:
     }
 
 
-    void Insert_Recursive_Helper(Node *node, const std::string &key,
-                                 const std::string::size_type i) {
+    void Insert_Recursive_Helper(Node *node, const std::string_view key,
+                                 const std::size_t i) {
         if (i < key.size()) {
             const auto index = Node::ToIndex(key[i]);
             if (not node->children[index]) {
@@ -143,8 +143,8 @@ private:
     }
 
 
-    bool Search_Recursive_Helper(const Node *node, const std::string &key,
-                                 const std::string::size_type i) const {
+    bool Search_Recursive_Helper(const Node *node, const std::string_view key,
+                                 const std::size_t i) const {
         if (not node or i > key.size()) {
             return false;
         }
@@ -161,8 +161,8 @@ private:
     Node root;
 };
 
-
-static inline auto BuildTrie(const std::vector<std::string> &keys) {
+template <typename Strings>
+static constexpr inline auto BuildTrie(const Strings &keys) {
     Trie dictionary;
 
     for (const auto &one_key : keys) {

@@ -28,14 +28,14 @@ std::size_t CountUniqueWords(const Trie::Node *node) {
     return result;
 }
 
-auto CountUniqueWords(const ArrayType &keys) {
+inline auto CountUniqueWords(const ArrayType &keys) {
     return BuildTrie(keys).Visit([](const auto & root) {
         return CountUniqueWords(&root);
     });
 }
 
 
-auto DisplayTrie(const ArrayType &keys) {
+inline auto DisplayTrie(const ArrayType &keys) {
     ArrayType results;
     BuildTrie(keys).Visit([&results](const auto & root) {
         std::string prefix;
@@ -50,8 +50,8 @@ auto DisplayTrie(const ArrayType &keys) {
  * @reference   Sorting array of strings (or words) using Trie | Set-2 (Handling Duplicates)
  *              https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie-set-2-handling-duplicates/
  *
- * Given an array of strings, print them in alphabetical (dictionary) order. If
- * there are duplicates in input array, we need to print all the occurrences.
+ * Given an array of strings, print them in alphabetical (dictionary) order. If there are
+ * duplicates in input array, we need to print all the occurrences.
  */
 
 
@@ -70,7 +70,7 @@ void Display_BottomUp(const Trie::Node *node, std::string &results) {
     }
 }
 
-auto Display_BottomUp(const ArrayType &keys) {
+inline auto Display_BottomUp(const ArrayType &keys) {
     std::string results;
     BuildTrie(keys).Visit([&results](const auto & root) {
         Display_BottomUp(&root, results);
@@ -102,7 +102,7 @@ void Display_Reverse(const Trie::Node *node, std::string &prefix, ArrayType &res
     }
 }
 
-auto Display_Reverse(const ArrayType &keys) {
+inline auto Display_Reverse(const ArrayType &keys) {
     ArrayType results;
     BuildTrie(keys).Visit([&results](const auto & root) {
         std::string prefix;
@@ -126,12 +126,12 @@ const ArrayType SAMPLE3 = {"geeks", "for", "geeks", "a", "portal", "to", "learn"
 const ArrayType EXPECTED3 = {"a", "be", "can", "computer", "data", "fire", "for", "geeks", "in", "learn", "portal", "science", "to", "yup", "zoom"};
 
 
-SIMPLE_BENCHMARK(CountUniqueWords, Sample1, SAMPLE1);
+THE_BENCHMARK(CountUniqueWords, SAMPLE1);
 
 SIMPLE_TEST(CountUniqueWords, TestSAMPLE1, 8, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(DisplayTrie, Sample1, SAMPLE1);
+THE_BENCHMARK(DisplayTrie, SAMPLE1);
 
 SIMPLE_TEST(DisplayTrie, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(DisplayTrie, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -139,16 +139,15 @@ SIMPLE_TEST(DisplayTrie, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
 const ArrayType SAMPLE4 = {"their", "there", "answer", "any"};
-const std::string EXPECTED4 = "rewsynariereht";
 const ArrayType EXPECTED_REVERSE4 = {"there", "their", "any", "answer"};
 
 
-SIMPLE_BENCHMARK(Display_BottomUp, Sample1, SAMPLE4);
+THE_BENCHMARK(Display_BottomUp, SAMPLE4);
 
-SIMPLE_TEST(Display_BottomUp, TestSAMPLE4, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(Display_BottomUp, TestSAMPLE4, "rewsynariereht", SAMPLE4);
 
 
-SIMPLE_BENCHMARK(Display_Reverse, Sample1, SAMPLE1);
+THE_BENCHMARK(Display_Reverse, SAMPLE1);
 
 SIMPLE_TEST(Display_Reverse, TestSAMPLE2, EXPECTED_REVERSE2, SAMPLE2);
 SIMPLE_TEST(Display_Reverse, TestSAMPLE4, EXPECTED_REVERSE4, SAMPLE4);

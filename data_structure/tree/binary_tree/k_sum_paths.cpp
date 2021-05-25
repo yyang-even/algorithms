@@ -13,7 +13,8 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * @reference   Root to leaf path sum equal to a given number in BST
  *              https://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number-in-bst/
  */
-bool hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
+inline bool
+hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
     if (node) {
         const auto sub_sum = sum - node->value;
         return hasKSumFullPaths(node->left, sub_sum) or hasKSumFullPaths(node->right, sub_sum);
@@ -27,8 +28,9 @@ bool hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
  * @reference   Shortest root to leaf path sum equal to a given number
  *              https://www.geeksforgeeks.org/shortest-root-to-leaf-path-sum-equal-to-a-given-number/
  */
-void ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
-                                 const int sum, const int level, int &minimum) {
+inline void
+ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
+                            const int sum, const int level, int &minimum) {
     if (node) {
         const auto sub_sum = sum - node->value;
         if (sub_sum == 0 and not node->left and not node->right) {
@@ -40,8 +42,9 @@ void ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
     }
 }
 
-int ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
-    const auto NOT_FOUND = std::numeric_limits<int>::max();
+inline int
+ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
+    constexpr auto NOT_FOUND = std::numeric_limits<int>::max();
     auto result = NOT_FOUND;
     ShortestKSumFullPathsHelper(root, sum, 1, result);
     return result == NOT_FOUND ? -1 : result;
@@ -73,7 +76,8 @@ void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node, const int 
     }
 }
 
-auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
+inline auto
+AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
     BinaryTree::ArrayType path;
     ArrayType results;
     AllKSumRootPathsHelper(root, sum, path, results);
@@ -113,7 +117,8 @@ void AllKSumPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
     }
 }
 
-auto AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum) {
+inline auto
+AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum) {
     BinaryTree::ArrayType path;
     ArrayType results;
     AllKSumPathsHelper(root, sum, path, results);

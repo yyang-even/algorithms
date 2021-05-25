@@ -5,7 +5,7 @@
 
 namespace {
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 
 /**
  * @reference   Find the longest string that can be made up of other strings from the array
@@ -24,8 +24,8 @@ enum class WordType {
 };
 
 WordType CheckWordType(const Trie::Node *root,
-                       const std::string &word,
-                       std::string::size_type i) {
+                       const std::string_view word,
+                       std::size_t i) {
     assert(root);
 
     const auto *current = root;
@@ -48,12 +48,12 @@ WordType CheckWordType(const Trie::Node *root,
     return (current and current->isEndOfWord) ? WordType::single : WordType::not_a_word;
 }
 
-std::string LongestConcatenatedString(const ArrayType &arr) {
+inline auto LongestConcatenatedString(const ArrayType &arr) {
     return BuildTrie(arr).Visit([&arr](const auto & root) {
-        std::string longest_concatenated;
+        std::string_view longest_concatenated;
         for (const auto &word : arr) {
-            if (CheckWordType(&root, word, 0) == WordType::concatenated and
-                word.size() > longest_concatenated.size()) {
+            if (word.size() > longest_concatenated.size() and
+                CheckWordType(&root, word, 0) == WordType::concatenated) {
                 longest_concatenated = word;
             }
         }

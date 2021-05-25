@@ -3,16 +3,16 @@
 #include "trie.h"
 
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 
 namespace {
 
-inline auto TestSearch(const ArrayType &keys, const std::string &str) {
+inline auto TestSearch(const ArrayType &keys, const std::string_view str) {
     return BuildTrie(keys).Search(str);
 }
 
 
-inline auto BuildTrie_Recursive(const std::vector<std::string> &keys) {
+inline auto BuildTrie_Recursive(const ArrayType &keys) {
     Trie dictionary;
 
     for (const auto &one_key : keys) {
@@ -22,7 +22,7 @@ inline auto BuildTrie_Recursive(const std::vector<std::string> &keys) {
     return dictionary;
 }
 
-inline auto TestSearch_Recursive(const ArrayType &keys, const std::string &str) {
+inline auto TestSearch_Recursive(const ArrayType &keys, const std::string_view str) {
     return BuildTrie_Recursive(keys).Search_Recursive(str);
 }
 
@@ -33,8 +33,8 @@ inline auto TestSearch_Recursive(const ArrayType &keys, const std::string &str) 
  * @reference   Check if the given string of words can be formed from words present in the dictionary
  *              https://www.geeksforgeeks.org/check-if-the-given-string-of-words-can-be-formed-from-words-present-in-the-dictionary/
  *
- * Given a string array of M words and a dictionary of N words. The task is to check
- * if the given string of words can be formed from words present in the dictionary.
+ * Given a string array of M words and a dictionary of N words. The task is to check if
+ * the given string of words can be formed from words present in the dictionary.
  */
 
 

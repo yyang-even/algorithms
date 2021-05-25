@@ -3,7 +3,7 @@
 #include "trie.h"
 
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 using RowType = std::vector<char>;
 using BoolRowType = std::vector<bool>;
 using BoardType = std::vector<RowType>;
@@ -17,10 +17,10 @@ namespace {
  * @reference   Boggle | Set 2 (Using Trie)
  *              https://www.geeksforgeeks.org/boggle-set-2-using-trie/
  *
- * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where every
- * cell has one character. Find all possible words that can be formed by a sequence of adjacent
- * characters. Note that we can move to any of 8 adjacent characters, but a word should not have
- * multiple instances of the same cell.
+ * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where
+ * every cell has one character. Find all possible words that can be formed by a sequence
+ * of adjacent characters. Note that we can move to any of 8 adjacent characters, but a
+ * word should not have multiple instances of the same cell.
  */
 void Boggle(const Trie::Node::PointerType node,
             const BoardType &board,
@@ -29,12 +29,13 @@ void Boggle(const Trie::Node::PointerType node,
             std::string &prefix,
             OutputType &results);
 
-void BoggleHelper(const Trie::Node *node,
-                  const BoardType &board,
-                  const int i, const int j,
-                  std::vector<BoolRowType> &visited,
-                  std::string &prefix,
-                  OutputType &results) {
+inline void
+BoggleHelper(const Trie::Node *node,
+             const BoardType &board,
+             const int i, const int j,
+             std::vector<BoolRowType> &visited,
+             std::string &prefix,
+             OutputType &results) {
     assert(node);
 
     const auto c = board[i][j];
@@ -78,8 +79,8 @@ void Boggle(const Trie::Node::PointerType node,
     }
 }
 
-auto Boggle(const ArrayType &keys, const BoardType &board) {
-    return BuildTrie(keys).Visit([&keys, &board](const auto & root) {
+inline auto Boggle(const ArrayType &keys, const BoardType &board) {
+    return BuildTrie(keys).Visit([&board](const auto & root) {
         std::string prefix;
         auto visited =
             std::vector<BoolRowType>(board.size(), BoolRowType(board.front().size(), false));
@@ -107,6 +108,6 @@ const BoardType BOARD1 = {
 const OutputType EXPECTED1 = {"gee", "geeks", "quiz"};
 
 
-SIMPLE_BENCHMARK(Boggle, Sample1, KEYS1, BOARD1);
+THE_BENCHMARK(Boggle, KEYS1, BOARD1);
 
 SIMPLE_TEST(Boggle, TestSAMPLE1, EXPECTED1, KEYS1, BOARD1);

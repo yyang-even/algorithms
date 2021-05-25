@@ -24,7 +24,8 @@ unsigned Size_Recursive(const BinaryTree::Node::PointerType node) {
  * @reference   Iterative program to Calculate Size of a tree
  *              https://www.geeksforgeeks.org/write-program-calculate-size-tree-iterative/
  */
-auto Size_Iterative(const BinaryTree::Node::PointerType root_node) {
+inline auto
+Size_Iterative(const BinaryTree::Node::PointerType root_node) {
     unsigned size = 0;
     LevelOrderTraversal_LevelAware_Helper(root_node,
     [&size](const auto &) {
@@ -41,11 +42,11 @@ auto Size_Iterative(const BinaryTree::Node::PointerType root_node) {
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 
-SIMPLE_BENCHMARK(Size_Recursive, Sample1, SAMPLE1);
+THE_BENCHMARK(Size_Recursive, SAMPLE1);
 
 SIMPLE_TEST(Size_Recursive, TestSAMPLE1, 5, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(Size_Iterative, Sample1, SAMPLE1);
+THE_BENCHMARK(Size_Iterative, SAMPLE1);
 
 SIMPLE_TEST(Size_Iterative, TestSAMPLE1, 5, SAMPLE1);
