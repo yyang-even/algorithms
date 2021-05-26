@@ -50,14 +50,14 @@ const ArrayType SAMPLE3_X = {10, 5, 3, 4, 6};
 const ArrayType SAMPLE3_Y = {8, 7, 9, 3};
 
 
-SIMPLE_BENCHMARK(AreTwoSetsDisjoint_Hash, Sample1, SAMPLE1_X, SAMPLE1_Y);
+THE_BENCHMARK(AreTwoSetsDisjoint_Hash, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(AreTwoSetsDisjoint_Hash, TestSAMPLE1, false, SAMPLE1_X, SAMPLE1_Y);
 SIMPLE_TEST(AreTwoSetsDisjoint_Hash, TestSAMPLE2, true, SAMPLE1_X, SAMPLE2_Y);
 SIMPLE_TEST(AreTwoSetsDisjoint_Hash, TestSAMPLE3, false, SAMPLE3_X, SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(AreTwoSetsDisjoint_BinarySearch, Sample1, SAMPLE1_X, SAMPLE1_Y);
+THE_BENCHMARK(AreTwoSetsDisjoint_BinarySearch, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(AreTwoSetsDisjoint_BinarySearch, TestSAMPLE1, false, SAMPLE1_X, SAMPLE1_Y);
 SIMPLE_TEST(AreTwoSetsDisjoint_BinarySearch, TestSAMPLE2, true, SAMPLE1_X, SAMPLE2_Y);

@@ -46,8 +46,8 @@ auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
  * without using any additional data structure in one traversal. Use additional data
  * structures like count array, hash, etc is not allowed.
  */
-auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string &str) {
-    std::unordered_set<ArrayType::value_type> counters;
+auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string_view str) {
+    std::unordered_set<char> counters;
 
     for (const auto c : str) {
         if (not counters.insert(c).second) {
@@ -59,7 +59,7 @@ auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string &str) {
 }
 
 
-auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string &str) {
+auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string_view str) {
     assert(std::all_of(str.cbegin(), str.cend(), islower));
 
     unsigned long counters = 0;

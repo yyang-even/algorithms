@@ -6,7 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
-const ArrayType::value_type NO_MAJORITY = -1;
+constexpr ArrayType::value_type NO_MAJORITY = -1;
 
 /** Majority Element
  *
@@ -82,13 +82,13 @@ const ArrayType SAMPLE1 = {3, 3, 4, 2, 4, 4, 2, 4, 4};
 const ArrayType SAMPLE2 = {3, 3, 4, 2, 4, 4, 2, 4};
 
 
-SIMPLE_BENCHMARK(MajorityElement_Map, Sample1, SAMPLE1);
+THE_BENCHMARK(MajorityElement_Map, SAMPLE1);
 
 SIMPLE_TEST(MajorityElement_Map, TestSAMPLE1, 4, SAMPLE1);
 SIMPLE_TEST(MajorityElement_Map, TestSAMPLE2, NO_MAJORITY, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(MajorityElement_MooreVoting, Sample1, SAMPLE1);
+THE_BENCHMARK(MajorityElement_MooreVoting, SAMPLE1);
 
 SIMPLE_TEST(MajorityElement_MooreVoting, TestSAMPLE1, 4, SAMPLE1);
 SIMPLE_TEST(MajorityElement_MooreVoting, TestSAMPLE2, NO_MAJORITY, SAMPLE2);

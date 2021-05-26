@@ -5,20 +5,19 @@
 
 namespace {
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 
 /** Print list items containing all characters of a given word
  *
  * @reference   https://www.geeksforgeeks.org/print-list-items-containing-all-characters-of-a-given-word/
  *
- * There is a list of items. Given a specific word, e.g., "sun", print out
- * all the items in list which contain all the characters of "sun".
- * For example if the given word is "sun" and the items are "sunday",
- * "geeksforgeeks", "utensils", "just" and "sss", then the program should
- * print "sunday" and "utensils".
+ * There is a list of items. Given a specific word, e.g., "sun", print out all the items
+ * in list which contain all the characters of "sun". For example if the given word is
+ * "sun" and the items are "sunday", "geeksforgeeks", "utensils", "just" and "sss", then
+ * the program should print "sunday" and "utensils".
  */
 auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items,
-                                        const std::string &word) {
+                                        const std::string_view word) {
     const auto counters = ToFrequencyHashTable(word);
 
     ArrayType output;
@@ -26,8 +25,8 @@ auto ItemsContainingAllCharsOfGivenWord(const ArrayType &items,
         auto length = word.size();
         auto temp_counters = counters;
         for (const auto c : item) {
-            auto iter = temp_counters.find(c);
-            if (iter != temp_counters.cend() and iter->second != 0ul) {
+            const auto iter = temp_counters.find(c);
+            if (iter != temp_counters.cend() and iter->second != 0) {
                 --(iter->second);
                 if (not --length) {
                     output.push_back(item);
@@ -47,6 +46,6 @@ const ArrayType SAMPLE = {"geeksforgeeks", "unsorted", "sunday", "just", "sss"};
 const ArrayType EXPECTED = {"unsorted", "sunday"};
 
 
-SIMPLE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, Sample1, SAMPLE, "sun");
+THE_BENCHMARK(ItemsContainingAllCharsOfGivenWord, SAMPLE, "sun");
 
 SIMPLE_TEST(ItemsContainingAllCharsOfGivenWord, TestSAMPLE1, EXPECTED, SAMPLE, "sun");

@@ -15,16 +15,17 @@ namespace {
  * @reference   Implementing ternary operator without any conditional statement
  *              https://www.geeksforgeeks.org/implementing-ternary-operator-without-conditional-statement/
  *
- * Given 4 integers a, b, y, and x, where x can only either 0 and 1 only.
- * The ask is as follows:
- * If 'x' is 0,
- *    Assign value 'a' to variable 'y'
- * Else (If 'x' is 1)
- *    Assign value 'b' to variable 'y'.
- * Note: You are not allowed to use any conditional operator (including
- * ternary operator) or any arithmetic operator ( +, -, *, /).
+ * Given 4 integers a, b, y, and x, where x can only either 0 and 1 only. The ask is as
+ * follows:
+ *  If 'x' is 0,
+ *      Assign value 'a' to variable 'y'
+ *  Else (If 'x' is 1)
+ *      Assign value 'b' to variable 'y'.
+ * Note: You are not allowed to use any conditional operator (including ternary operator)
+ * or any arithmetic operator ( +, -, *, /).
  */
-auto ConditionallyAssign(const int a, const int b, const bool x) {
+constexpr inline auto
+ConditionallyAssign(const int a, const int b, const bool x) {
     const int table[] = {a, b};
     return table[x];
 }
@@ -32,31 +33,33 @@ auto ConditionallyAssign(const int a, const int b, const bool x) {
 
 /** Conditionally assign a value using arithmetic operators
  */
-auto ConditionallyAssign_Arithmetic(const int a, const int b, const bool x) {
+constexpr inline auto
+ConditionallyAssign_Arithmetic(const int a, const int b, const bool x) {
     return (1 - x) * a + x * b;
 }
 
 
-auto ConditionallyAssign_Not(const int a, const int b, const bool x) {
+constexpr inline auto
+ConditionallyAssign_Not(const int a, const int b, const bool x) {
     return (!x) * a + (!!x) * b;
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign, Sample1, 5, 10, 1);
+THE_BENCHMARK(ConditionallyAssign, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign, TestSample2, 5, 5, 10, 0);
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign_Arithmetic, Sample1, 5, 10, 1);
+THE_BENCHMARK(ConditionallyAssign_Arithmetic, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign_Arithmetic, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign_Arithmetic, TestSample2, 5, 5, 10, 0);
 
 
-SIMPLE_BENCHMARK(ConditionallyAssign_Not, Sample1, 5, 10, 1);
+THE_BENCHMARK(ConditionallyAssign_Not, 5, 10, 1);
 
 SIMPLE_TEST(ConditionallyAssign_Not, TestSample1, 10, 5, 10, 1);
 SIMPLE_TEST(ConditionallyAssign_Not, TestSample2, 5, 5, 10, 0);

@@ -2,7 +2,8 @@
 
 
 template <typename Container>
-static constexpr inline auto ToFrequencyHashTable(const Container &container) {
+static constexpr inline auto
+ToFrequencyHashTable(const Container &container) {
     std::unordered_map<typename Container::value_type, typename Container::size_type>
     counter;
     for (const auto &c : container) {
@@ -14,7 +15,8 @@ static constexpr inline auto ToFrequencyHashTable(const Container &container) {
 
 
 template <typename Container>
-static constexpr inline auto ToUnorderedSet(Container container) {
+static constexpr inline auto
+ToUnorderedSet(Container container) {
     using SetType = std::unordered_set<typename Container::value_type>;
     return ContainerCast<SetType>(std::move(container));
 }

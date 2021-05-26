@@ -15,7 +15,7 @@ namespace {
  * Print only first such pair. If it is not possible to express N as a product of two
  * distinct primes, print "Not Possible".
  */
-auto PairPrimesProductAsN(const unsigned N) {
+inline auto PairPrimesProductAsN(const unsigned N) {
     assert(N > 2);
     const auto primes = PrimesBelowN(N);
     auto output = std::pair(1ul, 1ul);
