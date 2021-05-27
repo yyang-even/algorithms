@@ -20,9 +20,9 @@ using ArrayType = std::vector<int>;
  * times towards right). Order of the elements in the output doesn't matter.
  */
 auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
-    assert(elements.size() > 1ul);
+    assert(elements.size() > 1);
 
-    ArrayType::size_type i = 1ul;
+    ArrayType::size_type i = 1;
     auto length = elements.size();
 
     if (elements.front() == elements.back()) {
@@ -32,7 +32,7 @@ auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
 
     ArrayType output;
     for (; i < length; ++i) {
-        const auto previous = elements[i - 1ul];
+        const auto previous = elements[i - 1];
         if (elements[i] == previous) {
             ++i;
         } else {
@@ -40,8 +40,8 @@ auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
         }
     }
 
-    if (elements[length - 1ul] != elements[length - 2ul]) {
-        output.push_back(elements[length - 1ul]);
+    if (elements[length - 1] != elements[length - 2]) {
+        output.push_back(elements[length - 1]);
     }
 
     return output;
@@ -56,19 +56,19 @@ auto ElementsThatOccurredOnlyOnce(const ArrayType &elements) {
  * if the input string is "Geeks for Geeks", then output should be 'for' and if input
  * string is "Geeks Quiz", then output should be 'GksQuiz'.
  */
-auto GetAllElementsOccurredOnlyOnce(const std::string &input) {
+inline auto GetAllElementsOccurredOnlyOnce(std::string input) {
     const auto counter = ToFrequencyHashTable(input);
 
-    return RemoveCharacters_TwoPointers(input, [&counter](const auto c) {
+    return RemoveCharacters_TwoPointers(std::move(input), [&counter](const auto c) {
         return c != ' ' and counter.at(c) == 1;
     });
 }
 
 
-auto GetAllElementsOccurredOnlyOnce_Linear(const std::string &input) {
-    std::unordered_set<std::string::value_type> counter;
-    std::unordered_map<std::string::value_type, std::string::size_type> index_map;
-    for (std::string::size_type i = 0; i < input.size(); ++i) {
+auto GetAllElementsOccurredOnlyOnce_Linear(const std::string_view input) {
+    std::unordered_set<char> counter;
+    std::unordered_map<char, std::size_t> index_map;
+    for (std::size_t i = 0; i < input.size(); ++i) {
         const auto c = input[i];
         if (counter.emplace(c).second) {
             if (c != ' ') {
@@ -79,8 +79,7 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string &input) {
         }
     }
 
-    std::vector<std::pair<std::string::size_type, std::string::value_type>>
-            index_char_array;
+    std::vector<std::pair<std::size_t, char>> index_char_array;
     for (const auto [value, index] : index_map) {
         index_char_array.emplace_back(index, value);
     }

@@ -11,8 +11,8 @@ namespace {
  * Consider a large input string with lots of characters and a small character set. How
  * to find the character by only doing only one traversal of input string?
  */
-auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_type K) {
-    std::unordered_map<std::string::value_type, std::string::size_type> counters;
+auto FindKthNonrepeatingChar(const std::string_view input, const std::size_t K) {
+    std::unordered_map<char, std::size_t> counters;
 
     for (std::string::size_type i = 0; i < input.size(); ++i) {
         const auto c = input[i];
@@ -21,7 +21,7 @@ auto FindKthNonrepeatingChar(const std::string &input, const std::string::size_t
         }
     }
 
-    std::vector<std::string::size_type> nonrepeating_char_indice;
+    std::vector<std::size_t> nonrepeating_char_indice;
     for (const auto [_, index] : counters) {
         if (index != input.size()) {
             nonrepeating_char_indice.push_back(index);

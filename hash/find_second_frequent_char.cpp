@@ -12,13 +12,13 @@ namespace {
  * Given a string, find the second most frequent character in it. Expected time
  * complexity is O(n) where n is the length of the input string.
  */
-auto FindSecondFrequentChar(const std::string &input) {
-    assert(input.size() > 1ul);
+auto FindSecondFrequentChar(const std::string_view input) {
+    assert(input.size() > 1);
 
     const auto counters = ToFrequencyHashTable(input);
 
-    std::string::size_type first_frequency = 0ul, second_frequency = 0ul;
-    std::string::value_type first{}, second{};
+    std::size_t first_frequency = 0, second_frequency = 0;
+    char first{}, second{};
     for (const auto [key, count] : counters) {
         if (count > first_frequency) {
             second_frequency = first_frequency;
@@ -37,7 +37,7 @@ auto FindSecondFrequentChar(const std::string &input) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(FindSecondFrequentChar, Sample1, "geeksforgee");
+THE_BENCHMARK(FindSecondFrequentChar, "geeksforgee");
 
 SIMPLE_TEST(FindSecondFrequentChar, TestSAMPLE1, 'g', "geeksforgee");
 SIMPLE_TEST(FindSecondFrequentChar, TestSAMPLE2, 'b', "aabababa");

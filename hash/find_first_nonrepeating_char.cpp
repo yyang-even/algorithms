@@ -19,8 +19,8 @@ namespace {
  * @reference   Find the last non repeating character in string
  *              https://www.geeksforgeeks.org/find-the-last-non-repeating-character-in-string/
  */
-auto FindFirstNonrepeatingChar(const std::string &input) {
-    std::unordered_map<std::string::value_type, std::string::size_type> counters;
+auto FindFirstNonrepeatingChar(const std::string_view input) {
+    std::unordered_map<char, std::size_t> counters;
     auto first_nonrepeated_index = input.size();
 
     for (std::string::size_type i = 0; i < input.size(); ++i) {
@@ -47,10 +47,9 @@ auto FindFirstNonrepeatingChar(const std::string &input) {
  * Given a stream of characters, find the first non-repeating character from stream. You
  * need to tell the first non-repeating character in O(1) time at any moment.
  */
-auto FindFirstNonrepeatingCharFromStream(const std::string &input) {
-    std::unordered_map<std::string::value_type,
-        std::list<std::string::value_type>::const_iterator> char_map;
-    std::list<std::string::value_type> nonreapting_chars;
+auto FindFirstNonrepeatingCharFromStream(const std::string_view input) {
+    std::unordered_map<char, std::list<char>::const_iterator> char_map;
+    std::list<char> nonreapting_chars;
     std::string outputs;
 
     for (const auto c : input) {
@@ -78,9 +77,9 @@ auto FindFirstNonrepeatingCharFromStream(const std::string &input) {
  * @reference   Queue based approach for first non-repeating character in a stream
  *              https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/
  */
-auto FindFirstNonrepeatingCharFromStream_Queue(const std::string &input) {
-    std::unordered_map<std::string::value_type, std::string::size_type> frequency_map;
-    std::queue<std::string::value_type> char_queue;
+auto FindFirstNonrepeatingCharFromStream_Queue(const std::string_view input) {
+    std::unordered_map<char, std::size_t> frequency_map;
+    std::queue<char> char_queue;
     std::string outputs;
 
     for (const auto c : input) {

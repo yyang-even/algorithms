@@ -12,9 +12,10 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
  *
- * Given an unsorted array of n integers which can contain integers from 1 to n. Some elements can
- * be repeated multiple times and some other elements can be absent from the array. Count frequency
- * of all elements that are present and print the missing elements.
+ * Given an unsorted array of n integers which can contain integers from 1 to n. Some
+ * elements can be repeated multiple times and some other elements can be absent from
+ * the array. Count frequency of all elements that are present and print the missing
+ * elements.
  *
  * @reference   Counting frequencies of array elements
  *              https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/
@@ -85,7 +86,7 @@ auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
  */
 using ValueCountPair = std::pair<ArrayType::value_type, ArrayType::size_type>;
 
-auto SortAndCount(ArrayType values) {
+inline auto SortAndCount(ArrayType values) {
     std::sort(values.begin(), values.end(), std::greater<ArrayType::value_type> {});
     return CountAllOccurrencesInSortedArray_STL(values, std::greater<ArrayType::value_type> {});
 }
@@ -111,8 +112,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters in decreasing order of frequency
  *              https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
  *
- * Given a string str, the task is to print the characters in decreasing order of their frequency.
- * If the frequency of two characters is same then sort them in descending order alphabetically.
+ * Given a string str, the task is to print the characters in decreasing order of their
+ * frequency. If the frequency of two characters is same then sort them in descending
+ * order alphabetically.
  */
 
 
@@ -120,9 +122,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters and their frequencies in order of occurrence
  *              https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/
  *
- * Given a string str containing only lowercase characters. The problem is to print the characters
- * along with their frequency in the order of their occurrence and in the given format explained
- * in the examples below.
+ * Given a string str containing only lowercase characters. The problem is to print the
+ * characters along with their frequency in the order of their occurrence and in the
+ * given format explained in the examples below.
  */
 
 }//namespace
@@ -137,7 +139,7 @@ const ArrayType SAMPLE6 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 const ArrayType SAMPLE7 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, Sample1, SAMPLE1);
+THE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
@@ -162,10 +164,10 @@ MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    TestSAMPLE7, SAMPLE7);
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_STL, Sample1, SAMPLE1);
+THE_BENCHMARK(CountFrequenciesOfAllElements_STL, SAMPLE1);
 
 
-SIMPLE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, Sample1, SAMPLE1);
+THE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
@@ -198,14 +200,14 @@ const ArrayType VALUES3 = {1, 1, 1, 2, 3, 4, 9, 9, 10};
 const std::vector<ValueCountPair> EXPECTED3 = {{10, 1}, {9, 2}, {4, 1}, {3, 1}, {2, 1}, {1, 3}};
 
 
-SIMPLE_BENCHMARK(SortAndCount, Sample1, VALUES1);
+THE_BENCHMARK(SortAndCount, VALUES1);
 
 SIMPLE_TEST(SortAndCount, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(SortAndCount, TestSAMPLE2, EXPECTED2, VALUES2);
 SIMPLE_TEST(SortAndCount, TestSAMPLE3, EXPECTED3, VALUES3);
 
 
-SIMPLE_BENCHMARK(SortAndCount_BucketSort, Sample1, VALUES1);
+THE_BENCHMARK(SortAndCount_BucketSort, VALUES1);
 
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE2, EXPECTED2, VALUES2);

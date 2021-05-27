@@ -7,9 +7,9 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-second-string-can-formed-first-string-using-count-array/
  */
-auto CanSecondStringBeFormedFromFirst(const std::string &given_str,
-                                      const std::string &candidate) {
-    std::unordered_map<std::string::value_type, int> char_counts;
+auto CanSecondStringBeFormedFromFirst(const std::string_view given_str,
+                                      const std::string_view candidate) {
+    std::unordered_map<char, int> char_counts;
     for (const auto c : candidate) {
         ++char_counts[c];
     }

@@ -11,10 +11,11 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/
  *
- * Given an array of n numbers. Your task is to read numbers from the array and keep at-most K
- * numbers at the top (According to their decreasing frequency) every time a new number is read.
- * We basically need to print top k numbers sorted by frequency when input stream has included
- * k distinct elements, else need to print all distinct elements sorted by frequency.
+ * Given an array of n numbers. Your task is to read numbers from the array and keep
+ * at-most K numbers at the top (According to their decreasing frequency) every time a
+ * new number is read. We basically need to print top k numbers sorted by frequency when
+ * input stream has included k distinct elements, else need to print all distinct
+ * elements sorted by frequency.
  */
 auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream,
                                         const ArrayType::size_type K) {
@@ -94,7 +95,7 @@ const std::vector<ArrayType> EXPECTED1 = {{1}, {1}, {1, 2}, {1, 2, 3}, {1, 3, 2}
 const std::vector<ArrayType> EXPECTED2 = {{1}, {1}, {1}, {1}, {1}, {3}, {3}, {3}, {3}, {3}, {2}};
 
 
-SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers_Stream, Sample1, SAMPLE, 4);
+THE_BENCHMARK(FindTopKMostFrequentNumbers_Stream, SAMPLE, 4);
 
 SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE1, EXPECTED1, SAMPLE, 4);
 SIMPLE_TEST(FindTopKMostFrequentNumbers_Stream, TestSAMPLE2, EXPECTED2, SAMPLE, 1);
@@ -106,7 +107,7 @@ const ArrayType SAMPLE2 = {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};
 const ArrayType EXPECTED_ARRAY2 = {5, 11, 7, 10};
 
 
-SIMPLE_BENCHMARK(FindTopKMostFrequentNumbers, Sample1, SAMPLE1, 2);
+THE_BENCHMARK(FindTopKMostFrequentNumbers, SAMPLE1, 2);
 
 SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE1, EXPECTED_ARRAY1, SAMPLE1, 2);
 SIMPLE_TEST(FindTopKMostFrequentNumbers, TestSAMPLE2, EXPECTED_ARRAY2, SAMPLE2, 4);

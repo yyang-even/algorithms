@@ -26,7 +26,7 @@ namespace {
  * to given number. There may be several combinations possible. An interesting point is,
  * a solution always exist according to Goldbach's conjecture.
  */
-auto PairPrimesSumAsN(const unsigned N) {
+inline auto PairPrimesSumAsN(const unsigned N) {
     assert((N > 2) and (N % 2 == 0));
 
     const auto primes = PrimesBelowN(N);

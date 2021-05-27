@@ -18,11 +18,11 @@ namespace {
  * you have one hit and one pseudo-hit. Write a method that, given a guess and a solution,
  * returns the number of hits and pseudo-hits.
  */
-auto GameOfMasterMind(const std::string &solution, const std::string &guess) {
+auto GameOfMasterMind(const std::string_view solution, const std::string_view guess) {
     assert(solution.size() == guess.size());
 
     int hits = 0;
-    std::unordered_map<std::string::value_type, int> frequency_map;
+    std::unordered_map<char, int> frequency_map;
     for (std::size_t i = 0; i < solution.size(); ++i) {
         if (solution[i] == guess[i]) {
             ++hits;

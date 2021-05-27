@@ -10,8 +10,8 @@ using OutputType = std::vector<std::pair<ArrayType::value_type, ArrayType::value
  *
  * @reference   https://www.geeksforgeeks.org/given-two-unsorted-arrays-find-pairs-whose-sum-x/
  *
- * Given two unsorted arrays of distinct elements, the task is to find all
- * pairs from both arrays whose sum is equal to x.
+ * Given two unsorted arrays of distinct elements, the task is to find all pairs from
+ * both arrays whose sum is equal to x.
  */
 auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
                              const ArrayType::value_type SUM) {
@@ -33,9 +33,9 @@ auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
  * @reference   Count pairs from two sorted arrays whose sum is equal to a given value x
  *              https://www.geeksforgeeks.org/count-pairs-two-sorted-arrays-whose-sum-equal-given-value-x/
  *
- * Given two sorted arrays of size m and n of distinct elements. Given a value x.
- * The problem is to count all pairs from both arrays whose sum is equal to x.
- * Note: The pair has an element from each array.
+ * Given two sorted arrays of size m and n of distinct elements. Given a value x. The
+ * problem is to count all pairs from both arrays whose sum is equal to x. Note: The
+ * pair has an element from each array.
  */
 auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2,
                                     const ArrayType::value_type SUM) {
@@ -62,8 +62,9 @@ auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2
     return outputs;
 }
 
-auto FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1, ArrayType arr2,
-                                         const ArrayType::value_type SUM) {
+inline auto
+FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1, ArrayType arr2,
+                                    const ArrayType::value_type SUM) {
     std::sort(arr1.begin(), arr1.end());
     std::sort(arr2.begin(), arr2.end());
 
@@ -90,7 +91,7 @@ const ArrayType SAMPLE4R = {0, 2, 4, -3, 2, 1};
 const OutputType EXPECTED4 = {{6, 2}, {4, 4}, {6, 2}, {7, 1}};
 
 
-SIMPLE_BENCHMARK(FindAllPairsSumAsN_Hash, Sample1, SAMPLE1L, SAMPLE1R, 8);
+THE_BENCHMARK(FindAllPairsSumAsN_Hash, SAMPLE1L, SAMPLE1R, 8);
 
 SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample1, EXPECTED1, SAMPLE1L, SAMPLE1R, 8);
 SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample2, EXPECTED2, SAMPLE2L, SAMPLE2R, 9);
@@ -102,7 +103,7 @@ const OutputType EXPECTED_SORTED1 = {{4, 4}, {5, 3}};
 const OutputType EXPECTED_SORTED2 = {{1, 8}, {4, 5}, {5, 4}};
 
 
-SIMPLE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, Sample1, SAMPLE1L, SAMPLE1R, 8);
+THE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, SAMPLE1L, SAMPLE1R, 8);
 
 SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1,
             SAMPLE1L, SAMPLE1R, 8);

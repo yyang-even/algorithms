@@ -31,10 +31,10 @@ using ListType = std::forward_list<int>;
  *
  * @complexity  O(n)
  */
-auto RemoveDuplicates(const std::string &input) {
+inline auto RemoveDuplicates(std::string input) {
     std::unordered_set<std::string::value_type> hash_table;
 
-    return RemoveCharacters_TwoPointers(input, [&hash_table](const auto c) {
+    return RemoveCharacters_TwoPointers(std::move(input), [&hash_table](const auto c) {
         return hash_table.emplace(c).second;
     });
 }
@@ -47,10 +47,10 @@ auto RemoveDuplicates(const std::string &input) {
  * Given a string str of lowercase characters, the task is to remove duplicates and return
  * a resultant string without modifying the order of characters in the original string.
  */
-auto RemoveDuplicates_Bits(const std::string &input) {
+inline auto RemoveDuplicates_Bits(std::string input) {
     std::bitset < 'z' - 'a' > hash_table;
 
-    return RemoveCharacters_TwoPointers(input, [&hash_table](const auto c) {
+    return RemoveCharacters_TwoPointers(std::move(input), [&hash_table](const auto c) {
         const auto index = c - 'a';
         if (not hash_table.test(index)) {
             hash_table.set(index);
@@ -75,13 +75,14 @@ auto RemoveDuplicates_Bits(const std::string &input) {
  * @reference   Remove all consecutive duplicates from a string using STL in C++
  *              https://www.geeksforgeeks.org/remove-all-consecutive-duplicates-from-the-string-using-stl-in-c/
  */
-auto RemoveDuplicates_Sorted(const std::string &sorted_input) {
+inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
     if (sorted_input.empty()) {
         return sorted_input;
     }
 
     std::string::value_type previous_element = sorted_input.front() + 1;
-    return RemoveCharacters_TwoPointers(sorted_input, [&previous_element](const auto c) {
+    return RemoveCharacters_TwoPointers(std::move(sorted_input),
+    [&previous_element](const auto c) {
         const auto result = (previous_element != c);
         previous_element = c;
         return result;
@@ -148,8 +149,9 @@ auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
 }
 
 
-void RemoveDuplicates_SortedLinkedList_Recursive_Helper(ListType &a_list,
-                                                        const ListType::const_iterator current) {
+inline void
+RemoveDuplicates_SortedLinkedList_Recursive_Helper(ListType &a_list,
+                                                   const ListType::const_iterator current) {
     if (isThereMoreThanOneElements(current, a_list.cend())) {
         if (*current == *std::next(current)) {
             a_list.erase_after(current);
@@ -160,7 +162,7 @@ void RemoveDuplicates_SortedLinkedList_Recursive_Helper(ListType &a_list,
     }
 }
 
-auto RemoveDuplicates_SortedLinkedList_Recursive(ListType a_list) {
+inline auto RemoveDuplicates_SortedLinkedList_Recursive(ListType a_list) {
     assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
     RemoveDuplicates_SortedLinkedList_Recursive_Helper(a_list, a_list.cbegin());
     return a_list;
@@ -173,7 +175,8 @@ auto RemoveDuplicates_SortedLinkedList_Recursive(ListType a_list) {
  */
 
 
-auto RemoveDuplicates_UnsortedLinkedList_Sort(
+inline auto
+RemoveDuplicates_UnsortedLinkedList_Sort(
     ListType a_list,
     const std::function<ListType(ListType)> remove_consecutive_duplicates) {
     a_list.sort();
@@ -333,7 +336,7 @@ auto FindDuplicates_Inplace_Mod(ArrayType values) {
     TransformToInplaceCounterArray(values, values.size());
 
     ArrayType output;
-    for (ArrayType::size_type i = 0ul; i < values.size(); ++i) {
+    for (ArrayType::size_type i = 0; i < values.size(); ++i) {
         if ((values[i] / values.size()) > 1) {
             output.push_back(i);
         }
