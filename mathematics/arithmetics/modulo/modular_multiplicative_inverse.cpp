@@ -6,7 +6,8 @@
 
 namespace {
 
-auto ModularMultiplicativeInverse_FermatsLittleTheorem(const int a, const int m) {
+constexpr inline auto
+ModularMultiplicativeInverse_FermatsLittleTheorem(const int a, const int m) {
     assert(IsPrime_OptimizedSchoolMethod(m));
     const auto exist = (std::gcd(a, m) == 1);
     return exist ? (static_cast<int>(pow(a, m - 2)) % m) : 0;
@@ -15,12 +16,12 @@ auto ModularMultiplicativeInverse_FermatsLittleTheorem(const int a, const int m)
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularMultiplicativeInverse, Sample1, 3, 11);
+THE_BENCHMARK(ModularMultiplicativeInverse, 3, 11);
 
 SIMPLE_TEST(ModularMultiplicativeInverse, TestSample1, 4, 3, 11);
 SIMPLE_TEST(ModularMultiplicativeInverse, TestSample2, 12, 10, 17);
 
 
-SIMPLE_BENCHMARK(ModularMultiplicativeInverse_FermatsLittleTheorem, Sample1, 3, 11);
+THE_BENCHMARK(ModularMultiplicativeInverse_FermatsLittleTheorem, 3, 11);
 
 SIMPLE_TEST(ModularMultiplicativeInverse_FermatsLittleTheorem, TestSample1, 4, 3, 11);

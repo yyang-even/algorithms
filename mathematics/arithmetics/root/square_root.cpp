@@ -11,9 +11,10 @@ namespace {
  * @reference   Square root of a number without using sqrt() function
  *              https://www.geeksforgeeks.org/square-root-of-a-number-without-using-sqrt-function/
  *
- * Given an integer x, find square root of it. If x is not a perfect square, then return floor(√x).
+ * Given an integer x, find square root of it. If x is not a perfect square, then return
+ * floor(√x).
  */
-auto SquareRoot_BinarySearch(const unsigned N) {
+constexpr auto SquareRoot_BinarySearch(const unsigned N) {
     if (N < 2) {
         return N;
     }
@@ -43,7 +44,8 @@ auto SquareRoot_BinarySearch(const unsigned N) {
  * @reference   Find square root of number upto given precision using binary search
  *              https://www.geeksforgeeks.org/find-square-root-number-upto-given-precision-using-binary-search/
  */
-auto SquareRoot_Double_BinarySearch(const unsigned N, const unsigned precision) {
+constexpr auto
+SquareRoot_Double_BinarySearch(const unsigned N, const unsigned precision) {
     double result = SquareRoot_BinarySearch(N);
 
     auto increment = 0.1;
@@ -64,7 +66,7 @@ auto SquareRoot_Double_BinarySearch(const unsigned N, const unsigned precision) 
  * @reference   Babylonian method for square root
  *              https://www.geeksforgeeks.org/square-root-of-a-perfect-square/
  */
-auto PerfectSquareRoot_Babylonian(const unsigned N) {
+constexpr auto PerfectSquareRoot_Babylonian(const unsigned N) {
     assert(IsPerfectSquare(N));
 
     auto x = N;
@@ -81,32 +83,33 @@ auto PerfectSquareRoot_Babylonian(const unsigned N) {
  * @reference   Square root of a number using log
  *              https://www.geeksforgeeks.org/square-root-number-using-log/
  */
-auto SquareRoot_Log(const double N) {
+constexpr inline auto
+SquareRoot_Log(const double N) {
     return std::pow(2.0, 0.5 * std::log2(N));
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(SquareRoot_BinarySearch, Sample1, 49);
+THE_BENCHMARK(SquareRoot_BinarySearch, 49);
 
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE1, 7, 50);
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE2, 7, 49);
 SIMPLE_TEST(SquareRoot_BinarySearch, TestSAMPLE3, 3, 11);
 
 
-SIMPLE_BENCHMARK(SquareRoot_Double_BinarySearch, Sample1, 50, 3);
+THE_BENCHMARK(SquareRoot_Double_BinarySearch, 50, 3);
 
 SIMPLE_DOUBLE_TEST(SquareRoot_Double_BinarySearch, TestSAMPLE1, 7.071, 50, 3);
 SIMPLE_DOUBLE_TEST(SquareRoot_Double_BinarySearch, TestSAMPLE2, 3.1622, 10, 4);
 
 
-SIMPLE_BENCHMARK(PerfectSquareRoot_Babylonian, Sample1, 49);
+THE_BENCHMARK(PerfectSquareRoot_Babylonian, 49);
 
 SIMPLE_TEST(PerfectSquareRoot_Babylonian, TestSAMPLE2, 7, 49);
 
 
-SIMPLE_BENCHMARK(SquareRoot_Log, Sample1, 49);
+THE_BENCHMARK(SquareRoot_Log, 49);
 
 SIMPLE_DOUBLE_TEST(SquareRoot_Log, TestSAMPLE1, 3.464101615137755, 12);
 SIMPLE_DOUBLE_TEST(SquareRoot_Log, TestSAMPLE2, 7, 49);

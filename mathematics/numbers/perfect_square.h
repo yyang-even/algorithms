@@ -9,7 +9,7 @@
  * @reference   Check whether the number can be made perfect square after adding K
  *              https://www.geeksforgeeks.org/check-whether-the-number-can-be-made-perfect-square-after-adding-k/
  */
-auto IsPerfectSquare(const double x) {
-    auto square_root = std::sqrt(x);
+static constexpr inline auto IsPerfectSquare(const double x) {
+    const auto square_root = std::sqrt(x);
     return square_root == std::floor(square_root);
 }

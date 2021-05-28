@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Russian Peasant (Multiply two numbers using bitwise operators)
  *
  * @reference   https://www.geeksforgeeks.org/russian-peasant-multiply-two-numbers-using-bitwise-operators/
@@ -8,7 +9,8 @@
  * @reference   Multiplication of two numbers with shift operator
  *              https://www.geeksforgeeks.org/multiplication-two-numbers-shift-operator/
  */
-auto Multiply_RussianPeasant(unsigned lhs, unsigned rhs) {
+static constexpr inline auto
+Multiply_RussianPeasant(unsigned lhs, unsigned rhs) {
     if (not rhs) {
         return rhs;
     }

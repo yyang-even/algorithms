@@ -27,8 +27,8 @@ void rotateGroup90Degree_AntiClockwise(MatrixType &square_matrix,
 }
 
 template <typename RotateGroupFunc>
-auto Rotate90Degree_Group(MatrixType square_matrix,
-                          const RotateGroupFunc rotate_group) {
+constexpr auto Rotate90Degree_Group(MatrixType square_matrix,
+                                    const RotateGroupFunc rotate_group) {
     const auto N = square_matrix.size();
     for (MatrixType::size_type x = 0; x < N / 2; ++x) {
         for (auto y = x; y < N - x - 1; ++y) {
@@ -39,7 +39,7 @@ auto Rotate90Degree_Group(MatrixType square_matrix,
     return square_matrix;
 }
 
-auto Rotate90Degree_AntiClockwise_Group(MatrixType square_matrix) {
+inline auto Rotate90Degree_AntiClockwise_Group(MatrixType square_matrix) {
     return Rotate90Degree_Group(std::move(square_matrix),
                                 rotateGroup90Degree_AntiClockwise);
 }
@@ -49,12 +49,12 @@ auto Rotate90Degree_AntiClockwise_Group(MatrixType square_matrix) {
  * @reference   Rotate a matrix by 90 degree without using any extra space | Set 2
  *              https://www.geeksforgeeks.org/rotate-matrix-90-degree-without-using-extra-space-set-2/
  */
-auto Rotate90Degree_AntiClockwise_Transpose(MatrixType square_matrix) {
+inline auto Rotate90Degree_AntiClockwise_Transpose(MatrixType square_matrix) {
     return ReverseMatrixColumns(Transpose(std::move(square_matrix)));
 }
 
 
-auto Rotate90Degree_Clockwise_Transpose(MatrixType square_matrix) {
+inline auto Rotate90Degree_Clockwise_Transpose(MatrixType square_matrix) {
     return ReverseMatrixRows(Transpose(std::move(square_matrix)));
 }
 
@@ -76,7 +76,7 @@ void rotateGroup90Degree_Clockwise(MatrixType &square_matrix,
     square_matrix[y][N - 1 - x] = temp;
 }
 
-auto Rotate90Degree_Clockwise_Group(MatrixType square_matrix) {
+inline auto Rotate90Degree_Clockwise_Group(MatrixType square_matrix) {
     return Rotate90Degree_Group(std::move(square_matrix), rotateGroup90Degree_Clockwise);
 }
 

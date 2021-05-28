@@ -1,6 +1,8 @@
 #pragma once
 
-auto IsPrime_OptimizedSchoolMethod(const unsigned n) {
+
+static constexpr inline auto
+IsPrime_OptimizedSchoolMethod(const unsigned n) {
     if (n <= 1) {
         return false;
     }
