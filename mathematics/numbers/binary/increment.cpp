@@ -3,15 +3,13 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Increment a number without using ++ or +
  *
  * @reference   https://www.geeksforgeeks.org/increment-a-number-without-using-or/
  *
  * The task is to Increment a number without using ++ and + operators.
  */
-auto Increment(const InputType num) {
+auto Increment(const unsigned num) {
     return -(~num);
 }
 

@@ -7,13 +7,13 @@ namespace {
  *  @reference  The Modulo-3 Sequence
  *              https://www.codewars.com/kata/the-modulo-3-sequence/cpp
  *
- * Consider a sequence where the first two numbers are 0 and 1 and the
- * next number of the sequence is the sum of the previous 2 modulo 3.
- * Write a function that finds the nth number of the sequence.
+ * Consider a sequence where the first two numbers are 0 and 1 and the next number of
+ * the sequence is the sum of the previous 2 modulo 3. Write a function that finds the
+ * nth number of the sequence.
  */
-int Modulo3Sequence(const int n) {
-    const std::vector<int> pattern = {1, 0, 1, 1, 2, 0, 2, 1};
-    return pattern[n % pattern.size()];
+constexpr inline auto Modulo3Sequence(const int n) {
+    constexpr int pattern[] = {1, 0, 1, 1, 2, 0, 2, 1};
+    return pattern[n % sizeof(pattern)];
 }
 
 }//namespace

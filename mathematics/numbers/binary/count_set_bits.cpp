@@ -4,8 +4,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Count set bits in an integer
  *
  * @reference   https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
@@ -41,9 +39,9 @@ constexpr unsigned char BitsSetTable256[256] = {
     B6(0), B6(1), B6(1), B6(2)
 };
 
-InputType CountSetBits_LookupTable(const InputType n) {
+unsigned CountSetBits_LookupTable(const unsigned n) {
     auto *p = reinterpret_cast<const unsigned char *>(&n);
-    auto num_bytes = sizeof(InputType);
+    auto num_bytes = sizeof(unsigned);
     unsigned char count = 0;
     for (size_t i = 0; i < num_bytes; ++i) {
         count += BitsSetTable256[p[i]];

@@ -3,8 +3,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Two’s complement of the number
  *
  * @reference   Bitwise Hacks for Competitive Programming
@@ -12,11 +10,11 @@ using InputType = unsigned;
  *
  * 2’s complement of a number is 1’s complement + 1.
  */
-inline auto TwosComplement_ByOnesComplement(const InputType num) {
+inline auto TwosComplement_ByOnesComplement(const unsigned num) {
     return ~num + 1;
 }
 
-inline auto TwosComplement_ByMinusOperator(const InputType num) {
+inline auto TwosComplement_ByMinusOperator(const unsigned num) {
     return -num;
 }
 

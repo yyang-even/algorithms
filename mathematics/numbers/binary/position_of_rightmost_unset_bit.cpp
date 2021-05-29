@@ -5,8 +5,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Get the position of rightmost unset bit
  *
  * @reference   https://www.geeksforgeeks.org/get-position-rightmost-unset-bit/
@@ -15,7 +13,7 @@ using InputType = unsigned;
  * representation of n, considering the last bit at position 1, 2nd last bit at position
  * 2 and so on. If no 0’s are there in the binary representation of n. then print “-1”.
  */
-int PositionOfRightmostUnsetBit(const InputType num) {
+int PositionOfRightmostUnsetBit(const unsigned num) {
     if (not num) {
         return 1;
     }
@@ -31,14 +29,14 @@ int PositionOfRightmostUnsetBit(const InputType num) {
  *
  * @reference   https://www.geeksforgeeks.org/position-rightmost-common-bit-two-numbers/
  */
-auto PositionOfRightmostCommonBit(const InputType lhs, const InputType rhs) {
+auto PositionOfRightmostCommonBit(const unsigned lhs, const unsigned rhs) {
     return ffs((lhs ^ rhs) + 1);
 }
 
 }//namespace
 
 
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(PositionOfRightmostUnsetBit, Sample1, 4);

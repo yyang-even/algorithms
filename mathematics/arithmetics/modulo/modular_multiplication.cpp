@@ -11,7 +11,8 @@ namespace {
  * multiplication may cause overflow. However they are smaller than half of the maximum
  * allowed long long int value.
  */
-auto ModularMultiplication(long long a, long long b, const long long mod) {
+constexpr auto
+ModularMultiplication(long long a, long long b, const long long mod) {
     long long result = 0;
     a %= mod;
 
@@ -28,7 +29,7 @@ auto ModularMultiplication(long long a, long long b, const long long mod) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ModularMultiplication, Sample1, 426, 964, 235);
+THE_BENCHMARK(ModularMultiplication, 426, 964, 235);
 
 SIMPLE_TEST(ModularMultiplication, TestSample1, 119, 426, 964, 235);
 SIMPLE_TEST(ModularMultiplication, TestSample2, 4652135769797794,

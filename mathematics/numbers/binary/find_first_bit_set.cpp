@@ -6,13 +6,11 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Position of rightmost different bit
  *
  * @reference   https://www.geeksforgeeks.org/position-rightmost-different-bit/
  */
-auto PositionOfRightmostDifferentBit(const InputType lhs, const InputType rhs) {
+auto PositionOfRightmostDifferentBit(const unsigned lhs, const unsigned rhs) {
     return ffs((lhs ^ rhs));
 }
 
@@ -21,7 +19,7 @@ auto PositionOfRightmostDifferentBit(const InputType lhs, const InputType rhs) {
  *
  * @reference   https://www.geeksforgeeks.org/number-formed-by-the-rightmost-set-bit-in-n/
  */
-auto NumberFormedByRightmostBit(const InputType N) {
+auto NumberFormedByRightmostBit(const unsigned N) {
     return N ^ ClearRightmostBit(N);
 }
 
@@ -29,7 +27,7 @@ auto NumberFormedByRightmostBit(const InputType N) {
 
 
 constexpr auto LOWER = 1u;
-constexpr auto UPPER = std::numeric_limits<InputType>::max();
+constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
 SIMPLE_BENCHMARK(FindFirstBitSet, Sample1, 4);

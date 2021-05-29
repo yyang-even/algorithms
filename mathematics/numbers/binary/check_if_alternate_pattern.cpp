@@ -5,8 +5,6 @@
 
 namespace {
 
-using InputType = unsigned;
-
 /** Check if a number has bits in alternate pattern
  *
  * @reference   Check if a number has bits in alternate pattern | Set 1
