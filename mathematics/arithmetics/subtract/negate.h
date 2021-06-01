@@ -11,7 +11,7 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 7.4.
  */
-static inline auto Negate(int number) {
+static constexpr inline auto Negate(int number) {
     int result = 0;
     const int step = number < 0 ? 1 : -1;
     for (; number; number += step) {

@@ -12,12 +12,13 @@ namespace {
  * Write a program that takes as input two long integers ‘low’ and ‘high’ where
  * 0 < low < high and finds count of factorial numbers in the closed interval [low, high].
  */
-unsigned CountFactorialNumInRange(const unsigned low, const unsigned high) {
+constexpr unsigned
+CountFactorialNumInRange(const unsigned low, const unsigned high) {
     if (low > high) {
         return 0;
     }
 
-    unsigned long long F = 1ULL;
+    unsigned long long F = 1;
     unsigned i = 2;
     //Find the first F >= low
     for (; F < low; ++i) {
@@ -41,9 +42,9 @@ constexpr auto LOWER = std::numeric_limits<unsigned>::min();
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(CountFactorialNumInRange, Sample1, 2, 10);
+THE_BENCHMARK(CountFactorialNumInRange, 2, 10);
 
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE1, 1u, 0, 1);
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE2, 2u, 12, 122);
-SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE3, 5u, 2, 720);
-SIMPLE_TEST(CountFactorialNumInRange, TestUPPER, 12u, LOWER, UPPER);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE1, 1, 0, 1);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE2, 2, 12, 122);
+SIMPLE_TEST(CountFactorialNumInRange, TestSAMPLE3, 5, 2, 720);
+SIMPLE_TEST(CountFactorialNumInRange, TestUPPER, 12, LOWER, UPPER);

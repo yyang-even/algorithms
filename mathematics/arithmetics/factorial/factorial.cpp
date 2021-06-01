@@ -18,7 +18,7 @@ namespace {
  * Factorial of a non-negative integer, is multiplication of all integers smaller than or
  * equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
  */
-constexpr unsigned long Factorial_Recursive(const int num) {
+constexpr inline unsigned long Factorial_Recursive(const int num) {
     if (num > 1) {
         return Factorial_Recursive(num - 1) * num;
     }
@@ -26,8 +26,8 @@ constexpr unsigned long Factorial_Recursive(const int num) {
 }
 
 
-constexpr unsigned long Factorial_OneLine(const unsigned n) {
-    return (n == 1u or n == 0u) ? 1u : n * Factorial_OneLine(n - 1);
+constexpr inline unsigned long Factorial_OneLine(const unsigned n) {
+    return (n == 1 or n == 0) ? 1 : n * Factorial_OneLine(n - 1);
 }
 
 
@@ -35,7 +35,7 @@ constexpr unsigned long Factorial_OneLine(const unsigned n) {
  * @reference   Tail Recursion
  *              https://www.geeksforgeeks.org/tail-recursion/
  */
-constexpr unsigned long
+constexpr inline unsigned long
 Factorial_TailRecursive(const int num, unsigned long factorial) {
     if (num < 2) {
         return factorial;
@@ -44,7 +44,7 @@ Factorial_TailRecursive(const int num, unsigned long factorial) {
     return Factorial_TailRecursive(num - 1, num * factorial);
 }
 
-constexpr unsigned long Factorial_TailRecursive(const int num) {
+constexpr inline unsigned long Factorial_TailRecursive(const int num) {
     return Factorial_TailRecursive(num, 1);
 }
 
@@ -52,7 +52,7 @@ constexpr unsigned long Factorial_TailRecursive(const int num) {
 /**
  * @reference   Agner Fog. Optimizing software in C++. Section 14.1.
  */
-constexpr auto Factorial_LookupTable(const unsigned n) {
+constexpr inline auto Factorial_LookupTable(const unsigned n) {
     constexpr unsigned FACTORIAL_TABLE[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
     assert(n < (sizeof(FACTORIAL_TABLE) / sizeof(*FACTORIAL_TABLE)));
     return FACTORIAL_TABLE[n];
@@ -80,55 +80,55 @@ std::string FactorialOfLargeNumber(const int num) {
 }//namespace
 
 
-const int LOWER = 0;
-const int UPPER = 12;
-const int SAMPLE1 = 1;
-const int SAMPLE2 = 6;
+constexpr int LOWER = 0;
+constexpr int UPPER = 12;
+constexpr int SAMPLE1 = 1;
+constexpr int SAMPLE2 = 6;
 
 
 SIMPLE_BENCHMARK(Factorial_Iterative, Sample1, LOWER);
 SIMPLE_BENCHMARK(Factorial_Iterative, Sample2, UPPER);
 
-SIMPLE_TEST(Factorial_Iterative, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(Factorial_Iterative, TestUPPER, 479001600u, UPPER);
-SIMPLE_TEST(Factorial_Iterative, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(Factorial_Iterative, TestSAMPLE2, 720u, SAMPLE2);
+SIMPLE_TEST(Factorial_Iterative, TestLOWER, 1, LOWER);
+SIMPLE_TEST(Factorial_Iterative, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(Factorial_Iterative, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(Factorial_Iterative, TestSAMPLE2, 720, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(Factorial_OneLine, Sample1, LOWER);
 SIMPLE_BENCHMARK(Factorial_OneLine, Sample2, UPPER);
 
-SIMPLE_TEST(Factorial_OneLine, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(Factorial_OneLine, TestUPPER, 479001600u, UPPER);
-SIMPLE_TEST(Factorial_OneLine, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(Factorial_OneLine, TestSAMPLE2, 720u, SAMPLE2);
+SIMPLE_TEST(Factorial_OneLine, TestLOWER, 1, LOWER);
+SIMPLE_TEST(Factorial_OneLine, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(Factorial_OneLine, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(Factorial_OneLine, TestSAMPLE2, 720, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(Factorial_Recursive, Sample1, LOWER);
 SIMPLE_BENCHMARK(Factorial_Recursive, Sample2, UPPER);
 
-SIMPLE_TEST(Factorial_Recursive, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(Factorial_Recursive, TestUPPER, 479001600u, UPPER);
-SIMPLE_TEST(Factorial_Recursive, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(Factorial_Recursive, TestSAMPLE2, 720u, SAMPLE2);
+SIMPLE_TEST(Factorial_Recursive, TestLOWER, 1, LOWER);
+SIMPLE_TEST(Factorial_Recursive, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(Factorial_Recursive, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(Factorial_Recursive, TestSAMPLE2, 720, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(Factorial_TailRecursive, Sample1, LOWER);
 SIMPLE_BENCHMARK(Factorial_TailRecursive, Sample2, UPPER);
 
-SIMPLE_TEST(Factorial_TailRecursive, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(Factorial_TailRecursive, TestUPPER, 479001600u, UPPER);
-SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE2, 720u, SAMPLE2);
+SIMPLE_TEST(Factorial_TailRecursive, TestLOWER, 1, LOWER);
+SIMPLE_TEST(Factorial_TailRecursive, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(Factorial_TailRecursive, TestSAMPLE2, 720, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(Factorial_LookupTable, Sample1, LOWER);
 SIMPLE_BENCHMARK(Factorial_LookupTable, Sample2, UPPER);
 
-SIMPLE_TEST(Factorial_LookupTable, TestLOWER, 1u, LOWER);
-SIMPLE_TEST(Factorial_LookupTable, TestUPPER, 479001600u, UPPER);
-SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE2, 720u, SAMPLE2);
+SIMPLE_TEST(Factorial_LookupTable, TestLOWER, 1, LOWER);
+SIMPLE_TEST(Factorial_LookupTable, TestUPPER, 479001600, UPPER);
+SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(Factorial_LookupTable, TestSAMPLE2, 720, SAMPLE2);
 
 
 SIMPLE_BENCHMARK(FactorialOfLargeNumber, Sample1, LOWER);

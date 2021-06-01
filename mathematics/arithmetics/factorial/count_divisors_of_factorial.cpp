@@ -20,7 +20,7 @@ unsigned long long CountDivisorsOfFactorial(const unsigned n) {
     auto primes_below_n_plus_1 = PrimesBelowN(n + 1);
 
     unsigned long long count = 1;
-    for (auto prime : primes_below_n_plus_1) {
+    for (const auto prime : primes_below_n_plus_1) {
         //The 1 is for p^0
         count *= (LargestPowerOfPDividesFactorialN(prime, n) + 1);
     }

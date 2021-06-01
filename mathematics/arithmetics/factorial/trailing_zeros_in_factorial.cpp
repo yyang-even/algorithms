@@ -13,7 +13,7 @@ namespace {
  *
  * Given an integer n, write a function that returns count of trailing zeros in n!.
  */
-unsigned CountTrailing0sInFactorialOf(const unsigned num) {
+constexpr inline unsigned CountTrailing0sInFactorialOf(const unsigned num) {
     return LargestPowerOfPDividesFactorialN(5, num);
 }
 
@@ -30,7 +30,8 @@ unsigned CountTrailing0sInFactorialOf(const unsigned num) {
  * @reference   Smallest number with at least n trailing zeroes in factorial
  *              https://www.geeksforgeeks.org/smallest-number-least-n-trailing-zeroes-factorial/
  */
-auto SmallestNumberWhoseFactorialContainsYTrailingZeros(const unsigned Y) {
+constexpr auto
+SmallestNumberWhoseFactorialContainsYTrailingZeros(const unsigned Y) {
     unsigned low = 0;
     unsigned high = Y * 5;
 
@@ -55,7 +56,8 @@ auto SmallestNumberWhoseFactorialContainsYTrailingZeros(const unsigned Y) {
  * Given an integer n, we need to find the number of positive integers whose factorial
  * ends with n zeros.
  */
-auto FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch(const unsigned N) {
+inline auto
+FindNumbersWhoseFactorialsEndWithNZeros_BinarySearch(const unsigned N) {
     auto lower_bound = SmallestNumberWhoseFactorialContainsYTrailingZeros(N);
 
     std::vector<unsigned> outputs(5, lower_bound);
@@ -80,11 +82,11 @@ constexpr unsigned SAMPLE4 = 100;
 SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, Sample1, LOWER);
 SIMPLE_BENCHMARK(CountTrailing0sInFactorialOf, Sample2, UPPER);
 
-SIMPLE_TEST(CountTrailing0sInFactorialOf, TestLOWER, 0u, LOWER);
-SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE1, 1u, SAMPLE1);
-SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE2, 4u, SAMPLE2);
-SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE3, 4u, SAMPLE3);
-SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE4, 24u, SAMPLE4);
+SIMPLE_TEST(CountTrailing0sInFactorialOf, TestLOWER, 0, LOWER);
+SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE1, 1, SAMPLE1);
+SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE2, 4, SAMPLE2);
+SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE3, 4, SAMPLE3);
+SIMPLE_TEST(CountTrailing0sInFactorialOf, TestSAMPLE4, 24, SAMPLE4);
 
 
 THE_BENCHMARK(SmallestNumberWhoseFactorialContainsYTrailingZeros, 10);
