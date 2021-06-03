@@ -19,7 +19,7 @@ inline auto foo() {
     return Random_Number(1, 5);
 }
 
-auto RandomNumber1to7() {
+inline auto RandomNumber1to7() {
     const auto i = foo() * 5 + foo() - 5;
     if (i < 22) {
         return i % 7 + 1;
@@ -40,7 +40,7 @@ inline auto boo() {
     return Random_Number(0, 1);
 }
 
-auto RandomNumber0to6() {
+inline auto RandomNumber0to6() {
     const auto i = boo() * 2 * 2 + boo() * 2 + boo();
     if (i < 7) {
         return i;

@@ -12,7 +12,8 @@ namespace {
  * This problem is known as Clock angle problem where we need to find angle between
  * hands of an analog clock at a given time.
  */
-auto AngleBetweenHourAndMinuteHands(const double hour, const double minute) {
+constexpr inline auto
+AngleBetweenHourAndMinuteHands(const double hour, const double minute) {
     assert(0 <= hour and hour <= 12);
     assert(0 <= minute and minute <= 60);
 

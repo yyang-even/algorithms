@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Detect if two integers have opposite signs
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
@@ -13,6 +14,7 @@
  * true -1 and +100, and should return false for -100 and -200. The function should
  * not use any of the arithmetic operators.
  */
-auto AreOppositeSigns(const int x, const int y) {
+static constexpr inline auto
+AreOppositeSigns(const int x, const int y) {
     return (x ^ y) < 0;
 }

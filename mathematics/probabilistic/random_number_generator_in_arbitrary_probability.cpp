@@ -11,8 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/random-number-generator-in-arbitrary-probability-distribution-fashion/
  *
- * Given n numbers, each with some frequency of occurrence. Return a
- * random number with probability proportional to its frequency of occurrence.
+ * Given n numbers, each with some frequency of occurrence. Return a random number with
+ * probability proportional to its frequency of occurrence.
  */
 auto RandomNumberInArbitraryProbability_Simple(const ArrayType &numbers,
                                                const ArrayType &frequencies) {
@@ -67,18 +67,16 @@ inline auto RandomNumber1of3(const int x, const int y, const int z,
 }//namespace
 
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Simple, Sample1,
-                 NUMBERS, FREQUENCIES);
+THE_BENCHMARK(RandomNumberInArbitraryProbability_Simple, NUMBERS, FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestSample, true,
             RandomNumberInArbitraryProbability_Simple);
 
 
-SIMPLE_BENCHMARK(RandomNumberInArbitraryProbability_Ceil, Sample1,
-                 NUMBERS, FREQUENCIES);
+THE_BENCHMARK(RandomNumberInArbitraryProbability_Ceil, NUMBERS, FREQUENCIES);
 
 SIMPLE_TEST(testRandomNumberInArbitraryProbability, TestCeil, true,
             RandomNumberInArbitraryProbability_Ceil);
 
 
-SIMPLE_BENCHMARK(RandomNumber1of3, Sample1, 1, 2, 3, 40, 25, 35);
+THE_BENCHMARK(RandomNumber1of3, 1, 2, 3, 40, 25, 35);

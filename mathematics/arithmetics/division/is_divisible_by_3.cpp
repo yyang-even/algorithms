@@ -12,10 +12,11 @@ namespace {
  * @reference   Check if binary string multiple of 3 using DFA
  *              https://www.geeksforgeeks.org/check-binary-string-multiple-3-using-dfa/
  *
- * There is a pattern in binary representation of the number that can be used to find if number is a multiple of 3.
- * If difference between count of odd set bits (Bits set at odd positions) and even set bits is multiple of 3 then is the number.
+ * There is a pattern in binary representation of the number that can be used to find if
+ * number is a multiple of 3. If difference between count of odd set bits (Bits set at
+ * odd positions) and even set bits is multiple of 3 then is the number.
  */
-auto isDivisibleBy3(int num) {
+constexpr auto isDivisibleBy3(int num) {
     if (num < 0) {
         num = -num;
     }
@@ -43,7 +44,7 @@ auto isDivisibleBy3(int num) {
 }
 
 
-bool isDivisibleBy3_DFA(const std::vector<unsigned> &number) {
+inline bool isDivisibleBy3_DFA(const std::vector<unsigned> &number) {
     return isDivisibleByN_DFA(number, 3).back();
 }
 
@@ -70,7 +71,7 @@ const std::vector<unsigned> SAMPLE1 = {1, 1, 0, 0};
 const std::vector<unsigned> SAMPLE2 = {1, 0, 1, 0};
 
 
-SIMPLE_BENCHMARK(isDivisibleBy3_DFA, Sample1, SAMPLE1);
+THE_BENCHMARK(isDivisibleBy3_DFA, SAMPLE1);
 
 SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isDivisibleBy3_DFA, TestSAMPLE2, false, SAMPLE2);

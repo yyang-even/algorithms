@@ -10,8 +10,8 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/randomized-algorithms-set-3-12-approximate-median/
  *
  * Given an unsorted array A[] of n numbers and ε > 0, compute an element whose rank
- * (position in sorted A[]) is in the range [(1 – ε)n/2, (1 + ε)n/2].
- * For 1/2 Approximate Median Algorithm &epsilom; is 1/2 => rank should be in the range [n/4, 3n/4]
+ * (position in sorted A[]) is in the range [(1 – ε)n/2, (1 + ε)n/2]. For 1/2
+ * Approximate Median Algorithm ε is 1/2 => rank should be in the range [n/4, 3n/4]
  *
  * @reference   Randomized Algorithms | Set 0 (Mathematical Background)
  *              https://www.geeksforgeeks.org/randomized-algorithms-set-0-mathematical-background/
@@ -35,8 +35,8 @@ using ArrayType = std::vector<int>;
 auto ApproximateMedian(const ArrayType &values) {
     assert(not values.empty());
 
-    const auto C = 10;
-    int k = C * log2(values.size());
+    constexpr auto C = 10;
+    int k = C * std::log2(values.size());
 
     std::set<ArrayType::value_type> samples;
     for (; k > 0; --k) {
@@ -69,4 +69,4 @@ TEST(ApproximateMedianTest, TestSanity) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ApproximateMedian, Sample1, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});
+THE_BENCHMARK(ApproximateMedian, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});

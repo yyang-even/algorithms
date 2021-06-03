@@ -25,9 +25,9 @@ using ArrayType = std::array<int, N>;
  * @complexity  O(n)
  */
 template <std::size_t N>
-void ShuffleArray_InPlace(ArrayType<N> &array) {
+constexpr void ShuffleArray_InPlace(ArrayType<N> &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
-        auto j = Random_Number(0, i);
+        const auto j = Random_Number(0, i);
         std::swap(array[i], array[j]);
     }
 }
@@ -40,7 +40,7 @@ void ShuffleArray_InPlace(ArrayType<N> &array) {
  * @complexity  O(nlgn)
  */
 template <std::size_t N>
-auto ShuffleArray_BySorting(const ArrayType<N> &array) {
+constexpr auto ShuffleArray_BySorting(const ArrayType<N> &array) {
     const int PRIORITY_BOUND = pow(array.size(), 3.0);
 
     std::vector<std::pair<int, typename ArrayType<N>::size_type>> priorities;

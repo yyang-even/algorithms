@@ -12,7 +12,7 @@ namespace {
  * @reference   Division without using ‘/’ operator
  *              https://www.geeksforgeeks.org/division-without-using-operator/
  */
-auto Division_Subtract(int dividend, int divisor) {
+constexpr auto Division_Subtract(int dividend, int divisor) {
     assert(divisor);
 
     const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
@@ -27,7 +27,7 @@ auto Division_Subtract(int dividend, int divisor) {
 }
 
 
-auto Division_Bit(int dividend, int divisor) {
+constexpr auto Division_Bit(int dividend, int divisor) {
     assert(divisor);
 
     const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
@@ -53,7 +53,7 @@ auto Division_Bit(int dividend, int divisor) {
  * @reference   Divide two integers without using multiplication, division and mod operator | Set2
  *              https://www.geeksforgeeks.org/divide-two-integers-without-using-multiplication-division-and-mod-operator-set2/
  */
-int Division_Log(int dividend, int divisor) {
+constexpr int Division_Log(int dividend, int divisor) {
     assert(divisor);
 
     const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
@@ -65,7 +65,7 @@ int Division_Log(int dividend, int divisor) {
 }
 
 
-auto Division_Plus(const int dividend, const int divisor) {
+constexpr auto Division_Plus(const int dividend, const int divisor) {
     assert(divisor);
 
     const auto abs_divisor = std::abs(divisor);

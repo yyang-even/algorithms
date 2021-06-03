@@ -8,7 +8,7 @@
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 5.3. Exercises 5.3-7.
  *
- *              https://www.geeksforgeeks.org/reservoir-sampling/
+ * @reference   https://www.geeksforgeeks.org/reservoir-sampling/
  *
  * Reservoir sampling is a family of randomized algorithms for randomly choosing k samples
  * from a list of n items, where n is either a very large or unknown number. Typically n

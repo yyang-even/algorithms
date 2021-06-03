@@ -26,7 +26,7 @@ struct PasswordCriteria {
     bool digit = false;
     bool special = false;
 
-    static constexpr std::size_t REQUIRED_PASSWORD_LENGTH = 8;
+    static inline constexpr std::size_t REQUIRED_PASSWORD_LENGTH = 8;
 
     constexpr auto is_strong_password() const {
         return lower_case and upper_case and digit and special;
@@ -86,8 +86,8 @@ inline bool testStrongPasswordSuggester(const std::string &password) {
 }//namespace
 
 
-const std::string VALID_PASSWORD = "Rakesh@1995kumar";
-const std::string INVALID_PASSWORD = "keshav123";
+constexpr auto *VALID_PASSWORD = "Rakesh@1995kumar";
+constexpr auto *INVALID_PASSWORD = "keshav123";
 
 
 SIMPLE_BENCHMARK(StrongPasswordSuggester, Sample1, INVALID_PASSWORD);

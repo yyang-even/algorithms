@@ -12,7 +12,7 @@ namespace {
  * How many people must be there in a room to make the probability p% that two people in
  * the room have same birthday?
  */
-constexpr inline auto BirthdayParadox(const double probability) {
+constexpr inline unsigned BirthdayParadox(const double probability) {
     return std::ceil(std::sqrt(2 * 365 * std::log(1 / (1 - probability))));
 }
 
@@ -21,4 +21,4 @@ constexpr inline auto BirthdayParadox(const double probability) {
 
 THE_BENCHMARK(BirthdayParadox, 0.70);
 
-SIMPLE_DOUBLE_TEST(BirthdayParadox, TestSAMPLE, 30, 0.70);
+SIMPLE_TEST(BirthdayParadox, TestSAMPLE, 30, 0.70);
