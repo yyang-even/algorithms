@@ -51,7 +51,7 @@ const ArrayType SAMPLE1 = {100, 200, 300, 400};
 const ArrayType SAMPLE2 = {1, 4, 2, 10, 23, 3, 1, 0, 20};
 
 
-SIMPLE_BENCHMARK(MaxSumOfSubarrayOfSizeK, Sample1, SAMPLE1, 2);
+THE_BENCHMARK(MaxSumOfSubarrayOfSizeK, SAMPLE1, 2);
 
 SIMPLE_TEST(MaxSumOfSubarrayOfSizeK, TestSAMPLE1, 700, SAMPLE1, 2);
 SIMPLE_TEST(MaxSumOfSubarrayOfSizeK, TestSAMPLE2, 39, SAMPLE2, 4);

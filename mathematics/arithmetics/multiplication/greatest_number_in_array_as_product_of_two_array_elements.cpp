@@ -11,9 +11,9 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/find-pair-with-greatest-product-in-array/
  *
- * Given an array of n elements, the task is to find the greatest number such
- * that it is product of two elements of given array. If no such element exists,
- * print -1. Elements are within the range of 1 to 10^5.
+ * Given an array of n elements, the task is to find the greatest number such that it is
+ * product of two elements of given array. If no such element exists, print -1. Elements
+ * are within the range of 1 to 10^5.
  */
 int GreatestNumberInArrayAsProductOfTwoArrayElements(ArrayType elements) {
     const auto counters = ToFrequencyHashTable(elements);
@@ -27,7 +27,7 @@ int GreatestNumberInArrayAsProductOfTwoArrayElements(ArrayType elements) {
         for (auto factor_iter = elements.cbegin();
              factor_iter != elements.cend() and * factor_iter <= elem_sqrt; ++factor_iter) {
             if (*product_iter % *factor_iter == 0) {
-                auto the_other_factor = *product_iter / *factor_iter;
+                const auto the_other_factor = *product_iter / *factor_iter;
                 const auto the_other_factor_iter = counters.find(the_other_factor);
                 if (the_other_factor_iter != counters.cend() and
                     the_other_factor_iter->second > (the_other_factor == *factor_iter)) {
@@ -52,7 +52,7 @@ const ArrayType SAMPLE6 = {30, 10, 9, 3, 35};
 const ArrayType SAMPLE7 = {30, 10, 9, 5, 25};
 
 
-SIMPLE_BENCHMARK(GreatestNumberInArrayAsProductOfTwoArrayElements, Sample1, SAMPLE1);
+THE_BENCHMARK(GreatestNumberInArrayAsProductOfTwoArrayElements, SAMPLE1);
 
 SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE1, 30, SAMPLE1);
 SIMPLE_TEST(GreatestNumberInArrayAsProductOfTwoArrayElements, TestSAMPLE2, -1, SAMPLE2);

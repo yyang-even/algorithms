@@ -9,7 +9,6 @@ using ArrayType = std::vector<int>;
 using RangeType = std::pair<ArrayType::size_type, ArrayType::size_type>;
 using RangeArray = std::vector<RangeType>;
 
-
 /**
  * @reference   Constant time range add operation on an array
  *              https://www.geeksforgeeks.org/constant-time-range-add-operation-array/
@@ -42,8 +41,9 @@ auto RangesOfAdditions(const ArrayType::size_type size, const ArrayType::value_t
  * from the start to end index in the given array by the given value d. A linear time
  * efficient solution is required for handling such multiple queries.
  */
-auto RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
-                       const RangeArray &ranges) {
+inline auto
+RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
+                  const RangeArray &ranges) {
     auto sums = RangesOfAdditions(elements.size(), d, ranges);
 
     std::transform(sums.cbegin(), sums.cend(), elements.cbegin(), sums.begin(),
@@ -78,8 +78,8 @@ auto RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
  *      increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
  */
-auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
-                               const RangeArray &ranges) {
+inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
+                                      const RangeArray &ranges) {
     const auto prefix_sums = RangesOfAdditions(size, 100, ranges);
     return *std::max_element(prefix_sums.cbegin(), prefix_sums.cend());
 }
@@ -94,7 +94,7 @@ const ArrayType SAMPLE2 = {10, 4, 16, 20};
 const ArrayType EXPECTED2 = {10, 14, 30, 50};
 
 
-SIMPLE_BENCHMARK(PrefixSumArray, Sample1, SAMPLE1);
+THE_BENCHMARK(PrefixSumArray, SAMPLE1);
 
 SIMPLE_TEST(PrefixSumArray, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(PrefixSumArray, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -120,6 +120,6 @@ SIMPLE_BENCHMARK(RangesOfAdditions, Sample2, 6, 100, SAMPLE_RANGES4);
 SIMPLE_TEST(RangesOfAdditions, TestSAMPLE4, EXPECTED4, 6, 100, SAMPLE_RANGES4);
 
 
-SIMPLE_BENCHMARK(MaxAfterRangesOfAdditions, Sample1, 5, SAMPLE_RANGES5);
+THE_BENCHMARK(MaxAfterRangesOfAdditions, 5, SAMPLE_RANGES5);
 
 SIMPLE_TEST(MaxAfterRangesOfAdditions, TestSAMPLE5, 300, 5, SAMPLE_RANGES5);

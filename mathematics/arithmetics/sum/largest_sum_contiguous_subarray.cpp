@@ -7,7 +7,7 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-auto TheLargestSumContiguousSubarray(const ArrayType &elements) {
+inline auto TheLargestSumContiguousSubarray(const ArrayType &elements) {
     ArrayType the_max_sum_subarray;
     LargestSumContiguousSubarray_Kadane(elements, &the_max_sum_subarray);
     return the_max_sum_subarray;
@@ -30,7 +30,7 @@ auto TheLargestSumContiguousSubarray(const ArrayType &elements) {
  * subarray having maximum sum. If there exists two or more subarrays with maximum sum
  * then print the length of the longest subarray.
  */
-auto LengthOfLargestSumContiguousSubarray(const ArrayType &elements) {
+inline auto LengthOfLargestSumContiguousSubarray(const ArrayType &elements) {
     return TheLargestSumContiguousSubarray(elements).size();
 }
 

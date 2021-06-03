@@ -13,7 +13,7 @@ namespace {
  *
  * Given a number n, find sum of first natural numbers.
  */
-auto SumOfNaturals(const unsigned N) {
+constexpr inline auto SumOfNaturals(const unsigned N) {
     return N * (N + 1) / 2;
 }
 
@@ -22,7 +22,7 @@ auto SumOfNaturals(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
  */
-auto AverageOfNaturalNumbers(const unsigned N) {
+constexpr inline auto AverageOfNaturalNumbers(const unsigned N) {
     return static_cast<double>(N + 1) / 2.0;
 }
 
@@ -31,9 +31,10 @@ auto AverageOfNaturalNumbers(const unsigned N) {
  * @reference   Sum of first n natural numbers
  *              https://www.geeksforgeeks.org/sum-of-first-n-natural-numbers/
  *
- * Given a positive integer n. The task is to find the sum of the sum of first n natural number.
+ * Given a positive integer n. The task is to find the sum of the sum of first n natural
+ * number.
  */
-auto SumOfSumOfNaturals(const unsigned N) {
+constexpr inline auto SumOfSumOfNaturals(const unsigned N) {
     return N * (N + 1) * (N + 2) / 6;
 }
 
@@ -42,7 +43,8 @@ auto SumOfSumOfNaturals(const unsigned N) {
  * @reference   Sum of all natural numbers in range L to R
  *              https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
  */
-auto SumOfNaturalsInRange(const unsigned L, const unsigned R) {
+constexpr inline auto
+SumOfNaturalsInRange(const unsigned L, const unsigned R) {
     assert(L);
     assert(L <= R);
 
@@ -52,27 +54,27 @@ auto SumOfNaturalsInRange(const unsigned L, const unsigned R) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfNaturals, Sample1, 7);
+THE_BENCHMARK(SumOfNaturals, 7);
 
 SIMPLE_TEST(SumOfNaturals, TestSAMPLE1, 6, 3);
 SIMPLE_TEST(SumOfNaturals, TestSAMPLE2, 15, 5);
 
 
-SIMPLE_BENCHMARK(AverageOfNaturalNumbers, Sample1, 7);
+THE_BENCHMARK(AverageOfNaturalNumbers, 7);
 
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE1, 5.5, 10);
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE2, 4, 7);
 SIMPLE_TEST(AverageOfNaturalNumbers, TestSAMPLE3, 10.5, 20);
 
 
-SIMPLE_BENCHMARK(SumOfSumOfNaturals, Sample1, 3);
+THE_BENCHMARK(SumOfSumOfNaturals, 3);
 
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE1, 10, 3);
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE2, 4, 2);
 SIMPLE_TEST(SumOfSumOfNaturals, TestSAMPLE3, 20, 4);
 
 
-SIMPLE_BENCHMARK(SumOfNaturalsInRange, Sample1, 2, 5);
+THE_BENCHMARK(SumOfNaturalsInRange, 2, 5);
 
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE1, 14, 2, 5);
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE2, 165, 10, 20);

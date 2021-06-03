@@ -6,6 +6,7 @@
 namespace {
 
 /** Is divisible by 7
+ *
  * @reference   Check divisibility by 7
  *              https://www.geeksforgeeks.org/divisibility-by-7/
  *
@@ -30,7 +31,7 @@ namespace {
  *  check to see if the difference is divisible by 7: 14 is divisible by 7, therefore
  *  203 is also divisible by 7.
  */
-auto isDivisibleBy7(int num) {
+constexpr auto isDivisibleBy7(int num) {
     if (num < 0) {
         num = -num;
     }
@@ -50,7 +51,7 @@ auto isDivisibleBy7(int num) {
  * @reference   Check if Decimal representation of an Octal number is divisible by 7
  *              https://www.geeksforgeeks.org/check-if-decimal-representation-of-an-octal-number-is-divisible-by-7/
  */
-auto isOctalDivisibleBy7(const std::string &octal) {
+inline auto isOctalDivisibleBy7(const std::string_view octal) {
     const auto digits_sum = std::accumulate(octal.cbegin(), octal.cend(), 0,
     [](const auto & sum, const auto & digit) {
         return sum + digit - '0';

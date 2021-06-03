@@ -2,6 +2,7 @@
 
 #include "mathematics/arithmetics/modulo/modulo.h"
 
+
 namespace {
 
 /** Multiply the given number by 2 such that it is divisible by 10
@@ -13,12 +14,12 @@ namespace {
  * NOTE: If it is not possible to convert then print -1.
  */
 
-auto isDivisibleBy5_Mod(const int n) {
+constexpr inline auto isDivisibleBy5_Mod(const int n) {
     return n % 5 == 0;
 }
 
 
-auto isDivisibleBy5_LastDigit(const int n) {
+constexpr inline auto isDivisibleBy5_LastDigit(const int n) {
     const auto last_digit = n % 10;
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -37,7 +38,7 @@ auto isDivisibleBy5_LastDigit(const int n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-auto isDivisibleBy5_Subtraction(int n) {
+constexpr inline auto isDivisibleBy5_Subtraction(int n) {
     if (n < 0) {
         n = -n;
     }
@@ -54,7 +55,7 @@ auto isDivisibleBy5_Subtraction(int n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-auto isDivisibleBy5_ToString(const int n) {
+inline auto isDivisibleBy5_ToString(const int n) {
     const auto str_n = std::to_string(n);
     return str_n.back() == '0' or str_n.back() == '5';
 }
@@ -71,7 +72,7 @@ auto isDivisibleBy5_ToString(const int n) {
  * we have the last digit as 0. Once we do that, our work is to just check if the last
  * digit is 0 or not, which we can do using float and integer comparison trick.
  */
-auto isDivisibleBy5_Float(const int n) {
+constexpr inline auto isDivisibleBy5_Float(const int n) {
     //Make it unsigned to prevent integer overflow error
     unsigned positive_n = n;
     if (n < 0) {
@@ -88,7 +89,7 @@ auto isDivisibleBy5_Float(const int n) {
 }
 
 
-auto isDivisibleBy5_LastDigitStrict(const int n) {
+constexpr inline auto isDivisibleBy5_LastDigitStrict(const int n) {
     const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }

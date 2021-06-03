@@ -14,7 +14,8 @@ using ArrayType = std::vector<int>;
  * Given an unsorted array of nonnegative integers, find a continuous subarray which adds
  * to a given number.
  */
-const auto NOT_FOUND = std::pair(-1, -1);
+constexpr auto NOT_FOUND = std::pair(-1, -1);
+
 std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
                                              const ArrayType::value_type SUM) {
     assert(not integers.empty());
@@ -41,8 +42,8 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
-std::pair<int, int> FindSubarrayWithGivenSum_Map(const ArrayType &integers,
-                                                 const ArrayType::value_type SUM) {
+inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
+                                         const ArrayType::value_type SUM) {
     const auto all_such_arrays = AllSubarraysWithGivenSum(integers, SUM);
 
     if (all_such_arrays.empty()) {
@@ -60,7 +61,7 @@ std::pair<int, int> FindSubarrayWithGivenSum_Map(const ArrayType &integers,
  * Given an array of positive and negative numbers, find if there is a subarray (of size
  * at-least one) with 0 sum.
  */
-bool FindSubarrayWith0Sum(const ArrayType &integers) {
+inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
 }
 
@@ -72,8 +73,8 @@ bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * Given an unsorted array of integers, find number of subarrays having sum exactly equal
  * to a given number k.
  */
-auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
-                                   const ArrayType::value_type SUM) {
+inline auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
+                                          const ArrayType::value_type SUM) {
     return AllSubarraysWithGivenSum(integers, SUM).size();
 }
 
@@ -89,7 +90,7 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
     ArrayType::size_type largest_length = 0;
 
     for (const auto [left, right] : all_such_arrays) {
-        const auto length = right - left + 1ul;
+        const ArrayType::size_type length = right - left + 1;
         if (length > largest_length) {
             largest_length = length;
         }
@@ -106,7 +107,7 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
  * @reference   Length of longest Subarray with equal number of odd and even elements
  *              https://www.geeksforgeeks.org/length-of-longest-subarray-with-equal-number-of-odd-and-even-elements/
  */
-auto LargestSubarrayWithEqual0sAnd1s(ArrayType elements) {
+inline auto LargestSubarrayWithEqual0sAnd1s(ArrayType elements) {
     std::replace(elements.begin(), elements.end(), 0, -1);
     return LengthOfLargestSubarrayWith0Sum(elements);
 }
@@ -161,9 +162,9 @@ const ArrayType SAMPLE11 = {9, 4, 20, 3, 10, 5};
 
 THE_BENCHMARK(NumberOfSubarraysWithGivenSum, SAMPLE6, -10);
 
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample6, 3u, SAMPLE6, -10);
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample7, 0u, SAMPLE7, 20);
-SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample11, 2u, SAMPLE11, 33);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample6, 3, SAMPLE6, -10);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample7, 0, SAMPLE7, 20);
+SIMPLE_TEST(NumberOfSubarraysWithGivenSum, TestSample11, 2, SAMPLE11, 33);
 
 
 const ArrayType SAMPLE12 = {15, -2, 2, -8, 1, 7, 10, 23};
@@ -173,9 +174,9 @@ const ArrayType SAMPLE14 = {1, 0, 3};
 
 THE_BENCHMARK(LengthOfLargestSubarrayWith0Sum, SAMPLE12);
 
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5u, SAMPLE12);
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0u, SAMPLE13);
-SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample14, 1u, SAMPLE14);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample12, 5, SAMPLE12);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample13, 0, SAMPLE13);
+SIMPLE_TEST(LengthOfLargestSubarrayWith0Sum, TestSample14, 1, SAMPLE14);
 
 
 const ArrayType SAMPLE15 = {1, 0, 1, 1, 1, 0, 0};

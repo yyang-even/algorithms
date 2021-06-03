@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+
 namespace {
 
 using ArrayType = std::vector<int>;

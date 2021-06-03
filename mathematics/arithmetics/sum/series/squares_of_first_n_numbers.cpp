@@ -9,7 +9,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/print-squares-first-n-natural-numbers-without-using/
  *
- * Given a natural number ‘n’, print squares of first n natural numbers without using *, / and -.
+ * Given a natural number 'n', print squares of first n natural numbers without using
+ * *, / and -.
  */
 auto SquaresOfFirstN_Prev(const ArrayType::value_type N) {
     ArrayType::value_type square = 0, previous_i = 0;
@@ -45,13 +46,13 @@ const ArrayType EXPECTED1 = {0, 1, 4, 9, 16};
 const ArrayType EXPECTED2 = {0, 1, 4, 9, 16, 25};
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstN_Prev, Sample1, 51);
+THE_BENCHMARK(SquaresOfFirstN_Prev, 51);
 
 SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample1, EXPECTED1, 5);
 SIMPLE_TEST(SquaresOfFirstN_Prev, TestSample2, EXPECTED2, 6);
 
 
-SIMPLE_BENCHMARK(SquaresOfFirstN_Odd, Sample1, 51);
+THE_BENCHMARK(SquaresOfFirstN_Odd, 51);
 
 SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample1, EXPECTED1, 5);
 SIMPLE_TEST(SquaresOfFirstN_Odd, TestSample2, EXPECTED2, 6);

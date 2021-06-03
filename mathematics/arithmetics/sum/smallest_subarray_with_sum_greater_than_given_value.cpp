@@ -9,7 +9,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/
  *
- * Given an array of integers and a number x, find the smallest subarray with sum greater than the given value.
+ * Given an array of integers and a number x, find the smallest subarray with sum greater
+ * than the given value.
  */
 auto SmallestSubarrayWithSumGreaterThanGivenValue(const ArrayType &integers,
                                                   const ArrayType::value_type x) {
@@ -44,12 +45,12 @@ const ArrayType SAMPLE4 = {1, 2, 4};
 const ArrayType SAMPLE5 = {9, 1, 2, 4};
 
 
-SIMPLE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, Sample1, SAMPLE1, 51);
+THE_BENCHMARK(SmallestSubarrayWithSumGreaterThanGivenValue, SAMPLE1, 51);
 
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample1, 3, SAMPLE1, 51);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample2, 1, SAMPLE2, 9);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample3, 4,
             SAMPLE3, 280);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample4,
-            static_cast<ArrayType::difference_type>(SAMPLE4.size() + 1), SAMPLE4, 8);
+            SAMPLE4.size() + 1, SAMPLE4, 8);
 SIMPLE_TEST(SmallestSubarrayWithSumGreaterThanGivenValue, TestSample5, 1, SAMPLE5, 8);

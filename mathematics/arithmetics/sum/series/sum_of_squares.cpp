@@ -15,12 +15,12 @@ namespace {
  *
  * Given n, find sum of squares of first n natural numbers.
  */
-auto SumOfSquares(const unsigned N) {
+constexpr inline auto SumOfSquares(const unsigned N) {
     return (N * (N + 1) * (2 * N + 1)) / 6;
 }
 
 
-auto SumOfSquares_2(const unsigned N) {
+constexpr inline auto SumOfSquares_2(const unsigned N) {
     return ((N * (N + 1) / 2) * (2 * N + 1)) / 3;
 }
 
@@ -29,7 +29,8 @@ auto SumOfSquares_2(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/average-squares-natural-numbers/
  */
-auto AverageOfSquaresOfNaturalNumbers(const unsigned N) {
+constexpr inline auto
+AverageOfSquaresOfNaturalNumbers(const unsigned N) {
     return static_cast<double>((N + 1) * (2 * N + 1)) / 6.0;
 }
 
@@ -38,36 +39,38 @@ auto AverageOfSquaresOfNaturalNumbers(const unsigned N) {
  *
  * reference    https://www.geeksforgeeks.org/sum-square-sums-first-n-natural-numbers/
  *
- * Given a positive integer n. The task is to find the sum of the sum of square of first n natural number.
+ * Given a positive integer n. The task is to find the sum of the sum of square of first
+ * n natural number.
  */
-auto SumOfSquareSums(const unsigned N) {
+constexpr inline auto
+SumOfSquareSums(const unsigned N) {
     return (N * (N + 1) * (N + 1) * (N + 2)) / 12;
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfSquares, Sample1, 7);
+THE_BENCHMARK(SumOfSquares, 7);
 
-SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5u, 2);
-SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204u, 8);
-SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385u, 10);
-SIMPLE_TEST(SumOfSquares, TestSAMPLE4, 55u, 5);
-
-
-SIMPLE_BENCHMARK(SumOfSquareSums, Sample1, 7);
-
-SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6u, 2);
-SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20u, 3);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE1, 5, 2);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE2, 204, 8);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE3, 385, 10);
+SIMPLE_TEST(SumOfSquares, TestSAMPLE4, 55, 5);
 
 
-SIMPLE_BENCHMARK(SumOfSquares_2, Sample1, 7);
+THE_BENCHMARK(SumOfSquareSums, 7);
 
-SIMPLE_TEST(SumOfSquares_2, TestSAMPLE1, 5u, 2);
-SIMPLE_TEST(SumOfSquares_2, TestSAMPLE2, 204u, 8);
-SIMPLE_TEST(SumOfSquares_2, TestSAMPLE3, 385u, 10);
+SIMPLE_TEST(SumOfSquareSums, TestSAMPLE1, 6, 2);
+SIMPLE_TEST(SumOfSquareSums, TestSAMPLE2, 20, 3);
 
 
-SIMPLE_BENCHMARK(AverageOfSquaresOfNaturalNumbers, Sample1, 7);
+THE_BENCHMARK(SumOfSquares_2, 7);
+
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE1, 5, 2);
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE2, 204, 8);
+SIMPLE_TEST(SumOfSquares_2, TestSAMPLE3, 385, 10);
+
+
+THE_BENCHMARK(AverageOfSquaresOfNaturalNumbers, 7);
 
 SIMPLE_TEST(AverageOfSquaresOfNaturalNumbers, TestSAMPLE1, 2.5, 2);

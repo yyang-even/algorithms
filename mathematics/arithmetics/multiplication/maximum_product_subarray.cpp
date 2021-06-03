@@ -50,7 +50,8 @@ auto MaximumProductSubarray(const ArrayType &array) {
  *              https://www.geeksforgeeks.org/maximum-product-subarray-set-2-using-two-traversals/
  */
 template <typename Iterator>
-auto MaximumProductSubarrayHelper(Iterator cbegin, const Iterator cend) {
+constexpr auto
+MaximumProductSubarrayHelper(Iterator cbegin, const Iterator cend) {
     assert(cbegin != cend);
 
     auto max_till_now = *(cbegin++);

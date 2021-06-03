@@ -10,18 +10,17 @@ using ArrayType = std::array<int, N>;
 /** Horner’s Method for Polynomial Evaluation
  *
  * Given a polynomial of the form c(n)x^n + c(n-1)x^(n-1) + c(n-2)x^(n-2) + ... + c1x + c0
- * and a value of x, find the value of polynomial for a given value of x.
- * Here cn, cn-1, ... are integers (may be negative) and n is a positive integer.
- * Input is in the form of an array say poly[] where poly[0] represents coefficient
- * for x^n and poly[1] represents coefficient for x^(n-1) and so on.
- *
+ * and a value of x, find the value of polynomial for a given value of x. Here cn, cn-1,
+ * ... are integers (may be negative) and n is a positive integer. Input is in the form
+ * of an array say poly[] where poly[0] represents coefficient for x^n and poly[1]
+ * represents coefficient for x^(n-1) and so on.
  *
  * @reference   https://www.geeksforgeeks.org/horners-method-polynomial-evaluation/
  *
  * @complexity: O(n)
  */
 template <std::size_t N>
-auto HornerMethod(ArrayType<N> coefficients, const int x) {
+constexpr auto HornerMethod(ArrayType<N> coefficients, const int x) {
     int result = 0;
 
     for (const auto coefficient : coefficients) {

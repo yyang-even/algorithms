@@ -7,7 +7,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/sum-first-n-even-numbers/
  */
-auto SumOfFirstNEvenNumbers(const unsigned N) {
+constexpr inline auto SumOfFirstNEvenNumbers(const unsigned N) {
     return N * (N + 1);
 }
 
@@ -20,7 +20,7 @@ auto SumOfFirstNEvenNumbers(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfFirstNEvenNumbers, Sample1, 10);
+THE_BENCHMARK(SumOfFirstNEvenNumbers, 10);
 
-SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE1, 20u, 4);
-SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE2, 420u, 20);
+SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE1, 20, 4);
+SIMPLE_TEST(SumOfFirstNEvenNumbers, TestSAMPLE2, 420, 20);

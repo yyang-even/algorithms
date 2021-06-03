@@ -17,8 +17,9 @@
  * @complexity  O(n)
  */
 template <typename Container>
-static inline auto LargestSumContiguousSubarray_Kadane(const Container &array,
-                                                       Container *const max_sum_subarray = nullptr) {
+static constexpr inline auto
+LargestSumContiguousSubarray_Kadane(const Container &array,
+                                    Container *const max_sum_subarray = nullptr) {
     assert(not array.empty());
 
     auto max_so_far = std::numeric_limits<typename Container::value_type>::min();

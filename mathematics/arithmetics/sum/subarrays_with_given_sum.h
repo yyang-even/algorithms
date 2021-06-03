@@ -1,14 +1,16 @@
 #pragma once
 
+
 template <typename ArrayType>
-const auto AllSubarraysWithGivenSum(const ArrayType &integers,
-                                    const typename ArrayType::value_type SUM) {
+static constexpr inline auto
+AllSubarraysWithGivenSum(const ArrayType &integers,
+                         const typename ArrayType::value_type SUM) {
     std::unordered_multimap<typename ArrayType::value_type,
         typename ArrayType::size_type> sum_index_map;
     typename ArrayType::value_type current_sum = 0;
     std::vector<std::pair<int, int>> outputs;
 
-    for (typename ArrayType::size_type i = 0ul; i < integers.size(); ++i) {
+    for (typename ArrayType::size_type i = 0; i < integers.size(); ++i) {
         current_sum += integers[i];
 
         if (current_sum == SUM) {

@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+
 namespace {
 
 /** C Program to Add two Integers
@@ -15,7 +16,7 @@ namespace {
  * Write a C program to find sum of positive integers without using any operator. Only
  * use of printf() is allowed. No other library function can be used.
  */
-auto Sum_Printf(const unsigned a, const unsigned b) {
+constexpr inline auto Sum_Printf(const unsigned a, const unsigned b) {
     return printf("%*c%*c", a, ' ', b, ' ');
 }
 
@@ -30,7 +31,7 @@ auto Sum_Printf(const unsigned a, const unsigned b) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 18.1.
  */
-auto Sum_HalfAdder_Iterative(int a, int b) {
+constexpr auto Sum_HalfAdder_Iterative(int a, int b) {
     while (b) {
         const auto carry = a & b;
         a ^= b;
@@ -39,7 +40,8 @@ auto Sum_HalfAdder_Iterative(int a, int b) {
     return a;
 }
 
-auto Sum_HalfAdder_Recursive(const int a, const int b) {
+constexpr inline auto
+Sum_HalfAdder_Recursive(const int a, const int b) {
     if (b == 0) {
         return a;
     } else {
@@ -55,7 +57,7 @@ auto Sum_HalfAdder_Recursive(const int a, const int b) {
  * Given two integers a and b, how can we evaluate the sum a + b without using operators
  * such as +, -, ++, --, ...?
  */
-auto Sum_Pointer(const int a, const int b) {
+constexpr inline auto Sum_Pointer(const int a, const int b) {
     const char *p = reinterpret_cast<char *>(a);
     return reinterpret_cast<long>(&p[b]);
 }
@@ -65,7 +67,7 @@ auto Sum_Pointer(const int a, const int b) {
  *
  * @reference   https://www.geeksforgeeks.org/add-two-numbers-using-andor/
  */
-auto Sum_Loop(int a, int b) {
+constexpr auto Sum_Loop(int a, int b) {
     if (b > 0) {
         for (; b--; ++a);
     } else if (b < 0) {
@@ -85,12 +87,12 @@ auto Sum_Loop(int a, int b) {
  *
  * ~x = -(x+1)
  */
-auto Add1_HalfAdder(const int x) {
+constexpr inline auto Add1_HalfAdder(const int x) {
     return Sum_HalfAdder_Iterative(x, 1);
 }
 
 
-auto Add1_2sComplement(const int x) {
+constexpr inline auto Add1_2sComplement(const int x) {
     return -(~x);
 }
 

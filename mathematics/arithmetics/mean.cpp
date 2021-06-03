@@ -11,7 +11,7 @@ using ArrayType = std::vector<int>;
  *
  * Mean of an array = (sum of all elements) / (number of elements)
  */
-auto Mean(const ArrayType &values) {
+inline auto Mean(const ArrayType &values) {
     assert(not values.empty());
 
     const double sum = std::accumulate(values.cbegin(), values.cend(), 0);
@@ -29,7 +29,7 @@ auto Mean(const ArrayType &values) {
  * @reference   Compute average of two numbers without overflow
  *              https://www.geeksforgeeks.org/compute-average-two-numbers-without-overflow/
  */
-auto Average_NoOverflow(const int a, const int b) {
+constexpr inline auto Average_NoOverflow(const int a, const int b) {
     return (a / 2) + (b / 2) + ((a % 2 + b % 2) / 2);
 }
 
@@ -40,7 +40,7 @@ auto Average_NoOverflow(const int a, const int b) {
  * @reference   Fast average of two numbers without division
  *              https://www.geeksforgeeks.org/fast-average-two-numbers-without-division/
  */
-auto Average_Bit(const int a, const int b) {
+constexpr inline auto Average_Bit(const int a, const int b) {
     return (a & b) + ((a ^ b) >> 1);
 }
 
@@ -54,7 +54,7 @@ const ArrayType VALUES4 = {1, 3, 4, 2, 6, 5, 8, 7};
 const ArrayType VALUES5 = {4, 4, 4, 4, 4};
 
 
-SIMPLE_BENCHMARK(Mean, Sample1, VALUES4);
+THE_BENCHMARK(Mean, VALUES4);
 
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE1, 1, VALUES1);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE2, 1.5, VALUES2);
@@ -63,17 +63,17 @@ SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE4, 4.5, VALUES4);
 SIMPLE_DOUBLE_TEST(Mean, TestSAMPLE5, 4, VALUES5);
 
 
-const auto UPPER = std::numeric_limits<int>::max();
+constexpr auto UPPER = std::numeric_limits<int>::max();
 
 
-SIMPLE_BENCHMARK(Average_NoOverflow, Sample1, UPPER, UPPER);
+THE_BENCHMARK(Average_NoOverflow, UPPER, UPPER);
 
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE1, UPPER, UPPER, UPPER);
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE2, 3, 2, 4);
 SIMPLE_TEST(Average_NoOverflow, TestSAMPLE3, 9, 10, 9);
 
 
-SIMPLE_BENCHMARK(Average_Bit, Sample1, UPPER, UPPER);
+THE_BENCHMARK(Average_Bit, UPPER, UPPER);
 
 SIMPLE_TEST(Average_Bit, TestSAMPLE1, UPPER, UPPER, UPPER);
 SIMPLE_TEST(Average_Bit, TestSAMPLE2, 3, 2, 4);

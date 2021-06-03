@@ -11,7 +11,7 @@ using ArrayType = std::vector<int>;
  *
  * Given an array with both +ive and -ive integers, return a pair with highest product.
  */
-auto PairWithMaxProduct_Sort(ArrayType elements) {
+inline auto PairWithMaxProduct_Sort(ArrayType elements) {
     assert(elements.size() > 1);
 
     std::sort(elements.begin(), elements.end());
@@ -54,13 +54,13 @@ const ArrayType SAMPLE1 = {1, 4, 3, 6, 7, 0};
 const ArrayType SAMPLE2 = {-1, -3, -4, 2, 0, -5};
 
 
-SIMPLE_BENCHMARK(PairWithMaxProduct_Sort, Sample1, SAMPLE1);
+THE_BENCHMARK(PairWithMaxProduct_Sort, SAMPLE1);
 
 SIMPLE_TEST(PairWithMaxProduct_Sort, TestSAMPLE1, 42, SAMPLE1);
 SIMPLE_TEST(PairWithMaxProduct_Sort, TestSAMPLE2, 20, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(PairWithMaxProduct, Sample1, SAMPLE1);
+THE_BENCHMARK(PairWithMaxProduct, SAMPLE1);
 
 SIMPLE_TEST(PairWithMaxProduct, TestSAMPLE1, 42, SAMPLE1);
 SIMPLE_TEST(PairWithMaxProduct, TestSAMPLE2, 20, SAMPLE2);

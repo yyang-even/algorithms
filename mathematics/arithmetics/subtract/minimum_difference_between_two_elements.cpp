@@ -46,7 +46,7 @@ auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
  * Given a list of distinct unsorted integers, find the pair of elements that have the
  * smallest absolute difference between them? If there are multiple pairs, find them all.
  */
-auto AllClosestNumbers(const ArrayType &elements) {
+inline auto AllClosestNumbers(const ArrayType &elements) {
     PairArrayType closest_pairs;
     FindMinDifferenceBetweenTwoElements(elements, &closest_pairs);
     return closest_pairs;
@@ -62,7 +62,7 @@ const ArrayType SAMPLE4 = {10, 50, 12, 100};
 const ArrayType SAMPLE5 = {5, 4, 3, 2};
 
 
-SIMPLE_BENCHMARK(FindMinDifferenceBetweenTwoElements, Sample1, SAMPLE1);
+THE_BENCHMARK(FindMinDifferenceBetweenTwoElements, SAMPLE1);
 
 SIMPLE_TEST(FindMinDifferenceBetweenTwoElements, TestSample1, 1, SAMPLE1);
 SIMPLE_TEST(FindMinDifferenceBetweenTwoElements, TestSample2, 4, SAMPLE2);
@@ -75,7 +75,7 @@ const PairArrayType EXPECTED4 = {{10, 12}};
 const PairArrayType EXPECTED5 = {{2, 3}, {3, 4}, {4, 5}};
 
 
-SIMPLE_BENCHMARK(AllClosestNumbers, Sample1, SAMPLE1);
+THE_BENCHMARK(AllClosestNumbers, SAMPLE1);
 
 SIMPLE_TEST(AllClosestNumbers, TestSample4, EXPECTED4, SAMPLE4);
 SIMPLE_TEST(AllClosestNumbers, TestSample5, EXPECTED5, SAMPLE5);
