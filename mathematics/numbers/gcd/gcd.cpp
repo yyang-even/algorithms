@@ -12,14 +12,14 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Problems 31-1.
  * @reference   https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
  *
- * Stein’s algorithm or binary GCD algorithm is an algorithm that computes the
- * greatest common divisor of two non-negative integers. Stein’s algorithm
- * replaces division with arithmetic shifts, comparisons, and subtraction.
+ * Stein's algorithm or binary GCD algorithm is an algorithm that computes the greatest
+ * common divisor of two non-negative integers. Stein's algorithm replaces division with
+ * arithmetic shifts, comparisons, and subtraction.
  *
  * @reference   Euclid’s Algorithm when % and / operations are costly
  *              https://www.geeksforgeeks.org/euclids-algorithm-when-and-operations-are-costly/
  */
-auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
+constexpr auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
     if (a == 0) {
         return b;
     }
@@ -51,7 +51,7 @@ auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
 }
 
 
-auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
+constexpr auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
     if (a == b) {
         return a;
     }
@@ -83,7 +83,7 @@ auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 31.2-4.
  */
-unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
+constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
     if (m > n) {
         std::swap(m, n);
     }
@@ -120,17 +120,17 @@ SIMPLE_TEST(gcd_Euclid_Iterative, Test4, 5, 35, 10);
 SIMPLE_TEST(gcd_Euclid_Iterative, Test5, 1, 31, 2);
 
 
-const auto EXPECTED1 = std::make_tuple(10, 1, -1);
-const auto EXPECTED2 = std::make_tuple(5, 1, -2);
+constexpr auto EXPECTED1 = std::make_tuple(10, 1, -1);
+constexpr auto EXPECTED2 = std::make_tuple(5, 1, -2);
 
 
-SIMPLE_BENCHMARK(gcd_Extended, Sample1, 18, 12);
+THE_BENCHMARK(gcd_Extended, 18, 12);
 
 SIMPLE_TEST(gcd_Extended, TestSample1, EXPECTED1, 30, 20);
 SIMPLE_TEST(gcd_Extended, TestSample2, EXPECTED2, 35, 15);
 
 
-SIMPLE_BENCHMARK(Gcd_Stein_Iterative, Sample1, 18, 12);
+THE_BENCHMARK(Gcd_Stein_Iterative, 18, 12);
 
 SIMPLE_TEST(Gcd_Stein_Iterative, Test1, 6, 12, 18);
 SIMPLE_TEST(Gcd_Stein_Iterative, Test2, 6, 18, 12);
@@ -141,7 +141,7 @@ SIMPLE_TEST(Gcd_Stein_Iterative, Test6, 17, 17, 34);
 SIMPLE_TEST(Gcd_Stein_Iterative, Test7, 1, 50, 49);
 
 
-SIMPLE_BENCHMARK(Gcd_Stein_Recursive, Sample1, 18, 12);
+THE_BENCHMARK(Gcd_Stein_Recursive, 18, 12);
 
 SIMPLE_TEST(Gcd_Stein_Recursive, Test1, 6, 12, 18);
 SIMPLE_TEST(Gcd_Stein_Recursive, Test2, 6, 18, 12);

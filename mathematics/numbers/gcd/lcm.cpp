@@ -25,7 +25,7 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Inbuilt function for calculating LCM in C++
  *              https://www.geeksforgeeks.org/inbuilt-function-calculating-lcm-cpp/
  */
-unsigned LCM(const unsigned m, const unsigned n) {
+constexpr inline unsigned LCM(const unsigned m, const unsigned n) {
     return m * n / std::gcd(m, n);
 }
 
@@ -34,7 +34,7 @@ unsigned LCM(const unsigned m, const unsigned n) {
  * @reference   Program to find LCM of 2 numbers without using GCD
  *              https://www.geeksforgeeks.org/program-to-find-lcm-of-2-numbers-without-using-gcd/
  */
-auto LCM_MOD(const unsigned m, const unsigned n) {
+constexpr auto LCM_MOD(const unsigned m, const unsigned n) {
     const auto [min, max] = std::minmax(m, n);
 
     auto lcm = max;
@@ -68,15 +68,15 @@ auto LCM_Array(const ArrayType &numbers) {
 SIMPLE_BENCHMARK(LCM, Sample1, 12, 18);
 SIMPLE_BENCHMARK(LCM, Sample2, 18, 12);
 
-SIMPLE_TEST(LCM, Test1, 36u, 12, 18);
-SIMPLE_TEST(LCM, Test2, 36u, 18, 12);
+SIMPLE_TEST(LCM, Test1, 36, 12, 18);
+SIMPLE_TEST(LCM, Test2, 36, 18, 12);
 
 
 SIMPLE_BENCHMARK(LCM_MOD, Sample1, 12, 18);
 SIMPLE_BENCHMARK(LCM_MOD, Sample2, 18, 12);
 
-SIMPLE_TEST(LCM_MOD, Test1, 36u, 12, 18);
-SIMPLE_TEST(LCM_MOD, Test2, 36u, 18, 12);
+SIMPLE_TEST(LCM_MOD, Test1, 36, 12, 18);
+SIMPLE_TEST(LCM_MOD, Test2, 36, 18, 12);
 
 
 const ArrayType SAMPLE1 = {1, 2, 8, 3};

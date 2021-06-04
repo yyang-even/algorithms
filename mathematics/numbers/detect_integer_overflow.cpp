@@ -12,9 +12,9 @@ namespace {
  * returns -1. The solution of casting to long and adding to find detecting the overflow
  * is not allowed.
  */
-const auto INVALID = std::pair(true, 0);
+constexpr auto INVALID = std::pair(true, 0);
 
-auto SafeAdd_Sign(const int lhs, const int rhs) {
+constexpr inline auto SafeAdd_Sign(const int lhs, const int rhs) {
     const auto sum = lhs + rhs;
     if ((lhs > 0 and rhs > 0 and sum < 0) or    //overflow
         (lhs < 0 and rhs < 0 and sum > 0)) {    //underflow
@@ -27,7 +27,7 @@ auto SafeAdd_Sign(const int lhs, const int rhs) {
 /**
  * @reference   Agner Fog. NAN propagation versus fault trapping in floating point code.
  */
-auto SafeAdd_Limits(const int lhs, const int rhs) {
+constexpr inline auto SafeAdd_Limits(const int lhs, const int rhs) {
     if ((rhs > 0 and lhs > std::numeric_limits<int>::max() - rhs) or    //overflow
         (rhs < 0 and lhs < std::numeric_limits<int>::min() - rhs)) {    //underflow
         return INVALID;
@@ -36,7 +36,7 @@ auto SafeAdd_Limits(const int lhs, const int rhs) {
 }
 
 
-auto SafeAdd_Unsigned(const unsigned lhs, const unsigned rhs) {
+constexpr inline auto SafeAdd_Unsigned(const unsigned lhs, const unsigned rhs) {
     const auto sum = lhs + rhs;
     if (sum < lhs) {
         return INVALID;

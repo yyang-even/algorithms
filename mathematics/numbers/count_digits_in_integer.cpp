@@ -11,7 +11,7 @@ namespace {
  * @reference   C program to Count the digits of a number
  *              https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
  */
-auto CountDigits_Recursive(const int n) {
+constexpr inline auto CountDigits_Recursive(const int n) {
     if (not n) {
         return 0;
     }
@@ -19,7 +19,7 @@ auto CountDigits_Recursive(const int n) {
 }
 
 
-int CountDigits_Log(const int n) {
+constexpr inline int CountDigits_Log(const int n) {
     if (not n) {
         return 0;
     }
@@ -27,7 +27,7 @@ int CountDigits_Log(const int n) {
 }
 
 
-auto CountDigits_String(const int n) {
+inline auto CountDigits_String(const int n) {
     assert(n > 0);
 
     const auto str_n = std::to_string(n);
@@ -61,24 +61,24 @@ auto CountDigits_String(const int n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountDigits_Iterative, Sample1, 345289467);
+THE_BENCHMARK(CountDigits_Iterative, 345289467);
 
 SIMPLE_TEST(CountDigits_Iterative, TestSAMPLE1, 9, 345289467);
 SIMPLE_TEST(CountDigits_Iterative, TestSAMPLE2, 0, 0);
 
 
-SIMPLE_BENCHMARK(CountDigits_Recursive, Sample1, 345289467);
+THE_BENCHMARK(CountDigits_Recursive, 345289467);
 
 SIMPLE_TEST(CountDigits_Recursive, TestSAMPLE1, 9, 345289467);
 SIMPLE_TEST(CountDigits_Recursive, TestSAMPLE2, 0, 0);
 
 
-SIMPLE_BENCHMARK(CountDigits_Log, Sample1, 345289467);
+THE_BENCHMARK(CountDigits_Log, 345289467);
 
 SIMPLE_TEST(CountDigits_Log, TestSAMPLE1, 9, 345289467);
 SIMPLE_TEST(CountDigits_Log, TestSAMPLE2, 0, 0);
 
 
-SIMPLE_BENCHMARK(CountDigits_String, Sample1, 345289467);
+THE_BENCHMARK(CountDigits_String, 345289467);
 
 SIMPLE_TEST(CountDigits_String, TestSAMPLE1, 9, 345289467);
