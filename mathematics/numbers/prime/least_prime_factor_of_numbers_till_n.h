@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Least prime factor of numbers till n
  *
  * @reference   https://www.geeksforgeeks.org/least-prime-factor-of-numbers-till-n/
@@ -10,7 +11,7 @@
  * prime factor (as well as its own greatest prime factor).
  * Note: We need to print 1 for 1.
  */
-auto LeastPrimeFactorOfNumbers(const unsigned N) {
+static inline auto LeastPrimeFactorOfNumbers(const unsigned N) {
     assert(N > 1);
     std::vector<unsigned> smallest_prime_factors(N + 1, 0);
     smallest_prime_factors[1] = 1;

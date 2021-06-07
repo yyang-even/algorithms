@@ -19,7 +19,7 @@ using InputType = unsigned long;
  *
  * @reference   https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
  */
-auto SumOfPrimesBelowN(const InputType N) {
+inline auto SumOfPrimesBelowN(const InputType N) {
     const auto primes = PrimesBelowN(N + 1);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
@@ -31,8 +31,8 @@ auto SumOfPrimesBelowN(const InputType N) {
  *
  * Given a number n, we need to find the product of all prime numbers between 1 to n.
  */
-auto ProductOfPrimesBetween1ToN(const InputType N) {
-    const auto primes = PrimesBelowN(N + 1ul);
+inline auto ProductOfPrimesBetween1ToN(const InputType N) {
+    const auto primes = PrimesBelowN(N + 1);
     return std::accumulate(primes.cbegin(), primes.cend(), 1ULL, std::multiplies<InputType> {});
 }
 
@@ -49,7 +49,7 @@ auto ProductOfPrimesBetween1ToN(const InputType N) {
  *
  * Given an positive integer N, calculate the product of the first N prime numbers.
  */
-auto ProductOfFirstNPrimes(const InputType N) {
+inline auto ProductOfFirstNPrimes(const InputType N) {
     const auto primes = PrimesBelowN(std::numeric_limits<short>::max());
     assert(N < primes.size());
     return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL,
@@ -73,10 +73,10 @@ auto ProductOfFirstNPrimes(const InputType N) {
  * @reference   Program to find Prime Numbers Between given Interval
  *              https://www.geeksforgeeks.org/program-to-find-prime-numbers-between-given-interval/
  *
- * Given a range [low, high], print all primes in this range? For example, if the
- * given range is [10, 20], then output is 11, 13, 17, 19.
+ * Given a range [low, high], print all primes in this range? For example, if the given
+ * range is [10, 20], then output is 11, 13, 17, 19.
  */
-auto primesInRange_LowerBound(const InputType low, const InputType high) {
+inline auto primesInRange_LowerBound(const InputType low, const InputType high) {
     auto base_primes = PrimesBelowN(high + 1);
     const auto low_bound = std::lower_bound(base_primes.cbegin(), base_primes.cend(), low);
     base_primes.erase(base_primes.begin(), low_bound);
@@ -107,11 +107,11 @@ auto primesInRange(const InputType low, const InputType high,
     return output;
 }
 
-auto PrimesInRange(const InputType low, const InputType high) {
+inline auto PrimesInRange(const InputType low, const InputType high) {
     if (low < 3) {
         return PrimesBelowN(high + 1);
     }
-    const InputType limit = sqrt(high) + 1;
+    const InputType limit = std::sqrt(high) + 1;
     if (low <= limit) {
         return primesInRange_LowerBound(low, high);
     } else {
@@ -124,16 +124,17 @@ auto PrimesInRange(const InputType low, const InputType high) {
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-all-the-prime-numbers-in-a-given-range/
  *
- * Given a range [l, r], the task is to find the sum of all the prime numbers within that range.
+ * Given a range [l, r], the task is to find the sum of all the prime numbers within
+ * that range.
  */
-auto SumOfPrimesInRange(const InputType low, const InputType high) {
+inline auto SumOfPrimesInRange(const InputType low, const InputType high) {
     const auto primes = PrimesInRange(low, high);
     return std::accumulate(primes.cbegin(), primes.cend(), 0ULL);
 }
 
 
 auto SegmentedPrimesBelowN(const InputType N) {
-    const InputType limit = sqrt(N) + 1;
+    const InputType limit = std::sqrt(N) + 1;
     const auto base_primes = PrimesBelowN(limit);
     auto output = base_primes;
 
@@ -203,26 +204,26 @@ SIMPLE_TEST(PrimesBelowN_SieveOfSundaram, TestSAMPLE2, RESULT2, SAMPLE2);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, Sample1, LOWER);
 SIMPLE_BENCHMARK(SumOfPrimesBelowN, Sample2, SAMPLE1);
 
-SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 2u, LOWER);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28u, SAMPLE1);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023ull, 1000000);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE3, 17u, 10);
-SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE4, 28u, 11);
+SIMPLE_TEST(SumOfPrimesBelowN, TestLOWER, 2, LOWER);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE1, 28, SAMPLE1);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE2, 37550402023, 1000000);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE3, 17, 10);
+SIMPLE_TEST(SumOfPrimesBelowN, TestSAMPLE4, 28, 11);
 
 
 SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, Sample1, LOWER);
 SIMPLE_BENCHMARK(ProductOfPrimesBetween1ToN, Sample2, SAMPLE1);
 
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2u, LOWER);
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30u, 5);
-SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210u, 7);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestLOWER, 2, LOWER);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE1, 30, 5);
+SIMPLE_TEST(ProductOfPrimesBetween1ToN, TestSAMPLE2, 210, 7);
 
 
 SIMPLE_BENCHMARK(ProductOfFirstNPrimes, Sample1, LOWER);
 SIMPLE_BENCHMARK(ProductOfFirstNPrimes, Sample2, SAMPLE1);
 
-SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310u, 5);
-SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30u, 3);
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE1, 2310, 5);
+SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30, 3);
 
 
 const std::vector<InputType> RESULT3 = {11, 13, 17, 19};
@@ -232,7 +233,7 @@ const std::vector<InputType> RESULT4 = {11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 
 const std::vector<InputType> RESULT5 = {2, 3, 5, 7};
 
 
-SIMPLE_BENCHMARK(PrimesInRange, Sample1, 10, 20);
+THE_BENCHMARK(PrimesInRange, 10, 20);
 
 SIMPLE_TEST(PrimesInRange, TestSAMPLE3, RESULT3, 10, 20);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE4, RESULT4, 10, 100);
@@ -243,10 +244,10 @@ SIMPLE_TEST(PrimesInRange, TestSAMPLE8, {}, 14, 14);
 SIMPLE_TEST(PrimesInRange, TestSAMPLE9, {19}, 19, 19);
 
 
-SIMPLE_BENCHMARK(SumOfPrimesInRange, Sample1, 1, 6);
+THE_BENCHMARK(SumOfPrimesInRange, 1, 6);
 
-SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10u, 1, 6);
-SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36u, 4, 13);
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE1, 10, 1, 6);
+SIMPLE_TEST(SumOfPrimesInRange, TestSAMPLE2, 36, 4, 13);
 
 
 const std::vector<InputType> RESULT6 = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};

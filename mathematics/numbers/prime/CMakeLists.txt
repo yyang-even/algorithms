@@ -28,9 +28,6 @@ compile_test(largest_power_of_p_divides_factorial_n)
 compile_benchmark(least_prime_factor_of_numbers_till_n)
 compile_test(least_prime_factor_of_numbers_till_n)
 
-compile_benchmark(legendres_formula)
-compile_test(legendres_formula)
-
 compile_benchmark(perfect_number)
 compile_test(perfect_number)
 

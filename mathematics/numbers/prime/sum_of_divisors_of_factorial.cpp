@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "legendres_formula.h"
+#include "largest_power_of_p_divides_factorial_n.h"
 #include "primes_below_n.h"
 
 
@@ -26,7 +26,7 @@ auto SumOfDivisorsOfFactorial(const unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SumOfDivisorsOfFactorial, Sample1, 4);
+THE_BENCHMARK(SumOfDivisorsOfFactorial, 4);
 
 SIMPLE_TEST(SumOfDivisorsOfFactorial, TestSAMPLE1, 60, 4);
 SIMPLE_TEST(SumOfDivisorsOfFactorial, TestSAMPLE2, 2418, 6);

@@ -11,7 +11,7 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/check-if-a-number-is-perfect-square-without-finding-square-root/
  */
-auto IsPerfectSquare_Multiply(const unsigned x) {
+constexpr auto IsPerfectSquare_Multiply(const unsigned x) {
     for (unsigned i = 1, square = 1; square <= x; square = i * i) {
         if (square == x) {
             return true;
@@ -29,7 +29,7 @@ auto IsPerfectSquare_Multiply(const unsigned x) {
  *
  * Addition of first n odd numbers is always perfect square
  */
-auto IsPerfectSquare_Sum(const unsigned x) {
+constexpr auto IsPerfectSquare_Sum(const unsigned x) {
     for (unsigned sum = 0, i = 1; sum < x; i += 2) {
         sum += i;
         if (sum == x) {
@@ -55,7 +55,7 @@ auto IsPerfectSquare_Sum(const unsigned x) {
  *
  * Given a number "n", find its total number of divisors are even or odd.
  */
-auto isCountOfDivisorsOdd(const unsigned N) {
+constexpr inline auto isCountOfDivisorsOdd(const unsigned N) {
     return IsPerfectSquare(N);
 }
 
@@ -81,7 +81,8 @@ auto isCountOfDivisorsOdd(const unsigned N) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 6.6.
  */
-auto CountPerfectSquares(const unsigned a, const unsigned b) {
+constexpr inline auto
+CountPerfectSquares(const unsigned a, const unsigned b) {
     assert(a <= b);
 
     return std::floor(std::sqrt(b)) - std::ceil(std::sqrt(a)) + 1;

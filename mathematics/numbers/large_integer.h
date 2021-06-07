@@ -10,13 +10,13 @@ class LargeInteger {
     //Number are stored in reverse digit order
     NumData m_nums;
 
-    static constexpr NumData::size_type BLOCK_SIZE = 8;
+    static constexpr inline NumData::size_type BLOCK_SIZE = 8;
 
     friend std::ostream &operator<<(std::ostream &os, const LargeInteger &num);
 
 public:
 
-    explicit LargeInteger(const std::string &s_num) {
+    explicit LargeInteger(const std::string_view s_num) {
         m_nums.reserve(s_num.size());
         //Number are stored in reverse digit order
         for (auto c_digit = s_num.rbegin(); c_digit != s_num.rend(); ++c_digit) {
@@ -29,9 +29,9 @@ public:
     }
 
     LargeInteger(const LargeInteger &copy, const unsigned block_index) {
-        auto lower_bound = block_index * BLOCK_SIZE;
+        const auto lower_bound = block_index * BLOCK_SIZE;
         if (lower_bound < copy.m_nums.size()) {
-            auto size_to_copy = std::min(copy.m_nums.size() - lower_bound, BLOCK_SIZE);
+            const auto size_to_copy = std::min(copy.m_nums.size() - lower_bound, BLOCK_SIZE);
             m_nums.resize(size_to_copy);
             std::copy_n(copy.m_nums.begin() + lower_bound, size_to_copy, m_nums.begin());
         }
@@ -161,8 +161,9 @@ public:
 
 private:
 
-    static void addDigits(unsigned char &add_to, const unsigned char addend,
-                          unsigned char &carry) {
+    static constexpr inline void
+    addDigits(unsigned char &add_to, const unsigned char addend,
+              unsigned char &carry) {
         add_to += (addend + carry);
         if (add_to >= 10) {
             add_to -= 10;
