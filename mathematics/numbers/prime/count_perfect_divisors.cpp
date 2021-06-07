@@ -28,7 +28,7 @@ auto CountPerfectDivisors(const unsigned N) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountPerfectDivisors, Sample1, 16);
+THE_BENCHMARK(CountPerfectDivisors, 16);
 
 SIMPLE_TEST(CountPerfectDivisors, TestSAMPLE1, 3, 16);
 SIMPLE_TEST(CountPerfectDivisors, TestSAMPLE2, 2, 12);

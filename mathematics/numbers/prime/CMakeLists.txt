@@ -13,14 +13,8 @@ compile_test(count_perfect_divisors)
 compile_benchmark(difference_between_nonprimes_and_primes_of_array)
 compile_test(difference_between_nonprimes_and_primes_of_array)
 
-compile_benchmark(divisors_of_n)
-compile_test(divisors_of_n)
-
 compile_benchmark(is_prime)
 compile_test(is_prime)
-
-compile_benchmark(kth_number_with_factors_3_5_7)
-compile_test(kth_number_with_factors_3_5_7)
 
 compile_benchmark(largest_power_of_p_divides_factorial_n)
 compile_test(largest_power_of_p_divides_factorial_n)

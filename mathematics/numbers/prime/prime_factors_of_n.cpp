@@ -19,7 +19,7 @@ std::string PrintAllPrimeFactors(const unsigned N) {
 }
 
 
-auto PrimeFactorsOfN_Sieve(const unsigned N) {
+inline auto PrimeFactorsOfN_Sieve(const unsigned N) {
     const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(N);
     return PrimeFactorsOfN_Sieve(N, smallest_prime_factors);
 }
@@ -36,7 +36,7 @@ auto PrimeFactorsOfN_Sieve(const unsigned N) {
  *  factor, we may recursively factorize the divisor d, run algorithm for d and n/d. The
  *  cycle length is typically of the order √d.
  */
-long OneDivisorOfN_PollardsRho(const long N) {
+constexpr long OneDivisorOfN_PollardsRho(const long N) {
     if (N < 4) {
         return N;
     }
@@ -65,7 +65,7 @@ long OneDivisorOfN_PollardsRho(const long N) {
     return d;
 }
 
-auto testOneDivisorOfN_PollardsRho(const long N) {
+inline auto testOneDivisorOfN_PollardsRho(const long N) {
     const auto factors = UniquePrimeFactorsOf(N);
     const auto one_of_factors = OneDivisorOfN_PollardsRho(N);
 
@@ -83,7 +83,7 @@ auto testOneDivisorOfN_PollardsRho(const long N) {
  * Given a number n, we need to find the product of all of its unique prime factors.
  * Prime factors: It is basically a factor of the number that is a prime number itself.
  */
-auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
+inline auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
     const auto unique_primes = UniquePrimeFactorsOf(N);
     return std::accumulate(unique_primes.cbegin(), unique_primes.cend(), 1u,
                            std::multiplies<unsigned>());
@@ -104,9 +104,9 @@ auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
         std::max_element(queries.cbegin(), queries.cend(),
     [](const auto & lhs, const auto & rhs) {
         return lhs.first < rhs.first;
-    });
+    })->first;
 
-    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(max_number->first);
+    const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(max_number);
 
     std::vector<unsigned> outputs;
     for (const auto [number, N] : queries) {
@@ -138,7 +138,7 @@ SIMPLE_TEST(PrintAllPrimeFactors, TestSAMPLE4, "311", 33);
 const std::vector<unsigned> EXPECTED2 = {3, 5, 7};
 
 
-SIMPLE_BENCHMARK(UniquePrimeFactorsOf, Sample1, SAMPLE2);
+THE_BENCHMARK(UniquePrimeFactorsOf, SAMPLE2);
 
 SIMPLE_TEST(UniquePrimeFactorsOf, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
@@ -147,29 +147,29 @@ const std::vector<unsigned> EXPECTED3 = {3, 3, 5, 7};
 const std::vector<unsigned> EXPECTED4 = {2, 3, 13, 157};
 
 
-SIMPLE_BENCHMARK(PrimeFactorsOfN_Sieve, Sample1, 12246);
+THE_BENCHMARK(PrimeFactorsOfN_Sieve, 12246);
 
 SIMPLE_TEST(PrimeFactorsOfN_Sieve, TestSAMPLE3, EXPECTED3, SAMPLE2);
 SIMPLE_TEST(PrimeFactorsOfN_Sieve, TestSAMPLE4, EXPECTED4, 12246);
 
 
-SIMPLE_BENCHMARK(testOneDivisorOfN_PollardsRho, Sample1, 39);
+THE_BENCHMARK(testOneDivisorOfN_PollardsRho, 39);
 
 SIMPLE_TEST(testOneDivisorOfN_PollardsRho, TestSAMPLE1, true, 39);
 
 
-SIMPLE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, Sample1, 44);
+THE_BENCHMARK(ProductOfUniquePrimeFactorsOfN, 44);
 
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22u, 44);
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10u, 10);
-SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5u, 25);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE1, 22, 44);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE2, 10, 10);
+SIMPLE_TEST(ProductOfUniquePrimeFactorsOfN, TestSAMPLE3, 5, 25);
 
 
 const std::vector<Query> SAMPLE_QUERIES = {{6, 1}, {210, 3}, {210, 2}, {60, 2}};
 const std::vector<unsigned> EXPECTED_QUERIES = {2, 5, 3, 2};
 
 
-SIMPLE_BENCHMARK(QueryNthPrimeFactorOfNumbers, Sample1, SAMPLE_QUERIES);
+THE_BENCHMARK(QueryNthPrimeFactorOfNumbers, SAMPLE_QUERIES);
 
 SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES,
             SAMPLE_QUERIES);

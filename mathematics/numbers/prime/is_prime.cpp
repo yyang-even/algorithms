@@ -28,9 +28,9 @@ namespace {
  * @reference   Lucas Primality Test
  *              https://www.geeksforgeeks.org/lucas-primality-test/
  *
- * This is also a probabilistic test.
- * This method is quite complicated and inefficient as compared to other primality tests.
- * And the main problems are factors of 'n-1' and choosing appropriate 'a'.
+ * This is also a probabilistic test. This method is quite complicated and inefficient as
+ * compared to other primality tests. And the main problems are factors of 'n-1' and
+ * choosing appropriate 'a'.
  *
  * @reference   Vantieghems Theorem for Primality Test
  *              https://www.geeksforgeeks.org/vantieghems-theorem-primality-test/
@@ -65,10 +65,10 @@ namespace {
  * iterations.
  */
 auto IsPrime_Fermet(const unsigned n) {
-    if (n <= 1u or n == 4u) {
+    if (n <= 1 or n == 4) {
         return false;
     }
-    if (n <= 3u) {
+    if (n <= 3) {
         return true;
     }
 
@@ -115,19 +115,19 @@ auto millerTest(unsigned d, const unsigned n) {
 }
 
 auto IsPrime_MillerRabin(const unsigned n) {
-    if (n <= 1u) {
+    if (n <= 1) {
         return false;
     }
-    if (n <= 3u) {
+    if (n <= 3) {
         return true;
     }
     if (n % 2 == 0) {
         return false;
     }
 
-    auto d = n - 1u;
-    while (d % 2u == 0u) {
-        d /= 2u;
+    auto d = n - 1;
+    while (d % 2 == 0) {
+        d /= 2;
     }
 
     static constexpr auto K = 3;
@@ -144,7 +144,7 @@ auto IsPrime_MillerRabin(const unsigned n) {
  * The Solovay-Strassen primality test is a probabilistic test to determine if a number is
  * composite or probably prime.
  */
-int calculateJacobian(long long a, long long n) {
+constexpr int calculateJacobian(long long a, long long n) {
     if (!a) {
         return 0;
     }
@@ -196,11 +196,12 @@ int calculateJacobian(long long a, long long n) {
 
     return 0;
 }
+
 auto IsPrime_SolovayStrassen(long long n) {
-    if (n <= 1u) {
+    if (n <= 1) {
         return false;
     }
-    if (n <= 3u) {
+    if (n <= 3) {
         return true;
     }
     if (n % 2 == 0) {
@@ -225,7 +226,7 @@ auto IsPrime_SolovayStrassen(long long n) {
  * Lucas-Lehmer series is used to check primality of prime numbers of the form n = 2^p - 1
  * where p is an integer.
  */
-auto IsPrime_LucasLehmerSeries(unsigned long long p) {
+constexpr auto IsPrime_LucasLehmerSeries(unsigned long long p) {
     const unsigned long long n = pow(2, p) - 1;
 
     auto i = 4 % n;
@@ -237,12 +238,12 @@ auto IsPrime_LucasLehmerSeries(unsigned long long p) {
 }
 
 
-auto IsPrime_Wilson(const unsigned p) {
+constexpr inline auto IsPrime_Wilson(const unsigned p) {
     return p != 4 and (Factorial_Iterative(p >> 1) % p);
 }
 
 
-auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
+constexpr inline auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
     if (n < 2) {
         return false;
     }
