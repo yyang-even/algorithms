@@ -14,17 +14,19 @@ namespace {
  * @reference   Lower case to upper case – An interesting fact
  *              https://www.geeksforgeeks.org/lower-case-upper-case-interesting-fact/
  *
- * Given a string, write a function that converts it either from lower to upper case or from upper
- * to lower case using the bitwise operators &(AND), |(OR), ~(NOT) in place and returns the string.
+ * Given a string, write a function that converts it either from lower to upper case or
+ * from upper to lower case using the bitwise operators &(AND), |(OR), ~(NOT) in place
+ * and returns the string.
  */
 constexpr char CASE_DIFF = 'a' - 'A';
-auto ToLowerCase(const char c) {
-    static constexpr bool IS_SET = true;
+
+constexpr inline auto ToLowerCase(const char c) {
+    constexpr bool IS_SET = true;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
 
-auto ToUpperCase(const char c) {
-    static constexpr bool IS_SET = false;
+constexpr inline auto ToUpperCase(const char c) {
+    constexpr bool IS_SET = false;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
 
@@ -36,13 +38,16 @@ auto ToUpperCase(const char c) {
  * @reference   Program to toggle all characters in a string
  *              https://www.geeksforgeeks.org/program-toggle-characters-string/
  *
- * Given a string, write a function that returns toggle case of a string using the bitwise operators in place.
+ * Given a string, write a function that returns toggle case of a string using the
+ * bitwise operators in place.
  */
-auto ToggleCase(const char c) {
+constexpr inline auto ToggleCase(const char c) {
     return c ^ CASE_DIFF;
 }
 
-auto TransformString(std::string str, std::function<char(const char)> change_case) {
+
+inline auto
+TransformString(std::string str, const std::function<char(const char)> change_case) {
     std::transform(str.cbegin(), str.cend(), str.begin(), change_case);
     return str;
 }

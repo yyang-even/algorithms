@@ -35,9 +35,9 @@ using ArrayType = std::vector<unsigned>;
  * the elements of this unique pair.
  */
 auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
-    ArrayType::value_type xor_of_all = 0u;
-    ArrayType::value_type x = 0u;
-    ArrayType::value_type y = 0u;
+    ArrayType::value_type xor_of_all = 0;
+    ArrayType::value_type x = 0;
+    ArrayType::value_type y = 0;
 
     for (const auto elem : elements) {
         xor_of_all ^= elem;

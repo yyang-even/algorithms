@@ -17,7 +17,7 @@ namespace {
  * @reference   Set, Clear and Toggle a given bit of a number in C
  *              https://www.geeksforgeeks.org/set-clear-and-toggle-a-given-bit-of-a-number-in-c/
  */
-auto SetBit(const unsigned num, const unsigned position) {
+constexpr inline auto SetBit(const unsigned num, const unsigned position) {
     return num | (1 << position);
 }
 
@@ -30,7 +30,7 @@ auto SetBit(const unsigned num, const unsigned position) {
  * @reference   Set the rightmost unset bit
  *              https://www.geeksforgeeks.org/set-rightmost-unset-bit-2/
  */
-auto SetRightmostOffBit(const unsigned num) {
+constexpr inline auto SetRightmostOffBit(const unsigned num) {
     if (AreAllBitsSet(num)) {
         return num;
     }
@@ -40,14 +40,14 @@ auto SetRightmostOffBit(const unsigned num) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(SetBit, Sample1, 0, 4);
+THE_BENCHMARK(SetBit, 0, 4);
 
-SIMPLE_TEST(SetBit, TestSample1, 0b110u, 0b100, 1);
-SIMPLE_TEST(SetBit, TestSample2, 1u, 0, 0);
-SIMPLE_TEST(SetBit, TestSample3, 0b10u, 0, 1);
+SIMPLE_TEST(SetBit, TestSample1, 0b110, 0b100, 1);
+SIMPLE_TEST(SetBit, TestSample2, 1, 0, 0);
+SIMPLE_TEST(SetBit, TestSample3, 0b10, 0, 1);
 
 
-SIMPLE_BENCHMARK(SetRightmostOffBit, Sample1, 7);
+THE_BENCHMARK(SetRightmostOffBit, 7);
 
-SIMPLE_TEST(SetRightmostOffBit, TestSample1, 13u, 12);
-SIMPLE_TEST(SetRightmostOffBit, TestSample2, 7u, 7);
+SIMPLE_TEST(SetRightmostOffBit, TestSample1, 13, 12);
+SIMPLE_TEST(SetRightmostOffBit, TestSample2, 7, 7);

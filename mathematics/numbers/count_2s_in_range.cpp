@@ -11,8 +11,8 @@ namespace {
  *
  * Count the number of 2s as digit in all numbers from 0 to n.
  */
-auto Count2sInRange(const unsigned N, const unsigned position,
-                    const unsigned target_digit) {
+constexpr auto Count2sInRange(const unsigned N, const unsigned position,
+                              const unsigned target_digit) {
     assert(target_digit < 10);
 
     const unsigned lower_power_of_10 = std::pow(10, position);
@@ -48,7 +48,7 @@ auto CountTheDigitsInRange(const unsigned N, const unsigned d) {
 }
 
 
-auto Count2sInRange(const unsigned N) {
+inline auto Count2sInRange(const unsigned N) {
     return CountTheDigitsInRange(N, 2);
 }
 

@@ -42,7 +42,8 @@ auto MaxAndValueOfPair_Pair(const ArrayType &elements) {
  * X & Y is maximum among all the possible pairs then print the bitwise AND of the found
  * pair.
  */
-unsigned MaxAndValueOfRange(const unsigned L, const unsigned R) {
+constexpr inline unsigned
+MaxAndValueOfRange(const unsigned L, const unsigned R) {
     if (L == R) {
         return 0;
     } else if ((R - L) == 1) {
@@ -58,7 +59,7 @@ unsigned MaxAndValueOfRange(const unsigned L, const unsigned R) {
 
 
 const ArrayType VALUES1 = {};
-const auto EXPECTED0 = std::pair(0u, 0u);
+constexpr auto EXPECTED0 = std::pair(0u, 0u);
 const ArrayType VALUES2 = {1};
 const ArrayType VALUES3 = {1, 2};
 const ArrayType VALUES4 = {4, 8, 6, 2};
@@ -68,12 +69,12 @@ const ArrayType VALUES6 = {4, 8, 16, 2};
 
 THE_BENCHMARK(MaxAndValueOfPair_Value, VALUES5);
 
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE1, 0u, VALUES1);
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE2, 0u, VALUES2);
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE3, 0u, VALUES3);
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE4, 4u, VALUES4);
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE5, 8u, VALUES5);
-SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE6, 0u, VALUES6);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE1, 0, VALUES1);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE2, 0, VALUES2);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE3, 0, VALUES3);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE4, 4, VALUES4);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE5, 8, VALUES5);
+SIMPLE_TEST(MaxAndValueOfPair_Value, TestSAMPLE6, 0, VALUES6);
 
 
 THE_BENCHMARK(MaxAndValueOfPair_Pair, VALUES5);
@@ -88,8 +89,8 @@ SIMPLE_TEST(MaxAndValueOfPair_Pair, TestSAMPLE6, EXPECTED0, VALUES6);
 
 THE_BENCHMARK(MaxAndValueOfRange, 523641, 985624);
 
-SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE1, 8u, 1, 9);
-SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE2, 985622u, 523641, 985624);
-SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE3, 630u, 1, 632);
-SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE4, 0u, 2, 2);
-SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE5, 2u, 2, 3);
+SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE1, 8, 1, 9);
+SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE2, 985622, 523641, 985624);
+SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE3, 630, 1, 632);
+SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE4, 0, 2, 2);
+SIMPLE_TEST(MaxAndValueOfRange, TestSAMPLE5, 2, 2, 3);

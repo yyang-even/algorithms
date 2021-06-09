@@ -101,7 +101,7 @@ namespace {
  * When we take any two successive (one after the other) Fibonacci Numbers, their ratio
  * is very close to the Golden Ratio.
  */
-const double GOLDEN_RATIO = 1.61803;
+constexpr double GOLDEN_RATIO = 1.61803;
 
 constexpr inline unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     if (n < 2) {
@@ -126,10 +126,11 @@ constexpr inline unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  *
  * @note    It may not work perfect due to floating point precision errors.
  */
-inline unsigned long NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
-    static constexpr double square_root_of_5 = std::sqrt(5.0);
-    static constexpr double phi = (1.0 + square_root_of_5) / 2.0;
-    static constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
+constexpr inline unsigned long
+NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
+    constexpr double square_root_of_5 = std::sqrt(5.0);
+    constexpr double phi = (1.0 + square_root_of_5) / 2.0;
+    constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
 
     return (std::pow(phi, n) - std::pow(phi_hat, n)) / square_root_of_5;
 }
@@ -177,8 +178,9 @@ constexpr auto NthFibonacci_DP_Optimized(const unsigned n) {
  * @reference   Tail Recursion for Fibonacci
  *              https://www.geeksforgeeks.org/tail-recursion-fibonacci/
  */
-constexpr auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
-                                          const unsigned b = 1) {
+constexpr inline auto
+NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
+                           const unsigned b = 1) {
     if (n == 0) {
         return a;
     }
@@ -202,7 +204,7 @@ constexpr auto NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0
  * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi
  * indicates i'th Fibonacci number.
  */
-inline auto SumOfFibonacci(const unsigned n) {
+constexpr inline auto SumOfFibonacci(const unsigned n) {
     return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
 }
 

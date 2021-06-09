@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Calculate XOR from 1 to n.
  *
  * @reference   https://www.geeksforgeeks.org/calculate-xor-1-n/
@@ -8,16 +9,16 @@
  *
  * Given a number n, the task is to find the XOR from 1 to n.
  */
-unsigned XorOfAllFrom1toN(const unsigned n) {
+static constexpr inline unsigned XorOfAllFrom1toN(const unsigned n) {
     switch (n % 4) {
         case 0:
             return n;
         case 1:
-            return 1u;
+            return 1;
         case 2:
-            return n + 1u;
+            return n + 1;
         case 3:
         default:
-            return 0u;
+            return 0;
     }
 }

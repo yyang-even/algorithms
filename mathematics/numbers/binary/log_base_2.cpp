@@ -15,7 +15,7 @@ namespace {
  * The log base 2 of an integer is the same as the position of the highest bit set (or
  * most significant bit set, MSB).
  */
-unsigned LogBase2(unsigned num) {
+constexpr unsigned LogBase2(unsigned num) {
     unsigned result = 0;
     while (num >>= 1) {
         ++result;
@@ -31,11 +31,11 @@ unsigned LogBase2(unsigned num) {
  *              Find the integer log base 2 of an integer with an 64-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned LogBase2_Float(const unsigned num) {
+constexpr inline unsigned LogBase2_Float(const unsigned num) {
     union {
         unsigned int uNum[2];
         double dNum;
-    } temp;
+    } temp{};
 
     temp.uNum[__FLOAT_WORD_ORDER == LITTLE_ENDIAN] = 0x43300000;
     temp.uNum[__FLOAT_WORD_ORDER != LITTLE_ENDIAN] = num;
@@ -50,9 +50,9 @@ unsigned LogBase2_Float(const unsigned num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto LogBase2_LgN_Branch(uint32_t num) {
-    static constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
-    static constexpr unsigned int S[] = {1, 2, 4, 8, 16};
+constexpr auto LogBase2_LgN_Branch(uint32_t num) {
+    constexpr unsigned int b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
+    constexpr unsigned int S[] = {1, 2, 4, 8, 16};
 
     unsigned result = 0;
     for (int i = 4; i >= 0; i--) {
@@ -66,13 +66,10 @@ auto LogBase2_LgN_Branch(uint32_t num) {
 }
 
 
-auto LogBase2_LgN_NoBranch(uint32_t num) {
-    unsigned result;
-    unsigned shift;
-
-    result = (num > 0xFFFF) << 4;
+constexpr inline auto LogBase2_LgN_NoBranch(uint32_t num) {
+    unsigned result = (num > 0xFFFF) << 4;
     num >>= result;
-    shift = (num > 0xFF) << 3;
+    unsigned shift = (num > 0xFF) << 3;
     num >>= shift;
     result |= shift;
     shift = (num > 0xF) << 2;
@@ -93,8 +90,9 @@ auto LogBase2_LgN_NoBranch(uint32_t num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
-    static constexpr unsigned MultiplyDeBruijnBitPosition[32] = {
+constexpr inline unsigned
+LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
+    constexpr unsigned MultiplyDeBruijnBitPosition[32] = {
         0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
         8, 12, 20, 28, 15, 17, 24, 7, 19, 27, 23, 6, 26, 5, 4, 31
     };
@@ -110,19 +108,19 @@ unsigned LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
  *              Find integer log base 2 of a 32-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-int LogBase2_FloatInput(const float num) {
+constexpr inline int LogBase2_FloatInput(const float num) {
     static_assert(BitsNumber<decltype(num)> == 32, "float is not 32 bits.");
 
-    int result;
+    int result{};
     memcpy(&result, &num, sizeof(result));
     return (result >> 23) - 127;
 }
 
 
-int LogBase2_IEEE754Float(const float num) {
+constexpr int LogBase2_IEEE754Float(const float num) {
     static_assert(BitsNumber<decltype(num)> == 32, "float is not 32 bits.");
 
-    int x;
+    int x{};
     memcpy(&x, &num, sizeof(x));
 
     int result = x >> 23;
@@ -130,7 +128,7 @@ int LogBase2_IEEE754Float(const float num) {
     if (result) {
         result -= 127;
     } else { // subnormal, so recompute using mantissa: c = intlog2(x) - 149;
-        unsigned int t;
+        unsigned int t{};
         // Note that LogTable256 was defined earlier
         if ((t = x >> 16)) {
             result = LogTable256[t] - 133;
@@ -150,10 +148,10 @@ int LogBase2_IEEE754Float(const float num) {
  *
  * find int(log2(pow((double) v, 1. / pow(2, r)))), where isnormal(v) and v > 0
  */
-int LogBase2ofPow2r(const float num, const unsigned r) {
+constexpr inline int LogBase2ofPow2r(const float num, const unsigned r) {
     static_assert(BitsNumber<decltype(num)> == 32, "float is not 32 bits.");
 
-    int result;
+    int result{};
     memcpy(&result, &num, sizeof result);
     return ((((result - 0x3f800000) >> r) + 0x3f800000) >> 23) - 127;
 }

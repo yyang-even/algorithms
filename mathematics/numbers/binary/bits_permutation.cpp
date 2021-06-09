@@ -15,7 +15,7 @@ namespace {
  * 00011010, 00011100, 00100011, and so forth.
  */
 #ifdef __GNUC__
-auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
+constexpr inline auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
     const unsigned t = num | (num - 1); // t gets num's least significant 0 bits set to 1
     // Next set to 1 the most significant bit to change,
     // set to 0 the least significant ones, and add the necessary 1 bits.
@@ -24,7 +24,7 @@ auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
 #endif
 
 
-auto ClosestGreaterBitsPermutation_Division(const unsigned num) {
+constexpr inline auto ClosestGreaterBitsPermutation_Division(const unsigned num) {
     const unsigned t = (num | (num - 1)) + 1;
     return t | ((((t & -t) / (num & -num)) >> 1) - 1);
 }
@@ -40,7 +40,7 @@ auto ClosestGreaterBitsPermutation_Division(const unsigned num) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.2.
  */
-auto ClosestGreaterBitsPermutation(const int number) {
+constexpr auto ClosestGreaterBitsPermutation(const int number) {
     assert(number > 0);
 
     unsigned temp = number;
@@ -66,7 +66,7 @@ auto ClosestGreaterBitsPermutation(const int number) {
 }
 
 
-auto ClosestGreaterBitsPermutation_Arithmetic(const int number) {
+constexpr auto ClosestGreaterBitsPermutation_Arithmetic(const int number) {
     assert(number > 0);
 
     unsigned temp = number;
@@ -85,7 +85,7 @@ auto ClosestGreaterBitsPermutation_Arithmetic(const int number) {
 }
 
 
-auto ClosestSmallerBitsPermutation(const int number) {
+constexpr auto ClosestSmallerBitsPermutation(const int number) {
     assert(number > 0);
 
     unsigned temp = number;
@@ -113,7 +113,7 @@ auto ClosestSmallerBitsPermutation(const int number) {
 }
 
 
-auto ClosestSmallerBitsPermutation_Arithmetic(const int number) {
+constexpr auto ClosestSmallerBitsPermutation_Arithmetic(const int number) {
     assert(number > 0);
 
     unsigned temp = number;
@@ -138,7 +138,7 @@ auto ClosestSmallerBitsPermutation_Arithmetic(const int number) {
  * @reference   Next higher number with same number of set bits
  *              https://www.geeksforgeeks.org/next-higher-number-with-same-number-of-set-bits/
  */
-auto ClosestGreaterBitsPermutation_Snoob(const int number) {
+constexpr auto ClosestGreaterBitsPermutation_Snoob(const int number) {
     assert(number > 0);
 
     const unsigned unsigned_number = number;
@@ -163,20 +163,20 @@ constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 #ifdef __GNUC__
 THE_BENCHMARK(ClosestGreaterBitsPermutation_GNUC, UPPER);
 
-SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestLOWER, 2u, LOWER);
-SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestSAMPLE1, 0b00011001u, 0b00010110);
-SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestSAMPLE2, 0b00011100u, 0b00011010);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestLOWER, 2, LOWER);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestSAMPLE1, 0b00011001, 0b00010110);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_GNUC, TestSAMPLE2, 0b00011100, 0b00011010);
 #endif
 
 
 THE_BENCHMARK(ClosestGreaterBitsPermutation_Division, UPPER);
 
-SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestLOWER, 2u, LOWER);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestLOWER, 2, LOWER);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE1,
-            0b00011001u, 0b00010110);
+            0b00011001, 0b00010110);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE2,
-            0b00011100u, 0b00011010);
+            0b00011100, 0b00011010);
 
 
 THE_BENCHMARK(ClosestGreaterBitsPermutation, 13948);
@@ -187,8 +187,8 @@ SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE3, 13, 11);
 SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE4, 16, 8);
 SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE5, 17, 12);
 SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE6, 163, 156);
-SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE7, 0b00011001u, 0b00010110);
-SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE8, 0b00011100u, 0b00011010);
+SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE7, 0b00011001, 0b00010110);
+SIMPLE_TEST(ClosestGreaterBitsPermutation, TestSAMPLE8, 0b00011100, 0b00011010);
 
 
 THE_BENCHMARK(ClosestGreaterBitsPermutation_Snoob, 13948);

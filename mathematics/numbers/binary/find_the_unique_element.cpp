@@ -40,7 +40,7 @@ auto FindTheUniqueElement_Bits(const ArrayType &elements,
     std::vector<ArrayType::value_type> counters(NUMBER_BITS, 0);
 
     for (size_t i = 0; i < NUMBER_BITS; ++i) {
-        const auto mask = 1u << i;
+        const auto mask = 1 << i;
         for (const auto elem : elements) {
             if (elem & mask) {
                 ++counters[i];
@@ -50,7 +50,7 @@ auto FindTheUniqueElement_Bits(const ArrayType &elements,
 
     ArrayType::value_type result = 0;
     for (size_t i = 0; i < NUMBER_BITS; ++i) {
-        result += (counters[i] % K) * (1u << i);
+        result += (counters[i] % K) * (1 << i);
     }
 
     return result;

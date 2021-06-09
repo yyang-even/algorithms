@@ -7,12 +7,12 @@
  *
  * Given a positive number n, count total bit in it.
  */
-auto CountTotalBits_Log(const unsigned num) {
+static constexpr inline auto CountTotalBits_Log(const unsigned num) {
     return num ? static_cast<unsigned>(log2(num)) + 1 : 0;
 }
 
 
-auto CountTotalBits_Loop(unsigned num) {
+static constexpr inline auto CountTotalBits_Loop(unsigned num) {
     unsigned count = 0;
     for (; num; num >>= 1) {
         ++count;

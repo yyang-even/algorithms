@@ -21,32 +21,32 @@ using ArrayType = std::vector<int>;
  * which occur twice. So the output should be 4 2.
  */
 auto FindTheTwoRepeatingElementsXor(const ArrayType &elements) {
-    assert(elements.size() >= 4ul);
+    assert(elements.size() >= 4);
 
-    const auto N = elements.size() - 2ul;
+    const auto N = elements.size() - 2;
     ArrayType::value_type xor_of_all = elements[0];
     ArrayType::value_type x = 0;
     ArrayType::value_type y = 0;
 
-    for (ArrayType::size_type i = 1ul; i <= N; ++i) {
+    for (ArrayType::size_type i = 1; i <= N; ++i) {
         xor_of_all ^= (i ^ elements[i]);
     }
 
     const auto last_set_bit =
-        ClearAllBitsExceptTheLastSetBit(xor_of_all ^ elements[N + 1ul]);
+        ClearAllBitsExceptTheLastSetBit(xor_of_all ^ elements[N + 1]);
 
-    for (ArrayType::size_type i = 0ul; i <= N; ++i) {
+    for (ArrayType::size_type i = 0; i <= N; ++i) {
         divideElement<ArrayType::value_type>(i, last_set_bit, x, y);
         divideElement<ArrayType::value_type>(elements[i], last_set_bit, x, y);
     }
-    divideElement<ArrayType::value_type>(elements[N + 1ul], last_set_bit, x, y);
+    divideElement<ArrayType::value_type>(elements[N + 1], last_set_bit, x, y);
 
     return std::pair(x, y);
 }
 
 
 auto FindTheTwoRepeatingElementsInplace(ArrayType elements) {
-    assert(elements.size() >= 4ul);
+    assert(elements.size() >= 4);
 
     ArrayType repeating_elments;
     for (const auto elem : elements) {
@@ -65,6 +65,7 @@ auto FindTheTwoRepeatingElementsInplace(ArrayType elements) {
 
 
 const ArrayType SAMPLE1 = {4, 2, 4, 5, 2, 3, 1};
+
 
 THE_BENCHMARK(FindTheTwoRepeatingElementsXor, SAMPLE1);
 

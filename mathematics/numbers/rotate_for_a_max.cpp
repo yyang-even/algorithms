@@ -3,19 +3,21 @@
 namespace {
 
 /** Rotate for a Max
- *  @reference  Rotate for a Max
+ *
+ * @reference   Rotate for a Max
  *              https://www.codewars.com/kata/rotate-for-a-max/cpp
  *
- *  Take a number: 56789. Rotate left, you get 67895.
- *  Keep the first digit in place and rotate left the other digits: 68957.
- *  Keep the first two digits in place and rotate the other ones: 68579.
- *  Keep the first three digits and rotate left the rest: 68597.
- *  Now it is over since keeping the first four it remains only one digit which rotated is itself.
- *  You have the following sequence of numbers:
+ * Take a number: 56789. Rotate left, you get 67895.
+ * Keep the first digit in place and rotate left the other digits: 68957.
+ * Keep the first two digits in place and rotate the other ones: 68579.
+ * Keep the first three digits and rotate left the rest: 68597.
+ * Now it is over since keeping the first four it remains only one digit which rotated
+ * is itself.
+ * You have the following sequence of numbers:
  *  56789 -> 67895 -> 68957 -> 68579 -> 68597
- *  and you must return the greatest: 68957.
+ * and you must return the greatest: 68957.
  */
-long long RotateForMax(long long n) {
+auto RotateForMax(long long n) {
     auto str_n = std::to_string(n);
     for (auto iter = str_n.begin(); iter != str_n.end(); ++iter) {
         std::rotate(iter, iter + 1, str_n.end());
@@ -27,7 +29,7 @@ long long RotateForMax(long long n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RotateForMax, Sample1, 56789);
+THE_BENCHMARK(RotateForMax, 56789);
 
 SIMPLE_TEST(RotateForMax, TestSample1, 68957, 56789);
 SIMPLE_TEST(RotateForMax, TestSample2, 85821534, 38458215);

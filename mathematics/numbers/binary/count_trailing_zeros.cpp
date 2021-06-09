@@ -80,9 +80,9 @@ constexpr auto CountTrailingZeros_BinarySearch(uint32_t num) {
  *              Count the consecutive zero bits (trailing) on the right by casting to a float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-inline unsigned CountTrailingZeros_Float(const uint32_t num) {
+constexpr inline unsigned CountTrailingZeros_Float(const uint32_t num) {
     if (num) {
-        FloatUnsignedUnion float_unsigned_union;
+        FloatUnsignedUnion float_unsigned_union{};
         float_unsigned_union.f = static_cast<float>(num & -num);
         return (float_unsigned_union.u >> 23) - 0x7f;
     } else {
@@ -122,7 +122,7 @@ constexpr inline auto CountTrailingZeros_MultiplyAndLookup(const uint32_t num) {
         31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
     };
     return num ?
-           MultiplyDeBruijnBitPosition[((uint32_t)((num & -num) * 0x077CB531U)) >> 27] :
+           MultiplyDeBruijnBitPosition[((uint32_t)((num & -num) * 0x077CB531)) >> 27] :
            32;
 }
 

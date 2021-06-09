@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Swapping values with XOR
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.

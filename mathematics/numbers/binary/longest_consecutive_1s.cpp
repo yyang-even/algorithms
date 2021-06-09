@@ -7,10 +7,11 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
  *
- * The idea is based on the concept that if we AND a bit sequence with a shifted version of itself,
- * we’re effectively removing the trailing 1 from every sequence of consecutive 1s.
+ * The idea is based on the concept that if we AND a bit sequence with a shifted version
+ * of itself, we're effectively removing the trailing 1 from every sequence of
+ * consecutive 1s.
  */
-auto LengthOfLongestConsecutive1s(unsigned number) {
+constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
     unsigned length = 0;
     while (number) {
         number &= (number << 1);
@@ -29,7 +30,7 @@ auto LengthOfLongestConsecutive1s(unsigned number) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(LengthOfLongestConsecutive1s, Sample1, 14);
+THE_BENCHMARK(LengthOfLongestConsecutive1s, 14);
 
 SIMPLE_TEST(LengthOfLongestConsecutive1s, TestSAMPLE1, 3, 14);
 SIMPLE_TEST(LengthOfLongestConsecutive1s, TestSAMPLE2, 4, 222);

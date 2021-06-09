@@ -16,9 +16,9 @@ namespace {
  *
  * So num=3 -> r=4; num=8 -> r=8
  */
-unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
+constexpr inline unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
     if (num) {
-        FloatUnsignedUnion float_unsigned_union;
+        FloatUnsignedUnion float_unsigned_union{};
         float_unsigned_union.f = static_cast<float>(num);
         const auto temp = 1U << ((float_unsigned_union.u >> 23) - 0x7f);
         return temp << (temp < num);
@@ -34,7 +34,7 @@ unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
  *              Round up to the next highest power of 2
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned RoundUpToPowerOf2(const uint32_t num) {
+constexpr inline unsigned RoundUpToPowerOf2(const uint32_t num) {
     if (num) {
         return SetAllBitsAfterMSB(num - 1) + 1;
     } else {
@@ -46,24 +46,24 @@ unsigned RoundUpToPowerOf2(const uint32_t num) {
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
-constexpr auto UPPER = 1u << (BitsNumber<uint32_t> - 1u);
+constexpr auto UPPER = 1u << (BitsNumber<uint32_t> - 1);
 
 
-SIMPLE_BENCHMARK(RoundUpToPowerOf2_Float, Sample1, UPPER);
+THE_BENCHMARK(RoundUpToPowerOf2_Float, UPPER);
 
-SIMPLE_TEST(RoundUpToPowerOf2_Float, TestLOWER, 1u, LOWER);
+SIMPLE_TEST(RoundUpToPowerOf2_Float, TestLOWER, 1, LOWER);
 SIMPLE_TEST(RoundUpToPowerOf2_Float, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE1, 4u, 3);
-SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE2, 8u, 8);
+SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE1, 4, 3);
+SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE2, 8, 8);
 SIMPLE_TEST(RoundUpToPowerOf2_Float, TestSAMPLE3, UPPER, UPPER - 1);
 
 
-SIMPLE_BENCHMARK(RoundUpToPowerOf2, Sample1, UPPER);
+THE_BENCHMARK(RoundUpToPowerOf2, UPPER);
 
-SIMPLE_TEST(RoundUpToPowerOf2, TestLOWER, 1u, LOWER);
+SIMPLE_TEST(RoundUpToPowerOf2, TestLOWER, 1, LOWER);
 SIMPLE_TEST(RoundUpToPowerOf2, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(RoundUpToPowerOf2, TestSAMPLE1, 4u, 3);
-SIMPLE_TEST(RoundUpToPowerOf2, TestSAMPLE2, 8u, 8);
+SIMPLE_TEST(RoundUpToPowerOf2, TestSAMPLE1, 4, 3);
+SIMPLE_TEST(RoundUpToPowerOf2, TestSAMPLE2, 8, 8);
 SIMPLE_TEST(RoundUpToPowerOf2, TestSAMPLE3, UPPER, UPPER - 1);
 
 MUTUAL_RANDOM_TEST(RoundUpToPowerOf2_Float, RoundUpToPowerOf2, LOWER, UPPER);

@@ -13,12 +13,12 @@ namespace {
  *
  * 1 if an odd number of bits set, 0 otherwise.
  */
-auto Parity_BrianKernighan(unsigned n) {
+constexpr auto Parity_BrianKernighan(unsigned n) {
     bool parity = false;  // parity will be the parity of n
 
     while (n) {
         parity = !parity;
-        n = n & (n - 1);
+        n &= (n - 1);
     }
 
     return parity;
@@ -33,8 +33,8 @@ auto Parity_BrianKernighan(unsigned n) {
  * @reference   Compute the parity of a number using XOR and table look-up
  *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
-auto Parity_LookupTable(const unsigned n) {
-    static constexpr bool ParityTable256[256] = {
+constexpr auto Parity_LookupTable(const unsigned n) {
+    constexpr bool ParityTable256[256] = {
 #   define P2(n) n, n^1, n^1, n
 #   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
 #   define P6(n) P4(n), P4(n^1), P4(n^1), P4(n)
@@ -56,8 +56,8 @@ auto Parity_LookupTable(const unsigned n) {
  *              Compute parity of a byte using 64-bit multiply and modulus division
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-bool ParityOfByte_64bit(const unsigned char n) {
-    return (((n * 0x0101010101010101ULL) & 0x8040201008040201ULL) % 0x1FF) & 1;
+constexpr inline bool ParityOfByte_64bit(const unsigned char n) {
+    return (((n * 0x0101010101010101) & 0x8040201008040201) % 0x1FF) & 1;
 }
 
 
@@ -67,18 +67,18 @@ bool ParityOfByte_64bit(const unsigned char n) {
  *              Compute parity of word with a multiply
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-bool Parity_Multiply_32(uint32_t n) {
+constexpr inline bool Parity_Multiply_32(uint32_t n) {
     n ^= n >> 1;
     n ^= n >> 2;
-    n = (n & 0x11111111U) * 0x11111111U;
+    n = (n & 0x11111111) * 0x11111111;
     return (n >> 28) & 1;
 }
 
 
-bool Parity_Multiply_64(uint64_t n) {
+constexpr inline bool Parity_Multiply_64(uint64_t n) {
     n ^= n >> 1;
     n ^= n >> 2;
-    n = (n & 0x1111111111111111UL) * 0x1111111111111111UL;
+    n = (n & 0x1111111111111111) * 0x1111111111111111;
     return (n >> 60) & 1;
 }
 
@@ -91,7 +91,7 @@ bool Parity_Multiply_64(uint64_t n) {
  *              Finding the Parity of a number Efficiently
  *              https://www.geeksforgeeks.org/finding-the-parity-of-a-number-efficiently/
  */
-bool Parity_Parallel(uint32_t n) {
+constexpr inline bool Parity_Parallel(uint32_t n) {
     n ^= n >> 16;
     n ^= n >> 8;
     n ^= n >> 4;
