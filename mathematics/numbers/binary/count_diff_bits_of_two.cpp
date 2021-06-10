@@ -19,16 +19,16 @@ namespace {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.5.
  */
-auto CountDiffBits(const unsigned a, const unsigned b) {
+inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a ^ b);
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(CountDiffBits, Sample1, 10, 20);
+THE_BENCHMARK(CountDiffBits, 10, 20);
 
-SIMPLE_TEST(CountDiffBits, TestSample1, 4u, 10, 20);
-SIMPLE_TEST(CountDiffBits, TestSample2, 3u, 10, 7);
-SIMPLE_TEST(CountDiffBits, TestSample3, 2u, 12, 15);
-SIMPLE_TEST(CountDiffBits, TestSample4, 3u, 3, 16);
+SIMPLE_TEST(CountDiffBits, TestSample1, 4, 10, 20);
+SIMPLE_TEST(CountDiffBits, TestSample2, 3, 10, 7);
+SIMPLE_TEST(CountDiffBits, TestSample3, 2, 12, 15);
+SIMPLE_TEST(CountDiffBits, TestSample4, 3, 3, 16);

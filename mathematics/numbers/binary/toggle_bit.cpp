@@ -14,7 +14,7 @@ namespace {
  * @reference   Program to toggle K-th bit of a number N
  *              https://www.geeksforgeeks.org/program-to-toggle-k-th-bit-of-a-number-n/
  */
-auto ToggleBit(const unsigned num, const unsigned position) {
+inline constexpr auto ToggleBit(const unsigned num, const unsigned position) {
     return num ^ (1 << position);
 }
 
@@ -23,7 +23,8 @@ auto ToggleBit(const unsigned num, const unsigned position) {
  *
  * @reference   https://www.geeksforgeeks.org/toggle-bits-number-except-k-th-bit/
  */
-auto ToggleAllBitsExceptKth(const unsigned num, const unsigned position) {
+inline constexpr auto
+ToggleAllBitsExceptKth(const unsigned num, const unsigned position) {
     return ~(num ^ (1 << position));
 }
 
@@ -32,7 +33,7 @@ auto ToggleAllBitsExceptKth(const unsigned num, const unsigned position) {
  *
  * @reference   https://www.geeksforgeeks.org/toggle-last-m-bits/
  */
-auto ToggleLastBits(const unsigned num, const unsigned m) {
+inline constexpr auto ToggleLastBits(const unsigned num, const unsigned m) {
     const auto mask = (1 << m) - 1;
     return num ^ mask;
 }
@@ -40,20 +41,20 @@ auto ToggleLastBits(const unsigned num, const unsigned m) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(ToggleBit, Sample1, 0, 4);
+THE_BENCHMARK(ToggleBit, 0, 4);
 
-SIMPLE_TEST(ToggleBit, TestSample1, 0b110u, 0b100, 1);
-SIMPLE_TEST(ToggleBit, TestSample2, 1u, 0, 0);
-SIMPLE_TEST(ToggleBit, TestSample3, 0b10u, 0, 1);
+SIMPLE_TEST(ToggleBit, TestSample1, 0b110, 0b100, 1);
+SIMPLE_TEST(ToggleBit, TestSample2, 1, 0, 0);
+SIMPLE_TEST(ToggleBit, TestSample3, 0b10, 0, 1);
 
 
-SIMPLE_BENCHMARK(ToggleAllBitsExceptKth, Sample1, 0, 4);
+THE_BENCHMARK(ToggleAllBitsExceptKth, 0, 4);
 
-SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1u,
+SIMPLE_TEST(ToggleAllBitsExceptKth, TestSample1, 1,
             std::numeric_limits<unsigned>::max(), 0);
 
 
-SIMPLE_BENCHMARK(ToggleLastBits, Sample1, 21, 2);
+THE_BENCHMARK(ToggleLastBits, 21, 2);
 
-SIMPLE_TEST(ToggleLastBits, TestSample1, 22u, 21, 2);
-SIMPLE_TEST(ToggleLastBits, TestSample2, 100u, 107, 4);
+SIMPLE_TEST(ToggleLastBits, TestSample1, 22, 21, 2);
+SIMPLE_TEST(ToggleLastBits, TestSample2, 100, 107, 4);

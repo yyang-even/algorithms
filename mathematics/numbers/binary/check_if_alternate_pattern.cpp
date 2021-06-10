@@ -14,15 +14,15 @@ namespace {
  *
  * Given an integer n > 0, the task is to find whether this integer has an alternate
  * pattern in its bits representation. For example- 5 has an alternate pattern i.e. 101.
- * Print “Yes” if it has an alternate pattern otherwise “No”. Here alternate pattern
+ * Print “Yes” if it has an alternate pattern otherwise "No". Here alternate pattern
  * can be like 0101 or 1010.
  */
-auto CheckForBitsAlternatePattern_Simple(unsigned num) {
+constexpr auto CheckForBitsAlternatePattern_Simple(unsigned num) {
     assert(num);
 
-    auto previous = num & 1u;
-    while (num >>= 1u) {
-        auto current = num & 1u;
+    auto previous = num & 1;
+    while (num >>= 1) {
+        auto current = num & 1;
         if (current == previous) {
             return false;
         }
@@ -34,8 +34,8 @@ auto CheckForBitsAlternatePattern_Simple(unsigned num) {
 }
 
 
-auto CheckForBitsAlternatePattern(const unsigned num) {
-    return AreAllBitsSet(num ^ (num >> 1u));
+inline constexpr auto CheckForBitsAlternatePattern(const unsigned num) {
+    return AreAllBitsSet(num ^ (num >> 1));
 }
 
 }//namespace
@@ -45,7 +45,7 @@ constexpr auto LOWER = 1u;
 constexpr auto UPPER = std::numeric_limits<unsigned>::max();
 
 
-SIMPLE_BENCHMARK(CheckForBitsAlternatePattern_Simple, Sample1, 1);
+THE_BENCHMARK(CheckForBitsAlternatePattern_Simple, 1);
 
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample1, false, 15);
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestSample2, false, 12);
@@ -55,7 +55,7 @@ SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestLOWER, true, LOWER);
 SIMPLE_TEST(CheckForBitsAlternatePattern_Simple, TestUPPER, false, UPPER);
 
 
-SIMPLE_BENCHMARK(CheckForBitsAlternatePattern, Sample1, 1);
+THE_BENCHMARK(CheckForBitsAlternatePattern, 1);
 
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample1, false, 15);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample2, false, 12);

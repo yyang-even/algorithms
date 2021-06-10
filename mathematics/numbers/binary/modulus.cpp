@@ -11,8 +11,9 @@ namespace {
  * @reference   Compute modulus division by a power-of-2-number
  *              https://www.geeksforgeeks.org/compute-modulus-division-by-a-power-of-2-number/
  */
-unsigned Modulus2Power(const unsigned num, const unsigned s) {
-    return num & ((1U << s) - 1);
+inline constexpr unsigned
+Modulus2Power(const unsigned num, const unsigned s) {
+    return num & ((1 << s) - 1);
 }
 
 
@@ -22,17 +23,16 @@ unsigned Modulus2Power(const unsigned num, const unsigned s) {
  *              Compute modulus division by (1 << s) - 1 without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned Modulus2PowerMinus1(unsigned num, const unsigned s) {
+constexpr unsigned Modulus2PowerMinus1(unsigned num, const unsigned s) {
     unsigned result = num;
-    unsigned divisor = (1U << s) - 1;
+    const unsigned divisor = (1 << s) - 1;
 
     for (; num > divisor; num = result) {
         for (result = 0; num; num >>= s) {
             result += num & divisor;
         }
     }
-    // Now result is a value from 0 to divisor, but since with modulus division
-    // we want result to be 0 when it is divisor.
+    // Now result is a value from 0 to divisor, but since with modulus division we want result to be 0 when it is divisor.
     return result == divisor ? 0 : result;
 }
 
@@ -43,8 +43,9 @@ unsigned Modulus2PowerMinus1(unsigned num, const unsigned s) {
  *              Compute modulus division by (1 << s) - 1 in parallel without a division operator
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
-    static constexpr unsigned int M[] = {
+inline constexpr unsigned
+Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
+    constexpr unsigned int M[] = {
         0x00000000, 0x55555555, 0x33333333, 0xc71c71c7,
         0x0f0f0f0f, 0xc1f07c1f, 0x3f03f03f, 0xf01fc07f,
         0x00ff00ff, 0x07fc01ff, 0x3ff003ff, 0xffc007ff,
@@ -55,7 +56,7 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         0x0fffffff, 0x1fffffff, 0x3fffffff, 0x7fffffff
     };
 
-    static constexpr unsigned int Q[][6] = {
+    constexpr unsigned int Q[][6] = {
         { 0,  0,  0,  0,  0,  0}, {16,  8,  4,  2,  1,  1}, {16,  8,  4,  2,  2,  2},
         {15,  6,  3,  3,  3,  3}, {16,  8,  4,  4,  4,  4}, {15,  5,  5,  5,  5,  5},
         {12,  6,  6,  6,  6,  6}, {14,  7,  7,  7,  7,  7}, {16,  8,  8,  8,  8,  8},
@@ -69,7 +70,7 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         {30, 30, 30, 30, 30, 30}, {31, 31, 31, 31, 31, 31}
     };
 
-    static constexpr unsigned int R[][6] = {
+    constexpr unsigned int R[][6] = {
         {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000},
         {0x0000ffff, 0x000000ff, 0x0000000f, 0x00000003, 0x00000001, 0x00000001},
         {0x0000ffff, 0x000000ff, 0x0000000f, 0x00000003, 0x00000003, 0x00000003},
@@ -104,11 +105,9 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
         {0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff}
     };
 
-    const unsigned int divisor =
-        (1 << s) - 1; // so divisor is either 1, 3, 7, 15, 31, ...).
-    unsigned int result;
-
-    result = (num & M[s]) + ((num >> s) & M[s]);
+    // so divisor is either 1, 3, 7, 15, 31, ...).
+    const unsigned int divisor = (1 << s) - 1;
+    unsigned int result = (num & M[s]) + ((num >> s) & M[s]);
 
     for (const unsigned int *q = &Q[s][0], * r = &R[s][0]; result > divisor; q++, r++) {
         result = (result >> *q) + (result & *r);
@@ -120,29 +119,29 @@ unsigned Modulus2PowerMinus1_Parallel(uint32_t num, const unsigned s) {
 }//namespace
 
 
-const uint32_t LOWER = 0;
+constexpr uint32_t LOWER = 0;
 constexpr auto UPPER = BitsNumber<uint32_t> - 1;
 
 
-SIMPLE_BENCHMARK(Modulus2Power, Sample1, 1, UPPER);
+THE_BENCHMARK(Modulus2Power, 1, UPPER);
 
 SIMPLE_TEST(Modulus2Power, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2Power, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2Power, TestSAMPLE1, 51u, 179, 7);
-SIMPLE_TEST(Modulus2Power, TestSAMPLE2, 0u, 708, 2);
+SIMPLE_TEST(Modulus2Power, TestSAMPLE1, 51, 179, 7);
+SIMPLE_TEST(Modulus2Power, TestSAMPLE2, 0, 708, 2);
 
 
-SIMPLE_BENCHMARK(Modulus2PowerMinus1, Sample1, 1, UPPER);
+THE_BENCHMARK(Modulus2PowerMinus1, 1, UPPER);
 
 SIMPLE_TEST(Modulus2PowerMinus1, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2PowerMinus1, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE1, 52u, 179, 7);
-SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE2, 0u, 708, 2);
+SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE1, 52, 179, 7);
+SIMPLE_TEST(Modulus2PowerMinus1, TestSAMPLE2, 0, 708, 2);
 
 
-SIMPLE_BENCHMARK(Modulus2PowerMinus1_Parallel, Sample1, 1, UPPER);
+THE_BENCHMARK(Modulus2PowerMinus1_Parallel, 1, UPPER);
 
 SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestLOWER, LOWER, LOWER, LOWER);
 SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestUPPER, UPPER, UPPER, UPPER);
-SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE1, 52u, 179, 7);
-SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE2, 0u, 708, 2);
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE1, 52, 179, 7);
+SIMPLE_TEST(Modulus2PowerMinus1_Parallel, TestSAMPLE2, 0, 708, 2);

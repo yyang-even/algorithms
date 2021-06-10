@@ -12,11 +12,11 @@ namespace {
 /**
  * @param b_negate  b_negate ? -num : num
  */
-int NegateIfTrue(const bool b_negate, const int num) {
+inline constexpr int NegateIfTrue(const bool b_negate, const int num) {
     return (num ^ -b_negate) + b_negate;
 }
 
-int NegateIfFalse(const bool b_dont_negate, const int num) {
+inline constexpr int NegateIfFalse(const bool b_dont_negate, const int num) {
     return (b_dont_negate ^ (b_dont_negate - 1)) * num;
 }
 

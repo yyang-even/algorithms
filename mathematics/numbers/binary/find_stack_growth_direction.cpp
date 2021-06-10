@@ -31,8 +31,9 @@ namespace {
  * @reference   Stack Unwinding in C++
  *              https://www.geeksforgeeks.org/stack-unwinding-in-c/
  */
-auto IsStackGrowthDownward(const int *const parent_local_address) {
-    int local = 0;
+inline constexpr auto
+IsStackGrowthDownward(const int *const parent_local_address) {
+    constexpr int local = 0;
     return parent_local_address > &local;
 }
 
@@ -41,7 +42,7 @@ auto IsStackGrowthDownward(const int *const parent_local_address) {
 
 #ifdef WANT_TERMINAL_APP
 int main(int, char **) {
-    int local = 0;
+    constexpr int local = 0;
     if (IsStackGrowthDownward(&local)) {
         std::cout << "Stack grows downward" << std::endl;
     } else {

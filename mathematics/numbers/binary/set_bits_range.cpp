@@ -12,8 +12,8 @@ namespace {
  * rightmost lth bit to the rightmost r-th bit.
  * Constraint: 1 <= l <= r <= number of bits in the binary representation of n.
  */
-auto SetBitsRange(const unsigned number,
-                  const unsigned l, const unsigned r) {
+inline constexpr auto
+SetBitsRange(const unsigned number, const unsigned l, const unsigned r) {
     assert(1 <= l);
     assert(l <= r);
     assert(r <= BitsNumber<unsigned>);

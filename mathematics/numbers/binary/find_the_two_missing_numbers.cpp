@@ -23,14 +23,14 @@ using ArrayType = std::vector<unsigned>;
 auto FindTheTwoMissingNumbersSum(const ArrayType &elements) {
     assert(not elements.empty());
 
-    const auto N = elements.size() + 2ul;
+    const auto N = elements.size() + 2;
     const auto total_sum = (N * (N + 1)) / 2;
     const ArrayType::value_type x_plus_y = total_sum -
                                            std::accumulate(elements.cbegin(), elements.cend(), 0ul);
-    const auto average = x_plus_y / 2u;
+    const auto average = x_plus_y / 2;
 
-    ArrayType::value_type sum_of_smallers = 0u;
-    ArrayType::value_type sum_of_greaters = 0u;
+    ArrayType::value_type sum_of_smallers = 0;
+    ArrayType::value_type sum_of_greaters = 0;
     for (const auto elem : elements) {
         if (elem <= average) {
             sum_of_smallers += elem;
@@ -48,19 +48,19 @@ auto FindTheTwoMissingNumbersSum(const ArrayType &elements) {
 auto FindTheTwoMissingNumbersXor(const ArrayType &elements) {
     assert(not elements.empty());
 
-    const auto N = elements.size() + 2ul;
+    const auto N = elements.size() + 2;
     ArrayType::value_type xor_of_all = elements[0];
-    ArrayType::value_type x = 0u;
-    ArrayType::value_type y = 0u;
+    ArrayType::value_type x = 0;
+    ArrayType::value_type y = 0;
 
-    for (ArrayType::size_type i = 1ul; i < elements.size(); ++i) {
+    for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
         xor_of_all ^= (i ^ elements[i]);
     }
 
     const auto last_set_bit = ClearAllBitsExceptTheLastSetBit(
                                   xor_of_all ^ elements.size() ^ (N - 1) ^ N);
 
-    for (ArrayType::size_type i = 0ul; i < elements.size(); ++i) {
+    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
         divideElement<ArrayType::value_type>(i, last_set_bit, x, y);
         divideElement<ArrayType::value_type>(elements[i], last_set_bit, x, y);
     }

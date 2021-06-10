@@ -11,12 +11,12 @@ using SetType = std::unordered_set<unsigned>;
  * @reference   Bits manipulation (Important tactics)
  *              https://www.geeksforgeeks.org/bits-manipulation-important-tactics/
  *
- * The question is to find XOR of the XOR’s of all subsets. i.e if the set is {1,2,3}.
+ * The question is to find XOR of the XOR's of all subsets. i.e if the set is {1,2,3}.
  * All subsets are : [{1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]. Find the XOR
  * of each of the subset and then find the XOR of every subset result.
  */
-SetType::value_type FindXorOfXorOfAllSubsets(const SetType &s) {
-    return s.size() == 1 ? *s.cbegin() : 0u;
+inline SetType::value_type FindXorOfXorOfAllSubsets(const SetType &s) {
+    return s.size() == 1 ? *s.cbegin() : 0;
 }
 
 }//namespace
@@ -26,7 +26,7 @@ const SetType SAMPLE_SET = {1, 2, 3};
 const SetType SINGLE_SET = {5};
 
 
-SIMPLE_BENCHMARK(FindXorOfXorOfAllSubsets, Sample1, SAMPLE_SET);
+THE_BENCHMARK(FindXorOfXorOfAllSubsets, SAMPLE_SET);
 
-SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample1, 0u, SAMPLE_SET);
+SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample1, 0, SAMPLE_SET);
 SIMPLE_TEST(FindXorOfXorOfAllSubsets, TestSample2, *SINGLE_SET.cbegin(), SINGLE_SET);

@@ -29,8 +29,8 @@ inline constexpr void Swap_SubAdd(unsigned &a, unsigned &b) {
 
 
 template <typename SwapFunc>
-inline constexpr auto TestSwap(const SwapFunc swap,
-                               const unsigned a, const unsigned b) {
+inline constexpr auto
+TestSwap(const SwapFunc swap, const unsigned a, const unsigned b) {
     unsigned swapped_a = b;
     unsigned swapped_b = a;
     swap(swapped_a, swapped_b);
@@ -109,7 +109,7 @@ SIMPLE_TEST(TestSwap, TestSwapXorSAMPLE6, true, Swap_Xor<unsigned>, UPPER, UPPER
 
 THE_BENCHMARK(SwapBitRange, 0b00101111, 1, 5, 3);
 
-SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011u, 0b00101111, 1, 5, 3);
-SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0u, 0b00101111, 0, 4, 5);
-SIMPLE_TEST(SwapBitRange, TestSAMPLE3, 21u, 28, 0, 3, 1);
-SIMPLE_TEST(SwapBitRange, TestSAMPLE4, 24u, 20, 2, 3, 1);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE1, 0b11100011, 0b00101111, 1, 5, 3);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE2, 0, 0b00101111, 0, 4, 5);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE3, 21, 28, 0, 3, 1);
+SIMPLE_TEST(SwapBitRange, TestSAMPLE4, 24, 20, 2, 3, 1);

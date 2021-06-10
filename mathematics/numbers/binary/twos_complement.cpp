@@ -10,11 +10,12 @@ namespace {
  *
  * 2’s complement of a number is 1’s complement + 1.
  */
-inline auto TwosComplement_ByOnesComplement(const unsigned num) {
+inline constexpr auto TwosComplement_ByOnesComplement(const unsigned num) {
     return ~num + 1;
 }
 
-inline auto TwosComplement_ByMinusOperator(const unsigned num) {
+
+inline constexpr auto TwosComplement_ByMinusOperator(const unsigned num) {
     return -num;
 }
 
@@ -27,15 +28,17 @@ inline auto TwosComplement_ByMinusOperator(const unsigned num) {
  *
  * Given a Binary Number as string, print its 1’s and 2’s complements.
  */
-auto flip(const char bit) {
+inline constexpr auto flip(const char bit) {
     return bit == '0' ? '1' : '0';
 }
+
 auto OnesComplement(std::string binary_string) {
     for (auto &bit : binary_string) {
         bit = flip(bit);
     }
     return binary_string;
 }
+
 
 auto TwosComplement(std::string binary_string) {
     binary_string = OnesComplement(binary_string);
@@ -52,6 +55,7 @@ auto TwosComplement(std::string binary_string) {
 
     return binary_string;
 }
+
 
 /** Efficient method for 2’s complement of a binary string
  *
@@ -84,13 +88,13 @@ MUTUAL_RANDOM_TEST(TwosComplement_ByOnesComplement, TwosComplement_ByMinusOperat
                    LOWER, UPPER);
 
 
-SIMPLE_BENCHMARK(OnesComplement, Sample1, "0111");
+THE_BENCHMARK(OnesComplement, "0111");
 
 SIMPLE_TEST(OnesComplement, TestSample1, "1000", "0111");
 SIMPLE_TEST(OnesComplement, TestSample2, "0011", "1100");
 
 
-SIMPLE_BENCHMARK(TwosComplement, Sample1, "0111");
+THE_BENCHMARK(TwosComplement, "0111");
 
 SIMPLE_TEST(TwosComplement, TestSample1, "1001", "0111");
 SIMPLE_TEST(TwosComplement, TestSample2, "0100", "1100");
@@ -100,7 +104,7 @@ SIMPLE_TEST(TwosComplement, TestSample5, "0111100", "1000100");
 SIMPLE_TEST(TwosComplement, TestSample6, "11111011", "00000101");
 
 
-SIMPLE_BENCHMARK(TwosComplement_Efficient, Sample1, "0111");
+THE_BENCHMARK(TwosComplement_Efficient, "0111");
 
 SIMPLE_TEST(TwosComplement_Efficient, TestSample1, "1001", "0111");
 SIMPLE_TEST(TwosComplement_Efficient, TestSample2, "0100", "1100");

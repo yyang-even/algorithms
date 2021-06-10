@@ -13,8 +13,8 @@
  *
  * Constraint: 1 <= l <= r <= number of bits in the binary representation of n.
  */
-static inline auto ClearBitsRange(const unsigned number,
-                                  const unsigned l, const unsigned r) {
+static inline constexpr auto
+ClearBitsRange(const unsigned number, const unsigned l, const unsigned r) {
     assert(1 <= l);
     assert(l <= r);
     assert(r <= BitsNumber<unsigned>);

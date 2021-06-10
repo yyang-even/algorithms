@@ -9,8 +9,8 @@ namespace {
  *              Determine if a word has a zero byte
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-#define haszero(v) (((v) - 0x01010101UL) & ~(v) & 0x80808080UL)
-bool HasByteZero(const uint32_t num) {
+#define haszero(v) (((v) - 0x01010101) & ~(v) & 0x80808080)
+inline constexpr bool HasByteZero(const uint32_t num) {
     return haszero(num);
 }
 
@@ -21,7 +21,7 @@ bool HasByteZero(const uint32_t num) {
  *              Determine if a word has a zero byte
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-auto HasByteZero_Pointer(const unsigned num) {
+inline constexpr auto HasByteZero_Pointer(const unsigned num) {
     const auto *p = (const unsigned char *)&num;
     const auto *end = p + sizeof(num);
     for (; p < end; ++p) {
@@ -40,7 +40,7 @@ auto HasByteZero_Pointer(const unsigned num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 #define hasvalue(x,n) (haszero((x) ^ (~0UL/255 * (n))))
-bool HasByteN(const uint32_t x, const unsigned char n) {
+inline constexpr bool HasByteN(const uint32_t x, const unsigned char n) {
     return hasvalue(x, n);
 }
 
@@ -90,23 +90,23 @@ constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
 constexpr auto UPPER = std::numeric_limits<uint32_t>::max();
 
 
-SIMPLE_BENCHMARK(HasByteZero, Sample1, UPPER);
+THE_BENCHMARK(HasByteZero, UPPER);
 
 SIMPLE_TEST(HasByteZero, TestLOWER, true, LOWER);
 SIMPLE_TEST(HasByteZero, TestUPPER, false, UPPER);
 SIMPLE_TEST(HasByteZero, TestSAMPLE1, true, 8);
-SIMPLE_TEST(HasByteZero, TestSAMPLE2, false, 0x88888888U);
+SIMPLE_TEST(HasByteZero, TestSAMPLE2, false, 0x88888888);
 
 
-SIMPLE_BENCHMARK(HasByteZero_Pointer, Sample1, UPPER);
+THE_BENCHMARK(HasByteZero_Pointer, UPPER);
 
 SIMPLE_TEST(HasByteZero_Pointer, TestLOWER, true, LOWER);
 SIMPLE_TEST(HasByteZero_Pointer, TestUPPER, false, UPPER);
 SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE1, true, 8);
-SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE2, false, 0x88888888U);
+SIMPLE_TEST(HasByteZero_Pointer, TestSAMPLE2, false, 0x88888888);
 
 
-SIMPLE_BENCHMARK(HasByteN, Sample1, UPPER, 0xF);
+THE_BENCHMARK(HasByteN, UPPER, 0xF);
 
 SIMPLE_TEST(HasByteN, TestLOWER, true, LOWER, 0);
 SIMPLE_TEST(HasByteN, TestUPPER, true, UPPER, 0xFF);

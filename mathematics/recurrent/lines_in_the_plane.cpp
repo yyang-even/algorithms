@@ -6,6 +6,7 @@ namespace {
 using InputType = unsigned long;
 
 /** Lines in The Plane
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.2.
  *
@@ -17,7 +18,7 @@ using InputType = unsigned long;
  * L(0) = 1;
  * L(n) = L(n - 1) + n, for n > 0.
  */
-InputType PlaneLines_Recursive(const InputType n) {
+inline constexpr InputType PlaneLines_Recursive(const InputType n) {
     if (n == 0) {
         return 1;
     } else {
@@ -26,12 +27,13 @@ InputType PlaneLines_Recursive(const InputType n) {
 }
 
 
-InputType PlaneLines_Closedform(const InputType n) {
+inline constexpr InputType PlaneLines_Closedform(const InputType n) {
     return n * (n + 1) / 2 + 1;
 }
 
 
 /** Bent Lines in The Plane
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1.2.
  *
@@ -43,7 +45,7 @@ InputType PlaneLines_Closedform(const InputType n) {
  * z(0) = 1;
  * Z(n) = Z(n - 1) + 4n -3, for n > 0.
  */
-InputType PlaneBentLines_Recursive(const InputType n) {
+inline constexpr InputType PlaneBentLines_Recursive(const InputType n) {
     if (n == 0) {
         return 1;
     } else {
@@ -55,12 +57,13 @@ InputType PlaneBentLines_Recursive(const InputType n) {
 /**
  * Z(n) = 2n^2 - n + 1, for n >= 0.
  */
-InputType PlaneBentLines_Closedform(const InputType n) {
+inline constexpr InputType PlaneBentLines_Closedform(const InputType n) {
     return ((n * n) << 1) - n + 1;
 }
 
 
 /** Bounded Regions in The Plane
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 6.
  *
@@ -71,12 +74,13 @@ InputType PlaneBentLines_Closedform(const InputType n) {
 /**
  * Z(n) = (n-2)(n-1)/2, for n > 0;
  */
-InputType BoundedRegionsPlaneLines_Closedform(const InputType n) {
+inline constexpr InputType BoundedRegionsPlaneLines_Closedform(const InputType n) {
     return ((n - 2) * (n - 1)) / 2;
 }
 
 
 /** Zig-zag Lines in The Plane
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 13.
  *
@@ -88,7 +92,7 @@ InputType BoundedRegionsPlaneLines_Closedform(const InputType n) {
  * ZZ(0) = 1;
  * ZZ(n) = ZZ(n - 1) + 9n - 8, for n > 0.
  */
-InputType PlaneZigzagLines_Recursive(const InputType n) {
+inline constexpr InputType PlaneZigzagLines_Recursive(const InputType n) {
     if (n == 0) {
         return 1;
     } else {
@@ -100,7 +104,7 @@ InputType PlaneZigzagLines_Recursive(const InputType n) {
 /**
  * ZZ(n) = (9n^2 - 7n)/2 + 1, for n >= 0.
  */
-InputType PlaneZigzagLines_Closedform(const InputType n) {
+inline constexpr InputType PlaneZigzagLines_Closedform(const InputType n) {
     return (9 * n * n - 7 * n) / 2 + 1;
 }
 

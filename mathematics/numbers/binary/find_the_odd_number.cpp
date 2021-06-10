@@ -13,13 +13,12 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Find single in an array of 2n+1 integer elements
  *              https://www.geeksforgeeks.org/find-single-array-2n1-integer-elements/
  *
- * Given an array of positive integers. All numbers occur even number of times
- * except one number which occurs odd number of times. Find the number in O(n)
- * time & constant space.
+ * Given an array of positive integers. All numbers occur even number of times except one
+ * number which occurs odd number of times. Find the number in O(n) time & constant space.
  *
  * @complexity  O(n)
  */
-auto FindTheOddNumber(const ArrayType &values) {
+inline auto FindTheOddNumber(const ArrayType &values) {
     return std::accumulate(values.cbegin(), values.cend(), 0u,
                            std::bit_xor<ArrayType::value_type> {});
 }
@@ -55,7 +54,7 @@ auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values,
     }
 }
 
-auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values) {
+inline auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values) {
     assert(not values.empty());
     assert(std::is_sorted(values.cbegin(), values.cend()));
 
@@ -71,12 +70,12 @@ const ArrayType SAMPLE3 = {2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
 const ArrayType SAMPLE4 = {7, 3, 5, 4, 5, 3, 4};
 
 
-SIMPLE_BENCHMARK(FindTheOddNumber, Sample1, SAMPLE1);
+THE_BENCHMARK(FindTheOddNumber, SAMPLE1);
 
-SIMPLE_TEST(FindTheOddNumber, TestSample1, 3u, SAMPLE1);
-SIMPLE_TEST(FindTheOddNumber, TestSample2, 5u, SAMPLE2);
-SIMPLE_TEST(FindTheOddNumber, TestSample3, 5u, SAMPLE3);
-SIMPLE_TEST(FindTheOddNumber, TestSample4, 7u, SAMPLE4);
+SIMPLE_TEST(FindTheOddNumber, TestSample1, 3, SAMPLE1);
+SIMPLE_TEST(FindTheOddNumber, TestSample2, 5, SAMPLE2);
+SIMPLE_TEST(FindTheOddNumber, TestSample3, 5, SAMPLE3);
+SIMPLE_TEST(FindTheOddNumber, TestSample4, 7, SAMPLE4);
 
 
 const ArrayType SORTED_SAMPLE1 = {1, 2, 2, 4, 4, 5, 5, 6, 6};
@@ -84,7 +83,7 @@ const ArrayType SORTED_SAMPLE2 = {1, 1, 2, 4, 4, 5, 5, 6, 6};
 const ArrayType SORTED_SAMPLE3 = {1, 1, 2, 2, 4, 4, 5, 5, 6};
 
 
-SIMPLE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, Sample1, SORTED_SAMPLE1);
+THE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, SORTED_SAMPLE1);
 
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestFront, SORTED_SAMPLE1.front(),
             SORTED_SAMPLE1);

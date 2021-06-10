@@ -7,30 +7,30 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/rotate-bits-of-an-integer/
  *
- * Bit Rotation: A rotation (or circular shift) is an operation similar to shift
- * except that the bits that fall off at one end are put back to the other end.
+ * Bit Rotation: A rotation (or circular shift) is an operation similar to shift except
+ * that the bits that fall off at one end are put back to the other end.
  * In left rotation, the bits that fall off at left end are put back at right end.
  * In right rotation, the bits that fall off at right end are put back at left end.
  */
-auto LeftRotate(const unsigned num, const unsigned r) {
+inline constexpr auto LeftRotate(const unsigned num, const unsigned r) {
     return (num << r) | (num >> (BitsNumber<decltype(num)> - r));
 }
 
 
-auto RightRotate(const unsigned num, const unsigned r) {
+inline constexpr auto RightRotate(const unsigned num, const unsigned r) {
     return (num >> r) | (num << (BitsNumber<decltype(num)> - r));
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(LeftRotate, Sample1, 0b1101, 4);
+THE_BENCHMARK(LeftRotate, 0b1101, 4);
 
-SIMPLE_TEST(LeftRotate, TestSample1, 0b1000u, 1, 3);
-SIMPLE_TEST(LeftRotate, TestSample2, 64u, 16, 2);
+SIMPLE_TEST(LeftRotate, TestSample1, 0b1000, 1, 3);
+SIMPLE_TEST(LeftRotate, TestSample2, 64, 16, 2);
 
 
-SIMPLE_BENCHMARK(RightRotate, Sample1, 0b1101, 4);
+THE_BENCHMARK(RightRotate, 0b1101, 4);
 
-SIMPLE_TEST(RightRotate, TestSample1, 1u, 0b1000, 3);
-SIMPLE_TEST(RightRotate, TestSample2, 4u, 16, 2);
+SIMPLE_TEST(RightRotate, TestSample1, 1, 0b1000, 3);
+SIMPLE_TEST(RightRotate, TestSample2, 4, 16, 2);

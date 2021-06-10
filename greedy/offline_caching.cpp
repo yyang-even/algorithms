@@ -64,7 +64,7 @@ const ArrayType SAMPLE2 = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
 const ArrayType SAMPLE3 = {7, 1, 1};
 
 
-SIMPLE_BENCHMARK(FurthestInFuture, Sample1, SAMPLE1, 3);
+THE_BENCHMARK(FurthestInFuture, SAMPLE1, 3);
 
 SIMPLE_TEST(FurthestInFuture, TestSAMPLE1, 9, SAMPLE1, 3);
 SIMPLE_TEST(FurthestInFuture, TestSAMPLE2, 6, SAMPLE2, 4);

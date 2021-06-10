@@ -9,9 +9,11 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/modify-bit-given-position/
  *
- * Given a number n, a position p and a binary value b, we need to change the bit at position p in n to value b.
+ * Given a number n, a position p and a binary value b, we need to change the bit at
+ * position p in n to value b.
  */
-auto SetOrClearOneBit(const unsigned n, const unsigned p, const bool is_set) {
+inline constexpr auto
+SetOrClearOneBit(const unsigned n, const unsigned p, const bool is_set) {
     return SetOrClear(is_set, 1 << p, n);
 }
 
@@ -21,18 +23,18 @@ auto SetOrClearOneBit(const unsigned n, const unsigned p, const bool is_set) {
 SIMPLE_BENCHMARK(SetOrClear, Sample1, true, 0b0110, 0b1101);
 SIMPLE_BENCHMARK(SetOrClear, Sample2, false, 0b0110, 0b1101);
 
-SIMPLE_TEST(SetOrClear, TestSample1, 0b1111u, true, 0b0110, 0b1101);
-SIMPLE_TEST(SetOrClear, TestSample2, 0b1001u, false, 0b0110, 0b1101);
+SIMPLE_TEST(SetOrClear, TestSample1, 0b1111, true, 0b0110, 0b1101);
+SIMPLE_TEST(SetOrClear, TestSample2, 0b1001, false, 0b0110, 0b1101);
 
 
 SIMPLE_BENCHMARK(SetOrClear_Superscalar, Sample1, true, 0b0110, 0b1101);
 SIMPLE_BENCHMARK(SetOrClear_Superscalar, Sample2, false, 0b0110, 0b1101);
 
-SIMPLE_TEST(SetOrClear_Superscalar, TestSample1, 0b1111u, true, 0b0110, 0b1101);
-SIMPLE_TEST(SetOrClear_Superscalar, TestSample2, 0b1001u, false, 0b0110, 0b1101);
+SIMPLE_TEST(SetOrClear_Superscalar, TestSample1, 0b1111, true, 0b0110, 0b1101);
+SIMPLE_TEST(SetOrClear_Superscalar, TestSample2, 0b1001, false, 0b0110, 0b1101);
 
 
-SIMPLE_BENCHMARK(SetOrClearOneBit, Sample1, 7, 2, 0);
+THE_BENCHMARK(SetOrClearOneBit, 7, 2, 0);
 
-SIMPLE_TEST(SetOrClearOneBit, TestSample1, 3u, 7, 2, 0);
-SIMPLE_TEST(SetOrClearOneBit, TestSample2, 15u, 7, 3, 1);
+SIMPLE_TEST(SetOrClearOneBit, TestSample1, 3, 7, 2, 0);
+SIMPLE_TEST(SetOrClearOneBit, TestSample2, 15, 7, 3, 1);

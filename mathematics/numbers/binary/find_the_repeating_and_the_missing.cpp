@@ -22,16 +22,16 @@ auto FindTheRepeatingAndMissing(const ArrayType &elements) {
 
     const auto N = elements.size();
     ArrayType::value_type xor_of_all = elements[0];
-    ArrayType::value_type x = 0u;
-    ArrayType::value_type y = 0u;
+    ArrayType::value_type x = 0;
+    ArrayType::value_type y = 0;
 
-    for (ArrayType::size_type i = 1ul; i < N; ++i) {
+    for (ArrayType::size_type i = 1; i < N; ++i) {
         xor_of_all ^= (i ^ elements[i]);
     }
 
     const auto last_set_bit = ClearAllBitsExceptTheLastSetBit(xor_of_all ^ N);
 
-    for (ArrayType::size_type i = 0ul; i < N; ++i) {
+    for (ArrayType::size_type i = 0; i < N; ++i) {
         divideElement<ArrayType::value_type>(i, last_set_bit, x, y);
         divideElement<ArrayType::value_type>(elements[i], last_set_bit, x, y);
     }

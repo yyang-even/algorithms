@@ -75,7 +75,8 @@ void HuffmanCodes(const NodeType::PointerType node, const std::string &prefix,
     }
 }
 
-auto HuffmanCoding(const std::string &characters, const ArrayType &frequencies) {
+inline auto
+HuffmanCoding(const std::string &characters, const ArrayType &frequencies) {
     const auto huffman_tree = BuildHuffmanTree(characters, frequencies);
 
     CodesMap huffman_codes;

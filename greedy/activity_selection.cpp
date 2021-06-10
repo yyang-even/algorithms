@@ -38,7 +38,7 @@ void ActivitySelection_Recursive(const ArrayType &activities,
     }
 }
 
-auto ActivitySelection_Recursive(const ArrayType &activities) {
+inline auto ActivitySelection_Recursive(const ArrayType &activities) {
     assert(std::is_sorted(activities.cbegin(), activities.cend(), activity_comparator));
 
     OutputType selected_activities = {0};
@@ -76,7 +76,7 @@ auto ActivitySelection_Iterative(const ArrayType &activities) {
  * if b < c. The chain of pairs can be formed in this fashion. The task is to find the
  * length of the longest chain which can be formed from a given set of pairs.
  */
-auto MaxLengthChainPairs(ArrayType activities) {
+inline auto MaxLengthChainPairs(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), activity_comparator);
 
     return ActivitySelection_Iterative(activities).size();

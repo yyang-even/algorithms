@@ -26,7 +26,7 @@ namespace {
  * T(0) = 0;
  * T(n) = 2T(n - 1) + 1, for n > 0.
  */
-unsigned long HanoiTower_Recursive(const unsigned n) {
+inline constexpr unsigned long HanoiTower_Recursive(const unsigned n) {
     if (n == 0) {
         return 0;
     } else {
@@ -38,7 +38,7 @@ unsigned long HanoiTower_Recursive(const unsigned n) {
 /**
  * T(n) = 2^n - 1, for n >= 0.
  */
-unsigned long HanoiTower_Closedform(const unsigned n) {
+inline constexpr unsigned long HanoiTower_Closedform(const unsigned n) {
     return (1ul << n) - 1;
 }
 
@@ -66,7 +66,7 @@ unsigned long HanoiTower_Closedform(const unsigned n) {
  * T(0) = 0;
  * T(n) = 3T(n - 1) + 2, for n > 0.
  */
-unsigned long IndirectHanoiTower_Recursive(const unsigned n) {
+inline constexpr unsigned long IndirectHanoiTower_Recursive(const unsigned n) {
     if (n == 0) {
         return 0;
     } else {
@@ -78,7 +78,7 @@ unsigned long IndirectHanoiTower_Recursive(const unsigned n) {
 /**
  * T(n) = 3^n - 1, for n > 0;
  */
-unsigned long IndirectHanoiTower_Closedform(const unsigned n) {
+inline constexpr unsigned long IndirectHanoiTower_Closedform(const unsigned n) {
     return static_cast<unsigned long>(std::pow(double(3.0), n)) - 1;
 }
 
@@ -101,7 +101,7 @@ unsigned long IndirectHanoiTower_Closedform(const unsigned n) {
  * A(0) = 0;
  * A(n) = 2A(n - 1) + 2
  */
-unsigned long DoubleHanoiTower_A_Recursive(const unsigned n) {
+inline constexpr unsigned long DoubleHanoiTower_A_Recursive(const unsigned n) {
     if (n == 0) {
         return 0;
     } else {
@@ -113,7 +113,7 @@ unsigned long DoubleHanoiTower_A_Recursive(const unsigned n) {
 /**
  * A(n) = 2^(n+1) - 2
  */
-unsigned long DoubleHanoiTower_A_Closedform(const unsigned n) {
+inline constexpr unsigned long DoubleHanoiTower_A_Closedform(const unsigned n) {
     return (1ul << (n + 1)) - 2;
 }
 
@@ -121,7 +121,7 @@ unsigned long DoubleHanoiTower_A_Closedform(const unsigned n) {
 /**
  * B(n) = 2^(n+2) - 5
  */
-unsigned long DoubleHanoiTower_B_Closedform(const unsigned n) {
+inline constexpr unsigned long DoubleHanoiTower_B_Closedform(const unsigned n) {
     return (1ul << (n + 2)) - 5;
 }
 
@@ -130,7 +130,7 @@ unsigned long DoubleHanoiTower_B_Closedform(const unsigned n) {
  *
  * @reference   https://www.geeksforgeeks.org/recursive-tower-hanoi-using-4-pegs-rods/
  */
-unsigned long HanoiTower_4Rods_Recursive(const unsigned n) {
+inline constexpr unsigned long HanoiTower_4Rods_Recursive(const unsigned n) {
     if (n < 2) {
         return n;
     } else {
@@ -199,7 +199,7 @@ MUTUAL_RANDOM_TEST(IndirectHanoiTower_Recursive, IndirectHanoiTower_Closedform, 
                    IndirectHanoiTowerUPPER);
 
 
-const unsigned DoubleHanoiTowerUPPER = UPPER - 2;
+constexpr unsigned DoubleHanoiTowerUPPER = UPPER - 2;
 
 
 SIMPLE_BENCHMARK(DoubleHanoiTower_A_Recursive, Sample1, LOWER);
@@ -212,7 +212,7 @@ SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, Sample2, DoubleHanoiTowerUPPER);
 SIMPLE_BENCHMARK(DoubleHanoiTower_A_Closedform, Sample3, SAMPLE);
 
 
-const unsigned DoubleHanoiTowerBLOWER = 1;
+constexpr unsigned DoubleHanoiTowerBLOWER = 1;
 
 
 SIMPLE_BENCHMARK(DoubleHanoiTower_B_Closedform, Sample1, DoubleHanoiTowerBLOWER);

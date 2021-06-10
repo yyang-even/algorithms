@@ -29,7 +29,7 @@ using ArrayType = std::vector<unsigned>;
  * J(2n) = 2J(n) - 1,      for n >= 1;
  * J(2n + 1) = 2J(n) + 1,  for n >= 1.
  */
-unsigned JosephusProblem2_Recursive(const unsigned n) {
+inline constexpr unsigned JosephusProblem2_Recursive(const unsigned n) {
     if (n == 1) {
         return 1;
     } else if ((n & 1) == 1) {  //odd
@@ -50,8 +50,8 @@ unsigned JosephusProblem2_Recursive(const unsigned n) {
  *
  * J(2^m + l) = 2l + 1, for m >= 0 and 0 <= l < 2^m.
  */
-unsigned JosephusProblem2_Closedform(const unsigned n) {
-    unsigned m = 1u << (BitsNumber<decltype(n)> - 1);
+constexpr unsigned JosephusProblem2_Closedform(const unsigned n) {
+    unsigned m = 1 << (BitsNumber<decltype(n)> - 1);
 
     while (m and !(m & n)) {
         m /= 2;
@@ -65,17 +65,17 @@ unsigned JosephusProblem2_Closedform(const unsigned n) {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 1, Exercises 15.
  *
- * Josephus had a friend who was saved by getting into the next-to-last position.
- * What is I(n), the number of the penultimate survivor when every second person is executed?
+ * Josephus had a friend who was saved by getting into the next-to-last position. What is
+ * I(n), the number of the penultimate survivor when every second person is executed?
  */
 /**
  * I(n) = I(3*2^m + l) = 2l + 1.
  */
-unsigned PenultimateSurvivor_Closedform(const unsigned n) {
+constexpr unsigned PenultimateSurvivor_Closedform(const unsigned n) {
     if (n == 2) {
         return 2;
     }
-    unsigned m = 3u << (BitsNumber<decltype(n)> - 2);
+    unsigned m = 3 << (BitsNumber<decltype(n)> - 2);
 
     while (n < m) {
         m /= 2;
@@ -89,9 +89,10 @@ unsigned PenultimateSurvivor_Closedform(const unsigned n) {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.3.
  *
- *  Authentic Josephus Problem in which every third person is eliminated, instead of every second.
+ * Authentic Josephus Problem in which every third person is eliminated, instead of
+ * every second.
  */
-unsigned JosephusProblem3(const unsigned n) {
+constexpr unsigned JosephusProblem3(const unsigned n) {
     double D = 1.0;
     const double BOUND = n * 2.0;
     while (D <= BOUND) {
@@ -105,23 +106,26 @@ unsigned JosephusProblem3(const unsigned n) {
  *
  * @reference https://www.geeksforgeeks.org/josephus-problem-set-1-a-on-solution/
  *
- * There are n people standing in a circle waiting to be executed. The counting out begins at some
- * point in the circle and proceeds around the circle in a fixed direction. In each step,
- * a certain number of people are skipped and the next person is executed. The elimination proceeds
- * around the circle (which is becoming smaller and smaller as the executed people are removed),
- * until only the last person remains, who is given freedom. Given the total number of persons n
- * and a number k which indicates that k-1 persons are skipped and kth person is killed in circle.
- * The task is to choose the place in the initial circle so that you are the last one remaining and so survive.
+ * There are n people standing in a circle waiting to be executed. The counting out
+ * begins at some point in the circle and proceeds around the circle in a fixed
+ * direction. In each step, a certain number of people are skipped and the next person
+ * is executed. The elimination proceeds around the circle (which is becoming smaller
+ * and smaller as the executed people are removed), until only the last person remains,
+ * who is given freedom. Given the total number of persons n and a number k which
+ * indicates that k-1 persons are skipped and kth person is killed in circle. The task
+ * is to choose the place in the initial circle so that you are the last one remaining
+ * and so survive.
  */
 /**
  * josephus(n, k) = (josephus(n - 1, k) + k-1) % n + 1;
  * josephus(1, k) = 1.
  *
- * After the first person (kth from begining) is killed, n-1 persons are left. So we call josephus(n - 1, k)
- * to get the position with n-1 persons. But the position returned by josephus(n - 1, k) will consider
- * the position starting from k%n + 1. So, we must make adjustments to the position returned by josephus(n - 1, k).
+ * After the first person (kth from begining) is killed, n-1 persons are left. So we call
+ * josephus(n - 1, k) to get the position with n-1 persons. But the position returned by
+ * josephus(n - 1, k) will consider the position starting from k%n + 1. So, we must make
+ * adjustments to the position returned by josephus(n - 1, k).
  */
-unsigned JosephusK_Recursive(const unsigned n, const unsigned k) {
+inline constexpr unsigned JosephusK_Recursive(const unsigned n, const unsigned k) {
     if (n == 1) {
         return 1;
     } else {
@@ -134,7 +138,7 @@ unsigned JosephusK_Recursive(const unsigned n, const unsigned k) {
  * @reference   Josephus Problem | (Iterative Solution)
  *              https://www.geeksforgeeks.org/josephus-problem-iterative-solution/
  */
-auto JosephusK_Iterative(const unsigned n, const unsigned k) {
+constexpr auto JosephusK_Iterative(const unsigned n, const unsigned k) {
     unsigned sword = 0;
     for (unsigned i = 2; i <= n; ++i) {
         sword = (sword + k) % i;
@@ -148,7 +152,7 @@ auto JosephusK_Iterative(const unsigned n, const unsigned k) {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 3.3.
  */
-unsigned JosephusK_Closedform(const unsigned n, const unsigned k) {
+constexpr unsigned JosephusK_Closedform(const unsigned n, const unsigned k) {
     double D = 1.0;
     const double K_MINUS_ONE = static_cast<double>(k - 1);
     const double BOUND = n * K_MINUS_ONE;
@@ -222,7 +226,7 @@ MUTUAL_RANDOM_TEST(JosephusProblem2_Recursive, JosephusProblem2_Closedform,
                    LOWER, UPPER);
 
 
-const unsigned LOWER2 = 2;
+constexpr unsigned LOWER2 = 2;
 
 
 SIMPLE_BENCHMARK(PenultimateSurvivor_Closedform, Sample1, LOWER2);
@@ -241,10 +245,10 @@ SIMPLE_TEST(JosephusProblem3, TestLOWER, 1, LOWER);
 SIMPLE_TEST(JosephusProblem3, TestSample1, 5, 15);
 
 
-const unsigned UPPER_K = HYPOTHETIC_MAX_STACK_DEPTH;
+constexpr unsigned UPPER_K = HYPOTHETIC_MAX_STACK_DEPTH;
 
 
-SIMPLE_BENCHMARK(JosephusK_Recursive, Sample1, 15, 2);
+THE_BENCHMARK(JosephusK_Recursive, 15, 2);
 
 SIMPLE_TEST(JosephusK_Recursive, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Recursive, TestSample1, 15, 15, 2);
@@ -255,7 +259,7 @@ SIMPLE_TEST(JosephusK_Recursive, TestSample4, 3, 5, 2);
 SIMPLE_TEST(JosephusK_Recursive, TestSample5, 2, 7, 4);
 
 
-SIMPLE_BENCHMARK(JosephusK_Closedform, Sample1, 15, 2);
+THE_BENCHMARK(JosephusK_Closedform, 15, 2);
 
 SIMPLE_TEST(JosephusK_Closedform, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Closedform, TestSample1, 15, 15, 2);
@@ -266,7 +270,7 @@ SIMPLE_TEST(JosephusK_Closedform, TestSample4, 3, 5, 2);
 SIMPLE_TEST(JosephusK_Closedform, TestSample5, 2, 7, 4);
 
 
-SIMPLE_BENCHMARK(JosephusK_Iterative, Sample1, 15, 2);
+THE_BENCHMARK(JosephusK_Iterative, 15, 2);
 
 SIMPLE_TEST(JosephusK_Iterative, TestLOWER2, 1, LOWER, 2);
 SIMPLE_TEST(JosephusK_Iterative, TestSample1, 15, 15, 2);
@@ -281,7 +285,7 @@ const ArrayType EXPECTED1 = {2, 4, 6, 8, 10, 3, 7, 1, 9, 5};
 const ArrayType EXPECTED2 = {3, 6, 2, 7, 5, 1, 4};
 
 
-SIMPLE_BENCHMARK(JosephusPermutation, Sample1, 15, 2);
+THE_BENCHMARK(JosephusPermutation, 15, 2);
 
 SIMPLE_TEST(JosephusPermutation, TestSample1, EXPECTED1, 10, 2);
 SIMPLE_TEST(JosephusPermutation, TestSample2, EXPECTED2, 7, 3);

@@ -22,8 +22,8 @@ namespace {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.1.
  */
-auto InsertBits(const unsigned n, const unsigned m,
-                const unsigned i, const unsigned j) {
+inline constexpr auto InsertBits(const unsigned n, const unsigned m,
+                                 const unsigned i, const unsigned j) {
     const auto cleared_n = ClearBitsRange(n, i + 1, j + 1);
     return cleared_n | (m << i);
 }
