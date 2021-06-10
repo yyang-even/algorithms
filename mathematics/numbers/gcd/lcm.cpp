@@ -25,7 +25,7 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Inbuilt function for calculating LCM in C++
  *              https://www.geeksforgeeks.org/inbuilt-function-calculating-lcm-cpp/
  */
-constexpr inline unsigned LCM(const unsigned m, const unsigned n) {
+inline constexpr unsigned LCM(const unsigned m, const unsigned n) {
     return m * n / std::gcd(m, n);
 }
 

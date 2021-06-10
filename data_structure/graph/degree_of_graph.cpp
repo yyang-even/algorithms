@@ -14,7 +14,7 @@ namespace {
  * @reference   Sum of degrees of all nodes of a undirected graph
  *              https://www.geeksforgeeks.org/sum-of-degrees-of-all-nodes-of-a-undirected-graph/
  */
-constexpr inline auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edges) {
+inline constexpr auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edges) {
     return number_edges * 2;
 }
 
@@ -26,7 +26,7 @@ constexpr inline auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edg
  * Given the number of vertices in a Cycle Graph. The task is to find the Degree and the
  * number of Edges of the cycle graph.
  */
-constexpr inline auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
+inline constexpr auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
     return SumOfDegreesOfUndirectedGraph(number_vertices);
 }
 

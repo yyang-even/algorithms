@@ -10,7 +10,7 @@ namespace {
  * To find the sum of first n odd numbers we can apply odd number theorem, it states
  * that the sum of first n odd numbers is equal to the square of n.
  */
-constexpr inline auto SumOfFirstNOddNumbers(const unsigned N) {
+inline constexpr auto SumOfFirstNOddNumbers(const unsigned N) {
     return N * N;
 }
 
@@ -25,11 +25,11 @@ constexpr inline auto SumOfFirstNOddNumbers(const unsigned N) {
  * @reference   Sum of all odd natural numbers in range L and R
  *              https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/
  */
-constexpr inline auto SumOfOddNumbersTillN(const unsigned N) {
+inline constexpr auto SumOfOddNumbersTillN(const unsigned N) {
     return SumOfFirstNOddNumbers((N + 1) / 2);
 }
 
-constexpr inline auto
+inline constexpr auto
 SumOfFirstNOddNumbersInRange(const unsigned L, const unsigned R) {
     assert(L);
     assert(L <= R);

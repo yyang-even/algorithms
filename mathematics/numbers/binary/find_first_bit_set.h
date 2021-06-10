@@ -10,7 +10,7 @@
  * Write a one line C function to return position of first 1 from right to left, in
  * binary representation of an Integer.
  */
-static constexpr inline unsigned FindFirstBitSet(const unsigned num) {
+static inline constexpr unsigned FindFirstBitSet(const unsigned num) {
     assert(num);
 
     return std::log2(ClearAllBitsExceptTheLastSetBit(num)) + 1;

@@ -131,7 +131,7 @@ auto partitionStable(const ArrayType::iterator begin, const ArrayType::iterator 
 
 
 template <typename PartitionFunc>
-constexpr inline void
+inline constexpr void
 QuickSort(const ArrayType::iterator begin, const ArrayType::iterator end,
           const PartitionFunc partition) {
     if (isThereMoreThanOneElements(begin, end)) {

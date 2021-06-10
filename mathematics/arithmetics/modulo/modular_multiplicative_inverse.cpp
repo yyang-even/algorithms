@@ -6,7 +6,7 @@
 
 namespace {
 
-constexpr inline auto
+inline constexpr auto
 ModularMultiplicativeInverse_FermatsLittleTheorem(const int a, const int m) {
     assert(IsPrime_OptimizedSchoolMethod(m));
     const auto exist = (std::gcd(a, m) == 1);

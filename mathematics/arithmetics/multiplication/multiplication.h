@@ -9,7 +9,7 @@
  * @reference   Multiplication of two numbers with shift operator
  *              https://www.geeksforgeeks.org/multiplication-two-numbers-shift-operator/
  */
-static constexpr inline auto
+static inline constexpr auto
 Multiply_RussianPeasant(unsigned lhs, unsigned rhs) {
     if (not rhs) {
         return rhs;

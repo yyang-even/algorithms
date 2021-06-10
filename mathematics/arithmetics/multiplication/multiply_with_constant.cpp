@@ -19,22 +19,22 @@ namespace {
  * 3 bits (you will get 8n) then subtract the original number from the shifted number
  * and return the difference (8n – n).
  */
-constexpr inline auto Multiply7(const unsigned n) {
+inline constexpr auto Multiply7(const unsigned n) {
     return (n << 3) - n;
 }
 
 
-constexpr inline auto Multiply10(const unsigned n) {
+inline constexpr auto Multiply10(const unsigned n) {
     return (n << 1) + (n << 3);
 }
 
 
-constexpr inline auto Multiply12(const unsigned n) {
+inline constexpr auto Multiply12(const unsigned n) {
     return (n << 3) + (n << 2);
 }
 
 
-constexpr inline auto Multiply15(const unsigned n) {
+inline constexpr auto Multiply15(const unsigned n) {
     return (n << 4) - n;
 }
 

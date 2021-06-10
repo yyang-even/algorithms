@@ -13,7 +13,7 @@ namespace {
  * representation of n, considering the last bit at position 1, 2nd last bit at position
  * 2 and so on. If no 0's are there in the binary representation of n. then print "-1".
  */
-constexpr inline int PositionOfRightmostUnsetBit(const unsigned num) {
+inline constexpr int PositionOfRightmostUnsetBit(const unsigned num) {
     if (not num) {
         return 1;
     }

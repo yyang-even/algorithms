@@ -30,7 +30,7 @@ using ListType = std::forward_list<int>;
  * @complexity: O(n^2)
  */
 template <typename ArrayType>
-constexpr inline auto SelectionSort(ArrayType values) {
+inline constexpr auto SelectionSort(ArrayType values) {
     for (auto iter_i = values.begin(); iter_i != values.end(); ++iter_i) {
         auto smallest_iter = iter_i;
         for (auto iter_j = iter_i + 1; iter_j != values.end(); ++iter_j) {

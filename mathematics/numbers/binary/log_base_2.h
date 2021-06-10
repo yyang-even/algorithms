@@ -15,7 +15,7 @@ static constexpr char LogTable256[256] = {
     };
 #undef LT
 
-static constexpr inline unsigned
+static inline constexpr unsigned
 LogBase2_LookupTable(const uint32_t num) {
     unsigned t{}, tt{}; // temporaries
 

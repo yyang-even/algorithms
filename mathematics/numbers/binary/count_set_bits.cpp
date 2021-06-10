@@ -65,7 +65,7 @@ constexpr unsigned CountSetBits_LookupTable(const unsigned n) {
  *              Counting bits set, in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint32_t CountSetBits_MagicBinaries32(uint32_t n) {
+inline constexpr uint32_t CountSetBits_MagicBinaries32(uint32_t n) {
     n = n - ((n >> 1) & 0x55555555);
     n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
     return (((n + (n >> 4)) & 0xF0F0F0F) * 0x1010101) >> 24;
@@ -73,14 +73,14 @@ constexpr inline uint32_t CountSetBits_MagicBinaries32(uint32_t n) {
 
 
 template <typename T>
-constexpr inline T CountSetBitsMagicBinaries(T n) {
+inline constexpr T CountSetBitsMagicBinaries(T n) {
     n = n - ((n >> 1) & (T)~(T)0 / 3);
     n = (n & (T)~(T)0 / 15 * 3) + ((n >> 2) & (T)~(T)0 / 15 * 3);
     n = (n + (n >> 4)) & (T)~(T)0 / 255 * 15;
     return (T)(n * ((T)~(T)0 / 255)) >> (BitsNumber<T> - CHAR_BIT);
 }
 
-constexpr inline unsigned CountSetBits_MagicBinariesUnsigned(const unsigned n) {
+inline constexpr unsigned CountSetBits_MagicBinariesUnsigned(const unsigned n) {
     return CountSetBitsMagicBinaries(n);
 }
 
@@ -91,7 +91,7 @@ constexpr inline unsigned CountSetBits_MagicBinariesUnsigned(const unsigned n) {
  *              Count bits set (rank) from the most-significant bit upto a given position
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
+inline constexpr uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
     // Shift out bits after given position.
     n = n >> (BitsNumber<decltype(n)> - pos);
     // Count set bits in parallel.
@@ -157,7 +157,7 @@ constexpr unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned ran
  *
  * @reference   https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
  */
-constexpr inline auto AreBitAnagram(const unsigned a, const unsigned b) {
+inline constexpr auto AreBitAnagram(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a) == CountSetBits_BrianKernighan(b);
 }
 
@@ -166,7 +166,7 @@ constexpr inline auto AreBitAnagram(const unsigned a, const unsigned b) {
  *
  * @reference   https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
  */
-constexpr inline auto
+inline constexpr auto
 AreNumberAndItsComplementAnagram(const unsigned long long number) {
     return CountSetBits_BrianKernighan(number) == BitsNumber<decltype(number)> / 2;
 }

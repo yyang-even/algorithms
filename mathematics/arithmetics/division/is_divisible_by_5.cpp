@@ -14,12 +14,12 @@ namespace {
  * NOTE: If it is not possible to convert then print -1.
  */
 
-constexpr inline auto isDivisibleBy5_Mod(const int n) {
+inline constexpr auto isDivisibleBy5_Mod(const int n) {
     return n % 5 == 0;
 }
 
 
-constexpr inline auto isDivisibleBy5_LastDigit(const int n) {
+inline constexpr auto isDivisibleBy5_LastDigit(const int n) {
     const auto last_digit = n % 10;
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }
@@ -38,7 +38,7 @@ constexpr inline auto isDivisibleBy5_LastDigit(const int n) {
  * @reference   Check if a number is multiple of 5 without using / and % operators
  *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
  */
-constexpr inline auto isDivisibleBy5_Subtraction(int n) {
+inline constexpr auto isDivisibleBy5_Subtraction(int n) {
     if (n < 0) {
         n = -n;
     }
@@ -72,7 +72,7 @@ inline auto isDivisibleBy5_ToString(const int n) {
  * we have the last digit as 0. Once we do that, our work is to just check if the last
  * digit is 0 or not, which we can do using float and integer comparison trick.
  */
-constexpr inline auto isDivisibleBy5_Float(const int n) {
+inline constexpr auto isDivisibleBy5_Float(const int n) {
     //Make it unsigned to prevent integer overflow error
     unsigned positive_n = n;
     if (n < 0) {
@@ -89,7 +89,7 @@ constexpr inline auto isDivisibleBy5_Float(const int n) {
 }
 
 
-constexpr inline auto isDivisibleBy5_LastDigitStrict(const int n) {
+inline constexpr auto isDivisibleBy5_LastDigitStrict(const int n) {
     const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
 }

@@ -15,7 +15,7 @@ namespace {
  * Given a positive integer n, find count of positive integers i such that 0 <= i <= n
  * and n+i = n^i.
  */
-constexpr inline auto CountEqualSumAndXor(const unsigned n) {
+inline constexpr auto CountEqualSumAndXor(const unsigned n) {
     return 1 << CountUnsetBits(n);
 }
 

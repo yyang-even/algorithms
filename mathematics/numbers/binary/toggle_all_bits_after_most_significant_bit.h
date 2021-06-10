@@ -10,6 +10,6 @@
  * Given a number, toggle all bits of it after most significant bit including most
  * significant bit.
  */
-static constexpr inline auto ToggleAllBitsAfterMSB(const unsigned num) {
+static inline constexpr auto ToggleAllBitsAfterMSB(const unsigned num) {
     return num ^ SetAllBitsAfterMSB(num);
 }

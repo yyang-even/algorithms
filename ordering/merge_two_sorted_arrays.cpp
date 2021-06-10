@@ -34,7 +34,7 @@ inline auto MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R) {
  * numbers (after complete sorting) are in the first array and the remaining numbers are
  * in the second array. Extra space allowed in O(1).
  */
-constexpr inline ArrayType::size_type nextGap(const ArrayType::size_type gap) {
+inline constexpr ArrayType::size_type nextGap(const ArrayType::size_type gap) {
     if (gap <= 1) {
         return 0;
     }

@@ -162,7 +162,7 @@ private:
 };
 
 template <typename Strings>
-static constexpr inline auto BuildTrie(const Strings &keys) {
+static inline constexpr auto BuildTrie(const Strings &keys) {
     Trie dictionary;
 
     for (const auto &one_key : keys) {

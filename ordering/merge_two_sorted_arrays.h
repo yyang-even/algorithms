@@ -2,7 +2,7 @@
 
 
 template<typename InputIter, typename OutputIter, typename Compare>
-static constexpr inline void
+static inline constexpr void
 MergeTwoSortedArrays(InputIter L_citer, const InputIter L_cend,
                      InputIter R_citer, const InputIter R_cend,
                      OutputIter output_iter, const Compare compare) {
@@ -20,7 +20,7 @@ MergeTwoSortedArrays(InputIter L_citer, const InputIter L_cend,
 }
 
 template<typename ArrayType>
-static constexpr inline void
+static inline constexpr void
 MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R,
                      typename ArrayType::iterator output_iter) {
     MergeTwoSortedArrays(L.cbegin(), L.cend(), R.cbegin(), R.cend(), output_iter,
@@ -28,7 +28,7 @@ MergeTwoSortedArrays(const ArrayType &L, const ArrayType &R,
 }
 
 template<typename ArrayType>
-static constexpr inline void
+static inline constexpr void
 MergeTwoSortedArrays_Reverse(const ArrayType &L, const ArrayType &R,
                              typename ArrayType::iterator output_iter) {
     MergeTwoSortedArrays(L.crbegin(), L.crend(), R.crbegin(), R.crend(), output_iter,

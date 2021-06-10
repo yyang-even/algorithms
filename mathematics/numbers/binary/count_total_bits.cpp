@@ -9,7 +9,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/number-of-leading-zeros-in-binary-representation-of-a-given-number/
  */
-constexpr inline auto CountLeadingZeros_Loop(const unsigned num) {
+inline constexpr auto CountLeadingZeros_Loop(const unsigned num) {
     return BitsNumber<decltype(num)> - CountTotalBits_Loop(num);
 }
 

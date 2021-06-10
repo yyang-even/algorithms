@@ -72,7 +72,7 @@ auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
  * @reference   Block swap algorithm for array rotation
  *              https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
  */
-constexpr inline void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2,
+inline constexpr void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2,
                                 ArrayType::size_type n) {
     while (n--) {
         std::iter_swap(begin1++, begin2++);

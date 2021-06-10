@@ -19,7 +19,7 @@ namespace {
  *
  * Swap two values without using a temporary variable.
  */
-constexpr inline void Swap_SubAdd(unsigned &a, unsigned &b) {
+inline constexpr void Swap_SubAdd(unsigned &a, unsigned &b) {
     if (a != b) {
         a -= b;
         b += a;
@@ -29,7 +29,7 @@ constexpr inline void Swap_SubAdd(unsigned &a, unsigned &b) {
 
 
 template <typename SwapFunc>
-constexpr inline auto TestSwap(const SwapFunc swap,
+inline constexpr auto TestSwap(const SwapFunc swap,
                                const unsigned a, const unsigned b) {
     unsigned swapped_a = b;
     unsigned swapped_b = a;

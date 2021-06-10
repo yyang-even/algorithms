@@ -28,7 +28,7 @@ constexpr unsigned CountDigitsInAFactorial(const unsigned n) {
  * @reference   Count digits in a factorial | Set 2
  *              https://www.geeksforgeeks.org/count-digits-factorial-set-2/
  */
-constexpr inline unsigned long long
+inline constexpr unsigned long long
 CountDigitsInAFactorial_Kamenetsky(const unsigned n) {
     if (n <= 1) {
         return 1;

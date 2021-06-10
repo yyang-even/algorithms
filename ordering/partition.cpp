@@ -81,7 +81,7 @@ inline auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
  * An array contains both positive and negative numbers in random order. Rearrange the
  * array elements so that all negative numbers appear before all positive numbers.
  */
-constexpr inline auto isNegative(const ArrayType::value_type v) {
+inline constexpr auto isNegative(const ArrayType::value_type v) {
     return v < 0;
 }
 
@@ -107,7 +107,7 @@ auto RearrangePositiveAndNegativeNumbers_Insertion(ArrayType input) {
 }
 
 
-constexpr inline auto isPositive(const ArrayType::value_type v) {
+inline constexpr auto isPositive(const ArrayType::value_type v) {
     return v > 0;
 }
 

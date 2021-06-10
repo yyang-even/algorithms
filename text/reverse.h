@@ -2,7 +2,7 @@
 
 
 template <typename Iterator, typename SwapFunc>
-static constexpr inline void
+static inline constexpr void
 Reverse_TwoPointers(const Iterator begin, const Iterator end, const SwapFunc swap) {
     if (begin != end) {
         auto l_iter = begin;

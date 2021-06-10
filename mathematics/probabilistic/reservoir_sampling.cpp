@@ -16,7 +16,7 @@ using ArrayType = std::array<int, N>;
  * previously seen numbers.
  */
 template <typename Container>
-constexpr inline auto RandomNumberFromStream(const Container &stream) {
+inline constexpr auto RandomNumberFromStream(const Container &stream) {
     return ReservoirSampling(stream, 1).back();
 }
 

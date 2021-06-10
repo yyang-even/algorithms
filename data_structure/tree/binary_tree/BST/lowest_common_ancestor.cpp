@@ -110,7 +110,7 @@ auto LowestCommonAncestor_SingleTraversal(const BinaryTree::Node::PointerType no
 
 
 template <typename LCA>
-constexpr inline auto
+inline constexpr auto
 TestLowestCommonAncestor(const LCA lowest_common_ancestor,
                          const BinaryTree::Node::PointerType root,
                          const BinaryTree::Node::ValueType x,

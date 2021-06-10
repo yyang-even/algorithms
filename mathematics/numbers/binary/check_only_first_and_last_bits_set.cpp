@@ -14,7 +14,7 @@ namespace {
  * Given a positive integer n. The problem is to check whether only the first and last
  * bits are set in the binary representation of n.
  */
-constexpr inline auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
+inline constexpr auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
     if (n == 1) {
         return true;
     } else if (n == 2) {

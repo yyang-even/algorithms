@@ -16,7 +16,7 @@ namespace {
 /**
  * t(n) = n^(n-2)
  */
-constexpr inline unsigned long long CompleteGraphOnN(const unsigned n) {
+inline constexpr unsigned long long CompleteGraphOnN(const unsigned n) {
     return std::pow(n, n - 2);
 }
 

@@ -14,13 +14,13 @@ using ArrayType = std::vector<unsigned>;
  *              https://stackoverflow.com/questions/8767166/passing-a-2d-array-to-a-c-function
  */
 template <typename T, std::size_t row_size>
-constexpr inline void
+inline constexpr void
 DimensionsOfMultidimensionalArray(const T(&)[row_size], ArrayType &outputs) {
     outputs.push_back(row_size);
 }
 
 template <typename T, std::size_t row_size, std::size_t column_size>
-constexpr inline void
+inline constexpr void
 DimensionsOfMultidimensionalArray(const T(&elements)[row_size][column_size],
                                   ArrayType &outputs) {
     outputs.push_back(row_size);
@@ -29,14 +29,14 @@ DimensionsOfMultidimensionalArray(const T(&elements)[row_size][column_size],
 
 
 template <typename T>
-constexpr inline
+inline constexpr
 std::enable_if_t<std::rank<T>::value == 1>
 DimensionsOfMultidimensionalArray_EnableIf(const T &, ArrayType &outputs) {
     outputs.push_back(std::extent<T>::value);
 }
 
 template <typename T>
-constexpr inline
+inline constexpr
 std::enable_if_t < std::rank<T>::value != 1 >
 DimensionsOfMultidimensionalArray_EnableIf(const T &elements, ArrayType &outputs) {
     outputs.push_back(std::extent<T>::value);

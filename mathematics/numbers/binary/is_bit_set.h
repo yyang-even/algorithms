@@ -16,7 +16,7 @@
  *
  * A number N is given. We need to print its 'K'th Least Significant Bit.
  */
-static constexpr inline bool
+static inline constexpr bool
 IsBitSet(const unsigned num, const unsigned position) {
     return num & (1 << position);
 }

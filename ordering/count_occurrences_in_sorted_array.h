@@ -2,7 +2,7 @@
 
 
 template<typename Compare>
-static constexpr inline auto
+static inline constexpr auto
 CountAllOccurrencesInSortedArray_STL(const std::vector<int> &values,
                                      const Compare compare) {
     assert(not values.empty());

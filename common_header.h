@@ -51,7 +51,7 @@ static inline auto Random_Number(const FromType from, const ToType to) {
 
 template <typename Iterator>
 [[nodiscard]]
-static constexpr inline bool
+static inline constexpr bool
 isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
 }
@@ -59,7 +59,7 @@ isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
 
 template <typename ToContainer, typename FromContainer>
 [[nodiscard]]
-static constexpr inline auto
+static inline constexpr auto
 ContainerCast(FromContainer a_container) {
     return ToContainer(std::make_move_iterator(a_container.begin()),
                        std::make_move_iterator(a_container.end()));

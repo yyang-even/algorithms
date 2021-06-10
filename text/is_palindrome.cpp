@@ -143,13 +143,13 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
  * @reference   To check a number is palindrome or not without using any extra space
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
  */
-constexpr inline auto
+inline constexpr auto
 isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
     const unsigned reversed_number = ReverseDigits(number, base);
     return reversed_number == number;
 }
 
-constexpr inline auto isIntPalindrome_Reverse(const unsigned number) {
+inline constexpr auto isIntPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 10);
 }
 
@@ -168,7 +168,7 @@ constexpr auto isNumberPalindrome_Recursive(const unsigned number, const unsigne
     return (number % base) == (copy % base);
 }
 
-constexpr inline auto isIntPalindrome_Recursive(const unsigned number) {
+inline constexpr auto isIntPalindrome_Recursive(const unsigned number) {
     auto copy = number;
     return isNumberPalindrome_Recursive(number, 10, copy);
 }
@@ -178,7 +178,7 @@ constexpr inline auto isIntPalindrome_Recursive(const unsigned number) {
  * @reference   Check if a number with even number of digits is palindrome or not
  *              https://www.geeksforgeeks.org/check-if-a-number-with-even-number-of-digits-is-palindrome-or-not/
  */
-constexpr inline auto isEvenDigitsIntPalindrome(const unsigned number) {
+inline constexpr auto isEvenDigitsIntPalindrome(const unsigned number) {
     assert(CountDigits_Iterative(number) % 2 == 0);
     return number % 11 == 0;
 }
@@ -188,12 +188,12 @@ constexpr inline auto isEvenDigitsIntPalindrome(const unsigned number) {
  * @reference   Check if number is palindrome or not in Octal
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-octal/
  */
-constexpr inline auto isOctalPalindrome_Reverse(const unsigned number) {
+inline constexpr auto isOctalPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 8);
 }
 
 
-constexpr inline auto isOctalPalindrome_Recursive(const unsigned number) {
+inline constexpr auto isOctalPalindrome_Recursive(const unsigned number) {
     auto copy = number;
     return isNumberPalindrome_Recursive(number, 8, copy);
 }
@@ -207,7 +207,7 @@ constexpr inline auto isOctalPalindrome_Recursive(const unsigned number) {
  * is palindrome or not. Note that the actual binary representation of the number is being
  * considered for palindrome checking, no leading 0’s are being considered.
  */
-constexpr inline auto isActualBinaryPalindrome_Reverse(const unsigned number) {
+inline constexpr auto isActualBinaryPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 2);
 }
 

@@ -13,7 +13,7 @@ namespace {
  * Given an integer n, find whether it is a power of d or not, where d is itself a power
  * of 2.
  */
-constexpr inline auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
+inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
     return IsPowerOf2(n) and
            (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
 }
@@ -25,7 +25,7 @@ constexpr inline auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  *
  * Given an integer n, find whether it is a power of 4 or not.
  */
-constexpr inline auto IsPowerOf4(const unsigned num) {
+inline constexpr auto IsPowerOf4(const unsigned num) {
     return IsPowerOfPowerOf2(num, 4);
 }
 
@@ -36,12 +36,12 @@ constexpr inline auto IsPowerOf4(const unsigned num) {
  *
  * Given a number check whether it is power of 8 or not.
  */
-constexpr inline auto IsPowerOf8(const unsigned num) {
+inline constexpr auto IsPowerOf8(const unsigned num) {
     return IsPowerOfPowerOf2(num, 8);
 }
 
 
-constexpr inline auto IsPowerOf8_Const(const unsigned num) {
+inline constexpr auto IsPowerOf8_Const(const unsigned num) {
     return IsPowerOf2(num) and not(num & 0xB6DB6DB6);
 }
 

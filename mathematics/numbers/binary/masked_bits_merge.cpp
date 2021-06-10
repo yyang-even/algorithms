@@ -11,7 +11,7 @@ namespace {
  *
  * @param mask  1 where bits from b should be selected; 0 where from a.
  */
-constexpr inline unsigned
+inline constexpr unsigned
 MaskedBitsMerge(const unsigned a, const unsigned b, const unsigned mask) {
     return a ^ ((a ^ b) & mask);
 }

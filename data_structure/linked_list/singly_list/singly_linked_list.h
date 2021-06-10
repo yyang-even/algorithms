@@ -4,7 +4,7 @@
 
 
 template<typename Pointer>
-static constexpr inline auto CopyToArray(const Pointer head) {
+static inline constexpr auto CopyToArray(const Pointer head) {
     std::vector<typename Pointer::element_type::ValueType> array;
 
     for (auto iter = head; iter; iter = iter->next) {

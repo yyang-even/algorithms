@@ -10,7 +10,7 @@ class LargeInteger {
     //Number are stored in reverse digit order
     NumData m_nums;
 
-    static constexpr inline NumData::size_type BLOCK_SIZE = 8;
+    static inline constexpr NumData::size_type BLOCK_SIZE = 8;
 
     friend std::ostream &operator<<(std::ostream &os, const LargeInteger &num);
 
@@ -161,7 +161,7 @@ public:
 
 private:
 
-    static constexpr inline void
+    static inline constexpr void
     addDigits(unsigned char &add_to, const unsigned char addend,
               unsigned char &carry) {
         add_to += (addend + carry);

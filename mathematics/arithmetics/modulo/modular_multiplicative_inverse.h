@@ -15,7 +15,7 @@
  *  m. The multiplicative inverse of "a modulo m" exists if and only if a and m are
  *  relatively prime (i.e., if gcd(a, m) = 1).
  */
-static constexpr inline auto
+static inline constexpr auto
 ModularMultiplicativeInverse(const int a, const int m) {
     const auto results = gcd_Extended(a, m);
     return (std::get<0>(results) == 1) ? ((std::get<1>(results) % m + m) % m) : 0;

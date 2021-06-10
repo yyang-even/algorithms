@@ -44,7 +44,7 @@
  * gcd(0,n) = n;
  * gcd(m,n) = gcd(n mod m, m),  for n > m > 0.
  */
-static constexpr inline unsigned
+static inline constexpr unsigned
 gcd(unsigned m, unsigned n) {
     if (m > n) {
         std::swap(m, n);
@@ -57,7 +57,7 @@ gcd(unsigned m, unsigned n) {
 }
 
 
-static constexpr inline int
+static inline constexpr int
 gcd_Extended(const int a, const int b, int *x, int *y) {
     if (a == 0) {
         *x = 0;
@@ -74,7 +74,7 @@ gcd_Extended(const int a, const int b, int *x, int *y) {
     return gcd;
 }
 
-static constexpr inline auto
+static inline constexpr auto
 gcd_Extended(const int a, const int b) {
     int x = 0, y = 0;
     const auto gcd = gcd_Extended(a, b, &x, &y);

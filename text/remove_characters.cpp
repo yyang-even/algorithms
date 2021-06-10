@@ -39,7 +39,7 @@ inline auto RemoveSpaces_StringStream(std::string input) {
 
 
 template <typename UnaryPredicate>
-constexpr inline auto
+inline constexpr auto
 RemoveCharacters_Partition(std::string input, const UnaryPredicate p) {
     const auto end = std::stable_partition(input.begin(), input.end(), p);
     input.resize(std::distance(input.begin(), end));

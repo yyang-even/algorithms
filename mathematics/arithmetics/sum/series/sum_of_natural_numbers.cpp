@@ -13,7 +13,7 @@ namespace {
  *
  * Given a number n, find sum of first natural numbers.
  */
-constexpr inline auto SumOfNaturals(const unsigned N) {
+inline constexpr auto SumOfNaturals(const unsigned N) {
     return N * (N + 1) / 2;
 }
 
@@ -22,7 +22,7 @@ constexpr inline auto SumOfNaturals(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
  */
-constexpr inline auto AverageOfNaturalNumbers(const unsigned N) {
+inline constexpr auto AverageOfNaturalNumbers(const unsigned N) {
     return static_cast<double>(N + 1) / 2.0;
 }
 
@@ -34,7 +34,7 @@ constexpr inline auto AverageOfNaturalNumbers(const unsigned N) {
  * Given a positive integer n. The task is to find the sum of the sum of first n natural
  * number.
  */
-constexpr inline auto SumOfSumOfNaturals(const unsigned N) {
+inline constexpr auto SumOfSumOfNaturals(const unsigned N) {
     return N * (N + 1) * (N + 2) / 6;
 }
 
@@ -43,7 +43,7 @@ constexpr inline auto SumOfSumOfNaturals(const unsigned N) {
  * @reference   Sum of all natural numbers in range L to R
  *              https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
  */
-constexpr inline auto
+inline constexpr auto
 SumOfNaturalsInRange(const unsigned L, const unsigned R) {
     assert(L);
     assert(L <= R);

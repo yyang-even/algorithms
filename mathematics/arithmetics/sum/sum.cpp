@@ -16,7 +16,7 @@ namespace {
  * Write a C program to find sum of positive integers without using any operator. Only
  * use of printf() is allowed. No other library function can be used.
  */
-constexpr inline auto Sum_Printf(const unsigned a, const unsigned b) {
+inline constexpr auto Sum_Printf(const unsigned a, const unsigned b) {
     return printf("%*c%*c", a, ' ', b, ' ');
 }
 
@@ -40,7 +40,7 @@ constexpr auto Sum_HalfAdder_Iterative(int a, int b) {
     return a;
 }
 
-constexpr inline auto
+inline constexpr auto
 Sum_HalfAdder_Recursive(const int a, const int b) {
     if (b == 0) {
         return a;
@@ -57,7 +57,7 @@ Sum_HalfAdder_Recursive(const int a, const int b) {
  * Given two integers a and b, how can we evaluate the sum a + b without using operators
  * such as +, -, ++, --, ...?
  */
-constexpr inline auto Sum_Pointer(const int a, const int b) {
+inline constexpr auto Sum_Pointer(const int a, const int b) {
     const char *p = reinterpret_cast<char *>(a);
     return reinterpret_cast<long>(&p[b]);
 }
@@ -87,12 +87,12 @@ constexpr auto Sum_Loop(int a, int b) {
  *
  * ~x = -(x+1)
  */
-constexpr inline auto Add1_HalfAdder(const int x) {
+inline constexpr auto Add1_HalfAdder(const int x) {
     return Sum_HalfAdder_Iterative(x, 1);
 }
 
 
-constexpr inline auto Add1_2sComplement(const int x) {
+inline constexpr auto Add1_2sComplement(const int x) {
     return -(~x);
 }
 

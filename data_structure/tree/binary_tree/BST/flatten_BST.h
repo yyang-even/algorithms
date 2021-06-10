@@ -26,7 +26,7 @@ static inline void FlattenBSTtoSortedList_Increasing(
 
 
 template <typename Flatten_BST_Func>
-static constexpr inline auto
+static inline constexpr auto
 FlattenBSTtoSortedList(const BinaryTree::Node::PointerType root,
                        const Flatten_BST_Func flatten_bst) {
     const auto dummy_node = std::make_shared<BinaryTree::Node>(-1);

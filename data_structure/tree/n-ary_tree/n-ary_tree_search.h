@@ -4,7 +4,7 @@
 
 
 template <typename PointerType>
-static constexpr inline auto
+static inline constexpr auto
 Search(const PointerType root, const decltype(root->value) x) {
     PointerType target;
     LevelOrderTraversal_Iterative_Helper(root,

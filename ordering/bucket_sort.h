@@ -2,7 +2,7 @@
 
 
 template <typename ArrayType, typename SortFunc>
-static constexpr inline auto
+static inline constexpr auto
 BucketSort_STL(ArrayType elements,
                const std::function<std::size_t(const typename ArrayType::value_type &)> to_index,
                const SortFunc sort_func) {

@@ -11,7 +11,7 @@ namespace {
  * @reference   C program to Count the digits of a number
  *              https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
  */
-constexpr inline auto CountDigits_Recursive(const int n) {
+inline constexpr auto CountDigits_Recursive(const int n) {
     if (not n) {
         return 0;
     }
@@ -19,7 +19,7 @@ constexpr inline auto CountDigits_Recursive(const int n) {
 }
 
 
-constexpr inline int CountDigits_Log(const int n) {
+inline constexpr int CountDigits_Log(const int n) {
     if (not n) {
         return 0;
     }

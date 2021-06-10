@@ -83,7 +83,7 @@ constexpr auto PerfectSquareRoot_Babylonian(const unsigned N) {
  * @reference   Square root of a number using log
  *              https://www.geeksforgeeks.org/square-root-number-using-log/
  */
-constexpr inline auto
+inline constexpr auto
 SquareRoot_Log(const double N) {
     return std::pow(2.0, 0.5 * std::log2(N));
 }

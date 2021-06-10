@@ -2,7 +2,7 @@
 
 
 template <typename ArrayType>
-static constexpr inline auto
+static inline constexpr auto
 AllSubarraysWithGivenSum(const ArrayType &integers,
                          const typename ArrayType::value_type SUM) {
     std::unordered_multimap<typename ArrayType::value_type,

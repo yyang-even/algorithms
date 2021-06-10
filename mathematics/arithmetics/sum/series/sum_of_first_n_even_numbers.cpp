@@ -7,7 +7,7 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/sum-first-n-even-numbers/
  */
-constexpr inline auto SumOfFirstNEvenNumbers(const unsigned N) {
+inline constexpr auto SumOfFirstNEvenNumbers(const unsigned N) {
     return N * (N + 1);
 }
 

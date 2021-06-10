@@ -5,7 +5,7 @@
  *
  * @reference   https://www.geeksforgeeks.org/toggle-bits-significant-bit/
  */
-static constexpr inline auto SetAllBitsAfterMSB(uint32_t num) {
+static inline constexpr auto SetAllBitsAfterMSB(uint32_t num) {
     num |= num >> 1;
     num |= num >> 2;
     num |= num >> 4;

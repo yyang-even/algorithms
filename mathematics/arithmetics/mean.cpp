@@ -29,7 +29,7 @@ inline auto Mean(const ArrayType &values) {
  * @reference   Compute average of two numbers without overflow
  *              https://www.geeksforgeeks.org/compute-average-two-numbers-without-overflow/
  */
-constexpr inline auto Average_NoOverflow(const int a, const int b) {
+inline constexpr auto Average_NoOverflow(const int a, const int b) {
     return (a / 2) + (b / 2) + ((a % 2 + b % 2) / 2);
 }
 
@@ -40,7 +40,7 @@ constexpr inline auto Average_NoOverflow(const int a, const int b) {
  * @reference   Fast average of two numbers without division
  *              https://www.geeksforgeeks.org/fast-average-two-numbers-without-division/
  */
-constexpr inline auto Average_Bit(const int a, const int b) {
+inline constexpr auto Average_Bit(const int a, const int b) {
     return (a & b) + ((a ^ b) >> 1);
 }
 

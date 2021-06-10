@@ -55,25 +55,25 @@ inline auto MaxElement_Bit(ArrayType values) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.4.
  */
-constexpr inline int Min_Xor(const int x, const int y) {
+inline constexpr int Min_Xor(const int x, const int y) {
     return y ^ ((x ^ y) & -(x < y));
 }
 
 
-constexpr inline int Max_Xor(const int x, const int y) {
+inline constexpr int Max_Xor(const int x, const int y) {
     return x ^ ((x ^ y) & -(x < y));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-constexpr inline int Min_QuickDirty(const int x, const int y) {
+inline constexpr int Min_QuickDirty(const int x, const int y) {
     const auto diff = x - y;
     return y + ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }
 
 
 //If and only if INT_MIN <= x - y <= INT_MAX
-constexpr inline int Max_QuickDirty(const int x, const int y) {
+inline constexpr int Max_QuickDirty(const int x, const int y) {
     const auto diff = x - y;
     return x - ((diff) & ((diff) >> (BitsNumber<decltype(diff)> - 1)));
 }

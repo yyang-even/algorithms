@@ -18,7 +18,7 @@ namespace {
  * Factorial of a non-negative integer, is multiplication of all integers smaller than or
  * equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
  */
-constexpr inline unsigned long Factorial_Recursive(const int num) {
+inline constexpr unsigned long Factorial_Recursive(const int num) {
     if (num > 1) {
         return Factorial_Recursive(num - 1) * num;
     }
@@ -26,7 +26,7 @@ constexpr inline unsigned long Factorial_Recursive(const int num) {
 }
 
 
-constexpr inline unsigned long Factorial_OneLine(const unsigned n) {
+inline constexpr unsigned long Factorial_OneLine(const unsigned n) {
     return (n == 1 or n == 0) ? 1 : n * Factorial_OneLine(n - 1);
 }
 
@@ -35,7 +35,7 @@ constexpr inline unsigned long Factorial_OneLine(const unsigned n) {
  * @reference   Tail Recursion
  *              https://www.geeksforgeeks.org/tail-recursion/
  */
-constexpr inline unsigned long
+inline constexpr unsigned long
 Factorial_TailRecursive(const int num, unsigned long factorial) {
     if (num < 2) {
         return factorial;
@@ -44,7 +44,7 @@ Factorial_TailRecursive(const int num, unsigned long factorial) {
     return Factorial_TailRecursive(num - 1, num * factorial);
 }
 
-constexpr inline unsigned long Factorial_TailRecursive(const int num) {
+inline constexpr unsigned long Factorial_TailRecursive(const int num) {
     return Factorial_TailRecursive(num, 1);
 }
 
@@ -52,7 +52,7 @@ constexpr inline unsigned long Factorial_TailRecursive(const int num) {
 /**
  * @reference   Agner Fog. Optimizing software in C++. Section 14.1.
  */
-constexpr inline auto Factorial_LookupTable(const unsigned n) {
+inline constexpr auto Factorial_LookupTable(const unsigned n) {
     constexpr unsigned FACTORIAL_TABLE[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
     assert(n < (sizeof(FACTORIAL_TABLE) / sizeof(*FACTORIAL_TABLE)));
     return FACTORIAL_TABLE[n];

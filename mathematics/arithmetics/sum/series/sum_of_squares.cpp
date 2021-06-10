@@ -15,12 +15,12 @@ namespace {
  *
  * Given n, find sum of squares of first n natural numbers.
  */
-constexpr inline auto SumOfSquares(const unsigned N) {
+inline constexpr auto SumOfSquares(const unsigned N) {
     return (N * (N + 1) * (2 * N + 1)) / 6;
 }
 
 
-constexpr inline auto SumOfSquares_2(const unsigned N) {
+inline constexpr auto SumOfSquares_2(const unsigned N) {
     return ((N * (N + 1) / 2) * (2 * N + 1)) / 3;
 }
 
@@ -29,7 +29,7 @@ constexpr inline auto SumOfSquares_2(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/average-squares-natural-numbers/
  */
-constexpr inline auto
+inline constexpr auto
 AverageOfSquaresOfNaturalNumbers(const unsigned N) {
     return static_cast<double>((N + 1) * (2 * N + 1)) / 6.0;
 }
@@ -42,7 +42,7 @@ AverageOfSquaresOfNaturalNumbers(const unsigned N) {
  * Given a positive integer n. The task is to find the sum of the sum of square of first
  * n natural number.
  */
-constexpr inline auto
+inline constexpr auto
 SumOfSquareSums(const unsigned N) {
     return (N * (N + 1) * (N + 1) * (N + 2)) / 12;
 }

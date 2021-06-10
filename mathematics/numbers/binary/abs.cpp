@@ -11,13 +11,13 @@ namespace {
  * @reference   Compute the integer absolute value (abs) without branching
  *              https://www.geeksforgeeks.org/compute-the-integer-absolute-value-abs-without-branching/
  */
-constexpr inline unsigned Absolute(const int num) {
+inline constexpr unsigned Absolute(const int num) {
     const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num + mask) ^ mask;
 }
 
 
-constexpr inline unsigned Abs_Patented(const int num) {
+inline constexpr unsigned Abs_Patented(const int num) {
     const auto mask = num >> (BitsNumber<decltype(num)> - 1);
     return (num ^ mask) - mask;
 }

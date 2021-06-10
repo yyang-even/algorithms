@@ -2,7 +2,7 @@
 
 
 template <typename NodeType>
-static constexpr inline void
+static inline constexpr void
 CopyBinaryTree(const BinaryTree::Node::PointerType source_node, NodeType &new_node) {
     assert(source_node);
 
@@ -18,7 +18,7 @@ CopyBinaryTree(const BinaryTree::Node::PointerType source_node, NodeType &new_no
 }
 
 template <typename NodeType>
-static constexpr inline auto
+static inline constexpr auto
 CopyBinaryTree(const BinaryTree::Node::PointerType source_root) {
     assert(source_root);
 

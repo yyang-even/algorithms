@@ -37,7 +37,7 @@
  *  or crossed out, the circled numbers are the primes.
  */
 template <typename Function>
-static constexpr inline auto
+static inline constexpr auto
 SieveOfEratosthenes_VectorBool(const unsigned long N,
                                const Function for_each_prime_function) {
     assert(N > 2);

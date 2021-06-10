@@ -12,13 +12,13 @@ namespace {
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 4.4.
  */
-constexpr inline unsigned LargestPowerOf2DividesFactorialN(const unsigned n) {
+inline constexpr unsigned LargestPowerOf2DividesFactorialN(const unsigned n) {
     return n - CountSetBits_BrianKernighan(n);
 }
 
 
 #ifdef __GNUC__
-constexpr inline unsigned LargestPowerOf2DividesFactorialN_BuiltIn(const unsigned n) {
+inline constexpr unsigned LargestPowerOf2DividesFactorialN_BuiltIn(const unsigned n) {
     return n - __builtin_popcount(n);
 }
 #endif

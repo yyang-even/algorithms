@@ -18,7 +18,7 @@ namespace {
  *              y = 1 1 1 0
  *         result = 10111001
  */
-constexpr inline auto MortonNumber(const uint16_t x, const uint16_t y) {
+inline constexpr auto MortonNumber(const uint16_t x, const uint16_t y) {
     uint32_t result = 0;
     for (unsigned short i = 0; i < BitsNumber<decltype(x)>; ++i) {
         result |= ((x & 1 << i) << i) | ((y & 1 << i) << (i + 1));
@@ -33,7 +33,7 @@ constexpr inline auto MortonNumber(const uint16_t x, const uint16_t y) {
  *              Interleave bits by table lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint32_t
+inline constexpr uint32_t
 MortonNumber_Lookup(const uint16_t x, const uint16_t y) {
     constexpr unsigned short MortonTable256[256] = {
         0x0000, 0x0001, 0x0004, 0x0005, 0x0010, 0x0011, 0x0014, 0x0015,
@@ -83,7 +83,7 @@ MortonNumber_Lookup(const uint16_t x, const uint16_t y) {
  *              Interleave bits with 64-bit multiply
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint16_t
+inline constexpr uint16_t
 MortonNumber_Multiply(const unsigned char x, const unsigned char y) {
     return (((x * 0x0101010101010101ULL & 0x8040201008040201ULL) *
              0x0102040810204081ULL >> 49) & 0x5555) |
@@ -98,7 +98,7 @@ MortonNumber_Multiply(const unsigned char x, const unsigned char y) {
  *              Interleave bits by Binary Magic Numbers
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint32_t
+inline constexpr uint32_t
 MortonNumber_MagicNumber(const uint16_t input_x, const uint16_t input_y) {
     constexpr uint32_t B[] = {0x55555555, 0x33333333, 0x0F0F0F0F, 0x00FF00FF};
     constexpr uint32_t S[] = {1, 2, 4, 8};

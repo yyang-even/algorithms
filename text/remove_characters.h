@@ -2,7 +2,7 @@
 
 
 template <typename UnaryPredicate>
-static constexpr inline auto
+static inline constexpr auto
 RemoveCharacters_TwoPointers(std::string input, const UnaryPredicate p) {
     auto output_iter = input.begin();
     for (auto input_iter = input.begin(); input_iter != input.end(); ++input_iter) {

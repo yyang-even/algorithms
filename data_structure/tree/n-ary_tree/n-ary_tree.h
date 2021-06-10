@@ -12,7 +12,7 @@
  *  6   7        8  9 10 11
  */
 template <typename Node>
-static constexpr inline auto MakeTheSampleTree() {
+static inline constexpr auto MakeTheSampleTree() {
     const auto root = std::make_shared<Node>(1);
     auto &node2 = *AddChild(*root, 2);
     AddChild(*root, 3);

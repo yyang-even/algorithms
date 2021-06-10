@@ -20,7 +20,7 @@ constexpr int Subtract1(unsigned num) {
 }
 
 
-constexpr inline int Subtract1_Plus(const unsigned num) {
+inline constexpr int Subtract1_Plus(const unsigned num) {
     return ((num << 1) + (~num));
 }
 

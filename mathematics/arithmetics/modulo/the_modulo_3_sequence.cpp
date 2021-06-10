@@ -11,7 +11,7 @@ namespace {
  * the sequence is the sum of the previous 2 modulo 3. Write a function that finds the
  * nth number of the sequence.
  */
-constexpr inline auto Modulo3Sequence(const int n) {
+inline constexpr auto Modulo3Sequence(const int n) {
     constexpr int pattern[] = {1, 0, 1, 1, 2, 0, 2, 1};
     return pattern[n % sizeof(pattern)];
 }

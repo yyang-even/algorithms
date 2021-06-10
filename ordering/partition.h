@@ -2,7 +2,7 @@
 
 
 template <typename Iterator, typename Predicate>
-static constexpr inline auto
+static inline constexpr auto
 Partition(Iterator begin, const Iterator end, const Predicate predicate) {
     auto j = begin;
     for (; begin != end; ++begin) {

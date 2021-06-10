@@ -18,7 +18,7 @@ static inline auto CreateHexDigitToDecimalMap() {
 }
 
 
-static constexpr inline auto OctalDigitToDecimal(const char digit) {
+static inline constexpr auto OctalDigitToDecimal(const char digit) {
     return digit - '0';
 }
 

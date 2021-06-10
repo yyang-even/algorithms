@@ -80,7 +80,7 @@ constexpr auto CountTrailingZeros_BinarySearch(uint32_t num) {
  *              Count the consecutive zero bits (trailing) on the right by casting to a float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned CountTrailingZeros_Float(const uint32_t num) {
+inline constexpr unsigned CountTrailingZeros_Float(const uint32_t num) {
     if (num) {
         FloatUnsignedUnion float_unsigned_union{};
         float_unsigned_union.f = static_cast<float>(num & -num);
@@ -99,7 +99,7 @@ constexpr inline unsigned CountTrailingZeros_Float(const uint32_t num) {
  * @reference   Count trailing zero bits using lookup table
  *              https://www.geeksforgeeks.org/count-trailing-zero-bits-using-lookup-table/
  */
-constexpr inline auto CountTrailingZeros_ModulusAndLookup(const uint32_t num) {
+inline constexpr auto CountTrailingZeros_ModulusAndLookup(const uint32_t num) {
     constexpr unsigned Mod37BitPosition[] = {
         // map a bit value mod 37 to its position
         32, 0, 1, 26, 2, 23, 27, 0, 3, 16, 24, 30, 28, 11, 0, 13, 4,
@@ -116,7 +116,7 @@ constexpr inline auto CountTrailingZeros_ModulusAndLookup(const uint32_t num) {
  *              Count the consecutive zero bits (trailing) on the right with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline auto CountTrailingZeros_MultiplyAndLookup(const uint32_t num) {
+inline constexpr auto CountTrailingZeros_MultiplyAndLookup(const uint32_t num) {
     constexpr unsigned MultiplyDeBruijnBitPosition[32] = {
         0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8,
         31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
@@ -157,7 +157,7 @@ constexpr auto CountTrailingZeros_Bitset(const unsigned num) {
  *
  * @reference   https://www.geeksforgeeks.org/count-number-of-bits-changed-after-adding-1-to-given-n/
  */
-constexpr inline auto CountChangedBitsAfterAdd1(const unsigned N) {
+inline constexpr auto CountChangedBitsAfterAdd1(const unsigned N) {
     return CountSetBits_BrianKernighan(N ^ (N + 1));
 }
 

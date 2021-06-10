@@ -10,7 +10,7 @@ namespace {
  * Given two numbers 'a' and 'b'. Find the minimum difference between any terms in
  * shifted infinite tables of 'a' and 'b', given shifts 'x' and 'y', where x, y >= 0.
  */
-constexpr inline auto
+inline constexpr auto
 MinDiffBetweenShiftedTablesOfTwoNumbers(const unsigned a, const unsigned b,
                                         const int x, const int y) {
     const auto g = std::gcd(a, b);

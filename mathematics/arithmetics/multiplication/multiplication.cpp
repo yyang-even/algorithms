@@ -16,7 +16,7 @@ namespace {
  *
  * By making use of recursion, we can multiply two integers with the given constraints.
  */
-constexpr inline auto Multiply_Recursive_Helper(const int x, const int y) {
+inline constexpr auto Multiply_Recursive_Helper(const int x, const int y) {
     if (y == 0) {
         return 0;
     } else if (y > 0) {
@@ -26,7 +26,7 @@ constexpr inline auto Multiply_Recursive_Helper(const int x, const int y) {
     }
 }
 
-constexpr inline auto Multiply_Recursive(int x, int y) {
+inline constexpr auto Multiply_Recursive(int x, int y) {
     if (abs(x) < abs(y)) {
         std::swap(x, y);
     }

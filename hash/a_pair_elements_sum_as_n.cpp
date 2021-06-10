@@ -18,7 +18,7 @@ using ArrayType = std::array<int, N>;
  * @complexity: O(n)
  */
 template <typename ArrayType>
-constexpr inline auto
+inline constexpr auto
 HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
     return PairOfElementsSumAsN_Hashmap<ArrayType>(values, target, nullptr);
 }

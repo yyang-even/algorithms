@@ -17,7 +17,7 @@ namespace {
  * @reference   Set, Clear and Toggle a given bit of a number in C
  *              https://www.geeksforgeeks.org/set-clear-and-toggle-a-given-bit-of-a-number-in-c/
  */
-constexpr inline auto SetBit(const unsigned num, const unsigned position) {
+inline constexpr auto SetBit(const unsigned num, const unsigned position) {
     return num | (1 << position);
 }
 
@@ -30,7 +30,7 @@ constexpr inline auto SetBit(const unsigned num, const unsigned position) {
  * @reference   Set the rightmost unset bit
  *              https://www.geeksforgeeks.org/set-rightmost-unset-bit-2/
  */
-constexpr inline auto SetRightmostOffBit(const unsigned num) {
+inline constexpr auto SetRightmostOffBit(const unsigned num) {
     if (AreAllBitsSet(num)) {
         return num;
     }

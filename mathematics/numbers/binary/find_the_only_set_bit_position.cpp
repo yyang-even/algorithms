@@ -12,7 +12,7 @@ namespace {
  * Given a number having only one '1' and all other '0's in its binary representation,
  * find position of the only set bit.
  */
-constexpr inline auto FindPositionOfTheOnlySetBit(const unsigned v) {
+inline constexpr auto FindPositionOfTheOnlySetBit(const unsigned v) {
     assert(IsPowerOf2(v));
 
     return static_cast<unsigned>(std::log2(v)) + 1;

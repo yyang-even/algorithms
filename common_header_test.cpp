@@ -29,7 +29,7 @@ TEST(BitsNumberTest, TestSanity) {
 constexpr int signed_value = 5;
 constexpr unsigned unsigned_value = 5;
 
-static constexpr inline auto ZeroUnsignedFunction() {
+static inline constexpr auto ZeroUnsignedFunction() {
     return unsigned_value;
 }
 
@@ -44,7 +44,7 @@ SIMPLE_TEST(ZeroUnsignedFunction, TestUnsignedVariable, unsigned_value);
 
 
 template <typename T>
-static constexpr inline auto TemplateFunction(T v) {
+static inline constexpr auto TemplateFunction(T v) {
     return v;
 }
 
@@ -65,7 +65,7 @@ MUTUAL_SIMPLE_TEST(SingleBuiltinArgumentFunction, SingleBuiltinArgumentFunction,
                    TestSignedVariable, signed_value);
 
 
-static constexpr inline auto TwoArgumentsFunction(const int, const int) {
+static inline constexpr auto TwoArgumentsFunction(const int, const int) {
     return signed_value;
 }
 
@@ -81,7 +81,7 @@ MUTUAL_SIMPLE_TEST(TwoArgumentsFunction, TwoArgumentsFunction, TestSignedVariabl
                    signed_value, signed_value);
 
 
-static constexpr inline auto ThreeArgumentsFunction(const int, const int, const int) {
+static inline constexpr auto ThreeArgumentsFunction(const int, const int, const int) {
     return signed_value;
 }
 
@@ -99,7 +99,7 @@ MUTUAL_SIMPLE_TEST(ThreeArgumentsFunction, ThreeArgumentsFunction, TestSignedVar
                    signed_value, signed_value, signed_value);
 
 
-static constexpr inline unsigned SignedUnsignedFunction(const int v) {
+static inline constexpr unsigned SignedUnsignedFunction(const int v) {
     return v;
 }
 

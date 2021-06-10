@@ -2,7 +2,7 @@
 
 
 template <typename Iterator>
-static constexpr inline void
+static inline constexpr void
 MergeKSortedArrays(const std::vector<std::vector<int>> &k_arrays, Iterator out_iter) {
     using Node = std::pair<const std::vector<int> *, std::vector<int>::const_iterator>;
 

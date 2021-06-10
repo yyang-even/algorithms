@@ -12,7 +12,7 @@ namespace {
  * Given three positive numbers a, b and m. Compute a/b under modulo m. The task is
  * basically to find a number c such that (b * c) % m = a % m.
  */
-constexpr inline unsigned
+inline constexpr unsigned
 ModularDivision(unsigned a, const unsigned b, const unsigned m) {
     assert(m);
     a %= m;

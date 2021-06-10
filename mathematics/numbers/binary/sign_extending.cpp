@@ -21,7 +21,7 @@ namespace {
  * convert to a representation with more bits; this is sign extending.
  */
 template <unsigned B>
-constexpr inline int SignExtend_Const(const int x) {
+inline constexpr int SignExtend_Const(const int x) {
     struct {
     int x:
         B;
@@ -29,30 +29,30 @@ constexpr inline int SignExtend_Const(const int x) {
     return bits.x = x;
 }
 
-constexpr inline int SignExtend_Const_4Bits(const int x) {
+inline constexpr int SignExtend_Const_4Bits(const int x) {
     return SignExtend_Const<4>(x);
 }
 
 
 template <unsigned B>
-constexpr inline int SignExtend_Variable(int x) {
+inline constexpr int SignExtend_Variable(int x) {
     constexpr int mask = 1 << (B - 1);
     x = x & ((1 << B) - 1);
     return (x ^ mask) - mask;
 }
 
-constexpr inline int SignExtend_Variable_4Bits(int x) {
+inline constexpr int SignExtend_Variable_4Bits(int x) {
     return SignExtend_Variable<4>(x);
 }
 
 
 template <unsigned B>
-constexpr inline int SignExtend_Variable_Dirty(const int x) {
+inline constexpr int SignExtend_Variable_Dirty(const int x) {
     constexpr int mask = BitsNumber<decltype(x)> - B;
     return (x << mask) >> mask;
 }
 
-constexpr inline int SignExtend_Variable_Dirty_4Bits(int x) {
+inline constexpr int SignExtend_Variable_Dirty_4Bits(int x) {
     return SignExtend_Variable_Dirty<4>(x);
 }
 

@@ -42,7 +42,7 @@ auto MaxAndValueOfPair_Pair(const ArrayType &elements) {
  * X & Y is maximum among all the possible pairs then print the bitwise AND of the found
  * pair.
  */
-constexpr inline unsigned
+inline constexpr unsigned
 MaxAndValueOfRange(const unsigned L, const unsigned R) {
     if (L == R) {
         return 0;

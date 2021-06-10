@@ -49,7 +49,7 @@ inline auto DecToDecimal(const std::string_view dec) {
  * @reference   Recursive Implementation of atoi()
  *              https://www.geeksforgeeks.org/recursive-implementation-of-atoi/
  */
-constexpr inline auto
+inline constexpr auto
 DecToDecimal_Recursive(const std::string_view::const_reverse_iterator crbegin,
                        const std::string_view::size_type n) {
     if (n == 0) {
@@ -62,7 +62,7 @@ DecToDecimal_Recursive(const std::string_view::const_reverse_iterator crbegin,
     return DecToDecimal_Recursive(std::next(crbegin), n - 1) * 10 + *crbegin - '0';
 }
 
-constexpr inline auto DecToDecimal_Recursive(const std::string_view dec) {
+inline constexpr auto DecToDecimal_Recursive(const std::string_view dec) {
     return DecToDecimal_Recursive(dec.crbegin(), dec.size());
 }
 
@@ -111,7 +111,7 @@ inline auto BinaryToDecimal(const std::string_view binary) {
  * @reference   Recursive Program for Binary to Decimal
  *              https://www.geeksforgeeks.org/recursive-program-for-binary-to-decimal/
  */
-constexpr inline int BinaryToDecimal_Recursive(const std::string_view binary,
+inline constexpr int BinaryToDecimal_Recursive(const std::string_view binary,
                                                const std::string_view::size_type i = 0) {
     if (i == binary.size()) {
         return 0;

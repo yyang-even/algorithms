@@ -55,7 +55,7 @@ constexpr auto IsPerfectSquare_Sum(const unsigned x) {
  *
  * Given a number "n", find its total number of divisors are even or odd.
  */
-constexpr inline auto isCountOfDivisorsOdd(const unsigned N) {
+inline constexpr auto isCountOfDivisorsOdd(const unsigned N) {
     return IsPerfectSquare(N);
 }
 
@@ -81,7 +81,7 @@ constexpr inline auto isCountOfDivisorsOdd(const unsigned N) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 6.6.
  */
-constexpr inline auto
+inline constexpr auto
 CountPerfectSquares(const unsigned a, const unsigned b) {
     assert(a <= b);
 

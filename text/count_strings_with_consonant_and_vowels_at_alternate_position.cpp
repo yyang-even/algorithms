@@ -14,7 +14,7 @@ namespace {
  * such a string is always possible, i.e. There is no need to care about the characters
  * other than "$".
  */
-constexpr inline auto
+inline constexpr auto
 CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string_view str) {
     std::size_t total = 1;
 

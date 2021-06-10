@@ -2,7 +2,7 @@
 
 
 template<typename ArrayType>
-static constexpr inline auto
+static inline constexpr auto
 PairElementsProductAsN(const ArrayType &elements,
                        const typename ArrayType::value_type N,
                        std::pair<typename ArrayType::value_type,

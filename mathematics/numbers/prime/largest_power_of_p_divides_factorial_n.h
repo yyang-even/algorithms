@@ -7,7 +7,7 @@
  *
  * @reference   https://www.geeksforgeeks.org/legendres-formula-highest-power-of-prime-number-that-divides-n/
  */
-static constexpr inline auto
+static inline constexpr auto
 LegendresFormula(const unsigned p, unsigned n) {
     assert(IsPrime_OptimizedSchoolMethod(p));
 
@@ -33,7 +33,7 @@ LegendresFormula(const unsigned p, unsigned n) {
  * @bug It will fall into infinite loop for large n or p, as which may cause i *= p to
  * overflow
  */
-static constexpr inline auto
+static inline constexpr auto
 LargestPowerOfPDividesFactorialN(const unsigned p, const unsigned n) {
     assert(IsPrime_OptimizedSchoolMethod(p));
 

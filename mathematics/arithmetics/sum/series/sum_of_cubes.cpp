@@ -13,7 +13,7 @@ namespace {
  *
  * Print the sum of series 1^3 + 2^3 + 3^3 + 4^3 + ... + n^3 till n-th term.
  */
-constexpr inline auto SumOfCubes(const unsigned N) {
+inline constexpr auto SumOfCubes(const unsigned N) {
     const unsigned long long x = (N * (N + 1) / 2);
     return x * x;
 }
@@ -25,7 +25,7 @@ constexpr inline auto SumOfCubes(const unsigned N) {
  *
  * Given a number n, find sum of first n odd natural numbers.
  */
-constexpr inline auto SumOfOddCubes(const unsigned N) {
+inline constexpr auto SumOfOddCubes(const unsigned N) {
     return N * N * (2 * N * N - 1);
 }
 
@@ -36,7 +36,7 @@ constexpr inline auto SumOfOddCubes(const unsigned N) {
  *
  * Given a number n, find sum of first n even natural numbers.
  */
-constexpr inline auto SumOfEvenCubes(const unsigned N) {
+inline constexpr auto SumOfEvenCubes(const unsigned N) {
     return 2 * N * N * (N + 1) * (N + 1);
 }
 

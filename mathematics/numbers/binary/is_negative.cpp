@@ -9,12 +9,12 @@ namespace {
  *              Compute the sign of an integer
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline bool IsNegative_Portable(const int num) {
+inline constexpr bool IsNegative_Portable(const int num) {
     return 1 & ((unsigned int)num >> (BitsNumber<decltype(num)> - 1));
 }
 
 
-constexpr inline auto IsNegative(const int num) {
+inline constexpr auto IsNegative(const int num) {
     return num < 0;
 }
 
@@ -23,7 +23,7 @@ constexpr inline auto IsNegative(const int num) {
  *
  * @reference   https://www.geeksforgeeks.org/check-number-positive-negative-zero-using-bit-operators/
  */
-constexpr inline int IsNegativeOrZeroOrPositive(const int num) {
+inline constexpr int IsNegativeOrZeroOrPositive(const int num) {
     constexpr auto BITS_NUM = BitsNumber<decltype(num)> - 1;
     return 1 + (num >> BITS_NUM) - (-num >> BITS_NUM);
 }

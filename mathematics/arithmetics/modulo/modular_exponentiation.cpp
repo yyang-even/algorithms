@@ -23,7 +23,7 @@ namespace {
  * If we have to return the mod of a negative number x whose absolute value is less
  * than y: then (x + y) % y will do the trick
  */
-constexpr inline auto
+inline constexpr auto
 ModularExponentiation(const int x, const unsigned y, const int p) {
     return static_cast<long>(pow(x, y)) % p;
 }
@@ -70,7 +70,7 @@ ModularExponentiation_Recursive_Helper(const int x, const unsigned y, const int 
     return (result + p) % p;
 }
 
-constexpr inline auto
+inline constexpr auto
 ModularExponentiation_Recursive(const int x, const unsigned y, const int p) {
     return ModularExponentiation_Recursive_Helper(x % p, y, p);
 }

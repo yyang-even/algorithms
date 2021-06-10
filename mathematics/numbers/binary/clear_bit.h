@@ -7,6 +7,6 @@
  * @reference   Bitwise Hacks for Competitive Programming
  *              https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/
  */
-static constexpr inline auto ClearRightmostBit(const unsigned num) {
+static inline constexpr auto ClearRightmostBit(const unsigned num) {
     return num & (num - 1);
 }

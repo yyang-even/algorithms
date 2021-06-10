@@ -11,7 +11,7 @@ namespace {
  *              Find integer log base 10 of an integer
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint32_t LogBase10(const uint32_t num) {
+inline constexpr uint32_t LogBase10(const uint32_t num) {
     uint32_t constexpr PowersOf10[] = {
         1, 10, 100, 1000, 10000, 100000,
         1000000, 10000000, 100000000, 1000000000
@@ -29,7 +29,7 @@ constexpr inline uint32_t LogBase10(const uint32_t num) {
  *              Find integer log base 10 of an integer the obvious way
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline uint32_t LogBase10_Enum(const uint32_t num) {
+inline constexpr uint32_t LogBase10_Enum(const uint32_t num) {
     return (num >= 1000000000) ? 9 : (num >= 100000000) ? 8 : (num >= 10000000) ? 7 :
            (num >= 1000000) ? 6 : (num >= 100000) ? 5 : (num >= 10000) ? 4 :
            (num >= 1000) ? 3 : (num >= 100) ? 2 : (num >= 10) ? 1 : 0;

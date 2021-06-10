@@ -27,7 +27,7 @@ Height_Iterative(const BinaryTree::Node::PointerType node) {
  * @reference   Height of a complete binary tree (or Heap) with N nodes
  *              https://www.geeksforgeeks.org/height-complete-binary-tree-heap-n-nodes/
  */
-constexpr inline std::size_t HeightOfCompleteTree(const std::size_t number_of_nodes) {
+inline constexpr std::size_t HeightOfCompleteTree(const std::size_t number_of_nodes) {
     return std::ceil(std::log2(number_of_nodes + 1));
 }
 

@@ -15,7 +15,7 @@ namespace {
  * 00011010, 00011100, 00100011, and so forth.
  */
 #ifdef __GNUC__
-constexpr inline auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
+inline constexpr auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
     const unsigned t = num | (num - 1); // t gets num's least significant 0 bits set to 1
     // Next set to 1 the most significant bit to change,
     // set to 0 the least significant ones, and add the necessary 1 bits.
@@ -24,7 +24,7 @@ constexpr inline auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
 #endif
 
 
-constexpr inline auto ClosestGreaterBitsPermutation_Division(const unsigned num) {
+inline constexpr auto ClosestGreaterBitsPermutation_Division(const unsigned num) {
     const unsigned t = (num | (num - 1)) + 1;
     return t | ((((t & -t) / (num & -num)) >> 1) - 1);
 }

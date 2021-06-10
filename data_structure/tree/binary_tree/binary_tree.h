@@ -62,14 +62,14 @@ private:
 };
 
 template <typename NodeType>
-static constexpr inline auto
+static inline constexpr auto
 SetLeftChild(NodeType &node, const typename NodeType::ValueType v) {
     node.left = std::make_shared<NodeType>(v);
     return node.left;
 }
 
 template <typename NodeType>
-static constexpr inline auto
+static inline constexpr auto
 SetRightChild(NodeType &node, const typename NodeType::ValueType v) {
     node.right = std::make_shared<NodeType>(v);
     return node.right;

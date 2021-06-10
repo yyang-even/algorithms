@@ -23,7 +23,7 @@ inline auto &operator<<(std::ostream &out, const Date &date) {
     return out << '(' << date.day << ", " << date.month << ", " << date.year << ')';
 }
 
-constexpr inline bool operator==(const Date &lhs, const Date &rhs) {
+inline constexpr bool operator==(const Date &lhs, const Date &rhs) {
     return lhs.year == rhs.year and lhs.month == rhs.month and lhs.day == rhs.day;
 }
 

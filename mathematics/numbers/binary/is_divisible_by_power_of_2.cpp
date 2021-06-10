@@ -12,13 +12,13 @@ namespace {
  * Given two positive integers n and m. The problem is to check whether n is divisible
  * by 2^m or not.
  */
-constexpr inline auto
+inline constexpr auto
 IsDivisibleByPowerOf2_Arithmetic(const unsigned n, const unsigned m) {
     return not(n & ((1 << m) - 1));
 }
 
 
-constexpr inline auto
+inline constexpr auto
 IsDivisibleByPowerOf2_Bitwise(const unsigned n, const unsigned m) {
     return ((n >> m) << m) == n;
 }
@@ -30,7 +30,7 @@ IsDivisibleByPowerOf2_Bitwise(const unsigned n, const unsigned m) {
  *
  * Given a number n, check if it is divisible by 8 using bitwise operators.
  */
-constexpr inline auto IsDivisibleBy8(const unsigned num) {
+inline constexpr auto IsDivisibleBy8(const unsigned num) {
     return IsDivisibleByPowerOf2_Bitwise(num, 3);
 }
 
@@ -42,7 +42,7 @@ constexpr inline auto IsDivisibleBy8(const unsigned num) {
  * Given a number n, the task is to check whether this number is a multiple of 4 or not
  * without using +, -, * ,/ and % operators.
  */
-constexpr inline auto IsMultipleOf4_Xor(const unsigned num) {
+inline constexpr auto IsMultipleOf4_Xor(const unsigned num) {
     if (num == 1) {
         return false;
     }
@@ -50,7 +50,7 @@ constexpr inline auto IsMultipleOf4_Xor(const unsigned num) {
 }
 
 
-constexpr inline auto IsMultipleOf4_Shift(const unsigned num) {
+inline constexpr auto IsMultipleOf4_Shift(const unsigned num) {
     return IsDivisibleByPowerOf2_Bitwise(num, 2);
 }
 
@@ -62,7 +62,7 @@ constexpr inline auto IsMultipleOf4_Shift(const unsigned num) {
  * Given a number n. The problem is to efficiently check whether n is a multiple of 4 or
  * not without using arithmetic operators.
  */
-constexpr inline auto IsMultipleOf4_Mask(const unsigned num) {
+inline constexpr auto IsMultipleOf4_Mask(const unsigned num) {
     return IsDivisibleByPowerOf2_Arithmetic(num, 2);
 }
 
@@ -79,7 +79,7 @@ constexpr inline auto IsMultipleOf4_Mask(const unsigned num) {
  *
  * Given a number, check whether it is even or odd.
  */
-constexpr inline auto IsEven(const unsigned num) {
+inline constexpr auto IsEven(const unsigned num) {
     return IsDivisibleByPowerOf2_Arithmetic(num, 1);
 }
 

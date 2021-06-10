@@ -4,7 +4,7 @@
 /**
  * Brian Kernighan’s Algorithm
  */
-static constexpr inline unsigned
+static inline constexpr unsigned
 CountSetBits_BrianKernighan(unsigned n) {
     unsigned count = 0;
     while (n) {

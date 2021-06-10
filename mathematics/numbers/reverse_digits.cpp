@@ -5,11 +5,11 @@
 
 namespace {
 
-constexpr inline auto ReverseDigits_Iterative(const int number) {
+inline constexpr auto ReverseDigits_Iterative(const int number) {
     return ReverseDigits(number, 10);
 }
 
-constexpr inline int
+inline constexpr int
 ReverseDigits_Recursive(const int number, int &reversed_number) {
     if (number) {
         const auto base = ReverseDigits_Recursive(number / 10, reversed_number);
@@ -20,7 +20,7 @@ ReverseDigits_Recursive(const int number, int &reversed_number) {
     return 1;
 }
 
-constexpr inline auto ReverseDigits_Recursive(const int number) {
+inline constexpr auto ReverseDigits_Recursive(const int number) {
     int reversed_number = 0;
     ReverseDigits_Recursive(number, reversed_number);
     return reversed_number;

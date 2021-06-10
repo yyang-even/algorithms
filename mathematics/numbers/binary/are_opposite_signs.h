@@ -14,7 +14,7 @@
  * true -1 and +100, and should return false for -100 and -200. The function should
  * not use any of the arithmetic operators.
  */
-static constexpr inline auto
+static inline constexpr auto
 AreOppositeSigns(const int x, const int y) {
     return (x ^ y) < 0;
 }

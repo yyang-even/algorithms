@@ -43,7 +43,7 @@ auto DeleteWithKey_Doubly(std::list<int> doubly_list,
 
 
 template <typename ListType, typename DeleteFunc>
-constexpr inline auto testDeleteWithKey(const ListType &list,
+inline constexpr auto testDeleteWithKey(const ListType &list,
                                         const typename ListType::value_type key,
                                         const DeleteFunc delete_func) {
     auto expected = list;

@@ -2,7 +2,7 @@
 
 
 template <typename Iterator, typename MergeFunc>
-static constexpr inline void
+static inline constexpr void
 MergeSort(const Iterator begin, const std::size_t n, const MergeFunc merge) {
     if (n > 1) {
         const auto middle = n >> 1;

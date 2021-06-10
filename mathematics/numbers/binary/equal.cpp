@@ -14,17 +14,17 @@ namespace {
  *  1) Comparison Operators
  *  2) String functions
  */
-constexpr inline auto Equal_Xor(const unsigned lhs, const unsigned rhs) {
+inline constexpr auto Equal_Xor(const unsigned lhs, const unsigned rhs) {
     return not(lhs ^ rhs);
 }
 
 
-constexpr inline auto Equal_Subtract(const unsigned lhs, const unsigned rhs) {
+inline constexpr auto Equal_Subtract(const unsigned lhs, const unsigned rhs) {
     return not(lhs - rhs);
 }
 
 
-constexpr inline auto Equal_Complement(const unsigned lhs, const unsigned rhs) {
+inline constexpr auto Equal_Complement(const unsigned lhs, const unsigned rhs) {
     return not((lhs & ~rhs));
 }
 

@@ -42,7 +42,7 @@ CountingSort(std::vector<int> values, const std::size_t range,
  *              https://www.geeksforgeeks.org/implementing-counting-sort-using-map-in-c/
  */
 template <typename ArrayType, typename ToIndexFunc>
-static constexpr inline auto
+static inline constexpr auto
 CountingSort_STL(ArrayType values, const ToIndexFunc to_index) {
     if (values.empty()) {
         return values;

@@ -5,7 +5,7 @@
  *
  * @reference   https://www.geeksforgeeks.org/write-a-program-to-reverse-digits-of-a-number/
  */
-static constexpr inline auto ReverseDigits(int number, const int base) {
+static inline constexpr auto ReverseDigits(int number, const int base) {
     int reversed_number = 0;
     for (; number; number /= base) {
         reversed_number = reversed_number * base + number % base;

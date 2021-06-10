@@ -103,7 +103,7 @@ namespace {
  */
 constexpr double GOLDEN_RATIO = 1.61803;
 
-constexpr inline unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
+inline constexpr unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     if (n < 2) {
         return n;
     } else if (n == 2) {
@@ -126,7 +126,7 @@ constexpr inline unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  *
  * @note    It may not work perfect due to floating point precision errors.
  */
-constexpr inline unsigned long
+inline constexpr unsigned long
 NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
     constexpr double phi = (1.0 + square_root_of_5) / 2.0;
@@ -178,7 +178,7 @@ constexpr auto NthFibonacci_DP_Optimized(const unsigned n) {
  * @reference   Tail Recursion for Fibonacci
  *              https://www.geeksforgeeks.org/tail-recursion-fibonacci/
  */
-constexpr inline auto
+inline constexpr auto
 NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
                            const unsigned b = 1) {
     if (n == 0) {
@@ -204,7 +204,7 @@ NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
  * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi
  * indicates i'th Fibonacci number.
  */
-constexpr inline auto SumOfFibonacci(const unsigned n) {
+inline constexpr auto SumOfFibonacci(const unsigned n) {
     return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
 }
 

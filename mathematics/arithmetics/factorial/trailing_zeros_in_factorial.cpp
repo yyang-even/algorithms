@@ -13,7 +13,7 @@ namespace {
  *
  * Given an integer n, write a function that returns count of trailing zeros in n!.
  */
-constexpr inline unsigned CountTrailing0sInFactorialOf(const unsigned num) {
+inline constexpr unsigned CountTrailing0sInFactorialOf(const unsigned num) {
     return LargestPowerOfPDividesFactorialN(5, num);
 }
 

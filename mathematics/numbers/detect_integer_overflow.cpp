@@ -14,7 +14,7 @@ namespace {
  */
 constexpr auto INVALID = std::pair(true, 0);
 
-constexpr inline auto SafeAdd_Sign(const int lhs, const int rhs) {
+inline constexpr auto SafeAdd_Sign(const int lhs, const int rhs) {
     const auto sum = lhs + rhs;
     if ((lhs > 0 and rhs > 0 and sum < 0) or    //overflow
         (lhs < 0 and rhs < 0 and sum > 0)) {    //underflow
@@ -27,7 +27,7 @@ constexpr inline auto SafeAdd_Sign(const int lhs, const int rhs) {
 /**
  * @reference   Agner Fog. NAN propagation versus fault trapping in floating point code.
  */
-constexpr inline auto SafeAdd_Limits(const int lhs, const int rhs) {
+inline constexpr auto SafeAdd_Limits(const int lhs, const int rhs) {
     if ((rhs > 0 and lhs > std::numeric_limits<int>::max() - rhs) or    //overflow
         (rhs < 0 and lhs < std::numeric_limits<int>::min() - rhs)) {    //underflow
         return INVALID;
@@ -36,7 +36,7 @@ constexpr inline auto SafeAdd_Limits(const int lhs, const int rhs) {
 }
 
 
-constexpr inline auto SafeAdd_Unsigned(const unsigned lhs, const unsigned rhs) {
+inline constexpr auto SafeAdd_Unsigned(const unsigned lhs, const unsigned rhs) {
     const auto sum = lhs + rhs;
     if (sum < lhs) {
         return INVALID;

@@ -24,7 +24,7 @@ namespace {
  * Note: You are not allowed to use any conditional operator (including ternary operator)
  * or any arithmetic operator ( +, -, *, /).
  */
-constexpr inline auto
+inline constexpr auto
 ConditionallyAssign(const int a, const int b, const bool x) {
     const int table[] = {a, b};
     return table[x];
@@ -33,13 +33,13 @@ ConditionallyAssign(const int a, const int b, const bool x) {
 
 /** Conditionally assign a value using arithmetic operators
  */
-constexpr inline auto
+inline constexpr auto
 ConditionallyAssign_Arithmetic(const int a, const int b, const bool x) {
     return (1 - x) * a + x * b;
 }
 
 
-constexpr inline auto
+inline constexpr auto
 ConditionallyAssign_Not(const int a, const int b, const bool x) {
     return (!x) * a + (!!x) * b;
 }

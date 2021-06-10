@@ -37,7 +37,7 @@ constexpr auto ReverseBits(unsigned num) {
  * @reference   Reverse bits using lookup table in O(1) time
  *              https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
  */
-constexpr inline auto ReverseBits_32_LookupTable(const uint32_t num) {
+inline constexpr auto ReverseBits_32_LookupTable(const uint32_t num) {
     constexpr unsigned char BitReverseTable256[256] = {
 #define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
 #define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
@@ -64,7 +64,7 @@ constexpr inline auto ReverseBits_32_LookupTable(const uint32_t num) {
  *              Reverse the bits in a byte with 3 operations (64-bit multiply and modulus division)
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned char ReverseBitsInByte_3(const unsigned char byte) {
+inline constexpr unsigned char ReverseBitsInByte_3(const unsigned char byte) {
     return (byte * 0x0202020202 & 0x010884422010) % 1023;
 }
 
@@ -75,7 +75,7 @@ constexpr inline unsigned char ReverseBitsInByte_3(const unsigned char byte) {
  *              Reverse the bits in a byte with 4 operations (64-bit multiply, no division)
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned char ReverseBitsInByte_4(const unsigned char byte) {
+inline constexpr unsigned char ReverseBitsInByte_4(const unsigned char byte) {
     return ((byte * 0x80200802ULL) & 0x0884422110ULL) * 0x0101010101ULL >> 32;
 }
 
@@ -86,7 +86,7 @@ constexpr inline unsigned char ReverseBitsInByte_4(const unsigned char byte) {
  *              Reverse the bits in a byte with 7 operations (no 64-bit)
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned char ReverseBitsInByte_7(const unsigned char byte) {
+inline constexpr unsigned char ReverseBitsInByte_7(const unsigned char byte) {
     return ((byte * 0x0802 & 0x22110) | (byte * 0x8020 & 0x88440)) * 0x10101 >> 16;
 }
 
@@ -97,7 +97,7 @@ constexpr inline unsigned char ReverseBitsInByte_7(const unsigned char byte) {
  *              Reverse an N-bit quantity in parallel in 5 * lg(N) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline auto ReverseBits_32_Parallel(uint32_t num) {
+inline constexpr auto ReverseBits_32_Parallel(uint32_t num) {
     // swap odd and even bits
     num = SwapOddAndEvenBits(num);
     // swap consecutive pairs
@@ -131,7 +131,7 @@ constexpr T ReverseNBits_Parallel(T num) {
     return num;
 }
 
-constexpr inline unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
+inline constexpr unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
     return ReverseNBits_Parallel(num);
 }
 
@@ -140,7 +140,7 @@ constexpr inline unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
  *
  * @reference   https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
  */
-constexpr inline auto ReverseBytes_String(unsigned num) {
+inline constexpr auto ReverseBytes_String(unsigned num) {
     auto *const begin = reinterpret_cast<unsigned char *>(&num);
 
     Reverse_TwoPointers(begin, begin + sizeof(num),
@@ -156,7 +156,7 @@ constexpr inline auto ReverseBytes_String(unsigned num) {
  * @reference   Reverse bytes of a Hexadecimal Number
  *              https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
  */
-constexpr inline auto ReverseBytes_Shift(const unsigned num) {
+inline constexpr auto ReverseBytes_Shift(const unsigned num) {
     return (num << 24) |
            (((num >> 16) << 24) >> 16) |
            (((num << 16) >> 24) << 16) |
@@ -173,7 +173,7 @@ constexpr inline auto ReverseBytes_Shift(const unsigned num) {
  * of the number is being considered for reversing the bits, no leading 0’s are being
  * considered.
  */
-constexpr inline auto ReverseActualBits(const unsigned number) {
+inline constexpr auto ReverseActualBits(const unsigned number) {
     return ReverseDigits(number, 2);
 }
 

@@ -2,7 +2,7 @@
 
 
 template <typename ArrayType, typename Compare>
-static constexpr inline auto
+static inline constexpr auto
 InsertionSort(ArrayType values, const Compare compare) {
     for (typename ArrayType::size_type j = 1; j < values.size(); ++j) {
         auto key_value = std::move(values[j]);

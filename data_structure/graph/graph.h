@@ -257,7 +257,7 @@ private:
 
 
 template <typename RepresentationType, typename Traverser>
-static constexpr inline void
+static inline constexpr void
 GraphTraverseHelper(const RepresentationType &graph,
                     const Traverser traverser) {
     std::vector<bool> visited_vertices(graph.size(), false);
@@ -271,7 +271,7 @@ GraphTraverseHelper(const RepresentationType &graph,
 }
 
 template <typename GraphType, typename Traverser>
-static constexpr inline void
+static inline constexpr void
 GraphTraverse(const GraphType &graph, const Traverser traverser) {
     graph.Visit([traverser](const auto & graph) {
         GraphTraverseHelper(graph, traverser);
@@ -279,7 +279,7 @@ GraphTraverse(const GraphType &graph, const Traverser traverser) {
 }
 
 template <typename EdgeArrayType, typename Traverser>
-static constexpr inline void
+static inline constexpr void
 GraphTraverse(const std::size_t number_vertices,
               const EdgeArrayType &edges,
               const Traverser traverser) {

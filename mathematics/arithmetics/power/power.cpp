@@ -15,7 +15,7 @@ namespace {
  *
  * @complexity: O(lgn)
  */
-constexpr inline long
+inline constexpr long
 Power_Recursive(const long x, const unsigned int n) {
     if (n == 0) {
         return 1;
@@ -29,7 +29,7 @@ Power_Recursive(const long x, const unsigned int n) {
     }
 }
 
-constexpr inline double
+inline constexpr double
 Power_Recursive(const double x, const int n) {
     if (n == 0) {
         return 1;

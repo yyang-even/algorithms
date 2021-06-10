@@ -238,12 +238,12 @@ constexpr auto IsPrime_LucasLehmerSeries(unsigned long long p) {
 }
 
 
-constexpr inline auto IsPrime_Wilson(const unsigned p) {
+inline constexpr auto IsPrime_Wilson(const unsigned p) {
     return p != 4 and (Factorial_Iterative(p >> 1) % p);
 }
 
 
-constexpr inline auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
+inline constexpr auto IsPrime_Recursive(const unsigned n, const unsigned i = 2) {
     if (n < 2) {
         return false;
     }

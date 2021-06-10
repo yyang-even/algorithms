@@ -10,7 +10,7 @@
  * Given a number n, count unset bits after MSB (Most Significant Bit).
  */
 #ifdef __GNUG__
-static constexpr inline auto CountUnsetBits(const unsigned num) {
+static inline constexpr auto CountUnsetBits(const unsigned num) {
     return __builtin_popcount(ToggleAllBitsAfterMSB(num));
 }
 #endif

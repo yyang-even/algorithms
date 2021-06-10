@@ -86,7 +86,7 @@ inline auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) 
 
 
 template <typename ToBST>
-constexpr inline auto
+inline constexpr auto
 TestToBalancedBST(const ToBST to_bst, const InitializerType &sorted_sequence) {
     const auto root = to_bst(sorted_sequence);
 

@@ -17,7 +17,7 @@
  * @complexity  O(n)
  */
 template <typename Container>
-static constexpr inline auto
+static inline constexpr auto
 LargestSumContiguousSubarray_Kadane(const Container &array,
                                     Container *const max_sum_subarray = nullptr) {
     assert(not array.empty());

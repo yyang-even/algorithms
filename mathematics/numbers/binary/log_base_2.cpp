@@ -31,7 +31,7 @@ constexpr unsigned LogBase2(unsigned num) {
  *              Find the integer log base 2 of an integer with an 64-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned LogBase2_Float(const unsigned num) {
+inline constexpr unsigned LogBase2_Float(const unsigned num) {
     union {
         unsigned int uNum[2];
         double dNum;
@@ -66,7 +66,7 @@ constexpr auto LogBase2_LgN_Branch(uint32_t num) {
 }
 
 
-constexpr inline auto LogBase2_LgN_NoBranch(uint32_t num) {
+inline constexpr auto LogBase2_LgN_NoBranch(uint32_t num) {
     unsigned result = (num > 0xFFFF) << 4;
     num >>= result;
     unsigned shift = (num > 0xFF) << 3;
@@ -90,7 +90,7 @@ constexpr inline auto LogBase2_LgN_NoBranch(uint32_t num) {
  *              Find the log base 2 of an N-bit integer in O(lg(N)) operations with multiply and lookup
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned
+inline constexpr unsigned
 LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
     constexpr unsigned MultiplyDeBruijnBitPosition[32] = {
         0, 9, 1, 10, 13, 21, 2, 29, 11, 14, 16, 18, 22, 25, 3, 30,
@@ -108,7 +108,7 @@ LogBase2_LgN_MultiplyAndLookup(const uint32_t num) {
  *              Find integer log base 2 of a 32-bit IEEE float
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline int LogBase2_FloatInput(const float num) {
+inline constexpr int LogBase2_FloatInput(const float num) {
     static_assert(BitsNumber<decltype(num)> == 32, "float is not 32 bits.");
 
     int result{};
@@ -148,7 +148,7 @@ constexpr int LogBase2_IEEE754Float(const float num) {
  *
  * find int(log2(pow((double) v, 1. / pow(2, r)))), where isnormal(v) and v > 0
  */
-constexpr inline int LogBase2ofPow2r(const float num, const unsigned r) {
+inline constexpr int LogBase2ofPow2r(const float num, const unsigned r) {
     static_assert(BitsNumber<decltype(num)> == 32, "float is not 32 bits.");
 
     int result{};

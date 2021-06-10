@@ -323,7 +323,7 @@ auto SingleSourceShortestPaths_Dijkstra(
  *              https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
  */
 template <typename EdgeArrayType>
-constexpr inline auto
+inline constexpr auto
 SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
                                    const EdgeArrayType &edges,
                                    const std::size_t source) {

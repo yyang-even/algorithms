@@ -9,7 +9,7 @@
  *
  * Given a number n, the task is to find the XOR from 1 to n.
  */
-static constexpr inline unsigned XorOfAllFrom1toN(const unsigned n) {
+static inline constexpr unsigned XorOfAllFrom1toN(const unsigned n) {
     switch (n % 4) {
         case 0:
             return n;

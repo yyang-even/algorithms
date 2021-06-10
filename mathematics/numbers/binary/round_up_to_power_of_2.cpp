@@ -16,7 +16,7 @@ namespace {
  *
  * So num=3 -> r=4; num=8 -> r=8
  */
-constexpr inline unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
+inline constexpr unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
     if (num) {
         FloatUnsignedUnion float_unsigned_union{};
         float_unsigned_union.f = static_cast<float>(num);
@@ -34,7 +34,7 @@ constexpr inline unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
  *              Round up to the next highest power of 2
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-constexpr inline unsigned RoundUpToPowerOf2(const uint32_t num) {
+inline constexpr unsigned RoundUpToPowerOf2(const uint32_t num) {
     if (num) {
         return SetAllBitsAfterMSB(num - 1) + 1;
     } else {

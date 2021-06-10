@@ -9,7 +9,7 @@ namespace {
  *
  * The task is to Increment a number without using ++ and + operators.
  */
-constexpr inline auto Increment(const unsigned num) {
+inline constexpr auto Increment(const unsigned num) {
     return -(~num);
 }
 

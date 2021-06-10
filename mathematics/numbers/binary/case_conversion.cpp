@@ -20,12 +20,12 @@ namespace {
  */
 constexpr char CASE_DIFF = 'a' - 'A';
 
-constexpr inline auto ToLowerCase(const char c) {
+inline constexpr auto ToLowerCase(const char c) {
     constexpr bool IS_SET = true;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
 
-constexpr inline auto ToUpperCase(const char c) {
+inline constexpr auto ToUpperCase(const char c) {
     constexpr bool IS_SET = false;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
 }
@@ -41,7 +41,7 @@ constexpr inline auto ToUpperCase(const char c) {
  * Given a string, write a function that returns toggle case of a string using the
  * bitwise operators in place.
  */
-constexpr inline auto ToggleCase(const char c) {
+inline constexpr auto ToggleCase(const char c) {
     return c ^ CASE_DIFF;
 }
 

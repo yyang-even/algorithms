@@ -412,7 +412,7 @@ auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
 
 
 template <typename TraversalFunction>
-constexpr inline auto
+inline constexpr auto
 TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
     BinaryTree::ArrayType outputs;
     traversal(binary_tree.GetRoot(), outputs);

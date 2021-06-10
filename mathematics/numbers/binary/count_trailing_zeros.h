@@ -11,7 +11,7 @@
  *
  * Count num's trailing zero bits, so if v is 1101000 (base 2), then the output will be 3
  */
-static constexpr inline unsigned CountTrailingZeros_Linear(unsigned num) {
+static inline constexpr unsigned CountTrailingZeros_Linear(unsigned num) {
     if (num) {
         num = (num ^ (num - 1)) >> 1;  // Set num's trailing 0s to 1s and zero rest
         return CountSetBits_BrianKernighan(num);

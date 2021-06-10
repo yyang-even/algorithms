@@ -13,7 +13,7 @@ namespace {
  * Write a function subtract(x, y) that returns x-y where x and y are integers. The
  * function should not use any of the arithmetic operators (+, ++, --, -, .. etc).
  */
-constexpr inline auto Subtract_Iterative(int x, int y) {
+inline constexpr auto Subtract_Iterative(int x, int y) {
     while (y) {
         auto borrow = ~x & y;
         x ^= y;
@@ -24,7 +24,7 @@ constexpr inline auto Subtract_Iterative(int x, int y) {
 }
 
 
-constexpr inline auto Subtract_Recursive(const int x, const int y) {
+inline constexpr auto Subtract_Recursive(const int x, const int y) {
     if (not y) {
         return x;
     }
@@ -32,7 +32,7 @@ constexpr inline auto Subtract_Recursive(const int x, const int y) {
 }
 
 
-constexpr inline auto Subtract_Plus(const int x, const int y) {
+inline constexpr auto Subtract_Plus(const int x, const int y) {
     return x + Negate(y);
 }
 

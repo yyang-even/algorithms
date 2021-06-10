@@ -8,7 +8,7 @@
  * Given a number n. The problem is to check whether every bit in the binary
  * representation of the given number is set or not. Here 0 <= n.
  */
-static constexpr inline auto
+static inline constexpr auto
 AreAllBitsSet(const unsigned num) {
     if (num == 0) {
         return false;

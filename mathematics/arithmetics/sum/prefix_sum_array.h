@@ -9,7 +9,7 @@
  * same size such that the value of prefixSum[i] is arr[0] + arr[1] + arr[2] ... arr[i].
  */
 template <typename ArrayType>
-static constexpr inline auto
+static inline constexpr auto
 PrefixSumArray(ArrayType elements,
                const std::function
                <typename ArrayType::value_type(const typename ArrayType::value_type &, const typename ArrayType::value_type &) >

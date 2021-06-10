@@ -25,7 +25,7 @@
  * @complexity  O(n)
  */
 template <typename Container>
-static constexpr inline auto
+static inline constexpr auto
 ReservoirSampling(const Container &stream, const typename Container::size_type k) {
     std::vector<typename Container::value_type> samples;
     auto iter = stream.cbegin();
