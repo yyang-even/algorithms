@@ -9,8 +9,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/print-numbers-first-last-bits-set-bits/
  *
- * Given a positive integer n. The problem is to print numbers in the range 1
- * to n having first and last bits as the only set bits.
+ * Given a positive integer n. The problem is to print numbers in the range 1 to n having
+ * first and last bits as the only set bits.
  */
 auto NumbersHavingFirstAndLastBitsSet(const ArrayType::value_type N) {
     ArrayType output = {1};
@@ -34,8 +34,9 @@ auto NumbersHavingFirstAndLastBitsSet(const ArrayType::value_type N) {
 const ArrayType EXPECTED1 = {1};
 const ArrayType EXPECTED2 = {1, 3, 5, 9};
 
-SIMPLE_BENCHMARK(NumbersHavingFirstAndLastBitsSet, Sample1,
-                 std::numeric_limits<ArrayType::value_type>::max());
+
+THE_BENCHMARK(NumbersHavingFirstAndLastBitsSet,
+              std::numeric_limits<ArrayType::value_type>::max());
 
 SIMPLE_TEST(NumbersHavingFirstAndLastBitsSet, TestSample1, EXPECTED1, 1);
 SIMPLE_TEST(NumbersHavingFirstAndLastBitsSet, TestSample2, EXPECTED2, 10);

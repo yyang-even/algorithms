@@ -17,10 +17,10 @@ using ArrayType = std::vector<int>;
  *
  * @complexity  O(n)
  */
-auto FindTheMissingNumber_Sum(const ArrayType &integers) {
+inline auto FindTheMissingNumber_Sum(const ArrayType &integers) {
     assert(not integers.empty());
 
-    const auto N = integers.size() + 1u;
+    const auto N = integers.size() + 1;
     const auto sum = N * (N + 1) / 2;
     return std::accumulate(integers.cbegin(), integers.cend(), sum,
                            std::minus<ArrayType::value_type> {});
@@ -33,7 +33,7 @@ auto FindTheMissingNumber_Xor(const ArrayType &integers,
 
     const ArrayType::value_type N = integers.size() + min;
     auto xor_of_all = integers[0] ^ min++;
-    for (ArrayType::size_type i = 1ul; i < integers.size(); ++i) {
+    for (ArrayType::size_type i = 1; i < integers.size(); ++i) {
         xor_of_all ^= (min++ ^ integers[i]);
     }
 
@@ -50,7 +50,7 @@ auto FindTheMissingNumber_Xor(const ArrayType &integers,
  * contains number in this range but one number is missing so the task is to find this
  * missing number.
  */
-auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
+inline auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
     const auto min = std::min_element(integers.cbegin(), integers.cend());
 
     return FindTheMissingNumber_Xor(integers, *min);
@@ -91,7 +91,7 @@ unsigned FindTheMissingNumber_Partition_Helper(const ArrayType::iterator begin,
     }
 }
 
-auto FindTheMissingNumber_Partition(ArrayType integers) {
+inline auto FindTheMissingNumber_Partition(ArrayType integers) {
     return FindTheMissingNumber_Partition_Helper(integers.begin(), integers.end());
 }
 
@@ -285,20 +285,20 @@ const ArrayType SAMPLE2 = {1, 2, 4, 5, 6};
 
 THE_BENCHMARK(FindTheMissingNumber_Sum, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample1, 5u, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample2, 3u, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample1, 5, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Sum, TestSample2, 3, SAMPLE2);
 
 
 THE_BENCHMARK(FindTheMissingNumber_Xor, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample1, 5u, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample2, 3u, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample1, 5, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Xor, TestSample2, 3, SAMPLE2);
 
 
 THE_BENCHMARK(FindTheMissingNumber_Partition, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample1, 5u, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample2, 3u, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample1, 5, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumber_Partition, TestSample2, 3, SAMPLE2);
 
 
 const ArrayType SAMPLE3 = {13, 12, 11, 15};
@@ -307,10 +307,10 @@ const ArrayType SAMPLE4 = {33, 36, 35, 34};
 
 THE_BENCHMARK(FindTheMissingNumberRange_Xor, SAMPLE1);
 
-SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5u, SAMPLE1);
-SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3u, SAMPLE2);
-SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14u, SAMPLE3);
-SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37u, SAMPLE4);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample1, 5, SAMPLE1);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample2, 3, SAMPLE2);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample3, 14, SAMPLE3);
+SIMPLE_TEST(FindTheMissingNumberRange_Xor, TestSample4, 37, SAMPLE4);
 
 
 THE_BENCHMARK(FindTheMissingNumber_SortedRange_BinarySearch, SAMPLE2);

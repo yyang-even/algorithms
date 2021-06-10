@@ -7,15 +7,15 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/program-to-check-if-all-characters-have-even-frequency/
  */
-auto AllHaveEvenFrequency(const std::string &characters) {
+inline auto AllHaveEvenFrequency(const std::string_view characters) {
     return not std::accumulate(characters.cbegin(), characters.cend(), 0,
-                               std::bit_xor<std::string::value_type> {});
+                               std::bit_xor<char> {});
 }
 
 }//namespace
 
 
-SIMPLE_BENCHMARK(AllHaveEvenFrequency, Sample1, "abaccaba");
+THE_BENCHMARK(AllHaveEvenFrequency, "abaccaba");
 
 SIMPLE_TEST(AllHaveEvenFrequency, TestSAMPLE1, true, "abaccaba");
 SIMPLE_TEST(AllHaveEvenFrequency, TestSAMPLE2, false, "hthth");

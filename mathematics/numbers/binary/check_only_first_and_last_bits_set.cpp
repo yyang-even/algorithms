@@ -11,10 +11,10 @@ namespace {
  * @reference   Check whether the number has only first and last bits set | Set 2
  *              https://www.geeksforgeeks.org/check-whether-the-number-has-only-first-and-last-bits-set-set-2/
  *
- * Given a positive integer n. The problem is to check whether only the
- * first and last bits are set in the binary representation of n.
+ * Given a positive integer n. The problem is to check whether only the first and last
+ * bits are set in the binary representation of n.
  */
-auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
+constexpr inline auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
     if (n == 1) {
         return true;
     } else if (n == 2) {
@@ -27,8 +27,7 @@ auto CheckIfOnlyFirstAndLastBitsSet(const unsigned n) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(CheckIfOnlyFirstAndLastBitsSet, Sample1,
-                 std::numeric_limits<unsigned>::max());
+THE_BENCHMARK(CheckIfOnlyFirstAndLastBitsSet, std::numeric_limits<unsigned>::max());
 
 SIMPLE_TEST(CheckIfOnlyFirstAndLastBitsSet, TestSample1, true, 1);
 SIMPLE_TEST(CheckIfOnlyFirstAndLastBitsSet, TestSample2, false, 0);
