@@ -8,10 +8,11 @@ namespace {
  * @reference   Rock Paper Scissors
  *              https://www.codewars.com/kata/rock-paper-scissors/cpp
  *
- * You have to return which player won! Return 1 if player 1 won.
- *  2 for player 2. In case of a draw return 0.
+ * You have to return which player won! Return 1 if player 1 won. 2 for player 2. In
+ * case of a draw return 0.
  */
-int RockPaperScissors(const std::string &player1, const std::string &player2) {
+inline constexpr int
+RockPaperScissors(const std::string_view player1, const std::string_view player2) {
     if (player1[0] == player2[0]) {
         return 0;
     }
@@ -26,7 +27,7 @@ int RockPaperScissors(const std::string &player1, const std::string &player2) {
 }//namespace
 
 
-SIMPLE_BENCHMARK(RockPaperScissors, Sample1, "scissors", "paper");
+THE_BENCHMARK(RockPaperScissors, "scissors", "paper");
 
 SIMPLE_TEST(RockPaperScissors, TestSample1, 1, "scissors", "paper");
 SIMPLE_TEST(RockPaperScissors, TestSample2, 2, "scissors", "rock");
