@@ -76,7 +76,7 @@ auto FirstNQueenSolution(BoardType &board, const unsigned column = 0) {
     return false;
 }
 
-auto FirstNQueenSolution(const unsigned N) {
+inline auto FirstNQueenSolution(const unsigned N) {
     auto board = std::vector(N, BoardType::value_type(N, false));
     FirstNQueenSolution(board);
 

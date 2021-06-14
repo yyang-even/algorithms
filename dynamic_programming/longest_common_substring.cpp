@@ -3,7 +3,7 @@
 
 namespace {
 
-/** Longest Common Substrin
+/** Longest Common Substring
  *
  * @reference   Longest Common Substring | DP-29
  *              https://www.geeksforgeeks.org/longest-common-substring-dp-29/
