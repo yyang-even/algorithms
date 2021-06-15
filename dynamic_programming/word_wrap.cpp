@@ -22,10 +22,11 @@ using OutputType = std::vector<std::pair<ArrayType::size_type, ArrayType::size_t
  * We wish to minimize the sum, over all lines except the last, of the cubes of the numbers
  * of extra space characters at the ends of lines.
  */
-const auto INFINITE = std::numeric_limits<ArrayType::value_type>::max();
+constexpr auto INFINITE = std::numeric_limits<ArrayType::value_type>::max();
 
-void GetWordWrapPairs(const ArrayType::size_type line_starts[], const unsigned line_end,
-                      OutputType &results) {
+inline void
+GetWordWrapPairs(const ArrayType::size_type line_starts[], const unsigned line_end,
+                 OutputType &results) {
     if (line_starts[line_end] != 1) {
         GetWordWrapPairs(line_starts, line_starts[line_end] - 1, results);
     }
@@ -127,13 +128,13 @@ const ArrayType SAMPLE2 = {3, 2, 2};
 const OutputType EXPECTED2 = {{1, 1}, {2, 2}, {3, 3}};
 
 
-SIMPLE_BENCHMARK(WordWrap, Sample1, SAMPLE1, 6);
+THE_BENCHMARK(WordWrap, SAMPLE1, 6);
 
 SIMPLE_TEST(WordWrap, TestSAMPLE1, EXPECTED1, SAMPLE1, 6);
 SIMPLE_TEST(WordWrap, TestSAMPLE2, EXPECTED2, SAMPLE2, 3);
 
 
-SIMPLE_BENCHMARK(WordWrap_SpaceOptimized, Sample1, SAMPLE1, 6);
+THE_BENCHMARK(WordWrap_SpaceOptimized, SAMPLE1, 6);
 
 SIMPLE_TEST(WordWrap_SpaceOptimized, TestSAMPLE1, EXPECTED1, SAMPLE1, 6);
 SIMPLE_TEST(WordWrap_SpaceOptimized, TestSAMPLE2, EXPECTED2, SAMPLE2, 3);

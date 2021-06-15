@@ -12,8 +12,8 @@ using MemoType = std::vector<std::vector<std::vector<int>>>;
  * Count the number of ways we can parenthesize the expression so that the value of
  * expression evaluates to true.
  */
-auto BooleanParenthesization_DP(const std::string &symbols,
-                                const std::string &operators) {
+auto BooleanParenthesization_DP(const std::string_view symbols,
+                                const std::string_view operators) {
     assert(symbols.size() == operators.size() + 1);
 
     auto false_table = std::vector(symbols.size(), std::vector(symbols.size(), 0));
@@ -62,7 +62,7 @@ auto BooleanParenthesization_DP(const std::string &symbols,
  * boolean result value result, implement a function to count the number of ways of
  * parenthesizing the expression such that it evaluates to result.
  */
-int BooleanParenthesization_Memoization(const std::string &expression,
+int BooleanParenthesization_Memoization(const std::string_view expression,
                                         const bool expected_true,
                                         const int i, const int j,
                                         MemoType &memo) {
@@ -134,7 +134,8 @@ int BooleanParenthesization_Memoization(const std::string &expression,
     return result;
 }
 
-auto BooleanParenthesization_Memoization(const std::string &expression) {
+inline auto
+BooleanParenthesization_Memoization(const std::string_view expression) {
     auto memo = std::vector(expression.size(),
                             std::vector(expression.size(), std::vector(2, -1)));
     return BooleanParenthesization_Memoization(expression, true,

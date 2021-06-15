@@ -7,10 +7,11 @@ using ArrayType = std::vector<unsigned>;
 using TwoDimensionalArrayType =
     std::unordered_map<std::size_t, std::unordered_map<std::size_t, ArrayType::size_type>>;
 
-void ToMatrixChainStringWithParenthesis(const ArrayType::size_type i,
-                                        const ArrayType::size_type j,
-                                        TwoDimensionalArrayType &break_points,
-                                        std::stringstream &out) {
+inline void
+ToMatrixChainStringWithParenthesis(const ArrayType::size_type i,
+                                   const ArrayType::size_type j,
+                                   TwoDimensionalArrayType &break_points,
+                                   std::stringstream &out) {
     if (i == j) {
         out << 'A' << i;
         return;
@@ -74,7 +75,8 @@ auto MatrixChainMultiplication(const ArrayType &dimensions,
  * @reference   Printing brackets in Matrix Chain Multiplication Problem
  *              https://www.geeksforgeeks.org/printing-brackets-matrix-chain-multiplication-problem/
  */
-auto MatrixChainMultiplicationString(const ArrayType &dimensions) {
+inline auto
+MatrixChainMultiplicationString(const ArrayType &dimensions) {
     TwoDimensionalArrayType break_points;
     MatrixChainMultiplication(dimensions, &break_points);
 
@@ -109,7 +111,7 @@ const ArrayType SAMPLE3 = {10, 20, 30, 40, 30};
 const ArrayType SAMPLE4 = {10, 20, 30};
 
 
-SIMPLE_BENCHMARK(MatrixChainMultiplication, Sample1, SAMPLE1);
+THE_BENCHMARK(MatrixChainMultiplication, SAMPLE1);
 
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE1, 2010, SAMPLE1);
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE2, 26000, SAMPLE2);
@@ -117,7 +119,7 @@ SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE3, 30000, SAMPLE3);
 SIMPLE_TEST(MatrixChainMultiplication, TestSAMPLE4, 6000, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(MatrixChainMultiplicationString, Sample1, SAMPLE1);
+THE_BENCHMARK(MatrixChainMultiplicationString, SAMPLE1);
 
 SIMPLE_TEST(MatrixChainMultiplicationString, TestSAMPLE2, "((A1(A2A3))A4)", SAMPLE2);
 SIMPLE_TEST(MatrixChainMultiplicationString, TestSAMPLE3, "(((A1A2)A3)A4)", SAMPLE3);

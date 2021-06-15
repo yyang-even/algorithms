@@ -10,12 +10,13 @@ namespace {
  * @reference   Longest common substring in binary representation of two numbers
  *              https://www.geeksforgeeks.org/longest-common-substring-binary-representation-two-numbers/
  */
-auto LongestCommonSubstring(const std::string &X, const std::string &Y) {
-    std::string::size_type LCSs[X.size() + 1][Y.size() + 1] = {};
-    std::string::size_type max_length = 0;
+constexpr auto
+LongestCommonSubstring(const std::string_view X, const std::string_view Y) {
+    std::size_t LCSs[X.size() + 1][Y.size() + 1] = {};
+    std::size_t max_length = 0;
 
-    for (std::string::size_type i = 1; i <= X.size(); ++i) {
-        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+    for (std::size_t i = 1; i <= X.size(); ++i) {
+        for (std::size_t j = 1; j <= Y.size(); ++j) {
             if (X[i - 1] == Y[j - 1]) {
                 LCSs[i][j] = LCSs[i - 1][j - 1] + 1;
                 if (max_length < LCSs[i][j]) {
@@ -35,15 +36,17 @@ auto LongestCommonSubstring(const std::string &X, const std::string &Y) {
  * @reference   Print the longest common substring
  *              https://www.geeksforgeeks.org/print-longest-common-substring/
  */
-auto LongestCommonSubstring_SpaceOptimized(const std::string &X, const std::string &Y) {
+constexpr auto
+LongestCommonSubstring_SpaceOptimized(const std::string_view X,
+                                      const std::string_view Y) {
     auto row_size = 2;  //work around a GCC bug.
-    std::string::size_type LCSs[row_size][Y.size() + 1] = {};
-    std::string::size_type max_length = 0;
-    std::string::size_type the_end = 0;
+    std::size_t LCSs[row_size][Y.size() + 1] = {};
+    std::size_t max_length = 0;
+    std::size_t the_end = 0;
 
-    for (std::string::size_type i = 1; i <= X.size(); ++i) {
+    for (std::size_t i = 1; i <= X.size(); ++i) {
         const auto current_row = i % 2;
-        for (std::string::size_type j = 1; j <= Y.size(); ++j) {
+        for (std::size_t j = 1; j <= Y.size(); ++j) {
             if (X[i - 1] == Y[j - 1]) {
                 LCSs[current_row][j] = LCSs[1 - current_row][j - 1] + 1;
                 if (max_length < LCSs[current_row][j]) {
@@ -68,20 +71,20 @@ auto LongestCommonSubstring_SpaceOptimized(const std::string &X, const std::stri
 }//namespace
 
 
-const auto SAMPLE1_X = "GeeksforGeeks";
-const auto SAMPLE1_Y = "GeeksQuiz";
-const std::string EXPECTED1 = "Geeks";
+constexpr std::string_view SAMPLE1_X = "GeeksforGeeks";
+constexpr std::string_view SAMPLE1_Y = "GeeksQuiz";
+constexpr std::string_view EXPECTED1 = "Geeks";
 
-const auto SAMPLE2_X = "abcdxyz";
-const auto SAMPLE2_Y = "xyzabcd";
-const std::string EXPECTED2 = "abcd";
+constexpr std::string_view SAMPLE2_X = "abcdxyz";
+constexpr std::string_view SAMPLE2_Y = "xyzabcd";
+constexpr std::string_view EXPECTED2 = "abcd";
 
-const auto SAMPLE3_X = "zxabcdezy";
-const auto SAMPLE3_Y = "yzabcdezx";
-const std::string EXPECTED3 = "abcdez";
+constexpr std::string_view SAMPLE3_X = "zxabcdezy";
+constexpr std::string_view SAMPLE3_Y = "yzabcdezx";
+constexpr std::string_view EXPECTED3 = "abcdez";
 
 
-SIMPLE_BENCHMARK(LongestCommonSubstring, Sample1, SAMPLE1_X, SAMPLE1_Y);
+THE_BENCHMARK(LongestCommonSubstring, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE1, EXPECTED1.size(),
             SAMPLE1_X, SAMPLE1_Y);
@@ -91,7 +94,7 @@ SIMPLE_TEST(LongestCommonSubstring, TestSAMPLE3, EXPECTED3.size(),
             SAMPLE3_X, SAMPLE3_Y);
 
 
-SIMPLE_BENCHMARK(LongestCommonSubstring_SpaceOptimized, Sample1, SAMPLE1_X, SAMPLE1_Y);
+THE_BENCHMARK(LongestCommonSubstring_SpaceOptimized, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubstring_SpaceOptimized, TestSAMPLE1, EXPECTED1,
             SAMPLE1_X, SAMPLE1_Y);

@@ -18,9 +18,9 @@ using ArrayType = std::vector<int>;
  * @reference   C++ Program for Longest Increasing Subsequence
  *              https://www.geeksforgeeks.org/c-program-for-longest-increasing-subsequence/
  *
- * The Longest Increasing Subsequence (LIS) problem is to find the length of the
- * longest subsequence of a given sequence such that all elements of the subsequence
- * are sorted in increasing order. For example, the length of LIS for
+ * The Longest Increasing Subsequence (LIS) problem is to find the length of the longest
+ * subsequence of a given sequence such that all elements of the subsequence are sorted
+ * in increasing order. For example, the length of LIS for
  * {10, 22, 9, 33, 21, 50, 41, 60, 80} is 6 and LIS is {10, 22, 33, 50, 60, 80}.
  */
 auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
@@ -73,7 +73,8 @@ auto LongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
  * @reference   Longest Increasing Subsequence using Longest Common Subsequence Algorithm
  *              https://www.geeksforgeeks.org/longest-increasing-subsequence-using-longest-common-subsequence-algorithm/
  */
-auto LongestIncreasingSubsequence_Sort(const ArrayType &elements) {
+inline auto
+LongestIncreasingSubsequence_Sort(const ArrayType &elements) {
     auto sorted_elements = elements;
     std::sort(sorted_elements.begin(), sorted_elements.end());
     return LongestCommonSubsequence(elements, sorted_elements);
@@ -159,7 +160,7 @@ const ArrayType SAMPLE4 = {50, 3, 10, 7, 40, 80};
 const ArrayType EXPECTED4 = {3, 7, 40, 80};
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_DP, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestIncreasingSubsequence_DP, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -167,7 +168,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMP
 SIMPLE_TEST(LongestIncreasingSubsequence_DP, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_NLogN, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestIncreasingSubsequence_NLogN, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -175,7 +176,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE3, EXPECTED3.size(), S
 SIMPLE_TEST(LongestIncreasingSubsequence_NLogN, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(LongestIncreasingSubsequence_Sort, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestIncreasingSubsequence_Sort, SAMPLE1);
 
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
@@ -183,7 +184,7 @@ SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE3, EXPECTED3.size(), SA
 SIMPLE_TEST(LongestIncreasingSubsequence_Sort, TestSAMPLE4, EXPECTED4.size(), SAMPLE4);
 
 
-SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_DP, Sample1, SAMPLE1);
+THE_BENCHMARK(OneLongestIncreasingSubsequence_DP, SAMPLE1);
 
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -191,7 +192,7 @@ SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE3, EXPECTED3, SAMPLE3)
 SIMPLE_TEST(OneLongestIncreasingSubsequence_DP, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(OneLongestIncreasingSubsequence_NLogN, Sample1, SAMPLE1);
+THE_BENCHMARK(OneLongestIncreasingSubsequence_NLogN, SAMPLE1);
 
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE2, EXPECTED2, SAMPLE2);
