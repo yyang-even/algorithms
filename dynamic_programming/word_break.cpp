@@ -4,6 +4,7 @@
 namespace {
 
 using ArrayType = std::vector<std::string>;
+using DictType = std::unordered_set<std::string_view>;
 
 /** Word Break Problem
  *
@@ -13,12 +14,11 @@ using ArrayType = std::vector<std::string>;
  * Given an input string and a dictionary of words, find out if the input string can be
  * segmented into a space-separated sequence of dictionary words.
  */
-bool WordBreak(const std::string &a_string,
-               const std::unordered_set<std::string> &words) {
+bool WordBreak(const std::string_view a_string, const DictType &words) {
     std::vector<bool> word_breaks(a_string.size() + 1, false);
     word_breaks[0] = true;
 
-    for (std::string::size_type i = 0; i <= a_string.size(); ++i) {
+    for (std::size_t i = 0; i <= a_string.size(); ++i) {
         if (word_breaks[i]) {
             for (auto j = i; j <= a_string.size(); ++j) {
                 if (word_breaks[j] == false and words.find(a_string.substr(i, j - i)) != words.cend()) {
@@ -48,10 +48,9 @@ bool WordBreak(const std::string &a_string,
  * English words, find all possible ways to break the sentence in individual dictionary
  * words.
  */
-void AllWayToWordBreak(const std::string &a_string,
-                       const std::unordered_set<std::string> &words,
+void AllWayToWordBreak(const std::string &a_string, const DictType &words,
                        const std::string &prefix, ArrayType &results) {
-    for (std::string::size_type i = 1; i <= a_string.size(); ++i) {
+    for (std::size_t i = 1; i <= a_string.size(); ++i) {
         const auto substring = a_string.substr(0, i);
         if (words.find(substring) != words.cend()) {
             const auto new_prefix = prefix + substring;
@@ -65,8 +64,8 @@ void AllWayToWordBreak(const std::string &a_string,
     }
 }
 
-auto AllWayToWordBreak(const std::string &a_string,
-                       const std::unordered_set<std::string> &words) {
+inline auto
+AllWayToWordBreak(const std::string &a_string, const DictType &words) {
     ArrayType results;
     AllWayToWordBreak(a_string, words, "", results);
     return results;
@@ -80,12 +79,11 @@ auto AllWayToWordBreak(const std::string &a_string,
  * Given a string s, break s such that every substring of the partition can be found in
  * the dictionary. Return the minimum break needed.
  */
-bool MinimumWordBreak(const std::string &a_string,
-                      const std::unordered_set<std::string> &words) {
+bool MinimumWordBreak(const std::string_view a_string, const DictType &words) {
     std::vector<int> word_breaks(a_string.size() + 1, 0);
     word_breaks[0] = 1;
 
-    for (std::string::size_type i = 0; i <= a_string.size(); ++i) {
+    for (std::size_t i = 0; i <= a_string.size(); ++i) {
         if (word_breaks[i]) {
             const auto number_breaks = word_breaks[i] + 1;
             for (auto j = i; j <= a_string.size(); ++j) {
@@ -114,7 +112,7 @@ bool MinimumWordBreak(const std::string &a_string,
 }//namespace
 
 
-const std::unordered_set<std::string> DICTIONARY1 =
+const DictType DICTIONARY1 =
 {"mobile", "samsung", "sam", "sung", "man", "mango", "icecream", "and", "go", "i", "like", "ice", "cream"};
 
 
@@ -144,7 +142,7 @@ SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE2, EXPECTED2,
             "ilikesamsungmobile", DICTIONARY1);
 
 
-const std::unordered_set<std::string> DICTIONARY2 =
+const DictType DICTIONARY2 =
 {"Cat", "Mat", "Ca", "tM", "at", "C", "Dog", "og", "Do"};
 
 

@@ -19,8 +19,9 @@
  * bioinformatics.
  */
 template <typename ArrayType>
-auto LongestCommonSubsequence(const ArrayType &X, const ArrayType &Y,
-                              ArrayType *const the_lcs = nullptr) {
+static inline constexpr auto
+LongestCommonSubsequence(const ArrayType &X, const ArrayType &Y,
+                         ArrayType *const the_lcs = nullptr) {
     unsigned LCS_table[X.size() + 1][Y.size() + 1] = {};
 
     for (typename ArrayType::size_type i = 1; i <= X.size(); ++i) {

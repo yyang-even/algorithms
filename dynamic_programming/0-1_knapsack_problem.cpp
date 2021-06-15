@@ -101,8 +101,9 @@ auto Knapsack01_OneDimension(const ArrayType &weights, const ArrayType &values,
  * @reference   Printing Items in 0/1 Knapsack
  *              https://www.geeksforgeeks.org/printing-items-01-knapsack/
  */
-auto Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
-                           const ArrayType::value_type W) {
+inline auto
+Knapsack01ItemIndices(const ArrayType &weights, const ArrayType &values,
+                      const ArrayType::value_type W) {
     ArrayType selected_items;
     Knapsack01(weights, values, W, &selected_items);
     return selected_items;
@@ -234,7 +235,7 @@ const ArrayType SAMPLE4_WEIGHT = {1, 3, 4, 5};
 const ArrayType EXPECTED4 = {2, 1};
 
 
-SIMPLE_BENCHMARK(Knapsack01, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+THE_BENCHMARK(Knapsack01, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_TEST(Knapsack01, TestSAMPLE1, 220, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 SIMPLE_TEST(Knapsack01, TestSAMPLE2, 11, SAMPLE2_WEIGHT, SAMPLE2_VALUES, 10);
@@ -242,8 +243,7 @@ SIMPLE_TEST(Knapsack01, TestSAMPLE3, 200, SAMPLE3_WEIGHT, SAMPLE3_VALUES, 60);
 SIMPLE_TEST(Knapsack01, TestSAMPLE4, 9, SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
-SIMPLE_BENCHMARK(Knapsack01_SpaceOptimized, Sample1,
-                 SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+THE_BENCHMARK(Knapsack01_SpaceOptimized, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE1, 220,
             SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
@@ -255,7 +255,7 @@ SIMPLE_TEST(Knapsack01_SpaceOptimized, TestSAMPLE4, 9,
             SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
-SIMPLE_BENCHMARK(Knapsack01_OneDimension, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+THE_BENCHMARK(Knapsack01_OneDimension, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE1, 220,
             SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
@@ -267,7 +267,7 @@ SIMPLE_TEST(Knapsack01_OneDimension, TestSAMPLE4, 9,
             SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
-SIMPLE_BENCHMARK(Knapsack01ItemIndices, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+THE_BENCHMARK(Knapsack01ItemIndices, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE1, EXPECTED1,
             SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
@@ -279,7 +279,7 @@ SIMPLE_TEST(Knapsack01ItemIndices, TestSAMPLE4, EXPECTED4,
             SAMPLE4_WEIGHT, SAMPLE4_VALUES, 7);
 
 
-SIMPLE_BENCHMARK(FractionalKnapsack01, Sample1, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
+THE_BENCHMARK(FractionalKnapsack01, SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
 
 SIMPLE_DOUBLE_TEST(FractionalKnapsack01, TestSAMPLE1, 240,
                    SAMPLE1_WEIGHT, SAMPLE1_VALUES, 50);
@@ -291,8 +291,8 @@ const ArrayType SAMPLE5_QUERY = {1, 2, 3, 4, 5, 6, 7};
 const std::vector<double> EXPECTED5 = {4, 8, 11, 14, 17, 19, 19};
 
 
-SIMPLE_BENCHMARK(FractionalKnapsack01Queries, Sample1,
-                 SAMPLE5_WEIGHT, SAMPLE5_VALUES, SAMPLE5_QUERY);
+THE_BENCHMARK(FractionalKnapsack01Queries,
+              SAMPLE5_WEIGHT, SAMPLE5_VALUES, SAMPLE5_QUERY);
 
 SIMPLE_TEST(FractionalKnapsack01Queries, TestSAMPLE5, EXPECTED5,
             SAMPLE5_WEIGHT, SAMPLE5_VALUES, SAMPLE5_QUERY);

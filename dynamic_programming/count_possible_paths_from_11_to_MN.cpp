@@ -40,6 +40,7 @@ auto CountPossiblePaths_DP(const unsigned M, const unsigned N) {
     return counts[M - 1][N - 1];
 }
 
+
 auto CountPossiblePaths_SpaceOptimized_DP(const unsigned M, const unsigned N) {
     assert(M > 0);
     assert(N > 0);
@@ -54,6 +55,7 @@ auto CountPossiblePaths_SpaceOptimized_DP(const unsigned M, const unsigned N) {
 
     return counts[N - 1];
 }
+
 
 auto CountPossiblePaths_Combinatorics(const unsigned M, const unsigned N) {
     assert(M > 0);

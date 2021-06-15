@@ -12,15 +12,15 @@ namespace {
  * @reference   Longest Palindromic Subsequence | DP-12
  *              https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/
  */
-auto LongestPalindromicSubsequence(const std::string &elements) {
-    std::string::size_type LPSs[elements.size()][elements.size()] = {};
+auto LongestPalindromicSubsequence(const std::string_view elements) {
+    std::size_t LPSs[elements.size()][elements.size()] = {};
 
-    for (std::string::size_type i = 0; i < elements.size(); ++i) {
+    for (std::size_t i = 0; i < elements.size(); ++i) {
         LPSs[i][i] = 1;
     }
 
-    for (std::string::size_type length = 2; length <= elements.size(); ++length) {
-        for (std::string::size_type i = 0; i <= elements.size() - i; ++i) {
+    for (std::size_t length = 2; length <= elements.size(); ++length) {
+        for (std::size_t i = 0; i <= elements.size() - i; ++i) {
             const auto j = i + length - 1;
             if (elements[i] == elements[j]) {
                 if (length == 2) {
@@ -42,7 +42,8 @@ auto LongestPalindromicSubsequence(const std::string &elements) {
  * @reference   Print Longest Palindromic Subsequence
  *              https://www.geeksforgeeks.org/print-longest-palindromic-subsequence/
  */
-auto LongestPalindromicSubsequenceString_LCS(const std::string &elements) {
+inline auto
+LongestPalindromicSubsequenceString_LCS(const std::string &elements) {
     auto reversed = elements;
     std::reverse(reversed.begin(), reversed.end());
 
@@ -57,11 +58,11 @@ auto LongestPalindromicSubsequenceString_LCS(const std::string &elements) {
  * @reference   Longest palindrome subsequence with O(n) space
  *              https://www.geeksforgeeks.org/longest-palindrome-subsequence-space/
  */
-auto LongestPalindromicSubsequence_SpaceOptimized(const std::string &elements) {
+auto LongestPalindromicSubsequence_SpaceOptimized(const std::string_view elements) {
     unsigned LPSs[elements.size()] = {};
     for (int i = elements.size() - 1; i >= 0; --i) {
         unsigned back_up = 0;
-        for (std::string::size_type j = i; j < elements.size(); ++j) {
+        for (std::size_t j = i; j < elements.size(); ++j) {
             if (static_cast<decltype(j)>(i) == j) {
                 LPSs[j] = 1;
             } else if (elements[i] == elements[j]) {
@@ -87,19 +88,19 @@ const auto SAMPLE2 = "GEEKSFORGEEKS";
 const std::string EXPECTED2 = "EEGEE";
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequence, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubsequence, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequence, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubsequence, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequenceString_LCS, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubsequenceString_LCS, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
             SAMPLE1);

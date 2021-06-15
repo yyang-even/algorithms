@@ -43,7 +43,7 @@ auto CompanyPartyPlanning(const NodeType::PointerType node, TableType &max_profi
     return max_profits[node.get()] = std::max(profit_with_node, profit_without_node);
 }
 
-auto CompanyPartyPlanning(const NodeType::PointerType root) {
+inline auto CompanyPartyPlanning(const NodeType::PointerType root) {
     TableType max_profits;
     return CompanyPartyPlanning(root, max_profits);
 }
@@ -70,7 +70,7 @@ const auto SAMPLE2 = MakeSample2();
 const auto SAMPLE3 = MakeTheSampleTree<NodeType>();
 
 
-SIMPLE_BENCHMARK(CompanyPartyPlanning, Sample1, SAMPLE3);
+THE_BENCHMARK(CompanyPartyPlanning, SAMPLE3);
 
 SIMPLE_TEST(CompanyPartyPlanning, TestSAMPLE0, 0, SAMPLE0);
 SIMPLE_TEST(CompanyPartyPlanning, TestSAMPLE1, SAMPLE1->value, SAMPLE1);
