@@ -8,17 +8,18 @@ namespace {
  * @reference   Longest Palindromic Substring | Set 1
  *              https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
  */
-auto LongestPalindromicSubstring_DP(const std::string &elements) {
+constexpr auto
+LongestPalindromicSubstring_DP(const std::string_view elements) {
     bool LPSs[elements.size()][elements.size()] = {};
 
-    for (std::string::size_type i = 0; i < elements.size(); ++i) {
+    for (std::size_t i = 0; i < elements.size(); ++i) {
         LPSs[i][i] = true;
     }
 
-    std::string::size_type max_length = 1;
-    std::string::size_type start_position = 0;
-    for (std::string::size_type length = 2; length <= elements.size(); ++length) {
-        for (std::string::size_type i = 0; i <= elements.size() - length; ++i) {
+    std::size_t max_length = 1;
+    std::size_t start_position = 0;
+    for (std::size_t length = 2; length <= elements.size(); ++length) {
+        for (std::size_t i = 0; i <= elements.size() - length; ++i) {
             const auto j = i + length - 1;
             if (elements[i] == elements[j]) {
                 if (length == 2 or LPSs[i + 1][j - 1]) {
@@ -40,14 +41,15 @@ auto LongestPalindromicSubstring_DP(const std::string &elements) {
  * @reference   Longest Palindromic Substring | Set 2
  *              https://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
  */
-auto LongestPalindromicSubstring_EvenOddCenter(const std::string &elements) {
-    std::string::size_type max_length = 1;
-    std::string::size_type start_position = 0;
+constexpr auto
+LongestPalindromicSubstring_EvenOddCenter(const std::string_view elements) {
+    std::size_t max_length = 1;
+    std::size_t start_position = 0;
 
-    for (std::string::size_type i = 1; i < elements.size(); ++i) {
+    for (std::size_t i = 1; i < elements.size(); ++i) {
         for (int is_odd = false; is_odd < 2; ++is_odd) {
             int low = i - 1;
-            std::string::size_type high = i + is_odd;
+            std::size_t high = i + is_odd;
             for (; low >= 0 and high < elements.size() and elements[low] == elements[high];
                  --low, ++high) {
                 const auto length = high - low + 1;
@@ -75,7 +77,8 @@ auto LongestPalindromicSubstring_EvenOddCenter(const std::string &elements) {
  *
  * @note    This implement Part 4.
  */
-auto LongestPalindromicSubstring_Manacher(const std::string &elements) {
+constexpr auto
+LongestPalindromicSubstring_Manacher(const std::string_view elements) {
     assert(not elements.empty());
 
     const int position_size = 2 * elements.size() + 1;
@@ -118,29 +121,29 @@ auto LongestPalindromicSubstring_Manacher(const std::string &elements) {
 }//namespace
 
 
-const auto SAMPLE1 = "forgeeksskeegfor";
-const std::string EXPECTED1 = "geeksskeeg";
+constexpr auto SAMPLE1 = "forgeeksskeegfor";
+constexpr auto EXPECTED1 = "geeksskeeg";
 
-const auto SAMPLE2 = "abaaba";
+constexpr auto SAMPLE2 = "abaaba";
 
-const auto SAMPLE3 = "abababa";
+constexpr auto SAMPLE3 = "abababa";
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_DP, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubstring_DP, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE2, SAMPLE2, SAMPLE2);
 SIMPLE_TEST(LongestPalindromicSubstring_DP, TestSAMPLE3, SAMPLE3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_EvenOddCenter, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubstring_EvenOddCenter, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE2, SAMPLE2, SAMPLE2);
 SIMPLE_TEST(LongestPalindromicSubstring_EvenOddCenter, TestSAMPLE3, SAMPLE3, SAMPLE3);
 
 
-SIMPLE_BENCHMARK(LongestPalindromicSubstring_Manacher, Sample1, SAMPLE1);
+THE_BENCHMARK(LongestPalindromicSubstring_Manacher, SAMPLE1);
 
 SIMPLE_TEST(LongestPalindromicSubstring_Manacher, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(LongestPalindromicSubstring_Manacher, TestSAMPLE2, SAMPLE2, SAMPLE2);

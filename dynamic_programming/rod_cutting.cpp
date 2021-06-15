@@ -37,6 +37,6 @@ auto RodCutting(const ArrayType &prices, const ArrayType::size_type rod_length) 
 const ArrayType SAMPLE1 = {1, 5, 8, 9, 10, 17, 17, 20};
 
 
-SIMPLE_BENCHMARK(RodCutting, Sample1, SAMPLE1, SAMPLE1.size());
+THE_BENCHMARK(RodCutting, SAMPLE1, SAMPLE1.size());
 
 SIMPLE_TEST(RodCutting, TestSAMPLE1, 22, SAMPLE1, SAMPLE1.size());

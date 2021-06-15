@@ -22,11 +22,12 @@ using TwoDimensionalArrayType =
  *
  * All of the above operations are of equal cost.
  */
-auto EditDistance(const std::string &str1, const std::string &str2) {
+constexpr auto
+EditDistance(const std::string_view str1, const std::string_view str2) {
     unsigned min_distances[str1.size() + 1][str2.size() + 1] = {};
 
-    for (std::string::size_type i = 0; i <= str1.size(); ++i) {
-        for (std::string::size_type j = 0; j <= str2.size(); ++j) {
+    for (std::size_t i = 0; i <= str1.size(); ++i) {
+        for (std::size_t j = 0; j <= str2.size(); ++j) {
             if (i == 0) {
                 min_distances[i][j] = j;
             } else if (j == 0) {
@@ -45,13 +46,14 @@ auto EditDistance(const std::string &str1, const std::string &str2) {
 }
 
 
-auto EditDistance_SpaceOptimized(const std::string &str1, const std::string &str2) {
+constexpr auto
+EditDistance_SpaceOptimized(const std::string_view str1, const std::string_view str2) {
     auto row_size = 2;  //work around a GCC bug.
     unsigned min_distances[row_size][str2.size() + 1] = {};
 
-    for (std::string::size_type i = 0; i <= str1.size(); ++i) {
+    for (std::size_t i = 0; i <= str1.size(); ++i) {
         const auto current_row = i % 2;
-        for (std::string::size_type j = 0; j <= str2.size(); ++j) {
+        for (std::size_t j = 0; j <= str2.size(); ++j) {
             if (i == 0) {
                 min_distances[i][j] = j;
             } else if (j == 0) {
@@ -75,10 +77,10 @@ auto EditDistance_SpaceOptimized(const std::string &str1, const std::string &str
  * @reference   Edit Distance | DP using Memoization
  *              https://www.geeksforgeeks.org/edit-distance-dp-using-memoization/
  */
-unsigned EditDistance_Memoization(const std::string &str1,
-                                  const std::string::size_type i,
-                                  const std::string &str2,
-                                  const std::string::size_type j,
+unsigned EditDistance_Memoization(const std::string_view str1,
+                                  const std::size_t i,
+                                  const std::string_view str2,
+                                  const std::size_t j,
                                   TwoDimensionalArrayType &min_distances) {
     if (i == 0) {
         return j;
@@ -102,7 +104,8 @@ unsigned EditDistance_Memoization(const std::string &str1,
                                      EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances));        // Replace
 }
 
-auto EditDistance_Memoization(const std::string &str1, const std::string &str2) {
+inline auto
+EditDistance_Memoization(const std::string_view str1, const std::string_view str2) {
     TwoDimensionalArrayType min_distances;
     return EditDistance_Memoization(str1, str1.size(), str2, str2.size(), min_distances);
 }
@@ -112,8 +115,9 @@ auto EditDistance_Memoization(const std::string &str1, const std::string &str2) 
  *
  * @reference   https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
  */
-auto areKDistanceApart(const std::string &str1, const std::string &str2,
-                       const unsigned K) {
+inline constexpr auto
+areKDistanceApart(const std::string_view str1, const std::string_view str2,
+                  const unsigned K) {
     const auto length_diff =
         str1.size() > str2.size() ? str1.size() - str2.size() : str2.size() - str1.size();
     if (length_diff > K) {
@@ -128,7 +132,8 @@ auto areKDistanceApart(const std::string &str1, const std::string &str2,
  *
  * @reference   https://www.geeksforgeeks.org/check-if-two-given-strings-are-at-edit-distance-one/
  */
-auto areOneDistanceApart(const std::string &str1, const std::string &str2) {
+constexpr auto
+areOneDistanceApart(const std::string_view str1, const std::string_view str2) {
     const auto length_diff =
         str1.size() > str2.size() ? str1.size() - str2.size() : str2.size() - str1.size();
     if (length_diff > 1) {
@@ -136,8 +141,8 @@ auto areOneDistanceApart(const std::string &str1, const std::string &str2) {
     }
 
     unsigned distance = 0;
-    std::string::size_type i = 0;
-    std::string::size_type j = 0;
+    std::size_t i = 0;
+    std::size_t j = 0;
     while (i < str1.size() and j < str2.size()) {
         if (str1[i] != str2[j]) {
             if (distance == 1) {
@@ -176,8 +181,9 @@ auto areOneDistanceApart(const std::string &str1, const std::string &str2) {
  * Consider a variation of edit distance where we are allowed only two operations insert
  * and delete, find edit distance in this variation.
  */
-auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
-                                         const std::string &str2) {
+inline auto
+EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
+                                    const std::string &str2) {
     const auto LCS = LongestCommonSubsequence(str1, str2);
     return (str1.size() - LCS) + (str2.size() - LCS);
 }
@@ -185,7 +191,7 @@ auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
 }//namespace
 
 
-SIMPLE_BENCHMARK(EditDistance, Sample1, "geek", "gesek");
+THE_BENCHMARK(EditDistance, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance, TestSAMPLE2, 1, "cat", "cut");
@@ -193,7 +199,7 @@ SIMPLE_TEST(EditDistance, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(EditDistance_SpaceOptimized, Sample1, "geek", "gesek");
+THE_BENCHMARK(EditDistance_SpaceOptimized, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE2, 1, "cat", "cut");
@@ -201,7 +207,7 @@ SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance_SpaceOptimized, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(EditDistance_Memoization, Sample1, "geek", "gesek");
+THE_BENCHMARK(EditDistance_Memoization, "geek", "gesek");
 
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE1, 1, "geek", "gesek");
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE2, 1, "cat", "cut");
@@ -209,7 +215,7 @@ SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE3, 3, "sunday", "saturday");
 SIMPLE_TEST(EditDistance_Memoization, TestSAMPLE4, 4, "food", "money");
 
 
-SIMPLE_BENCHMARK(areKDistanceApart, Sample1, "geeksforgeeks", "geeksforgeek", 1);
+THE_BENCHMARK(areKDistanceApart, "geeksforgeeks", "geeksforgeek", 1);
 
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE1, true, "geeksforgeeks", "geeksforgeek", 1);
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE2, false, "nishant", "nisha", 1);
@@ -217,7 +223,7 @@ SIMPLE_TEST(areKDistanceApart, TestSAMPLE3, false, "practice", "prac", 3);
 SIMPLE_TEST(areKDistanceApart, TestSAMPLE4, true, "Ping", "Paging", 2);
 
 
-SIMPLE_BENCHMARK(areOneDistanceApart, Sample1, "geeks", "geek");
+THE_BENCHMARK(areOneDistanceApart, "geeks", "geek");
 
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE1, true, "geeks", "geek");
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE2, false, "geeks", "geeks");
@@ -225,7 +231,7 @@ SIMPLE_TEST(areOneDistanceApart, TestSAMPLE3, false, "peaks", "geeks");
 SIMPLE_TEST(areOneDistanceApart, TestSAMPLE4, true, "geaks", "geeks");
 
 
-SIMPLE_BENCHMARK(EditDistanceWithInsertAndDeleteOnly, Sample1, "cat", "cut");
+THE_BENCHMARK(EditDistanceWithInsertAndDeleteOnly, "cat", "cut");
 
 SIMPLE_TEST(EditDistanceWithInsertAndDeleteOnly, TestSAMPLE1, 2, "cat", "cut");
 SIMPLE_TEST(EditDistanceWithInsertAndDeleteOnly, TestSAMPLE2, 1, "acb", "ab");
