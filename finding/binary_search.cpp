@@ -53,20 +53,21 @@ auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
     return cend;
 }
 
-auto BinarySearch_Recursive(const ArrayType &elements, const ArrayType::value_type x) {
+inline auto
+BinarySearch_Recursive(const ArrayType &elements, const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
     return BinarySearch_Recursive(elements.cbegin(), elements.size(), elements.cend(), x);
 }
 
 
-inline auto BinarySearch_STL_Lower(const ArrayType &elements,
-                                   const ArrayType::value_type x) {
+inline auto
+BinarySearch_STL_Lower(const ArrayType &elements, const ArrayType::value_type x) {
     return std::lower_bound(elements.cbegin(), elements.cend(), x);
 }
 
 
-inline auto BinarySearch_STL_Upper(const ArrayType &elements,
-                                   const ArrayType::value_type x) {
+inline auto
+BinarySearch_STL_Upper(const ArrayType &elements, const ArrayType::value_type x) {
     const auto iter = std::upper_bound(elements.cbegin(), elements.cend(), x);
     if (iter != elements.cend()) {
         return std::prev(iter);
@@ -152,13 +153,14 @@ auto CreateDeltaTable(const ArrayType::size_type size) {
 }
 
 template <unsigned size>
-const auto &GetDeltaTable() {
+inline const auto &GetDeltaTable() {
     static const auto delta_table = CreateDeltaTable(size);
     return delta_table;
 }
 
 template <unsigned size>
-auto BinarySearch_Uniform(const ArrayType &elements, const ArrayType::value_type x) {
+constexpr auto
+BinarySearch_Uniform(const ArrayType &elements, const ArrayType::value_type x) {
     assert(size == elements.size());
     assert(not elements.empty());
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
@@ -219,8 +221,9 @@ auto BinarySearch_First_Recursive(const ArrayType &elements,
     return elements.cend();
 }
 
-auto BinarySearch_First_Recursive(const ArrayType &elements,
-                                  const ArrayType::value_type x) {
+inline auto
+BinarySearch_First_Recursive(const ArrayType &elements,
+                             const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
     return BinarySearch_First_Recursive(elements, elements.cbegin(), elements.size(), x);
 }
@@ -278,8 +281,9 @@ auto BinarySearch_Last_Recursive(const ArrayType &elements,
     return elements.cend();
 }
 
-auto BinarySearch_Last_Recursive(const ArrayType &elements,
-                                 const ArrayType::value_type x) {
+inline auto
+BinarySearch_Last_Recursive(const ArrayType &elements,
+                            const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
     return BinarySearch_Last_Recursive(elements, elements.cbegin(), elements.size(), x);
 }
@@ -364,7 +368,8 @@ auto UpperBound_BinarySearch(const ArrayType &elements, const ArrayType::value_t
 }
 
 
-inline auto UpperBound_STL(const ArrayType &elements, const ArrayType::value_type x) {
+inline auto
+UpperBound_STL(const ArrayType &elements, const ArrayType::value_type x) {
     return std::upper_bound(elements.cbegin(), elements.cend(), x);
 }
 
@@ -386,8 +391,8 @@ inline auto UpperBound_STL(const ArrayType &elements, const ArrayType::value_typ
  *
  * Find index of last occurrence of greatest element less than key in array.
  */
-auto GreatestLesser_BinarySearch(const ArrayType &elements,
-                                 const ArrayType::value_type x) {
+auto
+GreatestLesser_BinarySearch(const ArrayType &elements, const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
     auto cbegin = elements.cbegin();
@@ -411,8 +416,8 @@ auto GreatestLesser_BinarySearch(const ArrayType &elements,
 }
 
 
-inline auto GreatestLesser_STL(const ArrayType &elements,
-                               const ArrayType::value_type x) {
+inline auto
+GreatestLesser_STL(const ArrayType &elements, const ArrayType::value_type x) {
     const auto iter = std::lower_bound(elements.cbegin(), elements.cend(), x);
     if (iter == elements.cbegin() or iter == elements.cend()) {
         elements.cend();

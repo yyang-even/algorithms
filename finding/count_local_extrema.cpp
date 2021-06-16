@@ -9,9 +9,9 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/maximum-number-local-extrema/
  *
- * You are given an array on n-elements. An extrema is an elements which is
- * either greater than its both of neighbors or less than its both neighbors.
- * You have to calculate the number of local extrema in given array.
+ * You are given an array on n-elements. An extrema is an elements which is either
+ * greater than its both of neighbors or less than its both neighbors. You have to
+ * calculate the number of local extrema in given array.
  * Note: 1st and last elements are not extrema.
  */
 auto CountLocalExtrema(const ArrayType &elements) {
@@ -35,7 +35,7 @@ const ArrayType SAMPLE2 = {1, 2, 3};
 const ArrayType SAMPLE3 = {1, 0, 2, 1};
 
 
-SIMPLE_BENCHMARK(CountLocalExtrema, Sample1, SAMPLE1);
+THE_BENCHMARK(CountLocalExtrema, SAMPLE1);
 
 SIMPLE_TEST(CountLocalExtrema, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(CountLocalExtrema, TestSAMPLE2, 0, SAMPLE2);

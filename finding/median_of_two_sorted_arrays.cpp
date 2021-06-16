@@ -7,10 +7,11 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-auto MedianOf4(const ArrayType::value_type smaller_one,
-               const ArrayType::value_type greater_one,
-               const ArrayType::value_type smaller_two,
-               const ArrayType::value_type greater_two) {
+inline constexpr auto
+MedianOf4(const ArrayType::value_type smaller_one,
+          const ArrayType::value_type greater_one,
+          const ArrayType::value_type smaller_two,
+          const ArrayType::value_type greater_two) {
     assert(smaller_one <= greater_one);
     assert(smaller_two <= greater_two);
 
@@ -76,8 +77,9 @@ auto MedianOfTwoSortedArrays_SameSize(const ArrayType::const_iterator &cbegin_on
     }
 }
 
-auto MedianOfTwoSortedArrays_SameSize(const ArrayType &array_one,
-                                      const ArrayType &array_two) {
+inline auto
+MedianOfTwoSortedArrays_SameSize(const ArrayType &array_one,
+                                 const ArrayType &array_two) {
     assert(array_one.size() == array_two.size());
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
@@ -127,8 +129,9 @@ double MedianOfTwoSortedArrays_DiffSize_Merge(const ArrayType &array_one,
 }
 
 
-auto MedianOf3(const ArrayType::value_type x, const ArrayType::value_type smaller,
-               const ArrayType::value_type greater) {
+inline constexpr auto
+MedianOf3(const ArrayType::value_type x, const ArrayType::value_type smaller,
+          const ArrayType::value_type greater) {
     assert(smaller <= greater);
     if (x < smaller) {
         return smaller;
@@ -209,8 +212,9 @@ double MedianOfTwoSortedArrays_DiffSize_Complex(
                                                     std::next(cbegin_longer, index_shorter), length_longer - index_shorter);
 }
 
-auto MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType &array_one,
-                                              const ArrayType &array_two) {
+inline auto
+MedianOfTwoSortedArrays_DiffSize_Complex(const ArrayType &array_one,
+                                         const ArrayType &array_two) {
     assert(std::is_sorted(array_one.cbegin(), array_one.cend()));
     assert(std::is_sorted(array_two.cbegin(), array_two.cend()));
 

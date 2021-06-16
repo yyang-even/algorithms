@@ -5,7 +5,7 @@
 
 namespace {
 
-using ArrayType = std::vector<std::string>;
+using ArrayType = std::vector<std::string_view>;
 
 /** Sparse Search
  *
@@ -18,7 +18,7 @@ using ArrayType = std::vector<std::string>;
  * Given a sorted array of strings which is interspersed with empty strings, write a
  * method to find the location of a given string.
  */
-auto SparseSearch(const ArrayType &elements, const std::string &key,
+auto SparseSearch(const ArrayType &elements, const std::string_view key,
                   const int low, const int high) {
     assert(not key.empty());
 
@@ -55,7 +55,7 @@ auto SparseSearch(const ArrayType &elements, const std::string &key,
     }
 }
 
-auto SparseSearch(const ArrayType &elements, const std::string &key) {
+inline auto SparseSearch(const ArrayType &elements, const std::string_view key) {
     return SparseSearch(elements, key, 0, elements.size() - 1);
 }
 

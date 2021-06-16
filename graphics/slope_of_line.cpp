@@ -3,8 +3,8 @@
 #include "point.h"
 
 
-const Point SAMPLE_P1 = {4, 2};
-const Point SAMPLE_P2 = {2, 5};
+constexpr Point SAMPLE_P1 = {4, 2};
+constexpr Point SAMPLE_P2 = {2, 5};
 
 
 THE_BENCHMARK(Slope, SAMPLE_P1, SAMPLE_P2);

@@ -33,7 +33,7 @@ auto FindOneFixedPoint(const ArrayType &elements, const int low, const int high)
     return -1;
 }
 
-auto FindOneFixedPoint(const ArrayType &elements) {
+inline auto FindOneFixedPoint(const ArrayType &elements) {
     return FindOneFixedPoint(elements, 0, elements.size() - 1);
 }
 
@@ -66,7 +66,8 @@ auto FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements,
                elements, std::max(elements[mid], mid + 1), high);
 }
 
-auto FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements) {
+inline auto
+FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements) {
     return FindOneFixedPointInArrayWithDuplicates(elements, 0, elements.size() - 1);
 }
 

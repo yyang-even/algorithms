@@ -33,7 +33,7 @@ const ArrayType VALUES_EVEN = {5, 6, 1, 2, 3, 4};
 const ArrayType VALUES_ODD = {2, 3, 4, 10, 40};
 
 
-SIMPLE_BENCHMARK(FindMinInSortedAndRotatedArray, Sample1, VALUES_EVEN);
+THE_BENCHMARK(FindMinInSortedAndRotatedArray, VALUES_EVEN);
 
 #ifdef WANT_TESTS
 class FindMinInSortedAndRotatedArrayTest: public ::testing::Test {

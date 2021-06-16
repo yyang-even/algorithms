@@ -12,7 +12,8 @@ namespace {
  *
  * Given two lines on a Cartesian plane, determine whether the two lines would intersect.
  */
-auto WouldTwoLinesIntersect(const Line &a_line, const Line &another_line) {
+inline constexpr auto
+WouldTwoLinesIntersect(const Line &a_line, const Line &another_line) {
     return std::abs(a_line.slope - another_line.slope) >
            std::numeric_limits<double>::epsilon() or
            std::abs(a_line.intercept - another_line.intercept) <
@@ -22,9 +23,9 @@ auto WouldTwoLinesIntersect(const Line &a_line, const Line &another_line) {
 }//namespace
 
 
-const Line SAMPLE1 = {0.5, 3};
-const Line SAMPLE2 = {1, 5};
-const Line SAMPLE3 = {0.5, 1};
+constexpr Line SAMPLE1 = {0.5, 3};
+constexpr Line SAMPLE2 = {1, 5};
+constexpr Line SAMPLE3 = {0.5, 1};
 
 
 THE_BENCHMARK(WouldTwoLinesIntersect, SAMPLE1, SAMPLE2);

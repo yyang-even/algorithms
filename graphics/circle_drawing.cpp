@@ -5,8 +5,9 @@ namespace {
 
 using ArrayType = std::vector<std::pair<int, int>>;
 
-void draw_circle_pixel(ArrayType &results, const int x_centre, const int y_centre,
-                       const int x, const int y) {
+inline void
+draw_circle_pixel(ArrayType &results, const int x_centre, const int y_centre,
+                  const int x, const int y) {
     results.emplace_back(x_centre + x, y_centre + y);
 }
 

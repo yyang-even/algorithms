@@ -38,8 +38,9 @@ void FloodFill_Recursive(MatrixType &screen, const int x, const int y,
     }
 }
 
-auto FloodFill_Recursive(MatrixType screen, const unsigned x, const unsigned y,
-                         const int new_color) {
+inline auto
+FloodFill_Recursive(MatrixType screen, const unsigned x, const unsigned y,
+                    const int new_color) {
     assert(x < screen.size() and y < screen.front().size());
 
     if (new_color != screen[x][y]) {

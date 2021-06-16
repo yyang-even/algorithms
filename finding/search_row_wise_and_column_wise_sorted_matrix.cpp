@@ -87,7 +87,8 @@ ResultType SearchMatrix_BinarySearch(const MatrixType &a_matrix, const int key,
     }
 }
 
-ResultType SearchMatrix_BinarySearch(const MatrixType &a_matrix, const int key) {
+inline ResultType
+SearchMatrix_BinarySearch(const MatrixType &a_matrix, const int key) {
     assert(not a_matrix.empty());
     assert(not a_matrix.front().empty());
 
@@ -105,10 +106,10 @@ const MatrixType SAMPLE1 = {
     {32, 33, 39, 50}
 };
 
-const ResultType EXPECTED1 = {2, 1};
-const ResultType EXPECTED2 = {0, 0};
-const ResultType EXPECTED3 = {1, 2};
-const ResultType EXPECTED4 = {3, 3};
+constexpr ResultType EXPECTED1 = {2, 1};
+constexpr ResultType EXPECTED2 = {0, 0};
+constexpr ResultType EXPECTED3 = {1, 2};
+constexpr ResultType EXPECTED4 = {3, 3};
 
 
 THE_BENCHMARK(SearchMatrix, SAMPLE1, 29);

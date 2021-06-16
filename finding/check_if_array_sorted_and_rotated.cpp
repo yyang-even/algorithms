@@ -31,7 +31,8 @@ auto CheckIfArraySortedAndRotated(const ArrayType &values,
  * this array is sorted and rotated counter-clockwise. A sorted array is not considered
  * as sorted and rotated, i.e., there should at least one rotation.
  */
-auto CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
+inline auto
+CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
     return CheckIfArraySortedAndRotated(values, [](const auto & values) {
         return std::min_element(values.cbegin(), values.cend());
     });
@@ -42,7 +43,8 @@ auto CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
  * @reference   Check if an array is sorted and rotated using Binary Search
  *              https://www.geeksforgeeks.org/check-if-an-array-is-sorted-and-rotated-using-binary-search/
  */
-auto CheckIfArraySortedAndRotated_BinarySearch(const ArrayType &values) {
+inline auto
+CheckIfArraySortedAndRotated_BinarySearch(const ArrayType &values) {
     return CheckIfArraySortedAndRotated(values, [](const auto & values) {
         return FindMinInSortedAndRotatedArray(values.cbegin(), values.size());
     });
@@ -76,7 +78,7 @@ const ArrayType SAMPLE3 = {1, 2, 3};
 const ArrayType SAMPLE4 = {4, 9, 1, 5, 2};
 
 
-SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_LinearSearch, Sample1, SAMPLE1);
+THE_BENCHMARK(CheckIfArraySortedAndRotated_LinearSearch, SAMPLE1);
 
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE2, true, SAMPLE2);
@@ -84,7 +86,7 @@ SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE3, false, SAMPL
 SIMPLE_TEST(CheckIfArraySortedAndRotated_LinearSearch, TestSAMPLE4, false, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(CheckIfArraySortedAndRotated_BinarySearch, Sample1, SAMPLE1);
+THE_BENCHMARK(CheckIfArraySortedAndRotated_BinarySearch, SAMPLE1);
 
 SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(CheckIfArraySortedAndRotated_BinarySearch, TestSAMPLE2, true, SAMPLE2);

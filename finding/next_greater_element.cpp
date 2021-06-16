@@ -90,7 +90,7 @@ const ArrayType SAMPLE2 = {4, 5, 2, 25, 10};
 const ArrayType EXPECTED2 = {5, 25, 25, -1, -1};
 
 
-SIMPLE_BENCHMARK(NextGreaterElement, Sample1, SAMPLE1);
+THE_BENCHMARK(NextGreaterElement, SAMPLE1);
 
 SIMPLE_TEST(NextGreaterElement, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(NextGreaterElement, TestSAMPLE2, EXPECTED2, SAMPLE2);
@@ -103,13 +103,13 @@ const ArrayType SAMPLE4 = { 10, 4, 5, 90, 120, 80 };
 const ArrayType EXPECTED4 = {1, 1, 2, 4, 5, 1};
 
 
-SIMPLE_BENCHMARK(StockSpanProblem_Stack, Sample1, SAMPLE3);
+THE_BENCHMARK(StockSpanProblem_Stack, SAMPLE3);
 
 SIMPLE_TEST(StockSpanProblem_Stack, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(StockSpanProblem_Stack, TestSAMPLE4, EXPECTED4, SAMPLE4);
 
 
-SIMPLE_BENCHMARK(StockSpanProblem, Sample1, SAMPLE3);
+THE_BENCHMARK(StockSpanProblem, SAMPLE3);
 
 SIMPLE_TEST(StockSpanProblem, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(StockSpanProblem, TestSAMPLE4, EXPECTED4, SAMPLE4);

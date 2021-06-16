@@ -51,7 +51,8 @@ auto SearchRotatedArray(const ArrayType &elements, const ArrayType::value_type k
     return SearchRotatedArray(elements, key, left, mid - 1);
 }
 
-auto SearchRotatedArray(const ArrayType &elements, const ArrayType::value_type key) {
+inline auto
+SearchRotatedArray(const ArrayType &elements, const ArrayType::value_type key) {
     return SearchRotatedArray(elements, key, 0, elements.size() - 1);
 }
 

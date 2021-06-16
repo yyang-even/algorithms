@@ -8,9 +8,9 @@ struct Line {
     double intercept = 0.0;
     bool infinite_slope = false;
 
-    Line() = default;
-    Line(const double s, const double i): slope(s), intercept(i) {}
-    Line(const Point &a, const Point &b) {
+    constexpr Line() = default;
+    constexpr Line(const double s, const double i): slope(s), intercept(i) {}
+    constexpr Line(const Point &a, const Point &b) {
         if (Equal(a.x, b.x)) {
             infinite_slope = true;
             intercept = a.x;
@@ -21,13 +21,15 @@ struct Line {
     }
 };
 
-static inline auto operator==(const Line &a_line, const Line &another_line) {
+static inline constexpr auto
+operator==(const Line &a_line, const Line &another_line) {
     return a_line.infinite_slope == another_line.infinite_slope and
            Equal(a_line.intercept, another_line.intercept) and
            Equal(a_line.slope, another_line.slope);
 }
 
-static inline auto operator!=(const Line &a_line, const Line &another_line) {
+static inline constexpr auto
+operator!=(const Line &a_line, const Line &another_line) {
     return not(a_line == another_line);
 }
 
@@ -37,8 +39,7 @@ static inline auto &operator<<(std::ostream &out, const Line &a_line) {
            ", " << a_line.intercept << ")";
 }
 
-class LineHashType {
-public:
+struct LineHashType {
     auto operator()(const Line &l) const {
         return (std::hash<bool>()(l.infinite_slope)) ^
                (std::hash<double>()(l.intercept)) ^
@@ -56,6 +57,7 @@ static inline auto &operator<<(std::ostream &out, const LineSegment &a_line) {
     return out << "(" << a_line.a << " -> " << a_line.b << ")";
 }
 
-static inline auto operator==(const LineSegment &lhs, const LineSegment &rhs) {
+static inline constexpr auto
+operator==(const LineSegment &lhs, const LineSegment &rhs) {
     return lhs.a == rhs.a and lhs.b == rhs.b;
 }

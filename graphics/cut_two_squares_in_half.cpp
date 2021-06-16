@@ -15,8 +15,9 @@ namespace {
  * squares in half. Assume that the top and the bottom sides of the square run parallel
  * to the x-axis.
  */
-auto IntersectPoints(const Point &a_middle, const Square &a_square,
-                     const Point &another_middle) {
+constexpr auto
+IntersectPoints(const Point &a_middle, const Square &a_square,
+                const Point &another_middle) {
     assert(Contains(a_square, a_middle));
     assert(isSquare(a_square));
 
@@ -65,25 +66,25 @@ auto CutTwoSquaresWithOneLine(const Square &a_square, const Square &another_squa
 }//namespace
 
 
-const auto SAMPLE1 = CreateSquare(0, 0, 2);
-const LineSegment EXPECTED1 = {{1, 0}, {1, 2}};
-const auto SAMPLE2 = CreateSquare(0, -1, 2);
-const LineSegment EXPECTED2 = {{1, -1}, {1, 2}};
-const auto SAMPLE3 = CreateSquare(2, 2, 2);
-const LineSegment EXPECTED3 = {{0, 0}, {4, 4}};
-const auto SAMPLE4 = CreateSquare(0, 0, 8);
-const auto SAMPLE5 = CreateSquare(6, 4, 4);
-const LineSegment EXPECTED4 = {{0, 2}, {10, 7}};
-const auto SAMPLE6 = CreateSquare(4, 6, 4);
-const LineSegment EXPECTED5 = {{2, 0}, {7, 10}};
-const auto SAMPLE7 = CreateSquare(-1, 1, 2);
-const LineSegment EXPECTED7 = {{-1, 3}, {2, 0}};
-const auto SAMPLE8 = CreateSquare(-2, 0, 2);
-const auto SAMPLE9 = CreateSquare(-4, 2, 2);
-const LineSegment EXPECTED9 = {{-4, 4}, {0, 0}};
-const auto SAMPLE10 = CreateSquare(-8, 0, 8);
-const auto SAMPLE11 = CreateSquare(-8, 6, 4);
-const LineSegment EXPECTED11 = {{-7, 10}, {-2, 0}};
+constexpr auto SAMPLE1 = CreateSquare(0, 0, 2);
+constexpr LineSegment EXPECTED1 = {{1, 0}, {1, 2}};
+constexpr auto SAMPLE2 = CreateSquare(0, -1, 2);
+constexpr LineSegment EXPECTED2 = {{1, -1}, {1, 2}};
+constexpr auto SAMPLE3 = CreateSquare(2, 2, 2);
+constexpr LineSegment EXPECTED3 = {{0, 0}, {4, 4}};
+constexpr auto SAMPLE4 = CreateSquare(0, 0, 8);
+constexpr auto SAMPLE5 = CreateSquare(6, 4, 4);
+constexpr LineSegment EXPECTED4 = {{0, 2}, {10, 7}};
+constexpr auto SAMPLE6 = CreateSquare(4, 6, 4);
+constexpr LineSegment EXPECTED5 = {{2, 0}, {7, 10}};
+constexpr auto SAMPLE7 = CreateSquare(-1, 1, 2);
+constexpr LineSegment EXPECTED7 = {{-1, 3}, {2, 0}};
+constexpr auto SAMPLE8 = CreateSquare(-2, 0, 2);
+constexpr auto SAMPLE9 = CreateSquare(-4, 2, 2);
+constexpr LineSegment EXPECTED9 = {{-4, 4}, {0, 0}};
+constexpr auto SAMPLE10 = CreateSquare(-8, 0, 8);
+constexpr auto SAMPLE11 = CreateSquare(-8, 6, 4);
+constexpr LineSegment EXPECTED11 = {{-7, 10}, {-2, 0}};
 
 
 THE_BENCHMARK(CutTwoSquaresWithOneLine, SAMPLE1, SAMPLE1);
