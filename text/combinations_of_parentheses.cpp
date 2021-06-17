@@ -10,26 +10,29 @@ using ArrayType = std::unordered_multiset<std::string>;
  * @reference   https://www.geeksforgeeks.org/print-all-combinations-of-balanced-parentheses/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.6.
+ * @reference   Generate Parentheses
+ *              https://leetcode.com/problems/generate-parentheses/
  */
 void CombinationsOfParentheses(const unsigned number_pairs,
                                const unsigned count_open, const unsigned count_close,
                                std::string &one_combination, ArrayType &results) {
     if (count_close == number_pairs) {
         results.insert(one_combination);
-    } else {
-        if (count_open > count_close) {
-            one_combination.push_back('}');
-            CombinationsOfParentheses(number_pairs, count_open, count_close + 1,
-                                      one_combination, results);
-            one_combination.pop_back();
-        }
+        return;
+    }
 
-        if (count_open < number_pairs) {
-            one_combination.push_back('{');
-            CombinationsOfParentheses(number_pairs, count_open + 1, count_close,
-                                      one_combination, results);
-            one_combination.pop_back();
-        }
+    if (count_open > count_close) {
+        one_combination.push_back('}');
+        CombinationsOfParentheses(number_pairs, count_open, count_close + 1,
+                                  one_combination, results);
+        one_combination.pop_back();
+    }
+
+    if (count_open < number_pairs) {
+        one_combination.push_back('{');
+        CombinationsOfParentheses(number_pairs, count_open + 1, count_close,
+                                  one_combination, results);
+        one_combination.pop_back();
     }
 }
 

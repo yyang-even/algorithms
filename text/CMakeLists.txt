@@ -43,6 +43,9 @@ compile_test(min_distance_between_words)
 compile_benchmark(number_to_words)
 compile_test(number_to_words)
 
+compile_benchmark(num_subarrays_with_max_in_range)
+compile_test(num_subarrays_with_max_in_range)
+
 compile_benchmark(pangram_checking)
 compile_test(pangram_checking)
 
