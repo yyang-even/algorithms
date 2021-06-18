@@ -40,6 +40,9 @@ compile_test(longest_palindromic_subsequence)
 compile_benchmark(longest_palindromic_substring)
 compile_test(longest_palindromic_substring)
 
+compile_benchmark(matchsticks_to_square)
+compile_test(matchsticks_to_square)
+
 compile_benchmark(matrix_chain_multiplication)
 compile_test(matrix_chain_multiplication)
 
