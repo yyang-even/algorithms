@@ -25,6 +25,9 @@ compile_test(count_possible_paths_from_11_to_MN)
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
+compile_benchmark(k_inverse_pairs_array)
+compile_test(k_inverse_pairs_array)
+
 compile_benchmark(longest_common_subsequence)
 compile_test(longest_common_subsequence)
 
