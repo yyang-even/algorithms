@@ -31,5 +31,8 @@ compile_test(single_source_shortest_paths)
 compile_benchmark(strongly_connected_components)
 compile_test(strongly_connected_components)
 
+compile_benchmark(swim_in_rising_water)
+compile_test(swim_in_rising_water)
+
 compile_benchmark(topological_sort)
 compile_test(topological_sort)
