@@ -37,6 +37,9 @@ compile_test(interleavings_of_two_strings)
 compile_benchmark(is_palindrome)
 compile_test(is_palindrome)
 
+compile_benchmark(is_subsequence)
+compile_test(is_subsequence)
+
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
