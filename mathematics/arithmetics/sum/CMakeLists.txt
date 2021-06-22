@@ -10,6 +10,9 @@ compile_test(max_sum_of_subarray_of_size_k)
 compile_benchmark(prefix_sum_array)
 compile_test(prefix_sum_array)
 
+compile_benchmark(range_sum_queries)
+compile_test(range_sum_queries)
+
 compile_benchmark(smallest_subarray_with_sum_greater_than_given_value)
 compile_test(smallest_subarray_with_sum_greater_than_given_value)
 
