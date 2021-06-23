@@ -455,6 +455,8 @@ public:
      *              https://www.geeksforgeeks.org/print-reverse-of-a-linked-list-without-actually-reversing/
      * @reference   C Program for Reverse a linked list
      *              https://www.geeksforgeeks.org/c-program-for-reverse-a-linked-list/
+     * @reference   Reverse Linked List
+     *              https://leetcode.com/problems/reverse-linked-list/
      *
      * Given pointer to the head node of a linked list, the task is to reverse the linked
      * list. We need to reverse the list by changing links between nodes.
