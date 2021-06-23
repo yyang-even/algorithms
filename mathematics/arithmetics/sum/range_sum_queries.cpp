@@ -2,6 +2,8 @@
 
 #include "prefix_sum_array.h"
 
+#include "mathematics/numbers/binary/clear_all_bits_except_the_last_set_bit.h"
+
 
 namespace {
 
@@ -144,12 +146,20 @@ auto RangeSumQueriesMutable_SegmentTree(const ArrayType &elements,
  *
  * Compared with Segment Tree, Binary Indexed Tree requires less space and is easier to
  * implement.
+ *
+ * @reference   BINARY INDEXED TREES
+ *              https://www.topcoder.com/thrive/articles/Binary%20Indexed%20Trees
+ *
+ * There are n boxes that undergo the following queries:
+ *  1. add marble to box i
+ *  2. sum marbles from box k to box l
+ * Our goal is to implement those two queries.
  */
 void update_BIT(ArrayType &bitree, ArrayType::size_type index, const int diff) {
     ++index;
     while (index < bitree.size()) {
         bitree[index] += diff;
-        index += index & -index;
+        index += ClearAllBitsExceptTheLastSetBit(index);
     }
 }
 
@@ -167,7 +177,7 @@ auto getSum_BIT(const ArrayType &bitree, int index) {
     ++index;
     while (index > 0) {
         sum += bitree[index];
-        index -= index & -index;
+        index -= ClearAllBitsExceptTheLastSetBit(index);
     }
 
     return sum;
@@ -177,18 +187,31 @@ inline auto sumRange_BIT(const ArrayType &bitree, const int i, const int j) {
     return getSum_BIT(bitree, j) - getSum_BIT(bitree, i - 1);
 }
 
+auto getOrigin_BIT(const ArrayType &bitree, int index) {
+    int sum = bitree[++index];
+    if (index > 0) {
+        const int z = index - ClearAllBitsExceptTheLastSetBit(index);
+        --index;
+        while (index != z) {
+            sum -= bitree[index];
+            index -= ClearAllBitsExceptTheLastSetBit(index);
+        }
+    }
+    return sum;
+}
+
 auto
-RangeSumQueriesMutable_BIT(ArrayType elements, const OperationArrayType &operations) {
-    auto segment_tree = buildBIT(elements);
+RangeSumQueriesMutable_BIT(const ArrayType &elements,
+                           const OperationArrayType &operations) {
+    auto bit_tree = buildBIT(elements);
 
     ArrayType results;
     for (const auto [is_update, a_query] : operations) {
         if (is_update) {
-            const auto diff = a_query.second - elements[a_query.first];
-            elements[a_query.first] = a_query.second;
-            update_BIT(segment_tree, a_query.first, diff);
+            const auto diff = a_query.second - getOrigin_BIT(bit_tree, a_query.first);
+            update_BIT(bit_tree, a_query.first, diff);
         } else {
-            results.push_back(sumRange_BIT(segment_tree, a_query.first, a_query.second));
+            results.push_back(sumRange_BIT(bit_tree, a_query.first, a_query.second));
         }
     }
 
