@@ -15,6 +15,14 @@ using ArrayType = std::array<int, N>;
  * Given an array A[] of n numbers and another number x, determines whether or not there
  * exist two elements in A whose sum is exactly x.
  *
+ * @reference   Two Sum
+ *              https://leetcode.com/problems/two-sum/
+ *
+ * Given an array of integers nums and an integer target, return indices of the two
+ * numbers such that they add up to target. You may assume that each input would have
+ * exactly one solution, and you may not use the same element twice. You can return
+ * the answer in any order.
+ *
  * @complexity: O(n)
  */
 template <typename ArrayType>
