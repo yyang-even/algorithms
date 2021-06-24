@@ -55,6 +55,9 @@ compile_test(max_sum_rectangle_in_matrix)
 compile_benchmark(optimal_binary_search_trees)
 compile_test(optimal_binary_search_trees)
 
+compile_benchmark(out_of_boundary_paths)
+compile_test(out_of_boundary_paths)
+
 compile_benchmark(rod_cutting)
 compile_test(rod_cutting)
 
