@@ -85,6 +85,9 @@ compile_test(reverse_string)
 compile_benchmark(reverse_words_in_given_string)
 compile_test(reverse_words_in_given_string)
 
+compile_benchmark(roman_to_integer)
+compile_test(roman_to_integer)
+
 compile_benchmark(run_length_encoding)
 compile_test(run_length_encoding)
 

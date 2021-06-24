@@ -175,6 +175,25 @@ inline constexpr auto isIntPalindrome_Recursive(const unsigned number) {
 
 
 /**
+ * @reference   Palindrome Number
+ *              https://leetcode.com/problems/palindrome-number/
+ */
+constexpr auto isIntPalindrome_Half(int x) {
+    if (x < 0 or (x % 10 == 0 and x)) {
+        return false;
+    }
+
+    int reverted_number = 0;
+    while (x > reverted_number) {
+        reverted_number = reverted_number * 10 + x % 10;
+        x /= 10;
+    }
+
+    return x == reverted_number or x == reverted_number / 10;
+}
+
+
+/**
  * @reference   Check if a number with even number of digits is palindrome or not
  *              https://www.geeksforgeeks.org/check-if-a-number-with-even-number-of-digits-is-palindrome-or-not/
  */
@@ -278,6 +297,17 @@ THE_BENCHMARK(isIntPalindrome_Recursive, 121);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE1, true, 121);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE2, true, 1221);
 SIMPLE_TEST(isIntPalindrome_Recursive, TestSAMPLE3, false, 211);
+
+
+THE_BENCHMARK(isIntPalindrome_Half, 121);
+
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE1, true, 121);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE2, true, 1221);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE3, false, 211);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE4, false, -121);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE5, false, 10);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE6, false, 1234567899);
+SIMPLE_TEST(isIntPalindrome_Half, TestSAMPLE7, true, 2);
 
 
 THE_BENCHMARK(isEvenDigitsIntPalindrome, 123321);
