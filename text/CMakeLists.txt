@@ -40,6 +40,9 @@ compile_test(is_palindrome)
 compile_benchmark(is_subsequence)
 compile_test(is_subsequence)
 
+compile_benchmark(longest_common_prefix)
+compile_test(longest_common_prefix)
+
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
