@@ -375,12 +375,45 @@ UpperBound_STL(const ArrayType &elements, const ArrayType::value_type x) {
 
 
 /**
+ * @reference   Search Insert Position
+ *              https://leetcode.com/problems/search-insert-position/
+ * @reference   Search insert position of K in a sorted array
+ *              https://www.geeksforgeeks.org/search-insert-position-of-k-in-a-sorted-array/
+ *
+ * Given a sorted array of distinct integers and a target value, return the index if the
+ * target is found. If not, return the index where it would be if it were inserted in
+ * order. You must write an algorithm with O(log n) runtime complexity.
+ */
+auto SearchInsertPosition(const ArrayType &elements, const ArrayType::value_type x,
+                          const int left, const int right) {
+    if (left > right) {
+        return left;
+    }
+
+    const auto mid = (left + right) / 2;
+
+    if (elements[mid] == x) {
+        return mid;
+    } else if (elements[mid] < x) {
+        return SearchInsertPosition(elements, x, mid + 1, right);
+    } else {
+        return SearchInsertPosition(elements, x, left, mid - 1);
+    }
+}
+
+inline auto
+SearchInsertPosition(const ArrayType &elements, const ArrayType::value_type x) {
+    return SearchInsertPosition(elements, x, 0, elements.size() - 1);
+}
+
+
+/**
  * @reference   Ceiling in a sorted array
  *              https://www.geeksforgeeks.org/ceiling-in-a-sorted-array/
  *
  * Given a sorted array and a value x, the ceiling of x is the smallest element in array
  * greater than or equal to x, and the floor is the greatest element smaller than or
- * equal to x. Assume than the array is sorted in non-decreasing order. Write efficient
+ * equal to x. Assume that the array is sorted in non-decreasing order. Write efficient
  * functions to find floor and ceiling of x.
  */
 
@@ -661,6 +694,24 @@ SIMPLE_TEST(UpperBound_BinarySearch, TestLast3, VALUES3.cend(),
 MUTUAL_SIMPLE_TEST(UpperBound_STL, UpperBound_BinarySearch, TestSample2, VALUES3, 5);
 SIMPLE_TEST(UpperBound_BinarySearch, TestUnderflow, ARRAY_UNDERFLOW.cbegin(),
             ARRAY_UNDERFLOW, ARRAY_UNDERFLOW.front() - 1);
+
+
+const ArrayType SAMPLE4 = {1, 3, 5, 6};
+
+
+THE_BENCHMARK(SearchInsertPosition, ARRAY1, 10);
+
+SIMPLE_TEST(SearchInsertPosition, TestEmpty, 0, ARRAY_EMPTY, 10);
+SIMPLE_TEST(SearchInsertPosition, TestBegin2, 0, ARRAY1, ARRAY1.front() - 1);
+SIMPLE_TEST(SearchInsertPosition, TestLast, ARRAY1.size() - 1,
+            ARRAY1, ARRAY1.back() - 1);
+SIMPLE_TEST(SearchInsertPosition, TestNotExist, ARRAY1.size(), ARRAY1, 999);
+SIMPLE_TEST(SearchInsertPosition, TestUnderflow, 0,
+            ARRAY_UNDERFLOW, ARRAY_UNDERFLOW.front() - 1);
+SIMPLE_TEST(SearchInsertPosition, TestSample4, 2, SAMPLE4, 5);
+SIMPLE_TEST(SearchInsertPosition, TestSample5, 1, SAMPLE4, 2);
+SIMPLE_TEST(SearchInsertPosition, TestSample6, 4, SAMPLE4, 7);
+SIMPLE_TEST(SearchInsertPosition, TestSample7, 0, SAMPLE4, 0);
 
 
 THE_BENCHMARK(GreatestLesser_BinarySearch, ARRAY1, 10);
