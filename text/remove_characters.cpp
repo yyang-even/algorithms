@@ -69,6 +69,33 @@ inline auto RemoveCharactersByKey_Partition(std::string input,
 }
 
 
+/**
+ * @reference   Remove Element
+ *              https://leetcode.com/problems/remove-element/
+ */
+auto RemoveCharactersByKey_Unstable(std::string input, const char key) {
+    int left = 0;
+    int right = input.size();
+    while (left < right) {
+        if (input[left] == key) {
+            input[left] = input[--right];
+        } else {
+            left++;
+        }
+    }
+    input.resize(right);
+
+    return input;
+}
+
+inline auto testRemoveCharactersByKey_Unstable(std::string input, const char key) {
+    input = RemoveCharactersByKey_Unstable(std::move(input), key);
+    std::sort(input.begin(), input.end());
+
+    return input;
+}
+
+
 /** Removing punctuations from a given string
  *
  * @reference   https://www.geeksforgeeks.org/removing-punctuations-given-string/
@@ -182,6 +209,15 @@ SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE2, "gksforgks",
             "geeksforgeeks", 'e');
 SIMPLE_TEST(RemoveCharactersByKey_Partition, TestSAMPLE3, "eeksforeeks",
             "geeksforgeeks", 'g');
+
+
+THE_BENCHMARK(RemoveCharactersByKey_Unstable, "g  eeks   for ge  eeks  ", ' ');
+
+SIMPLE_TEST(testRemoveCharactersByKey_Unstable, TestSAMPLE1, "22", "3223", '3');
+SIMPLE_TEST(testRemoveCharactersByKey_Unstable, TestSAMPLE2, "00134", "01223042", '2');
+SIMPLE_TEST(testRemoveCharactersByKey_Unstable, TestSAMPLE3, "1235", "12354", '4');
+SIMPLE_TEST(testRemoveCharactersByKey_Unstable, TestSAMPLE4, "1235", "412354", '4');
+SIMPLE_TEST(testRemoveCharactersByKey_Unstable, TestSAMPLE5, "", "22", '2');
 
 
 THE_BENCHMARK(RemovePunctuations_Partition, "%welcome' to @geeksforgeek<s");

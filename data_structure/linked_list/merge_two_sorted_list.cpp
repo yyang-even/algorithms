@@ -10,6 +10,8 @@ using ListType = std::forward_list<int>;
  * @reference   https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
  * @reference   Merge two sorted lists (in-place)
  *              https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
+ * @reference   Merge Two Sorted Lists
+ *              https://leetcode.com/problems/merge-two-sorted-lists/
  *
  * Write a SortedMerge() function that takes two lists, each of which is sorted in
  * increasing order, and merges the two together into one list which is in increasing

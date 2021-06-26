@@ -91,6 +91,29 @@ inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
 
 
 /**
+ * @reference   Remove Duplicates from Sorted Array
+ *              https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ */
+inline auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
+    assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));
+
+    if (sorted_input.empty()) {
+        return sorted_input;
+    }
+
+    std::size_t last = 0;
+    for (std::size_t i = 1; i < sorted_input.size(); ++i) {
+        if (sorted_input[last] != sorted_input[i]) {
+            sorted_input[++last] = sorted_input[i];
+        }
+    }
+    sorted_input.resize(last + 1);
+
+    return sorted_input;
+}
+
+
+/**
  * @reference   Duplicates Removal in Array using BST
  *              https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
  * @reference   Remove duplicates from unsorted array using Set data structure
@@ -394,7 +417,15 @@ SIMPLE_TEST(RemoveDuplicates_Bits, TestSAMPLE2, "chartes", "characters");
 THE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
 
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
-SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "Geks for geks", "Geeks for geeks");
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "12", "112");
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE3, "01234", "0011122334");
+
+
+THE_BENCHMARK(RemoveDuplicates_Sorted_Better, "122344455");
+
+SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE1, "12345", "122344455");
+SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE2, "12", "112");
+SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE3, "01234", "0011122334");
 
 
 const ListType SAMPLE_L1 = {12, 11, 12, 21, 41, 43, 21};
