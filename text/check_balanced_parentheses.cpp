@@ -6,6 +6,8 @@ namespace {
 /** Check for Balanced Brackets in an expression (well-formedness) using Stack
  *
  * @reference   https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
+ * @reference   Valid Parentheses
+ *              https://leetcode.com/problems/valid-parentheses/
  *
  * Given an expression string exp, write a program to examine whether the pairs and the
  * orders of "{", "}", "(", ")", "[", "]" are correct in exp.
@@ -18,11 +20,7 @@ auto AreBracketsBalanced_Stack(const std::string_view expression) {
         if (std::string_view{"([{"}.find(c) != std::string_view::npos)
             brackets_stack.push(c);
         else {
-            if (brackets_stack.empty()) {
-                return false;
-            }
-
-            if (brackets_stack.top() != BRACKETS_MAP.at(c)) {
+            if (brackets_stack.empty() or brackets_stack.top() != BRACKETS_MAP.at(c)) {
                 return false;
             }
             brackets_stack.pop();
@@ -46,10 +44,9 @@ constexpr auto AreParenthesesBalanced(const std::string_view expression) {
         if (c == '(') {
             ++count;
         } else {
-            --count;
-        }
-        if (count < 0) {
-            return false;
+            if (--count < 0) {
+                return false;
+            }
         }
     }
 
