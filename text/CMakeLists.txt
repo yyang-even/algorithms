@@ -79,6 +79,9 @@ compile_test(print_integer)
 compile_benchmark(print_range)
 compile_test(print_range)
 
+compile_benchmark(recursively_remove_adjacent_duplicates)
+compile_test(recursively_remove_adjacent_duplicates)
+
 compile_benchmark(remove_characters)
 compile_test(remove_characters)
 
