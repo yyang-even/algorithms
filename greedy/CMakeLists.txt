@@ -1,6 +1,9 @@
 compile_benchmark(activity_selection)
 compile_test(activity_selection)
 
+compile_benchmark(candy)
+compile_test(candy)
+
 compile_benchmark(huffman_codes)
 compile_test(huffman_codes)
 
