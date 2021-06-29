@@ -7,6 +7,54 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
+/**
+ * @reference   Maximum Subarray Sum using Divide and Conquer algorithm
+ *              https://www.geeksforgeeks.org/maximum-subarray-sum-using-divide-and-conquer-algorithm/
+ */
+auto maxCrossingSum(const ArrayType &elements,
+                    const int low, const int mid, const int high) {
+    ArrayType::value_type sum = 0;
+    auto left_sum = std::numeric_limits<ArrayType::value_type>::min();
+    for (auto i = mid; i >= low; --i) {
+        sum = sum + elements[i];
+        if (sum > left_sum) {
+            left_sum = sum;
+        }
+    }
+
+    sum = 0;
+    int right_sum = std::numeric_limits<ArrayType::value_type>::min();
+    for (auto i = mid + 1; i <= high; ++i) {
+        sum = sum + elements[i];
+        if (sum > right_sum) {
+            right_sum = sum;
+        }
+    }
+
+    return std::max(std::max(left_sum + right_sum, left_sum), right_sum);
+}
+
+auto LargestSumContiguousSubarray_DivideAndConquer(const ArrayType &elements,
+                                                   const int low, const int high) {
+    if (low == high) {
+        return elements[low];
+    }
+
+    const int mid = (low + high) / 2;
+
+    return std::max(
+               std::max(LargestSumContiguousSubarray_DivideAndConquer(elements, low, mid),
+                        LargestSumContiguousSubarray_DivideAndConquer(elements, mid + 1, high)),
+               maxCrossingSum(elements, low, mid, high));
+}
+
+inline auto LargestSumContiguousSubarray_DivideAndConquer(const ArrayType &elements) {
+    assert(not elements.empty());
+
+    return LargestSumContiguousSubarray_DivideAndConquer(elements, 0, elements.size() - 1);
+}
+
+
 inline auto TheLargestSumContiguousSubarray(const ArrayType &elements) {
     ArrayType the_max_sum_subarray;
     LargestSumContiguousSubarray_Kadane(elements, &the_max_sum_subarray);
@@ -81,6 +129,14 @@ SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE1, -1, SAMPLE1);
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE2, 7, SAMPLE2);
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE4, 5, SAMPLE4);
 SIMPLE_TEST(LargestSumContiguousSubarray_Kadane, TestSAMPLE5, 7, SAMPLE5);
+
+
+THE_BENCHMARK(LargestSumContiguousSubarray_DivideAndConquer, SAMPLE2);
+
+SIMPLE_TEST(LargestSumContiguousSubarray_DivideAndConquer, TestSAMPLE1, -1, SAMPLE1);
+SIMPLE_TEST(LargestSumContiguousSubarray_DivideAndConquer, TestSAMPLE2, 7, SAMPLE2);
+SIMPLE_TEST(LargestSumContiguousSubarray_DivideAndConquer, TestSAMPLE4, 5, SAMPLE4);
+SIMPLE_TEST(LargestSumContiguousSubarray_DivideAndConquer, TestSAMPLE5, 7, SAMPLE5);
 
 
 THE_BENCHMARK(TheLargestSumContiguousSubarray, SAMPLE2);

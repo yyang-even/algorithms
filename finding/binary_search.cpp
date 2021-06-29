@@ -407,6 +407,16 @@ SearchInsertPosition(const ArrayType &elements, const ArrayType::value_type x) {
 }
 
 
+inline ArrayType::size_type
+SearchInsertPosition_STL(const ArrayType &elements, const ArrayType::value_type x) {
+    const auto lower = std::lower_bound(elements.cbegin(), elements.cend(), x);
+    if (lower == elements.cend()) {
+        return elements.size();
+    }
+    return lower - elements.cbegin();
+}
+
+
 /**
  * @reference   Ceiling in a sorted array
  *              https://www.geeksforgeeks.org/ceiling-in-a-sorted-array/
@@ -712,6 +722,21 @@ SIMPLE_TEST(SearchInsertPosition, TestSample4, 2, SAMPLE4, 5);
 SIMPLE_TEST(SearchInsertPosition, TestSample5, 1, SAMPLE4, 2);
 SIMPLE_TEST(SearchInsertPosition, TestSample6, 4, SAMPLE4, 7);
 SIMPLE_TEST(SearchInsertPosition, TestSample7, 0, SAMPLE4, 0);
+
+
+THE_BENCHMARK(SearchInsertPosition_STL, ARRAY1, 10);
+
+SIMPLE_TEST(SearchInsertPosition_STL, TestEmpty, 0, ARRAY_EMPTY, 10);
+SIMPLE_TEST(SearchInsertPosition_STL, TestBegin2, 0, ARRAY1, ARRAY1.front() - 1);
+SIMPLE_TEST(SearchInsertPosition_STL, TestLast, ARRAY1.size() - 1,
+            ARRAY1, ARRAY1.back() - 1);
+SIMPLE_TEST(SearchInsertPosition_STL, TestNotExist, ARRAY1.size(), ARRAY1, 999);
+SIMPLE_TEST(SearchInsertPosition_STL, TestUnderflow, 0,
+            ARRAY_UNDERFLOW, ARRAY_UNDERFLOW.front() - 1);
+SIMPLE_TEST(SearchInsertPosition_STL, TestSample4, 2, SAMPLE4, 5);
+SIMPLE_TEST(SearchInsertPosition_STL, TestSample5, 1, SAMPLE4, 2);
+SIMPLE_TEST(SearchInsertPosition_STL, TestSample6, 4, SAMPLE4, 7);
+SIMPLE_TEST(SearchInsertPosition_STL, TestSample7, 0, SAMPLE4, 0);
 
 
 THE_BENCHMARK(GreatestLesser_BinarySearch, ARRAY1, 10);

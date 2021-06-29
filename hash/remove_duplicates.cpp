@@ -155,6 +155,9 @@ auto RemoveDuplicates_UnsortedLinkedList(ListType a_list) {
  *
  * @reference   Remove duplicates from a sorted doubly linked list
  *              https://www.geeksforgeeks.org/remove-duplicates-sorted-doubly-linked-list/
+ *
+ * @reference   Remove Duplicates from Sorted List
+ *              https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
     assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
@@ -216,13 +219,46 @@ RemoveDuplicates_UnsortedLinkedList_Sort(
  * is 1. If No such elements are present in list so Print "No Unique Elements".
  */
 
+
 /**
  * @reference   Remove all occurrences of duplicates from a sorted Linked List
  *              https://www.geeksforgeeks.org/remove-occurrences-duplicates-sorted-linked-list/
  *
  * Given a sorted linked list, delete all nodes that have duplicate numbers (all
  * occurrences), leaving only numbers that appear once in the original list.
+ *
+ * @reference   Remove Duplicates from Sorted List II
+ *              https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+ *
+ * Given the head of a sorted linked list, delete all nodes that have duplicate numbers,
+ * leaving only distinct numbers from the original list. Return the linked list sorted
+ * as well.
  */
+auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
+    assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
+
+    if (a_list.empty()) {
+        return a_list;
+    }
+
+    auto before_current = a_list.cbefore_begin();
+    for (auto current = std::next(before_current); current != a_list.cend();) {
+        int count = 0;
+        for (; std::next(current) != a_list.cend() and * current == *std::next(current);
+             ++current) {
+            ++count;
+        }
+
+        ++current;
+        if (count) {
+            a_list.erase_after(before_current, current);
+        } else {
+            ++before_current;
+        }
+    }
+
+    return a_list;
+}
 
 
 /**
@@ -419,6 +455,8 @@ THE_BENCHMARK(RemoveDuplicates_Sorted, "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE1, "12345", "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE2, "12", "112");
 SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE3, "01234", "0011122334");
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE4, "Geks for geks", "Geeks for geeks");
+SIMPLE_TEST(RemoveDuplicates_Sorted, TestSAMPLE5, "ab", "aaaaabbbbbb");
 
 
 THE_BENCHMARK(RemoveDuplicates_Sorted_Better, "122344455");
@@ -514,3 +552,28 @@ THE_BENCHMARK(FindAllDuplicates_BitArray, SAMPLE5);
 
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample1, EXPECTED5, SAMPLE5);
 SIMPLE_TEST(FindAllDuplicates_BitArray, TestSample2, EXPECTED6, SAMPLE6);
+
+
+const ListType SAMPLE_L3 = {23, 28, 28, 35, 49, 49, 53, 53};
+const ListType EXPECTED_L3 = {23, 35};
+
+const ListType SAMPLE_L4 = {11, 11, 11, 11, 75, 75};
+const ListType EXPECTED_L4 = {};
+
+const ListType SAMPLE_L5 = {1, 2, 3, 3, 4, 4, 5};
+const ListType EXPECTED_L5 = {1, 2, 5};
+
+const ListType SAMPLE_L6 = {1, 1, 1, 2, 3};
+const ListType EXPECTED_L6 = {2, 3};
+
+
+THE_BENCHMARK(RemoveAllDuplicates_SortedLinkedList, SAMPLE_L1);
+
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE1, EXPECTED_SL1,
+            EXPECTED_SL1);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE2, EXPECTED_SL2,
+            EXPECTED_SL2);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE3, EXPECTED_L3, SAMPLE_L3);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE4, EXPECTED_L4, SAMPLE_L4);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE5, EXPECTED_L5, SAMPLE_L5);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE6, EXPECTED_L6, SAMPLE_L6);

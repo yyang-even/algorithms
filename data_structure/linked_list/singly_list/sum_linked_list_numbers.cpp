@@ -171,6 +171,25 @@ inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
 
 
 /**
+ * @reference   Program to add two binary strings
+ *              https://www.geeksforgeeks.org/program-to-add-two-binary-strings/
+ * @reference   Add Binary
+ *              https://leetcode.com/problems/add-binary/
+ *
+ * Given two binary strings a and b, return their sum as a binary string.
+ */
+
+
+/**
+ * @reference   Plus One
+ *              https://leetcode.com/problems/plus-one/
+ *
+ * Given a non-empty array of decimal digits representing a non-negative integer,
+ * increment one to the integer. The digits are stored such that the most significant
+ * digit is at the head of the list, and each element in the array contains a single
+ * digit. You may assume the integer does not contain any leading zero, except the
+ * number 0 itself.
+ *
  * @reference   Add one to a number represented as linked list | Set 2
  *              https://www.geeksforgeeks.org/add-one-to-a-number-represented-as-linked-list-set-2/
  *
