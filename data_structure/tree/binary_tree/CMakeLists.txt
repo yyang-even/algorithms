@@ -38,6 +38,9 @@ compile_test(is_balanced)
 compile_benchmark(is_subtree)
 compile_test(is_subtree)
 
+compile_benchmark(is_symmetric_tree)
+compile_test(is_symmetric_tree)
+
 compile_benchmark(k_sum_paths)
 compile_test(k_sum_paths)
 
