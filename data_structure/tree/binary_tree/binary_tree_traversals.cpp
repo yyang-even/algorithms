@@ -189,6 +189,8 @@ auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node
  * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 10.4-3.
+ * @reference   Binary Tree Inorder Traversal
+ *              https://leetcode.com/problems/binary-tree-inorder-traversal/
  */
 auto InorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
                                 BinaryTree::ArrayType &outputs) {
