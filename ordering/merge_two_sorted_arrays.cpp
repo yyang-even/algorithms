@@ -99,6 +99,8 @@ auto MergeTwoSortedArrays_InPlace_Heap(ArrayType L, ArrayType R) {
  * @reference   https://www.geeksforgeeks.org/sorted-merge-one-array/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 11.1.
+ * @reference   Merge Sorted Array
+ *              https://leetcode.com/problems/merge-sorted-array/
  *
  * Given two sorted arrays, A and B, where A has a large enough buffer at the end to hold
  * B. Merge B into A in sorted order.
