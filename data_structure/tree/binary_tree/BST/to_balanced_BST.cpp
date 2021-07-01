@@ -53,6 +53,8 @@ inline auto SortedListToBalancedBST(const ListType &sorted_list) {
  *              https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.3.
+ * @reference   Convert Sorted Array to Binary Search Tree
+ *              https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
  */
 auto SortedArrayToBalancedBSTHelper(const BinaryTree::ArrayType &sorted_array,
                                     const int first, const int last) {

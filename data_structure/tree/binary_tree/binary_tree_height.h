@@ -6,16 +6,15 @@
  * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
+ * @reference   Maximum Depth of Binary Tree
+ *              https://leetcode.com/problems/maximum-depth-of-binary-tree/
  */
 static inline unsigned Height_Recursive(const BinaryTree::Node::PointerType node) {
-    if (node) {
-        const auto left_height = Height_Recursive(node->left);
-        const auto right_height = Height_Recursive(node->right);
-
-        return std::max(left_height, right_height) + 1;
+    if (not node) {
+        return 0;
     }
 
-    return 0;
+    return 1 + std::max(Height_Recursive(node->left), Height_Recursive(node->right));
 }
 
 

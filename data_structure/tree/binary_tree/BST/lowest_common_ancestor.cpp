@@ -11,6 +11,8 @@ namespace {
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
  * @reference   Lowest Common Ancestor in a Binary Search Tree.
  *              https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
+ * @reference   Lowest Common Ancestor of a Binary Search Tree
+ *              https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  *
  * Given values of two values n1 and n2 in a Binary Search Tree, find the Lowest Common
  * Ancestor (LCA). You may assume that both the values exist in the tree.
@@ -57,7 +59,8 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  *              https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
  *
  * Given a binary tree (not a binary search tree) and two values say n1 and n2, write a
- * program to find the least common ancestor.
+ * program to find the least common ancestor. You may assume that both the values exist
+ * in the tree.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.7.
@@ -66,6 +69,8 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  *              https://www.geeksforgeeks.org/print-path-common-two-paths-root-two-given-nodes/
  * @reference   Print common nodes on path from root (or common ancestors)
  *              https://www.geeksforgeeks.org/print-common-nodes-path-root-common-ancestors/
+ * @reference   Lowest Common Ancestor of a Binary Tree
+ *              https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
  */
 auto LowestCommonAncestor_CommonPath(const BinaryTree::Node::PointerType root,
                                      const BinaryTree::Node::ValueType x,
@@ -100,6 +105,53 @@ auto LowestCommonAncestor_SingleTraversal(const BinaryTree::Node::PointerType no
     }
 
     return left_LCA ? left_LCA : right_LCA;
+}
+
+
+auto
+LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType root,
+                                            const BinaryTree::Node::ValueType x,
+                                            const BinaryTree::Node::ValueType y) {
+    assert(root);
+
+    std::queue<BinaryTree::Node::PointerType> q;
+    std::unordered_map<BinaryTree::Node::ValueType, BinaryTree::Node::PointerType>
+    parents_map;
+    parents_map.emplace(root->value, nullptr);
+    q.push(root);
+
+    BinaryTree::Node::PointerType x_node;
+    BinaryTree::Node::PointerType y_node;
+    while (not q.empty() and not(x_node and y_node)) {
+        const auto node = q.front();
+        q.pop();
+
+        if (node->value == x) {
+            x_node = node;
+        }
+        if (node->value == y) {
+            y_node = node;
+        }
+
+        if (node->left) {
+            q.push(node->left);
+            parents_map.emplace(node->left->value, node);
+        }
+
+        if (node->right) {
+            q.push(node->right);
+            parents_map.emplace(node->right->value, node);
+        }
+    }
+
+    std::unordered_set<BinaryTree::Node::PointerType> ancestors;
+    for (; x_node; x_node = parents_map[x_node->value]) {
+        ancestors.insert(x_node);
+    }
+
+    for (; ancestors.find(y_node) == ancestors.cend(); y_node = parents_map[y_node->value]);
+
+    return y_node;
 }
 
 
@@ -161,3 +213,13 @@ SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLES2, 2,
             LowestCommonAncestor_SingleTraversal, SAMPLE1, 2, 3);
 SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLES3, 4,
             LowestCommonAncestor_SingleTraversal, SAMPLE1, 3, 5);
+
+
+THE_BENCHMARK(LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 1, 3);
+
+SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi1, 2,
+            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 1, 3);
+SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi2, 2,
+            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 2, 3);
+SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi3, 4,
+            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 3, 5);

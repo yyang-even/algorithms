@@ -44,6 +44,9 @@ compile_test(is_symmetric_tree)
 compile_benchmark(k_sum_paths)
 compile_test(k_sum_paths)
 
+compile_benchmark(min_depth)
+compile_test(min_depth)
+
 compile_benchmark(perfect_binary_tree)
 compile_test(perfect_binary_tree)
 

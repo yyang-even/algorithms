@@ -22,6 +22,8 @@ namespace {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.1.
+ * @reference   Balanced Binary Tree
+ *              https://leetcode.com/problems/balanced-binary-tree/
  */
 auto isBalanced(const BinaryTree::Node::PointerType node,
                 int *const height = nullptr) {
@@ -47,6 +49,28 @@ auto isBalanced(const BinaryTree::Node::PointerType node,
     return is_left_subtree_balanced and is_right_subtree_balanced;
 }
 
+
+auto isBalanced_Flag(const BinaryTree::Node::PointerType node, bool &flag) {
+    if (not node) {
+        return 0;
+    }
+
+    const auto left_subtree_height = isBalanced_Flag(node->left, flag);
+    const auto right_subtree_height = isBalanced_Flag(node->right, flag);
+
+    if (std::abs(left_subtree_height - right_subtree_height) > 1) {
+        flag = false;
+    }
+
+    return 1 + std::max(left_subtree_height, right_subtree_height);
+}
+
+inline auto
+isBalanced_Flag(const BinaryTree::Node::PointerType root) {
+    bool flag = true;
+    isBalanced_Flag(root, flag);
+    return flag;
+}
 
 /**
  *     1
@@ -76,3 +100,9 @@ THE_BENCHMARK(isBalanced, SAMPLE1);
 
 SIMPLE_TEST(isBalanced, TestSAMPLE1, true, SAMPLE1);
 SIMPLE_TEST(isBalanced, TestSAMPLE2, false, SAMPLE2);
+
+
+THE_BENCHMARK(isBalanced_Flag, SAMPLE1);
+
+SIMPLE_TEST(isBalanced_Flag, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(isBalanced_Flag, TestSAMPLE2, false, SAMPLE2);
