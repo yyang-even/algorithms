@@ -12,15 +12,21 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * @reference   https://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/
  * @reference   Root to leaf path sum equal to a given number in BST
  *              https://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number-in-bst/
+ * @reference   Path Sum
+ *              https://leetcode.com/problems/path-sum/
  */
 inline bool
 hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
-    if (node) {
-        const auto sub_sum = sum - node->value;
-        return hasKSumFullPaths(node->left, sub_sum) or hasKSumFullPaths(node->right, sub_sum);
-    } else {
-        return sum == 0;
+    if (not node) {
+        return false;
     }
+
+    if (not(node->left or node->right)) {
+        return sum == node->value;
+    }
+
+    const auto sub_sum = sum - node->value;
+    return hasKSumFullPaths(node->left, sub_sum) or hasKSumFullPaths(node->right, sub_sum);
 }
 
 
@@ -58,6 +64,9 @@ ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
  * Given a Binary tree and a sum S, print all the paths, starting from root, that sums
  * upto the given sum. Note that this problem is different from root to leaf paths. Here
  * path doesn't need to end on a leaf node.
+ *
+ * @reference   Path Sum II
+ *              https://leetcode.com/problems/path-sum-ii/
  */
 void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
                             BinaryTree::ArrayType &path, ArrayType &results) {
@@ -96,6 +105,8 @@ AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.9.
+ * @reference   Path Sum III
+ *              https://leetcode.com/problems/path-sum-iii/
  */
 void AllKSumPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
                         BinaryTree::ArrayType &path, ArrayType &results) {
@@ -133,6 +144,7 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 
 THE_BENCHMARK(hasKSumFullPaths, SAMPLE1, 4);
 
+SIMPLE_TEST(hasKSumFullPaths, TestSAMPLE0, false, nullptr, 0);
 SIMPLE_TEST(hasKSumFullPaths, TestSAMPLE1, false, SAMPLE1, 1);
 SIMPLE_TEST(hasKSumFullPaths, TestSAMPLE2, false, SAMPLE1, 100);
 SIMPLE_TEST(hasKSumFullPaths, TestSAMPLE3, true, SAMPLE1, 4);

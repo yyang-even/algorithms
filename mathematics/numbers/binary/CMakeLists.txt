@@ -144,6 +144,9 @@ compile_test(morton_number)
 compile_benchmark(numbers_having_first_and_last_bits_set)
 compile_test(numbers_having_first_and_last_bits_set)
 
+compile_benchmark(n_bits_gray_code)
+compile_test(n_bits_gray_code)
+
 compile_benchmark(parity)
 compile_test(parity)
 
