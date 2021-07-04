@@ -49,6 +49,42 @@ auto PascalTriangle_Coefficient(const unsigned num_rows) {
     return results;
 }
 
+
+/**
+ * @reference   Find the Nth row in Pascal's Triangle
+ *              https://www.geeksforgeeks.org/find-the-nth-row-in-pascals-triangle/
+ * @reference   Pascal's Triangle II
+ *              https://leetcode.com/problems/pascals-triangle-ii/
+ */
+auto NthPascalTriangle(const int nth) {
+    std::vector<int> results{1};
+    for (int i = 1; i <= nth; ++i) {
+        auto prev = 1;
+        for (int k = 1; k < i; ++k) {
+            const auto current = results[k] + prev;
+            prev = results[k];
+            results[k] = current;
+        }
+        results.push_back(1);
+    }
+
+    return results;
+}
+
+
+auto NthPascalTriangle_ClosedForm(const int nth) {
+    std::vector<int> results{1};
+    int prev = 1;
+
+    for (int i = 1; i <= nth; ++i) {
+        const auto current = (prev * (nth - i + 1)) / i;
+        results.push_back(current);
+        prev = current;
+    }
+
+    return results;
+}
+
 }//namespace
 
 
@@ -72,3 +108,17 @@ THE_BENCHMARK(PascalTriangle_Coefficient, 6);
 
 SIMPLE_TEST(PascalTriangle_Coefficient, TestSAMPLE1, EXPECTED1, 1);
 SIMPLE_TEST(PascalTriangle_Coefficient, TestSAMPLE2, EXPECTED2, 5);
+
+
+THE_BENCHMARK(NthPascalTriangle, 6);
+
+SIMPLE_TEST(NthPascalTriangle, TestSAMPLE1, EXPECTED2[0], 0);
+SIMPLE_TEST(NthPascalTriangle, TestSAMPLE2, EXPECTED2[2], 2);
+SIMPLE_TEST(NthPascalTriangle, TestSAMPLE3, EXPECTED2[4], 4);
+
+
+THE_BENCHMARK(NthPascalTriangle_ClosedForm, 6);
+
+SIMPLE_TEST(NthPascalTriangle_ClosedForm, TestSAMPLE1, EXPECTED2[0], 0);
+SIMPLE_TEST(NthPascalTriangle_ClosedForm, TestSAMPLE2, EXPECTED2[2], 2);
+SIMPLE_TEST(NthPascalTriangle_ClosedForm, TestSAMPLE3, EXPECTED2[4], 4);

@@ -52,6 +52,9 @@ compile_test(matrix_chain_multiplication)
 compile_benchmark(max_sum_rectangle_in_matrix)
 compile_test(max_sum_rectangle_in_matrix)
 
+compile_benchmark(max_sum_subarray_no_larger_than_k)
+compile_test(max_sum_subarray_no_larger_than_k)
+
 compile_benchmark(optimal_binary_search_trees)
 compile_test(optimal_binary_search_trees)
 
