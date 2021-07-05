@@ -249,6 +249,53 @@ constexpr auto isBinaryPalindrome(const unsigned number) {
     return true;
 }
 
+
+/**
+ * @reference   Valid Palindrome
+ *              https://leetcode.com/problems/valid-palindrome/
+ *
+ * Given a string s, determine if it is a palindrome, considering only alphanumeric
+ * characters and ignoring cases.
+ *
+ * @reference   Sentence Palindrome (Palindrome after removing spaces, dots, .. etc)
+ *              https://www.geeksforgeeks.org/sentence-palindrome-palindrome-removing-spaces-dots-etc/
+ */
+constexpr auto ValidPalindrome(const std::string_view text) {
+    int left = 0;
+    int right = text.size() - 1;
+    while (left < right) {
+        for (; left < right and not std::isalnum(text[left]); ++left);
+        for (; right > left and not std::isalnum(text[right]); --right);
+
+        if (std::tolower(text[left++]) != std::tolower(text[right--])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/**
+ * @reference   Valid Palindrome II
+ *              https://leetcode.com/problems/valid-palindrome-ii/
+ *
+ * Given a string s, return true if the s can be palindrome after deleting at most one
+ * character from it.
+ */
+constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
+    int left = 0;
+    int right = text.size() - 1;
+    while (left < right) {
+        if (text[left++] != text[right--]) {
+            return isPalindrome_Iterative(text.substr(left - 1, right - left + 2)) or
+                   isPalindrome_Iterative(text.substr(left, right - left + 2));
+        }
+    }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -271,6 +318,24 @@ THE_BENCHMARK(isPalindrome_Stack, "aba");
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE1, true, "aba");
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE2, true, "abbccbba");
 SIMPLE_TEST(isPalindrome_Stack, TestSAMPLE3, false, "geeks");
+
+
+THE_BENCHMARK(ValidPalindrome, "A man, a plan, a canal: Panama");
+
+SIMPLE_TEST(ValidPalindrome, TestSAMPLE1, true, "aba");
+SIMPLE_TEST(ValidPalindrome, TestSAMPLE2, true, "abbccbba");
+SIMPLE_TEST(ValidPalindrome, TestSAMPLE3, false, "geeks");
+SIMPLE_TEST(ValidPalindrome, TestSAMPLE4, true, "A man, a plan, a canal: Panama");
+SIMPLE_TEST(ValidPalindrome, TestSAMPLE5, false, "race a car");
+
+
+THE_BENCHMARK(ValidPalindromeOneRemove, "aba");
+
+SIMPLE_TEST(ValidPalindromeOneRemove, TestSAMPLE1, true, "aba");
+SIMPLE_TEST(ValidPalindromeOneRemove, TestSAMPLE2, true, "abbccbba");
+SIMPLE_TEST(ValidPalindromeOneRemove, TestSAMPLE3, false, "geeks");
+SIMPLE_TEST(ValidPalindromeOneRemove, TestSAMPLE4, true, "abca");
+SIMPLE_TEST(ValidPalindromeOneRemove, TestSAMPLE5, false, "abc");
 
 
 const ListType SAMPLE1 = {1, 2, 1};

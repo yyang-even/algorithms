@@ -16,6 +16,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   Find the element that appears once
  *              https://www.geeksforgeeks.org/find-the-element-that-appears-once/
+ * @reference   Single Number II
+ *              https://leetcode.com/problems/single-number-ii/
  *
  * Given an array where every element occurs three times, except one element which occurs
  * only once. Find the element that occurs once. Expected time complexity is O(n) and O(1)

@@ -12,6 +12,8 @@ using ArrayType = std::vector<unsigned>;
  *              https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
  * @reference   Find single in an array of 2n+1 integer elements
  *              https://www.geeksforgeeks.org/find-single-array-2n1-integer-elements/
+ * @reference   Single Number
+ *              https://leetcode.com/problems/single-number/
  *
  * Given an array of positive integers. All numbers occur even number of times except one
  * number which occurs odd number of times. Find the number in O(n) time & constant space.

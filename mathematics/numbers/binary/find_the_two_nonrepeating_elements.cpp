@@ -15,6 +15,9 @@ using ArrayType = std::vector<unsigned>;
  * numbers and n numbers are occurring twice and remaining two have occurred once). Find
  * those two numbers in the most efficient way.
  *
+ * @reference   Single Number III
+ *              https://leetcode.com/problems/single-number-iii/
+ *
  * @complexity  O(n)
  */
 /** Find the two numbers with odd occurrences in an unsorted array
@@ -35,7 +38,7 @@ using ArrayType = std::vector<unsigned>;
  * the elements of this unique pair.
  */
 auto FindTheTwoNonrepeatingElements(const ArrayType &elements) {
-    ArrayType::value_type xor_of_all = 0;
+    unsigned xor_of_all = 0;
     ArrayType::value_type x = 0;
     ArrayType::value_type y = 0;
 
