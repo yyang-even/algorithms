@@ -67,6 +67,9 @@ compile_test(out_of_boundary_paths)
 compile_benchmark(rod_cutting)
 compile_test(rod_cutting)
 
+compile_benchmark(stock_buy_sell)
+compile_test(stock_buy_sell)
+
 compile_benchmark(word_break)
 compile_test(word_break)
 
