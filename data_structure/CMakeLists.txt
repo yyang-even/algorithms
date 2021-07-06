@@ -1,5 +1,3 @@
-compile_test(deque)
-
 compile_test(priority_queue)
 
 add_subdirectory(array)
