@@ -54,6 +54,8 @@ inline auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  *              https://www.geeksforgeeks.org/how-does-floyds-slow-and-fast-pointers-approach-work/
  * @reference   Finding a Loop in a Singly Linked List
  *              https://blog.ostermiller.org/find-loop-singly-linked-list
+ * @reference   Linked List Cycle
+ *              https://leetcode.com/problems/linked-list-cycle/
  *
  * This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic
  * Algorithms" by Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare
@@ -63,6 +65,8 @@ inline auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  *              https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.6.
+ * @reference   Linked List Cycle II
+ *              https://leetcode.com/problems/linked-list-cycle-ii/
  *
  * Write a function findFirstLoopNode() that checks whether a given Linked List contains
  * loop. If loop is present then it returns point to first node of loop. Else it returns
@@ -88,7 +92,7 @@ auto DetectLoop_FloydsCycleFinding(const SinglyLinkedList::Node::PointerType hea
     auto slow_ptr = head;
     auto fast_ptr = head;
 
-    while (slow_ptr and fast_ptr and fast_ptr->next) {
+    while (fast_ptr and fast_ptr->next) {
         slow_ptr = slow_ptr->next;
         fast_ptr = fast_ptr->next->next;
 

@@ -10,5 +10,8 @@ compile_test(huffman_codes)
 compile_benchmark(offline_caching)
 compile_test(offline_caching)
 
+compile_benchmark(reduce_array_size_to_half)
+compile_test(reduce_array_size_to_half)
+
 compile_benchmark(task_scheduling)
 compile_test(task_scheduling)
