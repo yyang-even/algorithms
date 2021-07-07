@@ -1,3 +1,5 @@
+compile_test(disjoint_set)
+
 compile_test(priority_queue)
 
 add_subdirectory(array)

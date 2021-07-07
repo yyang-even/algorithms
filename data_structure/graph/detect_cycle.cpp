@@ -3,6 +3,8 @@
 #include "graph.h"
 #include "topological_sort.h"
 
+#include "data_structure/disjoint_set.h"
+
 
 using namespace graph;
 
@@ -162,8 +164,8 @@ inline auto DetectCycle_Undirected_BFS(const std::size_t number_vertices,
  * in the graph and print all the nodes that are involved in any of the cycles. If there
  * is no cycle in the graph then print -1.
  */
-auto DetectCycle_Undirected_Degrees(
-    const AdjacencyListGraph::RepresentationType &graph) {
+auto
+DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType &graph) {
     auto degrees = OutDegrees(graph);
 
     std::vector<bool> visited_vertices(graph.size(), false);
@@ -205,6 +207,25 @@ inline auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
            (ToLambda(DetectCycle_Undirected_Degrees));
 }
 
+
+auto DetectCycle_Undirected_DisjointSet(const std::size_t number_vertices,
+                                        const UndirectedEdgeArrayType &edges) {
+    DisjointSet_Array disjoint_set{number_vertices};
+
+    for (const auto &an_edge : edges) {
+        const auto u_set = disjoint_set.Find(an_edge.u);
+        const auto v_set = disjoint_set.Find(an_edge.v);
+
+        if (u_set == v_set) {
+            return true;
+        }
+
+        disjoint_set.Union(u_set, v_set);
+    }
+
+    return false;
+}
+
 }//namespace
 
 
@@ -243,6 +264,12 @@ THE_BENCHMARK(DetectCycle_Undirected_BFS, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE3, true, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_BFS, TestSAMPLE4, false, 3, SAMPLE4);
+
+
+THE_BENCHMARK(DetectCycle_Undirected_DisjointSet, 5, SAMPLE3);
+
+SIMPLE_TEST(DetectCycle_Undirected_DisjointSet, TestSAMPLE3, true, 5, SAMPLE3);
+SIMPLE_TEST(DetectCycle_Undirected_DisjointSet, TestSAMPLE4, false, 3, SAMPLE4);
 
 
 THE_BENCHMARK(DetectCycle_Undirected_Degrees, 5, SAMPLE3);
