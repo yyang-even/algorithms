@@ -1,10 +1,11 @@
-include_directories("${CMAKE_CURRENT_BINARY_DIR}")
-
 compile_benchmark(delete_all_of_key_linked_list)
 compile_test(delete_all_of_key_linked_list)
 
 compile_benchmark(detect_loop)
 compile_test(detect_loop)
+
+compile_benchmark(intersection_point)
+compile_test(intersection_point)
 
 compile_benchmark(merge_k_sorted_singly_list)
 compile_test(merge_k_sorted_singly_list)
