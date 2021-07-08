@@ -5,6 +5,8 @@
  *
  * @reference   Design and Implement Special Stack Data Structure | Added Space Optimized Version
  *              https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
+ * @reference   Min Stack
+ *              https://leetcode.com/problems/min-stack/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 3.2.
  *

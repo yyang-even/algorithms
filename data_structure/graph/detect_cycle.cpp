@@ -220,7 +220,7 @@ auto DetectCycle_Undirected_DisjointSet(const std::size_t number_vertices,
             return true;
         }
 
-        disjoint_set.Union(u_set, v_set);
+        disjoint_set.Link(u_set, v_set);
     }
 
     return false;

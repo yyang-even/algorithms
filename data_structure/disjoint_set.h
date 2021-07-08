@@ -2,6 +2,8 @@
 
 
 /**
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 21.
  * @reference   Disjoint Set (Or Union-Find) | Set 1 (Detect Cycle in an Undirected Graph)
  *              https://www.geeksforgeeks.org/union-find/
  * @reference   Union-Find Algorithm | Set 2 (Union By Rank and Path Compression)
@@ -49,7 +51,12 @@ public:
     }
 
     void Union(const std::size_t x_index, const std::size_t y_index) {
+        Link(Find(x_index), Find(y_index));
+    }
+
+    void Link(const std::size_t x_index, const std::size_t y_index) {
         assert(x_index < m_subsets.size() and y_index < m_subsets.size());
+        assert(x_index != y_index);
 
         auto &x_node = m_subsets[x_index];
         auto &y_node = m_subsets[y_index];
