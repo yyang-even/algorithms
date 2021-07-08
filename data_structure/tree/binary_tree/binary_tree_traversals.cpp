@@ -18,6 +18,10 @@ namespace {
  *              https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
+ * @reference   Binary Tree Preorder Traversal
+ *              https://leetcode.com/problems/binary-tree-preorder-traversal/
+ * @reference   Binary Tree Postorder Traversal
+ *              https://leetcode.com/problems/binary-tree-postorder-traversal/
  */
 auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
                                  BinaryTree::ArrayType &outputs) {
