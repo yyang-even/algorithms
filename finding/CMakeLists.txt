@@ -19,6 +19,9 @@ compile_test(find_minimum_in_sorted_and_rotated_array)
 compile_benchmark(find_peak_element)
 compile_test(find_peak_element)
 
+compile_benchmark(kth_smallest_in_row_wise_and_column_wise_sorted_matrix)
+compile_test(kth_smallest_in_row_wise_and_column_wise_sorted_matrix)
+
 compile_benchmark(linear_search)
 compile_test(linear_search)
 

@@ -5,7 +5,6 @@
 
 namespace {
 
-using MatrixType = MatrixTypeTemplate<int>;
 using ResultType = std::pair<int, int>;
 
 const ResultType NOT_FOUND = {-1, -1};
