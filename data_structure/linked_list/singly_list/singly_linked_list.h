@@ -15,6 +15,17 @@ static inline constexpr auto CopyToArray(const Pointer head) {
 }
 
 
+template<typename Pointer>
+static inline constexpr auto CountSize_Iterative(Pointer head) {
+    std::size_t size = 0;
+    for (; head; head = head->next) {
+        ++size;
+    }
+
+    return size;
+}
+
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -427,14 +438,7 @@ public:
 
 
     auto CountSize_Iterative() const {
-        std::size_t size = 0;
-        auto iter = head;
-        while (iter) {
-            ++size;
-            iter = iter->next;
-        }
-
-        return size;
+        return ::CountSize_Iterative(head);
     }
 
     auto CountSize_Recursive() const {
