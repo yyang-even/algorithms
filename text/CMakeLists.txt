@@ -46,6 +46,9 @@ compile_test(longest_common_prefix)
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
+compile_benchmark(missing_ranges)
+compile_test(missing_ranges)
+
 compile_benchmark(number_matching_subsequences)
 compile_test(number_matching_subsequences)
 
