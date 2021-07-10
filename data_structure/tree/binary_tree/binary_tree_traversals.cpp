@@ -1,8 +1,7 @@
 #include "common_header.h"
 
-#include "binary_tree.h"
-#include "binary_tree_height.h"
 #include "binary_tree_traversals.h"
+#include "binary_tree_height.h"
 
 
 namespace {

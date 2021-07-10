@@ -1,5 +1,7 @@
 #pragma once
 
+#include "binary_tree.h"
+
 
 static inline auto
 InorderTraversal_Recursive(const BinaryTree::Node::PointerType node,

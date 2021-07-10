@@ -22,6 +22,15 @@ using ArrayType = std::vector<int>;
  * subsequence of a given sequence such that all elements of the subsequence are sorted
  * in increasing order. For example, the length of LIS for
  * {10, 22, 9, 33, 21, 50, 41, 60, 80} is 6 and LIS is {10, 22, 33, 50, 60, 80}.
+ *
+ * @reference   Longest Increasing Subsequence
+ *              https://leetcode.com/problems/longest-increasing-subsequence/
+ *
+ * Given an integer array nums, return the length of the longest strictly increasing
+ * subsequence. A subsequence is a sequence that can be derived from an array by
+ * deleting some or no elements without changing the order of the remaining elements.
+ * For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
+ * Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
  */
 auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
     assert(not elements.empty());
@@ -29,8 +38,7 @@ auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
     ArrayType LISs(elements.size(), 1);
     for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
         for (ArrayType::size_type j = 0; j < i; ++j) {
-            if (elements[i] > elements[j] and
-                LISs[i] <= LISs[j]) {
+            if (elements[i] > elements[j] and LISs[i] <= LISs[j]) {
                 LISs[i] = LISs[j] + 1;
             }
         }
@@ -51,21 +59,18 @@ auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
 auto LongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
     assert(not elements.empty());
 
-    ArrayType tails(elements.size(), 0);
-    int length = 1;
-    tails[0] = elements.front();
+    std::vector tails{elements.front()};
 
     for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
-        const auto end = std::next(tails.begin(), length);
-        const auto lower = std::lower_bound(tails.begin(), end, elements[i]);
-        if (lower == end) {
-            tails[length++] = elements[i];
+        if (elements[i] > tails.back()) {
+            tails.push_back(elements[i]);
         } else {
+            const auto lower = std::lower_bound(tails.begin(), tails.end(), elements[i]);
             *lower = elements[i];
         }
     }
 
-    return length;
+    return tails.size();
 }
 
 

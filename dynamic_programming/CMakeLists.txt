@@ -25,6 +25,9 @@ compile_test(count_possible_paths_from_11_to_MN)
 compile_benchmark(count_vowels_permutation)
 compile_test(count_vowels_permutation)
 
+compile_benchmark(decode_ways)
+compile_test(decode_ways)
+
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
