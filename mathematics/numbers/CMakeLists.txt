@@ -7,6 +7,9 @@ compile_test(count_digits_in_integer)
 compile_benchmark(detect_integer_overflow)
 compile_test(detect_integer_overflow)
 
+compile_benchmark(happy_number)
+compile_test(happy_number)
+
 compile_benchmark(is_duck_number)
 compile_test(is_duck_number)
 
