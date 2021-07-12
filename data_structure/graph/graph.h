@@ -33,6 +33,13 @@ using DirectedEdgeArrayType = std::vector<DirectedEdge>;
 using UndirectedEdgeArrayType = std::vector<UndirectedEdge>;
 
 
+inline constexpr auto
+operator==(const DirectedEdge &one, const DirectedEdge &another) {
+    return one.from == another.from and
+           one.to == another.to and
+           one.weight == another.weight;
+}
+
 inline auto &operator<<(std::ostream &out, const DirectedEdge &edge) {
     return out << "(" << edge.from << ", " << edge.to << ")";
 }

@@ -23,6 +23,15 @@ using ArrayType = std::vector<int>;
  * the data sample from the lower half. In other words we can get the median element as,
  * when the input size is odd, we take the middle element of sorted data. If the input size
  * is even, we pick average of middle two elements in sorted stream.
+ *
+ * @reference   Find Median from Data Stream
+ *              https://leetcode.com/problems/find-median-from-data-stream/
+ *
+ * Follow up:
+ *  If all integer numbers from the stream are in the range [0, 100], how would you
+ *  optimize your solution?
+ *  If 99% of all integer numbers from the stream are in the range [0, 100], how would
+ *  you optimize your solution?
  */
 auto MedianOfRunningIntegers(const ArrayType &ints) {
     assert(not ints.empty());

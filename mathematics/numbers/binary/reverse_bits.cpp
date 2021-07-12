@@ -16,6 +16,8 @@ namespace {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  * @reference   Write an Efficient C Program to Reverse Bits of a Number
  *              https://www.geeksforgeeks.org/write-an-efficient-c-program-to-reverse-bits-of-a-number/
+ * @reference   Reverse Bits
+ *              https://leetcode.com/problems/reverse-bits/
  */
 constexpr auto ReverseBits(unsigned num) {
     auto size = BitsNumber<decltype(num)> - 1;
@@ -190,6 +192,10 @@ SIMPLE_TEST(ReverseBits, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseBits, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ReverseBits, TestSAMPLE1, 0XB0000000, 0b1101);
 SIMPLE_TEST(ReverseBits, TestSAMPLE2, 0X80, 0X01000000);
+SIMPLE_TEST(ReverseBits, TestSAMPLE3, 0b11111111111111111111111111111101,
+            0b10111111111111111111111111111111);
+SIMPLE_TEST(ReverseBits, TestSAMPLE4, 0b00000010100101000001111010011100,
+            0b00111001011110000010100101000000);
 
 
 THE_BENCHMARK(ReverseBits_32_LookupTable, UPPER);
