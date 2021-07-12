@@ -56,20 +56,25 @@ public:
 
     void Link(const std::size_t x_index, const std::size_t y_index) {
         assert(x_index < m_subsets.size() and y_index < m_subsets.size());
-        assert(x_index != y_index);
 
         auto &x_node = m_subsets[x_index];
         auto &y_node = m_subsets[y_index];
 
-        assert(x_node.parent == x_index and y_node.parent == y_index);
-
         if (x_node.rank < y_node.rank) {
-            x_node.parent = y_index;
+            Adopt(y_index, x_index);
         } else if (x_node.rank > y_node.rank) {
-            y_node.parent = x_index;
+            Adopt(x_index, y_index);
         } else {
-            y_node.parent = x_index;
+            Adopt(x_index, y_index);
             ++(x_node.rank);
         }
+    }
+
+    void Adopt(const std::size_t parent_index, const std::size_t child_index) {
+        assert(parent_index != child_index);
+        assert(m_subsets[parent_index].parent == parent_index and
+               m_subsets[child_index].parent == child_index);
+
+        m_subsets[child_index].parent = parent_index;
     }
 };
