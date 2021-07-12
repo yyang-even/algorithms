@@ -208,6 +208,19 @@ inline auto DetectCycle_Undirected_Degrees(const std::size_t number_vertices,
 }
 
 
+/**
+ * @reference   Redundant Connection
+ *              https://leetcode.com/problems/redundant-connection/
+ *
+ * In this problem, a tree is an undirected graph that is connected and has no cycles.
+ * You are given a graph that started as a tree with n nodes labeled from 1 to n, with
+ * one additional edge added. The added edge has two different vertices chosen from
+ * 1 to n, and was not an edge that already existed. The graph is represented as an
+ * array edges of length n where edges[i] = [ai, bi] indicates that there is an edge
+ * between nodes ai and bi in the graph. Return an edge that can be removed so that the
+ * resulting graph is a tree of n nodes. If there are multiple answers, return the
+ * answer that occurs last in the input.
+ */
 auto DetectCycle_Undirected_DisjointSet(const std::size_t number_vertices,
                                         const UndirectedEdgeArrayType &edges) {
     DisjointSet_Array disjoint_set{number_vertices};
@@ -224,6 +237,59 @@ auto DetectCycle_Undirected_DisjointSet(const std::size_t number_vertices,
     }
 
     return false;
+}
+
+
+/**
+ * @reference   Redundant Connection II
+ *              https://leetcode.com/problems/redundant-connection-ii/
+ * @reference   LeetCode 685. Redundant Connection II
+ *              http://zxi.mytechroad.com/blog/graph/leetcode-685-redundant-connection-ii/
+ *
+ * In this problem, a rooted tree is a directed graph such that, there is exactly one
+ * node (the root) for which all other nodes are descendants of this node, plus every
+ * node has exactly one parent, except for the root node which has no parents. The given
+ * input is a directed graph that started as a rooted tree with n nodes (with distinct
+ * values from 1 to n), with one additional directed edge added. The added edge has two
+ * different vertices chosen from 1 to n, and was not an edge that already existed. The
+ * resulting graph is given as a 2D-array of edges. Each element of edges is a pair
+ * [ui, vi] that represents a directed edge connecting nodes ui and vi, where ui is a
+ * parent of child vi. Return an edge that can be removed so that the resulting graph is
+ * a rooted tree of n nodes. If there are multiple answers, return the answer that
+ * occurs last in the given 2D-array.
+ */
+auto RedundantConnection_Directed(const DirectedEdgeArrayType &edges) {
+    std::vector<const DirectedEdge *> parents(edges.size() + 1, nullptr);
+    const DirectedEdge *one_candidate = nullptr;
+    const DirectedEdge *another_candidate = nullptr;
+    for (const auto &an_edge : edges) {
+        if (parents[an_edge.to]) {
+            one_candidate = parents[an_edge.to];
+            another_candidate = &an_edge;
+            break;
+        }
+
+        parents[an_edge.to] = &an_edge;
+    }
+
+    DisjointSet_Array disjoint_set{edges.size() + 1};
+    for (const auto &an_edge : edges) {
+        if (another_candidate == &an_edge) {
+            continue;
+        }
+
+        const auto u_set = disjoint_set.Find(an_edge.from);
+        const auto v_set = disjoint_set.Find(an_edge.to);
+
+        if (u_set == v_set) {
+            return one_candidate ? *one_candidate : an_edge;
+        }
+
+        disjoint_set.Link(u_set, v_set);
+    }
+
+    assert(another_candidate);
+    return *another_candidate;
 }
 
 }//namespace
@@ -276,3 +342,23 @@ THE_BENCHMARK(DetectCycle_Undirected_Degrees, 5, SAMPLE3);
 
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE3, EXPECTED3, 5, SAMPLE3);
 SIMPLE_TEST(DetectCycle_Undirected_Degrees, TestSAMPLE4, {}, 3, SAMPLE4);
+
+
+const DirectedEdgeArrayType SAMPLE6 = {{1, 2}, {1, 3}, {2, 3}};
+const DirectedEdge EXPECTED6 = {2, 3};
+
+const DirectedEdgeArrayType SAMPLE7 = {{1, 2}, {2, 3}, {3, 4}, {4, 1}, {1, 5}};
+const DirectedEdge EXPECTED7 = {4, 1};
+
+const DirectedEdgeArrayType SAMPLE8 = {{2, 1}, {3, 1}, {4, 2}, {1, 4}};
+const DirectedEdge EXPECTED8 = {2, 1};
+
+const DirectedEdgeArrayType SAMPLE9 = {{3, 1}, {2, 1}, {4, 2}, {1, 4}};
+
+
+THE_BENCHMARK(RedundantConnection_Directed, SAMPLE6);
+
+SIMPLE_TEST(RedundantConnection_Directed, TestSAMPLE6, EXPECTED6, SAMPLE6);
+SIMPLE_TEST(RedundantConnection_Directed, TestSAMPLE7, EXPECTED7, SAMPLE7);
+SIMPLE_TEST(RedundantConnection_Directed, TestSAMPLE8, EXPECTED8, SAMPLE8);
+SIMPLE_TEST(RedundantConnection_Directed, TestSAMPLE9, EXPECTED8, SAMPLE9);

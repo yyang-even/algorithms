@@ -10,6 +10,8 @@ namespace {
  *              https://www.geeksforgeeks.org/count-trailing-zeroes-factorial-number/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.3.
+ * @reference   Factorial Trailing Zeroes
+ *              https://leetcode.com/problems/factorial-trailing-zeroes/
  *
  * Given an integer n, write a function that returns count of trailing zeros in n!.
  */
