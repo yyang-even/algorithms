@@ -10,12 +10,18 @@ using ArrayType = std::vector<int>;
  * @reference   https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/
  *
  * Given an array, check whether all elements in an array are distinct or not.
+ *
+ * @reference   Contains Duplicate
+ *              https://leetcode.com/problems/contains-duplicate/
+ *
+ * Given an integer array nums, return true if any value appears at least twice in the
+ * array, and return false if every element is distinct.
  */
 auto CheckIfAllElementsDistinct(const ArrayType &elements) {
-    std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
+    std::unordered_set<ArrayType::value_type> counters;
 
     for (const auto elem : elements) {
-        if (++counters[elem] > 1) {
+        if (not counters.insert(elem).second) {
             return false;
         }
     }
@@ -43,6 +49,110 @@ auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
     return true;
 }
 
+
+/**
+ * @reference   Contains Duplicate II
+ *              https://leetcode.com/problems/contains-duplicate-ii/
+ *
+ * Given an integer array nums and an integer k, return true if there are two distinct
+ * indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+ */
+auto ContainDuplicateAtMostKApart(const ArrayType &elements, const std::size_t K) {
+    std::unordered_map<ArrayType::value_type, ArrayType::size_type> last_occurrences;
+
+    for (std::size_t i = 0; i < elements.size(); ++i) {
+        const auto elem = elements[i];
+        const auto [iter, inserted] = last_occurrences.emplace(elem, i);
+        if (not inserted) {
+            if (i - iter->second <= K) {
+                return true;
+            }
+            iter->second = i;
+        }
+    }
+
+    return false;
+}
+
+
+/**
+ * @reference   Contains Duplicate III
+ *              https://leetcode.com/problems/contains-duplicate-iii/
+ *
+ * Given an integer array nums and two integers k and t, return true if there are two
+ * distinct indices i and j in the array such that abs(nums[i] - nums[j]) <= t and
+ * abs(i - j) <= k.
+ *
+ * @reference   [LeetCode] Contains Duplicate III
+ *              https://www.cnblogs.com/easonliu/p/4544073.html
+ */
+auto ContainAlmostDuplicateAtMostKApart_Set(const ArrayType &elements,
+                                            const std::size_t K,
+                                            const ArrayType::value_type T) {
+    std::multiset<long long> neighbors;
+
+    for (std::size_t i = 0; i < elements.size(); ++i) {
+        if (neighbors.size() == K + 1) {
+            neighbors.erase(neighbors.find(elements[i - K - 1]));
+        }
+        const auto a_number = elements[i];
+        const auto lower = neighbors.lower_bound(a_number - T);
+        if (lower != neighbors.cend() and * lower - a_number <= T) {
+            return true;
+        }
+        neighbors.insert(a_number);
+    }
+
+    return false;
+}
+
+
+/**
+ * @reference   (LeetCode) Contains Duplicate III
+ *              https://stackoverflow.com/questions/31119971/leetcode-contains-duplicate-iii
+ */
+auto getBucketId(const long number, const long bucket_size) {
+    return number < 0 ? (number + 1) / bucket_size - 1 : number / bucket_size;
+}
+
+auto ContainAlmostDuplicateAtMostKApart_Bucket(const ArrayType &elements,
+                                               const std::size_t K,
+                                               const ArrayType::value_type T) {
+    if (elements.size() <= 1 or T < 0) {
+        return false;
+    }
+
+    const auto bucket_size = T + 1;
+
+    std::unordered_map<int, long> buckets;
+    for (std::size_t i = 0; i < elements.size(); ++i) {
+        const auto the_number = elements[i];
+        const int bucket_id = getBucketId(the_number, bucket_size);
+        if (buckets.find(bucket_id) != buckets.cend()) {
+            return true;
+        }
+
+        buckets[bucket_id] = the_number;
+        if (const auto prev_bucket = buckets.find(bucket_id - 1);
+            prev_bucket != buckets.cend() and
+            std::abs(prev_bucket->second - the_number) <= T) {
+            return true;
+        }
+        if (const auto next_bucket = buckets.find(bucket_id + 1);
+            next_bucket != buckets.cend() and
+            std::abs(next_bucket->second - the_number) <= T) {
+            return true;
+        }
+
+        if (buckets.size() > K) {
+            const auto bucket_id_to_remove = getBucketId(elements[i - K], bucket_size);
+            buckets.erase(bucket_id_to_remove);
+        }
+    }
+
+    return false;
+}
+
 }//namespace
 
 
@@ -60,3 +170,50 @@ THE_BENCHMARK(CheckIfAllElementsDistinct_Sort, SAMPLE1);
 
 SIMPLE_TEST(CheckIfAllElementsDistinct_Sort, TestSAMPLE1, false, SAMPLE1);
 SIMPLE_TEST(CheckIfAllElementsDistinct_Sort, TestSAMPLE2, true, SAMPLE2);
+
+
+const ArrayType SAMPLE3 = {1, 2, 3, 1};
+const ArrayType SAMPLE4 = {1, 0, 1, 1};
+const ArrayType SAMPLE5 = {1, 2, 3, 1, 2, 3};
+
+
+THE_BENCHMARK(ContainDuplicateAtMostKApart, SAMPLE1, 1);
+
+SIMPLE_TEST(ContainDuplicateAtMostKApart, TestSAMPLE1, true, SAMPLE1, 1);
+SIMPLE_TEST(ContainDuplicateAtMostKApart, TestSAMPLE2, false, SAMPLE2, SAMPLE2.size());
+SIMPLE_TEST(ContainDuplicateAtMostKApart, TestSAMPLE3, true, SAMPLE3, 3);
+SIMPLE_TEST(ContainDuplicateAtMostKApart, TestSAMPLE4, true, SAMPLE4, 1);
+SIMPLE_TEST(ContainDuplicateAtMostKApart, TestSAMPLE5, false, SAMPLE5, 2);
+
+
+const ArrayType SAMPLE7 = {1, 5, 9, 1, 5, 9};
+
+
+THE_BENCHMARK(ContainAlmostDuplicateAtMostKApart_Set, SAMPLE1, 1, 0);
+
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE1, true, SAMPLE1, 1, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE2, false,
+            SAMPLE2, SAMPLE2.size(), 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE3, true, SAMPLE3, 3, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE4, true, SAMPLE4, 1, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE5, false, SAMPLE5, 2, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE6, true, SAMPLE4, 1, 2);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE7, false, SAMPLE7, 2, 3);
+
+
+THE_BENCHMARK(ContainAlmostDuplicateAtMostKApart_Bucket, SAMPLE1, 1, 0);
+
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE1, true,
+            SAMPLE1, 1, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE2, false,
+            SAMPLE2, SAMPLE2.size(), 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE3, true,
+            SAMPLE3, 3, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE4, true,
+            SAMPLE4, 1, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE5, false,
+            SAMPLE5, 2, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE6, true,
+            SAMPLE4, 1, 2);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE7, false,
+            SAMPLE7, 2, 3);

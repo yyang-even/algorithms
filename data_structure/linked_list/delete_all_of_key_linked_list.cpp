@@ -8,6 +8,12 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/delete-occurrences-given-key-linked-list/
  * @reference   Delete multiple occurrences of key in Linked list using double pointer
  *              https://www.geeksforgeeks.org/delete-multiple-occurrences-of-key-in-linked-list-using-double-pointer/
+ *
+ * @reference   Remove Linked List Elements
+ *              https://leetcode.com/problems/remove-linked-list-elements/
+ *
+ * Given the head of a linked list and an integer val, remove all the nodes of the
+ * linked list that has Node.val == val, and return the new head.
  */
 auto DeleteWithKey_Singly(std::forward_list<int> single_list,
                           const std::forward_list<int>::value_type key) {
