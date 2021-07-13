@@ -32,6 +32,9 @@ compile_test(full_binary_tree)
 compile_benchmark(inorder_successor)
 compile_test(inorder_successor)
 
+compile_benchmark(invert_binary_tree)
+compile_test(invert_binary_tree)
+
 compile_benchmark(is_balanced)
 compile_test(is_balanced)
 

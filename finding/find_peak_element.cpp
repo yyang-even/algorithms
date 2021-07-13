@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/matrix/matrix.h"
+
 
 namespace {
 
@@ -17,10 +19,18 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Find the maximum element in an array which is first increasing and then decreasing
  *              https://www.geeksforgeeks.org/find-the-maximum-element-in-an-array-which-is-first-increasing-and-then-decreasing/
+ * @reference   Find Peak Element
+ *              https://leetcode.com/problems/find-peak-element/
+ *
+ * A peak element is an element that is strictly greater than its neighbors. Given an
+ * integer array nums, find a peak element, and return its index. If the array contains
+ * multiple peaks, return the index to any of the peaks. You may imagine that
+ * nums[-1] = nums[n] = -∞.
+ * You must write an algorithm that runs in O(log n) time.
  */
-auto FindOnePeakElement(const ArrayType &elements,
-                        const ArrayType::const_iterator cbegin,
-                        const ArrayType::size_type length) {
+auto FindOnePeakElement_Iter(const ArrayType &elements,
+                             const ArrayType::const_iterator cbegin,
+                             const ArrayType::size_type length) {
     const auto half = length / 2;
     const auto mid = cbegin + half;
     const auto mid_next = std::next(mid);
@@ -30,14 +40,52 @@ auto FindOnePeakElement(const ArrayType &elements,
         return mid;
     }
     if (mid != elements.cbegin() and * std::prev(mid) > *mid) {
-        return FindOnePeakElement(elements, cbegin, half);
+        return FindOnePeakElement_Iter(elements, cbegin, half);
     }
-    return FindOnePeakElement(elements, mid_next, length - half - 1);
+    return FindOnePeakElement_Iter(elements, mid_next, length - half - 1);
 }
 
 inline auto
-FindOnePeakElement(const ArrayType &elements) {
-    return *FindOnePeakElement(elements, elements.cbegin(), elements.size());
+FindOnePeakElement_Iter(const ArrayType &elements) {
+    return *FindOnePeakElement_Iter(elements, elements.cbegin(), elements.size());
+}
+
+
+inline auto
+FindOnePeakElement_Index(const ArrayType &elements,
+                         const int left, const int right) {
+    if (left == right) {
+        return left;
+    }
+
+    const auto mid = (left + right) / 2;
+    if (elements[mid] > elements[mid + 1]) {
+        return FindOnePeakElement_Index(elements, left, mid);
+    }
+    return FindOnePeakElement_Index(elements, mid + 1, right);
+}
+
+inline auto
+FindOnePeakElement_Index(const ArrayType &elements) {
+    assert(not elements.empty());
+    return elements[FindOnePeakElement_Index(elements, 0, elements.size() - 1)];
+}
+
+
+auto FindOnePeakElement_Iterative(const ArrayType &elements) {
+    assert(not elements.empty());
+
+    std::size_t left = 0, right = elements.size() - 1;
+    while (left < right) {
+        const auto mid = (left + right) / 2;
+        if (elements[mid] > elements[mid + 1]) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return elements[left];
 }
 
 
@@ -67,6 +115,41 @@ FindOnePeakElement(const ArrayType &elements) {
  * Note that the given array is definitely one of the given types.
  */
 
+
+/**
+ * @reference   Find a Peak Element II
+ *              https://leetcode.com/problems/find-a-peak-element-ii/
+ *
+ * A peak element in a 2D grid is an element that is strictly greater than all of its
+ * adjacent neighbors to the left, right, top, and bottom. Given a 0-indexed m x n
+ * matrix mat where no two adjacent cells are equal, find any peak element mat[i][j]
+ * and return the length 2 array [i,j]. You may assume that the entire matrix is
+ * surrounded by an outer perimeter with the value -1 in each cell.
+ * You must write an algorithm that runs in O(m log(n)) or O(n log(m)) time.
+ *
+ * @reference   Find a peak element in a 2D array
+ *              https://www.geeksforgeeks.org/find-peak-element-2d-array/
+ */
+auto FindOnePeakElement(const MatrixType &a_matrix, const int top, const int bottom) {
+    const auto mid = (top + bottom) / 2;
+    const auto &mid_row = a_matrix[mid];
+    const auto max_index = std::max_element(mid_row.cbegin(), mid_row.cend()) -
+                           mid_row.cbegin();
+
+    if (top == bottom) {
+        return a_matrix[mid][max_index];
+    }
+
+    if (a_matrix[mid][max_index] > a_matrix[mid + 1][max_index]) {
+        return FindOnePeakElement(a_matrix, top, mid);
+    }
+    return FindOnePeakElement(a_matrix, mid + 1, bottom);
+}
+
+inline auto FindOnePeakElement(const MatrixType &a_matrix) {
+    return FindOnePeakElement(a_matrix, 0, a_matrix.size() - 1);
+}
+
 }//namespace
 
 
@@ -76,9 +159,51 @@ const ArrayType DECREASING = {100, 80, 60, 50, 20};
 const ArrayType ALL_SAME = {10, 10, 10, 10, 10};
 
 
-THE_BENCHMARK(FindOnePeakElement, SAMPLE1);
+THE_BENCHMARK(FindOnePeakElement_Iter, SAMPLE1);
 
-SIMPLE_TEST(FindOnePeakElement, TestSAMPLE1, 20, SAMPLE1);
-SIMPLE_TEST(FindOnePeakElement, TestINCREASING, INCREASING.back(), INCREASING);
-SIMPLE_TEST(FindOnePeakElement, TestDECREASING, DECREASING.front(), DECREASING);
-SIMPLE_TEST(FindOnePeakElement, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
+SIMPLE_TEST(FindOnePeakElement_Iter, TestSAMPLE1, 20, SAMPLE1);
+SIMPLE_TEST(FindOnePeakElement_Iter, TestINCREASING, INCREASING.back(), INCREASING);
+SIMPLE_TEST(FindOnePeakElement_Iter, TestDECREASING, DECREASING.front(), DECREASING);
+SIMPLE_TEST(FindOnePeakElement_Iter, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
+
+
+THE_BENCHMARK(FindOnePeakElement_Index, SAMPLE1);
+
+SIMPLE_TEST(FindOnePeakElement_Index, TestSAMPLE1, 20, SAMPLE1);
+SIMPLE_TEST(FindOnePeakElement_Index, TestINCREASING, INCREASING.back(), INCREASING);
+SIMPLE_TEST(FindOnePeakElement_Index, TestDECREASING, DECREASING.front(), DECREASING);
+SIMPLE_TEST(FindOnePeakElement_Index, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
+
+
+THE_BENCHMARK(FindOnePeakElement_Iterative, SAMPLE1);
+
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestSAMPLE1, 20, SAMPLE1);
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestINCREASING,
+            INCREASING.back(), INCREASING);
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestDECREASING,
+            DECREASING.front(), DECREASING);
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
+
+
+const MatrixType SAMPLE1M = {
+    {10, 20, 15},
+    {21, 30, 14},
+    {7, 16, 32},
+};
+
+const MatrixType SAMPLE2M = {
+    {10, 7},
+    {11, 17},
+};
+
+const MatrixType SAMPLE3M = {
+    {1, 4},
+    {3, 2},
+};
+
+
+THE_BENCHMARK(FindOnePeakElement, SAMPLE1M);
+
+SIMPLE_TEST(FindOnePeakElement, TestSAMPLE1, 30, SAMPLE1M);
+SIMPLE_TEST(FindOnePeakElement, TestSAMPLE2, 17, SAMPLE2M);
+SIMPLE_TEST(FindOnePeakElement, TestSAMPLE3, 4, SAMPLE3M);
