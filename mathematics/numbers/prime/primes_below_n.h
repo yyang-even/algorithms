@@ -15,6 +15,8 @@
  *              https://www.geeksforgeeks.org/sieve-eratosthenes-0n-time-complexity/
  * @reference   How is the time complexity of Sieve of Eratosthenes is n*log(log(n))?
  *              https://www.geeksforgeeks.org/how-is-the-time-complexity-of-sieve-of-eratosthenes-is-nloglogn/
+ * @reference   Count Primes
+ *              https://leetcode.com/problems/count-primes/
  *
  * @reference   Segmented Sieve
  *              https://www.geeksforgeeks.org/segmented-sieve/

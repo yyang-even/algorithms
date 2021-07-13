@@ -78,6 +78,17 @@ public:
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-7.
  * @reference   https://www.geeksforgeeks.org/implement-stack-using-queue/
+ * @reference   Implement Stack using Queues
+ *              https://leetcode.com/problems/implement-stack-using-queues/
+ *
+ * Implement a last-in-first-out (LIFO) stack using only two queues. The implemented
+ * stack should support all the functions of a normal stack (push, top, pop, and empty).
+ * Implement the MyStack class:
+ *  void push(int x) Pushes element x to the top of the stack.
+ *  int pop() Removes the element on the top of the stack and returns it.
+ *  int top() Returns the element on the top of the stack.
+ *  boolean empty() Returns true if the stack is empty, false otherwise.
+ * Follow-up: Can you implement the stack using only one queue?
  */
 class PushCostlyTwoQueueStack {
     using ValueType = int;
