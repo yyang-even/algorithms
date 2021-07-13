@@ -34,6 +34,9 @@ compile_test(find_kth_char_of_decrypted_string)
 compile_benchmark(interleavings_of_two_strings)
 compile_test(interleavings_of_two_strings)
 
+compile_benchmark(isomorphic_strings)
+compile_test(isomorphic_strings)
+
 compile_benchmark(is_palindrome)
 compile_test(is_palindrome)
 
