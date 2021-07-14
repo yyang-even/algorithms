@@ -115,6 +115,9 @@ compile_test(string_comparison)
 compile_benchmark(string_matching)
 compile_test(string_matching)
 
+compile_benchmark(summary_ranges)
+compile_test(summary_ranges)
+
 compile_benchmark(tail)
 compile_test(tail)
 

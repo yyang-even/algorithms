@@ -12,6 +12,8 @@
  *              https://www.geeksforgeeks.org/c-program-to-find-whether-a-no-is-power-of-two/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.4.
+ * @reference   Power of Two
+ *              https://leetcode.com/problems/power-of-two/
  */
 static inline constexpr auto IsPowerOf2(const unsigned num) {
     return num and !(num & (num - 1));

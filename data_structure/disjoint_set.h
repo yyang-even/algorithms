@@ -78,3 +78,9 @@ public:
         m_subsets[child_index].parent = parent_index;
     }
 };
+
+
+/**
+ * @reference   Dynamic Disjoint Set Data Structure for large range values
+ *              https://www.geeksforgeeks.org/dynamic-disjoint-set-data-structure-for-large-range-values/
+ */
