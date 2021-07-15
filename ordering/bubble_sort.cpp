@@ -32,10 +32,7 @@ auto BubbleSort(ArrayType values) {
     return values;
 }
 
-/** Bubble Sort Optimized
- *
- * @reference   https://www.geeksforgeeks.org/bubble-sort/
- *
+/**
  * @complexity: O(n^2) worst case; O(n) if the array is already sorted.
  */
 auto BubbleSort_Optimized(ArrayType values) {

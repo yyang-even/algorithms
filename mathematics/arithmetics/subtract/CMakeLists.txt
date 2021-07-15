@@ -1,6 +1,3 @@
-compile_benchmark(max_difference_between_two_elements_no_sort)
-compile_test(max_difference_between_two_elements_no_sort)
-
 compile_benchmark(minimum_difference_between_two_elements)
 compile_test(minimum_difference_between_two_elements)
 

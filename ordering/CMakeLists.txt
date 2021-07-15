@@ -13,6 +13,9 @@ compile_test(count_occurrences_in_sorted_array)
 compile_benchmark(counting_sort)
 compile_test(counting_sort)
 
+compile_benchmark(custom_sort_string)
+compile_test(custom_sort_string)
+
 compile_benchmark(dutch_national_flag)
 compile_test(dutch_national_flag)
 

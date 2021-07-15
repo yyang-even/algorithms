@@ -33,11 +33,6 @@ inline constexpr auto isDivisibleBy5_LastDigit(const int n) {
  * Given a positive number n, write a function isMultipleof5(int n) that returns true if
  * n is multiple of 5, otherwise false. You are not allowed to use % and / operators.
 */
-/** Repeatedly subtract 5 from n
- *
- * @reference   Check if a number is multiple of 5 without using / and % operators
- *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
- */
 inline constexpr auto isDivisibleBy5_Subtraction(int n) {
     if (n < 0) {
         n = -n;
@@ -50,11 +45,6 @@ inline constexpr auto isDivisibleBy5_Subtraction(int n) {
 }
 
 
-/** Convert to string and check the last character
- *
- * @reference   Check if a number is multiple of 5 without using / and % operators
- *              https://www.geeksforgeeks.org/check-if-a-number-is-multiple-of-5-without-using-and-operators/
- */
 inline auto isDivisibleBy5_ToString(const int n) {
     const auto str_n = std::to_string(n);
     return str_n.back() == '0' or str_n.back() == '5';

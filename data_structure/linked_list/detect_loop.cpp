@@ -11,10 +11,6 @@ namespace {
 const std::vector<int> SAMPLE_ARRAY {1, 0, 8, 6, 2, 3, 7, 4, 5, 9};
 
 
-/** Detect loop in a linked list
- *
- * @reference   https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
- */
 SinglyLinkedList::Node::PointerType
 DetectLoop_Hash(const SinglyLinkedList::Node::PointerType head) {
     std::unordered_set<SinglyLinkedList::Node *> visited_nodes;
@@ -198,10 +194,6 @@ inline auto testDetectLoop_NextFlag_SinglyMakeLoop(const std::size_t index) {
 }
 
 
-/**
- * @reference   Finding a Loop in a Singly Linked List
- *              https://blog.ostermiller.org/find-loop-singly-linked-list
- */
 auto DetectLoop_DoublyList(const DoublyLinkedList::Node::PointerType head) {
     DoublyLinkedList::Node::PointerType prev = nullptr;
 

@@ -144,6 +144,20 @@ public:
  * returned.
  *
  * Method 2 is definitely better than method 1.
+ *
+ * @reference   Implement Queue using Stacks
+ *              https://leetcode.com/problems/implement-queue-using-stacks/
+ *
+ * Implement a first in first out (FIFO) queue using only two stacks. The implemented
+ * queue should support all the functions of a normal queue (push, peek, pop, and empty).
+ * Implement the MyQueue class:
+ *  void push(int x) Pushes element x to the back of the queue.
+ *  int pop() Removes the element from the front of the queue and returns it.
+ *  int peek() Returns the element at the front of the queue.
+ *  boolean empty() Returns true if the queue is empty, false otherwise.
+ * Follow-up: Can you implement the queue such that each operation is amortized O(1)
+ * time complexity? In other words, performing n operations will take overall O(n) time
+ * even if one of those operations may take longer.
  */
 class DequeueCostlyTwoStackQueue {
     using ValueType = int;

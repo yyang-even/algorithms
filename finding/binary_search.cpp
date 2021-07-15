@@ -233,8 +233,8 @@ BinarySearch_First_Recursive(const ArrayType &elements,
  * @reference   Variants of Binary Search
  *              https://www.geeksforgeeks.org/variants-of-binary-search/
  */
-auto BinarSearch_First_Iterative(const ArrayType &elements,
-                                 const ArrayType::value_type x) {
+auto BinarySearch_First_Iterative(const ArrayType &elements,
+                                  const ArrayType::value_type x) {
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
     auto cbegin = elements.cbegin();
@@ -615,22 +615,22 @@ SIMPLE_TEST(BinarySearch_Uniform1, TestUnderflow, ARRAY_UNDERFLOW.cend(),
 const ArrayType VALUES3 = {2, 3, 3, 5, 5, 5, 6, 6};
 
 
-THE_BENCHMARK(BinarSearch_First_Iterative, ARRAY1, 10);
+THE_BENCHMARK(BinarySearch_First_Iterative, ARRAY1, 10);
 
-SIMPLE_TEST(BinarSearch_First_Iterative, TestEmpty, ARRAY_EMPTY.cend(),
+SIMPLE_TEST(BinarySearch_First_Iterative, TestEmpty, ARRAY_EMPTY.cend(),
             ARRAY_EMPTY, 10);
-SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin2, ARRAY1.cbegin(),
+SIMPLE_TEST(BinarySearch_First_Iterative, TestBegin2, ARRAY1.cbegin(),
             ARRAY1, ARRAY1.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_First_Iterative, TestSample1,
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_First_Iterative, TestSample1,
                    ARRAY1, 10);
-SIMPLE_TEST(BinarSearch_First_Iterative, TestLast, std::prev(ARRAY1.cend()),
+SIMPLE_TEST(BinarySearch_First_Iterative, TestLast, std::prev(ARRAY1.cend()),
             ARRAY1, ARRAY1.back());
-SIMPLE_TEST(BinarSearch_First_Iterative, TestNotExist, ARRAY1.cend(), ARRAY1, 999);
-SIMPLE_TEST(BinarSearch_First_Iterative, TestBegin3, VALUES3.cbegin(),
+SIMPLE_TEST(BinarySearch_First_Iterative, TestNotExist, ARRAY1.cend(), ARRAY1, 999);
+SIMPLE_TEST(BinarySearch_First_Iterative, TestBegin3, VALUES3.cbegin(),
             VALUES3, VALUES3.front());
-MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarSearch_First_Iterative, TestSample2,
+MUTUAL_SIMPLE_TEST(BinarySearch_STL_Lower, BinarySearch_First_Iterative, TestSample2,
                    VALUES3, 5);
-SIMPLE_TEST(BinarSearch_First_Iterative, TestUnderflow, ARRAY_UNDERFLOW.cend(),
+SIMPLE_TEST(BinarySearch_First_Iterative, TestUnderflow, ARRAY_UNDERFLOW.cend(),
             ARRAY_UNDERFLOW, ARRAY_UNDERFLOW.front() - 1);
 
 

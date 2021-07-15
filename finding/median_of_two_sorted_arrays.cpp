@@ -142,10 +142,7 @@ MedianOf3(const ArrayType::value_type x, const ArrayType::value_type smaller,
     return x;
 }
 
-/**
- * @reference   Median of two sorted arrays of different sizes | Set 1 (Linear)
- *              https://www.geeksforgeeks.org/median-of-two-sorted-arrays-of-different-sizes-set-1-linear/
- */
+
 double MedianOfTwoSortedArrays_DiffSize_Complex(
     const ArrayType::const_iterator &cbegin_shorter,
     const ArrayType::size_type length_shorter,
