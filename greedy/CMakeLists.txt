@@ -15,3 +15,6 @@ compile_test(reduce_array_size_to_half)
 
 compile_benchmark(task_scheduling)
 compile_test(task_scheduling)
+
+compile_benchmark(valid_triangle_number)
+compile_test(valid_triangle_number)
