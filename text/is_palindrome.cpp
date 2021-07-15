@@ -105,6 +105,9 @@ auto isPalindrome_Stack(const std::string_view a_string) {
  *
  * @note    If no stack is allowed, then we can reverse the second half of the list, and
  * restore it later. Or we can use function call stack.
+ *
+ * @reference   Palindrome Linked List
+ *              https://leetcode.com/problems/palindrome-linked-list/
  */
 auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     std::stack<ListType::value_type> the_stack;

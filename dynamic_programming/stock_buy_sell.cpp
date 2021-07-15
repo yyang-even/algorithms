@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/sum/largest_sum_contiguous_subarray.h"
+
 
 namespace {
 
@@ -14,9 +16,6 @@ using ArrayType = std::vector<int>;
  * and choosing a different day in the future to sell that stock. Return the maximum
  * profit you can achieve from this transaction. If you cannot achieve any profit,
  * return 0.
- *
- * @reference   Maximum difference between two elements such that larger element appears after the smaller number
- *              https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
  */
 auto StockBuyAndSell_SingleTransaction(const ArrayType &prices) {
     int min_price = INT_MAX;
@@ -33,6 +32,25 @@ auto StockBuyAndSell_SingleTransaction(const ArrayType &prices) {
     }
 
     return max_profit;
+}
+
+
+/**
+ * @reference   Maximum difference between two elements such that larger element appears after the smaller number
+ *              https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
+ *
+ * Given an array arr[] of integers, find out the maximum difference between any two
+ * elements such that larger element appears after the smaller number.
+ */
+auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
+    assert(elements.size() > 1);
+
+    ArrayType diff_array{};
+    for (auto iter = elements.cbegin() + 1; iter != elements.cend(); ++iter) {
+        diff_array.push_back(*iter - * (iter - 1));
+    }
+
+    return LargestSumContiguousSubarray_Kadane(diff_array);
 }
 
 
@@ -222,6 +240,15 @@ SIMPLE_TEST(StockBuyAndSell_SingleTransaction, TestSAMPLE3, 0, SAMPLE3);
 SIMPLE_TEST(StockBuyAndSell_SingleTransaction, TestSAMPLE4, 4, SAMPLE4);
 SIMPLE_TEST(StockBuyAndSell_SingleTransaction, TestSAMPLE5, 8, SAMPLE5);
 SIMPLE_TEST(StockBuyAndSell_SingleTransaction, TestSAMPLE6, 2, SAMPLE6);
+
+
+THE_BENCHMARK(MaxDiffBetweenTwoElementsNoSort_SubarraySum, SAMPLE2);
+
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSAMPLE2, 5, SAMPLE2);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSAMPLE3, -1, SAMPLE3);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSAMPLE4, 4, SAMPLE4);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSAMPLE5, 8, SAMPLE5);
+SIMPLE_TEST(MaxDiffBetweenTwoElementsNoSort_SubarraySum, TestSAMPLE6, 2, SAMPLE6);
 
 
 THE_BENCHMARK(StockBuyAndSell_Unlimited_Greedy, SAMPLE2);

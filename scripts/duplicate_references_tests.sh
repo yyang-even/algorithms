@@ -10,7 +10,7 @@ testNumberOfDuplicateReferencesAreExpected() {
 
     actual=$(echo "$ALL_REFERENCES" | sort | uniq -D | wc -l)
 
-    assertEquals 119 "$actual"
+    assertEquals 103 "$actual"
 }
 
 source /usr/bin/shunit2

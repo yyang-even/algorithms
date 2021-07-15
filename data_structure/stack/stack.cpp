@@ -43,8 +43,6 @@ public:
  *              Introduction to Algorithms, Third Edition. Section 10.1. Exercises 10.1-2.
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 4.
- * @reference   Stack Data Structure (Introduction and Program)
- *              https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  * @reference   Implement a stack using singly linked list
  *              https://www.geeksforgeeks.org/implement-a-stack-using-singly-linked-list/
  */
