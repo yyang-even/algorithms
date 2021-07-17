@@ -56,6 +56,13 @@ auto CountAnagrams(const std::string_view text, const std::string_view word) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.3.
  *
+ * @reference   Valid Anagram
+ *              https://leetcode.com/problems/valid-anagram/
+ *
+ * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+ * Follow up: What if the inputs contain Unicode characters? How would you adapt your
+ * solution to such a case?
+ *
  * @reference   Check if two arrays are equal or not
  *              https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
  *

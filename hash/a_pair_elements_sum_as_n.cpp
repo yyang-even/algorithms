@@ -8,8 +8,7 @@
 
 namespace {
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+using ArrayType = std::vector<int>;
 using OutputType = std::vector<bool>;
 using OperationArrayType = std::vector<std::pair<bool, int>>;
 
@@ -81,9 +80,7 @@ HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
     return false;
 }
 
-template <std::size_t N>
-inline constexpr auto HasPairOfElementsSumAsN_Sort(ArrayType<N> values,
-                                                   const int target) {
+inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
     if (values.empty()) {
         return false;
     }
@@ -263,12 +260,233 @@ HasPairOfElementsSumAsN_BST_TwoPointers(const BinaryTree::Node::PointerType root
     return false;
 }
 
+
+/**
+ * @reference   3Sum
+ *              https://leetcode.com/problems/3sum/
+ *
+ * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such
+ * that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0. Notice that
+ * the solution set must not contain duplicate triplets.
+ *
+ * @reference   Find all triplets with zero sum
+ *              https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
+ *
+ * @reference   Find a triplet that sum to a given value
+ *              https://www.geeksforgeeks.org/find-a-triplet-that-sum-to-a-given-value/
+ * @reference   Print all triplets with given sum
+ *              https://www.geeksforgeeks.org/print-all-triplets-with-given-sum/
+ * @reference   All unique triplets that sum up to a given value
+ *              https://www.geeksforgeeks.org/unique-triplets-sum-given-value/
+ */
+auto ThreeSum(ArrayType nums, const int target) {
+    std::sort(nums.begin(), nums.end());
+
+    std::vector<ArrayType> results;
+    const int SIZE = nums.size();
+    for (int i = 0; i < SIZE - 2; ++i) {
+        if (i > 1 and nums[i] == nums[i - 1]) {
+            continue;
+        }
+
+        auto left = i + 1;
+        int right = SIZE - 1;
+        const auto X = target - nums[i];
+        while (left < right) {
+            const auto sum = nums[left] + nums[right];
+            if (sum == X) {
+                results.push_back({nums[i], nums[left], nums[right]});
+
+                while (left < SIZE - 1 and nums[left] == nums[left + 1]) {
+                    ++left;
+                }
+                while (right > 0 and nums[right] == nums[right - 1]) {
+                    --right;
+                }
+
+                ++left;
+                --right;
+            } else if (sum < X) {
+                ++left;
+            } else {
+                --right;
+            }
+        }
+    }
+
+    return results;
+}
+
+
+/**
+ * @reference   4Sum
+ *              https://leetcode.com/problems/4sum/
+ *
+ * Given an array nums of n integers, return an array of all the unique quadruplets
+ * [nums[a], nums[b], nums[c], nums[d]] such that:
+ *  0 <= a, b, c, d < n
+ *  a, b, c, and d are distinct.
+ *  nums[a] + nums[b] + nums[c] + nums[d] == target
+ * You may return the answer in any order.
+ */
+auto twoSum(const ArrayType &nums, const int target, const int start) {
+    std::vector<ArrayType> results;
+
+    const int LAST = nums.size() - 1;
+    int left = start, right = LAST;
+    while (left < right) {
+        const int sum = nums[left] + nums[right];
+        if (sum < target or (left > start and nums[left] == nums[left - 1])) {
+            ++left;
+        } else if (sum > target or (right < LAST and nums[right] == nums[right + 1])) {
+            --right;
+        } else
+            results.push_back({nums[left++], nums[right--]});
+    }
+
+    return results;
+}
+
+auto
+kSum(const int K, const ArrayType &nums, const int target, const std::size_t start) {
+    std::vector<ArrayType> results;
+
+    if (start == nums.size() or nums[start] * K > target or target > nums.back() * K) {
+        return results;
+    }
+
+    if (K == 2) {
+        return twoSum(nums, target, start);
+    }
+
+    for (auto i = start; i < nums.size(); ++i) {
+        if (i == start or nums[i - 1] != nums[i]) {
+            auto sub_results = kSum(K - 1, nums, target - nums[i], i + 1);
+            for (auto &one_result : sub_results) {
+                one_result.insert(one_result.cbegin(), nums[i]);
+                results.push_back(std::move(one_result));
+            }
+        }
+    }
+
+    return results;
+}
+
+inline auto kSum(const int K, ArrayType nums, const int target) {
+    std::sort(nums.begin(), nums.end());
+
+    return kSum(K, nums, target, 0);
+}
+
+inline auto FourSum(ArrayType nums, const int target) {
+    return kSum(4, std::move(nums), target);
+}
+
+
+/** Given two unsorted arrays, find all pairs whose sum is x
+ *
+ * @reference   https://www.geeksforgeeks.org/given-two-unsorted-arrays-find-pairs-whose-sum-x/
+ *
+ * Given two unsorted arrays of distinct elements, the task is to find all pairs from
+ * both arrays whose sum is equal to x.
+ */
+auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
+                             const ArrayType::value_type SUM) {
+    std::unordered_set array1_set(arr1.cbegin(), arr1.cend());
+    std::vector<ArrayType> outputs;
+
+    for (const auto elem : arr2) {
+        const auto pair = SUM - elem;
+        if (array1_set.find(pair) != array1_set.cend()) {
+            outputs.push_back({pair, elem});
+        }
+    }
+
+    return outputs;
+}
+
+
+/**
+ * @reference   Count pairs from two sorted arrays whose sum is equal to a given value x
+ *              https://www.geeksforgeeks.org/count-pairs-two-sorted-arrays-whose-sum-equal-given-value-x/
+ *
+ * Given two sorted arrays of size m and n of distinct elements. Given a value x. The
+ * problem is to count all pairs from both arrays whose sum is equal to x. Note: The
+ * pair has an element from each array.
+ */
+auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2,
+                                    const ArrayType::value_type SUM) {
+    assert(std::is_sorted(arr1.cbegin(), arr1.cend()));
+    assert(std::is_sorted(arr2.cbegin(), arr2.cend()));
+
+    std::vector<ArrayType> outputs;
+    auto l = arr1.cbegin();
+    auto r = arr2.crbegin();
+
+    while (l != arr1.cend() and r != arr2.crend()) {
+        const auto new_sum = *l + *r;
+        if (new_sum == SUM) {
+            outputs.push_back({*l, *r});
+            ++l;
+            ++r;
+        } else if (new_sum < SUM) {
+            ++l;
+        } else {
+            ++r;
+        }
+    }
+
+    return outputs;
+}
+
+inline auto
+FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1, ArrayType arr2,
+                                    const ArrayType::value_type SUM) {
+    std::sort(arr1.begin(), arr1.end());
+    std::sort(arr2.begin(), arr2.end());
+
+    return FindAllPairsSumAsN_TwoPointers(arr1, arr2, SUM);
+}
+
+
+/**
+ * @reference   4Sum II
+ *              https://leetcode.com/problems/4sum-ii/
+ *
+ * Given four integer arrays nums1, nums2, nums3, and nums4 all of length n, return the
+ * number of tuples (i, j, k, l) such that:
+ *  0 <= i, j, k, l < n
+ *  nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0
+ */
+inline auto FourSum4Array(const std::vector<ArrayType> &num_arrays, const int target) {
+    assert(num_arrays.size() == 4);
+
+    std::unordered_map<int, int> half_sums;
+    for (const auto i : num_arrays.front()) {
+        for (const auto j : num_arrays[1]) {
+            ++half_sums[i + j];
+        }
+    }
+
+    int count = 0;
+    for (const auto i : num_arrays[2]) {
+        for (const auto j : num_arrays[3]) {
+            const auto iter = half_sums.find(target - i - j);
+            if (iter != half_sums.cend()) {
+                count += iter->second;
+            }
+        }
+    }
+
+    return count;
+}
+
 }//namespace
 
 
-static constexpr ArrayType<0> VALUES1 = {};
-static constexpr ArrayType<1> VALUES2 = {1};
-static constexpr ArrayType<8> VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
+const ArrayType VALUES1 = {};
+const ArrayType VALUES2 = {1};
+const ArrayType VALUES3 = {1, 4, 45, 6, 10, -8, 9, 4};
 
 
 SIMPLE_BENCHMARK(HasPairOfElementsSumAsN_Hashmap, Sample1, VALUES3, 8);
@@ -341,3 +559,161 @@ SIMPLE_TEST(HasPairOfElementsSumAsN_BST_Hash, TestSAMPLE1, true, SAMPLE1T, 8);
 SIMPLE_TEST(HasPairOfElementsSumAsN_BST_Hash, TestSAMPLE2, true, SAMPLE1T, 3);
 SIMPLE_TEST(HasPairOfElementsSumAsN_BST_Hash, TestSAMPLE3, true, SAMPLE1T, 7);
 SIMPLE_TEST(HasPairOfElementsSumAsN_BST_Hash, TestSAMPLE4, false, SAMPLE1T, -1);
+
+
+const std::vector<ArrayType> EXPECTED0 = {};
+
+const ArrayType VALUES4 = {-1, 0, 1, 2, -1, -4};
+const std::vector<ArrayType> EXPECTED4 = {
+    {-1, -1, 2},
+    {-1, 0, 1}
+};
+
+const ArrayType VALUES5 = {0, -1, 2, -3, 1};
+const std::vector<ArrayType> EXPECTED5 = {
+    {-3, 1, 2},
+    {-1, 0, 1}
+};
+
+const ArrayType VALUES6 = {1, -2, 1, 0, 5};
+const std::vector<ArrayType> EXPECTED6 = {
+    {-2, 1, 1}
+};
+
+const ArrayType VALUES7 = {12, 3, 4, 1, 6, 9};
+const std::vector<ArrayType> EXPECTED7 = {
+    {3, 9, 12}
+};
+
+const ArrayType VALUES8 = {1, 2, 3, 4, 5};
+const std::vector<ArrayType> EXPECTED8 = {
+    {1, 3, 5},
+    {2, 3, 4}
+};
+
+const ArrayType VALUES9 = {12, 3, 6, 1, 6, 9};
+const std::vector<ArrayType> EXPECTED9 = {
+    {3, 9, 12},
+    {6, 6, 12}
+};
+
+const ArrayType VALUES10 = {-2, 0, 1, 1, 2};
+const std::vector<ArrayType> EXPECTED10 = {
+    {-2, 0, 2},
+    {-2, 1, 1}
+};
+
+
+THE_BENCHMARK(ThreeSum, VALUES8, 8);
+
+SIMPLE_TEST(ThreeSum, TestSAMPLE1, EXPECTED0, VALUES1, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE2, EXPECTED0, VALUES2, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE4, EXPECTED4, VALUES4, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE5, EXPECTED5, VALUES5, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE6, EXPECTED6, VALUES6, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE7, EXPECTED7, VALUES7, 24);
+SIMPLE_TEST(ThreeSum, TestSAMPLE8, EXPECTED8, VALUES8, 9);
+SIMPLE_TEST(ThreeSum, TestSAMPLE9, EXPECTED9, VALUES9, 24);
+SIMPLE_TEST(ThreeSum, TestSAMPLE10, EXPECTED10, VALUES10, 0);
+SIMPLE_TEST(ThreeSum, TestSAMPLE11, EXPECTED0, VALUES10, 10);
+
+
+THE_BENCHMARK(kSum, 3, VALUES8, 8);
+
+SIMPLE_TEST(kSum, TestSAMPLE1, EXPECTED0, 3, VALUES1, 0);
+SIMPLE_TEST(kSum, TestSAMPLE2, EXPECTED0, 3, VALUES2, 0);
+SIMPLE_TEST(kSum, TestSAMPLE4, EXPECTED4, 3, VALUES4, 0);
+SIMPLE_TEST(kSum, TestSAMPLE5, EXPECTED5, 3, VALUES5, 0);
+SIMPLE_TEST(kSum, TestSAMPLE6, EXPECTED6, 3, VALUES6, 0);
+SIMPLE_TEST(kSum, TestSAMPLE7, EXPECTED7, 3, VALUES7, 24);
+SIMPLE_TEST(kSum, TestSAMPLE8, EXPECTED8, 3, VALUES8, 9);
+SIMPLE_TEST(kSum, TestSAMPLE9, EXPECTED9, 3, VALUES9, 24);
+SIMPLE_TEST(kSum, TestSAMPLE10, EXPECTED10, 3, VALUES10, 0);
+SIMPLE_TEST(kSum, TestSAMPLE11, EXPECTED0, 3, VALUES10, 10);
+
+
+const ArrayType VALUES11 = {1, 0, -1, 0, -2, 2};
+const std::vector<ArrayType> EXPECTED11 = {
+    {-2, -1, 1, 2},
+    {-2, 0, 0, 2},
+    {-1, 0, 0, 1},
+};
+
+const ArrayType VALUES12 = {2, 2, 2, 2, 2};
+const std::vector<ArrayType> EXPECTED12 = {
+    {2, 2, 2, 2}
+};
+
+
+THE_BENCHMARK(FourSum, VALUES11, 8);
+
+SIMPLE_TEST(FourSum, TestSAMPLE11, EXPECTED11, VALUES11, 0);
+SIMPLE_TEST(FourSum, TestSAMPLE12, EXPECTED12, VALUES12, 8);
+
+
+const ArrayType SAMPLE1L = { -1, -2, 4, -6, 5, 7};
+const ArrayType SAMPLE1R = {6, 3, 4, 0};
+const std::vector<ArrayType> EXPECTED1T = {{5, 3}, {4, 4}};
+
+const ArrayType SAMPLE2L = {1, 2, 4, 5, 7};
+const ArrayType SAMPLE2R = {5, 6, 3, 4, 8};
+const std::vector<ArrayType> EXPECTED2T = {{4, 5}, {5, 4}, {1, 8}};
+
+const ArrayType SAMPLE3L = {1, 2, 3, 7, 5, 4};
+const ArrayType SAMPLE3R = {0, 7, 4, 3, 2, 1};
+const std::vector<ArrayType> EXPECTED3T = {{1, 7}, {4, 4}, {5, 3}, {7, 1}};
+
+const ArrayType SAMPLE4L = {1, 0, -4, 7, 6, 4};
+const ArrayType SAMPLE4R = {0, 2, 4, -3, 2, 1};
+const std::vector<ArrayType> EXPECTED4T = {{6, 2}, {4, 4}, {6, 2}, {7, 1}};
+
+
+THE_BENCHMARK(FindAllPairsSumAsN_Hash, SAMPLE1L, SAMPLE1R, 8);
+
+SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample1, EXPECTED1T, SAMPLE1L, SAMPLE1R, 8);
+SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample2, EXPECTED2T, SAMPLE2L, SAMPLE2R, 9);
+SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample3, EXPECTED3T, SAMPLE3L, SAMPLE3R, 8);
+SIMPLE_TEST(FindAllPairsSumAsN_Hash, TestSample4, EXPECTED4T, SAMPLE4L, SAMPLE4R, 8);
+
+
+const std::vector<ArrayType> EXPECTED_SORTED1 = {{4, 4}, {5, 3}};
+const std::vector<ArrayType> EXPECTED_SORTED2 = {{1, 8}, {4, 5}, {5, 4}};
+
+
+THE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, SAMPLE1L, SAMPLE1R, 8);
+
+SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1,
+            SAMPLE1L, SAMPLE1R, 8);
+SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample2, EXPECTED_SORTED2,
+            SAMPLE2L, SAMPLE2R, 9);
+SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample3, EXPECTED3T,
+            SAMPLE3L, SAMPLE3R, 8);
+
+
+const std::vector<ArrayType> SAMPLE1A = {
+    {1, 2},
+    {-2, -1},
+    {-1, 2},
+    {0, 2}
+};
+
+const std::vector<ArrayType> SAMPLE2A = {
+    {0},
+    {0},
+    {0},
+    {0}
+};
+
+const std::vector<ArrayType> SAMPLE3A = {
+    {-1, -1},
+    {-1, 1},
+    {-1, 1},
+    {1, -1}
+};
+
+
+THE_BENCHMARK(FourSum4Array, SAMPLE1A, 0);
+
+SIMPLE_TEST(FourSum4Array, TestSample1, 2, SAMPLE1A, 0);
+SIMPLE_TEST(FourSum4Array, TestSample2, 1, SAMPLE2A, 0);
+SIMPLE_TEST(FourSum4Array, TestSample3, 6, SAMPLE3A, 0);

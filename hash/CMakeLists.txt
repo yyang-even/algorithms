@@ -13,9 +13,6 @@ compile_test(a_pair_primes_product_as_n)
 compile_benchmark(a_pair_primes_sum_as_n)
 compile_test(a_pair_primes_sum_as_n)
 
-compile_benchmark(a_pair_sum_as_n_from_two_array)
-compile_test(a_pair_sum_as_n_from_two_array)
-
 compile_benchmark(check_all_elements_distinct)
 compile_test(check_all_elements_distinct)
 
