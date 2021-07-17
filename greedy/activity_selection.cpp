@@ -22,8 +22,12 @@ using OutputType = std::vector<ArrayType::size_type>;
  * of activities that can be performed by a single person, assuming that a person can only
  * work on a single activity at a time.
  */
-constexpr auto activity_comparator = [](const auto &lhs, const auto &rhs) {
+constexpr auto finish_comparator = [](const auto &lhs, const auto &rhs) {
     return lhs.second < rhs.second;
+};
+
+constexpr auto start_comparator = [](const auto &lhs, const auto &rhs) {
+    return lhs.first < rhs.first;
 };
 
 void ActivitySelection_Recursive(const ArrayType &activities,
@@ -39,7 +43,7 @@ void ActivitySelection_Recursive(const ArrayType &activities,
 }
 
 inline auto ActivitySelection_Recursive(const ArrayType &activities) {
-    assert(std::is_sorted(activities.cbegin(), activities.cend(), activity_comparator));
+    assert(std::is_sorted(activities.cbegin(), activities.cend(), finish_comparator));
 
     OutputType selected_activities = {0};
     ActivitySelection_Recursive(
@@ -49,7 +53,7 @@ inline auto ActivitySelection_Recursive(const ArrayType &activities) {
 
 
 auto ActivitySelection_Iterative(const ArrayType &activities) {
-    assert(std::is_sorted(activities.cbegin(), activities.cend(), activity_comparator));
+    assert(std::is_sorted(activities.cbegin(), activities.cend(), finish_comparator));
 
     ArrayType::size_type i = 0;
     OutputType selected_activities = {i};
@@ -77,9 +81,69 @@ auto ActivitySelection_Iterative(const ArrayType &activities) {
  * length of the longest chain which can be formed from a given set of pairs.
  */
 inline auto MaxLengthChainPairs(ArrayType activities) {
-    std::sort(activities.begin(), activities.end(), activity_comparator);
+    std::sort(activities.begin(), activities.end(), finish_comparator);
 
     return ActivitySelection_Iterative(activities).size();
+}
+
+
+/**
+ * @reference   Meeting Rooms
+ *              https://www.programcreek.com/2014/07/leetcode-meeting-rooms-java/
+ *
+ * Given an array of meeting time intervals consisting of start and end times
+ * [[s1,e1],[s2,e2],...](si< ei), determine if a person could attend all meetings.
+ */
+auto MeetingRooms(ArrayType activities) {
+    std::sort(activities.begin(), activities.end(), finish_comparator);
+
+    for (std::size_t i = 1; i < activities.size(); ++i) {
+        if (activities[i - 1].second > activities[i].first) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/**
+ * @reference   Meeting Rooms II
+ *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/253-meeting-rooms-ii---medium.html
+ *
+ * Given an array of meeting time intervals consisting of start and end times
+ * [[s1,e1],[s2,e2],...](si< ei), find the minimum number of conference rooms required.
+ */
+auto MinMeetingRooms_Heap(ArrayType activities) {
+    std::sort(activities.begin(), activities.end(), start_comparator);
+
+    std::priority_queue<unsigned, std::vector<unsigned>, std::greater<unsigned>> rooms;
+    rooms.push(activities.front().second);
+    for (std::size_t i = 1; i < activities.size(); ++i) {
+        if (activities[i].first >= rooms.top()) {
+            rooms.pop();
+        }
+        rooms.push(activities[i].second);
+    }
+
+    return rooms.size();
+}
+
+
+auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
+    std::map<int, int> room_counts;
+    for (const auto [start, finish] : activities) {
+        ++room_counts[start];
+        --room_counts[finish];
+    }
+
+    int prefix_sum = 0, maximum = 0;
+    for (const auto [_, count] : room_counts) {
+        prefix_sum += count;
+        maximum = std::max(maximum, prefix_sum);
+    }
+
+    return maximum;
 }
 
 }//namespace
@@ -121,3 +185,35 @@ SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);
 SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE3, EXPECTED3.size(), SAMPLE3);
 SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE4, 3, SAMPLE4);
 SIMPLE_TEST(MaxLengthChainPairs, TestSAMPLE5, 1, SAMPLE5);
+
+
+const ArrayType SAMPLE6 = {{1, 2}, {3, 4}, {5, 7}, {8, 9}};
+
+
+THE_BENCHMARK(MeetingRooms, SAMPLE1);
+
+SIMPLE_TEST(MeetingRooms, TestSAMPLE1, false, SAMPLE1);
+SIMPLE_TEST(MeetingRooms, TestSAMPLE2, false, SAMPLE2);
+SIMPLE_TEST(MeetingRooms, TestSAMPLE3, false, SAMPLE3);
+SIMPLE_TEST(MeetingRooms, TestSAMPLE4, false, SAMPLE4);
+SIMPLE_TEST(MeetingRooms, TestSAMPLE5, false, SAMPLE5);
+SIMPLE_TEST(MeetingRooms, TestSAMPLE6, true, SAMPLE6);
+
+
+const ArrayType SAMPLE7 = {{2, 15}, {36, 45}, {9, 29}, {16, 23}, {4, 9}};
+
+
+THE_BENCHMARK(MinMeetingRooms_Heap, SAMPLE1);
+
+SIMPLE_TEST(MinMeetingRooms_Heap, TestSAMPLE1, 2, SAMPLE1);
+SIMPLE_TEST(MinMeetingRooms_Heap, TestSAMPLE5, 2, SAMPLE5);
+SIMPLE_TEST(MinMeetingRooms_Heap, TestSAMPLE6, 1, SAMPLE6);
+SIMPLE_TEST(MinMeetingRooms_Heap, TestSAMPLE7, 2, SAMPLE7);
+
+
+THE_BENCHMARK(MinMeetingRooms_PrefixSum, SAMPLE1);
+
+SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE1, 2, SAMPLE1);
+SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE5, 2, SAMPLE5);
+SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE6, 1, SAMPLE6);
+SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE7, 2, SAMPLE7);

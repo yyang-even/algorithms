@@ -121,6 +121,9 @@ compile_test(summary_ranges)
 compile_benchmark(tail)
 compile_test(tail)
 
+compile_benchmark(three_equal_parts)
+compile_test(three_equal_parts)
+
 compile_benchmark(to_binary)
 compile_test(to_binary)
 
