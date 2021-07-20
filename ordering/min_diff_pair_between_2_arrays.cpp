@@ -1,9 +1,12 @@
 #include "common_header.h"
 
+#include "min_diff_pair_between_2_arrays.h"
+
 
 namespace {
 
 using ArrayType = std::vector<int>;
+using OutputType = std::vector<std::pair<int, int>>;
 
 /** Smallest Difference pair of values between two unsorted Arrays
  *
@@ -12,34 +15,41 @@ using ArrayType = std::vector<int>;
  * Given two arrays of integers, compute the pair of values (one value in each array)
  * with the smallest (non-negative) difference. Return the difference.
  */
-auto MinDiffPairOf2SortedArrays(const ArrayType &one, const ArrayType &another) {
-    assert(std::is_sorted(one.cbegin(), one.cend()));
-    assert(std::is_sorted(another.cbegin(), another.cend()));
-
-    auto result = std::numeric_limits<ArrayType::value_type>::max();
-    auto one_iter = one.cbegin();
-    auto another_iter = another.cbegin();
-    while (one_iter != one.cend() and another_iter != another.cend()) {
-        const auto diff = std::abs(*one_iter - *another_iter);
-        if (diff < result) {
-            result = diff;
-        }
-
-        if (*one_iter < *another_iter) {
-            ++one_iter;
-        } else {
-            ++another_iter;
-        }
-    }
-
-    return result;
-}
-
 inline auto MinDiffPairOf2UnsortedArrays(ArrayType one, ArrayType another) {
     std::sort(one.begin(), one.end());
     std::sort(another.begin(), another.end());
 
     return MinDiffPairOf2SortedArrays(one, another);
+}
+
+
+/**
+ * @reference   Minimum Absolute Difference
+ *              https://leetcode.com/problems/minimum-absolute-difference/
+ *
+ * Given an array of distinct integers arr, find all pairs of elements with the minimum
+ * absolute difference of any two elements. Return a list of pairs in ascending order
+ * (with respect to pairs), each pair [a, b] follows:
+ *  a, b are from arr
+ *  a < b
+ *  b - a equals to the minimum absolute difference of any two elements in arr
+ */
+auto MinDiffPairsOfAnUnsortedArray(ArrayType elements) {
+    std::sort(elements.begin(), elements.end());
+
+    int min_diff = INT_MAX;
+    for (std::size_t i = 1; i < elements.size(); ++i) {
+        min_diff = std::min(min_diff, elements[i] - elements[i - 1]);
+    }
+
+    OutputType result;
+    for (std::size_t i = 1; i < elements.size(); ++i) {
+        if (elements[i] - elements[i - 1] == min_diff) {
+            result.emplace_back(elements[i - 1], elements[i]);
+        }
+    }
+
+    return result;
 }
 
 }//namespace
@@ -56,3 +66,20 @@ THE_BENCHMARK(MinDiffPairOf2UnsortedArrays, SAMPLE1_L, SAMPLE1_R);
 
 SIMPLE_TEST(MinDiffPairOf2UnsortedArrays, TestSAMPLE1, 3, SAMPLE1_L, SAMPLE1_R);
 SIMPLE_TEST(MinDiffPairOf2UnsortedArrays, TestSAMPLE2, 10, SAMPLE2_L, SAMPLE2_R);
+
+
+const ArrayType SAMPLE1 = {4, 2, 1, 3};
+const OutputType EXPECTED1 = {{1, 2}, {2, 3}, {3, 4}};
+
+const ArrayType SAMPLE2 = {1, 3, 6, 10, 15};
+const OutputType EXPECTED2 = {{1, 3}};
+
+const ArrayType SAMPLE3 = {3, 8, -10, 23, 19, -4, -14, 27};
+const OutputType EXPECTED3 = {{-14, -10}, {19, 23}, {23, 27}};
+
+
+THE_BENCHMARK(MinDiffPairsOfAnUnsortedArray, SAMPLE1);
+
+SIMPLE_TEST(MinDiffPairsOfAnUnsortedArray, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(MinDiffPairsOfAnUnsortedArray, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(MinDiffPairsOfAnUnsortedArray, TestSAMPLE3, EXPECTED3, SAMPLE3);

@@ -94,6 +94,23 @@ AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
 }
 
 
+/**
+ * @reference   Given a binary tree, print all root-to-leaf paths
+ *              https://www.geeksforgeeks.org/given-a-binary-tree-print-all-root-to-leaf-paths/
+ * @reference   Given a binary tree, print out all of its root-to-leaf paths one per line.
+ *              https://www.geeksforgeeks.org/given-a-binary-tree-print-out-all-of-its-root-to-leaf-paths-one-per-line/
+ */
+
+
+/**
+ * @reference   Binary Tree Paths
+ *              https://leetcode.com/problems/binary-tree-paths/
+ *
+ * Given the root of a binary tree, return all root-to-leaf paths in any order. A leaf
+ * is a node with no children.
+ */
+
+
 /** Print all k-sum paths in a binary tree
  *
  * @reference   https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/

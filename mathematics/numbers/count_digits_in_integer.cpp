@@ -48,6 +48,18 @@ inline auto CountDigits_String(const int n) {
 
 
 /**
+ * @reference   Add Digits
+ *              https://leetcode.com/problems/add-digits/
+ *
+ * Given an integer num, repeatedly add all its digits until the result has only one
+ * digit, and return it.
+ */
+inline constexpr auto DigitalRoot(const int number) {
+    return number == 0 ? 0 : 1 + (number - 1) % 9;
+}
+
+
+/**
  * @reference   Program to calculate product of digits of a number
  *              https://www.geeksforgeeks.org/program-to-calculate-product-of-digits-of-a-number/
  */
@@ -82,3 +94,10 @@ SIMPLE_TEST(CountDigits_Log, TestSAMPLE2, 0, 0);
 THE_BENCHMARK(CountDigits_String, 345289467);
 
 SIMPLE_TEST(CountDigits_String, TestSAMPLE1, 9, 345289467);
+
+
+THE_BENCHMARK(DigitalRoot, 345289467);
+
+SIMPLE_TEST(DigitalRoot, TestSAMPLE0, 0, 0);
+SIMPLE_TEST(DigitalRoot, TestSAMPLE1, 2, 38);
+SIMPLE_TEST(DigitalRoot, TestSAMPLE2, 9, 18);
