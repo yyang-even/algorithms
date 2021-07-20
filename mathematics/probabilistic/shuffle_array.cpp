@@ -3,8 +3,7 @@
 
 namespace {
 
-template <std::size_t N>
-using ArrayType = std::array<int, N>;
+using ArrayType = std::vector<int>;
 
 /** Shuffle a given array using Fisher–Yates shuffle Algorithm
  *
@@ -22,10 +21,19 @@ using ArrayType = std::array<int, N>;
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 18.2.
  *
+ * @reference   Shuffle an Array
+ *              https://leetcode.com/problems/shuffle-an-array/
+ *
+ * Given an integer array nums, design an algorithm to randomly shuffle the array. All
+ * permutations of the array should be equally likely as a result of the shuffling.
+ * Implement the Solution class:
+ *  Solution(int[] nums) Initializes the object with the integer array nums.
+ *  int[] reset() Resets the array to its original configuration and returns it.
+ *  int[] shuffle() Returns a random shuffling of the array.
+ *
  * @complexity  O(n)
  */
-template <std::size_t N>
-constexpr void ShuffleArray_InPlace(ArrayType<N> &array) {
+void ShuffleArray_InPlace(ArrayType &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
         const auto j = Random_Number(0, i);
         std::swap(array[i], array[j]);
@@ -39,12 +47,11 @@ constexpr void ShuffleArray_InPlace(ArrayType<N> &array) {
  *
  * @complexity  O(nlgn)
  */
-template <std::size_t N>
-constexpr auto ShuffleArray_BySorting(const ArrayType<N> &array) {
+auto ShuffleArray_BySorting(const ArrayType &array) {
     const int PRIORITY_BOUND = pow(array.size(), 3.0);
 
-    std::vector<std::pair<int, typename ArrayType<N>::size_type>> priorities;
-    for (typename ArrayType<N>::size_type i = 0; i < array.size(); ++i) {
+    std::vector<std::pair<int, std::size_t>> priorities;
+    for (std::size_t i = 0; i < array.size(); ++i) {
         priorities.emplace_back(Random_Number(0, PRIORITY_BOUND), i);
     }
 
@@ -52,8 +59,8 @@ constexpr auto ShuffleArray_BySorting(const ArrayType<N> &array) {
         return a.first < b.first;
     });
 
-    ArrayType<N> output;
-    for (typename ArrayType<N>::size_type i = 0; i < array.size(); ++i) {
+    ArrayType output;
+    for (std::size_t i = 0; i < array.size(); ++i) {
         output[i] = array[priorities[i].second];
     }
 
@@ -63,7 +70,7 @@ constexpr auto ShuffleArray_BySorting(const ArrayType<N> &array) {
 }//namespace
 
 
-ArrayType<8> VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
+ArrayType VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
 THE_BENCHMARK(ShuffleArray_InPlace, VALUES);
