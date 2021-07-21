@@ -67,6 +67,9 @@ compile_test(optimal_binary_search_trees)
 compile_benchmark(out_of_boundary_paths)
 compile_test(out_of_boundary_paths)
 
+compile_benchmark(push_dominoes)
+compile_test(push_dominoes)
+
 compile_benchmark(rod_cutting)
 compile_test(rod_cutting)
 
