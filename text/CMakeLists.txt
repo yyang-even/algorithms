@@ -61,6 +61,9 @@ compile_test(number_to_words)
 compile_benchmark(num_subarrays_with_max_in_range)
 compile_test(num_subarrays_with_max_in_range)
 
+compile_benchmark(palindrome_permutation)
+compile_test(palindrome_permutation)
+
 compile_benchmark(pangram_checking)
 compile_test(pangram_checking)
 
