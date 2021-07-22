@@ -19,6 +19,9 @@ compile_test(BST_search)
 compile_benchmark(BST_to_heap)
 compile_test(BST_to_heap)
 
+compile_benchmark(closest_node)
+compile_test(closest_node)
+
 compile_benchmark(flatten_BST)
 compile_test(flatten_BST)
 

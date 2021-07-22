@@ -31,6 +31,9 @@ compile_test(median_of_two_sorted_arrays)
 compile_benchmark(next_greater_element)
 compile_test(next_greater_element)
 
+compile_benchmark(partition_array_into_disjoint_intervals)
+compile_test(partition_array_into_disjoint_intervals)
+
 compile_benchmark(search_in_sorted_and_rotated_array)
 compile_test(search_in_sorted_and_rotated_array)
 
