@@ -9,6 +9,9 @@ compile_test(binary_tree_height)
 compile_benchmark(binary_tree_insertion)
 compile_test(binary_tree_insertion)
 
+compile_benchmark(binary_tree_prune)
+compile_test(binary_tree_prune)
+
 compile_benchmark(binary_tree_search)
 compile_test(binary_tree_search)
 
