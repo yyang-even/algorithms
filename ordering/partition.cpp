@@ -138,6 +138,14 @@ inline auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  * should be changed to {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other
  * elements should be same. Expected time complexity is O(n) and extra space is O(1).
  *
+ * @reference   Move Zeroes
+ *              https://leetcode.com/problems/move-zeroes/
+ *
+ * Given an integer array nums, move all 0's to the end of it while maintaining the
+ * relative order of the non-zero elements. Note that you must do this in-place without
+ * making a copy of the array.
+ * Follow up: Could you minimize the total number of operations done?
+ *
  * @reference   Move all values equal to K to the end of the Array
  *              https://www.geeksforgeeks.org/move-all-values-equal-to-k-to-the-end-of-the-array/
  *
