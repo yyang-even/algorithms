@@ -24,6 +24,17 @@ inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  * @reference   https://www.geeksforgeeks.org/find-whether-a-given-number-is-a-power-of-4-or-not/
  *
  * Given an integer n, find whether it is a power of 4 or not.
+ *
+ * @reference   Nim Game
+ *              https://leetcode.com/problems/nim-game/
+ *
+ * You are playing the following Nim Game with your friend:
+ *  Initially, there is a heap of stones on the table.
+ *  You and your friend will alternate taking turns, and you go first.
+ *  On each turn, the person whose turn it is will remove 1 to 3 stones from the heap.
+ *  The one who removes the last stone is the winner.
+ * Given n, the number of stones in the heap, return true if you can win the game
+ * assuming both you and your friend play optimally, otherwise return false.
  */
 inline constexpr auto IsPowerOf4(const unsigned num) {
     return IsPowerOfPowerOf2(num, 4);

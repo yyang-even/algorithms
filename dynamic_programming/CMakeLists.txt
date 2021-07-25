@@ -61,6 +61,9 @@ compile_test(max_sum_rectangle_in_matrix)
 compile_benchmark(max_sum_subarray_no_larger_than_k)
 compile_test(max_sum_subarray_no_larger_than_k)
 
+compile_benchmark(nonnegative_integers_without_consecutive_1s)
+compile_test(nonnegative_integers_without_consecutive_1s)
+
 compile_benchmark(optimal_binary_search_trees)
 compile_test(optimal_binary_search_trees)
 
