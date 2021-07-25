@@ -31,6 +31,9 @@ compile_test(decode_ways)
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
+compile_benchmark(flip_game)
+compile_test(flip_game)
+
 compile_benchmark(k_inverse_pairs_array)
 compile_test(k_inverse_pairs_array)
 

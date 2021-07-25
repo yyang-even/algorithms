@@ -31,7 +31,7 @@ using ArrayType = std::vector<std::vector<std::string_view>>;
  * of words in the shortest transformation sequence from beginWord to endWord, or 0 if
  * no such sequence exists.
  */
-auto WordLadder(const std::string &start, const std::string_view target,
+auto WordLadder(const std::string_view start, const std::string_view target,
                 DictType dictionary) {
     assert(not start.empty());
     assert(start.size() == target.size());
@@ -44,7 +44,7 @@ auto WordLadder(const std::string &start, const std::string_view target,
         return 0;
     }
 
-    std::queue<std::string> adjacent_words;
+    std::queue<std::string_view> adjacent_words;
     adjacent_words.push(start);
     dictionary.erase(start);
 
@@ -53,7 +53,7 @@ auto WordLadder(const std::string &start, const std::string_view target,
         ++chain_length;
 
         for (auto level_size = adjacent_words.size(); level_size-- > 0;) {
-            auto word = std::move(adjacent_words.front());
+            std::string word{adjacent_words.front()};
             adjacent_words.pop();
 
             for (std::size_t i = 0; i < start.size(); ++i) {
@@ -66,8 +66,10 @@ auto WordLadder(const std::string &start, const std::string_view target,
                         return chain_length;
                     }
 
-                    if (dictionary.erase(word) != 0) {
-                        adjacent_words.push(word);
+                    const auto iter = dictionary.find(word);
+                    if (iter != dictionary.cend()) {
+                        adjacent_words.push(*iter);
+                        dictionary.erase(iter);
                     }
                 }
 
