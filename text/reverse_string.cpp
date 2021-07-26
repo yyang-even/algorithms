@@ -37,6 +37,12 @@ namespace {
  *
  * @reference   Program to copy the contents of one array into another in the reverse order
  *              https://www.geeksforgeeks.org/program-to-copy-the-contents-of-one-array-into-another-in-the-reverse-order/
+ *
+ * @reference   Reverse String
+ *              https://leetcode.com/problems/reverse-string/
+ *
+ * Follow up: Do not allocate extra space for another array. You must do this by
+ * modifying the input array in-place with O(1) extra memory.
  */
 template <typename SwapFunc>
 inline auto Reverse(std::string input, const SwapFunc swap) {

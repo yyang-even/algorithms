@@ -25,6 +25,11 @@ inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  *
  * Given an integer n, find whether it is a power of 4 or not.
  *
+ * @reference   Power of Four
+ *              https://leetcode.com/problems/power-of-four/
+ *
+ * Follow up: Could you solve it without loops/recursion?
+ *
  * @reference   Nim Game
  *              https://leetcode.com/problems/nim-game/
  *

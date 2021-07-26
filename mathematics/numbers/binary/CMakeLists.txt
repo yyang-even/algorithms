@@ -40,6 +40,9 @@ compile_test(count_diff_bits_of_two)
 compile_benchmark(count_equal_sum_and_xor)
 compile_test(count_equal_sum_and_xor)
 
+compile_benchmark(count_n_bits)
+compile_test(count_n_bits)
+
 compile_benchmark(count_set_bits)
 compile_test(count_set_bits)
 
