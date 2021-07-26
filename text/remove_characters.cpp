@@ -154,8 +154,8 @@ inline auto RemoveCharactersWithEvenFrequency_Partition(std::string input) {
  * @reference   Remove elements from the array whose frequency lies in the range [l, r]
  *              https://www.geeksforgeeks.org/remove-elements-from-the-array-whose-frequency-lies-in-the-range-l-r/
  */
-inline auto RemoveCharactersAppearLessThanK_Partition(std::string input,
-                                                      const std::string::size_type K) {
+inline auto
+RemoveCharactersAppearLessThanK_Partition(std::string input, const int K) {
     const auto counter = ToFrequencyHashTable(input);
 
     return RemoveCharacters_Partition(std::move(input), [&counter, K](const auto c) {

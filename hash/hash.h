@@ -4,8 +4,7 @@
 template <typename Container>
 static inline constexpr auto
 ToFrequencyHashTable(const Container &container) {
-    std::unordered_map<typename Container::value_type, typename Container::size_type>
-    counter;
+    std::unordered_map<typename Container::value_type, int> counter;
     for (const auto &c : container) {
         ++counter[c];
     }
