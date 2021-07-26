@@ -117,6 +117,72 @@ inline auto Reverse_BitSubtract(std::string input) {
     return input;
 }
 
+
+/**
+ * @reference   Reverse String II
+ *              https://leetcode.com/problems/reverse-string-ii/
+ *
+ * Given a string s and an integer k, reverse the first k characters for every 2k
+ * characters counting from the start of the string. If there are fewer than k
+ * characters left, reverse all of them. If there are less than 2k but greater than or
+ * equal to k characters, then reverse the first k characters and left the other as
+ * original.
+ */
+void reverse(std::string &s, int left, int right) {
+    while (left < right) {
+        std::swap(s[left++], s[right--]);
+    }
+}
+
+auto ReverseStringGroups(std::string s, const std::size_t k) {
+    for (std::size_t i = 0; i < s.size(); i += 2 * k) {
+        const auto right = std::min(i + k, s.size()) - 1;
+        reverse(s, i, right);
+    }
+
+    return s;
+}
+
+
+/**
+ * @reference   Reverse Vowels of a String
+ *              https://leetcode.com/problems/reverse-vowels-of-a-string/
+ *
+ * Given a string s, reverse only all the vowels in the string and return it. The vowels
+ * are 'a', 'e', 'i', 'o', and 'u', and they can appear in both cases.
+ */
+inline constexpr auto isVowel(const int c) {
+    bool is_vowel[256] = {};
+    is_vowel['A'] = true;
+    is_vowel['E'] = true;
+    is_vowel['I'] = true;
+    is_vowel['O'] = true;
+    is_vowel['U'] = true;
+    is_vowel['a'] = true;
+    is_vowel['e'] = true;
+    is_vowel['i'] = true;
+    is_vowel['o'] = true;
+    is_vowel['u'] = true;
+
+    return is_vowel[c];
+}
+
+auto ReverseVowels(std::string text) {
+    int left = 0;
+    int right = text.size() - 1;
+    while (left < right) {
+        if (not isVowel(text[right])) {
+            --right;
+        } else if (not isVowel(text[left])) {
+            ++left;
+        } else {
+            std::swap(text[left++], text[right--]);
+        }
+    }
+
+    return text;
+}
+
 }//namespace
 
 
@@ -166,3 +232,15 @@ SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE1, "", "");
 SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE2, "a", "a");
 SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE3, "ba", "ab");
 SIMPLE_TEST(Reverse_BitSubtract, TestSAMPLE4, "cba", "abc");
+
+
+THE_BENCHMARK(ReverseStringGroups, "abcdefg", 2);
+
+SIMPLE_TEST(ReverseStringGroups, TestSAMPLE1, "bacdfeg", "abcdefg", 2);
+SIMPLE_TEST(ReverseStringGroups, TestSAMPLE2, "bacd", "abcd", 2);
+
+
+THE_BENCHMARK(ReverseVowels, "hello");
+
+SIMPLE_TEST(ReverseVowels, TestSAMPLE1, "holle", "hello");
+SIMPLE_TEST(ReverseVowels, TestSAMPLE2, "leotcede", "leetcode");

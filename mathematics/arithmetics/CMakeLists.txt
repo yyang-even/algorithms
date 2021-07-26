@@ -1,6 +1,9 @@
 compile_benchmark(mean)
 compile_test(mean)
 
+compile_benchmark(moving_average)
+compile_test(moving_average)
+
 add_subdirectory(division)
 add_subdirectory(factorial)
 add_subdirectory(log)

@@ -17,7 +17,7 @@ auto FindSecondFrequentChar(const std::string_view input) {
 
     const auto counters = ToFrequencyHashTable(input);
 
-    std::size_t first_frequency = 0, second_frequency = 0;
+    int first_frequency = 0, second_frequency = 0;
     char first{}, second{};
     for (const auto [key, count] : counters) {
         if (count > first_frequency) {

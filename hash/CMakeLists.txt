@@ -1,6 +1,3 @@
-compile_benchmark(are_two_sets_disjoint)
-compile_test(are_two_sets_disjoint)
-
 compile_benchmark(a_pair_elements_product_as_n)
 compile_test(a_pair_elements_product_as_n)
 
@@ -39,9 +36,6 @@ compile_test(find_first_repeating_element)
 
 compile_benchmark(find_kth_nonrepeating_char)
 compile_test(find_kth_nonrepeating_char)
-
-compile_benchmark(find_overlapping_sum_of_two_array)
-compile_test(find_overlapping_sum_of_two_array)
 
 compile_benchmark(find_second_frequent_char)
 compile_test(find_second_frequent_char)
