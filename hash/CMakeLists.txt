@@ -46,6 +46,9 @@ compile_test(game_of_master_mind)
 compile_benchmark(last_occurrence_of_elements_in_relative_order)
 compile_test(last_occurrence_of_elements_in_relative_order)
 
+compile_benchmark(logger_rate_limiter)
+compile_test(logger_rate_limiter)
+
 compile_benchmark(majority_element)
 compile_test(majority_element)
 
