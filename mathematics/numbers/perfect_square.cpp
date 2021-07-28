@@ -10,6 +10,13 @@ using ArrayType = std::vector<unsigned>;
 /** Check if a number is perfect square without finding square root
  *
  * @reference   https://www.geeksforgeeks.org/check-if-a-number-is-perfect-square-without-finding-square-root/
+ *
+ * @reference   Valid Perfect Square
+ *              https://leetcode.com/problems/valid-perfect-square/
+ *
+ * Given a positive integer num, write a function which returns True if num is a perfect
+ * square else False.
+ * Follow up: Do not use any built-in library function such as sqrt.
  */
 constexpr auto IsPerfectSquare_Multiply(const unsigned x) {
     for (unsigned i = 1, square = 1; square <= x; square = i * i) {
