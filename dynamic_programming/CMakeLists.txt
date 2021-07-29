@@ -67,6 +67,9 @@ compile_test(max_sum_rectangle_in_matrix)
 compile_benchmark(max_sum_subarray_no_larger_than_k)
 compile_test(max_sum_subarray_no_larger_than_k)
 
+compile_benchmark(nearest_0_of_matrix)
+compile_test(nearest_0_of_matrix)
+
 compile_benchmark(nonnegative_integers_without_consecutive_1s)
 compile_test(nonnegative_integers_without_consecutive_1s)
 
