@@ -18,6 +18,12 @@ namespace {
  *
  * @reference   Find the last non repeating character in string
  *              https://www.geeksforgeeks.org/find-the-last-non-repeating-character-in-string/
+ *
+ * @reference   First Unique Character in a String
+ *              https://leetcode.com/problems/first-unique-character-in-a-string/
+ *
+ * Given a string s, find the first non-repeating character in it and return its index.
+ * If it does not exist, return -1.
  */
 auto FindFirstNonrepeatingChar(const std::string_view input) {
     std::unordered_map<char, std::size_t> counters;

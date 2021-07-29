@@ -560,6 +560,94 @@ auto BinarySearch_SinglyList(
  * the API.
  */
 
+
+/**
+ * @reference   Guess Number Higher or Lower
+ *              https://leetcode.com/problems/guess-number-higher-or-lower/
+ *
+ * We are playing the Guess Game. The game is as follows: I pick a number from 1 to n.
+ * You have to guess which number I picked. Every time you guess wrong, I will tell you
+ * whether the number I picked is higher or lower than your guess. You call a pre-defined
+ * API int guess(int num), which returns 3 possible results:
+ *  -1: The number I picked is lower than your guess (i.e. pick < num).
+ *  1: The number I picked is higher than your guess (i.e. pick > num).
+ *  0: The number I picked is equal to your guess (i.e. pick == num).
+ * Return the number that I picked.
+ */
+
+
+/**
+ * @reference   Guess Number Higher or Lower II
+ *              https://leetcode.com/problems/guess-number-higher-or-lower-ii/
+ *
+ * We are playing the Guessing Game. The game will work as follows:
+ *  I pick a number between 1 and n.
+ *  You guess a number.
+ *  If you guess the right number, you win the game.
+ *  If you guess the wrong number, then I will tell you whether the number I picked is
+ *      higher or lower, and you will continue guessing.
+ *  Every time you guess a wrong number x, you will pay x dollars. If you run out of
+ *      money, you lose the game.
+ * Given a particular n, return the minimum amount of money you need to guarantee a win
+ * regardless of what number I pick.
+ */
+auto GuessNumber_Memo(const int left, const int right,
+                      std::vector<std::vector<int>> &memo) {
+    if (left >= right) {
+        return 0;
+    }
+    if (right - left == 1) {
+        return left;
+    }
+    if (memo[left][right] != 0) {
+        return memo[left][right];
+    }
+
+    int min = INT_MAX;
+    for (auto i = left; i <= right; ++i) {
+        const auto cost = i + std::max(GuessNumber_Memo(left, i - 1, memo),
+                                       GuessNumber_Memo(i + 1, right, memo));
+        min = std::min(min, cost);
+    }
+
+    memo[left][right] = min;
+    return min;
+}
+
+inline auto GuessNumber_Memo(const int n) {
+    if (n <= 1) {
+        return 0;
+    }
+
+    std::vector memo(n + 1, std::vector(n + 1, 0));
+    return GuessNumber_Memo(1, n, memo);
+}
+
+
+constexpr auto GuessNumber_Dp(const int n) {
+    if (n <= 1) {
+        return 0;
+    }
+
+    int dp[n + 1][n + 1] = {};
+    for (int i = 1; i < n; ++i) {
+        dp[i][i + 1] = i;
+    }
+
+    for (int length = 3; length <= n; ++length) {
+        for (int left = 1; left <= n - length + 1; ++left) {
+            int cost = INT_MAX;
+            const int right = left + length - 1;
+            for (int i = left; i <= right; ++i) {
+                cost = std::min(cost, i + std::max(dp[left][i - 1], dp[i + 1][right]));
+            }
+            dp[left][right] = cost;
+        }
+    }
+
+    return dp[1][n];
+}
+
 }//namespace
 
 
@@ -796,3 +884,17 @@ SIMPLE_TEST(BinarySearch_SinglyList, TestLast,
 SIMPLE_TEST(BinarySearch_SinglyList, TestNotExist, LIST1.cend(), LIST1, 999);
 SIMPLE_TEST(BinarySearch_SinglyList, TestUnderflow, LIST_UNDERFLOW.cend(),
             LIST_UNDERFLOW, LIST_UNDERFLOW.front() - 1);
+
+
+THE_BENCHMARK(GuessNumber_Memo, 10);
+
+SIMPLE_TEST(GuessNumber_Memo, TestSample1, 16, 10);
+SIMPLE_TEST(GuessNumber_Memo, TestSample2, 0, 1);
+SIMPLE_TEST(GuessNumber_Memo, TestSample3, 1, 2);
+
+
+THE_BENCHMARK(GuessNumber_Dp, 10);
+
+SIMPLE_TEST(GuessNumber_Dp, TestSample1, 16, 10);
+SIMPLE_TEST(GuessNumber_Dp, TestSample2, 0, 1);
+SIMPLE_TEST(GuessNumber_Dp, TestSample3, 1, 2);

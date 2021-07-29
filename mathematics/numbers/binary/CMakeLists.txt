@@ -10,6 +10,9 @@ compile_test(are_all_bits_set)
 compile_benchmark(are_opposite_signs)
 compile_test(are_opposite_signs)
 
+compile_benchmark(binary_watch)
+compile_test(binary_watch)
+
 compile_benchmark(byte_range)
 compile_test(byte_range)
 
