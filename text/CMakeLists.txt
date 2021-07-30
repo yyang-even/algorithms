@@ -46,6 +46,9 @@ compile_test(is_subsequence)
 compile_benchmark(longest_common_prefix)
 compile_test(longest_common_prefix)
 
+compile_benchmark(longest_palindrome)
+compile_test(longest_palindrome)
+
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
