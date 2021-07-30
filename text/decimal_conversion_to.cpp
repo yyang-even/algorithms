@@ -7,7 +7,7 @@ namespace {
  * @reference   Implement your own itoa()
  *              https://www.geeksforgeeks.org/implement-itoa/
  */
-auto DecimalTo(int number, const int base,
+auto DecimalTo(unsigned number, const int base,
                const std::function<char(const int)> to_digit) {
     std::string result;
     for (; number; number /= base) {
@@ -37,6 +37,15 @@ inline auto ToOctal(const int number) {
  * @reference   https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
  * @reference   Convert Decimal To Hexa-Decimal including negative numbers
  *              https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
+ *
+ * @reference   Convert a Number to Hexadecimal
+ *              https://leetcode.com/problems/convert-a-number-to-hexadecimal/
+ *
+ * Given an integer num, return a string representing its hexadecimal representation.
+ * For negative integers, two's complement method is used. All the letters in the answer
+ * string should be lowercase characters, and there should not be any leading zeros in
+ * the answer except for the zero itself. Note: You are not allowed to use any built-in
+ * library method to directly solve this problem.
  */
 inline auto ToHex(const int number) {
     return DecimalTo(number, 16, [](const auto digit) {
@@ -102,6 +111,7 @@ SIMPLE_TEST(ToHex, TestSAMPLE2, "74", 116);
 SIMPLE_TEST(ToHex, TestSAMPLE3, "A", 10);
 SIMPLE_TEST(ToHex, TestSAMPLE4, "21", 33);
 SIMPLE_TEST(ToHex, TestSAMPLE5, "9F1", 2545);
+SIMPLE_TEST(ToHex, TestSAMPLE6, "FFFFFFFF", -1);
 
 
 THE_BENCHMARK(ToColumnTitle, 2147483647);
