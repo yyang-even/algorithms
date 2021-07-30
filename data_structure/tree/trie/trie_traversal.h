@@ -20,7 +20,7 @@ Display(const Trie::Node *node, std::string &prefix,
         std::vector<std::string> &results) {
     assert(node);
 
-    if (node->isEndOfWord) {
+    if (node->value) {
         results.push_back(prefix);
     }
 

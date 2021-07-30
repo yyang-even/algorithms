@@ -15,9 +15,9 @@ public:
         using PointerType = std::shared_ptr<Node>;
 
         std::vector<PointerType> children;
-        bool isEndOfWord = false;
+        int value = {};
 
-        explicit Node(const std::size_t size): children(size, PointerType{}) {}
+        explicit Node(const std::size_t size = 26): children(size, PointerType{}) {}
 
         auto Empty() const {
             for (const auto &kid : children) {
@@ -54,7 +54,7 @@ public:
             current = current->children[index].get();
         }
 
-        current->isEndOfWord = true;
+        current->value = true;
     }
 
 
@@ -79,7 +79,7 @@ public:
             current = current->children[index].get();
         }
 
-        return current and current->isEndOfWord;
+        return current and current->value;
     }
 
 
@@ -114,8 +114,8 @@ private:
         }
 
         if (depth == key.size()) {
-            if (node->isEndOfWord) {
-                node->isEndOfWord = false;
+            if (node->value) {
+                node->value = false;
             }
         } else {
             const auto index = Node::ToIndex(key[depth]);
@@ -124,7 +124,7 @@ private:
             }
         }
 
-        return node->Empty() and not node->isEndOfWord;
+        return node->Empty() and not node->value;
     }
 
 
@@ -138,7 +138,7 @@ private:
 
             Insert_Recursive_Helper(node->children[index].get(), key, i + 1);
         } else {
-            node->isEndOfWord = true;
+            node->value = true;
         }
     }
 
@@ -149,7 +149,7 @@ private:
             return false;
         }
 
-        if (node->isEndOfWord and i == key.size()) {
+        if (node->value and i == key.size()) {
             return true;
         }
 

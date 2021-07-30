@@ -15,7 +15,7 @@ namespace {
 std::size_t CountUniqueWords(const Trie::Node *node) {
     std::size_t result = 0;
 
-    if (node->isEndOfWord) {
+    if (node->value) {
         ++result;
     }
 
@@ -87,7 +87,7 @@ inline auto Display_BottomUp(const ArrayType &keys) {
 void Display_Reverse(const Trie::Node *node, std::string &prefix, ArrayType &results) {
     assert(node);
 
-    if (node->isEndOfWord) {
+    if (node->value) {
         results.push_back(prefix);
     }
 

@@ -20,12 +20,6 @@ using ArrayType = std::vector<int>;
  *              https://www.geeksforgeeks.org/kth-smallestlargest-element-using-stl/
  * @reference   Third largest element in an array of distinct elements
  *              https://www.geeksforgeeks.org/third-largest-element-array-distinct-elements/
- * @reference   Find Second largest element in an array
- *              https://www.geeksforgeeks.org/find-second-largest-element-array/
- * @reference   Find the Second Largest Element in a Linked List
- *              https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
- * @reference   Second Smallest Element in a Linked List
- *              https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
  * @reference   Why is it faster to process sorted array than an unsorted array ?
  *              https://www.geeksforgeeks.org/faster-process-sorted-array-unsorted-array/
  * @reference   Tournament Tree (Winner Tree) and Binary Heap
@@ -159,6 +153,43 @@ inline auto KthSmallest_BinarySearch(const ArrayType &elements,
     return KthSmallest_BinarySearch(*min, *max, elements, K + 1);
 }
 
+/**
+ * @reference   Third Maximum Number
+ *              https://leetcode.com/problems/third-maximum-number/
+ *
+ * Given integer array nums, return the third maximum number in this array. If the third
+ * maximum does not exist, return the maximum number.
+ * Follow up: Can you find an O(n) solution?
+ *
+ * @reference   Find Second largest element in an array
+ *              https://www.geeksforgeeks.org/find-second-largest-element-array/
+ * @reference   Find the Second Largest Element in a Linked List
+ *              https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
+ * @reference   Second Smallest Element in a Linked List
+ *              https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
+ */
+auto ThirdMax(const ArrayType &nums) {
+    auto largest = LONG_MIN;
+    auto second_max = LONG_MIN;
+    auto third_max = LONG_MIN;
+
+    for (const auto i : nums) {
+        if (i <= third_max or i == second_max or i == largest) {
+            continue;
+        }
+
+        third_max = i;
+        if (third_max > second_max) {
+            std::swap(third_max, second_max);
+        }
+        if (second_max > largest) {
+            std::swap(second_max, largest);
+        }
+    }
+
+    return third_max > LONG_MIN ? third_max : largest;
+}
+
 }//namespace
 
 
@@ -219,3 +250,15 @@ SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE2, 19, VALUES1, VALUES1.size() -
 SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE3, 14, VALUES2, 3);
 SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE4, 7, VALUES3, 2);
 SIMPLE_TEST(KthSmallest_BinarySearch, TestSAMPLE5, 5, VALUES4, 1);
+
+
+const ArrayType SAMPLE1 = {1, 2};
+const ArrayType SAMPLE2 = {3, 2, 1};
+const ArrayType SAMPLE3 = {2, 2, 3, 1};
+
+
+THE_BENCHMARK(ThirdMax, VALUES1);
+
+SIMPLE_TEST(ThirdMax, TestSAMPLE1, 2, SAMPLE1);
+SIMPLE_TEST(ThirdMax, TestSAMPLE2, 1, SAMPLE2);
+SIMPLE_TEST(ThirdMax, TestSAMPLE3, 1, SAMPLE3);

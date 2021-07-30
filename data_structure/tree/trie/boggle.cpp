@@ -57,7 +57,7 @@ void Boggle(const Trie::Node::PointerType node,
     assert(i < static_cast<int>(board.size()));
     assert(j < static_cast<int>(board.front().size()));
 
-    if (node->isEndOfWord) {
+    if (node->value) {
         results.insert(prefix);
     }
 

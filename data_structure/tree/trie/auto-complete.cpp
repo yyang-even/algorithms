@@ -26,7 +26,7 @@ auto AutoComplete(const Trie::Node *root, std::string prefix) {
     }
 
     if (current_node->Empty()) {
-        if (current_node->isEndOfWord) {
+        if (current_node->value) {
             results.push_back(prefix);
         }
     } else {

@@ -7,6 +7,9 @@ compile_test(boggle)
 compile_benchmark(longest_concatenated_string)
 compile_test(longest_concatenated_string)
 
+compile_benchmark(map_sum_pairs)
+compile_test(map_sum_pairs)
+
 compile_benchmark(trie)
 compile_test(trie)
 

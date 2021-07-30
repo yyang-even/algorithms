@@ -30,8 +30,15 @@ inline constexpr auto Sum_Printf(const unsigned a, const unsigned b) {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 18.1.
+ *
+ * @reference   Sum of Two Integers
+ *              https://leetcode.com/problems/sum-of-two-integers/
+ *
+ * Given two integers a and b, return the sum of the two integers without using the
+ * operators + and -.
+ * -1000 <= a, b <= 1000
  */
-constexpr auto Sum_HalfAdder_Iterative(int a, int b) {
+constexpr auto Sum_HalfAdder_Iterative(unsigned a, unsigned b) {
     while (b) {
         const auto carry = a & b;
         a ^= b;
@@ -40,8 +47,9 @@ constexpr auto Sum_HalfAdder_Iterative(int a, int b) {
     return a;
 }
 
+
 inline constexpr auto
-Sum_HalfAdder_Recursive(const int a, const int b) {
+Sum_HalfAdder_Recursive(const unsigned a, const unsigned b) {
     if (b == 0) {
         return a;
     } else {
@@ -111,6 +119,8 @@ THE_BENCHMARK(Sum_HalfAdder_Iterative, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE3, 47, 15, 32);
+SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE4, 0, 1, -1);
+SIMPLE_TEST(Sum_HalfAdder_Iterative, TestSAMPLE5, 0, -1, 1);
 
 
 THE_BENCHMARK(Sum_HalfAdder_Recursive, 3, 4);
@@ -118,6 +128,8 @@ THE_BENCHMARK(Sum_HalfAdder_Recursive, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE1, 7, 3, 4);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE2, 15, 5, 10);
 SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE3, 47, 15, 32);
+SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE4, 0, 1, -1);
+SIMPLE_TEST(Sum_HalfAdder_Recursive, TestSAMPLE5, 0, -1, 1);
 
 
 THE_BENCHMARK(Sum_Pointer, 3, 4);

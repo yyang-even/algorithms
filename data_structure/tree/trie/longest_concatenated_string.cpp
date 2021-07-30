@@ -30,7 +30,7 @@ WordType CheckWordType(const Trie::Node *root,
 
     const auto *current = root;
     for (; i < word.size(); ++i) {
-        if (current->isEndOfWord) {
+        if (current->value) {
             if (CheckWordType(root, word, i) != WordType::not_a_word) {
                 return WordType::concatenated;
             }
@@ -45,7 +45,7 @@ WordType CheckWordType(const Trie::Node *root,
         current = current->children[index].get();
     }
 
-    return (current and current->isEndOfWord) ? WordType::single : WordType::not_a_word;
+    return (current and current->value) ? WordType::single : WordType::not_a_word;
 }
 
 inline auto LongestConcatenatedString(const ArrayType &arr) {
