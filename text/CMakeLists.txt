@@ -150,3 +150,6 @@ compile_test(valid_word_abbreviation)
 
 compile_benchmark(word_ladder)
 compile_test(word_ladder)
+
+compile_benchmark(word_square)
+compile_test(word_square)
