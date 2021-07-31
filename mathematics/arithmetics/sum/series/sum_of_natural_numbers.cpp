@@ -38,6 +38,40 @@ SumOfNaturalsInRange(const unsigned L, const unsigned R) {
     return SumOfNaturals(R) - SumOfNaturals(L - 1);
 }
 
+
+/**
+ * @reference   Arranging Coins
+ *              https://leetcode.com/problems/arranging-coins/
+ *
+ * You have n coins and you want to build a staircase with these coins. The staircase
+ * consists of k rows where the ith row has exactly i coins. The last row of the
+ * staircase may be incomplete. Given the integer n, return the number of complete rows
+ * of the staircase you will build.
+ */
+constexpr auto ArrangingCoins_BinarySearch(const long n) {
+    long left = 0, right = n;
+    while (left <= right) {
+        const auto mid = (left + right) / 2;
+        const long sum = SumOfNaturals(mid);
+
+        if (sum == n) {
+            return mid;
+        }
+
+        if (n < sum) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return right;
+}
+
+constexpr int ArrangingCoins_Formula(const long n) {
+    return std::sqrt(2 * n + 0.25) - 0.5;
+}
+
 }//namespace
 
 
@@ -65,3 +99,17 @@ THE_BENCHMARK(SumOfNaturalsInRange, 2, 5);
 
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE1, 14, 2, 5);
 SIMPLE_TEST(SumOfNaturalsInRange, TestSAMPLE2, 165, 10, 20);
+
+
+THE_BENCHMARK(ArrangingCoins_BinarySearch, 5);
+
+SIMPLE_TEST(ArrangingCoins_BinarySearch, TestSAMPLE1, 2, 5);
+SIMPLE_TEST(ArrangingCoins_BinarySearch, TestSAMPLE2, 3, 8);
+SIMPLE_TEST(ArrangingCoins_BinarySearch, TestSAMPLE3, 2, 3);
+
+
+THE_BENCHMARK(ArrangingCoins_Formula, 5);
+
+SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE1, 2, 5);
+SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE2, 3, 8);
+SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE3, 2, 3);

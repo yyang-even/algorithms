@@ -11,6 +11,12 @@ namespace {
  *
  * Given a string, count number of words in it. The words are separated by following
  * characters: space (' ') or new line ('\n') or tab ('\t') or a combination of these.
+ *
+ * @reference   Number of Segments in a String
+ *              https://leetcode.com/problems/number-of-segments-in-a-string/
+ *
+ * You are given a string s, return the number of segments in the string. A segment is
+ * defined to be a contiguous sequence of non-space characters.
  */
 constexpr auto CountWordsInGivenString(const std::string_view input) {
     auto count = 0;

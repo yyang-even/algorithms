@@ -73,6 +73,9 @@ compile_test(merge_two_sorted_arrays)
 compile_benchmark(min_diff_pair_between_2_arrays)
 compile_test(min_diff_pair_between_2_arrays)
 
+compile_benchmark(min_moves_to_equal_elements)
+compile_test(min_moves_to_equal_elements)
+
 compile_benchmark(min_unsorted_subarray)
 compile_test(min_unsorted_subarray)
 
