@@ -1,6 +1,9 @@
 compile_benchmark(activity_selection)
 compile_test(activity_selection)
 
+compile_benchmark(assign_cookies)
+compile_test(assign_cookies)
+
 compile_benchmark(candy)
 compile_test(candy)
 

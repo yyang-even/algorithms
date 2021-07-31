@@ -68,7 +68,7 @@ constexpr auto ArrangingCoins_BinarySearch(const long n) {
     return right;
 }
 
-constexpr int ArrangingCoins_Formula(const long n) {
+inline constexpr int ArrangingCoins_Formula(const long n) {
     return std::sqrt(2 * n + 0.25) - 0.5;
 }
 
