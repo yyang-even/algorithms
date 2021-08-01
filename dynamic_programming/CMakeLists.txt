@@ -88,6 +88,9 @@ compile_test(rod_cutting)
 compile_benchmark(stock_buy_sell)
 compile_test(stock_buy_sell)
 
+compile_benchmark(trap_rain_water)
+compile_test(trap_rain_water)
+
 compile_benchmark(word_break)
 compile_test(word_break)
 
