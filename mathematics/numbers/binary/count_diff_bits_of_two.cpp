@@ -18,6 +18,13 @@ namespace {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.5.
+ *
+ * @reference   Hamming Distance
+ *              https://leetcode.com/problems/hamming-distance/
+ *
+ * The Hamming distance between two integers is the number of positions at which the
+ * corresponding bits are different. Given two integers x and y, return the Hamming
+ * distance between them.
  */
 inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a ^ b);

@@ -1,3 +1,6 @@
+compile_benchmark(island_perimeter)
+compile_test(island_perimeter)
+
 compile_benchmark(max_black_border)
 compile_test(max_black_border)
 
