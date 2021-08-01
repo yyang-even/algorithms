@@ -103,6 +103,9 @@ compile_test(recursively_remove_adjacent_duplicates)
 compile_benchmark(remove_characters)
 compile_test(remove_characters)
 
+compile_benchmark(repeated_substr_pattern)
+compile_test(repeated_substr_pattern)
+
 compile_benchmark(reverse_string)
 compile_test(reverse_string)
 
