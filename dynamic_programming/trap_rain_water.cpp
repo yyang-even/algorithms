@@ -115,14 +115,13 @@ auto TrapRain2D(const MatrixType &a_matrix) {
         }
     }
 
-    const std::vector<std::pair<int, int>> directions{{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
     int level = INT_MIN;
     int result = 0;
     while (not min_heap.empty()) {
         const auto [height, row, column] = min_heap.top();
         min_heap.pop();
         level = std::max(level, height);
-        for (const auto [delta_row, delta_column] : directions) {
+        for (const auto [delta_row, delta_column] : DIRECTIONS) {
             const auto x = row + delta_row;
             const auto y = column + delta_column;
             if (x < 0 or x >= M or y < 0 or y >= N or visited[x][y]) {

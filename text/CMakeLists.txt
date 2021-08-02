@@ -46,6 +46,9 @@ compile_test(is_palindrome)
 compile_benchmark(is_subsequence)
 compile_test(is_subsequence)
 
+compile_benchmark(license_key_formatting)
+compile_test(license_key_formatting)
+
 compile_benchmark(longest_common_prefix)
 compile_test(longest_common_prefix)
 

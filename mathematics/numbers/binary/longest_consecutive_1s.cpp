@@ -1,5 +1,8 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
+#include "mathematics/matrix/matrix.h"
+
 
 namespace {
 
@@ -118,6 +121,125 @@ auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int
     return max_count;
 }
 
+
+/**
+ * @reference   Making A Large Island
+ *              https://leetcode.com/problems/making-a-large-island/
+ *
+ * You are given an n x n binary matrix grid. You are allowed to change at most one 0 to
+ * be 1. Return the size of the largest island in grid after applying this operation. An
+ * island is a 4-directionally connected group of 1s.
+ */
+int checkIslandSize_Iterative(const MatrixType &grid,
+                              const std::pair<int, int> start_point) {
+    const int N = grid.size();
+    std::stack<std::pair<int, int>> s;
+    s.push(start_point);
+    std::unordered_set<std::pair<int, int>, PairHash> visited;
+    visited.insert(start_point);
+
+    while (not s.empty()) {
+        const auto [row, column] = s.top();
+        s.pop();
+
+        for (const auto [row_delta, column_delta] : DIRECTIONS) {
+            const auto i = row + row_delta;
+            const auto j = column + column_delta;
+            if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] == 1) {
+                if (visited.emplace(i, j).second) {
+                    s.emplace(i, j);
+                }
+            }
+        }
+    }
+
+    return visited.size();
+}
+
+int MakeLargeIsland_Naive(MatrixType grid) {
+    assert(grid.size() == grid.front().size());
+
+    int result = 0;
+    bool has_zero = false;
+    for (std::size_t i = 0; i < grid.size(); ++i) {
+        for (std::size_t j = 0; j < grid.size(); ++j) {
+            if (grid[i][j] == 0) {
+                has_zero = true;
+                grid[i][j] = 1;
+                result = std::max(result,
+                                  checkIslandSize_Iterative(grid, std::pair<int, int>(i, j)));
+                grid[i][j] = 0;
+            }
+        }
+    }
+
+    return has_zero ? result : grid.size() * grid.size();
+}
+
+
+int checkIslandSize_Recursive(MatrixType &grid, const int row, const int column,
+                              const int island_index) {
+    const int N = grid.size();
+    grid[row][column] = island_index;
+
+    int result = 1;
+    for (const auto [row_delta, column_delta] : DIRECTIONS) {
+        const auto i = row + row_delta;
+        const auto j = column + column_delta;
+        if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] == 1) {
+            result += checkIslandSize_Recursive(grid, i, j, island_index);
+        }
+    }
+
+    return result;
+}
+
+int findTotalArea(const MatrixType &grid, const int row, const int column,
+                  const std::unordered_map<int, int> &areas) {
+    const int N = grid.size();
+
+    int result = 1;
+    std::unordered_set<int> visited_island;
+    for (const auto [row_delta, column_delta] : DIRECTIONS) {
+        const auto i = row + row_delta;
+        const auto j = column + column_delta;
+        if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] != 0) {
+            if (visited_island.insert(grid[i][j]).second) {
+                result += areas.at(grid[i][j]);
+            }
+        }
+    }
+
+    return result;
+}
+
+int MakeLargeIsland_UnionFind(MatrixType grid) {
+    assert(grid.size() == grid.front().size());
+
+    std::unordered_map<int, int> areas;
+    int island_index = 2;
+    int result = 0;
+    for (std::size_t i = 0; i < grid.size(); ++i) {
+        for (std::size_t j = 0; j < grid.size(); ++j) {
+            if (grid[i][j] == 1) {
+                ++island_index;
+                areas[island_index] = checkIslandSize_Recursive(grid, i, j, island_index);
+                result = std::max(result, areas[island_index]);
+            }
+        }
+    }
+
+    for (std::size_t i = 0; i < grid.size(); ++i) {
+        for (std::size_t j = 0; j < grid.size(); ++j) {
+            if (grid[i][j] == 0) {
+                result = std::max(result, findTotalArea(grid, i, j, areas));
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -168,3 +290,33 @@ SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE5, SAMPLE4.size(
             SAMPLE4, 2);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE6, 6, SAMPLE6, 2);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE7, 10, SAMPLE7, 3);
+
+
+const MatrixType SAMPLE1M = {
+    {1, 0},
+    {0, 1}
+};
+
+const MatrixType SAMPLE2M = {
+    {1, 1},
+    {0, 1}
+};
+
+const MatrixType SAMPLE3M = {
+    {1, 1},
+    {1, 1}
+};
+
+
+THE_BENCHMARK(MakeLargeIsland_Naive, SAMPLE1M);
+
+SIMPLE_TEST(MakeLargeIsland_Naive, TestSAMPLE1, 3, SAMPLE1M);
+SIMPLE_TEST(MakeLargeIsland_Naive, TestSAMPLE2, 4, SAMPLE2M);
+SIMPLE_TEST(MakeLargeIsland_Naive, TestSAMPLE3, 4, SAMPLE3M);
+
+
+THE_BENCHMARK(MakeLargeIsland_UnionFind, SAMPLE1M);
+
+SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE1, 3, SAMPLE1M);
+SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE2, 4, SAMPLE2M);
+SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE3, 4, SAMPLE3M);
