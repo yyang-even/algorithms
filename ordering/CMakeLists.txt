@@ -61,6 +61,9 @@ compile_test(max_or_min)
 compile_benchmark(median)
 compile_test(median)
 
+compile_benchmark(merge_intervals)
+compile_test(merge_intervals)
+
 compile_benchmark(merge_k_sorted_array)
 compile_test(merge_k_sorted_array)
 
