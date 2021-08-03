@@ -61,6 +61,9 @@ compile_test(min_distance_between_words)
 compile_benchmark(missing_ranges)
 compile_test(missing_ranges)
 
+compile_benchmark(next_permutation)
+compile_test(next_permutation)
+
 compile_benchmark(number_matching_subsequences)
 compile_test(number_matching_subsequences)
 
