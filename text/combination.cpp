@@ -136,6 +136,13 @@ auto AllCombinations_BitMask(const std::string_view elements) {
 /**
  * @reference   Recursive program to generate power set
  *              https://www.geeksforgeeks.org/recursive-program-to-generate-power-set/
+ *
+ * @reference   Subsets
+ *              https://leetcode.com/problems/subsets/
+ *
+ * Given an integer array nums of unique elements, return all possible subsets (the power
+ * set). The solution set must not contain duplicate subsets. Return the solution in any
+ * order.
  */
 void AllCombinations_Recursive_Copy(const std::string_view elements,
                                     ArrayType &results,
@@ -155,6 +162,86 @@ void AllCombinations_Recursive_Copy(const std::string_view elements,
 inline auto AllCombinations_Recursive_Copy(const std::string_view elements) {
     ArrayType results;
     AllCombinations_Recursive_Copy(elements, results);
+
+    return results;
+}
+
+
+auto AllCombinations_Iterative(const std::string_view elements) {
+    ArrayType results = {""};
+
+    for (const auto c : elements) {
+        ArrayType new_subsets = results;
+        for (const auto &curr : results) {
+            new_subsets.insert(curr + c);
+        }
+
+        results.swap(new_subsets);
+    }
+
+    results.erase("");
+    return results;
+}
+
+
+/**
+ * @reference   Subsets II
+ *              https://leetcode.com/problems/subsets-ii/
+ *
+ * Given an integer array nums that may contain duplicates, return all possible subsets
+ * (the power set). The solution set must not contain duplicate subsets. Return the
+ * solution in any order.
+ */
+void AllCombinationsWithDuplicates_For(const std::string &elements,
+                                       const std::size_t start,
+                                       std::string &one_combination, ArrayType &results) {
+    results.insert(one_combination);
+
+    for (auto i = start; i < elements.size(); ++i) {
+        if (i != start and elements[i] == elements[i - 1]) {
+            continue;
+        }
+
+        one_combination.push_back(elements[i]);
+        AllCombinationsWithDuplicates_For(elements, i + 1, one_combination, results);
+        one_combination.pop_back();
+    }
+}
+
+inline auto AllCombinationsWithDuplicates_For(std::string elements) {
+    ArrayType results;
+    std::sort(elements.begin(), elements.end());
+    std::string one_combination;
+    AllCombinationsWithDuplicates_For(elements, 0, one_combination, results);
+
+    return results;
+}
+
+
+void AllCombinationsWithDuplicates(const std::string &elements, std::size_t i,
+                                   std::string &one_combination, ArrayType &results) {
+    if (i == elements.size()) {
+        results.insert(one_combination);
+        return;
+    }
+
+    one_combination.push_back(elements[i]);
+    AllCombinationsWithDuplicates(elements, i + 1, one_combination, results);
+    one_combination.pop_back();
+
+    i++;
+    while (i < elements.size() and elements[i] == elements[i - 1]) {
+        i++;
+    }
+
+    AllCombinationsWithDuplicates(elements, i, one_combination, results);
+}
+
+inline auto AllCombinationsWithDuplicates(std::string elements) {
+    ArrayType results;
+    std::sort(elements.begin(), elements.end());
+    std::string one_combination;
+    AllCombinationsWithDuplicates(elements, 0, one_combination, results);
 
     return results;
 }
@@ -202,3 +289,26 @@ THE_BENCHMARK(AllCombinations_Recursive_Copy, "abcd");
 SIMPLE_TEST(AllCombinations_Recursive_Copy, TestSAMPLE1, EXPECTED1, "a");
 SIMPLE_TEST(AllCombinations_Recursive_Copy, TestSAMPLE2, EXPECTED2, "ab");
 SIMPLE_TEST(AllCombinations_Recursive_Copy, TestSAMPLE3, EXPECTED3, "wxyz");
+
+
+THE_BENCHMARK(AllCombinations_Iterative, "abcd");
+
+SIMPLE_TEST(AllCombinations_Iterative, TestSAMPLE1, EXPECTED1, "a");
+SIMPLE_TEST(AllCombinations_Iterative, TestSAMPLE2, EXPECTED2, "ab");
+SIMPLE_TEST(AllCombinations_Iterative, TestSAMPLE3, EXPECTED3, "wxyz");
+
+
+const ArrayType EXPECTED6 = {"", "1", "12", "122", "2", "22"};
+const ArrayType EXPECTED7 = {"", "0"};
+
+
+THE_BENCHMARK(AllCombinationsWithDuplicates_For, "122");
+
+SIMPLE_TEST(AllCombinationsWithDuplicates_For, TestSAMPLE6, EXPECTED6, "122");
+SIMPLE_TEST(AllCombinationsWithDuplicates_For, TestSAMPLE7, EXPECTED7, "0");
+
+
+THE_BENCHMARK(AllCombinationsWithDuplicates, "122");
+
+SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE6, EXPECTED6, "122");
+SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE7, EXPECTED7, "0");

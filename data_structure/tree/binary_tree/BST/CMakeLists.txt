@@ -4,6 +4,9 @@ compile_test(binary_tree_to_BST)
 compile_benchmark(BST_delete)
 compile_test(BST_delete)
 
+compile_benchmark(BST_find_mode)
+compile_test(BST_find_mode)
+
 compile_benchmark(BST_inorder_predecessor)
 compile_test(BST_inorder_predecessor)
 
