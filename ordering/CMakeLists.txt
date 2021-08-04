@@ -97,6 +97,9 @@ compile_test(quick_sort)
 compile_benchmark(radix_sort)
 compile_test(radix_sort)
 
+compile_benchmark(relative_ranks)
+compile_test(relative_ranks)
+
 compile_benchmark(rotation)
 compile_test(rotation)
 

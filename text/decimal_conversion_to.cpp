@@ -59,6 +59,14 @@ inline auto ToHex(const int number) {
 
 
 /**
+ * @reference   Base 7
+ *              https://leetcode.com/problems/base-7/
+ *
+ * Given an integer num, return a string of its base 7 representation.
+ */
+
+
+/**
  * @reference   Excel Sheet Column Title
  *              https://leetcode.com/problems/excel-sheet-column-title/
  *
