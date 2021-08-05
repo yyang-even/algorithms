@@ -30,6 +30,8 @@ namespace {
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-fibonacci-series/
  * @reference   C Program for Fibonacci numbers
  *              https://www.geeksforgeeks.org/c-program-for-fibonacci-numbers/
+ * @reference   Fibonacci Number
+ *              https://leetcode.com/problems/fibonacci-number/
  *
  * The Fibonacci numbers are the numbers in the following integer sequence.
  *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ......
@@ -102,39 +104,16 @@ namespace {
  *
  * When we take any two successive (one after the other) Fibonacci Numbers, their ratio
  * is very close to the Golden Ratio.
- */
-constexpr double GOLDEN_RATIO = 1.61803;
-
-inline constexpr unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
-    if (n < 2) {
-        return n;
-    } else if (n == 2) {
-        return 1;
-    } else {
-        unsigned long ret = 1;
-        for (unsigned i = 2; i < n; ++i) {
-            ret = ret * GOLDEN_RATIO + 0.5;
-        }
-        return ret;
-    }
-}
-
-
-/**
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  * @reference   Print first n Fibonacci Numbers using direct formula
  *              https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
- *
- * @note    It may not work perfect due to floating point precision errors.
  */
-inline constexpr unsigned long
-NthFibonacci_GoldenRatioClosedForm(const unsigned n) {
+inline constexpr unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
-    constexpr double phi = (1.0 + square_root_of_5) / 2.0;
-    constexpr double phi_hat = (1.0 - square_root_of_5) / 2.0;
-
-    return (std::pow(phi, n) - std::pow(phi_hat, n)) / square_root_of_5;
+    constexpr auto golden_ratio = (1 + square_root_of_5) / 2;
+    return std::round(std::pow(golden_ratio, n) / square_root_of_5);
 }
 
 
@@ -207,7 +186,7 @@ NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
  * indicates i'th Fibonacci number.
  */
 inline constexpr auto SumOfFibonacci(const unsigned n) {
-    return  NthFibonacci_GoldenRatioClosedForm(n + 2) - 1;
+    return  NthFibonacci_GoldenRatio(n + 2) - 1;
 }
 
 
@@ -252,14 +231,6 @@ SIMPLE_BENCHMARK(NthFibonacci_GoldenRatio, Sample2, UPPER);
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestLOWER, 0, LOWER);
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE1, 1, 1);
 SIMPLE_TEST(NthFibonacci_GoldenRatio, TestSAMPLE2, 144, 12);
-
-
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, Sample1, LOWER);
-SIMPLE_BENCHMARK(NthFibonacci_GoldenRatioClosedForm, Sample2, UPPER);
-
-SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestLOWER, 0, LOWER);
-SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE1, 1, 1);
-SIMPLE_TEST(NthFibonacci_GoldenRatioClosedForm, TestSAMPLE2, 144, 12);
 
 
 SIMPLE_BENCHMARK(NthFibonacci_DP, Sample1, LOWER);
