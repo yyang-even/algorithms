@@ -28,6 +28,9 @@ compile_test(count_words_in_given_string)
 compile_benchmark(decimal_conversion_to)
 compile_test(decimal_conversion_to)
 
+compile_benchmark(detect_capital)
+compile_test(detect_capital)
+
 compile_benchmark(find_kth_char_of_decrypted_string)
 compile_test(find_kth_char_of_decrypted_string)
 
