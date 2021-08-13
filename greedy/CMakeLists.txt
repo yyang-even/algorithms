@@ -1,6 +1,9 @@
 compile_benchmark(activity_selection)
 compile_test(activity_selection)
 
+compile_benchmark(array_of_doubled_pairs)
+compile_test(array_of_doubled_pairs)
+
 compile_benchmark(assign_cookies)
 compile_test(assign_cookies)
 

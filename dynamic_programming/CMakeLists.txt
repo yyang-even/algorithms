@@ -37,6 +37,9 @@ compile_test(edit_distance)
 compile_benchmark(flip_game)
 compile_test(flip_game)
 
+compile_benchmark(flip_string_to_monotone_increasing)
+compile_test(flip_string_to_monotone_increasing)
+
 compile_benchmark(k_inverse_pairs_array)
 compile_test(k_inverse_pairs_array)
 
@@ -79,6 +82,9 @@ compile_test(optimal_binary_search_trees)
 compile_benchmark(out_of_boundary_paths)
 compile_test(out_of_boundary_paths)
 
+compile_benchmark(palindrome_partitioning)
+compile_test(palindrome_partitioning)
+
 compile_benchmark(push_dominoes)
 compile_test(push_dominoes)
 
@@ -87,6 +93,9 @@ compile_test(rod_cutting)
 
 compile_benchmark(stock_buy_sell)
 compile_test(stock_buy_sell)
+
+compile_benchmark(stone_game)
+compile_test(stone_game)
 
 compile_benchmark(trap_rain_water)
 compile_test(trap_rain_water)

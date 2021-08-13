@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "range_sum_queries.h"
 #include "prefix_sum_array.h"
 
 #include "mathematics/numbers/binary/clear_all_bits_except_the_last_set_bit.h"
@@ -27,11 +28,7 @@ auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
 
     ArrayType results;
     for (const auto [left, right] : queries) {
-        if (left == 0) {
-            results.push_back(prefix_sums[right]);
-        } else {
-            results.push_back(prefix_sums[right] - prefix_sums[left - 1]);
-        }
+        results.push_back(RangeSum(prefix_sums, left, right));
     }
 
     return results;

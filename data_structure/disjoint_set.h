@@ -51,7 +51,11 @@ public:
     }
 
     void Union(const std::size_t x_index, const std::size_t y_index) {
-        Link(Find(x_index), Find(y_index));
+        const auto x_parent = Find(x_index);
+        const auto y_parent = Find(y_index);
+        if (x_parent != y_parent) {
+            Link(x_parent, y_parent);
+        }
     }
 
     void Link(const std::size_t x_index, const std::size_t y_index) {
