@@ -91,7 +91,8 @@ MatrixChainMultiplicationString(const ArrayType &dimensions) {
  * @reference   Printing Matrix Chain Multiplication (A Space Optimized Solution)
  *              https://www.geeksforgeeks.org/printing-matrix-chain-multiplication-a-space-optimized-solution/
  *
- * @note    This solution use the lower triangular part of the same matrix (that is not used) for storing brackets.
+ * @note    This solution use the lower triangular part of the same matrix (that is not
+ *  used) for storing brackets.
  */
 
 

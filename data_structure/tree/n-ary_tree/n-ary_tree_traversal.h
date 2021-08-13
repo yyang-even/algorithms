@@ -6,6 +6,8 @@
 /** General Tree (Each node can have arbitrary number of children) Level Order Traversal
  *
  * @reference   https://www.geeksforgeeks.org/generic-tree-level-order-traversal/
+ * @reference   N-ary Tree Level Order Traversal
+ *              https://leetcode.com/problems/n-ary-tree-level-order-traversal/
  */
 static inline auto LevelOrderTraversal_Iterative_Helper(
     const n_ary_tree::array_representation::Node::PointerType root,
