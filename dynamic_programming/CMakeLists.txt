@@ -88,6 +88,9 @@ compile_test(palindrome_partitioning)
 compile_benchmark(push_dominoes)
 compile_test(push_dominoes)
 
+compile_benchmark(remove_boxes)
+compile_test(remove_boxes)
+
 compile_benchmark(rod_cutting)
 compile_test(rod_cutting)
 
