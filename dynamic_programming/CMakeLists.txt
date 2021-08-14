@@ -100,6 +100,9 @@ compile_test(stock_buy_sell)
 compile_benchmark(stone_game)
 compile_test(stone_game)
 
+compile_benchmark(student_attendance_record)
+compile_test(student_attendance_record)
+
 compile_benchmark(trap_rain_water)
 compile_test(trap_rain_water)
 
