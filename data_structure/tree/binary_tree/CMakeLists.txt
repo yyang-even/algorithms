@@ -3,6 +3,9 @@ add_subdirectory(BST)
 compile_benchmark(binary_tree_deletion)
 compile_test(binary_tree_deletion)
 
+compile_benchmark(binary_tree_diameter)
+compile_test(binary_tree_diameter)
+
 compile_benchmark(binary_tree_height)
 compile_test(binary_tree_height)
 
