@@ -45,16 +45,17 @@ inline auto LeftRotate_Simple(const ArrayType &arr, const ArrayType::size_type d
 
 
 auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
-    assert(d < arr.size());
+    const auto N = arr.size();
+    assert(d < N);
 
-    const auto step = std::gcd(arr.size(), d);
+    const auto step = std::gcd(N, d);
 
     for (ArrayType::size_type i = 0; i < step; ++i) {
         auto j = i;
         while (true) {
             auto k = j + d;
-            if (k >= arr.size()) {
-                k -= arr.size();
+            if (k >= N) {
+                k -= N;
             }
             if (k == i) {
                 break;

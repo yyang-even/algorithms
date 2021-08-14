@@ -25,8 +25,9 @@ auto RearrangeArraySimple(const ArrayType &elements) {
 
 
 auto RearrangeArrayInPlace(ArrayType elements) {
-    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
-        elements[elements[i] % elements.size()] += i * elements.size();
+    const auto N = elements.size();
+    for (ArrayType::size_type i = 0; i < N; ++i) {
+        elements[elements[i] % N] += i * N;
     }
 
     std::transform(elements.cbegin(), elements.cend(),

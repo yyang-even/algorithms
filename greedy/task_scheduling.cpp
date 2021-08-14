@@ -35,11 +35,12 @@ auto TaskScheduling(ArrayType jobs) {
         return lhs.profit > rhs.profit;
     });
 
-    std::vector<int> slots(jobs.size(), -1);
+    const auto N = jobs.size();
+    std::vector<int> slots(N, -1);
     OutputType results;
 
-    for (ArrayType::size_type i = 0; i < jobs.size(); ++i) {
-        for (int j = std::min(jobs.size(), jobs[i].deadline) - 1; j >= 0; --j) {
+    for (ArrayType::size_type i = 0; i < N; ++i) {
+        for (int j = std::min(N, jobs[i].deadline) - 1; j >= 0; --j) {
             if (slots[j] < 0) {
                 slots[j] = i;
                 results.insert(jobs[i].id);
@@ -61,11 +62,12 @@ auto TaskScheduling_DisjointSet(ArrayType jobs) {
         return lhs.profit > rhs.profit;
     });
 
-    DisjointSet_Array disjoint_set{jobs.size() + 1};
+    const auto N = jobs.size();
+    DisjointSet_Array disjoint_set{N + 1};
     OutputType results;
 
     for (const auto &a_job : jobs) {
-        const auto available_slot = disjoint_set.Find(std::min(jobs.size(), a_job.deadline));
+        const auto available_slot = disjoint_set.Find(std::min(N, a_job.deadline));
         if (available_slot > 0) {
             disjoint_set.Adopt(disjoint_set.Find(available_slot - 1), available_slot);
             results.insert(a_job.id);

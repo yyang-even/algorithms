@@ -15,12 +15,13 @@ using PairArrayType =
  */
 auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
                                          PairArrayType *const closest_pairs = nullptr) {
-    assert(elements.size() > 1);
+    const auto N = elements.size();
+    assert(N > 1);
 
     std::sort(elements.begin(), elements.end());
 
     auto min_diff = std::numeric_limits<ArrayType::value_type>::max();
-    for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
+    for (ArrayType::size_type i = 1; i < N; ++i) {
         const auto diff = elements[i] - elements[i - 1];
         if (diff < min_diff) {
             min_diff = diff;
@@ -28,7 +29,7 @@ auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
     }
 
     if (closest_pairs) {
-        for (ArrayType::size_type i = 1; i < elements.size(); ++i) {
+        for (ArrayType::size_type i = 1; i < N; ++i) {
             if (elements[i] - elements[i - 1] == min_diff) {
                 closest_pairs->emplace_back(elements[i - 1], elements[i]);
             }

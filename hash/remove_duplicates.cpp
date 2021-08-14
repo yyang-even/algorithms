@@ -102,7 +102,8 @@ auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
     }
 
     std::size_t last = 0;
-    for (std::size_t i = 1; i < sorted_input.size(); ++i) {
+    const auto N = sorted_input.size();
+    for (std::size_t i = 1; i < N; ++i) {
         if (sorted_input[last] != sorted_input[i]) {
             sorted_input[++last] = sorted_input[i];
         }
@@ -392,11 +393,12 @@ auto FindDuplicates_Inplace_Sign(ArrayType values) {
  *              https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-2/
  */
 auto FindDuplicates_Inplace_Mod(ArrayType values) {
-    TransformToInplaceCounterArray(values, values.size());
+    const auto N = values.size();
+    TransformToInplaceCounterArray(values, N);
 
     ArrayType output;
-    for (ArrayType::size_type i = 0; i < values.size(); ++i) {
-        if ((values[i] / values.size()) > 1) {
+    for (ArrayType::size_type i = 0; i < N; ++i) {
+        if ((values[i] / N) > 1) {
             output.push_back(i);
         }
     }

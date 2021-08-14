@@ -22,7 +22,8 @@ using ArrayType = std::vector<int>;
  */
 auto RankTransformArray(ArrayType elements) {
     std::vector<std::pair<int, int>> value_index_array;
-    for (std::size_t i = 0; i < elements.size(); ++i) {
+    const auto N = elements.size();
+    for (std::size_t i = 0; i < N; ++i) {
         value_index_array.emplace_back(elements[i], i);
     }
 
@@ -60,18 +61,20 @@ auto RankTransformArray(ArrayType elements) {
  */
 auto RankTransformMatrix(MatrixType a_matrix) {
     std::map<int, std::vector<std::pair<int, int>>> value_coordi_map;
-    for (std::size_t i = 0; i < a_matrix.size(); ++i) {
-        for (std::size_t j = 0; j < a_matrix.front().size(); ++j) {
+    const auto M = a_matrix.size();
+    const auto N = a_matrix.front().size();
+    for (std::size_t i = 0; i < M; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
             value_coordi_map[a_matrix[i][j]].emplace_back(i, j);
         }
     }
 
-    int row_ranks[a_matrix.size()] = {};
-    int column_ranks[a_matrix.front().size()] = {};
+    int row_ranks[M] = {};
+    int column_ranks[N] = {};
     for (const auto &[value, coordinates] : value_coordi_map) {
-        DisjointSet_Array disjoint_set(a_matrix.size() + a_matrix.front().size());
+        DisjointSet_Array disjoint_set(M + N);
         for (const auto [x, y] : coordinates) {
-            disjoint_set.Union(x, y + a_matrix.size());
+            disjoint_set.Union(x, y + M);
         }
 
         std::unordered_map<int, int> group_rank_map;

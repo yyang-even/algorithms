@@ -40,7 +40,8 @@ auto CountFrequenciesOfAllElements_InPlace_Sign(ArrayType elements) {
     }
 
     std::map<ArrayType::value_type, ArrayType::size_type> output;
-    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
+    const auto N = elements.size();
+    for (ArrayType::size_type i = 0; i < N; ++i) {
         output.emplace(i + 1, abs(elements[i]));
     }
 
@@ -65,11 +66,12 @@ auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
         return elem - 1;
     });
 
-    TransformToInplaceCounterArray(elements, elements.size());
+    const auto N = elements.size();
+    TransformToInplaceCounterArray(elements, N);
 
     std::map<ArrayType::value_type, ArrayType::size_type> output;
-    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
-        output.emplace(i + 1, (elements[i] / elements.size()));
+    for (ArrayType::size_type i = 0; i < N; ++i) {
+        output.emplace(i + 1, (elements[i] / N));
     }
 
     return output;

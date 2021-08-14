@@ -250,21 +250,21 @@ auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
  * extra space. You can modify the original array.
  */
 int FindTheSmallestPositiveMissingNumber_InPlace(ArrayType elements) {
+    const int SIZE = elements.size();
     for (const auto n : elements) {
         for (auto current_value = n;
-             n > 0 and n <= static_cast<int>(elements.size()) and
-             elements[current_value - 1] != current_value;) {
+             n > 0 and n <= SIZE and elements[current_value - 1] != current_value;) {
             std::swap(current_value, elements[current_value - 1]);
         }
     }
 
-    for (int i = 0; i < static_cast<int>(elements.size()); ++i) {
+    for (int i = 0; i < SIZE; ++i) {
         if (elements[i] != i + 1) {
             return i + 1;
         }
     }
 
-    return elements.size() + 1;
+    return SIZE + 1;
 }
 
 

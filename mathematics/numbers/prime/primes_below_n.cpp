@@ -98,7 +98,8 @@ auto primesInRange(const InputType low, const InputType high,
     }
 
     std::vector<InputType> output;
-    for (std::size_t i = 0; i < prime_marks.size(); ++i) {
+    const auto N = prime_marks.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (prime_marks[i]) {
             output.push_back(i + low);
         }

@@ -149,7 +149,7 @@ auto NthSuperUglyNumber(const ArrayType &primes, const unsigned N) {
         const auto next_ugly_number =
             *std::min_element(next_multiples.cbegin(), next_multiples.cend());
         ugly_numbers[i] = next_ugly_number;
-        for (ArrayType::size_type k = 0; k < next_multiples.size(); ++k) {
+        for (ArrayType::size_type k = 0; k < primes.size(); ++k) {
             if (next_ugly_number == next_multiples[k]) {
                 next_multiples[k] = ugly_numbers[++indices[k]] * primes[k];
             }

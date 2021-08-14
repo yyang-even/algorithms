@@ -107,7 +107,8 @@ auto UpperBound(const int target, const ArrayType::const_iterator begin,
 }
 
 auto BinaryInsertionSort(ArrayType values) {
-    for (ArrayType::size_type j = 1; j < values.size(); ++j) {
+    const auto N = values.size();
+    for (ArrayType::size_type j = 1; j < N; ++j) {
         auto key_value = std::move(values[j]);
         ArrayType::difference_type i = j - 1;
 

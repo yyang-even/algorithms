@@ -24,7 +24,8 @@ Display(const Trie::Node *node, std::string &prefix,
         results.push_back(prefix);
     }
 
-    for (std::size_t i = 0; i < node->children.size(); ++i) {
+    const auto N = node->children.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (node->children[i]) {
             prefix.push_back(Trie::Node::ToChar(i));
 

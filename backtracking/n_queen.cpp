@@ -57,11 +57,12 @@ auto isSafeSoFar(const BoardType &board, const int row, const int column) {
 }
 
 auto FirstNQueenSolution(BoardType &board, const unsigned column = 0) {
-    if (column >= board.size()) {
+    const auto N = board.size();
+    if (column >= N) {
         return true;
     }
 
-    for (BoardType::size_type i = 0; i < board.size(); ++i) {
+    for (BoardType::size_type i = 0; i < N; ++i) {
         if (isSafeSoFar(board, i, column)) {
             board[i][column] = true;
 

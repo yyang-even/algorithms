@@ -14,7 +14,8 @@ PrefixSumArray(ArrayType elements,
                const std::function
                <typename ArrayType::value_type(const typename ArrayType::value_type &, const typename ArrayType::value_type &) >
 plus = std::plus<typename ArrayType::value_type> {}) {
-    for (typename ArrayType::size_type i = 1; i < elements.size(); ++i) {
+    const auto N = elements.size();
+    for (typename ArrayType::size_type i = 1; i < N; ++i) {
         elements[i] = plus(elements[i], elements[i - 1]);
     }
 

@@ -16,6 +16,9 @@ compile_test(BST_inorder_successor)
 compile_benchmark(BST_insert)
 compile_test(BST_insert)
 
+compile_benchmark(BST_min_distance)
+compile_test(BST_min_distance)
+
 compile_benchmark(BST_search)
 compile_test(BST_search)
 

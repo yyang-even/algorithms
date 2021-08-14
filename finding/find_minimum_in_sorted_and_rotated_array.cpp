@@ -42,7 +42,8 @@ protected:
         std::sort(elements.begin(), elements.end());
         const auto minimum_element = elements.front();
 
-        for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
+        const auto N = elements.size();
+        for (ArrayType::size_type i = 0; i < N; ++i) {
             auto sorted_elements = elements;
             std::rotate(
                 sorted_elements.begin(), std::next(sorted_elements.begin(), i), sorted_elements.end());

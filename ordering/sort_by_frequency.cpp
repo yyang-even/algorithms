@@ -29,7 +29,8 @@ auto SortByFrequency(ArrayType elements) {
     using MinIndex_Count_Pair = std::pair<ArrayType::size_type, ArrayType::size_type>;
     std::unordered_map<ArrayType::value_type, MinIndex_Count_Pair> counter;
 
-    for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
+    const auto N = elements.size();
+    for (ArrayType::size_type i = 0; i < N; ++i) {
         const auto elem = elements[i];
         if (const auto iter = counter.find(elem); iter == counter.end()) {
             counter.emplace(elem, MinIndex_Count_Pair{i, 1});

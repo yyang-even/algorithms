@@ -93,7 +93,8 @@ inline auto RearrangePositiveAndNegativeNumbers_STL(ArrayType input) {
 
 
 auto RearrangePositiveAndNegativeNumbers_Insertion(ArrayType input) {
-    for (ArrayType::size_type j = 1; j < input.size(); ++j) {
+    const auto N = input.size();
+    for (ArrayType::size_type j = 1; j < N; ++j) {
         auto key_value = input[j];
         if (key_value < 0) {
             int i = j - 1;
@@ -195,11 +196,12 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Unstable(
     ArrayType input) {
     ArrayType::size_type positive = 0;
     ArrayType::size_type negative = 1;
+    const auto N = input.size();
     while (true) {
-        for (; positive < input.size() and input[positive] >= 0; positive += 2);
-        for (; negative < input.size() and input[negative] < 0; negative += 2);
+        for (; positive < N and input[positive] >= 0; positive += 2);
+        for (; negative < N and input[negative] < 0; negative += 2);
 
-        if (positive < input.size() and negative < input.size()) {
+        if (positive < N and negative < N) {
             std::swap(input[positive], input[negative]);
         } else {
             break;

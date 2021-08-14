@@ -101,8 +101,9 @@ auto Reverse_Variable(std::string input) {
     static constexpr auto minus_one = std::numeric_limits<int>::min() /
                                       std::numeric_limits<int>::max();
 
-    for (std::string::size_type i = 0; i < input.size() / 2; ++i) {
-        std::swap(input[i], input[input.size() + (minus_one * i) + minus_one]);
+    const auto N = input.size();
+    for (std::string::size_type i = 0; i < N / 2; ++i) {
+        std::swap(input[i], input[N + (minus_one * i) + minus_one]);
     }
 
     return input;
@@ -110,8 +111,9 @@ auto Reverse_Variable(std::string input) {
 
 
 inline auto Reverse_BitSubtract(std::string input) {
-    for (std::string::size_type i = 0; i < input.size() / 2; ++i) {
-        std::swap(input[i], input[Subtract_Bits(input.size(), (i + 1))]);
+    const auto N = input.size();
+    for (std::string::size_type i = 0; i < N / 2; ++i) {
+        std::swap(input[i], input[Subtract_Bits(N, (i + 1))]);
     }
 
     return input;
@@ -135,8 +137,9 @@ void reverse(std::string &s, int left, int right) {
 }
 
 auto ReverseStringGroups(std::string s, const std::size_t k) {
-    for (std::size_t i = 0; i < s.size(); i += 2 * k) {
-        const auto right = std::min(i + k, s.size()) - 1;
+    const auto N = s.size();
+    for (std::size_t i = 0; i < N; i += 2 * k) {
+        const auto right = std::min(i + k, N) - 1;
         reverse(s, i, right);
     }
 

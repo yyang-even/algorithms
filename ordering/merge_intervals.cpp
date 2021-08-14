@@ -17,7 +17,8 @@ auto MergeIntervals(ArrayType intervals) {
     std::sort(intervals.begin(), intervals.end());
 
     ArrayType result = {intervals.front()};
-    for (std::size_t i = 1; i < intervals.size(); ++i) {
+    const auto N = intervals.size();
+    for (std::size_t i = 1; i < N; ++i) {
         if (intervals[i].first <= result.back().second) {
             if (intervals[i].second > result.back().second) {
                 result.back().second = intervals[i].second;
