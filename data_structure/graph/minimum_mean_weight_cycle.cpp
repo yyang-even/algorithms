@@ -78,4 +78,4 @@ const DirectedEdgeArrayType SAMPLE1 = {{0, 1, 1}, {0, 2, 10}, {1, 2, 3}, {2, 3, 
 
 THE_BENCHMARK(MinMeanWeightCycle, 4, SAMPLE1);
 
-SIMPLE_DOUBLE_TEST(MinMeanWeightCycle, TestSAMPLE1, 1.66667, 4, SAMPLE1);
+SIMPLE_DOUBLE_TEST(MinMeanWeightCycle, TestSAMPLE1, 5 / 3.0, 4, SAMPLE1);

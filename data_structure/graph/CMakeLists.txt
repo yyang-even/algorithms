@@ -16,6 +16,9 @@ compile_test(detect_cycle)
 compile_benchmark(euler_tour)
 compile_test(euler_tour)
 
+compile_benchmark(minimum_mean_weight_cycle)
+compile_test(minimum_mean_weight_cycle)
+
 compile_benchmark(number_of_connected_components)
 compile_test(number_of_connected_components)
 
