@@ -8,4 +8,7 @@ if (BASH_PROGRAM)
              ${CMAKE_CURRENT_SOURCE_DIR}/duplicate_references_tests.sh)
 
     add_test(format_tests ${BASH_PROGRAM} ${CMAKE_CURRENT_SOURCE_DIR}/format_tests.sh)
+
+    add_test(naming_convention_tests ${BASH_PROGRAM}
+             ${CMAKE_CURRENT_SOURCE_DIR}/naming_convention_tests.sh)
 endif (BASH_PROGRAM)
