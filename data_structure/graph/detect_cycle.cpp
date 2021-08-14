@@ -192,7 +192,8 @@ DetectCycle_Undirected_Degrees(const AdjacencyListGraph::RepresentationType &gra
     }
 
     ArrayType results;
-    for (std::size_t i = 0; i < visited_vertices.size(); ++i) {
+    const auto N = visited_vertices.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (not visited_vertices[i]) {
             results.push_back(i);
         }

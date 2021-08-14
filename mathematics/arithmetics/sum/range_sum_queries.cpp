@@ -154,7 +154,8 @@ auto RangeSumQueriesMutable_SegmentTree(const ArrayType &elements,
  */
 void update_BIT(ArrayType &bitree, ArrayType::size_type index, const int diff) {
     ++index;
-    while (index < bitree.size()) {
+    const auto N = bitree.size();
+    while (index < N) {
         bitree[index] += diff;
         index += ClearAllBitsExceptTheLastSetBit(index);
     }

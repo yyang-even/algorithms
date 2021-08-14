@@ -135,7 +135,8 @@ constexpr auto CountTrailingZeros_Bitset(const unsigned num) {
     std::bitset<BitsNumber<decltype(num)>> binary_num{num};
 
     unsigned count = 0;
-    for (std::size_t i = 0; i < binary_num.size(); ++i) {
+    const auto N = binary_num.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (binary_num[i] == 0) {
             ++count;
         } else {

@@ -71,7 +71,8 @@ auto ReadN_Multi(char *buffer, const std::size_t n,
                  const std::function<int(char *)> read4, std::string &prev_buffer) {
     std::size_t i = 0;
 
-    for (; i < n and i < prev_buffer.size(); ++i) {
+    const auto N = prev_buffer.size();
+    for (; i < n and i < N; ++i) {
         *(buffer++) = prev_buffer[i];
     }
     prev_buffer.erase(0, i);

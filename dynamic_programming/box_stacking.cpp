@@ -58,7 +58,8 @@ auto MaxStackHeight(const ArrayType &boxes) {
         max_stack_heights.push_back(a_box.height);
     }
 
-    for (std::size_t i = 1; i < rotated_boxes.size(); ++i) {
+    const auto N = rotated_boxes.size();
+    for (std::size_t i = 1; i < N; ++i) {
         for (std::size_t j = 0; j < i; ++j) {
             if (rotated_boxes[i].width < rotated_boxes[j].width and
                 rotated_boxes[i].depth < rotated_boxes[j].depth) {

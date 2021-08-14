@@ -39,10 +39,11 @@ using ArrayType = std::vector<float>;
  *              https://www.geeksforgeeks.org/how-to-sort-an-array-using-stl-in-c/
  */
 auto BucketSort(ArrayType elements) {
-    ArrayType buckets[elements.size()] = {};
+    const auto N = elements.size();
+    ArrayType buckets[N] = {};
 
     for (const auto elem : elements) {
-        const ArrayType::size_type index = elem * elements.size();
+        const ArrayType::size_type index = elem * N;
         buckets[index].push_back(std::move(elem));
     }
 

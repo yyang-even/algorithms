@@ -26,8 +26,9 @@ auto CircusTower(ArrayType people) {
         return lhs.first < rhs.first;
     });
 
-    std::vector LISs(people.size(), 1);
-    for (ArrayType::size_type i = 1; i < people.size(); ++i) {
+    const auto N = people.size();
+    std::vector LISs(N, 1);
+    for (ArrayType::size_type i = 1; i < N; ++i) {
         for (ArrayType::size_type j = 0; j < i; ++j) {
             if (people[i].second > people[j].second and LISs[i] <= LISs[j]) {
                 LISs[i] = LISs[j] + 1;

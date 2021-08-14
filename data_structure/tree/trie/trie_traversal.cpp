@@ -62,7 +62,8 @@ inline auto DisplayTrie(const ArrayType &keys) {
 void Display_BottomUp(const Trie::Node *node, std::string &results) {
     assert(node);
 
-    for (std::size_t i = 0; i < node->children.size(); ++i) {
+    const auto N = node->children.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (node->children[i]) {
             Display_BottomUp(node->children[i].get(), results);
             results.push_back(Trie::Node::ToChar(i));

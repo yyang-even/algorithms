@@ -40,7 +40,8 @@ auto CountTheDigitsInRange(const unsigned N, const unsigned d) {
     const auto str_N = std::to_string(N);
 
     auto count = 0;
-    for (std::size_t i = 0; i < str_N.size(); ++i) {
+    const auto SIZE = str_N.size();
+    for (std::size_t i = 0; i < SIZE; ++i) {
         count += Count2sInRange(N, i, d);
     }
 

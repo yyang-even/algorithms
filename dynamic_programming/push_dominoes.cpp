@@ -32,7 +32,8 @@ auto PushDominoes_TwoPointers(const std::string_view dominoes) {
     index_symbols.emplace_back(dominoes.size(), 'R');
 
     std::string result(dominoes);
-    for (std::size_t i = 0; i < index_symbols.size() - 1; ++i) {
+    const auto N = index_symbols.size();
+    for (std::size_t i = 0; i < N - 1; ++i) {
         const auto [start, start_symbol] = index_symbols[i];
         const auto [last, next_symbol] = index_symbols[i + 1];
         if (start_symbol == next_symbol) {

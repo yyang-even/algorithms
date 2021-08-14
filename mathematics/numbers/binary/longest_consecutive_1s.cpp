@@ -157,12 +157,13 @@ int checkIslandSize_Iterative(const MatrixType &grid,
 }
 
 int MakeLargeIsland_Naive(MatrixType grid) {
-    assert(grid.size() == grid.front().size());
+    const auto N = grid.size();
+    assert(N == grid.front().size());
 
     int result = 0;
     bool has_zero = false;
-    for (std::size_t i = 0; i < grid.size(); ++i) {
-        for (std::size_t j = 0; j < grid.size(); ++j) {
+    for (std::size_t i = 0; i < N; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
             if (grid[i][j] == 0) {
                 has_zero = true;
                 grid[i][j] = 1;
@@ -173,7 +174,7 @@ int MakeLargeIsland_Naive(MatrixType grid) {
         }
     }
 
-    return has_zero ? result : grid.size() * grid.size();
+    return has_zero ? result : N * N;
 }
 
 
@@ -214,13 +215,14 @@ int findTotalArea(const MatrixType &grid, const int row, const int column,
 }
 
 int MakeLargeIsland_UnionFind(MatrixType grid) {
-    assert(grid.size() == grid.front().size());
+    const auto N = grid.size();
+    assert(N == grid.front().size());
 
     std::unordered_map<int, int> areas;
     int island_index = 2;
     int result = 0;
-    for (std::size_t i = 0; i < grid.size(); ++i) {
-        for (std::size_t j = 0; j < grid.size(); ++j) {
+    for (std::size_t i = 0; i < N; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
             if (grid[i][j] == 1) {
                 ++island_index;
                 areas[island_index] = checkIslandSize_Recursive(grid, i, j, island_index);
@@ -229,8 +231,8 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
         }
     }
 
-    for (std::size_t i = 0; i < grid.size(); ++i) {
-        for (std::size_t j = 0; j < grid.size(); ++j) {
+    for (std::size_t i = 0; i < N; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
             if (grid[i][j] == 0) {
                 result = std::max(result, findTotalArea(grid, i, j, areas));
             }

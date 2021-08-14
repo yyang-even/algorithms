@@ -159,7 +159,9 @@ void merge(IndexValueArray &index_value_array,
 
     std::size_t first_i = 0, right_i = 0, k = start;
     int offset = 0;
-    while (first_i < left.size() and right_i < right.size()) {
+    const auto left_size = left.size();
+    const auto right_size = right.size();
+    while (first_i < left_size and right_i < right_size) {
         const auto [first_index, first_value] = left[first_i];
         const auto [right_index, right_value] = right[right_i];
         if (first_value <= right_value) {
@@ -171,12 +173,12 @@ void merge(IndexValueArray &index_value_array,
         }
     }
 
-    while (first_i < left.size()) {
+    while (first_i < left_size) {
         results[left[first_i].first] += offset;
         index_value_array[k++] = left[first_i++];
     }
 
-    while (right_i < right.size()) {
+    while (right_i < right_size) {
         index_value_array[k++] = right[right_i++];
     }
 }

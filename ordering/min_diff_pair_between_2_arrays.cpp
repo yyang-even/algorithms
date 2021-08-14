@@ -38,12 +38,13 @@ auto MinDiffPairsOfAnUnsortedArray(ArrayType elements) {
     std::sort(elements.begin(), elements.end());
 
     int min_diff = INT_MAX;
-    for (std::size_t i = 1; i < elements.size(); ++i) {
+    const auto N = elements.size();
+    for (std::size_t i = 1; i < N; ++i) {
         min_diff = std::min(min_diff, elements[i] - elements[i - 1]);
     }
 
     OutputType result;
-    for (std::size_t i = 1; i < elements.size(); ++i) {
+    for (std::size_t i = 1; i < N; ++i) {
         if (elements[i] - elements[i - 1] == min_diff) {
             result.emplace_back(elements[i - 1], elements[i]);
         }

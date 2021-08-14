@@ -365,7 +365,8 @@ auto StoneGame6(const ArrayType &alice_values, const ArrayType &bob_values) {
 
 auto StoneGame6_O1(ArrayType alice_values, const ArrayType &bob_values) {
     int diff = 0;
-    for (std::size_t i = 0; i < alice_values.size(); ++i) {
+    const auto N = alice_values.size();
+    for (std::size_t i = 0; i < N; ++i) {
         alice_values[i] += bob_values[i];
         diff -= bob_values[i];
     }
@@ -456,7 +457,8 @@ auto StoneGame7_DP(const ArrayType &stones) {
  * optimally.
  */
 auto StoneGame8_DP(ArrayType stones) {
-    for (std::size_t i = 1; i < stones.size(); ++i) {
+    const auto N = stones.size();
+    for (std::size_t i = 1; i < N; ++i) {
         stones[i] += stones[i - 1];
     }
 

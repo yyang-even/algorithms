@@ -34,7 +34,8 @@ auto RelativeRanks(const ArrayType &scores) {
     });
 
     OutputType result(scores.size(), "");
-    for (std::size_t i = 0; i < scores_with_index.size(); ++i) {
+    const auto N = scores_with_index.size();
+    for (std::size_t i = 0; i < N; ++i) {
         if (i == 0) {
             result[scores_with_index[i].second] = "Gold Medal";
         } else if (i == 1) {

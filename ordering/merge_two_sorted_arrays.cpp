@@ -42,26 +42,28 @@ inline constexpr ArrayType::size_type nextGap(const ArrayType::size_type gap) {
 }
 
 auto MergeTwoSortedArrays_InPlace(ArrayType L, ArrayType R) {
-    for (auto gap = nextGap(L.size() + R.size()); gap; gap = nextGap(gap)) {
+    const auto L_size = L.size();
+    const auto R_size = R.size();
+    for (auto gap = nextGap(L_size + R_size); gap; gap = nextGap(gap)) {
         ArrayType::size_type i = 0;
-        ArrayType::size_type j = gap > L.size() ? gap - L.size() : 0;
+        ArrayType::size_type j = gap > L_size ? gap - L_size : 0;
 
         // comparing elements in the first array.
-        for (auto i_plus_gap = i + gap; i_plus_gap < L.size(); ++i, ++i_plus_gap)
+        for (auto i_plus_gap = i + gap; i_plus_gap < L_size; ++i, ++i_plus_gap)
             if (L[i] > L[i_plus_gap]) {
                 std::swap(L[i], L[i_plus_gap]);
             }
 
         //comparing elements in both arrays.
-        for (; i < L.size() and j < R.size(); ++i, ++j)
+        for (; i < L_size and j < R_size; ++i, ++j)
             if (L[i] > R[j]) {
                 std::swap(L[i], R[j]);
             }
 
-        if (j < R.size()) {
+        if (j < R_size) {
             //comparing elements in the second array.
             j = 0;
-            for (auto j_plus_gap = j + gap; j_plus_gap < R.size(); ++j, ++j_plus_gap) {
+            for (auto j_plus_gap = j + gap; j_plus_gap < R_size; ++j, ++j_plus_gap) {
                 if (R[j] > R[j_plus_gap]) {
                     std::swap(R[j], R[j_plus_gap]);
                 }

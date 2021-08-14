@@ -87,7 +87,9 @@ auto LowestCommonAncestor_CommonPath(const BinaryTree::Node::PointerType root,
     BinaryTreeSearch_Preorder(root, y, &path_y);
 
     BinaryTree::ArrayType::size_type i = 0;
-    for (; i < path_x.size() and i < path_y.size(); ++i) {
+    const auto x_size = path_x.size();
+    const auto y_size = path_y.size();
+    for (; i < x_size and i < y_size; ++i) {
         if (path_x[i] != path_y[i]) {
             break;
         }

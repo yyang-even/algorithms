@@ -57,14 +57,15 @@ inline auto MergeSort(ArrayType values) {
  * 4, and so on.
  */
 auto MergeSort_Iterative(ArrayType values) {
+    const auto N = values.size();
     for (ArrayType::size_type current_size = 1;
-         current_size < values.size();
+         current_size < N;
          current_size *= 2) {
-        for (ArrayType::size_type i = 0; i < (values.size() - 1);) {
+        for (ArrayType::size_type i = 0; i < (N - 1);) {
             const auto begin = values.begin() + i;
             const auto mid = begin + current_size;
             i += current_size * 2;
-            const auto end = values.begin() + std::min(i, values.size());
+            const auto end = values.begin() + std::min(i, N);
             Merge(begin, mid, end);
         }
     }
@@ -167,11 +168,12 @@ auto MergeSort_SinglyList_Iterative(std::forward_list<int> values) {
             lists.emplace_back();
             lists.back().splice_after(lists.back().cbefore_begin(), values, values.cbefore_begin());
         }
-        for (std::size_t gap = 1; gap <= lists.size();) {
+        const auto N = lists.size();
+        for (std::size_t gap = 1; gap <= N;) {
             const auto step = gap * 2;
             std::size_t left_index = 0;
             for (auto right_index = left_index + gap;
-                 right_index < lists.size() and left_index < lists.size();
+                 right_index < N and left_index < N;
                  left_index += step, right_index += step) {
                 auto &left_list = lists[left_index];
                 auto &right_list = lists[right_index];

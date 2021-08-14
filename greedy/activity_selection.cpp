@@ -97,7 +97,8 @@ inline auto MaxLengthChainPairs(ArrayType activities) {
 auto MeetingRooms(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), finish_comparator);
 
-    for (std::size_t i = 1; i < activities.size(); ++i) {
+    const auto N = activities.size();
+    for (std::size_t i = 1; i < N; ++i) {
         if (activities[i - 1].second > activities[i].first) {
             return false;
         }
@@ -119,7 +120,8 @@ auto MinMeetingRooms_Heap(ArrayType activities) {
 
     std::priority_queue<unsigned, std::vector<unsigned>, std::greater<unsigned>> rooms;
     rooms.push(activities.front().second);
-    for (std::size_t i = 1; i < activities.size(); ++i) {
+    const auto N = activities.size();
+    for (std::size_t i = 1; i < N; ++i) {
         if (activities[i].first >= rooms.top()) {
             rooms.pop();
         }

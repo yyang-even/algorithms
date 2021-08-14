@@ -67,7 +67,8 @@ auto RemoveAdjacentKDuplicates_Stack_InPlace(std::string text, const int K) {
     int stack_top = 0;
     std::stack<int> tops;
 
-    for (std::size_t i = 0; i < text.size(); ++stack_top, ++i) {
+    const auto N = text.size();
+    for (std::size_t i = 0; i < N; ++stack_top, ++i) {
         text[stack_top] = text[i];
         if (stack_top == 0 or text[stack_top] != text[stack_top - 1]) {
             tops.push(stack_top);
