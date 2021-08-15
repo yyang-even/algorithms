@@ -55,6 +55,9 @@ compile_test(maximum_of_all_subarrays_of_size_k)
 compile_benchmark(max_and_min)
 compile_test(max_and_min)
 
+compile_benchmark(max_array_pair_sum)
+compile_test(max_array_pair_sum)
+
 compile_benchmark(max_or_min)
 compile_test(max_or_min)
 
