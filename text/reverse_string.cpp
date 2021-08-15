@@ -148,6 +148,32 @@ auto ReverseStringGroups(std::string s, const std::size_t k) {
 
 
 /**
+ * @reference   Reverse Words in a String III
+ *              https://leetcode.com/problems/reverse-words-in-a-string-iii/
+ *
+ * Given a string s, reverse the order of characters in each word within a sentence while
+ * still preserving whitespace and initial word order.
+ *  s does not contain any leading or trailing spaces.
+ *  There is at least one word in s.
+ *  All the words in s are separated by a single space.
+ */
+auto ReverseWords(std::string s) {
+    const auto N = s.size();
+    int left = 0;
+    for (std::size_t i = 0; i < N; ++i) {
+        if (s[i] == ' ') {
+            reverse(s, left, i - 1);
+            left = i + 1;
+        }
+    }
+
+    reverse(s, left, N - 1);
+
+    return s;
+}
+
+
+/**
  * @reference   Reverse Vowels of a String
  *              https://leetcode.com/problems/reverse-vowels-of-a-string/
  *
@@ -247,3 +273,10 @@ THE_BENCHMARK(ReverseVowels, "hello");
 
 SIMPLE_TEST(ReverseVowels, TestSAMPLE1, "holle", "hello");
 SIMPLE_TEST(ReverseVowels, TestSAMPLE2, "leotcede", "leetcode");
+
+
+THE_BENCHMARK(ReverseWords, "Let's take LeetCode contest");
+
+SIMPLE_TEST(ReverseWords, TestSAMPLE1, "s'teL ekat edoCteeL tsetnoc",
+            "Let's take LeetCode contest");
+SIMPLE_TEST(ReverseWords, TestSAMPLE2, "doG gniD", "God Ding");
