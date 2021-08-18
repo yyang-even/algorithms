@@ -65,11 +65,11 @@ private:
     }
 
     static constexpr SizeType left(const SizeType i) {
-        return (2 * i + 1);
+        return 2 * i + 1;
     }
 
     static constexpr SizeType right(const SizeType i) {
-        return (2 * i + 2);
+        return 2 * i + 2;
     }
 
     static constexpr SizeType indexOfFirstLeave(const SizeType n) {

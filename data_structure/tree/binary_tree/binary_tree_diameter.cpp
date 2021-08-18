@@ -62,6 +62,36 @@ inline auto Diameter_Height(const BinaryTree::Node::PointerType root) {
     return result;
 }
 
+
+/**
+ * @reference   Binary Tree Tilt
+ *              https://leetcode.com/problems/binary-tree-tilt/
+ *
+ * Given the root of a binary tree, return the sum of every tree node's tilt. The tilt
+ * of a tree node is the absolute difference between the sum of all left subtree node
+ * values and all right subtree node values. If a node does not have a left child, then
+ * the sum of the left subtree node values is treated as 0. The rule is similar if there
+ * the node does not have a right child.
+ */
+auto Tilt(const BinaryTree::Node::PointerType node, int &tilt) {
+    if (not node) {
+        return 0;
+    }
+
+    const auto left_sum = Tilt(node->left, tilt);
+    const auto right_sum = Tilt(node->right, tilt);
+
+    tilt += std::abs(left_sum - right_sum);
+
+    return left_sum + right_sum + node->value;
+}
+
+inline auto Tilt(const BinaryTree::Node::PointerType root) {
+    int result = 0;
+    Tilt(root, result);
+    return result;
+}
+
 }//namespace
 
 
@@ -76,3 +106,8 @@ SIMPLE_TEST(Diameter, TestSAMPLE1, 3, SAMPLE1);
 THE_BENCHMARK(Diameter_Height, SAMPLE1);
 
 SIMPLE_TEST(Diameter_Height, TestSAMPLE1, 3, SAMPLE1);
+
+
+THE_BENCHMARK(Tilt, SAMPLE1);
+
+SIMPLE_TEST(Tilt, TestSAMPLE1, 9, SAMPLE1);

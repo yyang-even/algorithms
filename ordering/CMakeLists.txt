@@ -100,6 +100,9 @@ compile_test(quick_sort)
 compile_benchmark(radix_sort)
 compile_test(radix_sort)
 
+compile_benchmark(range_minimum_query)
+compile_test(range_minimum_query)
+
 compile_benchmark(rank_transform)
 compile_test(rank_transform)
 

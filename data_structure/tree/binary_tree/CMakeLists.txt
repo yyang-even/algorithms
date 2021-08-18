@@ -32,6 +32,9 @@ compile_test(complete_binary_tree)
 compile_benchmark(count_binary_tree_leaves)
 compile_test(count_binary_tree_leaves)
 
+compile_benchmark(count_good_nodes)
+compile_test(count_good_nodes)
+
 compile_benchmark(full_binary_tree)
 compile_test(full_binary_tree)
 
