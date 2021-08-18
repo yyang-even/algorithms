@@ -61,6 +61,9 @@ compile_test(longest_palindrome)
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
+compile_benchmark(minimum_window_substring)
+compile_test(minimum_window_substring)
+
 compile_benchmark(missing_ranges)
 compile_test(missing_ranges)
 

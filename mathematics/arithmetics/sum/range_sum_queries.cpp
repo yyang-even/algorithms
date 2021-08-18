@@ -3,6 +3,7 @@
 #include "range_sum_queries.h"
 #include "prefix_sum_array.h"
 
+#include "data_structure/heap/segment_tree.h"
 #include "mathematics/numbers/binary/clear_all_bits_except_the_last_set_bit.h"
 
 
@@ -35,6 +36,12 @@ auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
 }
 
 
+/**
+ * @reference   Range sum query using Sparse Table
+ *              https://www.geeksforgeeks.org/range-sum-query-using-sparse-table/
+ */
+
+
 /** Range Sum Query - Mutable
  *
  * @reference   https://leetcode.com/problems/range-sum-query-mutable/
@@ -49,22 +56,6 @@ auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
  * range query problems like finding minimum, maximum, sum, greatest common divisor,
  * least common denominator in array in logarithmic time.
  */
-inline constexpr auto ST_LeftChild(const std::size_t i) {
-    return i * 2;
-}
-
-inline constexpr auto ST_RightChild(const std::size_t i) {
-    return ST_LeftChild(i) + 1;
-}
-
-inline constexpr auto ST_Parent(const std::size_t i) {
-    return i / 2;
-}
-
-inline constexpr auto ST_isLeftChild(const std::size_t i) {
-    return i % 2 == 0;
-}
-
 auto buildSegmentTree(const ArrayType &nums) {
     ArrayType segment_tree(nums.size() * 2, 0);
 
@@ -74,7 +65,7 @@ auto buildSegmentTree(const ArrayType &nums) {
         }
 
         for (int i = nums.size() - 1; i > 0; --i) {
-            segment_tree[i] = segment_tree[ST_LeftChild(i)] + segment_tree[ST_RightChild(i)];
+            segment_tree[i] = segment_tree[LeftChild(i)] + segment_tree[RightChild(i)];
         }
     }
 
@@ -88,14 +79,14 @@ auto sumRange_ST(const ArrayType &segment_tree, int left, int right) {
     right += size;
     int sum = 0;
     while (left <= right) {
-        if (not ST_isLeftChild(left)) {
+        if (not isLeftChild(left)) {
             sum += segment_tree[left++];
         }
-        if (ST_isLeftChild(right)) {
+        if (isLeftChild(right)) {
             sum += segment_tree[right--];
         }
-        left /= 2;
-        right /= 2;
+        left = Parent(left);
+        right = Parent(right);
     }
 
     return sum;
@@ -109,12 +100,12 @@ void update_ST(ArrayType &segment_tree, int index, const int val) {
     while (index > 0) {
         auto left = index;
         auto right = index;
-        if (ST_isLeftChild(index)) {
+        if (isLeftChild(index)) {
             ++right;
         } else {
             --left;
         }
-        const auto parent = ST_Parent(index);
+        const auto parent = Parent(index);
         segment_tree[parent] = segment_tree[left] + segment_tree[right];
         index = parent;
     }
@@ -215,6 +206,12 @@ RangeSumQueriesMutable_BIT(const ArrayType &elements,
 
     return results;
 }
+
+
+/**
+ * @reference   Sqrt (or Square Root) Decomposition Technique | Set 1 (Introduction)
+ *              https://www.geeksforgeeks.org/sqrt-square-root-decomposition-technique-set-1-introduction/
+ */
 
 }//namespace
 

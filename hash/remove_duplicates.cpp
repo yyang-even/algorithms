@@ -122,6 +122,34 @@ auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
  */
 
 
+/**
+ * @reference   Distribute Candies
+ *              https://leetcode.com/problems/distribute-candies/
+ *
+ * Alice has n candies, where the ith candy is of type candyType[i]. Alice noticed that
+ * she started to gain weight, so she visited a doctor. The doctor advised Alice to only
+ * eat n / 2 of the candies she has (n is always even). Alice likes her candies very
+ * much, and she wants to eat the maximum number of different types of candies while
+ * still following the doctor's advice. Given the integer array candyType of length n,
+ * return the maximum number of different types of candies she can eat if she only eats
+ * n / 2 of them.
+ * -10^5 <= candyType[i] <= 10^5
+ */
+auto DistributeCandies(const ArrayType &candies) {
+    int buckets[200001] = {};
+    std::size_t count = 0;
+    for (const auto x : candies) {
+        if (buckets[100000 + x]++ == 0) {
+            if (++count >= candies.size() / 2) {
+                break;
+            }
+        }
+    }
+
+    return count;
+}
+
+
 /** Remove duplicates from an unsorted linked list
  *
  * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
@@ -579,3 +607,15 @@ SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE3, EXPECTED_L3, SAMP
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE4, EXPECTED_L4, SAMPLE_L4);
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE5, EXPECTED_L5, SAMPLE_L5);
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE6, EXPECTED_L6, SAMPLE_L6);
+
+
+const ArrayType SAMPLE1C = {1, 1, 2, 2, 3, 3};
+const ArrayType SAMPLE2C = {1, 1, 2, 3};
+const ArrayType SAMPLE3C = {6, 6, 6, 6};
+
+
+THE_BENCHMARK(DistributeCandies, SAMPLE2C);
+
+SIMPLE_TEST(DistributeCandies, TestSAMPLE1, 3, SAMPLE1C);
+SIMPLE_TEST(DistributeCandies, TestSAMPLE2, 2, SAMPLE2C);
+SIMPLE_TEST(DistributeCandies, TestSAMPLE3, 1, SAMPLE3C);
