@@ -177,6 +177,12 @@ LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType 
  */
 
 
+/**
+ * @reference   Find LCA in Binary Tree using RMQ
+ *              https://www.geeksforgeeks.org/find-lca-in-binary-tree-using-rmq/
+ */
+
+
 template <typename LCA, typename... Args>
 inline constexpr auto
 TestLowestCommonAncestor(const LCA lowest_common_ancestor,

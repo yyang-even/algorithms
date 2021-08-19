@@ -8,6 +8,16 @@ namespace {
 using ArrayType = std::vector<int>;
 using RangeType = std::pair<ArrayType::size_type, ArrayType::size_type>;
 using RangeArray = std::vector<RangeType>;
+using UpdateType = std::tuple<std::size_t, std::size_t, int>;
+using UpdateArray = std::vector<UpdateType>;
+
+void update(ArrayType &elements, const std::size_t left, const std::size_t right,
+            const int increment) {
+    elements[left] += increment;
+    if (right + 1 < elements.size()) {
+        elements[right + 1] -= increment;
+    }
+}
 
 /**
  * @reference   Constant time range add operation on an array
@@ -22,10 +32,28 @@ auto RangesOfAdditions(const ArrayType::size_type size, const ArrayType::value_t
     ArrayType elements(size, 0);
 
     for (const auto [left, right] : ranges) {
-        elements[left] += d;
-        if (right + 1 < size) {
-            elements[right + 1] -= d;
-        }
+        update(elements, left, right, d);
+    }
+
+    return PrefixSumArray(std::move(elements));
+}
+
+
+/**
+ * @reference   Range Addition
+ *              https://xiaoguan.gitbooks.io/leetcode/content/LeetCode/370-range-addition-medium.html
+ *
+ * Assume you have an array of length n initialized with all 0's and are given k update
+ * operations. Each operation is represented as a triplet: [startIndex, endIndex, inc]
+ * which increments each element of subarray A[startIndex ... endIndex] (startIndex and
+ * endIndex inclusive) with inc. Return the modified array after all k operations were
+ * executed.
+ */
+auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
+    ArrayType elements(N, 0);
+
+    for (const auto [left, right, inc] : updates) {
+        update(elements, left, right, inc);
     }
 
     return PrefixSumArray(std::move(elements));
@@ -84,6 +112,26 @@ inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
     return *std::max_element(prefix_sums.cbegin(), prefix_sums.cend());
 }
 
+
+/**
+ * @reference   Range Addition II
+ *              https://leetcode.com/problems/range-addition-ii/
+ *
+ * You are given an m x n matrix M initialized with all 0's and an array of operations
+ * ops, where ops[i] = [ai, bi] means M[x][y] should be incremented by one for all
+ * 0 <= x < ai and 0 <= y < bi. Count and return the number of maximum integers in the
+ * matrix after performing all the operations.
+ */
+auto
+CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &operations) {
+    for (const auto [i, j] : operations) {
+        m = std::min(m, i);
+        n = std::min(n, j);
+    }
+
+    return m * n;
+}
+
 }//namespace
 
 
@@ -123,3 +171,22 @@ SIMPLE_TEST(RangesOfAdditions, TestSAMPLE4, EXPECTED4, 6, 100, SAMPLE_RANGES4);
 THE_BENCHMARK(MaxAfterRangesOfAdditions, 5, SAMPLE_RANGES5);
 
 SIMPLE_TEST(MaxAfterRangesOfAdditions, TestSAMPLE5, 300, 5, SAMPLE_RANGES5);
+
+
+const UpdateArray SAMPLE1U = {{1, 3, 2}, {2, 4, 3}, {0, 2, -2}};
+const ArrayType EXPECTED1U = {-2, 0, 3, 5, 3};
+
+
+THE_BENCHMARK(RangeAddition, 5, SAMPLE1U);
+
+SIMPLE_TEST(RangeAddition, TestSAMPLE1, EXPECTED1U, 5, SAMPLE1U);
+
+
+const RangeArray SAMPLE1o = {{2, 2}, {3, 3}};
+const RangeArray SAMPLE2o = {};
+
+
+THE_BENCHMARK(CountMaxAfterRangeAddition, 3, 3, SAMPLE1o);
+
+SIMPLE_TEST(CountMaxAfterRangeAddition, TestSAMPLE1, 4, 3, 3, SAMPLE1o);
+SIMPLE_TEST(CountMaxAfterRangeAddition, TestSAMPLE2, 9, 3, 3, SAMPLE2o);
