@@ -10,6 +10,9 @@ compile_test(assign_cookies)
 compile_benchmark(candy)
 compile_test(candy)
 
+compile_benchmark(can_place_flowers)
+compile_test(can_place_flowers)
+
 compile_benchmark(huffman_codes)
 compile_test(huffman_codes)
 
