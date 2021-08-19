@@ -110,6 +110,17 @@ auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements,
     return result;
 }
 
+
+/**
+ * @reference   Maximum of all subarrays of size K using Segment Tree
+ *              https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-segment-tree/
+ *
+ * Given an array arr[] and an integer K, the task is to find the maximum for each and
+ * every contiguous subarray of size K.
+ *
+ * The idea is to use the Segment tree to answer the maximum of all subarrays of size K.
+ */
+
 }//namespace
 
 
