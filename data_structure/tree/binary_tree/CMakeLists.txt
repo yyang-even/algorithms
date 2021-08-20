@@ -59,6 +59,9 @@ compile_test(k_sum_paths)
 compile_benchmark(max_product_of_splitted_binary_tree)
 compile_test(max_product_of_splitted_binary_tree)
 
+compile_benchmark(merge_two_binary_trees)
+compile_test(merge_two_binary_trees)
+
 compile_benchmark(min_depth)
 compile_test(min_depth)
 
