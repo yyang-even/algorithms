@@ -64,6 +64,9 @@ compile_test(max_array_pair_sum)
 compile_benchmark(max_or_min)
 compile_test(max_or_min)
 
+compile_benchmark(max_product_of_three_numbers)
+compile_test(max_product_of_three_numbers)
+
 compile_benchmark(median)
 compile_test(median)
 
