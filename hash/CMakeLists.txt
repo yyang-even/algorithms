@@ -69,3 +69,6 @@ compile_test(remove_duplicates)
 
 compile_benchmark(top_k_most_frequent_numbers)
 compile_test(top_k_most_frequent_numbers)
+
+compile_benchmark(valid_sudoku)
+compile_test(valid_sudoku)
