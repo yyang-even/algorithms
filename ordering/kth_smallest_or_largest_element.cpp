@@ -153,6 +153,7 @@ inline auto KthSmallest_BinarySearch(const ArrayType &elements,
     return KthSmallest_BinarySearch(*min, *max, elements, K + 1);
 }
 
+
 /**
  * @reference   Third Maximum Number
  *              https://leetcode.com/problems/third-maximum-number/

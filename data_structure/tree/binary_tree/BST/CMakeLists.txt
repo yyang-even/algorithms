@@ -34,6 +34,9 @@ compile_test(flatten_BST)
 compile_benchmark(is_BST)
 compile_test(is_BST)
 
+compile_benchmark(kth_smallest_element_BST)
+compile_test(kth_smallest_element_BST)
+
 compile_benchmark(lowest_common_ancestor)
 compile_test(lowest_common_ancestor)
 
