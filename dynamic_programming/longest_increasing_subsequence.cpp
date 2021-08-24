@@ -149,6 +149,31 @@ auto OneLongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
     return one_lis;
 }
 
+
+/**
+ * @reference   Longest Continuous Increasing Subsequence
+ *              https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+ *
+ * Given an unsorted array of integers nums, return the length of the longest continuous
+ * increasing subsequence (i.e. subarray). The subsequence must be strictly increasing.
+ * A continuous increasing subsequence is defined by two indices l and r (l < r) such
+ * that it is [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] and for each l <= i < r,
+ * nums[i] < nums[i + 1].
+ */
+auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
+    int longest = 1;
+    int count = 1;
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        if (nums[i - 1] < nums[i]) {
+            longest = std::max(longest, ++count);
+        } else {
+            count = 1;
+        }
+    }
+
+    return longest;
+}
+
 }//namespace
 
 
@@ -203,3 +228,13 @@ SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE1, EXPECTED1, SAMPL
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE3, {2}, SAMPLE3);
 SIMPLE_TEST(OneLongestIncreasingSubsequence_NLogN, TestSAMPLE4, EXPECTED4, SAMPLE4);
+
+
+const ArrayType SAMPLE5 = {1, 3, 5, 4, 7};
+const ArrayType SAMPLE6 = {2, 2, 2, 2, 2};
+
+
+THE_BENCHMARK(LongestContinuousIncreasingSubsequence, SAMPLE5);
+
+SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE5, 3, SAMPLE5);
+SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE6, 1, SAMPLE6);

@@ -47,3 +47,14 @@ Contains(const Rectangle &a_square, const Point &a_point) {
 static inline constexpr auto isSquare(const Square &s) {
     return Equal((s.right - s.left), (s.top - s.bottom));
 }
+
+
+static inline constexpr auto
+Area(const double left, const double top,
+     const double right, const double bottom) {
+    return (top - bottom) * (right - left);
+}
+
+static inline constexpr auto Area(const Rectangle &r) {
+    return (r.top - r.bottom) * (r.right - r.left);
+}

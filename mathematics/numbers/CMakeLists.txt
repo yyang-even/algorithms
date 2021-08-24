@@ -26,6 +26,7 @@ compile_benchmark(rotate_for_a_max)
 compile_test(rotate_for_a_max)
 
 add_subdirectory(binary)
+add_subdirectory(complex)
 add_subdirectory(fibonacci)
 add_subdirectory(gcd)
 add_subdirectory(prime)

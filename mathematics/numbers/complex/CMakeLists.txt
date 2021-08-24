@@ -1,0 +1,2 @@
+compile_benchmark(complex_multiplication)
+compile_test(complex_multiplication)

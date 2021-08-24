@@ -16,6 +16,9 @@ namespace {
  * pattern in its bits representation. For example- 5 has an alternate pattern i.e. 101.
  * Print “Yes” if it has an alternate pattern otherwise "No". Here alternate pattern
  * can be like 0101 or 1010.
+ *
+ * @reference   Binary Number with Alternating Bits
+ *              https://leetcode.com/problems/binary-number-with-alternating-bits/
  */
 constexpr auto CheckForBitsAlternatePattern_Simple(unsigned num) {
     assert(num);
@@ -63,6 +66,7 @@ SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample3, true, 10);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample4, true, 5);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestLOWER, true, LOWER);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestUPPER, false, UPPER);
+SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample5, false, 4);
 
 MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple, CheckForBitsAlternatePattern,
                    LOWER, UPPER);
