@@ -16,6 +16,9 @@ compile_test(convert_to_int_array)
 compile_benchmark(count_anagrams)
 compile_test(count_anagrams)
 
+compile_benchmark(count_binary_substrings)
+compile_test(count_binary_substrings)
+
 compile_benchmark(count_chars_at_same_position_as_in_alphabet)
 compile_test(count_chars_at_same_position_as_in_alphabet)
 
