@@ -7,6 +7,9 @@ compile_test(largest_sum_contiguous_subarray)
 compile_benchmark(max_sum_of_subarray_of_size_k)
 compile_test(max_sum_of_subarray_of_size_k)
 
+compile_benchmark(pivot_index)
+compile_test(pivot_index)
+
 compile_benchmark(prefix_sum_array)
 compile_test(prefix_sum_array)
 
