@@ -114,6 +114,42 @@ auto AllPerfectSquares(const unsigned a, const unsigned b) {
     return results;
 }
 
+
+/**
+ * @reference   Sum of Square Numbers
+ *              https://leetcode.com/problems/sum-of-square-numbers/
+ *
+ * Given a non-negative integer c, decide whether there're two integers a and b such that
+ * a^2 + b^2 = c.
+ */
+inline constexpr auto hasSquareSum(const int c) {
+    for (long i = 0; i * i <= c; ++i) {
+        if (IsPerfectSquare(c - i * i)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+inline constexpr auto hasSquareSum_Fermat(int c) {
+    for (int i = 2; i * i <= c; ++i) {
+        int count = 0;
+        if (c % i == 0) {
+            while (c % i == 0) {
+                ++count;
+                c /= i;
+            }
+            if (i % 4 == 3 and count % 2 != 0) {
+                return false;
+            }
+        }
+    }
+
+    return c % 4 != 3;
+}
+
 }//namespace
 
 
@@ -162,3 +198,21 @@ SIMPLE_TEST(AllPerfectSquares, TestSAMPLE1, EXPECTED1, 1, 100);
 SIMPLE_TEST(AllPerfectSquares, TestSAMPLE2, EXPECTED2, 3, 8);
 SIMPLE_TEST(AllPerfectSquares, TestSAMPLE3, EXPECTED3, 9, 25);
 SIMPLE_TEST(AllPerfectSquares, TestSAMPLE4, EXPECTED4, 2, 24);
+
+
+THE_BENCHMARK(hasSquareSum, 100);
+
+SIMPLE_TEST(hasSquareSum, TestSAMPLE1, true, 5);
+SIMPLE_TEST(hasSquareSum, TestSAMPLE2, false, 3);
+SIMPLE_TEST(hasSquareSum, TestSAMPLE3, true, 4);
+SIMPLE_TEST(hasSquareSum, TestSAMPLE4, true, 2);
+SIMPLE_TEST(hasSquareSum, TestSAMPLE5, true, 1);
+
+
+THE_BENCHMARK(hasSquareSum_Fermat, 100);
+
+SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE1, true, 5);
+SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE2, false, 3);
+SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE3, true, 4);
+SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE4, true, 2);
+SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE5, true, 1);

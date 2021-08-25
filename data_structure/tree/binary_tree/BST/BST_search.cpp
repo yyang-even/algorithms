@@ -11,6 +11,12 @@ namespace {
  * @reference   https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 12.2.
+ * @reference   Search in a Binary Search Tree
+ *              https://leetcode.com/problems/search-in-a-binary-search-tree/
+ *
+ * You are given the root of a binary search tree (BST) and an integer val. Find the node
+ * in the BST that the node's value equals val and return the subtree rooted with that
+ * node. If such a node does not exist, return null.
  */
 auto BSTSearch_Recursive(const BinaryTree::Node::PointerType node,
                          const BinaryTree::Node::ValueType x) {

@@ -153,6 +153,78 @@ public:
     }
 };
 
+
+/**
+ * @reference   Tracking current Maximum Element in a Stack
+ *              https://www.geeksforgeeks.org/tracking-current-maximum-element-in-a-stack/
+ * @reference   Find maximum in a stack in O(1) time and O(1) extra space
+ *              https://www.geeksforgeeks.org/find-maximum-in-a-stack-in-o1-time-and-o1-extra-space/
+ * @reference   Find maximum in stack in O(1) without using additional stack
+ *              https://www.geeksforgeeks.org/find-maximum-in-stack-in-o1-without-using-additional-stack/
+ */
+
+
+/**
+ * @reference   Max Stack
+ *              https://aaronice.gitbook.io/lintcode/stack/max-stack
+ *
+ * Design a max stack that supports push, pop, top, peekMax and popMax.
+ *  push(x) -- Push element x onto stack.
+ *  pop() -- Remove the element on top of the stack and return it.
+ *  top() -- Get the element on the top.
+ *  peekMax() -- Retrieve the maximum element in the stack.
+ *  popMax() -- Retrieve the maximum element in the stack, and remove it. If you find
+ *      more than one maximum elements, only remove the top-most one.
+ */
+class MaxStack {
+    using StackType = std::list<std::pair<int, int>>;
+    StackType value_max_stack;
+    std::unordered_map<int, std::vector<StackType::const_iterator>> hash;
+
+public:
+    auto peekMax() const {
+        return value_max_stack.back().second;
+    }
+
+    void push(const int x) {
+        int max = x;
+        if (not value_max_stack.empty() and peekMax() > x) {
+            max = peekMax();
+        }
+
+        value_max_stack.emplace_back(x, max);
+        hash[x].push_back(std::prev(value_max_stack.cend()));
+    }
+
+    auto top() const {
+        return value_max_stack.back().first;
+    }
+
+    auto pop() {
+        const auto x = top();
+        value_max_stack.pop_back();
+
+        hash[x].pop_back();
+        if (hash[x].empty()) {
+            hash.erase(x);
+        }
+
+        return x;
+    }
+
+    auto popMax() {
+        const auto max = peekMax();
+        value_max_stack.erase(hash[max].back());
+        hash[max].pop_back();
+        if (hash[max].empty()) {
+            hash.erase(max);
+        }
+
+        return max;
+    }
+};
+
+
 namespace {
 
 using ArrayType = std::vector<std::pair<MinStack::ValueType, MinStack::ValueType>>;
@@ -181,6 +253,27 @@ constexpr auto testMinStack(MinStackType &stack) {
     return results;
 }
 
+
+auto testMaxStack() {
+    MaxStack stack;
+
+    std::vector<int> result;
+
+    stack.push(5);
+    stack.push(1);
+    stack.push(5);
+    result.push_back(stack.top());
+    stack.push(4);
+    result.push_back(stack.popMax());
+    result.push_back(stack.pop());
+    result.push_back(stack.top());
+    result.push_back(stack.peekMax());
+    result.push_back(stack.pop());
+    result.push_back(stack.top());
+
+    return result;
+}
+
 }//namespace
 
 
@@ -204,3 +297,9 @@ SimpleMinStackTest(MinStack_SpaceOptimized);
 
 
 SimpleMinStackTest(MinStack_O1Space);
+
+
+const std::vector EXPECTED1Max = {5, 5, 4, 1, 5, 1, 5};
+
+
+SIMPLE_TEST0(testMaxStack, TestSample1, EXPECTED1Max);
