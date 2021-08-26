@@ -19,22 +19,38 @@ namespace {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.7.
+ *
+ * @reference   Flood Fill
+ *              https://leetcode.com/problems/flood-fill/
+ *
+ * An image is represented by an m x n integer grid image where image[i][j] represents
+ * the pixel value of the image. You are also given three integers sr, sc, and newColor.
+ * You should perform a flood fill on the image starting from the pixel image[sr][sc].
+ * To perform a flood fill, consider the starting pixel, plus any pixels connected
+ * 4-directionally to the starting pixel of the same color as the starting pixel, plus
+ * any pixels connected 4-directionally to those pixels (also with the same color), and
+ * so on. Replace the color of all of the aforementioned pixels with newColor. Return
+ * the modified image after performing the flood fill.
  */
-void FloodFill_Recursive(MatrixType &screen, const int x, const int y,
+void FloodFill_Recursive(MatrixType &screen, const std::size_t x, const std::size_t y,
                          const int new_color, const int original_color) {
     assert(original_color != new_color);
-
-    if (not ValidPoint(screen, x, y)) {
-        return;
-    }
 
     if (auto &current_color = screen[x][y]; current_color == original_color) {
         current_color = new_color;
 
-        FloodFill_Recursive(screen, x + 1, y, new_color, original_color);
-        FloodFill_Recursive(screen, x - 1, y, new_color, original_color);
-        FloodFill_Recursive(screen, x, y + 1, new_color, original_color);
-        FloodFill_Recursive(screen, x, y - 1, new_color, original_color);
+        if (x + 1 < screen.size()) {
+            FloodFill_Recursive(screen, x + 1, y, new_color, original_color);
+        }
+        if (x > 0) {
+            FloodFill_Recursive(screen, x - 1, y, new_color, original_color);
+        }
+        if (y + 1 < screen.front().size()) {
+            FloodFill_Recursive(screen, x, y + 1, new_color, original_color);
+        }
+        if (y > 0) {
+            FloodFill_Recursive(screen, x, y - 1, new_color, original_color);
+        }
     }
 }
 
@@ -60,11 +76,10 @@ auto FloodFill_BFS(MatrixType screen, const unsigned start_x, const unsigned sta
         return screen;
     }
 
-    auto visited_pixels =
-        std::vector(screen.size(), std::vector<bool>(screen.front().size(), false));
+    const int M = screen.size();
+    const int N = screen.front().size();
     std::queue<std::pair<int, int>> points_queue;
     points_queue.push({start_x, start_y});
-    visited_pixels[start_x][start_y] = 1;
 
     while (not points_queue.empty()) {
         const auto [x, y] = points_queue.front();
@@ -72,20 +87,18 @@ auto FloodFill_BFS(MatrixType screen, const unsigned start_x, const unsigned sta
 
         screen[x][y] = new_color;
 
-        const auto visitPixel =
-            [&screen = std::as_const(screen), &visited_pixels, &points_queue, original_color]
-        (const int x, const int y) {
-            if (ValidPoint(screen, x, y) and not visited_pixels[x][y] and
-                screen[x][y] == original_color) {
-                points_queue.push({x, y});
-                visited_pixels[x][y] = true;
-            }
-        };
-
-        visitPixel(x + 1, y);
-        visitPixel(x - 1, y);
-        visitPixel(x, y + 1);
-        visitPixel(x, y - 1);
+        if (x > 0 and screen[x - 1][y] == original_color) {
+            points_queue.emplace(x - 1, y);
+        }
+        if (x + 1 < M and screen[x + 1][y] == original_color) {
+            points_queue.emplace(x + 1, y);
+        }
+        if (y > 0 and screen[x][y - 1] == original_color) {
+            points_queue.emplace(x, y - 1);
+        }
+        if (y + 1 < N and screen[x][y + 1] == original_color) {
+            points_queue.emplace(x, y + 1);
+        }
     }
 
     return screen;
