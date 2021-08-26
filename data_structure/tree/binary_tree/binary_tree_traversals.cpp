@@ -2,7 +2,6 @@
 
 #include "binary_tree_traversals.h"
 #include "binary_tree_height.h"
-#include "compare_binary_trees.h"
 
 
 namespace {
@@ -32,63 +31,6 @@ auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
     outputs.push_back(node->value);
     PreorderTraversal_Recursive(node->left, outputs);
     PreorderTraversal_Recursive(node->right, outputs);
-}
-
-
-/**
- * @reference   Construct String from Binary Tree
- *              https://leetcode.com/problems/construct-string-from-binary-tree/
- *
- * Given the root of a binary tree, construct a string consists of parenthesis and
- * integers from a binary tree with the preorder traversing way, and return it. Omit
- * all the empty parenthesis pairs that do not affect the one-to-one mapping relationship
- * between the string and the original binary tree.
- */
-
-
-/**
- * @reference   Construct Binary Tree from String with bracket representation
- *              https://www.geeksforgeeks.org/construct-binary-tree-string-bracket-representation/
- *
- * @reference   Construct Binary Tree from String
- *              https://evelynn.gitbooks.io/amazon-interview/content/binary-tree/construct-binary-tree-from-string.html
- *
- * You need to construct a binary tree from a string consisting of parenthesis and
- * integers. The whole input represents a binary tree. It contains an integer followed
- * by zero, one or two pairs of parenthesis. The integer represents the root's value and
- * a pair of parenthesis contains a child binary tree with the same structure. You always
- * start to construct the left child node of the parent first if it exists.
- */
-auto BinaryTreeFromString(const std::string_view str, std::size_t &i) {
-    if (i == str.size() or str[i] == ')') {
-        return BinaryTree::Node::PointerType{};
-    }
-
-    int value = 0;
-    while (i < str.size() and std::isdigit(str[i])) {
-        value = value * 10 + str[i++] - '0';
-    }
-
-    const auto node = std::make_shared<BinaryTree::Node>(value);
-
-    if (i < str.size() and str[i] == '(') {
-        ++i;
-        node->left = BinaryTreeFromString(str, i);
-        ++i;
-
-        if (i < str.size() and str[i] == '(') {
-            ++i;
-            node->right = BinaryTreeFromString(str, i);
-            ++i;
-        }
-    }
-
-    return node;
-}
-
-inline auto BinaryTreeFromString(const std::string_view str) {
-    std::size_t i = 0;
-    return BinaryTreeFromString(str, i);
 }
 
 
@@ -556,33 +498,3 @@ BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive,
 BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative,
                         EXPECTED_REVERSE_LEVELORDER);
 #endif
-
-
-const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
-
-/**
- *     1
- *    / \
- *   2   3
- *    \
- *     4
- */
-static inline auto MakeTheSample2() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetRightChild(left_child, 4);
-
-    return binary_tree;
-}
-
-const auto SAMPLE2 = MakeTheSample2().GetRoot();
-
-
-THE_BENCHMARK(BinaryTreeFromString, "1(2()(4))(3)");
-
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1,
-            BinaryTreeFromString("1(2(4)(5))(3)"));
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2,
-            BinaryTreeFromString("1(2()(4))(3)"));
