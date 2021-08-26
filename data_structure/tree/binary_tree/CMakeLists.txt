@@ -76,3 +76,6 @@ compile_test(single_order_to_binary_tree)
 
 compile_benchmark(sum_of_left_leaves)
 compile_test(sum_of_left_leaves)
+
+compile_benchmark(two_order_to_binary_tree)
+compile_test(two_order_to_binary_tree)
