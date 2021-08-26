@@ -25,6 +25,9 @@ compile_test(reverse_digits)
 compile_benchmark(rotate_for_a_max)
 compile_test(rotate_for_a_max)
 
+compile_benchmark(self-dividing_numbers)
+compile_test(self-dividing_numbers)
+
 add_subdirectory(binary)
 add_subdirectory(complex)
 add_subdirectory(fibonacci)
