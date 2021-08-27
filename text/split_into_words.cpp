@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "split_into_words.h"
+
 
 namespace {
 
@@ -47,18 +49,6 @@ auto SplitIntoWords_strtok(std::string sentence) {
 }
 
 
-auto SplitIntoWords_StringStream(const std::string &sentence) {
-    std::stringstream ss(sentence);
-
-    ArrayType outputs;
-    for (std::string word; ss >> word;) {
-        outputs.push_back(std::move(word));
-    }
-
-    return outputs;
-}
-
-
 /**
  * @reference   Length of Last Word
  *              https://leetcode.com/problems/length-of-last-word/
@@ -69,6 +59,8 @@ auto SplitIntoWords_StringStream(const std::string &sentence) {
  */
 
 }//namespace
+
+constexpr auto SplitIntoWords_SS = SplitIntoWords_StringStream<ArrayType>;
 
 
 const ArrayType EXPECTED1 = {"One", "two", "three", "four", "five"};
@@ -92,10 +84,9 @@ SIMPLE_TEST(SplitIntoWords_strtok, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
 SIMPLE_TEST(SplitIntoWords_strtok, TestSAMPLE3, EXPECTED3, "a computer science portal");
 
 
-THE_BENCHMARK(SplitIntoWords_StringStream, "One two         three\n    four\tfive  ");
+THE_BENCHMARK(SplitIntoWords_SS, "One two         three\n    four\tfive  ");
 
-SIMPLE_TEST(SplitIntoWords_StringStream, TestSAMPLE1, EXPECTED1,
+SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE1, EXPECTED1,
             "One two         three\n    four\tfive  ");
-SIMPLE_TEST(SplitIntoWords_StringStream, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
-SIMPLE_TEST(SplitIntoWords_StringStream, TestSAMPLE3, EXPECTED3,
-            "a computer science portal");
+SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
+SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE3, EXPECTED3, "a computer science portal");

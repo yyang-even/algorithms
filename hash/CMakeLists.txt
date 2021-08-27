@@ -67,6 +67,9 @@ compile_test(rearrange_array_arr_arr_i)
 compile_benchmark(remove_duplicates)
 compile_test(remove_duplicates)
 
+compile_benchmark(sentence_similarity)
+compile_test(sentence_similarity)
+
 compile_benchmark(top_k_most_frequent_numbers)
 compile_test(top_k_most_frequent_numbers)
 
