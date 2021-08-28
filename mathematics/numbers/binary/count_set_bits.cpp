@@ -177,6 +177,30 @@ AreNumberAndItsComplementAnagram(const unsigned long long number) {
     return CountSetBits_BrianKernighan(number) == BitsNumber<decltype(number)> / 2;
 }
 
+
+/**
+ * @reference   Prime Number of Set Bits in Binary Representation
+ *              https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
+ *
+ * Given two integers left and right, return the count of numbers in the inclusive range
+ * [left, right] having a prime number of set bits in their binary representation. Recall
+ * that the number of set bits an integer has is the number of 1's present when written
+ * in binary.
+ */
+auto CountPrimeSetBits(const unsigned left, const unsigned right) {
+    static const std::unordered_set<unsigned> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
+
+    int result = 0;
+    for (unsigned i = left; i <= right; ++i) {
+        const auto count = CountSetBits_BrianKernighan(i);
+        if (primes.find(count) != primes.cend()) {
+            ++result;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -264,3 +288,9 @@ THE_BENCHMARK(AreNumberAndItsComplementAnagram, 4294967295);
 
 SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE1, true, 4294967295);
 SIMPLE_TEST(AreNumberAndItsComplementAnagram, TestSAMPLE2, false, 4);
+
+
+THE_BENCHMARK(CountPrimeSetBits, 6, 10);
+
+SIMPLE_TEST(CountPrimeSetBits, TestSAMPLE1, 4, 6, 10);
+SIMPLE_TEST(CountPrimeSetBits, TestSAMPLE2, 5, 10, 15);

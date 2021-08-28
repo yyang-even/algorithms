@@ -28,8 +28,11 @@ using ArrayType = std::vector<std::string_view>;
  */
 constexpr auto
 isSubsequence(const std::string_view sub, const std::string_view text) {
-    assert(sub.size() <= text.size());
     assert(not sub.empty());
+
+    if (sub.size() > text.size()) {
+        return false;
+    }
 
     std::size_t i = 0;
     for (const auto c : text) {
@@ -76,8 +79,9 @@ LongestUncommonSubsequence(const std::string_view one, const std::string_view an
  * obtained after deleting any number of characters from s. For example, "abc" is a
  * subsequence of "aebdc" because you can delete the underlined characters in "aebdc" to
  * get "abc". Other subsequences of "aebdc" include "aebdc", "aeb", and "" (empty string).
+ * 1 <= strs[i].length <= 10
  */
-int LongestUncommonSubsequenceArray(ArrayType strs) {
+int LongestUncommonSubsequenceArray_Sort(ArrayType strs) {
     std::sort(strs.begin(), strs.end(),
     [](const auto lhs, const auto rhs) {
         return lhs.size() > rhs.size();
@@ -97,6 +101,24 @@ int LongestUncommonSubsequenceArray(ArrayType strs) {
     }
 
     return -1;
+}
+
+
+int LongestUncommonSubsequenceArray(const ArrayType &strs) {
+    std::size_t result = 0;
+    for (std::size_t i = 0; i < strs.size(); ++i) {
+        std::size_t j = 0;
+        for (; j < strs.size(); ++j) {
+            if (i != j and isSubsequence(strs[i], strs[j])) {
+                break;
+            }
+        }
+        if (j == strs.size()) {
+            result = std::max(result, strs[i].size());
+        }
+    }
+
+    return result ? result : -1;
 }
 
 }//namespace
@@ -119,6 +141,13 @@ SIMPLE_TEST(LongestUncommonSubsequence, TestSAMPLE3, 3, "aa", "aaa");
 const ArrayType SAMPLE1 = {"aba", "cdc", "eae"};
 const ArrayType SAMPLE2 = {"aaa", "aaa", "aa"};
 const ArrayType SAMPLE3 = {"aabbcc", "aabbcc", "cb"};
+
+
+THE_BENCHMARK(LongestUncommonSubsequenceArray_Sort, SAMPLE1);
+
+SIMPLE_TEST(LongestUncommonSubsequenceArray_Sort, TestSAMPLE1, 3, SAMPLE1);
+SIMPLE_TEST(LongestUncommonSubsequenceArray_Sort, TestSAMPLE2, -1, SAMPLE2);
+SIMPLE_TEST(LongestUncommonSubsequenceArray_Sort, TestSAMPLE3, 2, SAMPLE3);
 
 
 THE_BENCHMARK(LongestUncommonSubsequenceArray, SAMPLE1);

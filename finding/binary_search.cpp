@@ -377,6 +377,35 @@ UpperBound_STL(const ArrayType &elements, const ArrayType::value_type x) {
 
 
 /**
+ * @reference   Find Smallest Letter Greater Than Target
+ *              https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+ *
+ * Given a characters array letters that is sorted in non-decreasing order and a
+ * character target, return the smallest character in the array that is larger than
+ * target. Note that the letters wrap around. For example, if target == 'z' and
+ * letters == ['a', 'b'], the answer is 'a'.
+ */
+constexpr auto NextGreaterChar(const std::string_view letters, char x) {
+    bool seen[26] = {};
+    for (const auto c : letters) {
+        seen[c - 'a'] = true;
+    }
+
+    while (true) {
+        if (x == 'z') {
+            x = 'a';
+        } else {
+            ++x;
+        }
+
+        if (seen[x - 'a']) {
+            return x;
+        }
+    }
+}
+
+
+/**
  * @reference   Search Insert Position
  *              https://leetcode.com/problems/search-insert-position/
  * @reference   Search insert position of K in a sorted array
@@ -900,3 +929,13 @@ THE_BENCHMARK(GuessNumber_Dp, 10);
 SIMPLE_TEST(GuessNumber_Dp, TestSample1, 16, 10);
 SIMPLE_TEST(GuessNumber_Dp, TestSample2, 0, 1);
 SIMPLE_TEST(GuessNumber_Dp, TestSample3, 1, 2);
+
+
+
+THE_BENCHMARK(NextGreaterChar, "cfj", 'a');
+
+SIMPLE_TEST(NextGreaterChar, TestSample1, 'c', "cfj", 'a');
+SIMPLE_TEST(NextGreaterChar, TestSample2, 'f', "cfj", 'c');
+SIMPLE_TEST(NextGreaterChar, TestSample3, 'f', "cfj", 'd');
+SIMPLE_TEST(NextGreaterChar, TestSample4, 'j', "cfj", 'g');
+SIMPLE_TEST(NextGreaterChar, TestSample5, 'c', "cfj", 'j');
