@@ -136,6 +136,9 @@ compile_test(roman_to_integer)
 compile_benchmark(run_length_encoding)
 compile_test(run_length_encoding)
 
+compile_benchmark(similar_RGB_color)
+compile_test(similar_RGB_color)
+
 compile_benchmark(split_into_words)
 compile_test(split_into_words)
 

@@ -85,3 +85,14 @@ static inline auto from_string_view(const std::string_view sv, const int base = 
 
     return value;
 }
+
+
+static inline constexpr auto ToHexDigit(const int digit) {
+    assert(digit < 16);
+
+    if (digit < 10) {
+        return '0' + digit;
+    } else {
+        return 'A' + digit - 10;
+    }
+}

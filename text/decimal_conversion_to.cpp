@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "number_convertion.h"
+
 
 namespace {
 
@@ -48,13 +50,7 @@ inline auto ToOctal(const int number) {
  * library method to directly solve this problem.
  */
 inline auto ToHex(const int number) {
-    return DecimalTo(number, 16, [](const auto digit) {
-        if (digit < 10) {
-            return '0' + digit;
-        } else {
-            return 'A' + digit - 10;
-        }
-    });
+    return DecimalTo(number, 16, ToHexDigit);
 }
 
 
