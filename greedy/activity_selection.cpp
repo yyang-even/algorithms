@@ -6,6 +6,8 @@ namespace {
 using StartFinishPair = std::pair<unsigned, unsigned>;
 using ArrayType = std::vector<StartFinishPair>;
 using OutputType = std::vector<ArrayType::size_type>;
+using JobType = std::tuple<int, int, int>;
+using JobArray = std::vector<JobType>;
 
 /** Activity Selection Problem
  *
@@ -148,6 +150,101 @@ auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
     return maximum;
 }
 
+
+/**
+ * @reference   Maximum Profit in Job Scheduling
+ *              https://leetcode.com/problems/maximum-profit-in-job-scheduling/
+ *
+ * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i],
+ * obtaining a profit of profit[i]. You're given the startTime, endTime and profit arrays,
+ * return the maximum profit you can take such that there are no two jobs in the subset
+ * with overlapping time range. If you choose a job that ends at time X you will be able
+ * to start another job that starts at time X.
+ *
+ * @reference   Maximum Profit in Job Scheduling
+ *              https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1235-maximum-profit-in-job-scheduling/
+ */
+constexpr auto end_comparator = [](const auto &one, const auto &another) {
+    return std::get<1>(one) < std::get<1>(another);
+};
+
+auto ToSortedJobs(const std::vector<int> &start_time,
+                  const std::vector<int> &end_time,
+                  const std::vector<int> &profit) {
+    assert(start_time.size() == end_time.size() and start_time.size() == profit.size());
+
+    JobArray jobs;
+    for (std::size_t i = 0; i < start_time.size(); ++i) {
+        jobs.emplace_back(start_time[i], end_time[i], profit[i]);
+    }
+
+    std::sort(jobs.begin(), jobs.end(), end_comparator);
+
+    return jobs;
+}
+
+auto MaxProfitJobScheduling_DP_MAP(const std::vector<int> &start_time,
+                                   const std::vector<int> &end_time,
+                                   const std::vector<int> &profit) {
+    const auto jobs = ToSortedJobs(start_time, end_time, profit);
+
+    std::map<int, int> end_profix_map{{0, 0}};
+    for (const auto [start, end, a_profit] : jobs) {
+        const auto new_profix = a_profit + std::prev(end_profix_map.upper_bound(start))->second;
+        if (new_profix > end_profix_map.crbegin()->second) {
+            end_profix_map[end] = new_profix;
+        }
+    }
+
+    return end_profix_map.crbegin()->second;
+}
+
+
+/**
+ * @reference   Weighted Job Scheduling
+ *              https://www.geeksforgeeks.org/weighted-job-scheduling/
+ * @reference   Weighted Job Scheduling in O(n Log n) time
+ *              https://www.geeksforgeeks.org/weighted-job-scheduling-log-n-time/
+ */
+auto binarySearch(const JobArray &jobs, const int last) {
+    int left = 0, right = last - 1;
+    const auto start = std::get<0>(jobs[last]);
+
+    while (left <= right) {
+        const int mid = (left + right) / 2;
+        if (std::get<1>(jobs[mid]) <= start) {
+            if (std::get<1>(jobs[mid + 1]) <= start) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
+auto MaxProfitJobScheduling_DP(const std::vector<int> &start_time,
+                               const std::vector<int> &end_time,
+                               const std::vector<int> &profit) {
+    const auto jobs = ToSortedJobs(start_time, end_time, profit);
+
+    int max_profix[jobs.size()] = {std::get<2>(jobs.front())};
+    for (std::size_t i = 1; i < jobs.size(); ++i) {
+        const auto latest_non_conflicting_index = binarySearch(jobs, i);
+        auto profit_including_i = std::get<2>(jobs[i]);
+        if (latest_non_conflicting_index != -1) {
+            profit_including_i += max_profix[latest_non_conflicting_index];
+        }
+
+        max_profix[i] = std::max(profit_including_i, max_profix[i - 1]);
+    }
+
+    return max_profix[jobs.size() - 1];
+}
+
 }//namespace
 
 
@@ -219,3 +316,36 @@ SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE5, 2, SAMPLE5);
 SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE6, 1, SAMPLE6);
 SIMPLE_TEST(MinMeetingRooms_PrefixSum, TestSAMPLE7, 2, SAMPLE7);
+
+
+const std::vector SAMPLE1S = {1, 2, 3, 3};
+const std::vector SAMPLE1E = {3, 4, 5, 6};
+const std::vector SAMPLE1P = {50, 10, 40, 70};
+
+const std::vector SAMPLE2S = {1, 2, 3, 4, 6};
+const std::vector SAMPLE2E = {3, 5, 10, 6, 9};
+const std::vector SAMPLE2P = {20, 20, 100, 70, 60};
+
+const std::vector SAMPLE3S = {1, 1, 1};
+const std::vector SAMPLE3E = {2, 3, 4};
+const std::vector SAMPLE3P = {5, 6, 4};
+
+
+THE_BENCHMARK(MaxProfitJobScheduling_DP_MAP, SAMPLE1S, SAMPLE1E, SAMPLE1P);
+
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE1, 120,
+            SAMPLE1S, SAMPLE1E, SAMPLE1P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE2, 150,
+            SAMPLE2S, SAMPLE2E, SAMPLE2P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE3, 6,
+            SAMPLE3S, SAMPLE3E, SAMPLE3P);
+
+
+THE_BENCHMARK(MaxProfitJobScheduling_DP, SAMPLE1S, SAMPLE1E, SAMPLE1P);
+
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE1, 120,
+            SAMPLE1S, SAMPLE1E, SAMPLE1P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE2, 150,
+            SAMPLE2S, SAMPLE2E, SAMPLE2P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE3, 6,
+            SAMPLE3S, SAMPLE3E, SAMPLE3P);
