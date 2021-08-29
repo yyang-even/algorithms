@@ -292,6 +292,8 @@ auto StringMatcing_KMP(const std::string_view text, const std::string_view patte
  *
  * @reference   Pattern Searching using C++ library
  *              https://www.geeksforgeeks.org/pattern-searching-using-c-library/
+ * @reference   Rotate String
+ *              https://leetcode.com/problems/rotate-string/
  */
 auto AreRotations(const std::string &lhs, const std::string_view rhs) {
     if (lhs.size() != rhs.size()) {
