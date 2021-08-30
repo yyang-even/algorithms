@@ -1,3 +1,6 @@
+compile_benchmark(backspace_string_compare)
+compile_test(backspace_string_compare)
+
 compile_benchmark(binary_conversion_to)
 compile_test(binary_conversion_to)
 

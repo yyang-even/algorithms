@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Push Dominoes
  *
  * @reference   https://leetcode.com/problems/push-dominoes/
@@ -85,6 +87,43 @@ auto PushDominoes_Force(const std::string_view dominoes) {
     return result;
 }
 
+
+/**
+ * @reference   Shortest Distance to a Character
+ *              https://leetcode.com/problems/shortest-distance-to-a-character/
+ *
+ * Given a string s and a character c that occurs in s, return an array of integers
+ * answer where answer.length == s.length and answer[i] is the distance from index i to
+ * the closest occurrence of character c in s. The distance between two indices i and j
+ * is abs(i - j), where abs is the absolute value function.
+ */
+auto ShortestDistanceToChar(const std::string_view &s, const char c) {
+    std::vector<int> result;
+    int distance = s.size();
+    for (const auto x : s) {
+        if (c == x) {
+            distance = 0;
+        } else {
+            ++distance;
+        }
+
+        result.push_back(distance);
+    }
+
+    distance = s.size();
+    for (int i = s.size() - 1; i >= 0; --i) {
+        if (c == s[i]) {
+            distance = 0;
+        } else {
+            ++distance;
+        }
+
+        result[i] = std::min(result[i], distance);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -98,3 +137,13 @@ THE_BENCHMARK(PushDominoes_Force, "RR.L");
 
 SIMPLE_TEST(PushDominoes_Force, TestSAMPLE1, "RR.L", "RR.L");
 SIMPLE_TEST(PushDominoes_Force, TestSAMPLE2, "LL.RR.LLRRLL..", ".L.R...LR..L..");
+
+
+const ArrayType EXPECTED1 = {3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0};
+const ArrayType EXPECTED2 = {3, 2, 1, 0};
+
+
+THE_BENCHMARK(ShortestDistanceToChar, "loveleetcode", 'e');
+
+SIMPLE_TEST(ShortestDistanceToChar, TestSAMPLE1, EXPECTED1, "loveleetcode", 'e');
+SIMPLE_TEST(ShortestDistanceToChar, TestSAMPLE2, EXPECTED2, "aaab", 'b');

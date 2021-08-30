@@ -1,9 +1,12 @@
 #include "common_header.h"
 
 #include "count_frequencies_of_all_elements.h"
+#include "hash.h"
 
 
 namespace {
+
+using StrArray = std::vector<std::string_view>;
 
 /** Return maximum occurring character in an input string
  *
@@ -95,6 +98,53 @@ MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_type K)
     return std::max_element(numbers.cbegin(), numbers.cend()) - numbers.cbegin();
 }
 
+
+/**
+ * @reference   Most Common Word
+ *              https://leetcode.com/problems/most-common-word/
+ *
+ * Given a string paragraph and a string array of the banned words banned, return the
+ * most frequent word that is not banned. It is guaranteed there is at least one word
+ * that is not banned, and that the answer is unique. The words in paragraph are
+ * case-insensitive and the answer should be returned in lowercase.
+ * paragraph consists of English letters, space ' ', or one of the symbols: "!?',;.".
+ * banned[i] consists of only lowercase English letters.
+ */
+auto
+MostFrequentWordNotBanned(const std::string_view paragraph, const StrArray &banned) {
+    const auto banned_set = ToUnorderedSet(banned);
+
+    std::unordered_map<std::string, int> counts;
+    std::string word;
+    for (const auto c : paragraph) {
+        if (std::isalpha(c)) {
+            word.push_back(std::tolower(c));
+        } else if (not word.empty()) {
+            if (banned_set.find(word) == banned_set.cend()) {
+                ++counts[word];
+            }
+            word.clear();
+        }
+    }
+
+    if (not word.empty()) {
+        if (banned_set.find(word) == banned_set.cend()) {
+            ++counts[word];
+        }
+    }
+
+    int max_freq = INT_MIN;
+    std::string result;
+    for (const auto &[a_word, freq] : counts) {
+        if (freq > max_freq) {
+            max_freq = freq;
+            result = a_word;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -118,3 +168,16 @@ THE_BENCHMARK(MaximumRepeatingNumber_Inplace, SAMPLE1, 10);
 
 SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE1, 2, SAMPLE1, 10);
 SIMPLE_TEST(MaximumRepeatingNumber_Inplace, TestSAMPLE2, 3, SAMPLE2, 8);
+
+
+const StrArray SAMPLE1B = {"hit"};
+const StrArray SAMPLE2B = {};
+
+
+THE_BENCHMARK(MostFrequentWordNotBanned,
+              "Bob hit a ball, the hit BALL flew far after it was hit.", SAMPLE1B);
+
+SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE1,
+            "ball", "Bob hit a ball, the hit BALL flew far after it was hit.", SAMPLE1B);
+SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE2, "a", "a.", SAMPLE2B);
+SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE3, "a", "a", SAMPLE2B);
