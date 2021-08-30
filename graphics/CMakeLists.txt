@@ -16,6 +16,9 @@ compile_test(flood_fill)
 compile_benchmark(is_point_inside_rectangle)
 compile_test(is_point_inside_rectangle)
 
+compile_benchmark(largest_triangle_area)
+compile_test(largest_triangle_area)
+
 compile_benchmark(slope_of_line)
 compile_test(slope_of_line)
 

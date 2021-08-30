@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Pretty Columns Print
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
@@ -61,6 +63,37 @@ inline void GetOneInput(T &input, const std::string_view inputName) {
     }
 }
 
+
+/**
+ * @reference   Number of Lines To Write String
+ *              https://leetcode.com/problems/number-of-lines-to-write-string/
+ *
+ * You are given a string s of lowercase English letters and an array widths denoting
+ * how many pixels wide each lowercase English letter is. Specifically, widths[0] is the
+ * width of 'a', widths[1] is the width of 'b', and so on. You are trying to write s
+ * across several lines, where each line is no longer than 100 pixels. Starting at the
+ * beginning of s, write as many letters on the first line such that the total width does
+ * not exceed 100 pixels. Then, from where you stopped in s, continue writing as many
+ * letters as you can on the second line. Continue this process until you have written
+ * all of s. Return an array result of length 2 where:
+ *  result[0] is the total number of lines.
+ *  result[1] is the width of the last line in pixels.
+ */
+inline auto NumberLinesNeeded(const ArrayType &widths, const std::string_view s) {
+    int no_line = 1;
+    int line_width = 0;
+    for (const auto c : s) {
+        const auto w = widths[c - 'a'];
+        line_width += w;
+        if (line_width > 100) {
+            ++no_line;
+            line_width = w;
+        }
+    }
+
+    return std::pair{no_line, line_width};
+}
+
 }//namespace
 
 
@@ -92,3 +125,17 @@ SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_37_5,
 SIMPLE_TEST(PrettyColumnsPrint, PrettyColumnsPrint_10_5,
             "line 1\tline 3\tline 5\tline 7\tline 9\t\n"
             "line 2\tline 4\tline 6\tline 8\tline 10\t\n", 10, 5);
+
+
+const ArrayType SAMPLE1 = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+const std::pair EXPECTED1 = {3, 60};
+
+const ArrayType SAMPLE2 = {4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+const std::pair EXPECTED2 = {2, 4};
+
+
+THE_BENCHMARK(NumberLinesNeeded, SAMPLE1, "abcdefghijklmnopqrstuvwxyz");
+
+SIMPLE_TEST(NumberLinesNeeded, TestSAMPLE1, EXPECTED1,
+            SAMPLE1, "abcdefghijklmnopqrstuvwxyz");
+SIMPLE_TEST(NumberLinesNeeded, TestSAMPLE2, EXPECTED2, SAMPLE2, "bbbcccdddaaa");
