@@ -27,6 +27,18 @@ using ArrayType = std::vector<int>;
  * multiple peaks, return the index to any of the peaks. You may imagine that
  * nums[-1] = nums[n] = -∞.
  * You must write an algorithm that runs in O(log n) time.
+ *
+ * @reference   Peak Index in a Mountain Array
+ *              https://leetcode.com/problems/peak-index-in-a-mountain-array/
+ *
+ * Let's call an array arr a mountain if the following properties hold:
+ *  arr.length >= 3
+ *  There exists some i with 0 < i < arr.length - 1 such that:
+ *      arr[0] < arr[1] < ... arr[i-1] < arr[i]
+ *      arr[i] > arr[i+1] > ... > arr[arr.length - 1]
+ * Given an integer array arr that is guaranteed to be a mountain, return any i such that
+ * arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1] > ... > arr[arr.length - 1].
+ * Follow up: Finding the O(n) is straightforward, could you find an O(log(n)) solution?
  */
 auto FindOnePeakElement_Iter(const ArrayType &elements,
                              const ArrayType::const_iterator cbegin,

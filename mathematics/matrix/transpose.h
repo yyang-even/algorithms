@@ -8,6 +8,8 @@
  * @reference   https://www.geeksforgeeks.org/program-to-find-transpose-of-a-matrix/
  */
 static inline auto Transpose(MatrixType square_matrix) {
+    assert(square_matrix.size() == square_matrix.front().size());
+
     const auto N = square_matrix.size();
     for (MatrixType::size_type i = 0; i < N; ++i) {
         for (auto j = i + 1; j < N; ++j) {

@@ -123,6 +123,44 @@ auto MinimumCoinChange_Greedy(ArrayType coins, ArrayType::value_type N) {
     return min_count;
 }
 
+
+/**
+ * @reference   Lemonade Change
+ *              https://leetcode.com/problems/lemonade-change/
+ *
+ * At a lemonade stand, each lemonade costs $5. Customers are standing in a queue to buy
+ * from you, and order one at a time (in the order specified by bills). Each customer
+ * will only buy one lemonade and pay with either a $5, $10, or $20 bill. You must provide
+ * the correct change to each customer so that the net transaction is that the customer
+ * pays $5. Note that you don't have any change in hand at first. Given an integer array
+ * bills where bills[i] is the bill the ith customer pays, return true if you can provide
+ * every customer with correct change, or false otherwise.
+ */
+auto LemonadeChange(const ArrayType &bills) {
+    int five = 0, ten = 0;
+    for (const auto b : bills) {
+        if (b == 5) {
+            ++five;
+        } else if (b == 10) {
+            if (five-- == 0) {
+                return false;
+            }
+            ++ten;
+        } else {
+            if (five > 0 and ten > 0) {
+                --five;
+                --ten;
+            } else if (five >= 3) {
+                five -= 3;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -173,3 +211,17 @@ SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE7, 2, SAMPLE7, 70);
 SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE8, 3, SAMPLE7, 121);
 SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE9, 5, SAMPLE9, 14);
 SIMPLE_TEST(MinimumCoinChange_Greedy, TestSAMPLE10, 7, SAMPLE9, 88);
+
+
+const ArrayType SAMPLE1B = {5, 5, 5, 10, 20};
+const ArrayType SAMPLE2B = {5, 5, 10, 10, 20};
+const ArrayType SAMPLE3B = {5, 5, 10};
+const ArrayType SAMPLE4B = {10, 10};
+
+
+THE_BENCHMARK(LemonadeChange, SAMPLE1B);
+
+SIMPLE_TEST(LemonadeChange, TestSAMPLE1, true, SAMPLE1B);
+SIMPLE_TEST(LemonadeChange, TestSAMPLE2, false, SAMPLE2B);
+SIMPLE_TEST(LemonadeChange, TestSAMPLE3, true, SAMPLE3B);
+SIMPLE_TEST(LemonadeChange, TestSAMPLE4, false, SAMPLE4B);
