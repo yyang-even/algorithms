@@ -14,6 +14,13 @@ static inline auto GetBeforeMiddle_TwoPointersSTL(
 }
 
 
+/**
+ * @reference   Middle of the Linked List
+ *              https://leetcode.com/problems/middle-of-the-linked-list/
+ *
+ * Given the head of a singly linked list, return the middle node of the linked list. If
+ * there are two middle nodes, return the second middle node.
+ */
 static inline auto
 GetMiddle_TwoPointers_STL(const std::forward_list<int>::const_iterator cbegin,
                           const std::forward_list<int>::const_iterator cend) {
