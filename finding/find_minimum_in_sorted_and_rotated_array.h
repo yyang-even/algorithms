@@ -12,9 +12,9 @@
  * @reference   Find the Rotation Count in Rotated Sorted array
  *              https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/
  */
-static inline auto FindMinInSortedAndRotatedArray(
-    const ArrayType::const_iterator cbegin,
-    const ArrayType::size_type length) {
+static inline auto
+FindMinInSortedAndRotated_Neighbor(const ArrayType::const_iterator cbegin,
+                                   const ArrayType::size_type length) {
     if (length) {
         const auto half = length / 2;
         const auto mid = cbegin + half;
@@ -27,9 +27,11 @@ static inline auto FindMinInSortedAndRotatedArray(
             return cbegin;
         }
         if (*cbegin > *mid) {
-            return FindMinInSortedAndRotatedArray(cbegin, half);
+            return FindMinInSortedAndRotated_Neighbor(cbegin, half);
         }
-        return FindMinInSortedAndRotatedArray(std::next(mid), length_minus_1 - half);
+        return FindMinInSortedAndRotated_Neighbor(std::next(mid),
+                                                  length_minus_1 - half);
     }
+
     return cbegin;
 }

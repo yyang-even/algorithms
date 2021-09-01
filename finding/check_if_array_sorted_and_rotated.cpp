@@ -46,7 +46,7 @@ CheckIfArraySortedAndRotated_LinearSearch(const ArrayType &values) {
 inline auto
 CheckIfArraySortedAndRotated_BinarySearch(const ArrayType &values) {
     return CheckIfArraySortedAndRotated(values, [](const auto & values) {
-        return FindMinInSortedAndRotatedArray(values.cbegin(), values.size());
+        return FindMinInSortedAndRotated_Neighbor(values.cbegin(), values.size());
     });
 }
 
