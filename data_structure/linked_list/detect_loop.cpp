@@ -282,6 +282,41 @@ auto FindTheDuplicate_FloydsCycleFinding(const std::vector<unsigned> &values) {
     return slow_ptr;
 }
 
+
+/**
+ * @reference   Array Nesting
+ *              https://leetcode.com/problems/array-nesting/
+ *
+ * You are given an integer array nums of length n where nums is a permutation of the
+ * numbers in the range [0, n - 1]. You should build a set
+ * s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... } subjected to the following
+ * rule:
+ *  The first element in s[k] starts with the selection of the element nums[k] of
+ *      index = k.
+ *  The next element in s[k] should be nums[nums[k]], and then nums[nums[nums[k]]], and
+ *      so on.
+ *  We stop adding right before a duplicate element occurs in s[k].
+ * Return the longest length of a set s[k].
+ */
+auto LongestNestingArray(const std::vector<int> &nums) {
+    std::vector visited(nums.size(), false);
+
+    int result = 0;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        if (not visited[i]) {
+            int count = 0;
+            for (auto j = i; not visited[j]; j = nums[j]) {
+                ++count;
+                visited[j] = true;
+            }
+
+            result = std::max(result, count);
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -348,3 +383,13 @@ THE_BENCHMARK(FindTheDuplicate_FloydsCycleFinding, SAMPLE1);
 
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample1, 4, SAMPLE1);
 SIMPLE_TEST(FindTheDuplicate_FloydsCycleFinding, TestSample2, 1, SAMPLE2);
+
+
+const std::vector SAMPLE3 = {5, 4, 0, 3, 1, 6, 2};
+const std::vector SAMPLE4 = {0, 1, 2};
+
+
+THE_BENCHMARK(LongestNestingArray, SAMPLE3);
+
+SIMPLE_TEST(LongestNestingArray, TestSample3, 4, SAMPLE3);
+SIMPLE_TEST(LongestNestingArray, TestSample4, 1, SAMPLE4);

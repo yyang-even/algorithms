@@ -28,6 +28,9 @@ compile_test(count_frequencies_of_all_elements)
 compile_benchmark(elements_that_occurred_only_once)
 compile_test(elements_that_occurred_only_once)
 
+compile_benchmark(fair_candy_swap)
+compile_test(fair_candy_swap)
+
 compile_benchmark(find_first_nonrepeating_char)
 compile_test(find_first_nonrepeating_char)
 
