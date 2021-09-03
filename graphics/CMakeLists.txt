@@ -4,6 +4,9 @@ compile_test(are_rectangles_overlap)
 compile_benchmark(circle_drawing)
 compile_test(circle_drawing)
 
+compile_benchmark(convex_hull)
+compile_test(convex_hull)
+
 compile_benchmark(cut_two_squares_in_half)
 compile_test(cut_two_squares_in_half)
 
