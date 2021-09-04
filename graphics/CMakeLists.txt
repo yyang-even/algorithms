@@ -28,5 +28,8 @@ compile_test(projection_area)
 compile_benchmark(slope_of_line)
 compile_test(slope_of_line)
 
+compile_benchmark(surface_area_of_3D_shapes)
+compile_test(surface_area_of_3D_shapes)
+
 compile_benchmark(two_lines_intersect)
 compile_test(two_lines_intersect)
