@@ -124,6 +124,9 @@ compile_test(rotation)
 compile_benchmark(selection_sort)
 compile_test(selection_sort)
 
+compile_benchmark(smallest_range)
+compile_test(smallest_range)
+
 compile_benchmark(sort_by_frequency)
 compile_test(sort_by_frequency)
 
