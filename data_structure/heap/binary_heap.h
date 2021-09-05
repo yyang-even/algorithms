@@ -2,6 +2,9 @@
 
 #include "common_header.h"
 
+#include "heap.h"
+
+
 /** Binary Heap
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -59,19 +62,6 @@ private:
     ArrayType heap;
     static inline constexpr Compare compare{};
 
-    static constexpr SizeType parent(const SizeType i) {
-        assert(i);
-        return (i - 1) / 2;
-    }
-
-    static constexpr SizeType left(const SizeType i) {
-        return 2 * i + 1;
-    }
-
-    static constexpr SizeType right(const SizeType i) {
-        return 2 * i + 2;
-    }
-
     static constexpr SizeType indexOfFirstLeave(const SizeType n) {
         return n / 2;
     }
@@ -87,8 +77,8 @@ private:
 
 
     SizeType heapify_Recursive(const SizeType i, const SizeType heap_size) {
-        const auto l = left(i);
-        const auto r = right(i);
+        const auto l = LeftChild(i);
+        const auto r = RightChild(i);
         SizeType best = i;
 
         if (l < heap_size and compare(heap[l], heap[best])) {
@@ -107,8 +97,8 @@ private:
 
     auto heapify_Iterative(SizeType i, const SizeType heap_size) {
         while (i < heap_size) {
-            const auto l = left(i);
-            const auto r = right(i);
+            const auto l = LeftChild(i);
+            const auto r = RightChild(i);
             SizeType best = i;
 
             if (l < heap_size and compare(heap[l], heap[best])) {
@@ -197,9 +187,9 @@ public:
 
 
     auto BubbleUp(SizeType i, const bool suppose_better = false) {
-        while (i and (suppose_better or compare(heap[i], heap[parent(i)]))) {
-            std::swap(heap[parent(i)], heap[i]);
-            i = parent(i);
+        while (i and (suppose_better or compare(heap[i], heap[Parent(i)]))) {
+            std::swap(heap[Parent(i)], heap[i]);
+            i = Parent(i);
         }
 
         return i;
@@ -254,12 +244,12 @@ public:
     static auto isHeap_Recursive(const ArrayType &values, const SizeType i = 0) {
         assert(values.size());
 
-        const auto left_child_index = left(i);
+        const auto left_child_index = LeftChild(i);
         if (left_child_index >= values.size()) {
             return true;
         }
 
-        const auto right_child_index = right(i);
+        const auto right_child_index = RightChild(i);
         if (compare(values[i], values[left_child_index]) and
             (right_child_index >= values.size() or
              compare(values[i], values[right_child_index])) and
@@ -274,11 +264,11 @@ public:
 
     static auto isHeap_Iterative(const ArrayType &values) {
         for (SizeType i = 0; i < indexOfFirstLeave(values.size()); ++i) {
-            if (not compare(values[i], values[left(i)])) {
+            if (not compare(values[i], values[LeftChild(i)])) {
                 return false;
             }
 
-            const auto right_child_index = right(i);
+            const auto right_child_index = RightChild(i);
             if (right_child_index < values.size() and
                 not compare(values[i], values[right_child_index])) {
                 return false;

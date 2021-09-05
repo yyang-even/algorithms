@@ -62,7 +62,7 @@ auto BSTInsert_Iterative(const BinaryTree::Node::PointerType root_node,
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(BSTInsert_Recursive, CloneBinaryTree(SAMPLE1).GetRoot(), -1);

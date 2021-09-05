@@ -33,6 +33,33 @@ auto isSortedIterative(const ArrayType &values) {
     return true;
 }
 
+
+/**
+ * @reference   Monotonic Array
+ *              https://leetcode.com/problems/monotonic-array/
+ *
+ * An array is monotonic if it is either monotone increasing or monotone decreasing. An
+ * array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums
+ * is monotone decreasing if for all i <= j, nums[i] >= nums[j]. Given an integer array
+ * nums, return true if the given array is monotonic, or false otherwise.
+ */
+auto isMonotonic(const ArrayType &nums) {
+    assert(not nums.empty());
+
+    auto increasing = true;
+    auto decreasing = true;
+    for (std::size_t i = 0; i < nums.size() - 1; ++i) {
+        if (nums[i] > nums[i + 1]) {
+            increasing = false;
+        }
+        if (nums[i] < nums[i + 1]) {
+            decreasing = false;
+        }
+    }
+
+    return increasing or decreasing;
+}
+
 }//namespace
 
 
@@ -59,3 +86,11 @@ SIMPLE_TEST(isSortedIterative, TestSAMPLE2, true, VALUES2);
 SIMPLE_TEST(isSortedIterative, TestSAMPLE3, true, VALUES3);
 SIMPLE_TEST(isSortedIterative, TestSAMPLE4, false, VALUES4);
 SIMPLE_TEST(isSortedIterative, TestSAMPLE5, false, VALUES5);
+
+
+THE_BENCHMARK(isMonotonic, VALUES5);
+
+SIMPLE_TEST(isMonotonic, TestSAMPLE2, true, VALUES2);
+SIMPLE_TEST(isMonotonic, TestSAMPLE3, true, VALUES3);
+SIMPLE_TEST(isMonotonic, TestSAMPLE4, false, VALUES4);
+SIMPLE_TEST(isMonotonic, TestSAMPLE5, true, VALUES5);

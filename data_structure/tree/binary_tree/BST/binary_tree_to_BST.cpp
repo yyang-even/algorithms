@@ -44,7 +44,7 @@ auto ToBST(const BinaryTree::Node::PointerType binary_tree_root) {
 
 
 const auto SAMPLE_BINARY_TREE = MakeTheSampleCompleteTree().GetRoot();
-const auto SAMPLE_BST = MakeTheSampleBST().GetRoot();
+const auto SAMPLE_BST = MakeTheSampleBST();
 
 
 THE_BENCHMARK(ToBST, CloneBinaryTree(SAMPLE_BINARY_TREE).GetRoot());
