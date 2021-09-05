@@ -91,6 +91,9 @@ compile_test(min_moves_to_equal_elements)
 compile_benchmark(min_unsorted_subarray)
 compile_test(min_unsorted_subarray)
 
+compile_benchmark(orderly_queue)
+compile_test(orderly_queue)
+
 compile_benchmark(pancake_sort)
 compile_test(pancake_sort)
 
