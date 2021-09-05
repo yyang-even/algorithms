@@ -24,6 +24,12 @@ using ArrayType = std::vector<int>;
  *
  * Given an array A[], write a function that segregates even and odd numbers. The
  * functions should put all even numbers first, and then odd numbers.
+ *
+ * @reference   Sort Array By Parity
+ *              https://leetcode.com/problems/sort-array-by-parity/
+ *
+ * Given an integer array nums, move all the even integers at the beginning of the array
+ * followed by all the odd integers. Return any array that satisfies this condition.
  */
 inline auto Segregate0sAnd1sCount(ArrayType values) {
     const auto number_of_0s = std::count(values.cbegin(), values.cend(), 0);
@@ -45,6 +51,18 @@ auto Segregate0sAnd1sDNF(ArrayType values) {
     }
 
     return values;
+}
+
+
+auto SegregateEvenOdd(ArrayType nums) {
+    std::size_t even = 0;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        if (nums[i] % 2 == 0) {
+            std::swap(nums[i], nums[even++]);
+        }
+    }
+
+    return nums;
 }
 
 
@@ -112,6 +130,15 @@ SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(Segregate0sAnd1sCount, TestSAMPLE5, EXPECTED5, VALUES5);
+
+
+THE_BENCHMARK(SegregateEvenOdd, VALUES5);
+
+SIMPLE_TEST(SegregateEvenOdd, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(SegregateEvenOdd, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(SegregateEvenOdd, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(SegregateEvenOdd, TestSAMPLE4, EXPECTED4, VALUES4);
+SIMPLE_TEST(SegregateEvenOdd, TestSAMPLE5, EXPECTED5, VALUES5);
 
 
 THE_BENCHMARK(Segregate0sAnd1sDNF, VALUES5);

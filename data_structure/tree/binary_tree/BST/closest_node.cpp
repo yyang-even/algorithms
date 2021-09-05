@@ -179,7 +179,7 @@ auto KClosestNodes(BinaryTree::Node::PointerType node,
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(ClosestNode, SAMPLE1, 5);

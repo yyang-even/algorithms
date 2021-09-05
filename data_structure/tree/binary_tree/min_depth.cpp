@@ -2,6 +2,7 @@
 
 #include "binary_tree.h"
 #include "binary_tree_traversals.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -57,15 +58,9 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
  *  /
  * 4
  */
-inline auto MakeTheSampleUnbalancedTree() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetLeftChild(left_child, 4);
-
-    return binary_tree;
-}
-const auto SAMPLE2 = MakeTheSampleUnbalancedTree().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    1, 2, SENTINEL, 4
+});
 
 
 THE_BENCHMARK(MinDepth_Recursive, SAMPLE1);

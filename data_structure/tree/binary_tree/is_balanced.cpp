@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -72,6 +73,10 @@ isBalanced_Flag(const BinaryTree::Node::PointerType root) {
     return flag;
 }
 
+}//namespace
+
+
+const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 /**
  *     1
  *    /
@@ -79,21 +84,9 @@ isBalanced_Flag(const BinaryTree::Node::PointerType root) {
  *  / \
  * 4   5
  */
-inline auto MakeTheSampleUnbalancedTree() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetLeftChild(left_child, 4);
-    SetRightChild(left_child, 5);
-
-    return binary_tree;
-}
-
-}//namespace
-
-
-const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
-const auto SAMPLE2 = MakeTheSampleUnbalancedTree().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    1, 2, SENTINEL, 4, 5
+});
 
 
 THE_BENCHMARK(isBalanced, SAMPLE1);

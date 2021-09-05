@@ -74,7 +74,7 @@ BSTDelete_Optimized(const BinaryTree::Node::PointerType node,
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(BSTDelete, CloneBinaryTree(SAMPLE1).GetRoot(), 4);

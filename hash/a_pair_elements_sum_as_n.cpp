@@ -534,7 +534,7 @@ SIMPLE_TEST(testTwoSum, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(testTwoSum, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
-const auto SAMPLE1T = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1T = MakeTheSampleBST();
 
 
 THE_BENCHMARK(HasPairOfElementsSumAsN_BST_Inorder, SAMPLE1T, 8);

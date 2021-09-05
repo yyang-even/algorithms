@@ -62,17 +62,17 @@ void FlattenBSTtoSortedList_Decreasing(const BinaryTree::Node::PointerType node,
 
 
 SIMPLE_BENCHMARK(FlattenBSTtoSortedList, BM_SAMPLE1,
-                 MakeTheSampleBST().GetRoot(), FlattenBSTtoSortedList_Increasing);
+                 MakeTheSampleBST(), FlattenBSTtoSortedList_Increasing);
 
 
 SIMPLE_BENCHMARK(FlattenBSTtoSortedList, BM_SAMPLE2,
-                 MakeTheSampleBST().GetRoot(), FlattenBSTtoSortedList_Decreasing);
+                 MakeTheSampleBST(), FlattenBSTtoSortedList_Decreasing);
 
 
 #ifdef WANT_TESTS
 #define FlattenBSTTest(function_name, do_reverse) namespace {                       \
     TEST(FlattenBSTtoSortedListTest, Test##function_name) {                         \
-        const auto SAMPLE_BST = MakeTheSampleBST().GetRoot();                       \
+        const auto SAMPLE_BST = MakeTheSampleBST();                       \
         BinaryTree::ArrayType EXPECTED;                                             \
         InorderTraversal_Recursive(SAMPLE_BST, EXPECTED);                           \
         if (do_reverse) {                                                           \

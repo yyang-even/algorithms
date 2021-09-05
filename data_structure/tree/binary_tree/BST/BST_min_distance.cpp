@@ -39,7 +39,7 @@ inline auto MinDistance(const BinaryTree::Node::PointerType root) {
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(MinDistance, SAMPLE1);

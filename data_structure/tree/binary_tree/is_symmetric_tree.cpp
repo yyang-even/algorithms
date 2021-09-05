@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "binary_tree.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -71,19 +72,9 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
  *  / \   / \
  * 3   4 4   3
  */
-static inline auto MakeSample2Tree() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetLeftChild(left_child, 3);
-    SetRightChild(left_child, 4);
-    auto &right_child = *SetRightChild(root, 2);
-    SetLeftChild(right_child, 4);
-    SetRightChild(right_child, 3);
-
-    return binary_tree;
-}
-const auto SAMPLE2 = MakeSample2Tree().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    1, 2, 2, 3, 4, 4, 3
+});
 
 
 THE_BENCHMARK(isSymmetric_Recursive, SAMPLE1);

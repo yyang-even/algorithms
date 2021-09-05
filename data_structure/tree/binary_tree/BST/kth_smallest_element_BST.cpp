@@ -73,7 +73,7 @@ inline auto kthSmallest(const BinaryTree::Node::PointerType root, int k) {
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 /**
  *     2
@@ -82,18 +82,9 @@ const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
  *  / \
  * 5   7
  */
-static inline auto MakeTheSample2() {
-    const BinaryTree binary_tree{2};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 5);
-    SetRightChild(root, 2);
-    SetLeftChild(left_child, 5);
-    SetRightChild(left_child, 7);
-
-    return binary_tree;
-}
-
-const auto SAMPLE2 = MakeTheSample2().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    2, 5, 2, 5, 7
+});
 
 
 THE_BENCHMARK(SecondMinValue, SAMPLE2);

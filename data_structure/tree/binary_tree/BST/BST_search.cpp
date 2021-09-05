@@ -136,7 +136,7 @@ auto BSTCeil_Iterative(BinaryTree::Node::PointerType node,
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 SIMPLE_BENCHMARK(BSTSearch_Recursive, Sample1, SAMPLE1, -1);

@@ -58,7 +58,7 @@ inline auto FindMode(const BinaryTree::Node::PointerType root) {
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 const BinaryTree::ArrayType EXPECTED1 = {1, 2, 3, 4, 5};
 
 /**
@@ -68,18 +68,9 @@ const BinaryTree::ArrayType EXPECTED1 = {1, 2, 3, 4, 5};
  *  / \
  * 1   2
  */
-static inline auto MakeSample2() {
-    const BinaryTree binary_tree{4};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 5);
-    SetLeftChild(left_child, 1);
-    SetRightChild(left_child, 2);
-
-    return binary_tree;
-}
-
-const auto SAMPLE2 = MakeSample2().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    4, 2, 5, 1, 2
+});
 const BinaryTree::ArrayType EXPECTED2 = {2};
 
 

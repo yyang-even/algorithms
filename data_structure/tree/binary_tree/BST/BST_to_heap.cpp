@@ -98,6 +98,7 @@ inline auto ToMinHeap_InPlace(const BinaryTree::Node::PointerType root) {
 }
 
 
+const auto SAMPLE = MakeTheSampleBST();
 /**
  *     1
  *    / \
@@ -105,20 +106,9 @@ inline auto ToMinHeap_InPlace(const BinaryTree::Node::PointerType root) {
  *  / \
  * 4   5
  */
-static inline auto MakeTheExpectedMinHeap() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetLeftChild(left_child, 4);
-    SetRightChild(left_child, 5);
-
-    return binary_tree;
-}
-
-
-const auto SAMPLE = MakeTheSampleBST().GetRoot();
-const auto EXPECTED = MakeTheExpectedMinHeap().GetRoot();
+const auto EXPECTED = LevelOrderToBinaryTree( {
+    1, 2, 3, 4, 5
+});
 
 
 THE_BENCHMARK(ToMinHeap, CloneBinaryTree(SAMPLE).GetRoot());

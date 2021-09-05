@@ -3,6 +3,7 @@
 #include "binary_tree.h"
 #include "clone_binary_tree.h"
 #include "compare_binary_trees.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -47,17 +48,9 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
  *      /
  *     6
  */
-static inline auto MakeTheSample2() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    SetLeftChild(root, 2);
-    auto &right_child = *SetRightChild(root, 3);
-    SetLeftChild(right_child, 6);
-
-    return binary_tree;
-}
-
-const auto SAMPLE2 = MakeTheSample2().GetRoot();
+const auto SAMPLE2 = LevelOrderToBinaryTree( {
+    1, 2, 3, SENTINEL, SENTINEL, 6
+});
 
 /**
  *      2
@@ -66,19 +59,9 @@ const auto SAMPLE2 = MakeTheSample2().GetRoot();
  *  / \   /
  * 4   5 6
  */
-static inline auto MakeTheExpected() {
-    const BinaryTree binary_tree{2};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 4);
-    auto &right_child = *SetRightChild(root, 6);
-    SetLeftChild(left_child, 4);
-    SetRightChild(left_child, 5);
-    SetLeftChild(right_child, 6);
-
-    return binary_tree;
-}
-
-const auto EXPECTED1 = MakeTheExpected().GetRoot();
+const auto EXPECTED1 = LevelOrderToBinaryTree( {
+    2, 4, 6, 4, 5, 6
+});
 
 
 THE_BENCHMARK(MergeTrees, CloneBinaryTree(SAMPLE1).GetRoot(),

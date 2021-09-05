@@ -37,7 +37,7 @@ auto InorderPredecessor_WithoutParentPointer(BinaryTree::Node::PointerType curre
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(InorderPredecessor_WithoutParentPointer, SAMPLE1, SAMPLE1);

@@ -2,6 +2,7 @@
 
 #include "binary_tree.h"
 #include "compare_binary_trees.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -127,6 +128,41 @@ inline auto BinaryTreeFromString(const std::string_view str) {
     return BinaryTreeFromString(str, i);
 }
 
+
+/** Create a tree in level order
+ *
+ * @reference   https://www.geeksforgeeks.org/create-a-tree-in-level-order/
+ *
+ * Given an array of elements, the task is to insert these elements in level order and
+ * construct a tree.
+ */
+auto LevelOrderToCompleteBinaryTree(const BinaryTree::ArrayType &level_order) {
+    assert(not level_order.empty());
+
+    const auto root = std::make_shared<BinaryTree::Node>(level_order.front());
+    std::queue<BinaryTree::Node::PointerType> q;
+    q.push(root);
+    std::size_t i = 0;
+    while (not q.empty()) {
+        auto &node = *q.front();
+        q.pop();
+
+        const auto left_child_index = LeftChild(i);
+        if (left_child_index < level_order.size()) {
+            q.push(SetLeftChild(node, level_order[left_child_index]));
+        }
+
+        const auto right_child_index = RightChild(i);
+        if (right_child_index < level_order.size()) {
+            q.push(SetRightChild(node, level_order[right_child_index]));
+        }
+
+        ++i;
+    }
+
+    return root;
+}
+
 }//namespace
 
 
@@ -156,22 +192,29 @@ const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
  *    \
  *     4
  */
-static inline auto MakeTheSample2() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-    SetRightChild(left_child, 4);
-
-    return binary_tree;
-}
-
-const auto SAMPLE2 = MakeTheSample2().GetRoot();
+const std::vector SAMPLE2L = {1, 2, 3, SENTINEL, 4};
 
 
 THE_BENCHMARK(BinaryTreeFromString, "1(2()(4))(3)");
 
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, SAMPLE1,
             BinaryTreeFromString("1(2(4)(5))(3)"));
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, SAMPLE2,
+SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, LevelOrderToBinaryTree(SAMPLE2L),
             BinaryTreeFromString("1(2()(4))(3)"));
+
+
+const std::vector SAMPLE1L = {1, 2, 3, 4, 5};
+
+
+THE_BENCHMARK(LevelOrderToCompleteBinaryTree, SAMPLE1L);
+
+SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1C, true, SAMPLE1,
+            LevelOrderToCompleteBinaryTree(SAMPLE1L));
+
+
+
+
+THE_BENCHMARK(LevelOrderToBinaryTree, SAMPLE1L);
+
+SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1B, true, SAMPLE1,
+            LevelOrderToBinaryTree(SAMPLE1L));
