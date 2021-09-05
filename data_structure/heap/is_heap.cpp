@@ -4,6 +4,7 @@
 
 #include "data_structure/tree/binary_tree/binary_tree.h"
 #include "data_structure/tree/binary_tree/complete_binary_tree.h"
+#include "data_structure/tree/binary_tree/single_order_to_binary_tree.h"
 
 
 namespace {
@@ -91,17 +92,9 @@ const auto SAMPLE_TREE1 = MakeTheSampleCompleteTree().GetRoot();
  *  / \
  * 2   1
  */
-static inline auto MakeSampleTree2() {
-    const BinaryTree binary_tree{5};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 3);
-    SetRightChild(root, 4);
-    SetLeftChild(left_child, 2);
-    SetRightChild(left_child, 1);
-
-    return binary_tree;
-}
-const auto SAMPLE_TREE2 = MakeSampleTree2().GetRoot();
+const auto SAMPLE_TREE2 = LevelOrderToBinaryTree( {
+    5, 3, 4, 2, 1
+});
 
 
 THE_BENCHMARK(isMaxHeap, SAMPLE_TREE1);

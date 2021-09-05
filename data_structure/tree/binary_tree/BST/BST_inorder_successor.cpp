@@ -64,7 +64,7 @@ auto InorderSuccessor_WithParentPointer(
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 const auto SAMPLE_P1 = ToBinaryTreeWithParents(SAMPLE1);
 
 

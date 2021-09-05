@@ -3,6 +3,7 @@
 #include "binary_tree.h"
 #include "clone_binary_tree.h"
 #include "compare_binary_trees.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -40,18 +41,9 @@ PruneTree(BinaryTree::Node::PointerType node) {
  *  / \   \
  * 0   0   1
  */
-static inline auto MakeTheSampleTree() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 0);
-    auto &right_child = *SetRightChild(root, 0);
-    SetLeftChild(left_child, 0);
-    SetRightChild(left_child, 0);
-    SetRightChild(right_child, 1);
-
-    return binary_tree;
-}
-
+const auto SAMPLE1 = LevelOrderToBinaryTree( {
+    1, 0, 0, 0, 0, SENTINEL, 1
+});
 /**
  *     1
  *      \
@@ -59,18 +51,10 @@ static inline auto MakeTheSampleTree() {
  *        \
  *         1
  */
-static inline auto MakeTheExpectedTree() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    auto &right_child = *SetRightChild(root, 0);
-    SetRightChild(right_child, 1);
-
-    return binary_tree;
-}
-
-
-const auto SAMPLE1 = MakeTheSampleTree().GetRoot();
-const auto EXPECTED1 = MakeTheExpectedTree().GetRoot();
+const auto EXPECTED1 =
+LevelOrderToBinaryTree( {
+    1, SENTINEL, 0, SENTINEL, SENTINEL, SENTINEL, 1
+});
 
 
 THE_BENCHMARK(PruneTree, CloneBinaryTree(SAMPLE1).GetRoot());

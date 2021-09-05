@@ -69,7 +69,7 @@ inline auto isBSTInorderRepresent(const BinaryTree::ArrayType &array) {
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 const auto SAMPLE2 = MakeTheSampleCompleteTree().GetRoot();
 /**
  *     3
@@ -78,17 +78,9 @@ const auto SAMPLE2 = MakeTheSampleCompleteTree().GetRoot();
  *  / \
  * 1   4
  */
-static inline auto MakeSample3() {
-    const BinaryTree binary_tree{3};
-    auto &root = *binary_tree.GetRoot();
-    auto &left_child = *SetLeftChild(root, 2);
-    SetRightChild(root, 5);
-    SetLeftChild(left_child, 1);
-    SetRightChild(left_child, 4);
-
-    return binary_tree;
-}
-const auto SAMPLE3 = MakeSample3().GetRoot();
+const auto SAMPLE3 = LevelOrderToBinaryTree( {
+    3, 2, 5, 1, 4
+});
 
 
 SIMPLE_BENCHMARK(isBST_Recursive, Sample1, SAMPLE1);

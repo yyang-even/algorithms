@@ -2,6 +2,7 @@
 
 #include "binary_tree.h"
 #include "compare_binary_trees.h"
+#include "single_order_to_binary_tree.h"
 
 
 namespace {
@@ -73,41 +74,26 @@ inline auto isSubtree_String(const BinaryTree::Node::PointerType origin,
                        candidate_inorder.cbegin(), candidate_inorder.cend()) != origin_inorder.cend();
 }
 
+}//namespace
 
+
+const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
 /**
  *   2
  *  / \
  * 4   5
  */
-inline auto MakeTheSampleSubtree1() {
-    const BinaryTree binary_tree{2};
-    auto &root = *binary_tree.GetRoot();
-    SetLeftChild(root, 4);
-    SetRightChild(root, 5);
-
-    return binary_tree;
-}
-
+const auto SAMPLE_SUB1 = LevelOrderToBinaryTree( {
+    2, 4, 5
+});
 /**
  *   1
  *  / \
  * 2   3
  */
-inline auto MakeTheSampleSubtree2() {
-    const BinaryTree binary_tree{1};
-    auto &root = *binary_tree.GetRoot();
-    SetLeftChild(root, 2);
-    SetRightChild(root, 3);
-
-    return binary_tree;
-}
-
-}//namespace
-
-
-const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
-const auto SAMPLE_SUB1 = MakeTheSampleSubtree1().GetRoot();
-const auto SAMPLE_SUB2 = MakeTheSampleSubtree2().GetRoot();
+const auto SAMPLE_SUB2 = LevelOrderToBinaryTree( {
+    1, 2, 3
+});
 
 
 THE_BENCHMARK(isSubtree, SAMPLE1, SAMPLE_SUB1);

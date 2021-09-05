@@ -303,7 +303,7 @@ auto LowestCommonAncestorOfNodes_AllExist(const BinaryTree::Node::PointerType no
 }//namespace
 
 
-const auto SAMPLE1 = MakeTheSampleBST().GetRoot();
+const auto SAMPLE1 = MakeTheSampleBST();
 
 
 THE_BENCHMARK(LowestCommonAncestor_BST_Recursive, SAMPLE1, 1, 3);
