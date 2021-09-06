@@ -179,6 +179,14 @@ auto ReverseWords(std::string s) {
  *
  * Given a string s, reverse only all the vowels in the string and return it. The vowels
  * are 'a', 'e', 'i', 'o', and 'u', and they can appear in both cases.
+ *
+ * @reference   Reverse Only Letters
+ *              https://leetcode.com/problems/reverse-only-letters/
+ *
+ * Given a string s, reverse the string according to the following rules:
+ *  All the characters that are not English letters remain in the same position.
+ *  All the English letters (lowercase or uppercase) should be reversed.
+ * Return s after reversing it.
  */
 inline constexpr auto isVowel(const int c) {
     bool is_vowel[256] = {};

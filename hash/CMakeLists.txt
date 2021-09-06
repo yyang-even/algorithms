@@ -76,5 +76,8 @@ compile_test(sentence_similarity)
 compile_benchmark(top_k_most_frequent_numbers)
 compile_test(top_k_most_frequent_numbers)
 
+compile_benchmark(unique_email_addresses)
+compile_test(unique_email_addresses)
+
 compile_benchmark(valid_sudoku)
 compile_test(valid_sudoku)

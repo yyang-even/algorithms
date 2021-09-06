@@ -121,6 +121,35 @@ int LongestUncommonSubsequenceArray(const ArrayType &strs) {
     return result ? result : -1;
 }
 
+
+/**
+ * @reference   Long Pressed Name
+ *              https://leetcode.com/problems/long-pressed-name/
+ *
+ * Your friend is typing his name into a keyboard. Sometimes, when typing a character c,
+ * the key might get long pressed, and the character will be typed 1 or more times. You
+ * examine the typed characters of the keyboard. Return True if it is possible that it
+ * was your friends name, with some characters (possibly none) being long pressed.
+ */
+constexpr auto
+LongPressedName(const std::string_view name, const std::string_view typed) {
+    if (name.front() != typed.front()) {
+        return false;
+    }
+
+    std::size_t i = 1;
+    std::size_t j = 1;
+    for (; j < typed.size(); ++j) {
+        if (i < name.size() and name[i] == typed[j]) {
+            ++i;
+        } else if (typed[j] != typed[j - 1]) {
+            return false;
+        }
+    }
+
+    return i == name.size() and j == typed.size();
+}
+
 }//namespace
 
 
@@ -155,3 +184,12 @@ THE_BENCHMARK(LongestUncommonSubsequenceArray, SAMPLE1);
 SIMPLE_TEST(LongestUncommonSubsequenceArray, TestSAMPLE1, 3, SAMPLE1);
 SIMPLE_TEST(LongestUncommonSubsequenceArray, TestSAMPLE2, -1, SAMPLE2);
 SIMPLE_TEST(LongestUncommonSubsequenceArray, TestSAMPLE3, 2, SAMPLE3);
+
+
+THE_BENCHMARK(LongPressedName, "alex", "aaleex");
+
+SIMPLE_TEST(LongPressedName, TestSAMPLE1, true, "alex", "aaleex");
+SIMPLE_TEST(LongPressedName, TestSAMPLE2, false, "saeed", "ssaaedd");
+SIMPLE_TEST(LongPressedName, TestSAMPLE3, true, "leelee", "leelee");
+SIMPLE_TEST(LongPressedName, TestSAMPLE4, true, "laiden", "laiden");
+SIMPLE_TEST(LongPressedName, TestSAMPLE5, false, "alex", "aaleexa");
