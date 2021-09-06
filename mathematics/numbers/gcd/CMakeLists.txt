@@ -6,3 +6,6 @@ compile_test(lcm)
 
 compile_benchmark(min_difference_between_shifted_tables_of_two_numbers)
 compile_test(min_difference_between_shifted_tables_of_two_numbers)
+
+compile_benchmark(x_of_a_kind_in_a_deck_of_cards)
+compile_test(x_of_a_kind_in_a_deck_of_cards)
