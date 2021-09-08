@@ -13,6 +13,9 @@ compile_test(candy)
 compile_benchmark(can_place_flowers)
 compile_test(can_place_flowers)
 
+compile_benchmark(DI_string_match)
+compile_test(DI_string_match)
+
 compile_benchmark(huffman_codes)
 compile_test(huffman_codes)
 
