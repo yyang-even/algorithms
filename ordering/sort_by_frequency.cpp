@@ -68,6 +68,49 @@ inline auto SortByFrequency_Stable(ArrayType elements) {
     return elements;
 }
 
+
+/**
+ * @reference   Reorder Data in Log Files
+ *              https://leetcode.com/problems/reorder-data-in-log-files/
+ *
+ * You are given an array of logs. Each log is a space-delimited string of words, where
+ * the first word is the identifier. There are two types of logs:
+ *  Letter-logs: All words (except the identifier) consist of lowercase English letters.
+ *  Digit-logs: All words (except the identifier) consist of digits.
+ * Reorder these logs so that:
+ *  The letter-logs come before all digit-logs.
+ *  The letter-logs are sorted lexicographically by their contents. If their contents are
+ *      the same, then sort them lexicographically by their identifiers.
+ *  The digit-logs maintain their relative ordering.
+ * Return the final order of the logs.
+ */
+auto SortLogs(std::vector<std::string_view> logs) {
+    std::stable_sort(logs.begin(), logs.end(), [](const auto & one, const auto & another) {
+        const auto isOneDigit = std::isdigit(one.back());
+        const auto isAnotherDigit = std::isdigit(another.back());
+
+        if (not isOneDigit and isAnotherDigit) {
+            return true;
+        } else if (not isOneDigit and not isAnotherDigit) {
+            const auto one_space_position = one.find(' ');
+            const auto one_identifier = one.substr(0, one_space_position);
+            const auto one_content = one.substr(one_space_position + 1);
+            const auto another_space_pos = another.find(' ');
+            const auto another_identifier = another.substr(0, another_space_pos);
+            const auto another_content = another.substr(another_space_pos + 1);
+
+            if (one_content == another_content) {
+                return one_identifier < another_identifier;
+            }
+            return one_content < another_content;
+        }
+
+        return false;
+    });
+
+    return logs;
+}
+
 }//namespace
 
 
@@ -95,3 +138,40 @@ THE_BENCHMARK(SortByFrequency_Stable, SAMPLE1);
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE1, EXPECTED_STABLE1, SAMPLE1);
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE2, EXPECTED_STABLE2, SAMPLE2);
 SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE3, EXPECTED3, SAMPLE3);
+
+
+const std::vector<std::string_view> SAMPLE1L = {
+    "dig1 8 1 5 1",
+    "let1 art can",
+    "dig2 3 6",
+    "let2 own kit dig",
+    "let3 art zero"
+};
+const std::vector<std::string_view> EXPECTED1L = {
+    "let1 art can",
+    "let3 art zero",
+    "let2 own kit dig",
+    "dig1 8 1 5 1",
+    "dig2 3 6"
+};
+
+const std::vector<std::string_view> SAMPLE2L = {
+    "a1 9 2 3 1",
+    "g1 act car",
+    "zo4 4 7",
+    "ab1 off key dog",
+    "a8 act zoo"
+};
+const std::vector<std::string_view> EXPECTED2L = {
+    "g1 act car",
+    "a8 act zoo",
+    "ab1 off key dog",
+    "a1 9 2 3 1",
+    "zo4 4 7"
+};
+
+
+THE_BENCHMARK(SortLogs, SAMPLE1L);
+
+SIMPLE_TEST(SortLogs, TestSAMPLE1, EXPECTED1L, SAMPLE1L);
+SIMPLE_TEST(SortLogs, TestSAMPLE2, EXPECTED2L, SAMPLE2L);

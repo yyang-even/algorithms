@@ -40,6 +40,9 @@ compile_test(kth_smallest_element_BST)
 compile_benchmark(lowest_common_ancestor)
 compile_test(lowest_common_ancestor)
 
+compile_benchmark(range_sum_BST)
+compile_test(range_sum_BST)
+
 compile_benchmark(rank_of_element_in_stream)
 compile_test(rank_of_element_in_stream)
 
