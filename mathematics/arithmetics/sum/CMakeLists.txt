@@ -16,6 +16,9 @@ compile_test(prefix_sum_array)
 compile_benchmark(range_sum_queries)
 compile_test(range_sum_queries)
 
+compile_benchmark(shifting_letters)
+compile_test(shifting_letters)
+
 compile_benchmark(smallest_subarray_with_sum_greater_than_given_value)
 compile_test(smallest_subarray_with_sum_greater_than_given_value)
 

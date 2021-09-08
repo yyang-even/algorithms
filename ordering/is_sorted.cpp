@@ -60,6 +60,36 @@ auto isMonotonic(const ArrayType &nums) {
     return increasing or decreasing;
 }
 
+
+/**
+ * @reference   Verifying an Alien Dictionary
+ *              https://leetcode.com/problems/verifying-an-alien-dictionary/
+ *
+ * In an alien language, surprisingly, they also use English lowercase letters, but
+ * possibly in a different order. The order of the alphabet is some permutation of
+ * lowercase letters. Given a sequence of words written in the alien language, and the
+ * order of the alphabet, return true if and only if the given words are sorted
+ * lexicographically in this alien language.
+ */
+auto isAlienSorted(const std::vector<std::string_view> &words,
+                   const std::string_view order) {
+    std::unordered_map<char, int> order_map;
+    for (std::size_t i = 0; i < order.size(); ++i) {
+        order_map[order[i]] = i;
+    }
+
+    return std::is_sorted(words.cbegin(), words.cend(),
+    [&order_map](const auto one, const auto another) {
+        const auto size = std::min(one.size(), another.size());
+        std::size_t i = 0;
+        for (; i < size and one[i] == another[i]; ++i);
+        if (i < size) {
+            return order_map[one[i]] < order_map[another[i]];
+        }
+        return one.size() < another.size();
+    });
+}
+
 }//namespace
 
 
@@ -94,3 +124,15 @@ SIMPLE_TEST(isMonotonic, TestSAMPLE2, true, VALUES2);
 SIMPLE_TEST(isMonotonic, TestSAMPLE3, true, VALUES3);
 SIMPLE_TEST(isMonotonic, TestSAMPLE4, false, VALUES4);
 SIMPLE_TEST(isMonotonic, TestSAMPLE5, true, VALUES5);
+
+
+const std::vector<std::string_view> SAMPLE1 = {"hello", "leetcode"};
+const std::vector<std::string_view> SAMPLE2 = {"word", "world", "row"};
+const std::vector<std::string_view> SAMPLE3 = {"apple", "app"};
+
+
+THE_BENCHMARK(isAlienSorted, SAMPLE1, "hlabcdefgijkmnopqrstuvwxyz");
+
+SIMPLE_TEST(isAlienSorted, TestSAMPLE1, true, SAMPLE1, "hlabcdefgijkmnopqrstuvwxyz");
+SIMPLE_TEST(isAlienSorted, TestSAMPLE2, false, SAMPLE2, "worldabcefghijkmnpqstuvxyz");
+SIMPLE_TEST(isAlienSorted, TestSAMPLE3, false, SAMPLE3, "abcdefghijklmnopqrstuvwxyz");

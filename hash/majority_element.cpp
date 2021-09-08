@@ -173,6 +173,36 @@ auto MajorityElements(const ArrayType &elements) {
     return results;
 }
 
+
+/**
+ * @reference   N-Repeated Element in Size 2N Array
+ *              https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+ *
+ * You are given an integer array nums with the following properties:
+ *  nums.length == 2 * n.
+ *  nums contains n + 1 unique elements.
+ *  Exactly one element of nums is repeated n times.
+ * Return the element that is repeated n times.
+ */
+auto HalfRepeatedElement_Set(const ArrayType &nums) {
+    std::unordered_set<int> s;
+    for (const auto n : nums) {
+        if (not s.insert(n).second) {
+            return n;
+        }
+    }
+    return 0;
+}
+
+
+auto HalfRepeatedElement_Compare(const ArrayType &nums) {
+    for (std::size_t i = 2; i < nums.size(); ++i)
+        if (nums[i] == nums[i - 1] or nums[i] == nums[i - 2]) {
+            return nums[i];
+        }
+    return nums.front();
+}
+
 }//namespace
 
 
@@ -220,3 +250,22 @@ SIMPLE_TEST(MajorityElements, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(MajorityElements, TestSAMPLE4, SAMPLE4, SAMPLE4);
 SIMPLE_TEST(MajorityElements, TestSAMPLE5, SAMPLE5, SAMPLE5);
 SIMPLE_TEST(MajorityElements, TestSAMPLE6, EXPECTED6, SAMPLE6);
+
+
+const ArrayType SAMPLE1H = {1, 2, 3, 3};
+const ArrayType SAMPLE2H = {2, 1, 2, 5, 3, 2};
+const ArrayType SAMPLE3H = {5, 1, 5, 2, 5, 3, 5, 4};
+
+
+THE_BENCHMARK(HalfRepeatedElement_Set, SAMPLE1H);
+
+SIMPLE_TEST(HalfRepeatedElement_Set, TestSAMPLE1, 3, SAMPLE1H);
+SIMPLE_TEST(HalfRepeatedElement_Set, TestSAMPLE2, 2, SAMPLE2H);
+SIMPLE_TEST(HalfRepeatedElement_Set, TestSAMPLE3, 5, SAMPLE3H);
+
+
+THE_BENCHMARK(HalfRepeatedElement_Compare, SAMPLE1H);
+
+SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE1, 3, SAMPLE1H);
+SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE2, 2, SAMPLE2H);
+SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE3, 5, SAMPLE3H);
