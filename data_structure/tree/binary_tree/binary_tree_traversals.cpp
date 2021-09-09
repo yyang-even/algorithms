@@ -34,6 +34,15 @@ auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
 }
 
 
+/**
+ * @reference   Univalued Binary Tree
+ *              https://leetcode.com/problems/univalued-binary-tree/
+ *
+ * A binary tree is uni-valued if every node in the tree has the same value. Given the
+ * root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
+ */
+
+
 auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
                                   BinaryTree::ArrayType &outputs) {
     if (not node) {

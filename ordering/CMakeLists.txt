@@ -142,5 +142,8 @@ compile_test(sort_nearly_sorted_array)
 compile_benchmark(sorted_insert)
 compile_test(sorted_insert)
 
+compile_benchmark(squares_of_sorted_array)
+compile_test(squares_of_sorted_array)
+
 compile_benchmark(sublist_rotation)
 compile_test(sublist_rotation)
