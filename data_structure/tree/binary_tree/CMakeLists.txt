@@ -35,6 +35,9 @@ compile_test(count_binary_tree_leaves)
 compile_benchmark(count_good_nodes)
 compile_test(count_good_nodes)
 
+compile_benchmark(cousins_in_binary_tree)
+compile_test(cousins_in_binary_tree)
+
 compile_benchmark(distribute_coins_in_binary_tree)
 compile_test(distribute_coins_in_binary_tree)
 
