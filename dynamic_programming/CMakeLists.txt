@@ -43,6 +43,9 @@ compile_test(flip_string_to_monotone_increasing)
 compile_benchmark(k_inverse_pairs_array)
 compile_test(k_inverse_pairs_array)
 
+compile_benchmark(largest_plus_sign)
+compile_test(largest_plus_sign)
+
 compile_benchmark(longest_common_subsequence)
 compile_test(longest_common_subsequence)
 
