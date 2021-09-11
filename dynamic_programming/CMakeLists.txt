@@ -1,6 +1,9 @@
 compile_benchmark(0-1_knapsack_problem)
 compile_test(0-1_knapsack_problem)
 
+compile_benchmark(arithmetic_slices)
+compile_test(arithmetic_slices)
+
 compile_benchmark(beautiful_array)
 compile_test(beautiful_array)
 

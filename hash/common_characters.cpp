@@ -181,6 +181,13 @@ inline auto Intersection_Sort(std::string one, std::string another) {
 /** Common characters in n strings
  *
  * @reference   https://www.geeksforgeeks.org/common-characters-n-strings/
+ * @reference   Find Common Characters
+ *              https://leetcode.com/problems/find-common-characters/
+ *
+ * Given a string array words, return an array of all characters that show up in all
+ * strings within the words (including duplicates). You may return the answer in any
+ * order.
+ * words[i] consists of lowercase English letters.
  */
 auto CommonCharsOfStrings(const ArrayType &strings) {
     assert(std::all_of(strings.cbegin(), strings.cend(), [](const auto & a_string) {
@@ -189,15 +196,14 @@ auto CommonCharsOfStrings(const ArrayType &strings) {
 
     std::vector<int> all_common_chars(26, std::numeric_limits<int>::max());
     for (const auto a_string : strings) {
-        std::vector<int> common_chars_of_two(26, 0);
+        int counts[26] = {};
         for (const auto c : a_string) {
-            const auto index = c - 'a';
-            if ((all_common_chars[index])-- > 0) {
-                ++(common_chars_of_two[index]);
-            }
+            ++counts[c - 'a'];
         }
 
-        all_common_chars.swap(common_chars_of_two);
+        for (int i = 0; i < 26; ++i) {
+            all_common_chars[i] = std::min(all_common_chars[i], counts[i]);
+        }
     }
 
     std::string results;
