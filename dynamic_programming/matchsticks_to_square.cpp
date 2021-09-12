@@ -145,6 +145,38 @@ auto MatchsticksToSquare_DP(ArrayType elements) {
                                   (1u << elements.size()) - 1, 0, memo);
 }
 
+
+/**
+ * @reference   Partition Array Into Three Parts With Equal Sum
+ *              https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/
+ *
+ * Given an array of integers arr, return true if we can partition the array into three
+ * non-empty parts with equal sums. Formally, we can partition the array if we can find
+ * indexes i + 1 < j with (arr[0] + arr[1] + ... + arr[i] == arr[i + 1] + arr[i + 2] +
+ * ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length - 1])
+ */
+auto SubarraysOfEqualSum(const ArrayType &nums) {
+    const auto total = std::accumulate(nums.cbegin(), nums.cend(), 0);
+    const auto average = total / 3;
+    if (average * 3 != total) {
+        return false;
+    }
+
+    int sum = 0;
+    int count = 0;
+    for (const auto n : nums) {
+        sum += n;
+        if (sum == average) {
+            if (++count == 3) {
+                return true;
+            }
+            sum = 0;
+        }
+    }
+
+    return false;
+}
+
 }//namespace
 
 
@@ -182,3 +214,17 @@ SIMPLE_TEST(SubsetsOfEqualSum, TestSAMPLE4, true, SAMPLE4, 3);
 SIMPLE_TEST(SubsetsOfEqualSum, TestSAMPLE5, false, SAMPLE5, 3);
 SIMPLE_TEST(SubsetsOfEqualSum, TestSAMPLE6, true, SAMPLE6, 3);
 SIMPLE_TEST(SubsetsOfEqualSum, TestSAMPLE7, true, SAMPLE7, 4);
+
+
+const ArrayType SAMPLE1A = {0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1};
+const ArrayType SAMPLE2A = {0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1};
+const ArrayType SAMPLE3A = {3, 3, 6, 5, -2, 2, 5, 1, -9, 4};
+const ArrayType SAMPLE4A = {1, -1, 1, -1};
+
+
+THE_BENCHMARK(SubarraysOfEqualSum, SAMPLE1A);
+
+SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE1, true, SAMPLE1A);
+SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE2, false, SAMPLE2A);
+SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE3, true, SAMPLE3A);
+SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE4, false, SAMPLE4A);
