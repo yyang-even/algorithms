@@ -387,6 +387,28 @@ inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
  * exists an answer.
  */
 
+
+/**
+ * @reference   Maximum Number of Balloons
+ *              https://leetcode.com/problems/maximum-number-of-balloons/
+ *
+ * Given a string text, you want to use the characters of text to form as many instances
+ * of the word "balloon" as possible. You can use each character in text at most once.
+ * Return the maximum number of instances that can be formed.
+ * Follow up: Suppose you are given an arbitrary string pattern instead of balloon.
+ */
+auto MaxNumberOfPattern(const std::string_view text, const std::string_view pattern) {
+    auto text_counts = ToFrequencyHashTable(text);
+    const auto pattern_counts = ToFrequencyHashTable(pattern);
+
+    int result = INT_MAX;
+    for (const auto [c, frequence] : pattern_counts) {
+        result = std::min(result, text_counts[c] / frequence);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -481,3 +503,11 @@ SIMPLE_TEST(Union_Unsorted, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
 THE_BENCHMARK(Union_Unsorted_Sort, SAMPLE1L, SAMPLE1R);
 
 SIMPLE_TEST(Union_Unsorted_Sort, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE1R);
+
+
+THE_BENCHMARK(MaxNumberOfPattern, "nlaebolko", "balloon");
+
+SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE1, 1, "nlaebolko", "balloon");
+SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE2, 2, "loonbalxballpoon", "balloon");
+SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE3, 0, "leetcode", "balloon");
+SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE4, 0, "lloo", "balloon");

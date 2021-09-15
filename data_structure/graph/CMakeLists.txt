@@ -22,6 +22,9 @@ compile_test(minimum_mean_weight_cycle)
 compile_benchmark(number_of_connected_components)
 compile_test(number_of_connected_components)
 
+compile_benchmark(reachable_nodes_in_subdivided_graph)
+compile_test(reachable_nodes_in_subdivided_graph)
+
 compile_benchmark(simple_paths)
 compile_test(simple_paths)
 

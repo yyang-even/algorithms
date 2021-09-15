@@ -90,6 +90,71 @@ auto isAlienSorted(const std::vector<std::string_view> &words,
     });
 }
 
+
+/**
+ * @reference   Longest Turbulent Subarray
+ *              https://leetcode.com/problems/longest-turbulent-subarray/
+ *
+ * Given an integer array arr, return the length of a maximum size turbulent subarray of
+ * arr. A subarray is turbulent if the comparison sign flips between each adjacent pair
+ * of elements in the subarray. More formally, a subarray [arr[i], arr[i + 1], ..., arr[j]]
+ * of arr is said to be turbulent if and only if:
+ *  For i <= k < j:
+ *      arr[k] > arr[k + 1] when k is odd, and
+ *      arr[k] < arr[k + 1] when k is even.
+ *  Or, for i <= k < j:
+ *      arr[k] > arr[k + 1] when k is even, and
+ *      arr[k] < arr[k + 1] when k is odd.
+ */
+auto LongestTurbulentSubarray(const ArrayType &nums) {
+    int length_smaller = 1;
+    int length_greater = 1;
+
+    int result = 1;
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        if (nums[i - 1] == nums[i]) {
+            length_greater = 1;
+            length_smaller = 1;
+        } else if (nums[i - 1] < nums[i]) {
+            length_greater = length_smaller + 1;
+            length_smaller = 1;
+        } else {
+            length_smaller = length_greater + 1;
+            length_greater = 1;
+        }
+
+        result = std::max(result, std::max(length_smaller, length_greater));
+    }
+
+    return result;
+}
+
+
+inline constexpr int threeWayCompare(const int x, const int y) {
+    if (x < y) {
+        return -1;
+    }
+    return x > y;
+}
+
+auto LongestTurbulentSubarray_SlidingWindow(const ArrayType &nums) {
+    assert(not nums.empty());
+
+    std::size_t result = 1;
+    std::size_t anchor = 0;
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        const auto c = threeWayCompare(nums[i - 1], nums[i]);
+        if (c == 0) {
+            anchor = i;
+        } else if (i == nums.size() - 1 or c * threeWayCompare(nums[i], nums[i + 1]) != -1) {
+            result = std::max(result, i - anchor + 1);
+            anchor = i;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -136,3 +201,25 @@ THE_BENCHMARK(isAlienSorted, SAMPLE1, "hlabcdefgijkmnopqrstuvwxyz");
 SIMPLE_TEST(isAlienSorted, TestSAMPLE1, true, SAMPLE1, "hlabcdefgijkmnopqrstuvwxyz");
 SIMPLE_TEST(isAlienSorted, TestSAMPLE2, false, SAMPLE2, "worldabcefghijkmnpqstuvxyz");
 SIMPLE_TEST(isAlienSorted, TestSAMPLE3, false, SAMPLE3, "abcdefghijklmnopqrstuvwxyz");
+
+
+const ArrayType SAMPLE1T = {9, 4, 2, 10, 7, 8, 8, 1, 9};
+const ArrayType SAMPLE2T = {4, 8, 12, 16};
+const ArrayType SAMPLE3T = {4};
+const ArrayType SAMPLE4T = {4, 4};
+
+
+THE_BENCHMARK(LongestTurbulentSubarray, SAMPLE1T);
+
+SIMPLE_TEST(LongestTurbulentSubarray, TestSAMPLE1, 5, SAMPLE1T);
+SIMPLE_TEST(LongestTurbulentSubarray, TestSAMPLE2, 2, SAMPLE2T);
+SIMPLE_TEST(LongestTurbulentSubarray, TestSAMPLE3, 1, SAMPLE3T);
+SIMPLE_TEST(LongestTurbulentSubarray, TestSAMPLE4, 1, SAMPLE4T);
+
+
+THE_BENCHMARK(LongestTurbulentSubarray_SlidingWindow, SAMPLE1T);
+
+SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE1, 5, SAMPLE1T);
+SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE2, 2, SAMPLE2T);
+SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE3, 1, SAMPLE3T);
+SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE4, 1, SAMPLE4T);

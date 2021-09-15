@@ -310,9 +310,9 @@ auto SingleSourceShortestPaths_Dijkstra(
                     open_list.emplace(distances_from_source[node.destination], node.destination);
                 }
             }
-        }
 
-        closed_vertices[from_vertex] = true;
+            closed_vertices[from_vertex] = true;
+        }
     }
 
     return distances_from_source;

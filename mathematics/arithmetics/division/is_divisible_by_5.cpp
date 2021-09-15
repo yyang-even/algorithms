@@ -5,6 +5,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Multiply the given number by 2 such that it is divisible by 10
  *
  * @reference   https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
@@ -82,6 +84,28 @@ inline constexpr auto isDivisibleBy5_Float(const int n) {
 inline constexpr auto isDivisibleBy5_LastDigitStrict(const int n) {
     const auto last_digit = Mod10_Float(n);
     return (last_digit == 0) or (last_digit == 5) or (last_digit == -5);
+}
+
+
+/**
+ * @reference   Binary Prefix Divisible By 5
+ *              https://leetcode.com/problems/binary-prefix-divisible-by-5/
+ *
+ * You are given a binary array nums (0-indexed). We define xi as the number whose binary
+ * representation is the subarray nums[0..i] (from most-significant-bit to
+ * least-significant-bit).
+ *  For example, if nums = [1,0,1], then x0 = 1, x1 = 2, and x2 = 5.
+ * Return an array of booleans answer where answer[i] is true if xi is divisible by 5.
+ */
+std::vector<bool> BinaryPrefixesDivisibleBy5(const ArrayType &nums) {
+    std::vector<bool> result;
+    int v = 0;
+    for (const auto n : nums) {
+        v = (v * 2  + n) % 5;
+        result.push_back(v == 0);
+    }
+
+    return result;
 }
 
 }//namespace
@@ -178,3 +202,24 @@ SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE4, true, SAMPLE4);
 SIMPLE_TEST(isDivisibleBy5_LastDigitStrict, TestSAMPLE5, true, -1082066345);
 
 MUTUAL_RANDOM_TEST(isDivisibleBy5_Mod, isDivisibleBy5_LastDigitStrict, LOWER, UPPER);
+
+
+const ArrayType SAMPLE1B = {0, 1, 1};
+const std::vector EXPECTED1 = {true, false, false};
+
+const ArrayType SAMPLE2B = {1, 1, 1};
+const std::vector EXPECTED2 = {false, false, false};
+
+const ArrayType SAMPLE3B = {0, 1, 1, 1, 1, 1};
+const std::vector EXPECTED3 = {true, false, false, false, true, false};
+
+const ArrayType SAMPLE4B = {1, 1, 1, 0, 1};
+const std::vector EXPECTED4 = {false, false, false, false, false};
+
+
+THE_BENCHMARK(BinaryPrefixesDivisibleBy5, SAMPLE1B);
+
+SIMPLE_TEST(BinaryPrefixesDivisibleBy5, TestSAMPLE1, EXPECTED1, SAMPLE1B);
+SIMPLE_TEST(BinaryPrefixesDivisibleBy5, TestSAMPLE2, EXPECTED2, SAMPLE2B);
+SIMPLE_TEST(BinaryPrefixesDivisibleBy5, TestSAMPLE3, EXPECTED3, SAMPLE3B);
+SIMPLE_TEST(BinaryPrefixesDivisibleBy5, TestSAMPLE4, EXPECTED4, SAMPLE4B);
