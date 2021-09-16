@@ -52,6 +52,9 @@ compile_test(longest_harmonious_subsequence)
 compile_benchmark(make_a_sort_stable)
 compile_test(make_a_sort_stable)
 
+compile_benchmark(matrix_cells_in_distance_order)
+compile_test(matrix_cells_in_distance_order)
+
 compile_benchmark(maximum_of_all_subarrays_of_size_k)
 compile_test(maximum_of_all_subarrays_of_size_k)
 
