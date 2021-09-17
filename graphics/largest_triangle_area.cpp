@@ -29,6 +29,20 @@ auto LargestTriangleArea(const ArrayType &points) {
     return result;
 }
 
+
+/**
+ * @reference   Valid Boomerang
+ *              https://leetcode.com/problems/valid-boomerang/
+ *
+ * Given an array points where points[i] = [xi, yi] represents a point on the X-Y plane,
+ * return true if these points are a boomerang. A boomerang is a set of three points
+ * that are all distinct and not in a straight line.
+ */
+inline bool isBoomerang(const ArrayType &points) {
+    assert(points.size() == 3);
+    return TriangleArea(points[0], points[1], points[2]);
+}
+
 }//namespace
 
 
@@ -40,3 +54,14 @@ THE_BENCHMARK(LargestTriangleArea, SAMPLE1);
 
 SIMPLE_TEST(LargestTriangleArea, TestSAMPLE1, 2.0, SAMPLE1);
 SIMPLE_TEST(LargestTriangleArea, TestSAMPLE2, 0.5, SAMPLE2);
+
+
+const ArrayType SAMPLE3 = {{1, 1}, {2, 3}, {3, 2}};
+const ArrayType SAMPLE4 = {{1, 1}, {2, 2}, {3, 3}};
+
+
+THE_BENCHMARK(isBoomerang, SAMPLE3);
+
+SIMPLE_TEST(isBoomerang, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isBoomerang, TestSAMPLE3, true, SAMPLE3);
+SIMPLE_TEST(isBoomerang, TestSAMPLE4, false, SAMPLE4);

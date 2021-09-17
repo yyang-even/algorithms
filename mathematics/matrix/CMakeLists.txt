@@ -16,6 +16,9 @@ compile_test(rotate_square_matrix)
 compile_benchmark(set_matrix_zeroes)
 compile_test(set_matrix_zeroes)
 
+compile_benchmark(spiral_matrix)
+compile_test(spiral_matrix)
+
 compile_benchmark(toeplitz_matrix)
 compile_test(toeplitz_matrix)
 
