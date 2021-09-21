@@ -71,6 +71,29 @@ FindOneFixedPointInArrayWithDuplicates(const ArrayType &elements) {
     return FindOneFixedPointInArrayWithDuplicates(elements, 0, elements.size() - 1);
 }
 
+
+/**
+ * @reference   Fixed Point
+ *              https://xingxingpark.com/Leetcode-1064-Fixed-Point/
+ *
+ * Given an array A of distinct integers sorted in ascending order, return the smallest
+ * index i that satisfies A[i] == i.  Return -1 if no such i exists.
+ */
+auto MinFixedPoint(const ArrayType &nums) {
+    int left = 0;
+    int right = nums.size() - 1;
+    while (left < right) {
+        const auto mid = (left + right) / 2;
+        if (mid > nums[mid]) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+
+    return (not nums.empty() and nums[left] == left) ? left : -1;
+}
+
 }//namespace
 
 
@@ -109,3 +132,20 @@ SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, Test_BACK, SAMPLE_BACK.back(
             SAMPLE_BACK);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestUnderflow, -1, UNDERFLOW);
 SIMPLE_TEST(FindOneFixedPointInArrayWithDuplicates, TestSAMPLE5, 2, SAMPLE5);
+
+
+const ArrayType SAMPLE6 = {0, 1, 2, 3};
+const ArrayType SAMPLE7 = {-2, 1, 2, 3};
+
+
+THE_BENCHMARK(MinFixedPoint, SAMPLE1);
+
+SIMPLE_TEST(MinFixedPoint, TestEMPTY, -1, EMPTY);
+SIMPLE_TEST(MinFixedPoint, TestSAMPLE1, 3, SAMPLE1);
+SIMPLE_TEST(MinFixedPoint, Test_FRONT, SAMPLE_FRONT.front(), SAMPLE_FRONT);
+SIMPLE_TEST(MinFixedPoint, TestSAMPLE3, -1, SAMPLE3);
+SIMPLE_TEST(MinFixedPoint, TestSAMPLE4, 3, SAMPLE4);
+SIMPLE_TEST(MinFixedPoint, Test_BACK, SAMPLE_BACK.back(), SAMPLE_BACK);
+SIMPLE_TEST(MinFixedPoint, TestUnderflow, -1, UNDERFLOW);
+SIMPLE_TEST(MinFixedPoint, TestSAMPLE6, 0, SAMPLE6);
+SIMPLE_TEST(MinFixedPoint, TestSAMPLE7, 1, SAMPLE7);

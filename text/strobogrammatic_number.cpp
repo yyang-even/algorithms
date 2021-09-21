@@ -14,15 +14,15 @@ using ArrayType = std::unordered_multiset<std::string>;
  * The number is represented as a string. For example, the numbers "69", "88", and "818"
  * are all strobogrammatic.
  */
-auto isStrobogrammaticNumber(const std::string_view number) {
-    const std::unordered_map<char, char> strobogrammatic_digit_map = {
-        {'0', '0'},
-        {'1', '1'},
-        {'8', '8'},
-        {'6', '9'},
-        {'9', '6'}
-    };
+const std::unordered_map<char, char> strobogrammatic_digit_map = {
+    {'0', '0'},
+    {'1', '1'},
+    {'8', '8'},
+    {'6', '9'},
+    {'9', '6'}
+};
 
+auto isStrobogrammaticNumber(const std::string_view number) {
     int left = 0;
     int right = number.size() - 1;
     while (left <= right) {
@@ -33,6 +33,39 @@ auto isStrobogrammaticNumber(const std::string_view number) {
     }
 
     return true;
+}
+
+
+/**
+ * @reference   Confusing Number
+ *              https://www.goodtecher.com/leetcode-1056-confusing-number/
+ *
+ * Given a number N, return true if and only if it is a confusing number, which satisfies
+ * the following condition: We can rotate digits by 180 degrees to form new digits. When
+ * 0, 1, 6, 8, 9 are rotated 180 degrees, they become 0, 1, 9, 8, 6 respectively. When 2,
+ * 3, 4, 5 and 7 are rotated 180 degrees, they become invalid. A confusing number is a
+ * number that when rotated 180 degrees becomes a different number with each digit valid.
+ */
+const std::unordered_map<int, int> confusing_digit_map = {
+    {0, 0},
+    {1, 1},
+    {8, 8},
+    {6, 9},
+    {9, 6}
+};
+
+auto isConfusingNumber(const int n) {
+    int rotated = 0;
+    for (auto i = n; i; i /= 10) {
+        const auto digit = i % 10;
+        const auto iter = confusing_digit_map.find(digit);
+        if (iter == confusing_digit_map.cend()) {
+            return false;
+        }
+        rotated = rotated * 10 + iter->second;
+    }
+
+    return rotated != n;
 }
 
 
@@ -138,6 +171,44 @@ CountStrobogrammaticNumbersInRange(const std::string &low, const std::string &hi
     return result;
 }
 
+
+/**
+ * @reference   LeetCode 1088. Confusing Number II
+ *              https://www.cnblogs.com/Dylan-Java-NYC/p/12382526.html
+ *
+ * We can rotate digits by 180 degrees to form new digits. When 0, 1, 6, 8, 9 are rotated
+ * 180 degrees, they become 0, 1, 9, 8, 6 respectively. When 2, 3, 4, 5 and 7 are rotated
+ * 180 degrees, they become invalid. A confusing number is a number that when rotated 180
+ * degrees becomes a different number with each digit valid.(Note that the rotated number
+ * can be greater than the original number.) Given a positive integer N, return the number
+ * of confusing numbers between 1 and N inclusive.
+ */
+void
+CountConfusingNumber(const long N, const long num, const long rotated,
+                     const long base, int &count) {
+    if (num > N) {
+        return;
+    }
+
+    if (num != rotated) {
+        ++count;
+    }
+
+    for (const auto [digit, mapped] : confusing_digit_map) {
+        if (num == 0 and digit == 0) {
+            continue;
+        }
+
+        CountConfusingNumber(N, num * 10 + digit, mapped * base + rotated, base * 10, count);
+    }
+}
+
+inline auto CountConfusingNumber(const int N) {
+    int count = 0;
+    CountConfusingNumber(N, 0, 0, 1, count);
+    return count;
+}
+
 }//namespace
 
 
@@ -178,3 +249,17 @@ THE_BENCHMARK(CountStrobogrammaticNumbersInRange, "50", "100");
 SIMPLE_TEST(CountStrobogrammaticNumbersInRange, TestSAMPLE1, 3, "50", "100");
 SIMPLE_TEST(CountStrobogrammaticNumbersInRange, TestSAMPLE2, 3, "0", "8");
 SIMPLE_TEST(CountStrobogrammaticNumbersInRange, TestSAMPLE3, 4, "9", "100");
+
+
+THE_BENCHMARK(isConfusingNumber, 89);
+
+SIMPLE_TEST(isConfusingNumber, TestSAMPLE1, true, 6);
+SIMPLE_TEST(isConfusingNumber, TestSAMPLE2, true, 89);
+SIMPLE_TEST(isConfusingNumber, TestSAMPLE3, false, 11);
+SIMPLE_TEST(isConfusingNumber, TestSAMPLE4, false, 25);
+
+
+THE_BENCHMARK(CountConfusingNumber, 100);
+
+SIMPLE_TEST(CountConfusingNumber, TestSAMPLE1, 19, 100);
+SIMPLE_TEST(CountConfusingNumber, TestSAMPLE2, 6, 20);
