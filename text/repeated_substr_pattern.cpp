@@ -63,6 +63,37 @@ constexpr auto RepeatedSubstrPattern_KMP(const std::string_view str) {
     return LPS[N - 1] and (LPS[N - 1] % (N - LPS[N - 1]) == 0);
 }
 
+
+/**
+ * @reference   Greatest Common Divisor of Strings
+ *              https://leetcode.com/problems/greatest-common-divisor-of-strings/
+ *
+ * For two strings s and t, we say "t divides s" if and only if s = t + ... + t  (t
+ * concatenated with itself 1 or more times) Given two strings str1 and str2, return
+ * the largest string x such that x divides both str1 and str2.
+ */
+constexpr std::string_view
+GCDofStrs(const std::string_view one, const std::string_view another) {
+    const int length_gcd = std::gcd(one.size(), another.size());
+    for (auto length = length_gcd; length > 0; --length) {
+        if (one.size() % length == 0 and another.size() % length == 0 and
+            one.substr(0, length) == another.substr(0, length) and
+            allSubstrEqual(one, length) and allSubstrEqual(another, length)) {
+            return one.substr(0, length);
+        }
+    }
+
+    return "";
+}
+
+
+std::string GCDofStrs_Concatenate(const std::string &one, const std::string &another) {
+    if (one + another != another + one) {
+        return "";
+    }
+    return one.substr(0, std::gcd(one.size(), another.size()));
+}
+
 }//namespace
 
 
@@ -94,3 +125,19 @@ SIMPLE_TEST(RepeatedSubstrPattern_KMP, TestSAMPLE3, true, "ababab");
 SIMPLE_TEST(RepeatedSubstrPattern_KMP, TestSAMPLE4, true, "abcabcabc");
 SIMPLE_TEST(RepeatedSubstrPattern_KMP, TestSAMPLE5, false, "aba");
 SIMPLE_TEST(RepeatedSubstrPattern_KMP, TestSAMPLE6, false, "aaacaaaa");
+
+
+THE_BENCHMARK(GCDofStrs, "ABCABC", "ABC");
+
+SIMPLE_TEST(GCDofStrs, TestSAMPLE1, "ABC", "ABCABC", "ABC");
+SIMPLE_TEST(GCDofStrs, TestSAMPLE2, "AB", "ABABAB", "ABAB");
+SIMPLE_TEST(GCDofStrs, TestSAMPLE3, "", "LEET", "CODE");
+SIMPLE_TEST(GCDofStrs, TestSAMPLE4, "", "ABCDEF", "ABC");
+
+
+THE_BENCHMARK(GCDofStrs_Concatenate, "ABCABC", "ABC");
+
+SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE1, "ABC", "ABCABC", "ABC");
+SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE2, "AB", "ABABAB", "ABAB");
+SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE3, "", "LEET", "CODE");
+SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE4, "", "ABCDEF", "ABC");
