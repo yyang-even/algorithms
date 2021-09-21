@@ -19,6 +19,9 @@ compile_test(set_matrix_zeroes)
 compile_benchmark(spiral_matrix)
 compile_test(spiral_matrix)
 
+compile_benchmark(tic_tac_toe)
+compile_test(tic_tac_toe)
+
 compile_benchmark(toeplitz_matrix)
 compile_test(toeplitz_matrix)
 

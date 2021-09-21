@@ -34,6 +34,9 @@ compile_test(count_vowels_permutation)
 compile_benchmark(decode_ways)
 compile_test(decode_ways)
 
+compile_benchmark(distinct_subsequences)
+compile_test(distinct_subsequences)
+
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
@@ -108,6 +111,9 @@ compile_test(stone_game)
 
 compile_benchmark(student_attendance_record)
 compile_test(student_attendance_record)
+
+compile_benchmark(target_sum)
+compile_test(target_sum)
 
 compile_benchmark(trap_rain_water)
 compile_test(trap_rain_water)
