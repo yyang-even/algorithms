@@ -4,6 +4,9 @@ compile_test(auto-complete)
 compile_benchmark(boggle)
 compile_test(boggle)
 
+compile_benchmark(index_pairs_of_string)
+compile_test(index_pairs_of_string)
+
 compile_benchmark(longest_concatenated_string)
 compile_test(longest_concatenated_string)
 
