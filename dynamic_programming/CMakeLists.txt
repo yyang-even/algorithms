@@ -73,6 +73,9 @@ compile_test(matchsticks_to_square)
 compile_benchmark(matrix_chain_multiplication)
 compile_test(matrix_chain_multiplication)
 
+compile_benchmark(max_length_concatenated_str_with_unique_chars)
+compile_test(max_length_concatenated_str_with_unique_chars)
+
 compile_benchmark(max_sum_rectangle_in_matrix)
 compile_test(max_sum_rectangle_in_matrix)
 
