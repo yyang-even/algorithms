@@ -1,2 +1,0 @@
-compile_benchmark(rock_paper_scissors)
-compile_test(rock_paper_scissors)

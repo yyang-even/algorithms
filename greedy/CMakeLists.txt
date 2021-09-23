@@ -7,6 +7,9 @@ compile_test(array_of_doubled_pairs)
 compile_benchmark(assign_cookies)
 compile_test(assign_cookies)
 
+compile_benchmark(break_a_palindrome)
+compile_test(break_a_palindrome)
+
 compile_benchmark(candy)
 compile_test(candy)
 

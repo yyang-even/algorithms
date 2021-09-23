@@ -49,6 +49,48 @@ auto SplitIntoWords_strtok(std::string sentence) {
 }
 
 
+/** Count words in a given string
+ *
+ * @reference   https://www.geeksforgeeks.org/count-words-in-a-given-string/
+ * @reference   stringstream in C++ and its applications
+ *              https://www.geeksforgeeks.org/stringstream-c-applications/
+ *
+ * Given a string, count number of words in it. The words are separated by following
+ * characters: space (' ') or new line ('\n') or tab ('\t') or a combination of these.
+ *
+ * @reference   Number of Segments in a String
+ *              https://leetcode.com/problems/number-of-segments-in-a-string/
+ *
+ * You are given a string s, return the number of segments in the string. A segment is
+ * defined to be a contiguous sequence of non-space characters.
+ */
+constexpr auto CountWordsInGivenString(const std::string_view input) {
+    auto count = 0;
+    auto in_word = false;
+
+    for (const auto c : input) {
+        if (std::isspace(c)) {
+            in_word = false;
+        } else if (not in_word) {
+            in_word = true;
+            ++count;
+        }
+    }
+
+    return count;
+}
+
+
+auto CountWordsInGivenString_StringStream(const std::string &input) {
+    std::stringstream ss(input);
+
+    auto count = 0;
+    for (std::string word; ss >> word; ++count);
+
+    return count;
+}
+
+
 /**
  * @reference   Length of Last Word
  *              https://leetcode.com/problems/length-of-last-word/
@@ -77,7 +119,36 @@ auto SplitIntoWords_strtok(std::string sentence) {
  * Return the final sentence representing the conversion from sentence to Goat Latin.
  */
 
+
+/**
+ * @reference   Occurrences After Bigram
+ *              https://leetcode.com/problems/occurrences-after-bigram/
+ *
+ * Given two strings first and second, consider occurrences in some text of the form
+ * "first second third", where second comes immediately after first, and third comes
+ * immediately after second. Return an array of all the words third for each occurrence
+ * of "first second third".
+ * All the words in text a separated by a single space.
+ */
+auto
+WordAfterBigram(const std::string &text, const std::string &first,
+                const std::string &second) {
+    ArrayType result;
+    std::istringstream iss(text);
+    std::string current, pre, pre_pre;
+    while (iss >> current) {
+        if (pre_pre == first and pre == second) {
+            result.push_back(current);
+        }
+        pre_pre = pre;
+        pre = current;
+    }
+
+    return result;
+}
+
 }//namespace
+
 
 constexpr auto SplitIntoWords_SS = SplitIntoWords_StringStream<ArrayType>;
 
@@ -109,3 +180,33 @@ SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE1, EXPECTED1,
             "One two         three\n    four\tfive  ");
 SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE2, EXPECTED2, "Geeks for Geeks");
 SIMPLE_TEST(SplitIntoWords_SS, TestSAMPLE3, EXPECTED3, "a computer science portal");
+
+
+THE_BENCHMARK(CountWordsInGivenString,
+              "One two         three\n    four\tfive  ");
+
+SIMPLE_TEST(CountWordsInGivenString, TestSAMPLE1, 5,
+            "One two         three\n    four\tfive  ");
+
+
+THE_BENCHMARK(CountWordsInGivenString_StringStream,
+              "One two         three\n    four\tfive  ");
+
+SIMPLE_TEST(CountWordsInGivenString_StringStream, TestSAMPLE1, 5,
+            "One two         three\n    four\tfive  ");
+
+
+const ArrayType EXPECTED1B = {"girl", "student"};
+const ArrayType EXPECTED2B = {"we", "rock"};
+const ArrayType EXPECTED3B = {"student"};
+
+
+THE_BENCHMARK(WordAfterBigram, "alice is a good girl she is a good student", "a",
+              "good");
+
+SIMPLE_TEST(WordAfterBigram, TestSAMPLE1, EXPECTED1B,
+            "alice is a good girl she is a good student", "a", "good");
+SIMPLE_TEST(WordAfterBigram, TestSAMPLE2, EXPECTED2B,
+            "we will we will rock you", "we", "will");
+SIMPLE_TEST(WordAfterBigram, TestSAMPLE3, EXPECTED3B,
+            "alice is aa good girl she is a good student", "a", "good");

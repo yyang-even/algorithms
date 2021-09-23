@@ -31,9 +31,6 @@ compile_test(count_chars_at_same_position_as_in_alphabet)
 compile_benchmark(count_strings_with_consonant_and_vowels_at_alternate_position)
 compile_test(count_strings_with_consonant_and_vowels_at_alternate_position)
 
-compile_benchmark(count_words_in_given_string)
-compile_test(count_words_in_given_string)
-
 compile_benchmark(decimal_conversion_to)
 compile_test(decimal_conversion_to)
 
