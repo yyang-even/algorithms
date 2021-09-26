@@ -5,6 +5,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Find the average of first N natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
@@ -72,6 +74,42 @@ inline constexpr int ArrangingCoins_Formula(const long n) {
     return std::sqrt(2 * n + 0.25) - 0.5;
 }
 
+
+/**
+ * @reference   Distribute Candies to People
+ *              https://leetcode.com/problems/distribute-candies-to-people/
+ *
+ * We distribute some number of candies, to a row of n = num_people people in the
+ * following way: We then give 1 candy to the first person, 2 candies to the second
+ * person, and so on until we give n candies to the last person. Then, we go back to the
+ * start of the row, giving n + 1 candies to the first person, n + 2 candies to the
+ * second person, and so on until we give 2 * n candies to the last person. This process
+ * repeats (with us giving one more candy each time, and moving to the start of the row
+ * after we reach the end) until we run out of candies.  The last person will receive all
+ * of our remaining candies (not necessarily one more than the previous gift). Return an
+ * array (of length num_people and sum candies) that represents the final distribution of
+ * candies.
+ */
+auto DistributeCandies(const int candies, const int num_people) {
+    ArrayType result(num_people, 0);
+    int total = 0;
+    int i = 1;
+
+    while (true) {
+        for (auto &n : result) {
+            if (total + i > candies) {
+                n += candies - total;
+                return result;
+            } else {
+                total += i;
+                n += i++;
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -113,3 +151,13 @@ THE_BENCHMARK(ArrangingCoins_Formula, 5);
 SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE1, 2, 5);
 SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE2, 3, 8);
 SIMPLE_TEST(ArrangingCoins_Formula, TestSAMPLE3, 2, 3);
+
+
+const ArrayType EXPECTED1 = {1, 2, 3, 1};
+const ArrayType EXPECTED2 = {5, 2, 3};
+
+
+THE_BENCHMARK(DistributeCandies, 7, 4);
+
+SIMPLE_TEST(DistributeCandies, TestSAMPLE1, EXPECTED1, 7, 4);
+SIMPLE_TEST(DistributeCandies, TestSAMPLE2, EXPECTED2, 10, 3);

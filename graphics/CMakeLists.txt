@@ -4,6 +4,9 @@ compile_test(are_rectangles_overlap)
 compile_benchmark(circle_drawing)
 compile_test(circle_drawing)
 
+compile_benchmark(clock_angle)
+compile_test(clock_angle)
+
 compile_benchmark(convex_hull)
 compile_test(convex_hull)
 

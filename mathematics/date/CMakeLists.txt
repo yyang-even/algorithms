@@ -1,0 +1,2 @@
+compile_benchmark(days_in_a_month)
+compile_test(days_in_a_month)
