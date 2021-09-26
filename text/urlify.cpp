@@ -14,6 +14,12 @@ using ArrayType = std::vector<int>;
  * Write a method to replace all the spaces in a string with '%20'. You may assume that
  * the string has sufficient space at the end to hold the additional characters and that
  * you are given the "true" length of the string.
+ *
+ * @reference   Defanging an IP Address
+ *              https://leetcode.com/problems/defanging-an-ip-address/
+ *
+ * Given a valid (IPv4) IP address, return a defanged version of that IP address. A
+ * defanged IP address replaces every period "." with "[.]".
  */
 auto URLify(std::string str, std::string::size_type length = 0) {
     if (length == 0) {

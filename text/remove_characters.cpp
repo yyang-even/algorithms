@@ -176,6 +176,14 @@ inline auto RemoveNonalphabetsCharacters_Partition(std::string input) {
 /**
  * @reference   Program to remove vowels from a String
  *              https://www.geeksforgeeks.org/program-remove-vowels-string/
+ *
+ * @reference   Remove Vowels from a String
+ *              https://goodtecher.com/leetcode-1119-remove-vowels-from-a-string/
+ *
+ * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return
+ * the new string.
+ * s consists of only lowercase English letters.
+ *
  * @reference   Program to remove consonants from a String
  *              https://www.geeksforgeeks.org/program-to-remove-consonants-from-a-string/
  */
