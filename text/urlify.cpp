@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** URLify a given string (Replace spaces is %20)
  *
  * @reference   https://www.geeksforgeeks.org/urlify-given-string-replace-spaces/
@@ -38,6 +40,47 @@ auto URLify(std::string str, std::string::size_type length = 0) {
     return str;
 }
 
+
+/**
+ * @reference   Duplicate Zeros
+ *              https://leetcode.com/problems/duplicate-zeros/
+ *
+ * Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting
+ * the remaining elements to the right. Note that elements beyond the length of the
+ * original array are not written. Do the above modifications to the input array in place
+ * and do not return anything.
+ */
+auto DuplicateZeros(ArrayType nums) {
+    const int size = nums.size();
+    int right = 0;
+    int left = 0;
+    for (; right < size; ++left) {
+        if (nums[left] == 0) {
+            right += 2;
+        } else {
+            ++right;
+        }
+    }
+
+    --left;
+    if (right-- > size) {
+        nums.back() = 0;
+        right -= 2;
+        --left;
+    }
+
+    for (; left >= 0; --left) {
+        if (nums[left] == 0) {
+            nums[right--] = 0;
+            nums[right--] = 0;
+        } else {
+            nums[right--] = nums[left];
+        }
+    }
+
+    return nums;
+}
+
 }//namespace
 
 
@@ -45,3 +88,19 @@ THE_BENCHMARK(URLify, "Mr John Smith");
 
 SIMPLE_TEST(URLify, TestSAMPLE1, "Mr%20John%20Smith", "Mr John Smith");
 SIMPLE_TEST(URLify, TestSAMPLE2, "Mr%20John%20Smith", "Mr John Smith   ", 13);
+
+
+const ArrayType SAMPLE1 = {1, 0, 2, 3, 0, 4, 5, 0};
+const ArrayType EXPECTED1 = {1, 0, 0, 2, 3, 0, 0, 4};
+
+const ArrayType SAMPLE2 = {1, 2, 3};
+
+const ArrayType SAMPLE3 = {8, 4, 5, 0, 0, 0, 0, 7};
+const ArrayType EXPECTED3 = {8, 4, 5, 0, 0, 0, 0, 0};
+
+
+THE_BENCHMARK(DuplicateZeros, SAMPLE1);
+
+SIMPLE_TEST(DuplicateZeros, TestSAMPLE1, EXPECTED1, SAMPLE1);
+SIMPLE_TEST(DuplicateZeros, TestSAMPLE2, SAMPLE2, SAMPLE2);
+SIMPLE_TEST(DuplicateZeros, TestSAMPLE3, EXPECTED3, SAMPLE3);

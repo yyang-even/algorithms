@@ -25,5 +25,8 @@ compile_test(tic_tac_toe)
 compile_benchmark(toeplitz_matrix)
 compile_test(toeplitz_matrix)
 
+compile_benchmark(transform_to_chessboard)
+compile_test(transform_to_chessboard)
+
 compile_benchmark(transpose)
 compile_test(transpose)

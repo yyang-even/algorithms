@@ -401,6 +401,58 @@ auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
     return results;
 }
 
+
+/**
+ * @reference   Shortest Path in a Grid with Obstacles Elimination
+ *              https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
+ * @reference   https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1293-shortest-path-in-a-grid-with-obstacles-elimination/
+ *
+ * You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1
+ * (obstacle). You can move up, down, left, or right from and to an empty cell in one
+ * step. Return the minimum number of steps to walk from the upper left corner (0, 0) to
+ * the lower right corner (m - 1, n - 1) given that you can eliminate at most k obstacles.
+ * If it is not possible to find such walk return -1.
+ */
+auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) {
+    assert(not grid.empty());
+
+    const int M = grid.size();
+    const int N = grid.front().size();
+
+    std::vector seen(M, std::vector(N, INT_MAX));
+    seen[0][0] = 0;
+    std::queue<std::tuple<int, int, int>> q;
+    q.emplace(0, 0, 0);
+    int step = 0;
+
+    while (not q.empty()) {
+        for (int size = q.size(); size-- > 0;) {
+            const auto [x, y, obstacle_eliminated] = q.front();
+            q.pop();
+
+            if (x + 1 == M and y + 1 == N) {
+                return step;
+            }
+
+            for (const auto [delta_x, delta_y] : DIRECTIONS) {
+                const auto new_x = x + delta_x;
+                const auto new_y = y + delta_y;
+                if (new_x >= 0 and new_y >= 0 and new_x < M and new_y < N) {
+                    const auto new_obstacle = obstacle_eliminated + grid[new_x][new_y];
+                    if (new_obstacle < seen[new_x][new_y] and new_obstacle <= k) {
+                        seen[new_x][new_y] = new_obstacle;
+                        q.emplace(new_x, new_y, new_obstacle);
+                    }
+                }
+            }
+        }
+
+        ++step;
+    }
+
+    return -1;
+}
+
 }//namespace
 
 
@@ -481,3 +533,24 @@ const TableType COSTS1 = {
 THE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
 
 SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8,  COSTS1, 2, 2);
+
+
+const MatrixType SAMPLE1M = {
+    {0, 0, 0},
+    {1, 1, 0},
+    {0, 0, 0},
+    {0, 1, 1},
+    {0, 0, 0}
+};
+
+const MatrixType SAMPLE2M = {
+    {0, 1, 1},
+    {1, 1, 1},
+    {1, 0, 0}
+};
+
+
+THE_BENCHMARK(ShortestPathsWithObstaclesElimination, SAMPLE1M, 1);
+
+SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE1, 6,  SAMPLE1M, 1);
+SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE2, -1,  SAMPLE2M, 1);

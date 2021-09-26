@@ -48,6 +48,15 @@ inline auto CountDigits_String(const int n) {
 
 
 /**
+ * @reference   Sum of Digits in the Minimum Number
+ *              https://bloggie.io/@rugved/leetcode-1085-sum-of-digits-in-the-minimum-number-java-solution
+ *
+ * Given an array A of positive integers, let S be the sum of the digits of the minimal
+ * element of A. Return 0 if S is odd, otherwise return 1.
+ */
+
+
+/**
  * @reference   Add Digits
  *              https://leetcode.com/problems/add-digits/
  *

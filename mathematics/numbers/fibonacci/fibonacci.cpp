@@ -201,6 +201,14 @@ inline constexpr auto SumOfFibonacci(const unsigned n) {
  * A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or
  * 3 steps at a time. Implement a method to count how many possible ways the child can
  * run up the stairs.
+ *
+ * @reference   N-th Tribonacci Number
+ *              https://leetcode.com/problems/n-th-tribonacci-number/
+ *
+ * The Tribonacci sequence Tn is defined as follows:
+ *  T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.
+ * Given n, return the value of Tn.
+ * 0 <= n <= 37
  */
 constexpr auto FindWaysToRunUpStairs_DP(const unsigned n) {
     unsigned long f_n_minus_3 = 0;
@@ -219,6 +227,16 @@ constexpr auto FindWaysToRunUpStairs_DP(const unsigned n) {
 
     return f_n_minus_1;
 }
+
+
+/**
+ * @reference   Tribonacci Numbers
+ *              https://www.geeksforgeeks.org/tribonacci-numbers/
+ *
+ * The tribonacci series is a generalization of the Fibonacci sequence where each term
+ * is the sum of the three preceding terms. Given a value N, task is to print first N
+ * Tribonacci Numbers.
+ */
 
 
 /**
@@ -298,6 +316,7 @@ SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE2, 4, 3);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE3, 1, 0);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE4, 1, 1);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE5, 2, 2);
+SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE6, 1389537, 24);
 
 
 const ArrayType SAMPLE1 = {10, 15, 20};

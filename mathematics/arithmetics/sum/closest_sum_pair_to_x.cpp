@@ -90,6 +90,34 @@ auto ThreeSum(ArrayType nums, const int target) {
     return result;
 }
 
+
+/**
+ * @reference   Two Sum Less Than K
+ *              https://wentao-shao.gitbook.io/leetcode/two-pointers/1099.two-sum-less-than-k
+ *
+ * Given an array A of integers and integer K, return the maximum S such that there
+ * exists i < j with A[i] + A[j] = S and S < K. If no i, j exist satisfying this
+ * equation, return -1.
+ */
+auto TwoSumLessThan(ArrayType nums, const int K) {
+    std::sort(nums.begin(), nums.end());
+
+    int left = 0;
+    int right = nums.size() - 1;
+    int result = -1;
+    while (left < right) {
+        const auto sum = nums[left] + nums[right];
+        if (sum >= K) {
+            --right;
+        } else {
+            result = std::max(result, sum);
+            ++left;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -113,3 +141,13 @@ const ArrayType SAMPLE4 = {-1, 2, 1, -4};
 THE_BENCHMARK(ThreeSum, SAMPLE4, 1);
 
 SIMPLE_TEST(ThreeSum, TestSample4, 2, SAMPLE4, 1);
+
+
+const ArrayType SAMPLE1L = {34, 23, 1, 24, 75, 33, 54, 8};
+const ArrayType SAMPLE2L = {10, 20, 30};
+
+
+THE_BENCHMARK(TwoSumLessThan, SAMPLE1L, 60);
+
+SIMPLE_TEST(TwoSumLessThan, TestSample1, 58, SAMPLE1L, 60);
+SIMPLE_TEST(TwoSumLessThan, TestSample2, -1, SAMPLE2L, 15);
