@@ -58,6 +58,9 @@ compile_test(majority_element)
 compile_benchmark(maximum_occurring_character)
 compile_test(maximum_occurring_character)
 
+compile_benchmark(num_equivalent_domino_pairs)
+compile_test(num_equivalent_domino_pairs)
+
 compile_benchmark(print_items_containing_all_chars_of_given_word)
 compile_test(print_items_containing_all_chars_of_given_word)
 
