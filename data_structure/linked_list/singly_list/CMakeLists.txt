@@ -29,3 +29,6 @@ compile_test(singly_linked_list)
 
 compile_benchmark(sum_linked_list_numbers)
 compile_test(sum_linked_list_numbers)
+
+compile_benchmark(split_into_parts)
+compile_test(split_into_parts)
