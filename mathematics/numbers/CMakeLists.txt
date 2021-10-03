@@ -1,3 +1,6 @@
+compile_benchmark(armstrong_number)
+compile_test(armstrong_number)
+
 compile_benchmark(count_2s_in_range)
 compile_test(count_2s_in_range)
 

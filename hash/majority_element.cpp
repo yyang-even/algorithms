@@ -203,6 +203,47 @@ auto HalfRepeatedElement_Compare(const ArrayType &nums) {
     return nums.front();
 }
 
+
+/**
+ * @reference   Check for Majority Element in a sorted array
+ *              https://www.geeksforgeeks.org/check-for-majority-element-in-a-sorted-array/
+ *
+ * Write a C function to find if a given integer x appears more than n/2 times in a
+ * sorted array of n integers.
+ *
+ * @reference   Check If a Number Is Majority Element in a Sorted Array
+ *              https://github.com/geemaple/leetcode/blob/master/leetcode/1150.check-if-a-number-is-majority-element-in-a-sorted-array.py
+ *
+ * Given an array nums sorted in non-decreasing order, and a number target, return True
+ * if and only if target is a majority element. A majority element is an element that
+ * appears more than N/2 times in an array of length N.
+ */
+auto MajorityElement_Sorted(const ArrayType &nums, const int x) {
+    assert(std::is_sorted(nums.cbegin(), nums.cend()));
+
+    if (nums.empty() or nums[nums.size() / 2] != x) {
+        return false;
+    }
+
+    int left = 0;
+    int right = nums.size() - 1;
+    while (left < right) {
+        const auto mid = (left + right) / 2;
+        if (nums[mid] < x) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+
+    return left + nums.size() / 2 < nums.size() and nums[left + nums.size() / 2] == x;
+}
+
+inline auto testMajorityElement_Sorted(ArrayType nums, const int x) {
+    std::sort(nums.begin(), nums.end());
+    return MajorityElement_Sorted(nums, x);
+}
+
 }//namespace
 
 
@@ -269,3 +310,10 @@ THE_BENCHMARK(HalfRepeatedElement_Compare, SAMPLE1H);
 SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE1, 3, SAMPLE1H);
 SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE2, 2, SAMPLE2H);
 SIMPLE_TEST(HalfRepeatedElement_Compare, TestSAMPLE3, 5, SAMPLE3H);
+
+
+THE_BENCHMARK(testMajorityElement_Sorted, SAMPLE1, 4);
+
+SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE1, true, SAMPLE1, 4);
+SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE2, false, SAMPLE1, 1);
+SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE3, false, SAMPLE1, 2);

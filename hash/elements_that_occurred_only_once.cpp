@@ -95,6 +95,16 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string_view input) {
     return output;
 }
 
+
+/**
+ * @reference   Largest Unique Number
+ *              https://github.com/angelsophia1/LeetCode-Locked/blob/master/1133%09%20Largest%20Unique%20Number
+ *
+ * Given an array of integers A, return the largest integer that only occurs once. If no
+ * integer occurs once, return -1.
+ * 0 <= A[i] <= 1000
+ */
+
 }//namespace
 
 

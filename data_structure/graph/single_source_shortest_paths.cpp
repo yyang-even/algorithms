@@ -453,6 +453,82 @@ auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) 
     return -1;
 }
 
+
+/**
+ * @reference   Dungeon Game
+ *              https://leetcode.com/problems/dungeon-game/
+ *
+ * The demons had captured the princess and imprisoned her in the bottom-right corner of
+ * a dungeon. The dungeon consists of m x n rooms laid out in a 2D grid. Our valiant
+ * knight was initially positioned in the top-left room and must fight his way through
+ * dungeon to rescue the princess. The knight has an initial health point represented by
+ * a positive integer. If at any point his health point drops to 0 or below, he dies
+ * immediately. Some of the rooms are guarded by demons (represented by negative integers),
+ * so the knight loses health upon entering these rooms; other rooms are either empty
+ * (represented as 0) or contain magic orbs that increase the knight's health (represented
+ * by positive integers). To reach the princess as quickly as possible, the knight decides
+ * to move only rightward or downward in each step. Return the knight's minimum initial
+ * health so that he can rescue the princess. Note that any room can contain threats or
+ * power-ups, even the first room the knight enters and the bottom-right room where the
+ * princess is imprisoned.
+ */
+auto DungeonGame_DP(const MatrixType &dungeon) {
+    const int M = dungeon.size();
+    const int N = dungeon.front().size();
+    std::vector dp(M + 1, std::vector(N + 1, INT_MAX));
+
+    dp[M - 1][N] = dp[M][N - 1] = 1;
+    for (int i = M - 1; i >= 0; --i) {
+        for (int j = N - 1; j >= 0; --j) {
+            dp[i][j] = std::max(1, std::min(dp[i][j + 1], dp[i + 1][j]) - dungeon[i][j]);
+        }
+    }
+
+    return dp[0][0];
+}
+
+
+auto DungeonGame_Dijkstra(const MatrixType &dungeon) {
+    const int M = dungeon.size();
+    const int N = dungeon.front().size();
+    std::priority_queue<std::tuple<int, int, int>> q;
+    q.emplace(dungeon[0][0], 0, 0);
+    std::vector seen(M, std::vector(N, INT_MIN));
+    seen[0][0] = dungeon[0][0];
+    int result = 0;
+
+    while (not q.empty()) {
+        const auto [health, x, y] = q.top();
+        q.pop();
+
+        if (health < 0) {
+            result = std::max(-health, result);
+        }
+
+        if (x + 1 == M and y + 1 == N) {
+            break;
+        }
+
+        if (x + 1 < M) {
+            const auto new_health = health + dungeon[x + 1][y];
+            if (new_health > seen[x + 1][y]) {
+                q.emplace(new_health, x + 1, y);
+                seen[x + 1][y] = new_health;
+            }
+        }
+
+        if (y + 1 < N) {
+            const auto new_health = health + dungeon[x][y + 1];
+            if (new_health > seen[x][y + 1]) {
+                q.emplace(new_health, x, y + 1);
+                seen[x][y + 1] = new_health;
+            }
+        }
+    }
+
+    return result + 1;
+}
+
 }//namespace
 
 
@@ -532,7 +608,7 @@ const TableType COSTS1 = {
 
 THE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
 
-SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8,  COSTS1, 2, 2);
+SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8, COSTS1, 2, 2);
 
 
 const MatrixType SAMPLE1M = {
@@ -552,5 +628,28 @@ const MatrixType SAMPLE2M = {
 
 THE_BENCHMARK(ShortestPathsWithObstaclesElimination, SAMPLE1M, 1);
 
-SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE1, 6,  SAMPLE1M, 1);
-SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE2, -1,  SAMPLE2M, 1);
+SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE1, 6, SAMPLE1M, 1);
+SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE2, -1, SAMPLE2M, 1);
+
+
+const MatrixType SAMPLE1D = {
+    {-2, -3, 3},
+    {-5, -10, 1},
+    {10, 30, -5}
+};
+
+const MatrixType SAMPLE2D = {
+    {0}
+};
+
+
+THE_BENCHMARK(DungeonGame_DP, SAMPLE1D);
+
+SIMPLE_TEST(DungeonGame_DP, TestSAMPLE1, 7, SAMPLE1D);
+SIMPLE_TEST(DungeonGame_DP, TestSAMPLE2, 1, SAMPLE2D);
+
+
+THE_BENCHMARK(DungeonGame_Dijkstra, SAMPLE1D);
+
+SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE1, 7, SAMPLE1D);
+SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE2, 1, SAMPLE2D);

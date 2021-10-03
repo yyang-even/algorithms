@@ -196,12 +196,6 @@ const auto BinarySearch_Uniform1 = BinarySearch_Uniform<1>;
  *
  * @reference   Find the index of first 1 in a sorted array of 0's and 1's
  *              https://www.geeksforgeeks.org/find-index-first-1-sorted-array-0s-1s/
- *
- * @reference   Check for Majority Element in a sorted array
- *              https://www.geeksforgeeks.org/check-for-majority-element-in-a-sorted-array/
- *
- * Write a C function to find if a given integer x appears more than n/2 times in a
- * sorted array of n integers.
  */
 auto BinarySearch_First_Recursive(const ArrayType &elements,
                                   const ArrayType::const_iterator cbegin,

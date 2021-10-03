@@ -24,9 +24,8 @@ auto SubsetsOfEqualSum(const ArrayType &elements,
                        const ArrayType::size_type index,
                        ArrayType &sums) {
     if (index == elements.size()) {
-        const auto N = sums.size();
-        for (ArrayType::size_type i = 1; i < N; ++i) {
-            if (sums[i] != sums[i - 1]) {
+        for (const auto a_sum : sums) {
+            if (a_sum != edge_length) {
                 return false;
             }
         }
