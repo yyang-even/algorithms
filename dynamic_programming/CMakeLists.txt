@@ -88,6 +88,9 @@ compile_test(nearest_0_of_matrix)
 compile_benchmark(nonnegative_integers_without_consecutive_1s)
 compile_test(nonnegative_integers_without_consecutive_1s)
 
+compile_benchmark(number_perfect_squares_sum_as_n)
+compile_test(number_perfect_squares_sum_as_n)
+
 compile_benchmark(optimal_binary_search_trees)
 compile_test(optimal_binary_search_trees)
 

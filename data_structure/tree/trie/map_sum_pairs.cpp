@@ -70,9 +70,11 @@ auto MapSumPairs_TwoMap(const ArrayType &operations) {
 }
 
 
+using Node = TrieNode<int>;
+
 auto MapSumPairs_Trie(const ArrayType &operations) {
     std::unordered_map<std::string_view, int> originals;
-    Trie::Node root;
+    Node root;
 
     OutputType results;
     for (const auto [is_insert, str, new_value] : operations) {
@@ -86,24 +88,16 @@ auto MapSumPairs_Trie(const ArrayType &operations) {
 
             auto *current = &root;
             for (const auto c : str) {
-                const auto index = Trie::Node::ToIndex(c);
+                const auto index = Node::ToIndex(c);
                 if (not current->children[index]) {
-                    current->children[index].reset(new Trie::Node{});
+                    current->children[index].reset(new Node{});
                 }
 
                 current = current->children[index].get();
                 current->value += delta;
             }
         } else {
-            auto *current = &root;
-            for (const auto c : str) {
-                const auto index = Trie::Node::ToIndex(c);
-                current = current->children[index].get();
-                if (not current) {
-                    break;
-                }
-            }
-            results.push_back(current ? current->value : 0);
+            results.push_back(TrieGet(root, str));
         }
     }
 
