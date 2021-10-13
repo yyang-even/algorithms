@@ -26,8 +26,6 @@ inline auto TestSearch_Recursive(const ArrayType &keys, const std::string_view s
     return BuildTrie_Recursive(keys).Search_Recursive(str);
 }
 
-}//namespace
-
 
 /**
  * @reference   Check if the given string of words can be formed from words present in the dictionary
@@ -36,6 +34,8 @@ inline auto TestSearch_Recursive(const ArrayType &keys, const std::string_view s
  * Given a string array of M words and a dictionary of N words. The task is to check if
  * the given string of words can be formed from words present in the dictionary.
  */
+
+}//namespace
 
 
 #ifdef WANT_TESTS
