@@ -8,53 +8,96 @@
  *              https://www.geeksforgeeks.org/trie-data-structure-using-smart-pointer-and-oop-in-c/
  * @reference   Advantages of Trie Data Structure
  *              https://www.geeksforgeeks.org/advantages-trie-data-structure/
+ *
+ * @reference   Implement Trie (Prefix Tree)
+ *              https://leetcode.com/problems/implement-trie-prefix-tree/
+ *
+ * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently
+ * store and retrieve keys in a dataset of strings. There are various applications of this
+ * data structure, such as autocomplete and spellchecker. Implement the Trie class:
+ *  Trie() Initializes the trie object.
+ *  void insert(String word) Inserts the string word into the trie.
+ *  boolean search(String word) Returns true if the string word is in the trie (i.e., was
+ *      inserted before), and false otherwise.
+ *  boolean startsWith(String prefix) Returns true if there is a previously inserted string
+ *      word that has the prefix prefix, and false otherwise.
+ * word and prefix consist only of lowercase English letters.
  */
+template <typename T>
+struct TrieNode {
+    using ValueType = T;
+    using PointerType = std::shared_ptr<TrieNode>;
+
+    std::vector<PointerType> children;
+    T value = {};
+
+    explicit TrieNode(const std::size_t size = 26): children(size, PointerType{}) {}
+
+    auto Empty() const {
+        for (const auto &kid : children) {
+            if (kid) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static constexpr std::size_t ToIndex(const char c) {
+        return c - 'a';
+    }
+
+    static constexpr char ToChar(const std::size_t i) {
+        return i + 'a';
+    }
+};
+
+
+template <typename NodeType>
+void TrieInsert(NodeType &root, const std::string_view key,
+                const typename NodeType::ValueType value) {
+    auto *current = &root;
+
+    for (const auto c : key) {
+        const auto index = NodeType::ToIndex(c);
+        if (not current->children[index]) {
+            current->children[index].reset(new NodeType{root.children.size()});
+        }
+
+        current = current->children[index].get();
+    }
+
+    current->value = value;
+}
+
+
+template <typename NodeType>
+typename NodeType::ValueType
+TrieGet(const NodeType &root, const std::string_view key) {
+    const auto *current = &root;
+
+    for (const auto c : key) {
+        const auto index = NodeType::ToIndex(c);
+
+        if (not current->children[index]) {
+            return {};
+        }
+        current = current->children[index].get();
+    }
+
+    return current->value;
+}
+
+
 class Trie {
 public:
-    struct Node {
-        using PointerType = std::shared_ptr<Node>;
-
-        std::vector<PointerType> children;
-        int value = {};
-
-        explicit Node(const std::size_t size = 26): children(size, PointerType{}) {}
-
-        auto Empty() const {
-            for (const auto &kid : children) {
-                if (kid) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        static constexpr std::vector<PointerType>::size_type ToIndex(const char c) {
-            return c - 'a';
-        }
-
-        static constexpr char ToChar(const std::vector<PointerType>::size_type i) {
-            return i + 'a';
-        }
-    };
-
+    using Node = TrieNode<bool>;
 
     explicit Trie(const std::size_t size = 26): root(size) {}
 
 
     void Insert(const std::string_view key) {
-        auto *current = &root;
-
-        for (const auto c : key) {
-            const auto index = Node::ToIndex(c);
-            if (not current->children[index]) {
-                current->children[index].reset(new Node{root.children.size()});
-            }
-
-            current = current->children[index].get();
-        }
-
-        current->value = true;
+        TrieInsert(root, key, true);
     }
 
 
@@ -67,19 +110,8 @@ public:
     }
 
 
-    auto Search(const std::string_view key) const {
-        const auto *current = &root;
-
-        for (const auto c : key) {
-            const auto index = Node::ToIndex(c);
-
-            if (not current->children[index]) {
-                return false;
-            }
-            current = current->children[index].get();
-        }
-
-        return current and current->value;
+    bool Search(const std::string_view key) const {
+        return TrieGet(root, key);
     }
 
 
