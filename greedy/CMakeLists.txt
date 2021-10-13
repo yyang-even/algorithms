@@ -22,6 +22,9 @@ compile_test(DI_string_match)
 compile_benchmark(huffman_codes)
 compile_test(huffman_codes)
 
+compile_benchmark(jump_game)
+compile_test(jump_game)
+
 compile_benchmark(max_sum_after_k_negations)
 compile_test(max_sum_after_k_negations)
 

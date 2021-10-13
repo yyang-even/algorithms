@@ -16,6 +16,9 @@ compile_test(binary_gap)
 compile_benchmark(binary_watch)
 compile_test(binary_watch)
 
+compile_benchmark(bitwise_and_of_range)
+compile_test(bitwise_and_of_range)
+
 compile_benchmark(byte_range)
 compile_test(byte_range)
 
