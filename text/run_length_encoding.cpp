@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/arithmetics/sum/series/sum_of_natural_numbers.h"
+
 
 namespace {
 
@@ -50,6 +52,28 @@ auto RunLengthEncoding(const std::string &text) {
  * by start index.
  */
 
+
+/**
+ * @reference   Count Substrings with Only One Distinct Letter
+ *              http://lixinchengdu.github.io/algorithmbook/leetcode/count-substrings-with-only-one-distinct-letter.html
+ *
+ * Given a string S, return the number of substrings that have only one distinct letter.
+ */
+constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
+    int result = 0;
+    int consecutive = 1;
+    for (std::size_t i = 1; i < s.size(); ++i) {
+        if (s[i] == s[i - 1]) {
+            ++consecutive;
+        } else {
+            result += SumOfNaturals(consecutive);
+            consecutive = 1;
+        }
+    }
+
+    return result + SumOfNaturals(consecutive);
+}
+
 }//namespace
 
 
@@ -59,3 +83,9 @@ SIMPLE_TEST(RunLengthEncoding, TestSAMPLE1, "G1e3E2K3s2", "GeeeEEKKKss");
 SIMPLE_TEST(RunLengthEncoding, TestSAMPLE2, "c4O1d2E3", "ccccOddEEE");
 SIMPLE_TEST(RunLengthEncoding, TestSAMPLE3, "a2b1c5a3", "aabcccccaaa");
 SIMPLE_TEST(RunLengthEncoding, TestSAMPLE4, "w4a3d1e1x6", "wwwwaaadexxxxxx");
+
+
+THE_BENCHMARK(CountSubstrWithOneDistinctLetter, "aaaba");
+
+SIMPLE_TEST(CountSubstrWithOneDistinctLetter, TestSAMPLE1, 8, "aaaba");
+SIMPLE_TEST(CountSubstrWithOneDistinctLetter, TestSAMPLE2, 55, "aaaaaaaaaa");

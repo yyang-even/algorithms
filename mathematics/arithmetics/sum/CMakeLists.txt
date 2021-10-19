@@ -1,6 +1,9 @@
 compile_benchmark(closest_sum_pair_to_x)
 compile_test(closest_sum_pair_to_x)
 
+compile_benchmark(distance_between_stops)
+compile_test(distance_between_stops)
+
 compile_benchmark(largest_sum_contiguous_subarray)
 compile_test(largest_sum_contiguous_subarray)
 

@@ -63,7 +63,7 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  *              https://protegejj.gitbook.io/algorithm-practice/leetcode/binary-search/644-maximum-average-subarray-ii
  *
  * Given an array consisting ofnintegers, find the contiguous subarray whose length is
- * greater than or equal tokthat has the maximum average value. And you need to output
+ * greater than or equal to k that has the maximum average value. And you need to output
  * the maximum average value.
  */
 auto isValidSubarrayAverage(const ArrayType &nums, const double average,
@@ -112,6 +112,45 @@ auto MaxAverageNoShorterThanK(const ArrayType &nums, const int k) {
     return left;
 }
 
+
+/**
+ * @reference   Diet Plan Performance
+ *              http://lixinchengdu.github.io/algorithmbook/leetcode/diet-plan-performance.html
+ *
+ * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every
+ * consecutive sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for
+ * all 0 <= i <= n-k), they look at T, the total calories consumed during that sequence
+ * of k days (calories[i] + calories[i+1] + ... + calories[i+k-1]):
+ *  If T < lower, they performed poorly on their diet and lose 1 point;
+ *  If T > upper, they performed well on their diet and gain 1 point;
+ *  Otherwise, they performed normally and there is no change in points.
+ * Initially, the dieter has zero points. Return the total number of points the dieter
+ * has after dieting for calories.length days. Note that the total points can be negative.
+ */
+inline constexpr auto
+score(const int calories, const int lower, const int upper) {
+    if (calories < lower) {
+        return -1;
+    } else if (calories > upper) {
+        return 1;
+    }
+    return 0;
+}
+
+auto DietPlanPerformance(const ArrayType &calories, const std::size_t K,
+                         const int lower, const int upper) {
+    assert(calories.size() >= K);
+
+    auto total = std::accumulate(calories.cbegin(), calories.cbegin() + K, 0);
+    auto result = score(total, lower, upper);
+    for (auto i = K; i < calories.size(); ++i) {
+        total += calories[i] - calories[i - K];
+        result += score(total, lower, upper);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -132,3 +171,15 @@ THE_BENCHMARK(MaxAverageNoShorterThanK, SAMPLE3, 4);
 
 SIMPLE_TEST(CloseEnough, TestSAMPLE3, true,
             12.75, MaxAverageNoShorterThanK(SAMPLE3, 4));
+
+
+const ArrayType SAMPLE1D = {1, 2, 3, 4, 5};
+const ArrayType SAMPLE2D = {3, 2};
+const ArrayType SAMPLE3D = {6, 5, 0, 0};
+
+
+THE_BENCHMARK(DietPlanPerformance, SAMPLE1D, 1, 3, 3);
+
+SIMPLE_TEST(DietPlanPerformance, TestSAMPLE1, 0, SAMPLE1D, 1, 3, 3);
+SIMPLE_TEST(DietPlanPerformance, TestSAMPLE2, 1, SAMPLE2D, 2, 0, 1);
+SIMPLE_TEST(DietPlanPerformance, TestSAMPLE3, 0, SAMPLE3D, 2, 1, 5);

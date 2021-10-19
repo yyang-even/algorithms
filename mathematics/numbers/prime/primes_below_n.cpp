@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "primes_below_n.h"
+#include "mathematics/arithmetics/factorial/factorial.h"
 
 
 namespace {
@@ -175,6 +176,23 @@ std::vector<InputType> PrimesBelowN_SieveOfSundaram(InputType N) {
     return primes;
 }
 
+
+/**
+ * @reference   Prime Arrangements
+ *              https://leetcode.com/problems/prime-arrangements/
+ *
+ * Return the number of permutations of 1 to n so that prime numbers are at prime indices
+ * (1-indexed.) (Recall that an integer is prime if and only if it is greater than 1, and
+ * cannot be written as a product of two positive integers both smaller than it.) Since
+ * the answer may be large, return the answer modulo 10^9 + 7.
+ * 1 <= n <= 100
+ */
+inline auto PrimeArrangements(const int N) {
+    const auto number_primes = PrimesBelowN(N + 1).size();
+    return Factorial_Iterative(number_primes) *
+           Factorial_Iterative(N - number_primes) % LARGE_PRIME;
+}
+
 }//namespace
 
 
@@ -261,3 +279,9 @@ SIMPLE_TEST(SegmentedPrimesBelowN, TestLOWER, {}, LOWER);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE1, RESULT1, SAMPLE1);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE2, RESULT2, SAMPLE2);
 SIMPLE_TEST(SegmentedPrimesBelowN, TestSAMPLE6, RESULT6, 41);
+
+
+THE_BENCHMARK(PrimeArrangements, 5);
+
+SIMPLE_TEST(PrimeArrangements, TestSAMPLE1, 12, 5);
+SIMPLE_TEST(PrimeArrangements, TestSAMPLE2, 682289015, 100);

@@ -6,6 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using MemoType = std::vector<std::vector<int>>;
 
 /** Best Time to Buy and Sell Stock
  *
@@ -221,6 +222,72 @@ auto StockBuyAndSell_K_Transactions_DP_Optimized(const ArrayType &prices, const 
     return profit[K][prices.size() - 1];
 }
 
+
+/**
+ * @reference   Best Time to Buy and Sell Stock with Cooldown
+ *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+ *
+ * You are given an array prices where prices[i] is the price of a given stock on the ith
+ * day. Find the maximum profit you can achieve. You may complete as many transactions as
+ * you like (i.e., buy one and sell one share of the stock multiple times) with the
+ * following restrictions:
+ *  After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
+ * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell
+ * the stock before you buy again).
+ */
+auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices, const std::size_t i,
+                                       const bool buy, MemoType &memo) {
+    if (i >= prices.size()) {
+        return 0;
+    }
+
+    auto &result = memo[i][buy];
+    if (result != -1) {
+        return result;
+    }
+
+    const auto result_exclude =
+        StockBuyAndSell_WithCooldown_Memo(prices, i + 1, buy, memo);
+
+    int result_include = 0;
+    if (buy) {
+        result_include =
+            -prices[i] + StockBuyAndSell_WithCooldown_Memo(prices, i + 1, false, memo);
+    } else {
+        result_include =
+            prices[i] + StockBuyAndSell_WithCooldown_Memo(prices, i + 2, true, memo);
+    }
+
+    return result = std::max(result_exclude, result_include);
+}
+
+inline auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices) {
+    std::vector memo(prices.size(), std::vector(2, -1));
+    return StockBuyAndSell_WithCooldown_Memo(prices, 0, true, memo);
+}
+
+
+auto StockBuyAndSell_WithCooldown_DP(const ArrayType &prices) {
+    int dp[prices.size() + 2][2] = {};
+
+    for (int i = prices.size() - 1; i >= 0; --i) {
+        for (int buy = 0; buy <= 1; ++buy) {
+            const int result_exclude = dp[i + 1][buy];
+
+            int result_include = 0;
+            if (buy) {
+                result_include = -prices[i] + dp[i + 1][0];
+            } else {
+                result_include = prices[i] + dp[i + 2][1];
+            }
+
+            dp[i][buy] = std::max(result_exclude, result_include);
+        }
+    }
+
+    return dp[0][1];
+}
+
 }//namespace
 
 
@@ -352,3 +419,19 @@ SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE16, 100,
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE17, 72, SAMPLE11, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE18, 12, SAMPLE12, 3);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE19, 72, SAMPLE11, 3);
+
+
+const ArrayType SAMPLE1C = {1, 2, 3, 0, 2};
+const ArrayType SAMPLE2C = {1};
+
+
+THE_BENCHMARK(StockBuyAndSell_WithCooldown_Memo, SAMPLE1C);
+
+SIMPLE_TEST(StockBuyAndSell_WithCooldown_Memo, TestSAMPLE1, 3, SAMPLE1C);
+SIMPLE_TEST(StockBuyAndSell_WithCooldown_Memo, TestSAMPLE2, 0, SAMPLE2C);
+
+
+THE_BENCHMARK(StockBuyAndSell_WithCooldown_DP, SAMPLE1C);
+
+SIMPLE_TEST(StockBuyAndSell_WithCooldown_DP, TestSAMPLE1, 3, SAMPLE1C);
+SIMPLE_TEST(StockBuyAndSell_WithCooldown_DP, TestSAMPLE2, 0, SAMPLE2C);

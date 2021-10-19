@@ -61,6 +61,17 @@ CanConstruct(const std::string_view ransom_note, const std::string_view magazine
     return true;
 }
 
+
+/**
+ * @reference   Find Words That Can Be Formed by Characters
+ *              https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
+ *
+ * You are given an array of strings words and a string chars. A string is good if it can
+ * be formed by characters from chars (each character can only be used once). Return the
+ * sum of lengths of all good strings in words.
+ * words[i] and chars consist of lowercase English letters.
+ */
+
 }//namespace
 
 

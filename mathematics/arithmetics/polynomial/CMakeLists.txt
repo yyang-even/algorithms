@@ -1,3 +1,6 @@
+compile_benchmark(binomial_coefficient)
+compile_test(binomial_coefficient)
+
 compile_benchmark(horner_method)
 compile_test(horner_method)
 
