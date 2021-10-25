@@ -19,6 +19,8 @@ compile_test(probability_K_in_array)
 compile_benchmark(random_number_generator_in_arbitrary_probability)
 compile_test(random_number_generator_in_arbitrary_probability)
 
+compile_test(randomized_set)
+
 compile_benchmark(reservoir_sampling)
 compile_app(reservoir_sampling)
 

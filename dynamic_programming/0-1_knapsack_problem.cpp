@@ -215,6 +215,16 @@ auto FractionalKnapsack01Queries(const ArrayType &weights, const ArrayType &valu
     return max_values;
 }
 
+
+/**
+ * @reference   How Many Apples Can You Put into the Basket
+ *              http://lixinchengdu.github.io/algorithmbook/leetcode/how-many-apples-can-you-put-into-the-basket.html
+ *
+ * You have some apples, where arr[i] is the weight of the i-th apple.  You also have a
+ * basket that can carry up to 5000 units of weight. Return the maximum number of apples
+ * you can put in the basket.
+ */
+
 }//namespace
 
 

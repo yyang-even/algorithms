@@ -24,6 +24,13 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Sort a string according to the frequency of characters
  *              https://www.geeksforgeeks.org/sort-a-string-according-to-the-frequency-of-characters/
+ *
+ * @reference   Sort Array by Increasing Frequency
+ *              https://leetcode.com/problems/sort-array-by-increasing-frequency/
+ *
+ * Given an array of integers nums, sort the array in increasing order based on the
+ * frequency of the values. If multiple values have the same frequency, sort them in
+ * decreasing order. Return the sorted array.
  */
 auto SortByFrequency(ArrayType elements) {
     using MinIndex_Count_Pair = std::pair<ArrayType::size_type, ArrayType::size_type>;
@@ -66,6 +73,53 @@ inline auto SortByFrequency_Stable(ArrayType elements) {
     });
 
     return elements;
+}
+
+
+/**
+ * @reference   Sort Characters By Frequency
+ *              https://leetcode.com/problems/sort-characters-by-frequency/
+ *
+ * Given a string s, sort it in decreasing order based on the frequency of the characters.
+ * The frequency of a character is the number of times it appears in the string. Return
+ * the sorted string. If there are multiple answers, return any of them.
+ */
+auto SortByFrequency_Unstable(const std::string_view s) {
+    const auto counts = ToFrequencyHashTable(s);
+
+    using FrequencyCharPair = std::pair<int, char>;
+    std::vector<FrequencyCharPair> char_groups;
+    for (const auto [c, frequency] : counts) {
+        char_groups.emplace_back(frequency, c);
+    }
+
+    std::sort(char_groups.begin(), char_groups.end(), std::greater<FrequencyCharPair> {});
+
+    std::string result;
+    for (const auto [frequency, c] : char_groups) {
+        result.append(frequency, c);
+    }
+
+    return result;
+}
+
+
+auto SortByFrequency_Unstable_BucketSort(const std::string_view s) {
+    const auto counts = ToFrequencyHashTable(s);
+
+    std::vector<std::vector<char>> buckets(s.size() + 1);
+    for (const auto [c, frequency] : counts) {
+        buckets[frequency].push_back(c);
+    }
+
+    std::string result;
+    for (int frequency = s.size(); frequency > 0; --frequency) {
+        for (const auto c : buckets[frequency]) {
+            result.append(frequency, c);
+        }
+    }
+
+    return result;
 }
 
 
@@ -175,3 +229,17 @@ THE_BENCHMARK(SortLogs, SAMPLE1L);
 
 SIMPLE_TEST(SortLogs, TestSAMPLE1, EXPECTED1L, SAMPLE1L);
 SIMPLE_TEST(SortLogs, TestSAMPLE2, EXPECTED2L, SAMPLE2L);
+
+
+THE_BENCHMARK(SortByFrequency_Unstable, "tree");
+
+SIMPLE_TEST(SortByFrequency_Unstable, TestSAMPLE1, "eet", "tee");
+SIMPLE_TEST(SortByFrequency_Unstable, TestSAMPLE2, "aaacc", "ccaaa");
+SIMPLE_TEST(SortByFrequency_Unstable, TestSAMPLE3, "bbA", "Abb");
+
+
+THE_BENCHMARK(SortByFrequency_Unstable_BucketSort, "tree");
+
+SIMPLE_TEST(SortByFrequency_Unstable_BucketSort, TestSAMPLE1, "eet", "tee");
+SIMPLE_TEST(SortByFrequency_Unstable_BucketSort, TestSAMPLE2, "aaacc", "ccaaa");
+SIMPLE_TEST(SortByFrequency_Unstable_BucketSort, TestSAMPLE3, "bbA", "Abb");

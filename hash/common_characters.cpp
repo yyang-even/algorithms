@@ -169,6 +169,41 @@ inline auto Intersection_Sort(std::string one, std::string another) {
 
 
 /**
+ * @reference   Intersection Of Three Sorted Arrays Problem
+ *              http://lixinchengdu.github.io/algorithmbook/leetcode/intersection-of-three-sorted-arrays.html
+ *
+ * Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order,
+ * return a sorted array of only the integers that appeared in all three arrays.
+ *
+ * @reference   Find common elements in three sorted arrays
+ *              https://www.geeksforgeeks.org/find-common-elements-three-sorted-arrays/
+ *
+ * Given three arrays sorted in non-decreasing order, print all common elements in these
+ * arrays.
+ */
+auto IntersectionOf3_Sorted(const NumArrayType &arr1, const NumArrayType &arr2,
+                            const NumArrayType &arr3) {
+    std::size_t i = 0, j = 0, k = 0;
+    NumArrayType result;
+    while (i < arr1.size() and j < arr2.size() and k < arr3.size()) {
+        if (arr1[i] == arr2[j] and arr2[j] == arr3[k]) {
+            result.push_back(arr1[i++]);
+            ++j;
+            ++k;
+        } else if (arr1[i] < arr2[j]) {
+            ++i;
+        } else if (arr2[j] < arr3[k]) {
+            ++j;
+        } else {
+            ++k;
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Intersection of Two Arrays
  *              https://leetcode.com/problems/intersection-of-two-arrays/
  *
@@ -511,3 +546,22 @@ SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE1, 1, "nlaebolko", "balloon");
 SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE2, 2, "loonbalxballpoon", "balloon");
 SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE3, 0, "leetcode", "balloon");
 SIMPLE_TEST(MaxNumberOfPattern, TestSAMPLE4, 0, "lloo", "balloon");
+
+
+const NumArrayType SAMPLE1A = {1, 5, 10, 20, 40, 80};
+const NumArrayType SAMPLE1B = {6, 7, 20, 80, 100};
+const NumArrayType SAMPLE1C = {3, 4, 15, 20, 30, 70, 80, 120};
+const NumArrayType EXPECTED1T = {20, 80};
+
+const NumArrayType SAMPLE2A = {1, 5, 5};
+const NumArrayType SAMPLE2B = {3, 4, 5, 5, 10};
+const NumArrayType SAMPLE2C = {5, 5, 10, 20};
+const NumArrayType EXPECTED2T = {5, 5};
+
+
+THE_BENCHMARK(IntersectionOf3_Sorted, SAMPLE1A, SAMPLE1B, SAMPLE1C);
+
+SIMPLE_TEST(IntersectionOf3_Sorted, TestSAMPLE1, EXPECTED1T,
+            SAMPLE1A, SAMPLE1B, SAMPLE1C);
+SIMPLE_TEST(IntersectionOf3_Sorted, TestSAMPLE2, EXPECTED2T,
+            SAMPLE2A, SAMPLE2B, SAMPLE2C);

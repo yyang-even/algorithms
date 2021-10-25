@@ -32,6 +32,33 @@ auto CanPlaceFlowers(const ArrayType &flowerbed, int m) {
     return m == 0;
 }
 
+
+/**
+ * @reference   Split a String in Balanced Strings
+ *              https://leetcode.com/problems/split-a-string-in-balanced-strings/
+ *
+ * Balanced strings are those that have an equal quantity of 'L' and 'R' characters.
+ * Given a balanced string s, split it in the maximum amount of balanced strings.
+ * Return the maximum amount of split balanced strings.
+ */
+constexpr auto SplitBalancedStrs(const std::string_view s) {
+    int result = 0;
+    int count = 0;
+    for (const auto c : s) {
+        if (c == 'L') {
+            ++count;
+        } else {
+            --count;
+        }
+
+        if (count == 0) {
+            ++result;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -45,3 +72,11 @@ SIMPLE_TEST(CanPlaceFlowers, TestSAMPLE1, true, SAMPLE1, 1);
 SIMPLE_TEST(CanPlaceFlowers, TestSAMPLE2, false, SAMPLE1, 2);
 SIMPLE_TEST(CanPlaceFlowers, TestSAMPLE3, true, SAMPLE2, 2);
 SIMPLE_TEST(CanPlaceFlowers, TestSAMPLE4, false, SAMPLE2, 3);
+
+
+THE_BENCHMARK(SplitBalancedStrs, "RLRRLLRLRL");
+
+SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE1, 4, "RLRRLLRLRL");
+SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE2, 3, "RLLLLRRRLR");
+SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE3, 1, "LLLLRRRR");
+SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE4, 2, "RLRRRLLRLL");

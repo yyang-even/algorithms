@@ -40,9 +40,6 @@ compile_test(find_first_repeating_element)
 compile_benchmark(find_kth_nonrepeating_char)
 compile_test(find_kth_nonrepeating_char)
 
-compile_benchmark(find_second_frequent_char)
-compile_test(find_second_frequent_char)
-
 compile_benchmark(game_of_master_mind)
 compile_test(game_of_master_mind)
 
