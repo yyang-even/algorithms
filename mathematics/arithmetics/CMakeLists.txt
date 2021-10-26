@@ -1,3 +1,6 @@
+compile_benchmark(missing_number_in_arithmetic_progression)
+compile_test(missing_number_in_arithmetic_progression)
+
 compile_benchmark(mean)
 compile_test(mean)
 
