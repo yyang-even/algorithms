@@ -13,6 +13,9 @@ compile_test(reverse_matrix)
 compile_benchmark(rotate_square_matrix)
 compile_test(rotate_square_matrix)
 
+compile_benchmark(rotting_oranges)
+compile_test(rotting_oranges)
+
 compile_benchmark(set_matrix_zeroes)
 compile_test(set_matrix_zeroes)
 

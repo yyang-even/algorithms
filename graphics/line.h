@@ -3,6 +3,20 @@
 #include "point.h"
 
 
+/** Program to find slope of a line
+ *
+ * @reference   https://www.geeksforgeeks.org/program-find-slope-line/
+ *
+ * Given two co-ordinates, find the slope of a straight line.
+ */
+static inline constexpr auto
+Slope(const Point &a_point, const Point &another_point) {
+    assert(not Equal(a_point.x, another_point.x));
+
+    return (another_point.y - a_point.y) / (another_point.x - a_point.x);
+}
+
+
 struct Line {
     double slope = 0.0;
     double intercept = 0.0;

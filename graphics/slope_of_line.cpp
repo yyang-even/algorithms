@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "point.h"
+#include "line.h"
 
 
 constexpr Point SAMPLE_P1 = {4, 2};

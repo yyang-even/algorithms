@@ -84,6 +84,14 @@ auto SegregateEvenOdd(ArrayType nums) {
  * Given an array of red, blue and yellow objects, the task is to use an in-place sorting
  * algorithm to sort the array in such a way that all the blue objects appear before all
  * the red objects and all the red objects appear before all the yellow objects.
+ *
+ * @reference   Sort Colors
+ *              https://leetcode.com/problems/sort-colors/
+ *
+ * Given an array nums with n objects colored red, white, or blue, sort them in-place so
+ * that objects of the same color are adjacent, with the colors in the order red, white,
+ * and blue. We will use the integers 0, 1, and 2 to represent the color red, white, and
+ * blue, respectively. You must solve this problem without using the library's sort function.
  */
 auto Sort0s1s2s(ArrayType values) {
     auto zeros_end = values.begin();
@@ -99,6 +107,21 @@ auto Sort0s1s2s(ArrayType values) {
     }
 
     return values;
+}
+
+
+auto Sort0s1s2s_Index(ArrayType nums) {
+    int left = 0;
+    int right = nums.size() - 1;
+    for (int i = 0; i <= right; ++i) {
+        if (nums[i] == 0) {
+            std::swap(nums[i], nums[left++]);
+        } else if (nums[i] == 2) {
+            std::swap(nums[i--], nums[right--]);
+        }
+    }
+
+    return nums;
 }
 
 
@@ -163,3 +186,12 @@ SIMPLE_TEST(Sort0s1s2s, TestSAMPLE2, VALUES2, VALUES2);
 SIMPLE_TEST(Sort0s1s2s, TestSAMPLE3, VALUES3, VALUES3);
 SIMPLE_TEST(Sort0s1s2s, TestSAMPLE6, EXPECTED6, VALUES6);
 SIMPLE_TEST(Sort0s1s2s, TestSAMPLE7, EXPECTED7, VALUES7);
+
+
+THE_BENCHMARK(Sort0s1s2s_Index, VALUES5);
+
+SIMPLE_TEST(Sort0s1s2s_Index, TestSAMPLE1, VALUES1, VALUES1);
+SIMPLE_TEST(Sort0s1s2s_Index, TestSAMPLE2, VALUES2, VALUES2);
+SIMPLE_TEST(Sort0s1s2s_Index, TestSAMPLE3, VALUES3, VALUES3);
+SIMPLE_TEST(Sort0s1s2s_Index, TestSAMPLE6, EXPECTED6, VALUES6);
+SIMPLE_TEST(Sort0s1s2s_Index, TestSAMPLE7, EXPECTED7, VALUES7);

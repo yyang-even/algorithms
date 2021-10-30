@@ -285,7 +285,7 @@ auto ThreeSum(ArrayType nums, const int target) {
     std::vector<ArrayType> results;
     const int SIZE = nums.size();
     for (int i = 0; i < SIZE - 2; ++i) {
-        if (i > 1 and nums[i] == nums[i - 1]) {
+        if (i >= 1 and nums[i] == nums[i - 1]) {
             continue;
         }
 
@@ -603,6 +603,11 @@ const std::vector<ArrayType> EXPECTED10 = {
     {-2, 1, 1}
 };
 
+const ArrayType VALUES12T = {0, 0, 0, 0};
+const std::vector<ArrayType> EXPECTED12T = {
+    {0, 0, 0},
+};
+
 
 THE_BENCHMARK(ThreeSum, VALUES8, 8);
 
@@ -616,6 +621,7 @@ SIMPLE_TEST(ThreeSum, TestSAMPLE8, EXPECTED8, VALUES8, 9);
 SIMPLE_TEST(ThreeSum, TestSAMPLE9, EXPECTED9, VALUES9, 24);
 SIMPLE_TEST(ThreeSum, TestSAMPLE10, EXPECTED10, VALUES10, 0);
 SIMPLE_TEST(ThreeSum, TestSAMPLE11, EXPECTED0, VALUES10, 10);
+SIMPLE_TEST(ThreeSum, TestSAMPLE12, EXPECTED12T, VALUES12T, 0);
 
 
 THE_BENCHMARK(kSum, 3, VALUES8, 8);

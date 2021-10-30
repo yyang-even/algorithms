@@ -66,6 +66,25 @@ auto MissingNumberInArithmeticProgression_Iterative(const ArrayType &nums) {
     return nums[right] + diff;
 }
 
+
+/**
+ * @reference   Find the missing number in unordered Arithmetic Progression
+ *              https://www.geeksforgeeks.org/find-the-missing-number-in-unordered-arithmetic-progression/
+ *
+ * Given an unsorted array arr[] of N integers that are in Arithmetic Progression, the
+ * task is to print the missing element from the given series.
+ */
+auto MissingNumberInArithmeticProgression_Unsorted(const ArrayType &nums) {
+    const auto [min_iter, max_iter] = std::minmax_element(nums.cbegin(), nums.cend());
+    const int diff = (*max_iter - *min_iter) / nums.size();
+    int result = std::accumulate(nums.cbegin(), nums.cend(), 0, std::bit_xor<int> {});
+    for (int i = *min_iter; i <= *max_iter; i += diff) {
+        result ^= i;
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -89,3 +108,15 @@ SIMPLE_TEST(MissingNumberInArithmeticProgression_Iterative, TestSAMPLE1, 6, SAMP
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Iterative, TestSAMPLE2, 26, SAMPLE2);
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Iterative, TestSAMPLE3, 9, SAMPLE3);
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Iterative, TestSAMPLE4, 14, SAMPLE4);
+
+
+const ArrayType SAMPLE5 = {12, 3, 6, 15, 18};
+
+
+THE_BENCHMARK(MissingNumberInArithmeticProgression_Unsorted, SAMPLE1);
+
+SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE1, 6, SAMPLE1);
+SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE2, 26, SAMPLE2);
+SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE3, 9, SAMPLE3);
+SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE4, 14, SAMPLE4);
+SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE5, 9, SAMPLE5);
