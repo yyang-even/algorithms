@@ -1,3 +1,6 @@
+compile_benchmark(array_transformation)
+compile_test(array_transformation)
+
 compile_benchmark(backspace_string_compare)
 compile_test(backspace_string_compare)
 
