@@ -142,15 +142,15 @@ int checkIslandSize_Iterative(const MatrixType &grid,
         const auto [row, column] = s.top();
         s.pop();
 
-        for (const auto [row_delta, column_delta] : DIRECTIONS) {
-            const auto i = row + row_delta;
-            const auto j = column + column_delta;
-            if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] == 1) {
+        ForEachDirection(N, N, row, column,
+        [&grid, &visited, &s](const auto i, const auto j) {
+            if (grid[i][j] == 1) {
                 if (visited.emplace(i, j).second) {
                     s.emplace(i, j);
                 }
             }
-        }
+
+        });
     }
 
     return visited.size();
@@ -184,13 +184,12 @@ int checkIslandSize_Recursive(MatrixType &grid, const int row, const int column,
     grid[row][column] = island_index;
 
     int result = 1;
-    for (const auto [row_delta, column_delta] : DIRECTIONS) {
-        const auto i = row + row_delta;
-        const auto j = column + column_delta;
-        if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] == 1) {
+    ForEachDirection(N, N, row, column,
+    [&grid, &result, island_index](const auto i, const auto j) {
+        if (grid[i][j] == 1) {
             result += checkIslandSize_Recursive(grid, i, j, island_index);
         }
-    }
+    });
 
     return result;
 }
@@ -201,15 +200,14 @@ int findTotalArea(const MatrixType &grid, const int row, const int column,
 
     int result = 1;
     std::unordered_set<int> visited_island;
-    for (const auto [row_delta, column_delta] : DIRECTIONS) {
-        const auto i = row + row_delta;
-        const auto j = column + column_delta;
-        if (i >= 0 and i < N and j >= 0 and j < N and grid[i][j] != 0) {
+    ForEachDirection(N, N, row, column,
+    [&grid, &visited_island, &result, &areas](const auto i, const auto j) {
+        if (grid[i][j] != 0) {
             if (visited_island.insert(grid[i][j]).second) {
                 result += areas.at(grid[i][j]);
             }
         }
-    }
+    });
 
     return result;
 }

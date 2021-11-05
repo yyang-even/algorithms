@@ -121,18 +121,16 @@ auto TrapRain2D(const MatrixType &a_matrix) {
         const auto [height, row, column] = min_heap.top();
         min_heap.pop();
         level = std::max(level, height);
-        for (const auto [delta_row, delta_column] : DIRECTIONS) {
-            const auto x = row + delta_row;
-            const auto y = column + delta_column;
-            if (x < 0 or x >= M or y < 0 or y >= N or visited[x][y]) {
-                continue;
+        ForEachDirection(M, N, row, column,
+        [&a_matrix, &min_heap, &visited, level, &result](const auto x, const auto y) {
+            if (not visited[x][y]) {
+                visited[x][y] = true;
+                if (a_matrix[x][y] < level) {
+                    result += level - a_matrix[x][y];
+                }
+                min_heap.emplace(a_matrix[x][y], x, y);
             }
-            visited[x][y] = true;
-            if (a_matrix[x][y] < level) {
-                result += level - a_matrix[x][y];
-            }
-            min_heap.emplace(a_matrix[x][y], x, y);
-        }
+        });
     }
 
     return result;

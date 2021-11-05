@@ -434,17 +434,14 @@ auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) 
                 return step;
             }
 
-            for (const auto [delta_x, delta_y] : DIRECTIONS) {
-                const auto new_x = x + delta_x;
-                const auto new_y = y + delta_y;
-                if (new_x >= 0 and new_y >= 0 and new_x < M and new_y < N) {
-                    const auto new_obstacle = obstacle_eliminated + grid[new_x][new_y];
-                    if (new_obstacle < seen[new_x][new_y] and new_obstacle <= k) {
-                        seen[new_x][new_y] = new_obstacle;
-                        q.emplace(new_x, new_y, new_obstacle);
-                    }
+            ForEachDirection(M, N, x, y,
+            [k, &grid, &seen, obstacle_eliminated, &q](const auto new_x, const auto new_y) {
+                const auto new_obstacle = obstacle_eliminated + grid[new_x][new_y];
+                if (new_obstacle < seen[new_x][new_y] and new_obstacle <= k) {
+                    seen[new_x][new_y] = new_obstacle;
+                    q.emplace(new_x, new_y, new_obstacle);
                 }
-            }
+            });
         }
 
         ++step;

@@ -4,6 +4,9 @@ compile_test(island_perimeter)
 compile_benchmark(max_black_border)
 compile_test(max_black_border)
 
+compile_benchmark(number_of_islands)
+compile_test(number_of_islands)
+
 compile_benchmark(reshape_matrix)
 compile_test(reshape_matrix)
 

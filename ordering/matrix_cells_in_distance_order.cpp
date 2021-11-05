@@ -47,7 +47,7 @@ auto OrderByDistance_CountingSort(const int rows, const int cols,
 
 auto OrderByDistance_Graph(const int rows, const int cols,
                            const int r_center, const int c_center) {
-    bool visited[rows][cols] = {};
+    std::vector visited(rows, std::vector(cols, false));
     visited[r_center][c_center] = true;
     std::queue<std::pair<int, int>> q;
     q.emplace(r_center, c_center);
@@ -59,14 +59,13 @@ auto OrderByDistance_Graph(const int rows, const int cols,
 
         result.emplace_back(i, j);
 
-        for (const auto [delta_r, delta_c] : DIRECTIONS) {
-            const auto r = i + delta_r;
-            const auto c = j + delta_c;
-            if (r >= 0 and r < rows and c >= 0 and c < cols and not visited[r][c]) {
+        ForEachDirection(rows, cols, i, j,
+        [&visited, &q](const auto r, const auto c) {
+            if (not visited[r][c]) {
                 visited[r][c] = true;
                 q.emplace(r, c);
             }
-        }
+        });
     }
 
     return result;

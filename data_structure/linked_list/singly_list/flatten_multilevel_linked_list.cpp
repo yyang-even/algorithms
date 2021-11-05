@@ -54,13 +54,17 @@ auto FlattenMultilevelLinkedList_Levelwise(const MultiLevelNode::PointerType hea
 /**
  * @reference   Flatten a multi-level linked list | Set 2 (Depth wise)
  *              https://www.geeksforgeeks.org/flatten-a-multi-level-linked-list-set-2-depth-wise/
+ *
+ * @reference   Flatten a Multilevel Doubly Linked List
+ *              https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
  */
 MultiLevelNode::PointerType FlattenMultilevelLinkedList_Depthwise(
     const MultiLevelNode::PointerType head) {
     for (auto current = head; current; current = current->next) {
-        const auto next = current->next;
         if (current->child) {
+            const auto next = current->next;
             current->next = FlattenMultilevelLinkedList_Depthwise(current->child);
+            current->child.reset();
             for (; current->next; current = current->next);
             current->next = next;
         }
