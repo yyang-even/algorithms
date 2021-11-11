@@ -1,6 +1,12 @@
 compile_benchmark(armstrong_number)
 compile_test(armstrong_number)
 
+compile_benchmark(big_integer_multiply)
+compile_test(big_integer_multiply)
+
+compile_benchmark(big_integer_sum)
+compile_test(big_integer_sum)
+
 compile_benchmark(count_2s_in_range)
 compile_test(count_2s_in_range)
 

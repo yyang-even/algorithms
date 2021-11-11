@@ -1,14 +1,14 @@
-compile_benchmark(factorial)
-compile_test(factorial)
+compile_benchmark(count_digits_in_a_factorial)
+compile_test(count_digits_in_a_factorial)
+
+compile_benchmark(count_divisors_of_factorial)
+compile_test(count_divisors_of_factorial)
 
 compile_benchmark(count_factorial_numbers_in_range)
 compile_test(count_factorial_numbers_in_range)
 
-compile_benchmark(count_digits_in_a_factorial)
-compile_test(count_digits_in_a_factorial)
+compile_benchmark(factorial)
+compile_test(factorial)
 
 compile_benchmark(trailing_zeros_in_factorial)
 compile_test(trailing_zeros_in_factorial)
-
-compile_benchmark(count_divisors_of_factorial)
-compile_test(count_divisors_of_factorial)
