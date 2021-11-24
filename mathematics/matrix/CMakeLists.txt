@@ -1,3 +1,6 @@
+compile_benchmark(cells_with_odd_values_in_matrix)
+compile_test(cells_with_odd_values_in_matrix)
+
 compile_benchmark(island_perimeter)
 compile_test(island_perimeter)
 

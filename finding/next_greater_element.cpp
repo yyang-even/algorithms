@@ -39,6 +39,36 @@ auto NextGreaterElement(const ArrayType &elements) {
 
 
 /**
+ * @reference   Daily Temperatures
+ *              https://leetcode.com/problems/daily-temperatures/
+ *
+ * Given an array of integers temperatures represents the daily temperatures, return an
+ * array answer such that answer[i] is the number of days you have to wait after the ith
+ * day to get a warmer temperature. If there is no future day for which this is possible,
+ * keep answer[i] == 0 instead.
+ */
+auto DailyTemperatures(const ArrayType &temperatures) {
+    ArrayType result(temperatures.size(), 0);
+    int hottest = 0;
+
+    for (int i = temperatures.size() - 1; i >= 0; --i) {
+        if (temperatures[i] >= hottest) {
+            hottest = temperatures[i];
+            continue;
+        }
+
+        int days = 1;
+        while (temperatures[i + days] <= temperatures[i]) {
+            days += result[i + days];
+        }
+        result[i] = days;
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Next Greater Element I
  *              https://leetcode.com/problems/next-greater-element-i/
  *
@@ -248,3 +278,20 @@ THE_BENCHMARK(NextGreaterElement_STL, 12);
 
 SIMPLE_TEST(NextGreaterElement_STL, TestSAMPLE1, 21, 12);
 SIMPLE_TEST(NextGreaterElement_STL, TestSAMPLE2, -1, 21);
+
+
+const ArrayType SAMPLE1D = {73, 74, 75, 71, 69, 72, 76, 73};
+const ArrayType EXPECTED1D = {1, 1, 4, 2, 1, 1, 0, 0};
+
+const ArrayType SAMPLE2D = {30, 40, 50, 60};
+const ArrayType EXPECTED2D = {1, 1, 1, 0};
+
+const ArrayType SAMPLE3D = {30, 60, 90};
+const ArrayType EXPECTED3D = {1, 1, 0};
+
+
+THE_BENCHMARK(DailyTemperatures, SAMPLE1D);
+
+SIMPLE_TEST(DailyTemperatures, TestSAMPLE1, EXPECTED1D, SAMPLE1D);
+SIMPLE_TEST(DailyTemperatures, TestSAMPLE2, EXPECTED2D, SAMPLE2D);
+SIMPLE_TEST(DailyTemperatures, TestSAMPLE3, EXPECTED3D, SAMPLE3D);
