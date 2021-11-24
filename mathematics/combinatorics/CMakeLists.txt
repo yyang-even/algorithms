@@ -1,2 +1,0 @@
-compile_benchmark(unique_paths)
-compile_test(unique_paths)

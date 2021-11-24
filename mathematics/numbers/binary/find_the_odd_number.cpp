@@ -65,6 +65,31 @@ inline auto FindTheOddNumber_Sorted_BinarySearch(const ArrayType &values) {
 
 
 /**
+ * @reference   Single Element in a Sorted Array
+ *              https://leetcode.com/problems/single-element-in-a-sorted-array/
+ *
+ * You are given a sorted array consisting of only integers where every element appears
+ * exactly twice, except for one element which appears exactly once. Return the single
+ * element that appears only once. Your solution must run in O(log n) time and O(1) space.
+ */
+auto FindTheOddNumber_Sorted_Iterative(const ArrayType &nums) {
+    int left = 0;
+    int right = nums.size() - 2;
+
+    while (left <= right) {
+        const auto mid = (left + right) / 2;
+        if (nums[mid] == nums[mid ^ 1]) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return nums[left];
+}
+
+
+/**
  * @reference   Find the Difference
  *              https://leetcode.com/problems/find-the-difference/
  *
@@ -93,6 +118,7 @@ SIMPLE_TEST(FindTheOddNumber, TestSample4, 7, SAMPLE4);
 const ArrayType SORTED_SAMPLE1 = {1, 2, 2, 4, 4, 5, 5, 6, 6};
 const ArrayType SORTED_SAMPLE2 = {1, 1, 2, 4, 4, 5, 5, 6, 6};
 const ArrayType SORTED_SAMPLE3 = {1, 1, 2, 2, 4, 4, 5, 5, 6};
+const ArrayType SORTED_SAMPLE4 = {3, 3, 7, 7, 10, 11, 11};
 
 
 THE_BENCHMARK(FindTheOddNumber_Sorted_BinarySearch, SORTED_SAMPLE1);
@@ -102,3 +128,14 @@ SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestFront, SORTED_SAMPLE1.fron
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestSample2, 2, SORTED_SAMPLE2);
 SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestBack, SORTED_SAMPLE3.back(),
             SORTED_SAMPLE3);
+SIMPLE_TEST(FindTheOddNumber_Sorted_BinarySearch, TestSample4, 10, SORTED_SAMPLE4);
+
+
+THE_BENCHMARK(FindTheOddNumber_Sorted_Iterative, SORTED_SAMPLE1);
+
+SIMPLE_TEST(FindTheOddNumber_Sorted_Iterative, TestFront, SORTED_SAMPLE1.front(),
+            SORTED_SAMPLE1);
+SIMPLE_TEST(FindTheOddNumber_Sorted_Iterative, TestSample2, 2, SORTED_SAMPLE2);
+SIMPLE_TEST(FindTheOddNumber_Sorted_Iterative, TestBack, SORTED_SAMPLE3.back(),
+            SORTED_SAMPLE3);
+SIMPLE_TEST(FindTheOddNumber_Sorted_Iterative, TestSample4, 10, SORTED_SAMPLE4);

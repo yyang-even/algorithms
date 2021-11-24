@@ -124,6 +124,9 @@ compile_test(target_sum)
 compile_benchmark(trap_rain_water)
 compile_test(trap_rain_water)
 
+compile_benchmark(unique_paths)
+compile_test(unique_paths)
+
 compile_benchmark(word_break)
 compile_test(word_break)
 
