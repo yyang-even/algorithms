@@ -25,6 +25,9 @@ compile_test(rotting_oranges)
 compile_benchmark(set_matrix_zeroes)
 compile_test(set_matrix_zeroes)
 
+compile_benchmark(shift_2d_grid)
+compile_test(shift_2d_grid)
+
 compile_benchmark(spiral_matrix)
 compile_test(spiral_matrix)
 
