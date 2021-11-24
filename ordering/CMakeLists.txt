@@ -28,6 +28,9 @@ compile_test(heap_sort)
 compile_benchmark(insertion_sort)
 compile_test(insertion_sort)
 
+compile_benchmark(interval_list_intersections)
+compile_test(interval_list_intersections)
+
 compile_benchmark(is_k_sorted_array)
 compile_test(is_k_sorted_array)
 
