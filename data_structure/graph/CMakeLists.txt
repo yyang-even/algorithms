@@ -1,3 +1,6 @@
+compile_benchmark(accounts_merge)
+compile_test(accounts_merge)
+
 compile_benchmark(breadth_first_search)
 compile_test(breadth_first_search)
 

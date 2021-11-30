@@ -75,6 +75,62 @@ inline auto CombinationsOfLength_Include(const std::string_view elements,
 }
 
 
+/**
+ * @reference   Iterator for Combination
+ *              https://leetcode.com/problems/iterator-for-combination/
+ *
+ * Design the CombinationIterator class:
+ *  CombinationIterator(string characters, int combinationLength) Initializes the object
+ *      with a string characters of sorted distinct lowercase English letters and a number
+ *      combinationLength as arguments.
+ *  next() Returns the next combination of length combinationLength in lexicographical order.
+ *  hasNext() Returns true if and only if there exists a next combination.
+ * 1 <= combinationLength <= characters.length <= 15
+ */
+class CombinationIterator {
+    std::string_view chars;
+    int length;
+    unsigned mask;
+
+public:
+    constexpr CombinationIterator(const std::string_view characters, const int l):
+        chars(characters), length(l), mask((1 << characters.size()) - 1) {
+    }
+
+    std::string next() {
+        hasNext();
+        std::string result;
+        for (std::size_t i = 0; i < chars.size(); ++i) {
+            if (mask & (1 << (chars.size() - i - 1))) {
+                result.push_back(chars[i]);
+            }
+        }
+        --mask;
+
+        return result;
+    }
+
+    constexpr bool hasNext() {
+        while (mask and __builtin_popcount(mask) != length) {
+            --mask;
+        }
+
+        return mask;
+    }
+};
+
+auto testCombinationIterator(const std::string_view chars,
+                             const std::size_t length) {
+    ArrayType results;
+    CombinationIterator iter(chars, length);
+    while (iter.hasNext()) {
+        results.insert(iter.next());
+    }
+
+    return results;
+}
+
+
 /** Combinations of a String
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
@@ -268,6 +324,13 @@ THE_BENCHMARK(CombinationsOfLength_Include, "abcd", 2);
 SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE1, EXPECTED1, "a", 1);
 SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE4, EXPECTED4, "wxyz", 2);
 SIMPLE_TEST(CombinationsOfLength_Include, TestSAMPLE5, EXPECTED5, "12345", 3);
+
+
+THE_BENCHMARK(testCombinationIterator, "abcd", 2);
+
+SIMPLE_TEST(testCombinationIterator, TestSAMPLE1, EXPECTED1, "a", 1);
+SIMPLE_TEST(testCombinationIterator, TestSAMPLE4, EXPECTED4, "wxyz", 2);
+SIMPLE_TEST(testCombinationIterator, TestSAMPLE5, EXPECTED5, "12345", 3);
 
 
 THE_BENCHMARK(AllCombinations_Recursive, "abcd");
