@@ -174,6 +174,44 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
     return longest;
 }
 
+
+/**
+ * @reference   Largest Divisible Subset
+ *              https://leetcode.com/problems/largest-divisible-subset/
+ *
+ * Given a set of distinct positive integers nums, return the largest subset answer such
+ * that every pair (answer[i], answer[j]) of elements in this subset satisfies:
+ *  answer[i] % answer[j] == 0, or
+ *  answer[j] % answer[i] == 0
+ * If there are multiple solutions, return any of them.
+ */
+auto LargestDivisibleSubset(ArrayType nums) {
+    std::sort(nums.begin(), nums.end());
+
+    const auto N = nums.size();
+    int max_i = 0;
+    ArrayType dp(N, 1), predecessors(N, -1);
+    for (std::size_t i = 1; i < N; ++i) {
+        for (std::size_t j = 0; j < i; ++j) {
+            if (nums[i] % nums[j] == 0 and dp[i] <= dp[j]) {
+                dp[i] = dp[j] + 1;
+                predecessors[i] = j;
+            }
+        }
+        if (dp[i] > dp[max_i]) {
+            max_i = i;
+        }
+    }
+
+    ArrayType result;
+    for (; max_i >= 0; max_i = predecessors[max_i]) {
+        result.push_back(nums[max_i]);
+    }
+
+    std::reverse(result.begin(), result.end());
+    return result;
+}
+
 }//namespace
 
 
@@ -238,3 +276,15 @@ THE_BENCHMARK(LongestContinuousIncreasingSubsequence, SAMPLE5);
 
 SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE5, 3, SAMPLE5);
 SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE6, 1, SAMPLE6);
+
+
+const ArrayType SAMPLE1D = {1, 2, 3};
+const ArrayType EXPECTED1D = {1, 2};
+
+const ArrayType SAMPLE2D = {1, 2, 4, 8};
+
+
+THE_BENCHMARK(LargestDivisibleSubset, SAMPLE1D);
+
+SIMPLE_TEST(LargestDivisibleSubset, TestSAMPLE1, EXPECTED1D, SAMPLE1D);
+SIMPLE_TEST(LargestDivisibleSubset, TestSAMPLE2, SAMPLE2D, SAMPLE2D);

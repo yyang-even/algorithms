@@ -25,9 +25,6 @@ compile_test(coin_change)
 compile_benchmark(company_party_planning)
 compile_test(company_party_planning)
 
-compile_benchmark(count_possible_paths_from_11_to_MN)
-compile_test(count_possible_paths_from_11_to_MN)
-
 compile_benchmark(count_vowels_permutation)
 compile_test(count_vowels_permutation)
 
@@ -45,6 +42,9 @@ compile_test(flip_game)
 
 compile_benchmark(flip_string_to_monotone_increasing)
 compile_test(flip_string_to_monotone_increasing)
+
+compile_benchmark(house_robber)
+compile_test(house_robber)
 
 compile_benchmark(k_inverse_pairs_array)
 compile_test(k_inverse_pairs_array)
@@ -75,6 +75,9 @@ compile_test(matrix_chain_multiplication)
 
 compile_benchmark(max_length_concatenated_str_with_unique_chars)
 compile_test(max_length_concatenated_str_with_unique_chars)
+
+compile_benchmark(max_square)
+compile_test(max_square)
 
 compile_benchmark(max_sum_rectangle_in_matrix)
 compile_test(max_sum_rectangle_in_matrix)

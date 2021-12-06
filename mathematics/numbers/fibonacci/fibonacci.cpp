@@ -238,32 +238,6 @@ constexpr auto FindWaysToRunUpStairs_DP(const unsigned n) {
  * Tribonacci Numbers.
  */
 
-
-/**
- * @reference   Min Cost Climbing Stairs
- *              https://leetcode.com/problems/min-cost-climbing-stairs/
- *
- * You are given an integer array cost where cost[i] is the cost of ith step on a
- * staircase. Once you pay the cost, you can either climb one or two steps. You can
- * either start from the step with index 0, or the step with index 1. Return the
- * minimum cost to reach the top of the floor.
- * 2 <= cost.length <= 1000
- */
-auto MinCostClimbingStairs(const ArrayType &cost) {
-    assert(cost.size() >= 2);
-
-    int a = 0;
-    int b = 0;
-
-    for (const auto a_cost : cost) {
-        const auto c = a_cost + std::min(a, b);
-        a = b;
-        b = c;
-    }
-
-    return std::min(a, b);
-}
-
 }//namespace
 
 
@@ -317,13 +291,3 @@ SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE3, 1, 0);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE4, 1, 1);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE5, 2, 2);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE6, 1389537, 24);
-
-
-const ArrayType SAMPLE1 = {10, 15, 20};
-const ArrayType SAMPLE2 = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
-
-
-THE_BENCHMARK(MinCostClimbingStairs, SAMPLE1);
-
-SIMPLE_TEST(MinCostClimbingStairs, TestSAMPLE1, 15, SAMPLE1);
-SIMPLE_TEST(MinCostClimbingStairs, TestSAMPLE2, 6, SAMPLE2);

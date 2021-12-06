@@ -6,6 +6,7 @@
 
 using namespace graph;
 
+
 namespace {
 
 /** Find if there is a path between two vertices in a directed graph
@@ -95,6 +96,39 @@ auto NumberPaths_DAG(const std::size_t number_vertices,
     return number_of_paths[source];
 }
 
+
+/**
+ * @reference   All Paths From Source to Target
+ *              https://leetcode.com/problems/all-paths-from-source-to-target/
+ *
+ * Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all
+ * possible paths from node 0 to node n - 1 and return them in any order. The graph is
+ * given as follows: graph[i] is a list of all nodes you can visit from node i (i.e.,
+ * there is a directed edge from node i to node graph[i][j]).
+ */
+void AllPathsSourceTarget(const std::vector<ArrayType> &graph, const std::size_t i,
+                          ArrayType &path, std::vector<ArrayType> &results) {
+    path.push_back(i);
+
+    if (i == graph.size() - 1) {
+        results.push_back(path);
+    } else {
+        for (const auto neighbor : graph[i]) {
+            AllPathsSourceTarget(graph, neighbor, path, results);
+        }
+    }
+
+    path.pop_back();
+}
+
+inline auto AllPathsSourceTarget(const std::vector<ArrayType> &graph) {
+    std::vector<ArrayType> results;
+    ArrayType path;
+    AllPathsSourceTarget(graph, 0, path, results);
+
+    return results;
+}
+
 }//namespace
 
 
@@ -113,3 +147,28 @@ const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {2, 3}, {
 THE_BENCHMARK(NumberPaths_DAG, 5, SAMPLE2, 0, 4);
 
 SIMPLE_TEST(NumberPaths_DAG, TestSAMPLE2, 3, 5, SAMPLE2, 0, 4);
+
+
+const std::vector<ArrayType> SAMPLE1G = {{1, 2}, {3}, {3}, {}};
+const std::vector<ArrayType> EXPECTED1 = {{0, 1, 3}, {0, 2, 3}};
+
+const std::vector<ArrayType> SAMPLE2G = {{4, 3, 1}, {3, 2, 4}, {3}, {4}, {}};
+const std::vector<ArrayType> EXPECTED2 = {{0, 4}, {0, 3, 4}, {0, 1, 3, 4}, {0, 1, 2, 3, 4}, {0, 1, 4}};
+
+const std::vector<ArrayType> SAMPLE3G = {{1}, {}};
+const std::vector<ArrayType> EXPECTED3 = {{0, 1}};
+
+const std::vector<ArrayType> SAMPLE4G = {{1, 2, 3}, {2}, {3}, {}};
+const std::vector<ArrayType> EXPECTED4 = {{0, 1, 2, 3}, {0, 2, 3}, {0, 3}};
+
+const std::vector<ArrayType> SAMPLE5G = {{1, 3}, {2}, {3}, {}};
+const std::vector<ArrayType> EXPECTED5 = {{0, 1, 2, 3}, {0, 3}};
+
+
+THE_BENCHMARK(AllPathsSourceTarget, SAMPLE1G);
+
+SIMPLE_TEST(AllPathsSourceTarget, TestSAMPLE1, EXPECTED1, SAMPLE1G);
+SIMPLE_TEST(AllPathsSourceTarget, TestSAMPLE2, EXPECTED2, SAMPLE2G);
+SIMPLE_TEST(AllPathsSourceTarget, TestSAMPLE3, EXPECTED3, SAMPLE3G);
+SIMPLE_TEST(AllPathsSourceTarget, TestSAMPLE4, EXPECTED4, SAMPLE4G);
+SIMPLE_TEST(AllPathsSourceTarget, TestSAMPLE5, EXPECTED5, SAMPLE5G);

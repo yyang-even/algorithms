@@ -7,9 +7,19 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Unique Paths
+/** Count all possible paths from top left to bottom right of a mXn matrix
  *
- * @reference   https://leetcode.com/problems/unique-paths/
+ * @reference   https://www.geeksforgeeks.org/count-possible-paths-top-left-bottom-right-nxm-matrix/
+ *
+ * The problem is to count all the possible paths from top left to bottom right of a mXn
+ * matrix with the constraints that from each cell you can either move only to right or
+ * down.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 9.2.
+ *
+ * @reference   Unique Paths
+ *              https://leetcode.com/problems/unique-paths/
  *
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the
  * diagram below). The robot can only move either down or right at any point in time.
@@ -18,6 +28,22 @@ using ArrayType = std::vector<int>;
  *
  * (m+n)! / (m! * n!)
  */
+constexpr auto UniquePaths_SpaceOptimized_DP(const unsigned M, const unsigned N) {
+    assert(M > 0);
+    assert(N > 0);
+
+    unsigned counts[N] = {1};
+
+    for (unsigned i = 0; i < M; ++i) {
+        for (unsigned j = 1; j < N; ++j) {
+            counts[j] += counts[j - 1];
+        }
+    }
+
+    return counts[N - 1];
+}
+
+
 constexpr int combine(const int m, const int n) {
     assert(m >= n);
 
@@ -44,6 +70,15 @@ constexpr auto UniquePaths(const int m, const int n) {
 
 
 /**
+ * @reference   Unique paths in a Grid with Obstacles
+ *              https://www.geeksforgeeks.org/unique-paths-in-a-grid-with-obstacles/
+ *
+ * Given a grid of size m * n, let us assume you are starting at (1, 1) and your goal
+ * is to reach (m, n). At any instance, if you are on (x, y), you can either go to
+ * (x, y + 1) or (x + 1, y). Now consider if some obstacles are added to the grids.
+ * How many unique paths would there be? An obstacle and empty space are marked as 1
+ * and 0 respectively in the grid.
+ *
  * @reference   Unique Paths II
  *              https://leetcode.com/problems/unique-paths-ii/
  *
@@ -144,6 +179,18 @@ SIMPLE_TEST(UniquePaths, TestSAMPLE1, 28, 3, 7);
 SIMPLE_TEST(UniquePaths, TestSAMPLE2, 3, 3, 2);
 SIMPLE_TEST(UniquePaths, TestSAMPLE3, 28, 7, 3);
 SIMPLE_TEST(UniquePaths, TestSAMPLE4, 6, 3, 3);
+SIMPLE_TEST(UniquePaths, TestSAMPLE5, 2, 2, 2);
+SIMPLE_TEST(UniquePaths, TestSAMPLE6, 3, 2, 3);
+
+
+THE_BENCHMARK(UniquePaths_SpaceOptimized_DP, 3, 7);
+
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE1, 28, 3, 7);
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE2, 3, 3, 2);
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE3, 28, 7, 3);
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE4, 6, 3, 3);
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE5, 2, 2, 2);
+SIMPLE_TEST(UniquePaths_SpaceOptimized_DP, TestSAMPLE6, 3, 2, 3);
 
 
 const MatrixType SAMPLE1 = {
@@ -157,11 +204,18 @@ const MatrixType SAMPLE2 = {
     {0, 0}
 };
 
+const MatrixType SAMPLE3 = {
+    { 0, 0, 0 },
+    { 1, 1, 0 },
+    { 0, 0, 0 }
+};
+
 
 THE_BENCHMARK(UniquePathsWithObstacles, SAMPLE1);
 
 SIMPLE_TEST(UniquePathsWithObstacles, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(UniquePathsWithObstacles, TestSAMPLE2, 1, SAMPLE2);
+SIMPLE_TEST(UniquePathsWithObstacles, TestSAMPLE3, 1, SAMPLE3);
 
 
 const MatrixType SAMPLE1T = {
