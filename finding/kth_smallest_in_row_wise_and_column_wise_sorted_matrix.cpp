@@ -86,6 +86,43 @@ auto KthSmallestInSortedMatrix_BinarySearch(const MatrixType &a_matrix, const in
     return left;
 }
 
+
+/**
+ * @reference   Kth Smallest Number in Multiplication Table
+ *              https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+ *
+ * Nearly everyone has used the Multiplication Table. The multiplication table of size
+ * m x n is an integer matrix mat where mat[i][j] == i * j (1-indexed). Given three
+ * integers m, n, and k, return the kth smallest element in the m x n multiplication
+ * table.
+ */
+constexpr auto
+count(const int m, const int n, const int x) {
+    int result = 0;
+    for (int i = 1; i <= m; ++i) {
+        result += std::min(x / i, n);
+    }
+    return result;
+}
+
+constexpr auto
+KthNumberInMultiplicationTable(const int m, const int n, const int k) {
+    int left = 1;
+    int right = m * n;
+    int result = 0;
+    while (left <= right) {
+        const auto mid = (left + right) / 2;
+        if (count(m, n, mid) < k) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+            result = mid;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -121,3 +158,9 @@ SIMPLE_TEST(KthSmallestInSortedMatrix_BinarySearch, TestSAMPLE1, 13, SAMPLE1, 8)
 SIMPLE_TEST(KthSmallestInSortedMatrix_BinarySearch, TestSAMPLE2, -5, SAMPLE2, 1);
 SIMPLE_TEST(KthSmallestInSortedMatrix_BinarySearch, TestSAMPLE3, 20, SAMPLE3, 3);
 SIMPLE_TEST(KthSmallestInSortedMatrix_BinarySearch, TestSAMPLE4, 30, SAMPLE3, 7);
+
+
+THE_BENCHMARK(KthNumberInMultiplicationTable, 3, 3, 5);
+
+SIMPLE_TEST(KthNumberInMultiplicationTable, TestSAMPLE1, 3, 3, 3, 5);
+SIMPLE_TEST(KthNumberInMultiplicationTable, TestSAMPLE2, 6, 2, 3, 6);

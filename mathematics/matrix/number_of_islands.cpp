@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "matrix.h"
+#include "data_structure/disjoint_set.h"
 
 
 namespace {
@@ -200,6 +201,44 @@ auto SurroundedRegions(GridType board) {
     return board;
 }
 
+
+auto SurroundedRegions_UF(GridType board) {
+    const auto M = board.size();
+    const auto N = board.front().size();
+    if (M <= 2 or N <= 2) {
+        return board;
+    }
+
+    DisjointSet_Array disjoint_set(M * N + 1);
+    for (std::size_t i = 0; i < M; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
+            if (board[i][j] == 'O') {
+                if (i == 0 or i == M - 1 or j == 0 or j == N - 1) {
+                    disjoint_set.Union(i * N + j, M * N);
+                } else {
+                    if (board[i - 1][j] == 'O') {
+                        disjoint_set.Union(i * N + j, (i - 1) * N + j);
+                    }
+                    if (board[i][j - 1] == 'O') {
+                        disjoint_set.Union(i * N + j, i * N + j - 1);
+                    }
+                }
+            }
+        }
+    }
+
+    const auto dummy_parent = disjoint_set.Find(M * N);
+    for (std::size_t i = 0; i < M; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
+            if (dummy_parent != disjoint_set.Find(i * N + j)) {
+                board[i][j] = 'X';
+            }
+        }
+    }
+
+    return board;
+}
+
 }//namespace
 
 
@@ -261,3 +300,9 @@ THE_BENCHMARK(SurroundedRegions, SAMPLE1R);
 
 SIMPLE_TEST(SurroundedRegions, TestSAMPLE1, EXPECTED1R, SAMPLE1R);
 SIMPLE_TEST(SurroundedRegions, TestSAMPLE2, SAMPLE2R, SAMPLE2R);
+
+
+THE_BENCHMARK(SurroundedRegions_UF, SAMPLE1R);
+
+SIMPLE_TEST(SurroundedRegions_UF, TestSAMPLE1, EXPECTED1R, SAMPLE1R);
+SIMPLE_TEST(SurroundedRegions_UF, TestSAMPLE2, SAMPLE2R, SAMPLE2R);
