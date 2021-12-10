@@ -34,6 +34,9 @@ compile_test(decode_ways)
 compile_benchmark(distinct_subsequences)
 compile_test(distinct_subsequences)
 
+compile_benchmark(domino_tromino_tiling)
+compile_test(domino_tromino_tiling)
+
 compile_benchmark(edit_distance)
 compile_test(edit_distance)
 
