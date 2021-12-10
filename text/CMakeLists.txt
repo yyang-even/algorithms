@@ -37,6 +37,9 @@ compile_test(count_strings_with_consonant_and_vowels_at_alternate_position)
 compile_benchmark(decimal_conversion_to)
 compile_test(decimal_conversion_to)
 
+compile_benchmark(decrypt_string)
+compile_test(decrypt_string)
+
 compile_benchmark(detect_capital)
 compile_test(detect_capital)
 

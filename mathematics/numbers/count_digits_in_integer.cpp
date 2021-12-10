@@ -36,6 +36,15 @@ inline auto CountDigits_String(const int n) {
 
 
 /**
+ * @reference   Find Numbers with Even Number of Digits
+ *              https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+ *
+ * Given an array nums of integers, return how many of them contain an even number of
+ * digits.
+ */
+
+
+/**
  * @reference   TCS Coding Practice Question | Sum of Digits of a number
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-sum-of-digits-of-a-number/
  * @reference   C Program for Sum the digits of a given number
@@ -77,6 +86,15 @@ inline constexpr auto DigitalRoot(const int number) {
 /**
  * @reference   C Program to Print all digits of a given number
  *              https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
+ */
+
+
+/**
+ * @reference   Subtract the Product and Sum of Digits of an Integer
+ *              https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+ *
+ * Given an integer number n, return the difference between the product of its digits and
+ * the sum of its digits.
  */
 
 }//namespace

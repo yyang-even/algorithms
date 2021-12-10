@@ -191,15 +191,18 @@ auto HalfRepeatedElement_Set(const ArrayType &nums) {
             return n;
         }
     }
+
     return 0;
 }
 
 
 auto HalfRepeatedElement_Compare(const ArrayType &nums) {
-    for (std::size_t i = 2; i < nums.size(); ++i)
+    for (std::size_t i = 2; i < nums.size(); ++i) {
         if (nums[i] == nums[i - 1] or nums[i] == nums[i - 2]) {
             return nums[i];
         }
+    }
+
     return nums.front();
 }
 
@@ -242,6 +245,28 @@ auto MajorityElement_Sorted(const ArrayType &nums, const int x) {
 inline auto testMajorityElement_Sorted(ArrayType nums, const int x) {
     std::sort(nums.begin(), nums.end());
     return MajorityElement_Sorted(nums, x);
+}
+
+
+/**
+ * @reference   Element Appearing More Than 25% In Sorted Array
+ *              https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+ *
+ * Given an integer array sorted in non-decreasing order, there is exactly one integer in
+ * the array that occurs more than 25% of the time, return that integer.
+ */
+auto ElementsOccurredMoreThanQuater(const ArrayType &nums) {
+    const auto SIZE = nums.size();
+    const int candidates[] = {nums[SIZE / 4], nums[SIZE / 2], nums[SIZE * 3 / 4]};
+
+    for (const auto c : candidates) {
+        const auto lower = std::lower_bound(nums.cbegin(), nums.cend(), c);
+        if (*lower == *(lower + SIZE / 4)) {
+            return c;
+        }
+    }
+
+    return -1;
 }
 
 }//namespace
@@ -317,3 +342,13 @@ THE_BENCHMARK(testMajorityElement_Sorted, SAMPLE1, 4);
 SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE1, true, SAMPLE1, 4);
 SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE2, false, SAMPLE1, 1);
 SIMPLE_TEST(testMajorityElement_Sorted, TestSAMPLE3, false, SAMPLE1, 2);
+
+
+const ArrayType SAMPLE1Q = {1, 2, 2, 6, 6, 6, 6, 7, 10};
+const ArrayType SAMPLE2Q = {1, 1};
+
+
+THE_BENCHMARK(ElementsOccurredMoreThanQuater, SAMPLE1Q);
+
+SIMPLE_TEST(ElementsOccurredMoreThanQuater, TestSAMPLE1, 6, SAMPLE1Q);
+SIMPLE_TEST(ElementsOccurredMoreThanQuater, TestSAMPLE2, 1, SAMPLE2Q);

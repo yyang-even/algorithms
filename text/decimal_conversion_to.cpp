@@ -55,6 +55,21 @@ inline auto ToHex(const int number) {
 
 
 /**
+ * @reference   Hexspeak
+ *              https://www.cnblogs.com/seyjs/p/11967411.html
+ *
+ * A decimal number can be converted to its Hexspeak representation by first converting
+ * it to an uppercase hexadecimal string, then replacing all occurrences of the digit 0
+ * with the letter O, and the digit 1 with the letter I.  Such a representation is valid
+ * if and only if it consists only of the letters in the set
+ * {"A", "B", "C", "D", "E", "F", "I", "O"}. Given a string num representing a decimal
+ * integer N, return the Hexspeak representation of N if it is valid, otherwise return
+ * "ERROR".
+ * All answers must be in uppercase letters.
+ */
+
+
+/**
  * @reference   Base 7
  *              https://leetcode.com/problems/base-7/
  *
