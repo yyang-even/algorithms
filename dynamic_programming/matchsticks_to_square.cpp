@@ -176,6 +176,37 @@ auto SubarraysOfEqualSum(const ArrayType &nums) {
     return false;
 }
 
+
+/**
+ * @reference   Partition Equal Subset Sum
+ *              https://leetcode.com/problems/partition-equal-subset-sum/
+ *
+ * Given a non-empty array nums containing only positive integers, find if the array can
+ * be partitioned into two subsets such that the sum of elements in both subsets is equal.
+ */
+auto EqualSumSubset(const ArrayType &nums) {
+    if (nums.size() < 2) {
+        return false;
+    }
+
+    const auto sum = std::accumulate(nums.cbegin(), nums.cend(), 0);
+    const auto average = sum / 2;
+    if (average * 2 != sum) {
+        return false;
+    }
+
+    bool dp[average + 1] = {true};
+    for (const auto n : nums) {
+        for (int i = average; i > 0; --i) {
+            if (i >= n) {
+                dp[i] = dp[i] or dp[i - n];
+            }
+        }
+    }
+
+    return dp[average];
+}
+
 }//namespace
 
 
@@ -227,3 +258,13 @@ SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE1, true, SAMPLE1A);
 SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE2, false, SAMPLE2A);
 SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE3, true, SAMPLE3A);
 SIMPLE_TEST(SubarraysOfEqualSum, TestSAMPLE4, false, SAMPLE4A);
+
+
+const ArrayType SAMPLE1T = {1, 5, 11, 5};
+const ArrayType SAMPLE2T = {1, 2, 3, 5};
+
+
+THE_BENCHMARK(EqualSumSubset, SAMPLE1T);
+
+SIMPLE_TEST(EqualSumSubset, TestSAMPLE1, true, SAMPLE1T);
+SIMPLE_TEST(EqualSumSubset, TestSAMPLE2, false, SAMPLE2T);

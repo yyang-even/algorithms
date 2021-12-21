@@ -32,6 +32,33 @@ inline auto TopologicalSort_Kahn(const std::size_t number_vertices,
 
 
 /**
+ * @reference   Course Schedule
+ *              https://leetcode.com/problems/course-schedule/
+ *
+ * There are a total of numCourses courses you have to take, labeled from 0 to
+ * numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi]
+ * indicates that you must take course bi first if you want to take course ai.
+ *  For example, the pair [0, 1], indicates that to take course 0 you have to first take
+ *  course 1.
+ * Return true if you can finish all courses. Otherwise, return false.
+ * All the pairs prerequisites[i] are unique.
+ *
+ * @reference   Course Schedule II
+ *              https://leetcode.com/problems/course-schedule-ii/
+ *
+ * There are a total of numCourses courses you have to take, labeled from 0 to
+ * numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi]
+ * indicates that you must take course bi first if you want to take course ai.
+ *  For example, the pair [0, 1], indicates that to take course 0 you have to first take
+ *  course 1.
+ * Return the ordering of courses you should take to finish all courses. If there are many
+ * valid answers, return any of them. If it is impossible to finish all courses, return an
+ * empty array.
+ * All the pairs [ai, bi] are distinct.
+ */
+
+
+/**
  * @reference   All Topological Sorts of a Directed Acyclic Graph
  *              https://www.geeksforgeeks.org/all-topological-sorts-of-a-directed-acyclic-graph/
  */
@@ -89,18 +116,23 @@ inline auto AllTopologicalSort(const std::size_t number_vertices,
 const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}};
 const ArrayType EXPECTED1 = {5, 4, 2, 3, 1, 0};
 
+const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {1, 3}, {2, 3}, {2, 1}};
+const ArrayType EXPECTED2 = {0, 2, 1, 3};
+
 
 THE_BENCHMARK(TopologicalSort, 6, SAMPLE1);
 
 SIMPLE_TEST(TopologicalSort, TestSAMPLE1, EXPECTED1, 6, SAMPLE1);
+SIMPLE_TEST(TopologicalSort, TestSAMPLE2, EXPECTED2, 4, SAMPLE2);
 
 
-const ArrayType EXPECTED2 = {4, 5, 2, 0, 3, 1};
+const ArrayType EXPECTED1K = {4, 5, 2, 0, 3, 1};
 
 
 THE_BENCHMARK(TopologicalSort_Kahn, 6, SAMPLE1);
 
-SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED2, 6, SAMPLE1);
+SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED1K, 6, SAMPLE1);
+SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE2, EXPECTED2, 4, SAMPLE2);
 
 
 const std::vector<ArrayType> EXPECTED3 = {
