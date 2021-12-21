@@ -95,6 +95,16 @@ SearchMatrix_BinarySearch(const MatrixType &a_matrix, const int key) {
                                      0, a_matrix.front().size() - 1);
 }
 
+
+/**
+ * @reference   Count Negative Numbers in a Sorted Matrix
+ *              https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+ *
+ * Given a m x n matrix grid which is sorted in non-increasing order both row-wise and
+ * column-wise, return the number of negative numbers in grid.
+ * Follow up: Could you find an O(n + m) solution?
+ */
+
 }//namespace
 
 

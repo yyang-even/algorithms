@@ -128,6 +128,59 @@ nthDivisibleUglyNumber_BinarySearch(const long N, const long a,
 
 
 /**
+ * @reference   Nth Magical Number
+ *              https://leetcode.com/problems/nth-magical-number/
+ *
+ * A positive integer is magical if it is divisible by either a or b. Given the three
+ * integers n, a, and b, return the nth magical number. Since the answer may be very
+ * large, return it modulo 10^9 + 7.
+ */
+constexpr int
+nthMagicNumber(const int n, const int a, const int b) {
+    const auto lcm = std::lcm(a, b);
+    const auto M = lcm / a + lcm / b - 1;
+    const long q = n / M, r = n % M;
+
+    long result = q * lcm % LARGE_PRIME;
+    if (r == 0) {
+        return result;
+    }
+
+    auto head_one = a;
+    auto head_another = b;
+    for (int i = 0; i < r - 1; ++i) {
+        if (head_one <= head_another) {
+            head_one += a;
+        } else {
+            head_another += b;
+        }
+    }
+
+    result += std::min(head_one, head_another);
+    return result % LARGE_PRIME;
+}
+
+
+constexpr int
+nthMagicNumber_BinarySearch(const long n, const long a, const long b) {
+    const auto lcm = std::lcm(a, b);
+
+    long left = 0;
+    long right = n * std::min(a, b);
+    while (left < right) {
+        const auto mid = (left + right) / 2;
+        if (mid / a + mid / b - mid / lcm < n) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+
+    return left % LARGE_PRIME;
+}
+
+
+/**
  * @reference   Super Ugly Number (Number whose prime factors are in given set)
  *              https://www.geeksforgeeks.org/super-ugly-number-number-whose-prime-factors-given-set/
  *
@@ -265,3 +318,19 @@ SIMPLE_TEST(nthDivisibleUglyNumber_BinarySearch, TestSAMPLE2, 6, 4, 2, 3, 4);
 SIMPLE_TEST(nthDivisibleUglyNumber_BinarySearch, TestSAMPLE3, 10, 5, 2, 11, 13);
 SIMPLE_TEST(nthDivisibleUglyNumber_BinarySearch, TestSAMPLE4, 1999999984,
             1000000000, 2, 217983653, 336916467);
+
+
+THE_BENCHMARK(nthMagicNumber, 1, 2, 3);
+
+SIMPLE_TEST(nthMagicNumber, TestSAMPLE1, 2, 1, 2, 3);
+SIMPLE_TEST(nthMagicNumber, TestSAMPLE2, 6, 4, 2, 3);
+SIMPLE_TEST(nthMagicNumber, TestSAMPLE3, 10, 5, 2, 4);
+SIMPLE_TEST(nthMagicNumber, TestSAMPLE4, 8, 3, 6, 4);
+
+
+THE_BENCHMARK(nthMagicNumber_BinarySearch, 1, 2, 3);
+
+SIMPLE_TEST(nthMagicNumber_BinarySearch, TestSAMPLE1, 2, 1, 2, 3);
+SIMPLE_TEST(nthMagicNumber_BinarySearch, TestSAMPLE2, 6, 4, 2, 3);
+SIMPLE_TEST(nthMagicNumber_BinarySearch, TestSAMPLE3, 10, 5, 2, 4);
+SIMPLE_TEST(nthMagicNumber_BinarySearch, TestSAMPLE4, 8, 3, 6, 4);
