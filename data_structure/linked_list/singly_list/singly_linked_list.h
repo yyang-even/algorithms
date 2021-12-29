@@ -26,6 +26,38 @@ static inline constexpr auto CountSize_Iterative(Pointer head) {
 }
 
 
+template<typename Pointer>
+static inline constexpr auto GetMidNode(const Pointer head) {
+    assert(head);
+
+    auto fast_ptr = head;
+    auto slow_ptr = head;
+
+    while (fast_ptr and fast_ptr->next) {
+        fast_ptr = fast_ptr->next->next;
+        slow_ptr = slow_ptr->next;
+    }
+
+    return slow_ptr;
+}
+
+
+template<typename Pointer>
+static inline constexpr auto Reverse(const Pointer head) {
+    auto current = head;
+    Pointer previous = nullptr;
+
+    while (current) {
+        const auto next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
+    }
+
+    return previous;
+}
+
+
 /** Singly Linked List
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -477,16 +509,7 @@ public:
      */
     void Reverse_Iterative() {
         tail = head;
-        auto current = head;
-        Node::PointerType previous = nullptr;
-
-        while (current) {
-            const auto next = current->next;
-            current->next = previous;
-            previous = current;
-            current = next;
-        }
-        head = previous;
+        head = Reverse(head);
     }
 
     void Reverse_Recursive() {
@@ -674,17 +697,7 @@ public:
     }
 
     auto GetMid_TwoPointers() const {
-        assert(head);
-
-        auto fast_ptr = head;
-        auto slow_ptr = head;
-
-        while (fast_ptr and fast_ptr->next) {
-            fast_ptr = fast_ptr->next->next;
-            slow_ptr = slow_ptr->next;
-        }
-
-        return slow_ptr->value;
+        return GetMidNode(head)->value;
     }
 
     auto GetMid_Odd() const {

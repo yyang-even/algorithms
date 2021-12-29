@@ -94,6 +94,9 @@ compile_test(nearest_0_of_matrix)
 compile_benchmark(nonnegative_integers_without_consecutive_1s)
 compile_test(nonnegative_integers_without_consecutive_1s)
 
+compile_benchmark(numbers_at_most_N_given_digit_set)
+compile_test(numbers_at_most_N_given_digit_set)
+
 compile_benchmark(number_perfect_squares_sum_as_n)
 compile_test(number_perfect_squares_sum_as_n)
 
