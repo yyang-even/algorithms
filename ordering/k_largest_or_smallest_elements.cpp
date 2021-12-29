@@ -41,6 +41,16 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
  * Given an array of positive integers. We are required to write a program to print the
  * minimum product of any two numbers of the given array.
  *
+ * @reference   K Closest Points to Origin
+ *              https://leetcode.com/problems/k-closest-points-to-origin/
+ *
+ * Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane
+ * and an integer k, return the k closest points to the origin (0, 0). The distance between
+ * two points on the X-Y plane is the Euclidean distance (i.e., √(x1 - x2)2 + (y1 - y2)2).
+ * You may return the answer in any order. The answer is guaranteed to be unique (except
+ * for the order that it is in).
+ * -10^4 < xi, yi < 10^4
+ *
  * @highlight   Use of std::make_heap() and std::pop_heap()
  *              Use of std::make_reverse_iterator()
  */

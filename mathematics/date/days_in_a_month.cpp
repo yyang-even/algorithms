@@ -34,11 +34,7 @@ constexpr auto DaysInMonth(const int year, const int month) {
  * Given a string date representing a Gregorian calendar date formatted as YYYY-MM-DD,
  * return the day number of the year.
  */
-auto DaysOfYear(const std::string_view date) {
-    const auto year = from_string_view(date.substr(0, 4));
-    int month = from_string_view(date.substr(5, 2));
-    int day = from_string_view(date.substr(8));
-
+constexpr auto DaysOfYear(const int year, int month, int day) {
     if (month > 2 and isLeapYear(year)) {
         ++day;
     }
@@ -48,6 +44,41 @@ auto DaysOfYear(const std::string_view date) {
     }
 
     return day;
+}
+
+inline auto DaysOfYear(const std::string_view date) {
+    const auto year = from_string_view(date.substr(0, 4));
+    const int month = from_string_view(date.substr(5, 2));
+    const int day = from_string_view(date.substr(8));
+
+    return DaysOfYear(year, month, day);
+}
+
+
+/**
+ * @reference   Number of Days Between Two Dates
+ *              https://leetcode.com/problems/number-of-days-between-two-dates/
+ *
+ * Write a program to count the number of days between two dates. The two dates are given
+ * as strings, their format is YYYY-MM-DD as shown in the examples.
+ * The given dates are valid dates between the years 1971 and 2100.
+ */
+auto DaysSince1971(const std::string_view date) {
+    const auto year = from_string_view(date.substr(0, 4));
+    const int month = from_string_view(date.substr(5, 2));
+    const int day = from_string_view(date.substr(8));
+
+    auto result = DaysOfYear(year, month, day);
+    for (int i = 1971; i < year; ++i) {
+        result += isLeapYear(i) ? 366 : 365;
+    }
+
+    return result;
+}
+
+inline auto
+DaysBetween(const std::string_view one_date, const std::string_view another) {
+    return std::abs(DaysSince1971(one_date) - DaysSince1971(another));
 }
 
 }//namespace
@@ -66,3 +97,9 @@ SIMPLE_TEST(DaysOfYear, TestSAMPLE1, 9, "2019-01-09");
 SIMPLE_TEST(DaysOfYear, TestSAMPLE2, 41, "2019-02-10");
 SIMPLE_TEST(DaysOfYear, TestSAMPLE3, 60, "2003-03-01");
 SIMPLE_TEST(DaysOfYear, TestSAMPLE4, 61, "2004-03-01");
+
+
+THE_BENCHMARK(DaysBetween, "2019-06-29", "2019-06-30");
+
+SIMPLE_TEST(DaysBetween, TestSAMPLE1, 1, "2019-06-29", "2019-06-30");
+SIMPLE_TEST(DaysBetween, TestSAMPLE2, 15, "2020-01-15", "2019-12-31");
