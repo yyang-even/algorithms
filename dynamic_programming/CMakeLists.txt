@@ -16,6 +16,9 @@ compile_test(box_stacking)
 compile_benchmark(break_a_string)
 compile_test(break_a_string)
 
+compile_benchmark(burst_balloons)
+compile_test(burst_balloons)
+
 compile_benchmark(circus_tower)
 compile_test(circus_tower)
 
