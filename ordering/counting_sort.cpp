@@ -89,6 +89,38 @@ inline auto CountingSort_STL(ArrayType values) {
  * 1 <= heights[i] <= 100
  */
 
+
+/**
+ * @reference   How Many Numbers Are Smaller Than the Current Number
+ *              https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+ *
+ * Given the array nums, for each nums[i] find out how many numbers in the array are
+ * smaller than it. That is, for each nums[i] you have to count the number of valid j's
+ * such that j != i and nums[j] < nums[i]. Return the answer in an array.
+ * 0 <= nums[i] <= 100
+ */
+
+
+/**
+ * @reference   Increasing Decreasing String
+ *              https://leetcode.com/problems/increasing-decreasing-string/
+ *
+ * You are given a string s. Reorder the string using the following algorithm:
+ *  Pick the smallest character from s and append it to the result.
+ *  Pick the smallest character from s which is greater than the last appended character
+ *      to the result and append it.
+ *  Repeat step 2 until you cannot pick more characters.
+ *  Pick the largest character from s and append it to the result.
+ *  Pick the largest character from s which is smaller than the last appended character
+ *      to the result and append it.
+ *  Repeat step 5 until you cannot pick more characters.
+ *  Repeat the steps from 1 to 6 until you pick all characters from s.
+ * In each step, If the smallest or the largest character appears more than once you can
+ * choose any occurrence and append it to the result. Return the result string after
+ * sorting s with this algorithm.
+ * s consists of only lowercase English letters.
+ */
+
 }//namespace
 
 

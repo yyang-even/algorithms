@@ -110,6 +110,16 @@ inline constexpr auto DigitalRoot(const int number) {
  * solutions you can return any of them.
  */
 
+
+/**
+ * @reference   Count Largest Group
+ *              https://leetcode.com/problems/count-largest-group/
+ *
+ * You are given an integer n. Each number from 1 to n is grouped according to the sum of
+ * its digits. Return the number of groups that have the largest size.
+ * 1 <= n <= 10^4
+ */
+
 }//namespace
 
 

@@ -129,3 +129,16 @@ struct BinaryTreeNodeWithParent {
 
     constexpr explicit BinaryTreeNodeWithParent(const ValueType v) : value(v) {}
 };
+
+
+struct BinaryTreeNodeWithNext {
+    using ValueType = int;
+    using PointerType = std::shared_ptr<BinaryTreeNodeWithNext>;
+
+    PointerType left;
+    PointerType right;
+    PointerType next;
+    ValueType value{};
+
+    constexpr explicit BinaryTreeNodeWithNext(const ValueType v) : value(v) {}
+};

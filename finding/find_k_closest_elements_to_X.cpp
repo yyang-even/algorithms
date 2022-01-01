@@ -136,6 +136,29 @@ FindKClosestElementsToX_Sorted_BinarySearch(const ArrayType &elements,
  */
 
 
+/**
+ * @reference   Find the Distance Value Between Two Arrays
+ *              https://leetcode.com/problems/find-the-distance-value-between-two-arrays/
+ *
+ * Given two integer arrays arr1 and arr2, and the integer d, return the distance value
+ * between the two arrays. The distance value is defined as the number of elements arr1[i]
+ * such that there is not any element arr2[j] where |arr1[i]-arr2[j]| <= d.
+ */
+auto FindTheDistanceValue(const ArrayType &one, ArrayType another, const int d) {
+    std::sort(another.begin(), another.end());
+
+    int result = 0;
+    for (const auto n : one) {
+        if (std::upper_bound(another.cbegin(), another.cend(), n + d) ==
+            std::lower_bound(another.cbegin(), another.cend(), n - d)) {
+            ++result;
+        }
+    }
+
+    return result;
+}
+
+
 /** Find k closest numbers in an unsorted array
  *
  * @reference   https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
@@ -255,3 +278,20 @@ SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5
             EXPECTED3.size());
 SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20,
             EXPECTED4.size());
+
+
+const ArrayType SAMPLE1A = {4, 5, 8};
+const ArrayType SAMPLE1B = {10, 9, 1, 8};
+
+const ArrayType SAMPLE2A = {1, 4, 2, 3};
+const ArrayType SAMPLE2B = {-4, -3, 6, 10, 20, 30};
+
+const ArrayType SAMPLE3A = {2, 1, 100, 3};
+const ArrayType SAMPLE3B = {-5, -2, 10, -3, 7};
+
+
+THE_BENCHMARK(FindTheDistanceValue, SAMPLE1A, SAMPLE1B, 2);
+
+SIMPLE_TEST(FindTheDistanceValue, TestSAMPLE1, 2, SAMPLE1A, SAMPLE1B, 2);
+SIMPLE_TEST(FindTheDistanceValue, TestSAMPLE2, 2, SAMPLE2A, SAMPLE2B, 3);
+SIMPLE_TEST(FindTheDistanceValue, TestSAMPLE3, 1, SAMPLE3A, SAMPLE3B, 6);
