@@ -16,6 +16,9 @@ compile_test(modular_multiplicative_inverse)
 compile_benchmark(modulo)
 compile_test(modulo)
 
+compile_benchmark(number_pairs_divisible_by)
+compile_test(number_pairs_divisible_by)
+
 compile_benchmark(smallest_int_divisible_by_k)
 compile_test(smallest_int_divisible_by_k)
 
