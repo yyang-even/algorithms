@@ -62,6 +62,9 @@ compile_test(is_symmetric_tree)
 compile_benchmark(k_sum_paths)
 compile_test(k_sum_paths)
 
+compile_benchmark(max_diff_between_node_and_ancestor)
+compile_test(max_diff_between_node_and_ancestor)
+
 compile_benchmark(max_product_of_splitted_binary_tree)
 compile_test(max_product_of_splitted_binary_tree)
 
