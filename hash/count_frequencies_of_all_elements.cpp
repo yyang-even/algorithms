@@ -162,6 +162,16 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * 1 <= arr[i] <= 500
  */
 
+
+/**
+ * @reference   Counting Elements
+ *              https://leetcode.ca/all/1426.html
+ *
+ * Given an integer array arr, count how many elements x there are, such that x + 1 is
+ * also in arr. If there're duplicates in arr, count them seperately.
+ * 0 <= arr[i] <= 1000
+ */
+
 }//namespace
 
 

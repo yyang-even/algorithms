@@ -70,6 +70,9 @@ compile_test(longest_common_prefix)
 compile_benchmark(longest_palindrome)
 compile_test(longest_palindrome)
 
+compile_benchmark(max_score_after_splitting_str)
+compile_test(max_score_after_splitting_str)
+
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 

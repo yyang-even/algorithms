@@ -6,6 +6,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using ShiftArrayType = std::vector<std::pair<int, int>>;
 
 /** Program for array rotation
  *
@@ -253,6 +254,36 @@ auto MultipleLeftRotate_n(const ArrayType &elements, const ArrayType &queries) {
     return outputs;
 }
 
+
+/**
+ * @reference   Perform String Shifts
+ *              https://code.dennyzhang.com/perform-string-shifts
+ *
+ * You are given a string s containing lowercase English letters, and a matrix shift,
+ * where shift[i] = [direction, amount]:
+ *  direction can be 0 (for left shift) or 1 (for right shift).
+ *  amount is the amount by which string s is to be shifted.
+ *  A left shift by 1 means remove the first character of s and append it to the end.
+ *  Similarly, a right shift by 1 means remove the last character of s and add it to the
+ *  beginning.
+ * Return the final string after all operations.
+ */
+auto StrShifts(std::string s, const ShiftArrayType &shifts) {
+    int count = 0;
+    for (const auto [direction, amount] : shifts) {
+        if (direction == 0) {
+            count += amount;
+        } else {
+            count -= amount;
+        }
+    }
+
+    const int N = s.size();
+    count = ((count % N) + N) % N;
+    std::rotate(s.begin(), s.begin() + count, s.end());
+    return s;
+}
+
 }//namespace
 
 
@@ -351,3 +382,15 @@ THE_BENCHMARK(MultipleLeftRotate_n, SampleArray5, SampleQuery5);
 
 SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5,
             SampleArray5, SampleQuery5);
+
+
+const ShiftArrayType SAMPLE1S = {{0, 1}, {1, 2}};
+const ShiftArrayType SAMPLE2S = {{1, 1}, {0, 2}};
+const ShiftArrayType SAMPLE3S = {{1, 1}, {1, 1}, {0, 2}, {1, 3}};
+
+
+THE_BENCHMARK(StrShifts, "abcdefg", SAMPLE3S);
+
+SIMPLE_TEST(StrShifts, TestSample1, "cab", "abc", SAMPLE1S);
+SIMPLE_TEST(StrShifts, TestSample2, "bca", "abc", SAMPLE2S);
+SIMPLE_TEST(StrShifts, TestSample3, "efgabcd", "abcdefg", SAMPLE3S);
