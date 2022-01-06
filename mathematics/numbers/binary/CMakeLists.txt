@@ -135,6 +135,9 @@ compile_test(is_power_of_2)
 compile_benchmark(is_power_of_power_of_2)
 compile_test(is_power_of_power_of_2)
 
+compile_benchmark(k_length_apart)
+compile_test(k_length_apart)
+
 compile_benchmark(log_base_2)
 compile_test(log_base_2)
 

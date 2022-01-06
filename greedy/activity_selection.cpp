@@ -152,6 +152,61 @@ auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
 
 
 /**
+ * @reference   Car Pooling
+ *              https://leetcode.com/problems/car-pooling/
+ *
+ * There is a car with capacity empty seats. The vehicle only drives east (i.e., it
+ * cannot turn around and drive west). You are given the integer capacity and an array
+ * trips where trip[i] = [numPassengersi, fromi, toi] indicates that the ith trip has
+ * numPassengersi passengers and the locations to pick them up and drop them off are
+ * fromi and toi respectively. The locations are given as the number of kilometers due
+ * east from the car's initial location. Return true if it is possible to pick up and
+ * drop off all passengers for all the given trips, or false otherwise.
+ * 0 <= fromi < toi <= 1000
+ */
+auto CarPooling(const JobArray &trips, const int capacity) {
+    std::vector<int> passengers(1001, 0);
+    for (const auto [p, from, to] : trips) {
+        passengers[from] += p;
+        passengers[to] -= p;
+    }
+
+    int sum = 0;
+    for (const auto p : passengers) {
+        sum += p;
+        if (sum > capacity) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/**
+ * @reference   Number of Students Doing Homework at a Given Time
+ *              https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/
+ *
+ * Given two integer arrays startTime and endTime and given an integer queryTime. The
+ * ith student started doing their homework at the time startTime[i] and finished it at
+ * time endTime[i]. Return the number of students doing their homework at time queryTime.
+ * More formally, return the number of students where queryTime lays in the interval
+ * [startTime[i], endTime[i]] inclusive.
+ * 1 <= startTime[i] <= endTime[i] <= 1000
+ */
+auto BusyStudents(const ArrayType &times, const unsigned query_time) {
+    int result = 0;
+    for (const auto [start, end] : times) {
+        if (start <= query_time and query_time <= end) {
+            ++result;
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximum Profit in Job Scheduling
  *              https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  *
@@ -349,3 +404,22 @@ SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE2, 150,
             SAMPLE2S, SAMPLE2E, SAMPLE2P);
 SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE3, 6,
             SAMPLE3S, SAMPLE3E, SAMPLE3P);
+
+
+const JobArray SAMPLE1T = {{2, 1, 5}, {3, 3, 7}};
+
+
+THE_BENCHMARK(CarPooling, SAMPLE1T, 5);
+
+SIMPLE_TEST(CarPooling, TestSAMPLE1, false, SAMPLE1T, 4);
+SIMPLE_TEST(CarPooling, TestSAMPLE2, true, SAMPLE1T, 5);
+
+
+const ArrayType SAMPLE1H = {{1, 3}, {2, 2}, {3, 7}};
+const ArrayType SAMPLE2H = {{4, 4}};
+
+
+THE_BENCHMARK(BusyStudents, SAMPLE1H, 4);
+
+SIMPLE_TEST(BusyStudents, TestSAMPLE1, 1, SAMPLE1H, 4);
+SIMPLE_TEST(BusyStudents, TestSAMPLE2, 1, SAMPLE2H, 4);
