@@ -20,6 +20,21 @@ inline constexpr auto RandomNumberFromStream(const Container &stream) {
     return ReservoirSampling(stream, 1).back();
 }
 
+
+/**
+ * @reference   Linked List Random Node
+ *              https://leetcode.com/problems/linked-list-random-node/
+ *
+ * Given a singly linked list, return a random node's value from the linked list. Each
+ * node must have the same probability of being chosen. Implement the Solution class:
+ *  Solution(ListNode head) Initializes the object with the integer array nums.
+ *  int getRandom() Chooses a node randomly from the list and returns its value. All the
+ *  nodes of the list should be equally likely to be choosen.
+ * Follow up:
+ *  What if the linked list is extremely large and its length is unknown to you?
+ *  Could you solve this efficiently without using extra space?
+ */
+
 }//namespace
 
 
