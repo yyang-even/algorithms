@@ -28,6 +28,9 @@ compile_test(largest_triangle_area)
 compile_benchmark(projection_area)
 compile_test(projection_area)
 
+compile_benchmark(robot_bounded_in_circle)
+compile_test(robot_bounded_in_circle)
+
 compile_benchmark(slope_of_line)
 compile_test(slope_of_line)
 
