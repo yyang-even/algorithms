@@ -19,6 +19,9 @@ compile_test(break_a_string)
 compile_benchmark(burst_balloons)
 compile_test(burst_balloons)
 
+compile_benchmark(cherry_pickup)
+compile_test(cherry_pickup)
+
 compile_benchmark(circus_tower)
 compile_test(circus_tower)
 
