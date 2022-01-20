@@ -69,7 +69,7 @@ auto CherryPickRoundTrip(const MatrixType &grid) {
 
 /**
  * @reference   Cherry Pickup II
- *              https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+ *              https://leetcode.com/problems/cherry-pickup-ii/
  *
  * You are given a rows x cols matrix grid representing a field of cherries where grid[i][j]
  * represents the number of cherries that you can collect from the (i, j) cell. You have

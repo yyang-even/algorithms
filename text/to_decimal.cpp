@@ -39,9 +39,59 @@ auto ToDecimal(const std::string_view number, const int base,
  *              https://www.geeksforgeeks.org/converting-strings-numbers-cc/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 6.
+ *
+ * @reference   String to Integer (atoi)
+ *              https://leetcode.com/problems/string-to-integer-atoi/
+ *
+ * Implement the myAtoi(string s) function, which converts a string to a 32-bit signed
+ * integer (similar to C/C++'s atoi function).
+ * The algorithm for myAtoi(string s) is as follows:
+ *  Read in and ignore any leading whitespace.
+ *  Check if the next character (if not already at the end of the string) is '-' or '+'.
+ *      Read this character in if it is either. This determines if the final result is
+ *      negative or positive respectively. Assume the result is positive if neither is
+ *      present.
+ *  Read in next the characters until the next non-digit character or the end of the
+ *      input is reached. The rest of the string is ignored.
+ *  Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32). If no digits
+ *      were read, then the integer is 0. Change the sign as necessary (from step 2).
+ *  If the integer is out of the 32-bit signed integer range [-2^31, 2^31 - 1], then clamp
+ *      the integer so that it remains in the range. Specifically, integers less than
+ *      -2^31 should be clamped to -2^31, and integers greater than 2^31 - 1 should be
+ *      clamped to 2^31 - 1.
+ * Return the integer as the final result.
+ * Note:
+ *  Only the space character ' ' is considered a whitespace character.
+ *  Do not ignore any characters other than the leading whitespace or the rest of the
+ *      string after the digits.
  */
-inline auto DecToDecimal(const std::string_view dec) {
-    return ToDecimal(dec, 10, HexDigitToDecimal);
+int DecToDecimal(const std::string_view dec) {
+    std::size_t i = 0;
+    while (i < dec.size() and dec[i] == ' ') {
+        ++i;
+    }
+
+    if (i >= dec.size()) {
+        return 0;
+    }
+
+    int sign = 1;
+    if (dec[i] == '-') {
+        sign = -1;
+        ++i;
+    } else if (dec[i] == '+') {
+        ++i;
+    }
+
+    long result = 0;
+    while (i < dec.size() and std::isdigit(dec[i])) {
+        result = result * 10 + dec[i++] - '0';
+        if (result > INT_MAX) {
+            return sign == 1 ? INT_MAX : INT_MIN;
+        }
+    }
+
+    return sign * result;
 }
 
 
@@ -64,6 +114,79 @@ DecToDecimal_Recursive(const std::string_view::const_reverse_iterator crbegin,
 
 inline constexpr auto DecToDecimal_Recursive(const std::string_view dec) {
     return DecToDecimal_Recursive(dec.crbegin(), dec.size());
+}
+
+
+enum class State {
+    q0,
+    q1,
+    q2,
+    qd
+};
+
+class AtoiStateMachine {
+    State current_state = State::q0;
+    int result = 0;
+    int sign = 1;
+
+    void toQ2(const char c) {
+        const auto digit = c - '0';
+        if ((result > INT_MAX / 10) or
+            (result == INT_MAX / 10 and digit > INT_MAX % 10)) {
+            if (sign == 1) {
+                result = INT_MAX;
+            } else {
+                result = INT_MIN;
+                sign = 1;
+            }
+
+            current_state = State::qd;
+        } else {
+            result = result * 10 + digit;
+
+            current_state = State::q2;
+        }
+    }
+
+public:
+    auto Transition(const char c) {
+        if (current_state == State::q0) {
+            if (c == ' ') {
+            } else if (c == '-') {
+                sign = -1;
+                current_state = State::q1;
+            } else if (c == '+') {
+                current_state = State::q1;
+            } else if (std::isdigit(c)) {
+                toQ2(c);
+            } else {
+                current_state = State::qd;
+            }
+        } else if (current_state == State::q1 or current_state == State::q2) {
+            if (std::isdigit(c)) {
+                toQ2(c);
+            } else {
+                current_state = State::qd;
+            }
+        }
+
+        return current_state != State::qd;
+    }
+
+    auto Get() const {
+        return sign * result;
+    }
+};
+
+inline auto Atoi_StateMachine(const std::string_view number) {
+    AtoiStateMachine sm;
+    for (const auto c : number) {
+        if (not sm.Transition(c)) {
+            break;
+        }
+    }
+
+    return sm.Get();
 }
 
 
@@ -173,6 +296,10 @@ SIMPLE_TEST(DecToDecimal, TestSAMPLE1, 1, "1");
 SIMPLE_TEST(DecToDecimal, TestSAMPLE2, 0, "0");
 SIMPLE_TEST(DecToDecimal, TestSAMPLE3, -1, "-1");
 SIMPLE_TEST(DecToDecimal, TestSAMPLE4, 4562, "4562");
+SIMPLE_TEST(DecToDecimal, TestSAMPLE5, -42, "   -42");
+SIMPLE_TEST(DecToDecimal, TestSAMPLE6, 4193, "4193 with words");
+SIMPLE_TEST(DecToDecimal, TestSAMPLE7, INT_MAX, std::to_string(INT_MAX));
+SIMPLE_TEST(DecToDecimal, TestSAMPLE8, INT_MIN, std::to_string(INT_MIN));
 
 
 THE_BENCHMARK(DecToDecimal_Recursive, "111");
@@ -180,3 +307,15 @@ THE_BENCHMARK(DecToDecimal_Recursive, "111");
 SIMPLE_TEST(DecToDecimal_Recursive, TestSAMPLE1, 1, "1");
 SIMPLE_TEST(DecToDecimal_Recursive, TestSAMPLE2, 0, "0");
 SIMPLE_TEST(DecToDecimal_Recursive, TestSAMPLE4, 4562, "4562");
+
+
+THE_BENCHMARK(Atoi_StateMachine, "111");
+
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE1, 1, "1");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE2, 0, "0");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE3, -1, "-1");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE4, 4562, "4562");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE5, -42, "   -42");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE6, 4193, "4193 with words");
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE7, INT_MAX, std::to_string(INT_MAX));
+SIMPLE_TEST(Atoi_StateMachine, TestSAMPLE8, INT_MIN, std::to_string(INT_MIN));

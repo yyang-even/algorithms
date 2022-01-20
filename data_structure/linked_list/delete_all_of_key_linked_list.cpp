@@ -131,6 +131,31 @@ inline constexpr auto testDeleteWithKey(const ListType &list,
  * nodes from the list that are divisible by K.
  */
 
+
+/**
+ * @reference   Delete N Nodes After M Nodes of a Linked List
+ *              https://leetcode.ca/2019-12-13-1474-Delete-N-Nodes-After-M-Nodes-of-a-Linked-List/
+ *
+ * Given the head of a linked list and two integers m and n. Traverse the linked list and
+ * remove some nodes in the following way:
+ *  Start with the head as the current node.
+ *  Keep the first m nodes starting with the current node.
+ *  Remove the next n nodes
+ *  Keep repeating steps 2 and 3 until you reach the end of the list.
+ * Return the head of the modified list after removing the mentioned nodes.
+ * Follow up question: How can you solve this problem by modifying the list in-place?
+ *
+ * @reference   Delete N nodes after M nodes of a linked list
+ *              https://www.geeksforgeeks.org/delete-n-nodes-after-m-nodes-of-a-linked-list/
+ * @reference   C++ Program To Delete N Nodes After M Nodes Of A Linked List
+ *              https://www.geeksforgeeks.org/cpp-program-to-delete-n-nodes-after-m-nodes-of-a-linked-list/
+ * @reference   C Program To Delete N Nodes After M Nodes Of A Linked List
+ *              https://www.geeksforgeeks.org/c-program-to-delete-n-nodes-after-m-nodes-of-a-linked-list/
+ *
+ * Given a linked list and two integers M and N. Traverse the linked list such that you
+ * retain M nodes then delete next N nodes, continue the same till end of the linked list.
+ */
+
 }//namespace
 
 

@@ -212,6 +212,16 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
  * @hint    Use binary search to find out the number of soldiers in a row.
  */
 
+
+/**
+ * @reference   Maximum Product of Two Elements in an Array
+ *              https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+ *
+ * Given the array of integers nums, you will choose two different indices i and j of
+ * that array. Return the maximum value of (nums[i]-1)*(nums[j]-1).
+ * 1 <= nums[i] <= 10^3
+ */
+
 }//namespace
 
 

@@ -59,6 +59,40 @@ constexpr auto SplitBalancedStrs(const std::string_view s) {
     return result;
 }
 
+
+/**
+ * @reference   Maximize Distance to Closest Person
+ *              https://leetcode.com/problems/maximize-distance-to-closest-person/
+ *
+ * You are given an array representing a row of seats where seats[i] = 1 represents a
+ * person sitting in the ith seat, and seats[i] = 0 represents that the ith seat is empty
+ * (0-indexed).
+ * There is at least one empty seat, and at least one person sitting.
+ * Alex wants to sit in the seat such that the distance between him and the closest
+ * person to him is maximized.
+ * Return that maximum distance to the closest person.
+ */
+auto MaxDistanceToClosestPerson(const ArrayType &seats) {
+    std::size_t i = 0;
+    int count = 0;
+    while (seats[i++] == 0) {
+        ++count;
+    }
+
+    auto result = count;
+    count = 0;
+    for (; i < seats.size(); ++i) {
+        if (seats[i]) {
+            result = std::max(result, (count + 1) / 2);
+            count = 0;
+        } else {
+            ++count;
+        }
+    }
+
+    return std::max(result, count);
+}
+
 }//namespace
 
 
@@ -80,3 +114,15 @@ SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE1, 4, "RLRRLLRLRL");
 SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE2, 3, "RLLLLRRRLR");
 SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE3, 1, "LLLLRRRR");
 SIMPLE_TEST(SplitBalancedStrs, TestSAMPLE4, 2, "RLRRRLLRLL");
+
+
+const ArrayType SAMPLE1S = {1, 0, 0, 0, 1, 0, 1};
+const ArrayType SAMPLE2S = {1, 0, 0, 0};
+const ArrayType SAMPLE3S = {0, 1};
+
+
+THE_BENCHMARK(MaxDistanceToClosestPerson, SAMPLE1S);
+
+SIMPLE_TEST(MaxDistanceToClosestPerson, TestSAMPLE1, 2, SAMPLE1S);
+SIMPLE_TEST(MaxDistanceToClosestPerson, TestSAMPLE2, 3, SAMPLE2S);
+SIMPLE_TEST(MaxDistanceToClosestPerson, TestSAMPLE3, 1, SAMPLE3S);

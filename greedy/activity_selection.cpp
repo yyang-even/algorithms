@@ -3,7 +3,7 @@
 
 namespace {
 
-using StartFinishPair = std::pair<unsigned, unsigned>;
+using StartFinishPair = std::pair<int, int>;
 using ArrayType = std::vector<StartFinishPair>;
 using OutputType = std::vector<ArrayType::size_type>;
 using JobType = std::tuple<int, int, int>;
@@ -120,7 +120,7 @@ auto MeetingRooms(ArrayType activities) {
 auto MinMeetingRooms_Heap(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), start_comparator);
 
-    std::priority_queue<unsigned, std::vector<unsigned>, std::greater<unsigned>> rooms;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> rooms;
     rooms.push(activities.front().second);
     const auto N = activities.size();
     for (std::size_t i = 1; i < N; ++i) {
@@ -194,7 +194,7 @@ auto CarPooling(const JobArray &trips, const int capacity) {
  * [startTime[i], endTime[i]] inclusive.
  * 1 <= startTime[i] <= endTime[i] <= 1000
  */
-auto BusyStudents(const ArrayType &times, const unsigned query_time) {
+auto BusyStudents(const ArrayType &times, const int query_time) {
     int result = 0;
     for (const auto [start, end] : times) {
         if (start <= query_time and query_time <= end) {
@@ -298,6 +298,40 @@ auto MaxProfitJobScheduling_DP(const std::vector<int> &start_time,
     }
 
     return max_profix[jobs.size() - 1];
+}
+
+
+/**
+ * @reference   Minimum Number of Arrows to Burst Balloons
+ *              https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+ *
+ * There are some spherical balloons taped onto a flat wall that represents the XY-plane.
+ * The balloons are represented as a 2D integer array points where points[i] = [xstart, xend]
+ * denotes a balloon whose horizontal diameter stretches between xstart and xend. You do
+ * not know the exact y-coordinates of the balloons.
+ * Arrows can be shot up directly vertically (in the positive y-direction) from different
+ * points along the x-axis. A balloon with xstart and xend is burst by an arrow shot at x
+ * if xstart <= x <= xend. There is no limit to the number of arrows that can be shot. A
+ * shot arrow keeps traveling up infinitely, bursting any balloons in its path.
+ * Given the array points, return the minimum number of arrows that must be shot to burst
+ * all balloons.
+ * -2^31 <= xstart < xend <= 2^31 - 1
+ */
+auto MinArrows(ArrayType points) {
+    std::sort(points.begin(), points.end(), finish_comparator);
+
+    int result = 1;
+    int arrow = points.front().second;
+    for (const auto [l, r] : points) {
+        if (arrow >= l) {
+            continue;
+        }
+
+        ++result;
+        arrow = r;
+    }
+
+    return result;
 }
 
 }//namespace
@@ -423,3 +457,15 @@ THE_BENCHMARK(BusyStudents, SAMPLE1H, 4);
 
 SIMPLE_TEST(BusyStudents, TestSAMPLE1, 1, SAMPLE1H, 4);
 SIMPLE_TEST(BusyStudents, TestSAMPLE2, 1, SAMPLE2H, 4);
+
+
+const ArrayType SAMPLE1B = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+const ArrayType SAMPLE2B = {{1, 2}, {3, 4}, {5, 6}, {7, 8}};
+const ArrayType SAMPLE3B = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
+
+
+THE_BENCHMARK(MinArrows, SAMPLE1B);
+
+SIMPLE_TEST(MinArrows, TestSAMPLE1, 2, SAMPLE1B);
+SIMPLE_TEST(MinArrows, TestSAMPLE2, 4, SAMPLE2B);
+SIMPLE_TEST(MinArrows, TestSAMPLE3, 2, SAMPLE3B);

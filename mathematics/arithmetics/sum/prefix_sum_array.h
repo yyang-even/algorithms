@@ -7,6 +7,12 @@
  *
  * Given an array arr[] of size n, its prefix sum array is another array prefixSum[] of
  * same size such that the value of prefixSum[i] is arr[0] + arr[1] + arr[2] ... arr[i].
+ *
+ * @reference   Running Sum of 1d Array
+ *              https://leetcode.com/problems/running-sum-of-1d-array/
+ *
+ * Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]...nums[i]).
+ * Return the running sum of nums.
  */
 template <typename ArrayType>
 static inline constexpr auto
