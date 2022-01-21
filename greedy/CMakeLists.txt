@@ -19,6 +19,9 @@ compile_test(can_place_flowers)
 compile_benchmark(DI_string_match)
 compile_test(DI_string_match)
 
+compile_benchmark(gas_station)
+compile_test(gas_station)
+
 compile_benchmark(huffman_codes)
 compile_test(huffman_codes)
 
