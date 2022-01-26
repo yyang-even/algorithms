@@ -15,3 +15,6 @@ compile_test(is_divisible_by_11)
 
 compile_benchmark(is_divisible_by_n)
 compile_test(is_divisible_by_n)
+
+compile_benchmark(water_bottles)
+compile_test(water_bottles)

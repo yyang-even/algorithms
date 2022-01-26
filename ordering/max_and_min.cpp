@@ -103,9 +103,20 @@ auto MaxAndMin_Pair(const ArrayType &values) {
 }
 
 
-/** Sum and Product of minimum and maximum element of an Array
+/**
+ * @reference   Sum and Product of minimum and maximum element of an Array
+ *              https://www.geeksforgeeks.org/sum-and-product-of-minimum-and-maximum-element-of-an-array/
+ */
+
+
+/**
+ * @reference   Average Salary Excluding the Minimum and Maximum Salary
+ *              https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
  *
- * @reference   https://www.geeksforgeeks.org/sum-and-product-of-minimum-and-maximum-element-of-an-array/
+ * You are given an array of unique integers salary where salary[i] is the salary of the
+ * ith employee.
+ * Return the average salary of employees excluding the minimum and maximum salary.
+ * Answers within 10^-5 of the actual answer will be accepted.
  */
 
 }//namespace

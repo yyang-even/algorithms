@@ -1,9 +1,12 @@
 #include "common_header.h"
 
+#include "data_structure/tree/binary_tree/BST/binary_search_tree.h"
+
 
 namespace {
 
 using ListType = std::forward_list<int>;
+using ArrayType = std::vector<int>;
 
 /** Merge two sorted linked lists
  *
@@ -64,6 +67,39 @@ auto SortedMergeList_Doubly_STL(std::list<ListType::value_type> L,
  * @reference   https://www.geeksforgeeks.org/sorted-merge-of-two-sorted-doubly-circular-linked-lists/
  */
 
+
+/**
+ * @reference   All Elements in Two Binary Search Trees
+ *              https://leetcode.com/problems/all-elements-in-two-binary-search-trees/
+ *
+ * Given two binary search trees root1 and root2, return a list containing all the
+ * integers from both trees sorted in ascending order.
+ */
+void pushLeft(std::stack<BinaryTree::Node::PointerType> &s,
+              BinaryTree::Node::PointerType node) {
+    while (node) {
+        s.push(std::exchange(node, node->left));
+    }
+}
+
+auto MergeTwoBST(const BinaryTree::Node::PointerType root1,
+                 const BinaryTree::Node::PointerType root2) {
+    std::stack<BinaryTree::Node::PointerType> s1, s2;
+    pushLeft(s1, root1);
+    pushLeft(s2, root2);
+
+    ArrayType result;
+    while (not s1.empty() or not s2.empty()) {
+        auto &s = s1.empty() ? s2 : s1.top()->value <= s2.top()->value ? s1 : s2;
+        const auto node = s.top();
+        s.pop();
+        result.push_back(node->value);
+        pushLeft(s, node->right);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -94,3 +130,12 @@ SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE1, EXPECTED1, SAMPLE1L, SAMPLE
 SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE2, EXPECTED2, SAMPLE2L, SAMPLE2R);
 SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE3, SAMPLE1L, SAMPLE1L, EMPTY);
 SIMPLE_TEST(SortedMergeList_Doubly_STL, TestSAMPLE4, SAMPLE1R, EMPTY, SAMPLE1R);
+
+
+const auto SAMPLE1T = MakeTheSampleBST();
+const ArrayType EXPECTED1T = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
+
+
+THE_BENCHMARK(MergeTwoBST, SAMPLE1T, SAMPLE1T);
+
+SIMPLE_TEST(MergeTwoBST, TestSAMPLE1, EXPECTED1T, SAMPLE1T, SAMPLE1T);

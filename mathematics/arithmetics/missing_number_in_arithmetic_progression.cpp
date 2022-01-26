@@ -85,6 +85,46 @@ auto MissingNumberInArithmeticProgression_Unsorted(const ArrayType &nums) {
     return result;
 }
 
+
+/**
+ * @reference   Can Make Arithmetic Progression From Sequence
+ *              https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+ *
+ * A sequence of numbers is called an arithmetic progression if the difference between
+ * any two consecutive elements is the same.
+ * Given an array of numbers arr, return true if the array can be rearranged to form an
+ * arithmetic progression. Otherwise, return false.
+ */
+auto CanMakeArithmeticProgression(ArrayType nums) {
+    const int N = nums.size();
+    if (N <= 2) {
+        return true;
+    }
+
+    const auto [min_iter, max_iter] = std::minmax_element(nums.cbegin(), nums.cend());
+    if ((*max_iter - *min_iter) % (N - 1) != 0) {
+        return false;
+    }
+
+    const auto delta = (*max_iter - *min_iter) / (N - 1);
+    const auto minimum = *min_iter;
+    for (int i = 0; i < N;) {
+        if (nums[i] == minimum + i * delta) {
+            ++i;
+        } else if ((nums[i] - minimum) % delta != 0) {
+            return false;
+        } else {
+            const int pos = (nums[i] - minimum) / delta;
+            if (pos < i or nums[pos] == nums[i]) {
+                return false;
+            }
+            std::swap(nums[i], nums[pos]);
+        }
+    }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -120,3 +160,13 @@ SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE2, 26, SAMP
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE3, 9, SAMPLE3);
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE4, 14, SAMPLE4);
 SIMPLE_TEST(MissingNumberInArithmeticProgression_Unsorted, TestSAMPLE5, 9, SAMPLE5);
+
+
+const ArrayType SAMPLE1C = {3, 5, 1};
+const ArrayType SAMPLE2C = {1, 2, 4};
+
+
+THE_BENCHMARK(CanMakeArithmeticProgression, SAMPLE1C);
+
+SIMPLE_TEST(CanMakeArithmeticProgression, TestSAMPLE1, true, SAMPLE1C);
+SIMPLE_TEST(CanMakeArithmeticProgression, TestSAMPLE2, false, SAMPLE2C);

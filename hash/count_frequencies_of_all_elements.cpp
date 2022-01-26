@@ -172,6 +172,16 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * 0 <= arr[i] <= 1000
  */
 
+
+/**
+ * @reference   Number of Good Pairs
+ *              https://leetcode.com/problems/number-of-good-pairs/
+ *
+ * Given an array of integers nums, return the number of good pairs.
+ * A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+ * 1 <= nums[i] <= 100
+ */
+
 }//namespace
 
 
