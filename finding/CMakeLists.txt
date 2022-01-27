@@ -22,6 +22,9 @@ compile_test(find_peak_element)
 compile_benchmark(koko_eating_bananas)
 compile_test(koko_eating_bananas)
 
+compile_benchmark(kth_missing_positive_number)
+compile_test(kth_missing_positive_number)
+
 compile_benchmark(kth_smallest_in_row_wise_and_column_wise_sorted_matrix)
 compile_test(kth_smallest_in_row_wise_and_column_wise_sorted_matrix)
 
