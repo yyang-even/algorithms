@@ -1,3 +1,6 @@
+compile_benchmark(count_odd_numbers)
+compile_test(count_odd_numbers)
+
 compile_benchmark(division)
 compile_test(division)
 
