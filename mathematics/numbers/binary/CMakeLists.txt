@@ -147,6 +147,9 @@ compile_test(longest_consecutive_1s)
 compile_benchmark(masked_bits_merge)
 compile_test(masked_bits_merge)
 
+compile_benchmark(max_xor_of_pair)
+compile_test(max_xor_of_pair)
+
 compile_benchmark(maximum_and_value_of_pair)
 compile_test(maximum_and_value_of_pair)
 
