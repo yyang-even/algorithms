@@ -49,6 +49,9 @@ compile_test(find_kth_char_of_decrypted_string)
 compile_benchmark(fizz_buzz)
 compile_test(fizz_buzz)
 
+compile_benchmark(good_triplets)
+compile_test(good_triplets)
+
 compile_benchmark(interleavings_of_two_strings)
 compile_test(interleavings_of_two_strings)
 
