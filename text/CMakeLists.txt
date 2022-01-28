@@ -85,6 +85,9 @@ compile_test(minimum_window_substring)
 compile_benchmark(missing_ranges)
 compile_test(missing_ranges)
 
+compile_benchmark(most_visited_sector_in_circular_track)
+compile_test(most_visited_sector_in_circular_track)
+
 compile_benchmark(next_permutation)
 compile_test(next_permutation)
 
