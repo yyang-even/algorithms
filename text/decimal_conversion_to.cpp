@@ -113,6 +113,15 @@ constexpr auto ToColumnNumber(const std::string_view column_title) {
     return result;
 }
 
+
+/**
+ * @reference   Thousand Separator
+ *              https://leetcode.com/problems/thousand-separator/
+ *
+ * Given an integer n, add a dot (".") as the thousands separator and return it in string
+ * format.
+ */
+
 }//namespace
 
 

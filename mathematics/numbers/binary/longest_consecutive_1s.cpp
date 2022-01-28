@@ -60,6 +60,27 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
 
 
 /**
+ * @reference   Three Consecutive Odds
+ *              https://leetcode.com/problems/three-consecutive-odds/
+ *
+ * Given an integer array arr, return true if there are three consecutive odd numbers in
+ * the array. Otherwise, return false.
+ */
+auto ThreeConsecutiveOdds(const ArrayType &nums) {
+    int odds = 0;
+    for (std::size_t i = 0; i < nums.size() and odds < 3; ++i) {
+        if (nums[i] % 2) {
+            ++odds;
+        } else {
+            odds = 0;
+        }
+    }
+
+    return odds == 3;
+}
+
+
+/**
  * @reference   Max Consecutive Ones II
  *              https://www.lintcode.com/problem/883/
  *
@@ -330,3 +351,13 @@ THE_BENCHMARK(MakeLargeIsland_UnionFind, SAMPLE1M);
 SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE1, 3, SAMPLE1M);
 SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE2, 4, SAMPLE2M);
 SIMPLE_TEST(MakeLargeIsland_UnionFind, TestSAMPLE3, 4, SAMPLE3M);
+
+
+const ArrayType SAMPLE1T = {2, 6, 4, 1};
+const ArrayType SAMPLE2T = {1, 2, 34, 3, 4, 5, 7, 23, 12};
+
+
+THE_BENCHMARK(ThreeConsecutiveOdds, SAMPLE1T);
+
+SIMPLE_TEST(ThreeConsecutiveOdds, TestSAMPLE1, false, SAMPLE1T);
+SIMPLE_TEST(ThreeConsecutiveOdds, TestSAMPLE2, true, SAMPLE2T);
