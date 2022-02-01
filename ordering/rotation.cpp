@@ -158,6 +158,11 @@ inline auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d
  *              https://www.geeksforgeeks.org/reversal-algorithm-right-rotation-array/
  *
  * Given an array, right rotate it by k elements.
+ *
+ * @reference   Rotate Array
+ *              https://leetcode.com/problems/rotate-array/
+ *
+ * Given an array, rotate the array to the right by k steps, where k is non-negative.
  */
 inline auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
     assert(k < elements.size());

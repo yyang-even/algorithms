@@ -33,6 +33,32 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
  */
 
 
+/** Binary Gap
+ *
+ * @reference   https://leetcode.com/problems/binary-gap/
+ *
+ * Given a positive integer n, find and return the longest distance between any two
+ * adjacent 1's in the binary representation of n. If there are no two adjacent 1's,
+ * return 0. Two 1's are adjacent if there are only 0's separating them (possibly no
+ * 0's). The distance between two 1's is the absolute difference between their bit
+ * positions. For example, the two 1's in "1001" have a distance of 3.
+ */
+constexpr auto BinaryGap(const unsigned n) {
+    int prev = -1;
+    int result = 0;
+    for (int i = 0; (1u << i) <= n; ++i) {
+        if (n & (1u << i)) {
+            if (prev != -1) {
+                result = std::max(result, i - prev);
+            }
+            prev = i;
+        }
+    }
+
+    return result;
+}
+
+
 /**
  * @reference   Maximum consecutive one’s (or zeros) in a binary array
  *              https://www.geeksforgeeks.org/maximum-consecutive-ones-or-zeros-in-a-binary-array/
@@ -77,6 +103,35 @@ auto ThreeConsecutiveOdds(const ArrayType &nums) {
     }
 
     return odds == 3;
+}
+
+
+/**
+ * @reference   Detect Pattern of Length M Repeated K or More Times
+ *              https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/
+ *
+ * Given an array of positive integers arr, find a pattern of length m that is repeated k
+ * or more times.
+ * A pattern is a subarray (consecutive sub-sequence) that consists of one or more values,
+ * repeated multiple times consecutively without overlapping. A pattern is defined by its
+ * length and the number of repetitions.
+ * Return true if there exists a pattern of length m that is repeated k or more times,
+ * otherwise return false.
+ * 2 <= k <= 100
+ */
+auto ContainPattern(const ArrayType &nums, const int m, const int k) {
+    int length = 0;
+    for (std::size_t i = 0; i + m < nums.size(); ++i) {
+        if (nums[i] == nums[i + m]) {
+            if (++length == (k - 1)*m) {
+                return true;
+            }
+        } else {
+            length = 0;
+        }
+    }
+
+    return false;
 }
 
 
@@ -361,3 +416,24 @@ THE_BENCHMARK(ThreeConsecutiveOdds, SAMPLE1T);
 
 SIMPLE_TEST(ThreeConsecutiveOdds, TestSAMPLE1, false, SAMPLE1T);
 SIMPLE_TEST(ThreeConsecutiveOdds, TestSAMPLE2, true, SAMPLE2T);
+
+
+THE_BENCHMARK(BinaryGap, 22);
+
+SIMPLE_TEST(BinaryGap, TestSAMPLE1, 2, 22);
+SIMPLE_TEST(BinaryGap, TestSAMPLE2, 2, 5);
+SIMPLE_TEST(BinaryGap, TestSAMPLE3, 1, 6);
+SIMPLE_TEST(BinaryGap, TestSAMPLE4, 0, 8);
+SIMPLE_TEST(BinaryGap, TestSAMPLE5, 0, 1);
+
+
+const ArrayType SAMPLE1P = {1, 2, 4, 4, 4, 4};
+const ArrayType SAMPLE2P = {1, 2, 1, 2, 1, 1, 1, 3};
+const ArrayType SAMPLE3P = {1, 2, 1, 2, 1, 3};
+
+
+THE_BENCHMARK(ContainPattern, SAMPLE1P, 1, 3);
+
+SIMPLE_TEST(ContainPattern, TestSAMPLE1, true, SAMPLE1P, 1, 3);
+SIMPLE_TEST(ContainPattern, TestSAMPLE2, true, SAMPLE2P, 2, 2);
+SIMPLE_TEST(ContainPattern, TestSAMPLE3, false, SAMPLE3P, 2, 3);

@@ -94,6 +94,29 @@ std::string GCDofStrs_Concatenate(const std::string &one, const std::string &ano
     return one.substr(0, std::gcd(one.size(), another.size()));
 }
 
+
+/**
+ * @reference   Maximum Repeating Substring
+ *              https://leetcode.com/problems/maximum-repeating-substring/
+ *
+ * For a string sequence, a string word is k-repeating if word concatenated k times is a
+ * substring of sequence. The word's maximum k-repeating value is the highest value k
+ * where word is k-repeating in sequence. If word is not a substring of sequence, word's
+ * maximum k-repeating value is 0.
+ * Given strings sequence and word, return the maximum k-repeating value of word in sequence.
+ */
+auto MaxRepeatingSubstr(const std::string &sequence, const std::string &word) {
+    int count = 0;
+    auto temp = word;
+    std::size_t pos = 0;
+    while ((pos = sequence.find(temp, pos)) != std::string::npos) {
+        ++count;
+        temp.append(word);
+    }
+
+    return count;
+}
+
 }//namespace
 
 
@@ -141,3 +164,13 @@ SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE1, "ABC", "ABCABC", "ABC");
 SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE2, "AB", "ABABAB", "ABAB");
 SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE3, "", "LEET", "CODE");
 SIMPLE_TEST(GCDofStrs_Concatenate, TestSAMPLE4, "", "ABCDEF", "ABC");
+
+
+THE_BENCHMARK(MaxRepeatingSubstr, "ababc", "ab");
+
+SIMPLE_TEST(MaxRepeatingSubstr, TestSAMPLE1, 2, "ababc", "ab");
+SIMPLE_TEST(MaxRepeatingSubstr, TestSAMPLE2, 1, "ababc", "ba");
+SIMPLE_TEST(MaxRepeatingSubstr, TestSAMPLE3, 0, "ababc", "ac");
+SIMPLE_TEST(MaxRepeatingSubstr, TestSAMPLE4, 5,
+            "aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba");
+SIMPLE_TEST(MaxRepeatingSubstr, TestSAMPLE5, 1, "a", "a");
