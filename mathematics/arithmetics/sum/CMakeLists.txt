@@ -31,6 +31,9 @@ compile_test(subarray_with_given_sum)
 compile_benchmark(sum)
 compile_test(sum)
 
+compile_benchmark(sum_of_all_odd_length_subarrays)
+compile_test(sum_of_all_odd_length_subarrays)
+
 compile_benchmark(sum_of_nodes)
 compile_test(sum_of_nodes)
 

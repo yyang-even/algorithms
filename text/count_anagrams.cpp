@@ -11,6 +11,15 @@ using HashTable = std::unordered_map<char, int>;
  *
  * Given a word and a text, return the count of the occurences of anagrams of the word in
  * the text(For eg: anagrams of word for are for, ofr, rof etc.)
+ *
+ * @reference   Find All Anagrams in a String
+ *              https://leetcode.com/problems/find-all-anagrams-in-a-string/
+ *
+ * Given two strings s and p, return an array of all the start indices of p's anagrams in
+ * s. You may return the answer in any order.
+ * An Anagram is a word or phrase formed by rearranging the letters of a different word
+ * or phrase, typically using all the original letters exactly once.
+ * s and p consist of lowercase English letters.
  */
 inline auto AreAllCharZero(const HashTable &char_counts) {
     for (const auto [_, count] : char_counts) {
@@ -105,6 +114,8 @@ THE_BENCHMARK(CountAnagrams, "forxxorfxdofr", "for");
 
 SIMPLE_TEST(CountAnagrams, TestSAMPLE1, 3, "forxxorfxdofr", "for");
 SIMPLE_TEST(CountAnagrams, TestSAMPLE2, 4, "aabaabaa", "aaba");
+SIMPLE_TEST(CountAnagrams, TestSAMPLE3, 2, "cbaebabacd", "abc");
+SIMPLE_TEST(CountAnagrams, TestSAMPLE4, 3, "abab", "ab");
 
 
 THE_BENCHMARK(AreAnagrams, "abcd", "dabc");

@@ -5,6 +5,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Maximal Square
  *
  * @reference   https://leetcode.com/problems/maximal-square/
@@ -91,7 +93,15 @@ auto MaxRectangle(const MatrixType &grid) {
     return result;
 }
 
-auto MaxRectangle_MonotonicStack(const std::vector<int> &dp) {
+
+/**
+ * @reference   Largest Rectangle in Histogram
+ *              https://leetcode.com/problems/largest-rectangle-in-histogram/
+ *
+ * Given an array of integers heights representing the histogram's bar height where the
+ * width of each bar is 1, return the area of the largest rectangle in the histogram.
+ */
+auto MaxRectangleInHistogram(const ArrayType &dp) {
     std::stack<int> s;
     s.push(-1);
 
@@ -114,7 +124,7 @@ auto MaxRectangle_MonotonicStack(const MatrixType &grid) {
     const auto M = grid.size();
     const auto N = grid.front().size();
 
-    std::vector dp(N, 0);
+    ArrayType dp(N, 0);
     int result = 0;
     for (std::size_t i = 0; i < M; ++i) {
         for (std::size_t j = 0; j < N; ++j) {
@@ -125,7 +135,36 @@ auto MaxRectangle_MonotonicStack(const MatrixType &grid) {
             }
         }
 
-        result = std::max(result, MaxRectangle_MonotonicStack(dp));
+        result = std::max(result, MaxRectangleInHistogram(dp));
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Maximum Score of a Good Subarray
+ *              https://leetcode.com/problems/maximum-score-of-a-good-subarray/
+ *
+ * You are given an array of integers nums (0-indexed) and an integer k.
+ * The score of a subarray (i, j) is defined as min(nums[i], nums[i+1], ..., nums[j]) *
+ * (j - i + 1). A good subarray is a subarray where i <= k <= j.
+ * Return the maximum possible score of a good subarray.
+ */
+auto MaxScoreOfGoodSubarray_TwoPointer(const ArrayType &nums, const int k) {
+    auto result = nums[k];
+    auto minimum = result;
+    auto i = k;
+    auto j = k;
+    const int N = nums.size();
+
+    while (i > 0 or j < N - 1) {
+        if ((i > 0 ? nums[i - 1] : 0) < (j < N - 1 ? nums[j + 1] : 0)) {
+            minimum = std::min(minimum, nums[++j]);
+        } else {
+            minimum = std::min(minimum, nums[--i]);
+        }
+        result = std::max(result, minimum * (j - i + 1));
     }
 
     return result;
@@ -183,3 +222,23 @@ SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE2, 1, SAMPLE2);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE3, 0, SAMPLE3);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE4, 1, SAMPLE4);
+
+
+const ArrayType SAMPLE1H = {2, 1, 5, 6, 2, 3};
+const ArrayType SAMPLE2H = {2, 4};
+
+
+THE_BENCHMARK(MaxRectangleInHistogram, SAMPLE1H);
+
+SIMPLE_TEST(MaxRectangleInHistogram, TestSAMPLE1, 10, SAMPLE1H);
+SIMPLE_TEST(MaxRectangleInHistogram, TestSAMPLE2, 4, SAMPLE2H);
+
+
+const ArrayType SAMPLE1S = {1, 4, 3, 7, 4, 5};
+const ArrayType SAMPLE2S = {5, 5, 4, 5, 4, 1, 1, 1};
+
+
+THE_BENCHMARK(MaxScoreOfGoodSubarray_TwoPointer, SAMPLE1S, 3);
+
+SIMPLE_TEST(MaxScoreOfGoodSubarray_TwoPointer, TestSAMPLE1, 15, SAMPLE1S, 3);
+SIMPLE_TEST(MaxScoreOfGoodSubarray_TwoPointer, TestSAMPLE2, 20, SAMPLE2S, 0);

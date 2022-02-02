@@ -99,6 +99,40 @@ auto SetMatrixZeroes_O1(MatrixType a_matrix) {
  * 1 <= matrix[i][j] <= 10^5.
  */
 
+
+/**
+ * @reference   Special Positions in a Binary Matrix
+ *              https://leetcode.com/problems/special-positions-in-a-binary-matrix/
+ *
+ * Given an m x n binary matrix mat, return the number of special positions in mat.
+ * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i
+ * and column j are 0 (rows and columns are 0-indexed).
+ */
+auto NumberSpecials(const MatrixType &mat) {
+    std::vector rows(mat.size(), 0);
+    std::vector columns(mat.front().size(), 0);
+
+    for (std::size_t i = 0; i < mat.size(); ++i) {
+        for (std::size_t j = 0; j < mat.front().size(); ++j) {
+            if (mat[i][j]) {
+                ++rows[i];
+                ++columns[j];
+            }
+        }
+    }
+
+    int result = 0;
+    for (std::size_t i = 0; i < mat.size(); ++i) {
+        for (std::size_t j = 0; j < mat.front().size(); ++j) {
+            if (mat[i][j] and rows[i] == 1 and columns[j] == 1) {
+                ++result;
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -135,3 +169,22 @@ THE_BENCHMARK(SetMatrixZeroes_O1, SAMPLE1);
 
 SIMPLE_TEST(SetMatrixZeroes_O1, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SetMatrixZeroes_O1, TestSAMPLE2, EXPECTED2, SAMPLE2);
+
+
+const MatrixType SAMPLE1S = {
+    {1, 0, 0},
+    {0, 0, 1},
+    {1, 0, 0}
+};
+
+const MatrixType SAMPLE2S = {
+    {1, 0, 0},
+    {0, 1, 0},
+    {0, 0, 1}
+};
+
+
+THE_BENCHMARK(NumberSpecials, SAMPLE1S);
+
+SIMPLE_TEST(NumberSpecials, TestSAMPLE1, 1, SAMPLE1S);
+SIMPLE_TEST(NumberSpecials, TestSAMPLE2, 3, SAMPLE2S);
