@@ -160,6 +160,52 @@ WordAfterBigram(const std::string &text, const std::string &first,
  * leading contiguous substring of s.
  */
 
+
+/**
+ * @reference   Rearrange Spaces Between Words
+ *              https://leetcode.com/problems/rearrange-spaces-between-words/
+ *
+ * You are given a string text of words that are placed among some number of spaces. Each
+ * word consists of one or more lowercase English letters and are separated by at least
+ * one space. It's guaranteed that text contains at least one word.
+ * Rearrange the spaces so that there is an equal number of spaces between every pair of
+ * adjacent words and that number is maximized. If you cannot redistribute all the spaces
+ * equally, place the extra spaces at the end, meaning the returned string should be the
+ * same length as text.
+ * Return the string after rearranging the spaces.
+ */
+auto RearrangeSpaces(const std::string_view text) {
+    int spaces = 0;
+    std::string a_word;
+    std::vector<std::string> words;
+    for (const auto c : text) {
+        if (c == ' ') {
+            ++spaces;
+            if (not a_word.empty()) {
+                words.push_back(a_word);
+            }
+            a_word.clear();
+        } else {
+            a_word.push_back(c);
+        }
+    }
+    if (not a_word.empty()) {
+        words.push_back(a_word);
+    }
+
+    if (words.size() == 1) {
+        return words.back() + std::string(spaces, ' ');
+    }
+
+    const auto gap = spaces / (words.size() - 1);
+    const auto extra = spaces % (words.size() - 1);
+    auto result = words.front();
+    for (std::size_t i = 1; i < words.size(); ++i) {
+        result += std::string(gap, ' ') + words[i];
+    }
+    return result + std::string(extra, ' ');
+}
+
 }//namespace
 
 
@@ -223,3 +269,11 @@ SIMPLE_TEST(WordAfterBigram, TestSAMPLE2, EXPECTED2B,
             "we will we will rock you", "we", "will");
 SIMPLE_TEST(WordAfterBigram, TestSAMPLE3, EXPECTED3B,
             "alice is aa good girl she is a good student", "a", "good");
+
+
+THE_BENCHMARK(RearrangeSpaces, "  this   is  a sentence ");
+
+SIMPLE_TEST(RearrangeSpaces, TestSAMPLE1, "this   is   a   sentence",
+            "  this   is  a sentence ");
+SIMPLE_TEST(RearrangeSpaces, TestSAMPLE2, "practice   makes   perfect ",
+            " practice   makes   perfect");
