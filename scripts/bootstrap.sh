@@ -10,7 +10,7 @@ $THIS_DIR/dependencies.sh
 source $THIS_DIR/utils.sh
 
 PROJECT_ROOT_DIR=$(GetProjectRootDir)
-INSTALLER_FILE=$PROJECT_ROOT_DIR/../config-sh/scripts/install_hooks.sh
+INSTALLER_FILE=$PROJECT_ROOT_DIR/../config-sh/scripts/install_all_hooks.sh
 
 if [ -f "$INSTALLER_FILE" ]; then
     $INSTALLER_FILE

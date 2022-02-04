@@ -108,6 +108,33 @@ auto FindFirstNonrepeatingCharFromStream_Queue(const std::string_view input) {
     return outputs;
 }
 
+
+/**
+ * @reference   Largest Substring Between Two Equal Characters
+ *              https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+ *
+ * Given a string s, return the length of the longest substring between two equal
+ * characters, excluding the two characters. If there is no such substring return -1.
+ * A substring is a contiguous sequence of characters within a string.
+ * s contains only lowercase English letters.
+ */
+int MaxLengthBetweenEqualChars(const std::string_view s) {
+    std::vector first_indices(26, -1);
+    const int N = s.size();
+
+    int result = -1;
+    for (int i = 0; i < N; ++i) {
+        auto &f = first_indices[s[i] - 'a'];
+        if (f == -1) {
+            f = i;
+        } else {
+            result = std::max(result, i - f - 1);
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -133,3 +160,10 @@ SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE1, "GGGGGGGGkkk
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE2, "GGGGGGGGG",
             "GeeksQuiz");
 SIMPLE_TEST(FindFirstNonrepeatingCharFromStream_Queue, TestSAMPLE3, "abcd", "aabbccd");
+
+
+THE_BENCHMARK(MaxLengthBetweenEqualChars, "aa");
+
+SIMPLE_TEST(MaxLengthBetweenEqualChars, TestSAMPLE1, 0, "aa");
+SIMPLE_TEST(MaxLengthBetweenEqualChars, TestSAMPLE2, 2, "abca");
+SIMPLE_TEST(MaxLengthBetweenEqualChars, TestSAMPLE3, -1, "cbzxy");

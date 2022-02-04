@@ -13,6 +13,9 @@ compile_test(a_pair_primes_sum_as_n)
 compile_benchmark(check_all_elements_distinct)
 compile_test(check_all_elements_distinct)
 
+compile_benchmark(check_array_formation_through_concatenation)
+compile_test(check_array_formation_through_concatenation)
+
 compile_benchmark(check_if_one_string_can_be_formed_from_another)
 compile_test(check_if_one_string_can_be_formed_from_another)
 

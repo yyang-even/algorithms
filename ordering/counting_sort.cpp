@@ -121,6 +121,36 @@ inline auto CountingSort_STL(ArrayType values) {
  * s consists of only lowercase English letters.
  */
 
+
+/**
+ * @reference   Special Array With X Elements Greater Than or Equal X
+ *              https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+ *
+ * You are given an array nums of non-negative integers. nums is considered special if
+ * there exists a number x such that there are exactly x numbers in nums that are greater
+ * than or equal to x.
+ * Notice that x does not have to be an element in nums.
+ * Return x if the array is special, otherwise, return -1. It can be proven that if nums
+ * is special, the value for x is unique.
+ * 1 <= nums.length <= 100
+ * 0 <= nums[i] <= 1000
+ */
+auto SpecialArrayNumber(const ArrayType &nums) {
+    int count[1002] = {};
+    for (const auto n : nums) {
+        ++count[n];
+    }
+
+    for (int i = 1000; i >= 0; --i) {
+        count[i] += count[i + 1];
+        if (i == count[i]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 }//namespace
 
 
@@ -171,3 +201,15 @@ SIMPLE_TEST(CountingSort_STL, TestSAMPLE4, EXPECTED4, VALUES4);
 SIMPLE_TEST(CountingSort_STL, TestSAMPLE5, EXPECTED5, VALUES5);
 SIMPLE_TEST(CountingSort_STL, TestSAMPLE6, EXPECTED6, VALUES6);
 SIMPLE_TEST(CountingSort_STL, TestSAMPLE7, EXPECTED7, VALUES7);
+
+
+const ArrayType SAMPLE1 = {3, 5};
+const ArrayType SAMPLE2 = {0, 0};
+const ArrayType SAMPLE3 = {0, 4, 3, 0, 4};
+
+
+THE_BENCHMARK(SpecialArrayNumber, SAMPLE1);
+
+SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE1, 2, SAMPLE1);
+SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE2, -1, SAMPLE2);
+SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE3, 3, SAMPLE3);
