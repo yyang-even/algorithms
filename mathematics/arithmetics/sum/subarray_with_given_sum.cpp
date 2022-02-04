@@ -79,24 +79,46 @@ inline auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
 }
 
 
+/**
+ * @reference   Maximum Size Subarray Sum Equals k
+ *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/325-maximum-size-subarray-sum-equals-k.html
+ *
+ * Given an array nums and a target value k, find the maximum length of a subarray that
+ * sums to k. If there isn't one, return 0 instead.
+ * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed
+ * integer range.
+ * Follow Up: Can you do it in O(n) time?
+ */
+auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
+    std::unordered_map<int, int> hash = {{0, -1}};
+
+    const int N = nums.size();
+    int result = 0;
+    int sum = 0;
+    for (int i = 0; i < N; ++i) {
+        sum += nums[i];
+
+        const auto expected = sum - k;
+        const auto iter = hash.find(expected);
+        if (iter != hash.cend()) {
+            result = std::max(result, i - iter->second);
+        }
+
+        hash.emplace(sum, i);
+    }
+
+    return result;
+}
+
+
 /** Find the length of largest subarray with 0 sum
  *
  * @reference   https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
  *
  * Given an array of integers, find length of the largest subarray with sum equals to 0.
  */
-auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
-    const auto all_such_arrays = AllSubarraysWithGivenSum(integers, 0);
-    ArrayType::size_type largest_length = 0;
-
-    for (const auto [left, right] : all_such_arrays) {
-        const ArrayType::size_type length = right - left + 1;
-        if (length > largest_length) {
-            largest_length = length;
-        }
-    }
-
-    return largest_length;
+inline auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
+    return MaxLengthSubarraySumAs(integers, 0);
 }
 
 
@@ -106,10 +128,28 @@ auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
  *
  * @reference   Length of longest Subarray with equal number of odd and even elements
  *              https://www.geeksforgeeks.org/length-of-longest-subarray-with-equal-number-of-odd-and-even-elements/
+ *
+ * @reference   Contiguous Array
+ *              https://leetcode.com/problems/contiguous-array/
+ *
+ * Given a binary array nums, return the maximum length of a contiguous subarray with an
+ * equal number of 0 and 1.
  */
-inline auto LargestSubarrayWithEqual0sAnd1s(ArrayType elements) {
-    std::replace(elements.begin(), elements.end(), 0, -1);
-    return LengthOfLargestSubarrayWith0Sum(elements);
+auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
+    std::unordered_map<int, int> hash = {{0, -1}};
+
+    const int N = nums.size();
+    int result = 0;
+    int sum = 0;
+    for (int i = 0; i < N; ++i) {
+        sum += nums[i] ? 1 : -1;
+        const auto [iter, inserted] = hash.emplace(sum, i);
+        if (not inserted) {
+            result = std::max(result, i - iter->second);
+        }
+    }
+
+    return result;
 }
 
 }//namespace
@@ -184,8 +224,18 @@ const ArrayType SAMPLE16 = {1, 1, 1, 1};
 const ArrayType SAMPLE17 = {0, 0, 1, 1, 0};
 
 
-THE_BENCHMARK(LargestSubarrayWithEqual0sAnd1s, SAMPLE15);
+THE_BENCHMARK(MaxLengthSubarrayWithEqual0sAnd1s, SAMPLE15);
 
-SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample15, 6, SAMPLE15);
-SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample16, 0, SAMPLE16);
-SIMPLE_TEST(LargestSubarrayWithEqual0sAnd1s, TestSample17, 4, SAMPLE17);
+SIMPLE_TEST(MaxLengthSubarrayWithEqual0sAnd1s, TestSample15, 6, SAMPLE15);
+SIMPLE_TEST(MaxLengthSubarrayWithEqual0sAnd1s, TestSample16, 0, SAMPLE16);
+SIMPLE_TEST(MaxLengthSubarrayWithEqual0sAnd1s, TestSample17, 4, SAMPLE17);
+
+
+const ArrayType SAMPLE1K = {1, -1, 5, -2, 3};
+const ArrayType SAMPLE2K = {-2, -1, 2, 1};
+
+
+THE_BENCHMARK(MaxLengthSubarraySumAs, SAMPLE1K, 3);
+
+SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample1, 4, SAMPLE1K, 3);
+SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample2, 2, SAMPLE2K, 1);

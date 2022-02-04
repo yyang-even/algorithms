@@ -82,6 +82,9 @@ compile_test(matchsticks_to_square)
 compile_benchmark(matrix_chain_multiplication)
 compile_test(matrix_chain_multiplication)
 
+compile_benchmark(max_in_generated_array)
+compile_test(max_in_generated_array)
+
 compile_benchmark(max_length_concatenated_str_with_unique_chars)
 compile_test(max_length_concatenated_str_with_unique_chars)
 
