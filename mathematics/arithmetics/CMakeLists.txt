@@ -1,6 +1,3 @@
-compile_benchmark(missing_number_in_arithmetic_progression)
-compile_test(missing_number_in_arithmetic_progression)
-
 compile_benchmark(mean)
 compile_test(mean)
 
@@ -14,6 +11,7 @@ add_subdirectory(modulo)
 add_subdirectory(multiplication)
 add_subdirectory(polynomial)
 add_subdirectory(power)
+add_subdirectory(progression)
 add_subdirectory(root)
 add_subdirectory(subtract)
 add_subdirectory(sum)

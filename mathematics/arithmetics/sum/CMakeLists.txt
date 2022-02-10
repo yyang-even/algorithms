@@ -36,5 +36,3 @@ compile_test(sum_of_all_odd_length_subarrays)
 
 compile_benchmark(sum_of_nodes)
 compile_test(sum_of_nodes)
-
-add_subdirectory(series)
