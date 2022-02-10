@@ -1,7 +1,5 @@
 #include "common_header.h"
 
-#include "subarrays_with_given_sum.h"
-
 
 namespace {
 
@@ -42,6 +40,33 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
+auto
+AllSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
+    std::unordered_multimap<ArrayType::value_type, ArrayType::size_type> sum_index_map;
+    ArrayType::value_type current_sum = 0;
+    std::vector<std::pair<int, int>> outputs;
+
+    for (ArrayType::size_type i = 0; i < integers.size(); ++i) {
+        current_sum += integers[i];
+
+        if (current_sum == SUM) {
+            outputs.emplace_back(0, i);
+        }
+
+        const auto expected_subarray_sum = current_sum - SUM;
+        const auto [lower, upper] = sum_index_map.equal_range(expected_subarray_sum);
+        if (lower != sum_index_map.cend()) {
+            for (auto iter = lower; iter != upper; ++iter) {
+                outputs.emplace_back(iter->second + 1, i);
+            }
+        }
+
+        sum_index_map.emplace(current_sum, i);
+    }
+
+    return outputs;
+}
+
 inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
                                          const ArrayType::value_type SUM) {
     const auto all_such_arrays = AllSubarraysWithGivenSum(integers, SUM);

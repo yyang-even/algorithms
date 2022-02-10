@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string_view>;
+
 /**
  * @reference   Program to check if two strings are same or not
  *              https://www.geeksforgeeks.org/program-to-check-if-two-strings-are-same-or-not/
@@ -102,6 +104,40 @@ EqualAfterOneSwapNoSameIndices(const std::string_view one,
            one[diffs[1]] == another[diffs[0]];
 }
 
+
+/**
+ * @reference   Check If Two String Arrays are Equivalent
+ *              https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
+ *
+ * Given two string arrays word1 and word2, return true if the two arrays represent the
+ * same string, and false otherwise.
+ * A string is represented by an array if the array elements concatenated in order forms
+ * the string.
+ * word1[i] and word2[i] consist of lowercase letters.
+ */
+auto ArrayStringsAreEqual(const ArrayType &word1, const ArrayType &word2) {
+    std::size_t w_i = 0, w_j = 0;
+    std::size_t c_m = 0, c_n = 0; // char pointers
+
+    while (w_i < word1.size() and w_j < word2.size()) {
+        if (word1[w_i][c_m++] != word2[w_j][c_n++]) {
+            return false;
+        }
+
+        if (c_m >= word1[w_i].size()) {
+            ++w_i;
+            c_m = 0;
+        }
+
+        if (c_n >= word2[w_j].size()) {
+            ++w_j;
+            c_n = 0;
+        }
+    }
+
+    return w_i == word1.size() and w_j == word2.size();
+}
+
 }//namespace
 
 
@@ -129,3 +165,22 @@ SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE5, false, "ab", "ab");
 SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE6, true, "aa", "aa");
 SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE7, true, "aaaaaaabc",
             "aaaaaaacb");
+
+
+const ArrayType SAMPLE1L = {"ab", "c"};
+const ArrayType SAMPLE1R = {"a", "bc"};
+
+const ArrayType SAMPLE2R = {"bc", "a"};
+
+const ArrayType SAMPLE3R = {"a", "cb"};
+
+const ArrayType SAMPLE4L = {"abc", "d", "defg"};
+const ArrayType SAMPLE4R = {"abcddefg"};
+
+
+THE_BENCHMARK(ArrayStringsAreEqual, SAMPLE1L, SAMPLE1R);
+
+SIMPLE_TEST(ArrayStringsAreEqual, TestSAMPLE1, true, SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(ArrayStringsAreEqual, TestSAMPLE2, false, SAMPLE1L, SAMPLE2R);
+SIMPLE_TEST(ArrayStringsAreEqual, TestSAMPLE3, false, SAMPLE1L, SAMPLE3R);
+SIMPLE_TEST(ArrayStringsAreEqual, TestSAMPLE4, true, SAMPLE4L, SAMPLE4R);

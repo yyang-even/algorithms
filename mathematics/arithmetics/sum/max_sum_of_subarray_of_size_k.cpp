@@ -151,6 +151,51 @@ auto DietPlanPerformance(const ArrayType &calories, const std::size_t K,
     return result;
 }
 
+
+/**
+ * @reference   Defuse the Bomb
+ *              https://leetcode.com/problems/defuse-the-bomb/
+ *
+ * You have a bomb to defuse, and your time is running out! Your informer will provide
+ * you with a circular array code of length of n and a key k.
+ * To decrypt the code, you must replace every number. All the numbers are replaced
+ * simultaneously.
+ *  If k > 0, replace the ith number with the sum of the next k numbers.
+ *  If k < 0, replace the ith number with the sum of the previous k numbers.
+ *  If k == 0, replace the ith number with 0.
+ * As code is circular, the next element of code[n-1] is code[0], and the previous
+ * element of code[0] is code[n-1].
+ * Given the circular array code and an integer key k, return the decrypted code to
+ * defuse the bomb!
+ * -(n - 1) <= k <= n - 1
+ */
+auto Decrypt(const ArrayType &code, const int k) {
+    ArrayType result(code.size(), 0);
+    if (k == 0) {
+        return result;
+    }
+
+    int start = 1;
+    int end = k;
+    if (k < 0) {
+        start = code.size() + k;
+        end = code.size() - 1;
+    }
+
+    int sum = 0;
+    for (auto i = start; i <= end; ++i) {
+        sum += code[i];
+    }
+
+    for (std::size_t i = 0; i < code.size(); ++i) {
+        result[i] = sum;
+        sum -= code[(start++) % code.size()];
+        sum += code[(++end) % code.size()];
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -183,3 +228,20 @@ THE_BENCHMARK(DietPlanPerformance, SAMPLE1D, 1, 3, 3);
 SIMPLE_TEST(DietPlanPerformance, TestSAMPLE1, 0, SAMPLE1D, 1, 3, 3);
 SIMPLE_TEST(DietPlanPerformance, TestSAMPLE2, 1, SAMPLE2D, 2, 0, 1);
 SIMPLE_TEST(DietPlanPerformance, TestSAMPLE3, 0, SAMPLE3D, 2, 1, 5);
+
+
+const ArrayType SAMPLE1C = {5, 7, 1, 4};
+const ArrayType EXPECTED1 = {12, 10, 16, 13};
+
+const ArrayType SAMPLE2C = {1, 2, 3, 4};
+const ArrayType EXPECTED2 = {0, 0, 0, 0};
+
+const ArrayType SAMPLE3C = {2, 4, 9, 3};
+const ArrayType EXPECTED3 = {12, 5, 6, 13};
+
+
+THE_BENCHMARK(Decrypt, SAMPLE1C, 3);
+
+SIMPLE_TEST(Decrypt, TestSAMPLE1, EXPECTED1, SAMPLE1C, 3);
+SIMPLE_TEST(Decrypt, TestSAMPLE2, EXPECTED2, SAMPLE2C, 0);
+SIMPLE_TEST(Decrypt, TestSAMPLE3, EXPECTED3, SAMPLE3C, -2);

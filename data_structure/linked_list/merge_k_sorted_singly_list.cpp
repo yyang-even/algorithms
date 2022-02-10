@@ -9,10 +9,18 @@ using ListType = std::forward_list<int>;
  *
  * @reference   Merge K sorted linked lists | Set 1
  *              https://www.geeksforgeeks.org/merge-k-sorted-linked-lists/
- *              Merge k sorted linked lists | Set 2 (Using Min Heap)
+ * @reference   Merge k sorted linked lists | Set 2 (Using Min Heap)
  *              https://www.geeksforgeeks.org/merge-k-sorted-linked-lists-set-2-using-min-heap/
  *
  * Given K sorted linked lists of size N each, merge them and print the sorted output.
+ *
+ * @reference   Merge k Sorted Lists
+ *              https://leetcode.com/problems/merge-k-sorted-lists/
+ *
+ * You are given an array of k linked-lists lists, each linked-list is sorted in
+ * ascending order.
+ * Merge all the linked-lists into one sorted linked-list and return it.
+ * 0 <= lists[i].length <= 500
  */
 std::vector<ListType>::iterator MergeKSorted_Lists_Recursive(
     const std::vector<ListType>::iterator begin,
@@ -38,18 +46,17 @@ auto MergeKSorted_Lists_MinHeap(std::vector<ListType> k_lists) {
     ListType final_sorted_list;
     auto current = final_sorted_list.cbefore_begin();
 
-    std::vector<ListType *> first_elements;
-    for (auto &l : k_lists) {
-        if (not l.empty()) {
-            first_elements.emplace_back(&l);
-        }
-    }
-
     static constexpr auto compare = [](const auto * lhs, const auto * rhs) {
         return  lhs->front() > rhs->front();
     };
     std::priority_queue<ListType *, std::vector<ListType *>, decltype(compare)>
-    heap(compare, std::move(first_elements));
+    heap(compare);
+
+    for (auto &l : k_lists) {
+        if (not l.empty()) {
+            heap.push(&l);
+        }
+    }
 
     while (not heap.empty()) {
         auto *const l = heap.top();

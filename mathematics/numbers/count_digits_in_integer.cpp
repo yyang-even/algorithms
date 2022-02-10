@@ -72,8 +72,8 @@ inline auto CountDigits_String(const int n) {
  * Given an integer num, repeatedly add all its digits until the result has only one
  * digit, and return it.
  */
-inline constexpr auto DigitalRoot(const int number) {
-    return number == 0 ? 0 : 1 + (number - 1) % 9;
+inline constexpr auto DigitalRoot(const int num) {
+    return 1 + (num - 1) % 9;
 }
 
 

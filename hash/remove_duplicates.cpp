@@ -93,24 +93,72 @@ inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
 /**
  * @reference   Remove Duplicates from Sorted Array
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ *
+ * Given an integer array nums sorted in non-decreasing order, remove the duplicates
+ * in-place such that each unique element appears only once. The relative order of the
+ * elements should be kept the same.
+ * Since it is impossible to change the length of the array in some languages, you must
+ * instead have the result be placed in the first part of the array nums. More formally,
+ * if there are k elements after removing the duplicates, then the first k elements of
+ * nums should hold the final result. It does not matter what you leave beyond the first
+ * k elements.
+ * Return k after placing the final result in the first k slots of nums.
+ * Do not allocate extra space for another array. You must do this by modifying the input
+ * array in-place with O(1) extra memory.
  */
 auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
     assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));
 
-    if (sorted_input.empty()) {
+    if (sorted_input.size() < 2) {
         return sorted_input;
     }
 
-    std::size_t last = 0;
+    std::size_t end = 1;
     const auto N = sorted_input.size();
     for (std::size_t i = 1; i < N; ++i) {
-        if (sorted_input[last] != sorted_input[i]) {
-            sorted_input[++last] = sorted_input[i];
+        if (sorted_input[end - 1] != sorted_input[i]) {
+            sorted_input[end++] = sorted_input[i];
         }
     }
-    sorted_input.resize(last + 1);
+    sorted_input.resize(end);
 
     return sorted_input;
+}
+
+
+/**
+ * @reference   Remove Duplicates from Sorted Array II
+ *              https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+ *
+ * Given an integer array nums sorted in non-decreasing order, remove some duplicates
+ * in-place such that each unique element appears at most twice. The relative order of
+ * the elements should be kept the same.
+ * Since it is impossible to change the length of the array in some languages, you must
+ * instead have the result be placed in the first part of the array nums. More formally,
+ * if there are k elements after removing the duplicates, then the first k elements of
+ * nums should hold the final result. It does not matter what you leave beyond the first
+ * k elements.
+ * Return k after placing the final result in the first k slots of nums.
+ * Do not allocate extra space for another array. You must do this by modifying the input
+ * array in-place with O(1) extra memory.
+ */
+auto RemoveDuplicates2_Sorted(ArrayType nums) {
+    assert(std::is_sorted(nums.cbegin(), nums.cend()));
+
+    if (nums.size() < 3) {
+        return nums;
+    }
+
+    std::size_t end = 2;
+    const auto N = nums.size();
+    for (std::size_t i = 2; i < N; ++i) {
+        if (nums[end - 2] != nums[i]) {
+            nums[end++] = nums[i];
+        }
+    }
+    nums.resize(end);
+
+    return nums;
 }
 
 
@@ -494,6 +542,19 @@ THE_BENCHMARK(RemoveDuplicates_Sorted_Better, "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE1, "12345", "122344455");
 SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE2, "12", "112");
 SIMPLE_TEST(RemoveDuplicates_Sorted_Better, TestSAMPLE3, "01234", "0011122334");
+
+
+const ArrayType SAMPLE1T = {1, 1, 1, 2, 2, 3};
+const ArrayType EXPECTED1T = {1, 1, 2, 2, 3};
+
+const ArrayType SAMPLE2T = {0, 0, 1, 1, 1, 1, 2, 3, 3};
+const ArrayType EXPECTED2T = {0, 0, 1, 1, 2, 3, 3};
+
+
+THE_BENCHMARK(RemoveDuplicates2_Sorted, SAMPLE1T);
+
+SIMPLE_TEST(RemoveDuplicates2_Sorted, TestSAMPLE1, EXPECTED1T, SAMPLE1T);
+SIMPLE_TEST(RemoveDuplicates2_Sorted, TestSAMPLE2, EXPECTED2T, SAMPLE2T);
 
 
 const ListType SAMPLE_L1 = {12, 11, 12, 21, 41, 43, 21};

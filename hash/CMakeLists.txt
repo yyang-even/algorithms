@@ -64,8 +64,8 @@ compile_test(num_equivalent_domino_pairs)
 compile_benchmark(number_valid_words_for_each_puzzle)
 compile_test(number_valid_words_for_each_puzzle)
 
-compile_benchmark(print_items_containing_all_chars_of_given_word)
-compile_test(print_items_containing_all_chars_of_given_word)
+compile_benchmark(pair_elements_diff_as_k)
+compile_test(pair_elements_diff_as_k)
 
 compile_benchmark(rearrange_array_arrj_becomes_i_if_arri_j)
 compile_test(rearrange_array_arrj_becomes_i_if_arri_j)
