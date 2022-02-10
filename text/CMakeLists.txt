@@ -1,14 +1,8 @@
-compile_benchmark(array_transformation)
-compile_test(array_transformation)
-
 compile_benchmark(backspace_string_compare)
 compile_test(backspace_string_compare)
 
 compile_benchmark(binary_conversion_to)
 compile_test(binary_conversion_to)
-
-compile_benchmark(bit_chars)
-compile_test(bit_chars)
 
 compile_benchmark(check_balanced_parentheses)
 compile_test(check_balanced_parentheses)
@@ -49,9 +43,6 @@ compile_test(find_kth_char_of_decrypted_string)
 compile_benchmark(fizz_buzz)
 compile_test(fizz_buzz)
 
-compile_benchmark(good_triplets)
-compile_test(good_triplets)
-
 compile_benchmark(interleavings_of_two_strings)
 compile_test(interleavings_of_two_strings)
 
@@ -85,9 +76,6 @@ compile_test(minimum_window_substring)
 compile_benchmark(missing_ranges)
 compile_test(missing_ranges)
 
-compile_benchmark(most_visited_sector_in_circular_track)
-compile_test(most_visited_sector_in_circular_track)
-
 compile_benchmark(next_permutation)
 compile_test(next_permutation)
 
@@ -96,9 +84,6 @@ compile_test(number_matching_subsequences)
 
 compile_benchmark(number_to_words)
 compile_test(number_to_words)
-
-compile_benchmark(num_subarrays_with_max_in_range)
-compile_test(num_subarrays_with_max_in_range)
 
 compile_benchmark(palindrome_permutation)
 compile_test(palindrome_permutation)
@@ -151,9 +136,6 @@ compile_test(roman_to_integer)
 compile_benchmark(run_length_encoding)
 compile_test(run_length_encoding)
 
-compile_benchmark(sequential_digits)
-compile_test(sequential_digits)
-
 compile_benchmark(similar_RGB_color)
 compile_test(similar_RGB_color)
 
@@ -174,9 +156,6 @@ compile_test(summary_ranges)
 
 compile_benchmark(tail)
 compile_test(tail)
-
-compile_benchmark(three_equal_parts)
-compile_test(three_equal_parts)
 
 compile_benchmark(to_binary)
 compile_test(to_binary)

@@ -5,3 +5,5 @@ compile_test(is_heap)
 
 compile_benchmark(median_of_running_integers)
 compile_test(median_of_running_integers)
+
+compile_test(priority_queue)

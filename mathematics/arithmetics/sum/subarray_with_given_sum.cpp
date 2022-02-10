@@ -91,16 +91,35 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
 }
 
 
-/** Number of subarrays having sum exactly equal to k
- *
- * @reference   https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
+/**
+ * @reference   Number of subarrays having sum exactly equal to k
+ *              https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
  *
  * Given an unsorted array of integers, find number of subarrays having sum exactly equal
  * to a given number k.
+ *
+ * @reference   Subarray Sum Equals K
+ *              https://leetcode.com/problems/subarray-sum-equals-k/
+ *
+ * Given an array of integers nums and an integer k, return the total number of continuous
+ * subarrays whose sum equals to k.
+ * -1000 <= nums[i] <= 1000
  */
-inline auto NumberOfSubarraysWithGivenSum(const ArrayType &integers,
-                                          const ArrayType::value_type SUM) {
-    return AllSubarraysWithGivenSum(integers, SUM).size();
+auto NumberOfSubarraysWithGivenSum(const ArrayType &nums,
+                                   const ArrayType::value_type k) {
+    std::unordered_map<int, int> counts = {{0, 1}};
+    int sum = 0;
+    int result = 0;
+    for (const auto n : nums) {
+        sum += n;
+        const auto iter = counts.find(sum - k);
+        if (iter != counts.cend()) {
+            result += iter->second;
+        }
+        ++counts[sum];
+    }
+
+    return result;
 }
 
 

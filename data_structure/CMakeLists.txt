@@ -1,7 +1,5 @@
 compile_test(disjoint_set)
 
-compile_test(priority_queue)
-
 add_subdirectory(array)
 add_subdirectory(cache)
 add_subdirectory(graph)
