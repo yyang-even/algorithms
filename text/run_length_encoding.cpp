@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "mathematics/arithmetics/sum/series/sum_of_natural_numbers.h"
+#include "mathematics/arithmetics/progression/sum_of_natural_numbers.h"
 
 
 namespace {

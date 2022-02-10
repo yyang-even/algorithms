@@ -1,3 +1,6 @@
+compile_benchmark(missing_number_in_arithmetic_progression)
+compile_test(missing_number_in_arithmetic_progression)
+
 compile_benchmark(squares_of_first_n_numbers)
 compile_test(squares_of_first_n_numbers)
 

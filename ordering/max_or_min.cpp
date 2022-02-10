@@ -120,6 +120,23 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * Note that multiple kids can have the greatest number of candies.
  */
 
+
+/**
+ * @reference   Largest Subarray Length K
+ *              https://leetcode.ca/2021-02-11-1708-Largest-Subarray-Length-K/
+ *
+ * An array A is larger than some array B if for the first index i where A[i] != B[i],
+ * A[i] > B[i].
+ * For example, consider 0-indexing:
+ *  [1,3,2,4] > [1,2,2,4], since at index 1, 3 > 2.
+ *  [1,4,4,4] < [2,1,1,1], since at index 0, 1 < 2.
+ * A subarray is a contiguous subsequence of the array.
+ * Given an integer array nums of distinct integers, return the largest subarray of nums
+ * of length k.
+ * All the integers of nums are unique.
+ * Follow up: What if the integers in nums are not distinct?
+ */
+
 }//namespace
 
 
