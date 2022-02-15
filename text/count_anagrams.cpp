@@ -107,6 +107,58 @@ auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
  * any of them.
  */
 
+
+/**
+ * @reference   Permutation in String
+ *              https://leetcode.com/problems/permutation-in-string/
+ *
+ * Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false
+ * otherwise.
+ * In other words, return true if one of s1's permutations is the substring of s2.
+ * s1 and s2 consist of lowercase English letters.
+ */
+constexpr auto CheckAnagram(const std::string_view s1, const std::string_view s2) {
+    if (s1.size() > s2.size()) {
+        return false;
+    }
+
+    std::size_t i = 0;
+    int counts[256] = {};
+    for (; i < s1.size(); ++i) {
+        ++counts[static_cast<int>(s1[i])];
+        --counts[static_cast<int>(s2[i])];
+    }
+
+    int total_zeros = 0;
+    for (int c = 'a'; c <= 'z'; ++c) {
+        if (not counts[c]) {
+            ++total_zeros;
+        }
+    }
+
+    for (; i < s2.size(); ++i) {
+        if (total_zeros == 26) {
+            return true;
+        }
+
+        const int left = s2[i - s1.size()];
+        if (const auto c = ++counts[left]; c == 1) {
+            --total_zeros;
+        } else if (c == 0) {
+            ++total_zeros;
+        }
+
+        const int right = s2[i];
+        if (const auto c = --counts[right]; c == -1) {
+            --total_zeros;
+        } else if (c == 0) {
+            ++total_zeros;
+        }
+    }
+
+    return total_zeros == 26;
+}
+
 }//namespace
 
 
@@ -123,3 +175,11 @@ THE_BENCHMARK(AreAnagrams, "abcd", "dabc");
 SIMPLE_TEST(AreAnagrams, TestSAMPLE1, true, "abcd", "dabc");
 SIMPLE_TEST(AreAnagrams, TestSAMPLE2, true, "geeksforgeeks", "forgeeksgeeks");
 SIMPLE_TEST(AreAnagrams, TestSAMPLE3, false, "geeksforgeeks", "geeks");
+
+
+THE_BENCHMARK(CheckAnagram, "ab", "eidbaooo");
+
+SIMPLE_TEST(CheckAnagram, TestSAMPLE1, true, "ab", "eidbaooo");
+SIMPLE_TEST(CheckAnagram, TestSAMPLE2, false, "ab", "eidboaoo");
+SIMPLE_TEST(CheckAnagram, TestSAMPLE3, true, "adc", "dcda");
+SIMPLE_TEST(CheckAnagram, TestSAMPLE4, true, "abc", "bbbca");

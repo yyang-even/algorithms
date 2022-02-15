@@ -1,5 +1,6 @@
 #pragma once
 
+
 /** Program to find sum of first n natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/program-find-sum-first-n-natural-numbers/
@@ -12,4 +13,10 @@
  */
 static inline constexpr auto SumOfNaturals(const unsigned N) {
     return N * (N + 1) / 2;
+}
+
+
+static inline constexpr auto
+ArithmeticProgressionSum(const int first, const int n, const int diff) {
+    return (2 * first + (n - 1) * diff) * n / 2;
 }

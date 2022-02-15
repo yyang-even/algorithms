@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "binary.h"
 #include "conditionally_set_or_clear.h"
 
 
@@ -18,8 +19,6 @@ namespace {
  * from upper to lower case using the bitwise operators &(AND), |(OR), ~(NOT) in place
  * and returns the string.
  */
-constexpr char CASE_DIFF = 'a' - 'A';
-
 inline constexpr auto ToLowerCase(const char c) {
     constexpr bool IS_SET = true;
     return SetOrClear_Superscalar(IS_SET, CASE_DIFF, c);
@@ -41,11 +40,6 @@ inline constexpr auto ToUpperCase(const char c) {
  * Given a string, write a function that returns toggle case of a string using the
  * bitwise operators in place.
  */
-inline constexpr auto ToggleCase(const char c) {
-    return c ^ CASE_DIFF;
-}
-
-
 inline auto
 TransformString(std::string str, const std::function<char(const char)> change_case) {
     std::transform(str.cbegin(), str.cend(), str.begin(), change_case);

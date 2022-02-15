@@ -1,3 +1,6 @@
+compile_benchmark(arithmetic_progression)
+compile_test(arithmetic_progression)
+
 compile_benchmark(missing_number_in_arithmetic_progression)
 compile_test(missing_number_in_arithmetic_progression)
 
@@ -7,17 +10,8 @@ compile_test(squares_of_first_n_numbers)
 compile_benchmark(sum_of_cubes)
 compile_test(sum_of_cubes)
 
-compile_benchmark(sum_of_first_n_even_numbers)
-compile_test(sum_of_first_n_even_numbers)
-
-compile_benchmark(sum_of_first_n_odd_numbers)
-compile_test(sum_of_first_n_odd_numbers)
-
 compile_benchmark(sum_of_geometric_series)
 compile_test(sum_of_geometric_series)
-
-compile_benchmark(sum_of_natural_numbers)
-compile_test(sum_of_natural_numbers)
 
 compile_benchmark(sum_of_squares)
 compile_test(sum_of_squares)

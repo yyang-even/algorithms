@@ -11,3 +11,10 @@ union FloatUnsignedUnion {
     float f;
     unsigned u;
 };
+
+
+constexpr char CASE_DIFF = 'a' - 'A';
+
+static inline constexpr auto ToggleCase(const char c) {
+    return c ^ CASE_DIFF;
+}

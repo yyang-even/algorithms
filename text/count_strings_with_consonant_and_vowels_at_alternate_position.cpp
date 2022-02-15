@@ -27,6 +27,29 @@ CountStringsWithConsonantAndVowelsAtAlternatePosition(const std::string_view str
     return total;
 }
 
+
+/**
+ * @reference   Minimum Changes To Make Alternating Binary String
+ *              https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/
+ *
+ * You are given a string s consisting only of the characters '0' and '1'. In one
+ * operation, you can change any '0' to '1' or vice versa.
+ * The string is called alternating if no two adjacent characters are equal. For example,
+ * the string "010" is alternating, while the string "0100" is not.
+ * Return the minimum number of operations needed to make s alternating.
+ */
+constexpr auto MinChanges(const std::string_view s) {
+    const int N = s.size();
+    int diff = 0;
+    for (int i = 0; i < N; ++i) {
+        if (s[i] - '0' != i % 2) {
+            ++diff;
+        }
+    }
+
+    return std::min(diff, N - diff);
+}
+
 }//namespace
 
 
@@ -36,3 +59,10 @@ SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE1, 
             "s$$e$");
 SIMPLE_TEST(CountStringsWithConsonantAndVowelsAtAlternatePosition, TestSAMPLE2, 5,
             "y$s");
+
+
+THE_BENCHMARK(MinChanges, "0100");
+
+SIMPLE_TEST(MinChanges, TestSAMPLE1, 1, "0100");
+SIMPLE_TEST(MinChanges, TestSAMPLE2, 0, "10");
+SIMPLE_TEST(MinChanges, TestSAMPLE3, 2, "1111");

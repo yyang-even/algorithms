@@ -105,6 +105,17 @@ auto GetAllElementsOccurredOnlyOnce_Linear(const std::string_view input) {
  * 0 <= A[i] <= 1000
  */
 
+
+/**
+ * @reference   Sum of Unique Elements
+ *              https://leetcode.com/problems/sum-of-unique-elements/
+ *
+ * You are given an integer array nums. The unique elements of an array are the elements
+ * that appear exactly once in the array.
+ * Return the sum of all the unique elements of nums.
+ * 1 <= nums[i] <= 100
+ */
+
 }//namespace
 
 

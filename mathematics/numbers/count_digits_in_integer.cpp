@@ -120,6 +120,46 @@ inline constexpr auto DigitalRoot(const int num) {
  * 1 <= n <= 10^4
  */
 
+
+/**
+ * @reference   Maximum Number of Balls in a Box
+ *              https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+ *
+ * You are working in a ball factory where you have n balls numbered from lowLimit up to
+ * highLimit inclusive (i.e., n == highLimit - lowLimit + 1), and an infinite number of
+ * boxes numbered from 1 to infinity.
+ * Your job at this factory is to put each ball in the box with a number equal to the sum
+ * of digits of the ball's number. For example, the ball number 321 will be put in the box
+ * number 3 + 2 + 1 = 6 and the ball number 10 will be put in the box number 1 + 0 = 1.
+ * Given two integers lowLimit and highLimit, return the number of balls in the box with
+ * the most balls.
+ * 1 <= lowLimit <= highLimit <= 10^5
+ */
+constexpr auto DigitsSum(int n) {
+    int sum = 0;
+    for (; n; n /= 10) {
+        sum += (n % 10);
+    }
+
+    return sum;
+}
+
+constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
+    auto index = DigitsSum(lowLimit);
+    int boxes[5 * 9 + 1] = {};
+    ++boxes[index];
+
+    for (auto i = lowLimit + 1; i <= highLimit; ++i) {
+        for (auto n = i; n % 10 == 0; n /= 10) {
+            index -= 9;
+        }
+
+        ++boxes[++index];
+    }
+
+    return *std::max_element(std::cbegin(boxes), std::cend(boxes));
+}
+
 }//namespace
 
 
@@ -151,3 +191,10 @@ THE_BENCHMARK(DigitalRoot, 345289467);
 SIMPLE_TEST(DigitalRoot, TestSAMPLE0, 0, 0);
 SIMPLE_TEST(DigitalRoot, TestSAMPLE1, 2, 38);
 SIMPLE_TEST(DigitalRoot, TestSAMPLE2, 9, 18);
+
+
+THE_BENCHMARK(MaxBallsInBox, 1, 10);
+
+SIMPLE_TEST(MaxBallsInBox, TestSAMPLE1, 2, 1, 10);
+SIMPLE_TEST(MaxBallsInBox, TestSAMPLE2, 2, 5, 15);
+SIMPLE_TEST(MaxBallsInBox, TestSAMPLE3, 2, 19, 28);

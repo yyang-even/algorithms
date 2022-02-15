@@ -61,6 +61,9 @@ compile_test(license_key_formatting)
 compile_benchmark(longest_common_prefix)
 compile_test(longest_common_prefix)
 
+compile_benchmark(longest_nice_substr)
+compile_test(longest_nice_substr)
+
 compile_benchmark(longest_palindrome)
 compile_test(longest_palindrome)
 
