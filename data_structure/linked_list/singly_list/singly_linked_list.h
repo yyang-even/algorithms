@@ -804,3 +804,11 @@ public:
      *              https://www.geeksforgeeks.org/recursive-insertion-and-traversal-linked-list/
      */
 };
+
+
+template <typename ArrayType, typename FunctionType>
+static inline constexpr auto
+TestHelper(const ArrayType &array, const FunctionType function) {
+    const auto head = SinglyLinkedList{array}.GetHead();
+    return CopyToArray(function(head));
+}

@@ -1,4 +1,4 @@
-#include "singly_list/singly_linked_list.h"
+#include "singly_linked_list.h"
 #include "middle_of_singly_linked_list.h"
 
 
@@ -129,8 +129,7 @@ auto ReorderList(const SinglyLinkedList::Node::PointerType head) {
 }
 
 inline auto testReorderList(const ArrayType &array) {
-    const auto head = SinglyLinkedList{array}.GetHead();
-    return CopyToArray(ReorderList(head));
+    return TestHelper(array, ReorderList);
 }
 
 }//namespace

@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "singly_list/singly_linked_list.h"
+#include "singly_linked_list.h"
 
 
 namespace {
@@ -15,9 +15,9 @@ using ArrayType = std::vector<int>;
  * the two lists intersect. If the two linked lists have no intersection at all, return
  * null. It is guaranteed that there are no cycles anywhere in the entire linked
  * structure. Note that the linked lists must retain their original structure after the
- * function returns. Follow up: Could you write a solution that runs in O(n) time and
- * use only O(1) memory?
- *  1 <= Node.val <= 105
+ * function returns.
+ * Follow up: Could you write a solution that runs in O(n) time and use only O(1) memory?
+ * 1 <= Node.val <= 10^5
  *
  * @reference   Write a function to get the intersection point of two Linked Lists
  *              https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/

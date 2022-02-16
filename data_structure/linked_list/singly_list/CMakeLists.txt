@@ -13,6 +13,12 @@ compile_test(flatten_multilevel_linked_list)
 compile_benchmark(get_nth_node)
 compile_test(get_nth_node)
 
+compile_benchmark(intersection_point)
+compile_test(intersection_point)
+
+compile_benchmark(middle_of_singly_linked_list)
+compile_test(middle_of_singly_linked_list)
+
 compile_benchmark(nth_node_from_the_end)
 compile_test(nth_node_from_the_end)
 
@@ -29,3 +35,6 @@ compile_test(singly_linked_list)
 
 compile_benchmark(split_into_parts)
 compile_test(split_into_parts)
+
+compile_benchmark(swap_nodes_in_pairs)
+compile_test(swap_nodes_in_pairs)

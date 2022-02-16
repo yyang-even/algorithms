@@ -4,7 +4,7 @@
 #include "merge_two_sorted_arrays.h"
 #include "merge_k_sorted_array.h"
 
-#include "data_structure/linked_list/middle_of_singly_linked_list.h"
+#include "data_structure/linked_list/singly_list/middle_of_singly_linked_list.h"
 
 
 namespace {

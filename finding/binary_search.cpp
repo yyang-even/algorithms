@@ -1,6 +1,6 @@
 #include "common_header.h"
 
-#include "data_structure/linked_list/middle_of_singly_linked_list.h"
+#include "data_structure/linked_list/singly_list/middle_of_singly_linked_list.h"
 #include "mathematics/numbers/binary/count_total_bits.h"
 
 
