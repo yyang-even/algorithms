@@ -7,14 +7,21 @@
  *              https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
  * @reference   Size of The Subarray With Maximum Sum
  *              https://www.geeksforgeeks.org/size-subarray-maximum-sum/
- * @reference   Maximum Subarray
- *              https://leetcode.com/problems/maximum-subarray/
  *
  * Write an efficient C program to find the sum of contiguous subarray within a
  * one-dimensional array of numbers which has the largest sum.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.8.
+ *
+ * @reference   Maximum Subarray
+ *              https://leetcode.com/problems/maximum-subarray/
+ *
+ * Given an integer array nums, find the contiguous subarray (containing at least one
+ * number) which has the largest sum and return its sum.
+ * A subarray is a contiguous part of an array.
+ * Follow up: If you have figured out the O(n) solution, try coding another solution
+ * using the divide and conquer approach, which is more subtle.
  *
  * @complexity  O(n)
  */
