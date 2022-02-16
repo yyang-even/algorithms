@@ -34,9 +34,6 @@ compile_test(decimal_conversion_to)
 compile_benchmark(decrypt_string)
 compile_test(decrypt_string)
 
-compile_benchmark(detect_capital)
-compile_test(detect_capital)
-
 compile_benchmark(find_kth_char_of_decrypted_string)
 compile_test(find_kth_char_of_decrypted_string)
 

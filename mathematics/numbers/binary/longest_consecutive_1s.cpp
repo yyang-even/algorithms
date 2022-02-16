@@ -326,6 +326,50 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * 1 <= num <= 10^4
  */
 
+
+/**
+ * @reference   Check if Binary String Has at Most One Segment of Ones
+ *              https://leetcode.com/problems/check-if-binary-string-has-at-most-one-segment-of-ones/
+ *
+ * Given a binary string s without leading zeros, return true if s contains at most one
+ * contiguous segment of ones. Otherwise, return false.
+ * s[0] is '1'.
+ */
+inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
+    return s.find("01") == std::string_view::npos;
+}
+
+
+/**
+ * @reference   Longer Contiguous Segments of Ones than Zeros
+ *              https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+ *
+ * Given a binary string s, return true if the longest contiguous segment of 1's is
+ * strictly longer than the longest contiguous segment of 0's in s, or return false
+ * otherwise.
+ * For example, in s = "110100010" the longest continuous segment of 1s has length 2, and
+ * the longest continuous segment of 0s has length 3.
+ * Note that if there are no 0's, then the longest continuous segment of 0's is considered
+ * to have a length 0. The same applies if there is no 1's.
+ */
+constexpr auto Longer1sThan0s(const std::string_view s) {
+    auto curr = s.front();
+    int count = 0;
+    int maximum[2] = {};
+
+    for (const auto c : s) {
+        if (curr != c) {
+            count = 0;
+            curr = c;
+        }
+
+        const int i = c - '0';
+        maximum[i] = std::max(maximum[i], ++count);
+    }
+
+    return maximum[1] > maximum[0];
+}
+
 }//namespace
 
 
@@ -437,3 +481,16 @@ THE_BENCHMARK(ContainPattern, SAMPLE1P, 1, 3);
 SIMPLE_TEST(ContainPattern, TestSAMPLE1, true, SAMPLE1P, 1, 3);
 SIMPLE_TEST(ContainPattern, TestSAMPLE2, true, SAMPLE2P, 2, 2);
 SIMPLE_TEST(ContainPattern, TestSAMPLE3, false, SAMPLE3P, 2, 3);
+
+
+THE_BENCHMARK(HasMostOneSegmentOf1s, "1001");
+
+SIMPLE_TEST(HasMostOneSegmentOf1s, TestSAMPLE1, false, "1001");
+SIMPLE_TEST(HasMostOneSegmentOf1s, TestSAMPLE2, true, "110");
+
+
+THE_BENCHMARK(Longer1sThan0s, "1101");
+
+SIMPLE_TEST(Longer1sThan0s, TestSAMPLE1, true, "1101");
+SIMPLE_TEST(Longer1sThan0s, TestSAMPLE2, false, "111000");
+SIMPLE_TEST(Longer1sThan0s, TestSAMPLE3, false, "110100010");

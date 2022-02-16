@@ -161,13 +161,6 @@ inline auto KthSmallest_BinarySearch(const ArrayType &elements,
  * Given integer array nums, return the third maximum number in this array. If the third
  * maximum does not exist, return the maximum number.
  * Follow up: Can you find an O(n) solution?
- *
- * @reference   Find Second largest element in an array
- *              https://www.geeksforgeeks.org/find-second-largest-element-array/
- * @reference   Find the Second Largest Element in a Linked List
- *              https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
- * @reference   Second Smallest Element in a Linked List
- *              https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
  */
 auto ThirdMax(const ArrayType &nums) {
     auto largest = LONG_MIN;
@@ -189,6 +182,60 @@ auto ThirdMax(const ArrayType &nums) {
     }
 
     return third_max > LONG_MIN ? third_max : largest;
+}
+
+
+/**
+ * @reference   Second Largest Digit in a String
+ *              https://leetcode.com/problems/second-largest-digit-in-a-string/
+ *
+ * Given an alphanumeric string s, return the second largest numerical digit that appears
+ * in s, or -1 if it does not exist.
+ * An alphanumeric string is a string consisting of lowercase English letters and digits.
+ *
+ * @reference   Find Second largest element in an array
+ *              https://www.geeksforgeeks.org/find-second-largest-element-array/
+ * @reference   Find the Second Largest Element in a Linked List
+ *              https://www.geeksforgeeks.org/find-the-second-largest-element-in-a-linked-list/
+ * @reference   Second Smallest Element in a Linked List
+ *              https://www.geeksforgeeks.org/second-smallest-element-in-a-linked-list/
+ */
+constexpr auto SecondHighest(const std::string_view s) {
+    int first = -1;
+    int second = -1;
+    for (const auto c : s) {
+        if (std::isdigit(c)) {
+            const auto digit = c - '0';
+            if (digit > first) {
+                second = std::exchange(first, digit);
+            } else if (digit != first and digit > second) {
+                second = digit;
+            }
+        }
+    }
+
+    return second;
+}
+
+
+constexpr auto SecondHighest_CountingSort(const std::string_view s) {
+    int counts[10] = {};
+    for (const auto c : s) {
+        if (std::isdigit(c)) {
+            ++counts[c - '0'];
+        }
+    }
+
+    int digit_seen = 0;
+    for (int i = 9; i >= 0; --i) {
+        if (counts[i]) {
+            if (digit_seen++) {
+                return i;
+            }
+        }
+    }
+
+    return -1;
 }
 
 }//namespace
@@ -263,3 +310,15 @@ THE_BENCHMARK(ThirdMax, VALUES1);
 SIMPLE_TEST(ThirdMax, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(ThirdMax, TestSAMPLE2, 1, SAMPLE2);
 SIMPLE_TEST(ThirdMax, TestSAMPLE3, 1, SAMPLE3);
+
+
+THE_BENCHMARK(SecondHighest, "dfa12321afd");
+
+SIMPLE_TEST(SecondHighest, TestSAMPLE1, 2, "dfa12321afd");
+SIMPLE_TEST(SecondHighest, TestSAMPLE2, -1, "abc1111");
+
+
+THE_BENCHMARK(SecondHighest_CountingSort, "dfa12321afd");
+
+SIMPLE_TEST(SecondHighest_CountingSort, TestSAMPLE1, 2, "dfa12321afd");
+SIMPLE_TEST(SecondHighest_CountingSort, TestSAMPLE2, -1, "abc1111");

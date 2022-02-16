@@ -6,6 +6,9 @@ compile_test(bit_chars)
 
 compile_test(dimensions_of_multidimensional_array)
 
+compile_benchmark(faulty_sensor)
+compile_test(faulty_sensor)
+
 compile_benchmark(good_triplets)
 compile_test(good_triplets)
 

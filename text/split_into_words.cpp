@@ -206,6 +206,52 @@ auto RearrangeSpaces(const std::string_view text) {
     return result + std::string(extra, ' ');
 }
 
+
+/**
+ * @reference   Number of Different Integers in a String
+ *              https://leetcode.com/problems/number-of-different-integers-in-a-string/
+ *
+ * You are given a string word that consists of digits and lowercase English letters.
+ * You will replace every non-digit character with a space. For example, "a123bc34d8ef34"
+ * will become " 123  34 8  34". Notice that you are left with some integers that are
+ * separated by at least one space: "123", "34", "8", and "34".
+ * Return the number of different integers after performing the replacement operations on
+ * word.
+ * Two integers are considered different if their decimal representations without any
+ * leading zeros are different.
+ */
+auto NumDiffInts(const std::string_view s) {
+    std::unordered_set<std::string_view> hash{""};
+
+    std::size_t i = 0, j = 0;
+    for (; j < s.size(); ++j) {
+        if (std::isdigit(s[j])) {
+            if (i < j and s[i] == '0') {
+                ++i;
+            }
+        } else {
+            hash.insert(s.substr(i, j - i));
+            i = j + 1;
+        }
+    }
+    hash.insert(s.substr(i, j - i));
+
+    return hash.size() - 1;
+}
+
+
+/**
+ * @reference   Truncate Sentence
+ *              https://leetcode.com/problems/truncate-sentence/
+ *
+ * A sentence is a list of words that are separated by a single space with no leading or
+ * trailing spaces. Each of the words consists of only uppercase and lowercase English
+ * letters (no punctuation).
+ * For example, "Hello World", "HELLO", and "hello world hello world" are all sentences.
+ * You are given a sentence s and an integer k. You want to truncate s such that it
+ * contains only the first k words. Return s after truncating it.
+ */
+
 }//namespace
 
 
@@ -277,3 +323,10 @@ SIMPLE_TEST(RearrangeSpaces, TestSAMPLE1, "this   is   a   sentence",
             "  this   is  a sentence ");
 SIMPLE_TEST(RearrangeSpaces, TestSAMPLE2, "practice   makes   perfect ",
             " practice   makes   perfect");
+
+
+THE_BENCHMARK(NumDiffInts, "a123bc34d8ef34");
+
+SIMPLE_TEST(NumDiffInts, TestSAMPLE1, 3, "a123bc34d8ef34");
+SIMPLE_TEST(NumDiffInts, TestSAMPLE2, 2, "leet1234code234");
+SIMPLE_TEST(NumDiffInts, TestSAMPLE3, 1, "a1b01c001");

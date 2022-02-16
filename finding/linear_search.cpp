@@ -89,6 +89,56 @@ TotalFine(const ArrayType &car_numbers, const ArrayType::value_type date) {
     });
 }
 
+
+/**
+ * @reference   Count Items Matching a Rule
+ *              https://leetcode.com/problems/count-items-matching-a-rule/
+ *
+ * You are given an array items, where each items[i] = [typei, colori, namei] describes
+ * the type, color, and name of the ith item. You are also given a rule represented by
+ * two strings, ruleKey and ruleValue.
+ * The ith item is said to match the rule if one of the following is true:
+ *  ruleKey == "type" and ruleValue == typei.
+ *  ruleKey == "color" and ruleValue == colori.
+ *  ruleKey == "name" and ruleValue == namei.
+ * Return the number of items that match the given rule.
+ */
+
+
+/**
+ * @reference   Sign of the Product of an Array
+ *              https://leetcode.com/problems/sign-of-the-product-of-an-array/
+ *
+ * There is a function signFunc(x) that returns:
+ *  1 if x is positive.
+ *  -1 if x is negative.
+ *  0 if x is equal to 0.
+ * You are given an integer array nums. Let product be the product of all values in the
+ * array nums.
+ * Return signFunc(product).
+ */
+
+
+/** Detect Capital
+ *
+ * @reference   https://leetcode.com/problems/detect-capital/
+ *
+ * We define the usage of capitals in a word to be right when one of the following cases
+ * holds:
+ *  All letters in this word are capitals, like "USA".
+ *  All letters in this word are not capitals, like "leetcode".
+ *  Only the first letter in this word is capital, like "Google".
+ * Given a string word, return true if the usage of capitals in it is right.
+ */
+inline auto DetectCapital(const std::string_view word) {
+    const std::size_t number_capitals =
+        std::count_if(word.cbegin(), word.cend(), ToLambda(std::isupper));
+    if (number_capitals == 0 or number_capitals == word.size()) {
+        return true;
+    }
+    return number_capitals == 1 and std::isupper(word.front());
+}
+
 }//namespace
 
 
@@ -135,3 +185,11 @@ THE_BENCHMARK(TotalFine, SAMPLE1, 15);
 
 SIMPLE_TEST(TotalFine, TestSample1, 500, SAMPLE1, 15);
 SIMPLE_TEST(TotalFine, TestSample2, 500, SAMPLE2, 16);
+
+
+THE_BENCHMARK(DetectCapital, "USA");
+
+SIMPLE_TEST(DetectCapital, TestSAMPLE1, true, "USA");
+SIMPLE_TEST(DetectCapital, TestSAMPLE2, true, "leetcode");
+SIMPLE_TEST(DetectCapital, TestSAMPLE3, true, "Google");
+SIMPLE_TEST(DetectCapital, TestSAMPLE4, false, "FlaG");

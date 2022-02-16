@@ -111,6 +111,25 @@ int FindJudge(const int n, const DirectedEdgeArrayType &trust) {
  * forms a line without any loop, therefore, there will be exactly one destination city.
  */
 
+
+/**
+ * @reference   Find Center of Star Graph
+ *              https://leetcode.com/problems/find-center-of-star-graph/
+ *
+ * There is an undirected star graph consisting of n nodes labeled from 1 to n. A star
+ * graph is a graph where there is one center node and exactly n - 1 edges that connect
+ * the center node with every other node.
+ * You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that
+ * there is an edge between the nodes ui and vi. Return the center of the given star graph.
+ * 3 <= n <= 10^5
+ */
+auto FindCenterOfStarGraph(const UndirectedEdgeArrayType &edges) {
+    const auto &one_edge = edges.front();
+    const auto &another = edges.back();
+
+    return (one_edge.u == another.u or one_edge.u == another.v) ? one_edge.u : one_edge.v;
+}
+
 }//namespace
 
 
@@ -153,3 +172,13 @@ SIMPLE_TEST(FindJudge, TestSAMPLE2, 3, 3, SAMPLE2D);
 SIMPLE_TEST(FindJudge, TestSAMPLE3, -1, 3, SAMPLE3D);
 SIMPLE_TEST(FindJudge, TestSAMPLE4, -1, 3, SAMPLE4D);
 SIMPLE_TEST(FindJudge, TestSAMPLE5, 3, 4, SAMPLE5D);
+
+
+const UndirectedEdgeArrayType SAMPLE1S = {{1, 2}, {2, 3}, {4, 2}};
+const UndirectedEdgeArrayType SAMPLE2S = {{1, 2}, {5, 1}, {1, 3}, {1, 4}};
+
+
+THE_BENCHMARK(FindCenterOfStarGraph, SAMPLE1S);
+
+SIMPLE_TEST(FindCenterOfStarGraph, TestSAMPLE1, 2, SAMPLE1S);
+SIMPLE_TEST(FindCenterOfStarGraph, TestSAMPLE2, 1, SAMPLE2S);

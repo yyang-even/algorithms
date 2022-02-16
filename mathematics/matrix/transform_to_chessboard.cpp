@@ -55,6 +55,21 @@ auto ToChessboard(const MatrixType &board) {
     return (misplaced_columns + misplaced_rows) / 2;
 }
 
+
+/**
+ * @reference   Determine Color of a Chessboard Square
+ *              https://leetcode.com/problems/determine-color-of-a-chessboard-square/
+ *
+ * You are given coordinates, a string that represents the coordinates of a square of the
+ * chessboard.
+ * Return true if the square is white, and false if the square is black.
+ * The coordinate will always represent a valid chessboard square. The coordinate will
+ * always have the letter first, and the number second.
+ */
+inline constexpr bool IsWhite(const std::string_view c) {
+    return (c[0] + c[1]) % 2;
+}
+
 }//namespace
 
 
@@ -81,3 +96,10 @@ THE_BENCHMARK(ToChessboard, SAMPLE1);
 SIMPLE_TEST(ToChessboard, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(ToChessboard, TestSAMPLE2, 0, SAMPLE2);
 SIMPLE_TEST(ToChessboard, TestSAMPLE3, -1, SAMPLE3);
+
+
+THE_BENCHMARK(IsWhite, "a1");
+
+SIMPLE_TEST(IsWhite, TestSAMPLE1, false, "a1");
+SIMPLE_TEST(IsWhite, TestSAMPLE2, true, "h3");
+SIMPLE_TEST(IsWhite, TestSAMPLE3, false, "c7");
