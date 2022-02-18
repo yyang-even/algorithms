@@ -43,6 +43,9 @@ compile_test(patching_array)
 compile_benchmark(reduce_array_size_to_half)
 compile_test(reduce_array_size_to_half)
 
+compile_benchmark(remove_k_digits)
+compile_test(remove_k_digits)
+
 compile_benchmark(task_scheduling)
 compile_test(task_scheduling)
 

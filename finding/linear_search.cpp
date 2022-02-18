@@ -139,6 +139,18 @@ inline auto DetectCapital(const std::string_view word) {
     return number_capitals == 1 and std::isupper(word.front());
 }
 
+
+/**
+ * @reference   Minimum Distance to the Target Element
+ *              https://leetcode.com/problems/minimum-distance-to-the-target-element/
+ *
+ * Given an integer array nums (0-indexed) and two integers target and start, find an
+ * index i such that nums[i] == target and abs(i - start) is minimized. Note that abs(x)
+ * is the absolute value of x.
+ * Return abs(i - start).
+ * It is guaranteed that target exists in nums.
+ */
+
 }//namespace
 
 

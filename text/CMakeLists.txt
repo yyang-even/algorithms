@@ -7,9 +7,6 @@ compile_test(binary_conversion_to)
 compile_benchmark(check_balanced_parentheses)
 compile_test(check_balanced_parentheses)
 
-compile_benchmark(combination)
-compile_test(combination)
-
 compile_benchmark(combinations_of_parentheses)
 compile_test(combinations_of_parentheses)
 
@@ -90,12 +87,6 @@ compile_test(palindrome_permutation)
 
 compile_benchmark(pangram_checking)
 compile_test(pangram_checking)
-
-compile_benchmark(permutation)
-compile_test(permutation)
-
-compile_benchmark(permutation_with_repetition)
-compile_test(permutation_with_repetition)
 
 compile_benchmark(phone_digits_to_words)
 compile_test(phone_digits_to_words)

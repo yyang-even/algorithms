@@ -3,7 +3,7 @@
 
 namespace {
 
-using ArrayType = std::unordered_multiset<std::string>;
+using OutputType = std::unordered_multiset<std::string>;
 
 /** Print all possible combinations of r elements in a given array of size n
  *
@@ -21,14 +21,14 @@ void CombinationsOfLength_Start(const std::string_view elements,
                                 const std::size_t length,
                                 const std::size_t start,
                                 std::string &one_combination,
-                                ArrayType &results) {
+                                OutputType &results) {
     assert(length <= elements.size());
 
     for (auto i = start; i < elements.size(); ++i) {
         one_combination.push_back(elements[i]);
         if (one_combination.size() == length) {
             results.insert(one_combination);
-        } else if (one_combination.size() < length) {
+        } else {
             CombinationsOfLength_Start(elements, length, i + 1, one_combination, results);
         }
         one_combination.pop_back();
@@ -38,7 +38,7 @@ void CombinationsOfLength_Start(const std::string_view elements,
 inline auto CombinationsOfLength_Start(const std::string_view elements,
                                        const std::size_t length) {
     std::string one_combination;
-    ArrayType results;
+    OutputType results;
     CombinationsOfLength_Start(elements, length, 0, one_combination, results);
 
     return results;
@@ -49,26 +49,24 @@ void CombinationsOfLength_Include(const std::string_view elements,
                                   const std::size_t length,
                                   const std::size_t start,
                                   std::string &one_combination,
-                                  ArrayType &results) {
+                                  OutputType &results) {
     if (start < elements.size()) {
         one_combination.push_back(elements[start]);
         if (one_combination.size() == length) {
             results.insert(one_combination);
-        } else if (one_combination.size() < length) {
+        } else {
             CombinationsOfLength_Include(elements, length, start + 1, one_combination, results);
         }
         one_combination.pop_back();
 
-        if (one_combination.size() < length) {
-            CombinationsOfLength_Include(elements, length, start + 1, one_combination, results);
-        }
+        CombinationsOfLength_Include(elements, length, start + 1, one_combination, results);
     }
 }
 
 inline auto CombinationsOfLength_Include(const std::string_view elements,
                                          const std::size_t length) {
     std::string one_combination;
-    ArrayType results;
+    OutputType results;
     CombinationsOfLength_Include(elements, length, 0, one_combination, results);
 
     return results;
@@ -121,7 +119,7 @@ public:
 
 auto testCombinationIterator(const std::string_view chars,
                              const std::size_t length) {
-    ArrayType results;
+    OutputType results;
     CombinationIterator iter(chars, length);
     while (iter.hasNext()) {
         results.insert(iter.next());
@@ -143,7 +141,7 @@ auto testCombinationIterator(const std::string_view chars,
 void AllCombinations_Recursive(const std::string_view elements,
                                const std::size_t start,
                                std::string &one_combination,
-                               ArrayType &results) {
+                               OutputType &results) {
     for (auto i = start; i < elements.size(); ++i) {
         one_combination.push_back(elements[i]);
         results.insert(one_combination);
@@ -154,7 +152,7 @@ void AllCombinations_Recursive(const std::string_view elements,
 
 inline auto AllCombinations_Recursive(const std::string_view elements) {
     std::string one_combination;
-    ArrayType results;
+    OutputType results;
     AllCombinations_Recursive(elements, 0, one_combination, results);
 
     return results;
@@ -174,7 +172,7 @@ auto AllCombinations_BitMask(const std::string_view elements) {
 
     const auto power_set_size = 1ull << elements.size();
 
-    ArrayType results;
+    OutputType results;
     for (auto mask = 1ull; mask < power_set_size; ++mask) {
         std::string a_subset;
         for (std::size_t i = 0; i < elements.size(); ++i) {
@@ -201,7 +199,7 @@ auto AllCombinations_BitMask(const std::string_view elements) {
  * order.
  */
 void AllCombinations_Recursive_Copy(const std::string_view elements,
-                                    ArrayType &results,
+                                    OutputType &results,
                                     const std::size_t index = 0,
                                     const std::string &subset = "") {
     if (index == elements.size()) {
@@ -216,7 +214,7 @@ void AllCombinations_Recursive_Copy(const std::string_view elements,
 }
 
 inline auto AllCombinations_Recursive_Copy(const std::string_view elements) {
-    ArrayType results;
+    OutputType results;
     AllCombinations_Recursive_Copy(elements, results);
 
     return results;
@@ -224,10 +222,10 @@ inline auto AllCombinations_Recursive_Copy(const std::string_view elements) {
 
 
 auto AllCombinations_Iterative(const std::string_view elements) {
-    ArrayType results = {""};
+    OutputType results = {""};
 
     for (const auto c : elements) {
-        ArrayType new_subsets = results;
+        OutputType new_subsets = results;
         for (const auto &curr : results) {
             new_subsets.insert(curr + c);
         }
@@ -250,7 +248,7 @@ auto AllCombinations_Iterative(const std::string_view elements) {
  */
 void AllCombinationsWithDuplicates_For(const std::string &elements,
                                        const std::size_t start,
-                                       std::string &one_combination, ArrayType &results) {
+                                       std::string &one_combination, OutputType &results) {
     results.insert(one_combination);
 
     for (auto i = start; i < elements.size(); ++i) {
@@ -265,7 +263,7 @@ void AllCombinationsWithDuplicates_For(const std::string &elements,
 }
 
 inline auto AllCombinationsWithDuplicates_For(std::string elements) {
-    ArrayType results;
+    OutputType results;
     std::sort(elements.begin(), elements.end());
     std::string one_combination;
     AllCombinationsWithDuplicates_For(elements, 0, one_combination, results);
@@ -275,7 +273,7 @@ inline auto AllCombinationsWithDuplicates_For(std::string elements) {
 
 
 void AllCombinationsWithDuplicates(const std::string &elements, std::size_t i,
-                                   std::string &one_combination, ArrayType &results) {
+                                   std::string &one_combination, OutputType &results) {
     if (i == elements.size()) {
         results.insert(one_combination);
         return;
@@ -285,16 +283,15 @@ void AllCombinationsWithDuplicates(const std::string &elements, std::size_t i,
     AllCombinationsWithDuplicates(elements, i + 1, one_combination, results);
     one_combination.pop_back();
 
-    i++;
+    ++i;
     while (i < elements.size() and elements[i] == elements[i - 1]) {
-        i++;
+        ++i;
     }
-
     AllCombinationsWithDuplicates(elements, i, one_combination, results);
 }
 
 inline auto AllCombinationsWithDuplicates(std::string elements) {
-    ArrayType results;
+    OutputType results;
     std::sort(elements.begin(), elements.end());
     std::string one_combination;
     AllCombinationsWithDuplicates(elements, 0, one_combination, results);
@@ -302,14 +299,42 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
     return results;
 }
 
+
+/**
+ * @reference   Combinations
+ *              https://leetcode.com/problems/combinations/
+ *
+ * Given two integers n and k, return all possible combinations of k numbers out of the
+ * range [1, n].
+ * You may return the answer in any order.
+ * 1 <= n <= 20
+ */
+auto AllCombinationsOfLength_Iterative(const char n, const int k) {
+    OutputType result;
+    int i = 0;
+    std::string one_combination(k, 'a' - 1);
+    while (i >= 0) {
+        if (++one_combination[i] > n) {
+            --i;
+        } else if (i == k - 1) {
+            result.insert(one_combination);
+        } else {
+            ++i;
+            one_combination[i] = one_combination[i - 1];
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
-const ArrayType EXPECTED1 = {"a"};
-const ArrayType EXPECTED2 = {"a", "b", "ab"};
-const ArrayType EXPECTED3 = {"w", "x", "y", "z", "wx", "xy", "yz", "wxy", "xyz", "wxyz", "xz", "wxz", "wy", "wyz", "wz"};
-const ArrayType EXPECTED4 = {"wx", "xy", "yz", "xz", "wy", "wz"};
-const ArrayType EXPECTED5 = {"123", "124", "125", "134", "135", "145", "234", "235", "245", "345"};
+const OutputType EXPECTED1 = {"a"};
+const OutputType EXPECTED2 = {"a", "b", "ab"};
+const OutputType EXPECTED3 = {"w", "x", "y", "z", "wx", "xy", "yz", "wxy", "xyz", "wxyz", "xz", "wxz", "wy", "wyz", "wz"};
+const OutputType EXPECTED4 = {"wx", "xy", "yz", "xz", "wy", "wz"};
+const OutputType EXPECTED5 = {"123", "124", "125", "134", "135", "145", "234", "235", "245", "345"};
 
 
 THE_BENCHMARK(CombinationsOfLength_Start, "abcd", 2);
@@ -361,8 +386,8 @@ SIMPLE_TEST(AllCombinations_Iterative, TestSAMPLE2, EXPECTED2, "ab");
 SIMPLE_TEST(AllCombinations_Iterative, TestSAMPLE3, EXPECTED3, "wxyz");
 
 
-const ArrayType EXPECTED6 = {"", "1", "12", "122", "2", "22"};
-const ArrayType EXPECTED7 = {"", "0"};
+const OutputType EXPECTED6 = {"", "1", "12", "122", "2", "22"};
+const OutputType EXPECTED7 = {"", "0"};
 
 
 THE_BENCHMARK(AllCombinationsWithDuplicates_For, "122");
@@ -375,3 +400,13 @@ THE_BENCHMARK(AllCombinationsWithDuplicates, "122");
 
 SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE6, EXPECTED6, "122");
 SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE7, EXPECTED7, "0");
+
+
+const OutputType EXPECTED1S = {"ab", "ac", "ad", "bc", "bd", "cd"};
+const OutputType EXPECTED2S = {"a"};
+
+
+THE_BENCHMARK(AllCombinationsOfLength_Iterative, 'a' + 4 - 1, 2);
+
+SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE1, EXPECTED1S, 'a' + 4 - 1, 2);
+SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE2, EXPECTED2S, 'a' + 1 - 1, 1);
