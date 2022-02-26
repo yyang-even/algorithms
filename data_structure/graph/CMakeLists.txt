@@ -4,6 +4,9 @@ compile_test(accounts_merge)
 compile_benchmark(breadth_first_search)
 compile_test(breadth_first_search)
 
+compile_benchmark(clone_graph)
+compile_test(clone_graph)
+
 compile_benchmark(complete_graph_on_n)
 compile_test(complete_graph_on_n)
 

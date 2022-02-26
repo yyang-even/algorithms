@@ -92,6 +92,36 @@ auto TotalPoisonedDuration(const std::vector<int> &time_series, const int durati
     return result;
 }
 
+
+/**
+ * @reference   Remove Covered Intervals
+ *              https://leetcode.com/problems/remove-covered-intervals/
+ *
+ * Given an array intervals where intervals[i] = [li, ri] represent the interval [li, ri),
+ * remove all intervals that are covered by another interval in the list.
+ * The interval [a, b) is covered by the interval [c, d) if and only if c <= a and b <= d.
+ * Return the number of remaining intervals.
+ */
+auto RemoveCoveredIntervals(ArrayType intervals) {
+    std::sort(intervals.begin(), intervals.end(), [](const auto one, const auto another) {
+        if (one.first == another.first) {
+            return one.second > another.second;
+        }
+        return one.first < another.first;
+    });
+
+    int result = 0;
+    int right = 0;
+    for (const auto [li, ri] : intervals) {
+        if (ri > right) {
+            ++result;
+            right = ri;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -149,3 +179,15 @@ SIMPLE_TEST(InsertInterval, TestSAMPLE2, EXPECTED2I, SAMPLE2I, SAMPLE2P);
 SIMPLE_TEST(InsertInterval, TestSAMPLE3, EXPECTED3I, SAMPLE3I, SAMPLE3P);
 SIMPLE_TEST(InsertInterval, TestSAMPLE4, SAMPLE4I, SAMPLE4I, SAMPLE4P);
 SIMPLE_TEST(InsertInterval, TestSAMPLE5, EXPECTED5I, SAMPLE5I, SAMPLE5P);
+
+
+const ArrayType SAMPLE1R = {{1, 4}, {3, 6}, {2, 8}};
+const ArrayType SAMPLE2R = {{1, 4}, {2, 3}};
+const ArrayType SAMPLE3R = {{3, 10}, {4, 10}, {5, 11}};
+
+
+THE_BENCHMARK(RemoveCoveredIntervals, SAMPLE1R);
+
+SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE1, 2, SAMPLE1R);
+SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE2, 1, SAMPLE2R);
+SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE3, 2, SAMPLE3R);

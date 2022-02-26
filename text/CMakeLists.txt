@@ -10,6 +10,9 @@ compile_test(check_balanced_parentheses)
 compile_benchmark(combinations_of_parentheses)
 compile_test(combinations_of_parentheses)
 
+compile_benchmark(compare_version_numbers)
+compile_test(compare_version_numbers)
+
 compile_benchmark(convert_to_int_array)
 compile_test(convert_to_int_array)
 
@@ -72,9 +75,6 @@ compile_test(minimum_window_substring)
 
 compile_benchmark(missing_ranges)
 compile_test(missing_ranges)
-
-compile_benchmark(next_permutation)
-compile_test(next_permutation)
 
 compile_benchmark(number_matching_subsequences)
 compile_test(number_matching_subsequences)

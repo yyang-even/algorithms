@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+using ResultType = std::multiset<ArrayType>;
 using OutputType = std::unordered_multiset<std::string>;
 
 /** Print all possible combinations of r elements in a given array of size n
@@ -307,12 +309,11 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
  * Given two integers n and k, return all possible combinations of k numbers out of the
  * range [1, n].
  * You may return the answer in any order.
- * 1 <= n <= 20
  */
-auto AllCombinationsOfLength_Iterative(const char n, const int k) {
-    OutputType result;
+auto AllCombinationsOfLength_Iterative(const int n, const int k) {
+    ResultType result;
     int i = 0;
-    std::string one_combination(k, 'a' - 1);
+    ArrayType one_combination(k, 0);
     while (i >= 0) {
         if (++one_combination[i] > n) {
             --i;
@@ -402,11 +403,11 @@ SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE6, EXPECTED6, "122");
 SIMPLE_TEST(AllCombinationsWithDuplicates, TestSAMPLE7, EXPECTED7, "0");
 
 
-const OutputType EXPECTED1S = {"ab", "ac", "ad", "bc", "bd", "cd"};
-const OutputType EXPECTED2S = {"a"};
+const ResultType EXPECTED1S = {{1, 2}, {1, 3}, {1, 4}, {2, 3}, {2, 4}, {3, 4}};
+const ResultType EXPECTED2S = {{1}};
 
 
-THE_BENCHMARK(AllCombinationsOfLength_Iterative, 'a' + 4 - 1, 2);
+THE_BENCHMARK(AllCombinationsOfLength_Iterative, 4, 2);
 
-SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE1, EXPECTED1S, 'a' + 4 - 1, 2);
-SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE2, EXPECTED2S, 'a' + 1 - 1, 1);
+SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE1, EXPECTED1S, 4, 2);
+SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE2, EXPECTED2S, 1, 1);
