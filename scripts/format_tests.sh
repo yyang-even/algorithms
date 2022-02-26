@@ -16,4 +16,10 @@ testNoUnexpectedKeywordsOrder() {
     QuietRun popd
 }
 
+testNoUnexpectedDebugStatement() {
+    actual=$(git grep -l 'std::endl' -- ':(exclude)*.sh' | wc -l)
+
+    assertEquals 5 "$actual"
+}
+
 source /usr/bin/shunit2
