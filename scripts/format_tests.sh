@@ -17,9 +17,13 @@ testNoUnexpectedKeywordsOrder() {
 }
 
 testNoUnexpectedDebugStatement() {
-    actual=$(git grep -l 'std::endl' -- ':(exclude)*.sh' | wc -l)
+    PROJECT_ROOT_DIR=$(GetProjectRootDir)
+    QuietRun pushd "$PROJECT_ROOT_DIR"
 
+    actual=$(git grep -l 'std::endl' -- ':(exclude)*.sh' | wc -l)
     assertEquals 5 "$actual"
+
+    QuietRun popd
 }
 
 source /usr/bin/shunit2
