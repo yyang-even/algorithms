@@ -18,7 +18,7 @@ using ArrayType = std::vector<int>;
 auto CountNBits(const unsigned n) {
     ArrayType results = {0};
     for (unsigned i = 1; i <= n; ++i) {
-        results.push_back(i % 2 + results[i / 2]);
+        results.push_back(1 + results[i & (i - 1)]);
     }
 
     return results;

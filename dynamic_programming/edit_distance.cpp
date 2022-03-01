@@ -35,9 +35,9 @@ EditDistance(const std::string_view str1, const std::string_view str2) {
             } else if (str1[i - 1] == str2[j - 1]) {
                 min_distances[i][j] = min_distances[i - 1][j - 1];
             } else {
-                min_distances[i][j] = 1 + std::min(min_distances[i][j - 1],                 // Insert
-                                                   std::min(min_distances[i - 1][j],        // Remove
-                                                            min_distances[i - 1][j - 1]));  // Replace
+                min_distances[i][j] = 1 + std::min({min_distances[i][j - 1],        // Insert
+                                                    min_distances[i - 1][j],        // Remove
+                                                    min_distances[i - 1][j - 1]});  // Replace
             }
         }
     }
@@ -61,10 +61,9 @@ EditDistance_SpaceOptimized(const std::string_view str1, const std::string_view 
             } else if (str1[i - 1] == str2[j - 1]) {
                 min_distances[current_row][j] = min_distances[1 - current_row][j - 1];
             } else {
-                min_distances[current_row][j] = 1 + std::min(
-                                                    std::min(min_distances[current_row][j - 1], // Insert
-                                                             min_distances[1 - current_row][j]), // Remove
-                                                    min_distances[1 - current_row][j - 1]);     // Replace
+                min_distances[current_row][j] = 1 + std::min({min_distances[current_row][j - 1],        // Insert
+                                                              min_distances[1 - current_row][j],        // Remove
+                                                              min_distances[1 - current_row][j - 1]});  // Replace
             }
         }
     }
@@ -98,10 +97,9 @@ unsigned EditDistance_Memoization(const std::string_view str1,
                    EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances);
     }
 
-    return min_distances[i][j] = 1 + std::min(
-                                     std::min(EditDistance_Memoization(str1, i, str2, j - 1, min_distances),    // Insert
-                                              EditDistance_Memoization(str1, i - 1, str2, j, min_distances)),    // Remove
-                                     EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances));        // Replace
+    return min_distances[i][j] = 1 + std::min({EditDistance_Memoization(str1, i, str2, j - 1, min_distances),       // Insert
+                                               EditDistance_Memoization(str1, i - 1, str2, j, min_distances),       // Remove
+                                               EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances)}); // Replace
 }
 
 inline auto

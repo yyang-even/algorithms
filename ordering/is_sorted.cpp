@@ -123,7 +123,7 @@ auto LongestTurbulentSubarray(const ArrayType &nums) {
             length_greater = 1;
         }
 
-        result = std::max(result, std::max(length_smaller, length_greater));
+        result = std::max({result, length_smaller, length_greater});
     }
 
     return result;

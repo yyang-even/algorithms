@@ -80,14 +80,45 @@ inline auto Rotate90Degree_Clockwise_Group(MatrixType square_matrix) {
     return Rotate90Degree_Group(std::move(square_matrix), rotateGroup90Degree_Clockwise);
 }
 
+
+/**
+ * @reference   Determine Whether Matrix Can Be Obtained By Rotation
+ *              https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/
+ *
+ * Given two n x n binary matrices mat and target, return true if it is possible to make
+ * mat equal to target by rotating mat in 90-degree increments, or false otherwise.
+ */
+auto areRotation(const MatrixType &one, const MatrixType &target) {
+    const auto N = one.size();
+    std::vector results(4, true);
+    for (std::size_t i = 0; i < N; ++i) {
+        for (std::size_t j = 0; j < N; ++j) {
+            if (one[i][j] != target[i][j]) {
+                results[0] = false;
+            }
+            if (one[i][j] != target[N - j - 1][i]) {
+                results[1] = false;
+            }
+            if (one[i][j] != target[N - i - 1][N - j - 1]) {
+                results[2] = false;
+            }
+            if (one[i][j] != target[j][N - i - 1]) {
+                results[3] = false;
+            }
+        }
+    }
+
+    return results[0] or results[1] or results[2] or results[3];
+}
+
 }//namespace
 
 
 const MatrixType SAMPLE1 = {
-    { 1, 2, 3, 4 },
-    { 5, 6, 7, 8 },
-    { 9, 10, 11, 12 },
-    { 13, 14, 15, 16 }
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12},
+    {13, 14, 15, 16}
 };
 const MatrixType EXPECTED_A1 = {
     {4, 8, 12, 16},
@@ -113,7 +144,7 @@ const MatrixType EXPECTED_A2 = {
     {1, 4, 7}
 };
 const MatrixType EXPECTED_C2 = {
-    { 7, 4, 1 },
+    {7, 4, 1},
     {8, 5, 2},
     {9, 6, 3},
 };
@@ -147,3 +178,8 @@ THE_BENCHMARK(Rotate90Degree_Clockwise_Transpose, SAMPLE1);
 SIMPLE_TEST(Rotate90Degree_Clockwise_Transpose, TestSAMPLE1, EXPECTED_C1, SAMPLE1);
 SIMPLE_TEST(Rotate90Degree_Clockwise_Transpose, TestSAMPLE2, EXPECTED_C2, SAMPLE2);
 SIMPLE_TEST(Rotate90Degree_Clockwise_Transpose, TestSAMPLE3, SAMPLE3, SAMPLE3);
+
+
+THE_BENCHMARK(areRotation, SAMPLE1, EXPECTED_A1);
+
+SIMPLE_TEST(areRotation, TestSAMPLE1, true, EXPECTED_A1, SAMPLE1);

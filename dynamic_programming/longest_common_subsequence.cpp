@@ -160,9 +160,8 @@ LongestCommonSubsequenceOfThree(const std::string_view X,
                 if (X[i - 1] == Y[j - 1] and Y[j - 1] == Z[k - 1]) {
                     LCS_table[i][j][k] = LCS_table[i - 1][j - 1][k - 1] + 1;
                 } else
-                    LCS_table[i][j][k] = std::max(std::max(LCS_table[i - 1][j][k],
-                                                           LCS_table[i][j - 1][k]),
-                                                  LCS_table[i][j][k - 1]);
+                    LCS_table[i][j][k] =
+                        std::max({LCS_table[i - 1][j][k], LCS_table[i][j - 1][k], LCS_table[i][j][k - 1]});
             }
         }
     }
@@ -191,11 +190,9 @@ unsigned LongestCommonSubsequenceOfThree_Memoization(
                                                        X, x_i - 1, Y, y_i - 1, Z, z_i - 1, LCS_table);
         } else
             LCS_table[x_i - 1][y_i - 1][z_i - 1] =
-                std::max(
-                    std::max(
-                        LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i - 1, Z, z_i, LCS_table),
-                        LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i, Z, z_i, LCS_table)),
-                    LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i, Z, z_i - 1, LCS_table));
+                std::max({LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i - 1, Z, z_i, LCS_table),
+                          LongestCommonSubsequenceOfThree_Memoization(X, x_i - 1, Y, y_i, Z, z_i, LCS_table),
+                          LongestCommonSubsequenceOfThree_Memoization(X, x_i, Y, y_i, Z, z_i - 1, LCS_table)});
     }
 
     return LCS_table[x_i - 1][y_i - 1][z_i - 1];

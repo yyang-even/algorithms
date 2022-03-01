@@ -31,7 +31,7 @@ auto maxCrossingSum(const ArrayType &elements,
         }
     }
 
-    return std::max(std::max(left_sum + right_sum, left_sum), right_sum);
+    return std::max({left_sum + right_sum, left_sum, right_sum});
 }
 
 auto LargestSumContiguousSubarray_DivideAndConquer(const ArrayType &elements,
@@ -42,10 +42,9 @@ auto LargestSumContiguousSubarray_DivideAndConquer(const ArrayType &elements,
 
     const int mid = (low + high) / 2;
 
-    return std::max(
-               std::max(LargestSumContiguousSubarray_DivideAndConquer(elements, low, mid),
-                        LargestSumContiguousSubarray_DivideAndConquer(elements, mid + 1, high)),
-               maxCrossingSum(elements, low, mid, high));
+    return std::max({LargestSumContiguousSubarray_DivideAndConquer(elements, low, mid),
+                     LargestSumContiguousSubarray_DivideAndConquer(elements, mid + 1, high),
+                     maxCrossingSum(elements, low, mid, high)});
 }
 
 inline auto LargestSumContiguousSubarray_DivideAndConquer(const ArrayType &elements) {

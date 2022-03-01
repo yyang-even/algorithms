@@ -139,6 +139,13 @@ inline auto MergeSort_O1(ArrayType values) {
  * @reference   https://www.geeksforgeeks.org/merge-sort-for-linked-list/
  * @reference   C Program for Merge Sort for Linked Lists
  *              https://www.geeksforgeeks.org/c-program-for-merge-sort-for-linked-lists/
+ *
+ * @reference   Sort List
+ *              https://leetcode.com/problems/sort-list/
+ *
+ * Given the head of a linked list, return the list after sorting it in ascending order.
+ * Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e.
+ * constant space)?
  */
 inline void MergeSort_SinglyListHelper(std::forward_list<int> &l) {
     if (not l.empty() and std::next(l.cbegin()) != l.cend()) {

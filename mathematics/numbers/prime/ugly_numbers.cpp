@@ -77,8 +77,8 @@ constexpr auto NthUglyNumber(const unsigned N) {
     unsigned next_multiple_of_5 = 5;
 
     for (unsigned i = 1; i < N; ++i) {
-        const auto next_ugly_number = std::min(next_multiple_of_2,
-                                               std::min(next_multiple_of_3, next_multiple_of_5));
+        const auto next_ugly_number =
+            std::min({next_multiple_of_2, next_multiple_of_3, next_multiple_of_5});
         ugly_numbers[i] = next_ugly_number;
         if (next_ugly_number == next_multiple_of_2) {
             next_multiple_of_2 = ugly_numbers[++i2] * 2;
@@ -234,7 +234,7 @@ auto KthMagicNumber(const unsigned k) {
         const auto fives_front = queue_fives.front();
         const auto sevens_front = queue_sevens.front();
 
-        result = std::min(std::min(threes_front, fives_front), sevens_front);
+        result = std::min({threes_front, fives_front, sevens_front});
         if (result == threes_front) {
             queue_threes.pop();
             queue_threes.push(3 * result);

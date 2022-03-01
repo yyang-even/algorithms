@@ -21,8 +21,7 @@ auto MaxSquare(const MatrixType &grid) {
     for (std::size_t i = 1; i <= grid.size(); ++i) {
         for (std::size_t j = 1; j <= grid.front().size(); ++j) {
             if (grid[i - 1][j - 1] == '1') {
-                dp[i][j] = std::min(std::min(dp[i][j - 1], dp[i - 1][j]),
-                                    dp[i - 1][j - 1]) + 1;
+                dp[i][j] = std::min({dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1]}) + 1;
                 max_square_length = std::max(max_square_length, dp[i][j]);
             }
         }
@@ -41,7 +40,7 @@ auto MaxSquare_DP_On(const MatrixType &grid) {
         for (std::size_t j = 1; j <= grid.front().size(); ++j) {
             const auto temp = dp[j];
             if (grid[i - 1][j - 1] == '1') {
-                dp[j] = std::min(std::min(dp[j - 1], prev), dp[j]) + 1;
+                dp[j] = std::min({dp[j - 1], prev, dp[j]}) + 1;
                 max_square_length = std::max(max_square_length, dp[j]);
             } else {
                 dp[j] = 0;

@@ -362,8 +362,7 @@ auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
 
     for (std::size_t i = 1 ; i <= m ; ++i) {
         for (std::size_t j = 1 ; j <= n ; ++j) {
-            costs[i][j] += std::min(costs[i - 1][j - 1],
-                                    std::min(costs[i - 1][j], costs[i][j - 1]));
+            costs[i][j] += std::min({costs[i - 1][j - 1], costs[i - 1][j], costs[i][j - 1]});
         }
     }
 
