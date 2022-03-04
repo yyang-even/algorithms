@@ -169,6 +169,20 @@ CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &opera
  * 1950 <= birthi < deathi <= 2050
  */
 
+
+/**
+ * @reference   Check if All the Integers in a Range Are Covered
+ *              https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
+ *
+ * You are given a 2D integer array ranges and two integers left and right. Each
+ * ranges[i] = [starti, endi] represents an inclusive interval between starti and endi.
+ * Return true if each integer in the inclusive range [left, right] is covered by at
+ * least one interval in ranges. Return false otherwise.
+ * An integer x is covered by an interval ranges[i] = [starti, endi] if starti <= x <= endi.
+ * 1 <= starti <= endi <= 50
+ * 1 <= left <= right <= 50
+ */
+
 }//namespace
 
 
