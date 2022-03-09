@@ -58,6 +58,34 @@ auto isSortedAndRotated(const ArrayType &nums) {
  * end of the array and place it in the front of the array.
  */
 
+
+/**
+ * @reference   Remove One Element to Make the Array Strictly Increasing
+ *              https://leetcode.com/problems/remove-one-element-to-make-the-array-strictly-increasing/
+ *
+ * Given a 0-indexed integer array nums, return true if it can be made strictly increasing
+ * after removing exactly one element, or false otherwise. If the array is already strictly
+ * increasing, return true.
+ * The array nums is strictly increasing if nums[i - 1] < nums[i] for each index
+ * (1 <= i < nums.length).
+ */
+auto CanBeIncreasing(ArrayType nums) {
+    int violation = 0;
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        if (nums[i - 1] >= nums[i]) {
+            if (violation++ == 1) {
+                return false;
+            }
+
+            if (i > 1 and nums[i - 2] >= nums[i]) {
+                nums[i] = nums[i - 1];
+            }
+        }
+    }
+
+    return true;
+}
+
 }//namespace
 
 
@@ -79,3 +107,17 @@ SIMPLE_TEST(isSortedAndRotated, TestSAMPLE4, false, SAMPLE4);
 SIMPLE_TEST(isSortedAndRotated, TestSAMPLE5, true, SAMPLE5);
 SIMPLE_TEST(isSortedAndRotated, TestSAMPLE6, false, SAMPLE6);
 SIMPLE_TEST(isSortedAndRotated, TestSAMPLE7, false, SAMPLE7);
+
+
+const ArrayType SAMPLE1I = {1, 2, 10, 5, 7};
+const ArrayType SAMPLE2I = {2, 3, 1, 2};
+const ArrayType SAMPLE3I = {1, 1, 1};
+const ArrayType SAMPLE4I = {105, 924, 32, 968};
+
+
+THE_BENCHMARK(CanBeIncreasing, SAMPLE1I);
+
+SIMPLE_TEST(CanBeIncreasing, TestSAMPLE1, true, SAMPLE1I);
+SIMPLE_TEST(CanBeIncreasing, TestSAMPLE2, false, SAMPLE2I);
+SIMPLE_TEST(CanBeIncreasing, TestSAMPLE3, false, SAMPLE3I);
+SIMPLE_TEST(CanBeIncreasing, TestSAMPLE4, true, SAMPLE4I);

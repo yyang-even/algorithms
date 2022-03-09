@@ -10,6 +10,9 @@ compile_test(clock_angle)
 compile_benchmark(convex_hull)
 compile_test(convex_hull)
 
+compile_benchmark(count_square_sum_triples)
+compile_test(count_square_sum_triples)
+
 compile_benchmark(cut_two_squares_in_half)
 compile_test(cut_two_squares_in_half)
 

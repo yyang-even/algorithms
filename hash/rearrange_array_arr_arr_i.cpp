@@ -12,6 +12,15 @@ using ArrayType = std::vector<unsigned>;
  * Given an array arr[] of size n where every element is in range from 0 to n-1.
  * Rearrange the given array so that arr[i] becomes arr[arr[i]]. This should be done
  * with O(1) extra space.
+ *
+ * @reference   Build Array from Permutation
+ *              https://leetcode.com/problems/build-array-from-permutation/
+ *
+ * Given a zero-based permutation nums (0-indexed), build an array ans of the same length
+ * where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
+ * A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1
+ * (inclusive).
+ * Follow-up: Can you solve it without using an extra space (i.e., O(1) memory)?
  */
 auto RearrangeArrayInPlace(ArrayType values) {
     std::transform(values.cbegin(), values.cend(),
@@ -61,12 +70,20 @@ const ArrayType EXPECTED2 = {3, 4, 2, 0, 1};
 const ArrayType SAMPLE3 = {0, 1, 2, 3};
 const ArrayType EXPECTED3 = {0, 1, 2, 3};
 
+const ArrayType SAMPLE4 = {0, 2, 1, 5, 3, 4};
+const ArrayType EXPECTED4 = {0, 1, 2, 4, 5, 3};
+
+const ArrayType SAMPLE5 = {5, 0, 1, 2, 3, 4};
+const ArrayType EXPECTED5 = {4, 5, 0, 1, 2, 3};
+
 
 THE_BENCHMARK(RearrangeArrayInPlace, SAMPLE1);
 
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE3, EXPECTED3, SAMPLE3);
+SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE4, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(RearrangeArrayInPlace, TestSAMPLE5, EXPECTED5, SAMPLE5);
 
 
 const ArrayType SAMPLE1S = {4, 5, 6, 7, 0, 2, 1, 3};

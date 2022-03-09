@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "hash/hash.h"
 #include "data_structure/tree/binary_tree/binary_tree.h"
 #include "data_structure/tree/binary_tree/single_order_to_binary_tree.h"
 
@@ -176,6 +177,92 @@ inline auto HouseRobber_BT(const BinaryTree::Node::PointerType root) {
     return HouseRobber_BT_Helper(root, left, right);
 }
 
+
+/**
+ * @reference   Delete and Earn
+ *              https://leetcode.com/problems/delete-and-earn/
+ *
+ * You are given an integer array nums. You want to maximize the number of points you get
+ * by performing the following operation any number of times:
+ *  Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete
+ *      every element equal to nums[i] - 1 and every element equal to nums[i] + 1.
+ * Return the maximum number of points you can earn by applying the above operation some
+ * number of times.
+ * 1 <= nums[i] <= 10^4
+ */
+constexpr int N = 10001;
+
+auto DeleteAndEarn_Memo(const ArrayType &counts, const int i, ArrayType &memo) {
+    if (i < 0) {
+        return 0;
+    }
+
+    if (memo[i] >= 0) {
+        return memo[i];
+    }
+
+    if (counts[i])
+        return memo[i] = std::max(DeleteAndEarn_Memo(counts, i - 2, memo) + counts[i] * i,
+                                  DeleteAndEarn_Memo(counts, i - 1, memo));
+    else {
+        return memo[i] = DeleteAndEarn_Memo(counts, i - 1, memo);
+    }
+}
+
+inline auto DeleteAndEarn_Memo(const ArrayType &nums) {
+    ArrayType counts(N, 0);
+    for (const auto n : nums) {
+        ++counts[n];
+    }
+
+    ArrayType memo(N, -1);
+    return DeleteAndEarn_Memo(counts, N - 1, memo);
+}
+
+
+auto DeleteAndEarn_DP(const ArrayType &nums) {
+    ArrayType counts(N, 0);
+    for (const auto n : nums) {
+        ++counts[n];
+    }
+
+    auto two_back = 0;
+    auto one_back = counts[1];
+    for (int i = 2; i < N; ++i) {
+        const auto temp = one_back;
+        one_back = std::max(one_back, two_back + counts[i] * i);
+        two_back = temp;
+    }
+
+    return one_back;
+}
+
+
+auto DeleteAndEarn_Sort(const ArrayType &nums) {
+    const auto counts = ToFrequencyHashTable(nums);
+
+    ArrayType unique_nums;
+    for (const auto [key, _] : counts) {
+        unique_nums.push_back(key);
+    }
+    std::sort(unique_nums.begin(), unique_nums.end());
+
+    std::size_t two_back = 0;
+    std::size_t one_back = counts.at(unique_nums.front()) * unique_nums.front();
+    for (std::size_t i = 1; i < unique_nums.size(); ++i) {
+        const auto temp = one_back;
+        const auto point = counts.at(unique_nums[i]) * unique_nums[i];
+        if (unique_nums[i] == unique_nums[i - 1] + 1) {
+            one_back = std::max(one_back, two_back + point);
+        } else {
+            one_back += point;
+        }
+        two_back = temp;
+    }
+
+    return one_back;
+}
+
 }//namespace
 
 
@@ -242,3 +329,25 @@ SIMPLE_TEST(HouseRobber_Tree_Pair, TestSAMPLE1, 7, SAMPLE1T);
 THE_BENCHMARK(HouseRobber_BT, SAMPLE1T);
 
 SIMPLE_TEST(HouseRobber_BT, TestSAMPLE1, 7, SAMPLE1T);
+
+
+const ArrayType SAMPLE1D = {3, 4, 2};
+const ArrayType SAMPLE2D = {2, 2, 3, 3, 3, 4};
+
+
+THE_BENCHMARK(DeleteAndEarn_Memo, SAMPLE1D);
+
+SIMPLE_TEST(DeleteAndEarn_Memo, TestSAMPLE1, 6, SAMPLE1D);
+SIMPLE_TEST(DeleteAndEarn_Memo, TestSAMPLE2, 9, SAMPLE2D);
+
+
+THE_BENCHMARK(DeleteAndEarn_DP, SAMPLE1D);
+
+SIMPLE_TEST(DeleteAndEarn_DP, TestSAMPLE1, 6, SAMPLE1D);
+SIMPLE_TEST(DeleteAndEarn_DP, TestSAMPLE2, 9, SAMPLE2D);
+
+
+THE_BENCHMARK(DeleteAndEarn_Sort, SAMPLE1D);
+
+SIMPLE_TEST(DeleteAndEarn_Sort, TestSAMPLE1, 6, SAMPLE1D);
+SIMPLE_TEST(DeleteAndEarn_Sort, TestSAMPLE2, 9, SAMPLE2D);
