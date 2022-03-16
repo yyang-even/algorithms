@@ -17,3 +17,6 @@ compile_test(min_stack)
 compile_test(sort_stack)
 
 compile_test(stack)
+
+compile_benchmark(validate_stack_sequences)
+compile_test(validate_stack_sequences)

@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "perfect_square.h"
+#include "prime/is_prime.h"
 
 
 namespace {
@@ -150,6 +151,19 @@ inline constexpr auto hasSquareSum_Fermat(int c) {
     return c % 4 != 3;
 }
 
+
+/**
+ * @reference   Three Divisors
+ *              https://leetcode.com/problems/three-divisors/
+ *
+ * Given an integer n, return true if n has exactly three positive divisors. Otherwise,
+ * return false.
+ * An integer m is a divisor of n if there exists an integer k such that n = k * m.
+ */
+inline constexpr auto HasThreeDivisors(const int n) {
+    return IsPerfectSquare(n) and IsPrime_OptimizedSchoolMethod(std::sqrt(n));
+}
+
 }//namespace
 
 
@@ -216,3 +230,11 @@ SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE2, false, 3);
 SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE3, true, 4);
 SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE4, true, 2);
 SIMPLE_TEST(hasSquareSum_Fermat, TestSAMPLE5, true, 1);
+
+
+THE_BENCHMARK(HasThreeDivisors, 100);
+
+SIMPLE_TEST(HasThreeDivisors, TestSAMPLE1, true, 4);
+SIMPLE_TEST(HasThreeDivisors, TestSAMPLE2, false, 2);
+SIMPLE_TEST(HasThreeDivisors, TestSAMPLE3, false, 1);
+SIMPLE_TEST(HasThreeDivisors, TestSAMPLE4, false, 100);
