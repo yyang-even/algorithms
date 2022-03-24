@@ -91,6 +91,31 @@ inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
 
 
 /**
+ * @reference   Delete Characters to Make Fancy String
+ *              https://leetcode.com/problems/delete-characters-to-make-fancy-string/
+ *
+ * A fancy string is a string where no three consecutive characters are equal.
+ * Given a string s, delete the minimum possible number of characters from s to make it
+ * fancy.
+ * Return the final string after the deletion. It can be shown that the answer will always
+ * be unique.
+ */
+auto MakeFancyString(std::string s) {
+    std::size_t i = 1;
+    for (std::size_t j = 2; j < s.size(); ++j) {
+        if (s[j] != s[i] or s[i] != s[i - 1]) {
+            s[++i] = s[j];
+        }
+    }
+
+    if (i < s.size()) {
+        s.resize(i + 1);
+    }
+    return s;
+}
+
+
+/**
  * @reference   Remove Duplicates from Sorted Array
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  *
@@ -680,3 +705,11 @@ THE_BENCHMARK(DistributeCandies, SAMPLE2C);
 SIMPLE_TEST(DistributeCandies, TestSAMPLE1, 3, SAMPLE1C);
 SIMPLE_TEST(DistributeCandies, TestSAMPLE2, 2, SAMPLE2C);
 SIMPLE_TEST(DistributeCandies, TestSAMPLE3, 1, SAMPLE3C);
+
+
+THE_BENCHMARK(MakeFancyString, "leeetcode");
+
+SIMPLE_TEST(MakeFancyString, TestSAMPLE1, "leetcode", "leeetcode");
+SIMPLE_TEST(MakeFancyString, TestSAMPLE2, "aabaa", "aaabaaaa");
+SIMPLE_TEST(MakeFancyString, TestSAMPLE3, "aab", "aab");
+SIMPLE_TEST(MakeFancyString, TestSAMPLE4, "b", "b");

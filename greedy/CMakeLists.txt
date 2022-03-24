@@ -37,6 +37,9 @@ compile_test(jump_game)
 compile_benchmark(max_sum_after_k_negations)
 compile_test(max_sum_after_k_negations)
 
+compile_benchmark(min_domino_rotations_for_equal_row)
+compile_test(min_domino_rotations_for_equal_row)
+
 compile_benchmark(min_operations_to_make_array_increasing)
 compile_test(min_operations_to_make_array_increasing)
 
