@@ -85,6 +85,89 @@ auto RemoveOuterParentheses(const std::string_view s) {
     return result;
 }
 
+
+/**
+ * @reference   Minimum Remove to Make Valid Parentheses
+ *              https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+ *
+ * Given a string s of '(' , ')' and lowercase English characters.
+ * Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions )
+ * so that the resulting parentheses string is valid and return any valid string.
+ * Formally, a parentheses string is valid if and only if:
+ *  It is the empty string, contains only lowercase characters, or
+ *  It can be written as AB (A concatenated with B), where A and B are valid strings, or
+ *  It can be written as (A), where A is a valid string.
+ */
+auto MakeValidParentheses_Stack(std::string s) {
+    std::stack<std::size_t> opens;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        if (s[i] == '(') {
+            opens.push(i);
+        } else if (s[i] == ')') {
+            if (not opens.empty()) {
+                opens.pop();
+            } else {
+                s[i] = '*';
+            }
+        }
+    }
+
+    while (not opens.empty()) {
+        s[opens.top()] = '*';
+        opens.pop();
+    }
+
+    s.erase(std::remove(s.begin(), s.end(), '*'), s.end());
+    return s;
+}
+
+
+/**
+ * @reference   Score of Parentheses
+ *              https://leetcode.com/problems/score-of-parentheses/
+ *
+ * Given a balanced parentheses string s, return the score of the string.
+ *
+ * The score of a balanced parentheses string is based on the following rule:
+ *  "()" has score 1.
+ *  AB has score A + B, where A and B are balanced parentheses strings.
+ *  (A) has score 2 * A, where A is a balanced parentheses string.
+ */
+auto ScoreOfParentheses_Stack(const std::string_view s) {
+    std::stack<int> scores;
+    scores.push(0);
+
+    for (const auto c : s) {
+        if (c == '(') {
+            scores.push(0);
+        } else {
+            const auto curr = scores.top();
+            scores.pop();
+            scores.top() += std::max(curr * 2, 1);
+        }
+    }
+
+    return scores.top();
+}
+
+
+constexpr auto ScoreOfParentheses(const std::string_view s) {
+    int result = 0;
+    int open = 0;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        if (s[i] == '(') {
+            ++open;
+        } else {
+            --open;
+            if (s[i - 1] == '(') {
+                result += 1 << open;
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -107,3 +190,28 @@ THE_BENCHMARK(RemoveOuterParentheses, "(()())(())");
 SIMPLE_TEST(RemoveOuterParentheses, TestSAMPLE1, "()()()", "(()())(())");
 SIMPLE_TEST(RemoveOuterParentheses, TestSAMPLE2, "()()()()(())", "(()())(())(()(()))");
 SIMPLE_TEST(RemoveOuterParentheses, TestSAMPLE3, "", "()()");
+
+
+THE_BENCHMARK(MakeValidParentheses_Stack, "lee(t(c)o)de)");
+
+SIMPLE_TEST(MakeValidParentheses_Stack, TestSAMPLE1, "lee(t(c)o)de", "lee(t(c)o)de)");
+SIMPLE_TEST(MakeValidParentheses_Stack, TestSAMPLE2, "ab(c)d", "a)b(c)d");
+SIMPLE_TEST(MakeValidParentheses_Stack, TestSAMPLE3, "", "))((");
+SIMPLE_TEST(MakeValidParentheses_Stack, TestSAMPLE4, "a(b(c)d)", "(a(b(c)d)");
+SIMPLE_TEST(MakeValidParentheses_Stack, TestSAMPLE5, "()()", "())()(((");
+
+
+THE_BENCHMARK(ScoreOfParentheses_Stack, "(()(()))");
+
+SIMPLE_TEST(ScoreOfParentheses_Stack, TestSAMPLE1, 6, "(()(()))");
+SIMPLE_TEST(ScoreOfParentheses_Stack, TestSAMPLE2, 1, "()");
+SIMPLE_TEST(ScoreOfParentheses_Stack, TestSAMPLE3, 2, "(())");
+SIMPLE_TEST(ScoreOfParentheses_Stack, TestSAMPLE4, 2, "()()");
+
+
+THE_BENCHMARK(ScoreOfParentheses, "(()(()))");
+
+SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE1, 6, "(()(()))");
+SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE2, 1, "()");
+SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE3, 2, "(())");
+SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE4, 2, "()()");

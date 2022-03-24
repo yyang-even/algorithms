@@ -7,8 +7,14 @@ compile_test(array_of_doubled_pairs)
 compile_benchmark(assign_cookies)
 compile_test(assign_cookies)
 
+compile_benchmark(boats_to_save_people)
+compile_test(boats_to_save_people)
+
 compile_benchmark(break_a_palindrome)
 compile_test(break_a_palindrome)
+
+compile_benchmark(broken_calculator)
+compile_test(broken_calculator)
 
 compile_benchmark(candy)
 compile_test(candy)
@@ -46,8 +52,14 @@ compile_test(patching_array)
 compile_benchmark(reduce_array_size_to_half)
 compile_test(reduce_array_size_to_half)
 
+compile_benchmark(remove_duplicate_letters)
+compile_test(remove_duplicate_letters)
+
 compile_benchmark(remove_k_digits)
 compile_test(remove_k_digits)
+
+compile_benchmark(smallest_str_with_given_value)
+compile_test(smallest_str_with_given_value)
 
 compile_benchmark(task_scheduling)
 compile_test(task_scheduling)

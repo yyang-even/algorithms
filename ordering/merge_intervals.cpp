@@ -122,6 +122,40 @@ auto RemoveCoveredIntervals(ArrayType intervals) {
     return result;
 }
 
+
+/**
+ * @reference   Partition Labels
+ *              https://leetcode.com/problems/partition-labels/
+ *
+ * You are given a string s. We want to partition the string into as many parts as possible
+ * so that each letter appears in at most one part.
+ * Note that the partition is done so that after concatenating all the parts in order, the
+ * resultant string should be s.
+ * Return a list of integers representing the size of these parts.
+ * s consists of lowercase English letters.
+ */
+auto PartitionLabels(const std::string_view s) {
+    std::size_t last[256] = {};
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        const int c = s[i];
+        last[c] = i;
+    }
+
+    std::size_t start = 0;
+    std::size_t end = 0;
+    std::vector<int> result;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        const int c = s[i];
+        end = std::max(end, last[c]);
+        if (i == end) {
+            result.push_back(i + 1 - start);
+            start = i + 1;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -191,3 +225,13 @@ THE_BENCHMARK(RemoveCoveredIntervals, SAMPLE1R);
 SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE1, 2, SAMPLE1R);
 SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE2, 1, SAMPLE2R);
 SIMPLE_TEST(RemoveCoveredIntervals, TestSAMPLE3, 2, SAMPLE3R);
+
+
+const std::vector EXPECTED1L = {9, 7, 8};
+const std::vector EXPECTED2L = {10};
+
+
+THE_BENCHMARK(PartitionLabels, "ababcbacadefegdehijhklij");
+
+SIMPLE_TEST(PartitionLabels, TestSAMPLE1, EXPECTED1L, "ababcbacadefegdehijhklij");
+SIMPLE_TEST(PartitionLabels, TestSAMPLE2, EXPECTED2L, "eccbbbbdec");
