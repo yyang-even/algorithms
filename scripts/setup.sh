@@ -21,13 +21,11 @@ echo "Setting up project \"$PROJECT_NAME\"."
 
 ./scripts/bootstrap.sh
 
-mkdir build
+mkdir -p build
 pushd build
 cmake ..
 make -j2
 popd
 
 ../yyLinuxConfig/scripts/setup_ctags_for.sh
-
-./scripts/open_reference_urls.sh
 QuietRun popd
