@@ -67,5 +67,8 @@ compile_test(smallest_str_with_given_value)
 compile_benchmark(task_scheduling)
 compile_test(task_scheduling)
 
+compile_benchmark(two_city_scheduling)
+compile_test(two_city_scheduling)
+
 compile_benchmark(valid_triangle_number)
 compile_test(valid_triangle_number)
