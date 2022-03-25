@@ -27,5 +27,5 @@ cmake ..
 make -j2
 popd
 
-../yyLinuxConfig/scripts/setup_ctags_for.sh
+../config-sh/scripts/setup_ctags_for.sh
 QuietRun popd
