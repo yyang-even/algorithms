@@ -3,6 +3,8 @@
 #include "graph.h"
 #include "topological_sort.h"
 
+#include "data_structure/disjoint_set.h"
+
 
 using namespace graph;
 
@@ -60,6 +62,33 @@ inline auto isReachable(const std::size_t number_vertices,
     [source, destination](const auto & graph) {
         return isReachable(graph, source, destination);
     });
+}
+
+
+/**
+ * @reference   Find if Path Exists in Graph
+ *              https://leetcode.com/problems/find-if-path-exists-in-graph/
+ *
+ * There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to
+ * n - 1 (inclusive). The edges in the graph are represented as a 2D integer array edges,
+ * where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex
+ * vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to
+ * itself.
+ * You want to determine if there is a valid path that exists from vertex source to vertex
+ * destination.
+ * Given edges and the integers n, source, and destination, return true if there is a valid
+ * path from source to destination, or false otherwise.
+ */
+auto isReachable_DisjointSet(const std::size_t number_vertices,
+                             const UndirectedEdgeArrayType &edges,
+                             const std::size_t source, const std::size_t destination) {
+    DisjointSet_Array disjoint_set{number_vertices};
+
+    for (const auto &an_edge : edges) {
+        disjoint_set.Union(an_edge.u, an_edge.v);
+    }
+
+    return disjoint_set.Find(source) == disjoint_set.Find(destination);
 }
 
 
@@ -139,6 +168,16 @@ THE_BENCHMARK(isReachable, 4, SAMPLE1, 1, 3);
 
 SIMPLE_TEST(isReachable, TestSAMPLE1, true, 4, SAMPLE1, 1, 3);
 SIMPLE_TEST(isReachable, TestSAMPLE2, false, 4, SAMPLE1, 3, 1);
+
+
+const UndirectedEdgeArrayType SAMPLE1U = {{0, 1}, {1, 2}, {2, 0}};
+const UndirectedEdgeArrayType SAMPLE2U = {{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}};
+
+
+THE_BENCHMARK(isReachable_DisjointSet, 3, SAMPLE1U, 0, 2);
+
+SIMPLE_TEST(isReachable_DisjointSet, TestSAMPLE1, true, 3, SAMPLE1U, 0, 2);
+SIMPLE_TEST(isReachable_DisjointSet, TestSAMPLE2, false, 6, SAMPLE1U, 0, 5);
 
 
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {2, 3}, {3, 4}};

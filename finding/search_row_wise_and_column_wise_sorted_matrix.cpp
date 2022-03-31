@@ -9,6 +9,38 @@ using ResultType = std::pair<int, int>;
 
 const ResultType NOT_FOUND = {-1, -1};
 
+/**
+ * @reference   Search a 2D Matrix
+ *              https://leetcode.com/problems/search-a-2d-matrix/
+ *
+ * Write an efficient algorithm that searches for a value target in an m x n integer matrix
+ * matrix. This matrix has the following properties:
+ *  Integers in each row are sorted from left to right.
+ *  The first integer of each row is greater than the last integer of the previous row.
+ */
+auto SearchSortedMatrix(const MatrixType &a_matrix, const int target) {
+    const int M = a_matrix.size();
+    const int N = a_matrix.front().size();
+    int left = 0;
+    int right = M * N - 1;
+
+    while (left <= right) {
+        const auto mid = (left + right) / 2;
+        const auto x = mid / N;
+        const auto y = mid % N;
+        if (target == a_matrix[x][y]) {
+            return true;
+        } else if (target < a_matrix[x][y]) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return false;
+}
+
+
 /** Search in a row wise and column wise sorted matrix
  *
  * @reference   https://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/
@@ -19,6 +51,14 @@ const ResultType NOT_FOUND = {-1, -1};
  * present in it. Otherwise, print "Not Found". In the given matrix, every row and column
  * is sorted in increasing order. The designed algorithm should have linear time
  * complexity.
+ *
+ * @reference   Search a 2D Matrix II
+ *              https://leetcode.com/problems/search-a-2d-matrix-ii/
+ *
+ * Write an efficient algorithm that searches for a value target in an m x n integer matrix
+ * matrix. This matrix has the following properties:
+ *  Integers in each row are sorted in ascending from left to right.
+ *  Integers in each column are sorted in ascending from top to bottom.
  */
 ResultType SearchMatrix(const MatrixType &a_matrix, const int key) {
     assert(not a_matrix.empty());
@@ -115,6 +155,13 @@ const MatrixType SAMPLE1 = {
     {32, 33, 39, 50}
 };
 
+const MatrixType SAMPLE2 = {
+    {1, 3, 5, 7},
+    {10, 11, 16, 20},
+    {23, 30, 34, 60}
+};
+
+
 constexpr ResultType EXPECTED1 = {2, 1};
 constexpr ResultType EXPECTED2 = {0, 0};
 constexpr ResultType EXPECTED3 = {1, 2};
@@ -128,6 +175,7 @@ SIMPLE_TEST(SearchMatrix, TestSAMPLE2, EXPECTED2, SAMPLE1, 10);
 SIMPLE_TEST(SearchMatrix, TestSAMPLE3, EXPECTED3, SAMPLE1, 35);
 SIMPLE_TEST(SearchMatrix, TestSAMPLE4, EXPECTED4, SAMPLE1, 50);
 SIMPLE_TEST(SearchMatrix, TestSAMPLE5, NOT_FOUND, SAMPLE1, 100);
+SIMPLE_TEST(SearchMatrix, TestSAMPLE6, EXPECTED3, SAMPLE2, 16);
 
 
 THE_BENCHMARK(SearchMatrix_BinarySearch, SAMPLE1, 29);
@@ -137,3 +185,10 @@ SIMPLE_TEST(SearchMatrix_BinarySearch, TestSAMPLE2, EXPECTED2, SAMPLE1, 10);
 SIMPLE_TEST(SearchMatrix_BinarySearch, TestSAMPLE3, EXPECTED3, SAMPLE1, 35);
 SIMPLE_TEST(SearchMatrix_BinarySearch, TestSAMPLE4, EXPECTED4, SAMPLE1, 50);
 SIMPLE_TEST(SearchMatrix_BinarySearch, TestSAMPLE5, NOT_FOUND, SAMPLE1, 100);
+SIMPLE_TEST(SearchMatrix_BinarySearch, TestSAMPLE6, EXPECTED3, SAMPLE2, 16);
+
+
+THE_BENCHMARK(SearchSortedMatrix, SAMPLE2, 29);
+
+SIMPLE_TEST(SearchSortedMatrix, TestSAMPLE1, true, SAMPLE2, 3);
+SIMPLE_TEST(SearchSortedMatrix, TestSAMPLE2, false, SAMPLE2, 13);

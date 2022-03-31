@@ -130,6 +130,9 @@ compile_test(remove_boxes)
 compile_benchmark(rod_cutting)
 compile_test(rod_cutting)
 
+compile_benchmark(split_array_largest_sum)
+compile_test(split_array_largest_sum)
+
 compile_benchmark(stock_buy_sell)
 compile_test(stock_buy_sell)
 
