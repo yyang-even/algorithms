@@ -806,9 +806,9 @@ public:
 };
 
 
-template <typename ArrayType, typename FunctionType>
+template <typename ArrayType, typename FunctionType, typename... Args>
 static inline constexpr auto
-TestHelper(const ArrayType &array, const FunctionType function) {
+TestHelper(const FunctionType function, const ArrayType &array, Args &&... args) {
     const auto head = SinglyLinkedList{array}.GetHead();
-    return CopyToArray(function(head));
+    return CopyToArray(function(head, std::forward<Args>(args)...));
 }

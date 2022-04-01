@@ -2,6 +2,8 @@
 
 #include "sublist_rotation.h"
 
+#include "data_structure/linked_list/singly_list/singly_linked_list.h"
+
 
 namespace {
 
@@ -202,6 +204,40 @@ inline auto LeftRotate_SinglyList(std::forward_list<int> elements,
  */
 
 
+/**
+ * @reference   Rotate List
+ *              https://leetcode.com/problems/rotate-list/
+ *
+ * Given the head of a linked list, rotate the list to the right by k places.
+ */
+inline auto RotateRight(const SinglyLinkedList::Node::PointerType head, int k) {
+    if (not head) {
+        return head;
+    }
+
+    int length = 1;
+    auto tail = head;
+
+    while (tail->next) {
+        tail = tail->next;
+        ++length;
+    }
+    tail->next = head;
+
+    k = length - k % length;
+    if (k != length) {
+        for (int i = 0; i < k; ++i) {
+            tail = tail->next;
+        }
+    }
+
+    const auto new_head = tail->next;
+    tail->next = nullptr;
+
+    return new_head;
+}
+
+
 /** Rotate Doubly linked list by N nodes
  *
  * @reference   https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/
@@ -399,3 +435,9 @@ THE_BENCHMARK(StrShifts, "abcdefg", SAMPLE3S);
 SIMPLE_TEST(StrShifts, TestSample1, "cab", "abc", SAMPLE1S);
 SIMPLE_TEST(StrShifts, TestSample2, "bca", "abc", SAMPLE2S);
 SIMPLE_TEST(StrShifts, TestSample3, "efgabcd", "abcdefg", SAMPLE3S);
+
+
+SIMPLE_TEST(TestHelper, TestRightRotateSample1, ExpectedArrayR1,
+            RotateRight, SampleArray3, 3);
+SIMPLE_TEST(TestHelper, TestRightRotateSample2, ExpectedArrayR2,
+            RotateRight, SampleArray4, 2);

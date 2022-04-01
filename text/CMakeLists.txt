@@ -70,6 +70,9 @@ compile_test(max_score_after_splitting_str)
 compile_benchmark(min_distance_between_words)
 compile_test(min_distance_between_words)
 
+compile_benchmark(min_time_to_type_word_using_special_typewriter)
+compile_test(min_time_to_type_word_using_special_typewriter)
+
 compile_benchmark(minimum_window_substring)
 compile_test(minimum_window_substring)
 
