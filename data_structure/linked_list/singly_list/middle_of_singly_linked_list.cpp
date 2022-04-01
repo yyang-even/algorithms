@@ -129,7 +129,7 @@ auto ReorderList(const SinglyLinkedList::Node::PointerType head) {
 }
 
 inline auto testReorderList(const ArrayType &array) {
-    return TestHelper(array, ReorderList);
+    return TestHelper(ReorderList, array);
 }
 
 }//namespace

@@ -31,7 +31,7 @@ auto SwapPairs(const SinglyLinkedList::Node::PointerType head) {
 }
 
 inline auto testSwapPairs(const ArrayType &array) {
-    return TestHelper(array, SwapPairs);
+    return TestHelper(SwapPairs, array);
 }
 
 }//namespace

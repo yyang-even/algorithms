@@ -83,8 +83,7 @@ auto ReverseSublist(const SinglyLinkedList::Node::PointerType head,
 
 inline auto
 testReverseSublist(const ArrayType &array, const int left, const int right) {
-    const auto head = SinglyLinkedList{array}.GetHead();
-    return CopyToArray(ReverseSublist(head, left, right));
+    return TestHelper(ReverseSublist, array, left, right);
 }
 
 
@@ -224,8 +223,7 @@ template <typename ReverseGroups>
 inline constexpr auto
 testReverseNodesInGroups(const ReverseGroups reverse_groups,
                          const ArrayType &array, const int K) {
-    const auto head = SinglyLinkedList{array}.GetHead();
-    return CopyToArray(reverse_groups(head, K));
+    return TestHelper(reverse_groups, array, K);
 }
 
 
