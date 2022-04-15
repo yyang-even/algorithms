@@ -133,6 +133,69 @@ auto NumberSpecials(const MatrixType &mat) {
     return result;
 }
 
+
+/**
+ * @reference   Game of Life
+ *              https://leetcode.com/problems/game-of-life/
+ *
+ * According to Wikipedia's article: "The Game of Life, also known simply as Life, is a
+ * cellular automaton devised by the British mathematician John Horton Conway in 1970."
+ * The board is made up of an m x n grid of cells, where each cell has an initial state:
+ * live (represented by a 1) or dead (represented by a 0). Each cell interacts with its
+ * eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken
+ * from the above Wikipedia article):
+ *  Any live cell with fewer than two live neighbors dies as if caused by under-population.
+ *  Any live cell with two or three live neighbors lives on to the next generation.
+ *  Any live cell with more than three live neighbors dies, as if by over-population.
+ *  Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+ * The next state is created by applying the above rules simultaneously to every cell in
+ * the current state, where births and deaths occur simultaneously. Given the current state
+ * of the m x n grid board, return the next state.
+ * Follow up:
+ * Could you solve it in-place? Remember that the board needs to be updated simultaneously:
+ * You cannot update some cells first and then use their updated values to update other cells.
+ * In this question, we represent the board using a 2D array. In principle, the board is
+ * infinite, which would cause problems when the active area encroaches upon the border of
+ * the array (i.e., live cells reach the border). How would you address these problems?
+ */
+auto LiveNeighbors(const MatrixType &board, const int i, const int j) {
+    const int M = board.size();
+    const int N = board.front().size();
+
+    int result = 0;
+    for (int x = std::max(i - 1, 0); x <= std::min(i + 1, M - 1); ++x) {
+        for (int y = std::max(j - 1, 0); y <= std::min(j + 1, N - 1); ++y) {
+            result += board[x][y] & 1;
+        }
+    }
+    result -= board[i][j] & 1;
+
+    return result;
+}
+
+auto GameOfLife(MatrixType board) {
+    const int M = board.size();
+    const int N = board.front().size();
+
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            const auto live_neighbors = LiveNeighbors(board, i, j);
+
+            if ((live_neighbors == 3) or (live_neighbors == 2 and board[i][j])) {
+                board[i][j] |= 0b10;
+            }
+        }
+    }
+
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            board[i][j] >>= 1;
+        }
+    }
+
+    return board;
+}
+
 }//namespace
 
 
@@ -188,3 +251,32 @@ THE_BENCHMARK(NumberSpecials, SAMPLE1S);
 
 SIMPLE_TEST(NumberSpecials, TestSAMPLE1, 1, SAMPLE1S);
 SIMPLE_TEST(NumberSpecials, TestSAMPLE2, 3, SAMPLE2S);
+
+
+const MatrixType SAMPLE1L = {
+    {0, 1, 0},
+    {0, 0, 1},
+    {1, 1, 1},
+    {0, 0, 0}
+};
+const MatrixType EXPECTED1L = {
+    {0, 0, 0},
+    {1, 0, 1},
+    {0, 1, 1},
+    {0, 1, 0}
+};
+
+const MatrixType SAMPLE2L = {
+    {1, 1},
+    {1, 0}
+};
+const MatrixType EXPECTED2L = {
+    {1, 1},
+    {1, 1}
+};
+
+
+THE_BENCHMARK(GameOfLife, SAMPLE1L);
+
+SIMPLE_TEST(GameOfLife, TestSAMPLE1, EXPECTED1L, SAMPLE1L);
+SIMPLE_TEST(GameOfLife, TestSAMPLE2, EXPECTED2L, SAMPLE2L);

@@ -93,6 +93,18 @@ auto MaxDistanceToClosestPerson(const ArrayType &seats) {
     return std::max(result, count);
 }
 
+
+/**
+ * @reference   Minimum Moves to Convert String
+ *              https://leetcode.com/problems/minimum-moves-to-convert-string/
+ *
+ * You are given a string s consisting of n characters which are either 'X' or 'O'.
+ * A move is defined as selecting three consecutive characters of s and converting them
+ * to 'O'. Note that if a move is applied to the character 'O', it will stay the same.
+ * Return the minimum number of moves required so that all the characters of s are
+ * converted to 'O'.
+ */
+
 }//namespace
 
 

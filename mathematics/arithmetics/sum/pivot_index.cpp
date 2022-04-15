@@ -9,12 +9,24 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/find-pivot-index/
  *
- * Given an array of integers nums, calculate the pivot index of this array. The pivot
- * index is the index where the sum of all the numbers strictly to the left of the index
- * is equal to the sum of all the numbers strictly to the index's right. If the index is
- * on the left edge of the array, then the left sum is 0 because there are no elements
- * to the left. This also applies to the right edge of the array. Return the leftmost
- * pivot index. If no such index exists, return -1.
+ * Given an array of integers nums, calculate the pivot index of this array.
+ * The pivot index is the index where the sum of all the numbers strictly to the left of
+ * the index is equal to the sum of all the numbers strictly to the index's right.
+ * If the index is on the left edge of the array, then the left sum is 0 because there
+ * are no elements to the left. This also applies to the right edge of the array.
+ * Return the leftmost pivot index. If no such index exists, return -1.
+ *
+ * @reference   Find the Middle Index in Array
+ *              https://leetcode.com/problems/find-the-middle-index-in-array/
+ *
+ * Given a 0-indexed integer array nums, find the leftmost middleIndex (i.e., the smallest
+ * amongst all the possible ones).
+ * A middleIndex is an index where nums[0] + nums[1] + ... + nums[middleIndex-1] ==
+ * nums[middleIndex+1] + nums[middleIndex+2] + ... + nums[nums.length-1].
+ * If middleIndex == 0, the left side sum is considered to be 0. Similarly, if
+ * middleIndex == nums.length - 1, the right side sum is considered to be 0.
+ * Return the leftmost middleIndex that satisfies the condition, or -1 if there is no such
+ * index.
  */
 int PivotIndex(const ArrayType &nums) {
     const auto total_sum = std::accumulate(nums.cbegin(), nums.cend(), 0);

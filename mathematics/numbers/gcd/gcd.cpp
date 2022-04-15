@@ -97,6 +97,18 @@ constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
     return n;
 }
 
+
+/**
+ * @reference   Find Greatest Common Divisor of Array
+ *              https://leetcode.com/problems/find-greatest-common-divisor-of-array/
+ *
+ * Given an integer array nums, return the greatest common divisor of the smallest number
+ * and largest number in nums.
+ * The greatest common divisor of two numbers is the largest positive integer that evenly
+ * divides both numbers.
+ * 2 <= nums.length <= 1000
+ */
+
 }//namespace
 
 

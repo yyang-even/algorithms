@@ -51,8 +51,7 @@ const auto SAMPLE1 = LevelOrderToBinaryTree( {
  *        \
  *         1
  */
-const auto EXPECTED1 =
-LevelOrderToBinaryTree( {
+const auto EXPECTED1 = LevelOrderToBinaryTree( {
     1, SENTINEL, 0, SENTINEL, SENTINEL, SENTINEL, 1
 });
 

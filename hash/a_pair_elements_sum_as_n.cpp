@@ -319,6 +319,48 @@ auto ThreeSum(ArrayType nums, const int target) {
 
 
 /**
+ * @reference   3Sum With Multiplicity
+ *              https://leetcode.com/problems/3sum-with-multiplicity/
+ *
+ * Given an integer array arr, and an integer target, return the number of tuples i, j, k
+ * such that i < j < k and arr[i] + arr[j] + arr[k] == target.
+ * As the answer can be very large, return it modulo 10^9 + 7.
+ * 0 <= arr[i] <= 100
+ */
+auto ThreeSumWithMultiplicity(const ArrayType &nums, const int target) {
+    long counts[101] = {};
+    for (const auto n : nums) {
+        ++counts[n];
+    }
+
+    long result = 0;
+    for (int i = 0; i < 101; ++i) {
+        for (auto j = i; j < 101; ++j) {
+            const auto k = target - i - j;
+            if (k < 0 or k < j) {
+                break;
+            }
+            if (k >= 101) {
+                continue;
+            }
+
+            if (i == j and j == k) {
+                result += counts[i] * (counts[i] - 1) * (counts[i] - 2) / 6;
+            } else if (i == j and j != k) {
+                result += counts[i] * (counts[i] - 1) / 2 * counts[k];
+            } else if (j == k) {
+                result += counts[k] * (counts[k] - 1) / 2 * counts[i];
+            } else {
+                result += counts[i] * counts[j] * counts[k];
+            }
+        }
+    }
+
+    return result % LARGE_PRIME;
+}
+
+
+/**
  * @reference   4Sum
  *              https://leetcode.com/problems/4sum/
  *
@@ -481,6 +523,41 @@ inline auto FourSum4Array(const std::vector<ArrayType> &num_arrays, const int ta
     return count;
 }
 
+
+/**
+ * @reference   Count Special Quadruplets
+ *              https://leetcode.com/problems/count-special-quadruplets/
+ *
+ * Given a 0-indexed integer array nums, return the number of distinct quadruplets
+ * (a, b, c, d) such that:
+ *  nums[a] + nums[b] + nums[c] == nums[d], and
+ *  a < b < c < d
+ * 1 <= nums[i] <= 100
+ */
+auto CountSpecialQuestions(const ArrayType &nums) {
+    const int N = nums.size();
+
+    int counts[201] = {};
+    if (nums[N - 1] > nums[N - 2]) {
+        counts[nums[N - 1] - nums[N - 2]] = 1;
+    }
+
+    int result = 0;
+    for (int b = N - 3; b >= 1; --b) {
+        for (int a = b - 1; a >= 0; --a) {
+            result += counts[nums[a] + nums[b]];
+        }
+
+        for (int x = N - 1; x > b; --x) {
+            if (nums[x] > nums[b]) {
+                ++counts[nums[x] - nums[b]];
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -624,6 +701,18 @@ SIMPLE_TEST(ThreeSum, TestSAMPLE11, EXPECTED0, VALUES10, 10);
 SIMPLE_TEST(ThreeSum, TestSAMPLE12, EXPECTED12T, VALUES12T, 0);
 
 
+const ArrayType SAMPLE1M = {0, 0, 0, 0};
+const ArrayType SAMPLE2M = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5};
+const ArrayType SAMPLE3M = {1, 1, 2, 2, 2, 2};
+
+
+THE_BENCHMARK(ThreeSumWithMultiplicity, SAMPLE1M, 0);
+
+SIMPLE_TEST(ThreeSumWithMultiplicity, TestSAMPLE1, 4, SAMPLE1M, 0);
+SIMPLE_TEST(ThreeSumWithMultiplicity, TestSAMPLE2, 20, SAMPLE2M, 8);
+SIMPLE_TEST(ThreeSumWithMultiplicity, TestSAMPLE3, 12, SAMPLE3M, 5);
+
+
 THE_BENCHMARK(kSum, 3, VALUES8, 8);
 
 SIMPLE_TEST(kSum, TestSAMPLE1, EXPECTED0, 3, VALUES1, 0);
@@ -723,3 +812,15 @@ THE_BENCHMARK(FourSum4Array, SAMPLE1A, 0);
 SIMPLE_TEST(FourSum4Array, TestSample1, 2, SAMPLE1A, 0);
 SIMPLE_TEST(FourSum4Array, TestSample2, 1, SAMPLE2A, 0);
 SIMPLE_TEST(FourSum4Array, TestSample3, 6, SAMPLE3A, 0);
+
+
+const ArrayType SAMPLE1Q = {1, 2, 3, 6};
+const ArrayType SAMPLE2Q = {3, 3, 6, 4, 5};
+const ArrayType SAMPLE3Q = {1, 1, 1, 3, 5};
+
+
+THE_BENCHMARK(CountSpecialQuestions, SAMPLE1Q);
+
+SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE1, 1, SAMPLE1Q);
+SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE2, 0, SAMPLE2Q);
+SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE3, 4, SAMPLE3Q);

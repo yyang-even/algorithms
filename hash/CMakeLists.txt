@@ -28,20 +28,14 @@ compile_test(conditionally_assign)
 compile_benchmark(count_frequencies_of_all_elements)
 compile_test(count_frequencies_of_all_elements)
 
-compile_benchmark(elements_that_occurred_only_once)
-compile_test(elements_that_occurred_only_once)
-
 compile_benchmark(fair_candy_swap)
 compile_test(fair_candy_swap)
-
-compile_benchmark(find_first_nonrepeating_char)
-compile_test(find_first_nonrepeating_char)
 
 compile_benchmark(find_first_repeating_element)
 compile_test(find_first_repeating_element)
 
-compile_benchmark(find_kth_nonrepeating_char)
-compile_test(find_kth_nonrepeating_char)
+compile_benchmark(find_nonrepeating_char)
+compile_test(find_nonrepeating_char)
 
 compile_benchmark(game_of_master_mind)
 compile_test(game_of_master_mind)

@@ -52,5 +52,8 @@ compile_test(rank_of_element_in_stream)
 compile_benchmark(to_balanced_BST)
 compile_test(to_balanced_BST)
 
+compile_benchmark(trim_BST)
+compile_test(trim_BST)
+
 compile_benchmark(unique_BST)
 compile_test(unique_BST)

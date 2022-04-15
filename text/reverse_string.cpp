@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "reverse.h"
+#include "text.h"
 #include "mathematics/numbers/binary/swap.h"
 #include "mathematics/arithmetics/subtract/subtract.h"
 
@@ -188,22 +189,6 @@ auto ReverseWords(std::string s) {
  *  All the English letters (lowercase or uppercase) should be reversed.
  * Return s after reversing it.
  */
-inline constexpr auto isVowel(const int c) {
-    bool is_vowel[256] = {};
-    is_vowel['A'] = true;
-    is_vowel['E'] = true;
-    is_vowel['I'] = true;
-    is_vowel['O'] = true;
-    is_vowel['U'] = true;
-    is_vowel['a'] = true;
-    is_vowel['e'] = true;
-    is_vowel['i'] = true;
-    is_vowel['o'] = true;
-    is_vowel['u'] = true;
-
-    return is_vowel[c];
-}
-
 auto ReverseVowels(std::string text) {
     int left = 0;
     int right = text.size() - 1;
@@ -219,6 +204,19 @@ auto ReverseVowels(std::string text) {
 
     return text;
 }
+
+
+/**
+ * @reference   Reverse Prefix of Word
+ *              https://leetcode.com/problems/reverse-prefix-of-word/
+ *
+ * Given a 0-indexed string word and a character ch, reverse the segment of word that
+ * starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If
+ * the character ch does not exist in word, do nothing.
+ * For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that
+ * starts at 0 and ends at 3 (inclusive). The resulting string will be "dcbaefd".
+ * Return the resulting string.
+ */
 
 }//namespace
 

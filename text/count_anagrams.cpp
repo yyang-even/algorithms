@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "text.h"
+
 
 namespace {
 
@@ -171,6 +173,40 @@ constexpr auto CheckAnagram(const std::string_view s1, const std::string_view s2
  * A substring is a contiguous sequence of characters in a string.
  */
 
+
+/**
+ * @reference   Count Vowel Substrings of a String
+ *              https://leetcode.com/problems/count-vowel-substrings-of-a-string/
+ *
+ * A substring is a contiguous (non-empty) sequence of characters within a string.
+ * A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o', and
+ * 'u') and has all five vowels present in it.
+ * Given a string word, return the number of vowel substrings in word.
+ */
+auto CountVowelSubstrs(const std::string_view s) {
+    std::unordered_map<char, int> counts;
+    int num_vowels = 0;
+    std::size_t j = 0;
+    std::size_t k = 0;
+
+    int result = 0;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        if (isVowel(s[i])) {
+            num_vowels += ++counts[s[i]] == 1;
+            for (; num_vowels == 5; ++k) {
+                num_vowels -= --counts[s[k]] == 0;
+            }
+            result += k - j;
+        } else {
+            counts.clear();
+            num_vowels = 0;
+            j = k = i + 1;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -195,3 +231,10 @@ SIMPLE_TEST(CheckAnagram, TestSAMPLE1, true, "ab", "eidbaooo");
 SIMPLE_TEST(CheckAnagram, TestSAMPLE2, false, "ab", "eidboaoo");
 SIMPLE_TEST(CheckAnagram, TestSAMPLE3, true, "adc", "dcda");
 SIMPLE_TEST(CheckAnagram, TestSAMPLE4, true, "abc", "bbbca");
+
+
+THE_BENCHMARK(CountVowelSubstrs, "aeiouu");
+
+SIMPLE_TEST(CountVowelSubstrs, TestSAMPLE1, 2, "aeiouu");
+SIMPLE_TEST(CountVowelSubstrs, TestSAMPLE2, 0, "unicornarihan");
+SIMPLE_TEST(CountVowelSubstrs, TestSAMPLE3, 7, "cuaieuouac");

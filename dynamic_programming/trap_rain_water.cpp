@@ -136,6 +136,35 @@ auto TrapRain2D(const MatrixType &a_matrix) {
     return result;
 }
 
+
+/**
+ * @reference   Container With Most Water
+ *              https://leetcode.com/problems/container-with-most-water/
+ *
+ * You are given an integer array height of length n. There are n vertical lines drawn such
+ * that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+ * Find two lines that together with the x-axis form a container, such that the container
+ * contains the most water.
+ * Return the maximum amount of water a container can store.
+ * Notice that you may not slant the container.
+ */
+auto ContainerWithMostWater(const ArrayType &heights) {
+    int result = 0;
+    int left = 0;
+    int right = heights.size() - 1;
+    while (left < right) {
+        result = std::max(result, (right - left) * std::min(heights[left], heights[right]));
+
+        if (heights[left] < heights[right]) {
+            ++left;
+        } else {
+            --right;
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -180,3 +209,13 @@ THE_BENCHMARK(TrapRain2D, SAMPLE1M);
 
 SIMPLE_TEST(TrapRain2D, TestSAMPLE1, 4, SAMPLE1M);
 SIMPLE_TEST(TrapRain2D, TestSAMPLE2, 10, SAMPLE2M);
+
+
+const ArrayType SAMPLE1W = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+const ArrayType SAMPLE2W = {1, 1};
+
+
+THE_BENCHMARK(ContainerWithMostWater, SAMPLE1W);
+
+SIMPLE_TEST(ContainerWithMostWater, TestSAMPLE1, 49, SAMPLE1W);
+SIMPLE_TEST(ContainerWithMostWater, TestSAMPLE2, 1, SAMPLE2W);

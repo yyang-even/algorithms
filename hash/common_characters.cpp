@@ -444,6 +444,41 @@ auto MaxNumberOfPattern(const std::string_view text, const std::string_view patt
     return result;
 }
 
+
+/**
+ * @reference   Two Out of Three
+ *              https://leetcode.com/problems/two-out-of-three/
+ *
+ * Given three integer arrays nums1, nums2, and nums3, return a distinct array containing
+ * all the values that are present in at least two out of the three arrays. You may return
+ * the values in any order.
+ * 1 <= nums1[i], nums2[j], nums3[k] <= 100
+ */
+auto
+TwoOutOfThree(const NumArrayType &nums1, const NumArrayType &nums2,
+              const NumArrayType &nums3) {
+    unsigned counts[101] = {};
+    unsigned offset = 0;
+    for (const auto &nums : {
+             nums1, nums2, nums3
+         }) {
+        for (const auto n : nums) {
+            counts[n] |= 1u << offset;
+        }
+        ++offset;
+    }
+
+    NumArrayType result;
+    for (int i = 0; i < 101; ++i) {
+        const auto c = counts[i];
+        if (c and (c & (c - 1))) {
+            result.push_back(i);
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -565,3 +600,25 @@ SIMPLE_TEST(IntersectionOf3_Sorted, TestSAMPLE1, EXPECTED1T,
             SAMPLE1A, SAMPLE1B, SAMPLE1C);
 SIMPLE_TEST(IntersectionOf3_Sorted, TestSAMPLE2, EXPECTED2T,
             SAMPLE2A, SAMPLE2B, SAMPLE2C);
+
+
+const NumArrayType SAMPLE1O1 = {1, 1, 3, 2};
+const NumArrayType SAMPLE1O2 = {2, 3};
+const NumArrayType SAMPLE1O3 = {3};
+const NumArrayType EXPECTED1O = {2, 3};
+
+const NumArrayType SAMPLE2O1 = {3, 1};
+const NumArrayType SAMPLE2O3 = {1, 2};
+const NumArrayType EXPECTED2O = {1, 2, 3};
+
+const NumArrayType SAMPLE3O1 = {1, 2, 2};
+const NumArrayType SAMPLE3O2 = {4, 3, 3};
+const NumArrayType SAMPLE3O3 = {5};
+const NumArrayType EXPECTED3O = {};
+
+
+THE_BENCHMARK(TwoOutOfThree, SAMPLE1O1, SAMPLE1O2, SAMPLE1O3);
+
+SIMPLE_TEST(TwoOutOfThree, TestSAMPLE1, EXPECTED1O, SAMPLE1O1, SAMPLE1O2, SAMPLE1O3);
+SIMPLE_TEST(TwoOutOfThree, TestSAMPLE2, EXPECTED2O, SAMPLE2O1, SAMPLE1O2, SAMPLE2O3);
+SIMPLE_TEST(TwoOutOfThree, TestSAMPLE3, EXPECTED3O, SAMPLE3O1, SAMPLE3O2, SAMPLE3O3);
