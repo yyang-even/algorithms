@@ -25,6 +25,9 @@ compile_test(can_place_flowers)
 compile_benchmark(DI_string_match)
 compile_test(DI_string_match)
 
+compile_benchmark(furthest_houses_with_different_colors)
+compile_test(furthest_houses_with_different_colors)
+
 compile_benchmark(gas_station)
 compile_test(gas_station)
 
