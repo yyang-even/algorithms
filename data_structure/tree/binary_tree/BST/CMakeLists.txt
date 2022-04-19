@@ -49,6 +49,9 @@ compile_test(range_sum_BST)
 compile_benchmark(rank_of_element_in_stream)
 compile_test(rank_of_element_in_stream)
 
+compile_benchmark(recover_BST)
+compile_test(recover_BST)
+
 compile_benchmark(to_balanced_BST)
 compile_test(to_balanced_BST)
 

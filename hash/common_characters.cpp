@@ -321,6 +321,15 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
 
 
 /**
+ * @reference   Count Common Words With One Occurrence
+ *              https://leetcode.com/problems/count-common-words-with-one-occurrence/
+ *
+ * Given two string arrays words1 and words2, return the number of strings that appear
+ * exactly once in each of the two arrays.
+ */
+
+
+/**
  * @reference   Uncommon Words from Two Sentences
  *              https://leetcode.com/problems/uncommon-words-from-two-sentences/
  *

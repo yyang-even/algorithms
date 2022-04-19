@@ -112,6 +112,36 @@ inline auto SortVariableLengthItems_Ints(std::vector<int> elements) {
     });
 }
 
+
+/**
+ * @reference   Find Target Indices After Sorting Array
+ *              https://leetcode.com/problems/find-target-indices-after-sorting-array/
+ *
+ * You are given a 0-indexed integer array nums and a target element target.
+ * A target index is an index i such that nums[i] == target.
+ * Return a list of the target indices of nums after sorting nums in non-decreasing order.
+ * If there are no target indices, return an empty list. The returned list must be sorted
+ * in increasing order.
+ */
+auto IndicesAfterSorting(const std::vector<int> &nums, const int target) {
+    int smaller = 0;
+    int equal = 0;
+    for (const auto n : nums) {
+        if (n < target) {
+            ++smaller;
+        } else if (n == target) {
+            ++equal;
+        }
+    }
+
+    std::vector<int> result;
+    while (equal-- > 0) {
+        result.push_back(smaller++);
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -139,10 +169,25 @@ SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(BucketSort_Mixed, TestSAMPLE2, EXPECTED2, VALUES2);
 
 
-const std::vector<int> VALUES3 = {6666, 999, 888, 11, 22, 33, 7, 0};
-const std::vector<int> EXPECTED3 = {0, 7, 11, 22, 33, 888, 999, 6666};
+const std::vector VALUES3 = {6666, 999, 888, 11, 22, 33, 7, 0};
+const std::vector EXPECTED3 = {0, 7, 11, 22, 33, 888, 999, 6666};
 
 
 THE_BENCHMARK(SortVariableLengthItems_Ints, VALUES3);
 
 SIMPLE_TEST(SortVariableLengthItems_Ints, TestSAMPLE3, EXPECTED3, VALUES3);
+
+
+const std::vector SAMPLE1I = {1, 2, 5, 2, 3};
+const std::vector EXPECTED1I = {1, 2};
+
+const std::vector EXPECTED2I = {3};
+
+const std::vector EXPECTED3I = {4};
+
+
+THE_BENCHMARK(IndicesAfterSorting, SAMPLE1I, 2);
+
+SIMPLE_TEST(IndicesAfterSorting, TestSAMPLE1, EXPECTED1I, SAMPLE1I, 2);
+SIMPLE_TEST(IndicesAfterSorting, TestSAMPLE2, EXPECTED2I, SAMPLE1I, 3);
+SIMPLE_TEST(IndicesAfterSorting, TestSAMPLE3, EXPECTED3I, SAMPLE1I, 5);
