@@ -1,3 +1,6 @@
+compile_benchmark(3_digit_even_numbers)
+compile_test(3_digit_even_numbers)
+
 compile_benchmark(combination)
 compile_test(combination)
 
