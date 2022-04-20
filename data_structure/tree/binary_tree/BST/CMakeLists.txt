@@ -7,12 +7,6 @@ compile_test(BST_delete)
 compile_benchmark(BST_find_mode)
 compile_test(BST_find_mode)
 
-compile_benchmark(BST_inorder_predecessor)
-compile_test(BST_inorder_predecessor)
-
-compile_benchmark(BST_inorder_successor)
-compile_test(BST_inorder_successor)
-
 compile_benchmark(BST_insert)
 compile_test(BST_insert)
 

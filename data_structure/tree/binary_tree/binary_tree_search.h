@@ -1,5 +1,7 @@
 #pragma once
 
+#include "binary_tree.h"
+
 
 template <typename NodePointerType>
 static inline constexpr auto

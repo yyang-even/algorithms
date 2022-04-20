@@ -196,34 +196,6 @@ auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node
 }
 
 
-/** Inorder Tree Traversal without Recursion
- *
- * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Exercises 10.4-3.
- * @reference   Binary Tree Inorder Traversal
- *              https://leetcode.com/problems/binary-tree-inorder-traversal/
- */
-auto InorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
-                                BinaryTree::ArrayType &outputs) {
-    std::stack<BinaryTree::Node::PointerType> remaining_nodes;
-
-    while (current_node or not remaining_nodes.empty()) {
-        while (current_node) {
-            remaining_nodes.push(current_node);
-            current_node = current_node->left;
-        }
-
-        current_node = remaining_nodes.top();
-        remaining_nodes.pop();
-
-        outputs.push_back(current_node->value);
-
-        current_node = current_node->right;
-    }
-}
-
-
 /** Iterative Preorder Traversal
  *
  * @reference   https://www.geeksforgeeks.org/iterative-preorder-traversal/
@@ -259,39 +231,6 @@ auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType current_no
         if (not remaining_nodes.empty()) {
             current_node = remaining_nodes.top();
             remaining_nodes.pop();
-        }
-    }
-}
-
-
-/** Inorder Tree Traversal without recursion and without stack!
- *
- * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
- *              Introduction to Algorithms, Third Edition. Exercises 12.1-3.
- * @reference   https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
- */
-auto InorderTraversal_Morris(BinaryTree::Node::PointerType current_node,
-                             BinaryTree::ArrayType &outputs) {
-    auto previous_node = current_node;
-
-    while (current_node) {
-        if (not current_node->left) {
-            outputs.push_back(current_node->value);
-            current_node = current_node->right;
-        } else {
-            previous_node = current_node->left;
-            while (previous_node->right and previous_node->right != current_node) {
-                previous_node = previous_node->right;
-            }
-
-            if (not previous_node->right) {
-                previous_node->right = current_node;
-                current_node = current_node->left;
-            } else {
-                previous_node->right = nullptr;
-                outputs.push_back(current_node->value);
-                current_node = current_node->right;
-            }
         }
     }
 }
@@ -483,12 +422,6 @@ BinaryTreeTraversalTest(PostorderTraversal_Iterative_Hash, EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_Map, EXPECTED_POSTORDER);
-
-
-BinaryTreeTraversalTest(InorderTraversal_Iterative, EXPECTED_INORDER);
-
-
-BinaryTreeTraversalTest(InorderTraversal_Morris, EXPECTED_INORDER);
 
 
 BinaryTreeTraversalTest(LevelOrderTraversal, EXPECTED_LEVELORDER);

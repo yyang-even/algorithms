@@ -9,6 +9,9 @@ compile_test(binary_tree_diameter)
 compile_benchmark(binary_tree_height)
 compile_test(binary_tree_height)
 
+compile_benchmark(binary_tree_inorder)
+compile_test(binary_tree_inorder)
+
 compile_benchmark(binary_tree_insertion)
 compile_test(binary_tree_insertion)
 
@@ -43,9 +46,6 @@ compile_test(distribute_coins_in_binary_tree)
 
 compile_benchmark(full_binary_tree)
 compile_test(full_binary_tree)
-
-compile_benchmark(inorder_successor)
-compile_test(inorder_successor)
 
 compile_benchmark(invert_binary_tree)
 compile_test(invert_binary_tree)

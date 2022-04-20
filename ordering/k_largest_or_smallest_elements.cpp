@@ -246,6 +246,37 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
  * 1 <= nums[i] <= 10^4
  */
 
+
+/**
+ * @reference   Find Subsequence of Length K With the Largest Sum
+ *              https://leetcode.com/problems/find-subsequence-of-length-k-with-the-largest-sum/
+ *
+ * You are given an integer array nums and an integer k. You want to find a subsequence
+ * of nums of length k that has the largest sum.
+ * Return any such subsequence as an integer array of length k.
+ * A subsequence is an array that can be derived from another array by deleting some or
+ * no elements without changing the order of the remaining elements.
+ */
+auto LargestSumSubsequence(const ArrayType &nums, const std::size_t k) {
+    if (k == nums.size()) {
+        return nums;
+    }
+
+    auto copy = nums;
+    std::nth_element(begin(copy), begin(copy) + k - 1, end(copy), std::greater<int>());
+
+    int count_duplicates = std::count(cbegin(copy), cbegin(copy) + k, copy[k - 1]);
+
+    ArrayType result;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        if (nums[i] > copy[k - 1] or (nums[i] == copy[k - 1] and --count_duplicates >= 0)) {
+            result.push_back(nums[i]);
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -308,3 +339,20 @@ SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE2, EXPECTED2,
             VALUES2, EXPECTED2.size());
 SIMPLE_TEST(StableKSmallestElements_Insertion, TestSAMPLE3, VALUES1,
             VALUES1, VALUES1.size());
+
+
+const ArrayType SAMPLE1S = {2, 1, 3, 3};
+const ArrayType EXPECTED1S = {3, 3};
+
+const ArrayType SAMPLE2S = {-1, -2, 3, 4};
+const ArrayType EXPECTED2S = {-1, 3, 4};
+
+const ArrayType SAMPLE3S = {3, 4, 3, 3};
+const ArrayType EXPECTED3S = {3, 4};
+
+
+THE_BENCHMARK(LargestSumSubsequence, SAMPLE1S, 2);
+
+SIMPLE_TEST(LargestSumSubsequence, TestSAMPLE1, EXPECTED1S, SAMPLE1S, 2);
+SIMPLE_TEST(LargestSumSubsequence, TestSAMPLE2, EXPECTED2S, SAMPLE2S, 3);
+SIMPLE_TEST(LargestSumSubsequence, TestSAMPLE3, EXPECTED3S, SAMPLE3S, 2);
