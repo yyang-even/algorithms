@@ -155,6 +155,18 @@ auto LongestTurbulentSubarray_SlidingWindow(const ArrayType &nums) {
     return result;
 }
 
+
+/**
+ * @reference   Check if All A's Appears Before All B's
+ *              https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/
+ *
+ * Given a string s consisting of only the characters 'a' and 'b', return true if every
+ * 'a' appears before every 'b' in the string. Otherwise, return false.
+ */
+inline constexpr auto isABSorted(const std::string_view s) {
+    return s.find("ba") == std::string_view::npos;
+}
+
 }//namespace
 
 
@@ -223,3 +235,10 @@ SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE1, 5, SAMPLE1T);
 SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE2, 2, SAMPLE2T);
 SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE3, 1, SAMPLE3T);
 SIMPLE_TEST(LongestTurbulentSubarray_SlidingWindow, TestSAMPLE4, 1, SAMPLE4T);
+
+
+THE_BENCHMARK(isABSorted, "aaabbb");
+
+SIMPLE_TEST(isABSorted, TestSAMPLE1, true, "aaabbb");
+SIMPLE_TEST(isABSorted, TestSAMPLE2, true, "bbb");
+SIMPLE_TEST(isABSorted, TestSAMPLE3, false, "abab");

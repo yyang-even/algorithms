@@ -189,6 +189,20 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  * Return the resulting integer after performing the operations described above.
  */
 
+
+/**
+ * @reference   Count Integers With Even Digit Sum
+ *              https://leetcode.com/problems/count-integers-with-even-digit-sum/
+ *
+ * Given a positive integer num, return the number of positive integers less than or
+ * equal to num whose digit sums are even.
+ * The digit sum of a positive integer is the sum of all its digits.
+ */
+inline constexpr auto CountEven(const int num) {
+    const auto sum = DigitsSum(num);
+    return (num - sum % 2) / 2;
+}
+
 }//namespace
 
 
@@ -227,3 +241,9 @@ THE_BENCHMARK(MaxBallsInBox, 1, 10);
 SIMPLE_TEST(MaxBallsInBox, TestSAMPLE1, 2, 1, 10);
 SIMPLE_TEST(MaxBallsInBox, TestSAMPLE2, 2, 5, 15);
 SIMPLE_TEST(MaxBallsInBox, TestSAMPLE3, 2, 19, 28);
+
+
+THE_BENCHMARK(CountEven, 4);
+
+SIMPLE_TEST(CountEven, TestSAMPLE1, 2, 4);
+SIMPLE_TEST(CountEven, TestSAMPLE2, 14, 30);
