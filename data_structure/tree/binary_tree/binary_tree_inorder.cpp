@@ -243,7 +243,7 @@ auto InorderPredecessor_WithoutParentPointer(BinaryTree::Node::PointerType curre
 class BSTIterator {
 public:
     explicit BSTIterator(const BinaryTree::Node::PointerType root) {
-        pushAll(root);
+        pushLeft(root);
     }
 
     auto hasNext() const {
@@ -253,12 +253,12 @@ public:
     auto next() {
         const auto node = m_stack.top();
         m_stack.pop();
-        pushAll(node->right);
+        pushLeft(node->right);
         return node->value;
     }
 
 private:
-    void pushAll(BinaryTree::Node::PointerType node) {
+    void pushLeft(BinaryTree::Node::PointerType node) {
         for (; node; node = node->left) {
             m_stack.push(node);
         }
@@ -276,6 +276,92 @@ inline auto testBSTIterator(const BinaryTree::Node::PointerType root) {
     }
 
     return result;
+}
+
+
+/**
+ * @reference   Binary Search Tree Iterator II
+ *              https://leetcode.ca/all/1586.html
+ * @reference   1586 - Binary Search Tree Iterator II
+ *              https://leetcode.ca/2020-04-03-1586-Binary-Search-Tree-Iterator-II/
+ *
+ * Implement the BSTIterator class that represents an iterator over the in-order traversal
+ * of a binary search tree (BST):
+ *  BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of
+ *      the BST is given as part of the constructor. The pointer should be initialized to
+ *      a non-existent number smaller than any element in the BST.
+ *  boolean hasNext() Returns true if there exists a number in the traversal to the right
+ *      of the pointer, otherwise returns false.
+ *  int next() Moves the pointer to the right, then returns the number at the pointer.
+ *  boolean hasPrev() Returns true if there exists a number in the traversal to the left
+ *      of the pointer, otherwise returns false.
+ *  int prev() Moves the pointer to the left, then returns the number at the pointer.
+ * Notice that by initializing the pointer to a non-existent smallest number, the first
+ * call to next() will return the smallest element in the BST.
+ * You may assume that next() and prev() calls will always be valid. That is, there will be
+ * at least a next/previous number in the in-order traversal when next()/prev() is called.
+ * Follow up: Could you solve the problem without precalculating the values of the tree?
+ */
+class BidirectionBSTIterator {
+public:
+    explicit BidirectionBSTIterator(const BinaryTree::Node::PointerType root) {
+        pushLeft(root);
+    }
+
+    auto hasNext() const {
+        return inRange(m_index + 1) or not m_stack.empty();
+    }
+
+    auto next() {
+        if (not inRange(m_index + 1)) {
+            const auto node = m_stack.top();
+            m_stack.pop();
+            pushLeft(node->right);
+            m_list.push_back(node);
+        }
+
+        return m_list[++m_index]->value;
+    }
+
+    auto hasPrev() const {
+        return inRange(m_index - 1);
+    }
+
+    auto prev() {
+        return m_list[--m_index]->value;
+    }
+
+private:
+    void pushLeft(BinaryTree::Node::PointerType node) {
+        for (; node; node = node->left) {
+            m_stack.push(node);
+        }
+    }
+
+    bool inRange(const int i) const {
+        return i >= 0 and i < static_cast<int>(m_list.size());
+    }
+
+    std::stack<BinaryTree::Node::PointerType> m_stack;
+    std::vector<BinaryTree::Node::PointerType> m_list;
+    int m_index = -1;
+};
+
+inline auto testBidirectionBSTIterator(const BinaryTree::Node::PointerType root) {
+    BidirectionBSTIterator iter{root};
+
+    BinaryTree::ArrayType inorder;
+    while (iter.hasNext()) {
+        inorder.push_back(iter.next());
+    }
+
+    BinaryTree::ArrayType reverse_inorder;
+    while (iter.hasPrev()) {
+        reverse_inorder.push_back(iter.prev());
+    }
+
+    return inorder.size() == reverse_inorder.size() + 1 and
+           std::equal(inorder.cbegin(), std::prev(inorder.cend()), reverse_inorder.crbegin());
 }
 
 }//namespace
@@ -345,3 +431,6 @@ SIMPLE_TEST(InorderTraversal_Morris, TestSAMPLE1, EXPECTED_INORDER, SAMPLE1C);
 
 
 SIMPLE_TEST(testInorderTraversal_Recursive, TestSAMPLE1, EXPECTED_INORDER, SAMPLE1C);
+
+
+SIMPLE_TEST(testBidirectionBSTIterator, TestSAMPLE1, true, SAMPLE1C);

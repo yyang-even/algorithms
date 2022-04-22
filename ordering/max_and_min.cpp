@@ -119,6 +119,41 @@ auto MaxAndMin_Pair(const ArrayType &values) {
  * Answers within 10^-5 of the actual answer will be accepted.
  */
 
+
+/**
+ * @reference   Count Elements With Strictly Smaller and Greater Elements
+ *              https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
+ *
+ * Given an integer array nums, return the number of elements that have both a strictly
+ * smaller and a strictly greater element appear in nums.
+ * 1 <= nums.length <= 100
+ */
+int CountElements(const ArrayType &nums) {
+    auto low = nums.front();
+    auto high = low;
+    int low_count = 1;
+    int high_count = 1;
+
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        const auto n = nums[i];
+        if (n < low) {
+            low = n;
+            low_count = 1;
+        } else {
+            low_count += n == low;
+        }
+
+        if (n > high) {
+            high = n;
+            high_count = 1;
+        } else {
+            high_count += n == high;
+        }
+    }
+
+    return nums.size() - low_count - (low == high ? 0 : high_count);
+}
+
 }//namespace
 
 
@@ -150,3 +185,13 @@ SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE1, std::pair(1, 1), VALUES1);
 SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE2, std::pair(2, 1), VALUES2);
 SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE3, std::pair(16, 4), VALUES3);
 SIMPLE_TEST(MaxAndMin_Pair, TestSAMPLE4, std::pair(15, 0), VALUES4);
+
+
+const ArrayType SAMPLE1 = {11, 7, 2, 15};
+const ArrayType SAMPLE2 = {-3, 3, 3, 90};
+
+
+THE_BENCHMARK(CountElements, SAMPLE1);
+
+SIMPLE_TEST(CountElements, TestSAMPLE1, 2, SAMPLE1);
+SIMPLE_TEST(CountElements, TestSAMPLE2, 2, SAMPLE2);

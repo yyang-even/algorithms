@@ -1,3 +1,6 @@
+compile_benchmark(array_pairs_divisible_by_K)
+compile_test(array_pairs_divisible_by_K)
+
 compile_benchmark(gcd)
 compile_test(gcd)
 

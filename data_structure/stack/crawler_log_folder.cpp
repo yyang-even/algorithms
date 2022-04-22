@@ -74,6 +74,51 @@ auto CrawlerLogFolder(const ArrayType &logs) {
  * Return the sum of all the scores on the record.
  */
 
+
+/**
+ * @reference   Simplify Path
+ *              https://leetcode.com/problems/simplify-path/
+ *
+ * Given a string path, which is an absolute path (starting with a slash '/') to a file
+ * or directory in a Unix-style file system, convert it to the simplified canonical path.
+ * In a Unix-style file system, a period '.' refers to the current directory, a double
+ * period '..' refers to the directory up a level, and any multiple consecutive slashes
+ * (i.e. '//') are treated as a single slash '/'. For this problem, any other format of
+ * periods such as '...' are treated as file/directory names.
+ * The canonical path should have the following format:
+ *  The path starts with a single slash '/'.
+ *  Any two directories are separated by a single slash '/'.
+ *  The path does not end with a trailing '/'.
+ *  The path only contains the directories on the path from the root directory to the
+ *      target file or directory (i.e., no period '.' or double period '..')
+ * Return the simplified canonical path.
+ */
+auto SimplifyPath(const std::string &path) {
+    std::vector<std::string> path_stack;
+    std::stringstream ss(path);
+    std::string component;
+    while (std::getline(ss, component, '/')) {
+        if (component.empty() or component == ".") {
+            continue;
+        }
+
+        if (component == "..") {
+            if (not path_stack.empty()) {
+                path_stack.pop_back();
+            }
+        } else {
+            path_stack.push_back(component);
+        }
+    }
+
+    std::string result;
+    for (auto &&c : path_stack) {
+        result += "/" + std::move(c);
+    }
+
+    return result.empty() ? "/" : result;
+}
+
 }//namespace
 
 
@@ -87,3 +132,15 @@ THE_BENCHMARK(CrawlerLogFolder, SAMPLE1);
 SIMPLE_TEST(CrawlerLogFolder, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(CrawlerLogFolder, TestSAMPLE2, 3, SAMPLE2);
 SIMPLE_TEST(CrawlerLogFolder, TestSAMPLE3, 0, SAMPLE3);
+
+
+THE_BENCHMARK(SimplifyPath, "/home/");
+
+SIMPLE_TEST(SimplifyPath, TestSAMPLE1, "/home", "/home/");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE2, "/", "/../");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE3, "/home/foo", "/home//foo/");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE4, "/home", "/home");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE5, "/", "/..");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE6, "/home/foo", "/home//foo");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE7, "/c", "/c//.//");
+SIMPLE_TEST(SimplifyPath, TestSAMPLE8, "/...", "/...");

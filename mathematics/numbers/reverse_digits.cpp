@@ -78,6 +78,21 @@ constexpr auto ReverseDigits_Safe(int32_t number) {
  * @note    This solution is not very efficient.
  */
 
+
+/**
+ * @reference   A Number After a Double Reversal
+ *              https://leetcode.com/problems/a-number-after-a-double-reversal/
+ *
+ * Reversing an integer means to reverse all its digits.
+ *  For example, reversing 2021 gives 1202. Reversing 12300 gives 321 as the leading
+ *      zeros are not retained.
+ * Given an integer num, reverse num to get reversed1, then reverse reversed1 to get
+ * reversed2. Return true if reversed2 equals num. Otherwise return false.
+ */
+inline constexpr auto isSameAfterDoubleReversal(const int num) {
+    return not num or num % 10;
+}
+
 }//namespace
 
 
@@ -113,3 +128,10 @@ SIMPLE_TEST(ReverseDigits_UltraSafe, TestSAMPLE4, 0, 1563847412);
 SIMPLE_TEST(ReverseDigits_UltraSafe, TestSAMPLE5, 0, -2147483648);
 SIMPLE_TEST(ReverseDigits_UltraSafe, TestSAMPLE6, 0, 1056389759);
 SIMPLE_TEST(ReverseDigits_UltraSafe, TestSAMPLE7, -321, -123);
+
+
+THE_BENCHMARK(isSameAfterDoubleReversal, 526);
+
+SIMPLE_TEST(isSameAfterDoubleReversal, TestSAMPLE1, true, 526);
+SIMPLE_TEST(isSameAfterDoubleReversal, TestSAMPLE2, false, 1800);
+SIMPLE_TEST(isSameAfterDoubleReversal, TestSAMPLE3, true, 0);
