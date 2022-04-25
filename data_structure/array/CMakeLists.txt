@@ -21,6 +21,9 @@ compile_test(num_students_unable_to_eat)
 compile_benchmark(num_subarrays_with_max_in_range)
 compile_test(num_subarrays_with_max_in_range)
 
+compile_benchmark(peeking_iterator)
+compile_test(peeking_iterator)
+
 compile_benchmark(sequential_digits)
 compile_test(sequential_digits)
 
