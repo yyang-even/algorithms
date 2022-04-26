@@ -28,6 +28,9 @@ compile_test(largest_component_size_by_common_factor)
 compile_benchmark(minimum_mean_weight_cycle)
 compile_test(minimum_mean_weight_cycle)
 
+compile_benchmark(minimum_spanning_tree)
+compile_test(minimum_spanning_tree)
+
 compile_benchmark(number_of_connected_components)
 compile_test(number_of_connected_components)
 

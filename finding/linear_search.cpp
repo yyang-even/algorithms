@@ -151,6 +151,32 @@ inline auto DetectCapital(const std::string_view word) {
  * It is guaranteed that target exists in nums.
  */
 
+
+/**
+ * @reference   Find All K-Distant Indices in an Array
+ *              https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
+ *
+ * You are given a 0-indexed integer array nums and two integers key and k. A k-distant
+ * index is an index i of nums for which there exists at least one index j such that
+ * |i - j| <= k and nums[j] == key.
+ * Return a list of all k-distant indices sorted in increasing order.
+ */
+auto FindKDistantIndices(const ArrayType &nums, const int key, const int k) {
+    const int N = nums.size();
+
+    ArrayType result;
+    int j = 0;
+    for (int i = 0; i < N; ++i) {
+        if (nums[i] == key) {
+            for (j = std::max(j, i - k); j <= i + k and j < N; ++j) {
+                result.push_back(j);
+            }
+        }
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -205,3 +231,16 @@ SIMPLE_TEST(DetectCapital, TestSAMPLE1, true, "USA");
 SIMPLE_TEST(DetectCapital, TestSAMPLE2, true, "leetcode");
 SIMPLE_TEST(DetectCapital, TestSAMPLE3, true, "Google");
 SIMPLE_TEST(DetectCapital, TestSAMPLE4, false, "FlaG");
+
+
+const ArrayType SAMPLE1K = {3, 4, 9, 1, 3, 9, 5};
+const ArrayType EXPECTED1K = {1, 2, 3, 4, 5, 6};
+
+const ArrayType SAMPLE2K = {2, 2, 2, 2, 2};
+const ArrayType EXPECTED2K = {0, 1, 2, 3, 4};
+
+
+THE_BENCHMARK(FindKDistantIndices, SAMPLE1K, 9, 1);
+
+SIMPLE_TEST(FindKDistantIndices, TestSample1, EXPECTED1K, SAMPLE1K, 9, 1);
+SIMPLE_TEST(FindKDistantIndices, TestSample2, EXPECTED2K, SAMPLE2K, 2, 2);
