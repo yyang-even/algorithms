@@ -525,6 +525,154 @@ auto DungeonGame_Dijkstra(const MatrixType &dungeon) {
     return result + 1;
 }
 
+
+struct Node {
+    int cost;
+    unsigned row;
+    unsigned column;
+
+    constexpr Node(const int c, const unsigned x, const unsigned y):
+        cost(c), row(x), column(y) {
+    }
+};
+
+inline constexpr auto
+operator>(const Node &lhs, const Node &rhs) {
+    return lhs.cost > rhs.cost;
+}
+
+/** Swim in Rising Water
+ *
+ * @reference   https://leetcode.com/problems/swim-in-rising-water/
+ *
+ * On an N x N grid, each square grid[i][j] represents the elevation at that point (i,j).
+ * Now rain starts to fall. At time t, the depth of the water everywhere is t. You can
+ * swim from a square to another 4-directionally adjacent square if and only if the
+ * elevation of both squares individually are at most t. You can swim infinite distance
+ * in zero time. Of course, you must stay within the boundaries of the grid during your
+ * swim. You start at the top left square (0, 0). What is the least time until you can
+ * reach the bottom right square (N-1, N-1)?
+ * 2 <= N <= 50.
+ * grid[i][j] is a permutation of [0, ..., N*N - 1].
+ */
+auto SwimInRisingWater_Dijkstra(MatrixType grid) {
+    assert(grid.size() >= 2 and grid.size() <= 50);
+    assert(grid.size() == grid.front().size());
+
+    constexpr auto VISITED = std::numeric_limits<int>::max();
+
+    std::priority_queue<Node, std::vector<Node>, std::greater<Node>> open_list;
+    open_list.emplace(grid[0][0], 0, 0);
+    grid[0][0] = VISITED;
+
+    while (not open_list.empty()) {
+        const auto node = std::move(open_list.top());
+        open_list.pop();
+
+        if (node.row + 1 != grid.size() and grid[node.row + 1][node.column] != VISITED) {
+            if (node.row + 2 == grid.size() and node.column + 1 == grid.size()) {
+                return std::max(grid[node.row + 1][node.column], node.cost);
+            }
+            open_list.emplace(std::max(grid[node.row + 1][node.column], node.cost),
+                              node.row + 1, node.column);
+            grid[node.row + 1][node.column] = VISITED;
+        }
+
+        if (node.column + 1 != grid.size() and grid[node.row][node.column + 1] != VISITED) {
+            if (node.row + 1 == grid.size() and node.column + 2 == grid.size()) {
+                return std::max(grid[node.row][node.column + 1], node.cost);
+            }
+            open_list.emplace(std::max(grid[node.row][node.column + 1], node.cost),
+                              node.row, node.column + 1);
+            grid[node.row][node.column + 1] = VISITED;
+        }
+
+        if (node.row != 0 and grid[node.row - 1][node.column] != VISITED) {
+            open_list.emplace(std::max(grid[node.row - 1][node.column], node.cost),
+                              node.row - 1, node.column);
+            grid[node.row - 1][node.column] = VISITED;
+        }
+
+        if (node.column != 0 and grid[node.row][node.column - 1] != VISITED) {
+            open_list.emplace(std::max(grid[node.row][node.column - 1], node.cost),
+                              node.row, node.column - 1);
+            grid[node.row][node.column - 1] = VISITED;
+        }
+    }
+
+    return -1;
+}
+
+
+/**
+ * @reference   Path With Minimum Effort
+ *              https://leetcode.com/problems/path-with-minimum-effort/
+ *
+ * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of
+ * size rows x columns, where heights[row][col] represents the height of cell (row, col).
+ * You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right
+ * cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right,
+ * and you wish to find a route that requires the minimum effort.
+ * A route's effort is the maximum absolute difference in heights between two consecutive
+ * cells of the route.
+ * Return the minimum effort required to travel from the top-left cell to the bottom-right
+ * cell.
+ */
+using NodeType = std::tuple<int, int, int>;
+
+auto MinimumEffortPath_Dijkstra(const MatrixType &heights) {
+    const int M = heights.size();
+    const int N = heights.front().size();
+    std::vector efforts(M, std::vector(N, INT_MAX));
+    std::priority_queue<NodeType, std::vector<NodeType>, std::greater<NodeType>> q;
+    q.emplace(0, 0, 0);
+
+    while (not q.empty()) {
+        const auto [e, x, y] = q.top();
+        q.pop();
+
+        if (e > efforts[x][y]) {
+            continue;
+        }
+
+        if (x == M - 1 and y == N - 1) {
+            return e;
+        }
+
+        const auto h = heights[x][y];
+        if (x > 0) {
+            const auto new_effort = std::max(e, std::abs(heights[x - 1][y] - h));
+            if (efforts[x - 1][y] > new_effort) {
+                efforts[x - 1][y] = new_effort;
+                q.emplace(new_effort, x - 1, y);
+            }
+        }
+        if (x < M - 1) {
+            const auto new_effort = std::max(e, std::abs(heights[x + 1][y] - h));
+            if (efforts[x + 1][y] > new_effort) {
+                efforts[x + 1][y] = new_effort;
+                q.emplace(new_effort, x + 1, y);
+            }
+        }
+        if (y > 0) {
+            const auto new_effort = std::max(e, std::abs(heights[x][y - 1] - h));
+            if (efforts[x][y - 1] > new_effort) {
+                efforts[x][y - 1] = new_effort;
+                q.emplace(new_effort, x, y - 1);
+            }
+        }
+        if (y < N - 1) {
+            const auto new_effort = std::max(e, std::abs(heights[x][y + 1] - h));
+            if (efforts[x][y + 1] > new_effort) {
+                efforts[x][y + 1] = new_effort;
+                q.emplace(new_effort, x, y + 1);
+            }
+        }
+    }
+
+    return 0;
+}
+
 }//namespace
 
 
@@ -649,3 +797,57 @@ THE_BENCHMARK(DungeonGame_Dijkstra, SAMPLE1D);
 
 SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE1, 7, SAMPLE1D);
 SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE2, 1, SAMPLE2D);
+
+
+const MatrixType SAMPLE1S = {
+    {0, 2},
+    {1, 3}
+};
+
+const MatrixType SAMPLE2S = {
+    {0, 1, 2, 3, 4},
+    {24, 23, 22, 21, 5},
+    {12, 13, 14, 15, 16},
+    {11, 17, 18, 19, 20},
+    {10, 9, 8, 7, 6}
+};
+
+const MatrixType SAMPLE3S = {
+    {3, 2},
+    {0, 1}
+};
+
+
+THE_BENCHMARK(SwimInRisingWater_Dijkstra, SAMPLE1S);
+
+SIMPLE_TEST(SwimInRisingWater_Dijkstra, TestSAMPLE1, 3, SAMPLE1S);
+SIMPLE_TEST(SwimInRisingWater_Dijkstra, TestSAMPLE2, 16, SAMPLE2S);
+SIMPLE_TEST(SwimInRisingWater_Dijkstra, TestSAMPLE3, 3, SAMPLE3S);
+
+
+const MatrixType SAMPLE1E = {
+    {1, 2, 2},
+    {3, 8, 2},
+    {5, 3, 5}
+};
+
+const MatrixType SAMPLE2E = {
+    {1, 2, 3},
+    {3, 8, 4},
+    {5, 3, 5}
+};
+
+const MatrixType SAMPLE3E = {
+    {1, 2, 1, 1, 1},
+    {1, 2, 1, 2, 1},
+    {1, 2, 1, 2, 1},
+    {1, 2, 1, 2, 1},
+    {1, 1, 1, 2, 1}
+};
+
+
+THE_BENCHMARK(MinimumEffortPath_Dijkstra, SAMPLE1E);
+
+SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE1, 2, SAMPLE1E);
+SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE2, 1, SAMPLE2E);
+SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE3, 0, SAMPLE3E);

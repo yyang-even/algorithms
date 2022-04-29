@@ -168,6 +168,27 @@ auto SpecialArrayNumber(const ArrayType &nums) {
  *      appear next in the order.
  */
 
+
+/**
+ * @reference   Check if array elements are consecutive | Added Method 4
+ *              https://www.geeksforgeeks.org/check-if-array-elements-are-consecutive/
+ * @reference   Check if array elements are consecutive in O(n) time and O(1) space (Handles Both Positive and negative numbers)
+ *              https://www.geeksforgeeks.org/check-array-elements-consecutive-time-o1-space-handles-positive-negative-numbers/
+ *
+ * Given an unsorted array of distinct numbers, write a function that returns true if
+ * array consists of consecutive numbers.
+ */
+auto areConsecutive(const ArrayType &nums) {
+    auto minimum = *std::min_element(nums.cbegin(), nums.cend());
+
+    int result = 0;
+    for (const auto n : nums) {
+        result ^= (n ^ minimum++);
+    }
+
+    return result == 0;
+}
+
 }//namespace
 
 
@@ -230,3 +251,19 @@ THE_BENCHMARK(SpecialArrayNumber, SAMPLE1);
 SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE1, 2, SAMPLE1);
 SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE2, -1, SAMPLE2);
 SIMPLE_TEST(SpecialArrayNumber, TestSAMPLE3, 3, SAMPLE3);
+
+
+const ArrayType SAMPLE1C = {5, 2, 3, 1, 4};
+const ArrayType SAMPLE2C = {83, 78, 80, 81, 79, 82};
+const ArrayType SAMPLE3C = {34, 23, 52, 12, 3};
+const ArrayType SAMPLE4C = {7, 6, 5, 5, 3, 4};
+const ArrayType SAMPLE5C = {2, 1, 0, -3, -1, -2};
+
+
+THE_BENCHMARK(areConsecutive, SAMPLE1C);
+
+SIMPLE_TEST(areConsecutive, TestSAMPLE1, true, SAMPLE1C);
+SIMPLE_TEST(areConsecutive, TestSAMPLE2, true, SAMPLE2C);
+SIMPLE_TEST(areConsecutive, TestSAMPLE3, false, SAMPLE3C);
+SIMPLE_TEST(areConsecutive, TestSAMPLE4, false, SAMPLE4C);
+SIMPLE_TEST(areConsecutive, TestSAMPLE5, true, SAMPLE5C);

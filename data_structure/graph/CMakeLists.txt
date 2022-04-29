@@ -1,6 +1,9 @@
 compile_benchmark(accounts_merge)
 compile_test(accounts_merge)
 
+compile_benchmark(bipartite)
+compile_test(bipartite)
+
 compile_benchmark(breadth_first_search)
 compile_test(breadth_first_search)
 
@@ -21,9 +24,6 @@ compile_test(detect_cycle)
 
 compile_benchmark(euler_tour)
 compile_test(euler_tour)
-
-compile_benchmark(largest_component_size_by_common_factor)
-compile_test(largest_component_size_by_common_factor)
 
 compile_benchmark(minimum_mean_weight_cycle)
 compile_test(minimum_mean_weight_cycle)
@@ -51,9 +51,6 @@ compile_test(strongly_connected_components)
 
 compile_benchmark(sum_of_distances_in_tree)
 compile_test(sum_of_distances_in_tree)
-
-compile_benchmark(swim_in_rising_water)
-compile_test(swim_in_rising_water)
 
 compile_benchmark(topological_sort)
 compile_test(topological_sort)

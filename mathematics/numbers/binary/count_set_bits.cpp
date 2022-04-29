@@ -201,6 +201,44 @@ auto CountPrimeSetBits(const unsigned left, const unsigned right) {
     return result;
 }
 
+
+/** Count number of bits to be flipped to convert A to B
+ *
+ * @reference   https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
+ * @reference   Number of mismatching bits in the binary representation of two integers
+ *              https://www.geeksforgeeks.org/number-of-mismatching-bits-in-the-binary-representation-of-two-integers/
+ * @reference   Count number of bits to be flipped to convert A to B | Set-2
+ *              https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
+ *
+ * Given two numbers 'a' and 'b'. Write a program to count number of bits needed to be
+ * flipped to convert 'a' to 'b'.
+ *
+ * @reference   Minimum Bit Flips to Convert Number
+ *              https://leetcode.com/problems/minimum-bit-flips-to-convert-number/
+ *
+ * A bit flip of a number x is choosing a bit in the binary representation of x and
+ * flipping it from either 0 to 1 or 1 to 0.
+ *  For example, for x = 7, the binary representation is 111 and we may choose any bit
+ *      (including any leading zeros not shown) and flip it. We can flip the first bit
+ *      from the right to get 110, flip the second bit from the right to get 101, flip
+ *      the fifth bit from the right (a leading zero) to get 10111, etc.
+ * Given two integers start and goal, return the minimum number of bit flips to convert
+ * start to goal.
+ *
+ * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
+ *              Questions 5.5.
+ *
+ * @reference   Hamming Distance
+ *              https://leetcode.com/problems/hamming-distance/
+ *
+ * The Hamming distance between two integers is the number of positions at which the
+ * corresponding bits are different. Given two integers x and y, return the Hamming
+ * distance between them.
+ */
+inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
+    return CountSetBits_BrianKernighan(a ^ b);
+}
+
 }//namespace
 
 
@@ -294,3 +332,11 @@ THE_BENCHMARK(CountPrimeSetBits, 6, 10);
 
 SIMPLE_TEST(CountPrimeSetBits, TestSAMPLE1, 4, 6, 10);
 SIMPLE_TEST(CountPrimeSetBits, TestSAMPLE2, 5, 10, 15);
+
+
+THE_BENCHMARK(CountDiffBits, 10, 20);
+
+SIMPLE_TEST(CountDiffBits, TestSample1, 4, 10, 20);
+SIMPLE_TEST(CountDiffBits, TestSample2, 3, 10, 7);
+SIMPLE_TEST(CountDiffBits, TestSample3, 2, 12, 15);
+SIMPLE_TEST(CountDiffBits, TestSample4, 3, 3, 16);

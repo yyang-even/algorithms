@@ -3,8 +3,12 @@
 #include "graph.h"
 #include "depth_first_search.h"
 
+#include "data_structure/disjoint_set.h"
+
 
 using namespace graph;
+using IndexPair = std::pair<int, int>;
+using PairArray = std::vector<IndexPair>;
 
 namespace {
 
@@ -44,6 +48,110 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  * v are in the same connected component.
  */
 
+
+/** Largest Component Size by Common Factor
+ *
+ * @reference   https://leetcode.com/problems/largest-component-size-by-common-factor/
+ *
+ * You are given an integer array of unique positive integers nums. Consider the following
+ * graph:
+ *  There are nums.length nodes, labeled nums[0] to nums[nums.length - 1],
+ *  There is an undirected edge between nums[i] and nums[j] if nums[i] and nums[j] share
+ *  a common factor greater than 1.
+ * Return the size of the largest connected component in the graph.
+ * 1 <= nums[i] <= 10^5
+ */
+auto LargestComponentSizeByCommonFactor(const ArrayType &nums) {
+    DisjointSet_Array disjoint_set(100001);
+
+    for (const auto v : nums) {
+        for (int i = 2; i <= std::sqrt(v); ++i) {
+            if (v % i == 0) {
+                disjoint_set.Union(v, i);
+                disjoint_set.Union(v, v / i);
+            }
+        }
+    }
+
+    std::unordered_map<int, int> component_size_map;
+    int result = 0;
+    for (const auto v : nums) {
+        const auto component_id = disjoint_set.Find(v);
+        result = std::max(result, ++component_size_map[component_id]);
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Smallest String With Swaps
+ *              https://leetcode.com/problems/smallest-string-with-swaps/
+ *
+ * You are given a string s, and an array of pairs of indices in the string pairs where
+ * pairs[i] = [a, b] indicates 2 indices(0-indexed) of the string.
+ * You can swap the characters at any pair of indices in the given pairs any number of
+ * times.
+ * Return the lexicographically smallest string that s can be changed to after using the
+ * swaps.
+ */
+auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
+    DisjointSet_Array disjoint_set(s.size());
+    for (const auto [u, v] : pairs) {
+        disjoint_set.Union(u, v);
+    }
+
+    std::unordered_map<int, std::vector<int>> components;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        components[disjoint_set.Find(i)].push_back(i);
+    }
+
+    std::string result(s.size(), 0);
+    for (const auto &[_, indices] : components) {
+        std::string chars;
+        for (const auto i : indices) {
+            chars.push_back(s[i]);
+        }
+        std::sort(chars.begin(), chars.end());
+
+        for (std::size_t i = 0; i < indices.size(); ++i) {
+            result[indices[i]] = chars[i];
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Largest Number After Digit Swaps by Parity
+ *              https://leetcode.com/problems/largest-number-after-digit-swaps-by-parity/
+ *
+ * You are given a positive integer num. You may swap any two digits of num that have
+ * the same parity (i.e. both odd digits or both even digits).
+ * Return the largest possible value of num after any number of swaps.
+ */
+constexpr auto LargestNumberAfterSwaps(const unsigned num) {
+    int counts[10] = {};
+    for (auto n = num; n > 0; n /= 10) {
+        ++counts[n % 10];
+    }
+
+    int indices[2] = {0, 1};
+    int result = 0;
+    for (unsigned n = num, i = 1; n > 0; n /= 10, i *= 10) {
+        const int parity = n % 10 % 2;
+        while (counts[indices[parity]] == 0) {
+            indices[parity] += 2;
+        }
+
+        result += i * indices[parity];
+        --counts[indices[parity]];
+    }
+
+    return result;
+}
+
 }//namespace
 
 
@@ -55,3 +163,33 @@ THE_BENCHMARK(CountNumberOfConnectedComponents, 6, SAMPLE1);
 
 SIMPLE_TEST(CountNumberOfConnectedComponents, TestSAMPLE1, 3, 6, SAMPLE1);
 SIMPLE_TEST(CountNumberOfConnectedComponents, TestSAMPLE2, 2, 5, SAMPLE2);
+
+
+const ArrayType SAMPLE1L = {4, 6, 15, 35};
+const ArrayType SAMPLE2L = {20, 50, 9, 63};
+const ArrayType SAMPLE3L = {2, 3, 6, 7, 4, 12, 21, 39};
+
+
+THE_BENCHMARK(LargestComponentSizeByCommonFactor, SAMPLE1L);
+
+SIMPLE_TEST(LargestComponentSizeByCommonFactor, TestSAMPLE1, 4, SAMPLE1L);
+SIMPLE_TEST(LargestComponentSizeByCommonFactor, TestSAMPLE2, 2, SAMPLE2L);
+SIMPLE_TEST(LargestComponentSizeByCommonFactor, TestSAMPLE3, 8, SAMPLE3L);
+
+
+const PairArray SAMPLE1P = {{0, 3}, {1, 2}};
+const PairArray SAMPLE2P = {{0, 3}, {1, 2}, {0, 2}};
+const PairArray SAMPLE3P = {{0, 1}, {1, 2}};
+
+
+THE_BENCHMARK(SmallestStrWithSwaps, "dcab", SAMPLE1P);
+
+SIMPLE_TEST(SmallestStrWithSwaps, TestSAMPLE1, "bacd", "dcab", SAMPLE1P);
+SIMPLE_TEST(SmallestStrWithSwaps, TestSAMPLE2, "abcd", "dcab", SAMPLE2P);
+SIMPLE_TEST(SmallestStrWithSwaps, TestSAMPLE3, "abc", "cba", SAMPLE3P);
+
+
+THE_BENCHMARK(LargestNumberAfterSwaps, 1234);
+
+SIMPLE_TEST(LargestNumberAfterSwaps, TestSAMPLE1, 3412, 1234);
+SIMPLE_TEST(LargestNumberAfterSwaps, TestSAMPLE2, 87655, 65875);

@@ -250,6 +250,18 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * 1 <= nums[i], original <= 1000
  */
 
+
+/**
+ * @reference   Divide Array Into Equal Pairs
+ *              https://leetcode.com/problems/divide-array-into-equal-pairs/
+ *
+ * You are given an integer array nums consisting of 2 * n integers.
+ * You need to divide nums into n pairs such that:
+ *  Each element belongs to exactly one pair.
+ *  The elements present in a pair are equal.
+ * Return true if nums can be divided into n pairs, otherwise return false.
+ */
+
 }//namespace
 
 

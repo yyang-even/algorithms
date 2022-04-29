@@ -253,6 +253,34 @@ auto CommonCharsOfStrings(const ArrayType &strings) {
 
 
 /**
+ * @reference   Intersection of Multiple Arrays
+ *              https://leetcode.com/problems/intersection-of-multiple-arrays/
+ *
+ * Given a 2D integer array nums where nums[i] is a non-empty array of distinct positive
+ * integers, return the list of integers that are present in each array of nums sorted in
+ * ascending order.
+ * All the values of nums[i] are unique.
+ * 1 <= nums[i][j] <= 1000
+ */
+auto IntersectionOfMulti(const std::vector<NumArrayType> &nums) {
+    std::size_t counts[1001] = {};
+
+    for (const auto &arr : nums) {
+        for (const auto n : arr) {
+            ++counts[n];
+        }
+    }
+
+    NumArrayType result;
+    for (int i = 0; i < 1001; ++i)
+        if (counts[i] == nums.size()) {
+            result.push_back(i);
+        }
+    return result;
+}
+
+
+/**
  * @reference   Find uncommon characters of the two strings
  *              https://www.geeksforgeeks.org/find-uncommon-characters-two-strings/
  *
@@ -318,6 +346,17 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
 
     return results;
 }
+
+
+/**
+ * @reference   Find the Difference of Two Arrays
+ *              https://leetcode.com/problems/find-the-difference-of-two-arrays/
+ *
+ * Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+ *  answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+ *  answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+ * Note that the integers in the lists may be returned in any order.
+ */
 
 
 /**
@@ -631,3 +670,16 @@ THE_BENCHMARK(TwoOutOfThree, SAMPLE1O1, SAMPLE1O2, SAMPLE1O3);
 SIMPLE_TEST(TwoOutOfThree, TestSAMPLE1, EXPECTED1O, SAMPLE1O1, SAMPLE1O2, SAMPLE1O3);
 SIMPLE_TEST(TwoOutOfThree, TestSAMPLE2, EXPECTED2O, SAMPLE2O1, SAMPLE1O2, SAMPLE2O3);
 SIMPLE_TEST(TwoOutOfThree, TestSAMPLE3, EXPECTED3O, SAMPLE3O1, SAMPLE3O2, SAMPLE3O3);
+
+
+const std::vector<NumArrayType> SAMPLE1M = {{3, 1, 2, 4, 5}, {1, 2, 3, 4}, {3, 4, 5, 6}};
+const NumArrayType EXPECTED1M = {3, 4};
+
+const std::vector<NumArrayType> SAMPLE2M = {{1, 2, 3}, {4, 5, 6}};
+const NumArrayType EXPECTED2M = {};
+
+
+THE_BENCHMARK(IntersectionOfMulti, SAMPLE1M);
+
+SIMPLE_TEST(IntersectionOfMulti, TestSAMPLE1, EXPECTED1M, SAMPLE1M);
+SIMPLE_TEST(IntersectionOfMulti, TestSAMPLE2, EXPECTED2M, SAMPLE2M);

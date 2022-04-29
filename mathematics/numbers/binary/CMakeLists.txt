@@ -40,9 +40,6 @@ compile_test(conditionally_set_or_clear)
 compile_benchmark(conditionally_negate)
 compile_test(conditionally_negate)
 
-compile_benchmark(count_diff_bits_of_two)
-compile_test(count_diff_bits_of_two)
-
 compile_benchmark(count_equal_sum_and_xor)
 compile_test(count_equal_sum_and_xor)
 
