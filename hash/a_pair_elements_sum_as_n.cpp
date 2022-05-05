@@ -2,8 +2,8 @@
 
 #include "a_pair_elements_sum_as_n.h"
 
-#include "data_structure/tree/binary_tree/binary_tree_traversals.h"
 #include "data_structure/tree/binary_tree/BST/binary_search_tree.h"
+#include "data_structure/tree/binary_tree/binary_tree_traversals.h"
 
 
 namespace {
@@ -29,9 +29,8 @@ using OperationArrayType = std::vector<std::pair<bool, int>>;
  *
  * @complexity: O(n)
  */
-template <typename ArrayType>
-inline constexpr auto
-HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
+template<typename ArrayType>
+inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
     return PairOfElementsSumAsN_Hashmap<ArrayType>(values, target, nullptr);
 }
 
@@ -58,9 +57,8 @@ HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
  * 1 <= answer[0] < answer[1] <= numbers.length. The tests are generated such that there
  * is exactly one solution. You may not use the same element twice.
  */
-template <typename Container>
-constexpr auto
-HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
+template<typename Container>
+constexpr auto HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
     assert(std::is_sorted(values.cbegin(), values.cend()));
 
     auto left = values.cbegin();
@@ -101,6 +99,34 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.12.
  */
+
+
+/**
+ * @reference   Max Number of K-Sum Pairs
+ *              https://leetcode.com/problems/max-number-of-k-sum-pairs/
+ *
+ * You are given an integer array nums and an integer k.
+ * In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+ * Return the maximum number of operations you can perform on the array.
+ * 1 <= nums[i] <= 10^9
+ * 1 <= k <= 10^9
+ */
+auto CountTwoSumsSingleUse(const ArrayType &nums, const int k) {
+    std::unordered_map<int, int> counts;
+    int result = 0;
+    for (const auto n : nums) {
+        const auto other = k - n;
+        const auto iter = counts.find(other);
+        if (iter != counts.cend() and iter->second > 0) {
+            ++result;
+            --(iter->second);
+        } else {
+            ++counts[n];
+        }
+    }
+
+    return result;
+}
 
 
 /**
@@ -166,18 +192,17 @@ auto testTwoSum(const OperationArrayType &operations) {
  * Given the root of a Binary Search Tree and a target number k, return true if there
  * exist two elements in the BST such that their sum is equal to the given target.
  */
-inline auto
-HasPairOfElementsSumAsN_BST_Inorder(const BinaryTree::Node::PointerType root,
-                                    const int target) {
+inline auto HasPairOfElementsSumAsN_BST_Inorder(const BinaryTree::Node::PointerType root,
+                                                const int target) {
     BinaryTree::ArrayType inorder;
     InorderTraversal_Recursive(root, inorder);
     return HasPairOfElementsSumAsN_TwoPointers(inorder, target);
 }
 
 
-inline auto
-HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType node,
-                                 const int target, std::unordered_set<int> &hash) {
+inline auto HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType node,
+                                             const int target,
+                                             std::unordered_set<int> &hash) {
     if (node) {
         if (hash.find(target - node->value) != hash.cend()) {
             return true;
@@ -191,9 +216,8 @@ HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType node,
     return false;
 }
 
-inline auto
-HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType root,
-                                 const int target) {
+inline auto HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType root,
+                                             const int target) {
     std::unordered_set<int> hash;
     return HasPairOfElementsSumAsN_BST_Hash(root, target, hash);
 }
@@ -205,9 +229,8 @@ HasPairOfElementsSumAsN_BST_Hash(const BinaryTree::Node::PointerType root,
  * @reference   Pair with a given sum in BST | Set 2
  *              https://www.geeksforgeeks.org/pair-with-a-given-sum-in-bst-set-2/
  */
-auto
-HasPairOfElementsSumAsN_BST_TwoPointers(const BinaryTree::Node::PointerType root,
-                                        const int target) {
+auto HasPairOfElementsSumAsN_BST_TwoPointers(const BinaryTree::Node::PointerType root,
+                                             const int target) {
     std::stack<BinaryTree::Node::PointerType> left_stack;
     std::stack<BinaryTree::Node::PointerType> right_stack;
 
@@ -389,8 +412,7 @@ auto twoSum(const ArrayType &nums, const int target, const int start) {
     return results;
 }
 
-auto
-kSum(const int K, const ArrayType &nums, const int target, const std::size_t start) {
+auto kSum(const int K, const ArrayType &nums, const int target, const std::size_t start) {
     std::vector<ArrayType> results;
 
     if (start == nums.size() or nums[start] * K > target or target > nums.back() * K) {
@@ -432,7 +454,8 @@ inline auto FourSum(ArrayType nums, const int target) {
  * Given two unsorted arrays of distinct elements, the task is to find all pairs from
  * both arrays whose sum is equal to x.
  */
-auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
+auto FindAllPairsSumAsN_Hash(const ArrayType &arr1,
+                             const ArrayType &arr2,
                              const ArrayType::value_type SUM) {
     std::unordered_set array1_set(arr1.cbegin(), arr1.cend());
     std::vector<ArrayType> outputs;
@@ -456,7 +479,8 @@ auto FindAllPairsSumAsN_Hash(const ArrayType &arr1, const ArrayType &arr2,
  * problem is to count all pairs from both arrays whose sum is equal to x. Note: The
  * pair has an element from each array.
  */
-auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2,
+auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1,
+                                    const ArrayType &arr2,
                                     const ArrayType::value_type SUM) {
     assert(std::is_sorted(arr1.cbegin(), arr1.cend()));
     assert(std::is_sorted(arr2.cbegin(), arr2.cend()));
@@ -481,9 +505,9 @@ auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1, const ArrayType &arr2
     return outputs;
 }
 
-inline auto
-FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1, ArrayType arr2,
-                                    const ArrayType::value_type SUM) {
+inline auto FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1,
+                                                ArrayType arr2,
+                                                const ArrayType::value_type SUM) {
     std::sort(arr1.begin(), arr1.end());
     std::sort(arr2.begin(), arr2.end());
 
@@ -558,7 +582,7 @@ auto CountSpecialQuestions(const ArrayType &nums) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {};
@@ -641,44 +665,25 @@ SIMPLE_TEST(HasPairOfElementsSumAsN_BST_Hash, TestSAMPLE4, false, SAMPLE1T, -1);
 const std::vector<ArrayType> EXPECTED0 = {};
 
 const ArrayType VALUES4 = {-1, 0, 1, 2, -1, -4};
-const std::vector<ArrayType> EXPECTED4 = {
-    {-1, -1, 2},
-    {-1, 0, 1}
-};
+const std::vector<ArrayType> EXPECTED4 = {{-1, -1, 2}, {-1, 0, 1}};
 
 const ArrayType VALUES5 = {0, -1, 2, -3, 1};
-const std::vector<ArrayType> EXPECTED5 = {
-    {-3, 1, 2},
-    {-1, 0, 1}
-};
+const std::vector<ArrayType> EXPECTED5 = {{-3, 1, 2}, {-1, 0, 1}};
 
 const ArrayType VALUES6 = {1, -2, 1, 0, 5};
-const std::vector<ArrayType> EXPECTED6 = {
-    {-2, 1, 1}
-};
+const std::vector<ArrayType> EXPECTED6 = {{-2, 1, 1}};
 
 const ArrayType VALUES7 = {12, 3, 4, 1, 6, 9};
-const std::vector<ArrayType> EXPECTED7 = {
-    {3, 9, 12}
-};
+const std::vector<ArrayType> EXPECTED7 = {{3, 9, 12}};
 
 const ArrayType VALUES8 = {1, 2, 3, 4, 5};
-const std::vector<ArrayType> EXPECTED8 = {
-    {1, 3, 5},
-    {2, 3, 4}
-};
+const std::vector<ArrayType> EXPECTED8 = {{1, 3, 5}, {2, 3, 4}};
 
 const ArrayType VALUES9 = {12, 3, 6, 1, 6, 9};
-const std::vector<ArrayType> EXPECTED9 = {
-    {3, 9, 12},
-    {6, 6, 12}
-};
+const std::vector<ArrayType> EXPECTED9 = {{3, 9, 12}, {6, 6, 12}};
 
 const ArrayType VALUES10 = {-2, 0, 1, 1, 2};
-const std::vector<ArrayType> EXPECTED10 = {
-    {-2, 0, 2},
-    {-2, 1, 1}
-};
+const std::vector<ArrayType> EXPECTED10 = {{-2, 0, 2}, {-2, 1, 1}};
 
 const ArrayType VALUES12T = {0, 0, 0, 0};
 const std::vector<ArrayType> EXPECTED12T = {
@@ -735,9 +740,7 @@ const std::vector<ArrayType> EXPECTED11 = {
 };
 
 const ArrayType VALUES12 = {2, 2, 2, 2, 2};
-const std::vector<ArrayType> EXPECTED12 = {
-    {2, 2, 2, 2}
-};
+const std::vector<ArrayType> EXPECTED12 = {{2, 2, 2, 2}};
 
 
 THE_BENCHMARK(FourSum, VALUES11, 8);
@@ -746,7 +749,7 @@ SIMPLE_TEST(FourSum, TestSAMPLE11, EXPECTED11, VALUES11, 0);
 SIMPLE_TEST(FourSum, TestSAMPLE12, EXPECTED12, VALUES12, 8);
 
 
-const ArrayType SAMPLE1L = { -1, -2, 4, -6, 5, 7};
+const ArrayType SAMPLE1L = {-1, -2, 4, -6, 5, 7};
 const ArrayType SAMPLE1R = {6, 3, 4, 0};
 const std::vector<ArrayType> EXPECTED1T = {{5, 3}, {4, 4}};
 
@@ -777,34 +780,18 @@ const std::vector<ArrayType> EXPECTED_SORTED2 = {{1, 8}, {4, 5}, {5, 4}};
 
 THE_BENCHMARK(FindAllPairsSumAsN_Sort_TwoPointers, SAMPLE1L, SAMPLE1R, 8);
 
-SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1,
-            SAMPLE1L, SAMPLE1R, 8);
-SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample2, EXPECTED_SORTED2,
-            SAMPLE2L, SAMPLE2R, 9);
-SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample3, EXPECTED3T,
-            SAMPLE3L, SAMPLE3R, 8);
+SIMPLE_TEST(
+    FindAllPairsSumAsN_Sort_TwoPointers, TestSample1, EXPECTED_SORTED1, SAMPLE1L, SAMPLE1R, 8);
+SIMPLE_TEST(
+    FindAllPairsSumAsN_Sort_TwoPointers, TestSample2, EXPECTED_SORTED2, SAMPLE2L, SAMPLE2R, 9);
+SIMPLE_TEST(FindAllPairsSumAsN_Sort_TwoPointers, TestSample3, EXPECTED3T, SAMPLE3L, SAMPLE3R, 8);
 
 
-const std::vector<ArrayType> SAMPLE1A = {
-    {1, 2},
-    {-2, -1},
-    {-1, 2},
-    {0, 2}
-};
+const std::vector<ArrayType> SAMPLE1A = {{1, 2}, {-2, -1}, {-1, 2}, {0, 2}};
 
-const std::vector<ArrayType> SAMPLE2A = {
-    {0},
-    {0},
-    {0},
-    {0}
-};
+const std::vector<ArrayType> SAMPLE2A = {{0}, {0}, {0}, {0}};
 
-const std::vector<ArrayType> SAMPLE3A = {
-    {-1, -1},
-    {-1, 1},
-    {-1, 1},
-    {1, -1}
-};
+const std::vector<ArrayType> SAMPLE3A = {{-1, -1}, {-1, 1}, {-1, 1}, {1, -1}};
 
 
 THE_BENCHMARK(FourSum4Array, SAMPLE1A, 0);
@@ -824,3 +811,13 @@ THE_BENCHMARK(CountSpecialQuestions, SAMPLE1Q);
 SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE1, 1, SAMPLE1Q);
 SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE2, 0, SAMPLE2Q);
 SIMPLE_TEST(CountSpecialQuestions, TestSAMPLE3, 4, SAMPLE3Q);
+
+
+const ArrayType SAMPLE1S = {1, 2, 3, 4};
+const ArrayType SAMPLE2S = {3, 1, 3, 4, 3};
+
+
+THE_BENCHMARK(CountTwoSumsSingleUse, SAMPLE1S, 5);
+
+SIMPLE_TEST(CountTwoSumsSingleUse, TestSAMPLE1, 2, SAMPLE1S, 5);
+SIMPLE_TEST(CountTwoSumsSingleUse, TestSAMPLE2, 1, SAMPLE2S, 6);

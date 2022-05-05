@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "graph.h"
 #include "depth_first_search.h"
+#include "graph.h"
 
 #include "data_structure/disjoint_set.h"
 
@@ -24,13 +24,14 @@ namespace {
 auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
                                       const UndirectedEdgeArrayType &edges) {
     unsigned count = 0;
-    GraphTraverse(number_vertices, edges,
-    [&count](const auto & graph, const auto source, auto & visited_vertices) {
-        ArrayType results;
-        DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
-        ++count;
-        return true;
-    });
+    GraphTraverse(number_vertices,
+                  edges,
+                  [&count](const auto &graph, const auto source, auto &visited_vertices) {
+                      ArrayType results;
+                      DepthFirstSearch_Recursive(graph, source, visited_vertices, results);
+                      ++count;
+                      return true;
+                  });
 
     return count;
 }
@@ -152,7 +153,73 @@ constexpr auto LargestNumberAfterSwaps(const unsigned num) {
     return result;
 }
 
-}//namespace
+
+/**
+ * @reference   Evaluate Division
+ *              https://leetcode.com/problems/evaluate-division/
+ *
+ * You are given an array of variable pairs equations and an array of real numbers values,
+ * where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i].
+ * Each Ai or Bi is a string that represents a single variable.
+ * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query
+ * where you must find the answer for Cj / Dj = ?.
+ * Return the answers to all queries. If a single answer cannot be determined, return -1.0.
+ * Note: The input is always valid. You may assume that evaluating the queries will not
+ * result in division by zero and that there is no contradiction.
+ */
+using StrPair = std::pair<std::string_view, std::string_view>;
+using StrPairArray = std::vector<StrPair>;
+using DoubleArray = std::vector<double>;
+using DisjointSet = std::unordered_map<std::string_view, std::pair<std::string_view, double>>;
+
+DisjointSet::mapped_type Find(DisjointSet &disjoint_set, const std::string_view x) {
+    if (x != disjoint_set[x].first) {
+        auto &[x_p, x_v] = disjoint_set[x];
+        const auto [p_p, p_v] = Find(disjoint_set, x_p);
+        x_p = p_p;
+        x_v *= p_v;
+    }
+
+    return disjoint_set[x];
+}
+
+void Union(DisjointSet &disjoint_set,
+           const std::string_view a,
+           const std::string_view b,
+           const double v) {
+    disjoint_set.emplace(a, std::pair(a, 1.0));
+    disjoint_set.emplace(b, std::pair(b, 1.0));
+    const auto [a_p, a_v] = Find(disjoint_set, a);
+    const auto [b_p, b_v] = Find(disjoint_set, b);
+    disjoint_set[a_p] = {b_p, v * b_v / a_v};
+}
+
+auto EvaluateDivision(const StrPairArray &equations,
+                      const DoubleArray &values,
+                      const StrPairArray &queries) {
+    DisjointSet disjoint_set;
+    for (std::size_t i = 0; i < equations.size(); ++i) {
+        const auto [a, b] = equations[i];
+        Union(disjoint_set, a, b, values[i]);
+    }
+
+    DoubleArray results;
+    for (const auto [a, b] : queries) {
+        const auto a_iter = disjoint_set.find(a);
+        const auto b_iter = disjoint_set.find(b);
+        if (a_iter != disjoint_set.cend() and b_iter != disjoint_set.cend()) {
+            const auto [a_p, a_v] = Find(disjoint_set, a);
+            const auto [b_p, b_v] = Find(disjoint_set, b);
+            results.push_back(a_v / b_v);
+        } else {
+            results.push_back(-1.0);
+        }
+    }
+
+    return results;
+}
+
+} //namespace
 
 
 const UndirectedEdgeArrayType SAMPLE1 = {{1, 5}, {0, 2}, {2, 4}};
@@ -193,3 +260,26 @@ THE_BENCHMARK(LargestNumberAfterSwaps, 1234);
 
 SIMPLE_TEST(LargestNumberAfterSwaps, TestSAMPLE1, 3412, 1234);
 SIMPLE_TEST(LargestNumberAfterSwaps, TestSAMPLE2, 87655, 65875);
+
+
+const StrPairArray SAMPLE1E = {{"a", "b"}, {"b", "c"}};
+const DoubleArray SAMPLE1V = {2.0, 3.0};
+const StrPairArray SAMPLE1Q = {{"a", "c"}, {"b", "a"}, {"a", "e"}, {"a", "a"}, {"x", "x"}};
+const DoubleArray EXPECTED1 = {6.00000, 0.50000, -1.00000, 1.00000, -1.00000};
+
+const StrPairArray SAMPLE2E = {{"a", "b"}, {"b", "c"}, {"bc", "cd"}};
+const DoubleArray SAMPLE2V = {1.5, 2.5, 5.0};
+const StrPairArray SAMPLE2Q = {{"a", "c"}, {"c", "b"}, {"bc", "cd"}, {"cd", "bc"}};
+const DoubleArray EXPECTED2 = {3.75000, 0.40000, 5.00000, 0.20000};
+
+const StrPairArray SAMPLE3E = {{"a", "b"}};
+const DoubleArray SAMPLE3V = {0.5};
+const StrPairArray SAMPLE3Q = {{"a", "b"}, {"b", "a"}, {"a", "c"}, {"x", "y"}};
+const DoubleArray EXPECTED3 = {0.50000, 2.00000, -1.00000, -1.00000};
+
+
+THE_BENCHMARK(EvaluateDivision, SAMPLE1E, SAMPLE1V, SAMPLE1Q);
+
+SIMPLE_TEST(EvaluateDivision, TestSAMPLE1, EXPECTED1, SAMPLE1E, SAMPLE1V, SAMPLE1Q);
+SIMPLE_TEST(EvaluateDivision, TestSAMPLE2, EXPECTED2, SAMPLE2E, SAMPLE2V, SAMPLE2Q);
+SIMPLE_TEST(EvaluateDivision, TestSAMPLE3, EXPECTED3, SAMPLE3E, SAMPLE3V, SAMPLE3Q);
