@@ -224,7 +224,7 @@ auto StockSpanProblem(const ArrayType &prices) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {4, 5, 2, 25};
@@ -243,7 +243,7 @@ SIMPLE_TEST(NextGreaterElement, TestSAMPLE2, EXPECTED2, SAMPLE2);
 const ArrayType SAMPLE3 = {100, 80, 60, 70, 60, 75, 85};
 const ArrayType EXPECTED3 = {1, 1, 1, 2, 1, 4, 6};
 
-const ArrayType SAMPLE4 = { 10, 4, 5, 90, 120, 80 };
+const ArrayType SAMPLE4 = {10, 4, 5, 90, 120, 80};
 const ArrayType EXPECTED4 = {1, 1, 2, 4, 5, 1};
 
 

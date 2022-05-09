@@ -1,3 +1,6 @@
+compile_benchmark(132_pattern)
+compile_test(132_pattern)
+
 compile_benchmark(basic_calculator)
 compile_test(basic_calculator)
 
@@ -13,6 +16,12 @@ compile_benchmark(make_string_great)
 compile_test(make_string_great)
 
 compile_test(min_stack)
+
+compile_benchmark(next_greater_element)
+compile_test(next_greater_element)
+
+compile_benchmark(recursively_remove_adjacent_duplicates)
+compile_test(recursively_remove_adjacent_duplicates)
 
 compile_test(sort_stack)
 

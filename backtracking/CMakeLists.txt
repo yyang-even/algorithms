@@ -18,3 +18,6 @@ compile_test(permutation)
 
 compile_benchmark(permutation_with_repetition)
 compile_test(permutation_with_repetition)
+
+compile_benchmark(phone_digits_to_words)
+compile_test(phone_digits_to_words)

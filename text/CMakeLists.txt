@@ -91,9 +91,6 @@ compile_test(palindrome_permutation)
 compile_benchmark(pangram_checking)
 compile_test(pangram_checking)
 
-compile_benchmark(phone_digits_to_words)
-compile_test(phone_digits_to_words)
-
 compile_app(pretty_print)
 compile_test(pretty_print)
 
@@ -108,9 +105,6 @@ compile_test(print_range)
 
 compile_benchmark(read_n_chars_given_read4)
 compile_test(read_n_chars_given_read4)
-
-compile_benchmark(recursively_remove_adjacent_duplicates)
-compile_test(recursively_remove_adjacent_duplicates)
 
 compile_benchmark(remove_characters)
 compile_test(remove_characters)
