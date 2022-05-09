@@ -15,10 +15,17 @@ using ResultType = std::unordered_multiset<std::string>;
  *
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
+ *
+ * @reference   Letter Combinations of a Phone Number
+ *              https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+ *
+ * Given a string containing digits from 2-9 inclusive, return all possible letter
+ * combinations that the number could represent. Return the answer in any order.
+ * A mapping of digit to letters (just like on the telephone buttons) is given below.
+ * Note that 1 does not map to any letters.
  */
-const std::vector<std::string_view> CharKeys = { "0",    "1",    "abc",  "def", "ghi",
-                                                 "jkl", "mno", "pqrs", "tuv", "wxyz"
-                                               };
+const std::vector<std::string_view> CharKeys = {
+    "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
 void AllPossibleWordsFromPhoneDigits_Recursive(const ArrayType &phone_digits,
                                                std::string &one_word,
@@ -60,7 +67,7 @@ auto AllPossibleWordsFromPhoneDigits_Iterative(const ArrayType &phone_digits) {
                 return results;
             }
 
-            const auto current_char_keys =  CharKeys[phone_digits[i]];
+            const auto current_char_keys = CharKeys[phone_digits[i]];
             if (one_word[i] == current_char_keys.back()) {
                 one_word[i] = current_char_keys.front();
             } else {
@@ -71,14 +78,13 @@ auto AllPossibleWordsFromPhoneDigits_Iterative(const ArrayType &phone_digits) {
     }
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 4};
 const ResultType EXPECTED1 = {"adg", "adh", "adi", "aeg", "aeh", "aei", "afg", "afh", "afi",
                               "bdg", "bdh", "bdi", "beg", "beh", "bei", "bfg", "bfh", "bfi",
-                              "cdg", "cdh", "cdi", "ceg", "ceh", "cei", "cfg", "cfh", "cfi"
-                             };
+                              "cdg", "cdh", "cdi", "ceg", "ceh", "cei", "cfg", "cfh", "cfi"};
 
 
 THE_BENCHMARK(AllPossibleWordsFromPhoneDigits_Recursive, SAMPLE1);

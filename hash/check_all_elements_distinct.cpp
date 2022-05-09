@@ -97,7 +97,7 @@ auto ContainAlmostDuplicateAtMostKApart_Set(const ArrayType &elements,
         }
         const auto a_number = elements[i];
         const auto lower = neighbors.lower_bound(a_number - T);
-        if (lower != neighbors.cend() and * lower - a_number <= T) {
+        if (lower != neighbors.cend() and *lower - a_number <= T) {
             return true;
         }
         neighbors.insert(a_number);
@@ -111,8 +111,7 @@ auto ContainAlmostDuplicateAtMostKApart_Set(const ArrayType &elements,
  * @reference   (LeetCode) Contains Duplicate III
  *              https://stackoverflow.com/questions/31119971/leetcode-contains-duplicate-iii
  */
-inline constexpr auto
-getBucketId(const long number, const long bucket_size) {
+inline constexpr auto getBucketId(const long number, const long bucket_size) {
     return number < 0 ? (number + 1) / bucket_size - 1 : number / bucket_size;
 }
 
@@ -135,13 +134,11 @@ auto ContainAlmostDuplicateAtMostKApart_Bucket(const ArrayType &elements,
 
         buckets[bucket_id] = the_number;
         if (const auto prev_bucket = buckets.find(bucket_id - 1);
-            prev_bucket != buckets.cend() and
-            std::abs(prev_bucket->second - the_number) <= T) {
+            prev_bucket != buckets.cend() and std::abs(prev_bucket->second - the_number) <= T) {
             return true;
         }
         if (const auto next_bucket = buckets.find(bucket_id + 1);
-            next_bucket != buckets.cend() and
-            std::abs(next_bucket->second - the_number) <= T) {
+            next_bucket != buckets.cend() and std::abs(next_bucket->second - the_number) <= T) {
             return true;
         }
 
@@ -154,7 +151,52 @@ auto ContainAlmostDuplicateAtMostKApart_Bucket(const ArrayType &elements,
     return false;
 }
 
-}//namespace
+
+/**
+ * @reference   Longest Substring Without Repeating Characters
+ *              https://leetcode.com/problems/longest-substring-without-repeating-characters/
+ *
+ * Given a string s, find the length of the longest substring without repeating characters.
+ * s consists of English letters, digits, symbols and spaces.
+ */
+constexpr auto LongestSubstrWithoutRepeatingChars_Last(const std::string_view s) {
+    std::size_t lasts[256] = {};
+    std::size_t result = 0;
+    for (std::size_t i = 0, start = 0; i < s.size(); ++i) {
+        const int c = s[i];
+        if (lasts[c] > start) {
+            start = lasts[c];
+        }
+        lasts[c] = i + 1;
+        result = std::max(result, i - start + 1);
+    }
+
+    return result;
+}
+
+
+constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s) {
+    int counts[256] = {};
+    std::size_t left = 0;
+    std::size_t right = 0;
+
+    std::size_t result = 0;
+    while (right < s.size()) {
+        const int c = s[right];
+        ++counts[c];
+
+        while (counts[c] > 1) {
+            const int i = s[left++];
+            --counts[i];
+        }
+
+        result = std::max(result, ++right - left);
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
@@ -193,8 +235,8 @@ const ArrayType SAMPLE7 = {1, 5, 9, 1, 5, 9};
 THE_BENCHMARK(ContainAlmostDuplicateAtMostKApart_Set, SAMPLE1, 1, 0);
 
 SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE1, true, SAMPLE1, 1, 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE2, false,
-            SAMPLE2, SAMPLE2.size(), 0);
+SIMPLE_TEST(
+    ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE2, false, SAMPLE2, SAMPLE2.size(), 0);
 SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE3, true, SAMPLE3, 3, 0);
 SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE4, true, SAMPLE4, 1, 0);
 SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE5, false, SAMPLE5, 2, 0);
@@ -204,17 +246,25 @@ SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Set, TestSAMPLE7, false, SAMPLE7,
 
 THE_BENCHMARK(ContainAlmostDuplicateAtMostKApart_Bucket, SAMPLE1, 1, 0);
 
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE1, true,
-            SAMPLE1, 1, 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE2, false,
-            SAMPLE2, SAMPLE2.size(), 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE3, true,
-            SAMPLE3, 3, 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE4, true,
-            SAMPLE4, 1, 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE5, false,
-            SAMPLE5, 2, 0);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE6, true,
-            SAMPLE4, 1, 2);
-SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE7, false,
-            SAMPLE7, 2, 3);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE1, true, SAMPLE1, 1, 0);
+SIMPLE_TEST(
+    ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE2, false, SAMPLE2, SAMPLE2.size(), 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE3, true, SAMPLE3, 3, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE4, true, SAMPLE4, 1, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE5, false, SAMPLE5, 2, 0);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE6, true, SAMPLE4, 1, 2);
+SIMPLE_TEST(ContainAlmostDuplicateAtMostKApart_Bucket, TestSAMPLE7, false, SAMPLE7, 2, 3);
+
+
+THE_BENCHMARK(LongestSubstrWithoutRepeatingChars_Last, "abcabcbb");
+
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Last, TestSAMPLE1, 3, "abcabcbb");
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Last, TestSAMPLE2, 1, "bbbbbb");
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Last, TestSAMPLE3, 3, "pwwkew");
+
+
+THE_BENCHMARK(LongestSubstrWithoutRepeatingChars_Count, "abcabcbb");
+
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE1, 3, "abcabcbb");
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE2, 1, "bbbbbb");
+SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE3, 3, "pwwkew");
