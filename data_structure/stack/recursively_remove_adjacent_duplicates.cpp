@@ -82,7 +82,7 @@ auto RemoveAdjacentKDuplicates_Stack_InPlace(std::string text, const int K) {
     return text;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(RemoveAdjacentDuplicates_Stack, "azxxzy");
@@ -103,20 +103,17 @@ SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE4, "a", "aaaaaaaaa", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE5, "", "aaaaaaaa", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE6, "abcd", "abcd", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE7, "aa", "deeedbbcccbdaa", 3);
-SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE8, "ps",
-            "pbbcggttciiippooaais", 2);
+SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack, TestSAMPLE8, "ps", "pbbcggttciiippooaais", 2);
 
 
 THE_BENCHMARK(RemoveAdjacentKDuplicates_Stack_InPlace, "azxxzy", 2);
 
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE1, "ay", "azxxzy", 2);
-SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE2, "gksfor",
-            "geeksforgeeg", 2);
+SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE2, "gksfor", "geeksforgeeg", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE3, "ca", "abbaca", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE4, "a", "aaaaaaaaa", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE5, "", "aaaaaaaa", 2);
 SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE6, "abcd", "abcd", 2);
-SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE7, "aa",
-            "deeedbbcccbdaa", 3);
-SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE8, "ps",
-            "pbbcggttciiippooaais", 2);
+SIMPLE_TEST(RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE7, "aa", "deeedbbcccbdaa", 3);
+SIMPLE_TEST(
+    RemoveAdjacentKDuplicates_Stack_InPlace, TestSAMPLE8, "ps", "pbbcggttciiippooaais", 2);
