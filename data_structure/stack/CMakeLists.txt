@@ -15,6 +15,9 @@ compile_test(k_stack)
 compile_benchmark(make_string_great)
 compile_test(make_string_great)
 
+compile_benchmark(maximum_frequency_stack)
+compile_test(maximum_frequency_stack)
+
 compile_test(min_stack)
 
 compile_benchmark(next_greater_element)
