@@ -14,7 +14,10 @@ namespace {
 
 /** Minimum Spanning Tree
  *
- * @reference   https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/tutorial/
+ * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
+ *              Introduction to Algorithms, Third Edition. Section 23.
+ * @reference   Minimum Spanning Tree
+ *              https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/tutorial/
  * @reference   Kruskal’s Minimum Spanning Tree Algorithm | Greedy Algo-2
  *              https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
  * @reference   Prim’s Minimum Spanning Tree (MST) | Greedy Algo-5
@@ -24,11 +27,11 @@ namespace {
  */
 auto MinimumSpanningTree_Kruskal(const std::size_t number_vertices,
                                  UndirectedEdgeArrayType edges) {
-    std::sort(edges.begin(), edges.end(), [](const auto & one, const auto & other) {
+    std::sort(edges.begin(), edges.end(), [](const auto &one, const auto &other) {
         return one.weight < other.weight;
     });
 
-    DisjointSet_Array disjoint_set{number_vertices};
+    DisjointSet_Array disjoint_set {number_vertices};
     std::size_t edge_selected = 0;
     int result = 0;
     for (const auto &an_edge : edges) {
@@ -52,10 +55,11 @@ auto MinimumSpanningTree_Kruskal(const std::size_t number_vertices,
 
 using WeightIndexPair = std::pair<int, std::size_t>;
 
-auto
-MinimumSpanningTree_Prim(const WeightedAdjacencyListGraph::RepresentationType &graph) {
-    std::priority_queue<WeightIndexPair, std::vector<WeightIndexPair>, std::greater<WeightIndexPair>>
-            q;
+auto MinimumSpanningTree_Prim(const WeightedAdjacencyListGraph::RepresentationType &graph) {
+    std::priority_queue<WeightIndexPair,
+                        std::vector<WeightIndexPair>,
+                        std::greater<WeightIndexPair>>
+        q;
     q.emplace(0, 0);
     std::vector selected(graph.size(), false);
 
@@ -83,8 +87,8 @@ MinimumSpanningTree_Prim(const WeightedAdjacencyListGraph::RepresentationType &g
 
 auto MinimumSpanningTree_Prim(const std::size_t number_vertices,
                               const UndirectedEdgeArrayType &edges) {
-    return WeightedAdjacencyListGraph(number_vertices, edges).Visit
-           (ToLambda(MinimumSpanningTree_Prim));
+    return WeightedAdjacencyListGraph(number_vertices, edges)
+        .Visit(ToLambda(MinimumSpanningTree_Prim));
 }
 
 
@@ -92,12 +96,12 @@ auto MinimumSpanningTree_Prim(const std::size_t number_vertices,
  * @reference   Min Cost to Connect All Points
  *              https://leetcode.com/problems/min-cost-to-connect-all-points/
  *
- * You are given an array points representing integer coordinates of some points on a
- * 2D-plane, where points[i] = [xi, yi].
- * The cost of connecting two points [xi, yi] and [xj, yj] is the manhattan distance
- * between them: |xi - xj| + |yi - yj|, where |val| denotes the absolute value of val.
- * Return the minimum cost to make all points connected. All points are connected if
- * there is exactly one simple path between any two points.
+ * You are given an array points representing integer coordinates of some points on a 2D-plane,
+ * where points[i] = [xi, yi].
+ * The cost of connecting two points [xi, yi] and [xj, yj] is the manhattan distance between them:
+ * |xi - xj| + |yi - yj|, where |val| denotes the absolute value of val.
+ * Return the minimum cost to make all points connected. All points are connected if there is
+ * exactly one simple path between any two points.
  */
 auto MinCostToConnectAllPoints(const PointsArray &points) {
     UndirectedEdgeArrayType edges;
@@ -148,7 +152,7 @@ auto MinCostToConnectAllPoints_Prim(const PointsArray &points) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const UndirectedEdgeArrayType SAMPLE1 = {{0, 1, 10}, {0, 2, 6}, {0, 3, 5}, {1, 3, 15}, {2, 3, 4}};

@@ -34,6 +34,9 @@ compile_test(coin_change)
 compile_benchmark(company_party_planning)
 compile_test(company_party_planning)
 
+compile_benchmark(count_sorted_vowel_strings)
+compile_test(count_sorted_vowel_strings)
+
 compile_benchmark(count_vowels_permutation)
 compile_test(count_vowels_permutation)
 
