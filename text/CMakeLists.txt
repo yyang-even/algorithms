@@ -4,12 +4,6 @@ compile_test(backspace_string_compare)
 compile_benchmark(binary_conversion_to)
 compile_test(binary_conversion_to)
 
-compile_benchmark(check_balanced_parentheses)
-compile_test(check_balanced_parentheses)
-
-compile_benchmark(combinations_of_parentheses)
-compile_test(combinations_of_parentheses)
-
 compile_benchmark(compare_version_numbers)
 compile_test(compare_version_numbers)
 

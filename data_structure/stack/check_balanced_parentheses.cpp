@@ -9,15 +9,19 @@ namespace {
  * @reference   Valid Parentheses
  *              https://leetcode.com/problems/valid-parentheses/
  *
- * Given an expression string exp, write a program to examine whether the pairs and the
- * orders of "{", "}", "(", ")", "[", "]" are correct in exp.
+ * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if
+ * the input string is valid.
+ * An input string is valid if:
+ *  Open brackets must be closed by the same type of brackets.
+ *  Open brackets must be closed in the correct order.
  */
 auto AreBracketsBalanced_Stack(const std::string_view expression) {
     std::stack<char> brackets_stack;
-    static const std::unordered_map<char, char> BRACKETS_MAP = {{')', '('}, {']', '['}, {'}', '{'}};
+    static const std::unordered_map<char, char> BRACKETS_MAP = {
+        {')', '('}, {']', '['}, {'}', '{'}};
 
     for (const auto c : expression) {
-        if (std::string_view{"([{"}.find(c) != std::string_view::npos)
+        if (std::string_view {"([{"}.find(c) != std::string_view::npos)
             brackets_stack.push(c);
         else {
             if (brackets_stack.empty() or brackets_stack.top() != BRACKETS_MAP.at(c)) {
@@ -35,8 +39,8 @@ auto AreBracketsBalanced_Stack(const std::string_view expression) {
  * @reference   Check if given Parentheses expression is balanced or not
  *              https://www.geeksforgeeks.org/check-if-given-parentheses-expression-is-balanced-or-not/
  *
- * Given a string str of length N, consisting of '(' and ')' only, the task is to check
- * whether it is balanced or not.
+ * Given a string str of length N, consisting of '(' and ')' only, the task is to check whether
+ * it is balanced or not.
  */
 constexpr auto AreParenthesesBalanced(const std::string_view expression) {
     int count = 0;
@@ -58,14 +62,15 @@ constexpr auto AreParenthesesBalanced(const std::string_view expression) {
  * @reference   Remove Outermost Parentheses
  *              https://leetcode.com/problems/remove-outermost-parentheses/
  *
- * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B
- * are valid parentheses strings, and + represents string concatenation. For example, "",
- * "()", "(())()", and "(()(()))" are all valid parentheses strings. A valid parentheses
- * string s is primitive if it is nonempty, and there does not exist a way to split it
- * into s = A + B, with A and B nonempty valid parentheses strings. Given a valid
- * parentheses string s, consider its primitive decomposition: s = P1 + P2 + ... + Pk,
- * where Pi are primitive valid parentheses strings. Return s after removing the
- * outermost parentheses of every primitive string in the primitive decomposition of s.
+ * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are
+ * valid parentheses strings, and + represents string concatenation.
+ *  For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.
+ * A valid parentheses string s is primitive if it is nonempty, and there does not exist a way
+ * to split it into s = A + B, with A and B nonempty valid parentheses strings.
+ * Given a valid parentheses string s, consider its primitive decomposition:
+ * s = P1 + P2 + ... + Pk, where Pi are primitive valid parentheses strings.
+ * Return s after removing the outermost parentheses of every primitive string in the primitive
+ * decomposition of s.
  */
 auto RemoveOuterParentheses(const std::string_view s) {
     std::string result;
@@ -91,8 +96,8 @@ auto RemoveOuterParentheses(const std::string_view s) {
  *              https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
  *
  * Given a string s of '(' , ')' and lowercase English characters.
- * Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions )
- * so that the resulting parentheses string is valid and return any valid string.
+ * Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so
+ * that the resulting parentheses string is valid and return any valid string.
  * Formally, a parentheses string is valid if and only if:
  *  It is the empty string, contains only lowercase characters, or
  *  It can be written as AB (A concatenated with B), where A and B are valid strings, or
@@ -168,7 +173,7 @@ constexpr auto ScoreOfParentheses(const std::string_view s) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(AreBracketsBalanced_Stack, "[()]{}{[()()]()}");

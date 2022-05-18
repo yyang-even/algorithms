@@ -14,8 +14,10 @@ using ArrayType = std::unordered_multiset<std::string>;
  *              https://leetcode.com/problems/generate-parentheses/
  */
 void CombinationsOfParentheses(const unsigned number_pairs,
-                               const unsigned count_open, const unsigned count_close,
-                               std::string &one_combination, ArrayType &results) {
+                               const unsigned count_open,
+                               const unsigned count_close,
+                               std::string &one_combination,
+                               ArrayType &results) {
     if (count_close == number_pairs) {
         results.insert(one_combination);
         return;
@@ -23,15 +25,15 @@ void CombinationsOfParentheses(const unsigned number_pairs,
 
     if (count_open > count_close) {
         one_combination.push_back('}');
-        CombinationsOfParentheses(number_pairs, count_open, count_close + 1,
-                                  one_combination, results);
+        CombinationsOfParentheses(
+            number_pairs, count_open, count_close + 1, one_combination, results);
         one_combination.pop_back();
     }
 
     if (count_open < number_pairs) {
         one_combination.push_back('{');
-        CombinationsOfParentheses(number_pairs, count_open + 1, count_close,
-                                  one_combination, results);
+        CombinationsOfParentheses(
+            number_pairs, count_open + 1, count_close, one_combination, results);
         one_combination.pop_back();
     }
 }
@@ -46,7 +48,7 @@ inline auto CombinationsOfParentheses(const unsigned number_pairs) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType EXPECTED1 = {"{}"};

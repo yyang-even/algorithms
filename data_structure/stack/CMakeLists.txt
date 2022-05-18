@@ -4,6 +4,9 @@ compile_test(132_pattern)
 compile_benchmark(basic_calculator)
 compile_test(basic_calculator)
 
+compile_benchmark(check_balanced_parentheses)
+compile_test(check_balanced_parentheses)
+
 compile_benchmark(crawler_log_folder)
 compile_test(crawler_log_folder)
 

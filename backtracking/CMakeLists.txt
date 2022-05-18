@@ -7,6 +7,9 @@ compile_test(combination)
 compile_benchmark(combination_sum)
 compile_test(combination_sum)
 
+compile_benchmark(combinations_of_parentheses)
+compile_test(combinations_of_parentheses)
+
 compile_benchmark(n_queen)
 compile_test(n_queen)
 

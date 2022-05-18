@@ -13,7 +13,9 @@ using TableType = MatrixTypeTemplate<unsigned>;
 namespace {
 
 bool Relax(std::vector<int> &distances,
-           const std::size_t from, const std::size_t to, const int weight,
+           const std::size_t from,
+           const std::size_t to,
+           const int weight,
            std::vector<int> *parents = nullptr) {
     if (distances[from] != std::numeric_limits<int>::max()) {
         const auto new_weight = distances[from] + weight;
@@ -30,9 +32,8 @@ bool Relax(std::vector<int> &distances,
     return false;
 }
 
-inline void Relax(std::vector<int> &distances,
-                  std::vector<int> &parents,
-                  const DirectedEdge &edge) {
+inline void
+Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge &edge) {
     Relax(distances, edge.from, edge.to, edge.weight, &parents);
 }
 
@@ -45,22 +46,21 @@ inline void Relax(std::vector<int> &distances,
  * @reference   Bellman Ford Algorithm (Simple Implementation)
  *              https://www.geeksforgeeks.org/bellman-ford-algorithm-simple-implementation/
  *
- * Given a graph and a source vertex src in graph, find shortest paths from src to all
- * vertices in the given graph. The graph may contain negative weight edges.
+ * Given a graph and a source vertex src in graph, find shortest paths from src to all vertices
+ * in the given graph. The graph may contain negative weight edges.
  *
- * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for
- * such graphs. Bellman-Ford is also simpler than Dijkstra and suites well for
- * distributed systems. But time complexity of Bellman-Ford is O(VE), which is more than
- * Dijkstra.
+ * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for such
+ * graphs. Bellman-Ford is also simpler than Dijkstra and suites well for distributed systems.
+ * But time complexity of Bellman-Ford is O(VE), which is more than Dijkstra.
  */
-auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
-                                           const DirectedEdgeArrayType &edges,
-                                           const std::size_t source,
-                                           std::pair<int, std::vector<int>> *negative_cycle_pair = nullptr) {
+auto SingleSourceShortestPaths_BellmanFord(
+    const std::size_t number_vertices,
+    const DirectedEdgeArrayType &edges,
+    const std::size_t source,
+    std::pair<int, std::vector<int>> *negative_cycle_pair = nullptr) {
     assert(source < number_vertices);
 
-    std::vector<int>
-    distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
     std::vector<int> parents(number_vertices, -1);
 
@@ -73,7 +73,7 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
     for (const auto &one_edge : edges) {
         if (distances_from_source[one_edge.from] != std::numeric_limits<int>::max() and
             distances_from_source[one_edge.to] >
-            (distances_from_source[one_edge.from] + one_edge.weight)) {
+                (distances_from_source[one_edge.from] + one_edge.weight)) {
             if (negative_cycle_pair) {
                 negative_cycle_pair->first = one_edge.to;
                 negative_cycle_pair->second = parents;
@@ -98,8 +98,7 @@ auto SingleSourceShortestPaths_BellmanFord(const std::size_t number_vertices,
  * @reference   Detect a negative cycle in a Graph | (Bellman Ford)
  *              https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/
  */
-auto hasNegativeCycle(const std::size_t number_vertices,
-                      const DirectedEdgeArrayType &edges) {
+auto hasNegativeCycle(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
     std::vector<bool> visited_vertices(number_vertices, false);
 
     for (std::size_t i = 0; i < number_vertices; ++i) {
@@ -131,10 +130,9 @@ auto hasNegativeCycle(const std::size_t number_vertices,
 auto PrintNegativeWeightCycle(const std::size_t number_vertices,
                               const DirectedEdgeArrayType &edges,
                               const std::size_t source) {
-    std::pair<int, std::vector<int>> negative_cycle_pair{};
-    const auto result_pair =
-        SingleSourceShortestPaths_BellmanFord(
-            number_vertices, edges, source, &negative_cycle_pair);
+    std::pair<int, std::vector<int>> negative_cycle_pair {};
+    const auto result_pair = SingleSourceShortestPaths_BellmanFord(
+        number_vertices, edges, source, &negative_cycle_pair);
 
     std::unordered_set<std::size_t> results;
     if (not result_pair.first) {
@@ -167,24 +165,22 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
                                    const std::size_t source) {
     assert(source < number_vertices);
 
-    WeightedAdjacencyListGraph graph{number_vertices, edges};
+    WeightedAdjacencyListGraph graph {number_vertices, edges};
 
     ArrayType topological_order;
-    GraphTraverse(graph,
-    [&topological_order](const auto & graph, const auto source, auto & visited_vertices) {
-        TopologicalSort(graph, source, visited_vertices, topological_order);
-        return true;
-    });
+    GraphTraverse(
+        graph,
+        [&topological_order](const auto &graph, const auto source, auto &visited_vertices) {
+            TopologicalSort(graph, source, visited_vertices, topological_order);
+            return true;
+        });
 
-    std::vector<int>
-    distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
 
-    for (auto iter = topological_order.crbegin();
-         iter != topological_order.crend();
-         ++iter) {
+    for (auto iter = topological_order.crbegin(); iter != topological_order.crend(); ++iter) {
         const auto from = *iter;
-        graph.Visit([from, &distances_from_source](const auto & graph) {
+        graph.Visit([from, &distances_from_source](const auto &graph) {
             for (const auto &node : graph[from]) {
                 Relax(distances_from_source, from, node.destination, node.weight);
             }
@@ -232,26 +228,24 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
     return false;
 }
 
-auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
-    const std::size_t number_vertices,
-    const UndirectedEdgeArrayType &edges,
-    const std::size_t source,
-    const std::size_t destination) {
+auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t number_vertices,
+                                                         const UndirectedEdgeArrayType &edges,
+                                                         const std::size_t source,
+                                                         const std::size_t destination) {
     assert(source < number_vertices);
     assert(destination < number_vertices);
 
-    AdjacencyListGraph graph{number_vertices, edges};
+    AdjacencyListGraph graph {number_vertices, edges};
 
-    std::vector<int>
-    distances_from_source(number_vertices, std::numeric_limits<int>::max());
+    std::vector<int> distances_from_source(number_vertices, std::numeric_limits<int>::max());
     distances_from_source[source] = 0;
     std::vector<int> parents(number_vertices, -1);
 
-    const auto path_found = graph.Visit(
-    [source, destination, &distances_from_source, &parents](const auto & graph) {
-        return SingleSourceShortestPaths_Unweighted_Undirected_BFS(
-                   graph, source, destination, distances_from_source, parents);
-    });
+    const auto path_found =
+        graph.Visit([source, destination, &distances_from_source, &parents](const auto &graph) {
+            return SingleSourceShortestPaths_Unweighted_Undirected_BFS(
+                graph, source, destination, distances_from_source, parents);
+        });
 
     ArrayType path;
     if (path_found) {
@@ -295,7 +289,7 @@ auto SingleSourceShortestPaths_Dijkstra(
     }
 
     std::priority_queue<CostVertexPair, std::vector<CostVertexPair>, std::greater<CostVertexPair>>
-            open_list;
+        open_list;
     open_list.emplace(0, source);
 
     std::vector<bool> closed_vertices(graph.size(), false);
@@ -306,7 +300,11 @@ auto SingleSourceShortestPaths_Dijkstra(
 
         if (not closed_vertices[from_vertex]) {
             for (const auto &node : graph[from_vertex]) {
-                if (Relax(distances_from_source, from_vertex, node.destination, node.weight, parents)) {
+                if (Relax(distances_from_source,
+                          from_vertex,
+                          node.destination,
+                          node.weight,
+                          parents)) {
                     open_list.emplace(distances_from_source[node.destination], node.destination);
                 }
             }
@@ -322,16 +320,26 @@ auto SingleSourceShortestPaths_Dijkstra(
  * @reference   Shortest path in a directed graph by Dijkstra’s algorithm
  *              https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
  */
-template <typename EdgeArrayType>
-inline constexpr auto
-SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
-                                   const EdgeArrayType &edges,
-                                   const std::size_t source) {
-    return WeightedAdjacencyListGraph{number_vertices, edges}.Visit(
-    [source](const auto & graph) {
+template<typename EdgeArrayType>
+inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
+                                                         const EdgeArrayType &edges,
+                                                         const std::size_t source) {
+    return WeightedAdjacencyListGraph {number_vertices, edges}.Visit([source](const auto &graph) {
         return SingleSourceShortestPaths_Dijkstra(graph, source);
     });
 }
+
+
+/**
+ * @reference   Network Delay Time
+ *              https://leetcode.com/problems/network-delay-time/
+ *
+ * You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of
+ * travel times as directed edges times[i] = (ui, vi, wi), where ui is the source node, vi is the
+ * target node, and wi is the time it takes for a signal to travel from source to target.
+ * We will send a signal from a given node k. Return the time it takes for all the n nodes to
+ * receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
+ */
 
 
 /**
@@ -340,28 +348,27 @@ SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
  * @reference   C Program for Min Cost Path
  *              https://www.geeksforgeeks.org/c-program-for-min-cost-path/
  *
- * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that
- * returns cost of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix
- * represents a cost to traverse through that cell. Total cost of a path to reach (m, n)
- * is sum of all the costs on that path (including both source and destination). You can
- * only traverse down, right and diagonally lower cells from a given cell, i.e., from a
- * given cell (i, j), cells (i+1, j), (i, j+1) and (i+1, j+1) can be traversed. You may
- * assume that all costs are positive integers.
+ * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that returns
+ * cost of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix represents a
+ * cost to traverse through that cell. Total cost of a path to reach (m, n) is sum of all the
+ * costs on that path (including both source and destination). You can only traverse down, right
+ * and diagonally lower cells from a given cell, i.e., from a given cell (i, j), cells (i+1, j),
+ * (i, j+1) and (i+1, j+1) can be traversed. You may assume that all costs are positive integers.
  */
 auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
     assert(m < costs.size());
     assert(n < costs.front().size());
 
-    for (std::size_t i = 1 ; i <= m ; ++i) {
+    for (std::size_t i = 1; i <= m; ++i) {
         costs[i][0] += costs[i - 1][0];
     }
 
-    for (std::size_t j = 1 ; j <= n ; ++j) {
+    for (std::size_t j = 1; j <= n; ++j) {
         costs[0][j] += costs[0][j - 1];
     }
 
-    for (std::size_t i = 1 ; i <= m ; ++i) {
-        for (std::size_t j = 1 ; j <= n ; ++j) {
+    for (std::size_t i = 1; i <= m; ++i) {
+        for (std::size_t j = 1; j <= n; ++j) {
             costs[i][j] += std::min({costs[i - 1][j - 1], costs[i - 1][j], costs[i][j - 1]});
         }
     }
@@ -375,7 +382,8 @@ auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
  *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
  */
 inline void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
-                                                      const int i, ArrayType &path) {
+                                                      const int i,
+                                                      ArrayType &path) {
     if (i != -1) {
         PrintOneSingleSourceShortestPath_Dijkstra(parents, parents[i], path);
         path.push_back(i);
@@ -386,10 +394,10 @@ auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
                                              const UndirectedEdgeArrayType &edges,
                                              const std::size_t source) {
     std::vector<int> parents(number_vertices, -1);
-    WeightedAdjacencyListGraph{number_vertices, edges}.Visit(
-    [source, &parents](const auto & graph) {
-        return SingleSourceShortestPaths_Dijkstra(graph, source, &parents);
-    });
+    WeightedAdjacencyListGraph {number_vertices, edges}.Visit(
+        [source, &parents](const auto &graph) {
+            return SingleSourceShortestPaths_Dijkstra(graph, source, &parents);
+        });
 
     std::vector<ArrayType> results;
     for (std::size_t i = 0; i < number_vertices; ++i) {
@@ -406,11 +414,11 @@ auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
  *              https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
  * @reference   https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1293-shortest-path-in-a-grid-with-obstacles-elimination/
  *
- * You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1
- * (obstacle). You can move up, down, left, or right from and to an empty cell in one
- * step. Return the minimum number of steps to walk from the upper left corner (0, 0) to
- * the lower right corner (m - 1, n - 1) given that you can eliminate at most k obstacles.
- * If it is not possible to find such walk return -1.
+ * You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1 (obstacle).
+ * You can move up, down, left, or right from and to an empty cell in one step.
+ * Return the minimum number of steps to walk from the upper left corner (0, 0) to the lower right
+ * corner (m - 1, n - 1) given that you can eliminate at most k obstacles. If it is not possible
+ * to find such walk return -1.
  */
 auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) {
     assert(not grid.empty());
@@ -433,14 +441,18 @@ auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) 
                 return step;
             }
 
-            ForEachDirection(M, N, x, y,
-            [k, &grid, &seen, obstacle_eliminated, &q](const auto new_x, const auto new_y) {
-                const auto new_obstacle = obstacle_eliminated + grid[new_x][new_y];
-                if (new_obstacle < seen[new_x][new_y] and new_obstacle <= k) {
-                    seen[new_x][new_y] = new_obstacle;
-                    q.emplace(new_x, new_y, new_obstacle);
-                }
-            });
+            ForEachDirection(
+                M,
+                N,
+                x,
+                y,
+                [k, &grid, &seen, obstacle_eliminated, &q](const auto new_x, const auto new_y) {
+                    const auto new_obstacle = obstacle_eliminated + grid[new_x][new_y];
+                    if (new_obstacle < seen[new_x][new_y] and new_obstacle <= k) {
+                        seen[new_x][new_y] = new_obstacle;
+                        q.emplace(new_x, new_y, new_obstacle);
+                    }
+                });
         }
 
         ++step;
@@ -454,19 +466,19 @@ auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) 
  * @reference   Dungeon Game
  *              https://leetcode.com/problems/dungeon-game/
  *
- * The demons had captured the princess and imprisoned her in the bottom-right corner of
- * a dungeon. The dungeon consists of m x n rooms laid out in a 2D grid. Our valiant
- * knight was initially positioned in the top-left room and must fight his way through
- * dungeon to rescue the princess. The knight has an initial health point represented by
- * a positive integer. If at any point his health point drops to 0 or below, he dies
- * immediately. Some of the rooms are guarded by demons (represented by negative integers),
- * so the knight loses health upon entering these rooms; other rooms are either empty
- * (represented as 0) or contain magic orbs that increase the knight's health (represented
- * by positive integers). To reach the princess as quickly as possible, the knight decides
- * to move only rightward or downward in each step. Return the knight's minimum initial
- * health so that he can rescue the princess. Note that any room can contain threats or
- * power-ups, even the first room the knight enters and the bottom-right room where the
- * princess is imprisoned.
+ * The demons had captured the princess and imprisoned her in the bottom-right corner of a dungeon.
+ * The dungeon consists of m x n rooms laid out in a 2D grid. Our valiant knight was initially
+ * positioned in the top-left room and must fight his way through dungeon to rescue the princess.
+ * The knight has an initial health point represented by a positive integer. If at any point his
+ * health point drops to 0 or below, he dies immediately.
+ * Some of the rooms are guarded by demons (represented by negative integers), so the knight loses
+ * health upon entering these rooms; other rooms are either empty (represented as 0) or contain
+ * magic orbs that increase the knight's health (represented by positive integers).
+ * To reach the princess as quickly as possible, the knight decides to move only rightward or
+ * downward in each step.
+ * Return the knight's minimum initial health so that he can rescue the princess.
+ * Note that any room can contain threats or power-ups, even the first room the knight enters and
+ * the bottom-right room where the princess is imprisoned.
  */
 auto DungeonGame_DP(const MatrixType &dungeon) {
     const int M = dungeon.size();
@@ -531,13 +543,11 @@ struct Node {
     unsigned row;
     unsigned column;
 
-    constexpr Node(const int c, const unsigned x, const unsigned y):
-        cost(c), row(x), column(y) {
-    }
+    constexpr Node(const int c, const unsigned x, const unsigned y) :
+        cost(c), row(x), column(y) {}
 };
 
-inline constexpr auto
-operator>(const Node &lhs, const Node &rhs) {
+inline constexpr auto operator>(const Node &lhs, const Node &rhs) {
     return lhs.cost > rhs.cost;
 }
 
@@ -546,12 +556,12 @@ operator>(const Node &lhs, const Node &rhs) {
  * @reference   https://leetcode.com/problems/swim-in-rising-water/
  *
  * On an N x N grid, each square grid[i][j] represents the elevation at that point (i,j).
- * Now rain starts to fall. At time t, the depth of the water everywhere is t. You can
- * swim from a square to another 4-directionally adjacent square if and only if the
- * elevation of both squares individually are at most t. You can swim infinite distance
- * in zero time. Of course, you must stay within the boundaries of the grid during your
- * swim. You start at the top left square (0, 0). What is the least time until you can
- * reach the bottom right square (N-1, N-1)?
+ * Now rain starts to fall. At time t, the depth of the water everywhere is t. You can swim from
+ * a square to another 4-directionally adjacent square if and only if the elevation of both
+ * squares individually are at most t. You can swim infinite distance in zero time. Of course,
+ * you must stay within the boundaries of the grid during your swim.
+ * You start at the top left square (0, 0). What is the least time until you can reach the bottom
+ * right square (N-1, N-1)?
  * 2 <= N <= 50.
  * grid[i][j] is a permutation of [0, ..., N*N - 1].
  */
@@ -573,8 +583,8 @@ auto SwimInRisingWater_Dijkstra(MatrixType grid) {
             if (node.row + 2 == grid.size() and node.column + 1 == grid.size()) {
                 return std::max(grid[node.row + 1][node.column], node.cost);
             }
-            open_list.emplace(std::max(grid[node.row + 1][node.column], node.cost),
-                              node.row + 1, node.column);
+            open_list.emplace(
+                std::max(grid[node.row + 1][node.column], node.cost), node.row + 1, node.column);
             grid[node.row + 1][node.column] = VISITED;
         }
 
@@ -582,20 +592,20 @@ auto SwimInRisingWater_Dijkstra(MatrixType grid) {
             if (node.row + 1 == grid.size() and node.column + 2 == grid.size()) {
                 return std::max(grid[node.row][node.column + 1], node.cost);
             }
-            open_list.emplace(std::max(grid[node.row][node.column + 1], node.cost),
-                              node.row, node.column + 1);
+            open_list.emplace(
+                std::max(grid[node.row][node.column + 1], node.cost), node.row, node.column + 1);
             grid[node.row][node.column + 1] = VISITED;
         }
 
         if (node.row != 0 and grid[node.row - 1][node.column] != VISITED) {
-            open_list.emplace(std::max(grid[node.row - 1][node.column], node.cost),
-                              node.row - 1, node.column);
+            open_list.emplace(
+                std::max(grid[node.row - 1][node.column], node.cost), node.row - 1, node.column);
             grid[node.row - 1][node.column] = VISITED;
         }
 
         if (node.column != 0 and grid[node.row][node.column - 1] != VISITED) {
-            open_list.emplace(std::max(grid[node.row][node.column - 1], node.cost),
-                              node.row, node.column - 1);
+            open_list.emplace(
+                std::max(grid[node.row][node.column - 1], node.cost), node.row, node.column - 1);
             grid[node.row][node.column - 1] = VISITED;
         }
     }
@@ -608,15 +618,14 @@ auto SwimInRisingWater_Dijkstra(MatrixType grid) {
  * @reference   Path With Minimum Effort
  *              https://leetcode.com/problems/path-with-minimum-effort/
  *
- * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of
- * size rows x columns, where heights[row][col] represents the height of cell (row, col).
- * You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right
- * cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right,
- * and you wish to find a route that requires the minimum effort.
- * A route's effort is the maximum absolute difference in heights between two consecutive
- * cells of the route.
- * Return the minimum effort required to travel from the top-left cell to the bottom-right
- * cell.
+ * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows
+ * x columns, where heights[row][col] represents the height of cell (row, col). You are situated
+ * in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1)
+ * (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find a route that
+ * requires the minimum effort.
+ * A route's effort is the maximum absolute difference in heights between two consecutive cells
+ * of the route.
+ * Return the minimum effort required to travel from the top-left cell to the bottom-right cell.
  */
 using NodeType = std::tuple<int, int, int>;
 
@@ -673,20 +682,69 @@ auto MinimumEffortPath_Dijkstra(const MatrixType &heights) {
     return 0;
 }
 
-}//namespace
+
+/**
+ * @reference   Shortest Path in Binary Matrix
+ *              https://leetcode.com/problems/shortest-path-in-binary-matrix/
+ *
+ * Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix.
+ * If there is no clear path, return -1.
+ * A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the
+ * bottom-right cell (i.e., (n - 1, n - 1)) such that:
+ *  All the visited cells of the path are 0.
+ *  All the adjacent cells of the path are 8-directionally connected (i.e., they are different
+ *      and they share an edge or a corner).
+ * The length of a clear path is the number of visited cells of this path.
+ */
+auto ShortestPathBinaryMatrix(MatrixType grid) {
+    if (grid[0][0]) {
+        return -1;
+    }
+
+    const int N = grid.size();
+    std::queue<std::pair<int, int>> q;
+    q.emplace(0, 0);
+    grid[0][0] = 1;
+
+    int result = 0;
+    while (not q.empty()) {
+        ++result;
+        for (int i = q.size(); i-- > 0;) {
+            const auto [x, y] = q.front();
+            q.pop();
+
+            if (x == N - 1 and y == N - 1) {
+                return result;
+            }
+
+            for (int new_x = x - 1; new_x <= x + 1; ++new_x) {
+                for (int new_y = y - 1; new_y <= y + 1; ++new_y) {
+                    if (new_x != x or new_y != y) {
+                        if (new_x >= 0 and new_x < N and new_y >= 0 and new_y < N and
+                            grid[new_x][new_y] == 0) {
+                            grid[new_x][new_y] = 1;
+                            q.emplace(new_x, new_y);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return -1;
+}
+
+} //namespace
 
 
-const DirectedEdgeArrayType SAMPLE1 = {{0, 1, -1}, {0, 2, 4}, {1, 2, 3}, {1, 3, 2}, {1, 4, 2}, {3, 2, 5}, {3, 1, 1}, {4, 3, -3}};
-const auto EXPECTED1 = std::pair(true,
-std::vector {
-    0, -1, 2, -2, 1
-});
+const DirectedEdgeArrayType SAMPLE1 = {
+    {0, 1, -1}, {0, 2, 4}, {1, 2, 3}, {1, 3, 2}, {1, 4, 2}, {3, 2, 5}, {3, 1, 1}, {4, 3, -3}};
+const auto EXPECTED1 = std::pair(true, std::vector {0, -1, 2, -2, 1});
 
 
 THE_BENCHMARK(SingleSourceShortestPaths_BellmanFord, 5, SAMPLE1, 0);
 
-SIMPLE_TEST(SingleSourceShortestPaths_BellmanFord, TestSAMPLE1, EXPECTED1,
-            5, SAMPLE1, 0);
+SIMPLE_TEST(SingleSourceShortestPaths_BellmanFord, TestSAMPLE1, EXPECTED1, 5, SAMPLE1, 0);
 
 
 const DirectedEdgeArrayType SAMPLE2 = {{0, 1, 1}, {1, 2, -1}, {2, 3, -1}, {3, 0, -1}};
@@ -704,7 +762,15 @@ THE_BENCHMARK(PrintNegativeWeightCycle, 4, SAMPLE2, 0);
 SIMPLE_TEST(PrintNegativeWeightCycle, TestSAMPLE2, EXPECTED2, 4, SAMPLE2, 0);
 
 
-const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5}, {0, 2, 3}, {1, 3, 6}, {1, 2, 2}, {2, 4, 4}, {2, 5, 2}, {2, 3, 7}, {3, 4, -1}, {4, 5, -2}};
+const DirectedEdgeArrayType SAMPLE3 = {{0, 1, 5},
+                                       {0, 2, 3},
+                                       {1, 3, 6},
+                                       {1, 2, 2},
+                                       {2, 4, 4},
+                                       {2, 5, 2},
+                                       {2, 3, 7},
+                                       {3, 4, -1},
+                                       {4, 5, -2}};
 const std::vector<int> EXPECTED3 = {std::numeric_limits<int>::max(), 0, 2, 6, 5, 3};
 
 
@@ -713,19 +779,46 @@ THE_BENCHMARK(SingleSourceShortestPaths_DAG, 6, SAMPLE3, 1);
 SIMPLE_TEST(SingleSourceShortestPaths_DAG, TestSAMPLE3, EXPECTED3, 6, SAMPLE3, 1);
 
 
-const UndirectedEdgeArrayType SAMPLE4 = {{0, 1}, {0, 3}, {1, 2}, {3, 4}, {3, 7}, {4, 5}, {4, 6}, {4, 7}, {5, 6}, {6, 7}};
+const UndirectedEdgeArrayType SAMPLE4 = {
+    {0, 1}, {0, 3}, {1, 2}, {3, 4}, {3, 7}, {4, 5}, {4, 6}, {4, 7}, {5, 6}, {6, 7}};
 const ArrayType EXPECTED4 = {0, 3, 7};
 
 
 THE_BENCHMARK(SingleSourceShortestPaths_Unweighted_Undirected_BFS, 8, SAMPLE4, 0, 7);
 
-SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS, TestSAMPLE4,
-            EXPECTED4, 8, SAMPLE4, 0, 7);
+SIMPLE_TEST(SingleSourceShortestPaths_Unweighted_Undirected_BFS,
+            TestSAMPLE4,
+            EXPECTED4,
+            8,
+            SAMPLE4,
+            0,
+            7);
 
 
-const UndirectedEdgeArrayType SAMPLE5 = {{0, 1, 4}, {0, 7, 8}, {1, 2, 8}, {1, 7, 11}, {2, 3, 7}, {2, 8, 2}, {2, 5, 4}, {3, 4, 9}, {3, 5, 14}, {4, 5, 10}, {5, 6, 2}, {6, 7, 1}, {6, 8, 6}, {7, 8, 7}};
+const UndirectedEdgeArrayType SAMPLE5 = {{0, 1, 4},
+                                         {0, 7, 8},
+                                         {1, 2, 8},
+                                         {1, 7, 11},
+                                         {2, 3, 7},
+                                         {2, 8, 2},
+                                         {2, 5, 4},
+                                         {3, 4, 9},
+                                         {3, 5, 14},
+                                         {4, 5, 10},
+                                         {5, 6, 2},
+                                         {6, 7, 1},
+                                         {6, 8, 6},
+                                         {7, 8, 7}};
 const std::vector<int> EXPECTED5 = {0, 4, 12, 19, 21, 11, 9, 8, 14};
-const std::vector<ArrayType> EXPECTED_PATHS5 = {{0}, {0, 1}, {0, 1, 2}, {0, 1, 2, 3}, {0, 7, 6, 5, 4}, {0, 7, 6, 5}, {0, 7, 6}, {0, 7}, {0, 1, 2, 8}};
+const std::vector<ArrayType> EXPECTED_PATHS5 = {{0},
+                                                {0, 1},
+                                                {0, 1, 2},
+                                                {0, 1, 2, 3},
+                                                {0, 7, 6, 5, 4},
+                                                {0, 7, 6, 5},
+                                                {0, 7, 6},
+                                                {0, 7},
+                                                {0, 1, 2, 8}};
 
 const DirectedEdgeArrayType SAMPLE6 = {{0, 1, 1}, {0, 2, 4}, {1, 2, 2}, {1, 3, 6}, {2, 3, 3}};
 const std::vector<int> EXPECTED6 = {0, 1, 3, 6};
@@ -739,15 +832,16 @@ SIMPLE_TEST(SingleSourceShortestPaths_Dijkstra, TestSAMPLE6, EXPECTED6, 4, SAMPL
 
 THE_BENCHMARK(PrintSingleSourceShortestPaths_Dijkstra, 9, SAMPLE5, 0);
 
-SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5,
-            9, SAMPLE5, 0);
+SIMPLE_TEST(PrintSingleSourceShortestPaths_Dijkstra, TestSAMPLE5, EXPECTED_PATHS5, 9, SAMPLE5, 0);
 
 
+// clang-format off
 const TableType COSTS1 = {
     {1, 2, 3},
     {4, 8, 2},
     {1, 5, 3}
 };
+// clang-format on
 
 
 THE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
@@ -755,6 +849,7 @@ THE_BENCHMARK(MinCostPath, COSTS1, 2, 2);
 SIMPLE_TEST(MinCostPath, TestSAMPLE1, 8, COSTS1, 2, 2);
 
 
+// clang-format off
 const MatrixType SAMPLE1M = {
     {0, 0, 0},
     {1, 1, 0},
@@ -768,6 +863,7 @@ const MatrixType SAMPLE2M = {
     {1, 1, 1},
     {1, 0, 0}
 };
+// clang-format on
 
 
 THE_BENCHMARK(ShortestPathsWithObstaclesElimination, SAMPLE1M, 1);
@@ -776,6 +872,7 @@ SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE1, 6, SAMPLE1M, 1);
 SIMPLE_TEST(ShortestPathsWithObstaclesElimination, TestSAMPLE2, -1, SAMPLE2M, 1);
 
 
+// clang-format off
 const MatrixType SAMPLE1D = {
     {-2, -3, 3},
     {-5, -10, 1},
@@ -785,6 +882,7 @@ const MatrixType SAMPLE1D = {
 const MatrixType SAMPLE2D = {
     {0}
 };
+// clang-format on
 
 
 THE_BENCHMARK(DungeonGame_DP, SAMPLE1D);
@@ -799,6 +897,7 @@ SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE1, 7, SAMPLE1D);
 SIMPLE_TEST(DungeonGame_Dijkstra, TestSAMPLE2, 1, SAMPLE2D);
 
 
+// clang-format off
 const MatrixType SAMPLE1S = {
     {0, 2},
     {1, 3}
@@ -816,6 +915,7 @@ const MatrixType SAMPLE3S = {
     {3, 2},
     {0, 1}
 };
+// clang-format on
 
 
 THE_BENCHMARK(SwimInRisingWater_Dijkstra, SAMPLE1S);
@@ -825,6 +925,7 @@ SIMPLE_TEST(SwimInRisingWater_Dijkstra, TestSAMPLE2, 16, SAMPLE2S);
 SIMPLE_TEST(SwimInRisingWater_Dijkstra, TestSAMPLE3, 3, SAMPLE3S);
 
 
+// clang-format off
 const MatrixType SAMPLE1E = {
     {1, 2, 2},
     {3, 8, 2},
@@ -844,6 +945,7 @@ const MatrixType SAMPLE3E = {
     {1, 2, 1, 2, 1},
     {1, 1, 1, 2, 1}
 };
+// clang-format on
 
 
 THE_BENCHMARK(MinimumEffortPath_Dijkstra, SAMPLE1E);
@@ -851,3 +953,30 @@ THE_BENCHMARK(MinimumEffortPath_Dijkstra, SAMPLE1E);
 SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE1, 2, SAMPLE1E);
 SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE2, 1, SAMPLE2E);
 SIMPLE_TEST(MinimumEffortPath_Dijkstra, TestSAMPLE3, 0, SAMPLE3E);
+
+
+// clang-format off
+const MatrixType SAMPLE1B = {
+    {0,1},
+    {1,0}
+};
+
+const MatrixType SAMPLE2B = {
+    {0,0,0},
+    {1,1,0},
+    {1,1,0}
+};
+
+const MatrixType SAMPLE3B = {
+    {1,0,0},
+    {1,1,0},
+    {1,1,0}
+};
+// clang-format on
+
+
+THE_BENCHMARK(ShortestPathBinaryMatrix, SAMPLE1B);
+
+SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE1, 2, SAMPLE1B);
+SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE2, 4, SAMPLE2B);
+SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE3, -1, SAMPLE3B);
