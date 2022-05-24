@@ -62,11 +62,11 @@ constexpr auto AreParenthesesBalanced(const std::string_view expression) {
  * @reference   Remove Outermost Parentheses
  *              https://leetcode.com/problems/remove-outermost-parentheses/
  *
- * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are
- * valid parentheses strings, and + represents string concatenation.
+ * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are valid
+ * parentheses strings, and + represents string concatenation.
  *  For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.
- * A valid parentheses string s is primitive if it is nonempty, and there does not exist a way
- * to split it into s = A + B, with A and B nonempty valid parentheses strings.
+ * A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to
+ * split it into s = A + B, with A and B nonempty valid parentheses strings.
  * Given a valid parentheses string s, consider its primitive decomposition:
  * s = P1 + P2 + ... + Pk, where Pi are primitive valid parentheses strings.
  * Return s after removing the outermost parentheses of every primitive string in the primitive
@@ -132,7 +132,6 @@ auto MakeValidParentheses_Stack(std::string s) {
  *              https://leetcode.com/problems/score-of-parentheses/
  *
  * Given a balanced parentheses string s, return the score of the string.
- *
  * The score of a balanced parentheses string is based on the following rule:
  *  "()" has score 1.
  *  AB has score A + B, where A and B are balanced parentheses strings.
@@ -167,6 +166,94 @@ constexpr auto ScoreOfParentheses(const std::string_view s) {
             if (s[i - 1] == '(') {
                 result += 1 << open;
             }
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Longest Valid Parentheses
+ *              https://leetcode.com/problems/longest-valid-parentheses/
+ *
+ * Given a string containing just the characters '(' and ')', find the length of the longest
+ * valid (well-formed) parentheses substring.
+ */
+auto LongestValidParentheses(const std::string_view str) {
+    int result = 0;
+    std::stack<int> s;
+    s.push(-1);
+    const int N = str.size();
+
+    for (int i = 0; i < N; ++i) {
+        if (str[i] == '(') {
+            s.push(i);
+        } else {
+            s.pop();
+            if (s.empty()) {
+                s.push(i);
+            } else {
+                result = std::max(result, i - s.top());
+            }
+        }
+    }
+
+    return result;
+}
+
+
+constexpr auto LongestValidParentheses_DP(const std::string_view s) {
+    int dp[s.size()] = {};
+    int result = 0;
+
+    for (std::size_t i = 1; i < s.size(); ++i) {
+        if (s[i] == ')') {
+            if (s[i - 1] == '(') {
+                dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+            } else if (i - dp[i - 1] > 0 and s[i - dp[i - 1] - 1] == '(') {
+                dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+            }
+
+            result = std::max(result, dp[i]);
+        }
+    }
+
+    return result;
+}
+
+
+constexpr auto LongestValidParentheses_O1(const std::string_view s) {
+    int result = 0;
+
+    int left = 0;
+    int right = 0;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        if (s[i] == '(') {
+            ++left;
+        } else {
+            ++right;
+        }
+
+        if (left == right) {
+            result = std::max(result, 2 * right);
+        } else if (right >= left) {
+            left = right = 0;
+        }
+    }
+
+    left = right = 0;
+    for (int i = s.size() - 1; i >= 0; --i) {
+        if (s[i] == '(') {
+            ++left;
+        } else {
+            ++right;
+        }
+
+        if (left == right) {
+            result = std::max(result, 2 * left);
+        } else if (left >= right) {
+            left = right = 0;
         }
     }
 
@@ -220,3 +307,24 @@ SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE1, 6, "(()(()))");
 SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE2, 1, "()");
 SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE3, 2, "(())");
 SIMPLE_TEST(ScoreOfParentheses, TestSAMPLE4, 2, "()()");
+
+
+THE_BENCHMARK(LongestValidParentheses, "(()");
+
+SIMPLE_TEST(LongestValidParentheses, TestSAMPLE1, 4, ")()())");
+SIMPLE_TEST(LongestValidParentheses, TestSAMPLE2, 2, "(()");
+SIMPLE_TEST(LongestValidParentheses, TestSAMPLE3, 0, "");
+
+
+THE_BENCHMARK(LongestValidParentheses_DP, "(()");
+
+SIMPLE_TEST(LongestValidParentheses_DP, TestSAMPLE1, 4, ")()())");
+SIMPLE_TEST(LongestValidParentheses_DP, TestSAMPLE2, 2, "(()");
+SIMPLE_TEST(LongestValidParentheses_DP, TestSAMPLE3, 0, "");
+
+
+THE_BENCHMARK(LongestValidParentheses_O1, "(()");
+
+SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE1, 4, ")()())");
+SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE2, 2, "(()");
+SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE3, 0, "");
