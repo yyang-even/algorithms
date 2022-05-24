@@ -73,6 +73,9 @@ compile_test(longest_common_subsequence)
 compile_benchmark(longest_common_substring)
 compile_test(longest_common_substring)
 
+compile_benchmark(longest_increasing_path_in_matrix)
+compile_test(longest_increasing_path_in_matrix)
+
 compile_benchmark(longest_increasing_subsequence)
 compile_test(longest_increasing_subsequence)
 

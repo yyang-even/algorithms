@@ -121,6 +121,16 @@ constexpr auto LongestPalindromicSubstring_Manacher(const std::string_view eleme
     return elements.substr(start_position, max_length);
 }
 
+
+/**
+ * @reference   Palindromic Substrings
+ *              https://leetcode.com/problems/palindromic-substrings/
+ *
+ * Given a string s, return the number of palindromic substrings in it.
+ * A string is a palindrome when it reads the same backward as forward.
+ * A substring is a contiguous sequence of characters within the string.
+ */
+
 } //namespace
 
 
