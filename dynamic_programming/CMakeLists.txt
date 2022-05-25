@@ -10,9 +10,6 @@ compile_test(beautiful_array)
 compile_benchmark(boolean_parenthesization)
 compile_test(boolean_parenthesization)
 
-compile_benchmark(box_stacking)
-compile_test(box_stacking)
-
 compile_benchmark(break_a_string)
 compile_test(break_a_string)
 
@@ -24,9 +21,6 @@ compile_test(champagne_tower)
 
 compile_benchmark(cherry_pickup)
 compile_test(cherry_pickup)
-
-compile_benchmark(circus_tower)
-compile_test(circus_tower)
 
 compile_benchmark(coin_change)
 compile_test(coin_change)

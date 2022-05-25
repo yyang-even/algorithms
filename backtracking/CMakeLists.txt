@@ -10,6 +10,9 @@ compile_test(combination_sum)
 compile_benchmark(combinations_of_parentheses)
 compile_test(combinations_of_parentheses)
 
+compile_benchmark(count_all_valid_pickup_and_delivery_options)
+compile_test(count_all_valid_pickup_and_delivery_options)
+
 compile_benchmark(n_queen)
 compile_test(n_queen)
 
