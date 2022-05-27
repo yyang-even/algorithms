@@ -156,3 +156,6 @@ compile_test(word_ladder)
 
 compile_benchmark(word_square)
 compile_test(word_square)
+
+compile_benchmark(zigzag_conversion)
+compile_test(zigzag_conversion)
