@@ -1,5 +1,7 @@
 #pragma once
 
+#include "binary_tree.h"
+
 
 /** Write a Program to Find the Maximum Depth or Height of a Tree
  *
@@ -20,6 +22,7 @@ static inline unsigned Height_Recursive(const BinaryTree::Node::PointerType node
 
 static inline auto HeightOfLeftmostLeaf(BinaryTree::Node::PointerType node) {
     unsigned height = 0;
-    for (; node; ++height, node = node->left);
+    for (; node; ++height, node = node->left)
+        ;
     return height;
 }
