@@ -1,8 +1,1 @@
-compile_benchmark(binomial_coefficient)
-compile_test(binomial_coefficient)
-
-compile_benchmark(horner_method)
-compile_test(horner_method)
-
-compile_benchmark(pascal_triangle)
-compile_test(pascal_triangle)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

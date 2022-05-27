@@ -1,3 +1,1 @@
-add_subdirectory(binary_tree)
-add_subdirectory(n-ary_tree)
-add_subdirectory(trie)
+discover_all_subdirs(${CMAKE_CURRENT_SOURCE_DIR})

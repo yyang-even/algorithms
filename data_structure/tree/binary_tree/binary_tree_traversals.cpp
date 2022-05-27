@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "binary_tree_traversals.h"
 #include "binary_tree_height.h"
+#include "binary_tree_traversals.h"
 
 
 namespace {
@@ -22,8 +22,8 @@ namespace {
  * @reference   Binary Tree Postorder Traversal
  *              https://leetcode.com/problems/binary-tree-postorder-traversal/
  */
-auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
-                                 BinaryTree::ArrayType &outputs) {
+inline auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
+                                        BinaryTree::ArrayType &outputs) {
     if (not node) {
         return;
     }
@@ -38,13 +38,13 @@ auto PreorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
  * @reference   Univalued Binary Tree
  *              https://leetcode.com/problems/univalued-binary-tree/
  *
- * A binary tree is uni-valued if every node in the tree has the same value. Given the
- * root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
+ * A binary tree is uni-valued if every node in the tree has the same value.
+ * Given the root of a binary tree, return true if the given tree is uni-valued, or false otherwise.
  */
 
 
-auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
-                                  BinaryTree::ArrayType &outputs) {
+inline auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
+                                         BinaryTree::ArrayType &outputs) {
     if (not node) {
         return;
     }
@@ -59,8 +59,8 @@ auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType node,
  *
  * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal/
  */
-auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType current_node,
-                                            BinaryTree::ArrayType &outputs) {
+inline auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType current_node,
+                                                   BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
     std::stack<BinaryTree::Node::PointerType> reverse_outputs;
 
@@ -86,8 +86,8 @@ auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType curren
  *
  * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
  */
-auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current_node,
-                                           BinaryTree::ArrayType &outputs) {
+inline auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current_node,
+                                                  BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
 
     while (current_node or not remaining_nodes.empty()) {
@@ -115,9 +115,9 @@ auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current
  * @reference   Iterative Postorder traversal | Set 3
  *              https://www.geeksforgeeks.org/iterative-postorder-traversal-set-3/
  */
-auto PostorderTraversal_Iterative_OneStack_Count(
-    BinaryTree::Node::PointerType current_node,
-    BinaryTree::ArrayType &outputs) {
+inline auto
+PostorderTraversal_Iterative_OneStack_Count(BinaryTree::Node::PointerType current_node,
+                                            BinaryTree::ArrayType &outputs) {
     std::stack<std::pair<BinaryTree::Node::PointerType, int>> remaining_node_pairs;
 
     if (current_node) {
@@ -129,20 +129,20 @@ auto PostorderTraversal_Iterative_OneStack_Count(
         remaining_node_pairs.pop();
 
         switch (count) {
-            case 0:
-                remaining_node_pairs.emplace(current_node, 1);
-                if (current_node->left) {
-                    remaining_node_pairs.emplace(current_node->left, 0);
-                }
-                break;
-            case 1:
-                remaining_node_pairs.emplace(current_node, 2);
-                if (current_node->right) {
-                    remaining_node_pairs.emplace(current_node->right, 0);
-                }
-                break;
-            default:
-                outputs.push_back(current_node->value);
+        case 0:
+            remaining_node_pairs.emplace(current_node, 1);
+            if (current_node->left) {
+                remaining_node_pairs.emplace(current_node->left, 0);
+            }
+            break;
+        case 1:
+            remaining_node_pairs.emplace(current_node, 2);
+            if (current_node->right) {
+                remaining_node_pairs.emplace(current_node->right, 0);
+            }
+            break;
+        default:
+            outputs.push_back(current_node->value);
         }
     }
 }
@@ -152,13 +152,12 @@ auto PostorderTraversal_Iterative_OneStack_Count(
  * @reference   Postorder traversal of Binary Tree without recursion and without stack
  *              https://www.geeksforgeeks.org/postorder-traversal-binary-tree-without-recursion-without-stack/
  */
-auto PostorderTraversal_Iterative_Hash(const BinaryTree::Node::PointerType root_node,
-                                       BinaryTree::ArrayType &outputs) {
+inline auto PostorderTraversal_Iterative_Hash(const BinaryTree::Node::PointerType root_node,
+                                              BinaryTree::ArrayType &outputs) {
     auto current_node = root_node;
     std::unordered_set<BinaryTree::Node *> visited_nodes;
 
-    while (current_node and
-           visited_nodes.find(current_node.get()) == visited_nodes.cend()) {
+    while (current_node and visited_nodes.find(current_node.get()) == visited_nodes.cend()) {
         if (current_node->left and
             visited_nodes.find(current_node->left.get()) == visited_nodes.cend()) {
             current_node = current_node->left;
@@ -174,8 +173,8 @@ auto PostorderTraversal_Iterative_Hash(const BinaryTree::Node::PointerType root_
 }
 
 
-auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node,
-                                      BinaryTree::ArrayType &outputs) {
+inline auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node,
+                                             BinaryTree::ArrayType &outputs) {
     std::unordered_map<BinaryTree::Node *, BinaryTree::Node::PointerType> parent_map;
     parent_map.emplace(current_node.get(), nullptr);
 
@@ -200,8 +199,8 @@ auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType current_node
  *
  * @reference   https://www.geeksforgeeks.org/iterative-preorder-traversal/
  */
-auto PreorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
-                                 BinaryTree::ArrayType &outputs) {
+inline auto PreorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
+                                        BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
 
     PushIfNotNull(remaining_nodes, current_node);
@@ -216,8 +215,8 @@ auto PreorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
 }
 
 
-auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType current_node,
-                                        BinaryTree::ArrayType &outputs) {
+inline auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType current_node,
+                                               BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> remaining_nodes;
 
     while (current_node or not remaining_nodes.empty()) {
@@ -240,8 +239,8 @@ auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType current_no
  *
  * @reference   https://www.geeksforgeeks.org/level-order-tree-traversal/
  */
-auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
-                         BinaryTree::ArrayType &outputs) {
+inline auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
+                                BinaryTree::ArrayType &outputs) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
     PushIfNotNull(remaining_nodes, root_node);
 
@@ -256,11 +255,9 @@ auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
 }
 
 
-inline auto
-LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
-                               BinaryTree::ArrayType &outputs) {
-    LevelOrderTraversal_LevelAware_Helper(root_node,
-    [&outputs](const auto & node) {
+inline auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
+                                           BinaryTree::ArrayType &outputs) {
+    LevelOrderTraversal_LevelAware_Helper(root_node, [&outputs](const auto &node) {
         outputs.push_back(node.value);
         return true;
     });
@@ -271,12 +268,12 @@ LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType root_node,
  *
  * @reference   https://www.geeksforgeeks.org/reverse-level-order-traversal/
  *
- * The idea is to print last level first, then second last level, and so on. Like Level
- * order traversal, every level is printed from left to right.
+ * The idea is to print last level first, then second last level, and so on. Like Level order
+ * traversal, every level is printed from left to right.
  */
-inline void
-GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned level,
-              BinaryTree::ArrayType &outputs) {
+inline void GetGivenLevel(const BinaryTree::Node::PointerType node,
+                          const unsigned level,
+                          BinaryTree::ArrayType &outputs) {
     if (node) {
         if (level == 1) {
             outputs.push_back(node->value);
@@ -287,9 +284,8 @@ GetGivenLevel(const BinaryTree::Node::PointerType node, const unsigned level,
     }
 }
 
-inline auto
-ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
-                                     BinaryTree::ArrayType &outputs) {
+inline auto ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_node,
+                                                 BinaryTree::ArrayType &outputs) {
     const auto height = Height_Recursive(root_node);
     for (auto i = height; i; --i) {
         GetGivenLevel(root_node, i, outputs);
@@ -297,8 +293,8 @@ ReverseLevelOrderTraversal_Recursive(const BinaryTree::Node::PointerType root_no
 }
 
 
-auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::PointerType root_node,
-                                          BinaryTree::ArrayType &outputs) {
+inline auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::PointerType root_node,
+                                                 BinaryTree::ArrayType &outputs) {
     std::queue<BinaryTree::Node::PointerType> remaining_nodes;
     std::stack<BinaryTree::Node::PointerType> outputs_stack;
 
@@ -323,8 +319,8 @@ auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::PointerType ro
  *
  * @reference   https://www.geeksforgeeks.org/zigzag-tree-traversal/
  */
-auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
-                     BinaryTree::ArrayType &outputs) {
+inline auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
+                            BinaryTree::ArrayType &outputs) {
     std::stack<BinaryTree::Node::PointerType> current_level_nodes;
     std::stack<BinaryTree::Node::PointerType> next_level_nodes;
 
@@ -364,25 +360,26 @@ auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
  */
 
 
-template <typename TraversalFunction>
-inline constexpr auto
-TreeTraversal(const BinaryTree &binary_tree, const TraversalFunction traversal) {
+template<typename TraversalFunction>
+inline constexpr auto TreeTraversal(const BinaryTree &binary_tree,
+                                    const TraversalFunction traversal) {
     BinaryTree::ArrayType outputs;
     traversal(binary_tree.GetRoot(), outputs);
     return outputs;
 }
 
-}//namespace
+} //namespace
 
 
 #ifdef WANT_TESTS
-#define BinaryTreeTraversalTest(traversalFunctionName, expectedResult) namespace {  \
-    TEST(BinaryTreeTraversalTest, test##traversalFunctionName) {                    \
-        const auto sample_tree = MakeTheSampleCompleteTree();                       \
-        const auto result = TreeTraversal(sample_tree, traversalFunctionName);      \
-        EXPECT_EQ(expectedResult, result);                                          \
-    }                                                                               \
-}
+#define BinaryTreeTraversalTest(traversalFunctionName, expectedResult)         \
+    namespace {                                                                \
+    TEST(BinaryTreeTraversalTest, test##traversalFunctionName) {               \
+        const auto sample_tree = MakeTheSampleCompleteTree();                  \
+        const auto result = TreeTraversal(sample_tree, traversalFunctionName); \
+        EXPECT_EQ(expectedResult, result);                                     \
+    }                                                                          \
+    }
 
 
 const BinaryTree::ArrayType EXPECTED_INORDER = {4, 2, 5, 1, 3};
@@ -414,8 +411,7 @@ BinaryTreeTraversalTest(PostorderTraversal_Iterative_TwoStacks, EXPECTED_POSTORD
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack, EXPECTED_POSTORDER);
 
 
-BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count,
-                        EXPECTED_POSTORDER);
+BinaryTreeTraversalTest(PostorderTraversal_Iterative_OneStack_Count, EXPECTED_POSTORDER);
 
 
 BinaryTreeTraversalTest(PostorderTraversal_Iterative_Hash, EXPECTED_POSTORDER);
@@ -433,10 +429,8 @@ BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
 
 
-BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive,
-                        EXPECTED_REVERSE_LEVELORDER);
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive, EXPECTED_REVERSE_LEVELORDER);
 
 
-BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative,
-                        EXPECTED_REVERSE_LEVELORDER);
+BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Iterative, EXPECTED_REVERSE_LEVELORDER);
 #endif

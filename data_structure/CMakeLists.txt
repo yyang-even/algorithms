@@ -1,10 +1,3 @@
-compile_test(disjoint_set)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(array)
-add_subdirectory(cache)
-add_subdirectory(graph)
-add_subdirectory(heap)
-add_subdirectory(linked_list)
-add_subdirectory(stack)
-add_subdirectory(tree)
-add_subdirectory(queue)
+discover_all_subdirs(${CMAKE_CURRENT_SOURCE_DIR})

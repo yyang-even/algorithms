@@ -1,11 +1,1 @@
-compile_benchmark(doubly_linked_list)
-compile_test(doubly_linked_list)
-
-compile_benchmark(doubly_circular_linked_list)
-compile_test(doubly_circular_linked_list)
-
-compile_benchmark(reverse_doubly_list)
-compile_test(reverse_doubly_list)
-
-compile_benchmark(xor_linked_list)
-compile_test(xor_linked_list)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

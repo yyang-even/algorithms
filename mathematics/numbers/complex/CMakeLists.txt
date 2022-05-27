@@ -1,2 +1,1 @@
-compile_benchmark(complex_multiplication)
-compile_test(complex_multiplication)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

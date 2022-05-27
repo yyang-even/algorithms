@@ -1,32 +1,7 @@
-compile_benchmark(approximate_median)
-compile_test(approximate_median)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})
 
-compile_benchmark(birthday_paradox)
-compile_test(birthday_paradox)
-
-compile_benchmark(equal_probability_random_number)
-compile_test(equal_probability_random_number)
-
-compile_benchmark(fair_coin_from_biased_coin)
-compile_test(fair_coin_from_biased_coin)
-
-compile_benchmark(generate_0_1_25_75_probability)
-compile_test(generate_0_1_25_75_probability)
-
-compile_benchmark(probability_K_in_array)
-compile_test(probability_K_in_array)
-
-compile_benchmark(random_number_generator_in_arbitrary_probability)
-compile_test(random_number_generator_in_arbitrary_probability)
-
-compile_test(randomized_set)
-
-compile_benchmark(reservoir_sampling)
 compile_app(reservoir_sampling)
 
-compile_benchmark(shuffle_array)
 compile_app(shuffle_array)
 
-compile_benchmark(strong_password_suggester)
-compile_test(strong_password_suggester)
 compile_app(strong_password_suggester)

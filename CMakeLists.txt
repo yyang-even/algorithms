@@ -26,6 +26,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}       -Werror=return-type")
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
+include(utils)
+
 # ######################################################################################
 # Options
 # ######################################################################################
@@ -81,50 +85,6 @@ if (WANT_BENCHMARKS OR WANT_TESTS)
         message(STATUS "Pthread library is ${PTHREAD_LIBRARY}")
     endif (UNIX)
 endif ()
-
-# ######################################################################################
-# Functions
-# ######################################################################################
-function (compile_benchmark name)
-    if (WANT_BENCHMARKS)
-        set(target_name ${name}_benchmark)
-        add_executable(${target_name} ${name}.cpp)
-        target_compile_definitions(${target_name} PRIVATE WANT_BENCHMARKS)
-        target_link_libraries(${target_name} benchmark::benchmark_main
-                              ${PTHREAD_LIBRARY} ${ARGN})
-    endif (WANT_BENCHMARKS)
-endfunction (compile_benchmark)
-
-# compile_test
-function (compile_test name)
-    if (WANT_TESTS)
-        set(target_name ${name}_test)
-        add_executable(${target_name} ${name}.cpp)
-        target_compile_definitions(${target_name} PRIVATE WANT_TESTS)
-        target_link_libraries(${target_name} gtest_main ${PTHREAD_LIBRARY} ${ARGN})
-        add_test(${target_name} ${target_name})
-
-        if (WANT_AUTO_TESTS)
-            add_custom_command(
-                TARGET ${target_name}
-                POST_BUILD
-                COMMAND ctest --output-on-failure -R ^${target_name}$
-                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                COMMENT "Testing '${target_name}'"
-                VERBATIM)
-        endif (WANT_AUTO_TESTS)
-    endif (WANT_TESTS)
-endfunction (compile_test)
-
-# compile_app
-function (compile_app name)
-    if (WANT_TERMINAL_APP)
-        set(target_name ${name}_app)
-        add_executable(${target_name} ${name}.cpp)
-        target_compile_definitions(${target_name} PRIVATE WANT_TERMINAL_APP)
-        target_link_libraries(${target_name} ${ARGN})
-    endif (WANT_TERMINAL_APP)
-endfunction (compile_app)
 
 # ######################################################################################
 # Subdirectories

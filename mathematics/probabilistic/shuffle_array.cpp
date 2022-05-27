@@ -24,8 +24,8 @@ using ArrayType = std::vector<int>;
  * @reference   Shuffle an Array
  *              https://leetcode.com/problems/shuffle-an-array/
  *
- * Given an integer array nums, design an algorithm to randomly shuffle the array. All
- * permutations of the array should be equally likely as a result of the shuffling.
+ * Given an integer array nums, design an algorithm to randomly shuffle the array. All permutations
+ * of the array should be equally likely as a result of the shuffling.
  * Implement the Solution class:
  *  Solution(int[] nums) Initializes the object with the integer array nums.
  *  int[] reset() Resets the array to its original configuration and returns it.
@@ -33,7 +33,7 @@ using ArrayType = std::vector<int>;
  *
  * @complexity  O(n)
  */
-void ShuffleArray_InPlace(ArrayType &array) {
+inline void ShuffleArray_InPlace(ArrayType &array) {
     for (auto i = array.size() - 1; i > 0; --i) {
         const auto j = Random_Number(0, i);
         std::swap(array[i], array[j]);
@@ -47,7 +47,7 @@ void ShuffleArray_InPlace(ArrayType &array) {
  *
  * @complexity  O(nlgn)
  */
-auto ShuffleArray_BySorting(const ArrayType &array) {
+inline auto ShuffleArray_BySorting(const ArrayType &array) {
     const int PRIORITY_BOUND = pow(array.size(), 3.0);
 
     std::vector<std::pair<int, std::size_t>> priorities;
@@ -55,7 +55,7 @@ auto ShuffleArray_BySorting(const ArrayType &array) {
         priorities.emplace_back(Random_Number(0, PRIORITY_BOUND), i);
     }
 
-    std::sort(priorities.begin(), priorities.end(), [](const auto & a, const auto & b) {
+    std::sort(priorities.begin(), priorities.end(), [](const auto &a, const auto &b) {
         return a.first < b.first;
     });
 
@@ -67,7 +67,7 @@ auto ShuffleArray_BySorting(const ArrayType &array) {
     return output;
 }
 
-}//namespace
+} //namespace
 
 
 ArrayType VALUES = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -84,9 +84,7 @@ int main(int, char **) {
     ShuffleArray_InPlace(VALUES);
     std::cout << "Shuffled array in place: " << VALUES << std::endl;
 
-    std::cout <<
-              "Shuffled array by sorting: " <<
-              ShuffleArray_BySorting(VALUES) << std::endl;
+    std::cout << "Shuffled array by sorting: " << ShuffleArray_BySorting(VALUES) << std::endl;
 
     return EXIT_SUCCESS;
 }

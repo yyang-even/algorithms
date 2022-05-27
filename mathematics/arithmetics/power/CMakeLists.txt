@@ -1,8 +1,1 @@
-compile_benchmark(compare_powers)
-compile_test(compare_powers)
-
-compile_benchmark(power)
-compile_test(power)
-
-compile_benchmark(power_of_3)
-compile_test(power_of_3)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

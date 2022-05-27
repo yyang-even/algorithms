@@ -10,11 +10,11 @@
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 3.2.
  *
- * Design a Data Structure SpecialStack that supports all the stack operations like
- * push(), pop(), isEmpty(), isFull() and an additional operation getMin() which
- * should return minimum element from the SpecialStack. All these operations of
- * SpecialStack must be O(1). To implement SpecialStack, you should only use standard
- * Stack data structure and no other data structure like arrays, list, .. etc.
+ * Design a Data Structure SpecialStack that supports all the stack operations like push(), pop(),
+ * isEmpty(), isFull() and an additional operation getMin() which should return minimum element
+ * from the SpecialStack. All these operations of SpecialStack must be O(1). To implement
+ * SpecialStack, you should only use standard Stack data structure and no other data structure
+ * like arrays, list, .. etc.
  */
 class MinStack {
 public:
@@ -173,8 +173,8 @@ public:
  *  pop() -- Remove the element on top of the stack and return it.
  *  top() -- Get the element on the top.
  *  peekMax() -- Retrieve the maximum element in the stack.
- *  popMax() -- Retrieve the maximum element in the stack, and remove it. If you find
- *      more than one maximum elements, only remove the top-most one.
+ *  popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than
+ *  one maximum elements, only remove the top-most one.
  */
 class MaxStack {
     using StackType = std::list<std::pair<int, int>>;
@@ -229,7 +229,7 @@ namespace {
 
 using ArrayType = std::vector<std::pair<MinStack::ValueType, MinStack::ValueType>>;
 
-template <typename MinStackType>
+template<typename MinStackType>
 constexpr auto testMinStack(MinStackType &stack) {
     stack.Push(5);
     stack.Push(4);
@@ -254,7 +254,7 @@ constexpr auto testMinStack(MinStackType &stack) {
 }
 
 
-auto testMaxStack() {
+inline auto testMaxStack() {
     MaxStack stack;
 
     std::vector<int> result;
@@ -274,20 +274,20 @@ auto testMaxStack() {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType EXPECTED1 = {{1, 9}, {1, 1}, {4, 8}, {4, 6}, {4, 4}, {5, 5}};
 
 
 #ifdef WANT_TESTS
-#define SimpleMinStackTest(TypeName) namespace {    \
-    TEST(MinStackTest, test##TypeName) {            \
-        TypeName stack;                             \
-        EXPECT_EQ(EXPECTED1, testMinStack(stack));  \
-    }                                               \
-}
-#endif
+#define SimpleMinStackTest(TypeName)               \
+    namespace {                                    \
+    TEST(MinStackTest, test##TypeName) {           \
+        TypeName stack;                            \
+        EXPECT_EQ(EXPECTED1, testMinStack(stack)); \
+    }                                              \
+    }
 
 
 SimpleMinStackTest(MinStack);
@@ -297,6 +297,7 @@ SimpleMinStackTest(MinStack_SpaceOptimized);
 
 
 SimpleMinStackTest(MinStack_O1Space);
+#endif
 
 
 const std::vector EXPECTED1Max = {5, 5, 4, 1, 5, 1, 5};

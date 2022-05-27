@@ -1,20 +1,3 @@
-compile_benchmark(delete_all_of_key_linked_list)
-compile_test(delete_all_of_key_linked_list)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})
 
-compile_benchmark(detect_loop)
-compile_test(detect_loop)
-
-compile_benchmark(merge_k_sorted_singly_list)
-compile_test(merge_k_sorted_singly_list)
-
-compile_benchmark(merge_two_sorted_list)
-compile_test(merge_two_sorted_list)
-
-compile_benchmark(sorted_insert_linked_list)
-compile_test(sorted_insert_linked_list)
-
-compile_benchmark(swap_nodes_in_a_linked_list)
-compile_test(swap_nodes_in_a_linked_list)
-
-add_subdirectory(doubly_list)
-add_subdirectory(singly_list)
+discover_all_subdirs(${CMAKE_CURRENT_SOURCE_DIR})

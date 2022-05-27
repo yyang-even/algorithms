@@ -1,6 +1,1 @@
-add_subdirectory(arithmetics)
-add_subdirectory(date)
-add_subdirectory(matrix)
-add_subdirectory(numbers)
-add_subdirectory(probabilistic)
-add_subdirectory(recurrent)
+discover_all_subdirs(${CMAKE_CURRENT_SOURCE_DIR})

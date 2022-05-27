@@ -1,6 +1,1 @@
-compile_test(deque)
-
-compile_benchmark(FIFO_cache)
-compile_test(FIFO_cache)
-
-compile_test(queue)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

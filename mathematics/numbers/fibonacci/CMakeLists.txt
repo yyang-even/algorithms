@@ -1,2 +1,1 @@
-compile_benchmark(fibonacci)
-compile_test(fibonacci)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

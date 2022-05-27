@@ -1,11 +1,1 @@
-compile_benchmark(minimum_difference_between_two_elements)
-compile_test(minimum_difference_between_two_elements)
-
-compile_benchmark(negate)
-compile_test(negate)
-
-compile_benchmark(subtract)
-compile_test(subtract)
-
-compile_benchmark(subtract_1)
-compile_test(subtract_1)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

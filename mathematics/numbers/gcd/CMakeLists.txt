@@ -1,14 +1,1 @@
-compile_benchmark(array_pairs_divisible_by_K)
-compile_test(array_pairs_divisible_by_K)
-
-compile_benchmark(gcd)
-compile_test(gcd)
-
-compile_benchmark(lcm)
-compile_test(lcm)
-
-compile_benchmark(min_difference_between_shifted_tables_of_two_numbers)
-compile_test(min_difference_between_shifted_tables_of_two_numbers)
-
-compile_benchmark(x_of_a_kind_in_a_deck_of_cards)
-compile_test(x_of_a_kind_in_a_deck_of_cards)
+discover_all_cpp_target(${CMAKE_CURRENT_SOURCE_DIR})

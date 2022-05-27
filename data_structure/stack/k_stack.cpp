@@ -16,7 +16,7 @@ class OneArrayTwoStacks {
     int top2;
 
 public:
-    explicit OneArrayTwoStacks(const std::size_t cap = 2048):
+    explicit OneArrayTwoStacks(const std::size_t cap = 2048) :
         CAPACITY(cap), buffer(cap, 0), top2(cap) {}
 
     void Push1(const ValueType v) {
@@ -55,9 +55,9 @@ public:
  *
  * @reference   https://www.geeksforgeeks.org/efficiently-implement-k-stacks-single-array/
  *
- * Create a data structure kStacks that represents k stacks. Implementation of kStacks
- * should use only one array, i.e., k stacks should use the same array for storing
- * elements. Following functions must be supported by kStacks.
+ * Create a data structure kStacks that represents k stacks. Implementation of kStacks should use
+ * only one array, i.e., k stacks should use the same array for storing elements. Following
+ * functions must be supported by kStacks.
  *  push(int x, int sn) -> pushes x to stack number 'sn' where sn is from 0 to k-1
  *  pop(int sn) -> pops an element from stack number 'sn' where sn is from 0 to k-1
  *
@@ -77,7 +77,7 @@ private:
     int free_list_begin = 0;
 
 public:
-    explicit kStacks(const std::size_t k = 3, const std::size_t cap = 2048):
+    explicit kStacks(const std::size_t k = 3, const std::size_t cap = 2048) :
         K(k), CAPACITY(cap), buffer(cap, 0), tops(k, -1), nexts(cap, 0) {
         for (std::size_t i = 0; i < cap; ++i) {
             nexts[i] = i + 1;
@@ -122,8 +122,8 @@ public:
 
 namespace {
 
-auto testOneArrayTwoStacks() {
-    OneArrayTwoStacks stacks{6};
+inline auto testOneArrayTwoStacks() {
+    OneArrayTwoStacks stacks {6};
     stacks.Push1(1);
     stacks.Push1(2);
     stacks.Push1(3);
@@ -139,7 +139,7 @@ auto testOneArrayTwoStacks() {
 }
 
 
-auto clearStack(kStacks &one_k_stacks, const std::size_t stack_index) {
+inline auto clearStack(kStacks &one_k_stacks, const std::size_t stack_index) {
     std::vector<kStacks::ValueType> results;
     while (not one_k_stacks.isEmpty(stack_index)) {
         results.push_back(one_k_stacks.Pop(stack_index));
@@ -148,7 +148,7 @@ auto clearStack(kStacks &one_k_stacks, const std::size_t stack_index) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const std::vector<int> EXPECTED_TWO_STACKS_ARRAY {1, 2, 8, 7, 5, 4};
@@ -159,7 +159,7 @@ SIMPLE_TEST0(testOneArrayTwoStacks, TestSample, EXPECTED_TWO_STACKS_ARRAY);
 
 #ifdef WANT_TESTS
 TEST(kStacksTests, TestSanity) {
-    kStacks three_stacks{3};
+    kStacks three_stacks {3};
     three_stacks.Push(1, 11);
     three_stacks.Push(1, 12);
     three_stacks.Push(1, 13);
