@@ -12,10 +12,9 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
  *
- * Given an unsorted array of n integers which can contain integers from 1 to n. Some
- * elements can be repeated multiple times and some other elements can be absent from
- * the array. Count frequency of all elements that are present and print the missing
- * elements.
+ * Given an unsorted array of n integers which can contain integers from 1 to n. Some elements
+ * can be repeated multiple times and some other elements can be absent from the array. Count
+ * frequency of all elements that are present and print the missing elements.
  *
  * @reference   Counting frequencies of array elements
  *              https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/
@@ -61,8 +60,7 @@ auto CountFrequenciesOfAllElements_STL(const ArrayType &elements) {
 
 
 auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
-    std::transform(elements.cbegin(), elements.cend(), elements.begin(),
-    [](const auto elem) {
+    std::transform(elements.cbegin(), elements.cend(), elements.begin(), [](const auto elem) {
         return elem - 1;
     });
 
@@ -90,13 +88,13 @@ using ValueCountPair = std::pair<ArrayType::value_type, ArrayType::size_type>;
 
 inline auto SortAndCount(ArrayType values) {
     std::sort(values.begin(), values.end(), std::greater<ArrayType::value_type> {});
-    return CountAllOccurrencesInSortedArray_STL(values, std::greater<ArrayType::value_type> {});
+    return CountAllOccurrencesInSortedArray_STL(values);
 }
 
 
 auto SortAndCount_BucketSort(const ArrayType &values) {
     std::map<ArrayType::value_type, ArrayType::size_type, std::greater<ArrayType::value_type>>
-            buckets;
+        buckets;
     for (const auto v : values) {
         ++buckets[v];
     }
@@ -114,9 +112,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters in decreasing order of frequency
  *              https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
  *
- * Given a string str, the task is to print the characters in decreasing order of their
- * frequency. If the frequency of two characters is same then sort them in descending
- * order alphabetically.
+ * Given a string str, the task is to print the characters in decreasing order of their frequency.
+ * If the frequency of two characters is same then sort them in descending order alphabetically.
  */
 
 
@@ -124,9 +121,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters and their frequencies in order of occurrence
  *              https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/
  *
- * Given a string str containing only lowercase characters. The problem is to print the
- * characters along with their frequency in the order of their occurrence and in the
- * given format explained in the examples below.
+ * Given a string str containing only lowercase characters. The problem is to print the characters
+ * along with their frequency in the order of their occurrence and in the given format explained
+ * in the examples below.
  */
 
 
@@ -134,10 +131,10 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find All Numbers Disappeared in an Array
  *              https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
  *
- * Given an array nums of n integers where nums[i] is in the range [1, n], return an
- * array of all the integers in the range [1, n] that do not appear in nums.
- * Follow up: Could you do it without extra space and in O(n) runtime? You may assume
- * the returned list does not count as extra space.
+ * Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all
+ * the integers in the range [1, n] that do not appear in nums.
+ * Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned
+ * list does not count as extra space.
  */
 
 
@@ -145,10 +142,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find All Duplicates in an Array
  *              https://leetcode.com/problems/find-all-duplicates-in-an-array/
  *
- * Given an integer array nums of length n where all the integers of nums are in the
- * range [1, n] and each integer appears once or twice, return an array of all the
- * integers that appears twice. You must write an algorithm that runs in O(n) time and
- * uses only constant extra space.
+ * Given an integer array nums of length n where all the integers of nums are in the range [1, n]
+ * and each integer appears once or twice, return an array of all the integers that appears twice.
+ * You must write an algorithm that runs in O(n) time and uses only constant extra space.
  */
 
 
@@ -156,9 +152,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find Lucky Integer in an Array
  *              https://leetcode.com/problems/find-lucky-integer-in-an-array/
  *
- * Given an array of integers arr, a lucky integer is an integer that has a frequency in
- * the array equal to its value. Return the largest lucky integer in the array. If there
- * is no lucky integer return -1.
+ * Given an array of integers arr, a lucky integer is an integer that has a frequency in the array
+ * equal to its value.
+ * Return the largest lucky integer in the array. If there is no lucky integer return -1.
  * 1 <= arr[i] <= 500
  */
 
@@ -167,8 +163,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Counting Elements
  *              https://leetcode.ca/all/1426.html
  *
- * Given an integer array arr, count how many elements x there are, such that x + 1 is
- * also in arr. If there're duplicates in arr, count them seperately.
+ * Given an integer array arr, count how many elements x there are, such that x + 1 is also in arr.
+ * If there're duplicates in arr, count them seperately.
  * 0 <= arr[i] <= 1000
  */
 
@@ -187,10 +183,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Check if the Sentence Is Pangram
  *              https://leetcode.com/problems/check-if-the-sentence-is-pangram/
  *
- * A pangram is a sentence where every letter of the English alphabet appears at least
- * once.
- * Given a string sentence containing only lowercase English letters, return true if
- * sentence is a pangram, or false otherwise.
+ * A pangram is a sentence where every letter of the English alphabet appears at least once.
+ * Given a string sentence containing only lowercase English letters, return true if sentence is
+ * a pangram, or false otherwise.
  */
 
 
@@ -199,10 +194,10 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *              https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/
  *
  * You are given an array of strings words (0-indexed).
- * In one operation, pick two distinct indices i and j, where words[i] is a non-empty
- * string, and move any character from words[i] to any position in words[j].
- * Return true if you can make every string in words equal using any number of operations,
- * and false otherwise.
+ * In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and
+ * move any character from words[i] to any position in words[j].
+ * Return true if you can make every string in words equal using any number of operations, and
+ * false otherwise.
  * words[i] consists of lowercase English letters.
  */
 
@@ -212,8 +207,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *              https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
  *
  * Given a string s, return true if s is a good string, or false otherwise.
- * A string s is good if all the characters that appear in s have the same number of
- * occurrences (i.e., the same frequency).
+ * A string s is good if all the characters that appear in s have the same number of occurrences
+ * (i.e., the same frequency).
  */
 
 
@@ -221,17 +216,15 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Rings and Rods
  *              https://leetcode.com/problems/rings-and-rods/
  *
- * There are n rings and each ring is either red, green, or blue. The rings are distributed
- * across ten rods labeled from 0 to 9.
- * You are given a string rings of length 2n that describes the n rings that are placed onto
- * the rods. Every two characters in rings forms a color-position pair that is used to
- * describe each ring where:
+ * There are n rings and each ring is either red, green, or blue. The rings are distributed across
+ * ten rods labeled from 0 to 9.
+ * You are given a string rings of length 2n that describes the n rings that are placed onto the
+ * rods. Every two characters in rings forms a color-position pair that is used to describe each
+ * ring where:
  *  The first character of the ith pair denotes the ith ring's color ('R', 'G', 'B').
- *  The second character of the ith pair denotes the rod that the ith ring is placed on
- *      ('0' to '9').
- * For example, "R3G2B1" describes n == 3 rings: a red ring placed onto the rod labeled 3,
- * a green ring placed onto the rod labeled 2, and a blue ring placed onto the rod labeled
- * 1.
+ *  The second character of the ith pair denotes the rod that the ith ring is placed on ('0' to '9').
+ * For example, "R3G2B1" describes n == 3 rings: a red ring placed onto the rod labeled 3, a green
+ * ring placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.
  * Return the number of rods that have all three colors of rings on them.
  */
 
@@ -240,8 +233,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Keep Multiplying Found Values by Two
  *              https://leetcode.com/problems/keep-multiplying-found-values-by-two/
  *
- * You are given an array of integers nums. You are also given an integer original which
- * is the first number that needs to be searched for in nums.
+ * You are given an array of integers nums. You are also given an integer original which is the
+ * first number that needs to be searched for in nums.
  * You then do the following steps:
  *  If original is found in nums, multiply it by two (i.e., set original = 2 * original).
  *  Otherwise, stop the process.
@@ -262,7 +255,7 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Return true if nums can be divided into n pairs, otherwise return false.
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 3, 2, 5};
@@ -278,25 +271,32 @@ THE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Sign, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE1, SAMPLE1);
+                   TestSAMPLE1,
+                   SAMPLE1);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE2, SAMPLE2);
+                   TestSAMPLE2,
+                   SAMPLE2);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE3, SAMPLE3);
+                   TestSAMPLE3,
+                   SAMPLE3);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE4, SAMPLE4);
+                   TestSAMPLE4,
+                   SAMPLE4);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE5, SAMPLE5);
+                   TestSAMPLE5,
+                   SAMPLE5);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE6, SAMPLE6);
+                   TestSAMPLE6,
+                   SAMPLE6);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Sign,
-                   TestSAMPLE7, SAMPLE7);
+                   TestSAMPLE7,
+                   SAMPLE7);
 
 
 THE_BENCHMARK(CountFrequenciesOfAllElements_STL, SAMPLE1);
@@ -306,25 +306,32 @@ THE_BENCHMARK(CountFrequenciesOfAllElements_InPlace_Mod, SAMPLE1);
 
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE1, SAMPLE1);
+                   TestSAMPLE1,
+                   SAMPLE1);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE2, SAMPLE2);
+                   TestSAMPLE2,
+                   SAMPLE2);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE3, SAMPLE3);
+                   TestSAMPLE3,
+                   SAMPLE3);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE4, SAMPLE4);
+                   TestSAMPLE4,
+                   SAMPLE4);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE5, SAMPLE5);
+                   TestSAMPLE5,
+                   SAMPLE5);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE6, SAMPLE6);
+                   TestSAMPLE6,
+                   SAMPLE6);
 MUTUAL_SIMPLE_TEST(CountFrequenciesOfAllElements_STL,
                    CountFrequenciesOfAllElements_InPlace_Mod,
-                   TestSAMPLE7, SAMPLE7);
+                   TestSAMPLE7,
+                   SAMPLE7);
 
 
 const ArrayType VALUES1 = {1, 1, 2, 2, 2, 2, 3};

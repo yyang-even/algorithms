@@ -1,12 +1,8 @@
 #pragma once
 
 
-template<typename Compare>
-static inline constexpr auto
-CountAllOccurrencesInSortedArray_STL(const std::vector<int> &values,
-                                     const Compare compare) {
+static inline auto CountAllOccurrencesInSortedArray_STL(const std::vector<int> &values) {
     assert(not values.empty());
-    assert(std::is_sorted(values.cbegin(), values.cend(), compare));
 
     std::vector<std::pair<int, std::size_t>> outputs;
     std::size_t count = 1;

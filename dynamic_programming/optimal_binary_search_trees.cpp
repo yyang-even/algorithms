@@ -20,10 +20,10 @@ auto OptimalBinarySearchTree(const ArrayType &key_probabilities,
                              TwoDimensionalArrayType *const roots = nullptr) {
     assert(key_probabilities.size() == dummy_probabilities.size());
 
-    ArrayType::value_type
-    min_costs[dummy_probabilities.size()][dummy_probabilities.size()] = {};
-    ArrayType::value_type
-    sum_probabilities[dummy_probabilities.size()][dummy_probabilities.size()] = {};
+    ArrayType::value_type min_costs[dummy_probabilities.size() + 1][dummy_probabilities.size()] =
+        {};
+    ArrayType::value_type sum_probabilities[dummy_probabilities.size() + 1]
+                                           [dummy_probabilities.size()] = {};
 
     for (ArrayType::size_type i = 0; i < dummy_probabilities.size(); ++i) {
         min_costs[i + 1][i] = dummy_probabilities[i];
@@ -37,7 +37,8 @@ auto OptimalBinarySearchTree(const ArrayType &key_probabilities,
             sum_probabilities[i][j] =
                 sum_probabilities[i][j - 1] + key_probabilities[j] + dummy_probabilities[j];
             for (auto r = i; r <= j; ++r) {
-                const auto cost = min_costs[i][r - 1] + min_costs[r + 1][j] + sum_probabilities[i][j];
+                const auto cost =
+                    min_costs[i][r - 1] + min_costs[r + 1][j] + sum_probabilities[i][j];
                 if (cost < min_costs[i][j]) {
                     min_costs[i][j] = cost;
                     if (roots) {
@@ -56,10 +57,9 @@ auto OptimalBinarySearchTree(const ArrayType &key_probabilities,
  * @reference   Optimal Binary Search Tree | DP-24
  *              https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/
  *
- * Given a sorted array keys[0.. n-1] of search keys and an array freq[0.. n-1] of
- * frequency counts, where freq[i] is the number of searches to keys[i]. Construct a
- * binary search tree of all keys such that the total cost of all the searches is as
- * small as possible.
+ * Given a sorted array keys[0.. n-1] of search keys and an array freq[0.. n-1] of frequency counts,
+ * where freq[i] is the number of searches to keys[i]. Construct a binary search tree of all keys
+ * such that the total cost of all the searches is as small as possible.
  */
 inline auto OptimalBinarySearchTreeSimplified(ArrayType freq) {
     freq.insert(freq.cbegin(), 0);
@@ -72,9 +72,10 @@ inline auto OptimalBinarySearchTreeSimplified(ArrayType freq) {
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 15.5-1.
  */
-BinaryTree::Node::PointerType ConstructOptimalBinarySearchTree(
-    const ArrayType &keys, TwoDimensionalArrayType &roots,
-    const ArrayType::size_type i, const ArrayType::size_type j) {
+BinaryTree::Node::PointerType ConstructOptimalBinarySearchTree(const ArrayType &keys,
+                                                               TwoDimensionalArrayType &roots,
+                                                               const ArrayType::size_type i,
+                                                               const ArrayType::size_type j) {
     if (i > j) {
         return nullptr;
     }
@@ -102,7 +103,7 @@ auto ConstructOptimalBinarySearchTree(const ArrayType &key_probabilities,
     return ConstructOptimalBinarySearchTree(keys, roots, 1, keys.size());
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1_P = {0, 15, 10, 5, 10, 20};
@@ -138,7 +139,7 @@ SIMPLE_TEST(OptimalBinarySearchTreeSimplified, TestSAMPLE4, 142, SAMPLE4);
  *   3
  */
 static inline auto MakeTheSampleTree() {
-    const BinaryTree binary_tree{2};
+    const BinaryTree binary_tree {2};
     auto &root = *binary_tree.GetRoot();
     SetLeftChild(root, 1);
     auto &right_child = *SetRightChild(root, 5);
