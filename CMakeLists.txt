@@ -99,8 +99,11 @@ add_subdirectory(greedy)
 add_subdirectory(hash)
 add_subdirectory(mathematics)
 add_subdirectory(ordering)
-add_subdirectory(scripts)
 add_subdirectory(text)
+
+if (WANT_TESTS)
+    add_subdirectory(scripts)
+endif ()
 
 # ######################################################################################
 # Top Level Tests
