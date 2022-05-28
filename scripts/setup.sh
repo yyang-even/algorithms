@@ -23,7 +23,7 @@ echo "Setting up project \"$PROJECT_NAME\"."
 
 mkdir -p build
 pushd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 make -j2
 popd
 

@@ -9,8 +9,7 @@ inline constexpr auto ReverseDigits_Iterative(const int number) {
     return ReverseDigits(number, 10);
 }
 
-inline constexpr int
-ReverseDigits_Recursive(const int number, int &reversed_number) {
+inline constexpr int ReverseDigits_Recursive(const int number, int &reversed_number) {
     if (number) {
         const auto base = ReverseDigits_Recursive(number / 10, reversed_number);
         reversed_number += (number % 10) * base;
@@ -33,9 +32,8 @@ inline constexpr auto ReverseDigits_Recursive(const int number) {
  * @reference   Reverse Integer
  *              https://leetcode.com/problems/reverse-integer/
  *
- * Given a signed 32-bit integer x, return x with its digits reversed. If reversing x
- * causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1],
- * then return 0.
+ * Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the
+ * value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.
  */
 constexpr auto ReverseDigits_UltraSafe(int32_t number) {
     int32_t result = 0;
@@ -55,22 +53,6 @@ constexpr auto ReverseDigits_UltraSafe(int32_t number) {
 }
 
 
-constexpr auto ReverseDigits_Safe(int32_t number) {
-    int32_t reversed_number = 0;
-    for (; number; number /= 10) {
-        const auto previous_reversed_number = reversed_number;
-        const auto digit = number % 10;
-        reversed_number = reversed_number * 10 + digit; // undefined behavior
-
-        if ((reversed_number - digit) / 10 != previous_reversed_number) {
-            return 0;
-        }
-    }
-
-    return reversed_number;
-}
-
-
 /**
  * @reference   Reverse a number using stack
  *              https://www.geeksforgeeks.org/reverse-number-using-stack/
@@ -84,16 +66,16 @@ constexpr auto ReverseDigits_Safe(int32_t number) {
  *              https://leetcode.com/problems/a-number-after-a-double-reversal/
  *
  * Reversing an integer means to reverse all its digits.
- *  For example, reversing 2021 gives 1202. Reversing 12300 gives 321 as the leading
- *      zeros are not retained.
- * Given an integer num, reverse num to get reversed1, then reverse reversed1 to get
- * reversed2. Return true if reversed2 equals num. Otherwise return false.
+ *  For example, reversing 2021 gives 1202. Reversing 12300 gives 321 as the leading zeros are
+ *  not retained.
+ * Given an integer num, reverse num to get reversed1, then reverse reversed1 to get reversed2.
+ * Return true if reversed2 equals num. Otherwise return false.
  */
 inline constexpr auto isSameAfterDoubleReversal(const int num) {
     return not num or num % 10;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(ReverseDigits_Iterative, 12345);
@@ -106,17 +88,6 @@ THE_BENCHMARK(ReverseDigits_Recursive, 12345);
 
 SIMPLE_TEST(ReverseDigits_Recursive, TestSAMPLE1, 54321, 12345);
 SIMPLE_TEST(ReverseDigits_Recursive, TestSAMPLE2, 6789, 9876);
-
-
-THE_BENCHMARK(ReverseDigits_Safe, 12345);
-
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE1, 54321, 12345);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE2, 6789, 9876);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE3, 0, 1000000045);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE4, 0, 1563847412);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE5, 0, -2147483648);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE6, 0, 1056389759);
-SIMPLE_TEST(ReverseDigits_Safe, TestSAMPLE7, -321, -123);
 
 
 THE_BENCHMARK(ReverseDigits_UltraSafe, 12345);
