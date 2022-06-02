@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "mathematics/numbers/binary/are_opposite_signs.h"
 #include "mathematics/arithmetics/subtract/negate.h"
+#include "mathematics/numbers/binary/are_opposite_signs.h"
 
 
 namespace {
@@ -21,25 +21,43 @@ constexpr auto Division_Subtract(int dividend, int divisor) {
     divisor = std::abs(divisor);
 
     auto quotient = 0;
-    for (; dividend >= divisor; dividend -= divisor, ++quotient);
+    for (; dividend >= divisor; dividend -= divisor, ++quotient)
+        ;
 
     return sign * quotient;
 }
 
 
-constexpr auto Division_Bit(int dividend, int divisor) {
+/**
+ * @reference   Divide Two Integers
+ *              https://leetcode.com/problems/divide-two-integers/
+ *
+ * Given two integers dividend and divisor, divide two integers without using multiplication,
+ * division, and mod operator.
+ * The integer division should truncate toward zero, which means losing its fractional part. For
+ * example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
+ * Return the quotient after dividing dividend by divisor.
+ * Note: Assume we are dealing with an environment that could only store integers within the
+ * 32-bit signed integer range: [-2^31, 2^31 - 1]. For this problem, if the quotient is strictly
+ * greater than 2^31 - 1, then return 2^31 - 1, and if the quotient is strictly less than -2^31,
+ * then return -2^31.
+ */
+constexpr int Division_Bit(const int dividend, const int divisor) {
     assert(divisor);
+    if (dividend == INT_MIN and divisor == -1) {
+        return INT_MAX;
+    }
 
     const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
 
-    dividend = std::abs(dividend);
-    divisor = std::abs(divisor);
+    long abs_dividend = std::abs(dividend);
+    long abs_divisor = std::abs(divisor);
 
-    auto quotient = 0;
-    auto temp = 0;
+    long quotient = 0;
+    long temp = 0;
     for (int i = BitsNumber<decltype(divisor)> - 1; i >= 0; --i) {
-        const auto try_number = static_cast<long long>(divisor) << i;
-        if (temp + try_number <= dividend) {
+        const auto try_number = abs_divisor << i;
+        if (temp + try_number <= abs_dividend) {
             temp += try_number;
             quotient |= 1 << i;
         }
@@ -72,8 +90,7 @@ constexpr auto Division_Plus(const int dividend, const int divisor) {
     const auto negate_divisor = Negate(abs_divisor);
 
     int quotient = 0;
-    for (int abs_dividend = std::abs(dividend);
-         abs_dividend >= abs_divisor;
+    for (int abs_dividend = std::abs(dividend); abs_dividend >= abs_divisor;
          abs_dividend += negate_divisor) {
         ++quotient;
     }
@@ -81,7 +98,7 @@ constexpr auto Division_Plus(const int dividend, const int divisor) {
     return AreOppositeSigns(dividend, divisor) ? Negate(quotient) : quotient;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(Division_Subtract, 10, 3);
