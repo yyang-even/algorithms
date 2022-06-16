@@ -10,18 +10,17 @@
  * @reference   C++ Program for Longest Common Subsequence
  *              https://www.geeksforgeeks.org/cpp-program-for-longest-common-subsequence/
  *
- * LCS Problem Statement: Given two sequences, find the length of longest subsequence
- * present in both of them. A subsequence is a sequence that appears in the same
- * relative order, but not necessarily contiguous. For example, "abc", "abg", "bdf",
- * "aeg", "acefg", .. etc are subsequences of "abcdefg".
- * It is a classic computer science problem, the basis of diff (a file comparison
- * program that outputs the differences between two files), and has applications in
- * bioinformatics.
+ * LCS Problem Statement: Given two sequences, find the length of longest subsequence present in
+ * both of them. A subsequence is a sequence that appears in the same relative order, but not
+ * necessarily contiguous. For example, "abc", "abg", "bdf", "aeg", "acefg", .. etc are subsequences
+ * of "abcdefg".
+ * It is a classic computer science problem, the basis of diff (a file comparison program that
+ * outputs the differences between two files), and has applications in bioinformatics.
  */
-template <typename ArrayType>
-static inline constexpr auto
-LongestCommonSubsequence(const ArrayType &X, const ArrayType &Y,
-                         ArrayType *const the_lcs = nullptr) {
+template<typename ArrayType>
+static inline constexpr auto LongestCommonSubsequence(const ArrayType &X,
+                                                      const ArrayType &Y,
+                                                      ArrayType *const the_lcs = nullptr) {
     unsigned LCS_table[X.size() + 1][Y.size() + 1] = {};
 
     for (typename ArrayType::size_type i = 1; i <= X.size(); ++i) {

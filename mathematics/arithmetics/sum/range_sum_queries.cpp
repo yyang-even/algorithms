@@ -1,9 +1,10 @@
 #include "common_header.h"
 
-#include "range_sum_queries.h"
 #include "prefix_sum_array.h"
+#include "range_sum_queries.h"
 
 #include "data_structure/heap/segment_tree.h"
+#include "mathematics/matrix/matrix.h"
 #include "mathematics/numbers/binary/clear_all_bits_except_the_last_set_bit.h"
 
 
@@ -13,6 +14,7 @@ using ArrayType = std::vector<int>;
 using QueryType = std::pair<int, int>;
 using QueryArrayType = std::vector<QueryType>;
 using OperationArrayType = std::vector<std::pair<bool, QueryType>>;
+using MatrixQueryType = std::vector<std::tuple<int, int, int, int>>;
 
 /** Range sum queries without updates
  *
@@ -20,9 +22,13 @@ using OperationArrayType = std::vector<std::pair<bool, QueryType>>;
  * @reference   Range Sum Query - Immutable
  *              https://leetcode.com/problems/range-sum-query-immutable/
  *
- * Given an array arr of integers of size n. We need to compute the sum of elements from
- * index i to index j. The queries consisting of i and j index values will be executed
- * multiple times.
+ * Given an integer array nums, handle multiple queries of the following type:
+ *  Calculate the sum of the elements of nums between indices left and right inclusive where
+ *  left <= right.
+ * Implement the NumArray class:
+ *  NumArray(int[] nums) Initializes the object with the integer array nums.
+ *  int sumRange(int left, int right) Returns the sum of the elements of nums between indices
+ *  left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
  */
 auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
     const auto prefix_sums = PrefixSumArray(std::move(elements));
@@ -50,17 +56,19 @@ auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
  *
  * Given an integer array nums, handle multiple queries of the following types:
  *  Update the value of an element in nums.
- *  Calculate the sum of the elements of nums between indices left and right inclusive
- *  where left <= right.
- * Segment tree is a very flexible data structure, because it is used to solve numerous
- * range query problems like finding minimum, maximum, sum, greatest common divisor,
- * least common denominator in array in logarithmic time.
+ *  Calculate the sum of the elements of nums between indices left and right inclusive where
+ *  left <= right.
+ * Implement the NumArray class:
+ *  NumArray(int[] nums) Initializes the object with the integer array nums.
+ *  void update(int index, int val) Updates the value of nums[index] to be val.
+ *  int sumRange(int left, int right) Returns the sum of the elements of nums between indices
+ *  left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
  */
 auto buildSegmentTree(const ArrayType &nums) {
     ArrayType segment_tree(nums.size() * 2, 0);
 
     if (not nums.empty()) {
-        for (std::size_t i = nums.size(), j = 0;  i < 2 * nums.size(); ++i,  ++j) {
+        for (std::size_t i = nums.size(), j = 0; i < 2 * nums.size(); ++i, ++j) {
             segment_tree[i] = nums[j];
         }
 
@@ -132,8 +140,7 @@ auto RangeSumQueriesMutable_SegmentTree(const ArrayType &elements,
  * @reference   Binary Indexed Tree or Fenwick Tree
  *              https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
  *
- * Compared with Segment Tree, Binary Indexed Tree requires less space and is easier to
- * implement.
+ * Compared with Segment Tree, Binary Indexed Tree requires less space and is easier to implement.
  *
  * @reference   BINARY INDEXED TREES
  *              https://www.topcoder.com/thrive/articles/Binary%20Indexed%20Trees
@@ -189,9 +196,7 @@ auto getOrigin_BIT(const ArrayType &bitree, int index) {
     return sum;
 }
 
-auto
-RangeSumQueriesMutable_BIT(const ArrayType &elements,
-                           const OperationArrayType &operations) {
+auto RangeSumQueriesMutable_BIT(const ArrayType &elements, const OperationArrayType &operations) {
     auto bit_tree = buildBIT(elements);
 
     ArrayType results;
@@ -213,7 +218,82 @@ RangeSumQueriesMutable_BIT(const ArrayType &elements,
  *              https://www.geeksforgeeks.org/sqrt-square-root-decomposition-technique-set-1-introduction/
  */
 
-}//namespace
+
+/**
+ * @reference   Range Sum Query 2D - Immutable
+ *              https://leetcode.com/problems/range-sum-query-2d-immutable/
+ *
+ * Given a 2D matrix matrix, handle multiple queries of the following type:
+ *  Calculate the sum of the elements of matrix inside the rectangle defined by its upper left
+ *  corner (row1, col1) and lower right corner (row2, col2).
+ * Implement the NumMatrix class:
+ *  NumMatrix(int[][] matrix) Initializes the object with the integer matrix matrix.
+ *  int sumRegion(int row1, int col1, int row2, int col2) Returns the sum of the elements of
+ *  matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right
+ *  corner (row2, col2).
+ */
+class NumMatrix_Row {
+    MatrixType prefix_sums;
+
+public:
+    NumMatrix_Row(const MatrixType &matrix) noexcept {
+        for (const auto &row : matrix) {
+            prefix_sums.push_back({0});
+            for (const auto n : row) {
+                prefix_sums.back().push_back(prefix_sums.back().back() + n);
+            }
+        }
+    }
+
+    auto
+    SumRegion(const int row1, const int col1, const int row2, const int col2) const noexcept {
+        int result = 0;
+        for (auto i = row1; i <= row2; ++i) {
+            result += prefix_sums[i][col2 + 1] - prefix_sums[i][col1];
+        }
+
+        return result;
+    }
+};
+
+
+class NumMatrix_Block {
+    MatrixType prefix_sums;
+
+public:
+    NumMatrix_Block(const MatrixType &matrix) noexcept :
+        prefix_sums(matrix.size() + 1, std::vector(matrix.front().size() + 1, 0)) {
+        for (std::size_t r = 0; r < matrix.size(); ++r) {
+            for (std::size_t c = 0; c < matrix.front().size(); ++c) {
+                prefix_sums[r + 1][c + 1] = prefix_sums[r + 1][c] + prefix_sums[r][c + 1] +
+                                            matrix[r][c] - prefix_sums[r][c];
+            }
+        }
+    }
+
+    auto
+    SumRegion(const int row1, const int col1, const int row2, const int col2) const noexcept {
+        return prefix_sums[row2 + 1][col2 + 1] - prefix_sums[row1][col2 + 1] -
+               prefix_sums[row2 + 1][col1] + prefix_sums[row1][col1];
+    }
+};
+
+template<typename NumMatrixType>
+auto test2DRangeSumQuery(const MatrixType &matrix, const MatrixQueryType &queries) {
+    NumMatrixType m {matrix};
+
+    ArrayType result;
+    for (const auto [row1, col1, row2, col2] : queries) {
+        result.push_back(m.SumRegion(row1, col1, row2, col2));
+    }
+
+    return result;
+}
+
+constexpr auto test2DRangeSumQuery_Row = test2DRangeSumQuery<NumMatrix_Row>;
+constexpr auto test2DRangeSumQuery_Block = test2DRangeSumQuery<NumMatrix_Block>;
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 3, 4, 5};
@@ -243,15 +323,36 @@ const ArrayType EXPECTED4 = {9, 8};
 
 THE_BENCHMARK(RangeSumQueriesMutable_SegmentTree, SAMPLE1, SAMPLE_O1);
 
-SIMPLE_TEST(RangeSumQueriesMutable_SegmentTree, TestSAMPLE1, EXPECTED1,
-            SAMPLE1, SAMPLE_O1);
-SIMPLE_TEST(RangeSumQueriesMutable_SegmentTree, TestSAMPLE4, EXPECTED4,
-            SAMPLE4, SAMPLE_O4);
+SIMPLE_TEST(RangeSumQueriesMutable_SegmentTree, TestSAMPLE1, EXPECTED1, SAMPLE1, SAMPLE_O1);
+SIMPLE_TEST(RangeSumQueriesMutable_SegmentTree, TestSAMPLE4, EXPECTED4, SAMPLE4, SAMPLE_O4);
 
 
 THE_BENCHMARK(RangeSumQueriesMutable_BIT, SAMPLE1, SAMPLE_O1);
 
-SIMPLE_TEST(RangeSumQueriesMutable_BIT, TestSAMPLE1, EXPECTED1,
-            SAMPLE1, SAMPLE_O1);
-SIMPLE_TEST(RangeSumQueriesMutable_BIT, TestSAMPLE4, EXPECTED4,
-            SAMPLE4, SAMPLE_O4);
+SIMPLE_TEST(RangeSumQueriesMutable_BIT, TestSAMPLE1, EXPECTED1, SAMPLE1, SAMPLE_O1);
+SIMPLE_TEST(RangeSumQueriesMutable_BIT, TestSAMPLE4, EXPECTED4, SAMPLE4, SAMPLE_O4);
+
+
+// clang-format off
+const MatrixType SAMPLE1M = {
+    {3, 0, 1, 4, 2},
+    {5, 6, 3, 2, 1},
+    {1, 2, 0, 1, 5},
+    {4, 1, 0, 1, 7},
+    {1, 0, 3, 0, 5}
+};
+
+const MatrixQueryType SAMPLE1M_Q1 = {{2, 1, 4, 3}, {1, 1, 2, 2}, {1, 2, 2, 4}};
+
+const ArrayType EXPECTED1M = {8, 11, 12};
+// clang-format on
+
+
+THE_BENCHMARK(test2DRangeSumQuery_Row, SAMPLE1M, SAMPLE1M_Q1);
+
+SIMPLE_TEST(test2DRangeSumQuery_Row, TestSAMPLE1, EXPECTED1M, SAMPLE1M, SAMPLE1M_Q1);
+
+
+THE_BENCHMARK(test2DRangeSumQuery_Block, SAMPLE1M, SAMPLE1M_Q1);
+
+SIMPLE_TEST(test2DRangeSumQuery_Block, TestSAMPLE1, EXPECTED1M, SAMPLE1M, SAMPLE1M_Q1);
