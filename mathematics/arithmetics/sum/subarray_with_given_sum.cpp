@@ -9,8 +9,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum/
  *
- * Given an unsorted array of nonnegative integers, find a continuous subarray which adds
- * to a given number.
+ * Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a
+ * given number.
  */
 constexpr auto NOT_FOUND = std::pair(-1, -1);
 
@@ -40,8 +40,7 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
-auto
-AllSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
+auto AllSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
     std::unordered_multimap<ArrayType::value_type, ArrayType::size_type> sum_index_map;
     ArrayType::value_type current_sum = 0;
     std::vector<std::pair<int, int>> outputs;
@@ -83,8 +82,8 @@ inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
  *
- * Given an array of positive and negative numbers, find if there is a subarray (of size
- * at-least one) with 0 sum.
+ * Given an array of positive and negative numbers, find if there is a subarray (of size at-least
+ * one) with 0 sum.
  */
 inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
@@ -95,8 +94,8 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * @reference   Number of subarrays having sum exactly equal to k
  *              https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
  *
- * Given an unsorted array of integers, find number of subarrays having sum exactly equal
- * to a given number k.
+ * Given an unsorted array of integers, find number of subarrays having sum exactly equal to a
+ * given number k.
  *
  * @reference   Subarray Sum Equals K
  *              https://leetcode.com/problems/subarray-sum-equals-k/
@@ -105,8 +104,7 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * subarrays whose sum equals to k.
  * -1000 <= nums[i] <= 1000
  */
-auto NumberOfSubarraysWithGivenSum(const ArrayType &nums,
-                                   const ArrayType::value_type k) {
+auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value_type k) {
     std::unordered_map<int, int> counts = {{0, 1}};
     int sum = 0;
     int result = 0;
@@ -127,10 +125,10 @@ auto NumberOfSubarraysWithGivenSum(const ArrayType &nums,
  * @reference   Maximum Size Subarray Sum Equals k
  *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/325-maximum-size-subarray-sum-equals-k.html
  *
- * Given an array nums and a target value k, find the maximum length of a subarray that
- * sums to k. If there isn't one, return 0 instead.
- * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed
- * integer range.
+ * Given an array nums and a target value k, find the maximum length of a subarray that sums to k.
+ * If there isn't one, return 0 instead.
+ * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer
+ * range.
  * Follow Up: Can you do it in O(n) time?
  */
 auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
@@ -155,6 +153,27 @@ auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
 }
 
 
+/**
+ * @reference   Minimum Operations to Reduce X to Zero
+ *              https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+ *
+ * You are given an integer array nums and an integer x. In one operation, you can either remove
+ * the leftmost or the rightmost element from the array nums and subtract its value from x. Note
+ * that this modifies the array for future operations.
+ * Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise,
+ * return -1.
+ */
+int MinOperationsReduceXto0(const ArrayType &nums, const int x) {
+    const auto sum = std::accumulate(nums.cbegin(), nums.cend(), 0);
+    if (sum == x) {
+        return nums.size();
+    }
+
+    const auto result = MaxLengthSubarraySumAs(nums, sum - x);
+    return result ? nums.size() - result : -1;
+}
+
+
 /** Find the length of largest subarray with 0 sum
  *
  * @reference   https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
@@ -176,8 +195,8 @@ inline auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
  * @reference   Contiguous Array
  *              https://leetcode.com/problems/contiguous-array/
  *
- * Given a binary array nums, return the maximum length of a contiguous subarray with an
- * equal number of 0 and 1.
+ * Given a binary array nums, return the maximum length of a contiguous subarray with an equal
+ * number of 0 and 1.
  */
 auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
     std::unordered_map<int, int> hash = {{0, -1}};
@@ -196,7 +215,7 @@ auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 4, 20, 3, 10, 5};
@@ -215,7 +234,7 @@ SIMPLE_TEST(FindSubarrayWithGivenSum, TestSample5, std::pair(3, 3), SAMPLE4, 8);
 
 
 const ArrayType SAMPLE6 = {10, 2, -2, -20, 10};
-const ArrayType SAMPLE7 = { -10, 0, 2, -2, -20, 10};
+const ArrayType SAMPLE7 = {-10, 0, 2, -2, -20, 10};
 
 
 THE_BENCHMARK(FindSubarrayWithGivenSum_Map, SAMPLE6, 33);
@@ -231,7 +250,7 @@ SIMPLE_TEST(FindSubarrayWithGivenSum_Map, TestSample7, NOT_FOUND, SAMPLE7, 20);
 
 const ArrayType SAMPLE8 = {4, 2, -3, 1, 6};
 const ArrayType SAMPLE9 = {4, 2, 0, 1, 6};
-const ArrayType SAMPLE10 = { -3, 2, 3, 1, 6};
+const ArrayType SAMPLE10 = {-3, 2, 3, 1, 6};
 
 
 THE_BENCHMARK(FindSubarrayWith0Sum, SAMPLE8);
@@ -283,3 +302,16 @@ THE_BENCHMARK(MaxLengthSubarraySumAs, SAMPLE1K, 3);
 
 SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample1, 4, SAMPLE1K, 3);
 SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample2, 2, SAMPLE2K, 1);
+
+
+const ArrayType SAMPLE1O = {1, 1, 4, 2, 3};
+const ArrayType SAMPLE2O = {5, 6, 7, 8, 9};
+const ArrayType SAMPLE3O = {3, 2, 20, 1, 1, 3};
+
+
+THE_BENCHMARK(MinOperationsReduceXto0, SAMPLE1O, 5);
+
+SIMPLE_TEST(MinOperationsReduceXto0, TestSample0, SAMPLE1O.size(), SAMPLE1O, 11);
+SIMPLE_TEST(MinOperationsReduceXto0, TestSample1, 2, SAMPLE1O, 5);
+SIMPLE_TEST(MinOperationsReduceXto0, TestSample2, -1, SAMPLE2O, 4);
+SIMPLE_TEST(MinOperationsReduceXto0, TestSample3, 5, SAMPLE3O, 10);
