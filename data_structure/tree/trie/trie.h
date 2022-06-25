@@ -12,18 +12,18 @@
  * @reference   Implement Trie (Prefix Tree)
  *              https://leetcode.com/problems/implement-trie-prefix-tree/
  *
- * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently
- * store and retrieve keys in a dataset of strings. There are various applications of this
- * data structure, such as autocomplete and spellchecker. Implement the Trie class:
+ * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store
+ * and retrieve keys in a dataset of strings. There are various applications of this data structure,
+ * such as autocomplete and spellchecker. Implement the Trie class:
  *  Trie() Initializes the trie object.
  *  void insert(String word) Inserts the string word into the trie.
- *  boolean search(String word) Returns true if the string word is in the trie (i.e., was
- *      inserted before), and false otherwise.
- *  boolean startsWith(String prefix) Returns true if there is a previously inserted string
- *      word that has the prefix prefix, and false otherwise.
+ *  boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted
+ *      before), and false otherwise.
+ *  boolean startsWith(String prefix) Returns true if there is a previously inserted string word
+ *      that has the prefix prefix, and false otherwise.
  * word and prefix consist only of lowercase English letters.
  */
-template <typename T>
+template<typename T>
 struct TrieNode {
     using ValueType = T;
     using PointerType = std::shared_ptr<TrieNode>;
@@ -31,7 +31,7 @@ struct TrieNode {
     std::vector<PointerType> children;
     T value = {};
 
-    explicit TrieNode(const std::size_t size = 26): children(size, PointerType{}) {}
+    explicit TrieNode(const std::size_t size = 26) : children(size, PointerType {}) {}
 
     auto Empty() const {
         for (const auto &kid : children) {
@@ -53,15 +53,16 @@ struct TrieNode {
 };
 
 
-template <typename NodeType>
-void TrieInsert(NodeType &root, const std::string_view key,
+template<typename NodeType>
+void TrieInsert(NodeType &root,
+                const std::string_view key,
                 const typename NodeType::ValueType value) {
     auto *current = &root;
 
     for (const auto c : key) {
         const auto index = NodeType::ToIndex(c);
         if (not current->children[index]) {
-            current->children[index].reset(new NodeType{root.children.size()});
+            current->children[index].reset(new NodeType {root.children.size()});
         }
 
         current = current->children[index].get();
@@ -71,9 +72,27 @@ void TrieInsert(NodeType &root, const std::string_view key,
 }
 
 
-template <typename NodeType>
-typename NodeType::ValueType
-TrieGet(const NodeType &root, const std::string_view key) {
+template<typename NodeType>
+void TriePathInsert(NodeType &root,
+                    const std::string_view key,
+                    const typename NodeType::ValueType value) {
+    auto *current = &root;
+    current->value = value;
+
+    for (const auto c : key) {
+        const auto index = NodeType::ToIndex(c);
+        if (not current->children[index]) {
+            current->children[index].reset(new NodeType {root.children.size()});
+        }
+
+        current = current->children[index].get();
+        current->value = value;
+    }
+}
+
+
+template<typename NodeType>
+typename NodeType::ValueType TrieGet(const NodeType &root, const std::string_view key) {
     const auto *current = &root;
 
     for (const auto c : key) {
@@ -93,7 +112,7 @@ class Trie {
 public:
     using Node = TrieNode<bool>;
 
-    explicit Trie(const std::size_t size = 26): root(size) {}
+    explicit Trie(const std::size_t size = 26) : root(size) {}
 
 
     void Insert(const std::string_view key) {
@@ -139,8 +158,7 @@ public:
     }
 
 private:
-    bool DeleteHelper(Node *node, const std::string_view key,
-                      const std::size_t depth = 0) {
+    bool DeleteHelper(Node *node, const std::string_view key, const std::size_t depth = 0) {
         if (not node) {
             return false;
         }
@@ -160,12 +178,11 @@ private:
     }
 
 
-    void Insert_Recursive_Helper(Node *node, const std::string_view key,
-                                 const std::size_t i) {
+    void Insert_Recursive_Helper(Node *node, const std::string_view key, const std::size_t i) {
         if (i < key.size()) {
             const auto index = Node::ToIndex(key[i]);
             if (not node->children[index]) {
-                node->children[index].reset(new Node{root.children.size()});
+                node->children[index].reset(new Node {root.children.size()});
             }
 
             Insert_Recursive_Helper(node->children[index].get(), key, i + 1);
@@ -175,7 +192,8 @@ private:
     }
 
 
-    bool Search_Recursive_Helper(const Node *node, const std::string_view key,
+    bool Search_Recursive_Helper(const Node *node,
+                                 const std::string_view key,
                                  const std::size_t i) const {
         if (not node or i > key.size()) {
             return false;
@@ -193,7 +211,7 @@ private:
     Node root;
 };
 
-template <typename Strings>
+template<typename Strings>
 static inline constexpr auto BuildTrie(const Strings &keys) {
     Trie dictionary;
 
@@ -223,9 +241,8 @@ static inline constexpr auto BuildTrie(const Strings &keys) {
  * @reference   Frequency of a string in an array of strings
  *              https://www.geeksforgeeks.org/frequency-of-a-string-in-an-array-of-strings/
  *
- * You are given a collection of strings and a list of queries. For every query there is
- * a string given. We need to print the number of times the given string occurs in the
- * collection of strings.
+ * You are given a collection of strings and a list of queries. For every query there is a string
+ * given. We need to print the number of times the given string occurs in the collection of strings.
  *
  * @reference   Calculate the frequency of each word in the given string
  *              https://www.geeksforgeeks.org/calculate-the-frequency-of-each-word-in-the-given-string/
