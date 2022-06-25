@@ -17,25 +17,26 @@ namespace {
  * @reference   Boggle | Set 2 (Using Trie)
  *              https://www.geeksforgeeks.org/boggle-set-2-using-trie/
  *
- * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where
- * every cell has one character. Find all possible words that can be formed by a sequence
- * of adjacent characters. Note that we can move to any of 8 adjacent characters, but a
- * word should not have multiple instances of the same cell.
+ * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where every
+ * cell has one character. Find all possible words that can be formed by a sequence of adjacent
+ * characters. Note that we can move to any of 8 adjacent characters, but a word should not have
+ * multiple instances of the same cell.
  */
 void Boggle(const Trie::Node::PointerType node,
             const BoardType &board,
-            const int i, const int j,
+            const int i,
+            const int j,
             std::vector<BoolRowType> &visited,
             std::string &prefix,
             OutputType &results);
 
-inline void
-BoggleHelper(const Trie::Node *node,
-             const BoardType &board,
-             const int i, const int j,
-             std::vector<BoolRowType> &visited,
-             std::string &prefix,
-             OutputType &results) {
+inline void BoggleHelper(const Trie::Node *node,
+                         const BoardType &board,
+                         const int i,
+                         const int j,
+                         std::vector<BoolRowType> &visited,
+                         std::string &prefix,
+                         OutputType &results) {
     assert(node);
 
     const auto c = board[i][j];
@@ -49,7 +50,8 @@ BoggleHelper(const Trie::Node *node,
 
 void Boggle(const Trie::Node::PointerType node,
             const BoardType &board,
-            const int i, const int j,
+            const int i,
+            const int j,
             std::vector<BoolRowType> &visited,
             std::string &prefix,
             OutputType &results) {
@@ -67,8 +69,8 @@ void Boggle(const Trie::Node::PointerType node,
         for (auto new_i = i - 1; new_i <= i + 1; ++new_i) {
             for (auto new_j = j - 1; new_j <= j + 1; ++new_j) {
                 if (new_i != i or new_j != j) {
-                    if (new_i >= 0 and new_i < static_cast<int>(board.size()) and
-                        new_j >= 0 and new_j < static_cast<int>(board.front().size())) {
+                    if (new_i >= 0 and new_i < static_cast<int>(board.size()) and new_j >= 0 and
+                        new_j < static_cast<int>(board.front().size())) {
                         BoggleHelper(node.get(), board, new_i, new_j, visited, prefix, results);
                     }
                 }
@@ -80,7 +82,7 @@ void Boggle(const Trie::Node::PointerType node,
 }
 
 inline auto Boggle(const ArrayType &keys, const BoardType &board) {
-    return BuildTrie(keys).Visit([&board](const auto & root) {
+    return BuildTrie(keys).Visit([&board](const auto &root) {
         std::string prefix;
         auto visited =
             std::vector<BoolRowType>(board.size(), BoolRowType(board.front().size(), false));
@@ -101,15 +103,17 @@ inline auto Boggle(const ArrayType &keys, const BoardType &board) {
  * @reference   Word Search
  *              https://leetcode.com/problems/word-search/
  *
- * Given an m x n grid of characters board and a string word, return true if word exists
- * in the grid. The word can be constructed from letters of sequentially adjacent cells,
- * where adjacent cells are horizontally or vertically neighboring. The same letter cell
- * may not be used more than once.
+ * Given an m x n grid of characters board and a string word, return true if word exists in the
+ * grid.
+ * The word can be constructed from letters of sequentially adjacent cells, where adjacent cells
+ * are horizontally or vertically neighboring. The same letter cell may not be used more than once.
  * Follow up: Could you use search pruning to make your solution faster with a larger board?
  */
-auto
-WordSearch(BoardType &board, const std::string_view word, const std::size_t i,
-           const int x, const int y) {
+auto WordSearch(BoardType &board,
+                const std::string_view word,
+                const std::size_t i,
+                const int x,
+                const int y) {
     const int M = board.size();
     const int N = board.front().size();
     if (x < 0 or x == M or y < 0 or y == N or word[i] != board[x][y]) {
@@ -122,10 +126,9 @@ WordSearch(BoardType &board, const std::string_view word, const std::size_t i,
 
     const auto current = board[x][y];
     board[x][y] = 0;
-    const auto found = WordSearch(board, word, i + 1, x + 1, y)
-                       or WordSearch(board, word, i + 1, x - 1, y)
-                       or WordSearch(board, word, i + 1, x, y + 1)
-                       or WordSearch(board, word, i + 1, x, y - 1);
+    const auto found =
+        WordSearch(board, word, i + 1, x + 1, y) or WordSearch(board, word, i + 1, x - 1, y) or
+        WordSearch(board, word, i + 1, x, y + 1) or WordSearch(board, word, i + 1, x, y - 1);
     board[x][y] = current;
 
     return found;
@@ -148,10 +151,10 @@ auto WordSearch(BoardType board, const std::string_view word) {
  * @reference   Word Search II
  *              https://leetcode.com/problems/word-search-ii/
  *
- * Given an m x n board of characters and a list of strings words, return all words on
- * the board. Each word must be constructed from letters of sequentially adjacent cells,
- * where adjacent cells are horizontally or vertically neighboring. The same letter cell
- * may not be used more than once in a word.
+ * Given an m x n board of characters and a list of strings words, return all words on the board.
+ * Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells
+ * are horizontally or vertically neighboring. The same letter cell may not be used more than once
+ * in a word.
  * words[i] consists of lowercase English letters.
  * All the strings of words are unique.
  */
@@ -167,8 +170,8 @@ auto buildTrie(const ArrayType &words) {
     return root;
 }
 
-void ManyWordSearch(BoardType &board, Node &trie_node,
-                    const int x, const int y, ResultType &result) {
+void ManyWordSearch(
+    BoardType &board, Node &trie_node, const int x, const int y, ResultType &result) {
     const int M = board.size();
     const int N = board.front().size();
 
@@ -209,15 +212,54 @@ auto ManyWordSearch(BoardType board, const ArrayType &words) {
     return result;
 }
 
-}//namespace
+
+/**
+ * @reference   Prefix and Suffix Search
+ *              https://leetcode.com/problems/prefix-and-suffix-search/
+ *
+ * Design a special dictionary that searches the words in it by a prefix and a suffix.
+ * Implement the WordFilter class:
+ *  WordFilter(string[] words) Initializes the object with the words in the dictionary.
+ *  f(string prefix, string suffix) Returns the index of the word in the dictionary, which has
+ *      the prefix prefix and the suffix suffix. If there is more than one valid index, return
+ *      the largest of them. If there is no such word in the dictionary, return -1.
+ */
+class WordFilter {
+    using NodeType = TrieNode<int>;
+
+    NodeType root {27};
+
+public:
+    WordFilter(const ArrayType &words) noexcept {
+        for (std::size_t i = 0; i < words.size(); ++i) {
+            const auto w = std::string(words[i]) + '{' + std::string(words[i]);
+            for (std::size_t j = 0; j <= words[i].size(); ++j) {
+                TriePathInsert(root, w.substr(j), i + 1);
+            }
+        }
+    }
+
+    auto f(const std::string &prefix, const std::string &suffix) const noexcept {
+        return TrieGet(root, suffix + '{' + prefix) - 1;
+    }
+};
+
+inline auto
+testWordFilter(const ArrayType &words, const std::string &prefix, const std::string &suffix) {
+    return WordFilter(words).f(prefix, suffix);
+}
+
+} //namespace
 
 
 const ArrayType KEYS1 = {"geeks", "for", "quiz", "gee"};
+// clang-format off
 const BoardType BOARD1 = {
     { 'g', 'i', 'z' },
     { 'u', 'e', 'k' },
     { 'q', 's', 'e' }
 };
+// clang-format on
 const OutputType EXPECTED1 = {"gee", "geeks", "quiz"};
 
 
@@ -226,11 +268,13 @@ THE_BENCHMARK(Boggle, KEYS1, BOARD1);
 SIMPLE_TEST(Boggle, TestSAMPLE1, EXPECTED1, KEYS1, BOARD1);
 
 
+// clang-format off
 const BoardType BOARD2 = {
     {'A', 'B', 'C', 'E'},
     {'S', 'F', 'C', 'S'},
     {'A', 'D', 'E', 'E'}
 };
+// clang-format on
 
 
 THE_BENCHMARK(WordSearch, BOARD2, "ABCCED");
@@ -240,6 +284,7 @@ SIMPLE_TEST(WordSearch, TestSAMPLE2, true, BOARD2, "SEE");
 SIMPLE_TEST(WordSearch, TestSAMPLE3, false, BOARD2, "ABCB");
 
 
+// clang-format off
 const ArrayType KEYS1S = {"oath", "pea", "eat", "rain"};
 const BoardType BOARD1S = {
     {'o', 'a', 'a', 'n'},
@@ -255,9 +300,22 @@ const BoardType BOARD2S = {
     {'c', 'd'}
 };
 const ResultType EXPECTED2S = {};
+// clang-format on
 
 
 THE_BENCHMARK(ManyWordSearch, BOARD1S, KEYS1S);
 
 SIMPLE_TEST(ManyWordSearch, TestSAMPLE1, EXPECTED1S, BOARD1S, KEYS1S);
 SIMPLE_TEST(ManyWordSearch, TestSAMPLE2, EXPECTED2S, BOARD2S, KEYS2S);
+
+
+const ArrayType SAMPLE1 = {"apple", "ee"};
+
+
+THE_BENCHMARK(testWordFilter, SAMPLE1, "a", "e");
+
+SIMPLE_TEST(testWordFilter, TestSAMPLE1, 0, SAMPLE1, "a", "e");
+SIMPLE_TEST(testWordFilter, TestSAMPLE2, 1, SAMPLE1, "ee", "e");
+SIMPLE_TEST(testWordFilter, TestSAMPLE3, -1, SAMPLE1, "ax", "le");
+SIMPLE_TEST(testWordFilter, TestSAMPLE4, 0, SAMPLE1, "apple", "");
+SIMPLE_TEST(testWordFilter, TestSAMPLE5, 0, SAMPLE1, "", "apple");

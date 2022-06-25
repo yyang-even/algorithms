@@ -25,9 +25,14 @@ using ArrayType = std::vector<int>;
  * @reference   Tournament Tree (Winner Tree) and Binary Heap
  *              https://www.geeksforgeeks.org/tournament-tree-and-binary-heap/
  *
- * Given an array and a number k where k is smaller than size of array, we need to find
- * the k'th smallest element in the given array. It is given that all array elements are
- * distinct.
+ * Given an array and a number k where k is smaller than size of array, we need to find the k'th
+ * smallest element in the given array. It is given that all array elements are distinct.
+ *
+ * @reference   Kth Largest Element in an Array
+ *              https://leetcode.com/problems/kth-largest-element-in-an-array/
+ *
+ * Given an integer array nums and an integer k, return the kth largest element in the array.
+ * Note that it is the kth largest element in the sorted order, not the kth distinct element.
  */
 inline auto KthSmallest_Sort(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
@@ -56,7 +61,7 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
     assert(K < elements.size());
 
     auto iter = elements.cbegin() + K + 1;
-    std::priority_queue heap{elements.cbegin(), iter};
+    std::priority_queue heap {elements.cbegin(), iter};
     for (; iter != elements.cend(); ++iter) {
         if (*iter < heap.top()) {
             heap.pop();
@@ -77,8 +82,7 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
 inline auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
-    return *KthSmallest_QuickSelect(elements.begin(), elements.end(),
-                                    elements.cbegin() + K);
+    return *KthSmallest_QuickSelect(elements.begin(), elements.end(), elements.cbegin() + K);
 }
 
 
@@ -88,8 +92,7 @@ inline auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_ty
  * @reference   QuickSelect (A Simple Iterative Implementation)
  *              https://www.geeksforgeeks.org/quickselect-a-simple-iterative-implementation/
  */
-auto KthSmallest_QuickSelect_Iterative(ArrayType elements,
-                                       const ArrayType::size_type K) {
+auto KthSmallest_QuickSelect_Iterative(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());
 
     auto begin = elements.begin();
@@ -145,8 +148,7 @@ ArrayType::value_type KthSmallest_BinarySearch(const ArrayType::value_type min,
     return mid;
 }
 
-inline auto KthSmallest_BinarySearch(const ArrayType &elements,
-                                     const ArrayType::size_type K) {
+inline auto KthSmallest_BinarySearch(const ArrayType &elements, const ArrayType::size_type K) {
     assert(not elements.empty());
 
     const auto [min, max] = std::minmax_element(elements.cbegin(), elements.cend());
@@ -158,8 +160,8 @@ inline auto KthSmallest_BinarySearch(const ArrayType &elements,
  * @reference   Third Maximum Number
  *              https://leetcode.com/problems/third-maximum-number/
  *
- * Given integer array nums, return the third maximum number in this array. If the third
- * maximum does not exist, return the maximum number.
+ * Given integer array nums, return the third maximum number in this array. If the third maximum
+ * does not exist, return the maximum number.
  * Follow up: Can you find an O(n) solution?
  */
 auto ThirdMax(const ArrayType &nums) {
@@ -189,8 +191,8 @@ auto ThirdMax(const ArrayType &nums) {
  * @reference   Second Largest Digit in a String
  *              https://leetcode.com/problems/second-largest-digit-in-a-string/
  *
- * Given an alphanumeric string s, return the second largest numerical digit that appears
- * in s, or -1 if it does not exist.
+ * Given an alphanumeric string s, return the second largest numerical digit that appears in s,
+ * or -1 if it does not exist.
  * An alphanumeric string is a string consisting of lowercase English letters and digits.
  *
  * @reference   Find Second largest element in an array
@@ -238,7 +240,7 @@ constexpr auto SecondHighest_CountingSort(const std::string_view s) {
     return -1;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {12, 3, 5, 7, 19};
@@ -281,8 +283,7 @@ THE_BENCHMARK(KthSmallest_QuickSelect_Iterative, VALUES1, 1);
 
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE0, 3, VALUES1, 0);
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE1, 5, VALUES1, 1);
-SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE2, 19,
-            VALUES1, VALUES1.size() - 1);
+SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE2, 19, VALUES1, VALUES1.size() - 1);
 SIMPLE_TEST(KthSmallest_QuickSelect_Iterative, TestSAMPLE3, 14, VALUES2, 3);
 
 
