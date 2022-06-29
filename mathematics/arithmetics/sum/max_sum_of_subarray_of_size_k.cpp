@@ -30,6 +30,20 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
 
 
 /**
+ * @reference   Maximum Points You Can Obtain from Cards
+ *              https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
+ *
+ * There are several cards arranged in a row, and each card has an associated number of points.
+ * The points are given in the integer array cardPoints.
+ * In one step, you can take one card from the beginning or from the end of the row. You have to
+ * take exactly k cards.
+ * Your score is the sum of the points of the cards you have taken.
+ * Given the integer array cardPoints and the integer k, return the maximum score you can obtain.
+ *
+ * @hint    total - min_sum_subarray_of_size_x
+ */
+
+/**
  * @reference   Subarray of size k with given sum
  *              https://www.geeksforgeeks.org/subarray-of-size-k-with-given-sum/
  */
@@ -51,10 +65,9 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * @reference   Maximum Average Subarray I
  *              https://leetcode.com/problems/maximum-average-subarray-i/
  *
- * You are given an integer array nums consisting of n elements, and an integer k. Find
- * a contiguous subarray whose length is equal to k that has the maximum average value
- * and return this value. Any answer with a calculation error less than 10-5 will be
- * accepted.
+ * You are given an integer array nums consisting of n elements, and an integer k.
+ * Find a contiguous subarray whose length is equal to k that has the maximum average value and
+ * return this value. Any answer with a calculation error less than 10-5 will be accepted.
  */
 
 
@@ -62,12 +75,11 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * @reference   Maximum Average Subarray II
  *              https://protegejj.gitbook.io/algorithm-practice/leetcode/binary-search/644-maximum-average-subarray-ii
  *
- * Given an array consisting ofnintegers, find the contiguous subarray whose length is
- * greater than or equal to k that has the maximum average value. And you need to output
- * the maximum average value.
+ * Given an array consisting ofnintegers, find the contiguous subarray whose length is greater
+ * than or equal to k that has the maximum average value. And you need to output the maximum
+ * average value.
  */
-auto isValidSubarrayAverage(const ArrayType &nums, const double average,
-                            const std::size_t k) {
+auto isValidSubarrayAverage(const ArrayType &nums, const double average, const std::size_t k) {
     double prefix_sum = 0;
     std::size_t i = 0;
     for (; i < k; ++i) {
@@ -83,8 +95,7 @@ auto isValidSubarrayAverage(const ArrayType &nums, const double average,
     for (; i < nums.size(); ++i) {
         prefix_sum += nums[i] - average;
         before_window_prefix_sum += nums[i - k] - average;
-        min_before_window_sum = std::min(min_before_window_sum,
-                                         before_window_prefix_sum);
+        min_before_window_sum = std::min(min_before_window_sum, before_window_prefix_sum);
 
         if (prefix_sum > min_before_window_sum) {
             return true;
@@ -117,18 +128,17 @@ auto MaxAverageNoShorterThanK(const ArrayType &nums, const int k) {
  * @reference   Diet Plan Performance
  *              http://lixinchengdu.github.io/algorithmbook/leetcode/diet-plan-performance.html
  *
- * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every
- * consecutive sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for
- * all 0 <= i <= n-k), they look at T, the total calories consumed during that sequence
- * of k days (calories[i] + calories[i+1] + ... + calories[i+k-1]):
+ * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every consecutive
+ * sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for all 0 <= i <= n-k),
+ * they look at T, the total calories consumed during that sequence of k days
+ * (calories[i] + calories[i+1] + ... + calories[i+k-1]):
  *  If T < lower, they performed poorly on their diet and lose 1 point;
  *  If T > upper, they performed well on their diet and gain 1 point;
  *  Otherwise, they performed normally and there is no change in points.
- * Initially, the dieter has zero points. Return the total number of points the dieter
- * has after dieting for calories.length days. Note that the total points can be negative.
+ * Initially, the dieter has zero points. Return the total number of points the dieter has after
+ * dieting for calories.length days. Note that the total points can be negative.
  */
-inline constexpr auto
-score(const int calories, const int lower, const int upper) {
+inline constexpr auto score(const int calories, const int lower, const int upper) {
     if (calories < lower) {
         return -1;
     } else if (calories > upper) {
@@ -137,8 +147,10 @@ score(const int calories, const int lower, const int upper) {
     return 0;
 }
 
-auto DietPlanPerformance(const ArrayType &calories, const std::size_t K,
-                         const int lower, const int upper) {
+auto DietPlanPerformance(const ArrayType &calories,
+                         const std::size_t K,
+                         const int lower,
+                         const int upper) {
     assert(calories.size() >= K);
 
     auto total = std::accumulate(calories.cbegin(), calories.cbegin() + K, 0);
@@ -156,17 +168,16 @@ auto DietPlanPerformance(const ArrayType &calories, const std::size_t K,
  * @reference   Defuse the Bomb
  *              https://leetcode.com/problems/defuse-the-bomb/
  *
- * You have a bomb to defuse, and your time is running out! Your informer will provide
- * you with a circular array code of length of n and a key k.
- * To decrypt the code, you must replace every number. All the numbers are replaced
- * simultaneously.
+ * You have a bomb to defuse, and your time is running out! Your informer will provide you with a
+ * circular array code of length of n and a key k.
+ * To decrypt the code, you must replace every number. All the numbers are replaced simultaneously.
  *  If k > 0, replace the ith number with the sum of the next k numbers.
  *  If k < 0, replace the ith number with the sum of the previous k numbers.
  *  If k == 0, replace the ith number with 0.
- * As code is circular, the next element of code[n-1] is code[0], and the previous
- * element of code[0] is code[n-1].
- * Given the circular array code and an integer key k, return the decrypted code to
- * defuse the bomb!
+ * As code is circular, the next element of code[n-1] is code[0], and the previous element of
+ * code[0] is code[n-1].
+ * Given the circular array code and an integer key k, return the decrypted code to defuse the
+ * bomb!
  * -(n - 1) <= k <= n - 1
  */
 auto Decrypt(const ArrayType &code, const int k) {
@@ -196,7 +207,7 @@ auto Decrypt(const ArrayType &code, const int k) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {100, 200, 300, 400};
@@ -214,8 +225,7 @@ const ArrayType SAMPLE3 = {1, 12, -5, -6, 50, 3};
 
 THE_BENCHMARK(MaxAverageNoShorterThanK, SAMPLE3, 4);
 
-SIMPLE_TEST(CloseEnough, TestSAMPLE3, true,
-            12.75, MaxAverageNoShorterThanK(SAMPLE3, 4));
+SIMPLE_TEST(CloseEnough, TestSAMPLE3, true, 12.75, MaxAverageNoShorterThanK(SAMPLE3, 4));
 
 
 const ArrayType SAMPLE1D = {1, 2, 3, 4, 5};
