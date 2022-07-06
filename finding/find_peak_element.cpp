@@ -11,10 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-a-peak-in-a-given-array/
  *
- * Given an array of integers. Find a peak element in it. An array element is peak if it
- * is NOT smaller than its neighbors. For corner elements, we need to consider only one
- * neighbor. For example, for input array {5, 10, 20, 15}, 20 is the only peak element.
- * For input array {10, 20, 15, 2, 23, 90, 67}, there are two peak elements: 20 and 90.
+ * Given an array of integers. Find a peak element in it. An array element is peak if it is NOT
+ * smaller than its neighbors. For corner elements, we need to consider only one neighbor.
  * Note that we need to return any one peak element.
  *
  * @reference   Find the maximum element in an array which is first increasing and then decreasing
@@ -22,10 +20,11 @@ using ArrayType = std::vector<int>;
  * @reference   Find Peak Element
  *              https://leetcode.com/problems/find-peak-element/
  *
- * A peak element is an element that is strictly greater than its neighbors. Given an
- * integer array nums, find a peak element, and return its index. If the array contains
- * multiple peaks, return the index to any of the peaks. You may imagine that
- * nums[-1] = nums[n] = -∞.
+ * A peak element is an element that is strictly greater than its neighbors.
+ * Given a 0-indexed integer array nums, find a peak element, and return its index. If the array
+ * contains multiple peaks, return the index to any of the peaks.
+ * You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered
+ * to be strictly greater than a neighbor that is outside the array.
  * You must write an algorithm that runs in O(log n) time.
  *
  * @reference   Peak Index in a Mountain Array
@@ -47,25 +46,22 @@ auto FindOnePeakElement_Iter(const ArrayType &elements,
     const auto mid = cbegin + half;
     const auto mid_next = std::next(mid);
 
-    if ((mid == elements.cbegin() or * std::prev(mid) <= *mid)
-        and (mid_next == elements.cend() or * mid_next <= *mid)) {
+    if ((mid == elements.cbegin() or *std::prev(mid) <= *mid) and
+        (mid_next == elements.cend() or *mid_next <= *mid)) {
         return mid;
     }
-    if (mid != elements.cbegin() and * std::prev(mid) > *mid) {
+    if (mid != elements.cbegin() and *std::prev(mid) > *mid) {
         return FindOnePeakElement_Iter(elements, cbegin, half);
     }
     return FindOnePeakElement_Iter(elements, mid_next, length - half - 1);
 }
 
-inline auto
-FindOnePeakElement_Iter(const ArrayType &elements) {
+inline auto FindOnePeakElement_Iter(const ArrayType &elements) {
     return *FindOnePeakElement_Iter(elements, elements.cbegin(), elements.size());
 }
 
 
-inline auto
-FindOnePeakElement_Index(const ArrayType &elements,
-                         const int left, const int right) {
+inline auto FindOnePeakElement_Index(const ArrayType &elements, const int left, const int right) {
     if (left == right) {
         return left;
     }
@@ -77,8 +73,7 @@ FindOnePeakElement_Index(const ArrayType &elements,
     return FindOnePeakElement_Index(elements, mid + 1, right);
 }
 
-inline auto
-FindOnePeakElement_Index(const ArrayType &elements) {
+inline auto FindOnePeakElement_Index(const ArrayType &elements) {
     assert(not elements.empty());
     return elements[FindOnePeakElement_Index(elements, 0, elements.size() - 1)];
 }
@@ -105,9 +100,9 @@ auto FindOnePeakElement_Iterative(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/find-local-minima-array/
  *
- * Given an array arr[0 .. n-1] of distinct integers, the task is to find a local minima
- * in it. We say that an element arr[x] is a local minimum if it is less than or equal
- * to both its neighbors.
+ * Given an array arr[0 .. n-1] of distinct integers, the task is to find a local minima in it.
+ * We say that an element arr[x] is a local minimum if it is less than or equal to both its
+ * neighbors.
  *
  * @reference   Minimum in an array which is first decreasing then increasing
  *              https://www.geeksforgeeks.org/minimum-in-an-array-which-is-first-decreasing-then-increasing/
@@ -118,8 +113,8 @@ auto FindOnePeakElement_Iterative(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/check-if-an-array-is-increasing-or-decreasing/
  *
- * Given an array arr[] of N elements where N >= 2, the task is to check the type of
- * array whether it is:
+ * Given an array arr[] of N elements where N >= 2, the task is to check the type of array whether
+ * it is:
  *  1. Increasing.
  *  2. Decreasing.
  *  3. Increasing then decreasing.
@@ -129,8 +124,8 @@ auto FindOnePeakElement_Iterative(const ArrayType &elements) {
  * @reference   Valid Mountain Array
  *              https://leetcode.com/problems/valid-mountain-array/
  *
- * Given an array of integers arr, return true if and only if it is a valid mountain
- * array. Recall that arr is a mountain array if and only if:
+ * Given an array of integers arr, return true if and only if it is a valid mountain array. Recall
+ * that arr is a mountain array if and only if:
  *  arr.length >= 3
  *  There exists some i with 0 < i < arr.length - 1 such that:
  *      arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
@@ -159,11 +154,12 @@ auto ValidMountainArray(const ArrayType &nums) {
  * @reference   Find a Peak Element II
  *              https://leetcode.com/problems/find-a-peak-element-ii/
  *
- * A peak element in a 2D grid is an element that is strictly greater than all of its
- * adjacent neighbors to the left, right, top, and bottom. Given a 0-indexed m x n
- * matrix mat where no two adjacent cells are equal, find any peak element mat[i][j]
- * and return the length 2 array [i,j]. You may assume that the entire matrix is
- * surrounded by an outer perimeter with the value -1 in each cell.
+ * A peak element in a 2D grid is an element that is strictly greater than all of its adjacent
+ * neighbors to the left, right, top, and bottom.
+ * Given a 0-indexed m x n matrix mat where no two adjacent cells are equal, find any peak element
+ * mat[i][j] and return the length 2 array [i,j].
+ * You may assume that the entire matrix is surrounded by an outer perimeter with the value -1 in
+ * each cell.
  * You must write an algorithm that runs in O(m log(n)) or O(n log(m)) time.
  *
  * @reference   Find a peak element in a 2D array
@@ -172,8 +168,7 @@ auto ValidMountainArray(const ArrayType &nums) {
 auto FindOnePeakElement(const MatrixType &a_matrix, const int top, const int bottom) {
     const auto mid = (top + bottom) / 2;
     const auto &mid_row = a_matrix[mid];
-    const auto max_index = std::max_element(mid_row.cbegin(), mid_row.cend()) -
-                           mid_row.cbegin();
+    const auto max_index = std::max_element(mid_row.cbegin(), mid_row.cend()) - mid_row.cbegin();
 
     if (top == bottom) {
         return a_matrix[mid][max_index];
@@ -189,7 +184,7 @@ inline auto FindOnePeakElement(const MatrixType &a_matrix) {
     return FindOnePeakElement(a_matrix, 0, a_matrix.size() - 1);
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {5, 10, 20, 15};
@@ -217,10 +212,8 @@ SIMPLE_TEST(FindOnePeakElement_Index, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
 THE_BENCHMARK(FindOnePeakElement_Iterative, SAMPLE1);
 
 SIMPLE_TEST(FindOnePeakElement_Iterative, TestSAMPLE1, 20, SAMPLE1);
-SIMPLE_TEST(FindOnePeakElement_Iterative, TestINCREASING,
-            INCREASING.back(), INCREASING);
-SIMPLE_TEST(FindOnePeakElement_Iterative, TestDECREASING,
-            DECREASING.front(), DECREASING);
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestINCREASING, INCREASING.back(), INCREASING);
+SIMPLE_TEST(FindOnePeakElement_Iterative, TestDECREASING, DECREASING.front(), DECREASING);
 SIMPLE_TEST(FindOnePeakElement_Iterative, TestALL_SAME, ALL_SAME.back(), ALL_SAME);
 
 
@@ -232,6 +225,7 @@ SIMPLE_TEST(ValidMountainArray, TestSAMPLE3, false, DECREASING);
 SIMPLE_TEST(ValidMountainArray, TestSAMPLE4, false, ALL_SAME);
 
 
+// clang-format off
 const MatrixType SAMPLE1M = {
     {10, 20, 15},
     {21, 30, 14},
@@ -247,6 +241,7 @@ const MatrixType SAMPLE3M = {
     {1, 4},
     {3, 2},
 };
+// clang-format on
 
 
 THE_BENCHMARK(FindOnePeakElement, SAMPLE1M);
