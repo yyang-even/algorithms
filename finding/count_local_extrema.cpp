@@ -68,6 +68,7 @@ auto CountLocalExtremaWithDuplicates(const ArrayType &nums) {
  * A subsequence is obtained by deleting some elements (possibly zero) from the original sequence,
  * leaving the remaining elements in their original order.
  * Given an integer array nums, return the length of the longest wiggle subsequence of nums.
+ * Follow up: Could you solve this in O(n) time?
  */
 int WiggleSubsequence(const ArrayType &nums) {
     if (nums.size() < 2) {
