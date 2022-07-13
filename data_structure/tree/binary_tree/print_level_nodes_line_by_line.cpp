@@ -169,6 +169,36 @@ inline auto ConnectLevelNext_Any_BFS(BinaryTreeNodeWithNext::PointerType root) {
     }
 }
 
+
+/**
+ * @reference   Binary Tree Right Side View
+ *              https://leetcode.com/problems/binary-tree-right-side-view/
+ *
+ * Given the root of a binary tree, imagine yourself standing on the right side of it, return the
+ * values of the nodes you can see ordered from top to bottom.
+ */
+auto RightSideView(const BinaryTree::Node::PointerType node,
+                   const std::size_t level,
+                   BinaryTree::ArrayType &result) {
+    if (not node) {
+        return;
+    }
+
+    if (level == result.size()) {
+        result.push_back(node->value);
+    }
+
+    RightSideView(node->right, level + 1, result);
+    RightSideView(node->left, level + 1, result);
+}
+
+inline auto RightSideView(const BinaryTree::Node::PointerType root) {
+    BinaryTree::ArrayType result;
+    RightSideView(root, 0, result);
+
+    return result;
+}
+
 } //namespace
 
 
@@ -213,3 +243,13 @@ SIMPLE_TEST(testConnectLevelNext, TestSAMPLE2D, EXPECTED2, SAMPLE2, ConnectLevel
 
 SIMPLE_TEST(testConnectLevelNext, TestSAMPLE1AB, EXPECTED1, SAMPLE1, ConnectLevelNext_Any_BFS);
 SIMPLE_TEST(testConnectLevelNext, TestSAMPLE2AB, EXPECTED2, SAMPLE2, ConnectLevelNext_Any_BFS);
+
+
+const BinaryTree::ArrayType EXPECTED1R = {1, 3, 5};
+const BinaryTree::ArrayType EXPECTED2R = {1, 3, 7};
+
+
+THE_BENCHMARK(RightSideView, SAMPLE1);
+
+SIMPLE_TEST(RightSideView, TestSAMPLE1, EXPECTED1R, SAMPLE1);
+SIMPLE_TEST(RightSideView, TestSAMPLE2, EXPECTED2R, SAMPLE2);
