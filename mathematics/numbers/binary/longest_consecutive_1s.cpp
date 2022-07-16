@@ -12,9 +12,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
  *
- * The idea is based on the concept that if we AND a bit sequence with a shifted version
- * of itself, we're effectively removing the trailing 1 from every sequence of
- * consecutive 1s.
+ * The idea is based on the concept that if we AND a bit sequence with a shifted version of itself,
+ * we're effectively removing the trailing 1 from every sequence of consecutive 1s.
  */
 constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
     unsigned length = 0;
@@ -37,11 +36,11 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
  *
  * @reference   https://leetcode.com/problems/binary-gap/
  *
- * Given a positive integer n, find and return the longest distance between any two
- * adjacent 1's in the binary representation of n. If there are no two adjacent 1's,
- * return 0. Two 1's are adjacent if there are only 0's separating them (possibly no
- * 0's). The distance between two 1's is the absolute difference between their bit
- * positions. For example, the two 1's in "1001" have a distance of 3.
+ * Given a positive integer n, find and return the longest distance between any two adjacent 1's
+ * in the binary representation of n. If there are no two adjacent 1's, return 0.
+ * Two 1's are adjacent if there are only 0's separating them (possibly no 0's). The distance
+ * between two 1's is the absolute difference between their bit positions. For example, the two
+ * 1's in "1001" have a distance of 3.
  */
 constexpr auto BinaryGap(const unsigned n) {
     int prev = -1;
@@ -63,7 +62,7 @@ constexpr auto BinaryGap(const unsigned n) {
  * @reference   Maximum consecutive one’s (or zeros) in a binary array
  *              https://www.geeksforgeeks.org/maximum-consecutive-ones-or-zeros-in-a-binary-array/
  *
- * Given binary array, find count of maximum number of consecutive 1’s present in the array.
+ * Given binary array, find count of maximum number of consecutive 1's present in the array.
  *
  * @reference   Max Consecutive Ones
  *              https://leetcode.com/problems/max-consecutive-ones/
@@ -89,8 +88,8 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
  * @reference   Three Consecutive Odds
  *              https://leetcode.com/problems/three-consecutive-odds/
  *
- * Given an integer array arr, return true if there are three consecutive odd numbers in
- * the array. Otherwise, return false.
+ * Given an integer array arr, return true if there are three consecutive odd numbers in the
+ * array. Otherwise, return false.
  */
 auto ThreeConsecutiveOdds(const ArrayType &nums) {
     int odds = 0;
@@ -110,20 +109,20 @@ auto ThreeConsecutiveOdds(const ArrayType &nums) {
  * @reference   Detect Pattern of Length M Repeated K or More Times
  *              https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/
  *
- * Given an array of positive integers arr, find a pattern of length m that is repeated k
- * or more times.
- * A pattern is a subarray (consecutive sub-sequence) that consists of one or more values,
- * repeated multiple times consecutively without overlapping. A pattern is defined by its
- * length and the number of repetitions.
- * Return true if there exists a pattern of length m that is repeated k or more times,
- * otherwise return false.
+ * Given an array of positive integers arr, find a pattern of length m that is repeated k or more
+ * times.
+ * A pattern is a subarray (consecutive sub-sequence) that consists of one or more values, repeated
+ * multiple times consecutively without overlapping. A pattern is defined by its length and the
+ * number of repetitions.
+ * Return true if there exists a pattern of length m that is repeated k or more times, otherwise
+ * return false.
  * 2 <= k <= 100
  */
 auto ContainPattern(const ArrayType &nums, const int m, const int k) {
     int length = 0;
     for (std::size_t i = 0; i + m < nums.size(); ++i) {
         if (nums[i] == nums[i + m]) {
-            if (++length == (k - 1)*m) {
+            if (++length == (k - 1) * m) {
                 return true;
             }
         } else {
@@ -139,8 +138,8 @@ auto ContainPattern(const ArrayType &nums, const int m, const int k) {
  * @reference   Max Consecutive Ones II
  *              https://www.lintcode.com/problem/883/
  *
- * Given a binary array, find the maximum number of consecutive 1s in this array if you
- * can flip at most one 0.
+ * Given a binary array, find the maximum number of consecutive 1s in this array if you can flip
+ * at most one 0.
  */
 auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
     unsigned current_count = 0;
@@ -169,8 +168,8 @@ auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
  * @reference   Max Consecutive Ones III
  *              https://leetcode.com/problems/max-consecutive-ones-iii/
  *
- * Given a binary array nums and an integer k, return the maximum number of consecutive
- * 1's in the array if you can flip at most k 0's.
+ * Given a binary array nums and an integer k, return the maximum number of consecutive 1's in
+ * the array if you can flip at most k 0's.
  */
 auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int K) {
     ArrayType::size_type left = 0;
@@ -199,15 +198,26 @@ auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int
 
 
 /**
+ * @reference   Max Area of Island
+ *              https://leetcode.com/problems/max-area-of-island/
+ *
+ * You are given an m x n binary matrix grid. An island is a group of 1's (representing land)
+ * connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid
+ * are surrounded by water.
+ * The area of an island is the number of cells with a value 1 in the island.
+ * Return the maximum area of an island in grid. If there is no island, return 0.
+ */
+
+
+/**
  * @reference   Making A Large Island
  *              https://leetcode.com/problems/making-a-large-island/
  *
- * You are given an n x n binary matrix grid. You are allowed to change at most one 0 to
- * be 1. Return the size of the largest island in grid after applying this operation. An
- * island is a 4-directionally connected group of 1s.
+ * You are given an n x n binary matrix grid. You are allowed to change at most one 0 to be 1.
+ * Return the size of the largest island in grid after applying this operation.
+ * An island is a 4-directionally connected group of 1s.
  */
-int checkIslandSize_Iterative(const MatrixType &grid,
-                              const std::pair<int, int> start_point) {
+int checkIslandSize_Iterative(const MatrixType &grid, const std::pair<int, int> start_point) {
     const int N = grid.size();
     std::stack<std::pair<int, int>> s;
     s.push(start_point);
@@ -218,14 +228,12 @@ int checkIslandSize_Iterative(const MatrixType &grid,
         const auto [row, column] = s.top();
         s.pop();
 
-        ForEachDirection(N, N, row, column,
-        [&grid, &visited, &s](const auto i, const auto j) {
+        ForEachDirection(N, N, row, column, [&grid, &visited, &s](const auto i, const auto j) {
             if (grid[i][j] == 1) {
                 if (visited.emplace(i, j).second) {
                     s.emplace(i, j);
                 }
             }
-
         });
     }
 
@@ -243,8 +251,8 @@ int MakeLargeIsland_Naive(MatrixType grid) {
             if (grid[i][j] == 0) {
                 has_zero = true;
                 grid[i][j] = 1;
-                result = std::max(result,
-                                  checkIslandSize_Iterative(grid, std::pair<int, int>(i, j)));
+                result =
+                    std::max(result, checkIslandSize_Iterative(grid, std::pair<int, int>(i, j)));
                 grid[i][j] = 0;
             }
         }
@@ -254,36 +262,40 @@ int MakeLargeIsland_Naive(MatrixType grid) {
 }
 
 
-int checkIslandSize_Recursive(MatrixType &grid, const int row, const int column,
+int checkIslandSize_Recursive(MatrixType &grid,
+                              const int row,
+                              const int column,
                               const int island_index) {
     const int N = grid.size();
     grid[row][column] = island_index;
 
     int result = 1;
-    ForEachDirection(N, N, row, column,
-    [&grid, &result, island_index](const auto i, const auto j) {
-        if (grid[i][j] == 1) {
-            result += checkIslandSize_Recursive(grid, i, j, island_index);
-        }
-    });
+    ForEachDirection(
+        N, N, row, column, [&grid, &result, island_index](const auto i, const auto j) {
+            if (grid[i][j] == 1) {
+                result += checkIslandSize_Recursive(grid, i, j, island_index);
+            }
+        });
 
     return result;
 }
 
-int findTotalArea(const MatrixType &grid, const int row, const int column,
+int findTotalArea(const MatrixType &grid,
+                  const int row,
+                  const int column,
                   const std::unordered_map<int, int> &areas) {
     const int N = grid.size();
 
     int result = 1;
     std::unordered_set<int> visited_island;
-    ForEachDirection(N, N, row, column,
-    [&grid, &visited_island, &result, &areas](const auto i, const auto j) {
-        if (grid[i][j] != 0) {
-            if (visited_island.insert(grid[i][j]).second) {
-                result += areas.at(grid[i][j]);
+    ForEachDirection(
+        N, N, row, column, [&grid, &visited_island, &result, &areas](const auto i, const auto j) {
+            if (grid[i][j] != 0) {
+                if (visited_island.insert(grid[i][j]).second) {
+                    result += areas.at(grid[i][j]);
+                }
             }
-        }
-    });
+        });
 
     return result;
 }
@@ -321,8 +333,8 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * @reference   Maximum 69 Number
  *              https://leetcode.com/problems/maximum-69-number/
  *
- * Given a positive integer num consisting only of digits 6 and 9. Return the maximum
- * number you can get by changing at most one digit (6 becomes 9, and 9 becomes 6).
+ * Given a positive integer num consisting only of digits 6 and 9.
+ * Return the maximum number you can get by changing at most one digit (6 becomes 9, and 9 becomes 6).
  * 1 <= num <= 10^4
  */
 
@@ -331,8 +343,8 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * @reference   Check if Binary String Has at Most One Segment of Ones
  *              https://leetcode.com/problems/check-if-binary-string-has-at-most-one-segment-of-ones/
  *
- * Given a binary string s without leading zeros, return true if s contains at most one
- * contiguous segment of ones. Otherwise, return false.
+ * Given a binary string s without leading zeros, return true if s contains at most one contiguous
+ * segment of ones. Otherwise, return false.
  * s[0] is '1'.
  */
 inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
@@ -344,13 +356,12 @@ inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
  * @reference   Longer Contiguous Segments of Ones than Zeros
  *              https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
  *
- * Given a binary string s, return true if the longest contiguous segment of 1's is
- * strictly longer than the longest contiguous segment of 0's in s, or return false
- * otherwise.
- * For example, in s = "110100010" the longest continuous segment of 1s has length 2, and
- * the longest continuous segment of 0s has length 3.
- * Note that if there are no 0's, then the longest continuous segment of 0's is considered
- * to have a length 0. The same applies if there is no 1's.
+ * Given a binary string s, return true if the longest contiguous segment of 1's is strictly
+ * longer than the longest contiguous segment of 0's in s, or return false otherwise.
+ * For example, in s = "110100010" the longest continuous segment of 1s has length 2, and the
+ * longest continuous segment of 0s has length 3.
+ * Note that if there are no 0's, then the longest continuous segment of 0's is considered to
+ * have a length 0. The same applies if there is no 1's.
  */
 constexpr auto Longer1sThan0s(const std::string_view s) {
     auto curr = s.front();
@@ -370,7 +381,7 @@ constexpr auto Longer1sThan0s(const std::string_view s) {
     return maximum[1] > maximum[0];
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1};
@@ -400,8 +411,7 @@ THE_BENCHMARK(LengthOfLongestConsecutive1s_1Flip_Array, SAMPLE1);
 
 SIMPLE_TEST(LengthOfLongestConsecutive1s_1Flip_Array, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_1Flip_Array, TestSAMPLE2, 3, SAMPLE2);
-SIMPLE_TEST(LengthOfLongestConsecutive1s_1Flip_Array, TestSAMPLE3, SAMPLE3.size(),
-            SAMPLE3);
+SIMPLE_TEST(LengthOfLongestConsecutive1s_1Flip_Array, TestSAMPLE3, SAMPLE3.size(), SAMPLE3);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_1Flip_Array, TestSAMPLE4, 4, SAMPLE4);
 
 
@@ -413,15 +423,14 @@ THE_BENCHMARK(LengthOfLongestConsecutive1s_KFlip_Array, SAMPLE1, 1);
 
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE1, 6, SAMPLE1, 1);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE2, 3, SAMPLE2, 1);
-SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE3, SAMPLE3.size(),
-            SAMPLE3, 1);
+SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE3, SAMPLE3.size(), SAMPLE3, 1);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE4, 4, SAMPLE4, 1);
-SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE5, SAMPLE4.size(),
-            SAMPLE4, 2);
+SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE5, SAMPLE4.size(), SAMPLE4, 2);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE6, 6, SAMPLE6, 2);
 SIMPLE_TEST(LengthOfLongestConsecutive1s_KFlip_Array, TestSAMPLE7, 10, SAMPLE7, 3);
 
 
+// clang-format off
 const MatrixType SAMPLE1M = {
     {1, 0},
     {0, 1}
@@ -436,6 +445,7 @@ const MatrixType SAMPLE3M = {
     {1, 1},
     {1, 1}
 };
+// clang-format on
 
 
 THE_BENCHMARK(MakeLargeIsland_Naive, SAMPLE1M);
