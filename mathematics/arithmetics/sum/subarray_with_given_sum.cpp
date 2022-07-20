@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "mathematics/matrix/matrix.h"
+
 
 namespace {
 
@@ -215,6 +217,47 @@ auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
     return result;
 }
 
+
+/**
+ * @reference   Number of Submatrices That Sum to Target
+ *              https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
+ *
+ * Given a matrix and a target, return the number of non-empty submatrices that sum to target.
+ * A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and
+ * y1 <= y <= y2.
+ * Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some
+ * coordinate that is different: for example, if x1 != x1'.
+ */
+auto NumSubmatrixSumAsTarget(MatrixType a_matrix, const int target) {
+    const auto M = a_matrix.size();
+    const auto N = a_matrix.front().size();
+
+    for (std::size_t i = 0; i < M; ++i) {
+        for (std::size_t j = 1; j < N; ++j) {
+            a_matrix[i][j] += a_matrix[i][j - 1];
+        }
+    }
+
+    int result = 0;
+    for (std::size_t i = 0; i < N; ++i) {
+        for (std::size_t j = i; j < N; ++j) {
+            std::unordered_map<int, int> counter {{0, 1}};
+            int submatrix_sum = 0;
+
+            for (std::size_t k = 0; k < M; k++) {
+                submatrix_sum += a_matrix[k][j] - (i > 0 ? a_matrix[k][i - 1] : 0);
+                if (const auto iter = counter.find(submatrix_sum - target);
+                    iter != counter.cend()) {
+                    result += iter->second;
+                }
+                ++counter[submatrix_sum];
+            }
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -315,3 +358,26 @@ SIMPLE_TEST(MinOperationsReduceXto0, TestSample0, SAMPLE1O.size(), SAMPLE1O, 11)
 SIMPLE_TEST(MinOperationsReduceXto0, TestSample1, 2, SAMPLE1O, 5);
 SIMPLE_TEST(MinOperationsReduceXto0, TestSample2, -1, SAMPLE2O, 4);
 SIMPLE_TEST(MinOperationsReduceXto0, TestSample3, 5, SAMPLE3O, 10);
+
+
+// clang-format off
+const MatrixType SAMPLE1M = {
+    {0, 1, 0},
+    {1, 1, 1},
+    {0, 1, 0}
+};
+
+const MatrixType SAMPLE2M = {
+    {1, -1},
+    {-1, 1}
+};
+
+const MatrixType SAMPLE3M = {{904}};
+// clang-format on
+
+
+THE_BENCHMARK(NumSubmatrixSumAsTarget, SAMPLE1M, 0);
+
+SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample1, 4, SAMPLE1M, 0);
+SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample2, 5, SAMPLE2M, 0);
+SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample3, 0, SAMPLE3M, 0);

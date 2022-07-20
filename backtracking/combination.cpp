@@ -16,8 +16,7 @@ using OutputType = std::unordered_multiset<std::string>;
  * @reference   Make all combinations of size k
  *              https://www.geeksforgeeks.org/make-combinations-size-k/
  *
- * Given two numbers n and k and you have to find all possible combination of k numbers
- * from 1...n.
+ * Given two numbers n and k and you have to find all possible combination of k numbers from 1...n.
  */
 void CombinationsOfLength_Start(const std::string_view elements,
                                 const std::size_t length,
@@ -80,9 +79,9 @@ inline auto CombinationsOfLength_Include(const std::string_view elements,
  *              https://leetcode.com/problems/iterator-for-combination/
  *
  * Design the CombinationIterator class:
- *  CombinationIterator(string characters, int combinationLength) Initializes the object
- *      with a string characters of sorted distinct lowercase English letters and a number
- *      combinationLength as arguments.
+ *  CombinationIterator(string characters, int combinationLength) Initializes the object with a
+ *      string characters of sorted distinct lowercase English letters and a number combinationLength
+ *      as arguments.
  *  next() Returns the next combination of length combinationLength in lexicographical order.
  *  hasNext() Returns true if and only if there exists a next combination.
  * 1 <= combinationLength <= characters.length <= 15
@@ -93,7 +92,7 @@ class CombinationIterator {
     unsigned mask;
 
 public:
-    constexpr CombinationIterator(const std::string_view characters, const int l):
+    constexpr CombinationIterator(const std::string_view characters, const int l) :
         chars(characters), length(l), mask((1 << characters.size()) - 1) {
     }
 
@@ -119,8 +118,7 @@ public:
     }
 };
 
-auto testCombinationIterator(const std::string_view chars,
-                             const std::size_t length) {
+auto testCombinationIterator(const std::string_view chars, const std::size_t length) {
     OutputType results;
     CombinationIterator iter(chars, length);
     while (iter.hasNext()) {
@@ -196,9 +194,8 @@ auto AllCombinations_BitMask(const std::string_view elements) {
  * @reference   Subsets
  *              https://leetcode.com/problems/subsets/
  *
- * Given an integer array nums of unique elements, return all possible subsets (the power
- * set). The solution set must not contain duplicate subsets. Return the solution in any
- * order.
+ * Given an integer array nums of unique elements, return all possible subsets (the power set).
+ * The solution set must not contain duplicate subsets. Return the solution in any order.
  */
 void AllCombinations_Recursive_Copy(const std::string_view elements,
                                     OutputType &results,
@@ -244,13 +241,13 @@ auto AllCombinations_Iterative(const std::string_view elements) {
  * @reference   Subsets II
  *              https://leetcode.com/problems/subsets-ii/
  *
- * Given an integer array nums that may contain duplicates, return all possible subsets
- * (the power set). The solution set must not contain duplicate subsets. Return the
- * solution in any order.
+ * Given an integer array nums that may contain duplicates, return all possible subsets (the power
+ * set). The solution set must not contain duplicate subsets. Return the solution in any order.
  */
 void AllCombinationsWithDuplicates_For(const std::string &elements,
                                        const std::size_t start,
-                                       std::string &one_combination, OutputType &results) {
+                                       std::string &one_combination,
+                                       OutputType &results) {
     results.insert(one_combination);
 
     for (auto i = start; i < elements.size(); ++i) {
@@ -274,8 +271,10 @@ inline auto AllCombinationsWithDuplicates_For(std::string elements) {
 }
 
 
-void AllCombinationsWithDuplicates(const std::string &elements, std::size_t i,
-                                   std::string &one_combination, OutputType &results) {
+void AllCombinationsWithDuplicates(const std::string &elements,
+                                   std::size_t i,
+                                   std::string &one_combination,
+                                   OutputType &results) {
     if (i == elements.size()) {
         results.insert(one_combination);
         return;
@@ -306,8 +305,8 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
  * @reference   Combinations
  *              https://leetcode.com/problems/combinations/
  *
- * Given two integers n and k, return all possible combinations of k numbers out of the
- * range [1, n].
+ * Given two integers n and k, return all possible combinations of k numbers out of the range
+ * [1, n].
  * You may return the answer in any order.
  */
 auto AllCombinationsOfLength_Iterative(const int n, const int k) {
@@ -328,14 +327,16 @@ auto AllCombinationsOfLength_Iterative(const int n, const int k) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const OutputType EXPECTED1 = {"a"};
 const OutputType EXPECTED2 = {"a", "b", "ab"};
-const OutputType EXPECTED3 = {"w", "x", "y", "z", "wx", "xy", "yz", "wxy", "xyz", "wxyz", "xz", "wxz", "wy", "wyz", "wz"};
+const OutputType EXPECTED3 = {
+    "w", "x", "y", "z", "wx", "xy", "yz", "wxy", "xyz", "wxyz", "xz", "wxz", "wy", "wyz", "wz"};
 const OutputType EXPECTED4 = {"wx", "xy", "yz", "xz", "wy", "wz"};
-const OutputType EXPECTED5 = {"123", "124", "125", "134", "135", "145", "234", "235", "245", "345"};
+const OutputType EXPECTED5 = {
+    "123", "124", "125", "134", "135", "145", "234", "235", "245", "345"};
 
 
 THE_BENCHMARK(CombinationsOfLength_Start, "abcd", 2);
