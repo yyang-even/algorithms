@@ -9,15 +9,13 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/finding-3-digit-even-numbers/
  *
- * You are given an integer array digits, where each element is a digit. The array may
- * contain duplicates.
+ * You are given an integer array digits, where each element is a digit. The array may contain
+ * duplicates.
  * You need to find all the unique integers that follow the given requirements:
- *  The integer consists of the concatenation of three elements from digits in any
- *      arbitrary order.
+ *  The integer consists of the concatenation of three elements from digits in any arbitrary order.
  *  The integer does not have leading zeros.
  *  The integer is even.
- * For example, if the given digits were [1, 2, 3], integers 132 and 312 follow the
- * requirements.
+ * For example, if the given digits were [1, 2, 3], integers 132 and 312 follow the requirements.
  * Return a sorted array of the unique integers.
  */
 auto ThreeDigitEvenNumbers(const ArrayType &digits) {
@@ -41,7 +39,7 @@ auto ThreeDigitEvenNumbers(const ArrayType &digits) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 1, 3, 0};
