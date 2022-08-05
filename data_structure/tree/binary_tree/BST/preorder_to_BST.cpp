@@ -11,19 +11,20 @@ namespace {
  *
  * @reference   https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
  *
- * Given an array of integers preorder, which represents the preorder traversal of a BST
- * (i.e., binary search tree), construct the tree and return its root. It is guaranteed
- * that there is always possible to find a binary search tree with the given requirements
- * for the given test cases. A binary search tree is a binary tree where for every node,
- * any descendant of Node.left has a value strictly less than Node.val, and any descendant
- * of Node.right has a value strictly greater than Node.val. A preorder traversal of a
- * binary tree displays the value of the node first, then traverses Node.left, then
- * traverses Node.right.
+ * Given an array of integers preorder, which represents the preorder traversal of a BST (i.e.,
+ * binary search tree), construct the tree and return its root.
+ * It is guaranteed that there is always possible to find a binary search tree with the given
+ * requirements for the given test cases.
+ * A binary search tree is a binary tree where for every node, any descendant of Node.left has a
+ * value strictly less than Node.val, and any descendant of Node.right has a value strictly greater
+ * than Node.val.
+ * A preorder traversal of a binary tree displays the value of the node first, then traverses
+ * Node.left, then traverses Node.right.
  * All the values of preorder are unique.
  */
 auto ToBST(const BinaryTree::ArrayType &preorder, const int upper, std::size_t &i) {
     if (i == preorder.size() or preorder[i] >= upper) {
-        return BinaryTree::Node::PointerType{};
+        return BinaryTree::Node::PointerType {};
     }
 
     const auto value = preorder[i++];
@@ -39,7 +40,7 @@ inline auto ToBST(const BinaryTree::ArrayType &preorder) {
     return ToBST(preorder, INT_MAX, i);
 }
 
-}
+} //namespace
 
 
 const std::vector SAMPLE1 = {8, 5, 1, 7, 10, 12};
@@ -51,7 +52,7 @@ const std::vector EXPECTED2 = {1, SENTINEL, 3};
 
 THE_BENCHMARK(ToBST, SAMPLE1);
 
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, ToBST(SAMPLE1),
-            LevelOrderToBinaryTree(EXPECTED1));
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, ToBST(SAMPLE2),
-            LevelOrderToBinaryTree(EXPECTED2));
+SIMPLE_TEST(
+    areIdenticalTrees, TestSAMPLE1, true, ToBST(SAMPLE1), LevelOrderToBinaryTree(EXPECTED1));
+SIMPLE_TEST(
+    areIdenticalTrees, TestSAMPLE2, true, ToBST(SAMPLE2), LevelOrderToBinaryTree(EXPECTED2));

@@ -9,16 +9,16 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/printing-frequency-of-each-character-just-after-its-consecutive-occurrences/
  *
- * Given a string in such a way that every character occurs in a repeated manner. Your
- * task is to print the string by inserting the frequency of each unique character after
- * it and also eliminating all repeated characters.
+ * Given a string in such a way that every character occurs in a repeated manner. Your task is
+ * to print the string by inserting the frequency of each unique character after it and also
+ * eliminating all repeated characters.
  *
  * @reference   Run Length Encoding
  *              https://www.geeksforgeeks.org/run-length-encoding/
  *
- * Given an input string, write a function that returns the Run Length Encoded string for
- * the input string. For example, if the input string is "wwwwaaadexxxxxx", then the
- * function should return "w4a3d1e1x6".
+ * Given an input string, write a function that returns the Run Length Encoded string for the
+ * input string. For example, if the input string is "wwwwaaadexxxxxx", then the function
+ * should return "w4a3d1e1x6".
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.5.
@@ -40,16 +40,30 @@ auto RunLengthEncoding(const std::string &text) {
 
 
 /**
+ * @reference   Count and Say
+ *              https://leetcode.com/problems/count-and-say/
+ *
+ * The count-and-say sequence is a sequence of digit strings defined by the recursive formula:
+ *  countAndSay(1) = "1"
+ *  countAndSay(n) is the way you would "say" the digit string from countAndSay(n-1), which is
+ *      then converted into a different digit string.
+ * To determine how you "say" a digit string, split it into the minimal number of substrings such
+ * that each substring contains exactly one unique digit. Then for each substring, say the number
+ * of digits, then say the digit. Finally, concatenate every said digit.
+ * Given a positive integer n, return the nth term of the count-and-say sequence.
+ */
+
+
+/**
  * @reference   Positions of Large Groups
  *              https://leetcode.com/problems/positions-of-large-groups/
  *
- * In a string s of lowercase letters, these letters form consecutive groups of the same
- * character. For example, a string like s = "abbxxxxzyy" has the groups "a", "bb",
- * "xxxx", "z", and "yy". A group is identified by an interval [start, end], where start
- * and end denote the start and end indices (inclusive) of the group. In the above
- * example, "xxxx" has the interval [3,6]. A group is considered large if it has 3 or
- * more characters. Return the intervals of every large group sorted in increasing order
- * by start index.
+ * In a string s of lowercase letters, these letters form consecutive groups of the same character.
+ * For example, a string like s = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z", and "yy".
+ * A group is identified by an interval [start, end], where start and end denote the start and end
+ * indices (inclusive) of the group. In the above example, "xxxx" has the interval [3,6].
+ * A group is considered large if it has 3 or more characters.
+ * Return the intervals of every large group sorted in increasing order by start index.
  */
 
 
@@ -79,11 +93,11 @@ constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
  * @reference   Decompress Run-Length Encoded List
  *              https://leetcode.com/problems/decompress-run-length-encoded-list/
  *
- * We are given a list nums of integers representing a list compressed with run-length
- * encoding. Consider each adjacent pair of elements [freq, val] = [nums[2*i], nums[2*i+1]]
- * (with i >= 0).  For each such pair, there are freq elements with value val concatenated
- * in a sublist. Concatenate all the sublists from left to right to generate the
- * decompressed list. Return the decompressed list.
+ * We are given a list nums of integers representing a list compressed with run-length encoding.
+ * Consider each adjacent pair of elements [freq, val] = [nums[2*i], nums[2*i+1]] (with i >= 0).
+ * For each such pair, there are freq elements with value val concatenated in a sublist.
+ * Concatenate all the sublists from left to right to generate the decompressed list.
+ * Return the decompressed list.
  */
 
 
@@ -95,12 +109,12 @@ constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
  *  For example, "1111" and "33" are value-equal strings.
  *  In contrast, "123" is not a value-equal string.
  * Given a digit string s, decompose the string into some number of consecutive value-equal
- * substrings where exactly one substring has a length of 2 and the remaining substrings
- * have a length of 3.
+ * substrings where exactly one substring has a length of 2 and the remaining substrings have a
+ * length of 3.
  * Return true if you can decompose s according to the above rules. Otherwise, return false.
  */
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(RunLengthEncoding, "GeeeEEKKKss");

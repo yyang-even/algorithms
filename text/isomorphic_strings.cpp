@@ -7,14 +7,13 @@ namespace {
  *
  * @reference   https://leetcode.com/problems/isomorphic-strings/
  *
- * Given two strings s and t, determine if they are isomorphic. Two strings s and t are
- * isomorphic if the characters in s can be replaced to get t. All occurrences of a
- * character must be replaced with another character while preserving the order of
- * characters. No two characters may map to the same character, but a character may map
+ * Given two strings s and t, determine if they are isomorphic.
+ * Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+ * All occurrences of a character must be replaced with another character while preserving the
+ * order of characters. No two characters may map to the same character, but a character may map
  * to itself.
  */
-constexpr auto
-areIsomorphicStrings_Hash(const std::string_view s, const std::string_view t) {
+constexpr auto areIsomorphicStrings_Hash(const std::string_view s, const std::string_view t) {
     assert(s.size() == t.size());
 
     char map_from[256] = {};
@@ -49,9 +48,7 @@ auto transform(const std::string_view text) {
     return result;
 }
 
-inline auto
-areIsomorphicStrings_Transform(const std::string_view s,
-                               const std::string_view t) {
+inline auto areIsomorphicStrings_Transform(const std::string_view s, const std::string_view t) {
     return transform(s) == transform(t);
 }
 
@@ -60,9 +57,9 @@ areIsomorphicStrings_Transform(const std::string_view s,
  * @reference   Word Pattern
  *              https://leetcode.com/problems/word-pattern/
  *
- * Given a pattern and a string s, find if s follows the same pattern. Here follow means
- * a full match, such that there is a bijection between a letter in pattern and a
- * non-empty word in s.
+ * Given a pattern and a string s, find if s follows the same pattern.
+ * Here follow means a full match, such that there is a bijection between a letter in pattern and
+ * a non-empty word in s.
  */
 
 
@@ -70,12 +67,14 @@ areIsomorphicStrings_Transform(const std::string_view s,
  * @reference   Word Pattern II
  *              https://kennyzhuang.gitbooks.io/leetcode-lock/content/291_word_pattern_ii.html
  *
- * Given a pattern and a string str, find if str follows the same pattern. Here follow
- * means a full match, such that there is a bijection between a letter in pattern and a
- * non-empty substring in str.
+ * Given a pattern and a string str, find if str follows the same pattern.
+ * Here follow means a full match, such that there is a bijection between a letter in pattern and
+ * a non-empty substring in str.
  */
-bool WordPattern(const std::string_view pattern, const std::size_t p_begin,
-                 const std::string_view str, const std::size_t s_begin,
+bool WordPattern(const std::string_view pattern,
+                 const std::size_t p_begin,
+                 const std::string_view str,
+                 const std::size_t s_begin,
                  std::unordered_map<char, std::string_view> &to_word,
                  std::unordered_set<std::string_view> &seen_words) {
     if (p_begin == pattern.size() and s_begin == str.size()) {
@@ -110,14 +109,26 @@ bool WordPattern(const std::string_view pattern, const std::size_t p_begin,
     return false;
 }
 
-inline auto
-WordPattern(const std::string_view pattern, const std::string_view str) {
+inline auto WordPattern(const std::string_view pattern, const std::string_view str) {
     std::unordered_map<char, std::string_view> to_word;
     std::unordered_set<std::string_view> seen_words;
     return WordPattern(pattern, 0, str, 0, to_word, seen_words);
 }
 
-}//namespace
+
+/**
+ * @reference   Find and Replace Pattern
+ *              https://leetcode.com/problems/find-and-replace-pattern/
+ *
+ * Given a list of strings words and a string pattern, return a list of words[i] that match pattern.
+ * You may return the answer in any order.
+ * A word matches the pattern if there exists a permutation of letters p so that after replacing
+ * every letter x in the pattern with p(x), we get the desired word.
+ * Recall that a permutation of letters is a bijection from letters to letters: every letter maps
+ * to another letter, and no two letters map to the same letter.
+ */
+
+} //namespace
 
 
 THE_BENCHMARK(areIsomorphicStrings_Hash, "paper", "title");

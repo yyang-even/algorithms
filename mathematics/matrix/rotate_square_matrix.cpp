@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "transpose.h"
 #include "reverse_matrix.h"
+#include "transpose.h"
 
 
 namespace {
@@ -12,8 +12,8 @@ namespace {
  * @reference   Inplace rotate square matrix by 90 degrees | Set 1
  *              https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
  *
- * Given a square matrix, turn it by 90 degrees in anti-clockwise direction without using
- * any extra space.
+ * Given a square matrix, turn it by 90 degrees in anti-clockwise direction without using any
+ * extra space.
  */
 void rotateGroup90Degree_AntiClockwise(MatrixType &square_matrix,
                                        const MatrixType::size_type x,
@@ -26,7 +26,7 @@ void rotateGroup90Degree_AntiClockwise(MatrixType &square_matrix,
     square_matrix[N - 1 - y][x] = temp;
 }
 
-template <typename RotateGroupFunc>
+template<typename RotateGroupFunc>
 constexpr auto Rotate90Degree_Group(MatrixType square_matrix,
                                     const RotateGroupFunc rotate_group) {
     const auto N = square_matrix.size();
@@ -40,8 +40,7 @@ constexpr auto Rotate90Degree_Group(MatrixType square_matrix,
 }
 
 inline auto Rotate90Degree_AntiClockwise_Group(MatrixType square_matrix) {
-    return Rotate90Degree_Group(std::move(square_matrix),
-                                rotateGroup90Degree_AntiClockwise);
+    return Rotate90Degree_Group(std::move(square_matrix), rotateGroup90Degree_AntiClockwise);
 }
 
 
@@ -54,6 +53,15 @@ inline auto Rotate90Degree_AntiClockwise_Transpose(MatrixType square_matrix) {
 }
 
 
+/**
+ * @reference   Rotate Image
+ *              https://leetcode.com/problems/rotate-image/
+ *
+ * You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees
+ * (clockwise).
+ * You have to rotate the image in-place, which means you have to modify the input 2D matrix
+ * directly. DO NOT allocate another 2D matrix and do the rotation.
+ */
 inline auto Rotate90Degree_Clockwise_Transpose(MatrixType square_matrix) {
     return ReverseMatrixRows(Transpose(std::move(square_matrix)));
 }
@@ -85,8 +93,8 @@ inline auto Rotate90Degree_Clockwise_Group(MatrixType square_matrix) {
  * @reference   Determine Whether Matrix Can Be Obtained By Rotation
  *              https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/
  *
- * Given two n x n binary matrices mat and target, return true if it is possible to make
- * mat equal to target by rotating mat in 90-degree increments, or false otherwise.
+ * Given two n x n binary matrices mat and target, return true if it is possible to make mat equal
+ * to target by rotating mat in 90-degree increments, or false otherwise.
  */
 auto areRotation(const MatrixType &one, const MatrixType &target) {
     const auto N = one.size();
@@ -111,9 +119,10 @@ auto areRotation(const MatrixType &one, const MatrixType &target) {
     return results[0] or results[1] or results[2] or results[3];
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {1, 2, 3, 4},
     {5, 6, 7, 8},
@@ -150,6 +159,7 @@ const MatrixType EXPECTED_C2 = {
 };
 
 const MatrixType SAMPLE3 = {{1}};
+// clang-format on
 
 
 THE_BENCHMARK(Rotate90Degree_AntiClockwise_Group, SAMPLE1);

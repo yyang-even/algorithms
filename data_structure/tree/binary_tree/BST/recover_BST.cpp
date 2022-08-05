@@ -13,17 +13,15 @@ namespace {
  *
  * @reference   https://leetcode.com/problems/recover-binary-search-tree/
  *
- * You are given the root of a binary search tree (BST), where the values of exactly two
- * nodes of the tree were swapped by mistake. Recover the tree without changing its
- * structure.
- * Follow up: A solution using O(n) space is pretty straight-forward. Could you devise a
- * constant O(1) space solution?
+ * You are given the root of a binary search tree (BST), where the values of exactly two nodes of the
+ * tree were swapped by mistake. Recover the tree without changing its structure.
+ * Follow up: A solution using O(n) space is pretty straight-forward. Could you devise a constant O(1)
+ * space solution?
  */
-void
-RecoverBST(const BinaryTree::Node::PointerType node,
-           BinaryTree::Node::PointerType &prev,
-           BinaryTree::Node::PointerType &first,
-           BinaryTree::Node::PointerType &second) {
+void RecoverBST(const BinaryTree::Node::PointerType node,
+                BinaryTree::Node::PointerType &prev,
+                BinaryTree::Node::PointerType &first,
+                BinaryTree::Node::PointerType &second) {
     if (not node) {
         return;
     }
@@ -52,7 +50,7 @@ auto RecoverBST(const BinaryTree::Node::PointerType root) {
     return root;
 }
 
-}//namespace
+} //namespace
 
 
 /**
@@ -62,9 +60,7 @@ auto RecoverBST(const BinaryTree::Node::PointerType root) {
  *    \
  *     2
  */
-const auto SAMPLE1 = LevelOrderToBinaryTree( {
-    1, 3, SENTINEL, SENTINEL, 2
-});
+const auto SAMPLE1 = LevelOrderToBinaryTree({1, 3, SENTINEL, SENTINEL, 2});
 /**
  *     3
  *    /
@@ -72,9 +68,7 @@ const auto SAMPLE1 = LevelOrderToBinaryTree( {
  *    \
  *     2
  */
-const auto EXPECTED1 = LevelOrderToBinaryTree( {
-    3, 1, SENTINEL, SENTINEL, 2
-});
+const auto EXPECTED1 = LevelOrderToBinaryTree({3, 1, SENTINEL, SENTINEL, 2});
 
 /**
  *     3
@@ -83,9 +77,7 @@ const auto EXPECTED1 = LevelOrderToBinaryTree( {
  *      /
  *     2
  */
-const auto SAMPLE2 = LevelOrderToBinaryTree( {
-    3, 1, 4, SENTINEL, SENTINEL, 2
-});
+const auto SAMPLE2 = LevelOrderToBinaryTree({3, 1, 4, SENTINEL, SENTINEL, 2});
 /**
  *     2
  *    / \
@@ -93,14 +85,18 @@ const auto SAMPLE2 = LevelOrderToBinaryTree( {
  *      /
  *     3
  */
-const auto EXPECTED2 = LevelOrderToBinaryTree( {
-    2, 1, 4, SENTINEL, SENTINEL, 3
-});
+const auto EXPECTED2 = LevelOrderToBinaryTree({2, 1, 4, SENTINEL, SENTINEL, 3});
 
 
 THE_BENCHMARK(RecoverBST, CloneBinaryTree(SAMPLE1).GetRoot());
 
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE1, true, EXPECTED1,
+SIMPLE_TEST(areIdenticalTrees,
+            TestSAMPLE1,
+            true,
+            EXPECTED1,
             RecoverBST(CloneBinaryTree(SAMPLE1).GetRoot()));
-SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, EXPECTED2,
+SIMPLE_TEST(areIdenticalTrees,
+            TestSAMPLE2,
+            true,
+            EXPECTED2,
             RecoverBST(CloneBinaryTree(SAMPLE2).GetRoot()));

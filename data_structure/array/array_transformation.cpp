@@ -9,13 +9,13 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://massivealgorithms.blogspot.com/2020/01/leetcode-1243-array-transformation.html
  *
- * Given an initial array arr, every day you produce a new array using the array of the
- * previous day. On the i-th day, you do the following operations on the array of day i-1
- * to produce the array of day i:
- *  If an element is smaller than both its left neighbor and its right neighbor, then
- *      this element is incremented.
- *  If an element is bigger than both its left neighbor and its right neighbor, then this
- *      element is decremented.
+ * Given an initial array arr, every day you produce a new array using the array of the previous
+ * day. On the i-th day, you do the following operations on the array of day i-1 to produce the
+ * array of day i:
+ *  If an element is smaller than both its left neighbor and its right neighbor, then this element
+ *      is incremented.
+ *  If an element is bigger than both its left neighbor and its right neighbor, then this element
+ *      is decremented.
  *  The first and last elements never change.
  * After some days, the array does not change. Return that final array.
  */
@@ -44,7 +44,7 @@ auto ArrayTransformation(ArrayType prev) {
     return curr;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {6, 2, 3, 4};

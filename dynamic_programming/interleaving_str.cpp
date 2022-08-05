@@ -24,8 +24,8 @@ bool InterleavingStr_Memo(const std::string_view s1,
                           const std::string_view s2,
                           const std::size_t j,
                           const std::string_view s3,
-                          const std::size_t k,
                           MemoType &memo) {
+    const auto k = i + j;
     if (i == s1.size()) {
         return std::equal(s2.cbegin() + j, s2.cend(), s3.cbegin() + k);
     }
@@ -38,9 +38,8 @@ bool InterleavingStr_Memo(const std::string_view s1,
         return memo[i][j];
     }
 
-    return (memo[i][j] =
-                (s3[k] == s1[i] and InterleavingStr_Memo(s1, i + 1, s2, j, s3, k + 1, memo)) or
-                (s3[k] == s2[j] and InterleavingStr_Memo(s1, i, s2, j + 1, s3, k + 1, memo)));
+    return (memo[i][j] = (s3[k] == s1[i] and InterleavingStr_Memo(s1, i + 1, s2, j, s3, memo)) or
+                         (s3[k] == s2[j] and InterleavingStr_Memo(s1, i, s2, j + 1, s3, memo)));
 }
 
 inline auto InterleavingStr_Memo(const std::string_view s1,
@@ -51,7 +50,7 @@ inline auto InterleavingStr_Memo(const std::string_view s1,
     }
 
     MemoType memo(s1.size(), std::vector(s2.size(), -1));
-    return InterleavingStr_Memo(s1, 0, s2, 0, s3, 0, memo);
+    return InterleavingStr_Memo(s1, 0, s2, 0, s3, memo);
 }
 
 
