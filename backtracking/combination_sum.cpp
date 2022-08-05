@@ -10,17 +10,18 @@ using ResultType = std::multiset<ArrayType>;
  *
  * @reference   https://leetcode.com/problems/combination-sum/
  *
- * Given an array of distinct integers candidates and a target integer target, return a
- * list of all unique combinations of candidates where the chosen numbers sum to target.
- * You may return the combinations in any order.
- * The same number may be chosen from candidates an unlimited number of times. Two
- * combinations are unique if the frequency of at least one of the chosen numbers is
- * different.
- * It is guaranteed that the number of unique combinations that sum up to target is less
- * than 150 combinations for the given input.
+ * Given an array of distinct integers candidates and a target integer target, return a list of
+ * all unique combinations of candidates where the chosen numbers sum to target. You may return
+ * the combinations in any order.
+ * The same number may be chosen from candidates an unlimited number of times. Two combinations
+ * are unique if the frequency of at least one of the chosen numbers is different.
+ * It is guaranteed that the number of unique combinations that sum up to target is less than 150
+ * combinations for the given input.
  */
-void CombinationSum(const ArrayType &candidates, const int target,
-                    const std::size_t index, ArrayType &current,
+void CombinationSum(const ArrayType &candidates,
+                    const int target,
+                    const std::size_t index,
+                    ArrayType &current,
                     ResultType &results) {
     if (target == 0) {
         results.insert(current);
@@ -50,14 +51,16 @@ inline auto CombinationSum(const ArrayType &candidates, const int target) {
  * @reference   Combination Sum II
  *              https://leetcode.com/problems/combination-sum-ii/
  *
- * Given a collection of candidate numbers (candidates) and a target number (target),
- * find all unique combinations in candidates where the candidate numbers sum to target.
+ * Given a collection of candidate numbers (candidates) and a target number (target), find all
+ * unique combinations in candidates where the candidate numbers sum to target.
  * Each number in candidates may only be used once in the combination.
  * Note: The solution set must not contain duplicate combinations.
  */
 void CombinationSumWithDuplicates(const ArrayType &candidates,
-                                  const int target, std::size_t i,
-                                  ArrayType &one_combination, ResultType &results) {
+                                  const int target,
+                                  std::size_t i,
+                                  ArrayType &one_combination,
+                                  ResultType &results) {
     if (target == 0) {
         results.insert(one_combination);
         return;
@@ -68,8 +71,8 @@ void CombinationSumWithDuplicates(const ArrayType &candidates,
     }
 
     one_combination.push_back(candidates[i]);
-    CombinationSumWithDuplicates(candidates, target - candidates[i], i + 1,
-                                 one_combination, results);
+    CombinationSumWithDuplicates(
+        candidates, target - candidates[i], i + 1, one_combination, results);
     one_combination.pop_back();
 
     ++i;
@@ -94,12 +97,12 @@ inline auto CombinationSumWithDuplicates(ArrayType candidates, const int target)
  * @reference   Combination Sum III
  *              https://leetcode.com/problems/combination-sum-iii/
  *
- * Find all valid combinations of k numbers that sum up to n such that the following
- * conditions are true:
+ * Find all valid combinations of k numbers that sum up to n such that the following conditions
+ * are true:
  *  Only numbers 1 through 9 are used.
  *  Each number is used at most once.
- * Return a list of all possible valid combinations. The list must not contain the same
- * combination twice, and the combinations may be returned in any order.
+ * Return a list of all possible valid combinations. The list must not contain the same combination
+ * twice, and the combinations may be returned in any order.
  */
 auto AllCombinationsOfLength_Iterative(const char k, const int n) {
     ResultType result;
@@ -109,8 +112,7 @@ auto AllCombinationsOfLength_Iterative(const char k, const int n) {
         if (++one_combination[i] > 9) {
             --i;
         } else if (i == k - 1) {
-            const auto sum =
-                std::accumulate(one_combination.cbegin(), one_combination.cend(), 0);
+            const auto sum = std::accumulate(one_combination.cbegin(), one_combination.cend(), 0);
             if (sum == n) {
                 result.insert(one_combination);
             }
@@ -123,7 +125,7 @@ auto AllCombinationsOfLength_Iterative(const char k, const int n) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 6, 7};

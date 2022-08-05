@@ -7,13 +7,13 @@ namespace {
 
 /** Set Matrix Zeroes
  *
- * @reference   73. Set Matrix Zeroes
- *              https://leetcode.com/problems/set-matrix-zeroes/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.7.
+ * @reference   Set Matrix Zeroes
+ *              https://leetcode.com/problems/set-matrix-zeroes/
  *
- * Given an m x n integer matrix matrix, if an element is 0, set its entire row and
- * column to 0's, and return the matrix. You must do it in place.
+ * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's,
+ * and return the matrix. You must do it in place.
  */
 auto SetMatrixZeroes(MatrixType a_matrix) {
     assert(not a_matrix.empty());
@@ -93,9 +93,9 @@ auto SetMatrixZeroes_O1(MatrixType a_matrix) {
  * @reference   Lucky Numbers in a Matrix
  *              https://leetcode.com/problems/lucky-numbers-in-a-matrix/
  *
- * Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in
- * any order. A lucky number is an element of the matrix such that it is the minimum
- * element in its row and maximum in its column.
+ * Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+ * A lucky number is an element of the matrix such that it is the minimum element in its row and
+ * maximum in its column.
  * 1 <= matrix[i][j] <= 10^5.
  */
 
@@ -105,8 +105,8 @@ auto SetMatrixZeroes_O1(MatrixType a_matrix) {
  *              https://leetcode.com/problems/special-positions-in-a-binary-matrix/
  *
  * Given an m x n binary matrix mat, return the number of special positions in mat.
- * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i
- * and column j are 0 (rows and columns are 0-indexed).
+ * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column
+ * j are 0 (rows and columns are 0-indexed).
  */
 auto NumberSpecials(const MatrixType &mat) {
     std::vector rows(mat.size(), 0);
@@ -138,25 +138,25 @@ auto NumberSpecials(const MatrixType &mat) {
  * @reference   Game of Life
  *              https://leetcode.com/problems/game-of-life/
  *
- * According to Wikipedia's article: "The Game of Life, also known simply as Life, is a
- * cellular automaton devised by the British mathematician John Horton Conway in 1970."
- * The board is made up of an m x n grid of cells, where each cell has an initial state:
- * live (represented by a 1) or dead (represented by a 0). Each cell interacts with its
- * eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken
- * from the above Wikipedia article):
+ * According to Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular
+ * automaton devised by the British mathematician John Horton Conway in 1970."
+ * The board is made up of an m x n grid of cells, where each cell has an initial state: live
+ * (represented by a 1) or dead (represented by a 0). Each cell interacts with its eight neighbors
+ * (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia
+ * article):
  *  Any live cell with fewer than two live neighbors dies as if caused by under-population.
  *  Any live cell with two or three live neighbors lives on to the next generation.
  *  Any live cell with more than three live neighbors dies, as if by over-population.
  *  Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
- * The next state is created by applying the above rules simultaneously to every cell in
- * the current state, where births and deaths occur simultaneously. Given the current state
- * of the m x n grid board, return the next state.
+ * The next state is created by applying the above rules simultaneously to every cell in the current
+ * state, where births and deaths occur simultaneously. Given the current state of the m x n grid
+ * board, return the next state.
  * Follow up:
- * Could you solve it in-place? Remember that the board needs to be updated simultaneously:
- * You cannot update some cells first and then use their updated values to update other cells.
- * In this question, we represent the board using a 2D array. In principle, the board is
- * infinite, which would cause problems when the active area encroaches upon the border of
- * the array (i.e., live cells reach the border). How would you address these problems?
+ * Could you solve it in-place? Remember that the board needs to be updated simultaneously: You
+ * cannot update some cells first and then use their updated values to update other cells.
+ * In this question, we represent the board using a 2D array. In principle, the board is infinite,
+ * which would cause problems when the active area encroaches upon the border of the array (i.e.,
+ * live cells reach the border). How would you address these problems?
  */
 auto LiveNeighbors(const MatrixType &board, const int i, const int j) {
     const int M = board.size();
@@ -196,9 +196,10 @@ auto GameOfLife(MatrixType board) {
     return board;
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {1, 1, 1},
     {1, 0, 1},
@@ -220,6 +221,7 @@ const MatrixType EXPECTED2 = {
     {0, 4, 5, 0},
     {0, 3, 1, 0}
 };
+// clang-format on
 
 
 THE_BENCHMARK(SetMatrixZeroes, SAMPLE1);
@@ -234,6 +236,7 @@ SIMPLE_TEST(SetMatrixZeroes_O1, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(SetMatrixZeroes_O1, TestSAMPLE2, EXPECTED2, SAMPLE2);
 
 
+// clang-format off
 const MatrixType SAMPLE1S = {
     {1, 0, 0},
     {0, 0, 1},
@@ -245,6 +248,7 @@ const MatrixType SAMPLE2S = {
     {0, 1, 0},
     {0, 0, 1}
 };
+// clang-format on
 
 
 THE_BENCHMARK(NumberSpecials, SAMPLE1S);
@@ -253,6 +257,7 @@ SIMPLE_TEST(NumberSpecials, TestSAMPLE1, 1, SAMPLE1S);
 SIMPLE_TEST(NumberSpecials, TestSAMPLE2, 3, SAMPLE2S);
 
 
+// clang-format off
 const MatrixType SAMPLE1L = {
     {0, 1, 0},
     {0, 0, 1},
@@ -274,6 +279,7 @@ const MatrixType EXPECTED2L = {
     {1, 1},
     {1, 1}
 };
+// clang-format on
 
 
 THE_BENCHMARK(GameOfLife, SAMPLE1L);

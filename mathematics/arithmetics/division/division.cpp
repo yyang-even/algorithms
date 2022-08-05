@@ -42,28 +42,23 @@ constexpr auto Division_Subtract(int dividend, int divisor) {
  * greater than 2^31 - 1, then return 2^31 - 1, and if the quotient is strictly less than -2^31,
  * then return -2^31.
  */
-constexpr int Division_Bit(const int dividend, const int divisor) {
-    assert(divisor);
+constexpr int Division_Bit(const long dividend, const long divisor) {
     if (dividend == INT_MIN and divisor == -1) {
         return INT_MAX;
     }
 
-    const auto sign = AreOppositeSigns(dividend, divisor) ? -1 : 1;
+    unsigned long abs_dividend = std::abs(dividend);
+    const long abs_divisor = abs(divisor);
 
-    long abs_dividend = std::abs(dividend);
-    long abs_divisor = std::abs(divisor);
-
-    long quotient = 0;
-    long temp = 0;
+    long result = 0;
     for (int i = BitsNumber<decltype(divisor)> - 1; i >= 0; --i) {
-        const auto try_number = abs_divisor << i;
-        if (temp + try_number <= abs_dividend) {
-            temp += try_number;
-            quotient |= 1 << i;
+        if (static_cast<long>(abs_dividend >> i) - abs_divisor >= 0) {
+            result += 1u << i;
+            abs_dividend -= abs_divisor << i;
         }
     }
 
-    return sign * quotient;
+    return (dividend > 0) == (divisor > 0) ? result : -result;
 }
 
 
@@ -115,6 +110,7 @@ SIMPLE_TEST(Division_Bit, TestSAMPLE1, 3, 10, 3);
 SIMPLE_TEST(Division_Bit, TestSAMPLE2, -5, 43, -8);
 SIMPLE_TEST(Division_Bit, TestSAMPLE3, 0, 0, -8);
 SIMPLE_TEST(Division_Bit, TestSAMPLE4, 3, 3, 1);
+SIMPLE_TEST(Division_Bit, TestSAMPLE5, INT_MIN, INT_MIN, 1);
 
 
 THE_BENCHMARK(Division_Log, 10, 3);

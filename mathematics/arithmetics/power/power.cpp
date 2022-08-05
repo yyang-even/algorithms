@@ -10,13 +10,12 @@ namespace {
  * @reference   Write a program to calculate pow(x,n)
  *              https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
  *
- * Given two integers x and n, write a function to compute x^n. We may assume that x
- * and n are small and overflow doesn't happen.
+ * Given two integers x and n, write a function to compute x^n. We may assume that x and n are
+ * small and overflow doesn't happen.
  *
  * @complexity: O(lgn)
  */
-inline constexpr long
-Power_Recursive(const long x, const unsigned int n) {
+inline constexpr long Power_Recursive(const long x, const unsigned int n) {
     if (n == 0) {
         return 1;
     }
@@ -29,8 +28,14 @@ Power_Recursive(const long x, const unsigned int n) {
     }
 }
 
-inline constexpr double
-Power_Recursive(const double x, const int n) {
+
+/**
+ * @reference   Pow(x, n)
+ *              https://leetcode.com/problems/powx-n/
+ *
+ * Implement pow(x, n), which calculates x raised to the power n (i.e., x^n).
+ */
+inline constexpr double Power_Recursive(const double x, const int n) {
     if (n == 0) {
         return 1;
     }
@@ -47,15 +52,28 @@ Power_Recursive(const double x, const int n) {
     }
 }
 
+inline constexpr double Power_TailRecursive(double x, long n) {
+    if (n == 0) {
+        return 1;
+    }
+
+    if (n < 0) {
+        n = -n;
+        x = 1 / x;
+    }
+
+    return (n % 2 == 0) ? Power_TailRecursive(x * x, n / 2) :
+                          x * Power_TailRecursive(x * x, n / 2);
+}
+
 
 /** Write an iterative O(Log y) function for pow(x, y)
  *
  * @reference   https://www.geeksforgeeks.org/write-an-iterative-olog-y-function-for-powx-y/
  */
-constexpr auto
-Power_Iterative(long x, unsigned y) {
+constexpr auto Power_Iterative(long x, unsigned y) {
     long result = 1;
-    for (; y ; y >>= 1, x *= x) {
+    for (; y; y >>= 1, x *= x) {
         if (y & 1) {
             result *= x;
         }
@@ -69,21 +87,20 @@ Power_Iterative(long x, unsigned y) {
  *
  * @reference   https://www.geeksforgeeks.org/write-you-own-power-without-using-multiplication-and-division/
  */
-constexpr unsigned
-Power_Loop(const unsigned x, unsigned n) {
+constexpr unsigned Power_Loop(const unsigned x, unsigned n) {
     if (n == 0) {
         return 1;
     }
 
     unsigned power = 1;
-    for (; n ; --n) {
+    for (; n; --n) {
         power = Multiply_RussianPeasant(power, x);
     }
 
     return power;
 }
 
-}//namespace
+} //namespace
 
 
 constexpr long LOWER = 0;
@@ -97,12 +114,21 @@ SIMPLE_TEST(Power_Recursive, TestSAMPLE1, 8, 2, 3);
 SIMPLE_TEST(Power_Recursive, TestSAMPLE2, 49, 7, 2);
 SIMPLE_TEST(Power_Recursive, TestSAMPLE3, 125, 5, 3);
 
+
 SIMPLE_BENCHMARK(Power_Recursive, Sample2, 2.0, 7);
 
 SIMPLE_TEST(Power_Recursive, TestDoubleLOWER, 1.0, DOUBLE_LOWER, DOUBLE_LOWER);
 SIMPLE_TEST(Power_Recursive, TestDoubleSAMPLE1, 8.0, 2.0, 3);
 SIMPLE_TEST(Power_Recursive, TestDoubleSAMPLE2, 49.0, 7.0, 2);
 SIMPLE_TEST(Power_Recursive, TestDoubleSAMPLE3, 0.125, 2.0, -3);
+
+
+SIMPLE_BENCHMARK(Power_TailRecursive, Sample2, 2.0, 7);
+
+SIMPLE_TEST(Power_TailRecursive, TestDoubleLOWER, 1.0, DOUBLE_LOWER, DOUBLE_LOWER);
+SIMPLE_TEST(Power_TailRecursive, TestDoubleSAMPLE1, 8.0, 2.0, 3);
+SIMPLE_TEST(Power_TailRecursive, TestDoubleSAMPLE2, 49.0, 7.0, 2);
+SIMPLE_TEST(Power_TailRecursive, TestDoubleSAMPLE3, 0.125, 2.0, -3);
 
 
 THE_BENCHMARK(Power_Loop, 2, 7);

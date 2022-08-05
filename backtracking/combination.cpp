@@ -79,9 +79,9 @@ inline auto CombinationsOfLength_Include(const std::string_view elements,
  *              https://leetcode.com/problems/iterator-for-combination/
  *
  * Design the CombinationIterator class:
- *  CombinationIterator(string characters, int combinationLength) Initializes the object with a
- *      string characters of sorted distinct lowercase English letters and a number combinationLength
- *      as arguments.
+ *  CombinationIterator(string characters, int combinationLength) Initializes the object with a string
+ *      characters of sorted distinct lowercase English letters and a number combinationLength as
+ *      arguments.
  *  next() Returns the next combination of length combinationLength in lexicographical order.
  *  hasNext() Returns true if and only if there exists a next combination.
  * 1 <= combinationLength <= characters.length <= 15
@@ -241,8 +241,8 @@ auto AllCombinations_Iterative(const std::string_view elements) {
  * @reference   Subsets II
  *              https://leetcode.com/problems/subsets-ii/
  *
- * Given an integer array nums that may contain duplicates, return all possible subsets (the power
- * set). The solution set must not contain duplicate subsets. Return the solution in any order.
+ * Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
+ * The solution set must not contain duplicate subsets. Return the solution in any order.
  */
 void AllCombinationsWithDuplicates_For(const std::string &elements,
                                        const std::size_t start,
@@ -305,8 +305,7 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
  * @reference   Combinations
  *              https://leetcode.com/problems/combinations/
  *
- * Given two integers n and k, return all possible combinations of k numbers out of the range
- * [1, n].
+ * Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
  * You may return the answer in any order.
  */
 auto AllCombinationsOfLength_Iterative(const int n, const int k) {

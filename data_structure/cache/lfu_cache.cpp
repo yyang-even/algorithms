@@ -7,8 +7,8 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/least-frequently-used-lfu-cache-implementation/
  *
- * Least Frequently Used (LFU) is a caching algorithm in which the least frequently used cache
- * block is removed whenever the cache is overflowed.
+ * Least Frequently Used (LFU) is a caching algorithm in which the least frequently used cache block is
+ * removed whenever the cache is overflowed.
  */
 class LFU_Cache {
     using KeyType = int;
@@ -62,7 +62,7 @@ public:
     }
 };
 
-} // namespace
+} //namespace
 
 
 #ifdef WANT_TESTS

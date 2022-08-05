@@ -9,8 +9,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/count-good-triplets/
  *
- * Given an array of integers arr, and three integers a, b and c. You need to find the
- * number of good triplets.
+ * Given an array of integers arr, and three integers a, b and c. You need to find the number of good
+ * triplets.
  * A triplet (arr[i], arr[j], arr[k]) is good if the following conditions are true:
  *  0 <= i < j < k < arr.length
  *  |arr[i] - arr[j]| <= a
@@ -26,8 +26,7 @@ auto GoodTriplets(const ArrayType &nums, const int a, const int b, const int c) 
         for (auto j = i + 1; j < N - 1; ++j) {
             if (std::abs(nums[i] - nums[j]) <= a) {
                 for (auto k = j + 1; k < N; ++k) {
-                    if (std::abs(nums[j] - nums[k]) <= b and
-                        std::abs(nums[k] - nums[i]) <= c) {
+                    if (std::abs(nums[j] - nums[k]) <= b and std::abs(nums[k] - nums[i]) <= c) {
                         ++result;
                     }
                 }
@@ -38,7 +37,7 @@ auto GoodTriplets(const ArrayType &nums, const int a, const int b, const int c) 
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {3, 0, 1, 1, 9, 7};

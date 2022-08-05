@@ -20,7 +20,7 @@ class LRU_Cache {
     QueueType::size_type CAPICITY = 0;
 
 public:
-    LRU_Cache(const QueueType::size_type capicity = 1024): CAPICITY(capicity) {
+    LRU_Cache(const QueueType::size_type capicity = 1024) : CAPICITY(capicity) {
         assert(CAPICITY);
     }
 
@@ -92,13 +92,13 @@ auto LRU(const ArrayType &requests, const ArrayType::size_type cache_size) {
     return requests.size() - cache_hit;
 }
 
-}
+} //namespace
 
 
 #ifdef WANT_TESTS
 TEST(LRU_CacheTest, TestSanity) {
     constexpr auto CAPICITY = 2u;
-    LRU_Cache lru_cache{CAPICITY};
+    LRU_Cache lru_cache {CAPICITY};
     constexpr auto ToValue = [](const auto key) {
         return key * 10;
     };

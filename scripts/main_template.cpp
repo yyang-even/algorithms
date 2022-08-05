@@ -9,7 +9,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference
  */
-auto FunctionName(const ArrayType &nums) {}
+auto FunctionName(const ArrayType &nums) {
+}
 
 } //namespace
 

@@ -12,8 +12,8 @@ using ArrayType = std::vector<int>;
  * @reference   Dutch National Flag
  *              http://users.monash.edu/~lloyd/tildeAlgDS/Sort/Flag/
  *
- * You are given an array of 0s and 1s in random order. Segregate 0s on left side and 1s
- * on right side of the array. Traverse array only once.
+ * You are given an array of 0s and 1s in random order. Segregate 0s on left side and 1s on right side
+ * of the array. Traverse array only once.
  *
  * @reference   Segregate Even and Odd numbers
  *              https://www.geeksforgeeks.org/segregate-even-and-odd-numbers/
@@ -28,8 +28,9 @@ using ArrayType = std::vector<int>;
  * @reference   Sort Array By Parity
  *              https://leetcode.com/problems/sort-array-by-parity/
  *
- * Given an integer array nums, move all the even integers at the beginning of the array
- * followed by all the odd integers. Return any array that satisfies this condition.
+ * Given an integer array nums, move all the even integers at the beginning of the array followed by all
+ * the odd integers.
+ * Return any array that satisfies this condition.
  */
 inline auto Segregate0sAnd1sCount(ArrayType values) {
     const auto number_of_0s = std::count(values.cbegin(), values.cend(), 0);
@@ -73,25 +74,26 @@ auto SegregateEvenOdd(ArrayType nums) {
  * @reference   Sort an array of 0s, 1s and 2s
  *              https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
  *
- * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[]. The
- * functions should put all 0s first, then all 1s and all 2s in last.
+ * Given an array A[] consisting 0s, 1s and 2s, write a function that sorts A[]. The functions should
+ * put all 0s first, then all 1s and all 2s in last.
  *
  * @reference   Sorting objects using In-Place sorting algorithm
  *              https://www.geeksforgeeks.org/sorting-objects-using-in-place-sorting-algorithm/
  * @reference   Sorting Terminology
  *              https://www.geeksforgeeks.org/sorting-terminology/
  *
- * Given an array of red, blue and yellow objects, the task is to use an in-place sorting
- * algorithm to sort the array in such a way that all the blue objects appear before all
- * the red objects and all the red objects appear before all the yellow objects.
+ * Given an array of red, blue and yellow objects, the task is to use an in-place sorting algorithm to
+ * sort the array in such a way that all the blue objects appear before all the red objects and all the
+ * red objects appear before all the yellow objects.
  *
  * @reference   Sort Colors
  *              https://leetcode.com/problems/sort-colors/
  *
- * Given an array nums with n objects colored red, white, or blue, sort them in-place so
- * that objects of the same color are adjacent, with the colors in the order red, white,
- * and blue. We will use the integers 0, 1, and 2 to represent the color red, white, and
- * blue, respectively. You must solve this problem without using the library's sort function.
+ * Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of
+ * the same color are adjacent, with the colors in the order red, white, and blue.
+ * We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+ * You must solve this problem without using the library's sort function.
+ * Follow up: Could you come up with a one-pass algorithm using only constant extra space?
  */
 auto Sort0s1s2s(ArrayType values) {
     auto zeros_end = values.begin();
@@ -129,9 +131,9 @@ auto Sort0s1s2s_Index(ArrayType nums) {
  * @reference   Move all zeros to start and ones to end in an Array of random integers
  *              https://www.geeksforgeeks.org/move-all-zeros-to-start-and-ones-to-end-in-an-array-of-random-integers/
  *
- * Given an array arr[] of random integers, the task is to push all the zero's in the
- * array to the start and all the one's to the end of the array. Note that the order of
- * all the other elements should be the same.
+ * Given an array arr[] of random integers, the task is to push all the zero's in the array to the start
+ * and all the one's to the end of the array. Note that the order of all the other elements should be
+ * the same.
  */
 
 
@@ -139,14 +141,15 @@ auto Sort0s1s2s_Index(ArrayType nums) {
  * @reference   Odd Even Linked List
  *              https://leetcode.com/problems/odd-even-linked-list/
  *
- * Given the head of a singly linked list, group all the nodes with odd indices together
- * followed by the nodes with even indices, and return the reordered list. The first node
- * is considered odd, and the second node is even, and so on. Note that the relative order
- * inside both the even and odd groups should remain as it was in the input. You must
- * solve the problem in O(1) extra space complexity and O(n) time complexity.
+ * Given the head of a singly linked list, group all the nodes with odd indices together followed by the
+ * nodes with even indices, and return the reordered list.
+ * The first node is considered odd, and the second node is even, and so on.
+ * Note that the relative order inside both the even and odd groups should remain as it was in the
+ * input.
+ * You must solve the problem in O(1) extra space complexity and O(n) time complexity.
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {};

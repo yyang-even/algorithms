@@ -102,7 +102,7 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        constexpr explicit Node(const ValueType v = 0): value(v) {
+        constexpr explicit Node(const ValueType v = 0) : value(v) {
             ++node_alive;
         }
 
@@ -145,8 +145,7 @@ protected:
 
     const Node::PointerType search_RecursiveHelper(const Node::PointerType node,
                                                    const Node::ValueType key) const {
-        return (not node or node->value == key) ?
-               node : search_RecursiveHelper(node->next, key);
+        return (not node or node->value == key) ? node : search_RecursiveHelper(node->next, key);
     }
 
     std::size_t countSize_RecursiveHelper(const Node::PointerType node) const {
@@ -171,8 +170,10 @@ protected:
         return index == 0 ? node->value : getN_RecursiveHelper(node->next, index - 1);
     }
 
-    void getReverseN_RecursiveHelper(const Node::PointerType node, const std::size_t index,
-                                     std::size_t &i, Node::ValueType &output) const {
+    void getReverseN_RecursiveHelper(const Node::PointerType node,
+                                     const std::size_t index,
+                                     std::size_t &i,
+                                     Node::ValueType &output) const {
         if (node) {
             getReverseN_RecursiveHelper(node->next, index, i, output);
 
@@ -197,10 +198,9 @@ protected:
      * @reference   Delete Node in a Linked List
      *              https://leetcode.com/problems/delete-node-in-a-linked-list/
      *
-     * Write a function to delete a node in a singly-linked list. You will not be given
-     * access to the head of the list, instead you will be given access to the node to
-     * be deleted directly. It is guaranteed that the node to be deleted is not a tail
-     * node in the list.
+     * Write a function to delete a node in a singly-linked list. You will not be given access to
+     * the head of the list, instead you will be given access to the node to be deleted directly.
+     * It is guaranteed that the node to be deleted is not a tail node in the list.
      */
     static void deleteNode_WithoutHead(Node &to_be_deleted, std::size_t &size) {
         assert(to_be_deleted.next);
@@ -285,8 +285,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/insert-a-node-at-a-specific-position-in-a-linked-list/
      *
-     * Given a singly linked list, a position and an element, the task is to write a
-     * program to insert that element in a linked list at a given position.
+     * Given a singly linked list, a position and an element, the task is to write a program to
+     * insert that element in a linked list at a given position.
      */
     void InsertAt_Simple(std::size_t position, const Node::ValueType v) {
         assert(position and position <= size + 1);
@@ -324,8 +324,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
      *
-     * Given a sorted linked list and a value to insert, write a function to insert the
-     * value in sorted way.
+     * Given a sorted linked list and a value to insert, write a function to insert the value in
+     * sorted way.
      */
     void SortedInsert(const Node::ValueType v) {
         auto *current = &head;
@@ -345,8 +345,7 @@ public:
     }
 
 
-    auto Search_Iterative(const Node::ValueType key,
-                          Node::PointerType *prev = nullptr) const {
+    auto Search_Iterative(const Node::ValueType key, Node::PointerType *prev = nullptr) const {
         auto iter = head;
         while (iter and iter->value != key) {
             if (prev) {
@@ -379,13 +378,13 @@ public:
 
 
     void Delete(const Node::ValueType key) {
-        deleteHelper([key](const auto & node) {
+        deleteHelper([key](const auto &node) {
             return node.value == key;
         });
     }
 
     void Delete(const Node &target_node) {
-        deleteHelper([&target_node](const auto & node) {
+        deleteHelper([&target_node](const auto &node) {
             return &node == &target_node;
         });
     }
@@ -396,8 +395,8 @@ public:
      *
      * Given a Singly Linked List, write a function to delete a given node.
      * Your function must follow following constraints:
-     *  1) It must accept pointer to the start node as first parameter and node to be
-     *  deleted as second parameter i.e., pointer to head node is not global.
+     *  1) It must accept pointer to the start node as first parameter and node to be deleted as
+     *  second parameter i.e., pointer to head node is not global.
      *  2) It should not return pointer to the head node.
      *  3) It should not accept pointer to pointer to head node.
      *
@@ -408,7 +407,7 @@ public:
             if (head.get() == &target_node) {
                 deleteNode_WithoutHead(*head, size);
             } else {
-                delete_Nonhead(head, [&target_node](const auto & node) {
+                delete_Nonhead(head, [&target_node](const auto &node) {
                     return &node == &target_node;
                 });
             }
@@ -420,9 +419,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-function-to-delete-a-linked-list/
      *
-     * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one
-     * by one. Main point here is not to access next of the current pointer if current
-     * pointer is deleted.
+     * Algorithm For C/C++: Iterate through the linked list and delete all the nodes one by one.
+     * Main point here is not to access next of the current pointer if current pointer is deleted.
      *
      * @reference   Delete a linked list using recursion
      *              https://www.geeksforgeeks.org/delete-linked-list-using-recursion/
@@ -447,8 +445,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/delete-last-occurrence-of-an-item-from-linked-list/
      *
-     * Given a liked list and a key to be deleted. Delete last occurrence of key from
-     * linked. The list may have duplicates.
+     * Given a liked list and a key to be deleted. Delete last occurrence of key from linked. The
+     * list may have duplicates.
      */
     void DeleteLastOfKey(const Node::ValueType key) {
         if (head) {
@@ -502,8 +500,8 @@ public:
      * @reference   Reverse Linked List
      *              https://leetcode.com/problems/reverse-linked-list/
      *
-     * Given pointer to the head node of a linked list, the task is to reverse the linked
-     * list. We need to reverse the list by changing links between nodes.
+     * Given pointer to the head node of a linked list, the task is to reverse the linked list.
+     * We need to reverse the list by changing links between nodes.
      *
      * @complexity  O(n)
      */
@@ -582,9 +580,8 @@ public:
      * An interesting method to print reverse of a linked list
      * @reference   https://www.geeksforgeeks.org/an-interesting-method-to-print-reverse-of-a-linked-list/
      *
-     * Carriage return ("r"): It commands a printer (cursor or the display of a system
-     * console), to move the position of the cursor to the first position on the same
-     * line.
+     * Carriage return ("r"): It commands a printer (cursor or the display of a system console),
+     * to move the position of the cursor to the first position on the same line.
      */
 
 
@@ -592,8 +589,8 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-function-to-get-nth-node-in-a-linked-list/
      *
-     * Write a GetNth() function that takes a linked list and an integer index and
-     * returns the data value stored in the node at that index position.
+     * Write a GetNth() function that takes a linked list and an integer index and returns the
+     * data value stored in the node at that index position.
      */
     Node::PointerType At(std::size_t index) const {
         assert(index < size);
@@ -630,8 +627,8 @@ public:
      * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
      *              Questions 2.2.
      *
-     * Given a Linked List and a number n, write a function that returns the value at the
-     * n'th node from end of the Linked List.
+     * Given a Linked List and a number n, write a function that returns the value at the n'th
+     * node from end of the Linked List.
      */
     auto GetReverseN_Iterative(const std::size_t index) const {
         return GetN_Iterative(size - index - 1);
@@ -641,7 +638,7 @@ public:
         assert(index < size);
 
         std::size_t i = 0;
-        Node::ValueType output{};
+        Node::ValueType output {};
         getReverseN_RecursiveHelper(head, index, i, output);
         return output;
     }
@@ -673,6 +670,12 @@ public:
     /**
      * @reference   Delete Nth node from the end of the given linked list
      *              https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/
+     *
+     * @reference   Remove Nth Node From End of List
+     *              https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+     *
+     * Given the head of a linked list, remove the nth node from the end of the list and return
+     * its head.
      */
 
     /**
@@ -687,10 +690,10 @@ public:
      *
      * @reference   https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/
      *
-     * Given a singly linked list, find middle of the linked list. For example, if given
-     * linked list is 1->2->3->4->5 then output should be 3. If there are even nodes,
-     * then there would be two middle nodes, we need to print second middle element. For
-     * example, if given linked list is 1->2->3->4->5->6 then output should be 4.
+     * Given a singly linked list, find middle of the linked list. For example, if given linked
+     * list is 1->2->3->4->5 then output should be 3. If there are even nodes, then there would
+     * be two middle nodes, we need to print second middle element. For example, if given linked
+     * list is 1->2->3->4->5->6 then output should be 4.
      */
     auto GetMid_Size() const {
         return GetN_Iterative(size / 2);
@@ -723,10 +726,9 @@ public:
      * @reference   Swap nodes in a linked list without swapping data
      *              https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
      *
-     * Given a linked list and two keys in it, swap nodes for two given keys. Nodes
-     * should be swapped by changing links. Swapping data of nodes may be expensive in
-     * many situations when data contains many fields. It may be assumed that all keys
-     * in linked list are distinct.
+     * Given a linked list and two keys in it, swap nodes for two given keys. Nodes should be
+     * swapped by changing links. Swapping data of nodes may be expensive in many situations when
+     * data contains many fields. It may be assumed that all keys in linked list are distinct.
      */
     void Swap(const Node::ValueType x, const Node::ValueType y) {
         assert(x != y);
@@ -767,8 +769,7 @@ public:
 
         Node::PointerType *node_x = nullptr;
         Node::PointerType *node_y = nullptr;
-        for (auto current = &head;
-             *current and not(node_x and node_y);
+        for (auto current = &head; *current and not(node_x and node_y);
              current = &((*current)->next)) {
             if ((*current)->value == x) {
                 node_x = current;
@@ -777,7 +778,7 @@ public:
             }
         }
 
-        assert(*node_x and * node_y);
+        assert(*node_x and *node_y);
 
         if (tail == *node_x) {
             tail = *node_y;
@@ -806,9 +807,9 @@ public:
 };
 
 
-template <typename ArrayType, typename FunctionType, typename... Args>
+template<typename ArrayType, typename FunctionType, typename... Args>
 static inline constexpr auto
-TestHelper(const FunctionType function, const ArrayType &array, Args &&... args) {
-    const auto head = SinglyLinkedList{array}.GetHead();
+TestHelper(const FunctionType function, const ArrayType &array, Args &&...args) {
+    const auto head = SinglyLinkedList {array}.GetHead();
     return CopyToArray(function(head, std::forward<Args>(args)...));
 }

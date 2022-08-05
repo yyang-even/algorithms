@@ -9,9 +9,14 @@ namespace {
  *
  * @reference   https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
  *
- * Given an n x n matrix where each of the rows and columns are sorted in ascending
- * order, return the kth smallest element in the matrix. Note that it is the kth
- * smallest element in the sorted order, not the kth distinct element.
+ * Given an n x n matrix where each of the rows and columns is sorted in ascending order, return the kth
+ * smallest element in the matrix.
+ * Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+ * You must find a solution with a memory complexity better than O(n^2).
+ * Follow up:
+ * Could you solve the problem with a constant memory (i.e., O(1) memory complexity)?
+ * Could you solve the problem in O(n) time complexity? The solution may be too advanced for an interview
+ * but you may find reading this paper fun.
  *
  * @reference   Kth smallest element in a row-wise and column-wise sorted 2D array | Set 1
  *              https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/
@@ -24,8 +29,8 @@ auto KthSmallestInSortedMatrix_Heap(const MatrixType &a_matrix, const int K) {
     };
 
     using RowColumnPair = std::pair<std::size_t, std::size_t>;
-    std::priority_queue<RowColumnPair, std::vector<RowColumnPair>, decltype(compare)>
-    min_heap(compare);
+    std::priority_queue<RowColumnPair, std::vector<RowColumnPair>, decltype(compare)> min_heap(
+        compare);
     for (std::size_t i = 0; i < a_matrix.size(); ++i) {
         min_heap.emplace(i, 0);
     }
@@ -91,13 +96,11 @@ auto KthSmallestInSortedMatrix_BinarySearch(const MatrixType &a_matrix, const in
  * @reference   Kth Smallest Number in Multiplication Table
  *              https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
  *
- * Nearly everyone has used the Multiplication Table. The multiplication table of size
- * m x n is an integer matrix mat where mat[i][j] == i * j (1-indexed). Given three
- * integers m, n, and k, return the kth smallest element in the m x n multiplication
- * table.
+ * Nearly everyone has used the Multiplication Table. The multiplication table of size m x n is an
+ * integer matrix mat where mat[i][j] == i * j (1-indexed).
+ * Given three integers m, n, and k, return the kth smallest element in the m x n multiplication table.
  */
-constexpr auto
-count(const int m, const int n, const int x) {
+constexpr auto count(const int m, const int n, const int x) {
     int result = 0;
     for (int i = 1; i <= m; ++i) {
         result += std::min(x / i, n);
@@ -105,8 +108,7 @@ count(const int m, const int n, const int x) {
     return result;
 }
 
-constexpr auto
-KthNumberInMultiplicationTable(const int m, const int n, const int k) {
+constexpr auto KthNumberInMultiplicationTable(const int m, const int n, const int k) {
     int left = 1;
     int right = m * n;
     int result = 0;
@@ -123,9 +125,10 @@ KthNumberInMultiplicationTable(const int m, const int n, const int k) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {1, 5, 9},
     {10, 11, 13},
@@ -142,6 +145,7 @@ const MatrixType SAMPLE3 = {
     {24, 29, 37, 48},
     {32, 33, 39, 50}
 };
+// clang-format on
 
 
 THE_BENCHMARK(KthSmallestInSortedMatrix_Heap, SAMPLE1, 8);

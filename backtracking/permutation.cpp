@@ -15,9 +15,9 @@ using ArrayType = std::unordered_multiset<std::string>;
  * @reference   Section VI. Five Algorithm Approaches.
  *              Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *
- * A permutation, also called an "arrangement number" or "order", is a rearrangement of
- * the elements of an ordered list S into a one-to-one correspondence with S itself. A
- * string of length n has n! permutation.
+ * A permutation, also called an "arrangement number" or "order", is a rearrangement of the elements
+ * of an ordered list S into a one-to-one correspondence with S itself. A string of length n has
+ * n! permutation.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.5.
@@ -25,12 +25,13 @@ using ArrayType = std::unordered_multiset<std::string>;
  * @reference   Permutations
  *              https://leetcode.com/problems/permutations/
  *
- * Given an array nums of distinct integers, return all the possible permutations. You
- * can return the answer in any order.
+ * Given an array nums of distinct integers, return all the possible permutations. You can return
+ * the answer in any order.
  *
  * @complexity  O(n * n!)
  */
-void PermutationHelper(const std::string &input, std::string::iterator start,
+void PermutationHelper(const std::string &input,
+                       std::string::iterator start,
                        ArrayType &outputs) {
     if (start == input.cend()) {
         outputs.insert(input);
@@ -69,11 +70,10 @@ auto PermutationSTL(std::string input) {
  * @reference   Permutations II
  *              https://leetcode.com/problems/permutations-ii/
  *
- * Given a collection of numbers, nums, that might contain duplicates, return all
- * possible unique permutations in any order.
+ * Given a collection of numbers, nums, that might contain duplicates, return all possible unique
+ * permutations in any order.
  */
-void PermutationWithDuplicates_Hash(std::string &nums, const std::size_t i,
-                                    ArrayType &results) {
+void PermutationWithDuplicates_Hash(std::string &nums, const std::size_t i, ArrayType &results) {
     if (i >= nums.size()) {
         results.insert(nums);
         return;
@@ -96,8 +96,7 @@ inline auto PermutationWithDuplicates_Hash(std::string nums) {
 }
 
 
-void PermutationWithDuplicates_Sort(std::string nums, const std::size_t i,
-                                    ArrayType &results) {
+void PermutationWithDuplicates_Sort(std::string nums, const std::size_t i, ArrayType &results) {
     if (i >= nums.size()) {
         results.insert(nums);
         return;
@@ -121,7 +120,7 @@ inline auto PermutationWithDuplicates_Sort(std::string nums) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType EXPECTED1 = {"abc", "acb", "bac", "bca", "cba", "cab"};

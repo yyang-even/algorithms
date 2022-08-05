@@ -1,8 +1,8 @@
 #include "common_header.h"
 
 #include "binary_search_tree.h"
-#include "flatten_BST.h"
 #include "data_structure/tree/binary_tree/binary_tree_traversals.h"
+#include "flatten_BST.h"
 
 
 namespace {
@@ -51,26 +51,71 @@ void FlattenBSTtoSortedList_Decreasing(const BinaryTree::Node::PointerType node,
  * @reference   Convert a Binary Search Tree into a Skewed tree in increasing or decreasing order
  *              https://www.geeksforgeeks.org/convert-a-binary-search-tree-into-a-skewed-tree-in-increasing-or-decreasing-order/
  *
- * Given a Binary Search Tree and a binary integer K, the task is to convert Binary search
- * tree into a Skewed Tree in increasing order if K = 0 or in decreasing order if K = 1.
+ * Given a Binary Search Tree and a binary integer K, the task is to convert Binary search tree
+ * into a Skewed Tree in increasing order if K = 0 or in decreasing order if K = 1.
  *
  * @reference   Skewed Binary Tree
  *              https://www.geeksforgeeks.org/skewed-binary-tree/
  */
 
+
+/**
+ * @reference   Flatten Binary Tree to Linked List
+ *              https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+ *
+ * Given the root of a binary tree, flatten the tree into a "linked list":
+ *  The "linked list" should use the same TreeNode class where the right child pointer points to
+ *      the next node in the list and the left child pointer is always null.
+ *  The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+ * Follow up: Can you flatten the tree in-place (with O(1) extra space)?
+ */
+void FlattenPreorder(const BinaryTree::Node::PointerType node,
+                     BinaryTree::Node::PointerType &prev) {
+    if (not node) {
+        return;
+    }
+
+    FlattenPreorder(node->right, prev);
+    FlattenPreorder(node->left, prev);
+    node->right = prev;
+    node->left = nullptr;
+    prev = node;
 }
 
+inline void FlattenPreorder(const BinaryTree::Node::PointerType root) {
+    BinaryTree::Node::PointerType prev;
+    FlattenPreorder(root, prev);
+}
 
-SIMPLE_BENCHMARK(FlattenBSTtoSortedList, BM_SAMPLE1,
-                 MakeTheSampleBST(), FlattenBSTtoSortedList_Increasing);
+inline auto testFlattenPreorder(const BinaryTree::Node::PointerType root) {
+    FlattenPreorder(root);
+
+    BinaryTree::ArrayType result;
+    for (auto node = root; node; node = node->right) {
+        result.push_back(node->value);
+    }
+
+    return result;
+}
+
+} //namespace
 
 
-SIMPLE_BENCHMARK(FlattenBSTtoSortedList, BM_SAMPLE2,
-                 MakeTheSampleBST(), FlattenBSTtoSortedList_Decreasing);
+SIMPLE_BENCHMARK(FlattenBSTtoSortedList,
+                 BM_SAMPLE1,
+                 MakeTheSampleBST(),
+                 FlattenBSTtoSortedList_Increasing);
+
+
+SIMPLE_BENCHMARK(FlattenBSTtoSortedList,
+                 BM_SAMPLE2,
+                 MakeTheSampleBST(),
+                 FlattenBSTtoSortedList_Decreasing);
 
 
 #ifdef WANT_TESTS
-#define FlattenBSTTest(function_name, do_reverse) namespace {                       \
+#define FlattenBSTTest(function_name, do_reverse)                                   \
+    namespace {                                                                     \
     TEST(FlattenBSTtoSortedListTest, Test##function_name) {                         \
         const auto SAMPLE_BST = MakeTheSampleBST();                                 \
         BinaryTree::ArrayType EXPECTED;                                             \
@@ -90,7 +135,7 @@ SIMPLE_BENCHMARK(FlattenBSTtoSortedList, BM_SAMPLE2,
                                                                                     \
         EXPECT_EQ(nullptr, current);                                                \
     }                                                                               \
-}
+    }
 
 
 FlattenBSTTest(FlattenBSTtoSortedList_Increasing, false);
@@ -98,3 +143,9 @@ FlattenBSTTest(FlattenBSTtoSortedList_Increasing, false);
 
 FlattenBSTTest(FlattenBSTtoSortedList_Decreasing, true);
 #endif
+
+
+const BinaryTree::ArrayType EXPECTED1 = {4, 2, 1, 3, 5};
+
+
+SIMPLE_TEST(testFlattenPreorder, TestSAMPLE1, EXPECTED1, MakeTheSampleBST());

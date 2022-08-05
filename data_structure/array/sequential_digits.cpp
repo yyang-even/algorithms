@@ -9,10 +9,10 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/sequential-digits/
  *
- * An integer has sequential digits if and only if each digit in the number is one more
- * than the previous digit.
- * Return a sorted list of all the integers in the range [low, high] inclusive that have
- * sequential digits.
+ * An integer has sequential digits if and only if each digit in the number is one more than the
+ * previous digit.
+ * Return a sorted list of all the integers in the range [low, high] inclusive that have sequential
+ * digits.
  * 10 <= low <= high <= 10^9
  */
 auto SequentialDigits_BFS(const int low, const int high) {
@@ -42,7 +42,7 @@ auto SequentialDigits_BFS(const int low, const int high) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType EXPECTED1 = {123, 234};
