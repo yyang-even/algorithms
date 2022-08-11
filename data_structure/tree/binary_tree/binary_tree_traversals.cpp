@@ -268,8 +268,8 @@ inline auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType r
  *
  * @reference   https://www.geeksforgeeks.org/reverse-level-order-traversal/
  *
- * The idea is to print last level first, then second last level, and so on. Like Level order
- * traversal, every level is printed from left to right.
+ * The idea is to print last level first, then second last level, and so on. Like Level order traversal,
+ * every level is printed from left to right.
  */
 inline void GetGivenLevel(const BinaryTree::Node::PointerType node,
                           const unsigned level,
@@ -318,6 +318,11 @@ inline auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::Pointer
 /** ZigZag Tree Traversal
  *
  * @reference   https://www.geeksforgeeks.org/zigzag-tree-traversal/
+ * @reference   Binary Tree Zigzag Level Order Traversal
+ *              https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+ *
+ * Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. (i.e.,
+ * from left to right, then right to left for the next level and alternate between).
  */
 inline auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
                             BinaryTree::ArrayType &outputs) {
@@ -348,15 +353,52 @@ inline auto ZigZagTraversal(const BinaryTree::Node::PointerType root_node,
 }
 
 
-/** Zig Zag Level order traversal of a tree using single queue
- *
- * @reference   https://www.geeksforgeeks.org/zig-zag-level-order-traversal-of-a-tree-using-single-queue/
+inline auto ZigZagTraversal_Deque(const BinaryTree::Node::PointerType root,
+                                  BinaryTree::ArrayType &result) {
+    std::deque<BinaryTree::Node::PointerType> dq;
+    if (root) {
+        dq.push_back(root);
+    }
+
+    bool is_zig = true;
+    while (not dq.empty()) {
+        is_zig = not is_zig;
+        for (int size = dq.size(); size--;) {
+            if (is_zig) {
+                const auto node = dq.front();
+                dq.pop_front();
+                result.push_back(node->value);
+                if (node->right) {
+                    dq.push_back(node->right);
+                }
+                if (node->left) {
+                    dq.push_back(node->left);
+                }
+            } else {
+                const auto node = dq.back();
+                dq.pop_back();
+                result.push_back(node->value);
+                if (node->left) {
+                    dq.push_front(node->left);
+                }
+                if (node->right) {
+                    dq.push_front(node->right);
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ * @reference   Zig Zag Level order traversal of a tree using single queue
+ *              https://www.geeksforgeeks.org/zig-zag-level-order-traversal-of-a-tree-using-single-queue/
  */
 
 
-/** Zig-Zag traversal of a Binary Tree using Recursion
- *
- * @reference   https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
+/**
+ * @reference   Zig-Zag traversal of a Binary Tree using Recursion
+ *              https://www.geeksforgeeks.org/zig-zag-traversal-of-a-binary-tree-using-recursion/
  */
 
 
@@ -427,6 +469,9 @@ BinaryTreeTraversalTest(LevelOrderTraversal_LevelAware, EXPECTED_LEVELORDER);
 
 
 BinaryTreeTraversalTest(ZigZagTraversal, EXPECTED_ZIGZAG);
+
+
+BinaryTreeTraversalTest(ZigZagTraversal_Deque, EXPECTED_ZIGZAG);
 
 
 BinaryTreeTraversalTest(ReverseLevelOrderTraversal_Recursive, EXPECTED_REVERSE_LEVELORDER);
