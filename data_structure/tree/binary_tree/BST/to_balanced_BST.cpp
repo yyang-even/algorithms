@@ -12,6 +12,13 @@ using InitializerType = std::initializer_list<ListType::value_type>;
 /** Sorted Linked List to Balanced BST
  *
  * @reference   https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+ * @reference   Convert Sorted List to Binary Search Tree
+ *              https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+ *
+ * Given the head of a singly linked list where elements are sorted in ascending order, convert it to a
+ * height balanced BST.
+ * For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the
+ * two subtrees of every node never differ by more than 1.
  */
 auto SortedListToBalancedBSTHelper(ListType::const_iterator &cbegin, const int size) {
     if (size <= 0) {
@@ -42,8 +49,8 @@ inline auto SortedListToBalancedBST(const ListType &sorted_list) {
  *              https://www.geeksforgeeks.org/in-place-conversion-of-sorted-dll-to-balanced-bst/
  *
  * Given a Doubly Linked List which has data members sorted in ascending order. Construct a Balanced
- * Binary Search Tree which has same data members as the given Doubly Linked List. The tree must
- * be constructed in-place (No new node should be allocated for tree conversion)
+ * Binary Search Tree which has same data members as the given Doubly Linked List. The tree must be
+ * constructed in-place (No new node should be allocated for tree conversion)
  */
 
 
@@ -82,8 +89,8 @@ inline auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) 
  * @reference   Convert a normal BST to Balanced BST
  *              https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/
  *
- * Given a BST (Binary Search Tree) that may be unbalanced, convert it into a balanced BST that
- * has minimum possible height.
+ * Given a BST (Binary Search Tree) that may be unbalanced, convert it into a balanced BST that has
+ * minimum possible height.
  */
 
 
