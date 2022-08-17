@@ -37,6 +37,23 @@ auto LongestConsecutiveSequence_Sort(ArrayType nums) {
 }
 
 
+auto LongestConsecutiveSequence_Set(const ArrayType &nums) {
+    std::unordered_set<int> s(nums.cbegin(), nums.cend());
+
+    int result = 0;
+    for (const auto n : nums) {
+        if (s.find(n - 1) == s.cend()) {
+            int end = n + 1;
+            for (; s.find(end) != s.cend(); ++end)
+                ;
+            result = std::max(result, end - n);
+        }
+    }
+
+    return result;
+}
+
+
 inline auto Find(const std::unordered_map<int, int> &m, const int x) {
     const auto iter = m.find(x);
     return iter == m.cend() ? 0 : iter->second;
@@ -84,3 +101,10 @@ THE_BENCHMARK(LongestConsecutiveSequence_UnionFind, SAMPLE1);
 SIMPLE_TEST(LongestConsecutiveSequence_UnionFind, TestSAMPLE1, 0, SAMPLE1);
 SIMPLE_TEST(LongestConsecutiveSequence_UnionFind, TestSAMPLE2, 4, SAMPLE2);
 SIMPLE_TEST(LongestConsecutiveSequence_UnionFind, TestSAMPLE3, 9, SAMPLE3);
+
+
+THE_BENCHMARK(LongestConsecutiveSequence_Set, SAMPLE1);
+
+SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE1, 0, SAMPLE1);
+SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE2, 4, SAMPLE2);
+SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE3, 9, SAMPLE3);
