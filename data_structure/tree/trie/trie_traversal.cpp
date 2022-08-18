@@ -29,7 +29,7 @@ std::size_t CountUniqueWords(const Trie::Node *node) {
 }
 
 inline auto CountUniqueWords(const ArrayType &keys) {
-    return BuildTrie(keys).Visit([](const auto & root) {
+    return BuildTrie(keys).Visit([](const auto &root) {
         return CountUniqueWords(&root);
     });
 }
@@ -37,7 +37,7 @@ inline auto CountUniqueWords(const ArrayType &keys) {
 
 inline auto DisplayTrie(const ArrayType &keys) {
     ArrayType results;
-    BuildTrie(keys).Visit([&results](const auto & root) {
+    BuildTrie(keys).Visit([&results](const auto &root) {
         std::string prefix;
         Display(&root, prefix, results);
     });
@@ -50,8 +50,8 @@ inline auto DisplayTrie(const ArrayType &keys) {
  * @reference   Sorting array of strings (or words) using Trie | Set-2 (Handling Duplicates)
  *              https://www.geeksforgeeks.org/sorting-array-strings-words-using-trie-set-2-handling-duplicates/
  *
- * Given an array of strings, print them in alphabetical (dictionary) order. If there are
- * duplicates in input array, we need to print all the occurrences.
+ * Given an array of strings, print them in alphabetical (dictionary) order. If there are duplicates in
+ * input array, we need to print all the occurrences.
  */
 
 
@@ -73,7 +73,7 @@ void Display_BottomUp(const Trie::Node *node, std::string &results) {
 
 inline auto Display_BottomUp(const ArrayType &keys) {
     std::string results;
-    BuildTrie(keys).Visit([&results](const auto & root) {
+    BuildTrie(keys).Visit([&results](const auto &root) {
         Display_BottomUp(&root, results);
     });
 
@@ -105,7 +105,7 @@ void Display_Reverse(const Trie::Node *node, std::string &prefix, ArrayType &res
 
 inline auto Display_Reverse(const ArrayType &keys) {
     ArrayType results;
-    BuildTrie(keys).Visit([&results](const auto & root) {
+    BuildTrie(keys).Visit([&results](const auto &root) {
         std::string prefix;
         Display_Reverse(&root, prefix, results);
     });
@@ -113,7 +113,7 @@ inline auto Display_Reverse(const ArrayType &keys) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {"the", "a", "there", "answer", "any", "by", "bye", "their"};
@@ -123,8 +123,37 @@ const ArrayType SAMPLE2 = {"abc", "xy", "bcd"};
 const ArrayType EXPECTED2 = {"abc", "bcd", "xy"};
 const ArrayType EXPECTED_REVERSE2 = {"xy", "bcd", "abc"};
 
-const ArrayType SAMPLE3 = {"geeks", "for", "geeks", "a", "portal", "to", "learn", "can", "be", "computer", "science", "zoom", "yup", "fire", "in", "data"};
-const ArrayType EXPECTED3 = {"a", "be", "can", "computer", "data", "fire", "for", "geeks", "in", "learn", "portal", "science", "to", "yup", "zoom"};
+const ArrayType SAMPLE3 = {"geeks",
+                           "for",
+                           "geeks",
+                           "a",
+                           "portal",
+                           "to",
+                           "learn",
+                           "can",
+                           "be",
+                           "computer",
+                           "science",
+                           "zoom",
+                           "yup",
+                           "fire",
+                           "in",
+                           "data"};
+const ArrayType EXPECTED3 = {"a",
+                             "be",
+                             "can",
+                             "computer",
+                             "data",
+                             "fire",
+                             "for",
+                             "geeks",
+                             "in",
+                             "learn",
+                             "portal",
+                             "science",
+                             "to",
+                             "yup",
+                             "zoom"};
 
 
 THE_BENCHMARK(CountUniqueWords, SAMPLE1);

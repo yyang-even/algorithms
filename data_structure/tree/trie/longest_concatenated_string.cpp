@@ -13,19 +13,12 @@ using ArrayType = std::vector<std::string_view>;
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 18.7.
  *
- * Given an array of strings arr[], the task is to find the largest string in the array
- * which is made up of the other strings from the array after concatenating one after
- * another.
+ * Given an array of strings arr[], the task is to find the largest string in the array which is made up
+ * of the other strings from the array after concatenating one after another.
  */
-enum class WordType {
-    not_a_word,
-    single,
-    concatenated
-};
+enum class WordType { not_a_word, single, concatenated };
 
-WordType CheckWordType(const Trie::Node *root,
-                       const std::string_view word,
-                       std::size_t i) {
+WordType CheckWordType(const Trie::Node *root, const std::string_view word, std::size_t i) {
     assert(root);
 
     const auto *current = root;
@@ -49,7 +42,7 @@ WordType CheckWordType(const Trie::Node *root,
 }
 
 inline auto LongestConcatenatedString(const ArrayType &arr) {
-    return BuildTrie(arr).Visit([&arr](const auto & root) {
+    return BuildTrie(arr).Visit([&arr](const auto &root) {
         std::string_view longest_concatenated;
         for (const auto &word : arr) {
             if (word.size() > longest_concatenated.size() and
@@ -62,7 +55,7 @@ inline auto LongestConcatenatedString(const ArrayType &arr) {
     });
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {"geeks", "for", "geeksfor", "geeksforgeeks", "geeksforgeeksabc"};

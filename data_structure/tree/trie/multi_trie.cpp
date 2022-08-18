@@ -11,15 +11,14 @@ namespace {
  * @reference   Implement Trie II (Prefix Tree)
  *              https://zhenchaogan.gitbook.io/leetcode-solution/leetcode-1804-implement-trie-ii-prefix-tree
  *
- * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently
- * store and retrieve keys in a dataset of strings. There are various applications of this
- * data structure, such as autocomplete and spellchecker. Implement the Trie class:
+ * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and
+ * retrieve keys in a dataset of strings. There are various applications of this data structure, such as
+ * autocomplete and spellchecker. Implement the Trie class:
  *  Trie() Initializes the trie object.
  *  void insert(String word) Inserts the string word into the trie.
- *  int countWordsEqualTo(String word) Returns the number of instances of the string word
- *      in the trie.
- *  int countWordsStartingWith(String prefix)Returns the number of strings in the trie
- *      that have the string prefix as a prefix.
+ *  int countWordsEqualTo(String word) Returns the number of instances of the string word in the trie.
+ *  int countWordsStartingWith(String prefix)Returns the number of strings in the trie that have the
+ *      string prefix as a prefix.
  *  void erase(String word) Erases the string wordfrom the trie.
  * word and prefix consist only of lowercase English letters.
  */
@@ -28,8 +27,8 @@ class MultiTrie {
     using Node = TrieNode<PrefixCountWordCountPair>;
 
     Node root;
-public:
 
+public:
     void Insert(const std::string_view word) {
         auto *current = &root;
         for (const auto c : word) {
@@ -74,7 +73,7 @@ public:
     }
 };
 
-}//namespace
+} //namespace
 
 
 #ifdef WANT_TESTS
