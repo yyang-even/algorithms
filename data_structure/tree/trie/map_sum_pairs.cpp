@@ -17,10 +17,9 @@ using OutputType = std::vector<int>;
  *
  * Implement the MapSum class:
  *  MapSum() Initializes the MapSum object.
- *  void insert(String key, int val) Inserts the key-val pair into the map. If the key
- *      already existed, the original key-value pair will be overridden to the new one.
- *  int sum(string prefix) Returns the sum of all the pairs' value whose key starts with
- *      the prefix.
+ *  void insert(String key, int val) Inserts the key-val pair into the map. If the key already existed,
+ *      the original key-value pair will be overridden to the new one.
+ *  int sum(string prefix) Returns the sum of all the pairs' value whose key starts with the prefix.
  */
 auto MapSumPairs_Naive(const ArrayType &operations) {
     std::unordered_map<std::string_view, int> hash_table;
@@ -90,7 +89,7 @@ auto MapSumPairs_Trie(const ArrayType &operations) {
             for (const auto c : str) {
                 const auto index = Node::ToIndex(c);
                 if (not current->children[index]) {
-                    current->children[index].reset(new Node{});
+                    current->children[index].reset(new Node {});
                 }
 
                 current = current->children[index].get();
@@ -104,10 +103,11 @@ auto MapSumPairs_Trie(const ArrayType &operations) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
-const ArrayType SAMPLE1 = {{true, "apple", 3}, {false, "ap", 0}, {true, "app", 2}, {false, "app", 0}};
+const ArrayType SAMPLE1 = {
+    {true, "apple", 3}, {false, "ap", 0}, {true, "app", 2}, {false, "app", 0}};
 const OutputType EXPECTED1 = {3, 5};
 
 

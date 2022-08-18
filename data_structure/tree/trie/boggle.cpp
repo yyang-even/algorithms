@@ -17,10 +17,10 @@ namespace {
  * @reference   Boggle | Set 2 (Using Trie)
  *              https://www.geeksforgeeks.org/boggle-set-2-using-trie/
  *
- * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where every
- * cell has one character. Find all possible words that can be formed by a sequence of adjacent
- * characters. Note that we can move to any of 8 adjacent characters, but a word should not have
- * multiple instances of the same cell.
+ * Given a dictionary, a method to do a lookup in the dictionary and a M x N board where every cell has
+ * one character. Find all possible words that can be formed by a sequence of adjacent characters. Note
+ * that we can move to any of 8 adjacent characters, but a word should not have multiple instances of
+ * the same cell.
  */
 void Boggle(const Trie::Node::PointerType node,
             const BoardType &board,
@@ -103,10 +103,9 @@ inline auto Boggle(const ArrayType &keys, const BoardType &board) {
  * @reference   Word Search
  *              https://leetcode.com/problems/word-search/
  *
- * Given an m x n grid of characters board and a string word, return true if word exists in the
- * grid.
- * The word can be constructed from letters of sequentially adjacent cells, where adjacent cells
- * are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+ * Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+ * The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are
+ * horizontally or vertically neighboring. The same letter cell may not be used more than once.
  * Follow up: Could you use search pruning to make your solution faster with a larger board?
  */
 auto WordSearch(BoardType &board,
@@ -151,10 +150,10 @@ auto WordSearch(BoardType board, const std::string_view word) {
  * @reference   Word Search II
  *              https://leetcode.com/problems/word-search-ii/
  *
- * Given an m x n board of characters and a list of strings words, return all words on the board.
- * Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells
- * are horizontally or vertically neighboring. The same letter cell may not be used more than once
- * in a word.
+ * Given an m x n board of characters and a list of strings words, return all words on the board.  Each
+ * word must be constructed from letters of sequentially adjacent cells, where adjacent cells are
+ * horizontally or vertically neighboring. The same letter cell may not be used more than once in a
+ * word.
  * words[i] consists of lowercase English letters.
  * All the strings of words are unique.
  */
@@ -220,9 +219,9 @@ auto ManyWordSearch(BoardType board, const ArrayType &words) {
  * Design a special dictionary that searches the words in it by a prefix and a suffix.
  * Implement the WordFilter class:
  *  WordFilter(string[] words) Initializes the object with the words in the dictionary.
- *  f(string prefix, string suffix) Returns the index of the word in the dictionary, which has
- *      the prefix prefix and the suffix suffix. If there is more than one valid index, return
- *      the largest of them. If there is no such word in the dictionary, return -1.
+ *  f(string prefix, string suffix) Returns the index of the word in the dictionary, which has the
+ *      prefix prefix and the suffix suffix. If there is more than one valid index, return the largest of
+ *      them. If there is no such word in the dictionary, return -1.
  */
 class WordFilter {
     using NodeType = TrieNode<int>;

@@ -31,7 +31,8 @@ struct TrieNode {
     std::vector<PointerType> children;
     T value = {};
 
-    explicit TrieNode(const std::size_t size = 26) : children(size, PointerType {}) {}
+    explicit TrieNode(const std::size_t size = 26) : children(size, PointerType {}) {
+    }
 
     auto Empty() const {
         for (const auto &kid : children) {
@@ -53,13 +54,15 @@ struct TrieNode {
 };
 
 
-template<typename NodeType>
+template<typename NodeType, typename Iterator>
 void TrieInsert(NodeType &root,
-                const std::string_view key,
+                const Iterator begin,
+                const Iterator end,
                 const typename NodeType::ValueType value) {
     auto *current = &root;
 
-    for (const auto c : key) {
+    for (auto iter = begin; iter != end; ++iter) {
+        const auto c = *iter;
         const auto index = NodeType::ToIndex(c);
         if (not current->children[index]) {
             current->children[index].reset(new NodeType {root.children.size()});
@@ -69,6 +72,13 @@ void TrieInsert(NodeType &root,
     }
 
     current->value = value;
+}
+
+template<typename NodeType>
+void TrieInsert(NodeType &root,
+                const std::string_view key,
+                const typename NodeType::ValueType value) {
+    TrieInsert(root, key.cbegin(), key.cend(), value);
 }
 
 
@@ -112,7 +122,8 @@ class Trie {
 public:
     using Node = TrieNode<bool>;
 
-    explicit Trie(const std::size_t size = 26) : root(size) {}
+    explicit Trie(const std::size_t size = 26) : root(size) {
+    }
 
 
     void Insert(const std::string_view key) {

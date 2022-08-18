@@ -14,8 +14,8 @@ namespace {
  *
  * Given a text string and words (a list of strings), return all index pairs [i, j] so that the
  * substring text[i]...text[j] is in the list of words.
- * Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of
- * ties sort them by their second coordinate).
+ * Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of ties sort
+ * them by their second coordinate).
  */
 auto IndexPairsOfString(const std::string_view text, const ArrayType &words) {
     return BuildTrie(words).Visit([text](const auto &root) {
