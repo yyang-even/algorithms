@@ -10,12 +10,10 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/check-given-number-power-d-d-power-2/
  *
- * Given an integer n, find whether it is a power of d or not, where d is itself a power
- * of 2.
+ * Given an integer n, find whether it is a power of d or not, where d is itself a power of 2.
  */
 inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
-    return IsPowerOf2(n) and
-           (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
+    return IsPowerOf2(n) and (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
 }
 
 
@@ -28,6 +26,8 @@ inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  * @reference   Power of Four
  *              https://leetcode.com/problems/power-of-four/
  *
+ * Given an integer n, return true if it is a power of four. Otherwise, return false.
+ * An integer n is a power of four, if there exists an integer x such that n == 4^x.
  * Follow up: Could you solve it without loops/recursion?
  *
  * @reference   Nim Game
@@ -38,11 +38,16 @@ inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  *  You and your friend will alternate taking turns, and you go first.
  *  On each turn, the person whose turn it is will remove 1 to 3 stones from the heap.
  *  The one who removes the last stone is the winner.
- * Given n, the number of stones in the heap, return true if you can win the game
- * assuming both you and your friend play optimally, otherwise return false.
+ * Given n, the number of stones in the heap, return true if you can win the game assuming both you and
+ * your friend play optimally, otherwise return false.
  */
 inline constexpr auto IsPowerOf4(const unsigned num) {
     return IsPowerOfPowerOf2(num, 4);
+}
+
+
+inline constexpr auto IsPowerOf4_Const(const unsigned num) {
+    return IsPowerOf2(num) and (num & 0x55555555);
 }
 
 
@@ -61,7 +66,7 @@ inline constexpr auto IsPowerOf8_Const(const unsigned num) {
     return IsPowerOf2(num) and not(num & 0xB6DB6DB6);
 }
 
-}//namespace
+} //namespace
 
 
 SIMPLE_BENCHMARK(IsPowerOf4, Sample1, 1);
@@ -73,6 +78,16 @@ SIMPLE_TEST(IsPowerOf4, TestSample3, false, std::numeric_limits<int>::max());
 SIMPLE_TEST(IsPowerOf4, TestSample4, false, 20);
 SIMPLE_TEST(IsPowerOf4, TestSample5, true, 16);
 SIMPLE_TEST(IsPowerOf4, TestSample6, true, 64);
+
+
+SIMPLE_BENCHMARK(IsPowerOf4_Const, Sample2, 0);
+
+SIMPLE_TEST(IsPowerOf4_Const, TestSample1, true, 1);
+SIMPLE_TEST(IsPowerOf4_Const, TestSample2, false, 0);
+SIMPLE_TEST(IsPowerOf4_Const, TestSample3, false, std::numeric_limits<int>::max());
+SIMPLE_TEST(IsPowerOf4_Const, TestSample4, false, 20);
+SIMPLE_TEST(IsPowerOf4_Const, TestSample5, true, 16);
+SIMPLE_TEST(IsPowerOf4_Const, TestSample6, true, 64);
 
 
 THE_BENCHMARK(IsPowerOfPowerOf2, 8, 2);
