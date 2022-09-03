@@ -85,8 +85,8 @@ inline auto testOneDivisorOfN_PollardsRho(const long N) {
  */
 inline auto ProductOfUniquePrimeFactorsOfN(const unsigned N) {
     const auto unique_primes = UniquePrimeFactorsOf(N);
-    return std::accumulate(unique_primes.cbegin(), unique_primes.cend(), 1u,
-                           std::multiplies<unsigned>());
+    return std::accumulate(
+        unique_primes.cbegin(), unique_primes.cend(), 1u, std::multiplies<unsigned>());
 }
 
 
@@ -101,15 +101,14 @@ using Query = std::pair<unsigned, unsigned>;
 
 auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
     const auto max_number =
-        std::max_element(queries.cbegin(), queries.cend(),
-    [](const auto & lhs, const auto & rhs) {
-        return lhs.first < rhs.first;
-    })->first;
+        std::max_element(queries.cbegin(), queries.cend(), [](const auto &lhs, const auto &rhs) {
+            return lhs.first < rhs.first;
+        })->first;
 
     const auto smallest_prime_factors = LeastPrimeFactorOfNumbers(max_number);
 
     std::vector<unsigned> outputs;
-    for (const auto [number, N] : queries) {
+    for (const auto &[number, N] : queries) {
         const auto prime_factors = PrimeFactorsOfN_Sieve(number, smallest_prime_factors);
         outputs.push_back(prime_factors[N - 1]);
     }
@@ -117,7 +116,7 @@ auto QueryNthPrimeFactorOfNumbers(const std::vector<Query> &queries) {
     return outputs;
 }
 
-}//namespace
+} //namespace
 
 
 constexpr unsigned LOWER = 1;
@@ -171,5 +170,4 @@ const std::vector<unsigned> EXPECTED_QUERIES = {2, 5, 3, 2};
 
 THE_BENCHMARK(QueryNthPrimeFactorOfNumbers, SAMPLE_QUERIES);
 
-SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES,
-            SAMPLE_QUERIES);
+SIMPLE_TEST(QueryNthPrimeFactorOfNumbers, TestSAMPLE1, EXPECTED_QUERIES, SAMPLE_QUERIES);

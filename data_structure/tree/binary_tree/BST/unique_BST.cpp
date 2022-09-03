@@ -104,8 +104,8 @@ auto AllUniqueBST(const int start, const int end) {
         const auto left_sub_trees = AllUniqueBST(start, i - 1);
         const auto right_sub_trees = AllUniqueBST(i + 1, end);
 
-        for (const auto left : left_sub_trees) {
-            for (const auto right : right_sub_trees) {
+        for (const auto &left : left_sub_trees) {
+            for (const auto &right : right_sub_trees) {
                 const auto node = std::make_shared<BinaryTree::Node>(i);
                 node->left = left;
                 node->right = right;
@@ -125,7 +125,7 @@ inline auto AllUniqueBSTSize(const int n) {
     return AllUniqueBST(1, n).size();
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(CountUniqueBST_Memo, 3);

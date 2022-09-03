@@ -76,8 +76,8 @@ auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
  * @reference   Block swap algorithm for array rotation
  *              https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
  */
-inline constexpr void BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2,
-                                ArrayType::size_type n) {
+inline constexpr void
+BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2, ArrayType::size_type n) {
     while (n--) {
         std::iter_swap(begin1++, begin2++);
     }
@@ -101,8 +101,7 @@ constexpr void LeftRotate_BlockSwap_Recursive(const ArrayType::iterator begin,
     }
 }
 
-inline auto
-LeftRotate_BlockSwap_Recursive(ArrayType arr, const ArrayType::size_type d) {
+inline auto LeftRotate_BlockSwap_Recursive(ArrayType arr, const ArrayType::size_type d) {
     assert(d < arr.size());
 
     LeftRotate_BlockSwap_Recursive(arr.begin(), d, arr.size());
@@ -193,8 +192,7 @@ inline auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type 
  */
 inline auto LeftRotate_SinglyList(std::forward_list<int> elements,
                                   const std::forward_list<int>::size_type k) {
-    return SublistLeftRotate_SinglyList(
-               elements, elements.cbefore_begin(), elements.cend(), k);
+    return SublistLeftRotate_SinglyList(elements, elements.cbefore_begin(), elements.cend(), k);
 }
 
 
@@ -245,8 +243,7 @@ inline auto RotateRight(const SinglyLinkedList::Node::PointerType head, int k) {
  * Given a doubly linked list, rotate the linked list counter-clockwise by N nodes. Here
  * N is a given positive integer and is smaller than the count of nodes in linked list.
  */
-inline auto LeftRotate_DoublyList(std::list<int> elements,
-                                  const std::list<int>::size_type k) {
+inline auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_type k) {
     assert(k < elements.size());
 
     auto mid = std::next(elements.cbegin(), k);
@@ -311,7 +308,7 @@ auto MultipleLeftRotate_n(const ArrayType &elements, const ArrayType &queries) {
  */
 auto StrShifts(std::string s, const ShiftArrayType &shifts) {
     int count = 0;
-    for (const auto [direction, amount] : shifts) {
+    for (const auto &[direction, amount] : shifts) {
         if (direction == 0) {
             count += amount;
         } else {
@@ -325,7 +322,7 @@ auto StrShifts(std::string s, const ShiftArrayType &shifts) {
     return s;
 }
 
-}//namespace
+} //namespace
 
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
@@ -358,15 +355,13 @@ SIMPLE_TEST(LeftRotate_GCD, TestSample7, ExpectedArray7, SampleArray7, 3);
 THE_BENCHMARK(LeftRotate_BlockSwap_Recursive, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample2, ExpectedArray2,
-            SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_BlockSwap_Recursive, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
 THE_BENCHMARK(LeftRotate_BlockSwap_Iterative, SampleArray2, 3);
 
 SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample1, ExpectedArray, SampleArray, 2);
-SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample2, ExpectedArray2,
-            SampleArray2, 3);
+SIMPLE_TEST(LeftRotate_BlockSwap_Iterative, TestSample2, ExpectedArray2, SampleArray2, 3);
 
 
 THE_BENCHMARK(LeftRotate_Reversal, SampleArray2, 3);
@@ -405,24 +400,25 @@ SIMPLE_TEST(LeftRotate_DoublyList, TestSample2, ExpectedArray2, SampleArray2, 3)
 
 constexpr InitializerType SampleArray5 = {1, 3, 5, 7, 9};
 constexpr InitializerType SampleQuery5 = {1, 3, 4, 6, 14};
-const std::vector<ArrayType> ExpectedMultiple5 = {{3, 5, 7, 9, 1},
+// clang-format off
+const std::vector<ArrayType> ExpectedMultiple5 = {
+    {3, 5, 7, 9, 1},
     {7, 9, 1, 3, 5},
     {9, 1, 3, 5, 7},
     {3, 5, 7, 9, 1},
     {9, 1, 3, 5, 7}
 };
+// clang-format on
 
 
 THE_BENCHMARK(MultipleLeftRotate_2n, SampleArray5, SampleQuery5);
 
-SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5,
-            SampleArray5, SampleQuery5);
+SIMPLE_TEST(MultipleLeftRotate_2n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
 
 
 THE_BENCHMARK(MultipleLeftRotate_n, SampleArray5, SampleQuery5);
 
-SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5,
-            SampleArray5, SampleQuery5);
+SIMPLE_TEST(MultipleLeftRotate_n, TestSample, ExpectedMultiple5, SampleArray5, SampleQuery5);
 
 
 const ShiftArrayType SAMPLE1S = {{0, 1}, {1, 2}};
@@ -437,7 +433,5 @@ SIMPLE_TEST(StrShifts, TestSample2, "bca", "abc", SAMPLE2S);
 SIMPLE_TEST(StrShifts, TestSample3, "efgabcd", "abcdefg", SAMPLE3S);
 
 
-SIMPLE_TEST(TestHelper, TestRightRotateSample1, ExpectedArrayR1,
-            RotateRight, SampleArray3, 3);
-SIMPLE_TEST(TestHelper, TestRightRotateSample2, ExpectedArrayR2,
-            RotateRight, SampleArray4, 2);
+SIMPLE_TEST(TestHelper, TestRightRotateSample1, ExpectedArrayR1, RotateRight, SampleArray3, 3);
+SIMPLE_TEST(TestHelper, TestRightRotateSample2, ExpectedArrayR2, RotateRight, SampleArray4, 2);

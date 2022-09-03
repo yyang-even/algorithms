@@ -49,7 +49,7 @@ private:
 auto testFreqStack(const OperationArray &operations) {
     FreqStack s;
     ArrayType result;
-    for (const auto [is_push, v] : operations) {
+    for (const auto &[is_push, v] : operations) {
         if (is_push) {
             s.push(v);
         } else {

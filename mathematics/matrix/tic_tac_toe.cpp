@@ -37,7 +37,7 @@ std::string_view TicTacToeWinner(const ArrayType &moves) {
     int anti_diagonal = 0;
     int player = 1;
 
-    for (const auto [i, j] : moves) {
+    for (const auto &[i, j] : moves) {
         rows[i] += player;
         columns[j] += player;
         if (i == j) {
@@ -47,8 +47,8 @@ std::string_view TicTacToeWinner(const ArrayType &moves) {
             anti_diagonal += player;
         }
 
-        if (std::abs(rows[i]) == N or std::abs(columns[j]) == N or
-            std::abs(diagonal) == N or std::abs(anti_diagonal) == N) {
+        if (std::abs(rows[i]) == N or std::abs(columns[j]) == N or std::abs(diagonal) == N or
+            std::abs(anti_diagonal) == N) {
             return player == 1 ? "A" : "B";
         }
 
@@ -58,12 +58,13 @@ std::string_view TicTacToeWinner(const ArrayType &moves) {
     return moves.size() == N * N ? "Draw" : "Pending";
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {{0, 0}, {2, 0}, {1, 1}, {2, 1}, {2, 2}};
 const ArrayType SAMPLE2 = {{0, 0}, {1, 1}, {0, 1}, {0, 2}, {1, 0}, {2, 0}};
-const ArrayType SAMPLE3 = {{0, 0}, {1, 1}, {2, 0}, {1, 0}, {1, 2}, {2, 1}, {0, 1}, {0, 2}, {2, 2}};
+const ArrayType SAMPLE3 = {
+    {0, 0}, {1, 1}, {2, 0}, {1, 0}, {1, 2}, {2, 1}, {0, 1}, {0, 2}, {2, 2}};
 const ArrayType SAMPLE4 = {{0, 0}, {1, 1}};
 
 

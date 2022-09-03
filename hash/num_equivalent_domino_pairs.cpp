@@ -19,7 +19,7 @@ using ArrayType = std::vector<std::pair<int, int>>;
  */
 auto NumEquivalentDominoPairs(const ArrayType &dominoes) {
     std::unordered_map<std::pair<int, int>, int, PairHash> counts;
-    for (const auto [i, j] : dominoes) {
+    for (const auto &[i, j] : dominoes) {
         if (i > j) {
             ++counts[std::pair(j, i)];
         } else {
@@ -28,14 +28,14 @@ auto NumEquivalentDominoPairs(const ArrayType &dominoes) {
     }
 
     int result = 0;
-    for (const auto [_, c] : counts) {
+    for (const auto &[_, c] : counts) {
         result += (c - 1) * c / 2;
     }
 
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {{1, 2}, {2, 1}, {3, 4}, {5, 6}};

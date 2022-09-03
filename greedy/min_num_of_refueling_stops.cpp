@@ -48,7 +48,7 @@ auto MinNumOfRefuelingStops_OneGreedy(const int target, int tank, const ArrayTyp
     int prev = 0;
     std::priority_queue<int> max_heap;
 
-    for (const auto [location, capacity] : stations) {
+    for (const auto &[location, capacity] : stations) {
         tank -= location - prev;
         while (not max_heap.empty() and tank < 0) {
             tank += max_heap.top();

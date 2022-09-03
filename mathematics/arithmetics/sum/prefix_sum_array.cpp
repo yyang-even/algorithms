@@ -11,7 +11,9 @@ using RangeArray = std::vector<RangeType>;
 using UpdateType = std::tuple<std::size_t, std::size_t, int>;
 using UpdateArray = std::vector<UpdateType>;
 
-void update(ArrayType &elements, const std::size_t left, const std::size_t right,
+void update(ArrayType &elements,
+            const std::size_t left,
+            const std::size_t right,
             const int increment) {
     elements[left] += increment;
     if (right + 1 < elements.size()) {
@@ -27,11 +29,12 @@ void update(ArrayType &elements, const std::size_t left, const std::size_t right
  * add queries, which should be applied to this array. We need to print final updated
  * array as our result.
  */
-auto RangesOfAdditions(const ArrayType::size_type size, const ArrayType::value_type d,
+auto RangesOfAdditions(const ArrayType::size_type size,
+                       const ArrayType::value_type d,
                        const RangeArray &ranges) {
     ArrayType elements(size, 0);
 
-    for (const auto [left, right] : ranges) {
+    for (const auto &[left, right] : ranges) {
         update(elements, left, right, d);
     }
 
@@ -52,7 +55,7 @@ auto RangesOfAdditions(const ArrayType::size_type size, const ArrayType::value_t
 auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
     ArrayType elements(N, 0);
 
-    for (const auto [left, right, inc] : updates) {
+    for (const auto &[left, right, inc] : updates) {
         update(elements, left, right, inc);
     }
 
@@ -69,12 +72,15 @@ auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
  * from the start to end index in the given array by the given value d. A linear time
  * efficient solution is required for handling such multiple queries.
  */
-inline auto
-RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
-                  const RangeArray &ranges) {
+inline auto RangesOfAdditions(const ArrayType &elements,
+                              const ArrayType::value_type d,
+                              const RangeArray &ranges) {
     auto sums = RangesOfAdditions(elements.size(), d, ranges);
 
-    std::transform(sums.cbegin(), sums.cend(), elements.cbegin(), sums.begin(),
+    std::transform(sums.cbegin(),
+                   sums.cend(),
+                   elements.cbegin(),
+                   sums.begin(),
                    std::plus<ArrayType::value_type> {});
 
     return sums;
@@ -106,8 +112,7 @@ RangesOfAdditions(const ArrayType &elements, const ArrayType::value_type d,
  *      increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
  */
-inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
-                                      const RangeArray &ranges) {
+inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const RangeArray &ranges) {
     const auto prefix_sums = RangesOfAdditions(size, 100, ranges);
     return *std::max_element(prefix_sums.cbegin(), prefix_sums.cend());
 }
@@ -122,9 +127,8 @@ inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size,
  * 0 <= x < ai and 0 <= y < bi. Count and return the number of maximum integers in the
  * matrix after performing all the operations.
  */
-auto
-CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &operations) {
-    for (const auto [i, j] : operations) {
+auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &operations) {
+    for (const auto &[i, j] : operations) {
         m = std::min(m, i);
         n = std::min(n, j);
     }
@@ -183,7 +187,7 @@ CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &opera
  * 1 <= left <= right <= 50
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {10, 20, 10, 5, 15};

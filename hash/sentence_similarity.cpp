@@ -26,14 +26,15 @@ using PairArray = std::vector<std::pair<std::string_view, std::string_view>>;
  * sentences can only be similar if they have the same number of words. So a sentence
  * like words1 = ["great"] can never be similar to words2 = ["doubleplus","good"].
  */
-auto SentenceSimilarity(const ArrayType &one, const ArrayType &another,
+auto SentenceSimilarity(const ArrayType &one,
+                        const ArrayType &another,
                         const PairArray &similar_pairs) {
     if (one.size() != another.size()) {
         return false;
     }
 
     std::unordered_map<std::string_view, std::unordered_set<std::string_view>> hash;
-    for (const auto [x, y] : similar_pairs) {
+    for (const auto &[x, y] : similar_pairs) {
         hash[x].insert(y);
         hash[y].insert(x);
     }
@@ -66,29 +67,27 @@ auto SentenceSimilarity(const ArrayType &one, const ArrayType &another,
  * the same number of words. So a sentence like words1 = ["great"] can never be similar
  * to words2 = ["doubleplus","good"].
  */
-inline auto
-emplace(std::unordered_map<std::string_view, int> &index_map,
-        const std::string_view word) {
+inline auto emplace(std::unordered_map<std::string_view, int> &index_map,
+                    const std::string_view word) {
     return index_map.emplace(word, index_map.size()).first->second;
 }
 
-inline auto
-getIndex(const std::unordered_map<std::string_view, int> &index_map,
-         const std::string_view word) {
+inline auto getIndex(const std::unordered_map<std::string_view, int> &index_map,
+                     const std::string_view word) {
     const auto iter = index_map.find(word);
     return iter == index_map.cend() ? -1 : iter->second;
 }
 
-auto
-SentenceSimilarityTransitive_DisjointSet(const ArrayType &one, const ArrayType &another,
-                                         const PairArray &similar_pairs) {
+auto SentenceSimilarityTransitive_DisjointSet(const ArrayType &one,
+                                              const ArrayType &another,
+                                              const PairArray &similar_pairs) {
     if (one.size() != another.size()) {
         return false;
     }
 
     DisjointSet_Array disjoint_set(similar_pairs.size() * 2);
     std::unordered_map<std::string_view, int> index_map;
-    for (const auto [x, y] : similar_pairs) {
+    for (const auto &[x, y] : similar_pairs) {
         const auto u = emplace(index_map, x);
         const auto v = emplace(index_map, y);
         disjoint_set.Union(u, v);
@@ -126,19 +125,16 @@ SentenceSimilarityTransitive_DisjointSet(const ArrayType &one, const ArrayType &
  */
 constexpr auto SplitIntoWords = SplitIntoWords_StringStream<std::deque<std::string>>;
 
-auto
-SentenceSimilarityPrefixSuffix(const std::string &one, const std::string &another) {
+auto SentenceSimilarityPrefixSuffix(const std::string &one, const std::string &another) {
     auto one_q = SplitIntoWords(one);
     auto another_q = SplitIntoWords(another);
 
-    while (not one_q.empty() and not another_q.empty() and
-           one_q.front() == another_q.front()) {
+    while (not one_q.empty() and not another_q.empty() and one_q.front() == another_q.front()) {
         one_q.pop_front();
         another_q.pop_front();
     }
 
-    while (not one_q.empty() and not another_q.empty() and
-           one_q.back() == another_q.back()) {
+    while (not one_q.empty() and not another_q.empty() and one_q.back() == another_q.back()) {
         one_q.pop_back();
         another_q.pop_back();
     }
@@ -146,26 +142,18 @@ SentenceSimilarityPrefixSuffix(const std::string &one, const std::string &anothe
     return one_q.empty() or another_q.empty();
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1L = {"great", "acting", "skills"};
 const ArrayType SAMPLE1R = {"fine", "drama", "talent"};
-const PairArray SAMPLE1P = {
-    {"great", "fine"},
-    {"drama", "acting"},
-    {"skills", "talent"}
-};
+const PairArray SAMPLE1P = {{"great", "fine"}, {"drama", "acting"}, {"skills", "talent"}};
 
 const ArrayType SAMPLE2 = {"great"};
 const PairArray SAMPLE2P = {};
 
 const PairArray SAMPLE4P = {
-    {"great", "good"},
-    {"fine", "good"},
-    {"drama", "acting"},
-    {"skills", "talent"}
-};
+    {"great", "good"}, {"fine", "good"}, {"drama", "acting"}, {"skills", "talent"}};
 
 
 THE_BENCHMARK(SentenceSimilarity, SAMPLE1L, SAMPLE1R, SAMPLE1P);
@@ -177,21 +165,19 @@ SIMPLE_TEST(SentenceSimilarity, TestSAMPLE3, false, SAMPLE1L, SAMPLE2, SAMPLE1P)
 
 THE_BENCHMARK(SentenceSimilarityTransitive_DisjointSet, SAMPLE1L, SAMPLE1R, SAMPLE1P);
 
-SIMPLE_TEST(SentenceSimilarityTransitive_DisjointSet, TestSAMPLE1, true,
-            SAMPLE1L, SAMPLE1R, SAMPLE1P);
-SIMPLE_TEST(SentenceSimilarityTransitive_DisjointSet, TestSAMPLE2, true,
-            SAMPLE2, SAMPLE2, SAMPLE2P);
-SIMPLE_TEST(SentenceSimilarityTransitive_DisjointSet, TestSAMPLE3, false,
-            SAMPLE1L, SAMPLE2, SAMPLE1P);
-SIMPLE_TEST(SentenceSimilarityTransitive_DisjointSet, TestSAMPLE4, true,
-            SAMPLE1L, SAMPLE1R, SAMPLE4P);
+SIMPLE_TEST(
+    SentenceSimilarityTransitive_DisjointSet, TestSAMPLE1, true, SAMPLE1L, SAMPLE1R, SAMPLE1P);
+SIMPLE_TEST(
+    SentenceSimilarityTransitive_DisjointSet, TestSAMPLE2, true, SAMPLE2, SAMPLE2, SAMPLE2P);
+SIMPLE_TEST(
+    SentenceSimilarityTransitive_DisjointSet, TestSAMPLE3, false, SAMPLE1L, SAMPLE2, SAMPLE1P);
+SIMPLE_TEST(
+    SentenceSimilarityTransitive_DisjointSet, TestSAMPLE4, true, SAMPLE1L, SAMPLE1R, SAMPLE4P);
 
 
 THE_BENCHMARK(SentenceSimilarityPrefixSuffix, "My name is Haley", "My Haley");
 
-SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE1, true,
-            "My name is Haley", "My Haley");
+SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE1, true, "My name is Haley", "My Haley");
 SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE2, false, "of", "A lot of words");
-SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE3, true,
-            "Eating right now", "Eating");
+SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE3, true, "Eating right now", "Eating");
 SIMPLE_TEST(SentenceSimilarityPrefixSuffix, TestSAMPLE4, false, "Lucky", "Lucccky");

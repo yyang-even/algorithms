@@ -40,14 +40,13 @@ auto SortByFrequency(ArrayType elements) {
     for (ArrayType::size_type i = 0; i < N; ++i) {
         const auto elem = elements[i];
         if (const auto iter = counter.find(elem); iter == counter.end()) {
-            counter.emplace(elem, MinIndex_Count_Pair{i, 1});
+            counter.emplace(elem, MinIndex_Count_Pair {i, 1});
         } else {
             ++(iter->second.second);
         }
     }
 
-    std::sort(elements.begin(), elements.end(),
-    [&counter](const auto & lhs, const auto & rhs) {
+    std::sort(elements.begin(), elements.end(), [&counter](const auto &lhs, const auto &rhs) {
         const auto [lhs_index, lhs_count] = counter.at(lhs);
         const auto [rhs_index, rhs_count] = counter.at(rhs);
         if (lhs_count == rhs_count) {
@@ -67,10 +66,10 @@ auto SortByFrequency(ArrayType elements) {
  */
 inline auto SortByFrequency_Stable(ArrayType elements) {
     const auto counter = ToFrequencyHashTable(elements);
-    std::stable_sort(elements.begin(), elements.end(),
-    [&counter](const auto & lhs, const auto & rhs) {
-        return counter.at(lhs) > counter.at(rhs);
-    });
+    std::stable_sort(
+        elements.begin(), elements.end(), [&counter](const auto &lhs, const auto &rhs) {
+            return counter.at(lhs) > counter.at(rhs);
+        });
 
     return elements;
 }
@@ -96,7 +95,7 @@ auto SortByFrequency_Unstable(const std::string_view s) {
     std::sort(char_groups.begin(), char_groups.end(), std::greater<FrequencyCharPair> {});
 
     std::string result;
-    for (const auto [frequency, c] : char_groups) {
+    for (const auto &[frequency, c] : char_groups) {
         result.append(frequency, c);
     }
 
@@ -139,7 +138,7 @@ auto SortByFrequency_Unstable_BucketSort(const std::string_view s) {
  * Return the final order of the logs.
  */
 auto SortLogs(std::vector<std::string_view> logs) {
-    std::stable_sort(logs.begin(), logs.end(), [](const auto & one, const auto & another) {
+    std::stable_sort(logs.begin(), logs.end(), [](const auto &one, const auto &another) {
         const auto isOneDigit = std::isdigit(one.back());
         const auto isAnotherDigit = std::isdigit(another.back());
 
@@ -177,7 +176,7 @@ auto SortLogs(std::vector<std::string_view> logs) {
  * the array's size.
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 5, 2, 8, 5, 6, 8, 8};
@@ -207,34 +206,14 @@ SIMPLE_TEST(SortByFrequency_Stable, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
 const std::vector<std::string_view> SAMPLE1L = {
-    "dig1 8 1 5 1",
-    "let1 art can",
-    "dig2 3 6",
-    "let2 own kit dig",
-    "let3 art zero"
-};
+    "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero"};
 const std::vector<std::string_view> EXPECTED1L = {
-    "let1 art can",
-    "let3 art zero",
-    "let2 own kit dig",
-    "dig1 8 1 5 1",
-    "dig2 3 6"
-};
+    "let1 art can", "let3 art zero", "let2 own kit dig", "dig1 8 1 5 1", "dig2 3 6"};
 
 const std::vector<std::string_view> SAMPLE2L = {
-    "a1 9 2 3 1",
-    "g1 act car",
-    "zo4 4 7",
-    "ab1 off key dog",
-    "a8 act zoo"
-};
+    "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo"};
 const std::vector<std::string_view> EXPECTED2L = {
-    "g1 act car",
-    "a8 act zoo",
-    "ab1 off key dog",
-    "a1 9 2 3 1",
-    "zo4 4 7"
-};
+    "g1 act car", "a8 act zoo", "ab1 off key dog", "a1 9 2 3 1", "zo4 4 7"};
 
 
 THE_BENCHMARK(SortLogs, SAMPLE1L);

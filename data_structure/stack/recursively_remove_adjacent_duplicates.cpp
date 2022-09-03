@@ -55,7 +55,7 @@ auto RemoveAdjacentKDuplicates_Stack(const std::string_view text, const int K) {
     }
 
     std::string results;
-    for (const auto [c, count] : the_stack) {
+    for (const auto &[c, count] : the_stack) {
         results.append(count, c);
     }
 

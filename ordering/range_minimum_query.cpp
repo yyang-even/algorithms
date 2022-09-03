@@ -43,16 +43,14 @@ auto buildRMQSparseTable(const ArrayType &elements) {
     return sparse_table;
 }
 
-auto
-RangeMinimumQuery_SparseTable(const ArrayType &elements, const RangeArray &ranges) {
+auto RangeMinimumQuery_SparseTable(const ArrayType &elements, const RangeArray &ranges) {
     const auto sparse_table = buildRMQSparseTable(elements);
 
     ArrayType results;
-    for (const auto [left, right] : ranges) {
+    for (const auto &[left, right] : ranges) {
         int j = std::log2(right - left + 1);
 
-        if (elements[sparse_table[left][j]] <=
-            elements[sparse_table[right - (1 << j) + 1][j]]) {
+        if (elements[sparse_table[left][j]] <= elements[sparse_table[right - (1 << j) + 1][j]]) {
             results.push_back(elements[sparse_table[left][j]]);
         } else {
             results.push_back(elements[sparse_table[right - (1 << j) + 1][j]]);
@@ -67,8 +65,11 @@ RangeMinimumQuery_SparseTable(const ArrayType &elements, const RangeArray &range
  * @reference   Segment Tree | Set 2 (Range Minimum Query)
  *              https://www.geeksforgeeks.org/segment-tree-set-1-range-minimum-query/
  */
-auto buildST_Recursive(const ArrayType &nums, const int left, const int right,
-                       ArrayType &segment_tree, const int node) {
+auto buildST_Recursive(const ArrayType &nums,
+                       const int left,
+                       const int right,
+                       ArrayType &segment_tree,
+                       const int node) {
     if (left == right) {
         return segment_tree[node] = nums[left];
     }
@@ -85,9 +86,12 @@ inline auto buildST_Recursive(const ArrayType &nums) {
     return segment_tree;
 }
 
-auto RangeMinimumQuery_ST_Recursive(const ArrayType &segment_tree, const int node,
-                                    const int left, const int right,
-                                    const int query_left, const int query_right) {
+auto RangeMinimumQuery_ST_Recursive(const ArrayType &segment_tree,
+                                    const int node,
+                                    const int left,
+                                    const int right,
+                                    const int query_left,
+                                    const int query_right) {
     if (query_left <= left and query_right >= right) {
         return segment_tree[node];
     }
@@ -97,21 +101,19 @@ auto RangeMinimumQuery_ST_Recursive(const ArrayType &segment_tree, const int nod
     }
 
     const auto mid = (left + right) / 2;
-    return std::min(
-               RangeMinimumQuery_ST_Recursive(segment_tree, LeftChild(node), left, mid,
-                                              query_left, query_right),
-               RangeMinimumQuery_ST_Recursive(segment_tree, RightChild(node), mid + 1, right,
-                                              query_left, query_right));
+    return std::min(RangeMinimumQuery_ST_Recursive(
+                        segment_tree, LeftChild(node), left, mid, query_left, query_right),
+                    RangeMinimumQuery_ST_Recursive(
+                        segment_tree, RightChild(node), mid + 1, right, query_left, query_right));
 }
 
-auto
-RangeMinimumQuery_ST_Recursive(const ArrayType &nums, const RangeArray &ranges) {
+auto RangeMinimumQuery_ST_Recursive(const ArrayType &nums, const RangeArray &ranges) {
     const auto segment_tree = buildST_Recursive(nums);
 
     ArrayType results;
-    for (const auto [left, right] : ranges) {
-        results.push_back(RangeMinimumQuery_ST_Recursive(segment_tree, ST_root,
-                                                         0, nums.size() - 1, left, right));
+    for (const auto &[left, right] : ranges) {
+        results.push_back(RangeMinimumQuery_ST_Recursive(
+            segment_tree, ST_root, 0, nums.size() - 1, left, right));
     }
 
     return results;
@@ -130,8 +132,7 @@ auto buildST_Iterative(const ArrayType &nums) {
     }
 
     for (int i = nums.size() - 1; i > 0; --i) {
-        segment_tree[i] = std::min(segment_tree[LeftChild(i)],
-                                   segment_tree[RightChild(i)]);
+        segment_tree[i] = std::min(segment_tree[LeftChild(i)], segment_tree[RightChild(i)]);
     }
 
     return segment_tree;
@@ -167,18 +168,16 @@ void RMQ_Update(ArrayType &segment_tree, std::size_t index, const int value) {
 
     while (index > ST_root) {
         index >>= 1;
-        segment_tree[index] = std::min(segment_tree[LeftChild(index)],
-                                       segment_tree[RightChild(index)]);
+        segment_tree[index] =
+            std::min(segment_tree[LeftChild(index)], segment_tree[RightChild(index)]);
     }
 }
 
-auto
-RangeMinimumQuery_ST_Iterative(const ArrayType &nums,
-                               const OperationArray &operations) {
+auto RangeMinimumQuery_ST_Iterative(const ArrayType &nums, const OperationArray &operations) {
     auto segment_tree = buildST_Iterative(nums);
 
     ArrayType results;
-    for (const auto [is_query, x, y] : operations) {
+    for (const auto &[is_query, x, y] : operations) {
         if (is_query) {
             results.push_back(RMQ_Query(segment_tree, x, y));
         } else {
@@ -189,7 +188,7 @@ RangeMinimumQuery_ST_Iterative(const ArrayType &nums,
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {7, 2, 3, 0, 5, 10, 3, 12, 18};

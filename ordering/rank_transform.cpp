@@ -31,7 +31,7 @@ auto RankTransformArray(ArrayType elements) {
 
     int previous = INT_MIN;
     int rank = 0;
-    for (const auto [value, index] : value_index_array) {
+    for (const auto &[value, index] : value_index_array) {
         if (value != previous) {
             ++rank;
         }
@@ -73,18 +73,18 @@ auto RankTransformMatrix(MatrixType a_matrix) {
     int column_ranks[N] = {};
     for (const auto &[value, coordinates] : value_coordi_map) {
         DisjointSet_Array disjoint_set(M + N);
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             disjoint_set.Union(x, y + M);
         }
 
         std::unordered_map<int, int> group_rank_map;
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             const auto rank = std::max(row_ranks[x], column_ranks[y]);
             const auto group = disjoint_set.Find(x);
             group_rank_map[group] = std::max(group_rank_map[group], rank);
         }
 
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             const auto group = disjoint_set.Find(x);
             const auto rank = group_rank_map[group] + 1;
             a_matrix[x][y] = rank;
@@ -120,14 +120,14 @@ auto RankTransformMatrix_Optimized(MatrixType a_matrix) {
     int max_ranks[M + N] = {};
     int disjoint_set[M + N] = {};
     for (const auto &[value, coordinates] : value_coordi_map) {
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             disjoint_set[x] = x;
             max_ranks[x] = row_ranks[x];
             disjoint_set[y + M] = y + M;
             max_ranks[y + M] = column_ranks[y];
         }
 
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             const auto x_set = find(disjoint_set, x);
             const auto y_set = find(disjoint_set, y + M);
             if (x_set != y_set) {
@@ -136,7 +136,7 @@ auto RankTransformMatrix_Optimized(MatrixType a_matrix) {
             }
         }
 
-        for (const auto [x, y] : coordinates) {
+        for (const auto &[x, y] : coordinates) {
             const auto group = find(disjoint_set, x);
             const auto rank = max_ranks[group] + 1;
             a_matrix[x][y] = rank;
@@ -148,7 +148,7 @@ auto RankTransformMatrix_Optimized(MatrixType a_matrix) {
     return a_matrix;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {40, 10, 20, 30};
@@ -168,6 +168,7 @@ SIMPLE_TEST(RankTransformArray, TestSAMPLE2, EXPECTED2, SAMPLE2);
 SIMPLE_TEST(RankTransformArray, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
+// clang-format off
 const MatrixType SAMPLE1M = {
     {1, 2},
     {3, 4}
@@ -222,6 +223,7 @@ const MatrixType EXPECTED5M = {
     {5, 2, 4, 3},
     {4, 3, 1, 5}
 };
+// clang-format on
 
 
 THE_BENCHMARK(RankTransformMatrix, SAMPLE1M);

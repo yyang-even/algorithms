@@ -25,7 +25,7 @@ auto QueueReconstruction_TallFirst(ArrayType people) {
     });
 
     ArrayType result;
-    for (const auto [h, k] : people) {
+    for (const auto &[h, k] : people) {
         result.insert(result.begin() + k, {h, k});
     }
 
@@ -42,7 +42,7 @@ auto QueueReconstruction_ShortFirst(ArrayType people) {
     });
 
     ArrayType result(people.size(), {-1, -1});
-    for (const auto [h, k] : people) {
+    for (const auto &[h, k] : people) {
         std::size_t j = 0;
         for (int count = 0; j < result.size(); ++j) {
             if (result[j].first == -1) {

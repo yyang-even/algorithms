@@ -34,7 +34,7 @@ auto RangeSumQueries(ArrayType elements, const QueryArrayType &queries) {
     const auto prefix_sums = PrefixSumArray(std::move(elements));
 
     ArrayType results;
-    for (const auto [left, right] : queries) {
+    for (const auto &[left, right] : queries) {
         results.push_back(RangeSum(prefix_sums, left, right));
     }
 
@@ -124,7 +124,7 @@ auto RangeSumQueriesMutable_SegmentTree(const ArrayType &elements,
     auto segment_tree = buildSegmentTree(elements);
 
     ArrayType results;
-    for (const auto [is_update, a_query] : operations) {
+    for (const auto &[is_update, a_query] : operations) {
         if (is_update) {
             update_ST(segment_tree, a_query.first, a_query.second);
         } else {
@@ -200,7 +200,7 @@ auto RangeSumQueriesMutable_BIT(const ArrayType &elements, const OperationArrayT
     auto bit_tree = buildBIT(elements);
 
     ArrayType results;
-    for (const auto [is_update, a_query] : operations) {
+    for (const auto &[is_update, a_query] : operations) {
         if (is_update) {
             const auto diff = a_query.second - getOrigin_BIT(bit_tree, a_query.first);
             update_BIT(bit_tree, a_query.first, diff);
@@ -283,7 +283,7 @@ auto test2DRangeSumQuery(const MatrixType &matrix, const MatrixQueryType &querie
     NumMatrixType m {matrix};
 
     ArrayType result;
-    for (const auto [row1, col1, row2, col2] : queries) {
+    for (const auto &[row1, col1, row2, col2] : queries) {
         result.push_back(m.SumRegion(row1, col1, row2, col2));
     }
 

@@ -110,7 +110,7 @@ auto RemoveCoveredIntervals(ArrayType intervals) {
 
     int result = 0;
     int right = 0;
-    for (const auto [li, ri] : intervals) {
+    for (const auto &[li, ri] : intervals) {
         if (ri > right) {
             ++result;
             right = ri;
@@ -193,7 +193,7 @@ inline auto testMyCalendar(const ArrayType &events) {
     Calendar calendar;
 
     OutputType result;
-    for (const auto [start, end] : events) {
+    for (const auto &[start, end] : events) {
         result.push_back(calendar.book(start, end));
     }
 
@@ -242,7 +242,7 @@ public:
             return false;
         }
 
-        for (const auto [s, e] : events) {
+        for (const auto &[s, e] : events) {
             if (start < e and end > s) {
                 overlaps.emplace(std::max(start, s), std::min(end, e));
             }

@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "matrix.h"
 #include "data_structure/disjoint_set.h"
+#include "matrix.h"
 
 
 namespace {
@@ -35,8 +35,7 @@ auto NumberIslands_BFS(GridType grid) {
                 while (not q.empty()) {
                     const auto [row, column] = q.front();
                     q.pop();
-                    ForEachDirection(M, N, row, column,
-                    [&grid, &q](const auto x, const auto y) {
+                    ForEachDirection(M, N, row, column, [&grid, &q](const auto x, const auto y) {
                         if (grid[x][y] == '1') {
                             grid[x][y] = '0';
                             q.emplace(x, y);
@@ -103,8 +102,7 @@ inline int disjointSet_Find(std::vector<int> &disjoint_set, const int i) {
     return parent;
 }
 
-inline bool
-disjointSet_Union(std::vector<int> &disjoint_set, const int x, const int y) {
+inline bool disjointSet_Union(std::vector<int> &disjoint_set, const int x, const int y) {
     const auto x_parent = disjointSet_Find(disjoint_set, x);
     const auto y_parent = disjointSet_Find(disjoint_set, y);
     if (x_parent != y_parent) {
@@ -119,7 +117,7 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
     std::vector<int> disjoint_set(m * n, -1);
     std::vector<int> result;
     int count = 0;
-    for (const auto [x, y] : positions) {
+    for (const auto &[x, y] : positions) {
         const auto index = n * x + y;
         auto parent = disjointSet_Find(disjoint_set, index);
         if (parent == -1) {
@@ -127,16 +125,16 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
             disjoint_set[index] = index;
             ++count;
 
-            ForEachDirection(m, n, x, y,
-            [n, &disjoint_set, index, &count](const auto r, const auto c) {
-                const auto i = n * r + c;
-                const auto neighbor_parent = disjointSet_Find(disjoint_set, i);
-                if (neighbor_parent != -1) {
-                    if (disjointSet_Union(disjoint_set, index, neighbor_parent)) {
-                        --count;
+            ForEachDirection(
+                m, n, x, y, [n, &disjoint_set, index, &count](const auto r, const auto c) {
+                    const auto i = n * r + c;
+                    const auto neighbor_parent = disjointSet_Find(disjoint_set, i);
+                    if (neighbor_parent != -1) {
+                        if (disjointSet_Union(disjoint_set, index, neighbor_parent)) {
+                            --count;
+                        }
                     }
-                }
-            });
+                });
         }
 
         result.push_back(count);
@@ -154,8 +152,8 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
  * 4-directionally surrounded by 'X'. A region is captured by flipping all 'O's into
  * 'X's in that surrounded region.
  */
-inline void onCell(GridType &board, std::queue<std::pair<int, int>> &q,
-                   const int i, const int j) {
+inline void
+onCell(GridType &board, std::queue<std::pair<int, int>> &q, const int i, const int j) {
     if (board[i][j] == 'O') {
         q.emplace(i, j);
         board[i][j] = 'B';
@@ -184,8 +182,7 @@ auto SurroundedRegions(GridType board) {
         const auto [i, j] = q.front();
         q.pop();
 
-        ForEachDirection(M, N, i, j,
-        [&board, &q](const auto r, const auto c) {
+        ForEachDirection(M, N, i, j, [&board, &q](const auto r, const auto c) {
             onCell(board, q, r, c);
         });
     }
@@ -239,9 +236,10 @@ auto SurroundedRegions_UF(GridType board) {
     return board;
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const GridType SAMPLE1 = {
     {'1', '1', '1', '1', '0'},
     {'1', '1', '0', '1', '0'},
@@ -255,6 +253,7 @@ const GridType SAMPLE2 = {
     {'0', '0', '1', '0', '0'},
     {'0', '0', '0', '1', '1'}
 };
+// clang-format on
 
 
 THE_BENCHMARK(NumberIslands_BFS, SAMPLE1);
@@ -278,22 +277,23 @@ THE_BENCHMARK(NumberIslandsStream, 3, 3, SAMPLE1P);
 SIMPLE_TEST(NumberIslandsStream, TestSAMPLE1, EXPECTED1, 3, 3, SAMPLE1P);
 
 
+// clang-format off
 const GridType SAMPLE1R = {
     {'X', 'X', 'X', 'X'},
     {'X', 'O', 'O', 'X'},
     {'X', 'X', 'O', 'X'},
     {'X', 'O', 'X', 'X'}
 };
+
 const GridType EXPECTED1R = {
     {'X', 'X', 'X', 'X'},
     {'X', 'X', 'X', 'X'},
     {'X', 'X', 'X', 'X'},
     {'X', 'O', 'X', 'X'}
 };
+// clang-format on
 
-const GridType SAMPLE2R = {
-    {'X'}
-};
+const GridType SAMPLE2R = {{'X'}};
 
 
 THE_BENCHMARK(SurroundedRegions, SAMPLE1R);

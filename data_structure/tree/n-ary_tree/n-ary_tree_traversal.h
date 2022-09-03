@@ -12,7 +12,7 @@
 static inline auto LevelOrderTraversal_Iterative_Helper(
     const n_ary_tree::array_representation::Node::PointerType root,
     const std::function<bool(const n_ary_tree::array_representation::Node::PointerType)>
-on_each_node = {}) {
+        on_each_node = {}) {
     std::queue<std::remove_const_t<decltype(root)>> remaining_nodes;
     PushIfNotNull(remaining_nodes, root);
 
@@ -26,7 +26,7 @@ on_each_node = {}) {
             }
             remaining_nodes.pop();
 
-            for (const auto child : current_node->children) {
+            for (const auto &child : current_node->children) {
                 PushIfNotNull(remaining_nodes, child);
             }
         }
@@ -39,7 +39,7 @@ on_each_node = {}) {
 static inline auto LevelOrderTraversal_Iterative_Helper(
     const n_ary_tree::child_sibling_representation::Node::PointerType root,
     const std::function<bool(const n_ary_tree::child_sibling_representation::Node::PointerType)>
-on_each_node = {}) {
+        on_each_node = {}) {
     std::queue<std::remove_const_t<decltype(root)>> remaining_nodes;
     PushIfNotNull(remaining_nodes, root);
 

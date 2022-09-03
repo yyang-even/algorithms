@@ -171,7 +171,7 @@ public:
 auto testTwoSum(const OperationArrayType &operations) {
     OutputType results;
     TwoSum two_sum;
-    for (const auto [is_add, value] : operations) {
+    for (const auto &[is_add, value] : operations) {
         if (is_add) {
             two_sum.Add(value);
         } else {

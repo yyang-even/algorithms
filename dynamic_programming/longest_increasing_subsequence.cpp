@@ -287,7 +287,7 @@ auto CircusTower_NLogN(HeightWeightArray people) {
     });
 
     std::vector dp {people.front().second};
-    for (const auto [height, weight] : people) {
+    for (const auto &[height, weight] : people) {
         if (weight > dp.back()) {
             dp.push_back(weight);
         } else {

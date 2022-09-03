@@ -244,7 +244,7 @@ auto JumpGame5_DP(const ArrayType &nums, const int d) {
 
     const int size = nums.size();
     ArrayType dp(nums.size(), 1);
-    for (const auto [v, i] : ordered_nums) {
+    for (const auto &[v, i] : ordered_nums) {
         for (int j = i + 1; j <= std::min(size - 1, i + d) and v > nums[j]; ++j) {
             dp[i] = std::max(dp[i], dp[j] + 1);
         }
@@ -317,7 +317,8 @@ auto JumpGame6_PriorityQueue(const ArrayType &nums, const std::size_t k) {
  * s[i] is either '0' or '1'.
  */
 auto JumpGame7_DP(const std::string_view s,
-                  const std::size_t min_jump, const std::size_t max_jump) {
+                  const std::size_t min_jump,
+                  const std::size_t max_jump) {
     bool dp[s.size()] = {true};
     int number_jumpable_to_i = 0;
     for (std::size_t i = 1; i < s.size(); ++i) {
@@ -335,7 +336,8 @@ auto JumpGame7_DP(const std::string_view s,
 
 
 auto JumpGame7_BFS(const std::string_view s,
-                   const std::size_t min_jump, const std::size_t max_jump) {
+                   const std::size_t min_jump,
+                   const std::size_t max_jump) {
     if (s.back() == '1') {
         return false;
     }
@@ -369,7 +371,7 @@ auto JumpGame7_BFS(const std::string_view s,
     return false;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 1, 1, 4};

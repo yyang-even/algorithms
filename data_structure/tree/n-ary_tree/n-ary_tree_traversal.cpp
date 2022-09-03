@@ -5,11 +5,10 @@
 
 namespace {
 
-inline auto LevelOrderTraversal_Iterative(
-    const n_ary_tree::array_representation::Node::PointerType root) {
+inline auto
+LevelOrderTraversal_Iterative(const n_ary_tree::array_representation::Node::PointerType root) {
     std::vector<n_ary_tree::array_representation::Node::ValueType> result;
-    LevelOrderTraversal_Iterative_Helper(root,
-    [&result](const auto node) {
+    LevelOrderTraversal_Iterative_Helper(root, [&result](const auto node) {
         assert(node);
 
         result.push_back(node->value);
@@ -26,8 +25,7 @@ inline auto LevelOrderTraversal_Iterative(
  * @reference   Iterative Preorder Traversal of an N-ary Tree
  *              https://www.geeksforgeeks.org/iterative-preorder-traversal-of-a-n-ary-tree/
  */
-auto PreorderTraversal_Iterative(
-    const n_ary_tree::array_representation::Node::PointerType root) {
+auto PreorderTraversal_Iterative(const n_ary_tree::array_representation::Node::PointerType root) {
     std::stack<std::remove_const_t<decltype(root)>> remaining_nodes;
     PushIfNotNull(remaining_nodes, root);
 
@@ -55,21 +53,18 @@ auto PreorderTraversal_Iterative(
  * group of children is separated by the null value.
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  */
-void
-PreorderTraversal_Recursive(
-    const n_ary_tree::array_representation::Node::PointerType node,
-    std::vector<int> &results) {
+void PreorderTraversal_Recursive(const n_ary_tree::array_representation::Node::PointerType node,
+                                 std::vector<int> &results) {
     if (node) {
         results.push_back(node->value);
-        for (const auto child : node->children) {
+        for (const auto &child : node->children) {
             PreorderTraversal_Recursive(child, results);
         }
     }
 }
 
 inline auto
-PreorderTraversal_Recursive(
-    const n_ary_tree::array_representation::Node::PointerType root) {
+PreorderTraversal_Recursive(const n_ary_tree::array_representation::Node::PointerType root) {
     std::vector<int> results;
     PreorderTraversal_Recursive(root, results);
     return results;
@@ -85,7 +80,7 @@ PreorderTraversal_Recursive(
 auto PreorderTraversal_Recursive_Helper(
     n_ary_tree::child_sibling_representation::Node::PointerType node,
     const std::function<bool(const n_ary_tree::child_sibling_representation::Node::PointerType)>
-on_each_node = {}) {
+        on_each_node = {}) {
     for (; node; node = node->right_sibling) {
         if (on_each_node and not on_each_node(node)) {
             return false;
@@ -100,12 +95,10 @@ on_each_node = {}) {
     return true;
 }
 
-inline auto
-PreorderTraversal_Recursive(
+inline auto PreorderTraversal_Recursive(
     const n_ary_tree::child_sibling_representation::Node::PointerType root) {
     std::vector<n_ary_tree::child_sibling_representation::Node::ValueType> result;
-    PreorderTraversal_Recursive_Helper(root,
-    [&result](const auto node) {
+    PreorderTraversal_Recursive_Helper(root, [&result](const auto node) {
         assert(node);
 
         result.push_back(node->value);
@@ -116,12 +109,10 @@ PreorderTraversal_Recursive(
 }
 
 
-inline auto
-LevelOrderTraversal_Iterative(
+inline auto LevelOrderTraversal_Iterative(
     const n_ary_tree::child_sibling_representation::Node::PointerType root) {
     std::vector<n_ary_tree::child_sibling_representation::Node::ValueType> result;
-    LevelOrderTraversal_Iterative_Helper(root,
-    [&result](const auto node) {
+    LevelOrderTraversal_Iterative_Helper(root, [&result](const auto node) {
         assert(node);
 
         result.push_back(node->value);
@@ -139,12 +130,10 @@ LevelOrderTraversal_Iterative(
  * Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  */
-void
-PostorderTraversal_Recursive(
-    const n_ary_tree::array_representation::Node::PointerType node,
-    std::vector<int> &results) {
+void PostorderTraversal_Recursive(const n_ary_tree::array_representation::Node::PointerType node,
+                                  std::vector<int> &results) {
     if (node) {
-        for (const auto child : node->children) {
+        for (const auto &child : node->children) {
             PostorderTraversal_Recursive(child, results);
         }
         results.push_back(node->value);
@@ -152,8 +141,7 @@ PostorderTraversal_Recursive(
 }
 
 inline auto
-PostorderTraversal_Recursive(
-    const n_ary_tree::array_representation::Node::PointerType root) {
+PostorderTraversal_Recursive(const n_ary_tree::array_representation::Node::PointerType root) {
     std::vector<int> results;
     PostorderTraversal_Recursive(root, results);
     return results;
@@ -164,8 +152,7 @@ PostorderTraversal_Recursive(
  * @reference   Iterative Postorder Traversal of N-ary Tree
  *              https://www.geeksforgeeks.org/iterative-postorder-traversal-of-n-ary-tree/
  */
-auto
-PostorderTraversal_Iterative(
+auto PostorderTraversal_Iterative(
     const n_ary_tree::array_representation::Node::PointerType root) {
     auto node = root;
     std::stack<std::pair<decltype(node), std::size_t>> s;
@@ -221,18 +208,17 @@ PostorderTraversal_Iterative(
  * value of this employee and all their subordinates.
  */
 
-}//namespace
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleTree<n_ary_tree::array_representation::Node>();
-const auto SAMPLE2 =
-    MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
-const decltype(LevelOrderTraversal_Iterative(SAMPLE1)) EXPECTED_LEVELORDER =
-{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-const decltype(PreorderTraversal_Iterative(SAMPLE1)) EXPECTED_PREORDER =
-{1, 2, 6, 7, 3, 4, 8, 5, 9, 10, 11};
-const decltype(PostorderTraversal_Iterative(SAMPLE1)) EXPECTED_POSTORDER =
-{6, 7, 2, 3, 8, 4, 9, 10, 11, 5, 1};
+const auto SAMPLE2 = MakeTheSampleTree<n_ary_tree::child_sibling_representation::Node>();
+const decltype(LevelOrderTraversal_Iterative(SAMPLE1)) EXPECTED_LEVELORDER = {
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+const decltype(PreorderTraversal_Iterative(SAMPLE1)) EXPECTED_PREORDER = {
+    1, 2, 6, 7, 3, 4, 8, 5, 9, 10, 11};
+const decltype(PostorderTraversal_Iterative(SAMPLE1)) EXPECTED_POSTORDER = {
+    6, 7, 2, 3, 8, 4, 9, 10, 11, 5, 1};
 
 
 SIMPLE_BENCHMARK(LevelOrderTraversal_Iterative, Sample1, SAMPLE1);

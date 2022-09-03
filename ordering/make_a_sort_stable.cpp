@@ -13,29 +13,29 @@ using ArrayType = std::vector<int>;
  * Write code that uses an unstable sort routine to perform a stable sort.
  */
 auto MakeSortStable(const ArrayType &elements) {
-    std::vector<std::pair<ArrayType::value_type, ArrayType::size_type>>
-            elements_with_sequence;
+    std::vector<std::pair<ArrayType::value_type, ArrayType::size_type>> elements_with_sequence;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
         elements_with_sequence.emplace_back(elements[i], i);
     }
 
-    std::sort(elements_with_sequence.begin(), elements_with_sequence.end(),
-    [](const auto & lhs, const auto & rhs) {
-        if (lhs.first == rhs.first) {
-            return lhs.second < rhs.second;
-        }
-        return lhs.first < rhs.first;
-    });
+    std::sort(elements_with_sequence.begin(),
+              elements_with_sequence.end(),
+              [](const auto &lhs, const auto &rhs) {
+                  if (lhs.first == rhs.first) {
+                      return lhs.second < rhs.second;
+                  }
+                  return lhs.first < rhs.first;
+              });
 
     ArrayType result;
-    for (const auto [element, _] : elements_with_sequence) {
+    for (const auto &[element, _] : elements_with_sequence) {
         result.push_back(std::move(element));
     }
 
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {};

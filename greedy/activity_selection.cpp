@@ -36,7 +36,8 @@ void ActivitySelection_Recursive(const ArrayType &activities,
                                  const ArrayType::size_type i,
                                  OutputType &selected_activities) {
     auto j = i + 1;
-    for (; j < activities.size() and activities[j].first < activities[i].second; ++j);
+    for (; j < activities.size() and activities[j].first < activities[i].second; ++j)
+        ;
 
     if (j < activities.size()) {
         selected_activities.push_back(j);
@@ -48,8 +49,7 @@ inline auto ActivitySelection_Recursive(const ArrayType &activities) {
     assert(std::is_sorted(activities.cbegin(), activities.cend(), finish_comparator));
 
     OutputType selected_activities = {0};
-    ActivitySelection_Recursive(
-        activities, selected_activities.front(), selected_activities);
+    ActivitySelection_Recursive(activities, selected_activities.front(), selected_activities);
     return selected_activities;
 }
 
@@ -136,7 +136,7 @@ auto MinMeetingRooms_Heap(ArrayType activities) {
 
 auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
     std::map<int, int> room_counts;
-    for (const auto [start, finish] : activities) {
+    for (const auto &[start, finish] : activities) {
         ++room_counts[start];
         --room_counts[finish];
     }
@@ -166,7 +166,7 @@ auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
  */
 auto CarPooling(const JobArray &trips, const int capacity) {
     std::vector<int> passengers(1001, 0);
-    for (const auto [p, from, to] : trips) {
+    for (const auto &[p, from, to] : trips) {
         passengers[from] += p;
         passengers[to] -= p;
     }
@@ -196,7 +196,7 @@ auto CarPooling(const JobArray &trips, const int capacity) {
  */
 auto BusyStudents(const ArrayType &times, const int query_time) {
     int result = 0;
-    for (const auto [start, end] : times) {
+    for (const auto &[start, end] : times) {
         if (start <= query_time and query_time <= end) {
             ++result;
         }
@@ -243,8 +243,8 @@ auto MaxProfitJobScheduling_DP_MAP(const std::vector<int> &start_time,
                                    const std::vector<int> &profit) {
     const auto jobs = ToSortedJobs(start_time, end_time, profit);
 
-    std::map<int, int> end_profix_map{{0, 0}};
-    for (const auto [start, end, a_profit] : jobs) {
+    std::map<int, int> end_profix_map {{0, 0}};
+    for (const auto &[start, end, a_profit] : jobs) {
         const auto new_profix = a_profit + std::prev(end_profix_map.upper_bound(start))->second;
         if (new_profix > end_profix_map.crbegin()->second) {
             end_profix_map[end] = new_profix;
@@ -322,7 +322,7 @@ auto MinArrows(ArrayType points) {
 
     int result = 1;
     int arrow = points.front().second;
-    for (const auto [l, r] : points) {
+    for (const auto &[l, r] : points) {
         if (arrow >= l) {
             continue;
         }
@@ -334,7 +334,7 @@ auto MinArrows(ArrayType points) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {{10, 20}, {12, 25}, {20, 30}};
@@ -343,8 +343,8 @@ const OutputType EXPECTED1 = {0, 2};
 const ArrayType SAMPLE2 = {{1, 2}, {3, 4}, {0, 6}, {5, 7}, {8, 9}, {5, 9}};
 const OutputType EXPECTED2 = {0, 1, 3, 4};
 
-const ArrayType SAMPLE3 =
-{{1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 9}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 14}, {12, 16}};
+const ArrayType SAMPLE3 = {
+    {1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 9}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 14}, {12, 16}};
 const OutputType EXPECTED3 = {0, 3, 7, 10};
 
 
@@ -422,22 +422,16 @@ const std::vector SAMPLE3P = {5, 6, 4};
 
 THE_BENCHMARK(MaxProfitJobScheduling_DP_MAP, SAMPLE1S, SAMPLE1E, SAMPLE1P);
 
-SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE1, 120,
-            SAMPLE1S, SAMPLE1E, SAMPLE1P);
-SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE2, 150,
-            SAMPLE2S, SAMPLE2E, SAMPLE2P);
-SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE3, 6,
-            SAMPLE3S, SAMPLE3E, SAMPLE3P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE1, 120, SAMPLE1S, SAMPLE1E, SAMPLE1P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE2, 150, SAMPLE2S, SAMPLE2E, SAMPLE2P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP_MAP, TestSAMPLE3, 6, SAMPLE3S, SAMPLE3E, SAMPLE3P);
 
 
 THE_BENCHMARK(MaxProfitJobScheduling_DP, SAMPLE1S, SAMPLE1E, SAMPLE1P);
 
-SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE1, 120,
-            SAMPLE1S, SAMPLE1E, SAMPLE1P);
-SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE2, 150,
-            SAMPLE2S, SAMPLE2E, SAMPLE2P);
-SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE3, 6,
-            SAMPLE3S, SAMPLE3E, SAMPLE3P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE1, 120, SAMPLE1S, SAMPLE1E, SAMPLE1P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE2, 150, SAMPLE2S, SAMPLE2E, SAMPLE2P);
+SIMPLE_TEST(MaxProfitJobScheduling_DP, TestSAMPLE3, 6, SAMPLE3S, SAMPLE3E, SAMPLE3P);
 
 
 const JobArray SAMPLE1T = {{2, 1, 5}, {3, 3, 7}};
