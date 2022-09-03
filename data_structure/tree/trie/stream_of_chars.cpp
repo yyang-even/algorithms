@@ -39,7 +39,7 @@ public:
 
         const auto index = Node::ToIndex(letter);
         bool result = false;
-        for (const auto n : waiting_list) {
+        for (const auto &n : waiting_list) {
             const auto child = n->children[index];
             if (child) {
                 new_waiting.push_back(child);

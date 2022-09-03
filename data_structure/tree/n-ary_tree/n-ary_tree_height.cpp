@@ -14,21 +14,20 @@ namespace {
  * input serialization is represented in their level order traversal, each group of
  * children is separated by the null value (See examples).
  */
-auto
-Height(const n_ary_tree::array_representation::Node::PointerType root) {
+auto Height(const n_ary_tree::array_representation::Node::PointerType root) {
     if (not root) {
         return 0;
     }
 
     int height = 0;
-    for (const auto node : root->children) {
+    for (const auto &node : root->children) {
         height = std::max(height, Height(node));
     }
 
     return height + 1;
 }
 
-}//namespace
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleTree<n_ary_tree::array_representation::Node>();

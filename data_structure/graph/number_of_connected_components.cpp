@@ -98,7 +98,7 @@ auto LargestComponentSizeByCommonFactor(const ArrayType &nums) {
  */
 auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
     DisjointSet_Array disjoint_set(s.size());
-    for (const auto [u, v] : pairs) {
+    for (const auto &[u, v] : pairs) {
         disjoint_set.Union(u, v);
     }
 
@@ -204,7 +204,7 @@ auto EvaluateDivision(const StrPairArray &equations,
     }
 
     DoubleArray results;
-    for (const auto [a, b] : queries) {
+    for (const auto &[a, b] : queries) {
         const auto a_iter = disjoint_set.find(a);
         const auto b_iter = disjoint_set.find(b);
         if (a_iter != disjoint_set.cend() and b_iter != disjoint_set.cend()) {

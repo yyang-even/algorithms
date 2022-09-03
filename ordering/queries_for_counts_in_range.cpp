@@ -19,7 +19,7 @@ auto QueriesForCountsInRange_Sort(ArrayType values, const std::vector<Query> &qu
     std::sort(values.begin(), values.end());
 
     std::vector<ArrayType::difference_type> output;
-    for (const auto [i, j] : queries) {
+    for (const auto &[i, j] : queries) {
         const auto lower = std::lower_bound(values.cbegin(), values.cend(), i);
         const auto upper = std::upper_bound(values.cbegin(), values.cend(), j);
         output.push_back(upper - lower);
@@ -49,7 +49,7 @@ auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
 
     const auto counter = ToCountingArray(values, RANGE, ToIndex);
 
-    for (const auto [left, right] : queries) {
+    for (const auto &[left, right] : queries) {
         const auto lower = counter[ToIndex(std::max(left, *min_iter))];
         const auto upper = counter[ToIndex(std::min(right, *max_iter))];
         output.push_back(upper - lower + 1);
@@ -58,7 +58,7 @@ auto QueriesForCountsInRange_CountingSort(const ArrayType &values,
     return output;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES = {1, 3, 4, 9, 10, 3};
@@ -73,5 +73,4 @@ SIMPLE_TEST(QueriesForCountsInRange_Sort, TestSAMPLE1, EXPECTED, VALUES, QUERIES
 
 THE_BENCHMARK(QueriesForCountsInRange_CountingSort, VALUES, QUERIES);
 
-SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED,
-            VALUES, QUERIES);
+SIMPLE_TEST(QueriesForCountsInRange_CountingSort, TestSAMPLE1, EXPECTED, VALUES, QUERIES);

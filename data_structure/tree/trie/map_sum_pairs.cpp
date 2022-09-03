@@ -25,7 +25,7 @@ auto MapSumPairs_Naive(const ArrayType &operations) {
     std::unordered_map<std::string_view, int> hash_table;
 
     OutputType results;
-    for (const auto [is_insert, str, new_value] : operations) {
+    for (const auto &[is_insert, str, new_value] : operations) {
         if (is_insert) {
             hash_table[str] = new_value;
         } else {
@@ -48,7 +48,7 @@ auto MapSumPairs_TwoMap(const ArrayType &operations) {
     std::unordered_map<std::string_view, int> prefixs;
 
     OutputType results;
-    for (const auto [is_insert, str, new_value] : operations) {
+    for (const auto &[is_insert, str, new_value] : operations) {
         if (is_insert) {
             const auto [iter, inserted] = originals.emplace(str, new_value);
             int delta = new_value;
@@ -76,7 +76,7 @@ auto MapSumPairs_Trie(const ArrayType &operations) {
     Node root;
 
     OutputType results;
-    for (const auto [is_insert, str, new_value] : operations) {
+    for (const auto &[is_insert, str, new_value] : operations) {
         if (is_insert) {
             const auto [iter, inserted] = originals.emplace(str, new_value);
             int delta = new_value;

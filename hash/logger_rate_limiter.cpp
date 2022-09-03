@@ -20,7 +20,7 @@ auto LoggerRateLimiter_Map(const ArrayType &messages, const int limit = 10) {
     std::unordered_map<std::string_view, int> last_occurrences;
 
     std::vector<bool> results;
-    for (const auto [timestamp, a_message] : messages) {
+    for (const auto &[timestamp, a_message] : messages) {
         const auto [iter, inserted] = last_occurrences.emplace(a_message, timestamp);
         if (not inserted) {
             if (timestamp - iter->second < limit) {
@@ -43,7 +43,7 @@ auto LoggerRateLimiter_Queue(const ArrayType &messages, const int limit = 10) {
     std::unordered_set<std::string_view> messages_in_queue;
 
     std::vector<bool> results;
-    for (const auto [timestamp, a_message] : messages) {
+    for (const auto &[timestamp, a_message] : messages) {
         while (not message_queue.empty() and message_queue.front().first <= timestamp - limit) {
             messages_in_queue.erase(message_queue.front().second);
             message_queue.pop();
@@ -104,10 +104,11 @@ auto LoggerRateLimiter_Queue(const ArrayType &messages, const int limit = 10) {
  * happen in chronological order.
  */
 
-}//namespace
+} //namespace
 
 
-const ArrayType SAMPLE1 = {{1, "foo"}, {2, "bar"}, {3, "foo"}, {8, "bar"}, {10, "foo"}, {11, "foo"}};
+const ArrayType SAMPLE1 = {
+    {1, "foo"}, {2, "bar"}, {3, "foo"}, {8, "bar"}, {10, "foo"}, {11, "foo"}};
 const std::vector EXPECTED1 = {true, true, false, false, false, true};
 
 

@@ -18,9 +18,10 @@ using RectangleArray = std::vector<RectangleType>;
  * Given two rectangles, find if the given two rectangles overlap or not. It may be
  * assumed that the rectangles are parallel to the coordinate axis.
  */
-inline constexpr auto
-areRectanglesOverlap(const Point &top_left_1, const Point &bottom_right_1,
-                     const Point &top_left_2, const Point &bottom_right_2) {
+inline constexpr auto areRectanglesOverlap(const Point &top_left_1,
+                                           const Point &bottom_right_1,
+                                           const Point &top_left_2,
+                                           const Point &bottom_right_2) {
     return not(top_left_1.x > bottom_right_2.x or top_left_2.x > bottom_right_1.x or
                top_left_1.y < bottom_right_2.y or top_left_2.y < bottom_right_1.y);
 }
@@ -38,13 +39,13 @@ areRectanglesOverlap(const Point &top_left_1, const Point &bottom_right_1,
  * corner or edges do not overlap. Given two axis-aligned rectangles rec1 and rec2,
  * return true if they overlap, otherwise return false.
  */
-inline constexpr auto
-areRectanglesOverlap_Area(const Point &bottom_left_1, const Point &top_right_1,
-                          const Point &bottom_left_2, const Point &top_right_2) {
+inline constexpr auto areRectanglesOverlap_Area(const Point &bottom_left_1,
+                                                const Point &top_right_1,
+                                                const Point &bottom_left_2,
+                                                const Point &top_right_2) {
     return (std::min(top_right_1.x, top_right_2.x) >
-            std::max(bottom_left_1.x, bottom_left_2.x) and
-            std::min(top_right_1.y, top_right_2.y) >
-            std::max(bottom_left_1.y, bottom_left_2.y));
+                std::max(bottom_left_1.x, bottom_left_2.x) and
+            std::min(top_right_1.y, top_right_2.y) > std::max(bottom_left_1.y, bottom_left_2.y));
 }
 
 
@@ -57,8 +58,7 @@ areRectanglesOverlap_Area(const Point &bottom_left_1, const Point &top_right_1,
  * corner (ax1, ay1) and its top-right corner (ax2, ay2). The second rectangle is defined
  * by its bottom-left corner (bx1, by1) and its top-right corner (bx2, by2).
  */
-inline constexpr int
-RectangleArea(const Rectangle &one, const Rectangle &another) {
+inline constexpr int RectangleArea(const Rectangle &one, const Rectangle &another) {
     const auto left = std::max(one.left, another.left);
     const auto bottom = std::max(one.bottom, another.bottom);
     const auto right = std::min(one.right, another.right);
@@ -86,7 +86,7 @@ RectangleArea(const Rectangle &one, const Rectangle &another) {
  */
 int RectangleArrayArea_SweepLine(const RectangleArray &rectangles) {
     std::map<int, std::vector<std::pair<int, int>>> groups;
-    for (const auto [left, bottom, right, top] : rectangles) {
+    for (const auto &[left, bottom, right, top] : rectangles) {
         groups[left].emplace_back(bottom, 1);
         groups[left].emplace_back(top, -1);
         groups[right].emplace_back(bottom, -1);
@@ -100,7 +100,7 @@ int RectangleArrayArea_SweepLine(const RectangleArray &rectangles) {
     for (const auto &[x, a_group] : groups) {
         result += (x - prev_x) * height;
 
-        for (const auto [y, type] : a_group) {
+        for (const auto &[y, type] : a_group) {
             counts[y] += type;
         }
 
@@ -122,7 +122,7 @@ int RectangleArrayArea_SweepLine(const RectangleArray &rectangles) {
     return result % LARGE_PRIME;
 }
 
-}//namespace
+} //namespace
 
 
 constexpr Point SAMPLE_P1 = {0, 10};
@@ -134,10 +134,8 @@ constexpr Point SAMPLE_P5 = {10, 5};
 
 THE_BENCHMARK(areRectanglesOverlap, SAMPLE_P1, SAMPLE_P2, SAMPLE_P3, SAMPLE_P4);
 
-SIMPLE_TEST(areRectanglesOverlap, TestSAMPLE1, true,
-            SAMPLE_P1, SAMPLE_P2, SAMPLE_P3, SAMPLE_P4);
-SIMPLE_TEST(areRectanglesOverlap, TestSAMPLE2, false,
-            SAMPLE_P1, SAMPLE_P3, SAMPLE_P5, SAMPLE_P4);
+SIMPLE_TEST(areRectanglesOverlap, TestSAMPLE1, true, SAMPLE_P1, SAMPLE_P2, SAMPLE_P3, SAMPLE_P4);
+SIMPLE_TEST(areRectanglesOverlap, TestSAMPLE2, false, SAMPLE_P1, SAMPLE_P3, SAMPLE_P5, SAMPLE_P4);
 
 
 constexpr Point SAMPLE_P6 = {0, 0};
@@ -150,12 +148,12 @@ constexpr Point SAMPLE_P11 = {2, 1};
 
 THE_BENCHMARK(areRectanglesOverlap_Area, SAMPLE_P1, SAMPLE_P2, SAMPLE_P3, SAMPLE_P4);
 
-SIMPLE_TEST(areRectanglesOverlap_Area, TestSAMPLE1, true,
-            SAMPLE_P6, SAMPLE_P7, SAMPLE_P8, SAMPLE_P9);
-SIMPLE_TEST(areRectanglesOverlap_Area, TestSAMPLE2, false,
-            SAMPLE_P6, SAMPLE_P8, SAMPLE_P10, SAMPLE_P11);
-SIMPLE_TEST(areRectanglesOverlap_Area, TestSAMPLE3, false,
-            SAMPLE_P6, SAMPLE_P8, SAMPLE_P7, SAMPLE_P9);
+SIMPLE_TEST(
+    areRectanglesOverlap_Area, TestSAMPLE1, true, SAMPLE_P6, SAMPLE_P7, SAMPLE_P8, SAMPLE_P9);
+SIMPLE_TEST(
+    areRectanglesOverlap_Area, TestSAMPLE2, false, SAMPLE_P6, SAMPLE_P8, SAMPLE_P10, SAMPLE_P11);
+SIMPLE_TEST(
+    areRectanglesOverlap_Area, TestSAMPLE3, false, SAMPLE_P6, SAMPLE_P8, SAMPLE_P7, SAMPLE_P9);
 
 
 constexpr Rectangle SAMPLE_R1 = {-3, 4, 3, 0};
@@ -169,15 +167,9 @@ SIMPLE_TEST(RectangleArea, TestSAMPLE1, 45, SAMPLE_R1, SAMPLE_R2);
 SIMPLE_TEST(RectangleArea, TestSAMPLE2, 16, SAMPLE_R3, SAMPLE_R3);
 
 
-const RectangleArray SAMPLE1 = {
-    {0, 0, 2, 2},
-    {1, 0, 2, 3},
-    {1, 0, 3, 1}
-};
+const RectangleArray SAMPLE1 = {{0, 0, 2, 2}, {1, 0, 2, 3}, {1, 0, 3, 1}};
 
-const RectangleArray SAMPLE2 = {
-    {0, 0, 1000000000, 1000000000}
-};
+const RectangleArray SAMPLE2 = {{0, 0, 1000000000, 1000000000}};
 
 
 THE_BENCHMARK(RectangleArrayArea_SweepLine, SAMPLE1);

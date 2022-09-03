@@ -33,19 +33,19 @@ struct GraphNode {
     using PointerType = std::shared_ptr<GraphNode>;
 
     std::vector<PointerType> neighbors;
-    ValueType value{};
+    ValueType value {};
 
-    explicit GraphNode(const ValueType v) : value(v) {}
+    explicit GraphNode(const ValueType v) : value(v) {
+    }
 };
 
-GraphNode::PointerType
-CloneGraph(const GraphNode::PointerType node,
-           std::unordered_map<int, GraphNode::PointerType> &visited) {
+GraphNode::PointerType CloneGraph(const GraphNode::PointerType node,
+                                  std::unordered_map<int, GraphNode::PointerType> &visited) {
     auto iter = visited.find(node->value);
     if (iter == visited.cend()) {
         const auto new_node = std::make_shared<GraphNode>(node->value);
         iter = visited.emplace(node->value, new_node).first;
-        for (const auto neighbor : node->neighbors) {
+        for (const auto &neighbor : node->neighbors) {
             new_node->neighbors.push_back(CloneGraph(neighbor, visited));
         }
     }
@@ -64,7 +64,7 @@ inline auto CloneGraph(const GraphNode::PointerType node) {
 
 void deleteGraph(const GraphNode::PointerType node, std::unordered_set<int> &visited) {
     if (visited.insert(node->value).second) {
-        for (const auto neighbor : node->neighbors) {
+        for (const auto &neighbor : node->neighbors) {
             deleteGraph(neighbor, visited);
         }
         node->neighbors.clear();
@@ -80,7 +80,7 @@ inline void deleteGraph(const GraphNode::PointerType node) {
 
 auto buildGraph(const ArrayType &original) {
     std::map<int, GraphNode::PointerType> nodes;
-    for (const auto [from, to] : original) {
+    for (const auto &[from, to] : original) {
         const auto from_iter = nodes.emplace(from, std::make_shared<GraphNode>(from)).first;
         const auto to_iter = nodes.emplace(to, std::make_shared<GraphNode>(to)).first;
         from_iter->second->neighbors.push_back(to_iter->second);
@@ -89,10 +89,11 @@ auto buildGraph(const ArrayType &original) {
     return nodes.cbegin()->second;
 }
 
-void traverseGraph(const GraphNode::PointerType node, std::unordered_set<int> &visited,
+void traverseGraph(const GraphNode::PointerType node,
+                   std::unordered_set<int> &visited,
                    ArrayType &result) {
     if (visited.insert(node->value).second) {
-        for (const auto neighbor : node->neighbors) {
+        for (const auto &neighbor : node->neighbors) {
             result.emplace(node->value, neighbor->value);
             traverseGraph(neighbor, visited, result);
         }
@@ -144,7 +145,7 @@ struct NodeWithRandom {
     PointerType next;
     PointerType::weak_type random;
 
-    constexpr explicit NodeWithRandom(const ValueType v = 0): value(v) {
+    constexpr explicit NodeWithRandom(const ValueType v = 0) : value(v) {
     }
 };
 
@@ -180,12 +181,12 @@ auto CloneList(const NodeWithRandom::PointerType head) {
 
 auto buildListWithRandom(const ArrayType &original) {
     std::vector<NodeWithRandom::PointerType> nodes;
-    for (const auto [v, _] : original) {
+    for (const auto &[v, _] : original) {
         nodes.push_back(std::make_shared<NodeWithRandom>(v));
     }
 
     std::size_t i = 0;
-    for (const auto [_, random_index] : original) {
+    for (const auto &[_, random_index] : original) {
         if (i < nodes.size() - 1) {
             nodes[i]->next = nodes[i + 1];
         }
@@ -223,7 +224,7 @@ inline auto testCloneList(const ArrayType &original) {
     return cloned == original;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {{1, 2}, {2, 3}, {3, 4}, {4, 1}};

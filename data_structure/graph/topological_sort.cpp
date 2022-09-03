@@ -15,11 +15,12 @@ namespace {
 inline auto TopologicalSort(const std::size_t number_vertices,
                             const DirectedEdgeArrayType &edges) {
     ArrayType results;
-    GraphTraverse(number_vertices, edges,
-    [&results](const auto & graph, const auto source, auto & visited_vertices) {
-        TopologicalSort(graph, source, visited_vertices, results);
-        return true;
-    });
+    GraphTraverse(number_vertices,
+                  edges,
+                  [&results](const auto &graph, const auto source, auto &visited_vertices) {
+                      TopologicalSort(graph, source, visited_vertices, results);
+                      return true;
+                  });
 
     std::reverse(results.begin(), results.end());
     return results;
@@ -28,8 +29,9 @@ inline auto TopologicalSort(const std::size_t number_vertices,
 
 inline auto TopologicalSort_Kahn(const std::size_t number_vertices,
                                  const DirectedEdgeArrayType &edges) {
-    return AdjacencyListGraph(number_vertices, edges).Visit
-           (ToLambda(TopologicalSort_Kahn)).second;
+    return AdjacencyListGraph(number_vertices, edges)
+        .Visit(ToLambda(TopologicalSort_Kahn))
+        .second;
 }
 
 
@@ -174,8 +176,10 @@ inline auto MinimumHeightTrees(const std::size_t number_vertices,
  * You will start on the 1st day and you cannot take two or more courses simultaneously.
  * Return the maximum number of courses that you can take.
  */
-auto CourseSchedule_Memo(const CourseArrayType &courses, const std::size_t i,
-                         const int time, MemoType &memo) {
+auto CourseSchedule_Memo(const CourseArrayType &courses,
+                         const std::size_t i,
+                         const int time,
+                         MemoType &memo) {
     if (i == courses.size()) {
         return 0;
     }
@@ -210,7 +214,7 @@ auto CourseSchedule_Heap(CourseArrayType courses) {
 
     int time = 0;
     std::priority_queue<int> max_heap;
-    for (const auto [duration, last_day] : courses) {
+    for (const auto &[duration, last_day] : courses) {
         if (time + duration <= last_day) {
             max_heap.push(duration);
             time += duration;
@@ -224,7 +228,7 @@ auto CourseSchedule_Heap(CourseArrayType courses) {
     return max_heap.size();
 }
 
-}//namespace
+} //namespace
 
 
 const DirectedEdgeArrayType SAMPLE1 = {{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}};
@@ -249,21 +253,19 @@ SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE1, EXPECTED1K, 6, SAMPLE1);
 SIMPLE_TEST(TopologicalSort_Kahn, TestSAMPLE2, EXPECTED2, 4, SAMPLE2);
 
 
-const std::vector<ArrayType> EXPECTED3 = {
-    {4, 5, 0, 2, 3, 1},
-    {4, 5, 2, 0, 3, 1},
-    {4, 5, 2, 3, 0, 1},
-    {4, 5, 2, 3, 1, 0},
-    {5, 2, 3, 4, 0, 1},
-    {5, 2, 3, 4, 1, 0},
-    {5, 2, 4, 0, 3, 1},
-    {5, 2, 4, 3, 0, 1},
-    {5, 2, 4, 3, 1, 0},
-    {5, 4, 0, 2, 3, 1},
-    {5, 4, 2, 0, 3, 1},
-    {5, 4, 2, 3, 0, 1},
-    {5, 4, 2, 3, 1, 0}
-};
+const std::vector<ArrayType> EXPECTED3 = {{4, 5, 0, 2, 3, 1},
+                                          {4, 5, 2, 0, 3, 1},
+                                          {4, 5, 2, 3, 0, 1},
+                                          {4, 5, 2, 3, 1, 0},
+                                          {5, 2, 3, 4, 0, 1},
+                                          {5, 2, 3, 4, 1, 0},
+                                          {5, 2, 4, 0, 3, 1},
+                                          {5, 2, 4, 3, 0, 1},
+                                          {5, 2, 4, 3, 1, 0},
+                                          {5, 4, 0, 2, 3, 1},
+                                          {5, 4, 2, 0, 3, 1},
+                                          {5, 4, 2, 3, 0, 1},
+                                          {5, 4, 2, 3, 1, 0}};
 
 
 THE_BENCHMARK(AllTopologicalSort, 6, SAMPLE1);

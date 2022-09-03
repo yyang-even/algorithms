@@ -55,7 +55,7 @@ inline bool WildcardSearch(const Trie::Node &root, const std::string_view key) {
     for (std::size_t i = 0; i < key.size(); ++i) {
         const auto c = key[i];
         if (c == '.') {
-            for (const auto node : current->children) {
+            for (const auto &node : current->children) {
                 if (node and WildcardSearch(*node, key.substr(i + 1))) {
                     return true;
                 }

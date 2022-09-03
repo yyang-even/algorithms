@@ -24,7 +24,7 @@ auto CellsWithOddValues(const int m, const int n, const ArrayType &indices) {
     std::vector rows(m, false);
     std::vector columns(n, false);
 
-    for (const auto [i, j] : indices) {
+    for (const auto &[i, j] : indices) {
         rows[i] = rows[i] ^ true;
         columns[j] = columns[j] ^ true;
     }
@@ -47,7 +47,7 @@ auto CellsWithOddValues(const int m, const int n, const ArrayType &indices) {
     return odd_row * n + odd_column * m - 2 * odd_row * odd_column;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {{0, 1}, {1, 1}};

@@ -214,7 +214,7 @@ auto FractionalKnapsack01(const ArrayType &weights,
     });
 
     auto final_value = 0.0;
-    for (const auto [ration, index] : ratios) {
+    for (const auto &[ration, index] : ratios) {
         if (weights[index] <= W) {
             W -= weights[index];
             final_value += values[index];
@@ -307,7 +307,7 @@ auto FractionalKnapsack01Queries(const ArrayType &weights,
  */
 auto MaxUnits(const PairArrayType &boxTypes, int truckSize) {
     int counts[1001] = {};
-    for (const auto [number, unit] : boxTypes) {
+    for (const auto &[number, unit] : boxTypes) {
         counts[unit] += number;
     }
 
