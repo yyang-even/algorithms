@@ -103,11 +103,14 @@ auto isPalindrome_Stack(const std::string_view a_string) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.7.
  *
- * @note    If no stack is allowed, then we can reverse the second half of the list, and
- * restore it later. Or we can use function call stack.
+ * @note    If no stack is allowed, then we can reverse the second half of the list, and restore it
+ * later. Or we can use function call stack.
  *
  * @reference   Palindrome Linked List
  *              https://leetcode.com/problems/palindrome-linked-list/
+ *
+ * Given the head of a singly linked list, return true if it is a palindrome.
+ * Follow up: Could you do it in O(n) time and O(1) space?
  */
 auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     std::stack<ListType::value_type> the_stack;
@@ -146,8 +149,7 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
  * @reference   To check a number is palindrome or not without using any extra space
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
  */
-inline constexpr auto
-isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
+inline constexpr auto isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
     const unsigned reversed_number = ReverseDigits(number, base);
     return reversed_number == number;
 }
@@ -157,8 +159,8 @@ inline constexpr auto isIntPalindrome_Reverse(const unsigned number) {
 }
 
 
-constexpr auto isNumberPalindrome_Recursive(const unsigned number, const unsigned base,
-                                            unsigned &copy) {
+constexpr auto
+isNumberPalindrome_Recursive(const unsigned number, const unsigned base, unsigned &copy) {
     if (number < base) {
         return number == copy % base;
     }
@@ -225,9 +227,9 @@ inline constexpr auto isOctalPalindrome_Recursive(const unsigned number) {
  * @reference   Check if actual binary representation of a number is palindrome
  *              https://www.geeksforgeeks.org/check-actual-binary-representation-number-palindrome/
  *
- * Given a non-negative integer n. The problem is to check if binary representation of n
- * is palindrome or not. Note that the actual binary representation of the number is being
- * considered for palindrome checking, no leading 0’s are being considered.
+ * Given a non-negative integer n. The problem is to check if binary representation of n is palindrome
+ * or not. Note that the actual binary representation of the number is being considered for palindrome
+ * checking, no leading 0’s are being considered.
  */
 inline constexpr auto isActualBinaryPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 2);
@@ -242,8 +244,7 @@ constexpr auto isBinaryPalindrome(const unsigned number) {
     unsigned least_significant = 1;
     unsigned most_significant = 1 << (BitsNumber<decltype(number)> - 1);
 
-    for (; least_significant < most_significant;
-         least_significant <<= 1, most_significant >>= 1)
+    for (; least_significant < most_significant; least_significant <<= 1, most_significant >>= 1)
         if (static_cast<bool>(number & least_significant) !=
             static_cast<bool>(number & most_significant)) {
             return false;
@@ -257,8 +258,8 @@ constexpr auto isBinaryPalindrome(const unsigned number) {
  * @reference   Valid Palindrome
  *              https://leetcode.com/problems/valid-palindrome/
  *
- * Given a string s, determine if it is a palindrome, considering only alphanumeric
- * characters and ignoring cases.
+ * Given a string s, determine if it is a palindrome, considering only alphanumeric characters and
+ * ignoring cases.
  *
  * @reference   Sentence Palindrome (Palindrome after removing spaces, dots, .. etc)
  *              https://www.geeksforgeeks.org/sentence-palindrome-palindrome-removing-spaces-dots-etc/
@@ -267,8 +268,10 @@ constexpr auto ValidPalindrome(const std::string_view text) {
     int left = 0;
     int right = text.size() - 1;
     while (left < right) {
-        for (; left < right and not std::isalnum(text[left]); ++left);
-        for (; right > left and not std::isalnum(text[right]); --right);
+        for (; left < right and not std::isalnum(text[left]); ++left)
+            ;
+        for (; right > left and not std::isalnum(text[right]); --right)
+            ;
 
         if (std::tolower(text[left++]) != std::tolower(text[right--])) {
             return false;
@@ -283,8 +286,8 @@ constexpr auto ValidPalindrome(const std::string_view text) {
  * @reference   Valid Palindrome II
  *              https://leetcode.com/problems/valid-palindrome-ii/
  *
- * Given a string s, return true if the s can be palindrome after deleting at most one
- * character from it.
+ * Given a string s, return true if the s can be palindrome after deleting at most one character from
+ * it.
  */
 constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
     int left = 0;
@@ -304,13 +307,15 @@ constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
  * @reference   Remove Palindromic Subsequences
  *              https://leetcode.com/problems/remove-palindromic-subsequences/
  *
- * You are given a string s consisting only of letters 'a' and 'b'. In a single step you
- * can remove one palindromic subsequence from s. Return the minimum number of steps to
- * make the given string empty. A string is a subsequence of a given string if it is
- * generated by deleting some characters of a given string without changing its order.
- * Note that a subsequence does not necessarily need to be contiguous. A string is called
- * palindrome if is one that reads the same backward as well as forward.
- * isPalindrome(s) ? 1 : 2;
+ * You are given a string s consisting only of letters 'a' and 'b'. In a single step you can remove one
+ * palindromic subsequence from s.
+ * Return the minimum number of steps to make the given string empty.
+ * A string is a subsequence of a given string if it is generated by deleting some characters of a given
+ * string without changing its order. Note that a subsequence does not necessarily need to be
+ * contiguous.
+ * A string is called palindrome if is one that reads the same backward as well as forward.
+ *
+ * @hint    isPalindrome(s) ? 1 : 2;
  */
 
 
@@ -318,12 +323,12 @@ constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
  * @reference   Find First Palindromic String in the Array
  *              https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
  *
- * Given an array of strings words, return the first palindromic string in the array. If
- * there is no such string, return an empty string "".
+ * Given an array of strings words, return the first palindromic string in the array. If there is no
+ * such string, return an empty string "".
  * A string is palindromic if it reads the same forward and backward.
  */
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(isPalindrome_Iterative, "aba");
@@ -434,8 +439,9 @@ THE_BENCHMARK(isBinaryPalindrome, 0b101);
 
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE1, false, 0b101);
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE2, true, -1);
-SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE3, true,
-            (1 << (BitsNumber<unsigned> - 1)) + 1);
-SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE4, true,
+SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE3, true, (1 << (BitsNumber<unsigned> - 1)) + 1);
+SIMPLE_TEST(isBinaryPalindrome,
+            TestSAMPLE4,
+            true,
             (1 << ((BitsNumber<unsigned> / 2) - 1)) + (1 << (BitsNumber<unsigned> / 2)));
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE5, false, 0b1011);
