@@ -21,8 +21,8 @@ using HeightWeightArray = std::vector<HeightWeightPair>;
  * @reference   C++ Program for Longest Increasing Subsequence
  *              https://www.geeksforgeeks.org/c-program-for-longest-increasing-subsequence/
  *
- * The Longest Increasing Subsequence (LIS) problem is to find the length of the longest subsequence
- * of a given sequence such that all elements of the subsequence are sorted in increasing order.
+ * The Longest Increasing Subsequence (LIS) problem is to find the length of the longest subsequence of
+ * a given sequence such that all elements of the subsequence are sorted in increasing order.
  * For example, the length of LIS for {10, 22, 9, 33, 21, 50, 41, 60, 80} is 6 and LIS is
  * {10, 22, 33, 50, 60, 80}.
  *
@@ -30,8 +30,8 @@ using HeightWeightArray = std::vector<HeightWeightPair>;
  *              https://leetcode.com/problems/longest-increasing-subsequence/
  *
  * Given an integer array nums, return the length of the longest strictly increasing subsequence.
- * A subsequence is a sequence that can be derived from an array by deleting some or no elements
- * without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence
+ * A subsequence is a sequence that can be derived from an array by deleting some or no elements without
+ * changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence
  * of the array [0,3,1,6,2,2,7].
  * Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
  */
@@ -181,8 +181,8 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
  * @reference   Maximum Ascending Subarray Sum
  *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
  *
- * Given an array of positive integers nums, return the maximum possible sum of an ascending
- * subarray in nums.
+ * Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in
+ * nums.
  * A subarray is defined as a contiguous sequence of numbers in an array.
  * A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r,
  * numsi < numsi+1. Note that a subarray of size 1 is ascending.
@@ -193,8 +193,8 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
  * @reference   Consecutive Characters
  *              https://leetcode.com/problems/consecutive-characters/
  *
- * The power of the string is the maximum length of a non-empty substring that contains only one
- * unique character.
+ * The power of the string is the maximum length of a non-empty substring that contains only one unique
+ * character.
  * Given a string s, return the power of s.
  */
 
@@ -203,8 +203,8 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
  * @reference   Largest Divisible Subset
  *              https://leetcode.com/problems/largest-divisible-subset/
  *
- * Given a set of distinct positive integers nums, return the largest subset answer such that
- * every pair (answer[i], answer[j]) of elements in this subset satisfies:
+ * Given a set of distinct positive integers nums, return the largest subset answer such that every pair
+ * (answer[i], answer[j]) of elements in this subset satisfies:
  *  answer[i] % answer[j] == 0, or
  *  answer[j] % answer[i] == 0
  * If there are multiple solutions, return any of them.
@@ -241,10 +241,10 @@ auto LargestDivisibleSubset(ArrayType nums) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 11.7.
  *
- * A circus is designing a tower routine consisting of people standing atop one another's
- * shoulders. For practical and aesthetic reasons, each person must be both shorter and lighter
- * than the person below him or her. Given the heights and weights of each person in the circus,
- * write a method to compute the largest possible number of people in such a tower.
+ * A circus is designing a tower routine consisting of people standing atop one another's shoulders. For
+ * practical and aesthetic reasons, each person must be both shorter and lighter than the person below
+ * him or her. Given the heights and weights of each person in the circus, write a method to compute the
+ * largest possible number of people in such a tower.
  */
 auto CircusTower(HeightWeightArray people) {
     assert(not people.empty());
@@ -270,8 +270,8 @@ auto CircusTower(HeightWeightArray people) {
  * @reference   Russian Doll Envelopes
  *              https://leetcode.com/problems/russian-doll-envelopes/
  *
- * You are given a 2D array of integers envelopes where envelopes[i] = [wi, hi] represents the
- * width and the height of an envelope.
+ * You are given a 2D array of integers envelopes where envelopes[i] = [wi, hi] represents the width and
+ * the height of an envelope.
  * One envelope can fit into another if and only if both the width and height of one envelope are
  * greater than the other envelope's width and height.
  * Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other).
@@ -301,13 +301,47 @@ auto CircusTower_NLogN(HeightWeightArray people) {
 
 
 /**
+ * @reference   The Number of Weak Characters in the Game
+ *              https://leetcode.com/problems/the-number-of-weak-characters-in-the-game/
+ *
+ * You are playing a game that contains multiple characters, and each of the characters has two main
+ * properties: attack and defense. You are given a 2D integer array properties where properties[i] =
+ * [attacki, defensei] represents the properties of the ith character in the game.
+ * A character is said to be weak if any other character has both attack and defense levels strictly
+ * greater than this character's attack and defense levels. More formally, a character i is said to be
+ * weak if there exists another character j where attackj > attacki and defensej > defensei.
+ * Return the number of weak characters.
+ */
+auto NumberOfWeakCharacters(HeightWeightArray properties) {
+    std::sort(properties.begin(), properties.end(), [](const auto &one, const auto &another) {
+        if (one.first == another.first) {
+            return one.second > another.second;
+        }
+        return one.first < another.first;
+    });
+
+    int result = 0;
+    int maximum = INT_MIN;
+    for (int i = properties.size() - 1; i >= 0; --i) {
+        if (properties[i].second < maximum) {
+            ++result;
+        } else {
+            maximum = properties[i].second;
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.10.
  *
- * You have a stack of n boxes, with widths w, heights h, and depths d. The boxes cannot be
- * rotated and can only be stacked on top of one another if each box in the stack is strictly
- * larger than the box above it in width, height, and depth. Implement a method to build the
- * tallest stack possible, where the height of a stack is the sum of the heights of each box.
+ * You have a stack of n boxes, with widths w, heights h, and depths d. The boxes cannot be rotated and
+ * can only be stacked on top of one another if each box in the stack is strictly larger than the box
+ * above it in width, height, and depth. Implement a method to build the tallest stack possible, where
+ * the height of a stack is the sum of the heights of each box.
  */
 
 
@@ -315,12 +349,12 @@ auto CircusTower_NLogN(HeightWeightArray people) {
  *
  * @reference   https://www.geeksforgeeks.org/box-stacking-problem-dp-22/
  *
- * You are given a set of n types of rectangular 3-D boxes, where the i^th box has height h(i),
- * width w(i) and depth d(i) (all real numbers). You want to create a stack of boxes which is as
- * tall as possible, but you can only stack a box on top of another box if the dimensions of the
- * 2-D base of the lower box are each strictly larger than those of the 2-D base of the higher
- * box. Of course, you can rotate a box so that any side functions as its base. It is also
- * allowable to use multiple instances of the same type of box.
+ * You are given a set of n types of rectangular 3-D boxes, where the i^th box has height h(i), width
+ * w(i) and depth d(i) (all real numbers). You want to create a stack of boxes which is as tall as
+ * possible, but you can only stack a box on top of another box if the dimensions of the 2-D base of the
+ * lower box are each strictly larger than those of the 2-D base of the higher box. Of course, you can
+ * rotate a box so that any side functions as its base. It is also allowable to use multiple instances
+ * of the same type of box.
  */
 struct Box {
     int height = 0;
@@ -474,3 +508,15 @@ const BoxArray SAMPLE1B = {{4, 6, 7}, {1, 2, 3}, {4, 5, 6}, {10, 12, 32}};
 THE_BENCHMARK(MaxStackHeight, SAMPLE1B);
 
 SIMPLE_TEST(MaxStackHeight, TestSAMPLE1, 60, SAMPLE1B);
+
+
+const HeightWeightArray SAMPLE1C = {{5, 5}, {6, 3}, {3, 6}};
+const HeightWeightArray SAMPLE2C = {{2, 2}, {3, 3}};
+const HeightWeightArray SAMPLE3C = {{1, 5}, {10, 4}, {4, 3}};
+
+
+THE_BENCHMARK(NumberOfWeakCharacters, SAMPLE1C);
+
+SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE1, 0, SAMPLE1C);
+SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE2, 1, SAMPLE2C);
+SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE3, 1, SAMPLE3C);
