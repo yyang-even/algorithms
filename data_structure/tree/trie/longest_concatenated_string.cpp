@@ -55,6 +55,36 @@ inline auto LongestConcatenatedString(const ArrayType &arr) {
     });
 }
 
+
+/**
+ * @reference   Word Break
+ *              https://leetcode.com/problems/word-break/
+ *
+ * Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a
+ * space-separated sequence of one or more dictionary words.
+ * Note that the same word in the dictionary may be reused multiple times in the segmentation.
+ */
+bool WordBreak(const std::string_view s, const ArrayType &wordDict) {
+    std::unordered_set<std::string_view> dictionary(wordDict.cbegin(), wordDict.cend());
+
+    std::vector<bool> dp(s.size() + 1, false);
+    dp[0] = true;
+
+    for (std::size_t i = 1; i <= s.size(); ++i) {
+        for (int j = i - 1; j >= 0; --j) {
+            if (dp[j]) {
+                const auto word = s.substr(j, i - j);
+                if (dictionary.find(word) != dictionary.cend()) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    return dp[s.size()];
+}
+
 } //namespace
 
 
@@ -66,3 +96,15 @@ THE_BENCHMARK(LongestConcatenatedString, SAMPLE1);
 
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE1, "geeksforgeeks", SAMPLE1);
 SIMPLE_TEST(LongestConcatenatedString, TestSAMPLE2, "", SAMPLE2);
+
+
+const ArrayType SAMPLE3 = {"leet", "code"};
+const ArrayType SAMPLE4 = {"apple", "pen"};
+const ArrayType SAMPLE5 = {"cats", "dog", "sand", "and", "cat"};
+
+
+THE_BENCHMARK(WordBreak, "leetcode", SAMPLE3);
+
+SIMPLE_TEST(WordBreak, TestSAMPLE3, true, "leetcode", SAMPLE3);
+SIMPLE_TEST(WordBreak, TestSAMPLE4, true, "applepenapple", SAMPLE4);
+SIMPLE_TEST(WordBreak, TestSAMPLE5, false, "catsandog", SAMPLE5);
