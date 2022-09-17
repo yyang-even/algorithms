@@ -15,8 +15,8 @@ using ArrayType = std::vector<int>;
  * @reference   C Program for Counting Sort
  *              https://www.geeksforgeeks.org/c-program-for-counting-sort-2/
  *
- * Counting sort is efficient if the range of input data is not significantly greater
- * than the number of objects to be sorted.
+ * Counting sort is efficient if the range of input data is not significantly greater than the number of
+ * objects to be sorted.
  *
  * @reference   Sort string of characters
  *              https://www.geeksforgeeks.org/sort-string-characters/
@@ -79,13 +79,12 @@ inline auto CountingSort_STL(ArrayType values) {
  * @reference   Actors and Directors Who Cooperated At Least Three Times
  *              https://leetcode.com/problems/height-checker/
  *
- * A school is trying to take an annual photo of all the students. The students are asked
- * to stand in a single file line in non-decreasing order by height. Let this ordering be
- * represented by the integer array expected where expected[i] is the expected height of
- * the ith student in line. You are given an integer array heights representing the
- * current order that the students are standing in. Each heights[i] is the height of the
- * ith student in line (0-indexed). Return the number of indices where
- * heights[i] != expected[i].
+ * A school is trying to take an annual photo of all the students. The students are asked to stand in a
+ * single file line in non-decreasing order by height. Let this ordering be represented by the integer
+ * array expected where expected[i] is the expected height of the ith student in line.
+ * You are given an integer array heights representing the current order that the students are standing
+ * in. Each heights[i] is the height of the ith student in line (0-indexed).
+ * Return the number of indices where heights[i] != expected[i].
  * 1 <= heights[i] <= 100
  */
 
@@ -94,9 +93,10 @@ inline auto CountingSort_STL(ArrayType values) {
  * @reference   How Many Numbers Are Smaller Than the Current Number
  *              https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
  *
- * Given the array nums, for each nums[i] find out how many numbers in the array are
- * smaller than it. That is, for each nums[i] you have to count the number of valid j's
- * such that j != i and nums[j] < nums[i]. Return the answer in an array.
+ * Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it.
+ * That is, for each nums[i] you have to count the number of valid j's such that j != i and
+ * nums[j] < nums[i].
+ * Return the answer in an array.
  * 0 <= nums[i] <= 100
  */
 
@@ -107,17 +107,16 @@ inline auto CountingSort_STL(ArrayType values) {
  *
  * You are given a string s. Reorder the string using the following algorithm:
  *  Pick the smallest character from s and append it to the result.
- *  Pick the smallest character from s which is greater than the last appended character
- *      to the result and append it.
+ *  Pick the smallest character from s which is greater than the last appended character to the result
+ *      and append it.
  *  Repeat step 2 until you cannot pick more characters.
  *  Pick the largest character from s and append it to the result.
- *  Pick the largest character from s which is smaller than the last appended character
- *      to the result and append it.
+ *  Pick the largest character from s which is smaller than the last appended character to the result
+ *      and append it.
  *  Repeat step 5 until you cannot pick more characters.
  *  Repeat the steps from 1 to 6 until you pick all characters from s.
- * In each step, If the smallest or the largest character appears more than once you can
- * choose any occurrence and append it to the result. Return the result string after
- * sorting s with this algorithm.
+ * In each step, If the smallest or the largest character appears more than once you can choose any
+ * occurrence and append it to the result. Return the result string after sorting s with this algorithm.
  * s consists of only lowercase English letters.
  */
 
@@ -126,12 +125,11 @@ inline auto CountingSort_STL(ArrayType values) {
  * @reference   Special Array With X Elements Greater Than or Equal X
  *              https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
  *
- * You are given an array nums of non-negative integers. nums is considered special if
- * there exists a number x such that there are exactly x numbers in nums that are greater
- * than or equal to x.
+ * You are given an array nums of non-negative integers. nums is considered special if there exists a
+ * number x such that there are exactly x numbers in nums that are greater than or equal to x.
  * Notice that x does not have to be an element in nums.
- * Return x if the array is special, otherwise, return -1. It can be proven that if nums
- * is special, the value for x is unique.
+ * Return x if the array is special, otherwise, return -1. It can be proven that if nums is special, the
+ * value for x is unique.
  * 1 <= nums.length <= 100
  * 0 <= nums[i] <= 1000
  */
@@ -156,16 +154,15 @@ auto SpecialArrayNumber(const ArrayType &nums) {
  * @reference   Design an Ordered Stream
  *              https://leetcode.com/problems/design-an-ordered-stream/
  *
- * There is a stream of n (idKey, value) pairs arriving in an arbitrary order, where idKey
- * is an integer between 1 and n and value is a string. No two pairs have the same id.
- * Design a stream that returns the values in increasing order of their IDs by returning a
- * chunk (list) of values after each insertion. The concatenation of all the chunks should
- * result in a list of the sorted values.
+ * There is a stream of n (idKey, value) pairs arriving in an arbitrary order, where idKey is an integer
+ * between 1 and n and value is a string. No two pairs have the same id.
+ * Design a stream that returns the values in increasing order of their IDs by returning a chunk (list)
+ * of values after each insertion. The concatenation of all the chunks should result in a list of the
+ * sorted values.
  * Implement the OrderedStream class:
  *  OrderedStream(int n) Constructs the stream to take n values.
- *  String[] insert(int idKey, String value) Inserts the pair (idKey, value) into the
- *      stream, then returns the largest possible chunk of currently inserted values that
- *      appear next in the order.
+ *  String[] insert(int idKey, String value) Inserts the pair (idKey, value) into the stream, then
+ *      returns the largest possible chunk of currently inserted values that appear next in the order.
  */
 
 
@@ -175,8 +172,8 @@ auto SpecialArrayNumber(const ArrayType &nums) {
  * @reference   Check if array elements are consecutive in O(n) time and O(1) space (Handles Both Positive and negative numbers)
  *              https://www.geeksforgeeks.org/check-array-elements-consecutive-time-o1-space-handles-positive-negative-numbers/
  *
- * Given an unsorted array of distinct numbers, write a function that returns true if
- * array consists of consecutive numbers.
+ * Given an unsorted array of distinct numbers, write a function that returns true if array consists of
+ * consecutive numbers.
  */
 auto areConsecutive(const ArrayType &nums) {
     auto minimum = *std::min_element(nums.cbegin(), nums.cend());
@@ -189,7 +186,50 @@ auto areConsecutive(const ArrayType &nums) {
     return result == 0;
 }
 
-}//namespace
+
+/**
+ * @reference   Find Original Array From Doubled Array
+ *              https://leetcode.com/problems/find-original-array-from-doubled-array/
+ *
+ * An integer array original is transformed into a doubled array changed by appending twice the value of
+ * every element in original, and then randomly shuffling the resulting array.
+ * Given an array changed, return original if changed is a doubled array. If changed is not a doubled
+ * array, return an empty array. The elements in original may be returned in any order.
+ */
+ArrayType FindOriginalArray(const ArrayType &nums) {
+    if (nums.size() % 2 == 1) {
+        return {};
+    }
+
+    int counts[100001] = {};
+
+    for (const auto n : nums) {
+        ++counts[n];
+    }
+
+    ArrayType result;
+    if (counts[0]) {
+        if (counts[0] % 2 == 1) {
+            return {};
+        }
+
+        result.insert(result.cend(), counts[0] / 2, 0);
+    }
+
+    for (int i = 1; i < 100001; ++i) {
+        if (counts[i]) {
+            if (i * 2 >= 100001 or counts[i * 2] < counts[i]) {
+                return {};
+            }
+            counts[i * 2] -= counts[i];
+            result.insert(result.cend(), counts[i], i);
+        }
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
@@ -267,3 +307,19 @@ SIMPLE_TEST(areConsecutive, TestSAMPLE2, true, SAMPLE2C);
 SIMPLE_TEST(areConsecutive, TestSAMPLE3, false, SAMPLE3C);
 SIMPLE_TEST(areConsecutive, TestSAMPLE4, false, SAMPLE4C);
 SIMPLE_TEST(areConsecutive, TestSAMPLE5, true, SAMPLE5C);
+
+
+const ArrayType SAMPLE1D = {1, 3, 4, 2, 6, 8};
+const ArrayType EXPECTED1D = {1, 3, 4};
+
+const ArrayType SAMPLE2D = {6, 3, 0, 1};
+const ArrayType EXPECTED2D = {};
+
+const ArrayType SAMPLE3D = {1};
+
+
+THE_BENCHMARK(FindOriginalArray, SAMPLE1D);
+
+SIMPLE_TEST(FindOriginalArray, TestSAMPLE1, EXPECTED1D, SAMPLE1D);
+SIMPLE_TEST(FindOriginalArray, TestSAMPLE2, EXPECTED2D, SAMPLE2D);
+SIMPLE_TEST(FindOriginalArray, TestSAMPLE3, EXPECTED2D, SAMPLE3D);

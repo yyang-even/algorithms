@@ -15,8 +15,7 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * @reference   Path Sum
  *              https://leetcode.com/problems/path-sum/
  */
-inline bool
-hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
+inline bool hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
     if (not node) {
         return false;
     }
@@ -34,9 +33,10 @@ hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
  * @reference   Shortest root to leaf path sum equal to a given number
  *              https://www.geeksforgeeks.org/shortest-root-to-leaf-path-sum-equal-to-a-given-number/
  */
-inline void
-ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
-                            const int sum, const int level, int &minimum) {
+inline void ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
+                                        const int sum,
+                                        const int level,
+                                        int &minimum) {
     if (node) {
         const auto sub_sum = sum - node->value;
         if (sub_sum == 0 and not node->left and not node->right) {
@@ -48,8 +48,7 @@ ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
     }
 }
 
-inline int
-ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
+inline int ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
     constexpr auto NOT_FOUND = std::numeric_limits<int>::max();
     auto result = NOT_FOUND;
     ShortestKSumFullPathsHelper(root, sum, 1, result);
@@ -61,15 +60,17 @@ ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const int sum) {
  *
  * @reference   https://www.geeksforgeeks.org/print-paths-root-specified-sum-binary-tree/
  *
- * Given a Binary tree and a sum S, print all the paths, starting from root, that sums
- * upto the given sum. Note that this problem is different from root to leaf paths. Here
- * path doesn't need to end on a leaf node.
+ * Given a Binary tree and a sum S, print all the paths, starting from root, that sums upto the given
+ * sum. Note that this problem is different from root to leaf paths. Here path doesn't need to end on a
+ * leaf node.
  *
  * @reference   Path Sum II
  *              https://leetcode.com/problems/path-sum-ii/
  */
-void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
-                            BinaryTree::ArrayType &path, ArrayType &results) {
+void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node,
+                            const int sum,
+                            BinaryTree::ArrayType &path,
+                            ArrayType &results) {
     if (node) {
         const auto sub_sum = sum - node->value;
         path.push_back(node->value);
@@ -85,8 +86,7 @@ void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node, const int 
     }
 }
 
-inline auto
-AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
+inline auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
     BinaryTree::ArrayType path;
     ArrayType results;
     AllKSumRootPathsHelper(root, sum, path, results);
@@ -106,8 +106,8 @@ AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
  * @reference   Binary Tree Paths
  *              https://leetcode.com/problems/binary-tree-paths/
  *
- * Given the root of a binary tree, return all root-to-leaf paths in any order. A leaf
- * is a node with no children.
+ * Given the root of a binary tree, return all root-to-leaf paths in any order. A leaf is a node with no
+ * children.
  */
 
 
@@ -115,18 +115,19 @@ AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int sum) {
  *
  * @reference   https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/
  *
- * A binary tree and a number k are given. Print every path in the tree with sum of the
- * nodes in the path as k. A path can start from any node and end at any node and must
- * be downward only, i.e. they need not be root node and leaf node; and negative numbers
- * can also be there in the tree.
+ * A binary tree and a number k are given. Print every path in the tree with sum of the nodes in the
+ * path as k. A path can start from any node and end at any node and must be downward only, i.e. they
+ * need not be root node and leaf node; and negative numbers can also be there in the tree.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.9.
  * @reference   Path Sum III
  *              https://leetcode.com/problems/path-sum-iii/
  */
-void AllKSumPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
-                        BinaryTree::ArrayType &path, ArrayType &results) {
+void AllKSumPathsHelper(const BinaryTree::Node::PointerType node,
+                        const int sum,
+                        BinaryTree::ArrayType &path,
+                        ArrayType &results) {
     if (node) {
         path.push_back(node->value);
 
@@ -145,8 +146,7 @@ void AllKSumPathsHelper(const BinaryTree::Node::PointerType node, const int sum,
     }
 }
 
-inline auto
-AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum) {
+inline auto AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum) {
     BinaryTree::ArrayType path;
     ArrayType results;
     AllKSumPathsHelper(root, sum, path, results);
@@ -158,24 +158,63 @@ AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum) {
  * @reference   Sum of Root To Leaf Binary Numbers
  *              https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
  *
- * You are given the root of a binary tree where each node has a value 0 or 1.  Each
- * root-to-leaf path represents a binary number starting with the most significant bit.
- * For example, if the path is 0 -> 1 -> 1 -> 0 -> 1, then this could represent 01101 in
- * binary, which is 13. For all leaves in the tree, consider the numbers represented by
- * the path from the root to that leaf. Return the sum of these numbers. The answer is
- * guaranteed to fit in a 32-bits integer.
+ * You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path
+ * represents a binary number starting with the most significant bit.
+ *  For example, if the path is 0 -> 1 -> 1 -> 0 -> 1, then this could represent 01101 in binary, which
+ *      is 13.
+ * For all leaves in the tree, consider the numbers represented by the path from the root to that leaf.
+ * Return the sum of these numbers.
+ * The test cases are generated so that the answer fits in a 32-bits integer.
  *
  * @reference   Sum Root to Leaf Numbers
  *              https://leetcode.com/problems/sum-root-to-leaf-numbers/
  *
- * You are given the root of a binary tree containing digits from 0 to 9 only. Each
- * root-to-leaf path in the tree represents a number.
+ * You are given the root of a binary tree containing digits from 0 to 9 only.
+ * Each root-to-leaf path in the tree represents a number.
  *  For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
- * Return the total sum of all root-to-leaf numbers. Test cases are generated so that
- * the answer will fit in a 32-bit integer. A leaf node is a node with no children.
+ * Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will
+ * fit in a 32-bit integer.
+ * A leaf node is a node with no children.
  */
 
-}//namespace
+
+/**
+ * @reference   Pseudo-Palindromic Paths in a Binary Tree
+ *              https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/
+ *
+ * Given a binary tree where node values are digits from 1 to 9. A path in the binary tree is said to be
+ * pseudo-palindromic if at least one permutation of the node values in the path is a palindrome.
+ * Return the number of pseudo-palindromic paths going from the root node to leaf nodes.
+ */
+void PseudoPalindromicPaths(const BinaryTree::Node::PointerType node,
+                            unsigned path,
+                            int &result) {
+    if (not node) {
+        return;
+    }
+
+    path ^= (1u << node->value);
+
+    if (not node->left and not node->right) {
+        if ((path & (path - 1)) == 0) {
+            ++result;
+        }
+    }
+
+    PseudoPalindromicPaths(node->left, path, result);
+    PseudoPalindromicPaths(node->right, path, result);
+}
+
+inline auto PseudoPalindromicPaths(const BinaryTree::Node::PointerType root) {
+    unsigned path = 0;
+    int result = 0;
+
+    PseudoPalindromicPaths(root, path, result);
+
+    return result;
+}
+
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
@@ -222,3 +261,8 @@ SIMPLE_TEST(AllKSumPaths, TestSAMPLE1, EXPECTED_R1, SAMPLE1, 1);
 SIMPLE_TEST(AllKSumPaths, TestSAMPLE2, EXPECTED_R0, SAMPLE1, 100);
 SIMPLE_TEST(AllKSumPaths, TestSAMPLE3, EXPECTED2, SAMPLE1, 4);
 SIMPLE_TEST(AllKSumPaths, TestSAMPLE4, EXPECTED3, SAMPLE1, 7);
+
+
+THE_BENCHMARK(PseudoPalindromicPaths, SAMPLE1);
+
+SIMPLE_TEST(PseudoPalindromicPaths, TestSAMPLE1, 0, SAMPLE1);
