@@ -12,9 +12,9 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
  *
- * Given an unsorted array of n integers which can contain integers from 1 to n. Some elements
- * can be repeated multiple times and some other elements can be absent from the array. Count
- * frequency of all elements that are present and print the missing elements.
+ * Given an unsorted array of n integers which can contain integers from 1 to n. Some elements can be
+ * repeated multiple times and some other elements can be absent from the array. Count frequency of all
+ * elements that are present and print the missing elements.
  *
  * @reference   Counting frequencies of array elements
  *              https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/
@@ -112,8 +112,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters in decreasing order of frequency
  *              https://www.geeksforgeeks.org/print-characters-in-decreasing-order-of-frequency/
  *
- * Given a string str, the task is to print the characters in decreasing order of their frequency.
- * If the frequency of two characters is same then sort them in descending order alphabetically.
+ * Given a string str, the task is to print the characters in decreasing order of their frequency.  If
+ * the frequency of two characters is same then sort them in descending order alphabetically.
  */
 
 
@@ -121,9 +121,9 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Print characters and their frequencies in order of occurrence
  *              https://www.geeksforgeeks.org/print-characters-frequencies-order-occurrence/
  *
- * Given a string str containing only lowercase characters. The problem is to print the characters
- * along with their frequency in the order of their occurrence and in the given format explained
- * in the examples below.
+ * Given a string str containing only lowercase characters. The problem is to print the characters along
+ * with their frequency in the order of their occurrence and in the given format explained in the
+ * examples below.
  */
 
 
@@ -131,10 +131,10 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find All Numbers Disappeared in an Array
  *              https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
  *
- * Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all
- * the integers in the range [1, n] that do not appear in nums.
- * Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned
- * list does not count as extra space.
+ * Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the
+ * integers in the range [1, n] that do not appear in nums.
+ * Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list
+ * does not count as extra space.
  */
 
 
@@ -142,8 +142,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find All Duplicates in an Array
  *              https://leetcode.com/problems/find-all-duplicates-in-an-array/
  *
- * Given an integer array nums of length n where all the integers of nums are in the range [1, n]
- * and each integer appears once or twice, return an array of all the integers that appears twice.
+ * Given an integer array nums of length n where all the integers of nums are in the range [1, n] and
+ * each integer appears once or twice, return an array of all the integers that appears twice.
  * You must write an algorithm that runs in O(n) time and uses only constant extra space.
  */
 
@@ -152,8 +152,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Find Lucky Integer in an Array
  *              https://leetcode.com/problems/find-lucky-integer-in-an-array/
  *
- * Given an array of integers arr, a lucky integer is an integer that has a frequency in the array
- * equal to its value.
+ * Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal
+ * to its value.
  * Return the largest lucky integer in the array. If there is no lucky integer return -1.
  * 1 <= arr[i] <= 500
  */
@@ -184,8 +184,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *              https://leetcode.com/problems/check-if-the-sentence-is-pangram/
  *
  * A pangram is a sentence where every letter of the English alphabet appears at least once.
- * Given a string sentence containing only lowercase English letters, return true if sentence is
- * a pangram, or false otherwise.
+ * Given a string sentence containing only lowercase English letters, return true if sentence is a
+ * pangram, or false otherwise.
  */
 
 
@@ -194,10 +194,10 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *              https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/
  *
  * You are given an array of strings words (0-indexed).
- * In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and
- * move any character from words[i] to any position in words[j].
- * Return true if you can make every string in words equal using any number of operations, and
- * false otherwise.
+ * In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and move
+ * any character from words[i] to any position in words[j].
+ * Return true if you can make every string in words equal using any number of operations, and false
+ * otherwise.
  * words[i] consists of lowercase English letters.
  */
 
@@ -207,8 +207,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *              https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
  *
  * Given a string s, return true if s is a good string, or false otherwise.
- * A string s is good if all the characters that appear in s have the same number of occurrences
- * (i.e., the same frequency).
+ * A string s is good if all the characters that appear in s have the same number of occurrences (i.e.,
+ * the same frequency).
  */
 
 
@@ -216,15 +216,14 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Rings and Rods
  *              https://leetcode.com/problems/rings-and-rods/
  *
- * There are n rings and each ring is either red, green, or blue. The rings are distributed across
- * ten rods labeled from 0 to 9.
- * You are given a string rings of length 2n that describes the n rings that are placed onto the
- * rods. Every two characters in rings forms a color-position pair that is used to describe each
- * ring where:
+ * There are n rings and each ring is either red, green, or blue. The rings are distributed across ten
+ * rods labeled from 0 to 9.
+ * You are given a string rings of length 2n that describes the n rings that are placed onto the rods.
+ * Every two characters in rings forms a color-position pair that is used to describe each ring where:
  *  The first character of the ith pair denotes the ith ring's color ('R', 'G', 'B').
  *  The second character of the ith pair denotes the rod that the ith ring is placed on ('0' to '9').
- * For example, "R3G2B1" describes n == 3 rings: a red ring placed onto the rod labeled 3, a green
- * ring placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.
+ * For example, "R3G2B1" describes n == 3 rings: a red ring placed onto the rod labeled 3, a green ring
+ * placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.
  * Return the number of rods that have all three colors of rings on them.
  */
 
@@ -233,8 +232,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * @reference   Keep Multiplying Found Values by Two
  *              https://leetcode.com/problems/keep-multiplying-found-values-by-two/
  *
- * You are given an array of integers nums. You are also given an integer original which is the
- * first number that needs to be searched for in nums.
+ * You are given an array of integers nums. You are also given an integer original which is the first
+ * number that needs to be searched for in nums.
  * You then do the following steps:
  *  If original is found in nums, multiply it by two (i.e., set original = 2 * original).
  *  Otherwise, stop the process.
@@ -253,6 +252,32 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *  Each element belongs to exactly one pair.
  *  The elements present in a pair are equal.
  * Return true if nums can be divided into n pairs, otherwise return false.
+ */
+
+
+/**
+ * @reference   Find Duplicate File in System
+ *              https://leetcode.com/problems/find-duplicate-file-in-system/
+ *
+ * Given a list paths of directory info, including the directory path, and all the files with contents
+ * in this directory, return all the duplicate files in the file system in terms of their paths. You may
+ * return the answer in any order.
+ * A group of duplicate files consists of at least two files that have the same content.
+ * A single directory info string in the input list has the following format:
+ *  "root/d1/d2/.../dm f1.txt(f1_content) f2.txt(f2_content) ... fn.txt(fn_content)"
+ * It means there are n files (f1.txt, f2.txt ... fn.txt) with content (f1_content, f2_content ...
+ * fn_content) respectively in the directory "root/d1/d2/.../dm". Note that n >= 1 and m >= 0. If m = 0,
+ * it means the directory is just the root directory.
+ * The output is a list of groups of duplicate file paths. For each group, it contains all the file
+ * paths of the files that have the same content. A file path is a string that has the following format:
+ *  "directory_path/file_name.txt"
+ * Follow up:
+ * Imagine you are given a real file system, how will you search files? DFS or BFS?
+ * If the file content is very large (GB level), how will you modify your solution?
+ * If you can only read the file by 1kb each time, how will you modify your solution?
+ * What is the time complexity of your modified solution? What is the most time-consuming part and
+ * memory-consuming part of it? How to optimize?
+ * How to make sure the duplicated files you find are not false positive?
  */
 
 } //namespace
