@@ -45,12 +45,31 @@ constexpr auto CountLeadingZeros_BinarySearch(uint32_t num) {
  * @reference   Number of Steps to Reduce a Number to Zero
  *              https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
  *
- * Given an integer num, return the number of steps to reduce it to zero. In one step,
- * if the current number is even, you have to divide it by 2, otherwise, you have to
+ * Given an integer num, return the number of steps to reduce it to zero.
+ * In one step, if the current number is even, you have to divide it by 2, otherwise, you have to
  * subtract 1 from it.
  */
 
-}//namespace
+
+/**
+ * @reference   Concatenation of Consecutive Binary Numbers
+ *              https://leetcode.com/problems/concatenation-of-consecutive-binary-numbers/
+ *
+ * Given an integer n, return the decimal value of the binary string formed by concatenating the binary
+ * representations of 1 to n in order, modulo 10^9 + 7.
+ */
+constexpr auto ConcatenationOfConsecutiveBinaryNumbers(const unsigned n) {
+    unsigned long result = 0;
+
+    for (unsigned i = 1; i <= n; ++i) {
+        const auto length = CountTotalBits_Log(i);
+        result = ((result << length) % LARGE_PRIME + i) % LARGE_PRIME;
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
@@ -89,11 +108,16 @@ SIMPLE_TEST(CountLeadingZeros_Loop, TestUpper, 0, UPPER);
 
 THE_BENCHMARK(CountLeadingZeros_BinarySearch, 16);
 
-SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>,
-            LOWER);
+SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestLower, BitsNumber<decltype(LOWER)>, LOWER);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE1, 27, 16);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestSAMPLE2, 26, 33);
 SIMPLE_TEST(CountLeadingZeros_BinarySearch, TestUpper, 0, UPPER);
 
-MUTUAL_RANDOM_TEST(CountLeadingZeros_Loop, CountLeadingZeros_BinarySearch,
-                   LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountLeadingZeros_Loop, CountLeadingZeros_BinarySearch, LOWER, UPPER);
+
+
+THE_BENCHMARK(ConcatenationOfConsecutiveBinaryNumbers, 12);
+
+SIMPLE_TEST(ConcatenationOfConsecutiveBinaryNumbers, TestSAMPLE1, 1, 1);
+SIMPLE_TEST(ConcatenationOfConsecutiveBinaryNumbers, TestSAMPLE2, 27, 3);
+SIMPLE_TEST(ConcatenationOfConsecutiveBinaryNumbers, TestSAMPLE3, 505379714, 12);
