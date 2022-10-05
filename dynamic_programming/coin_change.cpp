@@ -4,6 +4,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using MemoType = std::vector<std::vector<int>>;
 
 /** Coin Change | DP-7
  *
@@ -11,9 +12,9 @@ using ArrayType = std::vector<int>;
  * @reference   C Program Coin Change
  *              https://www.geeksforgeeks.org/c-program-coin-change/
  *
- * Given a value N, if we want to make change for N cents, and we have infinite supply
- * of each of S = {S1, S2, .. , Sm} valued coins, how many ways can we make the change?
- * The order of coins doesn’t matter.
+ * Given a value N, if we want to make change for N cents, and we have infinite supply of each of S =
+ * {S1, S2, .. , Sm} valued coins, how many ways can we make the change?  The order of coins doesn’t
+ * matter.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.8.
@@ -21,10 +22,10 @@ using ArrayType = std::vector<int>;
  * @reference   Coin Change 2
  *              https://leetcode.com/problems/coin-change-2/
  *
- * You are given an integer array coins representing coins of different denominations and
- * an integer amount representing a total amount of money.
- * Return the number of combinations that make up that amount. If that amount of money
- * cannot be made up by any combination of the coins, return 0.
+ * You are given an integer array coins representing coins of different denominations and an integer
+ * amount representing a total amount of money.
+ * Return the number of combinations that make up that amount. If that amount of money cannot be made up
+ * by any combination of the coins, return 0.
  * You may assume that you have an infinite number of each kind of coin.
  * The answer is guaranteed to fit into a signed 32-bit integer.
  */
@@ -70,16 +71,15 @@ auto CoinChange_SpaceOptimized(const ArrayType &coins, const ArrayType::value_ty
  * @reference   Greedy Algorithm to find Minimum number of Coins
  *              https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/
  *
- * Given a value V, if we want to make a change for V Rs, and we have an infinite supply
- * of each of the denominations in Indian currency, i.e., we have an infinite supply of
- * {1, 2, 5, 10, 20, 50, 100, 500, 1000} valued coins/notes, what is the minimum number of
- * coins and/or notes needed to make the change?
+ * Given a value V, if we want to make a change for V Rs, and we have an infinite supply of each of the
+ * denominations in Indian currency, i.e., we have an infinite supply of {1, 2, 5, 10, 20, 50, 100, 500,
+ * 1000} valued coins/notes, what is the minimum number of coins and/or notes needed to make the change?
  *
  * @reference   Find out the minimum number of coins required to pay total amount
  *              https://www.geeksforgeeks.org/find-out-the-minimum-number-of-coins-required-to-pay-total-amount/
  *
- * Given a total amount of N and unlimited number of coins worth 1,  10 and 25 currency
- * coins. Find out the minimum number of coins you need to use to pay exactly amount N.
+ * Given a total amount of N and unlimited number of coins worth 1,  10 and 25 currency coins. Find out
+ * the minimum number of coins you need to use to pay exactly amount N.
  *
  * @note    This approach may not work for all denominations.
  */
@@ -104,17 +104,16 @@ auto MinimumCoinChange_Greedy(ArrayType coins, ArrayType::value_type N) {
  * @reference   Find minimum number of coins that make a given value
  *              https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
  *
- * Given a value V, if we want to make change for V cents, and we have infinite supply of
- * each of C = {C1, C2, .. , Cm} valued coins, what is the minimum number of coins to
- * make the change?
+ * Given a value V, if we want to make change for V cents, and we have infinite supply of each of C =
+ * {C1, C2, .. , Cm} valued coins, what is the minimum number of coins to make the change?
  *
  * @reference   Coin Change
  *              https://leetcode.com/problems/coin-change/
  *
- * You are given an integer array coins representing coins of different denominations and
- * an integer amount representing a total amount of money.
- * Return the fewest number of coins that you need to make up that amount. If that amount
- * of money cannot be made up by any combination of the coins, return -1.
+ * You are given an integer array coins representing coins of different denominations and an integer
+ * amount representing a total amount of money.
+ * Return the fewest number of coins that you need to make up that amount. If that amount of money
+ * cannot be made up by any combination of the coins, return -1.
  * You may assume that you have an infinite number of each kind of coin.
  */
 auto MinimumCoinChange_DP(const ArrayType &coins, const int amount) {
@@ -136,9 +135,9 @@ auto MinimumCoinChange_DP(const ArrayType &coins, const int amount) {
  * @reference   Coin Change | BFS Approach
  *              https://www.geeksforgeeks.org/coin-change-bfs-approach/
  *
- * Given an integer X and an array arr[] of length N consisting of positive integers, the
- * task is to pick minimum number of integers from the array such that they sum up to N.
- * Any number can be chosen infinite number of times. If no answer exists then print -1.
+ * Given an integer X and an array arr[] of length N consisting of positive integers, the task is to
+ * pick minimum number of integers from the array such that they sum up to N.  Any number can be chosen
+ * infinite number of times. If no answer exists then print -1.
  *
  * @note    This approach is less efficient than the DP solution above.
  */
@@ -148,13 +147,13 @@ auto MinimumCoinChange_DP(const ArrayType &coins, const int amount) {
  * @reference   Lemonade Change
  *              https://leetcode.com/problems/lemonade-change/
  *
- * At a lemonade stand, each lemonade costs $5. Customers are standing in a queue to buy
- * from you, and order one at a time (in the order specified by bills). Each customer
- * will only buy one lemonade and pay with either a $5, $10, or $20 bill. You must provide
- * the correct change to each customer so that the net transaction is that the customer
- * pays $5. Note that you don't have any change in hand at first. Given an integer array
- * bills where bills[i] is the bill the ith customer pays, return true if you can provide
- * every customer with correct change, or false otherwise.
+ * At a lemonade stand, each lemonade costs $5. Customers are standing in a queue to buy from you and
+ * order one at a time (in the order specified by bills). Each customer will only buy one lemonade and
+ * pay with either a $5, $10, or $20 bill. You must provide the correct change to each customer so that
+ * the net transaction is that the customer pays $5.
+ * Note that you do not have any change in hand at first.
+ * Given an integer array bills where bills[i] is the bill the ith customer pays, return true if you can
+ * provide every customer with the correct change, or false otherwise.
  */
 auto LemonadeChange(const ArrayType &bills) {
     int five = 0, ten = 0;
@@ -186,11 +185,11 @@ auto LemonadeChange(const ArrayType &bills) {
  * @reference   Combination Sum IV
  *              https://leetcode.com/problems/combination-sum-iv/
  *
- * Given an array of distinct integers nums and a target integer target, return the
- * number of possible combinations that add up to target.
+ * Given an array of distinct integers nums and a target integer target, return the number of possible
+ * combinations that add up to target.
  * The test cases are generated so that the answer can fit in a 32-bit integer.
- * Follow up: What if negative numbers are allowed in the given array? How does it change
- * the problem? What limitation we need to add to the question to allow negative numbers?
+ * Follow up: What if negative numbers are allowed in the given array? How does it change the problem?
+ * What limitation we need to add to the question to allow negative numbers?
  */
 auto PermutationSum(const ArrayType &nums, const int target) {
     unsigned dp[target + 1] = {1};
@@ -206,7 +205,53 @@ auto PermutationSum(const ArrayType &nums, const int target) {
     return dp[target];
 }
 
-}//namespace
+
+/**
+ * @reference   Number of Dice Rolls With Target Sum
+ *              https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
+ *
+ * You have n dice and each die has k faces numbered from 1 to k.
+ * Given three integers n, k, and target, return the number of possible ways (out of the k^n total ways)
+ * to roll the dice so the sum of the face-up numbers equals target. Since the answer may be too large,
+ * return it modulo 10^9 + 7.
+ */
+int NumRollsToTarget_Memo(const int n, const int k, const int target, MemoType &memo) {
+    if (n == 0 or target <= 0) {
+        return n == target;
+    }
+
+    if (memo[n][target] != -1) {
+        return memo[n][target];
+    }
+
+    int result = 0;
+    for (int i = 1; i <= k; ++i) {
+        result = (result + NumRollsToTarget_Memo(n - 1, k, target - i, memo)) % LARGE_PRIME;
+    }
+    return memo[n][target] = result;
+}
+
+inline auto NumRollsToTarget_Memo(const int n, const int k, const int target) {
+    std::vector memo(n + 1, std::vector(target + 1, -1));
+    return NumRollsToTarget_Memo(n, k, target, memo);
+}
+
+
+constexpr auto NumRollsToTarget_DP(const int n, const int k, const int target) {
+    int dp[target + 1] = {1};
+    for (int i = 1; i <= n; ++i) {
+        for (auto t = target; t >= (i == n ? target : 0); --t) {
+            dp[t] = 0;
+            for (int j = t - 1; j >= std::max(0, t - k); --j) {
+                dp[t] = (dp[t] + dp[j]) % LARGE_PRIME;
+            }
+        }
+    }
+
+    return dp[target];
+}
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 3};
@@ -283,3 +328,10 @@ THE_BENCHMARK(PermutationSum, SAMPLE1, 4);
 
 SIMPLE_TEST(PermutationSum, TestSAMPLE1, 7, SAMPLE1, 4);
 SIMPLE_TEST(PermutationSum, TestSAMPLE2, 0, SAMPLE12, 1);
+
+
+THE_BENCHMARK(NumRollsToTarget_Memo, 1, 6, 3);
+
+SIMPLE_TEST(NumRollsToTarget_Memo, TestSAMPLE1, 1, 1, 6, 3);
+SIMPLE_TEST(NumRollsToTarget_Memo, TestSAMPLE2, 6, 2, 6, 7);
+SIMPLE_TEST(NumRollsToTarget_Memo, TestSAMPLE3, 222616187, 30, 30, 500);

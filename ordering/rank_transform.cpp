@@ -7,6 +7,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using StrArray = std::vector<std::string_view>;
 
 /** Rank Transform of an Array
  *
@@ -16,8 +17,7 @@ using ArrayType = std::vector<int>;
  *
  * The rank represents how large the element is. The rank has the following rules:
  *  Rank is an integer starting from 1.
- *  The larger the element, the larger the rank. If two elements are equal, their rank
- *      must be the same.
+ *  The larger the element, the larger the rank. If two elements are equal, their rank must be the same.
  *  Rank should be as small as possible.
  */
 auto RankTransformArray(ArrayType elements) {
@@ -47,10 +47,9 @@ auto RankTransformArray(ArrayType elements) {
  * @reference   Rank Transform of a Matrix
  *              https://leetcode.com/problems/rank-transform-of-a-matrix/
  *
- * Given an m x n matrix, return a new matrix answer where answer[row][col] is the rank
- * of matrix[row][col]. The rank is an integer that represents how large an element is
- * compared to other elements. It is calculated using the following rules:
- *  The rank is an integer starting from 1.
+ * Given an m x n matrix, return a new matrix answer where answer[row][col] is the rank of
+ * matrix[row][col]. The rank is an integer that represents how large an element is compared to other
+ * elements. It is calculated using the following rules: The rank is an integer starting from 1.
  *  If two elements p and q are in the same row or column, then:
  *      If p < q then rank(p) < rank(q)
  *      If p == q then rank(p) == rank(q)
@@ -148,6 +147,35 @@ auto RankTransformMatrix_Optimized(MatrixType a_matrix) {
     return a_matrix;
 }
 
+
+/**
+ * @reference   Satisfiability of Equality Equations
+ *              https://leetcode.com/problems/satisfiability-of-equality-equations/
+ *
+ * You are given an array of strings equations that represent relationships between variables where each
+ * string equations[i] is of length 4 and takes one of two different forms: "xi==yi" or "xi!=yi".Here,
+ * xi and yi are lowercase letters (not necessarily different) that represent one-letter variable names.
+ * Return true if it is possible to assign integers to variable names so as to satisfy all the given
+ * equations, or false otherwise.
+ */
+auto EquationsPossible(const StrArray &equations) {
+    DisjointSet_Array disjoint_set(26);
+
+    for (const auto e : equations) {
+        if (e[1] == '=') {
+            disjoint_set.Union(e[0] - 'a', e[3] - 'a');
+        }
+    }
+
+    for (const auto e : equations) {
+        if (e[1] == '!' and disjoint_set.Find(e[0] - 'a') == disjoint_set.Find(e[3] - 'a')) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 } //namespace
 
 
@@ -242,3 +270,21 @@ SIMPLE_TEST(RankTransformMatrix_Optimized, TestSAMPLE2, EXPECTED2M, SAMPLE2M);
 SIMPLE_TEST(RankTransformMatrix_Optimized, TestSAMPLE3, EXPECTED3M, SAMPLE3M);
 SIMPLE_TEST(RankTransformMatrix_Optimized, TestSAMPLE4, EXPECTED4M, SAMPLE4M);
 SIMPLE_TEST(RankTransformMatrix_Optimized, TestSAMPLE5, EXPECTED5M, SAMPLE5M);
+
+
+const StrArray SAMPLE1E = {"e==d", "e==a", "f!=d", "b!=c", "a==b"};
+const StrArray SAMPLE2E = {"e==e", "d!=e", "c==d", "d!=e"};
+const StrArray SAMPLE3E = {"f==b", "c==b", "c==b", "e!=f"};
+const StrArray SAMPLE4E = {"c==c", "f!=a", "f==b", "b==c"};
+const StrArray SAMPLE5E = {"b==a", "a==b"};
+const StrArray SAMPLE6E = {"a==b", "b!=a"};
+
+
+THE_BENCHMARK(EquationsPossible, SAMPLE1E);
+
+SIMPLE_TEST(EquationsPossible, TestSAMPLE1, true, SAMPLE1E);
+SIMPLE_TEST(EquationsPossible, TestSAMPLE2, true, SAMPLE2E);
+SIMPLE_TEST(EquationsPossible, TestSAMPLE3, true, SAMPLE3E);
+SIMPLE_TEST(EquationsPossible, TestSAMPLE4, true, SAMPLE4E);
+SIMPLE_TEST(EquationsPossible, TestSAMPLE5, true, SAMPLE5E);
+SIMPLE_TEST(EquationsPossible, TestSAMPLE6, false, SAMPLE6E);
