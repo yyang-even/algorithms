@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "data_structure/linked_list/singly_list/singly_linked_list.h"
 #include "data_structure/linked_list/singly_list/singly_circular_linked_list.h"
+#include "data_structure/linked_list/singly_list/singly_linked_list.h"
 
 
 /** Implementing Queue using Arrays
@@ -24,30 +24,59 @@
  *              https://www.geeksforgeeks.org/circular-array/
  * @reference   Applications of Queue Data Structure
  *              https://www.geeksforgeeks.org/applications-of-queue-data-structure/
+ *
+ * @reference   Design Circular Queue
+ *              https://leetcode.com/problems/design-circular-queue/
+ *
+ * Design your implementation of the circular queue. The circular queue is a linear data structure in
+ * which the operations are performed based on FIFO (First In First Out) principle, and the last
+ * position is connected back to the first position to make a circle. It is also called "Ring Buffer".
+ * One of the benefits of the circular queue is that we can make use of the spaces in front of the
+ * queue. In a normal queue, once the queue becomes full, we cannot insert the next element even if
+ * there is a space in front of the queue. But using the circular queue, we can use the space to store
+ * new values.
+ * Implement the MyCircularQueue class:
+ *  MyCircularQueue(k) Initializes the object with the size of the queue to be k.
+ *  int Front() Gets the front item from the queue. If the queue is empty, return -1.
+ *  int Rear() Gets the last item from the queue. If the queue is empty, return -1.
+ *  boolean enQueue(int value) Inserts an element into the circular queue. Return true if the operation
+ *      is successful.
+ *  boolean deQueue() Deletes an element from the circular queue. Return true if the operation is
+ *      successful.
+ *  boolean isEmpty() Checks whether the circular queue is empty or not.
+ *  boolean isFull() Checks whether the circular queue is full or not.
+ * You must solve the problem without using the built-in queue data structure in your programming
+ * language.
  */
 class ArrayCircularQueue {
     using ValueType = int;
 
-    std::size_t CAPACITY;
     std::vector<ValueType> buffer;
     std::size_t size = 0;
     std::size_t front = 0;
     std::size_t rear;
 
-    constexpr void advance(std::size_t &index) const {
-        index = (index + 1) % CAPACITY;
+    void advance(std::size_t &index) const {
+        index = (index + 1) % buffer.size();
     }
 
 public:
-    explicit ArrayCircularQueue(const std::size_t cap = 1024):
-        CAPACITY(cap), buffer(cap, 0), rear(cap - 1) {}
+    explicit ArrayCircularQueue(const std::size_t cap = 1024) : buffer(cap, 0), rear(cap - 1) {
+    }
 
-    void Enqueue(const ValueType v) {
-        assert(size < CAPACITY);
+    auto Full() const {
+        return size >= buffer.size();
+    }
+
+    auto Enqueue(const ValueType v) {
+        if (Full()) {
+            return false;
+        }
 
         advance(rear);
         buffer[rear] = v;
         ++size;
+        return true;
     }
 
     auto Dequeue() {
@@ -134,13 +163,13 @@ public:
  *              Questions 3.5.
  * @reference   https://www.geeksforgeeks.org/queue-using-stacks/
  *
- * Method 1 (By making enQueue operation costly) This method makes sure that oldest
- * entered element is always at the top of stack 1, so that deQueue operation just
- * pops from stack1. To put the element at top of stack1, stack2 is used.
+ * Method 1 (By making enQueue operation costly) This method makes sure that oldest entered element is
+ * always at the top of stack 1, so that deQueue operation just pops from stack1. To put the element at
+ * top of stack1, stack2 is used.
  *
- * Method 2 (By making deQueue operation costly) In this method, in en-queue operation,
- * the new element is entered at the top of stack1. In de-queue operation, if stack2
- * is empty then all the elements are moved to stack2 and finally top of stack2 is
+ * Method 2 (By making deQueue operation costly) In this method, in en-queue operation, the new element
+ * is entered at the top of stack1. In de-queue operation, if stack2 is empty then all the elements are
+ * moved to stack2 and finally top of stack2 is
  * returned.
  *
  * Method 2 is definitely better than method 1.
@@ -148,16 +177,16 @@ public:
  * @reference   Implement Queue using Stacks
  *              https://leetcode.com/problems/implement-queue-using-stacks/
  *
- * Implement a first in first out (FIFO) queue using only two stacks. The implemented
- * queue should support all the functions of a normal queue (push, peek, pop, and empty).
- * Implement the MyQueue class:
+ * Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should
+ * support all the functions of a normal queue (push, peek, pop, and empty).  Implement the MyQueue
+ * class:
  *  void push(int x) Pushes element x to the back of the queue.
  *  int pop() Removes the element from the front of the queue and returns it.
  *  int peek() Returns the element at the front of the queue.
  *  boolean empty() Returns true if the queue is empty, false otherwise.
- * Follow-up: Can you implement the queue such that each operation is amortized O(1)
- * time complexity? In other words, performing n operations will take overall O(n) time
- * even if one of those operations may take longer.
+ * Follow-up: Can you implement the queue such that each operation is amortized O(1) time complexity? In
+ * other words, performing n operations will take overall O(n) time even if one of those operations may
+ * take longer.
  */
 class DequeueCostlyTwoStackQueue {
     using ValueType = int;
@@ -232,8 +261,10 @@ class HeapQueue {
     using ValueType = int;
     using KeyValuePair = std::pair<std::size_t, ValueType>;
 
-    std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
-    queue{[](const auto & lhs, const auto & rhs) {
+    std::priority_queue<KeyValuePair,
+                        std::vector<KeyValuePair>,
+                        std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
+        queue {[](const auto &lhs, const auto &rhs) {
             return lhs.first > rhs.first;
         }};
     std::size_t counter = 0;
@@ -259,7 +290,7 @@ public:
 
 namespace {
 
-template <typename Queue>
+template<typename Queue>
 constexpr auto testQueueHelper() {
     Queue queue;
     queue.Enqueue(0);
@@ -281,18 +312,19 @@ constexpr auto testQueueHelper() {
     return output;
 }
 
-}//namespace
+} //namespace
 
 
 #ifdef WANT_TESTS
 const std::vector<int> EXPECTED_ARRAY {2, 3, 4, 5, 6, 7};
 
 
-#define SimpleQueueTest(queueName) namespace {                      \
-    TEST(SimpleQueueTest, Test##queueName) {                        \
-        EXPECT_EQ(EXPECTED_ARRAY, testQueueHelper<queueName>());    \
-    }                                                               \
-}
+#define SimpleQueueTest(queueName)                               \
+    namespace {                                                  \
+    TEST(SimpleQueueTest, Test##queueName) {                     \
+        EXPECT_EQ(EXPECTED_ARRAY, testQueueHelper<queueName>()); \
+    }                                                            \
+    }
 
 
 SimpleQueueTest(ArrayCircularQueue);
