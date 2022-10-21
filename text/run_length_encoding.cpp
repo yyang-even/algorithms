@@ -9,16 +9,16 @@ namespace {
  *
  * @reference   https://www.geeksforgeeks.org/printing-frequency-of-each-character-just-after-its-consecutive-occurrences/
  *
- * Given a string in such a way that every character occurs in a repeated manner. Your task is
- * to print the string by inserting the frequency of each unique character after it and also
- * eliminating all repeated characters.
+ * Given a string in such a way that every character occurs in a repeated manner. Your task is to print
+ * the string by inserting the frequency of each unique character after it and also eliminating all
+ * repeated characters.
  *
  * @reference   Run Length Encoding
  *              https://www.geeksforgeeks.org/run-length-encoding/
  *
- * Given an input string, write a function that returns the Run Length Encoded string for the
- * input string. For example, if the input string is "wwwwaaadexxxxxx", then the function
- * should return "w4a3d1e1x6".
+ * Given an input string, write a function that returns the Run Length Encoded string for the input
+ * string. For example, if the input string is "wwwwaaadexxxxxx", then the function should return
+ * "w4a3d1e1x6".
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.5.
@@ -45,11 +45,11 @@ auto RunLengthEncoding(const std::string &text) {
  *
  * The count-and-say sequence is a sequence of digit strings defined by the recursive formula:
  *  countAndSay(1) = "1"
- *  countAndSay(n) is the way you would "say" the digit string from countAndSay(n-1), which is
- *      then converted into a different digit string.
- * To determine how you "say" a digit string, split it into the minimal number of substrings such
- * that each substring contains exactly one unique digit. Then for each substring, say the number
- * of digits, then say the digit. Finally, concatenate every said digit.
+ *  countAndSay(n) is the way you would "say" the digit string from countAndSay(n-1), which is then
+ *      converted into a different digit string.
+ * To determine how you "say" a digit string, split it into the minimal number of substrings such that
+ * each substring contains exactly one unique digit. Then for each substring, say the number of digits,
+ * then say the digit. Finally, concatenate every said digit.
  * Given a positive integer n, return the nth term of the count-and-say sequence.
  */
 
@@ -94,9 +94,9 @@ constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
  *              https://leetcode.com/problems/decompress-run-length-encoded-list/
  *
  * We are given a list nums of integers representing a list compressed with run-length encoding.
- * Consider each adjacent pair of elements [freq, val] = [nums[2*i], nums[2*i+1]] (with i >= 0).
- * For each such pair, there are freq elements with value val concatenated in a sublist.
- * Concatenate all the sublists from left to right to generate the decompressed list.
+ * Consider each adjacent pair of elements [freq, val] = [nums[2*i], nums[2*i+1]] (with i >= 0).  For
+ * each such pair, there are freq elements with value val concatenated in a sublist.  Concatenate all
+ * the sublists from left to right to generate the decompressed list.
  * Return the decompressed list.
  */
 
@@ -108,10 +108,25 @@ constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
  * A value-equal string is a string where all characters are the same.
  *  For example, "1111" and "33" are value-equal strings.
  *  In contrast, "123" is not a value-equal string.
- * Given a digit string s, decompose the string into some number of consecutive value-equal
- * substrings where exactly one substring has a length of 2 and the remaining substrings have a
- * length of 3.
+ * Given a digit string s, decompose the string into some number of consecutive value-equal substrings
+ * where exactly one substring has a length of 2 and the remaining substrings have a length of 3.
  * Return true if you can decompose s according to the above rules. Otherwise, return false.
+ */
+
+
+/**
+ * @reference   String Compression
+ *              https://leetcode.com/problems/string-compression/
+ *
+ * Given an array of characters chars, compress it using the following algorithm:
+ * Begin with an empty string s. For each group of consecutive repeating characters in chars:
+ *  If the group's length is 1, append the character to s.
+ *  Otherwise, append the character followed by the group's length.
+ * The compressed string s should not be returned separately, but instead, be stored in the input
+ * character array chars. Note that group lengths that are 10 or longer will be split into multiple
+ * characters in chars.
+ * After you are done modifying the input array, return the new length of the array.
+ * You must write an algorithm that uses only constant extra space.
  */
 
 } //namespace

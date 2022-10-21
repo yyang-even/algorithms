@@ -1,5 +1,5 @@
-#include "singly_linked_list.h"
 #include "middle_of_singly_linked_list.h"
+#include "singly_linked_list.h"
 
 
 namespace {
@@ -11,10 +11,9 @@ using ListType = std::forward_list<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-middle-singly-linked-list-recursively/
  */
-ListType::const_iterator GetMiddle_Recursive(
-    const ListType::const_iterator cbegin,
-    const ListType::const_iterator cend,
-    ListType::size_type &n) {
+ListType::const_iterator GetMiddle_Recursive(const ListType::const_iterator cbegin,
+                                             const ListType::const_iterator cend,
+                                             ListType::size_type &n) {
 
     const auto next = std::next(cbegin);
     if (cbegin == cend or next == cend) {
@@ -69,6 +68,14 @@ inline auto testGetBeforeMiddle_TwoPointersSTL(std::vector<int> array) {
 /** Delete middle of linked list
  *
  * @reference   https://www.geeksforgeeks.org/delete-middle-of-linked-list/
+ * @reference   Delete the Middle Node of a Linked List
+ *              https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
+ *
+ * You are given the head of a linked list. Delete the middle node, and return the head of the modified
+ * linked list.
+ * The middle node of a linked list of size n is the ⌊n / 2⌋th node from the start using 0-based
+ * indexing, where ⌊x⌋ denotes the largest integer less than or equal to x.
+ *  For n = 1, 2, 3, 4, and 5, the middle nodes are 0, 1, 1, 2, and 2, respectively.
  */
 
 
@@ -82,9 +89,9 @@ inline auto GetMiddle(const std::vector<int> &array) {
  *              https://leetcode.com/problems/reorder-list/
  *
  * You are given the head of a singly linked-list. The list can be represented as:
- *  L0 → L1 → … → Ln - 1 → Ln
+ *  L0 -> L1 -> ... -> Ln - 1 -> Ln
  * Reorder the list to be on the following form:
- *  L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+ *  L0 -> Ln -> L1 -> Ln - 1 -> L2 -> Ln - 2 -> ...
  * You may not modify the values in the list's nodes. Only nodes themselves may be changed.
  */
 template<typename Pointer>
@@ -132,7 +139,7 @@ inline auto testReorderList(const ArrayType &array) {
     return TestHelper(ReorderList, array);
 }
 
-}//namespace
+} //namespace
 
 
 using InitializerType = std::initializer_list<ListType::value_type>;
@@ -169,12 +176,10 @@ MUTUAL_SIMPLE_TEST(GetMiddle, testGetMid_Odd, TestSample, SAMPLE_ARRAY);
 
 THE_BENCHMARK(testGetBeforeMiddle_TwoPointersSTL, SAMPLE_ARRAY);
 
-MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle,
-                   SINGLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSingle, SINGLE_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestEven, EVEN_ARRAY);
 MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestOdd, ODD_ARRAY);
-MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample,
-                   SAMPLE_ARRAY);
+MUTUAL_SIMPLE_TEST(GetMiddle, testGetBeforeMiddle_TwoPointersSTL, TestSample, SAMPLE_ARRAY);
 
 
 THE_BENCHMARK(GetMiddle_Recursive, SAMPLE_ARRAY);
