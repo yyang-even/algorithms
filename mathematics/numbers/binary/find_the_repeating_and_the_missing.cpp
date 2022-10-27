@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "find_the_element_helper.h"
 #include "clear_all_bits_except_the_last_set_bit.h"
+#include "find_the_element_helper.h"
 
 
 namespace {
@@ -12,19 +12,18 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
  *
- * Given an unsorted array of size n. Array elements are in range from 1 to n. One number
- * from set {1, 2, ..., n} is missing and one number occurs twice in array. Find these
- * two numbers.
+ * Given an unsorted array of size n. Array elements are in range from 1 to n. One number from set {1,
+ * 2, ..., n} is missing and one number occurs twice in array. Find these two numbers.
  *
  * @reference   Set Mismatch
  *              https://leetcode.com/problems/set-mismatch/
  *
- * You have a set of integers s, which originally contains all the numbers from 1 to n.
- * Unfortunately, due to some error, one of the numbers in s got duplicated to another
- * number in the set, which results in repetition of one number and loss of another
- * number. You are given an integer array nums representing the data status of this set
- * after the error. Find the number that occurs twice and the number that is missing and
- * return them in the form of an array.
+ * You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately,
+ * due to some error, one of the numbers in s got duplicated to another number in the set, which results
+ * in repetition of one number and loss of another number.
+ * You are given an integer array nums representing the data status of this set after the error.
+ * Find the number that occurs twice and the number that is missing and return them in the form of an
+ * array.
  */
 auto FindTheRepeatingAndMissing_Xor(const ArrayType &elements) {
     assert(not elements.empty());
@@ -75,7 +74,7 @@ auto FindTheRepeatingAndMissing_Hash(const ArrayType &nums) {
     return std::pair(duplicate, missing);
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {3, 1, 3};

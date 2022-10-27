@@ -9,13 +9,17 @@ using ArrayType = std::vector<std::string_view>;
  *
  * @reference   https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
  *
- * Given an array of strings arr. String s is a concatenation of a sub-sequence of arr
- * which have unique characters. Return the maximum possible length of s.
- * arr[i] contains only lower case English letters.
+ * You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of
+ * arr that has unique characters.
+ * Return the maximum possible length of s.
+ * A subsequence is an array that can be derived from another array by deleting some or no elements
+ * without changing the order of the remaining elements.
  */
-void
-MaxLengthConcatenatedStrWithUniqueChars(const ArrayType &strs, const std::size_t i,
-                                        int mask, const std::size_t length, std::size_t &result) {
+void MaxLengthConcatenatedStrWithUniqueChars(const ArrayType &strs,
+                                             const std::size_t i,
+                                             int mask,
+                                             const std::size_t length,
+                                             std::size_t &result) {
     if (i == strs.size()) {
         result = std::max(result, length);
         return;
@@ -31,8 +35,7 @@ MaxLengthConcatenatedStrWithUniqueChars(const ArrayType &strs, const std::size_t
         }
     }
 
-    MaxLengthConcatenatedStrWithUniqueChars(strs, i + 1, mask,
-                                            length + strs[i].size(), result);
+    MaxLengthConcatenatedStrWithUniqueChars(strs, i + 1, mask, length + strs[i].size(), result);
 }
 
 inline auto MaxLengthConcatenatedStrWithUniqueChars(const ArrayType &strs) {
@@ -47,7 +50,7 @@ inline auto MaxLengthConcatenatedStrWithUniqueChars(const ArrayType &strs) {
  *              https://www.geeksforgeeks.org/maximize-length-of-the-string-by-concatenating-characters-from-an-array-of-strings/
  */
 auto MaxLengthConcatenatedStrWithUniqueChars_DP(const ArrayType &strs) {
-    std::vector<std::bitset<26>> dp = { std::bitset<26>() };
+    std::vector<std::bitset<26>> dp = {std::bitset<26>()};
     std::size_t result = 0;
 
     for (const auto s : strs) {
@@ -55,7 +58,9 @@ auto MaxLengthConcatenatedStrWithUniqueChars_DP(const ArrayType &strs) {
         for (const auto c : s) {
             current_set.set(c - 'a');
         }
-        assert(current_set.count() == s.size());
+        if (current_set.count() != s.size()) {
+            continue;
+        }
 
         for (int i = dp.size() - 1; i >= 0; --i) {
             if ((dp[i] & current_set).any()) {
@@ -69,13 +74,15 @@ auto MaxLengthConcatenatedStrWithUniqueChars_DP(const ArrayType &strs) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {"un", "iq", "ue"};
 const ArrayType SAMPLE2 = {"cha", "r", "act", "ers"};
 const ArrayType SAMPLE3 = {"abcdefghijklmnopqrstuvwxyz"};
-const ArrayType SAMPLE4 = {"abcdefghijklm", "bcdefghijklmn", "cdefghijklmno", "nopqrstuvwxyz", "opqrstuvwxyza"};
+const ArrayType SAMPLE4 = {
+    "abcdefghijklm", "bcdefghijklmn", "cdefghijklmno", "nopqrstuvwxyz", "opqrstuvwxyza"};
+const ArrayType SAMPLE5 = {"aa", "bb"};
 
 
 THE_BENCHMARK(MaxLengthConcatenatedStrWithUniqueChars, SAMPLE1);
@@ -84,6 +91,7 @@ SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars, TestSAMPLE1, 4, SAMPLE1);
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars, TestSAMPLE2, 6, SAMPLE2);
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars, TestSAMPLE3, 26, SAMPLE3);
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars, TestSAMPLE4, 26, SAMPLE4);
+SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars, TestSAMPLE5, 0, SAMPLE5);
 
 
 THE_BENCHMARK(MaxLengthConcatenatedStrWithUniqueChars_DP, SAMPLE1);
@@ -92,3 +100,4 @@ SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars_DP, TestSAMPLE1, 4, SAMPLE1)
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars_DP, TestSAMPLE2, 6, SAMPLE2);
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars_DP, TestSAMPLE3, 26, SAMPLE3);
 SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars_DP, TestSAMPLE4, 26, SAMPLE4);
+SIMPLE_TEST(MaxLengthConcatenatedStrWithUniqueChars_DP, TestSAMPLE5, 0, SAMPLE5);

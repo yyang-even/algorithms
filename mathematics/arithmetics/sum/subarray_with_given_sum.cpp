@@ -11,8 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum/
  *
- * Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a
- * given number.
+ * Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a given
+ * number.
  */
 constexpr auto NOT_FOUND = std::pair(-1, -1);
 
@@ -84,8 +84,8 @@ inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
  *
- * Given an array of positive and negative numbers, find if there is a subarray (of size at-least
- * one) with 0 sum.
+ * Given an array of positive and negative numbers, find if there is a subarray (of size at-least one)
+ * with 0 sum.
  */
 inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
@@ -96,14 +96,15 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * @reference   Number of subarrays having sum exactly equal to k
  *              https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
  *
- * Given an unsorted array of integers, find number of subarrays having sum exactly equal to a
- * given number k.
+ * Given an unsorted array of integers, find number of subarrays having sum exactly equal to a given
+ * number k.
  *
  * @reference   Subarray Sum Equals K
  *              https://leetcode.com/problems/subarray-sum-equals-k/
  *
- * Given an array of integers nums and an integer k, return the total number of continuous
- * subarrays whose sum equals to k.
+ * Given an array of integers nums and an integer k, return the total number of subarrays whose sum
+ * equals to k.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
  * -1000 <= nums[i] <= 1000
  */
 auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value_type k) {
@@ -127,10 +128,9 @@ auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value
  * @reference   Maximum Size Subarray Sum Equals k
  *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/325-maximum-size-subarray-sum-equals-k.html
  *
- * Given an array nums and a target value k, find the maximum length of a subarray that sums to k.
- * If there isn't one, return 0 instead.
- * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer
- * range.
+ * Given an array nums and a target value k, find the maximum length of a subarray that sums to k.  If
+ * there isn't one, return 0 instead.
+ * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
  * Follow Up: Can you do it in O(n) time?
  */
 auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
@@ -159,11 +159,11 @@ auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
  * @reference   Minimum Operations to Reduce X to Zero
  *              https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
  *
- * You are given an integer array nums and an integer x. In one operation, you can either remove
- * the leftmost or the rightmost element from the array nums and subtract its value from x. Note
- * that this modifies the array for future operations.
- * Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise,
- * return -1.
+ * You are given an integer array nums and an integer x. In one operation, you can either remove the
+ * leftmost or the rightmost element from the array nums and subtract its value from x. Note that this
+ * modifies the array for future operations.
+ * Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise, return
+ * -1.
  */
 int MinOperationsReduceXto0(const ArrayType &nums, const int x) {
     const auto sum = std::accumulate(nums.cbegin(), nums.cend(), 0);
@@ -197,8 +197,8 @@ inline auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
  * @reference   Contiguous Array
  *              https://leetcode.com/problems/contiguous-array/
  *
- * Given a binary array nums, return the maximum length of a contiguous subarray with an equal
- * number of 0 and 1.
+ * Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of
+ * 0 and 1.
  */
 auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
     std::unordered_map<int, int> hash = {{0, -1}};
@@ -222,11 +222,10 @@ auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
  * @reference   Number of Submatrices That Sum to Target
  *              https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/
  *
- * Given a matrix and a target, return the number of non-empty submatrices that sum to target.
- * A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and
- * y1 <= y <= y2.
- * Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some
- * coordinate that is different: for example, if x1 != x1'.
+ * Given a matrix and a target, return the number of non-empty submatrices that sum to target.  A
+ * submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and y1 <= y <= y2.
+ * Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some coordinate
+ * that is different: for example, if x1 != x1'.
  */
 auto NumSubmatrixSumAsTarget(MatrixType a_matrix, const int target) {
     const auto M = a_matrix.size();
