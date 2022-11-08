@@ -12,26 +12,39 @@ using ArrayType = std::vector<std::vector<std::string_view>>;
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 18.10.
  *
- * Given a dictionary, and two words 'start' and 'target' (both of same length). Find
- * length of the smallest chain from 'start' to 'target' if it exists, such that adjacent
- * words in the chain only differ by one character and each word in the chain is a valid
- * word i.e., it exists in the dictionary. It may be assumed that the 'target' word
- * exists in dictionary and length of all dictionary words is same.
+ * Given a dictionary, and two words 'start' and 'target' (both of same length). Find length of the
+ * smallest chain from 'start' to 'target' if it exists, such that adjacent words in the chain only
+ * differ by one character and each word in the chain is a valid word i.e., it exists in the dictionary.
+ * It may be assumed that the 'target' word exists in dictionary and length of all dictionary words is
+ * same.
  *
  * @reference   Word Ladder
  *              https://leetcode.com/problems/word-ladder/
  *
- * A transformation sequence from word beginWord to word endWord using a dictionary
- * wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
+ * A transformation sequence from word beginWord to word endWord using a dictionary wordList is a
+ * sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
  *  Every adjacent pair of words differs by a single letter.
- *  Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in
- *  wordList.
+ *  Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
  *  sk == endWord
- * Given two words, beginWord and endWord, and a dictionary wordList, return the number
- * of words in the shortest transformation sequence from beginWord to endWord, or 0 if
- * no such sequence exists.
+ * Given two words, beginWord and endWord, and a dictionary wordList, return the number of words in the
+ * shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.
+ *
+ * @reference   Minimum Genetic Mutation
+ *              https://leetcode.com/problems/minimum-genetic-mutation/
+ *
+ * A gene string can be represented by an 8-character long string, with choices from 'A', 'C', 'G', and
+ * 'T'.
+ * Suppose we need to investigate a mutation from a gene string startGene to a gene string endGene where
+ * one mutation is defined as one single character changed in the gene string.
+ *  For example, "AACCGGTT" --> "AACCGGTA" is one mutation.
+ * There is also a gene bank bank that records all the valid gene mutations. A gene must be in bank to
+ * make it a valid gene string.
+ * Given the two gene strings startGene and endGene and the gene bank bank, return the minimum number of
+ * mutations needed to mutate from startGene to endGene. If there is no such a mutation, return -1.
+ * Note that the starting point is assumed to be valid, so it might not be included in the bank.
  */
-auto WordLadder(const std::string_view start, const std::string_view target,
+auto WordLadder(const std::string_view start,
+                const std::string_view target,
                 DictType dictionary) {
     assert(not start.empty());
     assert(start.size() == target.size());
@@ -53,7 +66,7 @@ auto WordLadder(const std::string_view start, const std::string_view target,
         ++chain_length;
 
         for (auto level_size = adjacent_words.size(); level_size-- > 0;) {
-            std::string word{adjacent_words.front()};
+            std::string word {adjacent_words.front()};
             adjacent_words.pop();
 
             for (std::size_t i = 0; i < start.size(); ++i) {
@@ -97,16 +110,15 @@ auto WordLadder(const std::string_view start, const std::string_view target,
  * @reference   Word Ladder II
  *              https://leetcode.com/problems/word-ladder-ii/
  *
- * A transformation sequence from word beginWord to word endWord using a dictionary
- * wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
+ * A transformation sequence from word beginWord to word endWord using a dictionary wordList is a
+ * sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
  *  Every adjacent pair of words differs by a single letter.
  *  Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in
  *  wordList.
  *  sk == endWord
- * Given two words, beginWord and endWord, and a dictionary wordList, return all the
- * shortest transformation sequences from beginWord to endWord, or an empty list if no
- * such sequence exists. Each sequence should be returned as a list of the words
- * [beginWord, s1, s2, ..., sk].
+ * Given two words, beginWord and endWord, and a dictionary wordList, return all the shortest
+ * transformation sequences from beginWord to endWord, or an empty list if no such sequence exists. Each
+ * sequence should be returned as a list of the words [beginWord, s1, s2, ..., sk].
  */
 auto findNeighbors(std::string word, const DictType &word_list) {
     std::vector<std::string_view> neighbors;
@@ -133,9 +145,11 @@ auto findNeighbors(std::string word, const DictType &word_list) {
 
 using GraphType = std::unordered_map<std::string_view, std::vector<std::string_view>>;
 
-void AllWordLadders(const std::string_view source, const std::string_view destination,
+void AllWordLadders(const std::string_view source,
+                    const std::string_view destination,
                     const GraphType &dag_adjacent_list,
-                    std::vector<std::string_view> &path, ArrayType &results) {
+                    std::vector<std::string_view> &path,
+                    ArrayType &results) {
     if (source == destination) {
         results.push_back(path);
     }
@@ -159,14 +173,14 @@ auto buildDAG(const std::string_view begin_word, DictType &word_list) {
     std::unordered_set<std::string_view> enqueued_words;
     enqueued_words.insert(begin_word);
 
-    while (not q.empty())  {
+    while (not q.empty()) {
         std::vector<std::string_view> level_words;
 
         for (int i = q.size(); i > 0; --i) {
             const auto a_word = q.front();
             q.pop();
 
-            auto neighbors = findNeighbors(std::string{a_word}, word_list);
+            auto neighbors = findNeighbors(std::string {a_word}, word_list);
             for (const auto a_neighbor : neighbors) {
                 level_words.push_back(a_neighbor);
 
@@ -186,9 +200,9 @@ auto buildDAG(const std::string_view begin_word, DictType &word_list) {
     return dag_adjacent_list;
 }
 
-auto
-AllWordLadders(const std::string_view begin_word, const std::string_view end_word,
-               DictType word_list) {
+auto AllWordLadders(const std::string_view begin_word,
+                    const std::string_view end_word,
+                    DictType word_list) {
     const auto dag_adjacent_list = buildDAG(begin_word, word_list);
 
     std::vector<std::string_view> path = {begin_word};
@@ -198,7 +212,7 @@ AllWordLadders(const std::string_view begin_word, const std::string_view end_wor
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const DictType SAMPLE1 = {"POON", "PLEE", "SAME", "POIE", "PLEA", "PLIE", "POIN"};
@@ -216,10 +230,8 @@ SIMPLE_TEST(WordLadder, TestSAMPLE4, 0, "HIT", "COG", SAMPLE4);
 
 
 const DictType SAMPLE6 = {"hot", "dot", "dog", "lot", "log", "cog"};
-const ArrayType EXPECTED6 = {
-    {"hit", "hot", "dot", "dog", "cog"},
-    {"hit", "hot", "lot", "log", "cog"}
-};
+const ArrayType EXPECTED6 = {{"hit", "hot", "dot", "dog", "cog"},
+                             {"hit", "hot", "lot", "log", "cog"}};
 
 const DictType SAMPLE7 = {"hot", "dot", "dog", "lot", "log"};
 const ArrayType EXPECTED7 = {};
