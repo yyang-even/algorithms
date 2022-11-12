@@ -11,9 +11,9 @@ using ArrayType = std::vector<int>;
  * @reference   Next greater element in same order as input
  *              https://www.geeksforgeeks.org/next-greater-element-in-same-order-as-input/
  *
- * Given an array, print the Next Greater Element (NGE) for every element. The Next greater
- * Element for an element x is the first greater element on the right side of x in array.
- * Elements for which no greater element exist, consider next greater element as -1.
+ * Given an array, print the Next Greater Element (NGE) for every element. The Next greater Element for
+ * an element x is the first greater element on the right side of x in array.  Elements for which no
+ * greater element exist, consider next greater element as -1.
  *
  * @reference   Special Data Structure: Monotonic Stack
  *              https://labuladong.gitbook.io/algo-en/ii.-data-structure/monotonicstack
@@ -42,12 +42,12 @@ auto NextGreaterElement(const ArrayType &elements) {
  * @reference   Final Prices With a Special Discount in a Shop
  *              https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
  *
- * Given the array prices where prices[i] is the price of the ith item in a shop. There
- * is a special discount for items in the shop, if you buy the ith item, then you will
- * receive a discount equivalent to prices[j] where j is the minimum index such that
- * j > i and prices[j] <= prices[i], otherwise, you will not receive any discount at all.
- * Return an array where the ith element is the final price you will pay for the ith item
- * of the shop considering the special discount.
+ * You are given an integer array prices where prices[i] is the price of the ith item in a shop.
+ * There is a special discount for items in the shop. If you buy the ith item, then you will receive a
+ * discount equivalent to prices[j] where j is the minimum index such that j > i and prices[j] <=
+ * prices[i]. Otherwise, you will not receive any discount at all.
+ * Return an integer array answer where answer[i] is the final price you will pay for the ith item of
+ * the shop, considering the special discount.
  */
 
 
@@ -55,10 +55,9 @@ auto NextGreaterElement(const ArrayType &elements) {
  * @reference   Daily Temperatures
  *              https://leetcode.com/problems/daily-temperatures/
  *
- * Given an array of integers temperatures represents the daily temperatures, return an
- * array answer such that answer[i] is the number of days you have to wait after the ith
- * day to get a warmer temperature. If there is no future day for which this is possible,
- * keep answer[i] == 0 instead.
+ * Given an array of integers temperatures represents the daily temperatures, return an array answer
+ * such that answer[i] is the number of days you have to wait after the ith day to get a warmer
+ * temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
  */
 auto DailyTemperatures(const ArrayType &temperatures) {
     ArrayType result(temperatures.size(), 0);
@@ -85,13 +84,15 @@ auto DailyTemperatures(const ArrayType &temperatures) {
  * @reference   Next Greater Element I
  *              https://leetcode.com/problems/next-greater-element-i/
  *
- * The next greater element of some element x in an array is the first greater element
- * that is to the right of x in the same array. You are given two distinct 0-indexed
- * integer arrays nums1 and nums2, where nums1 is a subset of nums2.
- * For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and
- * determine the next greater element of nums2[j] in nums2. If there is no next greater
- * element, then the answer for this query is -1. Return an array ans of length
- * nums1.length such that ans[i] is the next greater element as described above.
+ * The next greater element of some element x in an array is the first greater element that is to the
+ * right of x in the same array.
+ * You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of
+ * nums2.
+ * For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the
+ * next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for
+ * this query is -1.
+ * Return an array ans of length nums1.length such that ans[i] is the next greater element as described
+ * above.
  *  1 <= nums1.length <= nums2.length <= 1000
  *  0 <= nums1[i], nums2[i] <= 104
  *  All integers in nums1 and nums2 are unique.
@@ -129,11 +130,11 @@ auto TwoArrayNextGreaterElement(const ArrayType &sub, const ArrayType &an_array)
  * @reference   Next Greater Element II
  *              https://leetcode.com/problems/next-greater-element-ii/
  *
- * Given a circular integer array nums (i.e., the next element of nums[nums.length - 1]
- * is nums[0]), return the next greater number for every element in nums. The next
- * greater number of a number x is the first greater number to its traversing-order next
- * in the array, which means you could search circularly to find its next greater number.
- * If it doesn't exist, return -1 for this number.
+ * Given a circular integer array nums (i.e., the next element of nums[nums.length - 1] is nums[0]),
+ * return the next greater number for every element in nums.
+ * The next greater number of a number x is the first greater number to its traversing-order next in the
+ * array, which means you could search circularly to find its next greater number. If it doesn't exist,
+ * return -1 for this number.
  */
 auto CircularNextGreaterElement(const ArrayType &nums) {
     const int N = nums.size();
@@ -161,10 +162,10 @@ auto CircularNextGreaterElement(const ArrayType &nums) {
  * @reference   Next Greater Element III
  *              https://leetcode.com/problems/next-greater-element-iii/
  *
- * Given a positive integer n, find the smallest integer which has exactly the same
- * digits existing in the integer n and is greater in value than n. If no such positive
- * integer exists, return -1. Note that the returned integer should fit in 32-bit
- * integer, if there is a valid answer but it does not fit in 32-bit integer, return -1.
+ * Given a positive integer n, find the smallest integer which has exactly the same digits existing in
+ * the integer n and is greater in value than n. If no such positive integer exists, return -1.
+ * Note that the returned integer should fit in 32-bit integer, if there is a valid answer but it does
+ * not fit in 32-bit integer, return -1.
  */
 int NextGreaterElement_STL(const int n) {
     auto str = std::to_string(n);
@@ -186,11 +187,11 @@ int NextGreaterElement_STL(const int n) {
  * @reference   The Stock Span Problem
  *              https://www.geeksforgeeks.org/the-stock-span-problem/
  *
- * The stock span problem is a financial problem where we have a series of n daily price
- * quotes for a stock and we need to calculate span of stock’s price for all n days.
- * The span Si of the stock’s price on a given day i is defined as the maximum number of
- * consecutive days just before the given day, for which the price of the stock on the
- * current day is less than or equal to its price on the given day.
+ * The stock span problem is a financial problem where we have a series of n daily price quotes for a
+ * stock and we need to calculate span of stock’s price for all n days.  The span Si of the stock’s
+ * price on a given day i is defined as the maximum number of consecutive days just before the given
+ * day, for which the price of the stock on the current day is less than or equal to its price on the
+ * given day.
  */
 auto StockSpanProblem_Stack(const ArrayType &prices) {
     ArrayType result;
@@ -219,6 +220,49 @@ auto StockSpanProblem(const ArrayType &prices) {
             counter += result[i - counter];
         }
         result.push_back(counter);
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Online Stock Span
+ *              https://leetcode.com/problems/online-stock-span/
+ *
+ * Design an algorithm that collects daily price quotes for some stock and returns the span of that
+ * stock's price for the current day.
+ * The span of the stock's price today is defined as the maximum number of consecutive days (starting
+ * from today and going backward) for which the stock price was less than or equal to today's price.
+ *  For example, if the price of a stock over the next 7 days were [100,80,60,70,60,75,85], then the
+ *  stock spans would be [1,1,1,2,1,4,6].
+ * Implement the StockSpanner class:
+ *  StockSpanner() Initializes the object of the class.
+ *  int next(int price) Returns the span of the stock's price given that today's price is price.
+ */
+class StockSpanner {
+    std::stack<std::pair<int, int>> s;
+
+public:
+    auto next(const int price) {
+        int result = 1;
+        while (not s.empty() and s.top().first <= price) {
+            result += s.top().second;
+            s.pop();
+        }
+
+        s.emplace(price, result);
+
+        return result;
+    }
+};
+
+auto testStockSpanner(const ArrayType prices) {
+    StockSpanner spanner;
+    ArrayType result;
+
+    for (const auto p : prices) {
+        result.push_back(spanner.next(p));
     }
 
     return result;
@@ -308,3 +352,12 @@ THE_BENCHMARK(DailyTemperatures, SAMPLE1D);
 SIMPLE_TEST(DailyTemperatures, TestSAMPLE1, EXPECTED1D, SAMPLE1D);
 SIMPLE_TEST(DailyTemperatures, TestSAMPLE2, EXPECTED2D, SAMPLE2D);
 SIMPLE_TEST(DailyTemperatures, TestSAMPLE3, EXPECTED3D, SAMPLE3D);
+
+
+const ArrayType SAMPLE1SS = {100, 80, 60, 70, 60, 75, 85};
+const ArrayType EXPECTED1SS = {1, 1, 1, 2, 1, 4, 6};
+
+
+THE_BENCHMARK(testStockSpanner, SAMPLE1SS);
+
+SIMPLE_TEST(testStockSpanner, TestSAMPLE1, EXPECTED1SS, SAMPLE1SS);
