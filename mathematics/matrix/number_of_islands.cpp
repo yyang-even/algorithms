@@ -13,10 +13,10 @@ using ArrayType = std::vector<std::pair<int, int>>;
  *
  * @reference   https://leetcode.com/problems/number-of-islands/
  *
- * Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's
- * (water), return the number of islands. An island is surrounded by water and is
- * formed by connecting adjacent lands horizontally or vertically. You may assume all
- * four edges of the grid are all surrounded by water.
+ * Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the
+ * number of islands.
+ * An island is surrounded by water and is formed by connecting adjacent lands horizontally or
+ * vertically. You may assume all four edges of the grid are all surrounded by water.
  */
 auto NumberIslands_BFS(GridType grid) {
     const auto M = grid.size();
@@ -87,12 +87,11 @@ auto NumberIslands_DFS(GridType grid) {
  * @reference   Number of Islands II
  *              https://www.cnblogs.com/grandyang/p/5190419.html
  *
- * A 2d grid map of m rows and n columns is initially filled with water. We may perform
- * an addLand operation which turns the water at position (row, col) into a land. Given
- * a list of positions to operate, count the number of islands after each addLand
- * operation. An island is surrounded by water and is formed by connecting adjacent lands
- * horizontally or vertically. You may assume all four edges of the grid are all surrounded
- * by water.
+ * A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand
+ * operation which turns the water at position (row, col) into a land. Given a list of positions to
+ * operate, count the number of islands after each addLand operation.
+ * An island is surrounded by water and is formed by connecting adjacent lands horizontally or
+ * vertically. You may assume all four edges of the grid are all surrounded by water.
  */
 inline int disjointSet_Find(std::vector<int> &disjoint_set, const int i) {
     auto &parent = disjoint_set[i];
@@ -148,9 +147,9 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
  * @reference   Surrounded Regions
  *              https://leetcode.com/problems/surrounded-regions/
  *
- * Given an m x n matrix board containing 'X' and 'O', capture all regions that are
- * 4-directionally surrounded by 'X'. A region is captured by flipping all 'O's into
- * 'X's in that surrounded region.
+ * Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally
+ * surrounded by 'X'.
+ * A region is captured by flipping all 'O's into 'X's in that surrounded region.
  */
 inline void
 onCell(GridType &board, std::queue<std::pair<int, int>> &q, const int i, const int j) {
@@ -236,6 +235,53 @@ auto SurroundedRegions_UF(GridType board) {
     return board;
 }
 
+
+/**
+ * @reference   Most Stones Removed with Same Row or Column
+ *              https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+ *
+ * On a 2D plane, we place n stones at some integer coordinate points. Each coordinate point may have at
+ * most one stone.
+ * A stone can be removed if it shares either the same row or the same column as another stone that has
+ * not been removed.
+ * Given an array stones of length n where stones[i] = [xi, yi] represents the location of the ith
+ * stone, return the largest possible number of stones that can be removed.
+ * 0 <= xi, yi <= 10^4
+ */
+int disjointSet_Find(std::unordered_map<int, int> &disjoint_set, const int x, int &island) {
+    const auto [iter, inserted] = disjoint_set.emplace(x, x);
+    if (inserted) {
+        ++island;
+    }
+
+    if (x != iter->second) {
+        disjoint_set[x] = disjointSet_Find(disjoint_set, iter->second, island);
+    }
+
+    return disjoint_set[x];
+}
+
+void disjointSet_Union(std::unordered_map<int, int> &disjoint_set, int x, int y, int &island) {
+    x = disjointSet_Find(disjoint_set, x, island);
+    y = disjointSet_Find(disjoint_set, y, island);
+
+    if (x != y) {
+        disjoint_set[x] = y;
+        --island;
+    }
+}
+
+int RemoveStones(const ArrayType stones) {
+    std::unordered_map<int, int> disjoint_set;
+    int island = 0;
+
+    for (const auto &[x, y] : stones) {
+        disjointSet_Union(disjoint_set, x, ~y, island);
+    }
+
+    return stones.size() - island;
+}
+
 } //namespace
 
 
@@ -306,3 +352,15 @@ THE_BENCHMARK(SurroundedRegions_UF, SAMPLE1R);
 
 SIMPLE_TEST(SurroundedRegions_UF, TestSAMPLE1, EXPECTED1R, SAMPLE1R);
 SIMPLE_TEST(SurroundedRegions_UF, TestSAMPLE2, SAMPLE2R, SAMPLE2R);
+
+
+const ArrayType SAMPLE1S = {{0, 0}, {0, 1}, {1, 0}, {1, 2}, {2, 1}, {2, 2}};
+const ArrayType SAMPLE2S = {{0, 0}, {0, 2}, {1, 1}, {2, 0}, {2, 2}};
+const ArrayType SAMPLE3S = {{0, 0}};
+
+
+THE_BENCHMARK(RemoveStones, SAMPLE1S);
+
+SIMPLE_TEST(RemoveStones, TestSAMPLE1, 5, SAMPLE1S);
+SIMPLE_TEST(RemoveStones, TestSAMPLE2, 3, SAMPLE2S);
+SIMPLE_TEST(RemoveStones, TestSAMPLE3, 0, SAMPLE3S);
