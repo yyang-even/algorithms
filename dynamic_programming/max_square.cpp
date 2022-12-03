@@ -11,8 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/maximal-square/
  *
- * Given an m x n binary matrix filled with 0's and 1's, find the largest square
- * containing only 1's and return its area.
+ * Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and
+ * return its area.
  */
 auto MaxSquare(const MatrixType &grid) {
     int dp[grid.size() + 1][grid.front().size() + 1] = {};
@@ -57,8 +57,8 @@ auto MaxSquare_DP_On(const MatrixType &grid) {
  * @reference   Maximal Rectangle
  *              https://leetcode.com/problems/maximal-rectangle/
  *
- * Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle
- * containing only 1's and return its area.
+ * Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only
+ * 1's and return its area.
  */
 auto MaxRectangle(const MatrixType &grid) {
     const auto M = grid.size();
@@ -97,8 +97,8 @@ auto MaxRectangle(const MatrixType &grid) {
  * @reference   Largest Rectangle in Histogram
  *              https://leetcode.com/problems/largest-rectangle-in-histogram/
  *
- * Given an array of integers heights representing the histogram's bar height where the
- * width of each bar is 1, return the area of the largest rectangle in the histogram.
+ * Given an array of integers heights representing the histogram's bar height where the width of each
+ * bar is 1, return the area of the largest rectangle in the histogram.
  */
 auto MaxRectangleInHistogram(const ArrayType &dp) {
     std::stack<int> s;
@@ -146,8 +146,8 @@ auto MaxRectangle_MonotonicStack(const MatrixType &grid) {
  *              https://leetcode.com/problems/maximum-score-of-a-good-subarray/
  *
  * You are given an array of integers nums (0-indexed) and an integer k.
- * The score of a subarray (i, j) is defined as min(nums[i], nums[i+1], ..., nums[j]) *
- * (j - i + 1). A good subarray is a subarray where i <= k <= j.
+ * The score of a subarray (i, j) is defined as min(nums[i], nums[i+1], ..., nums[j]) * (j - i + 1). A
+ * good subarray is a subarray where i <= k <= j.
  * Return the maximum possible score of a good subarray.
  */
 auto MaxScoreOfGoodSubarray_TwoPointer(const ArrayType &nums, const int k) {
@@ -169,9 +169,39 @@ auto MaxScoreOfGoodSubarray_TwoPointer(const ArrayType &nums, const int k) {
     return result;
 }
 
-}//namespace
+
+/**
+ * @reference   Sum of Subarray Minimums
+ *              https://leetcode.com/problems/sum-of-subarray-minimums/
+ *
+ * Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous)
+ * subarray of arr. Since the answer may be large, return the answer modulo 10^9 + 7.
+ */
+int SumOfSubarrayMins_MonotonicStack(const ArrayType &nums) {
+    std::stack<long> s;
+
+    long result = 0;
+    for (std::size_t i = 0; i <= nums.size(); ++i) {
+        while (not s.empty() and (i == nums.size() or nums[s.top()] >= nums[i])) {
+            const long mid = s.top();
+            s.pop();
+            const long left = s.empty() ? -1 : s.top();
+            const long right = i;
+
+            const auto count = (mid - left) * (right - mid) % LARGE_PRIME;
+
+            result = (result + (count * nums[mid])) % LARGE_PRIME;
+        }
+        s.push(i);
+    }
+
+    return result;
+}
+
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {'1', '0', '1', '0', '0'},
     {'1', '0', '1', '1', '1'},
@@ -183,14 +213,11 @@ const MatrixType SAMPLE2 = {
     {'0', '1'},
     {'1', '0'}
 };
+// clang-format on
 
-const MatrixType SAMPLE3 = {
-    {'0'}
-};
+const MatrixType SAMPLE3 = {{'0'}};
 
-const MatrixType SAMPLE4 = {
-    {'1'}
-};
+const MatrixType SAMPLE4 = {{'1'}};
 
 
 THE_BENCHMARK(MaxSquare, SAMPLE1);
@@ -241,3 +268,13 @@ THE_BENCHMARK(MaxScoreOfGoodSubarray_TwoPointer, SAMPLE1S, 3);
 
 SIMPLE_TEST(MaxScoreOfGoodSubarray_TwoPointer, TestSAMPLE1, 15, SAMPLE1S, 3);
 SIMPLE_TEST(MaxScoreOfGoodSubarray_TwoPointer, TestSAMPLE2, 20, SAMPLE2S, 0);
+
+
+const ArrayType SAMPLE1M = {3, 1, 2, 4};
+const ArrayType SAMPLE2M = {11, 81, 94, 43, 3};
+
+
+THE_BENCHMARK(SumOfSubarrayMins_MonotonicStack, SAMPLE1M);
+
+SIMPLE_TEST(SumOfSubarrayMins_MonotonicStack, TestSAMPLE1, 17, SAMPLE1M);
+SIMPLE_TEST(SumOfSubarrayMins_MonotonicStack, TestSAMPLE2, 444, SAMPLE2M);
