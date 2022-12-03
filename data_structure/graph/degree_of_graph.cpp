@@ -22,22 +22,20 @@ inline constexpr auto SumOfDegreesOfUndirectedGraph(const std::size_t number_edg
  *
  * @reference   https://www.geeksforgeeks.org/degree-of-a-cycle-graph/
  *
- * Given the number of vertices in a Cycle Graph. The task is to find the Degree and the
- * number of Edges of the cycle graph.
+ * Given the number of vertices in a Cycle Graph. The task is to find the Degree and the number of Edges
+ * of the cycle graph.
  */
 inline constexpr auto SumOfDegreesOfCycleGraph(const std::size_t number_vertices) {
     return SumOfDegreesOfUndirectedGraph(number_vertices);
 }
 
 
-inline auto InDegrees(const std::size_t number_vertices,
-                      const UndirectedEdgeArrayType &edges) {
+inline auto InDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(InDegrees));
 }
 
 
-inline auto OutDegrees(const std::size_t number_vertices,
-                       const UndirectedEdgeArrayType &edges) {
+inline auto OutDegrees(const std::size_t number_vertices, const UndirectedEdgeArrayType &edges) {
     return AdjacencyListGraph(number_vertices, edges).Visit(ToLambda(OutDegrees));
 }
 
@@ -62,8 +60,7 @@ auto DegreeOfVertex(const AdjacencyMatrixGraph::RepresentationType &graph,
 auto DegreeOfVertex(const std::size_t number_vertices,
                     const UndirectedEdgeArrayType &edges,
                     const std::size_t source) {
-    return AdjacencyMatrixGraph(number_vertices, edges).Visit(
-    [source](const auto & graph) {
+    return AdjacencyMatrixGraph(number_vertices, edges).Visit([source](const auto &graph) {
         return DegreeOfVertex(graph, source);
     });
 }
@@ -73,14 +70,14 @@ auto DegreeOfVertex(const std::size_t number_vertices,
  * @reference   Find the Town Judge
  *              https://leetcode.com/problems/find-the-town-judge/
  *
- * In a town, there are n people labeled from 1 to n. There is a rumor that one of these
- * people is secretly the town judge. If the town judge exists, then:
+ * In a town, there are n people labeled from 1 to n. There is a rumor that one of these people is
+ * secretly the town judge. If the town judge exists, then:
  *  The town judge trusts nobody.
  *  Everybody (except for the town judge) trusts the town judge.
  *  There is exactly one person that satisfies properties 1 and 2.
- * You are given an array trust where trust[i] = [ai, bi] representing that the person
- * labeled ai trusts the person labeled bi. Return the label of the town judge if the
- * town judge exists and can be identified, or return -1 otherwise.
+ * You are given an array trust where trust[i] = [ai, bi] representing that the person labeled ai trusts
+ * the person labeled bi. Return the label of the town judge if the town judge exists and can be
+ * identified, or return -1 otherwise.
  */
 int FindJudge(const int n, const DirectedEdgeArrayType &trust) {
     int in_degree[n + 1] = {};
@@ -105,22 +102,58 @@ int FindJudge(const int n, const DirectedEdgeArrayType &trust) {
  * @reference   Destination City
  *              https://leetcode.com/problems/destination-city/
  *
- * You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a
- * direct path going from cityAi to cityBi. Return the destination city, that is, the city
- * without any path outgoing to another city. It is guaranteed that the graph of paths
- * forms a line without any loop, therefore, there will be exactly one destination city.
+ * You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path
+ * going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing
+ * to another city.
+ * It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be
+ * exactly one destination city.
  */
+
+
+/**
+ * @reference   Find Players With Zero or One Losses
+ *              https://leetcode.com/problems/find-players-with-zero-or-one-losses/
+ *
+ * You are given an integer array matches where matches[i] = [winneri, loseri] indicates that the player
+ * winneri defeated player loseri in a match.
+ * Return a list answer of size 2 where:
+ *  answer[0] is a list of all players that have not lost any matches.
+ *  answer[1] is a list of all players that have lost exactly one match.
+ * The values in the two lists should be returned in increasing order.
+ * Note:
+ *  You should only consider the players that have played at least one match.
+ *  The testcases will be generated such that no two matches will have the same outcome.
+ */
+auto FindPlayers(const DirectedEdgeArrayType &matches) {
+    std::map<int, int> lose;
+    for (const auto &m : matches) {
+        lose.emplace(m.from, 0);
+        ++(lose[m.to]);
+    }
+
+    ArrayType zero;
+    ArrayType one;
+    for (const auto &[p, l] : lose) {
+        if (l == 0) {
+            zero.push_back(p);
+        } else if (l == 1) {
+            one.push_back(p);
+        }
+    }
+
+    return std::pair(zero, one);
+}
 
 
 /**
  * @reference   Find Center of Star Graph
  *              https://leetcode.com/problems/find-center-of-star-graph/
  *
- * There is an undirected star graph consisting of n nodes labeled from 1 to n. A star
- * graph is a graph where there is one center node and exactly n - 1 edges that connect
- * the center node with every other node.
- * You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that
- * there is an edge between the nodes ui and vi. Return the center of the given star graph.
+ * There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph
+ * where there is one center node and exactly n - 1 edges that connect the center node with every other
+ * node.
+ * You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge
+ * between the nodes ui and vi. Return the center of the given star graph.
  * 3 <= n <= 10^5
  */
 auto FindCenterOfStarGraph(const UndirectedEdgeArrayType &edges) {
@@ -130,7 +163,7 @@ auto FindCenterOfStarGraph(const UndirectedEdgeArrayType &edges) {
     return (one_edge.u == another.u or one_edge.u == another.v) ? one_edge.u : one_edge.v;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(SumOfDegreesOfCycleGraph, 4);
@@ -182,3 +215,17 @@ THE_BENCHMARK(FindCenterOfStarGraph, SAMPLE1S);
 
 SIMPLE_TEST(FindCenterOfStarGraph, TestSAMPLE1, 2, SAMPLE1S);
 SIMPLE_TEST(FindCenterOfStarGraph, TestSAMPLE2, 1, SAMPLE2S);
+
+
+const DirectedEdgeArrayType SAMPLE1M = {
+    {1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {4, 9}, {10, 4}, {10, 9}};
+const std::pair<ArrayType, ArrayType> EXPECTED1M = {{1, 2, 10}, {4, 5, 7, 8}};
+
+const DirectedEdgeArrayType SAMPLE2M = {{2, 3}, {1, 3}, {5, 4}, {6, 4}};
+const std::pair<ArrayType, ArrayType> EXPECTED2M = {{1, 2, 5, 6}, {}};
+
+
+THE_BENCHMARK(FindPlayers, SAMPLE1M);
+
+SIMPLE_TEST(FindPlayers, TestSAMPLE1, EXPECTED1M, SAMPLE1M);
+SIMPLE_TEST(FindPlayers, TestSAMPLE2, EXPECTED2M, SAMPLE2M);

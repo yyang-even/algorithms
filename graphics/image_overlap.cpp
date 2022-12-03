@@ -38,7 +38,7 @@ auto ImageOverlap_Vector(const MatrixType &image1, const MatrixType &image2) {
 
     std::map<std::pair<int, int>, int> group_count;
     for (const auto &[i, j] : image_one_ones) {
-        for (const auto [m, n] : image_two_ones) {
+        for (const auto &[m, n] : image_two_ones) {
             const auto x = m - i;
             const auto y = n - j;
 

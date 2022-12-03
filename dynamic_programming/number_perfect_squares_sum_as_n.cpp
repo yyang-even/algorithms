@@ -10,9 +10,8 @@ using ArrayType = std::vector<int>;
  * @reference   https://leetcode.com/problems/perfect-squares/
  *
  * Given an integer n, return the least number of perfect square numbers that sum to n.
- * A perfect square is an integer that is the square of an integer; in other words, it
- * is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect
- * squares while 3 and 11 are not.
+ * A perfect square is an integer that is the square of an integer; in other words, it is the product of
+ * some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
  */
 auto NumberPerfectSquaresSumAsN_DP(const int n) {
     std::vector dp(n + 1, INT_MAX);
@@ -54,14 +53,14 @@ auto NumberPerfectSquaresSumAsN_Memo(const int n, ArrayType &memo) {
 
     int count = n;
     for (int i = 1; i * i <= n; ++i) {
-        count = std::min(count, NumberPerfectSquaresSumAsN_Memo(n - i * i, memo));
+        count = std::min(count, NumberPerfectSquaresSumAsN_Memo(n - i * i, memo) + 1);
     }
 
     return memo[n] = count;
 }
 
 auto NumberPerfectSquaresSumAsN_Memo(const int n) {
-    ArrayType memo(n);
+    ArrayType memo(n + 1);
     for (int i = 1; i * i <= n; ++i) {
         memo[i * i] = 1;
     }
@@ -69,7 +68,7 @@ auto NumberPerfectSquaresSumAsN_Memo(const int n) {
     return NumberPerfectSquaresSumAsN_Memo(n, memo);
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(NumberPerfectSquaresSumAsN_DP, 12);

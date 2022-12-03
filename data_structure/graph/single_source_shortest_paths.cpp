@@ -46,12 +46,12 @@ Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge
  * @reference   Bellman Ford Algorithm (Simple Implementation)
  *              https://www.geeksforgeeks.org/bellman-ford-algorithm-simple-implementation/
  *
- * Given a graph and a source vertex src in graph, find shortest paths from src to all vertices
- * in the given graph. The graph may contain negative weight edges.
+ * Given a graph and a source vertex src in graph, find shortest paths from src to all vertices in the
+ * given graph. The graph may contain negative weight edges.
  *
- * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for such
- * graphs. Bellman-Ford is also simpler than Dijkstra and suites well for distributed systems.
- * But time complexity of Bellman-Ford is O(VE), which is more than Dijkstra.
+ * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for such graphs.
+ * Bellman-Ford is also simpler than Dijkstra and suites well for distributed systems.  But time
+ * complexity of Bellman-Ford is O(VE), which is more than Dijkstra.
  */
 auto SingleSourceShortestPaths_BellmanFord(
     const std::size_t number_vertices,
@@ -334,10 +334,10 @@ inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t numbe
  * @reference   Network Delay Time
  *              https://leetcode.com/problems/network-delay-time/
  *
- * You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of
- * travel times as directed edges times[i] = (ui, vi, wi), where ui is the source node, vi is the
- * target node, and wi is the time it takes for a signal to travel from source to target.
- * We will send a signal from a given node k. Return the time it takes for all the n nodes to
+ * You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of travel
+ * times as directed edges times[i] = (ui, vi, wi), where ui is the source node, vi is the target node,
+ * and wi is the time it takes for a signal to travel from source to target.
+ * We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to
  * receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
  */
 
@@ -348,12 +348,12 @@ inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t numbe
  * @reference   C Program for Min Cost Path
  *              https://www.geeksforgeeks.org/c-program-for-min-cost-path/
  *
- * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that returns
- * cost of minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix represents a
- * cost to traverse through that cell. Total cost of a path to reach (m, n) is sum of all the
- * costs on that path (including both source and destination). You can only traverse down, right
- * and diagonally lower cells from a given cell, i.e., from a given cell (i, j), cells (i+1, j),
- * (i, j+1) and (i+1, j+1) can be traversed. You may assume that all costs are positive integers.
+ * Given a cost matrix cost[][] and a position (m, n) in cost[][], write a function that returns cost of
+ * minimum cost path to reach (m, n) from (0, 0). Each cell of the matrix represents a cost to traverse
+ * through that cell. Total cost of a path to reach (m, n) is sum of all the costs on that path
+ * (including both source and destination). You can only traverse down, right and diagonally lower cells
+ * from a given cell, i.e., from a given cell (i, j), cells (i+1, j), (i, j+1) and (i+1, j+1) can be
+ * traversed. You may assume that all costs are positive integers.
  */
 auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
     assert(m < costs.size());
@@ -414,11 +414,11 @@ auto PrintSingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
  *              https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
  * @reference   https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1293-shortest-path-in-a-grid-with-obstacles-elimination/
  *
- * You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1 (obstacle).
- * You can move up, down, left, or right from and to an empty cell in one step.
+ * You are given an m x n integer matrix grid where each cell is either 0 (empty) or 1 (obstacle).  You
+ * can move up, down, left, or right from and to an empty cell in one step.
  * Return the minimum number of steps to walk from the upper left corner (0, 0) to the lower right
- * corner (m - 1, n - 1) given that you can eliminate at most k obstacles. If it is not possible
- * to find such walk return -1.
+ * corner (m - 1, n - 1) given that you can eliminate at most k obstacles. If it is not possible to find
+ * such walk return -1.
  */
 auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) {
     assert(not grid.empty());
@@ -466,19 +466,19 @@ auto ShortestPathsWithObstaclesElimination(const MatrixType &grid, const int k) 
  * @reference   Dungeon Game
  *              https://leetcode.com/problems/dungeon-game/
  *
- * The demons had captured the princess and imprisoned her in the bottom-right corner of a dungeon.
- * The dungeon consists of m x n rooms laid out in a 2D grid. Our valiant knight was initially
- * positioned in the top-left room and must fight his way through dungeon to rescue the princess.
- * The knight has an initial health point represented by a positive integer. If at any point his
- * health point drops to 0 or below, he dies immediately.
+ * The demons had captured the princess and imprisoned her in the bottom-right corner of a dungeon. The
+ * dungeon consists of m x n rooms laid out in a 2D grid. Our valiant knight was initially positioned in
+ * the top-left room and must fight his way through dungeon to rescue the princess.
+ * The knight has an initial health point represented by a positive integer. If at any point his health
+ * point drops to 0 or below, he dies immediately.
  * Some of the rooms are guarded by demons (represented by negative integers), so the knight loses
- * health upon entering these rooms; other rooms are either empty (represented as 0) or contain
- * magic orbs that increase the knight's health (represented by positive integers).
- * To reach the princess as quickly as possible, the knight decides to move only rightward or
- * downward in each step.
+ * health upon entering these rooms; other rooms are either empty (represented as 0) or contain magic
+ * orbs that increase the knight's health (represented by positive integers).
+ * To reach the princess as quickly as possible, the knight decides to move only rightward or downward
+ * in each step.
  * Return the knight's minimum initial health so that he can rescue the princess.
- * Note that any room can contain threats or power-ups, even the first room the knight enters and
- * the bottom-right room where the princess is imprisoned.
+ * Note that any room can contain threats or power-ups, even the first room the knight enters and the
+ * bottom-right room where the princess is imprisoned.
  */
 auto DungeonGame_DP(const MatrixType &dungeon) {
     const int M = dungeon.size();
@@ -543,8 +543,8 @@ struct Node {
     unsigned row;
     unsigned column;
 
-    constexpr Node(const int c, const unsigned x, const unsigned y) :
-        cost(c), row(x), column(y) {}
+    constexpr Node(const int c, const unsigned x, const unsigned y) : cost(c), row(x), column(y) {
+    }
 };
 
 inline constexpr auto operator>(const Node &lhs, const Node &rhs) {
@@ -555,13 +555,14 @@ inline constexpr auto operator>(const Node &lhs, const Node &rhs) {
  *
  * @reference   https://leetcode.com/problems/swim-in-rising-water/
  *
- * On an N x N grid, each square grid[i][j] represents the elevation at that point (i,j).
- * Now rain starts to fall. At time t, the depth of the water everywhere is t. You can swim from
- * a square to another 4-directionally adjacent square if and only if the elevation of both
- * squares individually are at most t. You can swim infinite distance in zero time. Of course,
- * you must stay within the boundaries of the grid during your swim.
- * You start at the top left square (0, 0). What is the least time until you can reach the bottom
- * right square (N-1, N-1)?
+ * You are given an n x n integer matrix grid where each value grid[i][j] represents the elevation at
+ * that point (i, j).
+ * The rain starts to fall. At time t, the depth of the water everywhere is t. You can swim from a
+ * square to another 4-directionally adjacent square if and only if the elevation of both squares
+ * individually are at most t. You can swim infinite distances in zero time. Of course, you must stay
+ * within the boundaries of the grid during your swim.
+ * Return the least time until you can reach the bottom right square (n - 1, n - 1) if you start at the
+ * top left square (0, 0).
  * 2 <= N <= 50.
  * grid[i][j] is a permutation of [0, ..., N*N - 1].
  */
@@ -618,13 +619,13 @@ auto SwimInRisingWater_Dijkstra(MatrixType grid) {
  * @reference   Path With Minimum Effort
  *              https://leetcode.com/problems/path-with-minimum-effort/
  *
- * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows
- * x columns, where heights[row][col] represents the height of cell (row, col). You are situated
- * in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1)
- * (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find a route that
- * requires the minimum effort.
- * A route's effort is the maximum absolute difference in heights between two consecutive cells
- * of the route.
+ * You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows x
+ * columns, where heights[row][col] represents the height of cell (row, col). You are situated in the
+ * top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e.,
+ * 0-indexed). You can move up, down, left, or right, and you wish to find a route that requires the
+ * minimum effort.
+ * A route's effort is the maximum absolute difference in heights between two consecutive cells of the
+ * route.
  * Return the minimum effort required to travel from the top-left cell to the bottom-right cell.
  */
 using NodeType = std::tuple<int, int, int>;
@@ -687,13 +688,13 @@ auto MinimumEffortPath_Dijkstra(const MatrixType &heights) {
  * @reference   Shortest Path in Binary Matrix
  *              https://leetcode.com/problems/shortest-path-in-binary-matrix/
  *
- * Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix.
- * If there is no clear path, return -1.
- * A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the
- * bottom-right cell (i.e., (n - 1, n - 1)) such that:
+ * Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix.  If
+ * there is no clear path, return -1.
+ * A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right
+ * cell (i.e., (n - 1, n - 1)) such that:
  *  All the visited cells of the path are 0.
- *  All the adjacent cells of the path are 8-directionally connected (i.e., they are different
- *      and they share an edge or a corner).
+ *  All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they
+ *      share an edge or a corner).
  * The length of a clear path is the number of visited cells of this path.
  */
 auto ShortestPathBinaryMatrix(MatrixType grid) {
@@ -729,6 +730,59 @@ auto ShortestPathBinaryMatrix(MatrixType grid) {
                 }
             }
         }
+    }
+
+    return -1;
+}
+
+
+/**
+ * @reference   Nearest Exit from Entrance in Maze
+ *              https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+ *
+ * You are given an m x n matrix maze (0-indexed) with empty cells (represented as '.') and walls
+ * (represented as '+'). You are also given the entrance of the maze, where entrance = [entrancerow,
+ * entrancecol] denotes the row and column of the cell you are initially standing at.
+ * In one step, you can move one cell up, down, left, or right. You cannot step into a cell with a wall,
+ * and you cannot step outside the maze. Your goal is to find the nearest exit from the entrance. An
+ * exit is defined as an empty cell that is at the border of the maze. The entrance does not count as an
+ * exit.
+ * Return the number of steps in the shortest path from the entrance to the nearest exit, or -1 if no
+ * such path exists.
+ */
+auto NearestExit(MatrixType maze, const std::pair<int, int> &entrance) {
+    std::queue<std::pair<int, int>> q;
+    q.emplace(entrance.first, entrance.second);
+    maze[entrance.first][entrance.second] = '+';
+
+    int moves = 1;
+    const int M = maze.size();
+    const int N = maze.front().size();
+
+    while (not q.empty()) {
+        for (int i = q.size(); i > 0; --i) {
+            const auto &[x, y] = q.front();
+            q.pop();
+
+            for (const auto &[delta_x, delta_y] : DIRECTIONS) {
+                const auto new_x = x + delta_x;
+                const auto new_y = y + delta_y;
+
+                if (new_x < 0 or new_y < 0 or new_x >= M or new_y >= N or
+                    maze[new_x][new_y] == '+') {
+                    continue;
+                }
+
+                if (new_x == 0 or new_y == 0 or new_x == M - 1 or new_y == N - 1) {
+                    return moves;
+                }
+
+                maze[new_x][new_y] = '+';
+                q.emplace(new_x, new_y);
+            }
+        }
+
+        ++moves;
     }
 
     return -1;
@@ -980,3 +1034,20 @@ THE_BENCHMARK(ShortestPathBinaryMatrix, SAMPLE1B);
 SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE1, 2, SAMPLE1B);
 SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE2, 4, SAMPLE2B);
 SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE3, -1, SAMPLE3B);
+
+
+const MatrixType SAMPLE1NM = {{'+', '+', '.', '+'}, {'.', '.', '.', '+'}, {'+', '+', '+', '.'}};
+const auto SAMPLE1NE = std::pair(1, 2);
+
+const MatrixType SAMPLE2NM = {{'+', '+', '+'}, {'.', '.', '.'}, {'+', '+', '+'}};
+const auto SAMPLE2NE = std::pair(1, 0);
+
+const MatrixType SAMPLE3NM = {{'.', '+'}};
+const auto SAMPLE3NE = std::pair(0, 0);
+
+
+THE_BENCHMARK(NearestExit, SAMPLE1NM, SAMPLE1NE);
+
+SIMPLE_TEST(NearestExit, TestSAMPLE1, 1, SAMPLE1NM, SAMPLE1NE);
+SIMPLE_TEST(NearestExit, TestSAMPLE2, 2, SAMPLE2NM, SAMPLE2NE);
+SIMPLE_TEST(NearestExit, TestSAMPLE3, -1, SAMPLE3NM, SAMPLE3NE);

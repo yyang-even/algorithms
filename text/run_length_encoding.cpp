@@ -1,6 +1,7 @@
 #include "common_header.h"
 
 #include "mathematics/arithmetics/progression/arithmetic_progression.h"
+#include "mathematics/numbers/count_digits_in_integer.h"
 
 
 namespace {
@@ -129,6 +130,57 @@ constexpr auto CountSubstrWithOneDistinctLetter(const std::string_view s) {
  * You must write an algorithm that uses only constant extra space.
  */
 
+
+/**
+ * @reference   String Compression II
+ *              https://leetcode.com/problems/string-compression-ii/
+ *
+ * Run-length encoding is a string compression method that works by replacing consecutive identical
+ * characters (repeated 2 or more times) with the concatenation of the character and the number marking
+ * the count of the characters (length of the run). For example, to compress the string "aabccc" we
+ * replace "aa" by "a2" and replace "ccc" by "c3". Thus the compressed string becomes "a2bc3".
+ * Notice that in this problem, we are not adding '1' after single characters.
+ * Given a string s and an integer k. You need to delete at most k characters from s such that the
+ * run-length encoded version of s has minimum length.
+ * Find the minimum length of the run-length encoded version of s after deleting at most k characters.
+ */
+auto StringCompression(const int left,
+                       const std::string_view s,
+                       const int k,
+                       std::vector<std::vector<int>> &memo) {
+    constexpr int MAXIMUM = 1e9;
+
+    if (k < 0) {
+        return MAXIMUM;
+    }
+
+    const int N = s.size();
+    if (left >= N or N - left <= k) {
+        return 0;
+    }
+
+    if (memo[left][k] != -1) {
+        return memo[left][k];
+    }
+
+    auto result = MAXIMUM;
+    int counts[26] = {};
+    int most = 0;
+    for (auto i = left; i < N; ++i) {
+        most = std::max(most, ++counts[s[i] - 'a']);
+        result = std::min(result,
+                          1 + CountDigits_Iterative(most) +
+                              StringCompression(i + 1, s, k - (i - left + 1 - most), memo));
+    }
+
+    return memo[left][k] = result;
+}
+
+auto StringCompression(const std::string_view s, const int k) {
+    std::vector memo(s.size(), std::vector(k + 1, -1));
+    return StringCompression(0, s, k, memo);
+}
+
 } //namespace
 
 
@@ -144,3 +196,10 @@ THE_BENCHMARK(CountSubstrWithOneDistinctLetter, "aaaba");
 
 SIMPLE_TEST(CountSubstrWithOneDistinctLetter, TestSAMPLE1, 8, "aaaba");
 SIMPLE_TEST(CountSubstrWithOneDistinctLetter, TestSAMPLE2, 55, "aaaaaaaaaa");
+
+
+THE_BENCHMARK(StringCompression, "aaabcccd", 2);
+
+SIMPLE_TEST(StringCompression, TestSAMPLE1, 4, "aaabcccd", 2);
+SIMPLE_TEST(StringCompression, TestSAMPLE2, 2, "aabbaa", 2);
+SIMPLE_TEST(StringCompression, TestSAMPLE3, 3, "aaaaaaaaaaa", 0);
