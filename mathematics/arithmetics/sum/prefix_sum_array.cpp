@@ -25,9 +25,8 @@ void update(ArrayType &elements,
  * @reference   Constant time range add operation on an array
  *              https://www.geeksforgeeks.org/constant-time-range-add-operation-array/
  *
- * Given an array of size N which is initialized with all zeros. We are given many range
- * add queries, which should be applied to this array. We need to print final updated
- * array as our result.
+ * Given an array of size N which is initialized with all zeros. We are given many range add queries,
+ * which should be applied to this array. We need to print final updated array as our result.
  */
 auto RangesOfAdditions(const ArrayType::size_type size,
                        const ArrayType::value_type d,
@@ -46,11 +45,10 @@ auto RangesOfAdditions(const ArrayType::size_type size,
  * @reference   Range Addition
  *              https://xiaoguan.gitbooks.io/leetcode/content/LeetCode/370-range-addition-medium.html
  *
- * Assume you have an array of length n initialized with all 0's and are given k update
- * operations. Each operation is represented as a triplet: [startIndex, endIndex, inc]
- * which increments each element of subarray A[startIndex ... endIndex] (startIndex and
- * endIndex inclusive) with inc. Return the modified array after all k operations were
- * executed.
+ * Assume you have an array of length n initialized with all 0's and are given k update operations.
+ * Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element
+ * of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+ * Return the modified array after all k operations were executed.
  */
 auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
     ArrayType elements(N, 0);
@@ -67,10 +65,10 @@ auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
  * reference    Print modified array after multiple array range increment operations
  *              https://www.geeksforgeeks.org/print-modified-array-multiple-array-range-increment-operations/
  *
- * Given an array containing n integers and a value d. m queries are given. Each query
- * has two values start and end. For each query, the problem is to increment the values
- * from the start to end index in the given array by the given value d. A linear time
- * efficient solution is required for handling such multiple queries.
+ * Given an array containing n integers and a value d. m queries are given. Each query has two values
+ * start and end. For each query, the problem is to increment the values from the start to end index in
+ * the given array by the given value d. A linear time efficient solution is required for handling such
+ * multiple queries.
  */
 inline auto RangesOfAdditions(const ArrayType &elements,
                               const ArrayType::value_type d,
@@ -91,25 +89,25 @@ inline auto RangesOfAdditions(const ArrayType &elements,
  * @reference   Prefix Sum Array – Implementation and Applications in Competitive Programming
  *              https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/
  *
- * Consider an array of size n with all initial values as 0. Perform given 'm' add
- * operations from index 'a' to 'b' and evaluate highest element in array. An add
- * operation adds 100 to all elements from a to b (both inclusive).
+ * Consider an array of size n with all initial values as 0. Perform given 'm' add operations from index
+ * 'a' to 'b' and evaluate highest element in array. An add operation adds 100 to all elements from a to
+ * b (both inclusive).
  *
  * @reference   Maximum occurred integer in n ranges
  *              https://www.geeksforgeeks.org/maximum-occurred-integer-n-ranges/
  * @reference   Maximum occurred integer in n ranges | Set-2
  *              https://www.geeksforgeeks.org/maximum-occurred-integer-in-n-ranges-set-2/
  *
- * Given n ranges of the form L and R, the task is to find the maximum occurred integer
- * in all the ranges. If more than one such integer exists, print the smallest one.
+ * Given n ranges of the form L and R, the task is to find the maximum occurred integer in all the
+ * ranges. If more than one such integer exists, print the smallest one.
  * Note: 1 <= L <= R <= 10^6
  *
  * @reference   Maximum value in an array after m range increment operations
  *              https://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/
  *
- * Consider an array of size n with all initial values as 0, we need to perform following
- * m range increment operations.
- *      increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
+ * Consider an array of size n with all initial values as 0, we need to perform following m range
+ * increment operations.
+ *  increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
  */
 inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const RangeArray &ranges) {
@@ -122,10 +120,9 @@ inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const Ran
  * @reference   Range Addition II
  *              https://leetcode.com/problems/range-addition-ii/
  *
- * You are given an m x n matrix M initialized with all 0's and an array of operations
- * ops, where ops[i] = [ai, bi] means M[x][y] should be incremented by one for all
- * 0 <= x < ai and 0 <= y < bi. Count and return the number of maximum integers in the
- * matrix after performing all the operations.
+ * You are given an m x n matrix M initialized with all 0's and an array of operations ops, where ops[i]
+ * = [ai, bi] means M[x][y] should be incremented by one for all 0 <= x < ai and 0 <= y < bi.
+ * Count and return the number of maximum integers in the matrix after performing all the operations.
  */
 auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &operations) {
     for (const auto &[i, j] : operations) {
@@ -142,9 +139,9 @@ auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &
  *              https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
  *
  * Given an array of integers nums, you start with an initial positive value startValue.
- * In each iteration, you calculate the step by step sum of startValue plus elements in
- * nums (from left to right). Return the minimum positive value of startValue such that
- * the step by step sum is never less than 1.
+ * In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left
+ * to right).
+ * Return the minimum positive value of startValue such that the step by step sum is never less than 1.
  */
 
 
@@ -152,11 +149,10 @@ auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &
  * @reference   Find the Highest Altitude
  *              https://leetcode.com/problems/find-the-highest-altitude/
  *
- * There is a biker going on a road trip. The road trip consists of n + 1 points at
- * different altitudes. The biker starts his trip on point 0 with altitude equal 0.
- * You are given an integer array gain of length n where gain[i] is the net gain in
- * altitude between points i and i + 1 for all (0 <= i < n). Return the highest altitude
- * of a point.
+ * There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes.
+ * The biker starts his trip on point 0 with altitude equal 0.
+ * You are given an integer array gain of length n where gain[i] is the net gain in altitude between
+ * points i and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
  */
 
 
@@ -164,11 +160,11 @@ auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &
  * @reference   Maximum Population Year
  *              https://leetcode.com/problems/maximum-population-year/
  *
- * You are given a 2D integer array logs where each logs[i] = [birthi, deathi] indicates
- * the birth and death years of the ith person.
- * The population of some year x is the number of people alive during that year. The ith
- * person is counted in year x's population if x is in the inclusive range
- * [birthi, deathi - 1]. Note that the person is not counted in the year that they die.
+ * You are given a 2D integer array logs where each logs[i] = [birthi, deathi] indicates the birth and
+ * death years of the ith person.
+ * The population of some year x is the number of people alive during that year. The ith person is
+ * counted in year x's population if x is in the inclusive range [birthi, deathi - 1]. Note that the
+ * person is not counted in the year that they die.
  * Return the earliest year with the maximum population.
  * 1950 <= birthi < deathi <= 2050
  */
@@ -178,14 +174,53 @@ auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &
  * @reference   Check if All the Integers in a Range Are Covered
  *              https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
  *
- * You are given a 2D integer array ranges and two integers left and right. Each
- * ranges[i] = [starti, endi] represents an inclusive interval between starti and endi.
- * Return true if each integer in the inclusive range [left, right] is covered by at
- * least one interval in ranges. Return false otherwise.
+ * You are given a 2D integer array ranges and two integers left and right. Each ranges[i] = [starti,
+ * endi] represents an inclusive interval between starti and endi.
+ * Return true if each integer in the inclusive range [left, right] is covered by at least one interval
+ * in ranges. Return false otherwise.
  * An integer x is covered by an interval ranges[i] = [starti, endi] if starti <= x <= endi.
  * 1 <= starti <= endi <= 50
  * 1 <= left <= right <= 50
  */
+
+
+/**
+ * @reference   Minimum Average Difference
+ *              https://leetcode.com/problems/minimum-average-difference/
+ *
+ * You are given a 0-indexed integer array nums of length n.
+ * The average difference of the index i is the absolute difference between the average of the first i + 1
+ * elements of nums and the average of the last n - i - 1 elements. Both averages should be rounded down
+ * to the nearest integer.
+ * Return the index with the minimum average difference. If there are multiple such indices, return the
+ * smallest one.
+ * Note:
+ *  The absolute difference of two numbers is the absolute value of their difference.
+ *  The average of n elements is the sum of the n elements divided (integer division) by n.
+ *  The average of 0 elements is considered to be 0.
+ */
+auto MinAverageDiff(const ArrayType &nums) {
+    const auto total_sum = std::accumulate(nums.cbegin(), nums.cend(), 0ll);
+
+    const int N = nums.size();
+    long long prefix_sum = 0;
+    long long minimum = INT_MAX;
+    int minimum_index = 0;
+    for (int i = 0; i < N; ++i) {
+        prefix_sum += nums[i];
+        const auto suffix_sum = total_sum - prefix_sum;
+        const auto prefix_average = prefix_sum / (i + 1);
+        const auto suffix_average = (i == N - 1) ? 0 : (suffix_sum / (N - i - 1));
+
+        const auto diff = std::abs(prefix_average - suffix_average);
+        if (diff < minimum) {
+            minimum = diff;
+            minimum_index = i;
+        }
+    }
+
+    return minimum_index;
+}
 
 } //namespace
 
@@ -245,3 +280,13 @@ THE_BENCHMARK(CountMaxAfterRangeAddition, 3, 3, SAMPLE1o);
 
 SIMPLE_TEST(CountMaxAfterRangeAddition, TestSAMPLE1, 4, 3, 3, SAMPLE1o);
 SIMPLE_TEST(CountMaxAfterRangeAddition, TestSAMPLE2, 9, 3, 3, SAMPLE2o);
+
+
+const ArrayType SAMPLE1M = {2, 5, 3, 9, 5, 3};
+const ArrayType SAMPLE2M = {0};
+
+
+THE_BENCHMARK(MinAverageDiff, SAMPLE1M);
+
+SIMPLE_TEST(MinAverageDiff, TestSAMPLE1, 3, SAMPLE1M);
+SIMPLE_TEST(MinAverageDiff, TestSAMPLE2, 0, SAMPLE2M);

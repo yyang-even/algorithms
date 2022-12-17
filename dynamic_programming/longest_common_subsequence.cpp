@@ -97,8 +97,8 @@ inline auto LongestCommonSubsequenceString(const std::string &X, const std::stri
  * @reference   Delete Operation for Two Strings
  *              https://leetcode.com/problems/delete-operation-for-two-strings/
  *
- * Given two strings word1 and word2, return the minimum number of steps required to make word1
- * and word2 the same.
+ * Given two strings word1 and word2, return the minimum number of steps required to make word1 and
+ * word2 the same.
  * In one step, you can delete exactly one character in either string.
  */
 
@@ -231,12 +231,20 @@ constexpr auto SAMPLE3_X = "10010101";
 constexpr auto SAMPLE3_Y = "010110110";
 const std::string EXPECTED3 = "010101";
 
+const std::string SAMPLE14_X = "abcde";
+const std::string SAMPLE14_Y = "ace";
+
+constexpr auto SAMPLE15_X = "abc";
+constexpr auto SAMPLE15_Y = "def";
+
 
 THE_BENCHMARK(LongestCommonSubsequence_DP, SAMPLE1_X, SAMPLE1_Y);
 
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE1, EXPECTED1.size(), SAMPLE1_X, SAMPLE1_Y);
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE2, EXPECTED2.size(), SAMPLE2_X, SAMPLE2_Y);
 SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE3, EXPECTED3.size(), SAMPLE3_X, SAMPLE3_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE4, SAMPLE14_Y.size(), SAMPLE14_X, SAMPLE14_Y);
+SIMPLE_TEST(LongestCommonSubsequence_DP, TestSAMPLE5, 0, SAMPLE15_X, SAMPLE15_Y);
 
 
 THE_BENCHMARK(LongestCommonSubsequence_SpaceOptimized, SAMPLE1_X, SAMPLE1_Y);
