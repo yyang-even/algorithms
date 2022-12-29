@@ -41,12 +41,24 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 22.3-12.
  *
- * Show that we can use a depth-first search of an undirected graph G to identify the
- * connected components of G, and that the depth-first forest contains as many trees as
- * G has connected components. More precisely, show how to modify depth-first search so
- * that it assigns to each vertex v an integer label v.cc between 1 and k, where k is
- * the number of connected components of G, such that u.cc = v.cc if and only if u and
- * v are in the same connected component.
+ * Show that we can use a depth-first search of an undirected graph G to identify the connected
+ * components of G, and that the depth-first forest contains as many trees as G has connected
+ * components. More precisely, show how to modify depth-first search so that it assigns to each vertex v
+ * an integer label v.cc between 1 and k, where k is the number of connected components of G, such that
+ * u.cc = v.cc if and only if u and v are in the same connected component.
+ */
+
+
+/**
+ * @reference   Keys and Rooms
+ *              https://leetcode.com/problems/keys-and-rooms/
+ *
+ * There are n rooms labeled from 0 to n - 1 and all the rooms are locked except for room 0. Your goal
+ * is to visit all the rooms. However, you cannot enter a locked room without having its key.
+ * When you visit a room, you may find a set of distinct keys in it. Each key has a number on it,
+ * denoting which room it unlocks, and you can take all of them with you to unlock the other rooms.
+ * Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i,
+ * return true if you can visit all the rooms, or false otherwise.
  */
 
 
@@ -54,11 +66,10 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  *
  * @reference   https://leetcode.com/problems/largest-component-size-by-common-factor/
  *
- * You are given an integer array of unique positive integers nums. Consider the following
- * graph:
+ * You are given an integer array of unique positive integers nums. Consider the following graph:
  *  There are nums.length nodes, labeled nums[0] to nums[nums.length - 1],
- *  There is an undirected edge between nums[i] and nums[j] if nums[i] and nums[j] share
- *  a common factor greater than 1.
+ *  There is an undirected edge between nums[i] and nums[j] if nums[i] and nums[j] share a common factor
+ *  greater than 1.
  * Return the size of the largest connected component in the graph.
  * 1 <= nums[i] <= 10^5
  */
@@ -89,12 +100,10 @@ auto LargestComponentSizeByCommonFactor(const ArrayType &nums) {
  * @reference   Smallest String With Swaps
  *              https://leetcode.com/problems/smallest-string-with-swaps/
  *
- * You are given a string s, and an array of pairs of indices in the string pairs where
- * pairs[i] = [a, b] indicates 2 indices(0-indexed) of the string.
- * You can swap the characters at any pair of indices in the given pairs any number of
- * times.
- * Return the lexicographically smallest string that s can be changed to after using the
- * swaps.
+ * You are given a string s, and an array of pairs of indices in the string pairs where pairs[i] =
+ * [a, b] indicates 2 indices(0-indexed) of the string.
+ * You can swap the characters at any pair of indices in the given pairs any number of times.
+ * Return the lexicographically smallest string that s can be changed to after using the swaps.
  */
 auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
     DisjointSet_Array disjoint_set(s.size());
@@ -128,8 +137,8 @@ auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
  * @reference   Largest Number After Digit Swaps by Parity
  *              https://leetcode.com/problems/largest-number-after-digit-swaps-by-parity/
  *
- * You are given a positive integer num. You may swap any two digits of num that have
- * the same parity (i.e. both odd digits or both even digits).
+ * You are given a positive integer num. You may swap any two digits of num that have the same parity
+ * (i.e. both odd digits or both even digits).
  * Return the largest possible value of num after any number of swaps.
  */
 constexpr auto LargestNumberAfterSwaps(const unsigned num) {
@@ -158,14 +167,14 @@ constexpr auto LargestNumberAfterSwaps(const unsigned num) {
  * @reference   Evaluate Division
  *              https://leetcode.com/problems/evaluate-division/
  *
- * You are given an array of variable pairs equations and an array of real numbers values,
- * where equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i].
- * Each Ai or Bi is a string that represents a single variable.
- * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query
- * where you must find the answer for Cj / Dj = ?.
+ * You are given an array of variable pairs equations and an array of real numbers values, where
+ * equations[i] = [Ai, Bi] and values[i] represent the equation Ai / Bi = values[i].  Each Ai or Bi is a
+ * string that represents a single variable.
+ * You are also given some queries, where queries[j] = [Cj, Dj] represents the jth query where you must
+ * find the answer for Cj / Dj = ?.
  * Return the answers to all queries. If a single answer cannot be determined, return -1.0.
- * Note: The input is always valid. You may assume that evaluating the queries will not
- * result in division by zero and that there is no contradiction.
+ * Note: The input is always valid. You may assume that evaluating the queries will not result in
+ * division by zero and that there is no contradiction.
  */
 using StrPair = std::pair<std::string_view, std::string_view>;
 using StrPairArray = std::vector<StrPair>;

@@ -3,14 +3,16 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string>;
+
 /** Basic Calculator
  *
  * @reference   https://leetcode.com/problems/basic-calculator/
  *
- * Given a string s representing a valid expression, implement a basic calculator to
- * evaluate it, and return the result of the evaluation. Note: You are not allowed to
- * use any built-in function which evaluates strings as mathematical expressions, such
- * as eval().
+ * Given a string s representing a valid expression, implement a basic calculator to evaluate it, and
+ * return the result of the evaluation.
+ * Note: You are not allowed to use any built-in function which evaluates strings as mathematical
+ * expressions, such as eval().
  * s consists of digits, '+', '-', '(', ')', and ' '.
  * s represents a valid expression.
  */
@@ -49,13 +51,13 @@ auto Calculator_Stack(const std::string_view expression) {
  * @reference   Basic Calculator II
  *              https://leetcode.com/problems/basic-calculator-ii/
  *
- * Given a string s which represents an expression, evaluate this expression and return
- * its value. The integer division should truncate toward zero. You may assume that the
- * given expression is always valid. All intermediate results will be in the range of
- * [-2^31, 2^31 - 1]. Note: You are not allowed to use any built-in function which
- * evaluates strings as mathematical expressions, such as eval().
- * s consists of integers and operators ('+', '-', '*', '/') separated by some number of
- * spaces.
+ * Given a string s which represents an expression, evaluate this expression and return its value.
+ * The integer division should truncate toward zero.
+ * You may assume that the
+ * given expression is always valid. All intermediate results will be in the range of [-2^31, 2^31 - 1].
+ * Note: You are not allowed to use any built-in function which evaluates strings as mathematical
+ * expressions, such as eval().
+ * s consists of integers and operators ('+', '-', '*', '/') separated by some number of spaces.
  * s represents a valid expression.
  */
 auto Calculator2_Stack(const std::string_view expression) {
@@ -128,12 +130,13 @@ constexpr auto Calculator2(const std::string_view expression) {
  * @reference   Basic Calculator III
  *              https://github.com/grandyang/leetcode/issues/772
  *
- * Implement a basic calculator to evaluate a simple expression string. The expression
- * string may contain open ( and closing parentheses ), the plus + or minus sign -,
- * non-negative integers and empty spaces ' '. The expression string contains only
- * non-negative integers, +, -, *, / operators , open ( and closing parentheses ) and
- * empty spaces ' '. The integer division should truncate toward zero. You may assume
- * that the given expression is always valid. All intermediate results will be in the
+ * Implement a basic calculator to evaluate a simple expression string.
+ * The expression string may contain open ( and closing parentheses ), the plus + or minus sign -,
+ * non-negative integers and empty spaces ' '.
+ * The expression string contains only
+ * non-negative integers, +, -, *, / operators , open ( and closing parentheses ) and empty spaces ' '.
+ * The integer division should truncate toward zero.
+ * You may assume that the given expression is always valid. All intermediate results will be in the
  * range of [-2147483648, 2147483647].
  * Note: Do not use the eval built-in library function.
  */
@@ -160,18 +163,18 @@ constexpr int Calculator3(const std::string_view expression) {
         }
         if (c == '+' or c == '-' or c == '*' or c == '/' or i + 1 == expression.size()) {
             switch (operation) {
-                case '+':
-                    curRes += num;
-                    break;
-                case '-':
-                    curRes -= num;
-                    break;
-                case '*':
-                    curRes *= num;
-                    break;
-                case '/':
-                    curRes /= num;
-                    break;
+            case '+':
+                curRes += num;
+                break;
+            case '-':
+                curRes -= num;
+                break;
+            case '*':
+                curRes *= num;
+                break;
+            case '/':
+                curRes /= num;
+                break;
             }
             if (c == '+' or c == '-' or i + 1 == expression.size()) {
                 result += curRes;
@@ -185,7 +188,47 @@ constexpr int Calculator3(const std::string_view expression) {
     return result;
 }
 
-}//namespace
+
+/**
+ * @reference   Evaluate Reverse Polish Notation
+ *              https://leetcode.com/problems/evaluate-reverse-polish-notation/
+ *
+ * Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+ * Valid operators are +, -, *, and /. Each operand may be an integer or another expression.
+ * Note that division between two integers should truncate toward zero.
+ * It is guaranteed that the given RPN expression is always valid. That means the expression would
+ * always evaluate to a result, and there will not be any division by zero operation.
+ */
+auto EvaluateReversePolishNotation(const ArrayType &tokens) {
+    std::stack<long> s;
+    for (const auto &t : tokens) {
+        if (std::isdigit(t.back())) {
+            s.push(std::stoi(t));
+        } else {
+            const auto right = s.top();
+            s.pop();
+            const auto left = s.top();
+            s.pop();
+
+            const auto result = [left, right](const char o) {
+                if (o == '+') {
+                    return left + right;
+                } else if (o == '-') {
+                    return left - right;
+                } else if (o == '*') {
+                    return left * right;
+                } // else  0 == '/'
+                return left / right;
+            }(t.front());
+
+            s.push(result);
+        }
+    }
+
+    return s.top();
+}
+
+} //namespace
 
 
 THE_BENCHMARK(Calculator_Stack, "(1+(4+5+2)-3)+(6+8)");
@@ -225,3 +268,15 @@ SIMPLE_TEST(Calculator3, TestSAMPLE7, 1, "3/2");
 SIMPLE_TEST(Calculator3, TestSAMPLE8, 5, " 3+5 / 2 ");
 SIMPLE_TEST(Calculator3, TestSAMPLE9, 21, "2*(5+5*2)/3+(6/2+8)");
 SIMPLE_TEST(Calculator3, TestSAMPLE10, -12, "(2+6* 3+5- (3*14/7+2)*5)+3");
+
+
+const ArrayType SAMPLE1 = {"2", "1", "+", "3", "*"};
+const ArrayType SAMPLE2 = {"4", "13", "5", "/", "+"};
+const ArrayType SAMPLE3 = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
+
+
+THE_BENCHMARK(EvaluateReversePolishNotation, SAMPLE1);
+
+SIMPLE_TEST(EvaluateReversePolishNotation, TestSAMPLE1, 9, SAMPLE1);
+SIMPLE_TEST(EvaluateReversePolishNotation, TestSAMPLE2, 6, SAMPLE2);
+SIMPLE_TEST(EvaluateReversePolishNotation, TestSAMPLE3, 22, SAMPLE3);
