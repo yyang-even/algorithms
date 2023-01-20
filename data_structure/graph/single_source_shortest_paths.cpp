@@ -788,6 +788,71 @@ auto NearestExit(MatrixType maze, const std::pair<int, int> &entrance) {
     return -1;
 }
 
+
+/**
+ * @reference   Snakes and Ladders
+ *              https://leetcode.com/problems/snakes-and-ladders/
+ *
+ * You are given an n x n integer matrix board where the cells are labeled from 1 to n2 in a
+ * Boustrophedon style starting from the bottom left of the board (i.e. board[n - 1][0]) and alternating
+ * direction each row.
+ * You start on square 1 of the board. In each move, starting from square curr, do the following:
+ *  Choose a destination square next with a label in the range [curr + 1, min(curr + 6, n2)].
+ *      This choice simulates the result of a standard 6-sided die roll: i.e., there are always at most
+ *      6 destinations, regardless of the size of the board.
+ *  If next has a snake or ladder, you must move to the destination of that snake or ladder. Otherwise,
+ *  you move to next.
+ *  The game ends when you reach the square n2.
+ * A board square on row r and column c has a snake or ladder if board[r][c] != -1.  The destination of
+ * that snake or ladder is board[r][c]. Squares 1 and n2 do not have a snake or ladder.
+ * Note that you only take a snake or ladder at most once per move. If the destination to a snake or
+ * ladder is the start of another snake or ladder, you do not follow the subsequent snake or ladder.
+ *  For example, suppose the board is [[-1,4],[-1,3]], and on the first move, your destination square is
+ *  2. You follow the ladder to square 3, but do not follow the subsequent ladder to 4.
+ * Return the least number of moves required to reach the square n2. If it is not possible to reach the
+ * square, return -1.
+ */
+constexpr auto toCell(const int i, const int n) {
+    const auto x = (i - 1) / n;
+    const auto y = (i - 1) % n;
+
+    const auto row = n - x - 1;
+    const auto column = (x % 2 == 0) ? y : (n - y - 1);
+
+    return std::pair(row, column);
+}
+
+auto SnakesAndLadders(const MatrixType &board) {
+    const int N = board.size();
+    const auto destination = N * N;
+
+    std::unordered_map<int, int> costs {{1, 0}};
+    std::queue<int> q;
+    q.push(1);
+
+    while (not q.empty()) {
+        const auto current = q.front();
+        q.pop();
+        const auto curr_cost = costs[current];
+
+        for (auto j = current + 1; j <= current + 6; ++j) {
+            const auto [row, column] = toCell(j, N);
+            const auto next = (board[row][column] != -1) ? board[row][column] : j;
+            const auto next_cost = curr_cost + 1;
+
+            if (next == destination) {
+                return next_cost;
+            }
+
+            if (costs.emplace(next, next_cost).second) {
+                q.push(next);
+            }
+        }
+    }
+
+    return -1;
+}
+
 } //namespace
 
 
@@ -1036,14 +1101,26 @@ SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE2, 4, SAMPLE2B);
 SIMPLE_TEST(ShortestPathBinaryMatrix, TestSAMPLE3, -1, SAMPLE3B);
 
 
-const MatrixType SAMPLE1NM = {{'+', '+', '.', '+'}, {'.', '.', '.', '+'}, {'+', '+', '+', '.'}};
+// clang-format off
+const MatrixType SAMPLE1NM = {
+    {'+', '+', '.', '+'},
+    {'.', '.', '.', '+'},
+    {'+', '+', '+', '.'}
+};
 const auto SAMPLE1NE = std::pair(1, 2);
 
-const MatrixType SAMPLE2NM = {{'+', '+', '+'}, {'.', '.', '.'}, {'+', '+', '+'}};
+const MatrixType SAMPLE2NM = {
+    {'+', '+', '+'},
+    {'.', '.', '.'},
+    {'+', '+', '+'}
+};
 const auto SAMPLE2NE = std::pair(1, 0);
 
-const MatrixType SAMPLE3NM = {{'.', '+'}};
+const MatrixType SAMPLE3NM = {
+    {'.', '+'}
+};
 const auto SAMPLE3NE = std::pair(0, 0);
+// clang-format on
 
 
 THE_BENCHMARK(NearestExit, SAMPLE1NM, SAMPLE1NE);
@@ -1051,3 +1128,44 @@ THE_BENCHMARK(NearestExit, SAMPLE1NM, SAMPLE1NE);
 SIMPLE_TEST(NearestExit, TestSAMPLE1, 1, SAMPLE1NM, SAMPLE1NE);
 SIMPLE_TEST(NearestExit, TestSAMPLE2, 2, SAMPLE2NM, SAMPLE2NE);
 SIMPLE_TEST(NearestExit, TestSAMPLE3, -1, SAMPLE3NM, SAMPLE3NE);
+
+
+// clang-format off
+const MatrixType SAMPLE1SL = {
+    {-1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1},
+    {-1, -1, -1, -1, -1, -1},
+    {-1, 35, -1, -1, 13, -1},
+    {-1, -1, -1, -1, -1, -1},
+    {-1, 15, -1, -1, -1, -1}
+};
+
+const MatrixType SAMPLE2SL = {
+    {-1, -1},
+    {-1, 3}
+};
+
+const MatrixType SAMPLE3SL = {
+    {-1, 4, -1},
+    {6, 2, 6},
+    {-1, 3, -1}
+};
+
+const MatrixType SAMPLE4SL = {
+    {-1, -1, -1, -1, 48, 5, -1},
+    {12, 29, 13, 9, -1, 2, 32},
+    {-1, -1, 21, 7, -1, 12, 49},
+    {42, 37, 21, 40, -1, 22, 12},
+    {42, -1, 2, -1, -1, -1, 6},
+    {39, -1, 35, -1, -1, 39, -1},
+    {-1, 36, -1, -1, -1, -1, 5}
+};
+// clang-format on
+
+
+THE_BENCHMARK(SnakesAndLadders, SAMPLE1SL);
+
+SIMPLE_TEST(SnakesAndLadders, TestSAMPLE1, 4, SAMPLE1SL);
+SIMPLE_TEST(SnakesAndLadders, TestSAMPLE2, 1, SAMPLE2SL);
+SIMPLE_TEST(SnakesAndLadders, TestSAMPLE3, 2, SAMPLE3SL);
+SIMPLE_TEST(SnakesAndLadders, TestSAMPLE4, 3, SAMPLE4SL);

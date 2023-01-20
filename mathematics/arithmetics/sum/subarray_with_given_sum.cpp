@@ -125,6 +125,28 @@ auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value
 
 
 /**
+ * @reference   Subarray Sums Divisible by K
+ *              https://leetcode.com/problems/subarray-sums-divisible-by-k/
+ *
+ * Given an integer array nums and an integer k, return the number of non-empty subarrays that have a
+ * sum divisible by k.
+ * A subarray is a contiguous part of an array.
+ */
+auto SubarraysDivisibleByK(const ArrayType &nums, const int k) {
+    std::unordered_map<int, int> counts {{0, 1}};
+
+    int sum = 0;
+    int result = 0;
+    for (const auto n : nums) {
+        sum = (sum + n % k + k) % k;
+        result += counts[sum]++;
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximum Size Subarray Sum Equals k
  *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/325-maximum-size-subarray-sum-equals-k.html
  *
@@ -380,3 +402,13 @@ THE_BENCHMARK(NumSubmatrixSumAsTarget, SAMPLE1M, 0);
 SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample1, 4, SAMPLE1M, 0);
 SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample2, 5, SAMPLE2M, 0);
 SIMPLE_TEST(NumSubmatrixSumAsTarget, TestSample3, 0, SAMPLE3M, 0);
+
+
+const ArrayType SAMPLE1D = {4, 5, 0, -2, -3, 1};
+const ArrayType SAMPLE2D = {5};
+
+
+THE_BENCHMARK(SubarraysDivisibleByK, SAMPLE1D, 5);
+
+SIMPLE_TEST(SubarraysDivisibleByK, TestSample1, 7, SAMPLE1D, 5);
+SIMPLE_TEST(SubarraysDivisibleByK, TestSample2, 0, SAMPLE2D, 9);

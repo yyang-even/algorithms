@@ -16,6 +16,15 @@ testNoUnexpectedKeywordsOrder() {
     QuietRun popd
 }
 
+testNoUnexpectedReferences() {
+    PROJECT_ROOT_DIR=$(GetProjectRootDir)
+    QuietRun pushd "$PROJECT_ROOT_DIR"
+
+    assertFalse "git grep '/description' -- ':(exclude)*.sh'"
+
+    QuietRun popd
+}
+
 testNoUnexpectedDebugStatement() {
     PROJECT_ROOT_DIR=$(GetProjectRootDir)
     QuietRun pushd "$PROJECT_ROOT_DIR"
