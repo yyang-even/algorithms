@@ -1,6 +1,8 @@
 #include "common_header.h"
 
 #include "count_frequencies_of_all_elements.h"
+#include "hash.h"
+
 #include "ordering/count_occurrences_in_sorted_array.h"
 
 
@@ -280,6 +282,30 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * How to make sure the duplicated files you find are not false positive?
  */
 
+
+/**
+ * @reference   Minimum Rounds to Complete All Tasks
+ *              https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/
+ *
+ * You are given a 0-indexed integer array tasks, where tasks[i] represents the difficulty level of a
+ * task. In each round, you can complete either 2 or 3 tasks of the same difficulty level.
+ * Return the minimum rounds required to complete all the tasks, or -1 if it is not possible to complete
+ * all the tasks.
+ */
+auto MinRounds(const ArrayType &tasks) {
+    const auto counts = ToFrequencyHashTable(tasks);
+
+    int result = 0;
+    for (const auto &[_, c] : counts) {
+        if (c == 1) {
+            return -1;
+        }
+        result += (c + 2) / 3;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -379,3 +405,13 @@ THE_BENCHMARK(SortAndCount_BucketSort, VALUES1);
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE1, EXPECTED1, VALUES1);
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE2, EXPECTED2, VALUES2);
 SIMPLE_TEST(SortAndCount_BucketSort, TestSAMPLE3, EXPECTED3, VALUES3);
+
+
+const ArrayType SAMPLE1M = {2, 2, 3, 3, 2, 4, 4, 4, 4, 4};
+const ArrayType SAMPLE2M = {2, 3, 3};
+
+
+THE_BENCHMARK(MinRounds, SAMPLE1M);
+
+SIMPLE_TEST(MinRounds, TestSAMPLE1, 4, SAMPLE1M);
+SIMPLE_TEST(MinRounds, TestSAMPLE2, -1, SAMPLE2M);
