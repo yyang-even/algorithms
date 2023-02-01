@@ -853,6 +853,71 @@ auto SnakesAndLadders(const MatrixType &board) {
     return -1;
 }
 
+
+/**
+ * @reference   Cheapest Flights Within K Stops
+ *              https://leetcode.com/problems/cheapest-flights-within-k-stops/
+ *
+ * There are n cities connected by some number of flights. You are given an array flights where
+ * flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with
+ * cost pricei.
+ * You are also given three integers src, dst, and k, return the cheapest price from src to dst with at
+ * most k stops. If there is no such route, return -1.
+ */
+struct Trip {
+    int cost = 0;
+    int k = 0;
+    std::size_t at = 0;
+
+    Trip(const int c, const int stop, const int a) : cost(c), k(stop), at(a) {
+    }
+};
+
+auto FindCheapestPrice(const WeightedAdjacencyListGraph::RepresentationType &graph,
+                       const int src,
+                       const std::size_t dst,
+                       const int k) {
+    constexpr auto Compare = [](const auto &left, const auto &right) {
+        return left.cost > right.cost;
+    };
+    std::priority_queue<Trip, std::vector<Trip>, decltype(Compare)> min_heap(Compare);
+    min_heap.emplace(0, k, src);
+
+    std::vector visited(graph.size(), INT_MIN);
+    while (not min_heap.empty()) {
+        const auto t = min_heap.top();
+        min_heap.pop();
+
+        if (t.at == dst) {
+            return t.cost;
+        }
+
+        if (visited[t.at] > t.k) {
+            continue;
+        }
+        visited[t.at] = t.k;
+
+        for (const auto &[neighbor, price] : graph[t.at]) {
+            const auto new_cost = t.cost + price;
+            if ((t.k > 0 or (t.k == 0 and dst == neighbor))) {
+                min_heap.emplace(new_cost, t.k - 1, neighbor);
+            }
+        }
+    }
+
+    return -1;
+}
+
+inline auto FindCheapestPrice(const std::size_t n,
+                              const DirectedEdgeArrayType &flights,
+                              const int src,
+                              const int dst,
+                              const int k) {
+    return WeightedAdjacencyListGraph {n, flights}.Visit([src, dst, k](const auto &graph) {
+        return FindCheapestPrice(graph, src, dst, k);
+    });
+}
+
 } //namespace
 
 
@@ -1169,3 +1234,30 @@ SIMPLE_TEST(SnakesAndLadders, TestSAMPLE1, 4, SAMPLE1SL);
 SIMPLE_TEST(SnakesAndLadders, TestSAMPLE2, 1, SAMPLE2SL);
 SIMPLE_TEST(SnakesAndLadders, TestSAMPLE3, 2, SAMPLE3SL);
 SIMPLE_TEST(SnakesAndLadders, TestSAMPLE4, 3, SAMPLE4SL);
+
+
+const DirectedEdgeArrayType SAMPLE1F = {
+    {0, 1, 100}, {1, 2, 100}, {2, 0, 100}, {1, 3, 600}, {2, 3, 200}};
+const DirectedEdgeArrayType SAMPLE2F = {{0, 1, 100}, {1, 2, 100}, {0, 2, 500}};
+const DirectedEdgeArrayType SAMPLE4F = {{0, 3, 3},
+                                        {3, 4, 3},
+                                        {4, 1, 3},
+                                        {0, 5, 1},
+                                        {5, 1, 100},
+                                        {0, 6, 2},
+                                        {6, 1, 100},
+                                        {0, 7, 1},
+                                        {7, 8, 1},
+                                        {8, 9, 1},
+                                        {9, 1, 1},
+                                        {1, 10, 1},
+                                        {10, 2, 1},
+                                        {1, 2, 100}};
+
+
+THE_BENCHMARK(FindCheapestPrice, 4, SAMPLE1F, 0, 3, 1);
+
+SIMPLE_TEST(FindCheapestPrice, TestSAMPLE1, 700, 4, SAMPLE1F, 0, 3, 1);
+SIMPLE_TEST(FindCheapestPrice, TestSAMPLE2, 200, 3, SAMPLE2F, 0, 2, 1);
+SIMPLE_TEST(FindCheapestPrice, TestSAMPLE3, 500, 3, SAMPLE2F, 0, 2, 0);
+SIMPLE_TEST(FindCheapestPrice, TestSAMPLE4, 11, 11, SAMPLE4F, 0, 2, 4);
