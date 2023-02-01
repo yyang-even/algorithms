@@ -53,7 +53,7 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  * @reference   Keys and Rooms
  *              https://leetcode.com/problems/keys-and-rooms/
  *
- * There are n rooms labeled from 0 to n - 1 and all the rooms are locked except for room 0. Your goal
+ * There are n rooms labeled from 0 to n - 1 and all the rooms are locked except for room 0. Your goal
  * is to visit all the rooms. However, you cannot enter a locked room without having its key.
  * When you visit a room, you may find a set of distinct keys in it. Each key has a number on it,
  * denoting which room it unlocks, and you can take all of them with you to unlock the other rooms.
@@ -228,6 +228,55 @@ auto EvaluateDivision(const StrPairArray &equations,
     return results;
 }
 
+
+/**
+ * @reference   Lexicographically Smallest Equivalent String
+ *              https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
+ *
+ * You are given two strings of the same length s1 and s2 and a string baseStr.
+ * We say s1[i] and s2[i] are equivalent characters.
+ *  For example, if s1 = "abc" and s2 = "cde", then we have 'a' == 'c', 'b' == 'd', and 'c' == 'e'.
+ * Equivalent characters follow the usual rules of any equivalence relation:
+ *  Reflexivity: 'a' == 'a'.
+ *  Symmetry: 'a' == 'b' implies 'b' == 'a'.
+ *  Transitivity: 'a' == 'b' and 'b' == 'c' implies 'a' == 'c'.
+ * For example, given the equivalency information from s1 = "abc" and s2 = "cde", "acd" and "aab" are
+ * equivalent strings of baseStr = "eed", and "aab" is the lexicographically smallest equivalent string
+ * of baseStr.
+ * Return the lexicographically smallest equivalent string of baseStr by using the equivalency
+ * information from s1 and s2.
+ */
+auto Find(std::vector<int> &disjoint_set, const int x) {
+    if (disjoint_set[x] == -1)
+        return x;
+    return disjoint_set[x] = Find(disjoint_set, disjoint_set[x]);
+}
+
+void Union(std::vector<int> &disjoint_set, int x, int y) {
+    x = Find(disjoint_set, x);
+    y = Find(disjoint_set, y);
+
+    if (x != y) {
+        disjoint_set[std::max(x, y)] = std::min(x, y);
+    }
+}
+
+auto SmallestEquivalentString(const std::string_view s1,
+                              const std::string_view s2,
+                              std::string baseStr) {
+    std::vector disjoint_set(26, -1);
+
+    for (std::size_t i = 0; i < s1.size(); ++i) {
+        Union(disjoint_set, s1[i] - 'a', s2[i] - 'a');
+    }
+
+    for (auto &c : baseStr) {
+        c = Find(disjoint_set, c - 'a') + 'a';
+    }
+
+    return baseStr;
+}
+
 } //namespace
 
 
@@ -292,3 +341,11 @@ THE_BENCHMARK(EvaluateDivision, SAMPLE1E, SAMPLE1V, SAMPLE1Q);
 SIMPLE_TEST(EvaluateDivision, TestSAMPLE1, EXPECTED1, SAMPLE1E, SAMPLE1V, SAMPLE1Q);
 SIMPLE_TEST(EvaluateDivision, TestSAMPLE2, EXPECTED2, SAMPLE2E, SAMPLE2V, SAMPLE2Q);
 SIMPLE_TEST(EvaluateDivision, TestSAMPLE3, EXPECTED3, SAMPLE3E, SAMPLE3V, SAMPLE3Q);
+
+
+THE_BENCHMARK(SmallestEquivalentString, "parker", "morris", "parser");
+
+SIMPLE_TEST(SmallestEquivalentString, TestSAMPLE1, "makkek", "parker", "morris", "parser");
+SIMPLE_TEST(SmallestEquivalentString, TestSAMPLE2, "hdld", "hello", "world", "hold");
+SIMPLE_TEST(
+    SmallestEquivalentString, TestSAMPLE3, "aauaaaaada", "leetcode", "programs", "sourcecode");

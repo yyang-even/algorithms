@@ -85,6 +85,17 @@ bool WordBreak(const std::string_view s, const ArrayType &wordDict) {
     return dp[s.size()];
 }
 
+
+/**
+ * @reference   Concatenated Words
+ *              https://leetcode.com/problems/concatenated-words/
+ *
+ * Given an array of strings words (without duplicates), return all the concatenated words in the given
+ * list of words.
+ * A concatenated word is defined as a string that is comprised entirely of at least two shorter words
+ * in the given array.
+ */
+
 } //namespace
 
 
