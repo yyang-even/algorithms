@@ -918,6 +918,89 @@ inline auto FindCheapestPrice(const std::size_t n,
     });
 }
 
+
+/**
+ * @reference   Shortest Path with Alternating Colors
+ *              https://leetcode.com/problems/shortest-path-with-alternating-colors/
+ *
+ * You are given an integer n, the number of nodes in a directed graph where the nodes are labeled from
+ * 0 to n - 1. Each edge is red or blue in this graph, and there could be self-edges and parallel edges.
+ * You are given two arrays redEdges and blueEdges where:
+ *  redEdges[i] = [ai, bi] indicates that there is a directed red edge from node ai to node bi in the
+ *  graph, and
+ *  blueEdges[j] = [uj, vj] indicates that there is a directed blue edge from node uj to node vj in the
+ *  graph.
+ * Return an array answer of length n, where each answer[x] is the length of the shortest path from node
+ * 0 to node x such that the edge colors alternate along the path, or -1 if such a path does not exist.
+ */
+void ShortestAlternatingPaths(const AdjacencyListGraph::RepresentationType &red_graph,
+                              const AdjacencyListGraph::RepresentationType &blue_graph,
+                              bool is_red,
+                              std::vector<int> &red_result,
+                              std::vector<int> &blue_result) {
+    std::queue<int> q;
+    q.emplace(0);
+
+    int distance = 0;
+    while (not q.empty()) {
+        ++distance;
+
+        for (int size = q.size(); size-- > 0;) {
+            const auto i = q.front();
+            q.pop();
+
+            if (is_red) {
+                for (const auto neighbor : blue_graph[i]) {
+                    if (blue_result[neighbor] > distance) {
+                        blue_result[neighbor] = distance;
+                        q.emplace(neighbor);
+                    }
+                }
+            } else {
+                for (const auto neighbor : red_graph[i]) {
+                    if (red_result[neighbor] > distance) {
+                        red_result[neighbor] = distance;
+                        q.emplace(neighbor);
+                    }
+                }
+            }
+        }
+
+        is_red = not is_red;
+    }
+}
+
+auto ShortestAlternatingPaths(const std::size_t n,
+                              const DirectedEdgeArrayType &red_edges,
+                              const DirectedEdgeArrayType &blue_edges) {
+    AdjacencyListGraph::RepresentationType red_graph(n);
+    for (const auto &e : red_edges) {
+        red_graph[e.from].push_back(e.to);
+    }
+
+    AdjacencyListGraph::RepresentationType blue_graph(n);
+    for (const auto &e : blue_edges) {
+        blue_graph[e.from].push_back(e.to);
+    }
+
+    std::vector red_result(n, INT_MAX);
+    red_result[0] = 0;
+    std::vector blue_result(n, INT_MAX);
+    blue_result[0] = 0;
+
+    ShortestAlternatingPaths(red_graph, blue_graph, true, red_result, blue_result);
+    ShortestAlternatingPaths(red_graph, blue_graph, false, red_result, blue_result);
+
+    std::vector<int> result;
+    for (std::size_t i = 0; i < n; ++i) {
+        result.push_back(std::min(red_result[i], blue_result[i]));
+        if (result.back() == INT_MAX)
+            result.back() = -1;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -1261,3 +1344,21 @@ SIMPLE_TEST(FindCheapestPrice, TestSAMPLE1, 700, 4, SAMPLE1F, 0, 3, 1);
 SIMPLE_TEST(FindCheapestPrice, TestSAMPLE2, 200, 3, SAMPLE2F, 0, 2, 1);
 SIMPLE_TEST(FindCheapestPrice, TestSAMPLE3, 500, 3, SAMPLE2F, 0, 2, 0);
 SIMPLE_TEST(FindCheapestPrice, TestSAMPLE4, 11, 11, SAMPLE4F, 0, 2, 4);
+
+
+const DirectedEdgeArrayType SAMPLE1AR = {{0, 1}, {1, 2}};
+const DirectedEdgeArrayType SAMPLE1AB = {};
+const std::vector EXPECTED1A = {0, 1, -1};
+
+const DirectedEdgeArrayType SAMPLE2AR = {{0, 1}};
+const DirectedEdgeArrayType SAMPLE2AB = {{2, 1}};
+
+const DirectedEdgeArrayType SAMPLE3AB = {{1, 2}};
+const std::vector EXPECTED3A = {0, 1, 2};
+
+
+THE_BENCHMARK(ShortestAlternatingPaths, 3, SAMPLE1AR, SAMPLE1AB);
+
+SIMPLE_TEST(ShortestAlternatingPaths, TestSAMPLE1, EXPECTED1A, 3, SAMPLE1AR, SAMPLE1AB);
+SIMPLE_TEST(ShortestAlternatingPaths, TestSAMPLE2, EXPECTED1A, 3, SAMPLE2AR, SAMPLE2AB);
+SIMPLE_TEST(ShortestAlternatingPaths, TestSAMPLE3, EXPECTED3A, 3, SAMPLE2AR, SAMPLE3AB);
