@@ -156,6 +156,50 @@ auto CountSubTreesWithSameLabel(const std::size_t n,
     return result;
 }
 
+
+/**
+ * @reference   Minimum Fuel Cost to Report to the Capital
+ *              https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/
+ *
+ * There is a tree (i.e., a connected, undirected graph with no cycles) structure country network
+ * consisting of n cities numbered from 0 to n - 1 and exactly n - 1 roads. The capital city is city 0.
+ * You are given a 2D integer array roads where roads[i] = [ai, bi] denotes that there exists a
+ * bidirectional road connecting cities ai and bi.
+ * There is a meeting for the representatives of each city. The meeting is in the capital city.
+ * There is a car in each city. You are given an integer seats that indicates the number of seats in
+ * each car.
+ * A representative can use the car in their city to travel or change the car and ride with another
+ * representative. The cost of traveling between two cities is one liter of fuel.
+ * Return the minimum number of liters of fuel to reach the capital city.
+ */
+int MinFuelCostToCapitcal(const std::size_t i,
+                          const std::size_t parent,
+                          const AdjacencyListGraph::RepresentationType &graph,
+                          const double seats,
+                          int &result) {
+    int representatives = 1;
+    for (const auto neighbor : graph[i]) {
+        if (neighbor != parent) {
+            representatives += MinFuelCostToCapitcal(neighbor, i, graph, seats, result);
+        }
+    }
+
+    if (i != 0) {
+        result += std::ceil(representatives / seats);
+    }
+
+    return representatives;
+}
+
+auto MinFuelCostToCapitcal(const UndirectedEdgeArrayType &edges, const int seats) {
+    int result = 0;
+    AdjacencyListGraph {edges.size() + 1, edges}.Visit([seats, &result](const auto &graph) {
+        MinFuelCostToCapitcal(0, -1, graph, seats, result);
+    });
+
+    return result;
+}
+
 } //namespace
 
 
@@ -197,3 +241,15 @@ THE_BENCHMARK(CountSubTreesWithSameLabel, 7, SAMPLE1T, "abaedcd");
 SIMPLE_TEST(CountSubTreesWithSameLabel, TestSAMPLE1, EXPECTED1T, 7, SAMPLE1T, "abaedcd");
 SIMPLE_TEST(CountSubTreesWithSameLabel, TestSAMPLE2, EXPECTED2T, 4, SAMPLE2T, "bbbb");
 SIMPLE_TEST(CountSubTreesWithSameLabel, TestSAMPLE3, EXPECTED3T, 5, SAMPLE3T, "aabab");
+
+
+const UndirectedEdgeArrayType SAMPLE1C = {{0, 1}, {0, 2}, {0, 3}};
+const UndirectedEdgeArrayType SAMPLE2C = {{3, 1}, {3, 2}, {1, 0}, {0, 4}, {0, 5}, {4, 6}};
+const UndirectedEdgeArrayType SAMPLE3C = {};
+
+
+THE_BENCHMARK(MinFuelCostToCapitcal, SAMPLE1C, 5);
+
+SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE1, 3, SAMPLE1C, 5);
+SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE2, 7, SAMPLE2C, 2);
+SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE3, 0, SAMPLE3C, 1);
