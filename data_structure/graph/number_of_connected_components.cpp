@@ -277,6 +277,29 @@ auto SmallestEquivalentString(const std::string_view s1,
     return baseStr;
 }
 
+
+/**
+ * @reference   Number of Operations to Make Network Connected
+ *              https://leetcode.com/problems/number-of-operations-to-make-network-connected/
+ *
+ * There are n computers numbered from 0 to n - 1 connected by ethernet cables connections forming a
+ * network where connections[i] = [ai, bi] represents a connection between computers ai and bi. Any
+ * computer can reach any other computer directly or indirectly through the network.
+ * You are given an initial computer network connections. You can extract certain cables between two
+ * directly connected computers, and place them between any pair of disconnected computers to make them
+ * directly connected.
+ * Return the minimum number of times you need to do this in order to make all the computers connected.
+ * If it is not possible, return -1.
+ */
+int NumOperationsToMakeNetworkConnected(const std::size_t n,
+                                        const UndirectedEdgeArrayType &connections) {
+    if (connections.size() + 1 < n) {
+        return -1;
+    }
+
+    return CountNumberOfConnectedComponents(n, connections) - 1;
+}
+
 } //namespace
 
 
@@ -349,3 +372,15 @@ SIMPLE_TEST(SmallestEquivalentString, TestSAMPLE1, "makkek", "parker", "morris",
 SIMPLE_TEST(SmallestEquivalentString, TestSAMPLE2, "hdld", "hello", "world", "hold");
 SIMPLE_TEST(
     SmallestEquivalentString, TestSAMPLE3, "aauaaaaada", "leetcode", "programs", "sourcecode");
+
+
+const UndirectedEdgeArrayType SAMPLE1C = {{0, 1}, {0, 2}, {1, 2}};
+const UndirectedEdgeArrayType SAMPLE2C = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}};
+const UndirectedEdgeArrayType SAMPLE3C = {{0, 1}, {0, 2}, {0, 3}, {1, 2}};
+
+
+THE_BENCHMARK(NumOperationsToMakeNetworkConnected, 4, SAMPLE1C);
+
+SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE1, 1, 4, SAMPLE1C);
+SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE2, 2, 6, SAMPLE2C);
+SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE3, -1, 6, SAMPLE3C);
