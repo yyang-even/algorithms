@@ -46,6 +46,45 @@ auto ShipWithinDays(const ArrayType &weights, const int days) {
     return left;
 }
 
+
+/**
+ * @reference   Minimum Time to Complete Trips
+ *              https://leetcode.com/problems/minimum-time-to-complete-trips/
+ *
+ * You are given an array time where time[i] denotes the time taken by the ith bus to complete one trip.
+ * Each bus can make multiple trips successively; that is, the next trip can start immediately after
+ * completing the current trip. Also, each bus operates independently; that is, the trips of one bus do
+ * not influence the trips of any other bus.
+ * You are also given an integer totalTrips, which denotes the number of trips all buses should make in
+ * total. Return the minimum time required for all buses to complete at least totalTrips trips.
+ */
+auto countTrip(const ArrayType &time, const long long given_time) {
+    long long actual_trips = 0;
+    for (const auto t : time) {
+        actual_trips += given_time / t;
+    }
+
+    return actual_trips;
+}
+
+auto MinTimeToCompleteTrips(const ArrayType &time, const int total_trips) {
+    long long left = 1;
+    const long long maximum = *(std::max_element(time.cbegin(), time.cend()));
+    auto right = maximum * total_trips;
+
+    while (left < right) {
+        const auto mid = (left + right) / 2;
+        const auto actual_trips = countTrip(time, mid);
+        if (actual_trips >= total_trips) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return left;
+}
+
 } //namespace
 
 
@@ -59,3 +98,13 @@ THE_BENCHMARK(ShipWithinDays, SAMPLE1, 5);
 SIMPLE_TEST(ShipWithinDays, TestSAMPLE1, 15, SAMPLE1, 5);
 SIMPLE_TEST(ShipWithinDays, TestSAMPLE2, 6, SAMPLE2, 3);
 SIMPLE_TEST(ShipWithinDays, TestSAMPLE3, 3, SAMPLE3, 4);
+
+
+const ArrayType SAMPLE1T = {1, 2, 3};
+const ArrayType SAMPLE2T = {2};
+
+
+THE_BENCHMARK(MinTimeToCompleteTrips, SAMPLE1T, 5);
+
+SIMPLE_TEST(MinTimeToCompleteTrips, TestSAMPLE1, 3, SAMPLE1T, 5);
+SIMPLE_TEST(MinTimeToCompleteTrips, TestSAMPLE2, 2, SAMPLE2T, 1);

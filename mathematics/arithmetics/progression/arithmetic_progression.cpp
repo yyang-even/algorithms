@@ -11,8 +11,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/sum-first-n-odd-numbers-o1-complexity/
  *
- * To find the sum of first n odd numbers we can apply odd number theorem, it states
- * that the sum of first n odd numbers is equal to the square of n.
+ * To find the sum of first n odd numbers we can apply odd number theorem, it states that the sum of
+ * first n odd numbers is equal to the square of n.
  */
 inline constexpr auto SumOfFirstNOddNumbers(const unsigned N) {
     return N * N;
@@ -33,8 +33,7 @@ inline constexpr auto SumOfOddNumbersTillN(const unsigned N) {
     return SumOfFirstNOddNumbers((N + 1) / 2);
 }
 
-inline constexpr auto
-SumOfFirstNOddNumbersInRange(const unsigned L, const unsigned R) {
+inline constexpr auto SumOfFirstNOddNumbersInRange(const unsigned L, const unsigned R) {
     assert(L);
     assert(L <= R);
 
@@ -61,10 +60,10 @@ inline constexpr auto SumOfFirstNEvenNumbers(const unsigned N) {
  * @reference   Can Make Arithmetic Progression From Sequence
  *              https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
  *
- * A sequence of numbers is called an arithmetic progression if the difference between
- * any two consecutive elements is the same.
- * Given an array of numbers arr, return true if the array can be rearranged to form an
- * arithmetic progression. Otherwise, return false.
+ * A sequence of numbers is called an arithmetic progression if the difference between any two
+ * consecutive elements is the same.
+ * Given an array of numbers arr, return true if the array can be rearranged to form an arithmetic
+ * progression. Otherwise, return false.
  */
 auto CanMakeArithmeticProgression(ArrayType nums) {
     const int N = nums.size();
@@ -110,8 +109,7 @@ inline constexpr auto AverageOfNaturalNumbers(const unsigned N) {
  * @reference   Sum of first n natural numbers
  *              https://www.geeksforgeeks.org/sum-of-first-n-natural-numbers/
  *
- * Given a positive integer n. The task is to find the sum of the sum of first n natural
- * number.
+ * Given a positive integer n. The task is to find the sum of the sum of first n natural number.
  */
 inline constexpr auto SumOfSumOfNaturals(const unsigned N) {
     return N * (N + 1) * (N + 2) / 6;
@@ -122,8 +120,7 @@ inline constexpr auto SumOfSumOfNaturals(const unsigned N) {
  * @reference   Sum of all natural numbers in range L to R
  *              https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
  */
-inline constexpr auto
-SumOfNaturalsInRange(const unsigned L, const unsigned R) {
+inline constexpr auto SumOfNaturalsInRange(const unsigned L, const unsigned R) {
     assert(L);
     assert(L <= R);
 
@@ -135,10 +132,9 @@ SumOfNaturalsInRange(const unsigned L, const unsigned R) {
  * @reference   Arranging Coins
  *              https://leetcode.com/problems/arranging-coins/
  *
- * You have n coins and you want to build a staircase with these coins. The staircase
- * consists of k rows where the ith row has exactly i coins. The last row of the
- * staircase may be incomplete. Given the integer n, return the number of complete rows
- * of the staircase you will build.
+ * You have n coins and you want to build a staircase with these coins. The staircase consists of k rows
+ * where the ith row has exactly i coins. The last row of the staircase may be incomplete.
+ * Given the integer n, return the number of complete rows of the staircase you will build.
  */
 constexpr auto ArrangingCoins_BinarySearch(const long n) {
     long left = 0, right = n;
@@ -170,15 +166,16 @@ inline constexpr int ArrangingCoins_Formula(const long n) {
  * @reference   Distribute Candies to People
  *              https://leetcode.com/problems/distribute-candies-to-people/
  *
- * We distribute some number of candies, to a row of n = num_people people in the
- * following way: We then give 1 candy to the first person, 2 candies to the second
- * person, and so on until we give n candies to the last person. Then, we go back to the
- * start of the row, giving n + 1 candies to the first person, n + 2 candies to the
- * second person, and so on until we give 2 * n candies to the last person. This process
- * repeats (with us giving one more candy each time, and moving to the start of the row
- * after we reach the end) until we run out of candies.  The last person will receive all
- * of our remaining candies (not necessarily one more than the previous gift). Return an
- * array (of length num_people and sum candies) that represents the final distribution of
+ * We distribute some number of candies, to a row of n = num_people people in the following way:
+ * We then give 1 candy to the first person, 2 candies to the second person, and so on until we give n
+ * candies to the last person.
+ * Then, we go back to the start of the row, giving n + 1 candies to the first person, n + 2 candies to
+ * the second person, and so on until we give 2 * n candies to the last person.
+ * This process
+ * repeats (with us giving one more candy each time, and moving to the start of the row after we reach
+ * the end) until we run out of candies.  The last person will receive all of our remaining candies (not
+ * necessarily one more than the previous gift).
+ * Return an array (of length num_people and sum candies) that represents the final distribution of
  * candies.
  */
 auto DistributeCandies(int candies, const int num_people) {
@@ -196,13 +193,12 @@ auto DistributeCandies(int candies, const int num_people) {
  * @reference   Calculate Money in Leetcode Bank
  *              https://leetcode.com/problems/calculate-money-in-leetcode-bank/
  *
- * Hercy wants to save money for his first car. He puts money in the Leetcode bank every
+ * Hercy wants to save money for his first car. He puts money in the Leetcode bank every day.
+ * He starts by putting in $1 on Monday, the first day. Every day from Tuesday to Sunday, he will put in
+ * $1 more than the day before. On every subsequent Monday, he will put in $1 more than the previous
+ * Monday.
+ * Given n, return the total amount of money he will have in the Leetcode bank at the end of the nth
  * day.
- * He starts by putting in $1 on Monday, the first day. Every day from Tuesday to Sunday,
- * he will put in $1 more than the day before. On every subsequent Monday, he will put in
- * $1 more than the previous Monday.
- * Given n, return the total amount of money he will have in the Leetcode bank at the end
- * of the nth day.
  */
 inline constexpr auto TotalMoney(const long n) {
     constexpr auto DAYS_PER_WEEK = 7;
@@ -213,7 +209,32 @@ inline constexpr auto TotalMoney(const long n) {
            ArithmeticProgressionSum(full_week_count + 1, n % DAYS_PER_WEEK, 1);
 }
 
-}//namespace
+
+/**
+ * @reference   Number of Zero-Filled Subarrays
+ *              https://leetcode.com/problems/number-of-zero-filled-subarrays/
+ *
+ * Given an integer array nums, return the number of subarrays filled with 0.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ */
+auto NumZeroFilledSubarrays(const ArrayType &nums) {
+    long count = 0;
+    long result = 0;
+
+    for (const auto n : nums) {
+        if (n == 0) {
+            ++count;
+        } else {
+            result += count * (count + 1) / 2;
+            count = 0;
+        }
+    }
+    result += count * (count + 1) / 2;
+
+    return result;
+}
+
+} //namespace
 
 
 THE_BENCHMARK(SumOfFirstNOddNumbers, 10);
@@ -300,3 +321,15 @@ THE_BENCHMARK(TotalMoney, 20);
 SIMPLE_TEST(TotalMoney, TestSAMPLE1, 96, 20);
 SIMPLE_TEST(TotalMoney, TestSAMPLE2, 37, 10);
 SIMPLE_TEST(TotalMoney, TestSAMPLE3, 10, 4);
+
+
+const ArrayType SAMPLE1Z = {1, 3, 0, 0, 2, 0, 0, 4};
+const ArrayType SAMPLE2Z = {0, 0, 0, 2, 0, 0};
+const ArrayType SAMPLE3Z = {2, 10, 2019};
+
+
+THE_BENCHMARK(NumZeroFilledSubarrays, SAMPLE1Z);
+
+SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE1, 6, SAMPLE1Z);
+SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE2, 9, SAMPLE2Z);
+SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE3, 0, SAMPLE3Z);

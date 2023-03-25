@@ -20,10 +20,10 @@ namespace {
  *              https://leetcode.com/problems/count-complete-tree-nodes/
  *
  * Given the root of a complete binary tree, return the number of the nodes in the tree.
- * According to Wikipedia, every level, except possibly the last, is completely filled in
- * a complete binary tree, and all nodes in the last level are as far left as possible.
- * It can have between 1 and 2h nodes inclusive at the last level h. Design an algorithm
- * that runs in less than O(n) time complexity.
+ * According to Wikipedia, every level, except possibly the last, is completely filled in a complete
+ * binary tree, and all nodes in the last level are as far left as possible.  It can have between 1 and
+ * 2h nodes inclusive at the last level h.
+ * Design an algorithm that runs in less than O(n) time complexity.
  * The tree is guaranteed to be complete.
  */
 auto CountCompleteTreeNodes(const BinaryTree::Node::PointerType node) {
@@ -48,7 +48,7 @@ auto CountCompleteTreeNodes(const BinaryTree::Node::PointerType node) {
     return 1 + CountCompleteTreeNodes(node->left) + CountCompleteTreeNodes(node->right);
 }
 
-}//namespace
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
@@ -73,9 +73,7 @@ const auto SAMPLE3 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE2), 4).Get
  *  / \   /
  * 4   5 6
  */
-const auto SAMPLE4 = LevelOrderToBinaryTree( {
-    1, 2, 3, 4, 5, 6
-});
+const auto SAMPLE4 = LevelOrderToBinaryTree({1, 2, 3, 4, 5, 6});
 /**
  *     1
  *    / \
@@ -91,9 +89,7 @@ const auto SAMPLE5 = BinaryTreeDeletion_Subtree(CloneBinaryTree(SAMPLE1), 4).Get
  *        / \
  *       6   7
  */
-const auto SAMPLE6 = LevelOrderToBinaryTree( {
-    1, 2, 3, SENTINEL, SENTINEL, 6, 7
-});
+const auto SAMPLE6 = LevelOrderToBinaryTree({1, 2, 3, SENTINEL, SENTINEL, 6, 7});
 
 
 SIMPLE_BENCHMARK(isCompleteBinaryTree, Sample1, SAMPLE1);
