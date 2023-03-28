@@ -300,6 +300,91 @@ int NumOperationsToMakeNetworkConnected(const std::size_t n,
     return CountNumberOfConnectedComponents(n, connections) - 1;
 }
 
+
+/**
+ * @reference   Count Unreachable Pairs of Nodes in an Undirected Graph
+ *              https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/
+ *
+ * You are given an integer n. There is an undirected graph with n nodes, numbered from 0 to n - 1. You
+ * are given a 2D integer array edges where edges[i] = [ai, bi] denotes that there exists an undirected
+ * edge connecting nodes ai and bi.
+ * Return the number of pairs of different nodes that are unreachable from each other.
+ */
+void CountUnreachablePairsOfNodes(const AdjacencyListGraph::RepresentationType &graph,
+                                  const int i,
+                                  std::vector<bool> &visited,
+                                  long long &number_nodes) {
+    visited[i] = true;
+    ++number_nodes;
+
+    for (const auto n : graph[i]) {
+        if (not visited[n]) {
+            CountUnreachablePairsOfNodes(graph, n, visited, number_nodes);
+        }
+    }
+}
+
+auto CountUnreachablePairsOfNodes(const std::size_t n, const UndirectedEdgeArrayType &edges) {
+    AdjacencyListGraph graph {n, edges};
+
+    return graph.Visit([](const auto &graph) {
+        std::vector<bool> visited_vertices(graph.size(), false);
+        long long result = 0;
+        long long total_nodes = 0;
+        for (std::size_t i = 0; i < graph.size(); ++i) {
+            if (not visited_vertices[i]) {
+                long long number_nodes = 0;
+                CountUnreachablePairsOfNodes(graph, i, visited_vertices, number_nodes);
+
+                result += total_nodes * number_nodes;
+                total_nodes += number_nodes;
+            }
+        }
+
+        return result;
+    });
+}
+
+
+/**
+ * @reference   Minimum Score of a Path Between Two Cities
+ *              https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/
+ *
+ * You are given a positive integer n representing n cities numbered from 1 to n. You are also given a
+ * 2D array roads where roads[i] = [ai, bi, distancei] indicates that there is a bidirectional road
+ * between cities ai and bi with a distance equal to distancei. The cities graph is not necessarily
+ * connected.
+ * The score of a path between two cities is defined as the minimum distance of a road in this path.
+ * Return the minimum possible score of a path between cities 1 and n.
+ * Note:
+ *  A path is a sequence of roads between two cities.
+ *  It is allowed for a path to contain the same road multiple times, and you can visit cities 1 and n
+ *  multiple times along the path.
+ *  The test cases are generated such that there is at least one path between 1 and n.
+ */
+void MinScorePath(const WeightedAdjacencyListGraph::RepresentationType &graph,
+                  const std::size_t i,
+                  std::vector<bool> &visited,
+                  int &result) {
+    visited[i] = true;
+    for (const auto &neighbor : graph[i]) {
+        result = std::min(result, neighbor.weight);
+        if (not visited[neighbor.destination]) {
+            MinScorePath(graph, neighbor.destination, visited, result);
+        }
+    }
+}
+
+auto MinScorePath(const std::size_t n, const UndirectedEdgeArrayType &roads) {
+    return WeightedAdjacencyListGraph {n + 1, roads}.Visit([](const auto &graph) {
+        int result = INT_MAX;
+        std::vector<bool> visited(graph.size(), false);
+        MinScorePath(graph, 1, visited, result);
+
+        return result;
+    });
+}
+
 } //namespace
 
 
@@ -384,3 +469,34 @@ THE_BENCHMARK(NumOperationsToMakeNetworkConnected, 4, SAMPLE1C);
 SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE1, 1, 4, SAMPLE1C);
 SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE2, 2, 6, SAMPLE2C);
 SIMPLE_TEST(NumOperationsToMakeNetworkConnected, TestSAMPLE3, -1, 6, SAMPLE3C);
+
+
+const UndirectedEdgeArrayType SAMPLE1U = {{0, 1}, {0, 2}, {1, 2}};
+const UndirectedEdgeArrayType SAMPLE2U = {{0, 2}, {0, 5}, {2, 4}, {1, 6}, {5, 4}};
+
+
+THE_BENCHMARK(CountUnreachablePairsOfNodes, 3, SAMPLE1U);
+
+SIMPLE_TEST(CountUnreachablePairsOfNodes, TestSAMPLE1, 0, 3, SAMPLE1U);
+SIMPLE_TEST(CountUnreachablePairsOfNodes, TestSAMPLE2, 14, 7, SAMPLE2U);
+
+
+const UndirectedEdgeArrayType SAMPLE1S = {{1, 2, 9}, {2, 3, 6}, {2, 4, 5}, {1, 4, 7}};
+const UndirectedEdgeArrayType SAMPLE2S = {{1, 2, 2}, {1, 3, 4}, {3, 4, 7}};
+const UndirectedEdgeArrayType SAMPLE3S = {{4, 5, 7468},
+                                          {6, 2, 7173},
+                                          {6, 3, 8365},
+                                          {2, 3, 7674},
+                                          {5, 6, 7852},
+                                          {1, 2, 8547},
+                                          {2, 4, 1885},
+                                          {2, 5, 5192},
+                                          {1, 3, 4065},
+                                          {1, 4, 7357}};
+
+
+THE_BENCHMARK(MinScorePath, 4, SAMPLE1S);
+
+SIMPLE_TEST(MinScorePath, TestSAMPLE1, 5, 4, SAMPLE1S);
+SIMPLE_TEST(MinScorePath, TestSAMPLE2, 2, 4, SAMPLE2S);
+SIMPLE_TEST(MinScorePath, TestSAMPLE3, 1885, 6, SAMPLE3S);
