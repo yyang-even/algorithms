@@ -11,6 +11,12 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Problems 15-2.
  * @reference   Longest Palindromic Subsequence | DP-12
  *              https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/
+ * @reference   Longest Palindromic Subsequence
+ *              https://leetcode.com/problems/longest-palindromic-subsequence/
+ *
+ * Given a string s, find the longest palindromic subsequence's length in s.
+ * A subsequence is a sequence that can be derived from another sequence by deleting some or no elements
+ * without changing the order of the remaining elements.
  */
 auto LongestPalindromicSubsequence(const std::string_view elements) {
     std::size_t LPSs[elements.size()][elements.size()] = {};
@@ -42,8 +48,7 @@ auto LongestPalindromicSubsequence(const std::string_view elements) {
  * @reference   Print Longest Palindromic Subsequence
  *              https://www.geeksforgeeks.org/print-longest-palindromic-subsequence/
  */
-inline auto
-LongestPalindromicSubsequenceString_LCS(const std::string &elements) {
+inline auto LongestPalindromicSubsequenceString_LCS(const std::string &elements) {
     auto reversed = elements;
     std::reverse(reversed.begin(), reversed.end());
 
@@ -78,7 +83,7 @@ auto LongestPalindromicSubsequence_SpaceOptimized(const std::string_view element
     return LPSs[elements.size() - 1];
 }
 
-}//namespace
+} //namespace
 
 
 constexpr auto SAMPLE1 = "BBABCBCAB";
@@ -102,7 +107,5 @@ SIMPLE_TEST(LongestPalindromicSubsequenceString_LCS, TestSAMPLE2, EXPECTED2, SAM
 
 THE_BENCHMARK(LongestPalindromicSubsequence_SpaceOptimized, SAMPLE1);
 
-SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(),
-            SAMPLE1);
-SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(),
-            SAMPLE2);
+SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE1, EXPECTED1.size(), SAMPLE1);
+SIMPLE_TEST(LongestPalindromicSubsequence_SpaceOptimized, TestSAMPLE2, EXPECTED2.size(), SAMPLE2);

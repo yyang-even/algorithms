@@ -237,6 +237,74 @@ auto SurroundedRegions_UF(GridType board) {
 
 
 /**
+ * @reference   Number of Closed Islands
+ *              https://leetcode.com/problems/number-of-closed-islands/
+ *
+ * Given a 2D grid consists of 0s (land) and 1s (water).  An island is a maximal 4-directionally
+ * connected group of 0s and a closed island is an island totally (all left, top, right, bottom)
+ * surrounded by 1s.
+ * Return the number of closed islands.
+ *
+ * @reference   Number of Enclaves
+ *              https://leetcode.com/problems/number-of-enclaves/
+ *
+ * You are given an m x n binary matrix grid, where 0 represents a sea cell and 1 represents a land
+ * cell.
+ * A move consists of walking from one land cell to another adjacent (4-directionally) land cell or
+ * walking off the boundary of the grid.
+ * Return the number of land cells in grid for which we cannot walk off the boundary of the grid in any
+ * number of moves.
+ */
+auto NumClosedIslands(const GridType &grid,
+                      const int start_i,
+                      const int start_j,
+                      std::vector<std::vector<bool>> &visited) {
+    const int M = grid.size();
+    const int N = grid.front().size();
+
+    std::queue<std::pair<int, int>> q;
+    q.emplace(start_i, start_j);
+    visited[start_i][start_j] = true;
+
+    bool is_closed = true;
+    while (not q.empty()) {
+        const auto [r, c] = q.front();
+        q.pop();
+
+        for (const auto &[delta_r, delta_c] : DIRECTIONS) {
+            const auto new_r = r + delta_r;
+            const auto new_c = c + delta_c;
+            if (new_r < 0 or new_r >= M or new_c < 0 or new_c >= N) {
+                is_closed = false;
+            } else if (grid[new_r][new_c] == 0 and not visited[new_r][new_c]) {
+                q.emplace(new_r, new_c);
+                visited[new_r][new_c] = true;
+            }
+        }
+    }
+
+    return is_closed;
+}
+
+auto NumClosedIslands(const GridType &grid) {
+    const int M = grid.size();
+    const int N = grid.front().size();
+    std::vector visited(M, std::vector(N, false));
+
+    int result = 0;
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (grid[i][j] == 0 and not visited[i][j] and NumClosedIslands(grid, i, j, visited)) {
+                ++result;
+            }
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Most Stones Removed with Same Row or Column
  *              https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
  *
@@ -364,3 +432,37 @@ THE_BENCHMARK(RemoveStones, SAMPLE1S);
 SIMPLE_TEST(RemoveStones, TestSAMPLE1, 5, SAMPLE1S);
 SIMPLE_TEST(RemoveStones, TestSAMPLE2, 3, SAMPLE2S);
 SIMPLE_TEST(RemoveStones, TestSAMPLE3, 0, SAMPLE3S);
+
+
+// clang-format off
+const GridType SAMPLE1C = {
+    {1, 1, 1, 1, 1, 1, 1, 0},
+    {1, 0, 0, 0, 0, 1, 1, 0},
+    {1, 0, 1, 0, 1, 1, 1, 0},
+    {1, 0, 0, 0, 0, 1, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1, 0}
+};
+
+const GridType SAMPLE2C = {
+    {0, 0, 1, 0, 0},
+    {0, 1, 0, 1, 0},
+    {0, 1, 1, 1, 0}
+};
+
+const GridType SAMPLE3C = {
+    {1, 1, 1, 1, 1, 1, 1},
+    {1, 0, 0, 0, 0, 0, 1},
+    {1, 0, 1, 1, 1, 0, 1},
+    {1, 0, 1, 0, 1, 0, 1},
+    {1, 0, 1, 1, 1, 0, 1},
+    {1, 0, 0, 0, 0, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1}
+};
+// clang-format on
+
+
+THE_BENCHMARK(NumClosedIslands, SAMPLE1C);
+
+SIMPLE_TEST(NumClosedIslands, TestSAMPLE1, 2, SAMPLE1C);
+SIMPLE_TEST(NumClosedIslands, TestSAMPLE2, 1, SAMPLE2C);
+SIMPLE_TEST(NumClosedIslands, TestSAMPLE3, 2, SAMPLE3C);
