@@ -15,8 +15,8 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Valid Perfect Square
  *              https://leetcode.com/problems/valid-perfect-square/
  *
- * Given a positive integer num, write a function which returns True if num is a perfect
- * square else False.
+ * Given a positive integer num, write a function which returns True if num is a perfect square else
+ * False.
  * Follow up: Do not use any built-in library function such as sqrt.
  */
 constexpr auto IsPerfectSquare_Multiply(const unsigned x) {
@@ -72,28 +72,72 @@ inline constexpr auto isCountOfDivisorsOdd(const unsigned N) {
  *
  * @reference   https://www.geeksforgeeks.org/find-number-perfect-squares-two-given-numbers/
  *
- * Given two given numbers a and b where 1<=a<=b, find the number of perfect
- * squares between a and b (a and b inclusive).
+ * Given two given numbers a and b where 1<=a<=b, find the number of perfect squares between a and b (a
+ * and b inclusive).
  *
  * @reference   Count Open Lockers
  *              John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 14.
  *
  * Suppose you are in a hallway lined with 100 closed lockers. You begin by opening all
- * 100 lockers. Next, you close every second locker. Then you go to every third locker
- * and close it if it is open or open it if it's closed --- call this toggling the
- * lockers. You continue toggling every nth locker on pass number n. After your hundredth
- * pass of the hallway, in which you toggle only locker number 100, how many lockers are
- * open?
+ * 100 lockers. Next, you close every second locker. Then you go to every third locker and close it if
+ * it is open or open it if it's closed --- call this toggling the lockers. You continue toggling every
+ * nth locker on pass number n. After your hundredth pass of the hallway, in which you toggle only
+ * locker number 100, how many lockers are open?
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 6.6.
+ *
+ * @reference   Bulb Switcher
+ *              https://leetcode.com/problems/bulb-switcher/
+ *
+ * There are n bulbs that are initially off. You first turn on all the bulbs, then you turn off every
+ * second bulb.
+ * On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on).
+ * For the ith round, you toggle every i bulb. For the nth round, you only toggle the last bulb.
+ * Return the number of bulbs that are on after n rounds.
  */
-inline constexpr auto
-CountPerfectSquares(const unsigned a, const unsigned b) {
+inline constexpr auto CountPerfectSquares(const unsigned a, const unsigned b) {
     assert(a <= b);
 
     return std::floor(std::sqrt(b)) - std::ceil(std::sqrt(a)) + 1;
+}
+
+
+/**
+ * @reference   Bulb Switcher II
+ *              https://leetcode.com/problems/bulb-switcher-ii/
+ *
+ * There is a room with n bulbs labeled from 1 to n that all are turned on initially, and four buttons
+ * on the wall. Each of the four buttons has a different functionality where:
+ *  Button 1: Flips the status of all the bulbs.
+ *  Button 2: Flips the status of all the bulbs with even labels (i.e., 2, 4, ...).
+ *  Button 3: Flips the status of all the bulbs with odd labels (i.e., 1, 3, ...).
+ *  Button 4: Flips the status of all the bulbs with a label j = 3k + 1 where k = 0, 1, 2, ... (i.e., 1,
+ *  4, 7, 10, ...).
+ * You must make exactly presses button presses in total. For each press, you may pick any of the four
+ * buttons to press.
+ * Given the two integers n and presses, return the number of different possible statuses after
+ * performing all presses button presses.
+ */
+constexpr auto FlipLights(const int n, const int m) {
+    if (m == 0 or n == 0) {
+        return 1;
+    }
+
+    if (n == 1) {
+        return 2;
+    }
+
+    if (n == 2) {
+        return m == 1 ? 3 : 4;
+    }
+
+    if (m == 1) {
+        return 4;
+    }
+
+    return m == 2 ? 7 : 8;
 }
 
 
@@ -120,8 +164,7 @@ auto AllPerfectSquares(const unsigned a, const unsigned b) {
  * @reference   Sum of Square Numbers
  *              https://leetcode.com/problems/sum-of-square-numbers/
  *
- * Given a non-negative integer c, decide whether there're two integers a and b such that
- * a^2 + b^2 = c.
+ * Given a non-negative integer c, decide whether there're two integers a and b such that a^2 + b^2 = c.
  */
 inline constexpr auto hasSquareSum(const int c) {
     for (long i = 0; i * i <= c; ++i) {
@@ -156,15 +199,14 @@ inline constexpr auto hasSquareSum_Fermat(int c) {
  * @reference   Three Divisors
  *              https://leetcode.com/problems/three-divisors/
  *
- * Given an integer n, return true if n has exactly three positive divisors. Otherwise,
- * return false.
+ * Given an integer n, return true if n has exactly three positive divisors. Otherwise, return false.
  * An integer m is a divisor of n if there exists an integer k such that n = k * m.
  */
 inline constexpr auto HasThreeDivisors(const int n) {
     return IsPerfectSquare(n) and IsPrime_OptimizedSchoolMethod(std::sqrt(n));
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(IsPerfectSquare, 2500);
@@ -238,3 +280,10 @@ SIMPLE_TEST(HasThreeDivisors, TestSAMPLE1, true, 4);
 SIMPLE_TEST(HasThreeDivisors, TestSAMPLE2, false, 2);
 SIMPLE_TEST(HasThreeDivisors, TestSAMPLE3, false, 1);
 SIMPLE_TEST(HasThreeDivisors, TestSAMPLE4, false, 100);
+
+
+THE_BENCHMARK(FlipLights, 1, 1);
+
+SIMPLE_TEST(FlipLights, TestSAMPLE1, 2, 1, 1);
+SIMPLE_TEST(FlipLights, TestSAMPLE2, 3, 2, 1);
+SIMPLE_TEST(FlipLights, TestSAMPLE3, 4, 3, 1);

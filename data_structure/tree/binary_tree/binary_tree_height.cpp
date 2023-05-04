@@ -45,10 +45,10 @@ inline constexpr std::size_t HeightOfCompleteTree(const std::size_t number_of_no
  * calculation.
  * It is guaranteed that the answer will in the range of 32-bit signed integer.
  */
-auto WidthOfBinaryTree_DFS(const BinaryTree::Node::PointerType node,
-                           const std::size_t level,
-                           const int index,
-                           ArrayType &starts) {
+unsigned WidthOfBinaryTree_DFS(const BinaryTree::Node::PointerType node,
+                               const unsigned level,
+                               const unsigned index,
+                               ArrayType &starts) {
     if (not node) {
         return 0;
     }
@@ -57,7 +57,7 @@ auto WidthOfBinaryTree_DFS(const BinaryTree::Node::PointerType node,
         starts.push_back(index);
     }
 
-    const int current_level_width = index + 1 - starts[level];
+    const unsigned current_level_width = index + 1 - starts[level];
     const auto left_width = WidthOfBinaryTree_DFS(node->left, level + 1, 2 * index, starts);
     const auto right_width = WidthOfBinaryTree_DFS(node->right, level + 1, 2 * index + 1, starts);
     return std::max({current_level_width, left_width, right_width});
