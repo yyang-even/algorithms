@@ -25,6 +25,18 @@
  * (can be none) deleted without changing the relative order of the remaining characters.
  *  For example, "ace" is a subsequence of "abcde".
  * A common subsequence of two strings is a subsequence that is common to both strings.
+ *
+ * @reference   Uncrossed Lines
+ *              https://leetcode.com/problems/uncrossed-lines/
+ *
+ * You are given two integer arrays nums1 and nums2. We write the integers of nums1 and nums2 (in the
+ * order they are given) on two separate horizontal lines.
+ * We may draw connecting lines: a straight line connecting two numbers nums1[i] and nums2[j] such that:
+ *  nums1[i] == nums2[j], and
+ *  the line we draw does not intersect any other connecting (non-horizontal) line.
+ * Note that a connecting line cannot intersect even at the endpoints (i.e., each number can only belong
+ * to one connecting line).
+ * Return the maximum number of connecting lines we can draw in this way.
  */
 template<typename ArrayType>
 static inline constexpr auto LongestCommonSubsequence(const ArrayType &X,

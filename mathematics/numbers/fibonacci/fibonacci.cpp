@@ -9,12 +9,11 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Section 8.5.
  *
- * A pair of newly born rabbits, male and female, were placed in a hutch. In two months
- * these rabbits began their breeding cycle and produced one pair of rabbits, one male
- * and one female. The original rabbits and their offspring continued to breed in their
- * manner, that is, the first pair of offspring appearing at the parental age of two
- * months and then a new pair every month thereafter ----- always one male and one
- * female. All rabbits survived the first year. What then is the total number of pairs
+ * A pair of newly born rabbits, male and female, were placed in a hutch. In two months these rabbits
+ * began their breeding cycle and produced one pair of rabbits, one male and one female. The original
+ * rabbits and their offspring continued to breed in their manner, that is, the first pair of offspring
+ * appearing at the parental age of two months and then a new pair every month thereafter ----- always
+ * one male and one female. All rabbits survived the first year. What then is the total number of pairs
  * of rabbits at the beginning of each month during the first year?
  *
  *  1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377,...
@@ -37,8 +36,7 @@ using ArrayType = std::vector<int>;
  *
  * The Fibonacci numbers are the numbers in the following integer sequence.
  *      0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ......
- * In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the
- * recurrence relation
+ * In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the recurrence relation
  *      Fn = Fn-1 + Fn-2
  * with seed values
  *      F0 = 0 and F1 = 1.
@@ -60,8 +58,8 @@ using ArrayType = std::vector<int>;
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  *
- * How many ways a(n) are there for light rays to pass through or be reflected after
- * changing direction n times?
+ * How many ways a(n) are there for light rays to pass through or be reflected after changing direction
+ * n times?
  *
  *      a(n) = F(n+2)
  */
@@ -73,8 +71,8 @@ using ArrayType = std::vector<int>;
  * @reference   Climbing Stairs
  *              https://leetcode.com/problems/climbing-stairs/
  *
- * A ladder has n steps, one can climb the ladder using any combination of steps of 1 or
- * steps of 2. How many possible ways are there for one to climb the ladder?
+ * You are climbing a staircase. It takes n steps to reach the top.
+ * Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
  *
  *      L(n) = F(n+1)
  *
@@ -85,9 +83,9 @@ using ArrayType = std::vector<int>;
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.3.
  *              https://en.wikipedia.org/wiki/Spanning_tree
  *
- * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as
- * follows: Vertex 0 is connected by an edge to each of the order n vertices, and vertex
- * k is connected by an edge to vertex k+1, for 1 <= k < n.
+ * A fan of order n is a graph on the vertices {0, 1,..., n} with 2n-1 edges defined as follows: Vertex
+ * 0 is connected by an edge to each of the order n vertices, and vertex k is connected by an edge to
+ * vertex k+1, for 1 <= k < n.
  * How many spanning trees f(n) are in such a graph?
  *
  * f(n) = f(n-1) + f(n-1) + f(n-2) + f(n-3) +...+ f(1) + 1
@@ -104,8 +102,8 @@ using ArrayType = std::vector<int>;
  * @reference   The Magic of Fibonacci Numbers
  *              https://www.geeksforgeeks.org/magic-fibonacci-numbers/
  *
- * When we take any two successive (one after the other) Fibonacci Numbers, their ratio
- * is very close to the Golden Ratio.
+ * When we take any two successive (one after the other) Fibonacci Numbers, their ratio is very close to
+ * the Golden Ratio.
  *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
@@ -162,8 +160,7 @@ constexpr auto NthFibonacci_DP_Optimized(const unsigned n) {
  *              https://www.geeksforgeeks.org/tail-recursion-fibonacci/
  */
 inline constexpr auto
-NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
-                           const unsigned b = 1) {
+NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0, const unsigned b = 1) {
     if (n == 0) {
         return a;
     }
@@ -184,11 +181,11 @@ NthFibonacci_TailRecursion(const unsigned n, const unsigned a = 0,
  *
  * @reference   https://www.geeksforgeeks.org/sum-fibonacci-numbers/
  *
- * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi
- * indicates i'th Fibonacci number.
+ * Given a number positive number n, find value of f0 + f1 + f2 + ... + fn where fi indicates i'th
+ * Fibonacci number.
  */
 inline constexpr auto SumOfFibonacci(const unsigned n) {
-    return  NthFibonacci_GoldenRatio(n + 2) - 1;
+    return NthFibonacci_GoldenRatio(n + 2) - 1;
 }
 
 
@@ -199,8 +196,8 @@ inline constexpr auto SumOfFibonacci(const unsigned n) {
  *              https://www.geeksforgeeks.org/count-ways-reach-nth-stair-using-step-1-2-3/
  *
  * A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or
- * 3 steps at a time. Implement a method to count how many possible ways the child can
- * run up the stairs.
+ * 3 steps at a time. Implement a method to count how many possible ways the child can run up the
+ * stairs.
  *
  * @reference   N-th Tribonacci Number
  *              https://leetcode.com/problems/n-th-tribonacci-number/
@@ -233,12 +230,49 @@ constexpr auto FindWaysToRunUpStairs_DP(const unsigned n) {
  * @reference   Tribonacci Numbers
  *              https://www.geeksforgeeks.org/tribonacci-numbers/
  *
- * The tribonacci series is a generalization of the Fibonacci sequence where each term
- * is the sum of the three preceding terms. Given a value N, task is to print first N
- * Tribonacci Numbers.
+ * The tribonacci series is a generalization of the Fibonacci sequence where each term is the sum of the
+ * three preceding terms. Given a value N, task is to print first N Tribonacci Numbers.
  */
 
-}//namespace
+
+/**
+ * @reference   Count Ways To Build Good Strings
+ *              https://leetcode.com/problems/count-ways-to-build-good-strings/
+ *
+ * Given the integers zero, one, low, and high, we can construct a string by starting with an empty
+ * string, and then at each step perform either of the following:
+ *  Append the character '0' zero times.
+ *  Append the character '1' one times.
+ * This can be performed any number of times.
+ * A good string is a string constructed by the above process having a length between low and high
+ * (inclusive).
+ * Return the number of different good strings that can be constructed satisfying these properties.
+ * Since the answer can be large, return it modulo 10^9 + 7.
+ */
+int CountGoodStrs(const int low, const int high, const int zero, const int one) {
+    std::vector dp(high + 1, 0);
+    dp[0] = 1;
+    int result = 0;
+
+    for (int i = 1; i <= high; ++i) {
+        if (i >= zero) {
+            dp[i] = (dp[i] + dp[i - zero]) % LARGE_PRIME;
+        }
+
+        if (i >= one) {
+            dp[i] = (dp[i] + dp[i - one]) % LARGE_PRIME;
+        }
+
+        if (i >= low) {
+            result = (result + dp[i]) % LARGE_PRIME;
+        }
+    }
+
+    return result;
+}
+
+
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<unsigned>::min();
@@ -291,3 +325,9 @@ SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE3, 1, 0);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE4, 1, 1);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE5, 2, 2);
 SIMPLE_TEST(FindWaysToRunUpStairs_DP, TestSAMPLE6, 1389537, 24);
+
+
+THE_BENCHMARK(CountGoodStrs, 3, 3, 1, 1);
+
+SIMPLE_TEST(CountGoodStrs, TestSAMPLE1, 8, 3, 3, 1, 1);
+SIMPLE_TEST(CountGoodStrs, TestSAMPLE2, 5, 2, 3, 1, 2);
