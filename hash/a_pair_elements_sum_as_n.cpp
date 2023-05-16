@@ -16,16 +16,17 @@ using OperationArrayType = std::vector<std::pair<bool, int>>;
  *
  * @reference   https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
  *
- * Given an array A[] of n numbers and another number x, determines whether or not there
- * exist two elements in A whose sum is exactly x.
+ * Given an array A[] of n numbers and another number x, determines whether or not there exist two
+ * elements in A whose sum is exactly x.
  *
  * @reference   Two Sum
  *              https://leetcode.com/problems/two-sum/
  *
- * Given an array of integers nums and an integer target, return indices of the two
- * numbers such that they add up to target. You may assume that each input would have
- * exactly one solution, and you may not use the same element twice. You can return
- * the answer in any order.
+ * Given an array of integers nums and an integer target, return indices of the two numbers such that
+ * they add up to target.
+ * You may assume that each input would have exactly one solution, and you may not use the same element
+ * twice.
+ * You can return the answer in any order.
  *
  * @complexity: O(n)
  */
@@ -44,18 +45,20 @@ inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, c
  * @reference   Find pairs with given sum in doubly linked list
  *              https://www.geeksforgeeks.org/find-pairs-given-sum-doubly-linked-list/
  *
- * Given a sorted doubly linked list of positive distinct elements, the task is to find
- * pairs in doubly linked list whose sum is equal to given value x, without using any
- * extra space?
+ * Given a sorted doubly linked list of positive distinct elements, the task is to find pairs in doubly
+ * linked list whose sum is equal to given value x, without using any extra space?
  *
  * @reference   Two Sum II - Input array is sorted
  *              https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
  *
- * Given an array of integers numbers that is already sorted in non-decreasing order,
- * find two numbers such that they add up to a specific target number. Return the
- * indices of the two numbers (1-indexed) as an integer array answer of size 2, where
- * 1 <= answer[0] < answer[1] <= numbers.length. The tests are generated such that there
- * is exactly one solution. You may not use the same element twice.
+ * Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two
+ * numbers such that they add up to a specific target number. Let these two numbers be numbers[index1]
+ * and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+ * Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1,
+ * index2] of length 2.
+ * The tests are generated such that there is exactly one solution. You may not use the same element
+ * twice.
+ * Your solution must use only constant extra space.
  */
 template<typename Container>
 constexpr auto HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
@@ -93,8 +96,8 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * @reference   Count pairs with given sum | Set 2
  *              https://www.geeksforgeeks.org/count-pairs-with-given-sum-set-2/
  *
- * Given an array of integers, and a number 'sum', find the number of pairs of integers
- * in the array whose sum is equal to 'sum'.
+ * Given an array of integers, and a number 'sum', find the number of pairs of integers in the array
+ * whose sum is equal to 'sum'.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.12.
@@ -189,8 +192,8 @@ auto testTwoSum(const OperationArrayType &operations) {
  * @reference   Two Sum IV - Input is a BST
  *              https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
  *
- * Given the root of a Binary Search Tree and a target number k, return true if there
- * exist two elements in the BST such that their sum is equal to the given target.
+ * Given the root of a binary search tree and an integer k, return true if there exist two elements in
+ * the BST such that their sum is equal to k, or false otherwise.
  */
 inline auto HasPairOfElementsSumAsN_BST_Inorder(const BinaryTree::Node::PointerType root,
                                                 const int target) {
@@ -285,12 +288,45 @@ auto HasPairOfElementsSumAsN_BST_TwoPointers(const BinaryTree::Node::PointerType
 
 
 /**
+ * @reference   Number of Subsequences That Satisfy the Given Sum Condition
+ *              https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/
+ *
+ * You are given an array of integers nums and an integer target.
+ * Return the number of non-empty subsequences of nums such that the sum of the minimum and maximum
+ * element on it is less or equal to target. Since the answer may be too large, return it modulo 10^9 + 7.
+ * 1 <= nums.length <= 10^5
+ */
+auto NumberSubsequences(ArrayType nums, const int target) {
+    std::sort(nums.begin(), nums.end());
+
+    std::vector<int> powers(nums.size(), 1);
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        powers[i] = powers[i - 1] * 2 % LARGE_PRIME;
+    }
+
+    int left = 0;
+    int right = nums.size() - 1;
+    int result = 0;
+
+    while (left <= right) {
+        if (nums[left] + nums[right] > target) {
+            --right;
+        } else {
+            result = (result + powers[right - left++]) % LARGE_PRIME;
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   3Sum
  *              https://leetcode.com/problems/3sum/
  *
- * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such
- * that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0. Notice that
- * the solution set must not contain duplicate triplets.
+ * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i
+ * != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+ * Notice that the solution set must not contain duplicate triplets.
  *
  * @reference   Find all triplets with zero sum
  *              https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
@@ -345,8 +381,8 @@ auto ThreeSum(ArrayType nums, const int target) {
  * @reference   3Sum With Multiplicity
  *              https://leetcode.com/problems/3sum-with-multiplicity/
  *
- * Given an integer array arr, and an integer target, return the number of tuples i, j, k
- * such that i < j < k and arr[i] + arr[j] + arr[k] == target.
+ * Given an integer array arr, and an integer target, return the number of tuples i, j, k such that i <
+ * j < k and arr[i] + arr[j] + arr[k] == target.
  * As the answer can be very large, return it modulo 10^9 + 7.
  * 0 <= arr[i] <= 100
  */
@@ -387,8 +423,8 @@ auto ThreeSumWithMultiplicity(const ArrayType &nums, const int target) {
  * @reference   4Sum
  *              https://leetcode.com/problems/4sum/
  *
- * Given an array nums of n integers, return an array of all the unique quadruplets
- * [nums[a], nums[b], nums[c], nums[d]] such that:
+ * Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b],
+ * nums[c], nums[d]] such that:
  *  0 <= a, b, c, d < n
  *  a, b, c, and d are distinct.
  *  nums[a] + nums[b] + nums[c] + nums[d] == target
@@ -451,8 +487,8 @@ inline auto FourSum(ArrayType nums, const int target) {
  *
  * @reference   https://www.geeksforgeeks.org/given-two-unsorted-arrays-find-pairs-whose-sum-x/
  *
- * Given two unsorted arrays of distinct elements, the task is to find all pairs from
- * both arrays whose sum is equal to x.
+ * Given two unsorted arrays of distinct elements, the task is to find all pairs from both arrays whose
+ * sum is equal to x.
  */
 auto FindAllPairsSumAsN_Hash(const ArrayType &arr1,
                              const ArrayType &arr2,
@@ -475,9 +511,9 @@ auto FindAllPairsSumAsN_Hash(const ArrayType &arr1,
  * @reference   Count pairs from two sorted arrays whose sum is equal to a given value x
  *              https://www.geeksforgeeks.org/count-pairs-two-sorted-arrays-whose-sum-equal-given-value-x/
  *
- * Given two sorted arrays of size m and n of distinct elements. Given a value x. The
- * problem is to count all pairs from both arrays whose sum is equal to x. Note: The
- * pair has an element from each array.
+ * Given two sorted arrays of size m and n of distinct elements. Given a value x. The problem is to
+ * count all pairs from both arrays whose sum is equal to x. Note: The pair has an element from each
+ * array.
  */
 auto FindAllPairsSumAsN_TwoPointers(const ArrayType &arr1,
                                     const ArrayType &arr2,
@@ -519,8 +555,8 @@ inline auto FindAllPairsSumAsN_Sort_TwoPointers(ArrayType arr1,
  * @reference   4Sum II
  *              https://leetcode.com/problems/4sum-ii/
  *
- * Given four integer arrays nums1, nums2, nums3, and nums4 all of length n, return the
- * number of tuples (i, j, k, l) such that:
+ * Given four integer arrays nums1, nums2, nums3, and nums4 all of length n, return the number of tuples
+ * (i, j, k, l) such that:
  *  0 <= i, j, k, l < n
  *  nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0
  */
@@ -552,8 +588,8 @@ inline auto FourSum4Array(const std::vector<ArrayType> &num_arrays, const int ta
  * @reference   Count Special Quadruplets
  *              https://leetcode.com/problems/count-special-quadruplets/
  *
- * Given a 0-indexed integer array nums, return the number of distinct quadruplets
- * (a, b, c, d) such that:
+ * Given a 0-indexed integer array nums, return the number of distinct quadruplets (a, b, c, d) such
+ * that:
  *  nums[a] + nums[b] + nums[c] == nums[d], and
  *  a < b < c < d
  * 1 <= nums[i] <= 100
@@ -821,3 +857,15 @@ THE_BENCHMARK(CountTwoSumsSingleUse, SAMPLE1S, 5);
 
 SIMPLE_TEST(CountTwoSumsSingleUse, TestSAMPLE1, 2, SAMPLE1S, 5);
 SIMPLE_TEST(CountTwoSumsSingleUse, TestSAMPLE2, 1, SAMPLE2S, 6);
+
+
+const ArrayType SAMPLE1N = {3, 5, 6, 7};
+const ArrayType SAMPLE2N = {3, 3, 6, 8};
+const ArrayType SAMPLE3N = {2, 3, 3, 4, 6, 7};
+
+
+THE_BENCHMARK(NumberSubsequences, SAMPLE1N, 9);
+
+SIMPLE_TEST(NumberSubsequences, TestSAMPLE1, 4, SAMPLE1N, 9);
+SIMPLE_TEST(NumberSubsequences, TestSAMPLE2, 6, SAMPLE2N, 10);
+SIMPLE_TEST(NumberSubsequences, TestSAMPLE3, 61, SAMPLE3N, 12);

@@ -17,8 +17,7 @@ using ArrayType = std::vector<int>;
  * @reference   Sum of minimum and maximum elements of all subarrays of size k.
  *              https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/
  */
-auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements,
-                                       const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements, const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 
@@ -34,8 +33,7 @@ auto MaxOfAllSubarraysOfSizeK_Multiset(const ArrayType &elements,
 }
 
 
-auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements,
-                                    const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements, const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 
@@ -45,7 +43,8 @@ auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements,
         if (i >= K) {
             result.push_back(elements[useful_elements_deque.front()]);
 
-            while ((not useful_elements_deque.empty()) and useful_elements_deque.front() <= i - K) {
+            while ((not useful_elements_deque.empty()) and
+                   useful_elements_deque.front() <= i - K) {
                 useful_elements_deque.pop_front();
             }
         }
@@ -75,8 +74,7 @@ auto MaxOfAllSubarraysOfSizeK_Deque(const ArrayType &elements,
  * @reference   Sliding Window Maximum (Maximum of all subarrays of size k) using stack in O(n) time
  *              https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k-using-stack-in-on-time/
  */
-auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements,
-                                    const ArrayType::size_type K) {
+auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements, const ArrayType::size_type K) {
     assert(K);
     assert(elements.size() >= K);
 
@@ -115,13 +113,22 @@ auto MaxOfAllSubarraysOfSizeK_Stack(const ArrayType &elements,
  * @reference   Maximum of all subarrays of size K using Segment Tree
  *              https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-segment-tree/
  *
- * Given an array arr[] and an integer K, the task is to find the maximum for each and
- * every contiguous subarray of size K.
- *
+ * Given an array arr[] and an integer K, the task is to find the maximum for each and every contiguous
+ * subarray of size K.
  * The idea is to use the Segment tree to answer the maximum of all subarrays of size K.
  */
 
-}//namespace
+
+/**
+ * @reference   Maximum Number of Vowels in a Substring of Given Length
+ *              https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
+ *
+ * Given a string s and an integer k, return the maximum number of vowel letters in any substring of s
+ * with length k.
+ * Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
+ */
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 3, 1, 4, 5, 2, 3, 6};
