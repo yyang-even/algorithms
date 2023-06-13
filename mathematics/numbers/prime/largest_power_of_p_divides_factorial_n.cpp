@@ -19,7 +19,7 @@ inline constexpr unsigned LargestPowerOf2DividesFactorialN(const unsigned n) {
 
 #ifdef __GNUC__
 inline constexpr unsigned LargestPowerOf2DividesFactorialN_BuiltIn(const unsigned n) {
-    return n - __builtin_popcount(n);
+    return n - std::popcount(n);
 }
 #endif
 
@@ -48,7 +48,7 @@ auto LargestPowerOfKInNFactorial(unsigned k, const unsigned n) {
     return x;
 }
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<unsigned>::min();
@@ -61,8 +61,7 @@ SIMPLE_TEST(LegendresFormula, TestSAMPLE1, 0, 3, 2);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE2, 8, 2, 10);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE3, 4, 3, 9);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE4, 97, 2, 100);
-SIMPLE_TEST(LegendresFormula, TestUPPER,
-            LargestPowerOf2DividesFactorialN(UPPER), 2, UPPER);
+SIMPLE_TEST(LegendresFormula, TestUPPER, LargestPowerOf2DividesFactorialN(UPPER), 2, UPPER);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE5, 2, 3, 7);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE6, 4, 3, 10);
 SIMPLE_TEST(LegendresFormula, TestSAMPLE7, 4, 2, 7);
@@ -74,8 +73,11 @@ SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE1, 0, 3, 2);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE2, 8, 2, 10);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE3, 4, 3, 9);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE4, 97, 2, 100);
-SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestUPPER,
-            LargestPowerOf2DividesFactorialN(UPPER), 2, UPPER);
+SIMPLE_TEST(LargestPowerOfPDividesFactorialN,
+            TestUPPER,
+            LargestPowerOf2DividesFactorialN(UPPER),
+            2,
+            UPPER);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE5, 2, 3, 7);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE6, 4, 3, 10);
 SIMPLE_TEST(LargestPowerOfPDividesFactorialN, TestSAMPLE7, 4, 2, 7);
@@ -86,8 +88,10 @@ THE_BENCHMARK(LargestPowerOf2DividesFactorialN, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE1, 0, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE2, 8, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestSAMPLE3, 97, 100);
-SIMPLE_TEST(LargestPowerOf2DividesFactorialN, TestUPPER,
-            UPPER - BitsNumber<decltype(UPPER)>, UPPER);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN,
+            TestUPPER,
+            UPPER - BitsNumber<decltype(UPPER)>,
+            UPPER);
 
 
 #ifdef __GNUC__
@@ -96,12 +100,15 @@ THE_BENCHMARK(LargestPowerOf2DividesFactorialN_BuiltIn, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE1, 0, 0);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE2, 8, 10);
 SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestSAMPLE3, 97, 100);
-SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn, TestUPPER,
-            UPPER - BitsNumber<decltype(UPPER)>, UPPER);
+SIMPLE_TEST(LargestPowerOf2DividesFactorialN_BuiltIn,
+            TestUPPER,
+            UPPER - BitsNumber<decltype(UPPER)>,
+            UPPER);
 
 MUTUAL_RANDOM_TEST(LargestPowerOf2DividesFactorialN,
                    LargestPowerOf2DividesFactorialN_BuiltIn,
-                   0, 96583);
+                   0,
+                   96583);
 #endif
 
 
@@ -111,8 +118,8 @@ SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE1, 0, 3, 2);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE2, 8, 2, 10);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE3, 4, 3, 9);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE4, 97, 2, 100);
-SIMPLE_TEST(LargestPowerOfKInNFactorial, TestUPPER,
-            LargestPowerOf2DividesFactorialN(UPPER), 2, UPPER);
+SIMPLE_TEST(
+    LargestPowerOfKInNFactorial, TestUPPER, LargestPowerOf2DividesFactorialN(UPPER), 2, UPPER);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE5, 2, 3, 7);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE6, 4, 3, 10);
 SIMPLE_TEST(LargestPowerOfKInNFactorial, TestSAMPLE7, 4, 2, 7);

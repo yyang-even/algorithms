@@ -116,7 +116,7 @@ inline auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int
  * @reference   https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/
  *
  * A binary tree and a number k are given. Print every path in the tree with sum of the nodes in the
- * path as k. A path can start from any node and end at any node and must be downward only, i.e. they
+ * path as k. A path can start from any node and end at any node and must be downward only, i.e. They
  * need not be root node and leaf node; and negative numbers can also be there in the tree.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
@@ -214,6 +214,80 @@ inline auto PseudoPalindromicPaths(const BinaryTree::Node::PointerType root) {
     return result;
 }
 
+
+/**
+ * @reference   Time Needed to Inform All Employees
+ *              https://leetcode.com/problems/time-needed-to-inform-all-employees/
+ *
+ * A company has n employees with a unique ID for each employee from 0 to n - 1. The head of the company
+ * is the one with headID.
+ * Each employee has one direct manager given in the manager array where manager[i] is the direct
+ * manager of the i-th employee, manager[headID] = -1. Also, it is guaranteed that the subordination
+ * relationships have a tree structure.
+ * The head of the company wants to inform all the company employees of an urgent piece of news. He will
+ * inform his direct subordinates, and they will inform their subordinates, and so on until all
+ * employees know about the urgent news.
+ * The i-th employee needs informTime[i] minutes to inform all of his direct subordinates (i.e., After
+ * informTime[i] minutes, all his direct subordinates can start spreading the news).
+ * Return the number of minutes needed to inform all the employees about the urgent news.
+ * informTime[i] == 0 if employee i has no subordinates.
+ */
+void NumOfMinutes(const std::vector<std::vector<int>> &graph,
+                  const int i,
+                  const std::vector<int> &informTime,
+                  int sum,
+                  int &result) {
+    sum += informTime[i];
+
+    if (graph[i].empty()) {
+        result = std::max(result, sum);
+        return;
+    }
+
+    for (const auto n : graph[i]) {
+        NumOfMinutes(graph, n, informTime, sum, result);
+    }
+}
+
+auto NumOfMinutes(const int n,
+                  const std::size_t headID,
+                  const std::vector<int> &manager,
+                  const std::vector<int> &informTime) {
+    std::vector graph(n, std::vector<int> {});
+    for (std::size_t i = 0; i < manager.size(); ++i) {
+        if (i != headID) {
+            graph[manager[i]].push_back(i);
+        }
+    }
+
+    int result = 0;
+    NumOfMinutes(graph, headID, informTime, 0, result);
+
+    return result;
+}
+
+
+int NumOfMinutes_BottomUp(const int i, std::vector<int> &manager, std::vector<int> &informTime) {
+    if (manager[i] != -1) {
+        informTime[i] += NumOfMinutes_BottomUp(manager[i], manager, informTime);
+        manager[i] = -1;
+    }
+
+    return informTime[i];
+}
+
+auto NumOfMinutes_BottomUp(const int n,
+                           const int,
+                           std::vector<int> manager,
+                           std::vector<int> informTime) {
+    int result = 0;
+    for (int i = 0; i < n; ++i) {
+        result = std::max(result, NumOfMinutes_BottomUp(i, manager, informTime));
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -266,3 +340,27 @@ SIMPLE_TEST(AllKSumPaths, TestSAMPLE4, EXPECTED3, SAMPLE1, 7);
 THE_BENCHMARK(PseudoPalindromicPaths, SAMPLE1);
 
 SIMPLE_TEST(PseudoPalindromicPaths, TestSAMPLE1, 0, SAMPLE1);
+
+
+const std::vector SAMPLE1M = {-1};
+const std::vector SAMPLE1T = {0};
+
+const std::vector SAMPLE2M = {2, 2, -1, 2, 2, 2};
+const std::vector SAMPLE2T = {0, 0, 1, 0, 0, 0};
+
+const std::vector SAMPLE3M = {-1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
+const std::vector SAMPLE3T = {1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
+
+
+THE_BENCHMARK(NumOfMinutes, 15, 0, SAMPLE3M, SAMPLE3T);
+
+SIMPLE_TEST(NumOfMinutes, TestSAMPLE1, 0, 1, 0, SAMPLE1M, SAMPLE1T);
+SIMPLE_TEST(NumOfMinutes, TestSAMPLE2, 1, 6, 2, SAMPLE2M, SAMPLE2T);
+SIMPLE_TEST(NumOfMinutes, TestSAMPLE3, 3, 15, 0, SAMPLE3M, SAMPLE3T);
+
+
+THE_BENCHMARK(NumOfMinutes_BottomUp, 15, 0, SAMPLE3M, SAMPLE3T);
+
+SIMPLE_TEST(NumOfMinutes_BottomUp, TestSAMPLE1, 0, 1, 0, SAMPLE1M, SAMPLE1T);
+SIMPLE_TEST(NumOfMinutes_BottomUp, TestSAMPLE2, 1, 6, 2, SAMPLE2M, SAMPLE2T);
+SIMPLE_TEST(NumOfMinutes_BottomUp, TestSAMPLE3, 3, 15, 0, SAMPLE3M, SAMPLE3T);

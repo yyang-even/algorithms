@@ -11,6 +11,6 @@
  */
 #ifdef __GNUG__
 static inline constexpr auto CountUnsetBits(const unsigned num) {
-    return __builtin_popcount(ToggleAllBitsAfterMSB(num));
+    return std::popcount(ToggleAllBitsAfterMSB(num));
 }
 #endif

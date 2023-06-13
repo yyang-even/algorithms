@@ -272,6 +272,45 @@ int CountGoodStrs(const int low, const int high, const int zero, const int one) 
 }
 
 
+/**
+ * @reference   New 21 Game
+ *              https://leetcode.com/problems/new-21-game/
+ *
+ * Alice plays the following game, loosely based on the card game "21".
+ * Alice starts with 0 points and draws numbers while she has less than k points. During each draw, she
+ * gains an integer number of points randomly from the range [1, maxPts], where maxPts is an integer.
+ * Each draw is independent and the outcomes have equal probabilities.
+ * Alice stops drawing numbers when she gets k or more points.
+ * Return the probability that Alice has n or fewer points.
+ * Answers within 10^-5 of the actual answer are considered accepted.
+ */
+auto New21Game(const int n, const int k, const int maxPts) {
+    if (k == 0 or n >= k + maxPts) {
+        return 1.0;
+    }
+
+    std::vector<double> dp(n + 1);
+    dp[0] = 1.0;
+
+    double window_sum = 1.0;
+    double result = 0.0;
+    for (int i = 1; i <= n; ++i) {
+        dp[i] = window_sum / maxPts;
+
+        if (i < k) {
+            window_sum += dp[i];
+        } else {
+            result += dp[i];
+        }
+
+        if (i - maxPts >= 0) {
+            window_sum -= dp[i - maxPts];
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -331,3 +370,9 @@ THE_BENCHMARK(CountGoodStrs, 3, 3, 1, 1);
 
 SIMPLE_TEST(CountGoodStrs, TestSAMPLE1, 8, 3, 3, 1, 1);
 SIMPLE_TEST(CountGoodStrs, TestSAMPLE2, 5, 2, 3, 1, 2);
+
+
+THE_BENCHMARK(New21Game, 21, 17, 10);
+
+SIMPLE_DOUBLE_TEST(New21Game, TestSAMPLE1, 1.0, 10, 1, 10);
+SIMPLE_DOUBLE_TEST(New21Game, TestSAMPLE2, 0.6, 6, 1, 10);
