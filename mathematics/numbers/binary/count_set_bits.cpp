@@ -15,21 +15,20 @@ namespace {
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 13.
  *
- * Write an efficient program to count number of 1s in binary representation of an
- * integer.
+ * Write an efficient program to count number of 1s in binary representation of an integer.
  *
  * @reference   Number of 1 Bits
  *              https://leetcode.com/problems/number-of-1-bits/
  *
- * Write a function that takes an unsigned integer and returns the number of '1' bits it
- * has (also known as the Hamming weight).
+ * Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known
+ * as the Hamming weight).
  */
 /** Check if a number has same number of set and unset bits
  *
  * @reference   https://www.geeksforgeeks.org/check-if-a-number-has-same-number-of-set-and-unset-bits/
  *
- * Given a number N, the task is to check whether the count of the set and unset bits in
- * the given number are same.
+ * Given a number N, the task is to check whether the count of the set and unset bits in the given
+ * number are same.
  */
 
 
@@ -42,11 +41,10 @@ namespace {
  *              https://www.geeksforgeeks.org/count-set-bits-integer-using-lookup-table/
  */
 constexpr unsigned char BitsSetTable256[256] = {
-#define B2(n) n,     n+1,     n+1,     n+2
-#define B4(n) B2(n), B2(n+1), B2(n+1), B2(n+2)
-#define B6(n) B4(n), B4(n+1), B4(n+1), B4(n+2)
-    B6(0), B6(1), B6(1), B6(2)
-};
+#define B2(n) n, n + 1, n + 1, n + 2
+#define B4(n) B2(n), B2(n + 1), B2(n + 1), B2(n + 2)
+#define B6(n) B4(n), B4(n + 1), B4(n + 1), B4(n + 2)
+    B6(0), B6(1), B6(1), B6(2)};
 
 constexpr unsigned CountSetBits_LookupTable(const unsigned n) {
     const auto *p = reinterpret_cast<const unsigned char *>(&n);
@@ -67,6 +65,7 @@ constexpr unsigned CountSetBits_LookupTable(const unsigned n) {
  */
 
 /** Counting bits set, in parallel
+ *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Counting bits set, in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -78,12 +77,12 @@ inline constexpr uint32_t CountSetBits_MagicBinaries32(uint32_t n) {
 }
 
 
-template <typename T>
+template<typename T>
 inline constexpr T CountSetBitsMagicBinaries(T n) {
-    n = n - ((n >> 1) & (T)~(T)0 / 3);
-    n = (n & (T)~(T)0 / 15 * 3) + ((n >> 2) & (T)~(T)0 / 15 * 3);
-    n = (n + (n >> 4)) & (T)~(T)0 / 255 * 15;
-    return (T)(n * ((T)~(T)0 / 255)) >> (BitsNumber<T> - CHAR_BIT);
+    n = n - ((n >> 1) & (T) ~(T)0 / 3);
+    n = (n & (T) ~(T)0 / 15 * 3) + ((n >> 2) & (T) ~(T)0 / 15 * 3);
+    n = (n + (n >> 4)) & (T) ~(T)0 / 255 * 15;
+    return (T)(n * ((T) ~(T)0 / 255)) >> (BitsNumber<T> - CHAR_BIT);
 }
 
 inline constexpr unsigned CountSetBits_MagicBinariesUnsigned(const unsigned n) {
@@ -111,19 +110,19 @@ inline constexpr uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
  *              Select the bit position (from the most-significant bit) with the given count (rank)
  *              https://graphics.stanford.edu/~seander/bithacks.html
  *
- * Selects the position of the rth 1 bit when counting from the left. In other words if
- * we start at the most significant bit and proceed to the right, counting the number of
- * bits set to 1 until we reach the desired rank, r, then the position where we stop is
- * returned. If the rank requested exceeds the count of bits set, then 64 is returned.
+ * Selects the position of the rth 1 bit when counting from the left. In other words if we start at the
+ * most significant bit and proceed to the right, counting the number of bits set to 1 until we reach
+ * the desired rank, r, then the position where we stop is returned. If the rank requested exceeds the
+ * count of bits set, then 64 is returned.
  */
 constexpr unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned rank) {
-    unsigned int s{};       // Output: Resulting position of bit with rank r [1-64]
-    unsigned int t{};       // Bit count temporary.
+    unsigned int s {}; // Output: Resulting position of bit with rank r [1-64]
+    unsigned int t {}; // Bit count temporary.
 
     // Do a normal parallel bit count for a 64-bit integer,
     // but store all intermediate steps.
     // a = (n & 0x5555...) + ((n >> 1) & 0x5555...);
-    const uint64_t a =  n - ((n >> 1) & ~0ULL / 3);
+    const uint64_t a = n - ((n >> 1) & ~0ULL / 3);
     // b = (a & 0x3333...) + ((a >> 2) & 0x3333...);
     const uint64_t b = (a & ~0ULL / 5) + ((a >> 2) & ~0ULL / 5);
     // c = (b & 0x0f0f...) + ((b >> 4) & 0x0f0f...);
@@ -132,27 +131,27 @@ constexpr unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned ran
     const uint64_t d = (c + (c >> 8)) & ~0ULL / 0x101;
     t = (d >> 32) + (d >> 48);
     // Now do branchless select!
-    s  = 64;
+    s = 64;
     // if (rank > t) {s -= 32; rank -= t;}
     s -= ((t - rank) & 256) >> 3;
     rank -= (t & ((t - rank) >> 8));
-    t  = (d >> (s - 16)) & 0xff;
+    t = (d >> (s - 16)) & 0xff;
     // if (rank > t) {s -= 16; rank -= t;}
     s -= ((t - rank) & 256) >> 4;
     rank -= (t & ((t - rank) >> 8));
-    t  = (c >> (s - 8)) & 0xf;
+    t = (c >> (s - 8)) & 0xf;
     // if (rank > t) {s -= 8; rank -= t;}
     s -= ((t - rank) & 256) >> 5;
     rank -= (t & ((t - rank) >> 8));
-    t  = (b >> (s - 4)) & 0x7;
+    t = (b >> (s - 4)) & 0x7;
     // if (rank > t) {s -= 4; rank -= t;}
     s -= ((t - rank) & 256) >> 6;
     rank -= (t & ((t - rank) >> 8));
-    t  = (a >> (s - 2)) & 0x3;
+    t = (a >> (s - 2)) & 0x3;
     // if (rank > t) {s -= 2; rank -= t;}
     s -= ((t - rank) & 256) >> 7;
     rank -= (t & ((t - rank) >> 8));
-    t  = (n >> (s - 1)) & 0x1;
+    t = (n >> (s - 1)) & 0x1;
     // if (rank > t) s--;
     s -= ((t - rank) & 256) >> 8;
     return 65 - s;
@@ -172,8 +171,7 @@ inline constexpr auto AreBitAnagram(const unsigned a, const unsigned b) {
  *
  * @reference   https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
  */
-inline constexpr auto
-AreNumberAndItsComplementAnagram(const unsigned long long number) {
+inline constexpr auto AreNumberAndItsComplementAnagram(const unsigned long long number) {
     return CountSetBits_BrianKernighan(number) == BitsNumber<decltype(number)> / 2;
 }
 
@@ -182,10 +180,11 @@ AreNumberAndItsComplementAnagram(const unsigned long long number) {
  * @reference   Prime Number of Set Bits in Binary Representation
  *              https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
  *
- * Given two integers left and right, return the count of numbers in the inclusive range
- * [left, right] having a prime number of set bits in their binary representation. Recall
- * that the number of set bits an integer has is the number of 1's present when written
- * in binary.
+ * Given two integers left and right, return the count of numbers in the inclusive range [left, right]
+ * having a prime number of set bits in their binary representation.
+ * Recall that the number of set bits an integer has is the number of 1's present when written in
+ * binary.
+ *  For example, 21 written in binary is 10101, which has 3 set bits.
  */
 auto CountPrimeSetBits(const unsigned left, const unsigned right) {
     static const std::unordered_set<unsigned> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
@@ -210,20 +209,19 @@ auto CountPrimeSetBits(const unsigned left, const unsigned right) {
  * @reference   Count number of bits to be flipped to convert A to B | Set-2
  *              https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b-set-2/
  *
- * Given two numbers 'a' and 'b'. Write a program to count number of bits needed to be
- * flipped to convert 'a' to 'b'.
+ * Given two numbers 'a' and 'b'. Write a program to count number of bits needed to be flipped to
+ * convert 'a' to 'b'.
  *
  * @reference   Minimum Bit Flips to Convert Number
  *              https://leetcode.com/problems/minimum-bit-flips-to-convert-number/
  *
- * A bit flip of a number x is choosing a bit in the binary representation of x and
- * flipping it from either 0 to 1 or 1 to 0.
- *  For example, for x = 7, the binary representation is 111 and we may choose any bit
- *      (including any leading zeros not shown) and flip it. We can flip the first bit
- *      from the right to get 110, flip the second bit from the right to get 101, flip
- *      the fifth bit from the right (a leading zero) to get 10111, etc.
- * Given two integers start and goal, return the minimum number of bit flips to convert
- * start to goal.
+ * A bit flip of a number x is choosing a bit in the binary representation of x and flipping it from
+ * either 0 to 1 or 1 to 0.
+ *  For example, for x = 7, the binary representation is 111 and we may choose any bit (including any
+ *  leading zeros not shown) and flip it. We can flip the first bit from the right to get 110, flip the
+ *  second bit from the right to get 101, flip the fifth bit from the right (a leading zero) to get
+ *  10111, etc.
+ * Given two integers start and goal, return the minimum number of bit flips to convert start to goal.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.5.
@@ -231,15 +229,47 @@ auto CountPrimeSetBits(const unsigned left, const unsigned right) {
  * @reference   Hamming Distance
  *              https://leetcode.com/problems/hamming-distance/
  *
- * The Hamming distance between two integers is the number of positions at which the
- * corresponding bits are different. Given two integers x and y, return the Hamming
- * distance between them.
+ * The Hamming distance between two integers is the number of positions at which the corresponding bits
+ * are different.
+ * Given two integers x and y, return the Hamming distance between them.
  */
 inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a ^ b);
 }
 
-}//namespace
+
+/**
+ * @reference   Minimum Flips to Make a OR b Equal to c
+ *              https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/
+ *
+ * Given 3 positives numbers a, b and c. Return the minimum flips required in some bits of a and b to
+ * make ( a OR b == c ). (bitwise OR operation).
+ * Flip operation consists of change any single bit 1 to 0 or change the bit 0 to 1 in their binary
+ * representation.
+ */
+constexpr auto MinFlips(const unsigned a, const unsigned b, const unsigned c) {
+    const auto diff = (a | b) ^ c;
+
+    int result = 0;
+    for (unsigned i = 1; i <= diff; i <<= 1) {
+        if (diff & i) {
+            if (c & i) {
+                ++result;
+            } else {
+                result += static_cast<bool>(a & i) + static_cast<bool>(b & i);
+            }
+        }
+    }
+
+    return result;
+}
+
+constexpr auto MinFlips_Popcount(const unsigned a, const unsigned b, const unsigned c) {
+    const auto diff = (a | b) ^ c;
+    return std::popcount(diff) + std::popcount(a & b & diff);
+}
+
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
@@ -253,10 +283,6 @@ SIMPLE_TEST(CountSetBits_BrianKernighan, TestLOWER, 0, LOWER);
 SIMPLE_TEST(CountSetBits_BrianKernighan, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountSetBits_BrianKernighan, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBits_BrianKernighan, TestSAMPLE2, 3, 13);
-
-#ifdef __GNUG__
-MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, __builtin_popcount, LOWER, UPPER);
-#endif
 
 
 SIMPLE_BENCHMARK(CountSetBits_LookupTable, Sample1, LOWER);
@@ -274,26 +300,22 @@ SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample1, LOWER);
 SIMPLE_BENCHMARK(CountSetBits_MagicBinaries32, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, BitsNumber<decltype(UPPER)>,
-            UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinaries32, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBits_MagicBinaries32, TestSAMPLE2, 3, 13);
 
-MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32,
-                   LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinaries32, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample1, LOWER);
 SIMPLE_BENCHMARK(CountSetBits_MagicBinariesUnsigned, Sample2, UPPER);
 
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestLOWER, 0, LOWER);
-SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, BitsNumber<decltype(UPPER)>,
-            UPPER);
+SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestUPPER, BitsNumber<decltype(UPPER)>, UPPER);
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE1, 2, 6);
 SIMPLE_TEST(CountSetBits_MagicBinariesUnsigned, TestSAMPLE2, 3, 13);
 
-MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned,
-                   LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CountSetBits_BrianKernighan, CountSetBits_MagicBinariesUnsigned, LOWER, UPPER);
 
 
 SIMPLE_BENCHMARK(CountSetBitsFromMSB, Sample1, LOWER, CHAR_BIT);
@@ -310,10 +332,8 @@ SIMPLE_BENCHMARK(SelectPositionWithCountFromMSB, Sample2, UPPER, CHAR_BIT);
 
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestLOWER, 64, LOWER, CHAR_BIT);
 SIMPLE_TEST(SelectPositionWithCountFromMSB, TestUPPER, CHAR_BIT, -1, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14,
-            0x06FFFFFFFFFFFFFF, CHAR_BIT);
-SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13,
-            0x13FFFFFFFFFFFFFF, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE1, 14, 0x06FFFFFFFFFFFFFF, CHAR_BIT);
+SIMPLE_TEST(SelectPositionWithCountFromMSB, TestSAMPLE2, 13, 0x13FFFFFFFFFFFFFF, CHAR_BIT);
 
 
 THE_BENCHMARK(AreBitAnagram, 8, 4);
@@ -340,3 +360,17 @@ SIMPLE_TEST(CountDiffBits, TestSample1, 4, 10, 20);
 SIMPLE_TEST(CountDiffBits, TestSample2, 3, 10, 7);
 SIMPLE_TEST(CountDiffBits, TestSample3, 2, 12, 15);
 SIMPLE_TEST(CountDiffBits, TestSample4, 3, 3, 16);
+
+
+THE_BENCHMARK(MinFlips, 2, 6, 5);
+
+SIMPLE_TEST(MinFlips, TestSample1, 3, 2, 6, 5);
+SIMPLE_TEST(MinFlips, TestSample2, 1, 4, 2, 7);
+SIMPLE_TEST(MinFlips, TestSample3, 0, 1, 2, 3);
+
+
+THE_BENCHMARK(MinFlips_Popcount, 2, 6, 5);
+
+SIMPLE_TEST(MinFlips_Popcount, TestSample1, 3, 2, 6, 5);
+SIMPLE_TEST(MinFlips_Popcount, TestSample2, 1, 4, 2, 7);
+SIMPLE_TEST(MinFlips_Popcount, TestSample3, 0, 1, 2, 3);

@@ -6,6 +6,8 @@
 
 
 using namespace graph;
+using BombType = std::vector<int>;
+using BombArray = std::vector<BombType>;
 
 namespace {
 
@@ -15,8 +17,8 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Section 22.5.
  * @reference   https://www.geeksforgeeks.org/strongly-connected-components/
  *
- * A directed graph is strongly connected if there is a path between all pairs of vertices. A
- * strongly connected component (SCC) of a directed graph is a maximal strongly connected subgraph.
+ * A directed graph is strongly connected if there is a path between all pairs of vertices. A strongly
+ * connected component (SCC) of a directed graph is a maximal strongly connected subgraph.
  */
 auto StronglyConnectedComponents_Kosaraju(const std::size_t number_vertices,
                                           const DirectedEdgeArrayType &edges) {
@@ -108,37 +110,6 @@ auto isStronglyConnectedComponents_Kosaraju_DFS(const std::size_t number_vertice
 
 
 /**
- * @reference   Check if a directed graph is connected or not
- *              https://www.geeksforgeeks.org/check-if-a-directed-graph-is-connected-or-not/
- */
-auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
-    const auto graph = AdjacencyListGraph {number_vertices, edges};
-
-    ArrayType to_be_ignored;
-    std::vector<bool> visited_vertices_correct_direction(number_vertices, false);
-    graph.Visit([&visited_vertices_correct_direction, &to_be_ignored](const auto &graph) {
-        DepthFirstSearch_Recursive(graph, 0, visited_vertices_correct_direction, to_be_ignored);
-    });
-
-    const auto transpose = graph.Visit(GraphTranspose);
-
-    std::vector<bool> visited_vertices_reverse_direction(number_vertices, false);
-    transpose.Visit([&visited_vertices_reverse_direction, &to_be_ignored](const auto &graph) {
-        DepthFirstSearch_Recursive(graph, 0, visited_vertices_reverse_direction, to_be_ignored);
-    });
-
-    for (std::size_t i = 0; i < number_vertices; ++i) {
-        if (not visited_vertices_correct_direction[i] and
-            not visited_vertices_reverse_direction[i]) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
-/**
  * @reference   TARJAN’S ALGORITHM FOR STRONGLY CONNECTED COMPONENTS
  *              https://www.topcoder.com/thrive/articles/tarjans-algorithm-for-strongly-connected-components
  * @reference   Tarjan’s Algorithm to find Strongly Connected Components
@@ -208,12 +179,11 @@ auto StronglyConnectedComponents_Tarjan(const std::size_t number_vertices,
  * @reference   Critical Connections in a Network
  *              https://leetcode.com/problems/critical-connections-in-a-network/
  *
- * There are n servers numbered from 0 to n - 1 connected by undirected server-to-server
- * connections forming a network where connections[i] = [ai, bi] represents a connection between
- * servers ai and bi. Any server can reach other servers directly or indirectly through the
- * network.
- * A critical connection is a connection that, if removed, will make some servers unable to reach
- * some other server.
+ * There are n servers numbered from 0 to n - 1 connected by undirected server-to-server connections
+ * forming a network where connections[i] = [ai, bi] represents a connection between servers ai and bi.
+ * Any server can reach other servers directly or indirectly through the network.
+ * A critical connection is a connection that, if removed, will make some servers unable to reach some
+ * other server.
  * Return all critical connections in the network in any order.
  */
 void CriticalConnections_Tarjan(const std::size_t node,
@@ -258,6 +228,101 @@ auto CriticalConnections_Tarjan(const std::size_t number_vertices,
 
         return results;
     });
+}
+
+
+/**
+ * @reference   Check if a directed graph is connected or not
+ *              https://www.geeksforgeeks.org/check-if-a-directed-graph-is-connected-or-not/
+ */
+auto isConnected(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
+    const auto graph = AdjacencyListGraph {number_vertices, edges};
+
+    ArrayType to_be_ignored;
+    std::vector<bool> visited_vertices_correct_direction(number_vertices, false);
+    graph.Visit([&visited_vertices_correct_direction, &to_be_ignored](const auto &graph) {
+        DepthFirstSearch_Recursive(graph, 0, visited_vertices_correct_direction, to_be_ignored);
+    });
+
+    const auto transpose = graph.Visit(GraphTranspose);
+
+    std::vector<bool> visited_vertices_reverse_direction(number_vertices, false);
+    transpose.Visit([&visited_vertices_reverse_direction, &to_be_ignored](const auto &graph) {
+        DepthFirstSearch_Recursive(graph, 0, visited_vertices_reverse_direction, to_be_ignored);
+    });
+
+    for (std::size_t i = 0; i < number_vertices; ++i) {
+        if (not visited_vertices_correct_direction[i] and
+            not visited_vertices_reverse_direction[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/**
+ * @reference   Detonate the Maximum Bombs
+ *              https://leetcode.com/problems/detonate-the-maximum-bombs/
+ *
+ * You are given a list of bombs. The range of a bomb is defined as the area where its effect can be
+ * felt. This area is in the shape of a circle with the center as the location of the bomb.
+ * The bombs are represented by a 0-indexed 2D integer array bombs where bombs[i] = [xi, yi, ri]. xi and
+ * yi denote the X-coordinate and Y-coordinate of the location of the ith bomb, whereas ri denotes the
+ * radius of its range.
+ * You may choose to detonate a single bomb. When a bomb is detonated, it will detonate all bombs that
+ * lie in its range. These bombs will further detonate the bombs that lie in their ranges.
+ * Given the list of bombs, return the maximum number of bombs that can be detonated if you are allowed
+ * to detonate only one bomb.
+ */
+int CountReachableNodes(const std::vector<std::vector<int>> &graph, const int i) {
+    std::queue<int> q;
+    q.push(i);
+    std::unordered_set<int> visited;
+
+    while (not q.empty()) {
+        for (int size = q.size(); size-- > 0;) {
+            const auto from = q.front();
+            q.pop();
+            for (const auto to : graph.at(from)) {
+                if (visited.insert(to).second) {
+                    q.push(to);
+                }
+            }
+        }
+    }
+
+    return visited.size();
+}
+
+auto MaxDetonation(const BombArray &bombs) {
+    std::vector graph(bombs.size(), std::vector<int> {});
+
+    for (std::size_t i = 0; i < bombs.size(); ++i) {
+        const long x_i = bombs[i][0];
+        const long y_i = bombs[i][1];
+        const long r_square = bombs[i][2] * bombs[i][2];
+
+        for (std::size_t j = 0; j < bombs.size(); ++j) {
+            const long x_j = bombs[j][0];
+            const long y_j = bombs[j][1];
+
+            const auto x_diff = x_i - x_j;
+            const auto y_diff = y_i - y_j;
+
+            if (x_diff * x_diff + y_diff * y_diff <= r_square) {
+                graph[i].push_back(j);
+            }
+        }
+    }
+
+    int result = 0;
+    for (std::size_t i = 0; i < bombs.size(); ++i) {
+        result = std::max(result, CountReachableNodes(graph, i));
+    }
+
+    return result;
 }
 
 } //namespace
@@ -312,3 +377,15 @@ THE_BENCHMARK(CriticalConnections_Tarjan, 4, SAMPLE1C);
 
 SIMPLE_TEST(CriticalConnections_Tarjan, TestSAMPLE1, EXPECTED1C, 4, SAMPLE1C);
 SIMPLE_TEST(CriticalConnections_Tarjan, TestSAMPLE2, EXPECTED2C, 2, SAMPLE2C);
+
+
+const BombArray SAMPLE1B = {{2, 1, 3}, {6, 1, 4}};
+const BombArray SAMPLE2B = {{1, 1, 5}, {10, 10, 5}};
+const BombArray SAMPLE3B = {{1, 2, 3}, {2, 3, 1}, {3, 4, 2}, {4, 5, 3}, {5, 6, 4}};
+
+
+THE_BENCHMARK(MaxDetonation, SAMPLE1B);
+
+SIMPLE_TEST(MaxDetonation, TestSAMPLE1, 2, SAMPLE1B);
+SIMPLE_TEST(MaxDetonation, TestSAMPLE2, 1, SAMPLE2B);
+SIMPLE_TEST(MaxDetonation, TestSAMPLE3, 5, SAMPLE3B);

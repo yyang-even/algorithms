@@ -110,7 +110,7 @@ public:
     }
 
     constexpr bool hasNext() {
-        while (mask and __builtin_popcount(mask) != length) {
+        while (mask and std::popcount(mask) != length) {
             --mask;
         }
 

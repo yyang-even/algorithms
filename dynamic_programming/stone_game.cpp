@@ -14,13 +14,13 @@ using MemoType = MatrixType;
  *
  * @reference   https://leetcode.com/problems/stone-game/
  *
- * Alice and Bob play a game with piles of stones. There are an even number of piles arranged in
- * a row, and each pile has a positive integer number of stones piles[i].
- * The objective of the game is to end with the most stones. The total number of stones across all
- * the piles is odd, so there are no ties.
- * Alice and Bob take turns, with Alice starting first. Each turn, a player takes the entire pile
- * of stones either from the beginning or from the end of the row. This continues until there are
- * no more piles left, at which point the person with the most stones wins.
+ * Alice and Bob play a game with piles of stones. There are an even number of piles arranged in a row,
+ * and each pile has a positive integer number of stones piles[i].
+ * The objective of the game is to end with the most stones. The total number of stones across all the
+ * piles is odd, so there are no ties.
+ * Alice and Bob take turns, with Alice starting first. Each turn, a player takes the entire pile of
+ * stones either from the beginning or from the end of the row. This continues until there are no more
+ * piles left, at which point the person with the most stones wins.
  * Assuming Alice and Bob play optimally, return true if Alice wins the game, or false if Bob wins.
  */
 inline auto StoneGameEvenPiles(const ArrayType &) {
@@ -55,12 +55,12 @@ auto StoneGameEvenPiles_DP(const ArrayType &piles) {
  *              https://leetcode.com/problems/stone-game-ii/
  * @reference   https://www.cnblogs.com/grandyang/p/14899090.html
  *
- * Alice and Bob continue their games with piles of stones.  There are a number of piles arranged
- * in a row, and each pile has a positive integer number of stones piles[i].  The objective of
- * the game is to end with the most stones.
+ * Alice and Bob continue their games with piles of stones.  There are a number of piles arranged in a
+ * row, and each pile has a positive integer number of stones piles[i].  The objective of the game is to
+ * end with the most stones.
  * Alice and Bob take turns, with Alice starting first.  Initially, M = 1.
- * On each player's turn, that player can take all the stones in the first X remaining piles,
- * where 1 <= X <= 2M.  Then, we set M = max(M, X).
+ * On each player's turn, that player can take all the stones in the first X remaining piles, where 1 <=
+ * X <= 2M.  Then, we set M = max(M, X).
  * The game continues until all the stones have been taken.
  * Assuming Alice and Bob play optimally, return the maximum number of stones Alice can get.
  */
@@ -125,18 +125,17 @@ auto StoneGameII_DP(const ArrayType &piles) {
  *              https://leetcode.com/problems/stone-game-iii/
  * @reference   https://walkccc.me/LeetCode/problems/1406/
  *
- * Alice and Bob continue their games with piles of stones. There are several stones arranged in
- * a row, and each stone has an associated value which is an integer given in the array stoneValue.
- * Alice and Bob take turns, with Alice starting first. On each player's turn, that player can
- * take 1, 2, or 3 stones from the first remaining stones in the row.
- * The score of each player is the sum of the values of the stones taken. The score of each player
- * is 0 initially.
- * The objective of the game is to end with the highest score, and the winner is the player with
- * the highest score and there could be a tie. The game continues until all the stones have been
- * taken.
+ * Alice and Bob continue their games with piles of stones. There are several stones arranged in a row,
+ * and each stone has an associated value which is an integer given in the array stoneValue.
+ * Alice and Bob take turns, with Alice starting first. On each player's turn, that player can take 1,
+ * 2, or 3 stones from the first remaining stones in the row.
+ * The score of each player is the sum of the values of the stones taken. The score of each player is 0
+ * initially.
+ * The objective of the game is to end with the highest score, and the winner is the player with the
+ * highest score and there could be a tie. The game continues until all the stones have been taken.
  * Assume Alice and Bob play optimally.
- * Return "Alice" if Alice will win, "Bob" if Bob will win, or "Tie" if they will end the game
- * with the same score.
+ * Return "Alice" if Alice will win, "Bob" if Bob will win, or "Tie" if they will end the game with the
+ * same score.
  */
 inline constexpr auto toResult(const int score) {
     if (score > 0) {
@@ -193,11 +192,11 @@ auto StoneGame3_DP(const ArrayType &values) {
  *              https://leetcode.com/problems/stone-game-iv/
  *
  * Alice and Bob take turns playing a game, with Alice starting first.
- * Initially, there are n stones in a pile. On each player's turn, that player makes a move
- * consisting of removing any non-zero square number of stones in the pile.
+ * Initially, there are n stones in a pile. On each player's turn, that player makes a move consisting
+ * of removing any non-zero square number of stones in the pile.
  * Also, if a player cannot make a move, he/she loses the game.
- * Given a positive integer n, return true if and only if Alice wins the game otherwise return
- * false, assuming both players play optimally.
+ * Given a positive integer n, return true if and only if Alice wins the game otherwise return false,
+ * assuming both players play optimally.
  */
 auto StoneGame4_Memo(const int n, std::unordered_map<int, bool> &memo) {
     const auto [iter, inserted] = memo.emplace(n, false);
@@ -243,11 +242,11 @@ inline constexpr auto StoneGame4_DP(const int n) {
  *
  * There are several stones arranged in a row, and each stone has an associated value which is an
  * integer given in the array stoneValue.
- * In each round of the game, Alice divides the row into two non-empty rows (i.e. left row and
- * right row), then Bob calculates the value of each row which is the sum of the values of all the
- * stones in this row. Bob throws away the row which has the maximum value, and Alice's score
- * increases by the value of the remaining row. If the value of the two rows are equal, Bob lets
- * Alice decide which row will be thrown away. The next round starts with the remaining row.
+ * In each round of the game, Alice divides the row into two non-empty rows (i.e. left row and right
+ * row), then Bob calculates the value of each row which is the sum of the values of all the stones in
+ * this row. Bob throws away the row which has the maximum value, and Alice's score increases by the
+ * value of the remaining row. If the value of the two rows are equal, Bob lets Alice decide which row
+ * will be thrown away. The next round starts with the remaining row.
  * The game ends when there is only one stone remaining. Alice's is initially zero.
  * Return the maximum score that Alice can obtain.
  */
@@ -325,11 +324,11 @@ auto StoneGame5_DP_Optimized(const ArrayType &values) {
  * Alice and Bob take turns playing a game, with Alice starting first.
  * There are n stones in a pile. On each player's turn, they can remove a stone from the pile and
  * receive points based on the stone's value. Alice and Bob may value the stones differently.
- * You are given two integer arrays of length n, aliceValues and bobValues. Each aliceValues[i]
- * and bobValues[i] represents how Alice and Bob, respectively, value the ith stone.
- * The winner is the person with the most points after all the stones are chosen. If both players
- * have the same amount of points, the game results in a draw. Both players will play optimally.
- * Both players know the other's values.
+ * You are given two integer arrays of length n, aliceValues and bobValues. Each aliceValues[i] and
+ * bobValues[i] represents how Alice and Bob, respectively, value the ith stone.
+ * The winner is the person with the most points after all the stones are chosen. If both players have
+ * the same amount of points, the game results in a draw. Both players will play optimally.  Both
+ * players know the other's values.
  * Determine the result of the game, and:
  *  If Alice wins, return 1.
  *  If Bob wins, return -1.
@@ -397,12 +396,12 @@ auto StoneGame6_O1(ArrayType alice_values, const ArrayType &bob_values) {
  * Alice and Bob take turns playing a game, with Alice starting first.
  * There are n stones arranged in a row. On each player's turn, they can remove either the leftmost
  * stone or the rightmost stone from the row and receive points equal to the sum of the remaining
- * stones' values in the row. The winner is the one with the higher score when there are no stones
- * left to remove.
- * Bob found that he will always lose this game (poor Bob, he always loses), so he decided to
- * minimize the score's difference. Alice's goal is to maximize the difference in the score.
- * Given an array of integers stones where stones[i] represents the value of the ith stone from
- * the left, return the difference in Alice and Bob's score if they both play optimally.
+ * stones' values in the row. The winner is the one with the higher score when there are no stones left
+ * to remove.
+ * Bob found that he will always lose this game (poor Bob, he always loses), so he decided to minimize
+ * the score's difference. Alice's goal is to maximize the difference in the score.
+ * Given an array of integers stones where stones[i] represents the value of the ith stone from the
+ * left, return the difference in Alice and Bob's score if they both play optimally.
  */
 auto StoneGame7_Memo(const ArrayType &prefix_sum,
                      const int left,
@@ -452,16 +451,16 @@ auto StoneGame7_DP(const ArrayType &stones) {
  *              https://leetcode.com/problems/stone-game-viii/
  *
  * Alice and Bob take turns playing a game, with Alice starting first.
- * There are n stones arranged in a row. On each player's turn, while the number of stones is more
- * than one, they will do the following:
+ * There are n stones arranged in a row. On each player's turn, while the number of stones is more than
+ * one, they will do the following:
  *  Choose an integer x > 1, and remove the leftmost x stones from the row.
  *  Add the sum of the removed stones' values to the player's score.
  *  Place a new stone, whose value is equal to that sum, on the left side of the row.
  * The game stops when only one stone is left in the row.
- * The score difference between Alice and Bob is (Alice's score - Bob's score). Alice's goal is
- * to maximize the score difference, and Bob's goal is the minimize the score difference.
- * Given an integer array stones of length n where stones[i] represents the value of the ith stone
- * from the left, return the score difference between Alice and Bob if they both play optimally.
+ * The score difference between Alice and Bob is (Alice's score - Bob's score). Alice's goal is to
+ * maximize the score difference, and Bob's goal is the minimize the score difference.
+ * Given an integer array stones of length n where stones[i] represents the value of the ith stone from
+ * the left, return the score difference between Alice and Bob if they both play optimally.
  */
 auto StoneGame8_DP(ArrayType stones) {
     const auto N = stones.size();
