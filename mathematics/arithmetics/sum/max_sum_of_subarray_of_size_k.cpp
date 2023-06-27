@@ -33,10 +33,10 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * @reference   Maximum Points You Can Obtain from Cards
  *              https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
  *
- * There are several cards arranged in a row, and each card has an associated number of points.
- * The points are given in the integer array cardPoints.
- * In one step, you can take one card from the beginning or from the end of the row. You have to
- * take exactly k cards.
+ * There are several cards arranged in a row, and each card has an associated number of points.  The
+ * points are given in the integer array cardPoints.
+ * In one step, you can take one card from the beginning or from the end of the row. You have to take
+ * exactly k cards.
  * Your score is the sum of the points of the cards you have taken.
  * Given the integer array cardPoints and the integer k, return the maximum score you can obtain.
  *
@@ -66,8 +66,8 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  *              https://leetcode.com/problems/maximum-average-subarray-i/
  *
  * You are given an integer array nums consisting of n elements, and an integer k.
- * Find a contiguous subarray whose length is equal to k that has the maximum average value and
- * return this value. Any answer with a calculation error less than 10-5 will be accepted.
+ * Find a contiguous subarray whose length is equal to k that has the maximum average value and return
+ * this value. Any answer with a calculation error less than 10^-5 will be accepted.
  */
 
 
@@ -75,9 +75,8 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * @reference   Maximum Average Subarray II
  *              https://protegejj.gitbook.io/algorithm-practice/leetcode/binary-search/644-maximum-average-subarray-ii
  *
- * Given an array consisting ofnintegers, find the contiguous subarray whose length is greater
- * than or equal to k that has the maximum average value. And you need to output the maximum
- * average value.
+ * Given an array consisting of n integers, find the contiguous subarray whose length is greater than or
+ * equal to k that has the maximum average value. And you need to output the maximum average value.
  */
 auto isValidSubarrayAverage(const ArrayType &nums, const double average, const std::size_t k) {
     double prefix_sum = 0;
@@ -125,18 +124,35 @@ auto MaxAverageNoShorterThanK(const ArrayType &nums, const int k) {
 
 
 /**
+ * @reference   K Radius Subarray Averages
+ *              https://leetcode.com/problems/k-radius-subarray-averages/
+ *
+ * You are given a 0-indexed array nums of n integers, and an integer k.
+ * The k-radius average for a subarray of nums centered at some index i with the radius k is the average
+ * of all elements in nums between the indices i - k and i + k (inclusive). If there are less than k
+ * elements before or after the index i, then the k-radius average is -1.
+ * Build and return an array avgs of length n where avgs[i] is the k-radius average for the subarray
+ * centered at index i.
+ * The average of x elements is the sum of the x elements divided by x, using integer division. The
+ * integer division truncates toward zero, which means losing its fractional part.
+ *  For example, the average of four elements 2, 3, 1, and 5 is (2 + 3 + 1 + 5) / 4 = 11 / 4 = 2.75,
+ *  which truncates to 2.
+ */
+
+
+/**
  * @reference   Diet Plan Performance
  *              http://lixinchengdu.github.io/algorithmbook/leetcode/diet-plan-performance.html
  *
  * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every consecutive
- * sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for all 0 <= i <= n-k),
- * they look at T, the total calories consumed during that sequence of k days
- * (calories[i] + calories[i+1] + ... + calories[i+k-1]):
+ * sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for all 0 <= i <= n-k), they
+ * look at T, the total calories consumed during that sequence of k days (calories[i] + calories[i+1] +
+ * ... + calories[i+k-1]):
  *  If T < lower, they performed poorly on their diet and lose 1 point;
  *  If T > upper, they performed well on their diet and gain 1 point;
  *  Otherwise, they performed normally and there is no change in points.
- * Initially, the dieter has zero points. Return the total number of points the dieter has after
- * dieting for calories.length days. Note that the total points can be negative.
+ * Initially, the dieter has zero points. Return the total number of points the dieter has after dieting
+ * for calories.length days. Note that the total points can be negative.
  */
 inline constexpr auto score(const int calories, const int lower, const int upper) {
     if (calories < lower) {
@@ -174,10 +190,9 @@ auto DietPlanPerformance(const ArrayType &calories,
  *  If k > 0, replace the ith number with the sum of the next k numbers.
  *  If k < 0, replace the ith number with the sum of the previous k numbers.
  *  If k == 0, replace the ith number with 0.
- * As code is circular, the next element of code[n-1] is code[0], and the previous element of
- * code[0] is code[n-1].
- * Given the circular array code and an integer key k, return the decrypted code to defuse the
- * bomb!
+ * As code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is
+ * code[n-1].
+ * Given the circular array code and an integer key k, return the decrypted code to defuse the bomb!
  * -(n - 1) <= k <= n - 1
  */
 auto Decrypt(const ArrayType &code, const int k) {

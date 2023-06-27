@@ -23,8 +23,8 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * @reference   Binary Tree Level Order Traversal
  *              https://leetcode.com/problems/binary-tree-level-order-traversal/
  *
- * Given the root of a binary tree, return the level order traversal of its nodes' values.
- * (i.e., from left to right, level by level).
+ * Given the root of a binary tree, return the level order traversal of its nodes' values.  (i.e., from
+ * left to right, level by level).
  */
 inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_node) {
     ArrayType results;
@@ -47,8 +47,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  * @reference   Binary Tree Level Order Traversal II
  *              https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
  *
- * Given the root of a binary tree, return the bottom-up level order traversal of its nodes'
- * values. (i.e., from left to right, level by level from leaf to root).
+ * Given the root of a binary tree, return the bottom-up level order traversal of its nodes' values.
+ * (i.e., from left to right, level by level from leaf to root).
  */
 
 
@@ -56,8 +56,18 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  * @reference   Average of Levels in Binary Tree
  *              https://leetcode.com/problems/average-of-levels-in-binary-tree/
  *
- * Given the root of a binary tree, return the average value of the nodes on each level in the
- * form of an array. Answers within 10^-5 of the actual answer will be accepted.
+ * Given the root of a binary tree, return the average value of the nodes on each level in the form of
+ * an array. Answers within 10^-5 of the actual answer will be accepted.
+ */
+
+
+/**
+ * @reference   Maximum Level Sum of a Binary Tree
+ *              https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+ *
+ * Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so
+ * on.
+ * Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
  */
 
 
@@ -73,19 +83,19 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  * @reference   Populating Next Right Pointers in Each Node
  *              https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
  *
- * You are given a perfect binary tree where all leaves are on the same level, and every parent
- * has two children. The binary tree has the following definition:
+ * You are given a perfect binary tree where all leaves are on the same level, and every parent has two
+ * children. The binary tree has the following definition:
  *  struct Node {
  *      int val;
  *      Node *left;
  *      Node *right;
  *      Node *next;
  *  }
- * Populate each next pointer to point to its next right node. If there is no next right node,
- * the next pointer should be set to NULL. Initially, all next pointers are set to NULL.
+ * Populate each next pointer to point to its next right node. If there is no next right node, the next
+ * pointer should be set to NULL. Initially, all next pointers are set to NULL.
  * You may only use constant extra space.
- * The recursive approach is fine. You may assume implicit stack space does not count as extra
- * space for this problem.
+ * The recursive approach is fine. You may assume implicit stack space does not count as extra space for
+ * this problem.
  */
 inline auto ConnectLevelNext_BFS(const BinaryTreeNodeWithNext::PointerType root) {
     if (not root) {
@@ -156,11 +166,11 @@ constexpr auto testConnectLevelNext(const BinaryTree::Node::PointerType root,
  * @reference   Populating Next Right Pointers in Each Node II
  *              https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
  *
- * Populate each next pointer to point to its next right node. If there is no next right node,
- * the next pointer should be set to NULL. Initially, all next pointers are set to NULL.
+ * Populate each next pointer to point to its next right node. If there is no next right node, the next
+ * pointer should be set to NULL. Initially, all next pointers are set to NULL.
  * You may only use constant extra space.
- * The recursive approach is fine. You may assume implicit stack space does not count as extra
- * space for this problem.
+ * The recursive approach is fine. You may assume implicit stack space does not count as extra space for
+ * this problem.
  */
 inline auto ConnectLevelNext_Any_BFS(BinaryTreeNodeWithNext::PointerType root) {
     const auto dummy = std::make_shared<BinaryTreeNodeWithNext>(0);
@@ -189,8 +199,8 @@ inline auto ConnectLevelNext_Any_BFS(BinaryTreeNodeWithNext::PointerType root) {
  * @reference   Binary Tree Right Side View
  *              https://leetcode.com/problems/binary-tree-right-side-view/
  *
- * Given the root of a binary tree, imagine yourself standing on the right side of it, return the
- * values of the nodes you can see ordered from top to bottom.
+ * Given the root of a binary tree, imagine yourself standing on the right side of it, return the values
+ * of the nodes you can see ordered from top to bottom.
  */
 auto RightSideView(const BinaryTree::Node::PointerType node,
                    const std::size_t level,

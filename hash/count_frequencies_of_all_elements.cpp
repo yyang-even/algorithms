@@ -3,6 +3,7 @@
 #include "count_frequencies_of_all_elements.h"
 #include "hash.h"
 
+#include "mathematics/matrix/matrix.h"
 #include "ordering/count_occurrences_in_sorted_array.h"
 
 
@@ -306,6 +307,39 @@ auto MinRounds(const ArrayType &tasks) {
     return result;
 }
 
+
+/**
+ * @reference   Equal Row and Column Pairs
+ *              https://leetcode.com/problems/equal-row-and-column-pairs/
+ *
+ * Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and
+ * column cj are equal.
+ * A row and column pair is considered equal if they contain the same elements in the same order (i.e.,
+ * an equal array).
+ */
+auto NumEqualPairs(const MatrixType &grid) {
+    const auto N = grid.size();
+
+    std::map<MatrixType::value_type, int> column_map;
+    for (std::size_t c = 0; c < N; ++c) {
+        MatrixType::value_type column;
+        for (std::size_t r = 0; r < N; ++r) {
+            column.push_back(grid[r][c]);
+        }
+
+        ++(column_map[column]);
+    }
+
+    int result = 0;
+    for (const auto &row : grid) {
+        if (const auto iter = column_map.find(row); iter != column_map.cend()) {
+            result += iter->second;
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -415,3 +449,25 @@ THE_BENCHMARK(MinRounds, SAMPLE1M);
 
 SIMPLE_TEST(MinRounds, TestSAMPLE1, 4, SAMPLE1M);
 SIMPLE_TEST(MinRounds, TestSAMPLE2, -1, SAMPLE2M);
+
+
+// clang-format off
+const MatrixType SAMPLE1G = {
+    {3, 2, 1},
+    {1, 7, 6},
+    {2, 7, 7}
+};
+
+const MatrixType SAMPLE2G = {
+    {3, 1, 2, 2},
+    {1, 4, 4, 5},
+    {2, 4, 2, 2},
+    {2, 4, 2, 2}
+};
+// clang-format on
+
+
+THE_BENCHMARK(NumEqualPairs, SAMPLE2G);
+
+SIMPLE_TEST(NumEqualPairs, TestSAMPLE1, 1, SAMPLE1G);
+SIMPLE_TEST(NumEqualPairs, TestSAMPLE2, 3, SAMPLE2G);
