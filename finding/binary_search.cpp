@@ -219,14 +219,14 @@ inline auto BinarySearch_First_Recursive(const ArrayType &elements,
  *
  * @reference   https://www.geeksforgeeks.org/find-first-and-last-positions-of-an-element-in-a-sorted-array/
  *
- * Given a sorted array with possibly duplicate elements, the task is to find indexes of
- * first and last occurrences of an element x in the given array.
+ * Given a sorted array with possibly duplicate elements, the task is to find indexes of first and last
+ * occurrences of an element x in the given array.
  *
  * @reference   Find First and Last Position of Element in Sorted Array
  *              https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
  *
- * Given an array of integers nums sorted in non-decreasing order, find the starting and ending
- * position of a given target value.
+ * Given an array of integers nums sorted in non-decreasing order, find the starting and ending position
+ * of a given target value.
  * If target is not found in the array, return [-1, -1].
  * You must write an algorithm with O(log n) runtime complexity.
  */
@@ -368,9 +368,8 @@ auto BinarSearch_Last_Iterative(const ArrayType &elements, const ArrayType::valu
  * @reference   Find the number of elements greater than k in a sorted array
  *              https://www.geeksforgeeks.org/find-the-number-of-elements-greater-than-k-in-a-sorted-array/
  *
- * Given a sorted array arr[] of integers and an integer k, the task is to find the count of
- * elements in the array which are greater than k. Note that k may or may not be present in the
- * array.
+ * Given a sorted array arr[] of integers and an integer k, the task is to find the count of elements in
+ * the array which are greater than k. Note that k may or may not be present in the array.
  *
  * @reference   Count of smaller or equal elements in sorted array
  *              https://www.geeksforgeeks.org/count-smaller-equal-elements-sorted-array/
@@ -442,9 +441,9 @@ constexpr auto NextGreaterChar(const std::string_view letters, char x) {
  * @reference   Search insert position of K in a sorted array
  *              https://www.geeksforgeeks.org/search-insert-position-of-k-in-a-sorted-array/
  *
- * Given a sorted array of distinct integers and a target value, return the index if the target
- * is found. If not, return the index where it would be if it were inserted in order. You must
- * write an algorithm with O(log n) runtime complexity.
+ * Given a sorted array of distinct integers and a target value, return the index if the target is
+ * found. If not, return the index where it would be if it were inserted in order. You must write an
+ * algorithm with O(log n) runtime complexity.
  */
 auto SearchInsertPosition(const ArrayType &elements,
                           const ArrayType::value_type x,
@@ -484,10 +483,9 @@ inline ArrayType::size_type SearchInsertPosition_STL(const ArrayType &elements,
  * @reference   Ceiling in a sorted array
  *              https://www.geeksforgeeks.org/ceiling-in-a-sorted-array/
  *
- * Given a sorted array and a value x, the ceiling of x is the smallest element in array greater
- * than or equal to x, and the floor is the greatest element smaller than or equal to x. Assume
- * that the array is sorted in non-decreasing order. Write efficient functions to find floor and
- * ceiling of x.
+ * Given a sorted array and a value x, the ceiling of x is the smallest element in array greater than or
+ * equal to x, and the floor is the greatest element smaller than or equal to x. Assume that the array
+ * is sorted in non-decreasing order. Write efficient functions to find floor and ceiling of x.
  */
 
 
@@ -534,8 +532,8 @@ inline auto GreatestLesser_STL(const ArrayType &elements, const ArrayType::value
  * @reference   Floor in a Sorted Array
  *              https://www.geeksforgeeks.org/floor-in-a-sorted-array/
  *
- * Given a sorted array and a value x, the floor of x is the largest element in array smaller
- * than or equal to x. Write efficient functions to find floor of x.
+ * Given a sorted array and a value x, the floor of x is the largest element in array smaller than or
+ * equal to x. Write efficient functions to find floor of x.
  */
 
 
@@ -607,13 +605,13 @@ auto BinarySearch_SinglyList(const std::forward_list<ArrayType::value_type> &sin
  * @reference   First Bad Version
  *              https://leetcode.com/problems/first-bad-version/
  *
- * You are a product manager and currently leading a team to develop a new product. Unfortunately,
- * the latest version of your product fails the quality check. Since each version is developed
- * based on the previous version, all the versions after a bad version are also bad.
- * Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which
- * causes all the following ones to be bad.
- * You are given an API bool isBadVersion(version) which returns whether version is bad. Implement
- * a function to find the first bad version. You should minimize the number of calls to the API.
+ * You are a product manager and currently leading a team to develop a new product. Unfortunately, the
+ * latest version of your product fails the quality check. Since each version is developed based on the
+ * previous version, all the versions after a bad version are also bad.
+ * Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes
+ * all the following ones to be bad.
+ * You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a
+ * function to find the first bad version. You should minimize the number of calls to the API.
  */
 
 
@@ -622,9 +620,8 @@ auto BinarySearch_SinglyList(const std::forward_list<ArrayType::value_type> &sin
  *              https://leetcode.com/problems/guess-number-higher-or-lower/
  *
  * We are playing the Guess Game.
- * The game is as follows: I pick a number from 1 to n. You have to guess which number I picked.
- * Every time you guess wrong, I will tell you whether the number I picked is higher or lower than
- * your guess.
+ * The game is as follows: I pick a number from 1 to n. You have to guess which number I picked.  Every
+ * time you guess wrong, I will tell you whether the number I picked is higher or lower than your guess.
  * You call a pre-defined API int guess(int num), which returns 3 possible results:
  *  -1: The number I picked is lower than your guess (i.e. pick < num).
  *  1: The number I picked is higher than your guess (i.e. pick > num).
@@ -641,12 +638,12 @@ auto BinarySearch_SinglyList(const std::forward_list<ArrayType::value_type> &sin
  *  I pick a number between 1 and n.
  *  You guess a number.
  *  If you guess the right number, you win the game.
- *  If you guess the wrong number, then I will tell you whether the number I picked is higher or
- *      lower, and you will continue guessing.
- *  Every time you guess a wrong number x, you will pay x dollars. If you run out of money, you
- *      lose the game.
- * Given a particular n, return the minimum amount of money you need to guarantee a win regardless
- * of what number I pick.
+ *  If you guess the wrong number, then I will tell you whether the number I picked is higher or lower,
+ *      and you will continue guessing.
+ *  Every time you guess a wrong number x, you will pay x dollars. If you run out of money, you lose the
+ *      game.
+ * Given a particular n, return the minimum amount of money you need to guarantee a win regardless of
+ * what number I pick.
  */
 auto GuessNumber_Memo(const int left, const int right, std::vector<std::vector<int>> &memo) {
     if (left >= right) {
@@ -702,6 +699,56 @@ constexpr auto GuessNumber_Dp(const int n) {
     }
 
     return dp[1][n];
+}
+
+
+/**
+ * @reference   Maximum Value at a Given Index in a Bounded Array
+ *              https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/
+ *
+ * You are given three positive integers: n, index, and maxSum. You want to construct an array nums
+ * (0-indexed) that satisfies the following conditions:
+ *  nums.length == n
+ *  nums[i] is a positive integer where 0 <= i < n.
+ *  abs(nums[i] - nums[i+1]) <= 1 where 0 <= i < n-1.
+ *  The sum of all the elements of nums does not exceed maxSum.
+ *  nums[index] is maximized.
+ * Return nums[index] of the constructed array.
+ * Note that abs(x) equals x if x >= 0, and -x otherwise.
+ */
+constexpr auto getSum(const long index, const long value, const long n) {
+    long result = 0;
+
+    // On the left
+    if (value > index) {
+        result += (value + value - index) * (index + 1) / 2;
+    } else {
+        result += (value + 1) * value / 2 + index - value + 1;
+    };
+
+    // On the right
+    if (value >= n - index) {
+        result += (value + value - n + 1 + index) * (n - index) / 2;
+    } else {
+        result += (value + 1) * value / 2 + n - index - value;
+    }
+
+    return result - value;
+}
+
+constexpr auto MaxValueAt(const int n, const int index, const long maxSum) {
+    int left = 1;
+    int right = maxSum;
+    while (left < right) {
+        const auto mid = (left + right + 1) / 2;
+        if (getSum(index, mid, n) <= maxSum) {
+            left = mid;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return left;
 }
 
 } //namespace
@@ -987,3 +1034,10 @@ SIMPLE_TEST(EqualRange, TestSample1, EXPECTED1R, SAMPLE1R, 8);
 SIMPLE_TEST(EqualRange, TestSample2, EXPECTED0R, SAMPLE1R, 6);
 SIMPLE_TEST(EqualRange, TestSample3, EXPECTED0R, ARRAY_EMPTY, 0);
 SIMPLE_TEST(EqualRange, TestSample4, EXPECTED4R, VALUES3, 2);
+
+
+THE_BENCHMARK(MaxValueAt, 4, 2, 6);
+
+SIMPLE_TEST(MaxValueAt, TestSample1, 2, 4, 2, 6);
+SIMPLE_TEST(MaxValueAt, TestSample2, 3, 6, 1, 10);
+SIMPLE_TEST(MaxValueAt, TestSample3, 155230825, 6, 2, 931384943);

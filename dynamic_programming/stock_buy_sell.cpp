@@ -12,10 +12,10 @@ using MemoType = std::vector<std::vector<int>>;
  *
  * @reference   https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
  *
- * You are given an array prices where prices[i] is the price of a given stock on the
- * ith day. You want to maximize your profit by choosing a single day to buy one stock
- * and choosing a different day in the future to sell that stock. Return the maximum
- * profit you can achieve from this transaction. If you cannot achieve any profit,
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+ * You want to maximize your profit by choosing a single day to buy one stock and choosing a different
+ * day in the future to sell that stock.
+ * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit,
  * return 0.
  */
 auto StockBuyAndSell_SingleTransaction(const ArrayType &prices) {
@@ -40,9 +40,8 @@ auto StockBuyAndSell_SingleTransaction(const ArrayType &prices) {
  * @reference   Maximum Difference Between Increasing Elements
  *              https://leetcode.com/problems/maximum-difference-between-increasing-elements/
  *
- * Given a 0-indexed integer array nums of size n, find the maximum difference between
- * nums[i] and nums[j] (i.e., nums[j] - nums[i]), such that 0 <= i < j < n and
- * nums[i] < nums[j].
+ * Given a 0-indexed integer array nums of size n, find the maximum difference between nums[i] and
+ * nums[j] (i.e., nums[j] - nums[i]), such that 0 <= i < j < n and nums[i] < nums[j].
  * Return the maximum difference. If no such i and j exists, return -1.
  */
 
@@ -51,15 +50,15 @@ auto StockBuyAndSell_SingleTransaction(const ArrayType &prices) {
  * @reference   Maximum difference between two elements such that larger element appears after the smaller number
  *              https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
  *
- * Given an array arr[] of integers, find out the maximum difference between any two
- * elements such that larger element appears after the smaller number.
+ * Given an array arr[] of integers, find out the maximum difference between any two elements such that
+ * larger element appears after the smaller number.
  */
 auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
     assert(elements.size() > 1);
 
-    ArrayType diff_array{};
+    ArrayType diff_array {};
     for (auto iter = elements.cbegin() + 1; iter != elements.cend(); ++iter) {
-        diff_array.push_back(*iter - * (iter - 1));
+        diff_array.push_back(*iter - *(iter - 1));
     }
 
     return LargestSumContiguousSubarray_Kadane(diff_array);
@@ -70,11 +69,10 @@ auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
  * @reference   Best Time to Buy and Sell Stock II
  *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
  *
- * You are given an array prices where prices[i] is the price of a given stock on the
- * ith day. Find the maximum profit you can achieve. You may complete as many
- * transactions as you like (i.e., buy one and sell one share of the stock multiple
- * times). Note: You may not engage in multiple transactions simultaneously (i.e., you
- * must sell the stock before you buy again).
+ * You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+ * On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the
+ * stock at any time. However, you can buy it then immediately sell it on the same day.
+ * Find and return the maximum profit you can achieve.
  *
  * @reference   Stock Buy Sell to Maximize Profit
  *              https://www.geeksforgeeks.org/stock-buy-sell/
@@ -95,10 +93,10 @@ auto StockBuyAndSell_Unlimited_Greedy(const ArrayType &prices) {
  * @reference   Best Time to Buy and Sell Stock III
  *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
  *
- * You are given an array prices where prices[i] is the price of a given stock on the
- * ith day. Find the maximum profit you can achieve. You may complete at most two
- * transactions. Note: You may not engage in multiple transactions simultaneously
- * (i.e., you must sell the stock before you buy again).
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+ * Find the maximum profit you can achieve. You may complete at most two transactions.
+ * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock
+ * before you buy again).
  *
  * @reference   Maximum profit by buying and selling a share at most twice
  *              https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-twice/
@@ -184,10 +182,12 @@ auto StockBuyAndSell_2Transactions_O1(const ArrayType &prices) {
  * @reference   Best Time to Buy and Sell Stock IV
  *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
  *
- * You are given an integer array prices where prices[i] is the price of a given stock
- * on the ith day, and an integer k. Find the maximum profit you can achieve. You may
- * complete at most k transactions. Note: You may not engage in multiple transactions
- * simultaneously (i.e., you must sell the stock before you buy again).
+ * You are given an integer array prices where prices[i] is the price of a given stock on the ith day,
+ * and an integer k.
+ * Find the maximum profit you can achieve. You may complete at most k transactions: i.e. you may buy at
+ * most k times and sell at most k times.
+ * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock
+ * before you buy again).
  *
  * @reference   Maximum profit by buying and selling a share at most k times
  *              https://www.geeksforgeeks.org/maximum-profit-by-buying-and-selling-a-share-at-most-k-times/
@@ -238,16 +238,17 @@ auto StockBuyAndSell_K_Transactions_DP_Optimized(const ArrayType &prices, const 
  * @reference   Best Time to Buy and Sell Stock with Cooldown
  *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
  *
- * You are given an array prices where prices[i] is the price of a given stock on the ith
- * day. Find the maximum profit you can achieve. You may complete as many transactions as
- * you like (i.e., buy one and sell one share of the stock multiple times) with the
- * following restrictions:
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+ * Find the maximum profit you can achieve. You may complete as many transactions as you like (i.e., buy
+ * one and sell one share of the stock multiple times) with the following restrictions:
  *  After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
- * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell
- * the stock before you buy again).
+ * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock
+ * before you buy again).
  */
-auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices, const std::size_t i,
-                                       const bool buy, MemoType &memo) {
+auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices,
+                                       const std::size_t i,
+                                       const bool buy,
+                                       MemoType &memo) {
     if (i >= prices.size()) {
         return 0;
     }
@@ -257,16 +258,14 @@ auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices, const std::size_
         return result;
     }
 
-    const auto result_exclude =
-        StockBuyAndSell_WithCooldown_Memo(prices, i + 1, buy, memo);
+    const auto result_exclude = StockBuyAndSell_WithCooldown_Memo(prices, i + 1, buy, memo);
 
     int result_include = 0;
     if (buy) {
         result_include =
             -prices[i] + StockBuyAndSell_WithCooldown_Memo(prices, i + 1, false, memo);
     } else {
-        result_include =
-            prices[i] + StockBuyAndSell_WithCooldown_Memo(prices, i + 2, true, memo);
+        result_include = prices[i] + StockBuyAndSell_WithCooldown_Memo(prices, i + 2, true, memo);
     }
 
     return result = std::max(result_exclude, result_include);
@@ -299,7 +298,40 @@ auto StockBuyAndSell_WithCooldown_DP(const ArrayType &prices) {
     return dp[0][1];
 }
 
-}//namespace
+
+/**
+ * @reference   Best Time to Buy and Sell Stock with Transaction Fee
+ *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+ *
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day, and an
+ * integer fee representing a transaction fee.
+ * Find the maximum profit you can achieve. You may complete as many transactions as you like, but you
+ * need to pay the transaction fee for each transaction.
+ * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock
+ * before you buy again).
+ */
+auto StockBuyAndSell_WithFee(const ArrayType &prices, const int fee) {
+    if (prices.size() < 2) {
+        return 0;
+    }
+
+    int result = 0;
+    int minimum = prices.front();
+
+    for (size_t i = 1; i < prices.size(); ++i) {
+        const auto p = prices[i];
+        if (p < minimum) {
+            minimum = p;
+        } else if (p > minimum + fee) {
+            result += p - fee - minimum;
+            minimum = p - fee;
+        }
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {};
@@ -391,8 +423,7 @@ SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE6, 2, SAMPLE6, 1);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE7, 0, SAMPLE1, SAMPLE1.size());
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE8, 7, SAMPLE2, SAMPLE2.size());
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE9, 0, SAMPLE3, SAMPLE3.size());
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE10, 4,
-            SAMPLE4, SAMPLE4.size());
+SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE10, 4, SAMPLE4, SAMPLE4.size());
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE11, 0, SAMPLE3, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE12, 4, SAMPLE4, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP, TestSAMPLE13, 13, SAMPLE7, 2);
@@ -412,21 +443,17 @@ SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE3, 0, SAMPLE3
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE4, 4, SAMPLE4, 1);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE5, 8, SAMPLE5, 1);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE6, 2, SAMPLE6, 1);
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE7, 0,
-            SAMPLE1, SAMPLE1.size());
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE8, 7,
-            SAMPLE2, SAMPLE2.size());
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE9, 0,
-            SAMPLE3, SAMPLE3.size());
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE10, 4,
-            SAMPLE4, SAMPLE4.size());
+SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE7, 0, SAMPLE1, SAMPLE1.size());
+SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE8, 7, SAMPLE2, SAMPLE2.size());
+SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE9, 0, SAMPLE3, SAMPLE3.size());
+SIMPLE_TEST(
+    StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE10, 4, SAMPLE4, SAMPLE4.size());
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE11, 0, SAMPLE3, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE12, 4, SAMPLE4, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE13, 13, SAMPLE7, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE14, 6, SAMPLE8, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE15, 87, SAMPLE9, 2);
-SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE16, 100,
-            SAMPLE10, 2);
+SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE16, 100, SAMPLE10, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE17, 72, SAMPLE11, 2);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE18, 12, SAMPLE12, 3);
 SIMPLE_TEST(StockBuyAndSell_K_Transactions_DP_Optimized, TestSAMPLE19, 72, SAMPLE11, 3);
@@ -446,3 +473,13 @@ THE_BENCHMARK(StockBuyAndSell_WithCooldown_DP, SAMPLE1C);
 
 SIMPLE_TEST(StockBuyAndSell_WithCooldown_DP, TestSAMPLE1, 3, SAMPLE1C);
 SIMPLE_TEST(StockBuyAndSell_WithCooldown_DP, TestSAMPLE2, 0, SAMPLE2C);
+
+
+const ArrayType SAMPLE1F = {1, 3, 2, 8, 4, 9};
+const ArrayType SAMPLE2F = {1, 3, 7, 5, 10, 3};
+
+
+THE_BENCHMARK(StockBuyAndSell_WithFee, SAMPLE1F, 2);
+
+SIMPLE_TEST(StockBuyAndSell_WithFee, TestSAMPLE1, 8, SAMPLE1F, 2);
+SIMPLE_TEST(StockBuyAndSell_WithFee, TestSAMPLE2, 6, SAMPLE2F, 3);
