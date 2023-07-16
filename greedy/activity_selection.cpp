@@ -20,9 +20,9 @@ using JobArray = std::vector<JobType>;
  * @reference   Greedy approach vs Dynamic programming
  *              https://www.geeksforgeeks.org/greedy-approach-vs-dynamic-programming/
  *
- * You are given n activities with their start and finish times. Select the maximum number
- * of activities that can be performed by a single person, assuming that a person can only
- * work on a single activity at a time.
+ * You are given n activities with their start and finish times. Select the maximum number of activities
+ * that can be performed by a single person, assuming that a person can only work on a single activity
+ * at a time.
  */
 constexpr auto finish_comparator = [](const auto &lhs, const auto &rhs) {
     return lhs.second < rhs.second;
@@ -77,10 +77,10 @@ auto ActivitySelection_Iterative(const ArrayType &activities) {
  * @reference   Maximum Length Chain of Pairs | Set-2
  *              https://www.geeksforgeeks.org/maximum-length-chain-of-pairs-set-2/
  *
- * Given an array of pairs of numbers of size N. In every pair, the first number is
- * always smaller than the second number. A pair (c, d) can follow another pair (a, b)
- * if b < c. The chain of pairs can be formed in this fashion. The task is to find the
- * length of the longest chain which can be formed from a given set of pairs.
+ * Given an array of pairs of numbers of size N. In every pair, the first number is always smaller than
+ * the second number. A pair (c, d) can follow another pair (a, b) if b < c. The chain of pairs can be
+ * formed in this fashion. The task is to find the length of the longest chain which can be formed from
+ * a given set of pairs.
  */
 inline auto MaxLengthChainPairs(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), finish_comparator);
@@ -93,8 +93,8 @@ inline auto MaxLengthChainPairs(ArrayType activities) {
  * @reference   Meeting Rooms
  *              https://www.programcreek.com/2014/07/leetcode-meeting-rooms-java/
  *
- * Given an array of meeting time intervals consisting of start and end times
- * [[s1,e1],[s2,e2],...](si< ei), determine if a person could attend all meetings.
+ * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...](si<
+ * ei), determine if a person could attend all meetings.
  */
 auto MeetingRooms(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), finish_comparator);
@@ -114,8 +114,8 @@ auto MeetingRooms(ArrayType activities) {
  * @reference   Meeting Rooms II
  *              https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/253-meeting-rooms-ii---medium.html
  *
- * Given an array of meeting time intervals consisting of start and end times
- * [[s1,e1],[s2,e2],...](si< ei), find the minimum number of conference rooms required.
+ * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...](si<
+ * ei), find the minimum number of conference rooms required.
  */
 auto MinMeetingRooms_Heap(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), start_comparator);
@@ -154,14 +154,14 @@ auto MinMeetingRooms_PrefixSum(const ArrayType &activities) {
 /**
  * @reference   Car Pooling
  *              https://leetcode.com/problems/car-pooling/
- *
- * There is a car with capacity empty seats. The vehicle only drives east (i.e., it
- * cannot turn around and drive west). You are given the integer capacity and an array
- * trips where trip[i] = [numPassengersi, fromi, toi] indicates that the ith trip has
- * numPassengersi passengers and the locations to pick them up and drop them off are
- * fromi and toi respectively. The locations are given as the number of kilometers due
- * east from the car's initial location. Return true if it is possible to pick up and
- * drop off all passengers for all the given trips, or false otherwise.
+ * There is a car with capacity empty seats. The vehicle only drives east (i.e., it cannot turn around
+ * and drive west).
+ * You are given the integer capacity and an array trips where trips[i] = [numPassengersi, fromi, toi]
+ * indicates that the ith trip has numPassengersi passengers and the locations to pick them up and drop
+ * them off are fromi and toi respectively. The locations are given as the number of kilometers due east
+ * from the car's initial location.
+ * Return true if it is possible to pick up and drop off all passengers for all the given trips, or
+ * false otherwise.
  * 0 <= fromi < toi <= 1000
  */
 auto CarPooling(const JobArray &trips, const int capacity) {
@@ -187,11 +187,11 @@ auto CarPooling(const JobArray &trips, const int capacity) {
  * @reference   Number of Students Doing Homework at a Given Time
  *              https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/
  *
- * Given two integer arrays startTime and endTime and given an integer queryTime. The
- * ith student started doing their homework at the time startTime[i] and finished it at
- * time endTime[i]. Return the number of students doing their homework at time queryTime.
- * More formally, return the number of students where queryTime lays in the interval
- * [startTime[i], endTime[i]] inclusive.
+ * Given two integer arrays startTime and endTime and given an integer queryTime.
+ * The ith student started doing their homework at the time startTime[i] and finished it at time
+ * endTime[i].
+ * Return the number of students doing their homework at time queryTime.  More formally, return the
+ * number of students where queryTime lays in the interval [startTime[i], endTime[i]] inclusive.
  * 1 <= startTime[i] <= endTime[i] <= 1000
  */
 auto BusyStudents(const ArrayType &times, const int query_time) {
@@ -210,11 +210,11 @@ auto BusyStudents(const ArrayType &times, const int query_time) {
  * @reference   Maximum Profit in Job Scheduling
  *              https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  *
- * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i],
- * obtaining a profit of profit[i]. You're given the startTime, endTime and profit arrays,
- * return the maximum profit you can take such that there are no two jobs in the subset
- * with overlapping time range. If you choose a job that ends at time X you will be able
- * to start another job that starts at time X.
+ * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a
+ * profit of profit[i].
+ * You're given the startTime, endTime and profit arrays, return the maximum profit you can take such
+ * that there are no two jobs in the subset with overlapping time range.
+ * If you choose a job that ends at time X you will be able to start another job that starts at time X.
  *
  * @reference   Maximum Profit in Job Scheduling
  *              https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1235-maximum-profit-in-job-scheduling/
@@ -305,16 +305,15 @@ auto MaxProfitJobScheduling_DP(const std::vector<int> &start_time,
  * @reference   Minimum Number of Arrows to Burst Balloons
  *              https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
  *
- * There are some spherical balloons taped onto a flat wall that represents the XY-plane.
- * The balloons are represented as a 2D integer array points where points[i] = [xstart, xend]
- * denotes a balloon whose horizontal diameter stretches between xstart and xend. You do
- * not know the exact y-coordinates of the balloons.
- * Arrows can be shot up directly vertically (in the positive y-direction) from different
- * points along the x-axis. A balloon with xstart and xend is burst by an arrow shot at x
- * if xstart <= x <= xend. There is no limit to the number of arrows that can be shot. A
- * shot arrow keeps traveling up infinitely, bursting any balloons in its path.
- * Given the array points, return the minimum number of arrows that must be shot to burst
- * all balloons.
+ * There are some spherical balloons taped onto a flat wall that represents the XY-plane.  The balloons
+ * are represented as a 2D integer array points where points[i] = [xstart, xend] denotes a balloon whose
+ * horizontal diameter stretches between xstart and xend. You do not know the exact y-coordinates of the
+ * balloons.
+ * Arrows can be shot up directly vertically (in the positive y-direction) from different points along
+ * the x-axis. A balloon with xstart and xend is burst by an arrow shot at x if xstart <= x <= xend.
+ * There is no limit to the number of arrows that can be shot. A shot arrow keeps traveling up
+ * infinitely, bursting any balloons in its path.
+ * Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
  * -2^31 <= xstart < xend <= 2^31 - 1
  */
 auto MinArrows(ArrayType points) {
@@ -329,6 +328,46 @@ auto MinArrows(ArrayType points) {
 
         ++result;
         arrow = r;
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Maximum Number of Events That Can Be Attended
+ *              https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/
+ *
+ * You are given an array of events where events[i] = [startDayi, endDayi]. Every event i starts at
+ * startDayi and ends at endDayi.
+ * You can attend an event i at any day d where startTimei <= d <= endTimei. You can only attend one
+ * event at any time d.
+ * Return the maximum number of events you can attend.
+ */
+auto MaxEvents(ArrayType events) {
+    std::sort(events.begin(), events.end(), start_comparator);
+
+    int result = 0;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> min_heap;
+    int day = 0;
+    for (std::size_t i = 0; true;) {
+        while (i < events.size() and day >= events[i].first) {
+            min_heap.push(events[i++].second);
+        }
+
+        while (not min_heap.empty() and day > min_heap.top()) {
+            min_heap.pop();
+        }
+
+        if (not min_heap.empty()) {
+            ++result;
+            ++day;
+            min_heap.pop();
+        } else if (i < events.size()) {
+            day = events[i].first;
+        } else {
+            break;
+        }
     }
 
     return result;
@@ -463,3 +502,13 @@ THE_BENCHMARK(MinArrows, SAMPLE1B);
 SIMPLE_TEST(MinArrows, TestSAMPLE1, 2, SAMPLE1B);
 SIMPLE_TEST(MinArrows, TestSAMPLE2, 4, SAMPLE2B);
 SIMPLE_TEST(MinArrows, TestSAMPLE3, 2, SAMPLE3B);
+
+
+const ArrayType SAMPLE1ME = {{1, 2}, {2, 3}, {3, 4}};
+const ArrayType SAMPLE2ME = {{1, 2}, {2, 3}, {3, 4}, {1, 2}};
+
+
+THE_BENCHMARK(MaxEvents, SAMPLE1ME);
+
+SIMPLE_TEST(MaxEvents, TestSAMPLE1, 3, SAMPLE1ME);
+SIMPLE_TEST(MaxEvents, TestSAMPLE2, 4, SAMPLE2ME);
