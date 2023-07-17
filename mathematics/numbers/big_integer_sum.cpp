@@ -12,18 +12,18 @@ using ListType = std::forward_list<int>;
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.5.
  *
- * Given two numbers represented by two lists, write a function that returns the sum
- * list. The sum list is list representation of the addition of two input numbers.
- * Note: Here the least significant digit is the first node of lists and the most
- * significant digit is the last node.
+ * Given two numbers represented by two lists, write a function that returns the sum list. The sum list
+ * is list representation of the addition of two input numbers.
+ * Note: Here the least significant digit is the first node of lists and the most significant digit is
+ * the last node.
  *
  * @reference   Add Two Numbers
  *              https://leetcode.com/problems/add-two-numbers/
  *
- * You are given two non-empty linked lists representing two non-negative integers. The
- * digits are stored in reverse order, and each of their nodes contains a single digit.
- * Add the two numbers and return the sum as a linked list. You may assume the two
- * numbers do not contain any leading zero, except the number 0 itself.
+ * You are given two non-empty linked lists representing two non-negative integers. The digits are
+ * stored in reverse order, and each of their nodes contains a single digit.  Add the two numbers and
+ * return the sum as a linked list.
+ * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  */
 auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
     auto left_current = lhs.cbegin();
@@ -32,10 +32,8 @@ auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
     auto result_before_end = result.cbefore_begin();
     ListType::value_type carry = 0;
 
-    for (; left_current != lhs.cend() or right_current != rhs.cend();
-         ++result_before_end) {
-        const auto digit_sum = carry +
-                               (left_current != lhs.cend() ? *left_current++ : 0) +
+    for (; left_current != lhs.cend() or right_current != rhs.cend(); ++result_before_end) {
+        const auto digit_sum = carry + (left_current != lhs.cend() ? *left_current++ : 0) +
                                (right_current != rhs.cend() ? *right_current++ : 0);
         carry = digit_sum / 10;
 
@@ -54,20 +52,19 @@ auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
  *
  * @reference   https://www.geeksforgeeks.org/sum-of-two-linked-lists/
  *
- * Given two numbers represented by two linked lists, write a function that returns the
- * sum list. The sum list is linked list representation of the addition of two input
- * numbers. It is not allowed to modify the lists. Also, not allowed to use explicit
- * extra space (Hint: Use Recursion).
- * Note: Here the most significant digit is the first node and the least significant
- * digit is the last node.
+ * Given two numbers represented by two linked lists, write a function that returns the sum list. The
+ * sum list is linked list representation of the addition of two input numbers. It is not allowed to
+ * modify the lists. Also, not allowed to use explicit extra space (Hint: Use Recursion).
+ * Note: Here the most significant digit is the first node and the least significant digit is the last
+ * node.
  *
  * @reference   Add Two Numbers II
  *              https://leetcode.com/problems/add-two-numbers-ii/
  *
- * You are given two non-empty linked lists representing two non-negative integers. The
- * most significant digit comes first and each of their nodes contains a single digit.
- * Add the two numbers and return the sum as a linked list. You may assume the two
- * numbers do not contain any leading zero, except the number 0 itself.
+ * You are given two non-empty linked lists representing two non-negative integers. The most significant
+ * digit comes first and each of their nodes contains a single digit.  Add the two numbers and return
+ * the sum as a linked list.
+ * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
  * Follow up: Could you solve it without reversing the input lists?
  *
  * @reference   Add 1 to a number represented as linked list
@@ -82,10 +79,10 @@ auto sum_SameSize(const ListType &longer_list,
            std::distance(shorter_current, shorter_list.cend()));
 
     if (shorter_current == shorter_list.cend())
-        return ListType{};
+        return ListType {};
 
-    auto result = sum_SameSize(longer_list, std::next(longer_current),
-                               shorter_list, std::next(shorter_current), carry);
+    auto result = sum_SameSize(
+        longer_list, std::next(longer_current), shorter_list, std::next(shorter_current), carry);
 
     const auto digit_sum = *longer_current + *shorter_current + carry;
     carry = digit_sum / 10;
@@ -96,7 +93,8 @@ auto sum_SameSize(const ListType &longer_list,
 
 inline void addCarryToRemaining(const ListType::const_iterator cbegin,
                                 const ListType::const_iterator cend,
-                                int &carry, ListType &result) {
+                                int &carry,
+                                ListType &result) {
     if (cbegin != cend) {
         addCarryToRemaining(std::next(cbegin), cend, carry, result);
         const auto digit_sum = *cbegin + carry;
@@ -122,8 +120,8 @@ auto Sum_MostFirst(const ListType &lhs, const ListType &rhs) {
     }
     const auto current = std::next(longer_list->cbegin(), diff);
     int carry = 0;
-    auto result = sum_SameSize(*longer_list, current,
-                               *shorter_list, shorter_list->cbegin(), carry);
+    auto result =
+        sum_SameSize(*longer_list, current, *shorter_list, shorter_list->cbegin(), carry);
     addCarryToRemaining(longer_list->cbegin(), current, carry, result);
 
     if (carry) {
@@ -199,10 +197,10 @@ inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
  * @reference   Add Strings
  *              https://leetcode.com/problems/add-strings/
  *
- * Given two non-negative integers, num1 and num2 represented as string, return the sum
- * of num1 and num2 as a string. You must solve the problem without using any built-in
- * library for handling large integers (such as BigInteger). You must also not convert
- * the inputs to integers directly.
+ * Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2
+ * as a string.
+ * You must solve the problem without using any built-in library for handling large integers (such as
+ * BigInteger). You must also not convert the inputs to integers directly.
  */
 auto AddStrings(const std::string_view one, const std::string_view another) {
     std::string results;
@@ -231,10 +229,10 @@ auto AddStrings(const std::string_view one, const std::string_view another) {
  * @reference   Add to Array-Form of Integer
  *              https://leetcode.com/problems/add-to-array-form-of-integer/
  *
- * The array-form of an integer num is an array representing its digits in left to right
- * order. For example, for num = 1321, the array form is [1,3,2,1]. Given num, the
- * array-form of an integer, and an integer k, return the array-form of the integer
- * num + k.
+ * The array-form of an integer num is an array representing its digits in left to right order.
+ *  For example, for num = 1321, the array form is [1,3,2,1].
+ * Given num, the array-form of an integer, and an integer k, return the array-form of the integer num +
+ * k.
  * 1 <= k <= 10^4
  */
 auto Add(const ArrayType &number, int k) {
@@ -256,11 +254,10 @@ auto Add(const ArrayType &number, int k) {
  * @reference   Plus One
  *              https://leetcode.com/problems/plus-one/
  *
- * Given a non-empty array of decimal digits representing a non-negative integer,
- * increment one to the integer. The digits are stored such that the most significant
- * digit is at the head of the list, and each element in the array contains a single
- * digit. You may assume the integer does not contain any leading zero, except the
- * number 0 itself.
+ * You are given a large integer represented as an integer array digits, where each digits[i] is the ith
+ * digit of the integer. The digits are ordered from most significant to least significant in
+ * left-to-right order. The large integer does not contain any leading 0's.
+ * Increment the large integer by one and return the resulting array of digits.
  *
  * @reference   Add one to a number represented as linked list | Set 2
  *              https://www.geeksforgeeks.org/add-one-to-a-number-represented-as-linked-list-set-2/
@@ -273,12 +270,13 @@ auto Add(const ArrayType &number, int k) {
  * @reference   Convert Binary Number in a Linked List to Integer
  *              https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
  *
- * Given head which is a reference node to a singly-linked list. The value of each node
- * in the linked list is either 0 or 1. The linked list holds the binary representation
- * of a number. Return the decimal value of the number in the linked list.
+ * Given head which is a reference node to a singly-linked list. The value of each node in the linked
+ * list is either 0 or 1. The linked list holds the binary representation of a number.
+ * Return the decimal value of the number in the linked list.
+ * The most significant bit is at the head of the linked list.
  */
 
-}//namespace
+} //namespace
 
 
 const ListType SAMPLE_L1 = {5, 6, 3};
