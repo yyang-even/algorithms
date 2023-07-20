@@ -5,6 +5,9 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+using OutputType = std::multiset<std::pair<int, int>>;
+
 /** Kth Smallest Element in a Sorted Matrix
  *
  * @reference   https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
@@ -125,6 +128,49 @@ constexpr auto KthNumberInMultiplicationTable(const int m, const int n, const in
     return result;
 }
 
+
+/**
+ * @reference   Find K Pairs with Smallest Sums
+ *              https://leetcode.com/problems/find-k-pairs-with-smallest-sums/
+ *
+ * You are given two integer arrays nums1 and nums2 sorted in ascending order and an integer k.
+ * Define a pair (u, v) which consists of one element from the first array and one element from the
+ * second array.
+ * Return the k pairs (u1, v1), (u2, v2), ..., (uk, vk) with the smallest sums.
+ */
+auto KSmallestPairs(const ArrayType &nums1, const ArrayType &nums2, int k) {
+    const auto compare = [&nums1, &nums2](const auto one, const auto another) {
+        return nums1[one.first] + nums2[one.second] >
+               nums1[another.first] + nums2[another.second];
+    };
+
+    using RowColumnPair = std::pair<std::size_t, std::size_t>;
+    std::priority_queue<RowColumnPair, std::vector<RowColumnPair>, decltype(compare)> min_heap(
+        compare);
+    min_heap.emplace(0, 0);
+
+    std::set<RowColumnPair> visited;
+    visited.emplace(0, 0);
+
+    OutputType result;
+    while (k-- and not min_heap.empty()) {
+        const auto [i, j] = min_heap.top();
+        min_heap.pop();
+
+        result.emplace(nums1[i], nums2[j]);
+
+        if (i + 1 < nums1.size() and visited.emplace(i + 1, j).second) {
+            min_heap.emplace(i + 1, j);
+        }
+
+        if (j + 1 < nums2.size() and visited.emplace(i, j + 1).second) {
+            min_heap.emplace(i, j + 1);
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -168,3 +214,23 @@ THE_BENCHMARK(KthNumberInMultiplicationTable, 3, 3, 5);
 
 SIMPLE_TEST(KthNumberInMultiplicationTable, TestSAMPLE1, 3, 3, 3, 5);
 SIMPLE_TEST(KthNumberInMultiplicationTable, TestSAMPLE2, 6, 2, 3, 6);
+
+
+const ArrayType SAMPLE1PA = {1, 7, 11};
+const ArrayType SAMPLE1PB = {2, 4, 6};
+const OutputType EXPECTED1P = {{1, 2}, {1, 4}, {1, 6}};
+
+const ArrayType SAMPLE2PA = {1, 1, 2};
+const ArrayType SAMPLE2PB = {1, 2, 3};
+const OutputType EXPECTED2P = {{1, 1}, {1, 1}};
+
+const ArrayType SAMPLE3PA = {1, 2};
+const ArrayType SAMPLE3PB = {3};
+const OutputType EXPECTED3P = {{1, 3}, {2, 3}};
+
+
+THE_BENCHMARK(KSmallestPairs, SAMPLE1PA, SAMPLE1PB, 3);
+
+SIMPLE_TEST(KSmallestPairs, TestSAMPLE1, EXPECTED1P, SAMPLE1PA, SAMPLE1PB, 3);
+SIMPLE_TEST(KSmallestPairs, TestSAMPLE2, EXPECTED2P, SAMPLE2PA, SAMPLE2PB, 2);
+SIMPLE_TEST(KSmallestPairs, TestSAMPLE3, EXPECTED3P, SAMPLE3PA, SAMPLE3PB, 3);

@@ -39,25 +39,22 @@ inline auto TopologicalSort_Kahn(const std::size_t number_vertices,
  * @reference   Course Schedule
  *              https://leetcode.com/problems/course-schedule/
  *
- * There are a total of numCourses courses you have to take, labeled from 0 to
- * numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi]
- * indicates that you must take course bi first if you want to take course ai.
- *  For example, the pair [0, 1], indicates that to take course 0 you have to first take
- *  course 1.
+ * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are
+ * given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi
+ * first if you want to take course ai.
+ *  For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
  * Return true if you can finish all courses. Otherwise, return false.
  * All the pairs prerequisites[i] are unique.
  *
  * @reference   Course Schedule II
  *              https://leetcode.com/problems/course-schedule-ii/
  *
- * There are a total of numCourses courses you have to take, labeled from 0 to
- * numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi]
- * indicates that you must take course bi first if you want to take course ai.
- *  For example, the pair [0, 1], indicates that to take course 0 you have to first take
- *  course 1.
- * Return the ordering of courses you should take to finish all courses. If there are many
- * valid answers, return any of them. If it is impossible to finish all courses, return an
- * empty array.
+ * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are
+ * given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi
+ * first if you want to take course ai.
+ *  For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+ * Return the ordering of courses you should take to finish all courses. If there are many valid
+ * answers, return any of them. If it is impossible to finish all courses, return an empty array.
  * All the pairs [ai, bi] are distinct.
  */
 
@@ -119,16 +116,16 @@ inline auto AllTopologicalSort(const std::size_t number_vertices,
  * @reference   Minimum Height Trees
  *              https://leetcode.com/problems/minimum-height-trees/
  *
- * A tree is an undirected graph in which any two vertices are connected by exactly one
- * path. In other words, any connected graph without simple cycles is a tree. Given a
- * tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where
- * edges[i] = [ai, bi] indicates that there is an undirected edge between the two nodes
- * ai and bi in the tree, you can choose any node of the tree as the root. When you
- * select a node x as the root, the result tree has height h. Among all possible rooted
- * trees, those with minimum height (i.e. min(h))  are called minimum height trees (MHTs).
- * Return a list of all MHTs' root labels. You can return the answer in any order. The
- * height of a rooted tree is the number of edges on the longest downward path between
- * the root and a leaf.
+ * A tree is an undirected graph in which any two vertices are connected by exactly one path. In other
+ * words, any connected graph without simple cycles is a tree.
+ * Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where edges[i] = [ai,
+ * bi] indicates that there is an undirected edge between the two nodes ai and bi in the tree, you can
+ * choose any node of the tree as the root. When you select a node x as the root, the result tree has
+ * height h. Among all possible rooted trees, those with minimum height (i.e. min(h))  are called
+ * minimum height trees (MHTs).
+ * Return a list of all MHTs' root labels. You can return the answer in any order.
+ * The height of a rooted tree is the number of edges on the longest downward path between the root and
+ * a leaf.
  * The given input is guaranteed to be a tree and there will be no repeated edges.
  */
 auto MinimumHeightTrees(const AdjacencyListGraph::RepresentationType &graph) {
@@ -170,9 +167,9 @@ inline auto MinimumHeightTrees(const std::size_t number_vertices,
  * @reference   Course Schedule III
  *              https://leetcode.com/problems/course-schedule-iii/
  *
- * There are n different online courses numbered from 1 to n. You are given an array
- * courses where courses[i] = [duration_i, lastDay_i] indicate that the ith course should
- * be taken continuously for duration_i days and must be finished before or on lastDay_i.
+ * There are n different online courses numbered from 1 to n. You are given an array courses where
+ * courses[i] = [duration_i, lastDay_i] indicate that the ith course should be taken continuously for
+ * duration_i days and must be finished before or on lastDay_i.
  * You will start on the 1st day and you cannot take two or more courses simultaneously.
  * Return the maximum number of courses that you can take.
  */
@@ -226,6 +223,62 @@ auto CourseSchedule_Heap(CourseArrayType courses) {
     }
 
     return max_heap.size();
+}
+
+
+/**
+ * @reference   Find Eventual Safe States
+ *              https://leetcode.com/problems/find-eventual-safe-states/
+ *
+ * There is a directed graph of n nodes with each node labeled from 0 to n - 1. The graph is represented
+ * by a 0-indexed 2D integer array graph where graph[i] is an integer array of nodes adjacent to node i,
+ * meaning there is an edge from node i to each node in graph[i].
+ * A node is a terminal node if there are no outgoing edges. A node is a safe node if every possible
+ * path starting from that node leads to a terminal node (or another safe node).
+ * Return an array containing all the safe nodes of the graph. The answer should be sorted in ascending
+ * order.
+ * graph[i] is sorted in a strictly increasing order.
+ */
+auto FindSafeNodes(const AdjacencyListGraph::RepresentationType &graph) {
+    const auto N = graph.size();
+
+    std::vector<int> out_degree(N);
+    AdjacencyListGraph::RepresentationType reversed_graph(N);
+    std::queue<int> q;
+
+    for (std::size_t from = 0; from < N; ++from) {
+        for (const auto to : graph[from]) {
+            reversed_graph[to].push_back(from);
+        }
+
+        out_degree[from] = graph[from].size();
+
+        if (out_degree[from] == 0) {
+            q.push(from);
+        }
+    }
+
+    std::vector<bool> safe_nodes(N);
+    while (not q.empty()) {
+        const auto to = q.front();
+        q.pop();
+        safe_nodes[to] = true;
+
+        for (const auto from : reversed_graph[to]) {
+            if (out_degree[from]-- == 1) {
+                q.push(from);
+            }
+        }
+    }
+
+    ArrayType result;
+    for (std::size_t i = 0; i < N; ++i) {
+        if (safe_nodes[i]) {
+            result.push_back(i);
+        }
+    }
+
+    return result;
 }
 
 } //namespace
@@ -307,3 +360,17 @@ THE_BENCHMARK(MinimumHeightTrees, 6, SAMPLE2T);
 SIMPLE_TEST(MinimumHeightTrees, TestSAMPLE0, EXPECTED0T, 1, SAMPLE0T);
 SIMPLE_TEST(MinimumHeightTrees, TestSAMPLE1, EXPECTED1T, 4, SAMPLE1T);
 SIMPLE_TEST(MinimumHeightTrees, TestSAMPLE2, EXPECTED2T, 6, SAMPLE2T);
+
+
+const AdjacencyListGraph::RepresentationType SAMPLE1G = {{1, 2}, {2, 3}, {5}, {0}, {5}, {}, {}};
+const ArrayType EXPECTED1G = {2, 4, 5, 6};
+
+const AdjacencyListGraph::RepresentationType SAMPLE2G = {
+    {1, 2, 3, 4}, {1, 2}, {3, 4}, {0, 4}, {}};
+const ArrayType EXPECTED2G = {4};
+
+
+THE_BENCHMARK(FindSafeNodes, SAMPLE1G);
+
+SIMPLE_TEST(FindSafeNodes, TestSAMPLE1, EXPECTED1G, SAMPLE1G);
+SIMPLE_TEST(FindSafeNodes, TestSAMPLE2, EXPECTED2G, SAMPLE2G);
