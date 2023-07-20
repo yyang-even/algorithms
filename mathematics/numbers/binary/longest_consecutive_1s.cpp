@@ -36,11 +36,11 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
  *
  * @reference   https://leetcode.com/problems/binary-gap/
  *
- * Given a positive integer n, find and return the longest distance between any two adjacent 1's
- * in the binary representation of n. If there are no two adjacent 1's, return 0.
- * Two 1's are adjacent if there are only 0's separating them (possibly no 0's). The distance
- * between two 1's is the absolute difference between their bit positions. For example, the two
- * 1's in "1001" have a distance of 3.
+ * Given a positive integer n, find and return the longest distance between any two adjacent 1's in the
+ * binary representation of n. If there are no two adjacent 1's, return 0.
+ * Two 1's are adjacent if there are only 0's separating them (possibly no 0's). The distance between
+ * two 1's is the absolute difference between their bit positions. For example, the two 1's in "1001"
+ * have a distance of 3.
  */
 constexpr auto BinaryGap(const unsigned n) {
     int prev = -1;
@@ -88,8 +88,8 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
  * @reference   Three Consecutive Odds
  *              https://leetcode.com/problems/three-consecutive-odds/
  *
- * Given an integer array arr, return true if there are three consecutive odd numbers in the
- * array. Otherwise, return false.
+ * Given an integer array arr, return true if there are three consecutive odd numbers in the array.
+ * Otherwise, return false.
  */
 auto ThreeConsecutiveOdds(const ArrayType &nums) {
     int odds = 0;
@@ -109,13 +109,12 @@ auto ThreeConsecutiveOdds(const ArrayType &nums) {
  * @reference   Detect Pattern of Length M Repeated K or More Times
  *              https://leetcode.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times/
  *
- * Given an array of positive integers arr, find a pattern of length m that is repeated k or more
- * times.
+ * Given an array of positive integers arr, find a pattern of length m that is repeated k or more times.
  * A pattern is a subarray (consecutive sub-sequence) that consists of one or more values, repeated
- * multiple times consecutively without overlapping. A pattern is defined by its length and the
- * number of repetitions.
- * Return true if there exists a pattern of length m that is repeated k or more times, otherwise
- * return false.
+ * multiple times consecutively without overlapping. A pattern is defined by its length and the number
+ * of repetitions.
+ * Return true if there exists a pattern of length m that is repeated k or more times, otherwise return
+ * false.
  * 2 <= k <= 100
  */
 auto ContainPattern(const ArrayType &nums, const int m, const int k) {
@@ -138,8 +137,15 @@ auto ContainPattern(const ArrayType &nums, const int m, const int k) {
  * @reference   Max Consecutive Ones II
  *              https://www.lintcode.com/problem/883/
  *
- * Given a binary array, find the maximum number of consecutive 1s in this array if you can flip
- * at most one 0.
+ * Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most
+ * one 0.
+ *
+ * @reference   Longest Subarray of 1's After Deleting One Element
+ *              https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
+ *
+ * Given a binary array nums, you should delete one element from it.
+ * Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return
+ * 0 if there is no such subarray.
  */
 auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
     unsigned current_count = 0;
@@ -168,8 +174,8 @@ auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
  * @reference   Max Consecutive Ones III
  *              https://leetcode.com/problems/max-consecutive-ones-iii/
  *
- * Given a binary array nums and an integer k, return the maximum number of consecutive 1's in
- * the array if you can flip at most k 0's.
+ * Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array
+ * if you can flip at most k 0's.
  */
 auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int K) {
     ArrayType::size_type left = 0;
@@ -198,12 +204,64 @@ auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int
 
 
 /**
+ * @reference   Maximize the Confusion of an Exam
+ *              https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
+ *
+ * A teacher is writing a test with n true/false questions, with 'T' denoting true and 'F' denoting
+ * false. He wants to confuse the students by maximizing the number of consecutive questions with the
+ * same answer (multiple trues or multiple falses in a row).
+ * You are given a string answerKey, where answerKey[i] is the original answer to the ith question. In
+ * addition, you are given an integer k, the maximum number of times you may perform the following
+ * operation:
+ *  Change the answer key for any question to 'T' or 'F' (i.e., set answerKey[i] to 'T' or 'F').
+ * Return the maximum number of consecutive 'T's or 'F's in the answer key after performing the
+ * operation at most k times.
+ */
+auto MaxConsecutiveAnswers_KFlip(const std::string_view answer_key, const int k) {
+    std::size_t result = k;
+    int left = 0;
+    std::unordered_map<char, int> count;
+
+    for (std::size_t right = 0; right < answer_key.size(); ++right) {
+        ++(count[answer_key[right]]);
+
+        while (std::min(count['T'], count['F']) > k) {
+            --(count[answer_key[left++]]);
+        }
+
+        result = std::max(result, right - left + 1);
+    }
+
+    return result;
+}
+
+
+auto MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow(const std::string_view answer_key,
+                                                            const int k) {
+    int result = 0;
+    std::unordered_map<char, int> count;
+
+    for (std::size_t right = 0; right < answer_key.length(); ++right) {
+        ++(count[answer_key[right]]);
+
+        if (std::min(count['T'], count['F']) <= k) {
+            ++result;
+        } else {
+            --(count[answer_key[right - result]]);
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Max Area of Island
  *              https://leetcode.com/problems/max-area-of-island/
  *
- * You are given an m x n binary matrix grid. An island is a group of 1's (representing land)
- * connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid
- * are surrounded by water.
+ * You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected
+ * 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by
+ * water.
  * The area of an island is the number of cells with a value 1 in the island.
  * Return the maximum area of an island in grid. If there is no island, return 0.
  */
@@ -356,12 +414,12 @@ inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
  * @reference   Longer Contiguous Segments of Ones than Zeros
  *              https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
  *
- * Given a binary string s, return true if the longest contiguous segment of 1's is strictly
- * longer than the longest contiguous segment of 0's in s, or return false otherwise.
- * For example, in s = "110100010" the longest continuous segment of 1s has length 2, and the
- * longest continuous segment of 0s has length 3.
- * Note that if there are no 0's, then the longest continuous segment of 0's is considered to
- * have a length 0. The same applies if there is no 1's.
+ * Given a binary string s, return true if the longest contiguous segment of 1's is strictly longer than
+ * the longest contiguous segment of 0's in s, or return false otherwise.
+ * For example, in s = "110100010" the longest continuous segment of 1s has length 2, and the longest
+ * continuous segment of 0s has length 3.
+ * Note that if there are no 0's, then the longest continuous segment of 0's is considered to have a
+ * length 0. The same applies if there is no 1's.
  */
 constexpr auto Longer1sThan0s(const std::string_view s) {
     auto curr = s.front();
@@ -504,3 +562,18 @@ THE_BENCHMARK(Longer1sThan0s, "1101");
 SIMPLE_TEST(Longer1sThan0s, TestSAMPLE1, true, "1101");
 SIMPLE_TEST(Longer1sThan0s, TestSAMPLE2, false, "111000");
 SIMPLE_TEST(Longer1sThan0s, TestSAMPLE3, false, "110100010");
+
+
+THE_BENCHMARK(MaxConsecutiveAnswers_KFlip, "TTFF", 2);
+
+SIMPLE_TEST(MaxConsecutiveAnswers_KFlip, TestSAMPLE1, 4, "TTFF", 2);
+SIMPLE_TEST(MaxConsecutiveAnswers_KFlip, TestSAMPLE2, 3, "TFFT", 1);
+SIMPLE_TEST(MaxConsecutiveAnswers_KFlip, TestSAMPLE3, 5, "TTFTTFTT", 1);
+
+
+THE_BENCHMARK(MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, "TTFF", 2);
+
+SIMPLE_TEST(MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE1, 4, "TTFF", 2);
+SIMPLE_TEST(MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE2, 3, "TFFT", 1);
+SIMPLE_TEST(
+    MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE3, 5, "TTFTTFTT", 1);

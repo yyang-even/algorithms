@@ -12,8 +12,8 @@ using StrArray = std::vector<std::string_view>;
  *
  * @reference   https://www.geeksforgeeks.org/return-maximum-occurring-character-in-the-input-string/
  *
- * Write an efficient function to return maximum occurring character in the input string
- * e.g., if input string is "test" then function should return 't'.
+ * Write an efficient function to return maximum occurring character in the input string e.g., if input
+ * string is "test" then function should return 't'.
  *
  * @reference   Most frequent element in an array
  *              https://www.geeksforgeeks.org/frequent-element-array/
@@ -43,10 +43,9 @@ auto MaximumOccurringChar_Position(const std::string_view input) {
  *
  * @reference   https://www.geeksforgeeks.org/maximum-occurring-character-in-an-input-string-set-2/
  *
- * Given a string containing lowercase characters. The task is to print the maximum
- * occurring character in the input string. If 2 or more characters appear the same
- * number of times, print the lexicographically (alphabetically) lowest (first)
- * character.
+ * Given a string containing lowercase characters. The task is to print the maximum occurring character
+ * in the input string. If 2 or more characters appear the same number of times, print the
+ * lexicographically (alphabetically) lowest (first) character.
  */
 auto MaximumOccurringChar_Alphabet(const std::string_view input) {
     std::unordered_map<char, std::size_t> counters;
@@ -70,9 +69,9 @@ auto MaximumOccurringChar_Alphabet(const std::string_view input) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-most-frequent-digit-without-using-arraystring/
  *
- * Given an integer, find the most occurring digit in it. If two or more digits occur
- * same number of times, then return the highest of them. Input integer is given as an
- * int variable, not as a string or array. Use of hash or array or string is not allowed.
+ * Given an integer, find the most occurring digit in it. If two or more digits occur same number of
+ * times, then return the highest of them. Input integer is given as an int variable, not as a string or
+ * array. Use of hash or array or string is not allowed.
  */
 
 
@@ -80,17 +79,15 @@ auto MaximumOccurringChar_Alphabet(const std::string_view input) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-maximum-repeating-number-in-ok-time/
  *
- * Given an array of size n, the array contains numbers in range from 0 to k-1 where k is
- * a positive integer and k <= n. Find the maximum repeating number in this array.
- * For example, let k be 10 the given array be arr[] =
- * {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3}, the maximum repeating number would be 2.
- * Expected time complexity is O(n) and extra space allowed is O(1). Modifications to
- * array are allowed.
+ * Given an array of size n, the array contains numbers in range from 0 to k-1 where k is a positive
+ * integer and k <= n. Find the maximum repeating number in this array.
+ * For example, let k be 10 the given array be arr[] = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3}, the
+ * maximum repeating number would be 2.  Expected time complexity is O(n) and extra space allowed is
+ * O(1). Modifications to array are allowed.
  */
 using ArrayType = std::vector<unsigned>;
 
-inline auto
-MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_type K) {
+inline auto MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_type K) {
     assert(K <= numbers.size());
 
     TransformToInplaceCounterArray(numbers, K);
@@ -103,15 +100,14 @@ MaximumRepeatingNumber_Inplace(ArrayType numbers, const ArrayType::value_type K)
  * @reference   Most Common Word
  *              https://leetcode.com/problems/most-common-word/
  *
- * Given a string paragraph and a string array of the banned words banned, return the
- * most frequent word that is not banned. It is guaranteed there is at least one word
- * that is not banned, and that the answer is unique. The words in paragraph are
- * case-insensitive and the answer should be returned in lowercase.
- * paragraph consists of English letters, space ' ', or one of the symbols: "!?',;.".
- * banned[i] consists of only lowercase English letters.
+ * Given a string paragraph and a string array of the banned words banned, return the most frequent word
+ * that is not banned. It is guaranteed there is at least one word that is not banned, and that the
+ * answer is unique.
+ * The words in paragraph are case-insensitive and the answer should be returned in lowercase.
+ * paragraph consists of English letters, space ' ', or one of the symbols: "!?',;.".  banned[i]
+ * consists of only lowercase English letters.
  */
-auto
-MostFrequentWordNotBanned(const std::string_view paragraph, const StrArray &banned) {
+auto MostFrequentWordNotBanned(const std::string_view paragraph, const StrArray &banned) {
     const auto banned_set = ToUnorderedSet(banned);
 
     std::unordered_map<std::string, int> counts;
@@ -150,20 +146,30 @@ MostFrequentWordNotBanned(const std::string_view paragraph, const StrArray &bann
  * @reference   Most Frequent Number Following Key In an Array
  *              https://leetcode.com/problems/most-frequent-number-following-key-in-an-array/
  *
- * You are given a 0-indexed integer array nums. You are also given an integer key, which
- * is present in nums.
- * For every unique integer target in nums, count the number of times target immediately
- * follows an occurrence of key in nums. In other words, count the number of indices i
- * such that:
+ * You are given a 0-indexed integer array nums. You are also given an integer key, which is present in
+ * nums.
+ * For every unique integer target in nums, count the number of times target immediately follows an
+ * occurrence of key in nums. In other words, count the number of indices i such that:
  *  0 <= i <= nums.length - 2,
  *  nums[i] == key and,
  *  nums[i + 1] == target.
- * Return the target with the maximum count. The test cases will be generated such that
- * the target with maximum count is unique.
+ * Return the target with the maximum count. The test cases will be generated such that the target with
+ * maximum count is unique.
  * 1 <= nums[i] <= 1000
  */
 
-}//namespace
+
+/**
+ * @reference   Greatest English Letter in Upper and Lower Case
+ *              https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/
+ *
+ * Given a string of English letters s, return the greatest English letter which occurs as both a
+ * lowercase and uppercase letter in s. The returned letter should be in uppercase. If no such letter
+ * exists, return an empty string.
+ * An English letter b is greater than another letter a if b appears after a in the English alphabet.
+ */
+
+} //namespace
 
 
 THE_BENCHMARK(MaximumOccurringChar_Position, "sample string");
@@ -193,9 +199,13 @@ const StrArray SAMPLE2B = {};
 
 
 THE_BENCHMARK(MostFrequentWordNotBanned,
-              "Bob hit a ball, the hit BALL flew far after it was hit.", SAMPLE1B);
+              "Bob hit a ball, the hit BALL flew far after it was hit.",
+              SAMPLE1B);
 
-SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE1,
-            "ball", "Bob hit a ball, the hit BALL flew far after it was hit.", SAMPLE1B);
+SIMPLE_TEST(MostFrequentWordNotBanned,
+            TestSAMPLE1,
+            "ball",
+            "Bob hit a ball, the hit BALL flew far after it was hit.",
+            SAMPLE1B);
 SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE2, "a", "a.", SAMPLE2B);
 SIMPLE_TEST(MostFrequentWordNotBanned, TestSAMPLE3, "a", "a", SAMPLE2B);

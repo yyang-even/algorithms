@@ -12,9 +12,9 @@ using MemoType = std::unordered_map<std::pair<unsigned, unsigned>, bool, PairHas
  *
  * @reference   https://www.geeksforgeeks.org/partition-set-k-subsets-equal-sum/
  *
- * Given an integer array of N elements, the task is to divide this array into K
- * non-empty subsets such that the sum of elements in every subset is same. All
- * elements of this array should be part of exactly one partition.
+ * Given an integer array of N elements, the task is to divide this array into K non-empty subsets such
+ * that the sum of elements in every subset is same. All elements of this array should be part of
+ * exactly one partition.
  *
  * @reference   Partition to K Equal Sum Subsets
  *              https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
@@ -71,10 +71,9 @@ auto SubsetsOfEqualSum(ArrayType elements, const unsigned K) {
  *
  * @reference   https://leetcode.com/problems/matchsticks-to-square/
  *
- * You are given an integer array matchsticks where matchsticks[i] is the length of the
- * ith matchstick. You want to use all the matchsticks to make one square. You should not
- * break any stick, but you can link them up, and each matchstick must be used exactly
- * one time.
+ * You are given an integer array matchsticks where matchsticks[i] is the length of the ith matchstick.
+ * You want to use all the matchsticks to make one square. You should not break any stick, but you can
+ * link them up, and each matchstick must be used exactly one time.
  * Return true if you can make this square and false otherwise.
  * 1 <= matchsticks.length <= 15
  * 1 <= matchsticks[i] <= 10^8
@@ -110,11 +109,12 @@ auto MatchsticksToSquare_DP(const ArrayType &elements,
     }
 
     bool result = false;
-    const auto remaining_edge_length = edge_length * (total_length / edge_length + 1) -
-                                       total_length;
+    const auto remaining_edge_length =
+        edge_length * (total_length / edge_length + 1) - total_length;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
         if (elements[i] <= remaining_edge_length and (mask & (1u << i))) {
-            if (MatchsticksToSquare_DP(elements, edge_length, mask ^ (1u << i), sides_done, memo)) {
+            if (MatchsticksToSquare_DP(
+                    elements, edge_length, mask ^ (1u << i), sides_done, memo)) {
                 result = true;
                 break;
             }
@@ -140,8 +140,7 @@ auto MatchsticksToSquare_DP(ArrayType elements) {
 
     std::sort(elements.begin(), elements.end(), std::greater<ArrayType::value_type> {});
     MemoType memo;
-    return MatchsticksToSquare_DP(elements, edge_length,
-                                  (1u << elements.size()) - 1, 0, memo);
+    return MatchsticksToSquare_DP(elements, edge_length, (1u << elements.size()) - 1, 0, memo);
 }
 
 
@@ -149,10 +148,11 @@ auto MatchsticksToSquare_DP(ArrayType elements) {
  * @reference   Partition Array Into Three Parts With Equal Sum
  *              https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/
  *
- * Given an array of integers arr, return true if we can partition the array into three
- * non-empty parts with equal sums. Formally, we can partition the array if we can find
- * indexes i + 1 < j with (arr[0] + arr[1] + ... + arr[i] == arr[i + 1] + arr[i + 2] +
- * ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length - 1])
+ * Given an array of integers arr, return true if we can partition the array into three non-empty parts
+ * with equal sums.
+ * Formally, we can partition the array if we can find indexes i + 1 < j with (arr[0] + arr[1] + ... +
+ * arr[i] == arr[i + 1] + arr[i + 2] + ... + arr[j - 1] == arr[j] + arr[j + 1] + ... + arr[arr.length -
+ * 1])
  */
 auto SubarraysOfEqualSum(const ArrayType &nums) {
     const auto total = std::accumulate(nums.cbegin(), nums.cend(), 0);
@@ -181,8 +181,8 @@ auto SubarraysOfEqualSum(const ArrayType &nums) {
  * @reference   Partition Equal Subset Sum
  *              https://leetcode.com/problems/partition-equal-subset-sum/
  *
- * Given a non-empty array nums containing only positive integers, find if the array can
- * be partitioned into two subsets such that the sum of elements in both subsets is equal.
+ * Given a non-empty array nums containing only positive integers, find if the array can be partitioned
+ * into two subsets such that the sum of elements in both subsets is equal.
  */
 auto EqualSumSubset(const ArrayType &nums) {
     if (nums.size() < 2) {
@@ -207,7 +207,54 @@ auto EqualSumSubset(const ArrayType &nums) {
     return dp[average];
 }
 
-}//namespace
+
+/**
+ * @reference   Fair Distribution of Cookies
+ *              https://leetcode.com/problems/fair-distribution-of-cookies/
+ *
+ * You are given an integer array cookies, where cookies[i] denotes the number of cookies in the ith
+ * bag. You are also given an integer k that denotes the number of children to distribute all the bags
+ * of cookies to. All the cookies in the same bag must go to the same child and cannot be split up.
+ * The unfairness of a distribution is defined as the maximum total cookies obtained by a single child
+ * in the distribution.
+ * Return the minimum unfairness of all distributions.
+ * 2 <= cookies.length <= 8
+ */
+int DistributeCookies(std::size_t i,
+                      const ArrayType &cookies,
+                      const int k,
+                      const std::size_t empty_bag_count,
+                      ArrayType &distribution) {
+    if (cookies.size() - i < empty_bag_count) {
+        return INT_MAX;
+    }
+
+    if (i == cookies.size()) {
+        return *std::max_element(distribution.cbegin(), distribution.cend());
+    }
+
+    int result = INT_MAX;
+    for (int j = 0; j < k; ++j) {
+        const auto is_empty_bag = not distribution[j];
+        distribution[j] += cookies[i];
+
+        result = std::min(
+            result,
+            DistributeCookies(i + 1, cookies, k, empty_bag_count - is_empty_bag, distribution));
+
+        distribution[j] -= cookies[i];
+    }
+
+    return result;
+}
+
+auto DistributeCookies(const ArrayType &cookies, const int k) {
+    ArrayType distribution(k, 0);
+
+    return DistributeCookies(0, cookies, k, k, distribution);
+}
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 1, 2, 2, 2};
@@ -268,3 +315,13 @@ THE_BENCHMARK(EqualSumSubset, SAMPLE1T);
 
 SIMPLE_TEST(EqualSumSubset, TestSAMPLE1, true, SAMPLE1T);
 SIMPLE_TEST(EqualSumSubset, TestSAMPLE2, false, SAMPLE2T);
+
+
+const ArrayType SAMPLE1C = {8, 15, 10, 20, 8};
+const ArrayType SAMPLE2C = {6, 1, 3, 2, 2, 4, 1, 2};
+
+
+THE_BENCHMARK(DistributeCookies, SAMPLE1C, 2);
+
+SIMPLE_TEST(DistributeCookies, TestSAMPLE1, 31, SAMPLE1C, 2);
+SIMPLE_TEST(DistributeCookies, TestSAMPLE2, 7, SAMPLE2C, 3);
