@@ -51,6 +51,38 @@ auto StoneGameEvenPiles_DP(const ArrayType &piles) {
 
 
 /**
+ * @reference   Predict the Winner
+ *              https://leetcode.com/problems/predict-the-winner/
+ *
+ * You are given an integer array nums. Two players are playing a game with this array: player 1 and
+ * player 2.
+ * Player 1 and player 2 take turns, with player 1 starting first. Both players start the game with a
+ * score of 0. At each turn, the player takes one of the numbers from either end of the array (i.e.,
+ * nums[0] or nums[nums.length - 1]) which reduces the size of the array by 1. The player adds the
+ * chosen number to their score. The game ends when there are no more elements in the array.
+ * Return true if Player 1 can win the game. If the scores of both players are equal, then player 1 is
+ * still the winner, and you should also return true. You may assume that both players are playing
+ * optimally.
+ */
+auto PredictTheWinner(const ArrayType &nums) {
+    if (nums.size() % 2 == 0) {
+        return true;
+    }
+
+    const int N = nums.size();
+    auto dp = nums;
+    for (int size = 1; size < N; ++size) {
+        for (int left = 0; left < N - size; ++left) {
+            const auto right = left + size;
+            dp[left] = std::max(nums[left] - dp[left + 1], nums[right] - dp[left]);
+        }
+    }
+
+    return dp[0] >= 0;
+}
+
+
+/**
  * @reference   Stone Game II
  *              https://leetcode.com/problems/stone-game-ii/
  * @reference   https://www.cnblogs.com/grandyang/p/14899090.html
@@ -620,3 +652,15 @@ THE_BENCHMARK(StoneGame8_DP, SAMPLE14);
 SIMPLE_TEST(StoneGame8_DP, TestSAMPLE14, 5, SAMPLE14);
 SIMPLE_TEST(StoneGame8_DP, TestSAMPLE15, 13, SAMPLE15);
 SIMPLE_TEST(StoneGame8_DP, TestSAMPLE16, -22, SAMPLE16);
+
+
+const ArrayType SAMPLE1N = {1, 5, 2};
+const ArrayType SAMPLE2N = {1, 5, 233, 7};
+const ArrayType SAMPLE3N = {1, 5, 2, 4, 6};
+
+
+THE_BENCHMARK(PredictTheWinner, SAMPLE1N);
+
+SIMPLE_TEST(PredictTheWinner, TestSAMPLE1, false, SAMPLE1N);
+SIMPLE_TEST(PredictTheWinner, TestSAMPLE2, true, SAMPLE2N);
+SIMPLE_TEST(PredictTheWinner, TestSAMPLE3, true, SAMPLE3N);
