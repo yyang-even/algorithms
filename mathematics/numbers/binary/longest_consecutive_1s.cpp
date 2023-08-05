@@ -85,6 +85,38 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
 
 
 /**
+ * @reference   Longest Subarray With Maximum Bitwise AND
+ *              https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/
+ *
+ * You are given an integer array nums of size n.
+ * Consider a non-empty subarray from nums that has the maximum possible bitwise AND.
+ * In other words, let k be the maximum value of the bitwise AND of any subarray of nums. Then, only
+ * subarrays with a bitwise AND equal to k should be considered.
+ * Return the length of the longest such subarray.
+ * The bitwise AND of an array is the bitwise AND of all the numbers in it.
+ * A subarray is a contiguous sequence of elements within an array.
+ */
+auto LongestSubarrayWithMaxAnd(const ArrayType &nums) {
+    int current = 0;
+    int result = 0;
+    int length = 0;
+    for (const auto n : nums) {
+        if (n == current) {
+            result = std::max(result, ++length);
+        } else if (n > current) {
+            current = n;
+            length = 1;
+            result = 1;
+        } else {
+            length = 0;
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Three Consecutive Odds
  *              https://leetcode.com/problems/three-consecutive-odds/
  *
@@ -577,3 +609,26 @@ SIMPLE_TEST(MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE1,
 SIMPLE_TEST(MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE2, 3, "TFFT", 1);
 SIMPLE_TEST(
     MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow, TestSAMPLE3, 5, "TTFTTFTT", 1);
+
+
+const ArrayType SAMPLE1A = {1, 2, 3, 3, 2, 2};
+const ArrayType SAMPLE2A = {1, 2, 3, 4};
+const ArrayType SAMPLE3A = {
+    395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808,
+    395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808,
+    395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808,
+    395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808, 395808,
+    395808, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030,
+    470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030, 470030,
+    470030, 470030, 470030, 153490, 330001, 330001, 330001, 330001, 330001, 330001, 330001,
+    37284,  470030, 470030, 470030, 470030, 470030, 470030, 156542, 226743};
+const ArrayType SAMPLE4A = {
+    96317, 96317, 96317, 96317, 96317, 96317, 96317, 96317, 96317, 279979};
+
+
+THE_BENCHMARK(LongestSubarrayWithMaxAnd, SAMPLE1A);
+
+SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE1, 2, SAMPLE1A);
+SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE2, 1, SAMPLE2A);
+SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE3, 24, SAMPLE3A);
+SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE4, 1, SAMPLE4A);

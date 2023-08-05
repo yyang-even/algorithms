@@ -41,6 +41,39 @@ auto FruitIntoBaskets(const ArrayType &fruits) {
     return j - i;
 }
 
+
+/**
+ * @reference   Count the Number of Good Subarrays
+ *              https://leetcode.com/problems/count-the-number-of-good-subarrays/
+ *
+ * Given an integer array nums and an integer k, return the number of good subarrays of nums.
+ * A subarray arr is good if it there are at least k pairs of indices (i, j) such that i < j and arr[i]
+ * == arr[j].
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ */
+auto CountGoodSubarrays(const ArrayType &nums, const int k) {
+    std::size_t left = 0;
+    std::size_t right = 0;
+    std::unordered_map<int, int> counts;
+    int number_equal_pairs = 0;
+    long long result = 0;
+
+    while (true) {
+        while (right < nums.size() and number_equal_pairs < k) {
+            number_equal_pairs += (counts[nums[right++]])++;
+        }
+
+        if (number_equal_pairs < k) {
+            break;
+        }
+
+        number_equal_pairs -= --(counts[nums[left++]]);
+        result += nums.size() - right + 1;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -60,3 +93,13 @@ SIMPLE_TEST(FruitIntoBaskets, TestSAMPLE3, 4, SAMPLE3);
 SIMPLE_TEST(FruitIntoBaskets, TestSAMPLE4, 5, SAMPLE4);
 SIMPLE_TEST(FruitIntoBaskets, TestSAMPLE5, 2, SAMPLE5);
 SIMPLE_TEST(FruitIntoBaskets, TestSAMPLE6, 2, SAMPLE6);
+
+
+const ArrayType SAMPLE1G = {1, 1, 1, 1, 1};
+const ArrayType SAMPLE2G = {3, 1, 4, 3, 2, 2, 4};
+
+
+THE_BENCHMARK(CountGoodSubarrays, SAMPLE1G, 10);
+
+SIMPLE_TEST(CountGoodSubarrays, TestSAMPLE1, 1, SAMPLE1G, 10);
+SIMPLE_TEST(CountGoodSubarrays, TestSAMPLE2, 4, SAMPLE2G, 2);

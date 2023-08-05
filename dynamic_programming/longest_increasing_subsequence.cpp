@@ -178,6 +178,47 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
 
 
 /**
+ * @reference   Number of Longest Increasing Subsequence
+ *              https://leetcode.com/problems/number-of-longest-increasing-subsequence/
+ *
+ * Given an integer array nums, return the number of longest increasing subsequences.
+ * Notice that the sequence has to be strictly increasing.
+ */
+auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
+    const int N = nums.size();
+    std::vector length(N, 1);
+    std::vector count(N, 1);
+
+    for (int i = 1; i < N; ++i) {
+        for (int j = 0; j < i; ++j) {
+
+            if (nums[j] < nums[i]) {
+                if (length[j] + 1 > length[i]) {
+                    length[i] = length[j] + 1;
+                    count[i] = 0;
+                }
+
+                if (length[j] + 1 == length[i]) {
+                    count[i] += count[j];
+                }
+            }
+        }
+    }
+
+    const auto max_length = *std::max_element(length.cbegin(), length.cend());
+
+    int result = 0;
+    for (int i = 0; i < N; ++i) {
+        if (length[i] == max_length) {
+            result += count[i];
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximum Ascending Subarray Sum
  *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
  *
@@ -465,6 +506,12 @@ THE_BENCHMARK(LongestContinuousIncreasingSubsequence, SAMPLE5);
 
 SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE5, 3, SAMPLE5);
 SIMPLE_TEST(LongestContinuousIncreasingSubsequence, TestSAMPLE6, 1, SAMPLE6);
+
+
+THE_BENCHMARK(NumLongestIncreasingSubsequence, SAMPLE5);
+
+SIMPLE_TEST(NumLongestIncreasingSubsequence, TestSAMPLE5, 2, SAMPLE5);
+SIMPLE_TEST(NumLongestIncreasingSubsequence, TestSAMPLE6, 5, SAMPLE6);
 
 
 const ArrayType SAMPLE1D = {1, 2, 3};

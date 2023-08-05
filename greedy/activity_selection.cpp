@@ -90,6 +90,19 @@ inline auto MaxLengthChainPairs(ArrayType activities) {
 
 
 /**
+ * @reference   Non-overlapping Intervals
+ *              https://leetcode.com/problems/non-overlapping-intervals/
+ *
+ * Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number
+ * of intervals you need to remove to make the rest of the intervals non-overlapping.
+ */
+inline auto NonOverlappingIntervals(ArrayType intervals) {
+    const auto size = intervals.size();
+    return size - MaxLengthChainPairs(std::move(intervals));
+}
+
+
+/**
  * @reference   Meeting Rooms
  *              https://www.programcreek.com/2014/07/leetcode-meeting-rooms-java/
  *
@@ -512,3 +525,24 @@ THE_BENCHMARK(MaxEvents, SAMPLE1ME);
 
 SIMPLE_TEST(MaxEvents, TestSAMPLE1, 3, SAMPLE1ME);
 SIMPLE_TEST(MaxEvents, TestSAMPLE2, 4, SAMPLE2ME);
+
+
+const ArrayType SAMPLE1I = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
+const ArrayType SAMPLE2I = {{1, 2}, {1, 2}, {1, 2}};
+const ArrayType SAMPLE3I = {{1, 2}, {2, 3}};
+const ArrayType SAMPLE4I = {{0, 2}, {1, 3}, {1, 3}, {2, 4}, {3, 5}, {3, 5}, {4, 6}};
+const ArrayType SAMPLE5I = {
+    {-25322, -4602}, {-35630, -28832}, {-33802, 29009}, {13393, 24550},   {-10655, 16361},
+    {-2835, 10053},  {-2290, 17156},   {1236, 14847},   {-45022, -1296},  {-34574, -1993},
+    {-14129, 15626}, {3010, 14502},    {42403, 45946},  {-22117, 13380},  {7337, 33635},
+    {-38153, 27794}, {47640, 49108},   {40578, 46264},  {-38497, -13790}, {-7530, 4977},
+    {-29009, 43543}, {-49069, 32526},  {21409, 43622},  {-28569, 16493},  {-28301, 34058}};
+
+
+THE_BENCHMARK(NonOverlappingIntervals, SAMPLE1I);
+
+SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE1, 1, SAMPLE1I);
+SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE2, 2, SAMPLE2I);
+SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE3, 0, SAMPLE3I);
+SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE4, 4, SAMPLE4I);
+SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE5, 19, SAMPLE5I);
