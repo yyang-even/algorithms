@@ -104,6 +104,69 @@ inline auto LongestCommonSubsequenceString(const std::string &X, const std::stri
 
 
 /**
+ * @reference   Minimum ASCII Delete Sum for Two Strings
+ *              https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/
+ *
+ * Given two strings s1 and s2, return the lowest ASCII sum of deleted characters to make two strings
+ * equal.
+ */
+int MinDeleteSum(const std::string_view s1,
+                 const std::size_t i,
+                 const std::string_view s2,
+                 const std::size_t j,
+                 std::vector<std::vector<int>> &memo) {
+    if (memo[i][j] != -1) {
+        return memo[i][j];
+    }
+
+    if (i == s1.size()) {
+        return memo[i][j] = std::accumulate(s2.cbegin() + j, s2.cend(), 0);
+    }
+
+    if (j == s2.size()) {
+        return memo[i][j] = std::accumulate(s1.cbegin() + i, s1.cend(), 0);
+    }
+
+    if (s1[i] == s2[j]) {
+        return memo[i][j] = MinDeleteSum(s1, i + 1, s2, j + 1, memo);
+    } else {
+        return memo[i][j] = std::min(s1[i] + MinDeleteSum(s1, i + 1, s2, j, memo),
+                                     s2[j] + MinDeleteSum(s1, i, s2, j + 1, memo));
+    }
+}
+
+inline auto MinDeleteSum(const std::string_view s1, const std::string_view s2) {
+    std::vector memo(s1.size() + 1, std::vector(s2.size() + 1, -1));
+    return MinDeleteSum(s1, 0, s2, 0, memo);
+}
+
+
+auto MinDeleteSum_DP(const std::string_view s1, const std::string_view s2) {
+    std::vector dp(s1.size() + 1, std::vector(s2.size() + 1, 0));
+
+    for (std::size_t i = 1; i <= s1.size(); ++i) {
+        dp[i][0] = dp[i - 1][0] + s1[i - 1];
+    }
+
+    for (std::size_t j = 1; j <= s2.size(); ++j) {
+        dp[0][j] = dp[0][j - 1] + s2[j - 1];
+    }
+
+    for (std::size_t i = 1; i <= s1.size(); ++i) {
+        for (std::size_t j = 1; j <= s2.size(); ++j) {
+            if (s1[i - 1] == s2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = std::min(dp[i - 1][j] + s1[i - 1], dp[i][j - 1] + s2[j - 1]);
+            }
+        }
+    }
+
+    return dp[s1.size()][s2.size()];
+}
+
+
+/**
  * @reference   Printing Longest Common Subsequence | Set 2 (Printing All)
  *              https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
  */
@@ -334,3 +397,15 @@ SIMPLE_TEST(LongestCommonSubsequenceOfThree_Memoization,
             SAMPLE8_X,
             SAMPLE8_Y,
             SAMPLE8_Z);
+
+
+THE_BENCHMARK(MinDeleteSum, "sea", "eat");
+
+SIMPLE_TEST(MinDeleteSum, TestSAMPLE1, 231, "sea", "eat");
+SIMPLE_TEST(MinDeleteSum, TestSAMPLE2, 403, "delete", "leet");
+
+
+THE_BENCHMARK(MinDeleteSum_DP, "sea", "eat");
+
+SIMPLE_TEST(MinDeleteSum_DP, TestSAMPLE1, 231, "sea", "eat");
+SIMPLE_TEST(MinDeleteSum_DP, TestSAMPLE2, 403, "delete", "leet");
