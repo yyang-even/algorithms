@@ -11,17 +11,17 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/find-the-missing-number/
  *
- * You are given a list of n-1 integers and these integers are in the range of 1 to n.
- * There are no duplicates in list. One of the integers is missing in the list. Write an
- * efficient code to find the missing integer.
+ * You are given a list of n-1 integers and these integers are in the range of 1 to n.  There are no
+ * duplicates in list. One of the integers is missing in the list. Write an efficient code to find the
+ * missing integer.
  *
  * @reference   Missing Number
  *              https://leetcode.com/problems/missing-number/
  *
- * Given an array nums containing n distinct numbers in the range [0, n], return the
- * only number in the range that is missing from the array.
- * Follow up: Could you implement a solution using only O(1) extra space complexity and
- * O(n) runtime complexity?
+ * Given an array nums containing n distinct numbers in the range [0, n], return the only number in the
+ * range that is missing from the array.
+ * Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime
+ * complexity?
  *
  * @complexity  O(n)
  */
@@ -30,13 +30,12 @@ inline auto FindTheMissingNumber_Sum(const ArrayType &integers) {
 
     const auto N = integers.size() + 1;
     const auto sum = N * (N + 1) / 2;
-    return std::accumulate(integers.cbegin(), integers.cend(), sum,
-                           std::minus<ArrayType::value_type> {});
+    return std::accumulate(
+        integers.cbegin(), integers.cend(), sum, std::minus<ArrayType::value_type> {});
 }
 
 
-auto FindTheMissingNumber_Xor(const ArrayType &integers,
-                              ArrayType::value_type min = 1) {
+auto FindTheMissingNumber_Xor(const ArrayType &integers, ArrayType::value_type min = 1) {
     assert(not integers.empty());
 
     const ArrayType::value_type N = integers.size() + min;
@@ -53,10 +52,9 @@ auto FindTheMissingNumber_Xor(const ArrayType &integers,
  *
  * @reference   https://www.geeksforgeeks.org/find-one-missing-number-range/
  *
- * Given an array of size n. It is also given that range of numbers is from smallestNumber
- * to smallestNumber + n where smallestNumber is the smallest number in array. The array
- * contains number in this range but one number is missing so the task is to find this
- * missing number.
+ * Given an array of size n. It is also given that range of numbers is from smallestNumber to
+ * smallestNumber + n where smallestNumber is the smallest number in array. The array contains number in
+ * this range but one number is missing so the task is to find this missing number.
  */
 inline auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
     const auto min = std::min_element(integers.cbegin(), integers.cend());
@@ -69,11 +67,10 @@ inline auto FindTheMissingNumberRange_Xor(const ArrayType &integers) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.7.
  *
- * An array A contains all the integers from 0 through n, except for one number which is
- * missing. In this problem, we cannot access an entire integer in A with a single
- * operation. The elements of A are represented in binary, and the only operation we can
- * use to access them is "fetch the jth bit of A[i]," which takes constant time. Write
- * code to find the missing integer. Can you do it in 0(n) time?
+ * An array A contains all the integers from 0 through n, except for one number which is missing. In
+ * this problem, we cannot access an entire integer in A with a single operation. The elements of A are
+ * represented in binary, and the only operation we can use to access them is "fetch the jth bit of
+ * A[i]," which takes constant time. Write code to find the missing integer. Can you do it in 0(n) time?
  */
 unsigned FindTheMissingNumber_Partition_Helper(const ArrayType::iterator begin,
                                                const ArrayType::iterator end,
@@ -93,8 +90,7 @@ unsigned FindTheMissingNumber_Partition_Helper(const ArrayType::iterator begin,
         const auto result = FindTheMissingNumber_Partition_Helper(zeros_begin, end, column + 1);
         return (result << 1) | 0;
     } else {
-        const auto result = FindTheMissingNumber_Partition_Helper(begin, zeros_begin,
-                                                                  column + 1);
+        const auto result = FindTheMissingNumber_Partition_Helper(begin, zeros_begin, column + 1);
         return (result << 1) | 1;
     }
 }
@@ -108,8 +104,8 @@ inline auto FindTheMissingNumber_Partition(ArrayType integers) {
  *
  * @reference   https://www.geeksforgeeks.org/find-missing-element-in-a-sorted-array-of-consecutive-numbers/
  *
- * Given an array arr[] of n distinct integers. Elements are placed sequentially in
- * ascending order with one element missing. The task is to find the missing element.
+ * Given an array arr[] of n distinct integers. Elements are placed sequentially in ascending order with
+ * one element missing. The task is to find the missing element.
  */
 int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
     assert(not values.empty());
@@ -142,16 +138,15 @@ int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-missing-number-in-a-sorted-array/
  *
- * Given a list of n-1 integers and these integers are in the range of 1 to n. There are
- * no duplicates in list. One of the integers is missing in the list. Write an efficient
- * code to find the missing integer.
+ * Given a list of n-1 integers and these integers are in the range of 1 to n. There are no duplicates
+ * in list. One of the integers is missing in the list. Write an efficient code to find the missing
+ * integer.
  *
  * @reference   Find the missing number in a sorted array of limited range
  *              https://www.geeksforgeeks.org/find-missing-number-sorted-array-limited-range/
  *
- * Given a sorted array of size n and given that there are numbers from 1 to n+1 with one
- * missing, the missing number is to be found. It may be assumed that array has distinct
- * elements.
+ * Given a sorted array of size n and given that there are numbers from 1 to n+1 with one missing, the
+ * missing number is to be found. It may be assumed that array has distinct elements.
  */
 int FindTheMissingNumber_Sorted_BinarySearch(const ArrayType &values) {
     assert(not values.empty());
@@ -220,8 +215,8 @@ int FindTheMissingNumber_Sorted_BinaryLast(const ArrayType &values) {
  * @reference   Find the smallest positive number missing from an unsorted array | Set 3
  *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-set-3/
  *
- * Given an unsorted array with both positive and negative elements including 0. The task
- * is to find the smallest positive number missing from the array in O(N) time.
+ * Given an unsorted array with both positive and negative elements including 0. The task is to find the
+ * smallest positive number missing from the array in O(N) time.
  */
 auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counter;
@@ -233,10 +228,29 @@ auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
     }
 
     int result = 1;
-    for (; counter.find(result) != counter.cend(); ++result);
+    for (; counter.find(result) != counter.cend(); ++result)
+        ;
 
     return result;
 }
+
+
+/**
+ * @reference   Longest Uploaded Prefix
+ *              https://leetcode.com/problems/longest-uploaded-prefix/
+ *
+ * You are given a stream of n videos, each represented by a distinct number from 1 to n that you need
+ * to "upload" to a server. You need to implement a data structure that calculates the length of the
+ * longest uploaded prefix at various points in the upload process.
+ * We consider i to be an uploaded prefix if all videos in the range 1 to i (inclusive) have been
+ * uploaded to the server. The longest uploaded prefix is the maximum value of i that satisfies this
+ * definition.
+ * Implement the LUPrefix class:
+ *  LUPrefix(int n) Initializes the object for a stream of n videos.
+ *  void upload(int video) Uploads video to the server.
+ *  int longest() Returns the length of the longest uploaded prefix defined above.
+ * 1 <= n <= 10^5
+ */
 
 
 /**
@@ -245,9 +259,9 @@ auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
  * @reference   Find the smallest positive number missing from an unsorted array | Set 2
  *              https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array-set-2/
  *
- * You are given an unsorted array with both positive and negative elements. You have to
- * find the smallest positive number missing from the array in O(n) time using constant
- * extra space. You can modify the original array.
+ * You are given an unsorted array with both positive and negative elements. You have to find the
+ * smallest positive number missing from the array in O(n) time using constant extra space. You can
+ * modify the original array.
  */
 int FindTheSmallestPositiveMissingNumber_InPlace(ArrayType elements) {
     const int SIZE = elements.size();
@@ -272,14 +286,13 @@ int FindTheSmallestPositiveMissingNumber_InPlace(ArrayType elements) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 10.3.
  *
- * Given an input file with four billion non-negative integers, provide and algorithm to
- * generate an integer which is not contained in the file. Assume you have 1GB of memory
- * available for this task.
+ * Given an input file with four billion non-negative integers, provide and algorithm to generate an
+ * integer which is not contained in the file. Assume you have 1GB of memory available for this task.
  *
  * @hint    Use std::vector<bool>
  *
- * What if you have only 10MB of memory? Assume that all the values are distinct and we
- * now have no more than one billion non-negative integers.
+ * What if you have only 10MB of memory? Assume that all the values are distinct and we now have no more
+ * than one billion non-negative integers.
  *
  * @hint    Divide up the integers into blocks of some size.
  */
@@ -290,15 +303,14 @@ int FindTheSmallestPositiveMissingNumber_InPlace(ArrayType elements) {
  *              https://leetcode.com/problems/decode-xored-array/
  *
  * There is a hidden integer array arr that consists of n non-negative integers.
- * It was encoded into another integer array encoded of length n - 1, such that
- * encoded[i] = arr[i] XOR arr[i + 1]. For example, if arr = [1,0,2,1], then
- * encoded = [1,2,3].
- * You are given the encoded array. You are also given an integer first, that is the
- * first element of arr, i.e. arr[0].
+ * It was encoded into another integer array encoded of length n - 1, such that encoded[i] = arr[i] XOR
+ * arr[i + 1]. For example, if arr = [1,0,2,1], then encoded = [1,2,3].
+ * You are given the encoded array. You are also given an integer first, that is the first element of
+ * arr, i.e. arr[0].
  * Return the original array arr. It can be proved that the answer exists and is unique.
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 4, 6, 3, 7, 8};
@@ -348,16 +360,14 @@ THE_BENCHMARK(FindTheMissingNumber_Sorted_BinarySearch, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast,
-            SAMPLE6.size() + 1, SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinarySearch, TestLast, SAMPLE6.size() + 1, SAMPLE6);
 
 
 THE_BENCHMARK(FindTheMissingNumber_Sorted_BinaryLast, SAMPLE2);
 
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestSample2, 3, SAMPLE2);
 SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestBegin, 1, SAMPLE5);
-SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast,
-            SAMPLE6.size() + 1, SAMPLE6);
+SIMPLE_TEST(FindTheMissingNumber_Sorted_BinaryLast, TestLast, SAMPLE6.size() + 1, SAMPLE6);
 
 
 const ArrayType SAMPLE7 = {-5, 2, 0, -1, -10, 15};
