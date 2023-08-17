@@ -14,8 +14,8 @@ using ArrayType = std::vector<int>;
  * @reference   Contains Duplicate
  *              https://leetcode.com/problems/contains-duplicate/
  *
- * Given an integer array nums, return true if any value appears at least twice in the array, and
- * return false if every element is distinct.
+ * Given an integer array nums, return true if any value appears at least twice in the array, and return
+ * false if every element is distinct.
  */
 auto CheckIfAllElementsDistinct(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
@@ -34,8 +34,8 @@ auto CheckIfAllElementsDistinct(const ArrayType &elements) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.1.
  *
- * Implement an algorithm to determine if a string has all unique characters. What if you cannot
- * use additional data structures?
+ * Implement an algorithm to determine if a string has all unique characters. What if you cannot use
+ * additional data structures?
  */
 auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
     std::sort(elements.begin(), elements.end());
@@ -54,8 +54,8 @@ auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
  * @reference   Contains Duplicate II
  *              https://leetcode.com/problems/contains-duplicate-ii/
  *
- * Given an integer array nums and an integer k, return true if there are two distinct indices i
- * and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+ * Given an integer array nums and an integer k, return true if there are two distinct indices i and j
+ * in the array such that nums[i] == nums[j] and abs(i - j) <= k.
  */
 auto ContainDuplicateAtMostKApart(const ArrayType &elements, const std::size_t K) {
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> last_occurrences;
@@ -79,8 +79,8 @@ auto ContainDuplicateAtMostKApart(const ArrayType &elements, const std::size_t K
  * @reference   Contains Duplicate III
  *              https://leetcode.com/problems/contains-duplicate-iii/
  *
- * Given an integer array nums and two integers k and t, return true if there are two distinct
- * indices i and j in the array such that abs(nums[i] - nums[j]) <= t and abs(i - j) <= k.
+ * Given an integer array nums and two integers k and t, return true if there are two distinct indices i
+ * and j in the array such that abs(nums[i] - nums[j]) <= t and abs(i - j) <= k.
  *
  * @reference   [LeetCode] Contains Duplicate III
  *              https://www.cnblogs.com/easonliu/p/4544073.html
@@ -155,8 +155,8 @@ auto ContainAlmostDuplicateAtMostKApart_Bucket(const ArrayType &elements,
  * @reference   Longest Substring Without Repeating Characters
  *              https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
- * Given a string s, find the length of the longest substring without repeating characters. s
- * consists of English letters, digits, symbols and spaces.
+ * Given a string s, find the length of the longest substring without repeating characters. s consists
+ * of English letters, digits, symbols and spaces.
  */
 constexpr auto LongestSubstrWithoutRepeatingChars_Last(const std::string_view s) {
     std::size_t lasts[256] = {};
@@ -203,8 +203,21 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * You are given an array of positive integers nums and want to erase a subarray containing unique
  * elements. The score you get by erasing the subarray is equal to the sum of its elements.
  * Return the maximum score you can get by erasing exactly one subarray.
- * An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is,
- * if it is equal to a[l],a[l+1],...,a[r] for some (l,r).
+ * An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it
+ * is equal to a[l],a[l+1],...,a[r] for some (l,r).
+ */
+
+
+/**
+ * @reference   Find the Longest Semi-Repetitive Substring
+ *              https://leetcode.com/problems/find-the-longest-semi-repetitive-substring/
+ *
+ * You are given a 0-indexed string s that consists of digits from 0 to 9.
+ * A string t is called a semi-repetitive if there is at most one consecutive pair of the same digits
+ * inside t. For example, 0010, 002020, 0123, 2002, and 54944 are semi-repetitive while 00101022, and
+ * 1101234883 are not.
+ * Return the length of the longest semi-repetitive substring inside s.
+ * A substring is a contiguous non-empty sequence of characters within a string.
  */
 
 } //namespace

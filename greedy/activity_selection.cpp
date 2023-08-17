@@ -220,6 +220,37 @@ auto BusyStudents(const ArrayType &times, const int query_time) {
 
 
 /**
+ * @reference   Maximum Beauty of an Array After Applying Operation
+ *              https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/
+ *
+ * You are given a 0-indexed array nums and a non-negative integer k.
+ * In one operation, you can do the following:
+ *  Choose an index i that hasn't been chosen before from the range [0, nums.length - 1].
+ *  Replace nums[i] with any integer from the range [nums[i] - k, nums[i] + k].
+ * The beauty of the array is the length of the longest subsequence consisting of equal elements.
+ * Return the maximum possible beauty of the array nums after applying the operation any number of
+ * times.
+ * Note that you can apply the operation to each index only once.
+ * A subsequence of an array is a new array generated from the original array by deleting some elements
+ * (possibly none) without changing the order of the remaining elements.
+ */
+auto MaxBeauty(std::vector<int> nums, const int k) {
+    std::sort(nums.begin(), nums.end());
+
+    const int N = nums.size();
+    int left = 0;
+    int right = 0;
+    for (; right < N; ++right) {
+        if (nums[right] - nums[left] > k * 2) {
+            ++left;
+        }
+    }
+
+    return right - left;
+}
+
+
+/**
  * @reference   Maximum Profit in Job Scheduling
  *              https://leetcode.com/problems/maximum-profit-in-job-scheduling/
  *
@@ -546,3 +577,15 @@ SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE2, 2, SAMPLE2I);
 SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE3, 0, SAMPLE3I);
 SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE4, 4, SAMPLE4I);
 SIMPLE_TEST(NonOverlappingIntervals, TestSAMPLE5, 19, SAMPLE5I);
+
+
+const std::vector SAMPLE1N = {4, 6, 1, 2};
+const std::vector SAMPLE2N = {1, 1, 1, 1};
+const std::vector SAMPLE3N = {13, 46, 71};
+
+
+THE_BENCHMARK(MaxBeauty, SAMPLE1N, 2);
+
+SIMPLE_TEST(MaxBeauty, TestSAMPLE1, 3, SAMPLE1N, 2);
+SIMPLE_TEST(MaxBeauty, TestSAMPLE2, 4, SAMPLE2N, 10);
+SIMPLE_TEST(MaxBeauty, TestSAMPLE3, 3, SAMPLE3N, 29);

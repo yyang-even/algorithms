@@ -276,6 +276,18 @@ auto Add(const ArrayType &number, int k) {
  * The most significant bit is at the head of the linked list.
  */
 
+
+/**
+ * @reference   Double a Number Represented as a Linked List
+ *              https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/
+ *
+ * You are given the head of a non-empty linked list representing a non-negative integer without leading
+ * zeroes.
+ * Return the head of the linked list after doubling it.
+ * The input is generated such that the list represents a number that does not have leading zeros,
+ * except the number 0 itself.
+ */
+
 } //namespace
 
 
