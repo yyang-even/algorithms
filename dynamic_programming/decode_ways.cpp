@@ -3,6 +3,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Decode Ways
  *
  * @reference   https://leetcode.com/problems/decode-ways/
@@ -130,7 +132,45 @@ constexpr int DecodeWaysWithStar(const std::string_view encodes) {
     return dp[encodes.size()];
 }
 
-}//namespace
+
+/**
+ * @reference   Check if There is a Valid Partition For The Array
+ *              https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+ *
+ * You are given a 0-indexed integer array nums. You have to partition the array into one or more
+ * contiguous subarrays.
+ * We call a partition of the array valid if each of the obtained subarrays satisfies one of the
+ * following conditions:
+ *  The subarray consists of exactly 2 equal elements. For example, the subarray [2,2] is good.
+ *  The subarray consists of exactly 3 equal elements. For example, the subarray [4,4,4] is good.
+ *  The subarray consists of exactly 3 consecutive increasing elements, that is, the difference between
+ *  adjacent elements is 1. For example, the subarray [3,4,5] is good, but the subarray [1,3,5] is not.
+ * Return true if the array has at least one valid partition. Otherwise, return false.
+ */
+bool ValidPartition(const ArrayType &nums) {
+    const int N = nums.size();
+
+    int dp[] = {0, 0, 0, 1};
+    for (int i = 0; i < N; ++i) {
+        dp[i % 4] = 0;
+
+        if (i - 1 >= 0 and nums[i] == nums[i - 1]) {
+            dp[i % 4] |= dp[(i + 2) % 4];
+        }
+
+        if (i - 2 >= 0 and nums[i] == nums[i - 1] and nums[i - 1] == nums[i - 2]) {
+            dp[i % 4] |= dp[(i + 1) % 4];
+        }
+
+        if (i - 2 >= 0 and nums[i] - 1 == nums[i - 1] and nums[i - 1] == nums[i - 2] + 1) {
+            dp[i % 4] |= dp[(i + 1) % 4];
+        }
+    }
+
+    return dp[(N - 1) % 4];
+}
+
+} //namespace
 
 
 THE_BENCHMARK(DecodeWays, "226");
@@ -170,3 +210,13 @@ SIMPLE_TEST(DecodeWaysWithStar, TestSAMPLE8, 3, "226");
 SIMPLE_TEST(DecodeWaysWithStar, TestSAMPLE9, 9, "*");
 SIMPLE_TEST(DecodeWaysWithStar, TestSAMPLE10, 18, "1*");
 SIMPLE_TEST(DecodeWaysWithStar, TestSAMPLE11, 15, "2*");
+
+
+const ArrayType SAMPLE1 = {4, 4, 4, 5, 6};
+const ArrayType SAMPLE2 = {1, 1, 1, 2};
+
+
+THE_BENCHMARK(ValidPartition, SAMPLE1);
+
+SIMPLE_TEST(ValidPartition, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(ValidPartition, TestSAMPLE2, false, SAMPLE2);
