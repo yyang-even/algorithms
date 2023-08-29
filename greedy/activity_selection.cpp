@@ -379,6 +379,18 @@ auto MinArrows(ArrayType points) {
 
 
 /**
+ * @reference   Maximum Length of Pair Chain
+ *              https://leetcode.com/problems/maximum-length-of-pair-chain/
+ *
+ * You are given an array of n pairs pairs where pairs[i] = [lefti, righti] and lefti < righti.
+ * A pair p2 = [c, d] follows a pair p1 = [a, b] if b < c. A chain of pairs can be formed in this
+ * fashion.
+ * Return the length longest chain which can be formed.
+ * You do not need to use up all the given intervals. You can select pairs in any order.
+ */
+
+
+/**
  * @reference   Maximum Number of Events That Can Be Attended
  *              https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/
  *
