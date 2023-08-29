@@ -177,6 +177,57 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
 }
 
 
+/** Unique Substrings in Wraparound String
+ *
+ * @reference   https://leetcode.com/problems/unique-substrings-in-wraparound-string/
+ *
+ * We define the string base to be the infinite wraparound string of "abcdefghijklmnopqrstuvwxyz", so
+ * base will look like this:
+ *  "...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd....".
+ * Given a string s, return the number of unique non-empty substrings of s are present in base.
+ */
+auto UniqueSubstrsInWraparoundStr(const std::string_view s) {
+    std::vector<int> dp(26, 0);
+    dp[s.front() - 'a'] = 1;
+
+    int longest = 1;
+    for (std::size_t i = 1; i < s.size(); ++i) {
+        if ((s[i] == s[i - 1] + 1) or (s[i - 1] == 'z' and s[i] == 'a')) {
+            ++longest;
+        } else {
+            longest = 1;
+        }
+
+        const auto index = s[i] - 'a';
+        dp[index] = std::max(dp[index], longest);
+    }
+
+    return std::accumulate(dp.cbegin(), dp.cend(), 0);
+}
+
+
+/**
+ * @reference   Maximum Ascending Subarray Sum
+ *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
+ *
+ * Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in
+ * nums.
+ * A subarray is defined as a contiguous sequence of numbers in an array.
+ * A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r,
+ * numsi < numsi+1. Note that a subarray of size 1 is ascending.
+ */
+
+
+/**
+ * @reference   Consecutive Characters
+ *              https://leetcode.com/problems/consecutive-characters/
+ *
+ * The power of the string is the maximum length of a non-empty substring that contains only one unique
+ * character.
+ * Given a string s, return the power of s.
+ */
+
+
 /**
  * @reference   Number of Longest Increasing Subsequence
  *              https://leetcode.com/problems/number-of-longest-increasing-subsequence/
@@ -216,28 +267,6 @@ auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
 
     return result;
 }
-
-
-/**
- * @reference   Maximum Ascending Subarray Sum
- *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
- *
- * Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in
- * nums.
- * A subarray is defined as a contiguous sequence of numbers in an array.
- * A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r,
- * numsi < numsi+1. Note that a subarray of size 1 is ascending.
- */
-
-
-/**
- * @reference   Consecutive Characters
- *              https://leetcode.com/problems/consecutive-characters/
- *
- * The power of the string is the maximum length of a non-empty substring that contains only one unique
- * character.
- * Given a string s, return the power of s.
- */
 
 
 /**
@@ -567,3 +596,10 @@ THE_BENCHMARK(NumberOfWeakCharacters, SAMPLE1C);
 SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE1, 0, SAMPLE1C);
 SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE2, 1, SAMPLE2C);
 SIMPLE_TEST(NumberOfWeakCharacters, TestSAMPLE3, 1, SAMPLE3C);
+
+
+THE_BENCHMARK(UniqueSubstrsInWraparoundStr, "zab");
+
+SIMPLE_TEST(UniqueSubstrsInWraparoundStr, TestSAMPLE1, 1, "a");
+SIMPLE_TEST(UniqueSubstrsInWraparoundStr, TestSAMPLE2, 2, "cac");
+SIMPLE_TEST(UniqueSubstrsInWraparoundStr, TestSAMPLE3, 6, "zab");
