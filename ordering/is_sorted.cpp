@@ -38,10 +38,10 @@ auto isSortedIterative(const ArrayType &values) {
  * @reference   Monotonic Array
  *              https://leetcode.com/problems/monotonic-array/
  *
- * An array is monotonic if it is either monotone increasing or monotone decreasing. An
- * array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums
- * is monotone decreasing if for all i <= j, nums[i] >= nums[j]. Given an integer array
- * nums, return true if the given array is monotonic, or false otherwise.
+ * An array is monotonic if it is either monotone increasing or monotone decreasing.
+ * An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is monotone
+ * decreasing if for all i <= j, nums[i] >= nums[j].
+ * Given an integer array nums, return true if the given array is monotonic, or false otherwise.
  */
 auto isMonotonic(const ArrayType &nums) {
     assert(not nums.empty());
@@ -65,29 +65,28 @@ auto isMonotonic(const ArrayType &nums) {
  * @reference   Verifying an Alien Dictionary
  *              https://leetcode.com/problems/verifying-an-alien-dictionary/
  *
- * In an alien language, surprisingly, they also use English lowercase letters, but
- * possibly in a different order. The order of the alphabet is some permutation of
- * lowercase letters. Given a sequence of words written in the alien language, and the
- * order of the alphabet, return true if and only if the given words are sorted
- * lexicographically in this alien language.
+ * In an alien language, surprisingly, they also use English lowercase letters, but possibly in a
+ * different order. The order of the alphabet is some permutation of lowercase letters.
+ * Given a sequence of words written in the alien language, and the order of the alphabet, return true
+ * if and only if the given words are sorted lexicographically in this alien language.
  */
-auto isAlienSorted(const std::vector<std::string_view> &words,
-                   const std::string_view order) {
+auto isAlienSorted(const std::vector<std::string_view> &words, const std::string_view order) {
     std::unordered_map<char, int> order_map;
     for (std::size_t i = 0; i < order.size(); ++i) {
         order_map[order[i]] = i;
     }
 
-    return std::is_sorted(words.cbegin(), words.cend(),
-    [&order_map](const auto one, const auto another) {
-        const auto size = std::min(one.size(), another.size());
-        std::size_t i = 0;
-        for (; i < size and one[i] == another[i]; ++i);
-        if (i < size) {
-            return order_map[one[i]] < order_map[another[i]];
-        }
-        return one.size() < another.size();
-    });
+    return std::is_sorted(
+        words.cbegin(), words.cend(), [&order_map](const auto one, const auto another) {
+            const auto size = std::min(one.size(), another.size());
+            std::size_t i = 0;
+            for (; i < size and one[i] == another[i]; ++i)
+                ;
+            if (i < size) {
+                return order_map[one[i]] < order_map[another[i]];
+            }
+            return one.size() < another.size();
+        });
 }
 
 
@@ -95,10 +94,11 @@ auto isAlienSorted(const std::vector<std::string_view> &words,
  * @reference   Longest Turbulent Subarray
  *              https://leetcode.com/problems/longest-turbulent-subarray/
  *
- * Given an integer array arr, return the length of a maximum size turbulent subarray of
- * arr. A subarray is turbulent if the comparison sign flips between each adjacent pair
- * of elements in the subarray. More formally, a subarray [arr[i], arr[i + 1], ..., arr[j]]
- * of arr is said to be turbulent if and only if:
+ * Given an integer array arr, return the length of a maximum size turbulent subarray of arr.
+ * A subarray is turbulent if the comparison sign flips between each adjacent pair of elements in the
+ * subarray.
+ * More formally, a subarray [arr[i], arr[i + 1], ..., arr[j]] of arr is said to be turbulent if and
+ * only if:
  *  For i <= k < j:
  *      arr[k] > arr[k + 1] when k is odd, and
  *      arr[k] < arr[k + 1] when k is even.
@@ -157,17 +157,32 @@ auto LongestTurbulentSubarray_SlidingWindow(const ArrayType &nums) {
 
 
 /**
+ * @reference   Longest Alternating Subarray
+ *              https://leetcode.com/problems/longest-alternating-subarray/
+ *
+ * You are given a 0-indexed integer array nums. A subarray s of length m is called alternating if:
+ *  m is greater than 1.
+ *  s1 = s0 + 1.
+ *  The 0-indexed subarray s looks like [s0, s1, s0, s1,...,s(m-1) % 2]. In other words, s1 - s0 = 1,
+ *  s2 - s1 = -1, s3 - s2 = 1, s4 - s3 = -1, and so on up to s[m - 1] - s[m - 2] = (-1)m.
+ * Return the maximum length of all alternating subarrays present in nums or -1 if no such subarray
+ * exists.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ */
+
+
+/**
  * @reference   Check if All A's Appears Before All B's
  *              https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/
  *
- * Given a string s consisting of only the characters 'a' and 'b', return true if every
- * 'a' appears before every 'b' in the string. Otherwise, return false.
+ * Given a string s consisting of only the characters 'a' and 'b', return true if every 'a' appears
+ * before every 'b' in the string. Otherwise, return false.
  */
 inline constexpr auto isABSorted(const std::string_view s) {
     return s.find("ba") == std::string_view::npos;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {};

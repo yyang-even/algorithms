@@ -296,6 +296,16 @@ constexpr auto ReorderedPowerOf2_Mask(const int n) {
     return false;
 }
 
+
+/**
+ * @reference   Max Pair Sum in an Array
+ *              https://leetcode.com/problems/max-pair-sum-in-an-array/
+ *
+ * You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers
+ * from nums such that the maximum digit in both numbers are equal.
+ * Return the maximum sum or -1 if no such pair exists.
+ */
+
 } //namespace
 
 

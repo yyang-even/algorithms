@@ -111,13 +111,10 @@ inline auto DepthFirstSearch_Recursive_AdjMatrix(const std::size_t number_vertic
  * numbered from 0 to n - 1 and exactly n - 1 edges. The root of the tree is the node 0, and each node
  * of the tree has a label which is a lower-case character given in the string labels (i.e. The node
  * with the number i has the label labels[i]).
- *
  * The edges array is given on the form edges[i] = [ai, bi], which means there is an edge between nodes
  * ai and bi in the tree.
- *
  * Return an array of size n where ans[i] is the number of nodes in the subtree of the ith node which
  * have the same label as node i.
- *
  * A subtree of a tree T is the tree consisting of a node in T and all of its descendant nodes.
  */
 std::unordered_map<char, int>
@@ -200,6 +197,59 @@ auto MinFuelCostToCapitcal(const UndirectedEdgeArrayType &edges, const int seats
     return result;
 }
 
+
+/**
+ * @reference   Validate Binary Tree Nodes
+ *              https://leetcode.com/problems/validate-binary-tree-nodes/
+ *
+ * You have n binary tree nodes numbered from 0 to n - 1 where node i has two children leftChild[i] and
+ * rightChild[i], return true if and only if all the given nodes form exactly one valid binary tree.
+ * If node i has no left child then leftChild[i] will equal -1, similarly for the right child.
+ * Note that the nodes have no values and that we only use the node numbers in this problem.
+ */
+int countNodes(const std::vector<int> &left_child,
+               const std::vector<int> &right_child,
+               const int i) {
+    if (i == -1) {
+        return 0;
+    }
+
+    return 1 + countNodes(left_child, right_child, left_child[i]) +
+           countNodes(left_child, right_child, right_child[i]);
+}
+
+bool ValidateBinaryTreeNodes(const int n,
+                             const std::vector<int> &left_child,
+                             const std::vector<int> &right_child) {
+    std::vector<int> indegree(n, 0);
+    for (int i = 0; i < n; ++i) {
+        if (left_child[i] != -1) {
+            ++indegree[left_child[i]];
+        }
+        if (right_child[i] != -1) {
+            ++indegree[right_child[i]];
+        }
+    }
+
+    int root = -1;
+    for (int i = 0; i < n; ++i) {
+        if (indegree[i] == 0) {
+            if (root != -1) {
+                return false;
+            }
+            root = i;
+        } else if (indegree[i] > 1) {
+            return false;
+        }
+    }
+
+    if (root == -1) {
+        return false;
+    }
+
+    return countNodes(left_child, right_child, root) == n;
+}
+
 } //namespace
 
 
@@ -253,3 +303,24 @@ THE_BENCHMARK(MinFuelCostToCapitcal, SAMPLE1C, 5);
 SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE1, 3, SAMPLE1C, 5);
 SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE2, 7, SAMPLE2C, 2);
 SIMPLE_TEST(MinFuelCostToCapitcal, TestSAMPLE3, 0, SAMPLE3C, 1);
+
+
+const std::vector SAMPLE1L = {1, -1, 3, -1};
+const std::vector SAMPLE1R = {2, -1, -1, -1};
+
+const std::vector SAMPLE2L = {1, -1, 3, -1};
+const std::vector SAMPLE2R = {2, 3, -1, -1};
+
+const std::vector SAMPLE3L = {1, 0};
+const std::vector SAMPLE3R = {-1, -1};
+
+const std::vector SAMPLE4L = {1, 0, 3, -1};
+const std::vector SAMPLE4R = {-1, -1, -1, -1};
+
+
+THE_BENCHMARK(ValidateBinaryTreeNodes, SAMPLE1L.size(), SAMPLE1L, SAMPLE1R);
+
+SIMPLE_TEST(ValidateBinaryTreeNodes, TestSAMPLE1, true, SAMPLE1L.size(), SAMPLE1L, SAMPLE1R);
+SIMPLE_TEST(ValidateBinaryTreeNodes, TestSAMPLE2, false, SAMPLE2L.size(), SAMPLE2L, SAMPLE2R);
+SIMPLE_TEST(ValidateBinaryTreeNodes, TestSAMPLE3, false, SAMPLE3L.size(), SAMPLE3L, SAMPLE3R);
+SIMPLE_TEST(ValidateBinaryTreeNodes, TestSAMPLE4, false, SAMPLE4L.size(), SAMPLE4L, SAMPLE4R);

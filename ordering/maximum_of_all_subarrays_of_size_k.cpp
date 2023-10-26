@@ -96,6 +96,46 @@ auto MaxOfAllSubarraysOfSizeK_MonotonicQueue(const ArrayType &nums,
  * Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
  */
 
+
+/**
+ * @reference   Continuous Subarrays
+ *              https://leetcode.com/problems/continuous-subarrays/
+ *
+ * You are given a 0-indexed integer array nums. A subarray of nums is called continuous if:
+ *  Let i, i + 1, ..., j be the indices in the subarray. Then, for each pair of indices i <= i1, i2 <= j,
+ *  0 <= |nums[i1] - nums[i2]| <= 2.
+ * Return the total number of continuous subarrays.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ */
+auto ContinuousSubarrays(const ArrayType &nums) {
+    long long result = 1;
+
+    auto minimum = nums.front() - 2;
+    auto maximum = nums.front() + 2;
+    std::size_t left = 0;
+    for (std::size_t right = 1; right < nums.size(); ++right) {
+        if (nums[right] >= minimum and nums[right] <= maximum) {
+            minimum = std::max(minimum, nums[right] - 2);
+            maximum = std::min(maximum, nums[right] + 2);
+        } else {
+            minimum = nums[right] - 2;
+            maximum = nums[right] + 2;
+
+            for (left = right - 1;
+                 nums[left] >= nums[right] - 2 and nums[left] <= nums[right] + 2;
+                 --left) {
+                minimum = std::max(minimum, nums[left] - 2);
+                maximum = std::min(maximum, nums[left] + 2);
+            }
+            ++left;
+        }
+
+        result += (right - left + 1);
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -135,3 +175,17 @@ SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_MonotonicQueue, TestSAMPLE3, EXPECTED3, SAM
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_MonotonicQueue, TestSAMPLE4, SAMPLE4, SAMPLE4, 1);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_MonotonicQueue, TestSAMPLE5, EXPECTED5, SAMPLE5, 2);
 SIMPLE_TEST(MaxOfAllSubarraysOfSizeK_MonotonicQueue, TestSAMPLE6, EXPECTED6, SAMPLE6, 3);
+
+
+const ArrayType SAMPLE1C = {5, 4, 2, 4};
+const ArrayType SAMPLE2C = {1, 2, 3};
+const ArrayType SAMPLE3C = {65, 66, 67, 66, 66, 65, 64, 65, 65, 64};
+const ArrayType SAMPLE4C = {50, 49, 48, 49, 48, 47, 46};
+
+
+THE_BENCHMARK(ContinuousSubarrays, SAMPLE1C);
+
+SIMPLE_TEST(ContinuousSubarrays, TestSAMPLE1, 8, SAMPLE1C);
+SIMPLE_TEST(ContinuousSubarrays, TestSAMPLE2, 6, SAMPLE2C);
+SIMPLE_TEST(ContinuousSubarrays, TestSAMPLE3, 43, SAMPLE3C);
+SIMPLE_TEST(ContinuousSubarrays, TestSAMPLE4, 23, SAMPLE4C);
