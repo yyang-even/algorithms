@@ -9,9 +9,9 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/jump-game/
  *
- * You are given an integer array nums. You are initially positioned at the array's first
- * index, and each element in the array represents your maximum jump length at that
- * position. Return true if you can reach the last index, or false otherwise.
+ * You are given an integer array nums. You are initially positioned at the array's first index, and
+ * each element in the array represents your maximum jump length at that position.
+ * Return true if you can reach the last index, or false otherwise.
  * 1 <= nums.length <= 10^4
  * 0 <= nums[i] <= 10^5
  */
@@ -43,10 +43,14 @@ auto JumpGame_Max(const ArrayType &nums) {
  * @reference   Jump Game II
  *              https://leetcode.com/problems/jump-game-ii/
  *
- * Given an array of non-negative integers nums, you are initially positioned at the
- * first index of the array. Each element in the array represents your maximum jump
- * length at that position. Your goal is to reach the last index in the minimum number
- * of jumps. You can assume that you can always reach the last index.
+ * You are given a 0-indexed array of integers nums of length n. You are initially positioned at
+ * nums[0].
+ * Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if
+ * you are at nums[i], you can jump to any nums[i + j] where:
+ *  0 <= j <= nums[i] and
+ *  i + j < n
+ * Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you
+ * can reach nums[n - 1].
  */
 auto MinJumpGame(const ArrayType &nums) {
     if (nums.size() == 1) {
@@ -96,10 +100,10 @@ auto MinJumpGame_DP(const ArrayType &nums) {
  * @reference   Jump Game III
  *              https://leetcode.com/problems/jump-game-iii/
  *
- * Given an array of non-negative integers arr, you are initially positioned at start
- * index of the array. When you are at index i, you can jump to i + arr[i] or i - arr[i],
- * check if you can reach to any index with value 0. Notice that you can not jump outside
- * of the array at any time.
+ * Given an array of non-negative integers arr, you are initially positioned at start index of the
+ * array. When you are at index i, you can jump to i + arr[i] or i - arr[i], check if you can reach to
+ * any index with value 0.
+ * Notice that you can not jump outside of the array at any time.
  */
 auto BiJumpGame(const ArrayType &nums, const int start) {
     const int N = nums.size();
@@ -138,13 +142,13 @@ auto BiJumpGame(const ArrayType &nums, const int start) {
  * @reference   Jump Game IV
  *              https://leetcode.com/problems/jump-game-iv/
  *
- * Given an array of integers arr, you are initially positioned at the first index of
- * the array. In one step you can jump from index i to index:
+ * Given an array of integers arr, you are initially positioned at the first index of the array.
+ * In one step you can jump from index i to index:
  *  i + 1 where: i + 1 < arr.length.
  *  i - 1 where: i - 1 >= 0.
  *  j where: arr[i] == arr[j] and i != j.
- * Return the minimum number of steps to reach the last index of the array. Notice that
- * you can not jump outside of the array at any time.
+ * Return the minimum number of steps to reach the last index of the array.
+ * Notice that you can not jump outside of the array at any time.
  */
 int JumpGame4(const ArrayType &nums) {
     std::unordered_map<int, std::vector<std::size_t>> occurrences;
@@ -197,14 +201,14 @@ int JumpGame4(const ArrayType &nums) {
  *              https://leetcode.com/problems/jump-game-v/
  * @reference   https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-1344-jump-game-v/
  *
- * Given an array of integers arr and an integer d. In one step you can jump from index i
- * to index:
+ * Given an array of integers arr and an integer d. In one step you can jump from index i to index:
  *  i + x where: i + x < arr.length and 0 < x <= d.
  *  i - x where: i - x >= 0 and 0 < x <= d.
- * In addition, you can only jump from index i to index j if arr[i] > arr[j] and
- * arr[i] > arr[k] for all indices k between i and j (More formally min(i, j) < k < max(i, j)).
- * You can choose any index of the array and start jumping. Return the maximum number of
- * indices you can visit. Notice that you can not jump outside of the array at any time.
+ * In addition, you can only jump from index i to index j if arr[i] > arr[j] and arr[i] > arr[k] for all
+ * indices k between i and j (More formally min(i, j) < k < max(i, j)).
+ * You can choose any index of the array and start jumping. Return the maximum number of indices you can
+ * visit.
+ * Notice that you can not jump outside of the array at any time.
  */
 auto JumpGame5_Memo(const ArrayType &nums, const int d, const int i, ArrayType &memo) {
     if (memo[i]) {
@@ -261,12 +265,13 @@ auto JumpGame5_DP(const ArrayType &nums, const int d) {
  * @reference   Jump Game VI
  *              https://leetcode.com/problems/jump-game-vi/
  *
- * You are given a 0-indexed integer array nums and an integer k. You are initially
- * standing at index 0. In one move, you can jump at most k steps forward without going
- * outside the boundaries of the array. That is, you can jump from index i to any index
- * in the range [i + 1, min(n - 1, i + k)] inclusive. You want to reach the last index
- * of the array (index n - 1). Your score is the sum of all nums[j] for each index j you
- * visited in the array. Return the maximum score you can get.
+ * You are given a 0-indexed integer array nums and an integer k.
+ * You are initially standing at index 0. In one move, you can jump at most k steps forward without
+ * going outside the boundaries of the array. That is, you can jump from index i to any index in the
+ * range [i + 1, min(n - 1, i + k)] inclusive.
+ * You want to reach the last index of the array (index n - 1). Your score is the sum of all nums[j] for
+ * each index j you visited in the array.
+ * Return the maximum score you can get.
  */
 auto JumpGame6_MonotonicQueue(const ArrayType &nums, const std::size_t k) {
     std::deque<std::size_t> q = {0};
@@ -308,9 +313,9 @@ auto JumpGame6_PriorityQueue(const ArrayType &nums, const std::size_t k) {
  * @reference   Jump Game VII
  *              https://leetcode.com/problems/jump-game-vii/
  *
- * You are given a 0-indexed binary string s and two integers minJump and maxJump. In the
- * beginning, you are standing at index 0, which is equal to '0'. You can move from index
- * i to index j if the following conditions are fulfilled:
+ * You are given a 0-indexed binary string s and two integers minJump and maxJump. In the beginning, you
+ * are standing at index 0, which is equal to '0'. You can move from index i to index j if the following
+ * conditions are fulfilled:
  *  i + minJump <= j <= min(i + maxJump, s.length - 1), and
  *  s[j] == '0'.
  * Return true if you can reach index s.length - 1 in s, or false otherwise.
@@ -369,6 +374,36 @@ auto JumpGame7_BFS(const std::string_view s,
     }
 
     return false;
+}
+
+
+/**
+ * @reference   Maximum Number of Jumps to Reach the Last Index
+ *              https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/
+ *
+ * You are given a 0-indexed array nums of n integers and an integer target.
+ * You are initially positioned at index 0. In one step, you can jump from index i to any index j such
+ * that:
+ *  0 <= i < j < n
+ *  -target <= nums[j] - nums[i] <= target
+ * Return the maximum number of jumps you can make to reach index n - 1.
+ * If there is no way to reach index n - 1, return -1.
+ */
+auto MaximumJumps(const ArrayType &nums, const int target) {
+    std::vector dp(nums.size(), -1);
+    dp[0] = 0;
+
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        if (dp[i] != -1) {
+            for (auto j = i + 1; j < nums.size(); ++j) {
+                if (std::abs(nums[i] - nums[j]) <= target) {
+                    dp[j] = std::max(dp[j], dp[i] + 1);
+                }
+            }
+        }
+    }
+
+    return dp.back();
 }
 
 } //namespace
@@ -497,3 +532,15 @@ THE_BENCHMARK(JumpGame7_BFS, "011010", 2, 3);
 
 SIMPLE_TEST(JumpGame7_BFS, TestSAMPLE1, true, "011010", 2, 3);
 SIMPLE_TEST(JumpGame7_BFS, TestSAMPLE2, false, "01101110", 2, 3);
+
+
+const ArrayType SAMPLE1M = {1, 3, 6, 4, 1, 2};
+const ArrayType SAMPLE2M = {0, 2, 1, 3};
+
+
+THE_BENCHMARK(MaximumJumps, SAMPLE1M, 2);
+
+SIMPLE_TEST(MaximumJumps, TestSAMPLE1, 3, SAMPLE1M, 2);
+SIMPLE_TEST(MaximumJumps, TestSAMPLE2, 5, SAMPLE1M, 3);
+SIMPLE_TEST(MaximumJumps, TestSAMPLE3, -1, SAMPLE1M, 0);
+SIMPLE_TEST(MaximumJumps, TestSAMPLE4, -1, SAMPLE2M, 1);

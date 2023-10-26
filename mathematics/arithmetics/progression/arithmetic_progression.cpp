@@ -234,6 +234,41 @@ auto NumZeroFilledSubarrays(const ArrayType &nums) {
     return result;
 }
 
+
+/**
+ * @reference   Find the Minimum Possible Sum of a Beautiful Array
+ *              https://leetcode.com/problems/find-the-minimum-possible-sum-of-a-beautiful-array/
+ *
+ * You are given positive integers n and target.
+ * An array nums is beautiful if it meets the following conditions:
+ *  nums.length == n.
+ *  nums consists of pairwise distinct positive integers.
+ *  There doesn't exist two distinct indices, i and j, in the range [0, n - 1], such that
+ *  nums[i] + nums[j] == target.
+ * Return the minimum possible sum that a beautiful array could have modulo 10^9 + 7.
+ *
+ * @reference   Determine the Minimum Sum of a k-avoiding Array
+ *              https://leetcode.com/problems/determine-the-minimum-sum-of-a-k-avoiding-array/
+ *
+ * You are given two integers, n and k.
+ * An array of distinct positive integers is called a k-avoiding array if there does not exist any pair
+ * of distinct elements that sum to k.
+ * Return the minimum possible sum of a k-avoiding array of length n.
+ */
+auto MinimumPossibleSumOfBeautifulArray(const int n, const int target) {
+    const auto count_less_than_target = std::min(target / 2, n);
+    auto result = (1ull + count_less_than_target) * count_less_than_target / 2 % LARGE_PRIME;
+
+    if (count_less_than_target < n) {
+        const auto count_left = n - count_less_than_target;
+        const auto left_sum =
+            (target + target + count_left - 1ull) * count_left / 2 % LARGE_PRIME;
+        result = (result + left_sum) % LARGE_PRIME;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -333,3 +368,12 @@ THE_BENCHMARK(NumZeroFilledSubarrays, SAMPLE1Z);
 SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE1, 6, SAMPLE1Z);
 SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE2, 9, SAMPLE2Z);
 SIMPLE_TEST(NumZeroFilledSubarrays, TestSAMPLE3, 0, SAMPLE3Z);
+
+
+THE_BENCHMARK(MinimumPossibleSumOfBeautifulArray, 2, 3);
+
+SIMPLE_TEST(MinimumPossibleSumOfBeautifulArray, TestSAMPLE1, 4, 2, 3);
+SIMPLE_TEST(MinimumPossibleSumOfBeautifulArray, TestSAMPLE2, 8, 3, 3);
+SIMPLE_TEST(MinimumPossibleSumOfBeautifulArray, TestSAMPLE3, 1, 1, 1);
+SIMPLE_TEST(MinimumPossibleSumOfBeautifulArray, TestSAMPLE4, 18, 5, 4);
+SIMPLE_TEST(MinimumPossibleSumOfBeautifulArray, TestSAMPLE5, 3, 2, 6);

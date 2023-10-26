@@ -15,12 +15,11 @@ using ArrayType = std::vector<std::string_view>;
  *
  * @reference   https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
  */
-inline auto
-CaseInsensitiveCompare(const std::string_view lhs, const std::string_view rhs) {
-    return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), rhs.cend(),
-    [](const auto a, const auto b) {
-        return std::tolower(a) == std::tolower(b);
-    });
+inline auto CaseInsensitiveCompare(const std::string_view lhs, const std::string_view rhs) {
+    return std::equal(
+        lhs.cbegin(), lhs.cend(), rhs.cbegin(), rhs.cend(), [](const auto a, const auto b) {
+            return std::tolower(a) == std::tolower(b);
+        });
 }
 
 
@@ -28,14 +27,12 @@ CaseInsensitiveCompare(const std::string_view lhs, const std::string_view rhs) {
  * @reference   Check if One String Swap Can Make Strings Equal
  *              https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
  *
- * You are given two strings s1 and s2 of equal length. A string swap is an operation
- * where you choose two indices in a string (not necessarily different) and swap the
- * characters at these indices. Return true if it is possible to make both strings
- * equal by performing at most one string swap on exactly one of the strings. Otherwise,
- * return false.
+ * You are given two strings s1 and s2 of equal length. A string swap is an operation where you choose
+ * two indices in a string (not necessarily different) and swap the characters at these indices.
+ * Return true if it is possible to make both strings equal by performing at most one string swap on
+ * exactly one of the strings. Otherwise, return false.
  */
-constexpr auto
-EqualAfterOneSwap(const std::string_view one, const std::string_view another) {
+constexpr auto EqualAfterOneSwap(const std::string_view one, const std::string_view another) {
     if (one.size() != another.size()) {
         return false;
     }
@@ -51,10 +48,8 @@ EqualAfterOneSwap(const std::string_view one, const std::string_view another) {
         }
     }
 
-    return diff_count == 0 or
-           (diff_count == 2 and
-            one[diffs[0]] == another[diffs[1]] and
-            one[diffs[1]] == another[diffs[0]]);
+    return diff_count == 0 or (diff_count == 2 and one[diffs[0]] == another[diffs[1]] and
+                               one[diffs[1]] == another[diffs[0]]);
 }
 
 
@@ -62,15 +57,14 @@ EqualAfterOneSwap(const std::string_view one, const std::string_view another) {
  * @reference   Buddy Strings
  *              https://leetcode.com/problems/buddy-strings/
  *
- * Given two strings s and goal, return true if you can swap two letters in s so the
- * result is equal to goal, otherwise, return false. Swapping letters is defined as
- * taking two indices i and j (0-indexed) such that i != j and swapping the characters
- * at s[i] and s[j]. For example, swapping at indices 0 and 2 in "abcd" results in "cbad".
- * s and goal consist of lowercase letters.
+ * Given two strings s and goal, return true if you can swap two letters in s so the result is equal to
+ * goal, otherwise, return false.
+ * Swapping letters is defined as taking two indices i and j (0-indexed) such that i != j and swapping
+ * the characters at s[i] and s[j].
+ *  For example, swapping at indices 0 and 2 in "abcd" results in "cbad".
  */
-constexpr auto
-EqualAfterOneSwapNoSameIndices(const std::string_view one,
-                               const std::string_view another) {
+constexpr auto EqualAfterOneSwapNoSameIndices(const std::string_view one,
+                                              const std::string_view another) {
     if (one.size() != another.size()) {
         return false;
     }
@@ -99,8 +93,7 @@ EqualAfterOneSwapNoSameIndices(const std::string_view one,
         return false;
     }
 
-    return diff_count == 2 and
-           one[diffs[0]] == another[diffs[1]] and
+    return diff_count == 2 and one[diffs[0]] == another[diffs[1]] and
            one[diffs[1]] == another[diffs[0]];
 }
 
@@ -109,10 +102,9 @@ EqualAfterOneSwapNoSameIndices(const std::string_view one,
  * @reference   Check If Two String Arrays are Equivalent
  *              https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
  *
- * Given two string arrays word1 and word2, return true if the two arrays represent the
- * same string, and false otherwise.
- * A string is represented by an array if the array elements concatenated in order forms
- * the string.
+ * Given two string arrays word1 and word2, return true if the two arrays represent the same string, and
+ * false otherwise.
+ * A string is represented by an array if the array elements concatenated in order forms the string.
  * word1[i] and word2[i] consist of lowercase letters.
  */
 auto ArrayStringsAreEqual(const ArrayType &word1, const ArrayType &word2) {
@@ -138,7 +130,31 @@ auto ArrayStringsAreEqual(const ArrayType &word1, const ArrayType &word2) {
     return w_i == word1.size() and w_j == word2.size();
 }
 
-}//namespace
+
+/**
+ * @reference   Check if a String Is an Acronym of Words
+ *              https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/
+ *
+ * Given an array of strings words and a string s, determine if s is an acronym of words.
+ * The string s is considered an acronym of words if it can be formed by concatenating the first
+ * character of each string in words in order. For example, "ab" can be formed from ["apple", "banana"],
+ * but it can't be formed from ["bear", "aardvark"].
+ * Return true if s is an acronym of words, and false otherwise.
+ */
+
+
+/**
+ * @reference   Check if Strings Can be Made Equal With Operations I
+ *              https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-i/
+ *
+ * You are given two strings s1 and s2, both of length 4, consisting of lowercase English letters.
+ * You can apply the following operation on any of the two strings any number of times:
+ * Choose any two indices i and j such that j - i = 2, then swap the two characters at those indices in
+ * the string.
+ * Return true if you can make the strings s1 and s2 equal, and false otherwise.
+ */
+
+} //namespace
 
 
 THE_BENCHMARK(CaseInsensitiveCompare, "Geeks", "geeks");
@@ -163,8 +179,7 @@ SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE3, true, "ab", "ba");
 SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE4, false, "abcd", "dcba");
 SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE5, false, "ab", "ab");
 SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE6, true, "aa", "aa");
-SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE7, true, "aaaaaaabc",
-            "aaaaaaacb");
+SIMPLE_TEST(EqualAfterOneSwapNoSameIndices, TestSAMPLE7, true, "aaaaaaabc", "aaaaaaacb");
 
 
 const ArrayType SAMPLE1L = {"ab", "c"};

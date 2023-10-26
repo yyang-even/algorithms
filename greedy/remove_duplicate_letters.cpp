@@ -7,15 +7,14 @@ namespace {
  *
  * @reference   https://leetcode.com/problems/remove-duplicate-letters/
  *
- * Given a string s, remove duplicate letters so that every letter appears once and only
- * once. You must make sure your result is the smallest in lexicographical order among
- * all possible results.
+ * Given a string s, remove duplicate letters so that every letter appears once and only once. You must
+ * make sure your result is the smallest in lexicographical order among all possible results.
  *
  * @reference   Smallest Subsequence of Distinct Characters
  *              https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
  *
- * Given a string s, return the lexicographically smallest subsequence of s that contains
- * all the distinct characters of s exactly once.
+ * Given a string s, return the lexicographically smallest subsequence of s that contains all the
+ * distinct characters of s exactly once.
  */
 std::string SmallestSubsequenceDistinctChars(const std::string_view s) {
     if (s.empty()) {
@@ -71,16 +70,18 @@ auto SmallestSubsequenceDistinctChars_Stack(const std::string_view s) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(SmallestSubsequenceDistinctChars, "bcabc");
 
 SIMPLE_TEST(SmallestSubsequenceDistinctChars, TestSAMPLE1, "abc", "bcabc");
 SIMPLE_TEST(SmallestSubsequenceDistinctChars, TestSAMPLE2, "acdb", "cbacdcbc");
+SIMPLE_TEST(SmallestSubsequenceDistinctChars, TestSAMPLE3, "abc", "abacb");
 
 
 THE_BENCHMARK(SmallestSubsequenceDistinctChars_Stack, "bcabc");
 
 SIMPLE_TEST(SmallestSubsequenceDistinctChars_Stack, TestSAMPLE1, "abc", "bcabc");
 SIMPLE_TEST(SmallestSubsequenceDistinctChars_Stack, TestSAMPLE2, "acdb", "cbacdcbc");
+SIMPLE_TEST(SmallestSubsequenceDistinctChars_Stack, TestSAMPLE3, "abc", "abacb");

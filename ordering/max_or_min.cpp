@@ -34,8 +34,8 @@ using ArrayType = std::vector<unsigned>;
  * @reference   Find largest element from array without using conditional operator
  *              https://www.geeksforgeeks.org/find-largest-element-array-without-using-conditional-operator/
  *
- * Given an array of n-elements, we have to find the largest element among them without
- * using any conditional operator like greater than or less than.
+ * Given an array of n-elements, we have to find the largest element among them without using any
+ * conditional operator like greater than or less than.
  */
 inline auto MaxElement_Bit(ArrayType values) {
     values.push_back(std::numeric_limits<ArrayType::value_type>::max());
@@ -93,18 +93,18 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * @reference   Slowest Key
  *              https://leetcode.com/problems/slowest-key/
  *
- * A newly designed keypad was tested, where a tester pressed a sequence of n keys, one
- * at a time. You are given a string keysPressed of length n, where keysPressed[i] was
- * the ith key pressed in the testing sequence, and a sorted list releaseTimes, where
- * releaseTimes[i] was the time the ith key was released. Both arrays are 0-indexed. The
- * 0th key was pressed at the time 0, and every subsequent key was pressed at the exact
- * time the previous key was released. The tester wants to know the key of the keypress
- * that had the longest duration. The ith keypress had a duration of
- * releaseTimes[i] - releaseTimes[i - 1], and the 0th keypress had a duration of
- * releaseTimes[0]. Note that the same key could have been pressed multiple times during
- * the test, and these multiple presses of the same key may not have had the same
- * duration. Return the key of the keypress that had the longest duration. If there are
- * multiple such keypresses, return the lexicographically largest key of the keypresses.
+ * A newly designed keypad was tested, where a tester pressed a sequence of n keys, one at a time.
+ * You are given a string keysPressed of length n, where keysPressed[i] was the ith key pressed in the
+ * testing sequence, and a sorted list releaseTimes, where releaseTimes[i] was the time the ith key was
+ * released. Both arrays are 0-indexed. The 0th key was pressed at the time 0, and every subsequent key
+ * was pressed at the exact time the previous key was released.
+ * The tester wants to know the key of the keypress that had the longest duration. The ith keypress had
+ * a duration of releaseTimes[i] - releaseTimes[i - 1], and the 0th keypress had a duration of
+ * releaseTimes[0].
+ * Note that the same key could have been pressed multiple times during the test, and these multiple
+ * presses of the same key may not have had the same duration.
+ * Return the key of the keypress that had the longest duration. If there are multiple such keypresses,
+ * return the lexicographically largest key of the keypresses.
  */
 
 
@@ -112,11 +112,12 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * @reference   Kids With the Greatest Number of Candies
  *              https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
  *
- * There are n kids with candies. You are given an integer array candies, where each
- * candies[i] represents the number of candies the ith kid has, and an integer extraCandies,
- * denoting the number of extra candies that you have. Return a boolean array result of
- * length n, where result[i] is true if, after giving the ith kid all the extraCandies,
- * they will have the greatest number of candies among all the kids, or false otherwise.
+ * There are n kids with candies. You are given an integer array candies, where each candies[i]
+ * represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of
+ * extra candies that you have.
+ * Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all
+ * the extraCandies, they will have the greatest number of candies among all the kids, or false
+ * otherwise.
  * Note that multiple kids can have the greatest number of candies.
  */
 
@@ -125,14 +126,12 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * @reference   Largest Subarray Length K
  *              https://leetcode.ca/2021-02-11-1708-Largest-Subarray-Length-K/
  *
- * An array A is larger than some array B if for the first index i where A[i] != B[i],
- * A[i] > B[i].
+ * An array A is larger than some array B if for the first index i where A[i] != B[i], A[i] > B[i].
  * For example, consider 0-indexing:
  *  [1,3,2,4] > [1,2,2,4], since at index 1, 3 > 2.
  *  [1,4,4,4] < [2,1,1,1], since at index 0, 1 < 2.
  * A subarray is a contiguous subsequence of the array.
- * Given an integer array nums of distinct integers, return the largest subarray of nums
- * of length k.
+ * Given an integer array nums of distinct integers, return the largest subarray of nums of length k.
  * All the integers of nums are unique.
  * Follow up: What if the integers in nums are not distinct?
  */
@@ -142,13 +141,12 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * @reference   Number Of Rectangles That Can Form The Largest Square
  *              https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/
  *
- * You are given an array rectangles where rectangles[i] = [li, wi] represents the ith
- * rectangle of length li and width wi.
- * You can cut the ith rectangle to form a square with a side length of k if both k <= li
- * and k <= wi. For example, if you have a rectangle [4,6], you can cut it to get a square
- * with a side length of at most 4.
- * Let maxLen be the side length of the largest square you can obtain from any of the
- * given rectangles.
+ * You are given an array rectangles where rectangles[i] = [li, wi] represents the ith rectangle of
+ * length li and width wi.
+ * You can cut the ith rectangle to form a square with a side length of k if both k <= li and k <= wi.
+ * For example, if you have a rectangle [4,6], you can cut it to get a square with a side length of at
+ * most 4.
+ * Let maxLen be the side length of the largest square you can obtain from any of the given rectangles.
  * Return the number of rectangles that can make a square with a side length of maxLen.
  */
 
@@ -157,18 +155,28 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * @reference   Find Nearest Point That Has the Same X or Y Coordinate
  *              https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
  *
- * You are given two integers, x and y, which represent your current location on a Cartesian
- * grid: (x, y). You are also given an array points where each points[i] = [ai, bi]
- * represents that a point exists at (ai, bi). A point is valid if it shares the same
- * x-coordinate or the same y-coordinate as your location.
- * Return the index (0-indexed) of the valid point with the smallest Manhattan distance
- * from your current location. If there are multiple, return the valid point with the
- * smallest index. If there are no valid points, return -1.
- * The Manhattan distance between two points (x1, y1) and (x2, y2) is
- * abs(x1 - x2) + abs(y1 - y2).
+ * You are given two integers, x and y, which represent your current location on a Cartesian grid: (x,
+ * y). You are also given an array points where each points[i] = [ai, bi] represents that a point exists
+ * at (ai, bi). A point is valid if it shares the same x-coordinate or the same y-coordinate as your
+ * location.
+ * Return the index (0-indexed) of the valid point with the smallest Manhattan distance from your
+ * current location. If there are multiple, return the valid point with the smallest index. If there are
+ * no valid points, return -1.
+ * The Manhattan distance between two points (x1, y1) and (x2, y2) is abs(x1 - x2) + abs(y1 - y2).
  */
 
-}//namespace
+
+/**
+ * @reference   Neither Minimum nor Maximum
+ *              https://leetcode.com/problems/neither-minimum-nor-maximum/
+ *
+ * Given an integer array nums containing distinct positive integers, find and return any number from
+ * the array that is neither the minimum nor the maximum value in the array, or -1 if there is no such
+ * number.
+ * Return the selected integer.
+ */
+
+} //namespace
 
 
 const ArrayType VALUES1 = {};

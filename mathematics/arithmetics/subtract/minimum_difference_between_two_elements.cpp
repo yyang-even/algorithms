@@ -4,8 +4,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
-using PairArrayType =
-    std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>>;
+using PairArrayType = std::vector<std::pair<ArrayType::value_type, ArrayType::value_type>>;
 
 /** Find minimum difference between any two elements
  *
@@ -44,8 +43,8 @@ auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
  * @reference   Closest numbers from a list of unsorted integers
  *              https://www.geeksforgeeks.org/closest-numbers-list-unsorted-integers/
  *
- * Given a list of distinct unsorted integers, find the pair of elements that have the
- * smallest absolute difference between them? If there are multiple pairs, find them all.
+ * Given a list of distinct unsorted integers, find the pair of elements that have the smallest absolute
+ * difference between them? If there are multiple pairs, find them all.
  */
 inline auto AllClosestNumbers(const ArrayType &elements) {
     PairArrayType closest_pairs;
@@ -53,7 +52,43 @@ inline auto AllClosestNumbers(const ArrayType &elements) {
     return closest_pairs;
 }
 
-}//namespace
+
+/**
+ * @reference   Minimum Absolute Difference Between Elements With Constraint
+ *              https://leetcode.com/problems/minimum-absolute-difference-between-elements-with-constraint/
+ *
+ * You are given a 0-indexed integer array nums and an integer x.
+ * Find the minimum absolute difference between two elements in the array that are at least x indices
+ * apart.
+ * In other words, find two indices i and j such that abs(i - j) >= x and abs(nums[i] - nums[j]) is
+ * minimized.
+ * Return an integer denoting the minimum absolute difference between two elements that are at least x
+ * indices apart.
+ */
+auto MinAbsoluteDifferenceXApart(const ArrayType &nums, const int x) {
+    if (x == 0) {
+        return 0;
+    }
+
+    std::set<int> hash;
+    int result = INT_MAX;
+
+    for (std::size_t i = x; i < nums.size(); ++i) {
+        hash.insert(nums[i - x]);
+
+        const auto iter = hash.upper_bound(nums[i]);
+        if (iter != hash.cbegin()) {
+            result = std::min(result, nums[i] - *std::prev(iter));
+        }
+        if (iter != hash.cend()) {
+            result = std::min(result, *iter - nums[i]);
+        }
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 5, 3, 19, 18, 25};
@@ -80,3 +115,17 @@ THE_BENCHMARK(AllClosestNumbers, SAMPLE1);
 
 SIMPLE_TEST(AllClosestNumbers, TestSample4, EXPECTED4, SAMPLE4);
 SIMPLE_TEST(AllClosestNumbers, TestSample5, EXPECTED5, SAMPLE5);
+
+
+const ArrayType SAMPLE1A = {4, 3, 2, 4};
+const ArrayType SAMPLE2A = {5, 3, 2, 10, 15};
+const ArrayType SAMPLE3A = {1, 2, 3, 4};
+const ArrayType SAMPLE4A = {97, 8, 189, 194};
+
+
+THE_BENCHMARK(MinAbsoluteDifferenceXApart, SAMPLE1A, 2);
+
+SIMPLE_TEST(MinAbsoluteDifferenceXApart, TestSample1, 0, SAMPLE1A, 2);
+SIMPLE_TEST(MinAbsoluteDifferenceXApart, TestSample2, 1, SAMPLE2A, 1);
+SIMPLE_TEST(MinAbsoluteDifferenceXApart, TestSample3, 3, SAMPLE3A, 3);
+SIMPLE_TEST(MinAbsoluteDifferenceXApart, TestSample4, 92, SAMPLE4A, 2);
