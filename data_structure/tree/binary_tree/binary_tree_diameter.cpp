@@ -12,10 +12,10 @@ namespace {
  * @reference   Diameter of a Binary Tree
  *              https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
  *
- * Given the root of a binary tree, return the length of the diameter of the tree. The
- * diameter of a binary tree is the length of the longest path between any two nodes in
- * a tree. This path may or may not pass through the root. The length of a path between
- * two nodes is represented by the number of edges between them.
+ * Given the root of a binary tree, return the length of the diameter of the tree.
+ * The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This
+ * path may or may not pass through the root.
+ * The length of a path between two nodes is represented by the number of edges between them.
  */
 auto Diameter(const BinaryTree::Node::PointerType node, int &height) {
     if (not node) {
@@ -26,8 +26,8 @@ auto Diameter(const BinaryTree::Node::PointerType node, int &height) {
     int left_height = 0;
     int right_height = 0;
 
-    const auto sub_diameter = std::max(Diameter(node->left, left_height),
-                                       Diameter(node->right, right_height));
+    const auto sub_diameter =
+        std::max(Diameter(node->left, left_height), Diameter(node->right, right_height));
     height = std::max(left_height, right_height) + 1;
 
     return std::max(left_height + right_height, sub_diameter);
@@ -67,11 +67,10 @@ inline auto Diameter_Height(const BinaryTree::Node::PointerType root) {
  * @reference   Binary Tree Tilt
  *              https://leetcode.com/problems/binary-tree-tilt/
  *
- * Given the root of a binary tree, return the sum of every tree node's tilt. The tilt
- * of a tree node is the absolute difference between the sum of all left subtree node
- * values and all right subtree node values. If a node does not have a left child, then
- * the sum of the left subtree node values is treated as 0. The rule is similar if there
- * the node does not have a right child.
+ * Given the root of a binary tree, return the sum of every tree node's tilt.
+ * The tilt of a tree node is the absolute difference between the sum of all left subtree node values
+ * and all right subtree node values. If a node does not have a left child, then the sum of the left
+ * subtree node values is treated as 0. The rule is similar if the node does not have a right child.
  */
 auto Tilt(const BinaryTree::Node::PointerType node, int &tilt) {
     if (not node) {
@@ -92,7 +91,20 @@ inline auto Tilt(const BinaryTree::Node::PointerType root) {
     return result;
 }
 
-}//namespace
+
+/**
+ * @reference   Count Nodes Equal to Average of Subtree
+ *              https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/
+ *
+ * Given the root of a binary tree, return the number of nodes where the value of the node is equal to
+ * the average of the values in its subtree.
+ * Note:
+ *  The average of n elements is the sum of the n elements divided by n and rounded down to the nearest
+ *  integer.
+ *  A subtree of root is a tree consisting of root and all of its descendants.
+ */
+
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleCompleteTree().GetRoot();
