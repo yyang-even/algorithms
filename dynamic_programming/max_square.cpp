@@ -142,6 +142,38 @@ auto MaxRectangle_MonotonicStack(const MatrixType &grid) {
 
 
 /**
+ * @reference   Largest Submatrix With Rearrangements
+ *              https://leetcode.com/problems/largest-submatrix-with-rearrangements/
+ *
+ * You are given a binary matrix matrix of size m x n, and you are allowed to rearrange the columns of
+ * the matrix in any order.
+ * Return the area of the largest submatrix within matrix where every element of the submatrix is 1
+ * after reordering the columns optimally.
+ */
+auto LargestSubmatrixWithRearrangements(const MatrixType &a_matrix) {
+    const int N = a_matrix[0].size();
+
+    int result = 0;
+    std::vector prev_row(N, 0);
+    for (auto current_row : a_matrix) {
+        for (int column = 0; column < N; ++column) {
+            if (current_row[column]) {
+                current_row[column] += prev_row[column];
+            }
+        }
+        prev_row = current_row;
+
+        std::sort(current_row.begin(), current_row.end(), std::greater<int>());
+        for (int i = 0; i < N; i++) {
+            result = std::max(result, current_row[i] * (i + 1));
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximum Score of a Good Subarray
  *              https://leetcode.com/problems/maximum-score-of-a-good-subarray/
  *
@@ -248,6 +280,29 @@ SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE2, 1, SAMPLE2);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE3, 0, SAMPLE3);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE4, 1, SAMPLE4);
+
+
+// clang-format off
+const MatrixType SAMPLE1L = {
+    {0, 0, 1},
+    {1, 1, 1},
+    {1, 0, 1}
+};
+
+const MatrixType SAMPLE2L = {{1, 0, 1, 0, 1}};
+
+const MatrixType SAMPLE3L = {
+    {1, 1, 0},
+    {1, 0, 1}
+};
+// clang-format on
+
+
+THE_BENCHMARK(LargestSubmatrixWithRearrangements, SAMPLE1L);
+
+SIMPLE_TEST(LargestSubmatrixWithRearrangements, TestSAMPLE1, 4, SAMPLE1L);
+SIMPLE_TEST(LargestSubmatrixWithRearrangements, TestSAMPLE2, 3, SAMPLE2L);
+SIMPLE_TEST(LargestSubmatrixWithRearrangements, TestSAMPLE3, 2, SAMPLE3L);
 
 
 const ArrayType SAMPLE1H = {2, 1, 5, 6, 2, 3};

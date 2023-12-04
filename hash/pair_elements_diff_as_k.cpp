@@ -9,8 +9,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
  *
- * Given an integer array nums and an integer k, return the number of pairs (i, j) where
- * i < j such that |nums[i] - nums[j]| == k.
+ * Given an integer array nums and an integer k, return the number of pairs (i, j) where i < j such that
+ * |nums[i] - nums[j]| == k.
  * The value of |x| is defined as:
  *  x if x >= 0.
  *  -x if x < 0.
@@ -34,11 +34,25 @@ auto CountPairsDiffAsK(const ArrayType &nums, const int k) {
 
 
 /**
+ * @reference   Count Nice Pairs in an Array
+ *              https://leetcode.com/problems/count-nice-pairs-in-an-array/
+ *
+ * You are given an array nums that consists of non-negative integers. Let us define rev(x) as the
+ * reverse of the non-negative integer x. For example, rev(123) = 321, and rev(120) = 21. A pair of
+ * indices (i, j) is nice if it satisfies all of the following conditions:
+ *  0 <= i < j < nums.length
+ *  nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])
+ * Return the number of nice pairs of indices. Since that number can be too large, return it modulo
+ * 10^9 + 7.
+ */
+
+
+/**
  * @reference   K-diff Pairs in an Array
  *              https://leetcode.com/problems/k-diff-pairs-in-an-array/
  *
- * Given an array of integers nums and an integer k, return the number of unique k-diff
- * pairs in the array.
+ * Given an array of integers nums and an integer k, return the number of unique k-diff pairs in the
+ * array.
  * A k-diff pair is an integer pair (nums[i], nums[j]), where the following are true:
  *  0 <= i < j < nums.length
  *  |nums[i] - nums[j]| == k
@@ -92,7 +106,7 @@ auto KDiffUniquePairs_TwoPointers(ArrayType nums, const int k) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 2, 1};

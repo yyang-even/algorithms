@@ -38,29 +38,24 @@
 // Util Functions
 /** A function return a random number in range [from, to]
  */
-template <typename FromType, typename ToType>
-[[nodiscard]]
-static inline auto Random_Number(const FromType from, const ToType to) {
+template<typename FromType, typename ToType>
+[[nodiscard]] static inline auto Random_Number(const FromType from, const ToType to) {
     static const auto SEED = std::chrono::system_clock::now().time_since_epoch().count();
     static std::default_random_engine generator(SEED);
-    std::uniform_int_distribution<std::common_type_t<FromType, ToType>>
-            distribution(from, to);
+    std::uniform_int_distribution<std::common_type_t<FromType, ToType>> distribution(from, to);
     return distribution(generator);
 }
 
 
-template <typename Iterator>
-[[nodiscard]]
-static inline constexpr bool
-isThereMoreThanOneElements(const Iterator cbegin, const Iterator cend) {
+template<typename Iterator>
+[[nodiscard]] static inline constexpr bool isThereMoreThanOneElements(const Iterator cbegin,
+                                                                      const Iterator cend) {
     return cbegin != cend and std::next(cbegin) != cend;
 }
 
 
-template <typename ToContainer, typename FromContainer>
-[[nodiscard]]
-static inline constexpr auto
-ContainerCast(FromContainer a_container) {
+template<typename ToContainer, typename FromContainer>
+[[nodiscard]] static inline constexpr auto ContainerCast(FromContainer a_container) {
     return ToContainer(std::make_move_iterator(a_container.begin()),
                        std::make_move_iterator(a_container.end()));
 }
@@ -82,18 +77,20 @@ ContainerCast(FromContainer a_container) {
  */
 #ifdef WANT_BENCHMARKS
 
-#define SIMPLE_BENCHMARK(func_name, case_name, inputs...) namespace {   \
-    static void BM_##func_name##_##case_name(benchmark::State& state) { \
+#define SIMPLE_BENCHMARK(func_name, case_name, inputs...)               \
+    namespace {                                                         \
+    static void BM_##func_name##_##case_name(benchmark::State &state) { \
         for (auto _ : state)                                            \
             func_name(inputs);                                          \
     }                                                                   \
                                                                         \
     BENCHMARK(BM_##func_name##_##case_name);                            \
-}
+    }
 
 #else
 
-#define SIMPLE_BENCHMARK(func_name, inputs...) namespace {}
+#define SIMPLE_BENCHMARK(func_name, inputs...) \
+    namespace {}
 
 #endif
 
@@ -103,53 +100,65 @@ ContainerCast(FromContainer a_container) {
 
 #ifdef WANT_TESTS
 
-#define EXPECT_EQ_AND_PRINT_INPUTS(expectedExpression, func_name, inputs...)                        \
-    using ExpectedType = decltype(func_name(inputs));                                               \
-    const ExpectedType &fine_type_expected_value = expectedExpression;                              \
-    EXPECT_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs);
+#define EXPECT_EQ_AND_PRINT_INPUTS(expectedExpression, func_name, inputs...) \
+    using ExpectedType = decltype(func_name(inputs));                        \
+    const ExpectedType &fine_type_expected_value = expectedExpression;       \
+    EXPECT_EQ(fine_type_expected_value, func_name(inputs))                   \
+        << "Inputs: " << std::make_tuple(inputs);
 
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {              \
-    TEST(func_name##Test, testName) {                                                       \
-        EXPECT_EQ_AND_PRINT_INPUTS(STRIP_PARENTHESES(expectedValue), func_name, inputs);    \
-    }                                                                                       \
-}
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...)                       \
+    namespace {                                                                          \
+    TEST(func_name##Test, testName) {                                                    \
+        EXPECT_EQ_AND_PRINT_INPUTS(STRIP_PARENTHESES(expectedValue), func_name, inputs); \
+    }                                                                                    \
+    }
 
-#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) namespace {                           \
-    TEST(func_name##Test, testName) {                                                                           \
-        using ExpectedType = decltype(func_name(inputs));                                                       \
-        ASSERT_TRUE(std::is_floating_point<ExpectedType>::value);                                               \
-        const ExpectedType &fine_type_expected_value = expectedValue;                                           \
-        EXPECT_DOUBLE_EQ(fine_type_expected_value, func_name(inputs)) << "Inputs: " << std::make_tuple(inputs); \
-    }                                                                                                           \
-}
+#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) \
+    namespace {                                                           \
+    TEST(func_name##Test, testName) {                                     \
+        using ExpectedType = decltype(func_name(inputs));                 \
+        ASSERT_TRUE(std::is_floating_point<ExpectedType>::value);         \
+        const ExpectedType &fine_type_expected_value = expectedValue;     \
+        EXPECT_DOUBLE_EQ(fine_type_expected_value, func_name(inputs))     \
+            << "Inputs: " << std::make_tuple(inputs);                     \
+    }                                                                     \
+    }
 
-#define SIMPLE_TEST0(func_name, testName, expectedValue...) namespace {         \
-    TEST(func_name##Test, testName) {                                           \
-        const decltype(func_name()) &fine_type_expected_value = expectedValue;  \
-        EXPECT_EQ(fine_type_expected_value, func_name());                       \
-    }                                                                           \
-}
+#define SIMPLE_TEST0(func_name, testName, expectedValue...)                    \
+    namespace {                                                                \
+    TEST(func_name##Test, testName) {                                          \
+        const decltype(func_name()) &fine_type_expected_value = expectedValue; \
+        EXPECT_EQ(fine_type_expected_value, func_name());                      \
+    }                                                                          \
+    }
 
-#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {   \
-    TEST(func1##vs##func2, testName) {                                      \
-        EXPECT_EQ_AND_PRINT_INPUTS(func1(inputs), func2, inputs);           \
-    }                                                                       \
-}
+#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...)     \
+    namespace {                                                   \
+    TEST(func1##vs##func2, testName) {                            \
+        EXPECT_EQ_AND_PRINT_INPUTS(func1(inputs), func2, inputs); \
+    }                                                             \
+    }
 
-#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {    \
-    TEST(MutualRandomTest, func1##vs##func2) {                                  \
-        const auto random_input = Random_Number(lowerBound, upperBound);        \
-        EXPECT_EQ_AND_PRINT_INPUTS(func1(random_input), func2, random_input);   \
-    }                                                                           \
-}
+#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound)              \
+    namespace {                                                               \
+    TEST(MutualRandomTest, func1##vs##func2) {                                \
+        const auto random_input = Random_Number(lowerBound, upperBound);      \
+        EXPECT_EQ_AND_PRINT_INPUTS(func1(random_input), func2, random_input); \
+    }                                                                         \
+    }
 
 #else
 
-#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
-#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) namespace {}
-#define SIMPLE_TEST0(func_name, testName, expectedValue...) namespace {}
-#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) namespace {}
-#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) namespace {}
+#define SIMPLE_TEST(func_name, testName, expectedValue, inputs...) \
+    namespace {}
+#define SIMPLE_DOUBLE_TEST(func_name, testName, expectedValue, inputs...) \
+    namespace {}
+#define SIMPLE_TEST0(func_name, testName, expectedValue...) \
+    namespace {}
+#define MUTUAL_SIMPLE_TEST(func1, func2, testName, inputs...) \
+    namespace {}
+#define MUTUAL_RANDOM_TEST(func1, func2, lowerBound, upperBound) \
+    namespace {}
 
 #endif
 
@@ -158,21 +167,21 @@ ContainerCast(FromContainer a_container) {
  * @reference   Functions in std
  *              https://en.cppreference.com/w/cpp/algorithm/stable_partition
  */
-#define ToLambda(F) [](auto&&... args)                              \
-    noexcept(noexcept(F(std::forward<decltype(args)>(args)...)))    \
-    -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
-        return F(std::forward<decltype(args)>(args)...);            \
+#define ToLambda(F)                                                         \
+    [](auto &&...args) noexcept(noexcept(F(std::forward<decltype(args)>(    \
+        args)...))) -> decltype(F(std::forward<decltype(args)>(args)...)) { \
+        return F(std::forward<decltype(args)>(args)...);                    \
     }
 
-#define ToNegationLambda(F) [](auto&&... args)                      \
-    noexcept(noexcept(F(std::forward<decltype(args)>(args)...)))    \
-    -> decltype(F(std::forward<decltype(args)>(args)...)) {         \
-        return not F(std::forward<decltype(args)>(args)...);        \
+#define ToNegationLambda(F)                                                 \
+    [](auto &&...args) noexcept(noexcept(F(std::forward<decltype(args)>(    \
+        args)...))) -> decltype(F(std::forward<decltype(args)>(args)...)) { \
+        return not F(std::forward<decltype(args)>(args)...);                \
     }
 
 
 //Constants
-template <typename T>
+template<typename T>
 static constexpr auto BitsNumber = sizeof(T) * CHAR_BIT;
 
 constexpr auto Void = [](auto &&...) {};
@@ -180,7 +189,7 @@ constexpr auto Copy = [](auto v) {
     return v;
 };
 
-static constexpr auto LARGE_PRIME = 1000000007;
+static constexpr int LARGE_PRIME = 1e9 + 7;
 
 static constexpr unsigned HYPOTHETIC_MAX_STACK_DEPTH = 4096;
 

@@ -222,6 +222,66 @@ auto MinAverageDiff(const ArrayType &nums) {
     return minimum_index;
 }
 
+
+/**
+ * @reference   Sum of Absolute Differences in a Sorted Array
+ *              https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/
+ *
+ * You are given an integer array nums sorted in non-decreasing order.
+ * Build and return an integer array result with the same length as nums such that result[i] is equal to
+ * the summation of absolute differences between nums[i] and all the other elements in the array.
+ * In other words, result[i] is equal to sum(|nums[i]-nums[j]|) where 0 <= j < nums.length and j != i
+ * (0-indexed).
+ */
+
+
+/**
+ * @reference   Unique Length-3 Palindromic Subsequences
+ *              https://leetcode.com/problems/unique-length-3-palindromic-subsequences/
+ *
+ * Given a string s, return the number of unique palindromes of length three that are a subsequence of
+ * s.
+ * Note that even if there are multiple ways to obtain the same subsequence, it is still only counted
+ * once.
+ * A palindrome is a string that reads the same forwards and backwards.
+ * A subsequence of a string is a new string generated from the original string with some characters
+ * (can be none) deleted without changing the relative order of the remaining characters.
+ *  For example, "ace" is a subsequence of "abcde".
+ */
+auto CountPalindromicSubsequence(const std::string_view s) {
+    std::vector prefix_sums(26, std::vector(s.size() + 1, 0));
+    std::vector lasts(26, 0);
+
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        const int c_index = s[i] - 'a';
+
+        lasts[c_index] = i;
+
+        for (auto &sums : prefix_sums) {
+            sums[i + 1] = sums[i];
+        }
+        ++(prefix_sums[c_index][i + 1]);
+    }
+
+    int result = 0;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        const int c_index = s[i] - 'a';
+
+        const size_t l = lasts[c_index];
+        if (l > i) {
+            for (const auto &sums : prefix_sums) {
+                const auto diff = sums[l] - sums[i + 1];
+                if (diff > 0) {
+                    ++result;
+                }
+            }
+        }
+        lasts[c_index] = 0;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -290,3 +350,10 @@ THE_BENCHMARK(MinAverageDiff, SAMPLE1M);
 
 SIMPLE_TEST(MinAverageDiff, TestSAMPLE1, 3, SAMPLE1M);
 SIMPLE_TEST(MinAverageDiff, TestSAMPLE2, 0, SAMPLE2M);
+
+
+THE_BENCHMARK(CountPalindromicSubsequence, "aabca");
+
+SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE1, 3, "aabca");
+SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE2, 0, "adc");
+SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE3, 4, "bbcbaba");
