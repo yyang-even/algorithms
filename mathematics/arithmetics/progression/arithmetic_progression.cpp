@@ -96,6 +96,26 @@ auto CanMakeArithmeticProgression(ArrayType nums) {
 }
 
 
+/**
+ * @reference   Arithmetic Subarrays
+ *              https://leetcode.com/problems/arithmetic-subarrays/
+ *
+ * A sequence of numbers is called arithmetic if it consists of at least two elements, and the
+ * difference between every two consecutive elements is the same. More formally, a sequence s is
+ * arithmetic if and only if s[i+1] - s[i] == s[1] - s[0] for all valid i.
+ * For example, these are arithmetic sequences:
+ *  1, 3, 5, 7, 9
+ * The following sequence is not arithmetic:
+ *  1, 1, 2, 5, 7
+ * You are given an array of n integers, nums, and two arrays of m integers each, l and r, representing
+ * the m range queries, where the ith query is the range [l[i], r[i]]. All the arrays are 0-indexed.
+ * Return a list of boolean elements answer, where answer[i] is true if the subarray nums[l[i]],
+ * nums[l[i]+1], ... , nums[r[i]] can be rearranged to form an arithmetic sequence, and false otherwise.
+ *
+ * @hint    Just Brute Force.
+ */
+
+
 /** Find the average of first N natural numbers
  *
  * @reference   https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
@@ -233,6 +253,17 @@ auto NumZeroFilledSubarrays(const ArrayType &nums) {
 
     return result;
 }
+
+
+/**
+ * @reference   Count Number of Homogenous Substrings
+ *              https://leetcode.com/problems/count-number-of-homogenous-substrings/
+ *
+ * Given a string s, return the number of homogenous substrings of s. Since the answer may be too large,
+ * return it modulo 10^9 + 7.
+ * A string is homogenous if all the characters of the string are the same.
+ * A substring is a contiguous sequence of characters within a string.
+ */
 
 
 /**

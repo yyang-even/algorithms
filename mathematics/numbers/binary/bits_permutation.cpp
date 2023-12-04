@@ -3,16 +3,17 @@
 
 namespace {
 
+using ArrayType = std::vector<std::string>;
+
 /** Compute the lexicographically next bit permutation
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute the lexicographically next bit permutation
  *              https://graphics.stanford.edu/~seander/bithacks.html
  *
- * Suppose we have a pattern of N bits set to 1 in an integer and we want the next
- * permutation of N 1 bits in a lexicographical sense. For example, if N is 3 and the
- * bit pattern is 00010011, the next patterns would be 00010101, 00010110, 00011001,
- * 00011010, 00011100, 00100011, and so forth.
+ * Suppose we have a pattern of N bits set to 1 in an integer and we want the next permutation of N 1
+ * bits in a lexicographical sense. For example, if N is 3 and the bit pattern is 00010011, the next
+ * patterns would be 00010101, 00010110, 00011001, 00011010, 00011100, 00100011, and so forth.
  */
 #ifdef __GNUC__
 inline constexpr auto ClosestGreaterBitsPermutation_GNUC(const unsigned num) {
@@ -34,8 +35,8 @@ inline constexpr auto ClosestGreaterBitsPermutation_Division(const unsigned num)
  *
  * @reference   https://www.geeksforgeeks.org/closest-next-smaller-greater-numbers-number-set-bits/
  *
- * Given a positive integer n, print the next smallest and the previous largest number
- * that have the same number of 1 bits in their binary representation.
+ * Given a positive integer n, print the next smallest and the previous largest number that have the
+ * same number of 1 bits in their binary representation.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 5.2.
@@ -153,7 +154,25 @@ constexpr auto ClosestGreaterBitsPermutation_Snoob(const int number) {
     return next_higher_1 | right_1s_pattern;
 }
 
-}//namespace
+
+/**
+ * @reference   Find Unique Binary String
+ *              https://leetcode.com/problems/find-unique-binary-string/
+ *
+ * Given an array of strings nums containing n unique binary strings each of length n, return a binary
+ * string of length n that does not appear in nums. If there are multiple answers, you may return any of
+ * them.
+ */
+auto FindUniqueBinaryStr(const ArrayType &nums) {
+    std::string result;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        result.push_back(nums[i][i] == '0' ? '1' : '0');
+    }
+
+    return result;
+}
+
+} //namespace
 
 
 constexpr unsigned LOWER = 1;
@@ -173,10 +192,8 @@ THE_BENCHMARK(ClosestGreaterBitsPermutation_Division, UPPER);
 
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestLOWER, 2, LOWER);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestUPPER, UPPER, UPPER);
-SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE1,
-            0b00011001, 0b00010110);
-SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE2,
-            0b00011100, 0b00011010);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE1, 0b00011001, 0b00010110);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_Division, TestSAMPLE2, 0b00011100, 0b00011010);
 
 
 THE_BENCHMARK(ClosestGreaterBitsPermutation, 13948);
@@ -203,8 +220,7 @@ SIMPLE_TEST(ClosestGreaterBitsPermutation_Snoob, TestSAMPLE6, 163, 156);
 
 THE_BENCHMARK(ClosestGreaterBitsPermutation_Arithmetic, 13948);
 
-SIMPLE_TEST(ClosestGreaterBitsPermutation_Arithmetic, TestSAMPLE1,
-            0b11011010001111, 13948);
+SIMPLE_TEST(ClosestGreaterBitsPermutation_Arithmetic, TestSAMPLE1, 0b11011010001111, 13948);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Arithmetic, TestSAMPLE2, 6, 5);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Arithmetic, TestSAMPLE3, 13, 11);
 SIMPLE_TEST(ClosestGreaterBitsPermutation_Arithmetic, TestSAMPLE4, 16, 8);
@@ -224,3 +240,15 @@ SIMPLE_TEST(ClosestSmallerBitsPermutation_Arithmetic, TestSAMPLE2, 3, 5);
 SIMPLE_TEST(ClosestSmallerBitsPermutation_Arithmetic, TestSAMPLE3, 7, 11);
 SIMPLE_TEST(ClosestSmallerBitsPermutation_Arithmetic, TestSAMPLE4, 5, 6);
 SIMPLE_TEST(ClosestSmallerBitsPermutation_Arithmetic, TestSAMPLE5, 8, 16);
+
+
+const ArrayType SAMPLE1 = {"01", "10"};
+const ArrayType SAMPLE2 = {"00", "01"};
+const ArrayType SAMPLE3 = {"111", "011", "001"};
+
+
+THE_BENCHMARK(FindUniqueBinaryStr, SAMPLE1);
+
+SIMPLE_TEST(FindUniqueBinaryStr, TestSAMPLE1, "11", SAMPLE1);
+SIMPLE_TEST(FindUniqueBinaryStr, TestSAMPLE2, "10", SAMPLE2);
+SIMPLE_TEST(FindUniqueBinaryStr, TestSAMPLE3, "000", SAMPLE3);
