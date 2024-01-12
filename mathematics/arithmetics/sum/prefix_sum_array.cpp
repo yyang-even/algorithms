@@ -282,6 +282,47 @@ auto CountPalindromicSubsequence(const std::string_view s) {
     return result;
 }
 
+
+/**
+ * @reference   Minimum Amount of Time to Collect Garbage
+ *              https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/
+ *
+ * You are given a 0-indexed array of strings garbage where garbage[i] represents the assortment of
+ * garbage at the ith house. garbage[i] consists only of the characters 'M', 'P' and 'G' representing
+ * one unit of metal, paper and glass garbage respectively. Picking up one unit of any type of garbage
+ * takes 1 minute.
+ * You are also given a 0-indexed integer array travel where travel[i] is the number of minutes needed
+ * to go from house i to house i + 1.
+ * There are three garbage trucks in the city, each responsible for picking up one type of garbage. Each
+ * garbage truck starts at house 0 and must visit each house in order; however, they do not need to
+ * visit every house.
+ * Only one garbage truck may be used at any given moment. While one truck is driving or picking up
+ * garbage, the other two trucks cannot do anything.
+ * Return the minimum number of minutes needed to pick up all the garbage.
+ */
+auto MinTimeToCollectGarbage(const std::vector<std::string> &garbage, ArrayType travel) {
+    std::unordered_map<char, int> lasts;
+    int result = 0;
+    for (std::size_t i = 0; i < garbage.size(); ++i) {
+        result += garbage[i].size();
+        for (const auto c : garbage[i]) {
+            lasts[c] = i;
+        }
+    }
+
+    for (std::size_t i = 1; i < travel.size(); ++i) {
+        travel[i] += travel[i - 1];
+    }
+
+    for (const auto c : "MPG") {
+        if (lasts[c]) {
+            result += travel[lasts[c] - 1];
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -357,3 +398,16 @@ THE_BENCHMARK(CountPalindromicSubsequence, "aabca");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE1, 3, "aabca");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE2, 0, "adc");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE3, 4, "bbcbaba");
+
+
+const std::vector<std::string> SAMPLE1G = {"G", "P", "GP", "GG"};
+const ArrayType SAMPLE1T = {2, 4, 3};
+
+const std::vector<std::string> SAMPLE2G = {"MMM", "PGM", "GP"};
+const ArrayType SAMPLE2T = {3, 10};
+
+
+THE_BENCHMARK(MinTimeToCollectGarbage, SAMPLE1G, SAMPLE1T);
+
+SIMPLE_TEST(MinTimeToCollectGarbage, TestSAMPLE1, 21, SAMPLE1G, SAMPLE1T);
+SIMPLE_TEST(MinTimeToCollectGarbage, TestSAMPLE2, 37, SAMPLE2G, SAMPLE2T);

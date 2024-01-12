@@ -247,6 +247,36 @@ ArrayType FindOriginalArray(const ArrayType &nums) {
  * conditions.
  */
 
+
+/**
+ * @reference   Sort Vowels in a String
+ *              https://leetcode.com/problems/sort-vowels-in-a-string/
+ *
+ * Given a 0-indexed string s, permute s to get a new string t such that:
+ *  All consonants remain in their original places. More formally, if there is an index i with 0 <= i <
+ *  s.length such that s[i] is a consonant, then t[i] = s[i].
+ *  The vowels must be sorted in the nondecreasing order of their ASCII values. More formally, for pairs
+ *  of indices i, j with 0 <= i < j < s.length such that s[i] and s[j] are vowels, then t[i] must not
+ *  have a higher ASCII value than t[j].
+ * Return the resulting string.
+ * The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in lowercase or uppercase. Consonants
+ * comprise all letters that are not vowels.
+ */
+
+
+/**
+ * @reference   Reduction Operations to Make the Array Elements Equal
+ *              https://leetcode.com/problems/reduction-operations-to-make-the-array-elements-equal/
+ *
+ * Given an integer array nums, your goal is to make all elements in nums equal. To complete one
+ * operation, follow these steps:
+ *  Find the largest value in nums. Let its index be i (0-indexed) and its value be largest. If there
+ *  are multiple elements with the largest value, pick the smallest i.
+ *  Find the next largest value in nums strictly smaller than largest. Let its value be nextLargest.
+ *  Reduce nums[i] to nextLargest.
+ * Return the number of operations to make all elements in nums equal.
+ */
+
 } //namespace
 
 

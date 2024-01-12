@@ -83,6 +83,68 @@ auto SortMatrixDiagonally(MatrixType a_matrix) {
     return a_matrix;
 }
 
+
+/**
+ * @reference   Diagonal Traverse
+ *              https://leetcode.com/problems/diagonal-traverse/
+ *
+ * Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.
+ */
+auto DiagonalTraverse(const MatrixType &a_matrix) {
+    const int M = a_matrix.size();
+    const int N = a_matrix.front().size();
+
+    std::vector diagonals(M + N, std::vector<int> {});
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            diagonals[i + j].push_back(a_matrix[i][j]);
+        }
+    }
+
+    std::vector<int> result;
+    for (int i = 0; i < M + N; ++i) {
+        const auto &d = diagonals[i];
+        if (i % 2) {
+            result.insert(result.cend(), d.cbegin(), d.cend());
+        } else {
+            result.insert(result.cend(), d.crbegin(), d.crend());
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Diagonal Traverse II
+ *              https://leetcode.com/problems/diagonal-traverse-ii/
+ *
+ * Given a 2D integer array nums, return all elements of nums in diagonal order as shown in the below
+ * images.
+ */
+auto DiagonalTraverseSameDirection_BFS(const MatrixType &nums) {
+    std::queue<std::pair<std::size_t, std::size_t>> q;
+    q.emplace(0, 0);
+
+    std::vector<int> result;
+    while (not q.empty()) {
+        const auto &[row, column] = q.front();
+        result.push_back(nums[row][column]);
+
+        if (column == 0 and row + 1 < nums.size()) {
+            q.emplace(row + 1, column);
+        }
+
+        if (column + 1 < nums[row].size()) {
+            q.emplace(row, column + 1);
+        }
+
+        q.pop();
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -147,3 +209,47 @@ SIMPLE_TEST(SortMatrixDiagonally, TestSAMPLE1, SAMPLE1, SAMPLE1);
 SIMPLE_TEST(SortMatrixDiagonally, TestSAMPLE2, SAMPLE2, SAMPLE2);
 SIMPLE_TEST(SortMatrixDiagonally, TestSAMPLE3, EXPECTED3, SAMPLE3);
 SIMPLE_TEST(SortMatrixDiagonally, TestSAMPLE4, EXPECTED4, SAMPLE4);
+
+
+// clang-format off
+const MatrixType SAMPLE1D = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+// clang-format on
+const std::vector EXPECTED1D = {1, 2, 4, 7, 5, 3, 6, 8, 9};
+
+// clang-format off
+const MatrixType SAMPLE2D = {
+    {1, 2},
+    {3, 4}
+};
+// clang-format on
+const std::vector EXPECTED2D = {1, 2, 3, 4};
+
+
+THE_BENCHMARK(DiagonalTraverse, SAMPLE1D);
+
+SIMPLE_TEST(DiagonalTraverse, TestSAMPLE1, EXPECTED1D, SAMPLE1D);
+SIMPLE_TEST(DiagonalTraverse, TestSAMPLE2, EXPECTED2D, SAMPLE2D);
+
+
+const std::vector EXPECTED1S = {1, 4, 2, 7, 5, 3, 8, 6, 9};
+
+// clang-format off
+const MatrixType SAMPLE2S = {
+    {1, 2, 3, 4, 5},
+    {6, 7},
+    {8},
+    {9, 10, 11},
+    {12, 13, 14, 15, 16}
+};
+// clang-format on
+const std::vector EXPECTED2S = {1, 6, 2, 8, 7, 3, 9, 4, 12, 10, 5, 13, 11, 14, 15, 16};
+
+
+THE_BENCHMARK(DiagonalTraverseSameDirection_BFS, SAMPLE2S);
+
+SIMPLE_TEST(DiagonalTraverseSameDirection_BFS, TestSAMPLE1, EXPECTED1S, SAMPLE1D);
+SIMPLE_TEST(DiagonalTraverseSameDirection_BFS, TestSAMPLE2, EXPECTED2S, SAMPLE2S);

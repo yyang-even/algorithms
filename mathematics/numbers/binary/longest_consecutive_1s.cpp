@@ -236,6 +236,32 @@ auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int
 
 
 /**
+ * @reference   Frequency of the Most Frequent Element
+ *              https://leetcode.com/problems/frequency-of-the-most-frequent-element/
+ *
+ * The frequency of an element is the number of times it occurs in an array.
+ * You are given an integer array nums and an integer k. In one operation, you can choose an index of
+ * nums and increment the element at that index by 1.
+ * Return the maximum possible frequency of an element after performing at most k operations.
+ */
+auto MaxFrequency_NonShrinkableSlidingWindow(ArrayType nums, long k) {
+    std::sort(nums.begin(), nums.end());
+
+    long left = 0;
+    long right = 0;
+    const long size = nums.size();
+    for (; right < size; ++right) {
+        k += nums[right];
+        if (k < nums[right] * (right - left + 1)) {
+            k -= nums[left++];
+        }
+    }
+
+    return right - left;
+}
+
+
+/**
  * @reference   Maximize the Confusion of an Exam
  *              https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
  *
@@ -632,3 +658,15 @@ SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE1, 2, SAMPLE1A);
 SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE2, 1, SAMPLE2A);
 SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE3, 24, SAMPLE3A);
 SIMPLE_TEST(LongestSubarrayWithMaxAnd, TestSAMPLE4, 1, SAMPLE4A);
+
+
+const ArrayType SAMPLE1F = {1, 2, 4};
+const ArrayType SAMPLE2F = {1, 4, 8, 13};
+const ArrayType SAMPLE3F = {3, 9, 6};
+
+
+THE_BENCHMARK(MaxFrequency_NonShrinkableSlidingWindow, SAMPLE1F, 5);
+
+SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE1, 3, SAMPLE1F, 5);
+SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE2, 2, SAMPLE2F, 5);
+SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE3, 1, SAMPLE3F, 2);

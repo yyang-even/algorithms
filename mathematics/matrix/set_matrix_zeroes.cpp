@@ -12,8 +12,9 @@ namespace {
  * @reference   Set Matrix Zeroes
  *              https://leetcode.com/problems/set-matrix-zeroes/
  *
- * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's,
- * and return the matrix. You must do it in place.
+ * Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's, and
+ * return the matrix.
+ * You must do it in place.
  */
 auto SetMatrixZeroes(MatrixType a_matrix) {
     assert(not a_matrix.empty());
@@ -94,8 +95,8 @@ auto SetMatrixZeroes_O1(MatrixType a_matrix) {
  *              https://leetcode.com/problems/lucky-numbers-in-a-matrix/
  *
  * Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
- * A lucky number is an element of the matrix such that it is the minimum element in its row and
- * maximum in its column.
+ * A lucky number is an element of the matrix such that it is the minimum element in its row and maximum
+ * in its column.
  * 1 <= matrix[i][j] <= 10^5.
  */
 
@@ -105,8 +106,8 @@ auto SetMatrixZeroes_O1(MatrixType a_matrix) {
  *              https://leetcode.com/problems/special-positions-in-a-binary-matrix/
  *
  * Given an m x n binary matrix mat, return the number of special positions in mat.
- * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column
- * j are 0 (rows and columns are 0-indexed).
+ * A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j
+ * are 0 (rows and columns are 0-indexed).
  */
 auto NumberSpecials(const MatrixType &mat) {
     std::vector rows(mat.size(), 0);
@@ -135,6 +136,21 @@ auto NumberSpecials(const MatrixType &mat) {
 
 
 /**
+ * @reference   Difference Between Ones and Zeros in Row and Column
+ *              https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/
+ *
+ * You are given a 0-indexed m x n binary matrix grid.
+ * A 0-indexed m x n difference matrix diff is created with the following procedure:
+ *  Let the number of ones in the ith row be onesRowi.
+ *  Let the number of ones in the jth column be onesColj.
+ *  Let the number of zeros in the ith row be zerosRowi.
+ *  Let the number of zeros in the jth column be zerosColj.
+ *  diff[i][j] = onesRowi + onesColj - zerosRowi - zerosColj
+ * Return the difference matrix diff.
+ */
+
+
+/**
  * @reference   Game of Life
  *              https://leetcode.com/problems/game-of-life/
  *
@@ -149,14 +165,14 @@ auto NumberSpecials(const MatrixType &mat) {
  *  Any live cell with more than three live neighbors dies, as if by over-population.
  *  Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
  * The next state is created by applying the above rules simultaneously to every cell in the current
- * state, where births and deaths occur simultaneously. Given the current state of the m x n grid
- * board, return the next state.
+ * state, where births and deaths occur simultaneously. Given the current state of the m x n grid board,
+ * return the next state.
  * Follow up:
- * Could you solve it in-place? Remember that the board needs to be updated simultaneously: You
- * cannot update some cells first and then use their updated values to update other cells.
- * In this question, we represent the board using a 2D array. In principle, the board is infinite,
- * which would cause problems when the active area encroaches upon the border of the array (i.e.,
- * live cells reach the border). How would you address these problems?
+ * Could you solve it in-place? Remember that the board needs to be updated simultaneously: You cannot
+ * update some cells first and then use their updated values to update other cells.
+ * In this question, we represent the board using a 2D array. In principle, the board is infinite, which
+ * would cause problems when the active area encroaches upon the border of the array (i.e., live cells
+ * reach the border). How would you address these problems?
  */
 auto LiveNeighbors(const MatrixType &board, const int i, const int j) {
     const int M = board.size();

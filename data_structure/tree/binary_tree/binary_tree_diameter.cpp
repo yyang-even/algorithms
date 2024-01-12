@@ -104,6 +104,46 @@ inline auto Tilt(const BinaryTree::Node::PointerType root) {
  *  A subtree of root is a tree consisting of root and all of its descendants.
  */
 
+
+/**
+ * @reference   Amount of Time for Binary Tree to Be Infected
+ *              https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+ *
+ * You are given the root of a binary tree with unique values, and an integer start. At minute 0, an
+ * infection starts from the node with value start.
+ * Each minute, a node becomes infected if:
+ *  The node is currently uninfected.
+ *  The node is adjacent to an infected node.
+ * Return the number of minutes needed for the entire tree to be infected.
+ */
+auto AmountOfTimeToInfect(const BinaryTree::Node::PointerType node,
+                          const int start,
+                          int &result) {
+    if (not node) {
+        return 0;
+    }
+
+    const int left_depth = AmountOfTimeToInfect(node->left, start, result);
+    const int right_depth = AmountOfTimeToInfect(node->right, start, result);
+
+    if (node->value == start) {
+        result = std::max(left_depth, right_depth);
+        return -1;
+    } else if (left_depth >= 0 and right_depth >= 0) {
+        return std::max(left_depth, right_depth) + 1;
+    } else {
+        const int depth = std::abs(left_depth) + std::abs(right_depth);
+        result = std::max(result, depth);
+        return std::min(left_depth, right_depth) - 1;
+    }
+}
+
+auto AmountOfTimeToInfect(const BinaryTree::Node::PointerType node, const int start) {
+    int result = 0;
+    AmountOfTimeToInfect(node, start, result);
+    return result;
+}
+
 } //namespace
 
 
@@ -123,3 +163,12 @@ SIMPLE_TEST(Diameter_Height, TestSAMPLE1, 3, SAMPLE1);
 THE_BENCHMARK(Tilt, SAMPLE1);
 
 SIMPLE_TEST(Tilt, TestSAMPLE1, 9, SAMPLE1);
+
+
+THE_BENCHMARK(AmountOfTimeToInfect, SAMPLE1, 3);
+
+SIMPLE_TEST(AmountOfTimeToInfect, TestSAMPLE1, 2, SAMPLE1, 1);
+SIMPLE_TEST(AmountOfTimeToInfect, TestSAMPLE2, 2, SAMPLE1, 2);
+SIMPLE_TEST(AmountOfTimeToInfect, TestSAMPLE3, 3, SAMPLE1, 3);
+SIMPLE_TEST(AmountOfTimeToInfect, TestSAMPLE4, 3, SAMPLE1, 4);
+SIMPLE_TEST(AmountOfTimeToInfect, TestSAMPLE5, 3, SAMPLE1, 5);
