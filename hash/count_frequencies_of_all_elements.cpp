@@ -355,6 +355,33 @@ auto NumEqualPairs(const MatrixType &grid) {
  * for the given input.
  */
 
+
+/**
+ * @reference   Convert an Array Into a 2D Array With Conditions
+ *              https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/
+ *
+ * You are given an integer array nums. You need to create a 2D array from nums satisfying the following
+ * conditions:
+ *  The 2D array should contain only the elements of the array nums.
+ *  Each row in the 2D array contains distinct integers.
+ *  The number of rows in the 2D array should be minimal.
+ * Return the resulting array. If there are multiple answers, return any of them.
+ * Note that the 2D array can have a different number of elements on each row.
+ */
+
+
+/**
+ * @reference   Minimum Number of Operations to Make Array Empty
+ *              https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
+ *
+ * You are given a 0-indexed array nums consisting of positive integers.
+ * There are two types of operations that you can apply on the array any number of times:
+ *  Choose two elements with equal values and delete them from the array.
+ *  Choose three elements with equal values and delete them from the array.
+ * Return the minimum number of operations required to make the array empty, or -1 if it is not
+ * possible.
+ */
+
 } //namespace
 
 
