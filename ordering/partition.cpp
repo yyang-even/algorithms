@@ -14,8 +14,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
  *
- * Given an unsorted array of both negative and positive integer. The task is place all negative
- * element at the end of array without changing the order of positive element and negative element.
+ * Given an unsorted array of both negative and positive integer. The task is place all negative element
+ * at the end of array without changing the order of positive element and negative element.
  */
 auto RearrangePositiveAndNegativeNumbers_Simple_Stable(const ArrayType &input) {
     ArrayType output;
@@ -68,17 +68,17 @@ inline auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
  * @reference   Segregating negative and positive maintaining order and O(1) space
  *              https://www.geeksforgeeks.org/segregating-negative-and-positive-maintaining-order-and-o1-space/
  *
- * Given an array of positive and negative numbers, arrange them such that all negative integers
- * appear before all the positive integers in the array without using any additional data structure
- * like hash table, arrays, etc. The order of appearance should be maintained.
+ * Given an array of positive and negative numbers, arrange them such that all negative integers appear
+ * before all the positive integers in the array without using any additional data structure like hash
+ * table, arrays, etc. The order of appearance should be maintained.
  *
  * @reference   Move all negative numbers to beginning and positive to end with constant extra space
  *              https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/
  * @reference   Partition negative and positive without comparison with 0
  *              https://www.geeksforgeeks.org/partition-negative-positive-without-comparison-0/
  *
- * An array contains both positive and negative numbers in random order. Rearrange the array
- * elements so that all negative numbers appear before all positive numbers.
+ * An array contains both positive and negative numbers in random order. Rearrange the array elements so
+ * that all negative numbers appear before all positive numbers.
  */
 inline constexpr auto isNegative(const ArrayType::value_type v) {
     return v < 0;
@@ -134,23 +134,23 @@ inline auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
  *              https://www.geeksforgeeks.org/move-zeroes-end-array-set-2-using-single-traversal/
  *
  * Given an array of random numbers, Push all the zero's of a given array to the end of the array.
- * For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0}, it should be changed to
- * {1, 9, 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other elements should be same. Expected time
- * complexity is O(n) and extra space is O(1).
+ * For example, if the given arrays is {1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0}, it should be changed to {1, 9,
+ * 8, 4, 2, 7, 6, 0, 0, 0, 0}. The order of all other elements should be same. Expected time complexity
+ * is O(n) and extra space is O(1).
  *
  * @reference   Move Zeroes
  *              https://leetcode.com/problems/move-zeroes/
  *
- * Given an integer array nums, move all 0's to the end of it while maintaining the relative order
- * of the non-zero elements.
+ * Given an integer array nums, move all 0's to the end of it while maintaining the relative order of
+ * the non-zero elements.
  * Note that you must do this in-place without making a copy of the array.
  * Follow up: Could you minimize the total number of operations done?
  *
  * @reference   Move all values equal to K to the end of the Array
  *              https://www.geeksforgeeks.org/move-all-values-equal-to-k-to-the-end-of-the-array/
  *
- * Given an array arr[] of size N and an integer K, the task is to print the array after moving
- * all value equal to K at the end of the array.
+ * Given an array arr[] of size N and an integer K, the task is to print the array after moving all
+ * value equal to K at the end of the array.
  */
 inline auto RearrangeZeros(ArrayType input) {
     Partition(input.begin(), input.end(), Copy);
@@ -167,18 +167,16 @@ inline auto RearrangeZeros(ArrayType input) {
  * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 2
  *              https://www.geeksforgeeks.org/rearrange-array-in-alternating-positive-negative-items-with-o1-extra-space-set-2/
  *
- * An array contains both positive and negative numbers in random order. Rearrange the array
- * elements so that positive and negative numbers are placed alternatively. Number of positive
- * and negative numbers need not be equal. If there are more positive numbers they appear at the
- * end of the array. If there are more negative numbers, they too appear in the end of the array.
+ * An array contains both positive and negative numbers in random order. Rearrange the array elements so
+ * that positive and negative numbers are placed alternatively. Number of positive and negative numbers
+ * need not be equal. If there are more positive numbers they appear at the end of the array. If there
+ * are more negative numbers, they too appear in the end of the array.
  *
  * @reference   Sort Array By Parity II
  *              https://leetcode.com/problems/sort-array-by-parity-ii/
  *
- * Given an array of integers nums, half of the integers in nums are odd, and the other half are
- * even.
- * Sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is
- * even.
+ * Given an array of integers nums, half of the integers in nums are odd, and the other half are even.
+ * Sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is even.
  * Return any answer array that satisfies this condition.
  * Follow Up: Could you solve it in-place?
  */
@@ -196,17 +194,31 @@ auto RearrangePositiveAndNegativeNumbersAlternative_TwicePartition_Unstable(Arra
 
 
 /**
+ * @reference   Rearrange Array Elements by Sign
+ *              https://leetcode.com/problems/rearrange-array-elements-by-sign/
+ *
+ * You are given a 0-indexed integer array nums of even length consisting of an equal number of positive
+ * and negative integers.
+ * You should rearrange the elements of nums such that the modified array follows the given conditions:
+ *  Every consecutive pair of integers have opposite signs.
+ *  For all integers with the same sign, the order in which they were present in nums is preserved.
+ *  The rearranged array begins with a positive integer.
+ * Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
+ */
+
+
+/**
  * @reference   Sort Even and Odd Indices Independently
  *              https://leetcode.com/problems/sort-even-and-odd-indices-independently/
  *
- * You are given a 0-indexed integer array nums. Rearrange the values of nums according to the
- * following rules:
+ * You are given a 0-indexed integer array nums. Rearrange the values of nums according to the following
+ * rules:
  *  Sort the values at odd indices of nums in non-increasing order.
- *      For example, if nums = [4,1,2,3] before this step, it becomes [4,3,2,1] after. The values
- *      at odd indices 1 and 3 are sorted in non-increasing order.
+ *      For example, if nums = [4,1,2,3] before this step, it becomes [4,3,2,1] after. The values at odd
+ *      indices 1 and 3 are sorted in non-increasing order.
  *  Sort the values at even indices of nums in non-decreasing order.
- *      For example, if nums = [4,1,2,3] before this step, it becomes [2,1,4,3] after. The values
- *      at even indices 0 and 2 are sorted in non-decreasing order.
+ *      For example, if nums = [4,1,2,3] before this step, it becomes [2,1,4,3] after. The values at
+ *      even indices 0 and 2 are sorted in non-decreasing order.
  * Return the array formed after rearranging the values of nums.
  */
 
@@ -269,9 +281,9 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(Array
  * @reference   Merge Strings Alternately
  *              https://leetcode.com/problems/merge-strings-alternately/
  *
- * You are given two strings word1 and word2. Merge the strings by adding letters in alternating
- * order, starting with word1. If a string is longer than the other, append the additional letters
- * onto the end of the merged string.
+ * You are given two strings word1 and word2. Merge the strings by adding letters in alternating order,
+ * starting with word1. If a string is longer than the other, append the additional letters onto the end
+ * of the merged string.
  * Return the merged string.
  */
 
@@ -282,10 +294,9 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(Array
  *
  * You are given an alphanumeric string s. (Alphanumeric string is a string consisting of lowercase
  * English letters and digits).
- * You have to find a permutation of the string where no letter is followed by another letter and
- * no digit is followed by another digit. That is, no two adjacent characters have the same type.
- * Return the reformatted string or return an empty string if it is impossible to reformat the
- * string.
+ * You have to find a permutation of the string where no letter is followed by another letter and no
+ * digit is followed by another digit. That is, no two adjacent characters have the same type.
+ * Return the reformatted string or return an empty string if it is impossible to reformat the string.
  */
 
 
@@ -293,10 +304,10 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(Array
  *
  * @reference   https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
  *
- * Given a linked list and a value x, partition it such that all nodes less than x come first,
- * then all nodes with value equal to x and finally nodes with value greater than or equal to x.
- * The original relative order of the nodes in each of the three partitions should be preserved.
- * The partition must work in-place.
+ * Given a linked list and a value x, partition it such that all nodes less than x come first, then all
+ * nodes with value equal to x and finally nodes with value greater than or equal to x.  The original
+ * relative order of the nodes in each of the three partitions should be preserved.  The partition must
+ * work in-place.
  *
  * @reference   Sort a linked list of 0s, 1s and 2s
  *              https://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
@@ -336,8 +347,8 @@ auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
  * @reference   Partition List
  *              https://leetcode.com/problems/partition-list/
  *
- * Given the head of a linked list and a value x, partition it such that all nodes less than x
- * come before nodes greater than or equal to x.
+ * Given the head of a linked list and a value x, partition it such that all nodes less than x come
+ * before nodes greater than or equal to x.
  * You should preserve the original relative order of the nodes in each of the two partitions.
  */
 
@@ -346,11 +357,10 @@ auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
  *
  * @reference   https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
  *
- * Given a linked list and a value x, partition a linked list around a value x, such that all
- * nodes less than x come before all nodes greater than or equal to x. If x is contained within
- * the list the values of x only need to be after the elements less than x (see below). The
- * partition element x can appear anywhere in the "right partition"; it does not need to appear
- * between the left and right partitions.
+ * Given a linked list and a value x, partition a linked list around a value x, such that all nodes less
+ * than x come before all nodes greater than or equal to x. If x is contained within the list the values
+ * of x only need to be after the elements less than x (see below). The partition element x can appear
+ * anywhere in the "right partition"; it does not need to appear between the left and right partitions.
  */
 auto Partition_SinglyList_Unstable(std::forward_list<int> elements,
                                    const std::forward_list<int>::value_type x) {
