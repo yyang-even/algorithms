@@ -382,6 +382,81 @@ auto NumEqualPairs(const MatrixType &grid) {
  * possible.
  */
 
+
+/**
+ * @reference   Minimum Number of Steps to Make Two Strings Anagram
+ *              https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/
+ *
+ * You are given two strings of the same length s and t. In one step you can choose any character of t
+ * and replace it with another character.
+ * Return the minimum number of steps to make t an anagram of s.
+ * An Anagram of a string is a string that contains the same characters with a different (or the same)
+ * ordering.
+ */
+
+
+/**
+ * @reference   Minimum Number of Steps to Make Two Strings Anagram II
+ *              https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram-ii/
+ *
+ * You are given two strings s and t. In one step, you can append any character to either s or t.
+ * Return the minimum number of steps to make s and t anagrams of each other.
+ * An anagram of a string is a string that contains the same characters with a different (or the same)
+ * ordering.
+ */
+
+
+/**
+ * @reference   Determine if Two Strings Are Close
+ *              https://leetcode.com/problems/determine-if-two-strings-are-close/
+ *
+ * Two strings are considered close if you can attain one from the other using the following operations:
+ *  Operation 1: Swap any two existing characters.
+ *      For example, abcde -> aecdb
+ *  Operation 2: Transform every occurrence of one existing character into another existing character,
+ *  and do the same with the other character.
+ *      For example, aacabb -> bbcbaa (all a's turn into b's, and all b's turn into a's)
+ * You can use the operations on either string as many times as necessary.
+ * Given two strings, word1 and word2, return true if word1 and word2 are close, and false otherwise.
+ * word1 and word2 contain only lowercase English letters.
+ */
+auto DetermineIfTwoStrsAreClose(const std::string_view word1, const std::string_view word2) {
+    std::vector<int> count1(26, 0);
+    std::vector<int> count2(26, 0);
+    std::vector<bool> char1(26, false);
+    std::vector<bool> char2(26, false);
+
+    for (const auto c : word1) {
+        const int i = c - 'a';
+        ++count1[i];
+        char1[i] = true;
+    }
+
+    for (const auto c : word2) {
+        const int i = c - 'a';
+        ++count2[i];
+        char2[i] = true;
+    }
+
+    std::sort(count1.begin(), count1.end());
+    std::sort(count2.begin(), count2.end());
+
+    return count1 == count2 and char1 == char2;
+}
+
+
+/**
+ * @reference   Maximum Odd Binary Number
+ *              https://leetcode.com/problems/maximum-odd-binary-number/
+ *
+ * You are given a binary string s that contains at least one '1'.
+ * You have to rearrange the bits in such a way that the resulting binary number is the maximum odd
+ * binary number that can be created from this combination.
+ * Return a string representing the maximum odd binary number that can be created from the given
+ * combination.
+ * Note that the resulting string can have leading zeros.
+ */
+
 } //namespace
 
 
@@ -513,3 +588,10 @@ THE_BENCHMARK(NumEqualPairs, SAMPLE2G);
 
 SIMPLE_TEST(NumEqualPairs, TestSAMPLE1, 1, SAMPLE1G);
 SIMPLE_TEST(NumEqualPairs, TestSAMPLE2, 3, SAMPLE2G);
+
+
+THE_BENCHMARK(DetermineIfTwoStrsAreClose, "abc", "bca");
+
+SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE1, true, "abc", "bca");
+SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE2, true, "cabbba", "abbccc");
+SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE3, false, "a", "aa");
