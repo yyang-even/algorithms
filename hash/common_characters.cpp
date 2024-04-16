@@ -62,9 +62,9 @@ bool AreTwoSetsDisjoint_BinarySearch(const NumArrayType &lhs, const NumArrayType
  * @reference   Jewels and Stones
  *              https://leetcode.com/problems/jewels-and-stones/
  *
- * You're given strings jewels representing the types of stones that are jewels, and stones
- * representing the stones you have. Each character in stones is a type of stone you have. You
- * want to know how many of the stones you have are also jewels.
+ * You're given strings jewels representing the types of stones that are jewels, and stones representing
+ * the stones you have. Each character in stones is a type of stone you have. You want to know how many
+ * of the stones you have are also jewels.
  * Letters are case sensitive, so "a" is considered a different type of stone from "A".
  */
 
@@ -73,23 +73,23 @@ bool AreTwoSetsDisjoint_BinarySearch(const NumArrayType &lhs, const NumArrayType
  *
  * @reference   https://www.geeksforgeeks.org/count-common-characters-in-two-strings/
  *
- * Given two strings s1 and s2 consisting of lowercase English alphabets, the task is to count
- * all the pairs of indices (i, j) from the given strings such that s1[i] = s2[j] and all the
- * indices are distinct i.e. if s1[i] pairs with some s2[j] then these two characters will not
- * be paired with any other character.
+ * Given two strings s1 and s2 consisting of lowercase English alphabets, the task is to count all the
+ * pairs of indices (i, j) from the given strings such that s1[i] = s2[j] and all the indices are
+ * distinct i.e. if s1[i] pairs with some s2[j] then these two characters will not be paired with any
+ * other character.
  *
  * @reference   Intersection of Two Arrays II
  *              https://leetcode.com/problems/intersection-of-two-arrays-ii/
  *
- * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element
- * in the result must appear as many times as it shows in both arrays and you may return the
- * result in any order.
+ * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the
+ * result must appear as many times as it shows in both arrays and you may return the result in any
+ * order.
  * 0 <= nums1[i], nums2[i] <= 1000
  * Follow up:
  *  What if the given array is already sorted? How would you optimize your algorithm?
  *  What if nums1's size is small compared to nums2's size? Which algorithm is better?
- *  What if elements of nums2 are stored on disk, and the memory is limited such that you cannot
- *  load all elements into the memory at once?
+ *  What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load
+ *  all elements into the memory at once?
  */
 auto CountCommonChars(const std::string_view X, const std::string_view Y) {
     auto one_set_characters = ToFrequencyHashTable(X);
@@ -109,8 +109,8 @@ auto CountCommonChars(const std::string_view X, const std::string_view Y) {
  *
  * @reference   https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
  *
- * Given two strings, print all the common characters in lexicographical order. If there are no
- * common letters, print -1. All letters are lower case.
+ * Given two strings, print all the common characters in lexicographical order. If there are no common
+ * letters, print -1. All letters are lower case.
  */
 auto GetCommonChars(const std::string_view X, const std::string_view Y) {
     assert(std::all_of(X.cbegin(), X.cend(), islower));
@@ -171,8 +171,8 @@ inline auto Intersection_Sort(std::string one, std::string another) {
  * @reference   Intersection Of Three Sorted Arrays Problem
  *              http://lixinchengdu.github.io/algorithmbook/leetcode/intersection-of-three-sorted-arrays.html
  *
- * Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order, return a
- * sorted array of only the integers that appeared in all three arrays.
+ * Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order, return a sorted
+ * array of only the integers that appeared in all three arrays.
  *
  * @reference   Find common elements in three sorted arrays
  *              https://www.geeksforgeeks.org/find-common-elements-three-sorted-arrays/
@@ -203,11 +203,21 @@ auto IntersectionOf3_Sorted(const NumArrayType &arr1,
 
 
 /**
+ * @reference   Minimum Common Value
+ *              https://leetcode.com/problems/minimum-common-value/
+ *
+ * Given two integer arrays nums1 and nums2, sorted in non-decreasing order, return the minimum integer
+ * common to both arrays. If there is no common integer amongst nums1 and nums2, return -1.
+ * Note that an integer is said to be common to nums1 and nums2 if both arrays have at least one
+ * occurrence of that integer.
+ */
+
+/**
  * @reference   Intersection of Two Arrays
  *              https://leetcode.com/problems/intersection-of-two-arrays/
  *
- * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element
- * in the result must be unique and you may return the result in any order.
+ * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the
+ * result must be unique and you may return the result in any order.
  *  0 <= nums1[i], nums2[i] <= 1000
  */
 
@@ -218,8 +228,8 @@ auto IntersectionOf3_Sorted(const NumArrayType &arr1,
  * @reference   Find Common Characters
  *              https://leetcode.com/problems/find-common-characters/
  *
- * Given a string array words, return an array of all characters that show up in all strings
- * within the words (including duplicates). You may return the answer in any order.
+ * Given a string array words, return an array of all characters that show up in all strings within the
+ * words (including duplicates). You may return the answer in any order.
  * words[i] consists of lowercase English letters.
  */
 auto CommonCharsOfStrings(const ArrayType &strings) {
@@ -282,8 +292,8 @@ auto IntersectionOfMulti(const std::vector<NumArrayType> &nums) {
  *              https://www.geeksforgeeks.org/find-uncommon-characters-two-strings/
  *
  * Find and print the uncommon characters of the two given strings in sorted order. Here uncommon
- * character means that either the character is present in one string or it is present in other
- * string but not in both. The strings contain only lowercase characters and can contain duplicates.
+ * character means that either the character is present in one string or it is present in other string
+ * but not in both. The strings contain only lowercase characters and can contain duplicates.
  */
 auto UncommonChars_Hash(const std::string_view X, const std::string_view Y) {
     assert(std::all_of(X.cbegin(), X.cend(), islower));
@@ -359,8 +369,8 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  * @reference   Count Common Words With One Occurrence
  *              https://leetcode.com/problems/count-common-words-with-one-occurrence/
  *
- * Given two string arrays words1 and words2, return the number of strings that appear exactly
- * once in each of the two arrays.
+ * Given two string arrays words1 and words2, return the number of strings that appear exactly once in
+ * each of the two arrays.
  */
 
 
@@ -370,10 +380,10 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  *
  * A sentence is a string of single-space separated words where each word consists only of lowercase
  * letters.
- * A word is uncommon if it appears exactly once in one of the sentences, and does not appear in
- * the other sentence.
- * Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer
- * in any order.
+ * A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the
+ * other sentence.
+ * Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer in
+ * any order.
  */
 
 
@@ -381,8 +391,8 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  *
  * @reference   https://www.geeksforgeeks.org/find-the-overlapping-sum-of-two-arrays/
  *
- * Given two arrays A[] and B[] having n unique elements each. The task is to find the overlapping
- * sum of the two arrays. That is the sum of elements which is common in both of the arrays.
+ * Given two arrays A[] and B[] having n unique elements each. The task is to find the overlapping sum
+ * of the two arrays. That is the sum of elements which is common in both of the arrays.
  *
  * @complexity  O(n)
  */
@@ -410,8 +420,8 @@ auto OverlappingSumOfArrays(const NumArrayType &a1, const NumArrayType &a2) {
  * @reference   Find Union and Intersection of two unsorted arrays
  *              https://www.geeksforgeeks.org/find-union-and-intersection-of-two-unsorted-arrays/
  *
- * Given two unsorted arrays that represent two sets (elements in every array are distinct), find
- * the union and intersection of two arrays.
+ * Given two unsorted arrays that represent two sets (elements in every array are distinct), find the
+ * union and intersection of two arrays.
  */
 inline auto Union_Unsorted(const NumArrayType &one, const NumArrayType &another) {
     std::unordered_set commons(one.cbegin(), one.cend());
@@ -460,11 +470,11 @@ inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
  * @reference   Minimum Index Sum of Two Lists
  *              https://leetcode.com/problems/minimum-index-sum-of-two-lists/
  *
- * Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of
- * favorite restaurants represented by strings.
- * You need to help them find out their common interest with the least list index sum. If there
- * is a choice tie between answers, output all of them with no order requirement. You could
- * assume there always exists an answer.
+ * Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite
+ * restaurants represented by strings.
+ * You need to help them find out their common interest with the least list index sum. If there is a
+ * choice tie between answers, output all of them with no order requirement. You could assume there
+ * always exists an answer.
  */
 
 
@@ -472,10 +482,10 @@ inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
  * @reference   Maximum Number of Balloons
  *              https://leetcode.com/problems/maximum-number-of-balloons/
  *
- * Given a string text, you want to use the characters of text to form as many instances of the
- * word "balloon" as possible.
- * You can use each character in text at most once. Return the maximum number of instances that
- * can be formed.
+ * Given a string text, you want to use the characters of text to form as many instances of the word
+ * "balloon" as possible.
+ * You can use each character in text at most once. Return the maximum number of instances that can be
+ * formed.
  * Follow up: Suppose you are given an arbitrary string pattern instead of balloon.
  */
 auto MaxNumberOfPattern(const std::string_view text, const std::string_view pattern) {
@@ -495,9 +505,8 @@ auto MaxNumberOfPattern(const std::string_view text, const std::string_view patt
  * @reference   Two Out of Three
  *              https://leetcode.com/problems/two-out-of-three/
  *
- * Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the
- * values that are present in at least two out of the three arrays. You may return the values in
- * any order.
+ * Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the values
+ * that are present in at least two out of the three arrays. You may return the values in any order.
  * 1 <= nums1[i], nums2[j], nums3[k] <= 100
  */
 auto TwoOutOfThree(const NumArrayType &nums1,
@@ -528,8 +537,8 @@ auto TwoOutOfThree(const NumArrayType &nums1,
  * @reference   Maximum Product of Word Lengths
  *              https://leetcode.com/problems/maximum-product-of-word-lengths/
  *
- * Given a string array words, return the maximum value of length(word[i]) * length(word[j]) where
- * the two words do not share common letters. If no such two words exist, return 0.
+ * Given a string array words, return the maximum value of length(word[i]) * length(word[j]) where the
+ * two words do not share common letters. If no such two words exist, return 0.
  * words[i] consists only of lowercase English letters.
  */
 auto MaxProductOfWordLengths(const ArrayType &words) {
