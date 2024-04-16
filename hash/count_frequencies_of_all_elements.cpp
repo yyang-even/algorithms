@@ -457,6 +457,17 @@ auto DetermineIfTwoStrsAreClose(const std::string_view word1, const std::string_
  * Note that the resulting string can have leading zeros.
  */
 
+
+/**
+ * @reference   Count Elements With Maximum Frequency
+ *              https://leetcode.com/problems/count-elements-with-maximum-frequency/
+ *
+ * You are given an array nums consisting of positive integers.
+ * Return the total frequencies of elements in nums such that those elements all have the maximum
+ * frequency.
+ * The frequency of an element is the number of occurrences of that element in the array.
+ */
+
 } //namespace
 
 

@@ -1,5 +1,6 @@
 #include "common_header.h"
 
+#include "data_structure/linked_list/singly_list/singly_linked_list.h"
 #include "mathematics/matrix/matrix.h"
 
 
@@ -279,6 +280,122 @@ auto NumSubmatrixSumAsTarget(MatrixType a_matrix, const int target) {
     return result;
 }
 
+
+/**
+ * @reference   Remove Zero Sum Consecutive Nodes from Linked List
+ *              https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/
+ *
+ * Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0
+ * until there are no such sequences.
+ * After doing so, return the head of the final linked list.  You may return any such answer.
+ * (Note that in the examples below, all sequences are serializations of ListNode objects.)
+ */
+inline auto RemoveZeroSumSublists(const SinglyLinkedList::Node::PointerType head) {
+    const auto dummy = std::make_shared<SinglyLinkedList::Node>();
+    dummy->next = head;
+
+    int sum = 0;
+    std::unordered_map<int, SinglyLinkedList::Node::PointerType> sum_map;
+    sum_map[0] = dummy;
+    for (auto n = head; n; n = n->next) {
+        sum += n->value;
+
+        const auto [iter, inserted] = sum_map.emplace(sum, n);
+        if (not inserted) {
+            auto temp = sum;
+            for (auto curr = iter->second->next; curr != n; curr = curr->next) {
+                temp += curr->value;
+                sum_map.erase(temp);
+            }
+            iter->second->next = n->next;
+        }
+    }
+
+    return dummy->next;
+}
+
+
+/**
+ * @reference   Binary Subarrays With Sum
+ *              https://leetcode.com/problems/binary-subarrays-with-sum/
+ *
+ * Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum
+ * goal.
+ * A subarray is a contiguous part of the array.
+ */
+auto NumberBinarySubarraysWithSum(const ArrayType &nums, const int goal) {
+    int result = 0;
+    int prefix_sum = 0;
+    std::unordered_map<int, int> counts {{0, 1}};
+
+    for (const auto n : nums) {
+        prefix_sum += n;
+        result += counts[prefix_sum - goal];
+        ++counts[prefix_sum];
+    }
+
+    return result;
+}
+
+
+auto NumberBinarySubarraysWithSum_SlidingWindow(const ArrayType &nums, const int goal) {
+    const int N = nums.size();
+    int left = 0;
+    int prefix_zeros = 0;
+    int sum = 0;
+    int result = 0;
+
+    for (int right = 0; right < N; ++right) {
+        sum += nums[right];
+
+        for (; left < right and (nums[left] == 0 or sum > goal); ++left) {
+            if (nums[left] == 1) {
+                prefix_zeros = 0;
+            } else {
+                prefix_zeros += 1;
+            }
+
+            sum -= nums[left];
+        }
+
+        if (sum == goal) {
+            result += 1 + prefix_zeros;
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Subarray Product Less Than K
+ *              https://leetcode.com/problems/subarray-product-less-than-k/
+ *
+ * Given an array of integers nums and an integer k, return the number of contiguous subarrays where the
+ * product of all the elements in the subarray is strictly less than k.
+ * 1 <= nums[i] <= 1000
+ */
+auto NumberSubarrayProductLessThanK(const ArrayType &nums, const int k) {
+    if (k <= 1) {
+        return 0;
+    }
+
+    int result = 0;
+    int product = 1;
+
+    for (std::size_t left = 0, right = 0; right < nums.size(); ++right) {
+        product *= nums[right];
+
+        while (product >= k) {
+            product /= nums[left++];
+        }
+
+        result += right - left + 1;
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -412,3 +529,54 @@ THE_BENCHMARK(SubarraysDivisibleByK, SAMPLE1D, 5);
 
 SIMPLE_TEST(SubarraysDivisibleByK, TestSample1, 7, SAMPLE1D, 5);
 SIMPLE_TEST(SubarraysDivisibleByK, TestSample2, 0, SAMPLE2D, 9);
+
+
+const ArrayType SAMPLE1L = {1, 2, -3, 3, 1};
+const ArrayType EXPECTED1L = {3, 1};
+
+const ArrayType SAMPLE2L = {1, 2, 3, -3, 4};
+const ArrayType EXPECTED2L = {1, 2, 4};
+
+const ArrayType SAMPLE3L = {1, 2, 3, -3, -2};
+const ArrayType EXPECTED3L = {1};
+
+const ArrayType SAMPLE4L = {1, 3, 2, -3, -2, 5, 5, -5, 1};
+const ArrayType EXPECTED4L = {1, 5, 1};
+
+
+SIMPLE_TEST(
+    TestHelper, TestRemoveZeroSumSublistsSample1, EXPECTED1L, RemoveZeroSumSublists, SAMPLE1L);
+SIMPLE_TEST(
+    TestHelper, TestRemoveZeroSumSublistsSample2, EXPECTED2L, RemoveZeroSumSublists, SAMPLE2L);
+SIMPLE_TEST(
+    TestHelper, TestRemoveZeroSumSublistsSample3, EXPECTED3L, RemoveZeroSumSublists, SAMPLE3L);
+SIMPLE_TEST(
+    TestHelper, TestRemoveZeroSumSublistsSample4, EXPECTED4L, RemoveZeroSumSublists, SAMPLE4L);
+
+
+const ArrayType SAMPLE1B = {1, 0, 1, 0, 1};
+const ArrayType SAMPLE2B = {0, 0, 0, 0, 0};
+
+
+THE_BENCHMARK(NumberBinarySubarraysWithSum, SAMPLE1B, 2);
+
+SIMPLE_TEST(NumberBinarySubarraysWithSum, TestSample1, 4, SAMPLE1B, 2);
+SIMPLE_TEST(NumberBinarySubarraysWithSum, TestSample2, 15, SAMPLE2B, 0);
+
+
+THE_BENCHMARK(NumberBinarySubarraysWithSum_SlidingWindow, SAMPLE1B, 2);
+
+SIMPLE_TEST(NumberBinarySubarraysWithSum_SlidingWindow, TestSample1, 4, SAMPLE1B, 2);
+SIMPLE_TEST(NumberBinarySubarraysWithSum_SlidingWindow, TestSample2, 15, SAMPLE2B, 0);
+
+
+const ArrayType SAMPLE1P = {10, 5, 2, 6};
+const ArrayType SAMPLE2P = {1, 2, 3};
+const ArrayType SAMPLE3P = {10, 5, 2, 200, 6};
+
+
+THE_BENCHMARK(NumberSubarrayProductLessThanK, SAMPLE1P, 100);
+
+SIMPLE_TEST(NumberSubarrayProductLessThanK, TestSample1, 8, SAMPLE1P, 100);
+SIMPLE_TEST(NumberSubarrayProductLessThanK, TestSample2, 0, SAMPLE2P, 0);
+SIMPLE_TEST(NumberSubarrayProductLessThanK, TestSample3, 6, SAMPLE3P, 100);

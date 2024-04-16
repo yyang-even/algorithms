@@ -9,8 +9,8 @@ namespace {
  * @reference   Valid Parentheses
  *              https://leetcode.com/problems/valid-parentheses/
  *
- * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if
- * the input string is valid.
+ * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the
+ * input string is valid.
  * An input string is valid if:
  *  Open brackets must be closed by the same type of brackets.
  *  Open brackets must be closed in the correct order.
@@ -65,8 +65,8 @@ constexpr auto AreParenthesesBalanced(const std::string_view expression) {
  * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where A and B are valid
  * parentheses strings, and + represents string concatenation.
  *  For example, "", "()", "(())()", and "(()(()))" are all valid parentheses strings.
- * A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to
- * split it into s = A + B, with A and B nonempty valid parentheses strings.
+ * A valid parentheses string s is primitive if it is nonempty, and there does not exist a way to split
+ * it into s = A + B, with A and B nonempty valid parentheses strings.
  * Given a valid parentheses string s, consider its primitive decomposition:
  * s = P1 + P2 + ... + Pk, where Pi are primitive valid parentheses strings.
  * Return s after removing the outermost parentheses of every primitive string in the primitive
@@ -96,8 +96,8 @@ auto RemoveOuterParentheses(const std::string_view s) {
  *              https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
  *
  * Given a string s of '(' , ')' and lowercase English characters.
- * Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so
- * that the resulting parentheses string is valid and return any valid string.
+ * Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the
+ * resulting parentheses string is valid and return any valid string.
  * Formally, a parentheses string is valid if and only if:
  *  It is the empty string, contains only lowercase characters, or
  *  It can be written as AB (A concatenated with B), where A and B are valid strings, or
@@ -177,8 +177,8 @@ constexpr auto ScoreOfParentheses(const std::string_view s) {
  * @reference   Longest Valid Parentheses
  *              https://leetcode.com/problems/longest-valid-parentheses/
  *
- * Given a string containing just the characters '(' and ')', find the length of the longest
- * valid (well-formed) parentheses substring.
+ * Given a string containing just the characters '(' and ')', find the length of the longest valid
+ * (well-formed) parentheses substring.
  */
 auto LongestValidParentheses(const std::string_view str) {
     int result = 0;
@@ -260,6 +260,53 @@ constexpr auto LongestValidParentheses_O1(const std::string_view s) {
     return result;
 }
 
+
+/**
+ * @reference   Valid Parenthesis String
+ *              https://leetcode.com/problems/valid-parenthesis-string/
+ *
+ * Given a string s containing only three types of characters: '(', ')' and '*', return true if s is
+ * valid.
+ * The following rules define a valid string:
+ *  Any left parenthesis '(' must have a corresponding right parenthesis ')'.
+ *  Any right parenthesis ')' must have a corresponding left parenthesis '('.
+ *  Left parenthesis '(' must go before the corresponding right parenthesis ')'.
+ *  '*' could be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty
+ *  string "".
+ */
+auto ValidParenthesisStr(const std::string_view s) {
+    std::stack<std::size_t> left;
+    std::stack<std::size_t> star;
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        const auto c = s[i];
+
+        if (c == '(') {
+            left.push(i);
+        } else if (c == '*') {
+            star.push(i);
+        } else {
+            if (not left.empty()) {
+                left.pop();
+            } else if (not star.empty()) {
+                star.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    while (not left.empty()) {
+        if (star.empty() or left.top() > star.top()) {
+            return false;
+        }
+
+        left.pop();
+        star.pop();
+    }
+
+    return true;
+}
+
 } //namespace
 
 
@@ -328,3 +375,12 @@ THE_BENCHMARK(LongestValidParentheses_O1, "(()");
 SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE1, 4, ")()())");
 SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE2, 2, "(()");
 SIMPLE_TEST(LongestValidParentheses_O1, TestSAMPLE3, 0, "");
+
+
+THE_BENCHMARK(ValidParenthesisStr, "(*))");
+
+SIMPLE_TEST(ValidParenthesisStr, TestSAMPLE1, true, "(*))");
+SIMPLE_TEST(ValidParenthesisStr, TestSAMPLE2, true, "()");
+SIMPLE_TEST(ValidParenthesisStr, TestSAMPLE3, true, "(*)");
+SIMPLE_TEST(ValidParenthesisStr, TestSAMPLE4, false, "*(");
+SIMPLE_TEST(ValidParenthesisStr, TestSAMPLE5, false, ")*");

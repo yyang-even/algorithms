@@ -220,6 +220,47 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * A substring is a contiguous non-empty sequence of characters within a string.
  */
 
+
+/**
+ * @reference   Length of Longest Subarray With at Most K Frequency
+ *              https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/
+ *
+ * You are given an integer array nums and an integer k.
+ * The frequency of an element x is the number of times it occurs in an array.
+ * An array is called good if the frequency of each element in this array is less than or equal to k.
+ * Return the length of the longest good subarray of nums.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ */
+
+
+/**
+ * @reference   Count Subarrays Where Max Element Appears at Least K Times
+ *              https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
+ *
+ * You are given an integer array nums and a positive integer k.
+ * Return the number of subarrays where the maximum element of nums appears at least k times in that
+ * subarray.
+ * A subarray is a contiguous sequence of elements within an array.
+ */
+auto CountSubarraysWithAtLeastKMax(const ArrayType &nums, const std::size_t k) {
+    const auto maximum = *std::max_element(nums.cbegin(), nums.cend());
+
+    std::vector<int> index;
+    long long result = 0;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        if (nums[i] == maximum) {
+            index.push_back(i);
+        }
+
+        if (index.size() >= k) {
+            const auto j = index[index.size() - k];
+            result += (i + 1) - (i - j);
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -292,3 +333,13 @@ THE_BENCHMARK(LongestSubstrWithoutRepeatingChars_Count, "abcabcbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE1, 3, "abcabcbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE2, 1, "bbbbbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE3, 3, "pwwkew");
+
+
+const ArrayType SAMPLE1M = {1, 3, 2, 3, 3, 3, 2, 1};
+const ArrayType SAMPLE2M = {1, 4, 2, 1};
+
+
+THE_BENCHMARK(CountSubarraysWithAtLeastKMax, SAMPLE1M, 2);
+
+SIMPLE_TEST(CountSubarraysWithAtLeastKMax, TestSAMPLE1, 21, SAMPLE1M, 2);
+SIMPLE_TEST(CountSubarraysWithAtLeastKMax, TestSAMPLE2, 0, SAMPLE2M, 3);

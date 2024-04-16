@@ -9,8 +9,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * @reference   https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/
  *
- * Given an array of integers and a number x, find the smallest subarray with sum greater
- * than the given value.
+ * Given an array of integers and a number x, find the smallest subarray with sum greater than the given
+ * value.
  *
  * @reference   Minimum Size Subarray Sum
  *              https://leetcode.com/problems/minimum-size-subarray-sum/
