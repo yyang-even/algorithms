@@ -1,5 +1,7 @@
 #include "common_header.h"
 
+#include "abs.h"
+
 
 namespace {
 
@@ -22,7 +24,7 @@ inline constexpr unsigned Abs_Patented(const int num) {
     return (num ^ mask) - mask;
 }
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<int>::min();
@@ -45,3 +47,12 @@ SIMPLE_TEST(Abs_Patented, TestSample1, 1, -1);
 SIMPLE_TEST(Abs_Patented, TestSample2, 1, -1);
 SIMPLE_TEST(Abs_Patented, TestSample3, 0, 0);
 SIMPLE_TEST(Abs_Patented, TestSample5, UPPER, UPPER);
+
+
+SIMPLE_BENCHMARK(Abs_Count, Sample1, -1);
+SIMPLE_BENCHMARK(Abs_Count, Sample2, 0);
+
+SIMPLE_TEST(Abs_Count, TestSample1, 1, -1);
+SIMPLE_TEST(Abs_Count, TestSample2, 1, -1);
+SIMPLE_TEST(Abs_Count, TestSample3, 0, 0);
+SIMPLE_TEST(Abs_Count, TestSample5, UPPER, UPPER);
