@@ -1,4 +1,4 @@
-default_stages: [commit]
+default_stages: [pre-commit]
 repos:
   - repo: https://github.com/yyang-pplus/config-sh.git
     rev: d4c1eee67d5941afd748118872cb19b89061b92a
@@ -15,13 +15,13 @@ repos:
     rev: v4.2.0
     hooks:
       - id: check-executables-have-shebangs
-        stages: [commit]
+        stages: [pre-commit]
       - id: check-json
       - id: check-merge-conflict
       - id: check-xml
       - id: check-yaml
       - id: trailing-whitespace
-        stages: [commit]
+        stages: [pre-commit]
 
   - repo: https://github.com/cheshirekow/cmake-format-precommit
     rev: v0.6.13
