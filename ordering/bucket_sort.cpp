@@ -50,19 +50,22 @@ auto BucketSort(ArrayType elements) {
     auto iter = elements.begin();
     for (auto &b : buckets) {
         std::sort(b.begin(), b.end());
-        iter = std::copy(std::make_move_iterator(b.begin()),
-                         std::make_move_iterator(b.end()), iter);
+        iter =
+            std::copy(std::make_move_iterator(b.begin()), std::make_move_iterator(b.end()), iter);
     }
 
     return elements;
 }
 
 
-inline auto BucketSort_STL(const ArrayType &elements) {
+inline auto BucketSort_STL(ArrayType elements) {
     const auto size = elements.size();
-    return BucketSort_STL(std::move(elements), [size](const auto & elem) {
-        return elem * size;
-    }, ToLambda(std::sort));
+    return BucketSort_STL(
+        std::move(elements),
+        [size](const auto &elem) {
+            return elem * size;
+        },
+        ToLambda(std::sort));
 }
 
 
@@ -85,7 +88,8 @@ auto BucketSort_Mixed(ArrayType elements) {
 
     auto iter = elements.begin();
     iter = std::transform(std::make_move_iterator(negatives.rbegin()),
-                          std::make_move_iterator(negatives.rend()), iter,
+                          std::make_move_iterator(negatives.rend()),
+                          iter,
                           std::negate<ArrayType::value_type> {});
     std::copy(std::make_move_iterator(positives.begin()),
               std::make_move_iterator(positives.end()),
@@ -105,11 +109,11 @@ auto BucketSort_Mixed(ArrayType elements) {
  * how to sort the array in O(n) time.
  */
 inline auto SortVariableLengthItems_Ints(std::vector<int> elements) {
-    return BucketSort_STL(std::move(elements), CountDigits_Iterative,
-    [](const auto begin, const auto end) {
-        const auto sorted = RadixSort(std::vector<int>(begin, end));
-        std::copy(sorted.cbegin(), sorted.cend(), begin);
-    });
+    return BucketSort_STL(
+        std::move(elements), CountDigits_Iterative, [](const auto begin, const auto end) {
+            const auto sorted = RadixSort(std::vector<int>(begin, end));
+            std::copy(sorted.cbegin(), sorted.cend(), begin);
+        });
 }
 
 
@@ -142,7 +146,7 @@ auto IndicesAfterSorting(const std::vector<int> &nums, const int target) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType VALUES1 = {0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434};

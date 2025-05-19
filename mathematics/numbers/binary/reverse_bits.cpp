@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "swap_odd_even_bits.h"
 #include "swap_nibbles.h"
+#include "swap_odd_even_bits.h"
 #include "text/reverse.h"
 
 #include "mathematics/numbers/reverse_digits.h"
@@ -39,13 +39,12 @@ constexpr auto ReverseBits(unsigned num) {
  * @reference   Reverse bits using lookup table in O(1) time
  *              https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
  */
-inline constexpr auto ReverseBits_32_LookupTable(const uint32_t num) {
+inline auto ReverseBits_32_LookupTable(const uint32_t num) {
     constexpr unsigned char BitReverseTable256[256] = {
-#define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
-#define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
-#define R6(n) R4(n), R4(n + 2*4 ), R4(n + 1*4 ), R4(n + 3*4 )
-        R6(0), R6(2), R6(1), R6(3)
-    };
+#define R2(n) n, n + 2 * 64, n + 1 * 64, n + 3 * 64
+#define R4(n) R2(n), R2(n + 2 * 16), R2(n + 1 * 16), R2(n + 3 * 16)
+#define R6(n) R4(n), R4(n + 2 * 4), R4(n + 1 * 4), R4(n + 3 * 4)
+        R6(0), R6(2), R6(1), R6(3)};
 
     unsigned ret = 0;
     const auto *num_ptr = reinterpret_cast<const unsigned char *>(&num);
@@ -121,7 +120,7 @@ inline constexpr auto ReverseBits_32_Parallel(uint32_t num) {
  *              Reverse an N-bit quantity in parallel in 5 * lg(N) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-template <typename T>
+template<typename T>
 constexpr T ReverseNBits_Parallel(T num) {
     auto size = BitsNumber<T>; // bit size; must be power of 2
     T mask = ~0;
@@ -142,11 +141,10 @@ inline constexpr unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
  *
  * @reference   https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
  */
-inline constexpr auto ReverseBytes_String(unsigned num) {
+inline auto ReverseBytes_String(unsigned num) {
     auto *const begin = reinterpret_cast<unsigned char *>(&num);
 
-    Reverse_TwoPointers(begin, begin + sizeof(num),
-    [](auto & lhs, auto & rhs) {
+    Reverse_TwoPointers(begin, begin + sizeof(num), [](auto &lhs, auto &rhs) {
         std::swap(lhs, rhs);
     });
 
@@ -159,10 +157,7 @@ inline constexpr auto ReverseBytes_String(unsigned num) {
  *              https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
  */
 inline constexpr auto ReverseBytes_Shift(const unsigned num) {
-    return (num << 24) |
-           (((num >> 16) << 24) >> 16) |
-           (((num << 16) >> 24) << 16) |
-           (num >> 24);
+    return (num << 24) | (((num >> 16) << 24) >> 16) | (((num << 16) >> 24) << 16) | (num >> 24);
 }
 
 
@@ -179,7 +174,7 @@ inline constexpr auto ReverseActualBits(const unsigned number) {
     return ReverseDigits(number, 2);
 }
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();
@@ -192,9 +187,13 @@ SIMPLE_TEST(ReverseBits, TestLOWER, LOWER, LOWER);
 SIMPLE_TEST(ReverseBits, TestUPPER, UPPER, UPPER);
 SIMPLE_TEST(ReverseBits, TestSAMPLE1, 0XB0000000, 0b1101);
 SIMPLE_TEST(ReverseBits, TestSAMPLE2, 0X80, 0X01000000);
-SIMPLE_TEST(ReverseBits, TestSAMPLE3, 0b11111111111111111111111111111101,
+SIMPLE_TEST(ReverseBits,
+            TestSAMPLE3,
+            0b11111111111111111111111111111101,
             0b10111111111111111111111111111111);
-SIMPLE_TEST(ReverseBits, TestSAMPLE4, 0b00000010100101000001111010011100,
+SIMPLE_TEST(ReverseBits,
+            TestSAMPLE4,
+            0b00000010100101000001111010011100,
             0b00111001011110000010100101000000);
 
 

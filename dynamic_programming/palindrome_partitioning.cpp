@@ -17,8 +17,11 @@ using MemoType = MatrixTypeTemplate<bool>;
  * palindrome. Return all possible palindrome partitioning of s. A palindrome string is
  * a string that reads the same backward as forward.
  */
-void AllPalindromePartitioning(const std::string_view text, const std::size_t start,
-                               ArrayType &current, MemoType &memo, OutputType &results) {
+void AllPalindromePartitioning(const std::string_view text,
+                               const std::size_t start,
+                               ArrayType &current,
+                               MemoType &memo,
+                               OutputType &results) {
     if (start >= text.size()) {
         results.push_back(current);
     }
@@ -55,8 +58,7 @@ inline auto AllPalindromePartitioning(const std::string_view text) {
  *
  * @note    This problem is a variation of Matrix Chain Multiplication problem.
  */
-constexpr auto
-MinPalindromePartitioning_DP(const std::string_view text) {
+constexpr auto MinPalindromePartitioning_DP(const std::string_view text) {
     int dp[text.size()][text.size()] = {};
     bool is_palindrome[text.size()][text.size()] = {};
 
@@ -87,14 +89,14 @@ MinPalindromePartitioning_DP(const std::string_view text) {
 }
 
 
-constexpr auto
-MinPalindromePartitioning_DP_SpaceOptimized(const std::string_view text) {
+constexpr auto MinPalindromePartitioning_DP_SpaceOptimized(const std::string_view text) {
     int dp[text.size()] = {};
     bool is_palindrome[text.size()][text.size()] = {};
 
-    for (std::size_t last = 0; last < text.size(); ++last) {
+    const int N = text.size();
+    for (int last = 0; last < N; ++last) {
         int min_cut = last;
-        for (std::size_t start = 0; start <= last; ++start) {
+        for (int start = 0; start <= last; ++start) {
             if (text[last] == text[start] and
                 (last - start < 2 or is_palindrome[start + 1][last - 1])) {
                 is_palindrome[start][last] = true;
@@ -198,7 +200,7 @@ auto PalindromePartitioning3(const std::string_view text) {
     return false;
 }
 
-}//namespace
+} //namespace
 
 
 const OutputType EXPECTED1 = {{"a", "a", "b"}, {"aa", "b"}};

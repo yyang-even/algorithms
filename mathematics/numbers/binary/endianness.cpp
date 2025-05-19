@@ -10,7 +10,7 @@ namespace {
  *
  * Is there a quick way to determine endianness of your machine?
  */
-inline constexpr bool IsLittleEndian_Pointer() {
+inline bool IsLittleEndian_Pointer() {
     const auto one = 1;
     const auto *byte_ptr = reinterpret_cast<const char *>(&one);
     return *byte_ptr;
@@ -27,12 +27,12 @@ union EndiannessUnion {
 };
 
 inline constexpr bool IsLittleEndian_Union() {
-    EndiannessUnion endianness{};
+    EndiannessUnion endianness {};
     endianness.i = 1;
     return endianness.c;
 }
 
-}//namespace
+} //namespace
 
 
 #ifdef __GNUC__

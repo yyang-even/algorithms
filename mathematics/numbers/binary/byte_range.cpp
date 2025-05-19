@@ -9,7 +9,7 @@ namespace {
  *              Determine if a word has a zero byte
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-#define haszero(v) (((v) - 0x01010101) & ~(v) & 0x80808080)
+#define haszero(v) (((v)-0x01010101) & ~(v)&0x80808080)
 inline constexpr bool HasByteZero(const uint32_t num) {
     return haszero(num);
 }
@@ -21,7 +21,7 @@ inline constexpr bool HasByteZero(const uint32_t num) {
  *              Determine if a word has a zero byte
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-inline constexpr auto HasByteZero_Pointer(const unsigned num) {
+inline auto HasByteZero_Pointer(const unsigned num) {
     const auto *p = (const unsigned char *)&num;
     const auto *end = p + sizeof(num);
     for (; p < end; ++p) {
@@ -39,7 +39,7 @@ inline constexpr auto HasByteZero_Pointer(const unsigned num) {
  *              Determine if a word has a byte equal to n
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
-#define hasvalue(x,n) (haszero((x) ^ (~0UL/255 * (n))))
+#define hasvalue(x, n) (haszero((x) ^ (~0UL / 255 * (n))))
 inline constexpr bool HasByteN(const uint32_t x, const unsigned char n) {
     return hasvalue(x, n);
 }
@@ -53,9 +53,10 @@ inline constexpr bool HasByteN(const uint32_t x, const unsigned char n) {
  *
  * Requirements: x>=0; 0<=n<=128
  */
-#define hasless(x,n) (((x)-~0UL/255*(n))&~(x)&~0UL/255*128)
-#define countless(x,n) \
-(((~0UL/255*(127+(n))-((x)&~0UL/255*127))&~(x)&~0UL/255*128)/128%255)
+#define hasless(x, n) (((x) - ~0UL / 255 * (n)) & ~(x) & ~0UL / 255 * 128)
+#define countless(x, n)                                                                        \
+    (((~0UL / 255 * (127 + (n)) - ((x) & ~0UL / 255 * 127)) & ~(x) & ~0UL / 255 * 128) / 128 % \
+     255)
 
 
 /** Determine if a word has a byte greater than n
@@ -66,9 +67,9 @@ inline constexpr bool HasByteN(const uint32_t x, const unsigned char n) {
  *
  * Requirements: x>=0; 0<=n<=127
  */
-#define hasmore(x,n) (((x)+~0UL/255*(127-(n))|(x))&~0UL/255*128)
-#define countmore(x,n) \
-(((((x)&~0UL/255*127)+~0UL/255*(127-(n))|(x))&~0UL/255*128)/128%255)
+#define hasmore(x, n) (((x) + ~0UL / 255 * (127 - (n)) | (x)) & ~0UL / 255 * 128)
+#define countmore(x, n) \
+    (((((x) & ~0UL / 255 * 127) + ~0UL / 255 * (127 - (n)) | (x)) & ~0UL / 255 * 128) / 128 % 255)
 
 
 /** Determine if a word has a byte between m and n
@@ -79,11 +80,13 @@ inline constexpr bool HasByteN(const uint32_t x, const unsigned char n) {
  *
  * Requirements: x>=0; 0<=m<=127; 0<=n<=128
  */
-#define hasbetween(x,m,n) \
-((~0UL/255*(127+(n))-((x)&~0UL/255*127)&~(x)&((x)&~0UL/255*127)+~0UL/255*(127-(m)))&~0UL/255*128)
-#define countbetween(x,m,n) (hasbetween(x,m,n)/128%255)
+#define hasbetween(x, m, n)                                        \
+    ((~0UL / 255 * (127 + (n)) - ((x) & ~0UL / 255 * 127) & ~(x) & \
+      ((x) & ~0UL / 255 * 127) + ~0UL / 255 * (127 - (m))) &       \
+     ~0UL / 255 * 128)
+#define countbetween(x, m, n) (hasbetween(x, m, n) / 128 % 255)
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();

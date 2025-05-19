@@ -46,7 +46,7 @@ constexpr unsigned char BitsSetTable256[256] = {
 #define B6(n) B4(n), B4(n + 1), B4(n + 1), B4(n + 2)
     B6(0), B6(1), B6(1), B6(2)};
 
-constexpr unsigned CountSetBits_LookupTable(const unsigned n) {
+unsigned CountSetBits_LookupTable(const unsigned n) {
     const auto *p = reinterpret_cast<const unsigned char *>(&n);
     constexpr auto num_bytes = sizeof(unsigned);
     unsigned char count = 0;

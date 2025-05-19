@@ -522,7 +522,7 @@ auto GreatestLesser_BinarySearch(const ArrayType &elements, const ArrayType::val
 inline auto GreatestLesser_STL(const ArrayType &elements, const ArrayType::value_type x) {
     const auto iter = std::lower_bound(elements.cbegin(), elements.cend(), x);
     if (iter == elements.cbegin() or iter == elements.cend()) {
-        elements.cend();
+        return elements.cend();
     }
     return std::prev(iter);
 }

@@ -24,7 +24,7 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        constexpr explicit Node(const ValueType v = 0): value(v) {
+        explicit Node(const ValueType v = 0) : value(v) {
             ++node_alive;
         }
 
@@ -205,7 +205,8 @@ public:
 
     const auto Search(const ValueType v) const {
         auto iter = head;
-        for (; iter and iter->value != v; iter = iter->Next());
+        for (; iter and iter->value != v; iter = iter->Next())
+            ;
         return iter;
     }
 
@@ -213,7 +214,8 @@ public:
     const auto At(std::size_t index) const {
         assert(index < size);
         auto iter = head;
-        for (; index--; iter = iter->Next());
+        for (; index--; iter = iter->Next())
+            ;
         return iter;
     }
 
