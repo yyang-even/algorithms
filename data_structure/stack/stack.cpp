@@ -115,7 +115,7 @@ public:
     }
 
     auto Peek() {
-        pop_queue.front();
+        return pop_queue.front();
     }
 };
 
@@ -174,7 +174,7 @@ public:
     }
 
     auto Peek() {
-        q.front();
+        return q.front();
     }
 };
 
@@ -192,8 +192,10 @@ class HeapStack {
 
     std::size_t index = 0;
 
-    std::priority_queue<KeyValuePair, std::vector<KeyValuePair>, std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
-    queue{[](const auto & lhs, const auto & rhs) {
+    std::priority_queue<KeyValuePair,
+                        std::vector<KeyValuePair>,
+                        std::function<bool(const KeyValuePair &, const KeyValuePair &)>>
+        queue {[](const auto &lhs, const auto &rhs) {
             return lhs.first < rhs.first;
         }};
 
@@ -219,7 +221,7 @@ namespace {
 
 const std::vector<int> EXPECTED_ARRAY {7, 6, 3, 2, 1, 0};
 
-template <typename Stack>
+template<typename Stack>
 constexpr auto testStackHelper() {
     Stack stack;
     stack.Push(0);
@@ -286,7 +288,7 @@ inline auto testHeapStack() {
  * so that the answer is unique.
  */
 
-}//namespace
+} //namespace
 
 
 SIMPLE_TEST0(testArrayStack, TestSample, EXPECTED_ARRAY);

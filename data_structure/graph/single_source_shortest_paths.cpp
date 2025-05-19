@@ -591,7 +591,7 @@ auto SwimInRisingWater_Dijkstra(MatrixType grid) {
     grid[0][0] = VISITED;
 
     while (not open_list.empty()) {
-        const auto node = std::move(open_list.top());
+        const auto node = open_list.top();
         open_list.pop();
 
         if (node.row + 1 != grid.size() and grid[node.row + 1][node.column] != VISITED) {

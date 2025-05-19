@@ -102,7 +102,7 @@ public:
 
         static inline std::size_t node_alive = 0;
 
-        constexpr explicit Node(const ValueType v = 0) : value(v) {
+        explicit Node(const ValueType v = 0) : value(v) {
             ++node_alive;
         }
 
@@ -818,9 +818,10 @@ public:
 };
 
 
-template<typename ArrayType, typename FunctionType, typename... Args>
-static inline constexpr auto
-TestHelper(const FunctionType function, const ArrayType &array, Args &&...args) {
+template<typename FunctionType, typename... Args>
+static inline constexpr auto TestHelper(const FunctionType function,
+                                        const std::vector<SinglyLinkedList::ValueType> &array,
+                                        Args &&...args) {
     const auto head = SinglyLinkedList {array}.GetHead();
     return CopyToArray(function(head, std::forward<Args>(args)...));
 }

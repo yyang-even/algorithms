@@ -46,9 +46,9 @@ auto FindMinDifferenceBetweenTwoElements(ArrayType elements,
  * Given a list of distinct unsorted integers, find the pair of elements that have the smallest absolute
  * difference between them? If there are multiple pairs, find them all.
  */
-inline auto AllClosestNumbers(const ArrayType &elements) {
+inline auto AllClosestNumbers(ArrayType elements) {
     PairArrayType closest_pairs;
-    FindMinDifferenceBetweenTwoElements(elements, &closest_pairs);
+    FindMinDifferenceBetweenTwoElements(std::move(elements), &closest_pairs);
     return closest_pairs;
 }
 

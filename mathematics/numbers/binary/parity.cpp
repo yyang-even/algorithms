@@ -14,7 +14,7 @@ namespace {
  * 1 if an odd number of bits set, 0 otherwise.
  */
 constexpr auto Parity_BrianKernighan(unsigned n) {
-    bool parity = false;  // parity will be the parity of n
+    bool parity = false; // parity will be the parity of n
 
     while (n) {
         parity = !parity;
@@ -33,13 +33,12 @@ constexpr auto Parity_BrianKernighan(unsigned n) {
  * @reference   Compute the parity of a number using XOR and table look-up
  *              https://www.geeksforgeeks.org/compute-parity-number-using-xor-table-look/
  */
-constexpr auto Parity_LookupTable(const unsigned n) {
+auto Parity_LookupTable(const unsigned n) {
     constexpr bool ParityTable256[256] = {
-#   define P2(n) n, n^1, n^1, n
-#   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
-#   define P6(n) P4(n), P4(n^1), P4(n^1), P4(n)
-        P6(0), P6(1), P6(1), P6(0)
-    };
+#define P2(n) n, n ^ 1, n ^ 1, n
+#define P4(n) P2(n), P2(n ^ 1), P2(n ^ 1), P2(n)
+#define P6(n) P4(n), P4(n ^ 1), P4(n ^ 1), P4(n)
+        P6(0), P6(1), P6(1), P6(0)};
 
     const unsigned char *byte = reinterpret_cast<const unsigned char *>(&n);
     unsigned char parity = 0;
@@ -112,7 +111,7 @@ inline constexpr bool Parity_Parallel(uint32_t n) {
  * Return the minimum cost needed to move all the chips to the same position.
  */
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();

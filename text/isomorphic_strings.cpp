@@ -77,10 +77,10 @@ bool WordPattern(const std::string_view pattern,
                  const std::size_t s_begin,
                  std::unordered_map<char, std::string_view> &to_word,
                  std::unordered_set<std::string_view> &seen_words) {
-    if (p_begin == pattern.size() and s_begin == str.size()) {
+    if (p_begin >= pattern.size() and s_begin >= str.size()) {
         return true;
     }
-    if (p_begin == pattern.size() or s_begin == str.size()) {
+    if (p_begin >= pattern.size() or s_begin >= str.size()) {
         return false;
     }
 
