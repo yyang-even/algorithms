@@ -1,7 +1,8 @@
 #include "common_header.h"
 
-#include "multiplication.h"
 #include "mathematics/arithmetics/subtract/negate.h"
+#include "mathematics/numbers/binary/abs.h"
+#include "multiplication.h"
 
 
 namespace {
@@ -35,16 +36,22 @@ inline constexpr auto Multiply_Recursive(int x, int y) {
 
 
 constexpr int Multiply_Plus(const int x, const int y) {
-    if (x < y) {
-        return Multiply_Plus(y, x);
+    const auto abs_x = Abs_Count(x);
+    const auto abs_y = Abs_Count(y);
+
+    auto counter = y;
+    auto delta = x;
+    if (abs_x < abs_y) {
+        std::swap(counter, delta);
     }
 
     int sum = 0;
-    for (int i = std::abs(y); i > 0; --i) {
-        sum += x;
+    const auto abs_counter = Abs_Count(counter);
+    for (int i = 0; i++ < abs_counter;) {
+        sum += delta;
     }
 
-    return y < 0 ? Negate(sum) : sum;
+    return counter < 0 ? Negate(sum) : sum;
 }
 
 
@@ -55,7 +62,7 @@ constexpr int Multiply_Plus(const int x, const int y) {
  *              https://www.geeksforgeeks.org/multiplication-power-2/
  */
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(Multiply_Recursive, 3, 4);
