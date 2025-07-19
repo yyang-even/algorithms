@@ -15,6 +15,9 @@ using OutputType = std::vector<int>;
  *
  * @reference   https://leetcode.com/problems/map-sum-pairs/
  *
+ * Design a map that allows you to do the following:
+ *  Maps a string key to a given value.
+ *  Returns the sum of the values that have a key with a prefix equal to a given string.
  * Implement the MapSum class:
  *  MapSum() Initializes the MapSum object.
  *  void insert(String key, int val) Inserts the key-val pair into the map. If the key already existed,
@@ -31,7 +34,7 @@ auto MapSumPairs_Naive(const ArrayType &operations) {
         } else {
             int total = 0;
             for (const auto [key, value] : hash_table) {
-                if (StartsWith(key, str)) {
+                if (key.starts_with(str)) {
                     total += value;
                 }
             }
