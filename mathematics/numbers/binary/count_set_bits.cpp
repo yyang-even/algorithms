@@ -5,9 +5,11 @@
 
 namespace {
 
-/** Count set bits in an integer
- *
- * @reference   https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
+using ArrayType = std::vector<int>;
+
+/**
+ * @reference   Count set bits in an integer
+ *              https://www.geeksforgeeks.org/count-set-bits-in-an-integer/
  * @reference   Count Set-bits of number using Recursion
  *              https://www.geeksforgeeks.org/count-set-bits-of-number-using-recursion/
  * @reference   C/C++ Program to Count set bits in an integer
@@ -22,18 +24,12 @@ namespace {
  *
  * Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known
  * as the Hamming weight).
- */
-/** Check if a number has same number of set and unset bits
  *
- * @reference   https://www.geeksforgeeks.org/check-if-a-number-has-same-number-of-set-and-unset-bits/
- *
- * Given a number N, the task is to check whether the count of the set and unset bits in the given
- * number are same.
+ * @tags    #count-set-bits
  */
 
 
-/** Counting bits set by lookup table
- *
+/**
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Counting bits set by lookup table
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -57,15 +53,15 @@ unsigned CountSetBits_LookupTable(const unsigned n) {
 }
 
 
-/** TODO: Counting bits set in 14, 24, or 32-bit words using 64-bit instructions
+/** TODO
  *
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Counting bits set in 14, 24, or 32-bit words using 64-bit instructions
  *              https://graphics.stanford.edu/~seander/bithacks.html
  */
 
-/** Counting bits set, in parallel
- *
+
+/**
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Counting bits set, in parallel
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -90,8 +86,7 @@ inline constexpr unsigned CountSetBits_MagicBinariesUnsigned(const unsigned n) {
 }
 
 
-/** Count bits set (rank) from the most-significant bit upto a given position
- *
+/**
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Count bits set (rank) from the most-significant bit upto a given position
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -104,8 +99,7 @@ inline constexpr uint64_t CountSetBitsFromMSB(uint64_t n, const unsigned pos) {
 }
 
 
-/** Select the bit position (from the most-significant bit) with the given count (rank)
- *
+/**
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Select the bit position (from the most-significant bit) with the given count (rank)
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -158,18 +152,33 @@ constexpr unsigned SelectPositionWithCountFromMSB(const uint64_t n, unsigned ran
 }
 
 
-/** Check if binary representations of two numbers are anagram
+/**
+ * @reference   Check if a number has same number of set and unset bits
+ *              https://www.geeksforgeeks.org/check-if-a-number-has-same-number-of-set-and-unset-bits/
  *
- * @reference   https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
+ * Given a number N, the task is to check whether the count of the set and unset bits in the given
+ * number are same.
+ *
+ * @tags    #count-set-bits
+ */
+
+
+/**
+ * @reference   Check if binary representations of two numbers are anagram
+ *              https://www.geeksforgeeks.org/check-binary-representations-two-numbers-anagram/
+ *
+ * @tags    #count-set-bits
  */
 inline constexpr auto AreBitAnagram(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a) == CountSetBits_BrianKernighan(b);
 }
 
 
-/** Check if binary representation of a given number and its complement are anagram
+/**
+ * @reference   Check if binary representation of a given number and its complement are anagram
+ *              https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
  *
- * @reference   https://www.geeksforgeeks.org/check-binary-representation-given-number-complement-anagram/
+ * @tags    #count-set-bits
  */
 inline constexpr auto AreNumberAndItsComplementAnagram(const unsigned long long number) {
     return CountSetBits_BrianKernighan(number) == BitsNumber<decltype(number)> / 2;
@@ -185,6 +194,8 @@ inline constexpr auto AreNumberAndItsComplementAnagram(const unsigned long long 
  * Recall that the number of set bits an integer has is the number of 1's present when written in
  * binary.
  *  For example, 21 written in binary is 10101, which has 3 set bits.
+ *
+ * @tags    #count-set-bits
  */
 auto CountPrimeSetBits(const unsigned left, const unsigned right) {
     static const std::unordered_set<unsigned> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
@@ -201,9 +212,9 @@ auto CountPrimeSetBits(const unsigned left, const unsigned right) {
 }
 
 
-/** Count number of bits to be flipped to convert A to B
- *
- * @reference   https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
+/**
+ * @reference   Count number of bits to be flipped to convert A to B
+ *              https://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
  * @reference   Number of mismatching bits in the binary representation of two integers
  *              https://www.geeksforgeeks.org/number-of-mismatching-bits-in-the-binary-representation-of-two-integers/
  * @reference   Count number of bits to be flipped to convert A to B | Set-2
@@ -232,6 +243,8 @@ auto CountPrimeSetBits(const unsigned left, const unsigned right) {
  * The Hamming distance between two integers is the number of positions at which the corresponding bits
  * are different.
  * Given two integers x and y, return the Hamming distance between them.
+ *
+ * @tags    #count-set-bits
  */
 inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
     return CountSetBits_BrianKernighan(a ^ b);
@@ -250,6 +263,8 @@ inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
  * array equal to k.
  * Note that you can flip leading zero bits in the binary representation of elements. For example, for
  * the number (101)2 you can flip the fourth bit and obtain (1101)2.
+ *
+ * @tags    #count-set-bits
  */
 
 
@@ -261,6 +276,8 @@ inline constexpr auto CountDiffBits(const unsigned a, const unsigned b) {
  * make ( a OR b == c ). (bitwise OR operation).
  * Flip operation consists of change any single bit 1 to 0 or change the bit 0 to 1 in their binary
  * representation.
+ *
+ * @tags    #count-set-bits
  */
 constexpr auto MinFlips(const unsigned a, const unsigned b, const unsigned c) {
     const auto diff = (a | b) ^ c;
@@ -294,9 +311,62 @@ constexpr auto MinFlips_Popcount(const unsigned a, const unsigned b, const unsig
  * with 10.
  *  For example, for n = 3, the 1st row is 0, the 2nd row is 01, and the 3rd row is 0110.
  * Given two integer n and k, return the kth (1-indexed) symbol in the nth row of a table of n rows.
+ *
+ * @tags    #count-set-bits
  */
-int KthGrammar(const int, const unsigned k) {
+constexpr int KthGrammar(const int, const unsigned k) {
     return std::popcount(k - 1) % 2;
+}
+
+
+/**
+ * @reference   Find the K-th Character in String Game I
+ *              https://leetcode.com/problems/find-the-k-th-character-in-string-game-i/
+ *
+ * Alice and Bob are playing a game. Initially, Alice has a string word = "a".
+ * You are given a positive integer k.
+ * Now Bob will ask Alice to perform the following operation forever:
+ *  Generate a new string by changing each character in word to its next character in the English
+ *  alphabet, and append it to the original word.
+ * For example, performing the operation on "c" generates "cd" and performing the operation on "zb"
+ * generates "zbac".
+ * Return the value of the kth character in word, after enough operations have been done for word to
+ * have at least k characters.
+ *
+ * @tags    #count-set-bits
+ */
+constexpr char KthCharInGame(const unsigned k) {
+    return 'a' + std::popcount(k - 1);
+}
+
+
+/**
+ * @reference   Find the K-th Character in String Game II
+ *              https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/
+ *
+ * Alice and Bob are playing a game. Initially, Alice has a string word = "a".
+ * You are given a positive integer k. You are also given an integer array operations, where
+ * operations[i] represents the type of the ith operation.
+ * Now Bob will ask Alice to perform all operations in sequence:
+ *  If operations[i] == 0, append a copy of word to itself.
+ *  If operations[i] == 1, generate a new string by changing each character in word to its next character
+ *  in the English alphabet, and append it to the original word. For example, performing the operation on
+ *  "c" generates "cd" and performing the operation on "zb" generates "zbac".
+ * Return the value of the kth character in word after performing all the operations.
+ * Note that the character 'z' can be changed to 'a' in the second type of operation.
+ *
+ * @tags    #count-set-bits
+ */
+char KthCharInGameWithOperations(unsigned long long k, const ArrayType &operations) {
+    --k;
+
+    int diff = 0;
+    for (unsigned long long i = 0; k and i < operations.size(); ++i) {
+        diff += k & 1 & operations[i];
+        k >>= 1;
+    }
+
+    return 'a' + (diff % 26);
 }
 
 } //namespace
@@ -411,3 +481,23 @@ THE_BENCHMARK(KthGrammar, 1, 1);
 SIMPLE_TEST(KthGrammar, TestSample1, 0, 1, 1);
 SIMPLE_TEST(KthGrammar, TestSample2, 0, 2, 1);
 SIMPLE_TEST(KthGrammar, TestSample3, 1, 2, 2);
+
+
+THE_BENCHMARK(KthCharInGame, 5);
+
+SIMPLE_TEST(KthCharInGame, TestSample1, 'b', 5);
+SIMPLE_TEST(KthCharInGame, TestSample2, 'c', 10);
+SIMPLE_TEST(KthCharInGame, TestSample3, 'd', 8);
+SIMPLE_TEST(KthCharInGame, TestSample4, 'd', 12);
+
+
+const ArrayType SAMPLE1 = {0, 0, 0};
+const ArrayType SAMPLE2 = {0, 1, 0, 1};
+const ArrayType SAMPLE3 = {1, 0};
+
+
+THE_BENCHMARK(KthCharInGameWithOperations, 5, SAMPLE1);
+
+SIMPLE_TEST(KthCharInGameWithOperations, TestSample1, 'a', 5, SAMPLE1);
+SIMPLE_TEST(KthCharInGameWithOperations, TestSample2, 'b', 10, SAMPLE2);
+SIMPLE_TEST(KthCharInGameWithOperations, TestSample3, 'a', 3, SAMPLE3);
