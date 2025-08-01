@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Check if all array elements are distinct
- *
- * @reference   https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/
+/**
+ * @reference   Check if all array elements are distinct
+ *              https://www.geeksforgeeks.org/check-if-all-array-elements-are-distinct/
  *
  * Given an array, check whether all elements in an array are distinct or not.
  *
@@ -16,6 +16,8 @@ using ArrayType = std::vector<int>;
  *
  * Given an integer array nums, return true if any value appears at least twice in the array, and return
  * false if every element is distinct.
+ *
+ * @tags    #hash-table
  */
 auto CheckIfAllElementsDistinct(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
@@ -36,6 +38,8 @@ auto CheckIfAllElementsDistinct(const ArrayType &elements) {
  *
  * Implement an algorithm to determine if a string has all unique characters. What if you cannot use
  * additional data structures?
+ *
+ * @tags    #sort
  */
 auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
     std::sort(elements.begin(), elements.end());
@@ -56,6 +60,8 @@ auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
  *
  * Given an integer array nums and an integer k, return true if there are two distinct indices i and j
  * in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+ *
+ * @tags    #hash-table
  */
 auto ContainDuplicateAtMostKApart(const ArrayType &elements, const std::size_t K) {
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> last_occurrences;
@@ -84,6 +90,8 @@ auto ContainDuplicateAtMostKApart(const ArrayType &elements, const std::size_t K
  *
  * @reference   [LeetCode] Contains Duplicate III
  *              https://www.cnblogs.com/easonliu/p/4544073.html
+ *
+ * @tags    #hash-table
  */
 auto ContainAlmostDuplicateAtMostKApart_Set(const ArrayType &elements,
                                             const std::size_t K,
@@ -157,6 +165,8 @@ auto ContainAlmostDuplicateAtMostKApart_Bucket(const ArrayType &elements,
  *
  * Given a string s, find the length of the longest substring without repeating characters. s consists
  * of English letters, digits, symbols and spaces.
+ *
+ * @tags    #hash-table #sliding-window
  */
 constexpr auto LongestSubstrWithoutRepeatingChars_Last(const std::string_view s) {
     std::size_t lasts[256] = {};
@@ -205,6 +215,23 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * Return the maximum score you can get by erasing exactly one subarray.
  * An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it
  * is equal to a[l],a[l+1],...,a[r] for some (l,r).
+ *
+ * @tags    #hash-table #sliding-window
+ */
+
+
+/**
+ * @reference   Maximum Unique Subarray Sum After Deletion
+ *              https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/
+ *
+ * You are given an integer array nums.
+ * You are allowed to delete any number of elements from nums without making it empty. After performing
+ * the deletions, select a subarray of nums such that:
+ *  1. All elements in the subarray are unique.
+ *  2. The sum of the elements in the subarray is maximized.
+ * Return the maximum sum of such a subarray.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -218,6 +245,8 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * 1101234883 are not.
  * Return the length of the longest semi-repetitive substring inside s.
  * A substring is a contiguous non-empty sequence of characters within a string.
+ *
+ * @tags    #sliding-window
  */
 
 
@@ -230,6 +259,8 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * An array is called good if the frequency of each element in this array is less than or equal to k.
  * Return the length of the longest good subarray of nums.
  * A subarray is a contiguous non-empty sequence of elements within an array.
+ *
+ * @tags    #hash-table #sliding-window
  */
 
 
@@ -241,6 +272,8 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * Return the number of subarrays where the maximum element of nums appears at least k times in that
  * subarray.
  * A subarray is a contiguous sequence of elements within an array.
+ *
+ * @tags    #sliding-window
  */
 auto CountSubarraysWithAtLeastKMax(const ArrayType &nums, const std::size_t k) {
     const auto maximum = *std::max_element(nums.cbegin(), nums.cend());
@@ -256,6 +289,46 @@ auto CountSubarraysWithAtLeastKMax(const ArrayType &nums, const std::size_t k) {
             const auto j = index[index.size() - k];
             result += (i + 1) - (i - j);
         }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Smallest Subarrays With Maximum Bitwise OR
+ *              https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/
+ *
+ * You are given a 0-indexed array nums of length n, consisting of non-negative integers. For each index
+ * i from 0 to n - 1, you must determine the size of the minimum sized non-empty subarray of nums
+ * starting at i (inclusive) that has the maximum possible bitwise OR.
+ *  In other words, let Bij be the bitwise OR of the subarray nums[i...j]. You need to find the smallest
+ *  subarray starting at i, such that bitwise OR of this subarray is equal to max(Bik) where i <= k <= n
+ *  - 1.
+ * The bitwise OR of an array is the bitwise OR of all the numbers in it.
+ * Return an integer array answer of size n where answer[i] is the length of the minimum sized subarray
+ * starting at i with maximum bitwise OR.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ *
+ * @tags    #sliding-window #backward-traverse
+ */
+auto SmallestSubarraysWithMaxBitOr(const ArrayType &nums) {
+    const int MAX_BIT_LENGTH = 30;
+
+    ArrayType result(nums.size());
+    std::vector<int> last_seen(MAX_BIT_LENGTH, 0);
+    for (int i = nums.size() - 1; i >= 0; --i) {
+        auto j = i;
+
+        for (int bit = 0; bit < MAX_BIT_LENGTH; ++bit) {
+            if (nums[i] & (1 << bit)) {
+                last_seen[bit] = i;
+            } else {
+                j = std::max(j, last_seen[bit]);
+            }
+        }
+
+        result[i] = j - i + 1;
     }
 
     return result;
@@ -343,3 +416,20 @@ THE_BENCHMARK(CountSubarraysWithAtLeastKMax, SAMPLE1M, 2);
 
 SIMPLE_TEST(CountSubarraysWithAtLeastKMax, TestSAMPLE1, 21, SAMPLE1M, 2);
 SIMPLE_TEST(CountSubarraysWithAtLeastKMax, TestSAMPLE2, 0, SAMPLE2M, 3);
+
+
+const ArrayType SAMPLE1B = {1, 0, 2, 1, 3};
+const ArrayType EXPECTED1B = {3, 3, 2, 2, 1};
+
+const ArrayType SAMPLE2B = {1, 2};
+const ArrayType EXPECTED2B = {2, 1};
+
+const ArrayType SAMPLE3B = {0};
+const ArrayType EXPECTED3B = {1};
+
+
+THE_BENCHMARK(SmallestSubarraysWithMaxBitOr, SAMPLE1B);
+
+SIMPLE_TEST(SmallestSubarraysWithMaxBitOr, TestSAMPLE1, EXPECTED1B, SAMPLE1B);
+SIMPLE_TEST(SmallestSubarraysWithMaxBitOr, TestSAMPLE2, EXPECTED2B, SAMPLE2B);
+SIMPLE_TEST(SmallestSubarraysWithMaxBitOr, TestSAMPLE3, EXPECTED3B, SAMPLE3B);

@@ -8,11 +8,13 @@ namespace {
 using ArrayType = std::vector<std::string_view>;
 using NumArrayType = std::vector<int>;
 
-/** Check if two strings have a common substring
- *
- * @reference   https://www.geeksforgeeks.org/check-two-strings-common-substring/
+/**
+ * @reference   Check if two strings have a common substring
+ *              https://www.geeksforgeeks.org/check-two-strings-common-substring/
  * @reference   Check if there is any common character in two given strings
  *              https://www.geeksforgeeks.org/check-if-there-is-any-common-character-in-two-given-strings/
+ *
+ * @tags    #hash-table
  */
 template<typename Container>
 constexpr auto HaveCommonElement(const Container &X, const Container &Y) {
@@ -31,9 +33,11 @@ inline constexpr auto HaveCommonSubstring(const std::string_view X, const std::s
 }
 
 
-/** How to check if two given sets are disjoint?
+/**
+ * @reference   How to check if two given sets are disjoint?
+ *              https://www.geeksforgeeks.org/check-two-given-sets-disjoint/
  *
- * @reference   https://www.geeksforgeeks.org/check-two-given-sets-disjoint/
+ * @tags    #hash-table
  */
 inline auto AreTwoSetsDisjoint_Hash(const NumArrayType &lhs, const NumArrayType &rhs) {
     return not HaveCommonElement(lhs, rhs);
@@ -66,12 +70,120 @@ bool AreTwoSetsDisjoint_BinarySearch(const NumArrayType &lhs, const NumArrayType
  * the stones you have. Each character in stones is a type of stone you have. You want to know how many
  * of the stones you have are also jewels.
  * Letters are case sensitive, so "a" is considered a different type of stone from "A".
+ *
+ * @tags    #hash-table
  */
 
 
-/** Count common characters in two strings
+/**
+ * @reference   Intersection of Two Arrays
+ *              https://leetcode.com/problems/intersection-of-two-arrays/
  *
- * @reference   https://www.geeksforgeeks.org/count-common-characters-in-two-strings/
+ * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the
+ * result must be unique and you may return the result in any order.
+ *  0 <= nums1[i], nums2[i] <= 1000
+ *
+ * @tags    #hash-table
+ */
+
+
+/**
+ * @reference   Find Union and Intersection of two unsorted arrays
+ *              https://www.geeksforgeeks.org/find-union-and-intersection-of-two-unsorted-arrays/
+ *
+ * Given two unsorted arrays that represent two sets (elements in every array are distinct), find the
+ * union and intersection of two arrays.
+ *
+ * @tags    #hash-table
+ */
+inline auto Union_Unsorted(const NumArrayType &one, const NumArrayType &another) {
+    std::unordered_set commons(one.cbegin(), one.cend());
+    commons.insert(another.cbegin(), another.cend());
+    return commons;
+}
+
+
+auto Union_Sorted(const NumArrayType &one, const NumArrayType &another) {
+    assert(std::is_sorted(one.cbegin(), one.cend()));
+    assert(std::is_sorted(another.cbegin(), another.cend()));
+
+    std::size_t one_i = 0, another_i = 0;
+    std::unordered_set<int> results;
+    while (one_i < one.size() and another_i < another.size()) {
+        if (one[one_i] < another[another_i]) {
+            results.insert(one[one_i++]);
+        } else if (one[one_i] > another[another_i]) {
+            results.insert(another[another_i++]);
+        } else {
+            results.insert(one[one_i++]);
+            ++another_i;
+        }
+    }
+
+    while (one_i < one.size()) {
+        results.insert(one[one_i++]);
+    }
+
+    while (another_i < another.size()) {
+        results.insert(another[another_i++]);
+    }
+
+    return results;
+}
+
+inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
+    std::sort(one.begin(), one.end());
+    std::sort(another.begin(), another.end());
+
+    return Union_Sorted(one, another);
+}
+
+
+/**
+ * @reference   Find the overlapping sum of two arrays
+ *              https://www.geeksforgeeks.org/find-the-overlapping-sum-of-two-arrays/
+ *
+ * Given two arrays A[] and B[] having n unique elements each. The task is to find the overlapping sum
+ * of the two arrays. That is the sum of elements which is common in both of the arrays.
+ *
+ * @complexity  O(n)
+ *
+ * @tags    #hash-table
+ */
+auto OverlappingSumOfArrays(const NumArrayType &a1, const NumArrayType &a2) {
+    const auto *smaller = &a1;
+    const auto *larger = &a2;
+    if (smaller->size() > larger->size()) {
+        std::swap(smaller, larger);
+    }
+
+    const auto counters = ToUnorderedSet(*larger);
+    int sum = 0;
+
+    for (const auto elem : *smaller) {
+        if (counters.find(elem) != counters.cend()) {
+            sum += elem * 2;
+        }
+    }
+
+    return sum;
+}
+
+
+/**
+ * @reference   Count Common Words With One Occurrence
+ *              https://leetcode.com/problems/count-common-words-with-one-occurrence/
+ *
+ * Given two string arrays words1 and words2, return the number of strings that appear exactly once in
+ * each of the two arrays.
+ *
+ * @tags    #hash-table
+ */
+
+
+/**
+ * @reference   Count common characters in two strings
+ *              https://www.geeksforgeeks.org/count-common-characters-in-two-strings/
  *
  * Given two strings s1 and s2 consisting of lowercase English alphabets, the task is to count all the
  * pairs of indices (i, j) from the given strings such that s1[i] = s2[j] and all the indices are
@@ -90,6 +202,8 @@ bool AreTwoSetsDisjoint_BinarySearch(const NumArrayType &lhs, const NumArrayType
  *  What if nums1's size is small compared to nums2's size? Which algorithm is better?
  *  What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load
  *  all elements into the memory at once?
+ *
+ * @tags    #hash-table
  */
 auto CountCommonChars(const std::string_view X, const std::string_view Y) {
     auto one_set_characters = ToFrequencyHashTable(X);
@@ -105,12 +219,14 @@ auto CountCommonChars(const std::string_view X, const std::string_view Y) {
 }
 
 
-/** Print common characters of two Strings in alphabetical order
- *
- * @reference   https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
+/**
+ * @reference   Print common characters of two Strings in alphabetical order
+ *              https://www.geeksforgeeks.org/print-common-characters-two-strings-alphabetical-order-2/
  *
  * Given two strings, print all the common characters in lexicographical order. If there are no common
  * letters, print -1. All letters are lower case.
+ *
+ * @tags    #hash-table
  */
 auto GetCommonChars(const std::string_view X, const std::string_view Y) {
     assert(std::all_of(X.cbegin(), X.cend(), islower));
@@ -212,25 +328,18 @@ auto IntersectionOf3_Sorted(const NumArrayType &arr1,
  * occurrence of that integer.
  */
 
+
 /**
- * @reference   Intersection of Two Arrays
- *              https://leetcode.com/problems/intersection-of-two-arrays/
- *
- * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the
- * result must be unique and you may return the result in any order.
- *  0 <= nums1[i], nums2[i] <= 1000
- */
-
-
-/** Common characters in n strings
- *
- * @reference   https://www.geeksforgeeks.org/common-characters-n-strings/
+ * @reference   Common characters in n strings
+ *              https://www.geeksforgeeks.org/common-characters-n-strings/
  * @reference   Find Common Characters
  *              https://leetcode.com/problems/find-common-characters/
  *
  * Given a string array words, return an array of all characters that show up in all strings within the
  * words (including duplicates). You may return the answer in any order.
  * words[i] consists of lowercase English letters.
+ *
+ * @tags    #hash-table
  */
 auto CommonCharsOfStrings(const ArrayType &strings) {
     assert(std::all_of(strings.cbegin(), strings.cend(), [](const auto &a_string) {
@@ -268,6 +377,8 @@ auto CommonCharsOfStrings(const ArrayType &strings) {
  * return the list of integers that are present in each array of nums sorted in ascending order.
  * All the values of nums[i] are unique.
  * 1 <= nums[i][j] <= 1000
+ *
+ * @tags    #hash-table
  */
 auto IntersectionOfMulti(const std::vector<NumArrayType> &nums) {
     std::size_t counts[1001] = {};
@@ -279,10 +390,12 @@ auto IntersectionOfMulti(const std::vector<NumArrayType> &nums) {
     }
 
     NumArrayType result;
-    for (int i = 0; i < 1001; ++i)
+    for (int i = 0; i < 1001; ++i) {
         if (counts[i] == nums.size()) {
             result.push_back(i);
         }
+    }
+
     return result;
 }
 
@@ -294,6 +407,8 @@ auto IntersectionOfMulti(const std::vector<NumArrayType> &nums) {
  * Find and print the uncommon characters of the two given strings in sorted order. Here uncommon
  * character means that either the character is present in one string or it is present in other string
  * but not in both. The strings contain only lowercase characters and can contain duplicates.
+ *
+ * @tags    #hash-table
  */
 auto UncommonChars_Hash(const std::string_view X, const std::string_view Y) {
     assert(std::all_of(X.cbegin(), X.cend(), islower));
@@ -327,6 +442,8 @@ auto UncommonChars_Hash(const std::string_view X, const std::string_view Y) {
 /**
  * @reference   Find uncommon characters of the two strings | Set 2
  *              https://www.geeksforgeeks.org/find-uncommon-characters-of-the-two-strings-set-2/
+ *
+ * @tags    #bit-hash
  */
 auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
     assert(std::all_of(X.cbegin(), X.cend(), islower));
@@ -362,15 +479,8 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  *  answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
  *  answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
  * Note that the integers in the lists may be returned in any order.
- */
-
-
-/**
- * @reference   Count Common Words With One Occurrence
- *              https://leetcode.com/problems/count-common-words-with-one-occurrence/
  *
- * Given two string arrays words1 and words2, return the number of strings that appear exactly once in
- * each of the two arrays.
+ * @tags    #hash-table
  */
 
 
@@ -384,86 +494,9 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  * other sentence.
  * Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer in
  * any order.
+ *
+ * @tags    #hash-table
  */
-
-
-/** Find the overlapping sum of two arrays
- *
- * @reference   https://www.geeksforgeeks.org/find-the-overlapping-sum-of-two-arrays/
- *
- * Given two arrays A[] and B[] having n unique elements each. The task is to find the overlapping sum
- * of the two arrays. That is the sum of elements which is common in both of the arrays.
- *
- * @complexity  O(n)
- */
-auto OverlappingSumOfArrays(const NumArrayType &a1, const NumArrayType &a2) {
-    const auto *smaller = &a1;
-    const auto *larger = &a2;
-    if (smaller->size() > larger->size()) {
-        std::swap(smaller, larger);
-    }
-
-    const auto counters = ToUnorderedSet(*larger);
-    int sum = 0;
-
-    for (const auto elem : *smaller) {
-        if (counters.find(elem) != counters.cend()) {
-            sum += elem * 2;
-        }
-    }
-
-    return sum;
-}
-
-
-/**
- * @reference   Find Union and Intersection of two unsorted arrays
- *              https://www.geeksforgeeks.org/find-union-and-intersection-of-two-unsorted-arrays/
- *
- * Given two unsorted arrays that represent two sets (elements in every array are distinct), find the
- * union and intersection of two arrays.
- */
-inline auto Union_Unsorted(const NumArrayType &one, const NumArrayType &another) {
-    std::unordered_set commons(one.cbegin(), one.cend());
-    commons.insert(another.cbegin(), another.cend());
-    return commons;
-}
-
-
-auto Union_Sorted(const NumArrayType &one, const NumArrayType &another) {
-    assert(std::is_sorted(one.cbegin(), one.cend()));
-    assert(std::is_sorted(another.cbegin(), another.cend()));
-
-    std::size_t one_i = 0, another_i = 0;
-    std::unordered_set<int> results;
-    while (one_i < one.size() and another_i < another.size()) {
-        if (one[one_i] < another[another_i]) {
-            results.insert(one[one_i++]);
-        } else if (one[one_i] > another[another_i]) {
-            results.insert(another[another_i++]);
-        } else {
-            results.insert(one[one_i++]);
-            ++another_i;
-        }
-    }
-
-    while (one_i < one.size()) {
-        results.insert(one[one_i++]);
-    }
-
-    while (another_i < another.size()) {
-        results.insert(another[another_i++]);
-    }
-
-    return results;
-}
-
-inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
-    std::sort(one.begin(), one.end());
-    std::sort(another.begin(), another.end());
-
-    return Union_Sorted(one, another);
-}
 
 
 /**
@@ -475,6 +508,8 @@ inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
  * You need to help them find out their common interest with the least list index sum. If there is a
  * choice tie between answers, output all of them with no order requirement. You could assume there
  * always exists an answer.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -487,6 +522,8 @@ inline auto Union_Unsorted_Sort(NumArrayType one, NumArrayType another) {
  * You can use each character in text at most once. Return the maximum number of instances that can be
  * formed.
  * Follow up: Suppose you are given an arbitrary string pattern instead of balloon.
+ *
+ * @tags    #hash-table
  */
 auto MaxNumberOfPattern(const std::string_view text, const std::string_view pattern) {
     auto text_counts = ToFrequencyHashTable(text);
@@ -508,6 +545,8 @@ auto MaxNumberOfPattern(const std::string_view text, const std::string_view patt
  * Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the values
  * that are present in at least two out of the three arrays. You may return the values in any order.
  * 1 <= nums1[i], nums2[j], nums3[k] <= 100
+ *
+ * @tags    #hash-table #bit-hash
  */
 auto TwoOutOfThree(const NumArrayType &nums1,
                    const NumArrayType &nums2,
@@ -540,6 +579,8 @@ auto TwoOutOfThree(const NumArrayType &nums1,
  * Given a string array words, return the maximum value of length(word[i]) * length(word[j]) where the
  * two words do not share common letters. If no such two words exist, return 0.
  * words[i] consists only of lowercase English letters.
+ *
+ * @tags    #hash-table #bit-hash
  */
 auto MaxProductOfWordLengths(const ArrayType &words) {
     std::unordered_map<unsigned, std::size_t> max_lengths;

@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Most Visited Sector in a Circular Track
- *
- * @reference   https://leetcode.com/problems/most-visited-sector-in-a-circular-track/
+/**
+ * @reference   Most Visited Sector in a Circular Track
+ *              https://leetcode.com/problems/most-visited-sector-in-a-circular-track/
  *
  * Given an integer n and an integer array rounds. We have a circular track which consists of n sectors
  * labeled from 1 to n. A marathon will be held on this track, the marathon consists of m rounds. The
