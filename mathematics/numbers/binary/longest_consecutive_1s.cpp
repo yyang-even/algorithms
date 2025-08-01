@@ -8,12 +8,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Length of the Longest Consecutive 1s in Binary Representation
- *
- * @reference   https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
+/**
+ * @reference   Length of the Longest Consecutive 1s in Binary Representation
+ *              https://www.geeksforgeeks.org/length-longest-consecutive-1s-binary-representation/
  *
  * The idea is based on the concept that if we AND a bit sequence with a shifted version of itself,
  * we're effectively removing the trailing 1 from every sequence of consecutive 1s.
+ *
+ * @tags    #bit-tricks
  */
 constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
     unsigned length = 0;
@@ -26,15 +28,9 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
 }
 
 
-/** Length of longest consecutive zeroes in the binary representation of a number.
- *
- * @reference   https://www.geeksforgeeks.org/length-of-longest-consecutive-zeroes-in-the-binary-representation-of-a-number/
- */
-
-
-/** Binary Gap
- *
- * @reference   https://leetcode.com/problems/binary-gap/
+/**
+ * @reference   Binary Gap
+ *              https://leetcode.com/problems/binary-gap/
  *
  * Given a positive integer n, find and return the longest distance between any two adjacent 1's in the
  * binary representation of n. If there are no two adjacent 1's, return 0.
@@ -95,6 +91,11 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
  * Return the length of the longest such subarray.
  * The bitwise AND of an array is the bitwise AND of all the numbers in it.
  * A subarray is a contiguous sequence of elements within an array.
+ *
+ * @hint    The bitwise AND of two different numbers will always be strictly less than the maximum of
+ *          those two numbers.
+ *
+ * @tags    #bit-tricks
  */
 auto LongestSubarrayWithMaxAnd(const ArrayType &nums) {
     int current = 0;

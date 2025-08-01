@@ -16,12 +16,14 @@ using StrArray = std::vector<std::string_view>;
  * @reference   0-1 Knapsack Problem | DP-10
  *              https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
  *
- * Given weights and values of n items, put these items in a knapsack of capacity W to get the
- * maximum total value in the knapsack. In other words, given two integer arrays val[0..n-1] and
- * wt[0..n-1] which represent values and weights associated with n items respectively. Also given
- * an integer W which represents knapsack capacity, find out the maximum value subset of val[]
- * such that sum of the weights of this subset is smaller than or equal to W. You cannot break an
- * item, either pick the complete item, or don't pick it (0-1 property).
+ * Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum
+ * total value in the knapsack. In other words, given two integer arrays val[0..n-1] and wt[0..n-1]
+ * which represent values and weights associated with n items respectively. Also given an integer W
+ * which represents knapsack capacity, find out the maximum value subset of val[] such that sum of the
+ * weights of this subset is smaller than or equal to W. You cannot break an item, either pick the
+ * complete item, or don't pick it (0-1 property).
+ *
+ * @tags    #DP #0-1-knapsack
  */
 auto Knapsack01(const ArrayType &weights,
                 const ArrayType &values,
@@ -105,6 +107,8 @@ auto Knapsack01_OneDimension(const ArrayType &weights,
 /**
  * @reference   Printing Items in 0/1 Knapsack
  *              https://www.geeksforgeeks.org/printing-items-01-knapsack/
+ *
+ * @tags    #DP #0-1-knapsack
  */
 inline auto Knapsack01ItemIndices(const ArrayType &weights,
                                   const ArrayType &values,
@@ -119,9 +123,11 @@ inline auto Knapsack01ItemIndices(const ArrayType &weights,
  * @reference   0-1 knapsack queries
  *              https://www.geeksforgeeks.org/0-1-knapsack-queries/
  *
- * Given an integer array W[] consisting of weights of the items and some queries consisting of
- * capacity C of knapsack, for each query find maximum weight we can put in the knapsack. Value
- * of C does’t exceed a certain integer C_MAX.
+ * Given an integer array W[] consisting of weights of the items and some queries consisting of capacity
+ * C of knapsack, for each query find maximum weight we can put in the knapsack. Value of C does’t
+ * exceed a certain integer C_MAX.
+ *
+ * @tags    #DP #0-1-knapsack
  */
 
 
@@ -130,9 +136,11 @@ inline auto Knapsack01ItemIndices(const ArrayType &weights,
  *              https://leetcode.com/problems/ones-and-zeroes/
  *
  * You are given an array of binary strings strs and two integers m and n.
- * Return the size of the largest subset of strs such that there are at most m 0's and n 1's in
- * the subset.
+ * Return the size of the largest subset of strs such that there are at most m 0's and n 1's in the
+ * subset.
  * A set x is a subset of a set y if all elements of x are also elements of y.
+ *
+ * @tags    #DP #0-1-knapsack
  */
 auto OnesAndZeros(const StrArray &strs, const int m, const int n) {
     std::vector dp(m + 1, std::vector<int>(n + 1));
@@ -184,6 +192,21 @@ inline auto OnesAndZeros_Recursive(const StrArray &strs, const int m, const int 
 }
 
 
+/**
+ * @reference   Count Number of Maximum Bitwise-OR Subsets
+ *              https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/
+ *
+ * Given an integer array nums, find the maximum possible bitwise OR of a subset of nums and return the
+ * number of different non-empty subsets with the maximum bitwise OR.
+ * An array a is a subset of an array b if a can be obtained from b by deleting some (possibly zero)
+ * elements of b. Two subsets are considered different if the indices of the elements chosen are
+ * different.
+ * The bitwise OR of an array a is equal to a[0] OR a[1] OR ... OR a[a.length - 1] (0-indexed).
+ *
+ * @tags    #DP #0-1-knapsack
+ */
+
+
 /** Fractional Knapsack Problem
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -191,12 +214,14 @@ inline auto OnesAndZeros_Recursive(const StrArray &strs, const int m, const int 
  * @reference   Fractional Knapsack Problem
  *              https://www.geeksforgeeks.org/fractional-knapsack-problem/
  *
- * Given weights and values of n items, we need to put these items in a knapsack of capacity W to
- * get the maximum total value in the knapsack.
- * In the 0-1 Knapsack problem, we are not allowed to break items. We either take the whole item
- * or don’t take it.
+ * Given weights and values of n items, we need to put these items in a knapsack of capacity W to get
+ * the maximum total value in the knapsack.
+ * In the 0-1 Knapsack problem, we are not allowed to break items. We either take the whole item or
+ * don’t take it.
  * In Fractional Knapsack, we can break items for maximizing the total value of knapsack.
  * This problem in which we can break an item is also called the fractional knapsack problem.
+ *
+ * @tags    #greedy-knapsack
  */
 auto FractionalKnapsack01(const ArrayType &weights,
                           const ArrayType &values,
@@ -231,6 +256,8 @@ auto FractionalKnapsack01(const ArrayType &weights,
 /**
  * @reference   Fractional Knapsack Queries
  *              https://www.geeksforgeeks.org/fractional-knapsack-queries/
+ *
+ * @tags    #greedy-knapsack
  */
 auto FractionalKnapsack01Queries(const ArrayType &weights,
                                  const ArrayType &values,
@@ -285,9 +312,11 @@ auto FractionalKnapsack01Queries(const ArrayType &weights,
  * @reference   How Many Apples Can You Put into the Basket
  *              http://lixinchengdu.github.io/algorithmbook/leetcode/how-many-apples-can-you-put-into-the-basket.html
  *
- * You have some apples, where arr[i] is the weight of the i-th apple.  You also have a basket
- * that can carry up to 5000 units of weight.
+ * You have some apples, where arr[i] is the weight of the i-th apple. You also have a basket that can
+ * carry up to 5000 units of weight.
  * Return the maximum number of apples you can put in the basket.
+ *
+ * @tags    #greedy-knapsack
  */
 
 
@@ -295,15 +324,17 @@ auto FractionalKnapsack01Queries(const ArrayType &weights,
  * @reference   Maximum Units on a Truck
  *              https://leetcode.com/problems/maximum-units-on-a-truck/
  *
- * You are assigned to put some amount of boxes onto one truck. You are given a 2D array boxTypes,
- * where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
+ * You are assigned to put some amount of boxes onto one truck. You are given a 2D array boxTypes, where
+ * boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
  *  numberOfBoxesi is the number of boxes of type i.
  *  numberOfUnitsPerBoxi is the number of units in each box of the type i.
- * You are also given an integer truckSize, which is the maximum number of boxes that can be put
- * on the truck. You can choose any boxes to put on the truck as long as the number of boxes does
- * not exceed truckSize.
+ * You are also given an integer truckSize, which is the maximum number of boxes that can be put on the
+ * truck. You can choose any boxes to put on the truck as long as the number of boxes does not exceed
+ * truckSize.
  * Return the maximum total number of units that can be put on the truck.
  * 1 <= numberOfBoxesi, numberOfUnitsPerBoxi <= 1000
+ *
+ * @tags    #greedy-knapsack
  */
 auto MaxUnits(const PairArrayType &boxTypes, int truckSize) {
     int counts[1001] = {};

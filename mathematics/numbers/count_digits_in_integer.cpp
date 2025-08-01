@@ -5,11 +5,13 @@
 
 namespace {
 
-/** Program to count digits in an integer (4 Different Methods)
- *
- * @reference   https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
+/**
+ * @reference   Program to count digits in an integer (4 Different Methods)
+ *              https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
  * @reference   C program to Count the digits of a number
  *              https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
+ *
+ * @tags    #digit-sum
  */
 inline constexpr auto CountDigits_Recursive(const int n) {
     if (not n) {
@@ -40,6 +42,8 @@ inline auto CountDigits_String(const int n) {
  *              https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
  *
  * Given an array nums of integers, return how many of them contain an even number of digits.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -52,6 +56,8 @@ inline auto CountDigits_String(const int n) {
  *              https://www.geeksforgeeks.org/program-for-sum-of-the-digits-of-a-given-number/
  * @reference   Sum of digit of a number using recursion
  *              https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -61,6 +67,8 @@ inline auto CountDigits_String(const int n) {
  *
  * Given an array A of positive integers, let S be the sum of the digits of the minimal element of A.
  * Return 0 if S is odd, otherwise return 1.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -70,6 +78,8 @@ inline auto CountDigits_String(const int n) {
  *
  * Given an integer num, repeatedly add all its digits until the result has only one digit, and return
  * it.
+ *
+ * @tags    #digit-sum
  */
 inline constexpr auto DigitalRoot(const int num) {
     return 1 + (num - 1) % 9;
@@ -79,12 +89,16 @@ inline constexpr auto DigitalRoot(const int num) {
 /**
  * @reference   Program to calculate product of digits of a number
  *              https://www.geeksforgeeks.org/program-to-calculate-product-of-digits-of-a-number/
+ *
+ * @tags    #digit-sum
  */
 
 
 /**
  * @reference   C Program to Print all digits of a given number
  *              https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -94,6 +108,8 @@ inline constexpr auto DigitalRoot(const int num) {
  *
  * Given an integer number n, return the difference between the product of its digits and the sum of its
  * digits.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -107,7 +123,29 @@ inline constexpr auto DigitalRoot(const int num) {
  *  A + B = n
  * It's guaranteed that there is at least one valid solution. If there are many valid solutions you can
  * return any of them.
+ *
+ * @tags    #digit-sum
  */
+auto ToTwoNoZeroInts(int n) {
+    int a = 0;
+    int b = 0;
+
+    for (int step = 1; n; step *= 10) {
+        auto digit = n % 10;
+        n /= 10;
+
+        if (digit < 2 and n) {
+            digit += 10;
+            --n;
+        }
+
+        const auto half = digit / 2;
+        a += step * half;
+        b += step * (half + (digit % 2 == 1));
+    }
+
+    return std::pair {a, b};
+}
 
 
 /**
@@ -117,6 +155,8 @@ inline constexpr auto DigitalRoot(const int num) {
  * You are given an integer n. Each number from 1 to n is grouped according to the sum of its digits.
  * Return the number of groups that have the largest size.
  * 1 <= n <= 10^4
+ *
+ * @tags    #digit-sum #hash-table
  */
 
 
@@ -132,6 +172,8 @@ inline constexpr auto DigitalRoot(const int num) {
  * the ball number 10 will be put in the box number 1 + 0 = 1.
  * Given two integers lowLimit and highLimit, return the number of balls in the box with the most balls.
  * 1 <= lowLimit <= highLimit <= 10^5
+ *
+ * @tags    #digit-sum #hash-table
  */
 constexpr auto DigitsSum(int n) {
     int sum = 0;
@@ -167,6 +209,8 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  * from base 10 to base k.
  * After converting, each digit should be interpreted as a base 10 number, and the sum should be
  * returned in base 10.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -184,6 +228,8 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  *  Transform #1: 262124 ➝ 2 + 6 + 2 + 1 + 2 + 4 ➝ 17
  *  Transform #2: 17 ➝ 1 + 7 ➝ 8
  * Return the resulting integer after performing the operations described above.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -194,6 +240,8 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  * Given a positive integer num, return the number of positive integers less than or equal to num whose
  * digit sums are even.
  * The digit sum of a positive integer is the sum of all its digits.
+ *
+ * @tags    #digit-sum
  */
 inline constexpr auto CountEven(const int num) {
     const auto sum = DigitsSum(num);
@@ -215,6 +263,8 @@ inline constexpr auto CountEven(const int num) {
  *  Merge consecutive groups together to form a new string. If the length of the string is greater than
  *      k, repeat from step 1.
  * Return s after all rounds have been completed.
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -228,6 +278,8 @@ inline constexpr auto CountEven(const int num) {
  * deci-binary numbers needed so that they sum up to n.
  *
  * @hint    Just return the max digit
+ *
+ * @tags    #digit-sum
  */
 
 
@@ -239,6 +291,8 @@ inline constexpr auto CountEven(const int num) {
  * that the leading digit is not zero.
  * Return true if and only if we can do this so that the resulting number is a power of two.
  * 1 <= n <= 10^9
+ *
+ * @tags    #digit-sum
  */
 auto toDigits(unsigned n) {
     std::vector<int> digits;
@@ -304,6 +358,8 @@ constexpr auto ReorderedPowerOf2_Mask(const int n) {
  * You are given a 0-indexed integer array nums. You have to find the maximum sum of a pair of numbers
  * from nums such that the maximum digit in both numbers are equal.
  * Return the maximum sum or -1 if no such pair exists.
+ *
+ * @tags    #digit-sum
  */
 
 } //namespace
@@ -362,3 +418,15 @@ THE_BENCHMARK(ReorderedPowerOf2_Mask, 10);
 
 SIMPLE_TEST(ReorderedPowerOf2_Mask, TestSAMPLE1, false, 10);
 SIMPLE_TEST(ReorderedPowerOf2_Mask, TestSAMPLE2, true, 1);
+
+
+const auto EXPECTED1 = std::pair {1, 1};
+const auto EXPECTED2 = std::pair {5, 6};
+const auto EXPECTED3 = std::pair {4, 15};
+
+
+THE_BENCHMARK(ToTwoNoZeroInts, 10);
+
+SIMPLE_TEST(ToTwoNoZeroInts, TestSAMPLE1, EXPECTED1, 2);
+SIMPLE_TEST(ToTwoNoZeroInts, TestSAMPLE2, EXPECTED2, 11);
+SIMPLE_TEST(ToTwoNoZeroInts, TestSAMPLE3, EXPECTED3, 19);

@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Fruit Into Baskets
- *
- * @reference   https://leetcode.com/problems/fruit-into-baskets/
+/**
+ * @reference   Fruit Into Baskets
+ *              https://leetcode.com/problems/fruit-into-baskets/
  *
  * You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees
  * are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree
@@ -22,6 +22,8 @@ using ArrayType = std::vector<int>;
  * Given the integer array fruits, return the maximum number of fruits you can pick.
  *
  * Find out the longest length of subarrays with at most 2 different numbers?
+ *
+ * @tags    #hash-table #sliding-window
  */
 auto FruitIntoBaskets(const ArrayType &fruits) {
     std::unordered_map<int, int> count;
@@ -50,6 +52,8 @@ auto FruitIntoBaskets(const ArrayType &fruits) {
  * A subarray arr is good if it there are at least k pairs of indices (i, j) such that i < j and arr[i]
  * == arr[j].
  * A subarray is a contiguous non-empty sequence of elements within an array.
+ *
+ * @tags    #hash-table #sliding-window
  */
 auto CountGoodSubarrays(const ArrayType &nums, const int k) {
     std::size_t left = 0;
