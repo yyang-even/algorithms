@@ -5,13 +5,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Kth Missing Positive Number
+/**
+ * @reference   Kth Missing Positive Number
+ *              https://leetcode.com/problems/kth-missing-positive-number/
  *
- * @reference   https://leetcode.com/problems/kth-missing-positive-number/
- *
- * Given an array arr of positive integers sorted in a strictly increasing order, and an
- * integer k.
+ * Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
  * Find the kth positive integer that is missing from this array.
+ *
+ * @tags    #binary-search
  */
 auto KthMissing(const ArrayType &nums, const int k) {
     int l = 0, r = nums.size();
@@ -27,7 +28,7 @@ auto KthMissing(const ArrayType &nums, const int k) {
     return l + k;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {2, 3, 4, 7, 11};

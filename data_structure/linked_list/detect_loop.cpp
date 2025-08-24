@@ -61,9 +61,8 @@ inline auto testDetectLoop_Hash_SinglyMakeLoop(const std::size_t index) {
  * tail's next pointer is connected to. Note that pos is not passed as a parameter.
  * Return true if there is a cycle in the linked list. Otherwise, return false.
  *
- * This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic
- * Algorithms" by Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare
- * Algorithm".
+ * This solution is "Floyd's Cycle-Finding Algorithm" as published in "Non-deterministic Algorithms" by
+ * Robert W. Floyd in 1967. It is also called "The Tortoise and the Hare Algorithm".
  *
  * @reference   Find first node of loop in a linked list
  *              https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
@@ -259,12 +258,15 @@ inline auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
 }
 
 
-/** Find the only repetitive element between 1 to n-1
+/**
  *
- * @reference   https://www.geeksforgeeks.org/find-repetitive-element-1-n-1/
+ * @reference   Find the only repetitive element between 1 to n-1
+ *              https://www.geeksforgeeks.org/find-repetitive-element-1-n-1/
  *
  * We are given an array arr[] of size n. Numbers are from 1 to (n-1) in random order.
  * The array has only one repetitive element. We need to find the repetitive element.
+ *
+ * @tags    #hash-table #bit-tricks #index-marking
  */
 inline auto FindTheOnlyRepeatingElement_Sum(const ArrayType &elements) {
     const auto sum = std::accumulate(elements.cbegin(), elements.cend(), 0u);
@@ -309,12 +311,14 @@ auto FindTheOnlyRepeatingElement_InPlace(ArrayType elements) {
 }
 
 
-/** Find the only repeating element in a sorted array of size n
- *
- * @reference   https://www.geeksforgeeks.org/find-repeating-element-sorted-array-size-n/
+/**
+ * @reference   Find the only repeating element in a sorted array of size n
+ *              https://www.geeksforgeeks.org/find-repeating-element-sorted-array-size-n/
  *
  * Given a sorted array of n elements containing elements in range from 1 to n-1 i.e.
  * One element occurs twice, the task is to find the repeating element in an array.
+ *
+ * @tags    #binary-search
  */
 ArrayType::value_type FindTheOnlyRepeatingElement_Sorted_BinarySearch(
     const ArrayType &elements, const ArrayType::size_type low, const ArrayType::size_type high) {
@@ -338,9 +342,9 @@ inline auto FindTheOnlyRepeatingElement_Sorted_BinarySearch(const ArrayType &ele
 }
 
 
-/** Find duplicate in an array in O(n) and by using O(1) extra space
- *
- * @reference   https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-3/
+/**
+ * @reference   Find duplicate in an array in O(n) and by using O(1) extra space
+ *              https://www.geeksforgeeks.org/duplicates-array-using-o1-extra-space-set-3/
  *
  * Given an array arr[] containing n + 1 integers where each integer is between 1 and n (inclusive).
  * There is only one duplicate element, find the duplicate element in O(n) time complexity and O(1)

@@ -6,20 +6,22 @@
 
 namespace {
 
-/** Check if given number is a power of d where d is a power of 2
- *
- * @reference   https://www.geeksforgeeks.org/check-given-number-power-d-d-power-2/
+/**
+ * @reference   Check if given number is a power of d where d is a power of 2
+ *              https://www.geeksforgeeks.org/check-given-number-power-d-d-power-2/
  *
  * Given an integer n, find whether it is a power of d or not, where d is itself a power of 2.
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
     return IsPowerOf2(n) and (CountTrailingZeros_Linear(n) % static_cast<unsigned>(log2(d))) == 0;
 }
 
 
-/** Find whether a given number is a power of 4 or not
- *
- * @reference   https://www.geeksforgeeks.org/find-whether-a-given-number-is-a-power-of-4-or-not/
+/**
+ * @reference   Find whether a given number is a power of 4 or not
+ *              https://www.geeksforgeeks.org/find-whether-a-given-number-is-a-power-of-4-or-not/
  *
  * Given an integer n, find whether it is a power of 4 or not.
  *
@@ -40,6 +42,8 @@ inline constexpr auto IsPowerOfPowerOf2(const unsigned n, const unsigned d) {
  *  The one who removes the last stone is the winner.
  * Given n, the number of stones in the heap, return true if you can win the game assuming both you and
  * your friend play optimally, otherwise return false.
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr auto IsPowerOf4(const unsigned num) {
     return IsPowerOfPowerOf2(num, 4);
@@ -51,11 +55,13 @@ inline constexpr auto IsPowerOf4_Const(const unsigned num) {
 }
 
 
-/** Check if a number is power of 8 or not
- *
- * @reference   https://www.geeksforgeeks.org/check-number-power-8-not/
+/**
+ * @reference   Check if a number is power of 8 or not
+ *              https://www.geeksforgeeks.org/check-number-power-8-not/
  *
  * Given a number check whether it is power of 8 or not.
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr auto IsPowerOf8(const unsigned num) {
     return IsPowerOfPowerOf2(num, 8);

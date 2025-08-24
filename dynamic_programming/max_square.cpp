@@ -7,12 +7,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Maximal Square
- *
- * @reference   https://leetcode.com/problems/maximal-square/
+/**
+ * @reference   Maximal Square
+ *              https://leetcode.com/problems/maximal-square/
  *
  * Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and
  * return its area.
+ *
+ * @tags    #DP #matrix
  */
 auto MaxSquare(const MatrixType &grid) {
     int dp[grid.size() + 1][grid.front().size() + 1] = {};
@@ -54,11 +56,41 @@ auto MaxSquare_DP_On(const MatrixType &grid) {
 
 
 /**
+ * @reference   Count Square Submatrices with All Ones
+ *              https://leetcode.com/problems/count-square-submatrices-with-all-ones/
+ *
+ * Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
+ *
+ * @tags    #DP #matrix
+ */
+auto CountSquares(const MatrixType &a_matrix) {
+    const int M = a_matrix.size();
+    const int N = a_matrix[0].size();
+
+    std::vector dp(M + 1, std::vector(N + 1, 0));
+
+    int result = 0;
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (a_matrix[i][j]) {
+                dp[i + 1][j + 1] = std::min({dp[i][j + 1], dp[i + 1][j], dp[i][j]}) + 1;
+                result += dp[i + 1][j + 1];
+            }
+        }
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximal Rectangle
  *              https://leetcode.com/problems/maximal-rectangle/
  *
  * Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only
  * 1's and return its area.
+ *
+ * @tags    #DP #matrix
  */
 auto MaxRectangle(const MatrixType &grid) {
     const auto M = grid.size();
@@ -85,6 +117,38 @@ auto MaxRectangle(const MatrixType &grid) {
                 ++height;
                 width = std::min(width, adjecent_1s_on_left[k--][j]);
                 result = std::max(width * height, result);
+            }
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Count Submatrices With All Ones
+ *              https://leetcode.com/problems/count-submatrices-with-all-ones/
+ *
+ * Given an m x n binary matrix mat, return the number of submatrices that have all ones.
+ *
+ * @tags    #DP #matrix
+ */
+auto CountRectangle(const MatrixType &grid) {
+    const auto M = grid.size();
+    const auto N = grid.front().size();
+
+    std::vector adjecent_1s_on_left(M + 1, std::vector(N + 1, 0));
+    int result = 0;
+    for (std::size_t i = 1; i <= M; ++i) {
+        for (std::size_t j = 1; j <= N; ++j) {
+            if (grid[i - 1][j - 1]) {
+                adjecent_1s_on_left[i][j] = 1 + adjecent_1s_on_left[i][j - 1];
+
+                int width = adjecent_1s_on_left[i][j];
+                for (int k = i; width;) {
+                    width = std::min(width, adjecent_1s_on_left[k--][j]);
+                    result += width;
+                }
             }
         }
     }
@@ -266,6 +330,41 @@ SIMPLE_TEST(MaxSquare_DP_On, TestSAMPLE2, 1, SAMPLE2);
 SIMPLE_TEST(MaxSquare_DP_On, TestSAMPLE3, 0, SAMPLE3);
 
 
+// clang-format off
+const MatrixType SAMPLE1CS = {
+    {0, 1, 1, 1},
+    {1, 1, 1, 1},
+    {0, 1, 1, 1}
+};
+
+const MatrixType SAMPLE2CS = {
+    {1, 0, 1},
+    {1, 1, 0},
+    {1, 1, 0}
+};
+
+const MatrixType SAMPLE3CS = {
+    {0, 1, 1, 1},
+    {1, 1, 0, 1},
+    {1, 1, 1, 1},
+    {1, 0, 1, 0}
+};
+
+const MatrixType SAMPLE4CS = {
+    {0, 1, 1, 0},
+    {0, 1, 1, 1},
+    {1, 1, 1, 0}
+};
+// clang-format on
+
+
+THE_BENCHMARK(CountSquares, SAMPLE1CS);
+
+SIMPLE_TEST(CountSquares, TestSAMPLE1, 15, SAMPLE1CS);
+SIMPLE_TEST(CountSquares, TestSAMPLE2, 7, SAMPLE2CS);
+SIMPLE_TEST(CountSquares, TestSAMPLE3, 13, SAMPLE3CS);
+
+
 THE_BENCHMARK(MaxRectangle, SAMPLE1);
 
 SIMPLE_TEST(MaxRectangle, TestSAMPLE1, 6, SAMPLE1);
@@ -280,6 +379,12 @@ SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE2, 1, SAMPLE2);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE3, 0, SAMPLE3);
 SIMPLE_TEST(MaxRectangle_MonotonicStack, TestSAMPLE4, 1, SAMPLE4);
+
+
+THE_BENCHMARK(CountRectangle, SAMPLE4CS);
+
+SIMPLE_TEST(CountRectangle, TestSAMPLE2, 13, SAMPLE2CS);
+SIMPLE_TEST(CountRectangle, TestSAMPLE4, 24, SAMPLE4CS);
 
 
 // clang-format off

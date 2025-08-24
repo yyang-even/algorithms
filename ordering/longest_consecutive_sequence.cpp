@@ -5,13 +5,15 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Longest Consecutive Sequence
- *
- * @reference   https://leetcode.com/problems/longest-consecutive-sequence/
+/**
+ * @reference   Longest Consecutive Sequence
+ *              https://leetcode.com/problems/longest-consecutive-sequence/
  *
  * Given an unsorted array of integers nums, return the length of the longest consecutive elements
  * sequence.
  * You must write an algorithm that runs in O(n) time.
+ *
+ * @tags    #sort #hash-table #disjoint-set
  */
 auto LongestConsecutiveSequence_Sort(ArrayType nums) {
     if (nums.empty()) {

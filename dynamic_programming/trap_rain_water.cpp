@@ -7,12 +7,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Trapping Rain Water
+/**
+ * @reference   Trapping Rain Water
+ *              https://leetcode.com/problems/trapping-rain-water/
  *
- * @reference   https://leetcode.com/problems/trapping-rain-water/
+ * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute
+ * how much water it can trap after raining.
  *
- * Given n non-negative integers representing an elevation map where the width of each
- * bar is 1, compute how much water it can trap after raining.
+ * @tags    #forward-and-backward #two-pointers
  */
 auto TrapRain_DP(const ArrayType &heights) {
     if (heights.empty()) {
@@ -91,8 +93,8 @@ auto TrapRain_TwoPointer(const ArrayType &heights) {
  *              https://leetcode.com/problems/trapping-rain-water-ii/
  * @reference   https://www.cnblogs.com/grandyang/p/5928987.html
  *
- * Given an m x n integer matrix heightMap representing the height of each unit cell in
- * a 2D elevation map, return the volume of water it can trap after raining.
+ * Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation
+ * map, return the volume of water it can trap after raining.
  */
 using HeightRowColumn = std::tuple<int, int, int>;
 
@@ -103,8 +105,10 @@ auto TrapRain2D(const MatrixType &a_matrix) {
 
     const int M = a_matrix.size();
     const int N = a_matrix.front().size();
-    std::priority_queue<HeightRowColumn, std::vector<HeightRowColumn>, std::greater<HeightRowColumn>>
-            min_heap;
+    std::priority_queue<HeightRowColumn,
+                        std::vector<HeightRowColumn>,
+                        std::greater<HeightRowColumn>>
+        min_heap;
     std::vector visited(M, std::vector(N, false));
     for (int i = 0; i < M; ++i) {
         for (int j = 0; j < N; ++j) {
@@ -121,16 +125,20 @@ auto TrapRain2D(const MatrixType &a_matrix) {
         const auto [height, row, column] = min_heap.top();
         min_heap.pop();
         level = std::max(level, height);
-        ForEachDirection(M, N, row, column,
-        [&a_matrix, &min_heap, &visited, level, &result](const auto x, const auto y) {
-            if (not visited[x][y]) {
-                visited[x][y] = true;
-                if (a_matrix[x][y] < level) {
-                    result += level - a_matrix[x][y];
+        ForEachDirection(
+            M,
+            N,
+            row,
+            column,
+            [&a_matrix, &min_heap, &visited, level, &result](const auto x, const auto y) {
+                if (not visited[x][y]) {
+                    visited[x][y] = true;
+                    if (a_matrix[x][y] < level) {
+                        result += level - a_matrix[x][y];
+                    }
+                    min_heap.emplace(a_matrix[x][y], x, y);
                 }
-                min_heap.emplace(a_matrix[x][y], x, y);
-            }
-        });
+            });
     }
 
     return result;
@@ -141,12 +149,14 @@ auto TrapRain2D(const MatrixType &a_matrix) {
  * @reference   Container With Most Water
  *              https://leetcode.com/problems/container-with-most-water/
  *
- * You are given an integer array height of length n. There are n vertical lines drawn such
- * that the two endpoints of the ith line are (i, 0) and (i, height[i]).
- * Find two lines that together with the x-axis form a container, such that the container
- * contains the most water.
+ * You are given an integer array height of length n. There are n vertical lines drawn such that the two
+ * endpoints of the ith line are (i, 0) and (i, height[i]).
+ * Find two lines that together with the x-axis form a container, such that the container contains the
+ * most water.
  * Return the maximum amount of water a container can store.
  * Notice that you may not slant the container.
+ *
+ * @tags    #greedy #two-pointers
  */
 auto ContainerWithMostWater(const ArrayType &heights) {
     int result = 0;
@@ -165,7 +175,7 @@ auto ContainerWithMostWater(const ArrayType &heights) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
@@ -190,6 +200,7 @@ SIMPLE_TEST(TrapRain_TwoPointer, TestSAMPLE1, 6, SAMPLE1);
 SIMPLE_TEST(TrapRain_TwoPointer, TestSAMPLE2, 9, SAMPLE2);
 
 
+// clang-format off
 const MatrixType SAMPLE1M = {
     {1, 4, 3, 1, 3, 2},
     {3, 2, 1, 3, 2, 4},
@@ -203,6 +214,7 @@ const MatrixType SAMPLE2M = {
     {3, 2, 2, 2, 3},
     {3, 3, 3, 3, 3}
 };
+// clang-format on
 
 
 THE_BENCHMARK(TrapRain2D, SAMPLE1M);

@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find the first repeating element in an array of integers
- *
- * @reference   https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
+/**
+ * @reference   Find the first repeating element in an array of integers
+ *              https://www.geeksforgeeks.org/find-first-repeating-element-array-integers/
  * @reference   Find repeated character present first in a string
  *              https://www.geeksforgeeks.org/find-repeated-character-present-first-string/
  * @reference   Repeated Character Whose First Appearance is Leftmost
@@ -15,8 +15,10 @@ using ArrayType = std::vector<int>;
  * @reference   Find the first repeated word in a string
  *              https://www.geeksforgeeks.org/find-first-repeated-word-string/
  *
- * Given an array of integers, find the first repeating element in it. We need to find
- * the element that occurs more than once and whose index of first occurrence is smallest.
+ * Given an array of integers, find the first repeating element in it. We need to find the element that
+ * occurs more than once and whose index of first occurrence is smallest.
+ *
+ * @tags    #hash-table
  */
 auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
@@ -32,19 +34,22 @@ auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
 }
 
 
-/** Find the first repeated character in a string
+/**
  *
- * @reference   https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
+ * @reference   Find the first repeated character in a string
+ *              https://www.geeksforgeeks.org/find-the-first-repeated-character-in-a-string/
  *
- * Given a string, find the first repeated character in it. We need to find the character
- * that occurs more than once and whose index of second occurrence is smallest.
+ * Given a string, find the first repeated character in it. We need to find the character that occurs
+ * more than once and whose index of second occurrence is smallest.
  *
  * @reference   Efficiently find first repeated character in a string without using any additional data structure in one traversal
  *              https://www.geeksforgeeks.org/efficiently-find-first-repeated-character-string-without-using-additional-data-structure-one-traversal/
  *
- * Implement a space efficient algorithm to check First repeated character in a string
- * without using any additional data structure in one traversal. Use additional data
- * structures like count array, hash, etc is not allowed.
+ * Implement a space efficient algorithm to check First repeated character in a string without using any
+ * additional data structure in one traversal. Use additional data structures like count array, hash,
+ * etc is not allowed.
+ *
+ * @tags    #hash-table  #bit-hash
  */
 auto FindFirstRepeatingElement_SecondAppearance_Hash(const std::string_view str) {
     std::unordered_set<char> counters;
@@ -78,12 +83,14 @@ auto FindFirstRepeatingElement_SecondAppearance_Bits(const std::string_view str)
 }
 
 
-/** Find the first duplicate element in the linked list
+/**
+ * @reference   Find the first duplicate element in the linked list
+ *              https://www.geeksforgeeks.org/find-the-first-duplicate-element-in-the-linked-list/
  *
- * @reference   https://www.geeksforgeeks.org/find-the-first-duplicate-element-in-the-linked-list/
+ * Given a linked list. Find the first element from the left which appears more than once.  If all the
+ * elements are unique then print -1.
  *
- * Given a linked list. Find the first element from the left which appears more than once.
- * If all the elements are unique then print -1.
+ * @tags    #hash-table
  */
 auto FindFirstDuplicateElement_LinkedList_FirstAppearance(
     const std::forward_list<ArrayType::value_type> &l) {
@@ -104,7 +111,7 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(
     return first_duplicate_element;
 }
 
-}//namespace
+} //namespace
 
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;
@@ -122,25 +129,18 @@ SIMPLE_TEST(FindFirstRepeatingElement_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
 
 THE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Hash, "geeksforgeeks");
 
-SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE1, 'e',
-            "geeksforgeeks");
-SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE2, 'l',
-            "hello geeks");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE1, 'e', "geeksforgeeks");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Hash, TestSAMPLE2, 'l', "hello geeks");
 
 
 THE_BENCHMARK(FindFirstRepeatingElement_SecondAppearance_Bits, "geeksforgeeks");
 
-SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e',
-            "geeksforgeeks");
-SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a',
-            "abcfdeacf");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE1, 'e', "geeksforgeeks");
+SIMPLE_TEST(FindFirstRepeatingElement_SecondAppearance_Bits, TestSAMPLE2, 'a', "abcfdeacf");
 
 
 THE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
 
-SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1,
-            EMPTY);
-SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5,
-            SAMPLE1);
-SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6,
-            SAMPLE2);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, EMPTY);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
+SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);

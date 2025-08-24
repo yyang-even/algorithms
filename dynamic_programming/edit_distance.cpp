@@ -21,9 +21,10 @@ using TwoDimensionalArrayType =
  *     Insert   Remove  Replace
  *
  * All of the above operations are of equal cost.
+ *
+ * @tags    #DP #edit-distance
  */
-constexpr auto
-EditDistance(const std::string_view str1, const std::string_view str2) {
+constexpr auto EditDistance(const std::string_view str1, const std::string_view str2) {
     unsigned min_distances[str1.size() + 1][str2.size() + 1] = {};
 
     for (std::size_t i = 0; i <= str1.size(); ++i) {
@@ -35,9 +36,9 @@ EditDistance(const std::string_view str1, const std::string_view str2) {
             } else if (str1[i - 1] == str2[j - 1]) {
                 min_distances[i][j] = min_distances[i - 1][j - 1];
             } else {
-                min_distances[i][j] = 1 + std::min({min_distances[i][j - 1],        // Insert
-                                                    min_distances[i - 1][j],        // Remove
-                                                    min_distances[i - 1][j - 1]});  // Replace
+                min_distances[i][j] = 1 + std::min({min_distances[i][j - 1],       // Insert
+                                                    min_distances[i - 1][j],       // Remove
+                                                    min_distances[i - 1][j - 1]}); // Replace
             }
         }
     }
@@ -46,9 +47,9 @@ EditDistance(const std::string_view str1, const std::string_view str2) {
 }
 
 
-constexpr auto
-EditDistance_SpaceOptimized(const std::string_view str1, const std::string_view str2) {
-    auto row_size = 2;  //work around a GCC bug.
+constexpr auto EditDistance_SpaceOptimized(const std::string_view str1,
+                                           const std::string_view str2) {
+    auto row_size = 2; //work around a GCC bug.
     unsigned min_distances[row_size][str2.size() + 1] = {};
 
     for (std::size_t i = 0; i <= str1.size(); ++i) {
@@ -61,9 +62,10 @@ EditDistance_SpaceOptimized(const std::string_view str1, const std::string_view 
             } else if (str1[i - 1] == str2[j - 1]) {
                 min_distances[current_row][j] = min_distances[1 - current_row][j - 1];
             } else {
-                min_distances[current_row][j] = 1 + std::min({min_distances[current_row][j - 1],        // Insert
-                                                              min_distances[1 - current_row][j],        // Remove
-                                                              min_distances[1 - current_row][j - 1]});  // Replace
+                min_distances[current_row][j] =
+                    1 + std::min({min_distances[current_row][j - 1],       // Insert
+                                  min_distances[1 - current_row][j],       // Remove
+                                  min_distances[1 - current_row][j - 1]}); // Replace
             }
         }
     }
@@ -75,6 +77,8 @@ EditDistance_SpaceOptimized(const std::string_view str1, const std::string_view 
 /**
  * @reference   Edit Distance | DP using Memoization
  *              https://www.geeksforgeeks.org/edit-distance-dp-using-memoization/
+ *
+ * @tags    #DP #edit-distance
  */
 unsigned EditDistance_Memoization(const std::string_view str1,
                                   const std::size_t i,
@@ -97,25 +101,28 @@ unsigned EditDistance_Memoization(const std::string_view str1,
                    EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances);
     }
 
-    return min_distances[i][j] = 1 + std::min({EditDistance_Memoization(str1, i, str2, j - 1, min_distances),       // Insert
-                                               EditDistance_Memoization(str1, i - 1, str2, j, min_distances),       // Remove
-                                               EditDistance_Memoization(str1, i - 1, str2, j - 1, min_distances)}); // Replace
+    return min_distances[i][j] =
+               1 +
+               std::min({EditDistance_Memoization(str1, i, str2, j - 1, min_distances), // Insert
+                         EditDistance_Memoization(str1, i - 1, str2, j, min_distances), // Remove
+                         EditDistance_Memoization(
+                             str1, i - 1, str2, j - 1, min_distances)}); // Replace
 }
 
-inline auto
-EditDistance_Memoization(const std::string_view str1, const std::string_view str2) {
+inline auto EditDistance_Memoization(const std::string_view str1, const std::string_view str2) {
     TwoDimensionalArrayType min_distances;
     return EditDistance_Memoization(str1, str1.size(), str2, str2.size(), min_distances);
 }
 
 
-/** Check whether Strings are k distance apart or not
+/**
+ * @reference   Check whether Strings are k distance apart or not
+ *              https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
  *
- * @reference   https://www.geeksforgeeks.org/check-whether-strings-k-distance-apart-not/
+ * @tags    #DP #edit-distance
  */
 inline constexpr auto
-areKDistanceApart(const std::string_view str1, const std::string_view str2,
-                  const unsigned K) {
+areKDistanceApart(const std::string_view str1, const std::string_view str2, const unsigned K) {
     const auto length_diff =
         str1.size() > str2.size() ? str1.size() - str2.size() : str2.size() - str1.size();
     if (length_diff > K) {
@@ -130,8 +137,7 @@ areKDistanceApart(const std::string_view str1, const std::string_view str2,
  *
  * @reference   https://www.geeksforgeeks.org/check-if-two-given-strings-are-at-edit-distance-one/
  */
-constexpr auto
-areOneDistanceApart(const std::string_view str1, const std::string_view str2) {
+constexpr auto areOneDistanceApart(const std::string_view str1, const std::string_view str2) {
     const auto length_diff =
         str1.size() > str2.size() ? str1.size() - str2.size() : str2.size() - str1.size();
     if (length_diff > 1) {
@@ -176,17 +182,16 @@ areOneDistanceApart(const std::string_view str1, const std::string_view str2) {
  * @reference   https://www.geeksforgeeks.org/edit-distance-and-lcs-longest-common-subsequence/
  *
  * In standard Edit Distance where we are allowed 3 operations, insert, delete and replace.
- * Consider a variation of edit distance where we are allowed only two operations insert
- * and delete, find edit distance in this variation.
+ * Consider a variation of edit distance where we are allowed only two operations insert and delete,
+ * find edit distance in this variation.
  */
-inline auto
-EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
-                                    const std::string &str2) {
+inline auto EditDistanceWithInsertAndDeleteOnly(const std::string &str1,
+                                                const std::string &str2) {
     const auto LCS = LongestCommonSubsequence(str1, str2);
     return (str1.size() - LCS) + (str2.size() - LCS);
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(EditDistance, "geek", "gesek");

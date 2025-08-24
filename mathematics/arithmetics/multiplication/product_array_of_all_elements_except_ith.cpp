@@ -5,28 +5,30 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** A Product Array Puzzle
+/**
+ * @reference   A Product Array Puzzle
+ *              https://www.geeksforgeeks.org/a-product-array-puzzle/
  *
- * @reference   https://www.geeksforgeeks.org/a-product-array-puzzle/
- *
- * Given an array arr[] of n integers, construct a Product Array prod[] (of same size)
- * such that prod[i] is equal to the product of all the elements of arr[] except arr[i].
+ * Given an array arr[] of n integers, construct a Product Array prod[] (of same size) such that prod[i]
+ * is equal to the product of all the elements of arr[] except arr[i].
  * Solve it without division operator in O(n) time.
  *
  * @reference   Product of Array Except Self
  *              https://leetcode.com/problems/product-of-array-except-self/
  *
- * Given an integer array nums, return an array answer such that answer[i] is equal to
- * the product of all the elements of nums except nums[i]. The product of any prefix or
- * suffix of nums is guaranteed to fit in a 32-bit integer. You must write an algorithm
- * that runs in O(n) time and without using the division operation.
+ * Given an integer array nums, return an array answer such that answer[i] is equal to the product of
+ * all the elements of nums except nums[i].
+ * The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+ * You must write an algorithm that runs in O(n) time and without using the division operation.
  *
  * @reference   A Sum Array Puzzle
  *              https://www.geeksforgeeks.org/a-sum-array-puzzle/
  *
- * Given an array arr[] of n integers, construct a Sum Array sum[] (of same size) such
- * that sum[i] is equal to the sum of all the elements of arr[] except arr[i]. Solve
- * it without subtraction operator and in O(n).
+ * Given an array arr[] of n integers, construct a Sum Array sum[] (of same size) such that sum[i] is
+ * equal to the sum of all the elements of arr[] except arr[i].
+ * Solve it without subtraction operator and in O(n).
+ *
+ * @tags    #prefix-sum
  */
 auto ProductArrayOfAllElementsExceptIth(const ArrayType &elements) {
     ArrayType products;
@@ -52,10 +54,10 @@ auto ProductArrayOfAllElementsExceptIth(const ArrayType &elements) {
  *              https://www.geeksforgeeks.org/product-array-puzzle-set-2-o1-space/
  */
 auto ProductArrayOfAllElementsExceptIth_Log(const ArrayType &elements) {
-    const auto log_sum = std::accumulate(elements.cbegin(), elements.cend(), 0.0,
-    [](const auto & sum, const auto & elem) {
-        return sum + std::log10(elem);
-    });
+    const auto log_sum = std::accumulate(
+        elements.cbegin(), elements.cend(), 0.0, [](const auto &sum, const auto &elem) {
+            return sum + std::log10(elem);
+        });
 
     ArrayType products;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
@@ -67,9 +69,8 @@ auto ProductArrayOfAllElementsExceptIth_Log(const ArrayType &elements) {
 
 
 auto ProductArrayOfAllElementsExceptIth_Power(const ArrayType &elements) {
-    const auto the_product =
-        std::accumulate(elements.cbegin(), elements.cend(), 1,
-                        std::multiplies<ArrayType::value_type> {});
+    const auto the_product = std::accumulate(
+        elements.cbegin(), elements.cend(), 1, std::multiplies<ArrayType::value_type> {});
 
     ArrayType products;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
@@ -84,13 +85,12 @@ auto ProductArrayOfAllElementsExceptIth_Power(const ArrayType &elements) {
  * @reference   Construct an array from XOR of all elements of array except element at same index
  *              https://www.geeksforgeeks.org/construct-an-array-from-xor-of-all-elements-of-array-except-element-at-same-index/
  *
- * Given an array A[] having n positive elements. The task to create another array B[]
- * such as B[i] is XOR of all elements of array A[] except A[i].
+ * Given an array A[] having n positive elements. The task to create another array B[] such as B[i] is
+ * XOR of all elements of array A[] except A[i].
  */
 auto XorArrayOfAllElementsExceptIth(const ArrayType &elements) {
-    const auto the_xor =
-        std::accumulate(elements.cbegin(), elements.cend(), 0,
-                        std::bit_xor<ArrayType::value_type> {});
+    const auto the_xor = std::accumulate(
+        elements.cbegin(), elements.cend(), 0, std::bit_xor<ArrayType::value_type> {});
 
     ArrayType results;
     for (ArrayType::size_type i = 0; i < elements.size(); ++i) {
@@ -100,7 +100,7 @@ auto XorArrayOfAllElementsExceptIth(const ArrayType &elements) {
     return results;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {10, 3, 5, 6, 2};

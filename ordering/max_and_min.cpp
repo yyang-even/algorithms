@@ -5,18 +5,20 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Maximum and minimum of an array using minimum number of comparisons
- *
- * @reference   https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+/**
+ * @reference   Maximum and minimum of an array using minimum number of comparisons
+ *              https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
  * @reference   Find minimum and maximum elements in singly Circular Linked List
  *              https://www.geeksforgeeks.org/find-minimum-and-maximum-elements-in-singly-circular-linked-list/
  *
  * @reference   Second minimum element using minimum comparisons
  *              https://www.geeksforgeeks.org/second-minimum-element-using-minimum-comparisons/
  *
- * Given an array of integers, find the minimum (or maximum) element and the element just
- * greater (or smaller) than that in less than 2n comparisons. The given array is not
- * necessarily sorted. Extra space is allowed.
+ * Given an array of integers, find the minimum (or maximum) element and the element just greater (or
+ * smaller) than that in less than 2n comparisons. The given array is not necessarily sorted. Extra
+ * space is allowed.
+ *
+ * @tags    #min-max-element
  */
 auto MaxAndMin_Linear(const ArrayType &values) {
     assert(not values.empty());
@@ -57,11 +59,10 @@ auto MaxAndMin_Tournament(const ArrayType::const_iterator cbegin,
     } else {
         const auto half = size / 2;
         const auto [left_max, left_min] = MaxAndMin_Tournament(cbegin, half);
-        const auto [right_max, right_min] = MaxAndMin_Tournament(std::next(cbegin, half),
-                                                                 size - half);
+        const auto [right_max, right_min] =
+            MaxAndMin_Tournament(std::next(cbegin, half), size - half);
 
-        return std::pair(std::max(left_max, right_max),
-                         std::min(left_min, right_min));
+        return std::pair(std::max(left_max, right_max), std::min(left_min, right_min));
     }
 }
 
@@ -106,6 +107,8 @@ auto MaxAndMin_Pair(const ArrayType &values) {
 /**
  * @reference   Sum and Product of minimum and maximum element of an Array
  *              https://www.geeksforgeeks.org/sum-and-product-of-minimum-and-maximum-element-of-an-array/
+ *
+ * @tags    #min-max-element
  */
 
 
@@ -113,10 +116,11 @@ auto MaxAndMin_Pair(const ArrayType &values) {
  * @reference   Average Salary Excluding the Minimum and Maximum Salary
  *              https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
  *
- * You are given an array of unique integers salary where salary[i] is the salary of the
- * ith employee.
+ * You are given an array of unique integers salary where salary[i] is the salary of the ith employee.
  * Return the average salary of employees excluding the minimum and maximum salary.
  * Answers within 10^-5 of the actual answer will be accepted.
+ *
+ * @tags    #min-max-element
  */
 
 
@@ -124,9 +128,11 @@ auto MaxAndMin_Pair(const ArrayType &values) {
  * @reference   Count Elements With Strictly Smaller and Greater Elements
  *              https://leetcode.com/problems/count-elements-with-strictly-smaller-and-greater-elements/
  *
- * Given an integer array nums, return the number of elements that have both a strictly
- * smaller and a strictly greater element appear in nums.
+ * Given an integer array nums, return the number of elements that have both a strictly smaller and a
+ * strictly greater element appear in nums.
  * 1 <= nums.length <= 100
+ *
+ * @tags    #min-max-element
  */
 int CountElements(const ArrayType &nums) {
     auto low = nums.front();
@@ -154,7 +160,20 @@ int CountElements(const ArrayType &nums) {
     return nums.size() - low_count - (low == high ? 0 : high_count);
 }
 
-}//namespace
+
+/**
+ * @reference   Find the Minimum Area to Cover All Ones I
+ *              https://leetcode.com/problems/find-the-minimum-area-to-cover-all-ones-i/
+ *
+ * You are given a 2D binary array grid. Find a rectangle with horizontal and vertical sides with the
+ * smallest area, such that all the 1's in grid lie inside this rectangle.
+ * Return the minimum possible area of the rectangle.
+ * The input is generated such that there is at least one 1 in grid.
+ *
+ * @tags    #matrix #min-max-element
+ */
+
+} //namespace
 
 
 const ArrayType VALUES1 = {1};
