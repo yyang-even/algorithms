@@ -7,11 +7,13 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find maximum (or minimum) sum of a subarray of size k
- *
- * @reference   https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
+/**
+ * @reference   Find maximum (or minimum) sum of a subarray of size k
+ *              https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
  * @reference   Window Sliding Technique
  *              https://www.geeksforgeeks.org/window-sliding-technique/
+ *
+ * @tags    #sliding-window
  */
 auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_type K) {
     assert(elements.size() >= K);
@@ -41,23 +43,143 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * Given the integer array cardPoints and the integer k, return the maximum score you can obtain.
  *
  * @hint    total - min_sum_subarray_of_size_x
+ *
+ * @tags    #sliding-window
  */
 
 /**
  * @reference   Subarray of size k with given sum
  *              https://www.geeksforgeeks.org/subarray-of-size-k-with-given-sum/
+ *
+ * @tags    #sliding-window
  */
 
 
 /**
  * @reference   Largest product of a subarray of size k
  *              https://www.geeksforgeeks.org/largest-product-subarray-size-k/
+ *
+ * @tags    #sliding-window
  */
 
 
 /**
  * @reference   Find the subarray of size K with minimum XOR
  *              https://www.geeksforgeeks.org/find-the-subarray-of-size-k-with-minimum-xor/
+ *
+ * @tags    #sliding-window
+ */
+
+
+/**
+ * @reference   Find the K-Beauty of a Number
+ *              https://leetcode.com/problems/find-the-k-beauty-of-a-number/
+ *
+ * The k-beauty of an integer num is defined as the number of substrings of num when it is read as a
+ * string that meet the following conditions:
+ *  It has a length of k.
+ *  It is a divisor of num.
+ * Given integers num and k, return the k-beauty of num.
+ * Note:
+ *  Leading zeros are allowed.
+ *  0 is not a divisor of any value.
+ * A substring is a contiguous sequence of characters in a string.
+ * 1 <= k <= num.length
+ *
+ * @tags    #sliding-window
+ */
+auto FindKBeautyOfNumber(const unsigned num, int k) {
+    int current = 0;
+    auto i = num;
+    int power = 1;
+    for (; --k > 0; i /= 10) {
+        current += (i % 10) * power;
+        power *= 10;
+    }
+
+    int result = 0;
+    for (; i > 0; i /= 10) {
+        current += (i % 10) * power;
+        result += current and not(num % current);
+        current /= 10;
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   K Radius Subarray Averages
+ *              https://leetcode.com/problems/k-radius-subarray-averages/
+ *
+ * You are given a 0-indexed array nums of n integers, and an integer k.
+ * The k-radius average for a subarray of nums centered at some index i with the radius k is the average
+ * of all elements in nums between the indices i - k and i + k (inclusive). If there are less than k
+ * elements before or after the index i, then the k-radius average is -1.
+ * Build and return an array avgs of length n where avgs[i] is the k-radius average for the subarray
+ * centered at index i.
+ * The average of x elements is the sum of the x elements divided by x, using integer division. The
+ * integer division truncates toward zero, which means losing its fractional part.
+ *  For example, the average of four elements 2, 3, 1, and 5 is (2 + 3 + 1 + 5) / 4 = 11 / 4 = 2.75,
+ *  which truncates to 2.
+ *
+ * @tags    #sliding-window
+ */
+
+
+/**
+ * @reference   Diet Plan Performance
+ *              http://lixinchengdu.github.io/algorithmbook/leetcode/diet-plan-performance.html
+ *
+ * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every consecutive
+ * sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for all 0 <= i <= n-k), they
+ * look at T, the total calories consumed during that sequence of k days (calories[i] + calories[i+1] +
+ * ... + calories[i+k-1]):
+ *  If T < lower, they performed poorly on their diet and lose 1 point;
+ *  If T > upper, they performed well on their diet and gain 1 point;
+ *  Otherwise, they performed normally and there is no change in points.
+ * Initially, the dieter has zero points. Return the total number of points the dieter has after dieting
+ * for calories.length days. Note that the total points can be negative.
+ *
+ * @tags    #sliding-window
+ */
+inline constexpr auto score(const int calories, const int lower, const int upper) {
+    if (calories < lower) {
+        return -1;
+    } else if (calories > upper) {
+        return 1;
+    }
+    return 0;
+}
+
+auto DietPlanPerformance(const ArrayType &calories,
+                         const std::size_t K,
+                         const int lower,
+                         const int upper) {
+    assert(calories.size() >= K);
+
+    auto total = std::accumulate(calories.cbegin(), calories.cbegin() + K, 0);
+    auto result = score(total, lower, upper);
+    for (auto i = K; i < calories.size(); ++i) {
+        total += calories[i] - calories[i - K];
+        result += score(total, lower, upper);
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Maximum Sum of Almost Unique Subarray
+ *              https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/
+ *
+ * You are given an integer array nums and two positive integers m and k.
+ * Return the maximum sum out of all almost unique subarrays of length k of nums. If no such subarray
+ * exists, return 0.
+ * A subarray of nums is almost unique if it contains at least m distinct elements.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ *
+ * @tags    #hash-table #sliding-window
  */
 
 
@@ -68,6 +190,8 @@ auto MaxSumOfSubarrayOfSizeK(const ArrayType &elements, const ArrayType::size_ty
  * You are given an integer array nums consisting of n elements, and an integer k.
  * Find a contiguous subarray whose length is equal to k that has the maximum average value and return
  * this value. Any answer with a calculation error less than 10^-5 will be accepted.
+ *
+ * @tags    #sliding-window
  */
 
 
@@ -124,63 +248,6 @@ auto MaxAverageNoShorterThanK(const ArrayType &nums, const int k) {
 
 
 /**
- * @reference   K Radius Subarray Averages
- *              https://leetcode.com/problems/k-radius-subarray-averages/
- *
- * You are given a 0-indexed array nums of n integers, and an integer k.
- * The k-radius average for a subarray of nums centered at some index i with the radius k is the average
- * of all elements in nums between the indices i - k and i + k (inclusive). If there are less than k
- * elements before or after the index i, then the k-radius average is -1.
- * Build and return an array avgs of length n where avgs[i] is the k-radius average for the subarray
- * centered at index i.
- * The average of x elements is the sum of the x elements divided by x, using integer division. The
- * integer division truncates toward zero, which means losing its fractional part.
- *  For example, the average of four elements 2, 3, 1, and 5 is (2 + 3 + 1 + 5) / 4 = 11 / 4 = 2.75,
- *  which truncates to 2.
- */
-
-
-/**
- * @reference   Diet Plan Performance
- *              http://lixinchengdu.github.io/algorithmbook/leetcode/diet-plan-performance.html
- *
- * A dieter consumes calories[i] calories on the i-th day. Given an integer k, for every consecutive
- * sequence of k days (calories[i], calories[i+1], ..., calories[i+k-1] for all 0 <= i <= n-k), they
- * look at T, the total calories consumed during that sequence of k days (calories[i] + calories[i+1] +
- * ... + calories[i+k-1]):
- *  If T < lower, they performed poorly on their diet and lose 1 point;
- *  If T > upper, they performed well on their diet and gain 1 point;
- *  Otherwise, they performed normally and there is no change in points.
- * Initially, the dieter has zero points. Return the total number of points the dieter has after dieting
- * for calories.length days. Note that the total points can be negative.
- */
-inline constexpr auto score(const int calories, const int lower, const int upper) {
-    if (calories < lower) {
-        return -1;
-    } else if (calories > upper) {
-        return 1;
-    }
-    return 0;
-}
-
-auto DietPlanPerformance(const ArrayType &calories,
-                         const std::size_t K,
-                         const int lower,
-                         const int upper) {
-    assert(calories.size() >= K);
-
-    auto total = std::accumulate(calories.cbegin(), calories.cbegin() + K, 0);
-    auto result = score(total, lower, upper);
-    for (auto i = K; i < calories.size(); ++i) {
-        total += calories[i] - calories[i - K];
-        result += score(total, lower, upper);
-    }
-
-    return result;
-}
-
-
-/**
  * @reference   Defuse the Bomb
  *              https://leetcode.com/problems/defuse-the-bomb/
  *
@@ -194,6 +261,8 @@ auto DietPlanPerformance(const ArrayType &calories,
  * code[n-1].
  * Given the circular array code and an integer key k, return the decrypted code to defuse the bomb!
  * -(n - 1) <= k <= n - 1
+ *
+ * @tags    #sliding-window
  */
 auto Decrypt(const ArrayType &code, const int k) {
     ArrayType result(code.size(), 0);
@@ -221,18 +290,6 @@ auto Decrypt(const ArrayType &code, const int k) {
 
     return result;
 }
-
-
-/**
- * @reference   Maximum Sum of Almost Unique Subarray
- *              https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/
- *
- * You are given an integer array nums and two positive integers m and k.
- * Return the maximum sum out of all almost unique subarrays of length k of nums. If no such subarray
- * exists, return 0.
- * A subarray of nums is almost unique if it contains at least m distinct elements.
- * A subarray is a contiguous non-empty sequence of elements within an array.
- */
 
 } //namespace
 
@@ -282,3 +339,10 @@ THE_BENCHMARK(Decrypt, SAMPLE1C, 3);
 SIMPLE_TEST(Decrypt, TestSAMPLE1, EXPECTED1, SAMPLE1C, 3);
 SIMPLE_TEST(Decrypt, TestSAMPLE2, EXPECTED2, SAMPLE2C, 0);
 SIMPLE_TEST(Decrypt, TestSAMPLE3, EXPECTED3, SAMPLE3C, -2);
+
+
+THE_BENCHMARK(FindKBeautyOfNumber, 240, 2);
+
+SIMPLE_TEST(FindKBeautyOfNumber, TestSAMPLE1, 2, 240, 2);
+SIMPLE_TEST(FindKBeautyOfNumber, TestSAMPLE2, 2, 430043, 2);
+SIMPLE_TEST(FindKBeautyOfNumber, TestSAMPLE3, 1, 30003, 3);

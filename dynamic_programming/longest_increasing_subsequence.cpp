@@ -34,6 +34,8 @@ using HeightWeightArray = std::vector<HeightWeightPair>;
  * changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence
  * of the array [0,3,1,6,2,2,7].
  * Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
+ *
+ * @tags    #DP #longest-increasing-subsequence
  */
 auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
     assert(not elements.empty());
@@ -58,6 +60,8 @@ auto LongestIncreasingSubsequence_DP(const ArrayType &elements) {
  *              https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
  * @reference   Longest Monotonically Increasing Subsequence Size (N log N): Simple implementation
  *              https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n-simple-implementation/
+ *
+ * @tags    #DP #longest-increasing-subsequence #binary-search
  */
 auto LongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
     assert(not elements.empty());
@@ -91,6 +95,8 @@ inline auto LongestIncreasingSubsequence_Sort(const ArrayType &elements) {
 /**
  * @reference   Construction of Longest Increasing Subsequence(LIS) and printing LIS sequence
  *              https://www.geeksforgeeks.org/construction-of-longest-increasing-subsequence-using-dynamic-programming/
+ *
+ * @tags    #DP #longest-increasing-subsequence
  */
 auto OneLongestIncreasingSubsequence_DP(const ArrayType &elements) {
     assert(not elements.empty());
@@ -115,6 +121,8 @@ auto OneLongestIncreasingSubsequence_DP(const ArrayType &elements) {
 /**
  * @reference   Construction of Longest Increasing Subsequence (N log N)
  *              https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
+ *
+ * @tags    #DP #longest-increasing-subsequence #binary-search
  */
 auto OneLongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
     assert(not elements.empty());
@@ -154,6 +162,25 @@ auto OneLongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
 
 
 /**
+ * @reference   Longest Ideal Subsequence
+ *              https://leetcode.com/problems/longest-ideal-subsequence/
+ *
+ * You are given a string s consisting of lowercase letters and an integer k. We call a string t ideal
+ * if the following conditions are satisfied:
+ *  t is a subsequence of the string s.
+ *  The absolute difference in the alphabet order of every two adjacent letters in t is less than or
+ *  equal to k.
+ * Return the length of the longest ideal string.
+ * A subsequence is a string that can be derived from another string by deleting some or no characters
+ * without changing the order of the remaining characters.
+ * Note that the alphabet order is not cyclic. For example, the absolute difference in the alphabet
+ * order of 'a' and 'z' is 25, not 1.
+ *
+ * @tags    #DP #longest-increasing-subsequence
+ */
+
+
+/**
  * @reference   Longest Continuous Increasing Subsequence
  *              https://leetcode.com/problems/longest-continuous-increasing-subsequence/
  *
@@ -175,6 +202,28 @@ auto LongestContinuousIncreasingSubsequence(const ArrayType &nums) {
 
     return longest;
 }
+
+
+/**
+ * @reference   Maximum Ascending Subarray Sum
+ *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
+ *
+ * Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in
+ * nums.
+ * A subarray is defined as a contiguous sequence of numbers in an array.
+ * A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r,
+ * numsi < numsi+1. Note that a subarray of size 1 is ascending.
+ */
+
+
+/**
+ * @reference   Consecutive Characters
+ *              https://leetcode.com/problems/consecutive-characters/
+ *
+ * The power of the string is the maximum length of a non-empty substring that contains only one unique
+ * character.
+ * Given a string s, return the power of s.
+ */
 
 
 /** Unique Substrings in Wraparound String
@@ -207,33 +256,13 @@ auto UniqueSubstrsInWraparoundStr(const std::string_view s) {
 
 
 /**
- * @reference   Maximum Ascending Subarray Sum
- *              https://leetcode.com/problems/maximum-ascending-subarray-sum/
- *
- * Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in
- * nums.
- * A subarray is defined as a contiguous sequence of numbers in an array.
- * A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r,
- * numsi < numsi+1. Note that a subarray of size 1 is ascending.
- */
-
-
-/**
- * @reference   Consecutive Characters
- *              https://leetcode.com/problems/consecutive-characters/
- *
- * The power of the string is the maximum length of a non-empty substring that contains only one unique
- * character.
- * Given a string s, return the power of s.
- */
-
-
-/**
  * @reference   Number of Longest Increasing Subsequence
  *              https://leetcode.com/problems/number-of-longest-increasing-subsequence/
  *
  * Given an integer array nums, return the number of longest increasing subsequences.
  * Notice that the sequence has to be strictly increasing.
+ *
+ * @tags    #DP #longest-increasing-subsequence
  */
 auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
     const int N = nums.size();
@@ -278,6 +307,8 @@ auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
  *  answer[i] % answer[j] == 0, or
  *  answer[j] % answer[i] == 0
  * If there are multiple solutions, return any of them.
+ *
+ * @tags    #sort #DP #longest-increasing-subsequence
  */
 auto LargestDivisibleSubset(ArrayType nums) {
     std::sort(nums.begin(), nums.end());
@@ -315,6 +346,8 @@ auto LargestDivisibleSubset(ArrayType nums) {
  * practical and aesthetic reasons, each person must be both shorter and lighter than the person below
  * him or her. Given the heights and weights of each person in the circus, write a method to compute the
  * largest possible number of people in such a tower.
+ *
+ * @tags    #sort #DP #longest-increasing-subsequence
  */
 auto CircusTower(HeightWeightArray people) {
     assert(not people.empty());
@@ -346,6 +379,8 @@ auto CircusTower(HeightWeightArray people) {
  * greater than the other envelope's width and height.
  * Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other).
  * Note: You cannot rotate an envelope.
+ *
+ * @tags    #sort #DP #longest-increasing-subsequence #binary-search
  */
 auto CircusTower_NLogN(HeightWeightArray people) {
     assert(not people.empty());
@@ -412,6 +447,8 @@ auto NumberOfWeakCharacters(HeightWeightArray properties) {
  * can only be stacked on top of one another if each box in the stack is strictly larger than the box
  * above it in width, height, and depth. Implement a method to build the tallest stack possible, where
  * the height of a stack is the sum of the heights of each box.
+ *
+ * @tags    #sort #DP #longest-increasing-subsequence
  */
 
 
@@ -470,23 +507,6 @@ auto MaxStackHeight(const BoxArray &boxes) {
 
     return *std::max_element(max_stack_heights.cbegin(), max_stack_heights.cend());
 }
-
-
-/**
- * @reference   Longest Ideal Subsequence
- *              https://leetcode.com/problems/longest-ideal-subsequence/
- *
- * You are given a string s consisting of lowercase letters and an integer k. We call a string t ideal
- * if the following conditions are satisfied:
- *  t is a subsequence of the string s.
- *  The absolute difference in the alphabet order of every two adjacent letters in t is less than or
- *  equal to k.
- * Return the length of the longest ideal string.
- * A subsequence is a string that can be derived from another string by deleting some or no characters
- * without changing the order of the remaining characters.
- * Note that the alphabet order is not cyclic. For example, the absolute difference in the alphabet
- * order of 'a' and 'z' is 25, not 1.
- */
 
 } //namespace
 

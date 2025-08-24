@@ -8,9 +8,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using MemoType = std::vector<std::vector<int>>;
 
-/** Best Time to Buy and Sell Stock
- *
- * @reference   https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+/**
+ * @reference   Best Time to Buy and Sell Stock
+ *              https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
  *
  * You are given an array prices where prices[i] is the price of a given stock on the ith day.
  * You want to maximize your profit by choosing a single day to buy one stock and choosing a different
@@ -76,6 +76,8 @@ auto MaxDiffBetweenTwoElementsNoSort_SubarraySum(const ArrayType &elements) {
  *
  * @reference   Stock Buy Sell to Maximize Profit
  *              https://www.geeksforgeeks.org/stock-buy-sell/
+ *
+ * @tags    #greedy
  */
 auto StockBuyAndSell_Unlimited_Greedy(const ArrayType &prices) {
     int max_profit = 0;
@@ -244,6 +246,8 @@ auto StockBuyAndSell_K_Transactions_DP_Optimized(const ArrayType &prices, const 
  *  After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
  * Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock
  * before you buy again).
+ *
+ * @tags    #DP
  */
 auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices,
                                        const std::size_t i,
@@ -278,24 +282,18 @@ inline auto StockBuyAndSell_WithCooldown_Memo(const ArrayType &prices) {
 
 
 auto StockBuyAndSell_WithCooldown_DP(const ArrayType &prices) {
-    int dp[prices.size() + 2][2] = {};
+    const int N = prices.size();
+    std::vector dp(N + 1, std::vector(2, 0));
 
-    for (int i = prices.size() - 1; i >= 0; --i) {
-        for (int buy = 0; buy <= 1; ++buy) {
-            const int result_exclude = dp[i + 1][buy];
+    dp[N - 1][false] = 0;
+    dp[N - 1][true] = prices.back();
 
-            int result_include = 0;
-            if (buy) {
-                result_include = -prices[i] + dp[i + 1][0];
-            } else {
-                result_include = prices[i] + dp[i + 2][1];
-            }
-
-            dp[i][buy] = std::max(result_exclude, result_include);
-        }
+    for (int i = N - 2; i >= 0; --i) {
+        dp[i][false] = std::max(-prices[i] + dp[i + 1][true], dp[i + 1][false]);
+        dp[i][true] = std::max(prices[i] + dp[i + 2][false], dp[i + 1][true]);
     }
 
-    return dp[0][1];
+    return dp[0][false];
 }
 
 

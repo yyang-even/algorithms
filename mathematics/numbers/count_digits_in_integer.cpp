@@ -11,7 +11,7 @@ namespace {
  * @reference   C program to Count the digits of a number
  *              https://www.geeksforgeeks.org/c-program-to-count-the-digits-of-a-number/
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 inline constexpr auto CountDigits_Recursive(const int n) {
     if (not n) {
@@ -43,7 +43,7 @@ inline auto CountDigits_String(const int n) {
  *
  * Given an array nums of integers, return how many of them contain an even number of digits.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -57,7 +57,7 @@ inline auto CountDigits_String(const int n) {
  * @reference   Sum of digit of a number using recursion
  *              https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -68,7 +68,7 @@ inline auto CountDigits_String(const int n) {
  * Given an array A of positive integers, let S be the sum of the digits of the minimal element of A.
  * Return 0 if S is odd, otherwise return 1.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -79,7 +79,7 @@ inline auto CountDigits_String(const int n) {
  * Given an integer num, repeatedly add all its digits until the result has only one digit, and return
  * it.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 inline constexpr auto DigitalRoot(const int num) {
     return 1 + (num - 1) % 9;
@@ -90,7 +90,7 @@ inline constexpr auto DigitalRoot(const int num) {
  * @reference   Program to calculate product of digits of a number
  *              https://www.geeksforgeeks.org/program-to-calculate-product-of-digits-of-a-number/
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -98,7 +98,7 @@ inline constexpr auto DigitalRoot(const int num) {
  * @reference   C Program to Print all digits of a given number
  *              https://www.geeksforgeeks.org/c-program-to-print-all-digits-of-a-given-number/
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -109,7 +109,7 @@ inline constexpr auto DigitalRoot(const int num) {
  * Given an integer number n, return the difference between the product of its digits and the sum of its
  * digits.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -124,7 +124,7 @@ inline constexpr auto DigitalRoot(const int num) {
  * It's guaranteed that there is at least one valid solution. If there are many valid solutions you can
  * return any of them.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 auto ToTwoNoZeroInts(int n) {
     int a = 0;
@@ -156,7 +156,7 @@ auto ToTwoNoZeroInts(int n) {
  * Return the number of groups that have the largest size.
  * 1 <= n <= 10^4
  *
- * @tags    #digit-sum #hash-table
+ * @tags    #digit-traverse #hash-table
  */
 
 
@@ -173,7 +173,7 @@ auto ToTwoNoZeroInts(int n) {
  * Given two integers lowLimit and highLimit, return the number of balls in the box with the most balls.
  * 1 <= lowLimit <= highLimit <= 10^5
  *
- * @tags    #digit-sum #hash-table
+ * @tags    #digit-traverse #hash-table
  */
 constexpr auto DigitsSum(int n) {
     int sum = 0;
@@ -210,7 +210,7 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  * After converting, each digit should be interpreted as a base 10 number, and the sum should be
  * returned in base 10.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -229,7 +229,7 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  *  Transform #2: 17 ➝ 1 + 7 ➝ 8
  * Return the resulting integer after performing the operations described above.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -241,7 +241,7 @@ constexpr auto MaxBallsInBox(const int lowLimit, const int highLimit) {
  * digit sums are even.
  * The digit sum of a positive integer is the sum of all its digits.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 inline constexpr auto CountEven(const int num) {
     const auto sum = DigitsSum(num);
@@ -264,7 +264,7 @@ inline constexpr auto CountEven(const int num) {
  *      k, repeat from step 1.
  * Return s after all rounds have been completed.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -279,7 +279,7 @@ inline constexpr auto CountEven(const int num) {
  *
  * @hint    Just return the max digit
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 
@@ -292,7 +292,7 @@ inline constexpr auto CountEven(const int num) {
  * Return true if and only if we can do this so that the resulting number is a power of two.
  * 1 <= n <= 10^9
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 auto toDigits(unsigned n) {
     std::vector<int> digits;
@@ -359,7 +359,7 @@ constexpr auto ReorderedPowerOf2_Mask(const int n) {
  * from nums such that the maximum digit in both numbers are equal.
  * Return the maximum sum or -1 if no such pair exists.
  *
- * @tags    #digit-sum
+ * @tags    #digit-traverse
  */
 
 } //namespace

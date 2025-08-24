@@ -12,9 +12,9 @@ using ArrayType = std::vector<int>;
 using OutputType = std::vector<bool>;
 using OperationArrayType = std::vector<std::pair<bool, int>>;
 
-/** Given an array A[] and a number x, check for pair in A[] with sum as x
- *
- * @reference   https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
+/**
+ * @reference   Given an array A[] and a number x, check for pair in A[] with sum as x
+ *              https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
  *
  * Given an array A[] of n numbers and another number x, determines whether or not there exist two
  * elements in A whose sum is exactly x.
@@ -29,6 +29,8 @@ using OperationArrayType = std::vector<std::pair<bool, int>>;
  * You can return the answer in any order.
  *
  * @complexity: O(n)
+ *
+ * @tags    #hash-table
  */
 template<typename ArrayType>
 inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, const int target) {
@@ -59,6 +61,8 @@ inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, c
  * The tests are generated such that there is exactly one solution. You may not use the same element
  * twice.
  * Your solution must use only constant extra space.
+ *
+ * @tags    #sort #two-pointers
  */
 template<typename Container>
 constexpr auto HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
@@ -90,9 +94,9 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
 }
 
 
-/** Count pairs with given sum
- *
- * @reference   https://www.geeksforgeeks.org/count-pairs-with-given-sum/
+/**
+ * @reference   Count pairs with given sum
+ *              https://www.geeksforgeeks.org/count-pairs-with-given-sum/
  * @reference   Count pairs with given sum | Set 2
  *              https://www.geeksforgeeks.org/count-pairs-with-given-sum-set-2/
  *
@@ -101,6 +105,8 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.12.
+ *
+ * @tags    #hash-table #sort #two-pointers
  */
 
 
@@ -113,6 +119,8 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * Return the maximum number of operations you can perform on the array.
  * 1 <= nums[i] <= 10^9
  * 1 <= k <= 10^9
+ *
+ * @tags    #hash-table
  */
 auto CountTwoSumsSingleUse(const ArrayType &nums, const int k) {
     std::unordered_map<int, int> counts;
@@ -139,6 +147,8 @@ auto CountTwoSumsSingleUse(const ArrayType &nums, const int k) {
  * Design and implement a TwoSum class. It should support the following operations:
  *  add- Add the number to an internal data structure.
  *  find- Find if there exists any pair of numbers which sum is equal to the value.
+ *
+ * @tags    #hash-table
  */
 class TwoSum {
     std::unordered_map<int, int> counter;
@@ -337,6 +347,8 @@ auto NumberSubsequences(ArrayType nums, const int target) {
  *              https://www.geeksforgeeks.org/print-all-triplets-with-given-sum/
  * @reference   All unique triplets that sum up to a given value
  *              https://www.geeksforgeeks.org/unique-triplets-sum-given-value/
+ *
+ * @tags    #sort #two-pointers
  */
 auto ThreeSum(ArrayType nums, const int target) {
     std::sort(nums.begin(), nums.end());

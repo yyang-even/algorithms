@@ -6,9 +6,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using MemoType = std::vector<std::vector<int>>;
 
-/** Coin Change | DP-7
- *
- * @reference   https://www.geeksforgeeks.org/coin-change-dp-7/
+/**
+ * @reference   Coin Change | DP-7
+ *              https://www.geeksforgeeks.org/coin-change-dp-7/
  * @reference   C Program Coin Change
  *              https://www.geeksforgeeks.org/c-program-coin-change/
  *
@@ -28,6 +28,8 @@ using MemoType = std::vector<std::vector<int>>;
  * by any combination of the coins, return 0.
  * You may assume that you have an infinite number of each kind of coin.
  * The answer is guaranteed to fit into a signed 32-bit integer.
+ *
+ * @tags    #DP #coin-change
  */
 auto CoinChange(const ArrayType &coins, const ArrayType::value_type N) {
     unsigned counts[N + 1][coins.size()] = {};
@@ -51,6 +53,8 @@ auto CoinChange(const ArrayType &coins, const ArrayType::value_type N) {
 /**
  * @reference   Understanding The Coin Change Problem With Dynamic Programming
  *              https://www.geeksforgeeks.org/understanding-the-coin-change-problem-with-dynamic-programming/
+ *
+ * @tags    #DP #coin-change
  */
 auto CoinChange_SpaceOptimized(const ArrayType &coins, const ArrayType::value_type N) {
     unsigned counts[N + 1] = {1};
@@ -82,6 +86,8 @@ auto CoinChange_SpaceOptimized(const ArrayType &coins, const ArrayType::value_ty
  * the minimum number of coins you need to use to pay exactly amount N.
  *
  * @note    This approach may not work for all denominations.
+ *
+ * @tags    #greedy #minimum-coin-change
  */
 auto MinimumCoinChange_Greedy(ArrayType coins, ArrayType::value_type N) {
     std::sort(coins.begin(), coins.end(), std::greater<ArrayType::value_type> {});
@@ -115,6 +121,8 @@ auto MinimumCoinChange_Greedy(ArrayType coins, ArrayType::value_type N) {
  * Return the fewest number of coins that you need to make up that amount. If that amount of money
  * cannot be made up by any combination of the coins, return -1.
  * You may assume that you have an infinite number of each kind of coin.
+ *
+ * @tags    #DP #minimum-coin-change
  */
 auto MinimumCoinChange_DP(const ArrayType &coins, const int amount) {
     ArrayType dp(amount + 1, amount + 1);
@@ -140,6 +148,8 @@ auto MinimumCoinChange_DP(const ArrayType &coins, const int amount) {
  * infinite number of times. If no answer exists then print -1.
  *
  * @note    This approach is less efficient than the DP solution above.
+ *
+ * @tags    #minimum-coin-change
  */
 
 

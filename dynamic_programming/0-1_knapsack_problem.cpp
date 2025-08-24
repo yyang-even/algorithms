@@ -202,9 +202,63 @@ inline auto OnesAndZeros_Recursive(const StrArray &strs, const int m, const int 
  * elements of b. Two subsets are considered different if the indices of the elements chosen are
  * different.
  * The bitwise OR of an array a is equal to a[0] OR a[1] OR ... OR a[a.length - 1] (0-indexed).
+ * 1 <= nums[i] <= 10^5
  *
- * @tags    #DP #0-1-knapsack
+ * @tags    #DP #0-1-knapsack #bit-tricks
  */
+int CountMaxOrSubsets(const std::size_t i,
+                      const ArrayType &nums,
+                      const int curr,
+                      const int target) {
+    if (i >= nums.size()) {
+        return curr == target;
+    }
+
+    return CountMaxOrSubsets(i + 1, nums, curr | nums[i], target) +
+           CountMaxOrSubsets(i + 1, nums, curr, target);
+}
+
+auto CountMaxOrSubsets(const ArrayType &nums) {
+    const auto maximum = std::accumulate(nums.cbegin(), nums.cend(), 0, std::bit_or {});
+
+    return CountMaxOrSubsets(0, nums, 0, maximum);
+}
+
+
+auto CountMaxOrSubsets_DP(const ArrayType &nums) {
+    int maximum = 0;
+    std::unordered_map<int, int> dp;
+    dp[0] = 1;
+
+    for (const auto n : nums) {
+        auto temp = dp;
+        for (const auto &[mask, c] : dp) {
+            temp[mask | n] += c;
+        }
+        dp = std::move(temp);
+
+        maximum |= n;
+    }
+
+    return dp[maximum];
+}
+
+
+auto CountMaxOrSubsets_DP_BitTricks(const ArrayType &nums) {
+    int maximum = 0;
+    std::vector dp(1 << 17, 0);
+    dp[0] = 1;
+
+    for (const auto n : nums) {
+        for (auto i = maximum; i >= 0; --i) {
+            dp[i | n] += dp[i];
+        }
+
+        maximum |= n;
+    }
+
+    return dp[maximum];
+}
 
 
 /** Fractional Knapsack Problem
@@ -455,3 +509,29 @@ THE_BENCHMARK(OnesAndZeros_Recursive, SAMPLE1Z, 5, 3);
 
 SIMPLE_TEST(OnesAndZeros_Recursive, TestSAMPLE1, 4, SAMPLE1Z, 5, 3);
 SIMPLE_TEST(OnesAndZeros_Recursive, TestSAMPLE2, 2, SAMPLE2Z, 1, 1);
+
+
+const ArrayType SAMPLE1CMO = {3, 1};
+const ArrayType SAMPLE2CMO = {2, 2, 2};
+const ArrayType SAMPLE3CMO = {3, 2, 1, 5};
+
+
+THE_BENCHMARK(CountMaxOrSubsets, SAMPLE1CMO);
+
+SIMPLE_TEST(CountMaxOrSubsets, SAMPLE1, 2, SAMPLE1CMO);
+SIMPLE_TEST(CountMaxOrSubsets, SAMPLE2, 7, SAMPLE2CMO);
+SIMPLE_TEST(CountMaxOrSubsets, SAMPLE3, 6, SAMPLE3CMO);
+
+
+THE_BENCHMARK(CountMaxOrSubsets_DP, SAMPLE1CMO);
+
+SIMPLE_TEST(CountMaxOrSubsets_DP, SAMPLE1, 2, SAMPLE1CMO);
+SIMPLE_TEST(CountMaxOrSubsets_DP, SAMPLE2, 7, SAMPLE2CMO);
+SIMPLE_TEST(CountMaxOrSubsets_DP, SAMPLE3, 6, SAMPLE3CMO);
+
+
+THE_BENCHMARK(CountMaxOrSubsets_DP_BitTricks, SAMPLE1CMO);
+
+SIMPLE_TEST(CountMaxOrSubsets_DP_BitTricks, SAMPLE1, 2, SAMPLE1CMO);
+SIMPLE_TEST(CountMaxOrSubsets_DP_BitTricks, SAMPLE2, 7, SAMPLE2CMO);
+SIMPLE_TEST(CountMaxOrSubsets_DP_BitTricks, SAMPLE3, 6, SAMPLE3CMO);

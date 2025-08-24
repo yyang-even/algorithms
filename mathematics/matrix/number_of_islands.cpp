@@ -8,15 +8,18 @@ namespace {
 
 using GridType = MatrixTypeTemplate<char>;
 using ArrayType = std::vector<std::pair<int, int>>;
+using RegionType = std::vector<std::string_view>;
 
-/** Number of Islands
- *
- * @reference   https://leetcode.com/problems/number-of-islands/
+/**
+ * @reference   Number of Islands
+ *              https://leetcode.com/problems/number-of-islands/
  *
  * Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the
  * number of islands.
  * An island is surrounded by water and is formed by connecting adjacent lands horizontally or
  * vertically. You may assume all four edges of the grid are all surrounded by water.
+ *
+ * @tags    #matrix #BFS #DFS #disjoint-set
  */
 auto NumberIslands_BFS(GridType grid) {
     const auto M = grid.size();
@@ -92,6 +95,8 @@ auto NumberIslands_DFS(GridType grid) {
  * operate, count the number of islands after each addLand operation.
  * An island is surrounded by water and is formed by connecting adjacent lands horizontally or
  * vertically. You may assume all four edges of the grid are all surrounded by water.
+ *
+ * @tags    #matrix #disjoint-set
  */
 inline int disjointSet_Find(std::vector<int> &disjoint_set, const int i) {
     auto &parent = disjoint_set[i];
@@ -137,6 +142,74 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
         }
 
         result.push_back(count);
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Regions Cut By Slashes
+ *              https://leetcode.com/problems/regions-cut-by-slashes/
+ *
+ * An n x n grid is composed of 1 x 1 squares where each 1 x 1 square consists of a '/', '\', or blank
+ * space ' '. These characters divide the square into contiguous regions.
+ * Given the grid grid represented as a string array, return the number of regions.
+ * Note that backslash characters are escaped, so a '\' is represented as '\\'.
+ *
+ * @tags    #matrix #BFS #DFS #disjoint-set
+ */
+auto RegionsBySlashes(const RegionType &grid) {
+    const int N = grid.size();
+    const int FACTOR = 3;
+    const auto EXPANDED_N = N * FACTOR;
+
+    std::vector visited(EXPANDED_N, std::vector(EXPANDED_N, false));
+    for (int i = 0; i < N; ++i) {
+        const auto base_row = i * FACTOR;
+        for (int j = 0; j < N; ++j) {
+            const auto base_column = j * FACTOR;
+
+            if (grid[i][j] == '/') {
+                visited[base_row][base_column + 2] = true;
+                visited[base_row + 1][base_column + 1] = true;
+                visited[base_row + 2][base_column] = true;
+            } else if (grid[i][j] == '\\') {
+                visited[base_row][base_column] = true;
+                visited[base_row + 1][base_column + 1] = true;
+                visited[base_row + 2][base_column + 2] = true;
+            }
+        }
+    }
+
+    int result = 0;
+    for (int i = 0; i < EXPANDED_N; ++i) {
+        for (int j = 0; j < EXPANDED_N; ++j) {
+            if (not visited[i][j]) {
+                ++result;
+
+                std::queue<std::pair<int, int>> q;
+                q.emplace(i, j);
+                visited[i][j] = true;
+
+                while (not q.empty()) {
+                    const auto [r, c] = q.front();
+                    q.pop();
+
+                    for (const auto &[delta_r, delta_c] : DIRECTIONS) {
+                        const auto x = r + delta_r;
+                        const auto y = c + delta_c;
+
+                        if (x >= 0 and x < EXPANDED_N and y >= 0 and y < EXPANDED_N) {
+                            if (not visited[x][y]) {
+                                visited[x][y] = true;
+                                q.emplace(x, y);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return result;
@@ -389,6 +462,37 @@ const std::vector EXPECTED1 = {1, 1, 2, 3};
 THE_BENCHMARK(NumberIslandsStream, 3, 3, SAMPLE1P);
 
 SIMPLE_TEST(NumberIslandsStream, TestSAMPLE1, EXPECTED1, 3, 3, SAMPLE1P);
+
+
+// clang-format off
+const RegionType SAMPLE1RCS = {
+    R"( /)",
+    R"(/ )"
+};
+
+const RegionType SAMPLE2RCS = {
+    R"( /)",
+    R"(  )"
+};
+
+const RegionType SAMPLE3RCS = {
+    R"(/\)",
+    R"(\/)"
+};
+
+const RegionType SAMPLE4RCS = {
+    R"(//)",
+    R"(/ )"
+};
+// clang-format on
+
+
+THE_BENCHMARK(RegionsBySlashes, SAMPLE4RCS);
+
+SIMPLE_TEST(RegionsBySlashes, TestSAMPLE1, 2, SAMPLE1RCS);
+SIMPLE_TEST(RegionsBySlashes, TestSAMPLE2, 1, SAMPLE2RCS);
+SIMPLE_TEST(RegionsBySlashes, TestSAMPLE3, 5, SAMPLE3RCS);
+SIMPLE_TEST(RegionsBySlashes, TestSAMPLE4, 3, SAMPLE4RCS);
 
 
 // clang-format off

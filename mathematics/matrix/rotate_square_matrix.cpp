@@ -15,7 +15,7 @@ namespace {
  * Given a square matrix, turn it by 90 degrees in anti-clockwise direction without using any extra
  * space.
  *
- * @tags    #square-matrix-rotation
+ * @tags    #matrix #square-matrix-rotation
  */
 void rotateGroup90Degree_AntiClockwise(MatrixType &square_matrix,
                                        const MatrixType::size_type x,
@@ -50,7 +50,7 @@ inline auto Rotate90Degree_AntiClockwise_Group(MatrixType square_matrix) {
  * @reference   Rotate a matrix by 90 degree without using any extra space | Set 2
  *              https://www.geeksforgeeks.org/rotate-matrix-90-degree-without-using-extra-space-set-2/
  *
- * @tags    #square-matrix-rotation
+ * @tags    #matrix #square-matrix-rotation
  */
 inline auto Rotate90Degree_AntiClockwise_Transpose(MatrixType square_matrix) {
     return ReverseMatrixColumns(Transpose(std::move(square_matrix)));
@@ -65,7 +65,7 @@ inline auto Rotate90Degree_AntiClockwise_Transpose(MatrixType square_matrix) {
  * You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.
  * DO NOT allocate another 2D matrix and do the rotation.
  *
- * @tags    #square-matrix-rotation
+ * @tags    #matrix #square-matrix-rotation
  */
 inline auto Rotate90Degree_Clockwise_Transpose(MatrixType square_matrix) {
     return ReverseMatrixRows(Transpose(std::move(square_matrix)));
@@ -78,7 +78,7 @@ inline auto Rotate90Degree_Clockwise_Transpose(MatrixType square_matrix) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.6.
  *
- * @tags    #square-matrix-rotation
+ * @tags    #matrix #square-matrix-rotation
  */
 void rotateGroup90Degree_Clockwise(MatrixType &square_matrix,
                                    const MatrixType::size_type x,
@@ -103,7 +103,7 @@ inline auto Rotate90Degree_Clockwise_Group(MatrixType square_matrix) {
  * Given two n x n binary matrices mat and target, return true if it is possible to make mat equal to
  * target by rotating mat in 90-degree increments, or false otherwise.
  *
- * @tags    #square-matrix-rotation
+ * @tags    #matrix #square-matrix-rotation
  */
 auto areRotation(const MatrixType &one, const MatrixType &target) {
     const auto N = one.size();

@@ -3,33 +3,45 @@
 
 namespace {
 
-using ArrayType = std::unordered_multiset<std::string>;
+using ArrayType = std::vector<std::string_view>;
+using OutputType = std::unordered_multiset<std::string>;
 using DictType = std::unordered_set<std::string_view>;
 
-/** Word Break Problem
+/**
+ * @reference   Word Break
+ *              https://leetcode.com/problems/word-break/
+ *
+ * Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a
+ * space-separated sequence of one or more dictionary words.
+ * Note that the same word in the dictionary may be reused multiple times in the segmentation.
  *
  * @reference   Word Break Problem | DP-32
  *              https://www.geeksforgeeks.org/word-break-problem-dp-32/
  *
  * Given an input string and a dictionary of words, find out if the input string can be segmented into a
  * space-separated sequence of dictionary words.
+ *
+ * @tags    #DP
  */
-bool WordBreak(const std::string_view a_string, const DictType &words) {
-    std::vector<bool> word_breaks(a_string.size() + 1, false);
-    word_breaks[0] = true;
+bool WordBreak(const std::string_view s, const ArrayType &wordDict) {
+    std::unordered_set<std::string_view> dictionary(wordDict.cbegin(), wordDict.cend());
 
-    for (std::size_t i = 0; i <= a_string.size(); ++i) {
-        if (word_breaks[i]) {
-            for (auto j = i; j <= a_string.size(); ++j) {
-                if (word_breaks[j] == false and
-                    words.find(a_string.substr(i, j - i)) != words.cend()) {
-                    word_breaks[j] = true;
+    std::vector<bool> dp(s.size() + 1, false);
+    dp[0] = true;
+
+    for (std::size_t i = 1; i <= s.size(); ++i) {
+        for (int j = i - 1; j >= 0; --j) {
+            if (dp[j]) {
+                const auto word = s.substr(j, i - j);
+                if (dictionary.find(word) != dictionary.cend()) {
+                    dp[i] = true;
+                    break;
                 }
             }
         }
     }
 
-    return word_breaks[a_string.size()];
+    return dp[s.size()];
 }
 
 
@@ -38,6 +50,8 @@ bool WordBreak(const std::string_view a_string, const DictType &words) {
  *              https://www.geeksforgeeks.org/word-break-problem-trie-solution/
  *
  * @note    This solution replaces unordered_set with Trie.
+ *
+ * @tags    #trie
  */
 
 
@@ -47,11 +61,13 @@ bool WordBreak(const std::string_view a_string, const DictType &words) {
  *
  * Given a valid sentence without any spaces between the words and a dictionary of valid English words,
  * find all possible ways to break the sentence in individual dictionary words.
+ *
+ * @tags    #backtracking
  */
 void AllWayToWordBreak(const std::string &a_string,
                        const DictType &words,
                        const std::string &prefix,
-                       ArrayType &results) {
+                       OutputType &results) {
     for (std::size_t i = 1; i <= a_string.size(); ++i) {
         const auto substring = a_string.substr(0, i);
         if (words.find(substring) != words.cend()) {
@@ -66,9 +82,11 @@ void AllWayToWordBreak(const std::string &a_string,
     }
 }
 
-inline auto AllWayToWordBreak(const std::string &a_string, const DictType &words) {
-    ArrayType results;
-    AllWayToWordBreak(a_string, words, "", results);
+inline auto AllWayToWordBreak(const std::string &a_string, const ArrayType &words) {
+    std::unordered_set<std::string_view> dictionary(words.cbegin(), words.cend());
+
+    OutputType results;
+    AllWayToWordBreak(a_string, dictionary, "", results);
     return results;
 }
 
@@ -79,6 +97,8 @@ inline auto AllWayToWordBreak(const std::string &a_string, const DictType &words
  *
  * Given a string s, break s such that every substring of the partition can be found in the dictionary.
  * Return the minimum break needed.
+ *
+ * @tags    #DP
  */
 bool MinimumWordBreak(const std::string_view a_string, const DictType &words) {
     std::vector<int> word_breaks(a_string.size() + 1, 0);
@@ -108,6 +128,8 @@ bool MinimumWordBreak(const std::string_view a_string, const DictType &words) {
  * Given a dictionary (a list of words), design an algorithm to find the optimal way of "unconcatenating"
  * a sequence of words. In this case, "optimal" is defined to be the parsing which minimizes the number
  * of unrecognized sequences of characters.
+ *
+ * @tags    #DP
  */
 
 
@@ -122,12 +144,14 @@ bool MinimumWordBreak(const std::string_view a_string, const DictType &words) {
  * Given a string s containing only digits, return all possible valid IP addresses that can be formed by
  * inserting dots into s. You are not allowed to reorder or remove any digits in s. You may return the
  * valid IP addresses in any order.
+ *
+ * @tags    #backtracking
  */
 void RestoreIPAddresses(const std::string_view ip,
                         const std::size_t start,
                         std::string prefix,
                         const int group,
-                        ArrayType &results) {
+                        OutputType &results) {
     if (group > 4)
         return;
     if (group == 4 and start == ip.size()) {
@@ -152,7 +176,7 @@ void RestoreIPAddresses(const std::string_view ip,
 }
 
 inline auto RestoreIPAddresses(const std::string_view ip) {
-    ArrayType results;
+    OutputType results;
     RestoreIPAddresses(ip, 0, "", 0, results);
 
     return results;
@@ -161,50 +185,56 @@ inline auto RestoreIPAddresses(const std::string_view ip) {
 } //namespace
 
 
-const DictType DICTIONARY1 = {"mobile",
-                              "samsung",
-                              "sam",
-                              "sung",
-                              "man",
-                              "mango",
-                              "icecream",
-                              "and",
-                              "go",
-                              "i",
-                              "like",
-                              "ice",
-                              "cream"};
+const ArrayType SAMPLE1 = {"mobile",
+                           "samsung",
+                           "sam",
+                           "sung",
+                           "man",
+                           "mango",
+                           "icecream",
+                           "and",
+                           "go",
+                           "i",
+                           "like",
+                           "ice",
+                           "cream"};
+const ArrayType SAMPLE7 = {"leet", "code"};
+const ArrayType SAMPLE8 = {"apple", "pen"};
+const ArrayType SAMPLE9 = {"cats", "dog", "sand", "and", "cat"};
 
 
-THE_BENCHMARK(WordBreak, "ilike", DICTIONARY1);
+THE_BENCHMARK(WordBreak, "leetcode", SAMPLE7);
 
-SIMPLE_TEST(WordBreak, TestSAMPLE0, true, "", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE1, true, "ilike", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE2, true, "ilikesamsung", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE3, true, "iiiiiiii", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE4, true, "ilikelikeimangoiii", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE5, true, "samsungandmango", DICTIONARY1);
-SIMPLE_TEST(WordBreak, TestSAMPLE6, false, "samsungandmangok", DICTIONARY1);
-
-
-const ArrayType EXPECTED1 = {"i like ice cream and man go",
-                             "i like ice cream and mango",
-                             "i like icecream and man go",
-                             "i like icecream and mango"};
-
-const ArrayType EXPECTED2 = {"i like sam sung mobile", "i like samsung mobile"};
+SIMPLE_TEST(WordBreak, TestSAMPLE0, true, "", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE1, true, "ilike", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE2, true, "ilikesamsung", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE3, true, "iiiiiiii", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE4, true, "ilikelikeimangoiii", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE5, true, "samsungandmango", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE6, false, "samsungandmangok", SAMPLE1);
+SIMPLE_TEST(WordBreak, TestSAMPLE7, true, "leetcode", SAMPLE7);
+SIMPLE_TEST(WordBreak, TestSAMPLE8, true, "applepenapple", SAMPLE8);
+SIMPLE_TEST(WordBreak, TestSAMPLE9, false, "catsandog", SAMPLE9);
 
 
-THE_BENCHMARK(AllWayToWordBreak, "ilikeicecreamandmango", DICTIONARY1);
+const OutputType EXPECTED1 = {"i like ice cream and man go",
+                              "i like ice cream and mango",
+                              "i like icecream and man go",
+                              "i like icecream and mango"};
 
-SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE1, EXPECTED1, "ilikeicecreamandmango", DICTIONARY1);
-SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE2, EXPECTED2, "ilikesamsungmobile", DICTIONARY1);
+const OutputType EXPECTED2 = {"i like sam sung mobile", "i like samsung mobile"};
+
+
+THE_BENCHMARK(AllWayToWordBreak, "ilikeicecreamandmango", SAMPLE1);
+
+SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE1, EXPECTED1, "ilikeicecreamandmango", SAMPLE1);
+SIMPLE_TEST(AllWayToWordBreak, TestSAMPLE2, EXPECTED2, "ilikesamsungmobile", SAMPLE1);
 
 
 const DictType DICTIONARY2 = {"Cat", "Mat", "Ca", "tM", "at", "C", "Dog", "og", "Do"};
 
 
-THE_BENCHMARK(MinimumWordBreak, "CatMat", DICTIONARY1);
+THE_BENCHMARK(MinimumWordBreak, "CatMat", DICTIONARY2);
 
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE0, 0, "", DICTIONARY2);
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE1, 1, "CatMat", DICTIONARY2);
@@ -212,9 +242,9 @@ SIMPLE_TEST(MinimumWordBreak, TestSAMPLE2, 2, "CatMatat", DICTIONARY2);
 SIMPLE_TEST(MinimumWordBreak, TestSAMPLE3, -1, "samsungandmangok", DICTIONARY2);
 
 
-const ArrayType EXPECTED1I = {"255.255.11.135", "255.255.111.35"};
-const ArrayType EXPECTED2I = {"0.0.0.0"};
-const ArrayType EXPECTED3I = {"1.0.10.23", "1.0.102.3", "10.1.0.23", "10.10.2.3", "101.0.2.3"};
+const OutputType EXPECTED1I = {"255.255.11.135", "255.255.111.35"};
+const OutputType EXPECTED2I = {"0.0.0.0"};
+const OutputType EXPECTED3I = {"1.0.10.23", "1.0.102.3", "10.1.0.23", "10.10.2.3", "101.0.2.3"};
 
 
 THE_BENCHMARK(RestoreIPAddresses, "101023");

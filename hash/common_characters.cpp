@@ -523,6 +523,14 @@ auto UncommonChars_Bits(const std::string_view X, const std::string_view Y) {
  * formed.
  * Follow up: Suppose you are given an arbitrary string pattern instead of balloon.
  *
+ * @reference   Rearrange Characters to Make Target String
+ *              https://leetcode.com/problems/rearrange-characters-to-make-target-string/
+ *
+ * You are given two 0-indexed strings s and target. You can take some letters from s and rearrange them
+ * to form new strings.
+ * Return the maximum number of copies of target that can be formed by taking letters from s and
+ * rearranging them.
+ *
  * @tags    #hash-table
  */
 auto MaxNumberOfPattern(const std::string_view text, const std::string_view pattern) {

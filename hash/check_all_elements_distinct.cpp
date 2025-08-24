@@ -273,7 +273,7 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  * subarray.
  * A subarray is a contiguous sequence of elements within an array.
  *
- * @tags    #sliding-window
+ * @tags    #sliding-window #arithmetic-progression
  */
 auto CountSubarraysWithAtLeastKMax(const ArrayType &nums, const std::size_t k) {
     const auto maximum = *std::max_element(nums.cbegin(), nums.cend());

@@ -7,12 +7,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Sum of first n odd numbers in O(1) Complexity
- *
- * @reference   https://www.geeksforgeeks.org/sum-first-n-odd-numbers-o1-complexity/
+/**
+ * @reference   Sum of first n odd numbers in O(1) Complexity
+ *              https://www.geeksforgeeks.org/sum-first-n-odd-numbers-o1-complexity/
  *
  * To find the sum of first n odd numbers we can apply odd number theorem, it states that the sum of
  * first n odd numbers is equal to the square of n.
+ *
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto SumOfFirstNOddNumbers(const unsigned N) {
     return N * N;
@@ -22,12 +24,16 @@ inline constexpr auto SumOfFirstNOddNumbers(const unsigned N) {
 /**
  * @reference   Average of first n odd naturals numbers
  *              https://www.geeksforgeeks.org/average-of-first-n-odd-naturals-numbers/
+ *
+ * @tags    #arithmetic-progression
  */
 
 
 /**
  * @reference   Sum of all odd natural numbers in range L and R
  *              https://www.geeksforgeeks.org/sum-of-all-odd-natural-numbers-in-range-l-and-r/
+ *
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto SumOfOddNumbersTillN(const unsigned N) {
     return SumOfFirstNOddNumbers((N + 1) / 2);
@@ -41,9 +47,11 @@ inline constexpr auto SumOfFirstNOddNumbersInRange(const unsigned L, const unsig
 }
 
 
-/** Sum of first n even numbers
+/**
+ * @reference   Sum of first n even numbers
+ *              https://www.geeksforgeeks.org/sum-first-n-even-numbers/
  *
- * @reference   https://www.geeksforgeeks.org/sum-first-n-even-numbers/
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto SumOfFirstNEvenNumbers(const unsigned N) {
     return N * (N + 1);
@@ -53,6 +61,8 @@ inline constexpr auto SumOfFirstNEvenNumbers(const unsigned N) {
 /**
  * @reference   Average of first n even natural numbers
  *              https://www.geeksforgeeks.org/average-of-first-n-even-natural-numbers/
+ *
+ * @tags    #arithmetic-progression
  */
 
 
@@ -116,9 +126,11 @@ auto CanMakeArithmeticProgression(ArrayType nums) {
  */
 
 
-/** Find the average of first N natural numbers
+/**
+ * @reference   Find the average of first N natural numbers
+ *              https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
  *
- * @reference   https://www.geeksforgeeks.org/find-average-first-n-natural-numbers/
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto AverageOfNaturalNumbers(const unsigned N) {
     return static_cast<double>(N + 1) / 2.0;
@@ -139,6 +151,8 @@ inline constexpr auto SumOfSumOfNaturals(const unsigned N) {
 /**
  * @reference   Sum of all natural numbers in range L to R
  *              https://www.geeksforgeeks.org/sum-of-all-natural-numbers-in-range-l-to-r/
+ *
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto SumOfNaturalsInRange(const unsigned L, const unsigned R) {
     assert(L);
@@ -236,20 +250,19 @@ inline constexpr auto TotalMoney(const long n) {
  *
  * Given an integer array nums, return the number of subarrays filled with 0.
  * A subarray is a contiguous non-empty sequence of elements within an array.
+ *
+ * @tags    #arithmetic-progression
  */
 auto NumZeroFilledSubarrays(const ArrayType &nums) {
-    long count = 0;
-    long result = 0;
-
+    long long result = 0;
+    int streak = 0;
     for (const auto n : nums) {
         if (n == 0) {
-            ++count;
+            result += ++streak;
         } else {
-            result += count * (count + 1) / 2;
-            count = 0;
+            streak = 0;
         }
     }
-    result += count * (count + 1) / 2;
 
     return result;
 }
@@ -263,6 +276,8 @@ auto NumZeroFilledSubarrays(const ArrayType &nums) {
  * return it modulo 10^9 + 7.
  * A string is homogenous if all the characters of the string are the same.
  * A substring is a contiguous sequence of characters within a string.
+ *
+ * @tags    #arithmetic-progression
  */
 
 
