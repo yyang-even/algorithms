@@ -5,15 +5,17 @@
 
 namespace {
 
-/** Toeplitz Matrix
- *
- * @reference   https://leetcode.com/problems/toeplitz-matrix/
+/**
+ * @reference   Toeplitz Matrix
+ *              https://leetcode.com/problems/toeplitz-matrix/
  *
  * Given an m x n matrix, return true if the matrix is Toeplitz. Otherwise, return false.
  * A matrix is Toeplitz if every diagonal from top-left to bottom-right has the same elements.
  * Follow up: What if the matrix is stored on disk, and the memory is limited such that you can only
  * load at most one row of the matrix into the memory at once? What if the matrix is so large that you
  * can only load up a partial row into the memory at once?
+ *
+ * @tags    #matrix #hash-table
  */
 auto Toeplitz_Group(const MatrixType &a_matrix) {
     const int M = a_matrix.size();
@@ -56,6 +58,8 @@ auto Toeplitz_Neighbor(const MatrixType &a_matrix) {
  * mat[3][1], and mat[4][2].
  * Given an m x n matrix mat of integers, sort each matrix diagonal in ascending order and return the
  * resulting matrix.
+ *
+ * @tags    #matrix #hash-table #sorting
  */
 auto SortMatrixDiagonally(MatrixType a_matrix) {
     const auto M = a_matrix.size();
@@ -85,10 +89,25 @@ auto SortMatrixDiagonally(MatrixType a_matrix) {
 
 
 /**
+ * @reference   Sort Matrix by Diagonals
+ *              https://leetcode.com/problems/sort-matrix-by-diagonals/
+ *
+ * You are given an n x n square matrix of integers grid. Return the matrix such that:
+ *  The diagonals in the bottom-left triangle (including the middle diagonal) are sorted in
+ *  non-increasing order.
+ *  The diagonals in the top-right triangle are sorted in non-decreasing order.
+ *
+ * @tags    #matrix #hash-table #sorting
+ */
+
+
+/**
  * @reference   Diagonal Traverse
  *              https://leetcode.com/problems/diagonal-traverse/
  *
  * Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.
+ *
+ * @tags    #matrix #hash-table
  */
 auto DiagonalTraverse(const MatrixType &a_matrix) {
     const int M = a_matrix.size();
@@ -121,6 +140,8 @@ auto DiagonalTraverse(const MatrixType &a_matrix) {
  *
  * Given a 2D integer array nums, return all elements of nums in diagonal order as shown in the below
  * images.
+ *
+ * @tags    #matrix #BFS
  */
 auto DiagonalTraverseSameDirection_BFS(const MatrixType &nums) {
     std::queue<std::pair<std::size_t, std::size_t>> q;

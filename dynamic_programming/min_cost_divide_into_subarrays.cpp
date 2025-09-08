@@ -85,6 +85,52 @@ auto MinCostDivideIntoSubarrays_1D(ArrayType nums, ArrayType cost, const int k) 
     return dp[0];
 }
 
+
+/**
+ * @reference   Largest Sum of Averages
+ *              https://leetcode.com/problems/largest-sum-of-averages/
+ *
+ * You are given an integer array nums and an integer k. You can partition the array into at most k
+ * non-empty adjacent subarrays. The score of a partition is the sum of the averages of each subarray.
+ * Note that the partition must use every integer in nums, and that the score is not necessarily an
+ * integer.
+ * Return the maximum score you can achieve of all the possible partitions. Answers within 10-6 of the
+ * actual answer will be accepted.
+ *
+ * @tags    #DP #prefix-sum
+ */
+double LargestSumOfAverages(ArrayType nums, const int k) {
+    const int N = nums.size();
+
+    int sum = 0;
+    for (int i = 0; i < N; ++i) {
+        const auto next = nums[i];
+        nums[i] = sum;
+        sum += next;
+    }
+    nums.push_back(sum);
+
+    std::vector dp(k, std::vector(N, 0.0));
+    for (int i = 0; i < N; ++i) {
+        const double total = nums.back() - nums[i];
+        const auto length = N - i;
+        dp[0][i] = total / length;
+    }
+
+    for (int x = 1; x < k; ++x) {
+        for (int i = 0; i < N - 1; ++i) {
+            for (int j = i + 1; j < N; ++j) {
+                const double total = nums[j] - nums[i];
+                const auto length = j - i;
+                const auto average = total / length;
+                dp[x][i] = std::max(dp[x][i], average + dp[x - 1][j]);
+            }
+        }
+    }
+
+    return dp[k - 1][0];
+}
+
 } //namespace
 
 
@@ -105,3 +151,13 @@ THE_BENCHMARK(MinCostDivideIntoSubarrays_1D, SAMPLE1N, SAMPLE1C, 1);
 
 SIMPLE_TEST(MinCostDivideIntoSubarrays_1D, TestSAMPLE1, 110, SAMPLE1N, SAMPLE1C, 1);
 SIMPLE_TEST(MinCostDivideIntoSubarrays_1D, TestSAMPLE2, 985, SAMPLE2N, SAMPLE2C, 7);
+
+
+const ArrayType SAMPLE1A = {9, 1, 2, 3, 9};
+const ArrayType SAMPLE2A = {1, 2, 3, 4, 5, 6, 7};
+
+
+THE_BENCHMARK(LargestSumOfAverages, SAMPLE1A, 3);
+
+SIMPLE_DOUBLE_TEST(LargestSumOfAverages, TestSAMPLE1, 20.0, SAMPLE1A, 3);
+SIMPLE_DOUBLE_TEST(LargestSumOfAverages, TestSAMPLE2, 20.5, SAMPLE2A, 4);

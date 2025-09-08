@@ -369,6 +369,34 @@ char KthCharInGameWithOperations(unsigned long long k, const ArrayType &operatio
     return 'a' + (diff % 26);
 }
 
+
+/**
+ * @reference   Minimum Operations to Make the Integer Zero
+ *              https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/
+ *
+ * You are given two integers num1 and num2.
+ * In one operation, you can choose integer i in the range [0, 60] and subtract 2i + num2 from num1.
+ * Return the integer denoting the minimum number of operations needed to make num1 equal to 0.
+ * If it is impossible to make num1 equal to 0, return -1.
+ *
+ * @tags    #bit-tricks #count-set-bits
+ */
+auto MinOperationsToMakeZero(long long num1, const int num2) {
+    for (int i = 1; i <= 60; ++i) {
+        num1 -= num2;
+        if (num1 < i) {
+            break;
+        }
+
+        const auto minimum = std::popcount(static_cast<unsigned long long>(num1));
+        if (i >= minimum) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 } //namespace
 
 
@@ -501,3 +529,10 @@ THE_BENCHMARK(KthCharInGameWithOperations, 5, SAMPLE1);
 SIMPLE_TEST(KthCharInGameWithOperations, TestSample1, 'a', 5, SAMPLE1);
 SIMPLE_TEST(KthCharInGameWithOperations, TestSample2, 'b', 10, SAMPLE2);
 SIMPLE_TEST(KthCharInGameWithOperations, TestSample3, 'a', 3, SAMPLE3);
+
+
+THE_BENCHMARK(MinOperationsToMakeZero, 3, -2);
+
+SIMPLE_TEST(MinOperationsToMakeZero, TestSample1, 3, 3, -2);
+SIMPLE_TEST(MinOperationsToMakeZero, TestSample2, -1, 5, 7);
+SIMPLE_TEST(MinOperationsToMakeZero, TestSample3, 16, 112577768, -501662198);

@@ -308,7 +308,7 @@ auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
  *  answer[j] % answer[i] == 0
  * If there are multiple solutions, return any of them.
  *
- * @tags    #sort #DP #longest-increasing-subsequence
+ * @tags    #sorting #DP #longest-increasing-subsequence
  */
 auto LargestDivisibleSubset(ArrayType nums) {
     std::sort(nums.begin(), nums.end());
@@ -347,7 +347,7 @@ auto LargestDivisibleSubset(ArrayType nums) {
  * him or her. Given the heights and weights of each person in the circus, write a method to compute the
  * largest possible number of people in such a tower.
  *
- * @tags    #sort #DP #longest-increasing-subsequence
+ * @tags    #sorting #DP #longest-increasing-subsequence
  */
 auto CircusTower(HeightWeightArray people) {
     assert(not people.empty());
@@ -380,7 +380,7 @@ auto CircusTower(HeightWeightArray people) {
  * Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other).
  * Note: You cannot rotate an envelope.
  *
- * @tags    #sort #DP #longest-increasing-subsequence #binary-search
+ * @tags    #sorting #DP #longest-increasing-subsequence #binary-search
  */
 auto CircusTower_NLogN(HeightWeightArray people) {
     assert(not people.empty());
@@ -448,7 +448,7 @@ auto NumberOfWeakCharacters(HeightWeightArray properties) {
  * above it in width, height, and depth. Implement a method to build the tallest stack possible, where
  * the height of a stack is the sum of the heights of each box.
  *
- * @tags    #sort #DP #longest-increasing-subsequence
+ * @tags    #sorting #DP #longest-increasing-subsequence
  */
 
 

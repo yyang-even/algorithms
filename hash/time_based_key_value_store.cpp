@@ -19,6 +19,8 @@ using namespace std::string_literals;
  *      timestamp_prev <= timestamp. If there are multiple such values, it returns the value associated
  *      with the largest timestamp_prev. If there are no values, it returns "".
  * All the timestamps timestamp of set are strictly increasing.
+ *
+ * @tags    #hash-table #binary-search
  */
 class TimeMap {
     std::unordered_map<std::string, std::map<int, std::string>> m;
@@ -84,6 +86,27 @@ public:
  *      with ID followeeId.
  *  void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the
  *      user with ID followeeId.
+ *
+ * @tags    #hash-table #queue
+ */
+
+
+/**
+ * @reference   Find Mirror Score of a String
+ *              https://leetcode.com/problems/find-mirror-score-of-a-string/
+ *
+ * You are given a string s.
+ * We define the mirror of a letter in the English alphabet as its corresponding letter when the
+ * alphabet is reversed. For example, the mirror of 'a' is 'z', and the mirror of 'y' is 'b'.
+ * Initially, all characters in the string s are unmarked.
+ * You start with a score of 0, and you perform the following process on the string s:
+ *  Iterate through the string from left to right.
+ *  At each index i, find the closest unmarked index j such that j < i and s[j] is the mirror of s[i].
+ *      Then, mark both indices i and j, and add the value i - j to the total score.
+ *  If no such index j exists for the index i, move on to the next index without making any changes.
+ * Return the total score at the end of the process.
+ *
+ * @tags    #hash-table #stack
  */
 
 } //namespace

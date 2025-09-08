@@ -13,7 +13,7 @@ using ArrayType = std::vector<int>;
  * sequence.
  * You must write an algorithm that runs in O(n) time.
  *
- * @tags    #sort #hash-table #disjoint-set
+ * @tags    #sorting #hash-table #disjoint-set
  */
 auto LongestConsecutiveSequence_Sort(ArrayType nums) {
     if (nums.empty()) {

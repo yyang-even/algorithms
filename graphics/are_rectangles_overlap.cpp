@@ -9,14 +9,16 @@ namespace {
 using RectangleType = std::tuple<int, int, int, int>;
 using RectangleArray = std::vector<RectangleType>;
 
-/** Find if two rectangles overlap
- *
- * @reference   https://www.geeksforgeeks.org/find-two-rectangles-overlap/
+/**
+ * @reference   Find if two rectangles overlap
+ *              https://www.geeksforgeeks.org/find-two-rectangles-overlap/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 13.
  *
- * Given two rectangles, find if the given two rectangles overlap or not. It may be
- * assumed that the rectangles are parallel to the coordinate axis.
+ * Given two rectangles, find if the given two rectangles overlap or not. It may be assumed that the
+ * rectangles are parallel to the coordinate axis.
+ *
+ * @tags    #geometry #rectangle
  */
 inline constexpr auto areRectanglesOverlap(const Point &top_left_1,
                                            const Point &bottom_right_1,
@@ -31,13 +33,14 @@ inline constexpr auto areRectanglesOverlap(const Point &top_left_1,
  * @reference   Rectangle Overlap
  *              https://leetcode.com/problems/rectangle-overlap/
  *
- * An axis-aligned rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) is
- * the coordinate of its bottom-left corner, and (x2, y2) is the coordinate of its
- * top-right corner. Its top and bottom edges are parallel to the X-axis, and its left
- * and right edges are parallel to the Y-axis. Two rectangles overlap if the area of
- * their intersection is positive. To be clear, two rectangles that only touch at the
- * corner or edges do not overlap. Given two axis-aligned rectangles rec1 and rec2,
- * return true if they overlap, otherwise return false.
+ * An axis-aligned rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) is the coordinate
+ * of its bottom-left corner, and (x2, y2) is the coordinate of its top-right corner. Its top and bottom
+ * edges are parallel to the X-axis, and its left and right edges are parallel to the Y-axis.
+ * Two rectangles overlap if the area of their intersection is positive. To be clear, two rectangles
+ * that only touch at the corner or edges do not overlap.
+ * Given two axis-aligned rectangles rec1 and rec2, return true if they overlap, otherwise return false.
+ *
+ * @tags    #geometry #rectangle
  */
 inline constexpr auto areRectanglesOverlap_Area(const Point &bottom_left_1,
                                                 const Point &top_right_1,
@@ -53,10 +56,14 @@ inline constexpr auto areRectanglesOverlap_Area(const Point &bottom_left_1,
  * @reference   Rectangle Area
  *              https://leetcode.com/problems/rectangle-area/
  *
- * Given the coordinates of two rectilinear rectangles in a 2D plane, return the total
- * area covered by the two rectangles. The first rectangle is defined by its bottom-left
- * corner (ax1, ay1) and its top-right corner (ax2, ay2). The second rectangle is defined
- * by its bottom-left corner (bx1, by1) and its top-right corner (bx2, by2).
+ * Given the coordinates of two rectilinear rectangles in a 2D plane, return the total area covered by
+ * the two rectangles.
+ * The first rectangle is defined by its bottom-left corner (ax1, ay1) and its top-right corner (ax2,
+ * ay2).
+ * The second rectangle is defined by its bottom-left corner (bx1, by1) and its top-right corner (bx2,
+ * by2).
+ *
+ * @tags    #geometry #rectangle
  */
 inline constexpr int RectangleArea(const Rectangle &one, const Rectangle &another) {
     const auto left = std::max(one.left, another.left);
@@ -76,13 +83,12 @@ inline constexpr int RectangleArea(const Rectangle &one, const Rectangle &anothe
  * @reference   Rectangle Area II
  *              https://leetcode.com/problems/rectangle-area-ii/
  *
- * We are given a list of (axis-aligned) rectangles. Each rectangle[i] = [xi1, yi1, xi2, yi2],
- * where (xi1, yi1) are the coordinates of the bottom-left corner, and (xi2, yi2) are
- * the coordinates of the top-right corner of the ith rectangle. Find the total area
- * covered by all rectangles in the plane. Since the answer may be too large, return it
- * modulo 10^9 + 7.
- * The total area covered by all rectangles will never exceed 2^63 - 1 and thus will fit
- * in a 64-bit signed integer.
+ * You are given a 2D array of axis-aligned rectangles. Each rectangle[i] = [xi1, yi1, xi2, yi2] denotes
+ * the ith rectangle where (xi1, yi1) are the coordinates of the bottom-left corner, and (xi2, yi2) are
+ * the coordinates of the top-right corner.
+ * Calculate the total area covered by all rectangles in the plane. Any area covered by two or more
+ * rectangles should only be counted once.
+ * Return the total area. Since the answer may be too large, return it modulo 10^9 + 7.
  */
 int RectangleArrayArea_SweepLine(const RectangleArray &rectangles) {
     std::map<int, std::vector<std::pair<int, int>>> groups;
