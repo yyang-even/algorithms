@@ -87,6 +87,8 @@ auto ProductArrayOfAllElementsExceptIth_Power(const ArrayType &elements) {
  *
  * Given an array A[] having n positive elements. The task to create another array B[] such as B[i] is
  * XOR of all elements of array A[] except A[i].
+ *
+ * @tags    #bit-tricks
  */
 auto XorArrayOfAllElementsExceptIth(const ArrayType &elements) {
     const auto the_xor = std::accumulate(

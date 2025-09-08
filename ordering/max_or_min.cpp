@@ -3,12 +3,11 @@
 
 namespace {
 
-using ArrayType = std::vector<unsigned>;
+using ArrayType = std::vector<int>;
 
 #include "mathematics/numbers/binary/maximum_and_value_of_pair.h"
 
-/** Program to find largest element in an array
- *
+/**
  * @reference   Program to find largest element in an array
  *              https://www.geeksforgeeks.org/c-program-find-largest-element-array/
  * @reference   Program to find the minimum (or maximum) element of an array
@@ -36,6 +35,8 @@ using ArrayType = std::vector<unsigned>;
  *
  * Given an array of n-elements, we have to find the largest element among them without using any
  * conditional operator like greater than or less than.
+ *
+ * @tags    #min-max-element #bit-tricks
  */
 inline auto MaxElement_Bit(ArrayType values) {
     values.push_back(std::numeric_limits<ArrayType::value_type>::max());
@@ -43,8 +44,7 @@ inline auto MaxElement_Bit(ArrayType values) {
 }
 
 
-/** Compute the minimum (min) or maximum (max) of two integers without branching
- *
+/**
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Compute the minimum (min) or maximum (max) of two integers without branching
  *              https://graphics.stanford.edu/~seander/bithacks.html
@@ -54,6 +54,8 @@ inline auto MaxElement_Bit(ArrayType values) {
  *              https://www.geeksforgeeks.org/what-are-the-differences-between-bitwise-and-logical-and-operators-in-cc/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.4.
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr int Min_Xor(const int x, const int y) {
     return y ^ ((x ^ y) & -(x < y));
@@ -79,13 +81,15 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
 }
 
 
-/** Smallest of three integers without comparison operators
- *
- * @reference   https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
+/**
+ * @reference   Smallest of three integers without comparison operators
+ *              https://www.geeksforgeeks.org/smallest-of-three-integers-without-comparison-operators/
  * @reference   C program to Find the Largest Number Among Three Numbers
  *              https://www.geeksforgeeks.org/c-program-to-find-the-largest-number-among-three-numbers/
  * @reference   TCS Coding Practice Question | Greatest of 3 Numbers
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-greatest-of-3-numbers/
+ *
+ * @tags    #bit-tricks
  */
 
 
@@ -163,6 +167,8 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * current location. If there are multiple, return the valid point with the smallest index. If there are
  * no valid points, return -1.
  * The Manhattan distance between two points (x1, y1) and (x2, y2) is abs(x1 - x2) + abs(y1 - y2).
+ *
+ * @tags    #min-max-element
  */
 
 
@@ -174,7 +180,50 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * the array that is neither the minimum nor the maximum value in the array, or -1 if there is no such
  * number.
  * Return the selected integer.
+ *
+ * @tags    #min-max-element
  */
+
+
+/**
+ * @reference   Maximize the Topmost Element After K Moves
+ *              https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/
+ *
+ * You are given a 0-indexed integer array nums representing the contents of a pile, where nums[0] is
+ * the topmost element of the pile.
+ * In one move, you can perform either of the following:
+ *  If the pile is not empty, remove the topmost element of the pile.
+ *  If there are one or more removed elements, add any one of them back onto the pile. This element
+ *      becomes the new topmost element.
+ * You are also given an integer k, which denotes the total number of moves to be made.
+ * Return the maximum value of the topmost element of the pile possible after exactly k moves. In case
+ * it is not possible to obtain a non-empty pile after k moves, return -1.
+ * 1 <= nums.length <= 10^5
+ *
+ * @tags    #min-max-element
+ */
+int MaxTopAfterKMoves(const ArrayType &nums, const int k) {
+    if (k == 0) {
+        return nums.front();
+    }
+
+    const int N = nums.size();
+    if (N == 1 and k % 2 == 1) {
+        return -1;
+    }
+
+    int maximum = -1;
+    const auto limit = std::min(k - 1, N);
+    for (int i = 0; i < limit; ++i) {
+        maximum = std::max(maximum, nums[i]);
+    }
+
+    if (k < N) {
+        maximum = std::max(maximum, nums[k]);
+    }
+
+    return maximum;
+}
 
 } //namespace
 
@@ -247,3 +296,23 @@ SIMPLE_TEST(Max_QuickDirty, TestSample4, 1, 1, 1);
 SIMPLE_TEST(Max_QuickDirty, TestSample5, 1, -1, 1);
 SIMPLE_TEST(Max_QuickDirty, TestSample6, 0, 0, 0);
 SIMPLE_TEST(Max_QuickDirty, TestSample7, LOWER, LOWER, LOWER);
+
+
+const ArrayType SAMPLE1MT = {5, 2, 2, 4, 0, 6};
+const ArrayType SAMPLE2MT = {5, 2, 2, 8, 0, 6};
+const ArrayType SAMPLE3MT = {5, 2, 2, 4, 8, 6};
+const ArrayType SAMPLE4MT = {68, 76};
+const ArrayType SAMPLE5MT = {0, 1, 2};
+
+
+THE_BENCHMARK(MaxTopAfterKMoves, SAMPLE1MT, 4);
+
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE1, 5, SAMPLE1MT, 4);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE2, 5, SAMPLE2MT, 4);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE3, 8, SAMPLE3MT, 4);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE4, 76, SAMPLE4MT, 1);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE5, 1, SAMPLE5MT, 3);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE6, 2, SAMPLE3MT, 1);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE7, 68, SAMPLE4MT, 0);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE8, -1, VALUES2, 1);
+SIMPLE_TEST(MaxTopAfterKMoves, TestSAMPLE9, -1, VALUES2, 3);

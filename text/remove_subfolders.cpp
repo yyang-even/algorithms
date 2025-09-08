@@ -19,7 +19,7 @@ using ArrayType = std::vector<std::string_view>;
  *  For example, "/leetcode" and "/leetcode/problems" are valid paths while an empty string and "/" are
  *  not.
  *
- *  @tags   #sort #starts-with
+ *  @tags   #sorting #starts-with
  */
 auto RemoveSubFolders_Sorting(ArrayType folder) {
     std::sort(folder.begin(), folder.end());

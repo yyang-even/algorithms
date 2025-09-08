@@ -62,7 +62,7 @@ inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, c
  * twice.
  * Your solution must use only constant extra space.
  *
- * @tags    #sort #two-pointers
+ * @tags    #sorting #two-pointers
  */
 template<typename Container>
 constexpr auto HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
@@ -106,7 +106,7 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.12.
  *
- * @tags    #hash-table #sort #two-pointers
+ * @tags    #hash-table #sorting #two-pointers
  */
 
 
@@ -348,7 +348,7 @@ auto NumberSubsequences(ArrayType nums, const int target) {
  * @reference   All unique triplets that sum up to a given value
  *              https://www.geeksforgeeks.org/unique-triplets-sum-given-value/
  *
- * @tags    #sort #two-pointers
+ * @tags    #sorting #two-pointers
  */
 auto ThreeSum(ArrayType nums, const int target) {
     std::sort(nums.begin(), nums.end());

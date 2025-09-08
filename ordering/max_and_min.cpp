@@ -170,7 +170,7 @@ int CountElements(const ArrayType &nums) {
  * Return the minimum possible area of the rectangle.
  * The input is generated such that there is at least one 1 in grid.
  *
- * @tags    #matrix #min-max-element
+ * @tags    #matrix #geometry #rectangle #min-max-element
  */
 
 } //namespace

@@ -179,6 +179,8 @@ auto ContainPattern(const ArrayType &nums, const int m, const int k) {
  * Given a binary array nums, you should delete one element from it.
  * Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return
  * 0 if there is no such subarray.
+ *
+ * @tags    #sliding-window
  */
 auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
     unsigned current_count = 0;
@@ -209,6 +211,8 @@ auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
  *
  * Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array
  * if you can flip at most k 0's.
+ *
+ * @tags    #sliding-window
  */
 auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int K) {
     ArrayType::size_type left = 0;
@@ -244,6 +248,8 @@ auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int
  * You are given an integer array nums and an integer k. In one operation, you can choose an index of
  * nums and increment the element at that index by 1.
  * Return the maximum possible frequency of an element after performing at most k operations.
+ *
+ * @tags    #sorting #sliding-window
  */
 auto MaxFrequency_NonShrinkableSlidingWindow(ArrayType nums, long k) {
     std::sort(nums.begin(), nums.end());

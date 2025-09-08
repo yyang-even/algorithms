@@ -39,7 +39,7 @@ auto CheckIfAllElementsDistinct(const ArrayType &elements) {
  * Implement an algorithm to determine if a string has all unique characters. What if you cannot use
  * additional data structures?
  *
- * @tags    #sort
+ * @tags    #sorting
  */
 auto CheckIfAllElementsDistinct_Sort(ArrayType elements) {
     std::sort(elements.begin(), elements.end());

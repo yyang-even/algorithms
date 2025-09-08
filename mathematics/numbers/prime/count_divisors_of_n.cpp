@@ -20,6 +20,8 @@ using ArrayType = std::vector<unsigned>;
 /**
  * @reference   Check if a number has prime count of divisors
  *              https://www.geeksforgeeks.org/check-if-a-number-has-prime-count-of-divisors/
+ *
+ * @tags    #prime #factorization
  */
 auto IsCountDivisorsOfNPrime(unsigned N) {
     const auto prime_factors = PrimesBelowN(N);
@@ -43,12 +45,15 @@ auto IsCountDivisorsOfNPrime(unsigned N) {
 /**
  * @reference   Generating all divisors of a number using its prime factorization
  *              https://www.geeksforgeeks.org/generating-all-divisors-of-a-number-using-its-prime-factorization/
+ *
+ * @tags    #prime #factorization #sorting
  */
 using PrimeCountPairsType = std::vector<std::pair<unsigned, unsigned>>;
 
 void AllDivisorsOf(const PrimeCountPairsType::const_iterator iter,
                    const PrimeCountPairsType::const_iterator cend,
-                   unsigned current_divisor, ArrayType &results) {
+                   unsigned current_divisor,
+                   ArrayType &results) {
     if (iter == cend) {
         results.push_back(current_divisor);
     } else {
@@ -74,8 +79,7 @@ auto AllDivisorsOf(const unsigned N) {
 }
 
 
-/** Find all divisors of a natural number
- *
+/**
  * @reference   Find all divisors of a natural number | Set 1
  *              https://www.geeksforgeeks.org/find-divisors-natural-number-set-1/
  * @reference   Find all divisors of a natural number | Set 2
@@ -84,6 +88,8 @@ auto AllDivisorsOf(const unsigned N) {
  *              https://www.geeksforgeeks.org/program-to-find-all-factors-of-a-number-using-recursion/
  * @reference   Program to print factors of a number in pairs
  *              https://www.geeksforgeeks.org/program-to-print-factors-of-a-number-in-pairs/
+ *
+ * @tags    #sorting #factorization
  */
 auto DivisorsOfN_Pairs(const int N) {
     ArrayType divisors;
@@ -103,7 +109,38 @@ auto DivisorsOfN_Pairs(const int N) {
     return divisors;
 }
 
-}//namespace
+
+/**
+ * @reference   Minimum Factorization
+ *              https://algo.monster/liteproblems/625
+ *
+ * The problem is to find the smallest positive integer (x) that can be formed such that the product of
+ * all its digits equals a given positive integer (num). For instance, if num is 18, x could be 29
+ * (since 2 * 9 = 18). We want to find the smallest such x if it exists. However, there are a couple of
+ * constraints: if x does not exist or it is not a 32-bit signed integer (which means x must be less
+ * than 2^31), the function should return 0.
+ *
+ * @tags    #greedy #factorization
+ */
+int MinFactorization(int num) {
+    if (num < 2) {
+        return num;
+    }
+
+    long long result = 0;
+    long long multiplier = 1;
+    for (int i = 9; i > 1; --i) {
+        while (num % i == 0) {
+            num /= i;
+            result += multiplier * i;
+            multiplier *= 10;
+        }
+    }
+
+    return num < 2 and result <= INT_MAX ? static_cast<int>(result) : 0;
+}
+
+} //namespace
 
 
 THE_BENCHMARK(CountDivisorsOfN, 25);
@@ -142,3 +179,10 @@ SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE1, EXPECTED1, 6);
 SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE2, EXPECTED2, 10);
 SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE3, EXPECTED3, 100);
 SIMPLE_TEST(DivisorsOfN_Pairs, TestSAMPLE4, EXPECTED4, 125);
+
+
+THE_BENCHMARK(MinFactorization, 18);
+
+SIMPLE_TEST(MinFactorization, TestSAMPLE1, 29, 18);
+SIMPLE_TEST(MinFactorization, TestSAMPLE2, 1, 1);
+SIMPLE_TEST(MinFactorization, TestSAMPLE3, 0, 13);

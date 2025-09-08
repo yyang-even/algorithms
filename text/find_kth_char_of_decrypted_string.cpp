@@ -5,18 +5,17 @@
 
 namespace {
 
-/** Find k'th character of decrypted string
+/**
+ * @reference   Find k'th character of decrypted string
+ *              https://www.geeksforgeeks.org/find-kth-character-of-decrypted-string/
  *
- * @reference   https://www.geeksforgeeks.org/find-kth-character-of-decrypted-string/
- *
- * Given an encoded string where repetitions of substrings are represented as substring
- * followed by count of substrings. For example, if encrypted string is "ab2cd2" and k=4,
- * so output will be 'b' because decrypted string is "ababcdcd" and 4th character is 'b'.
- * Note: Frequency of encrypted substring can be of more than one digit. For example,
- * in "ab12c3", ab is repeated 12 times. No leading 0 is present in frequency of substring.
+ * Given an encoded string where repetitions of substrings are represented as substring followed by
+ * count of substrings. For example, if encrypted string is "ab2cd2" and k=4, so output will be 'b'
+ * because decrypted string is "ababcdcd" and 4th character is 'b'.
+ * Note: Frequency of encrypted substring can be of more than one digit. For example, in "ab12c3", ab is
+ * repeated 12 times. No leading 0 is present in frequency of substring.
  */
-auto FindKthCharOfDecryptedString(const std::string_view encoded,
-                                  const std::size_t K) {
+auto FindKthCharOfDecryptedString(const std::string_view encoded, const std::size_t K) {
     assert(K > 0);
 
     std::string decrypted;
@@ -45,16 +44,17 @@ auto FindKthCharOfDecryptedString(const std::string_view encoded,
  *              http://lixinchengdu.github.io/algorithmbook/leetcode/design-compressed-string-iterator.html
  * @reference   https://www.cnblogs.com/grandyang/p/7026999.html
  *
- * Design and implement a data structure for a compressed string iterator. It should
- * support the following operations: next and hasNext. The given compressed string will
- * be in the form of each letter followed by a positive integer representing the number
- * of this letter existing in the original uncompressed string.
- *  next() - if the original string still has uncompressed characters, return the next
- *      letter; Otherwise return a white space.
+ * Design and implement a data structure for a compressed string iterator. It should support the
+ * following operations: next and hasNext. The given compressed string will be in the form of each
+ * letter followed by a positive integer representing the number of this letter existing in the original
+ * uncompressed string.
+ *  next() - if the original string still has uncompressed characters, return the next letter; Otherwise
+ *      return a white space.
  *  hasNext() - Judge whether there is any letter needs to be uncompressed.
- * Note: Please remember to RESET your class variables declared in StringIterator, as
- * static/class variables are persisted across multiple test cases. Please see here for
- * more details.
+ * Note: Please remember to RESET your class variables declared in StringIterator, as static/class
+ * variables are persisted across multiple test cases. Please see here for more details.
+ *
+ * @tags    #string-stream
  */
 class CompressedStringIterator {
     std::string_view m_compressed;
@@ -63,8 +63,7 @@ class CompressedStringIterator {
     char c = 0;
 
 public:
-    constexpr explicit
-    CompressedStringIterator(const std::string_view compressed):
+    constexpr explicit CompressedStringIterator(const std::string_view compressed) :
         m_compressed(compressed) {
     }
 
@@ -102,9 +101,8 @@ class CompressedStringIterator_SS {
     char c = 0;
 
 public:
-    explicit
-    CompressedStringIterator_SS(const std::string &compressed) {
-        ss = std::istringstream{compressed};
+    explicit CompressedStringIterator_SS(const std::string &compressed) {
+        ss = std::istringstream {compressed};
     }
 
     auto hasNext() {
@@ -125,10 +123,9 @@ public:
     }
 };
 
-template <typename Iterator>
-constexpr auto
-testCompressedStringIterator(const std::string &compressed) {
-    Iterator iter{compressed};
+template<typename Iterator>
+constexpr auto testCompressedStringIterator(const std::string &compressed) {
+    Iterator iter {compressed};
     std::string result;
     while (iter.hasNext()) {
         result.push_back(iter.next());
@@ -142,7 +139,7 @@ constexpr auto testCompressedStringIterator_Plain =
 constexpr auto testCompressedStringIterator_SS =
     testCompressedStringIterator<CompressedStringIterator_SS>;
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(FindKthCharOfDecryptedString, "ab4c12ed3", 21);
