@@ -1,18 +1,18 @@
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/yyang-pplus/config-sh.git
-    rev: d4c1eee67d5941afd748118872cb19b89061b92a
+    rev: 5883cd54c082dcae3f34125b9cfcc250b31f79ee
     hooks:
       - id: astyle-c-in
       - id: shfmt
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v14.0.1
+    rev: v21.1.1
     hooks:
       - id: clang-format
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.2.0
+    rev: v6.0.0
     hooks:
       - id: check-executables-have-shebangs
         stages: [pre-commit]
