@@ -12,12 +12,14 @@ namespace {
  *              Introduction to Algorithms, Third Edition. Problems 31-1.
  * @reference   https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
  *
- * Stein's algorithm or binary GCD algorithm is an algorithm that computes the greatest
- * common divisor of two non-negative integers. Stein's algorithm replaces division with
- * arithmetic shifts, comparisons, and subtraction.
+ * Stein's algorithm or binary GCD algorithm is an algorithm that computes the greatest common divisor
+ * of two non-negative integers. Stein's algorithm replaces division with arithmetic shifts,
+ * comparisons, and subtraction.
  *
  * @reference   Euclid’s Algorithm when % and / operations are costly
  *              https://www.geeksforgeeks.org/euclids-algorithm-when-and-operations-are-costly/
+ *
+ * @tags    #gcd
  */
 constexpr auto Gcd_Stein_Iterative(unsigned a, unsigned b) {
     if (a == 0) {
@@ -73,9 +75,7 @@ constexpr auto Gcd_Stein_Recursive(const unsigned a, const unsigned b) {
         return Gcd_Stein_Recursive(a, b >> 1);
     }
 
-    return a > b ?
-           Gcd_Stein_Recursive((a - b) >> 1, b) :
-           Gcd_Stein_Recursive((b - a) >> 1, a);
+    return a > b ? Gcd_Stein_Recursive((a - b) >> 1, b) : Gcd_Stein_Recursive((b - a) >> 1, a);
 }
 
 
@@ -102,11 +102,13 @@ constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
  * @reference   Find Greatest Common Divisor of Array
  *              https://leetcode.com/problems/find-greatest-common-divisor-of-array/
  *
- * Given an integer array nums, return the greatest common divisor of the smallest number
- * and largest number in nums.
- * The greatest common divisor of two numbers is the largest positive integer that evenly
- * divides both numbers.
+ * Given an integer array nums, return the greatest common divisor of the smallest number and largest
+ * number in nums.
+ * The greatest common divisor of two numbers is the largest positive integer that evenly divides both
+ * numbers.
  * 2 <= nums.length <= 1000
+ *
+ * @tags    #gcd
  */
 
 
@@ -115,11 +117,10 @@ constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
  *              https://leetcode.com/problems/count-operations-to-obtain-zero/
  *
  * You are given two non-negative integers num1 and num2.
- * In one operation, if num1 >= num2, you must subtract num2 from num1, otherwise subtract
- * num1 from num2.
- *  For example, if num1 = 5 and num2 = 4, subtract num2 from num1, thus obtaining num1 = 1
- *      and num2 = 4. However, if num1 = 4 and num2 = 5, after one operation, num1 = 4 and
- *      num2 = 1.
+ * In one operation, if num1 >= num2, you must subtract num2 from num1, otherwise subtract num1 from
+ * num2.
+ *  For example, if num1 = 5 and num2 = 4, subtract num2 from num1, thus obtaining num1 = 1 and num2 =
+ *  4. However, if num1 = 4 and num2 = 5, after one operation, num1 = 4 and num2 = 1.
  * Return the number of operations required to make either num1 = 0 or num2 = 0.
  */
 constexpr auto CountOperations(int num1, int num2) {
@@ -137,7 +138,7 @@ constexpr auto CountOperations(int num1, int num2) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 SIMPLE_BENCHMARK(gcd, Sample1, 12, 18);
