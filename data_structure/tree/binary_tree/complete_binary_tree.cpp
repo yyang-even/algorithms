@@ -9,9 +9,52 @@
 
 namespace {
 
-/** Check whether a binary tree is a complete tree or not | Set 2 (Recursive Solution)
- *
- * @reference   https://www.geeksforgeeks.org/check-whether-binary-tree-complete-not-set-2-recursive-solution/
+auto isCompleteBinaryTree_BFS(const BinaryTree::Node::PointerType root) {
+    std::queue<BinaryTree::Node::PointerType> q;
+    PushIfNotNull(q, root);
+
+    bool seen_null = false;
+    while (not q.empty()) {
+        const auto node = q.front();
+        q.pop();
+
+        if (node) {
+            if (seen_null) {
+                return false;
+            }
+        } else {
+            seen_null = true;
+            continue;
+        }
+
+        q.emplace(node->left);
+        q.emplace(node->right);
+    }
+
+    return true;
+}
+
+
+auto isCompleteBinaryTree_Array(const BinaryTree::Node::PointerType root) {
+    std::vector<BinaryTree::Node::PointerType> bfs;
+    bfs.push_back(root);
+
+    std::size_t i = 0;
+    for (; i < bfs.size() and bfs[i]; ++i) {
+        bfs.push_back(bfs[i]->left);
+        bfs.push_back(bfs[i]->right);
+    }
+
+    for (; i < bfs.size() and not bfs[i]; ++i)
+        ;
+
+    return i == bfs.size();
+}
+
+
+/**
+ * @reference   Check whether a binary tree is a complete tree or not | Set 2 (Recursive Solution)
+ *              https://www.geeksforgeeks.org/check-whether-binary-tree-complete-not-set-2-recursive-solution/
  */
 
 
@@ -25,6 +68,8 @@ namespace {
  * 2h nodes inclusive at the last level h.
  * Design an algorithm that runs in less than O(n) time complexity.
  * The tree is guaranteed to be complete.
+ *
+ * @tags    #binary-tree #DFS
  */
 auto CountCompleteTreeNodes(const BinaryTree::Node::PointerType node) {
     if (not node) {
@@ -101,6 +146,28 @@ SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE3, true, SAMPLE3);
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE4, true, SAMPLE4);
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE5, false, SAMPLE5);
 SIMPLE_TEST(isCompleteBinaryTree, TestSAMPLE6, false, SAMPLE6);
+
+
+SIMPLE_BENCHMARK(isCompleteBinaryTree_BFS, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isCompleteBinaryTree_BFS, Sample6, SAMPLE6);
+
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE3, true, SAMPLE3);
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE5, false, SAMPLE5);
+SIMPLE_TEST(isCompleteBinaryTree_BFS, TestSAMPLE6, false, SAMPLE6);
+
+
+SIMPLE_BENCHMARK(isCompleteBinaryTree_Array, Sample1, SAMPLE1);
+SIMPLE_BENCHMARK(isCompleteBinaryTree_Array, Sample6, SAMPLE6);
+
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE1, true, SAMPLE1);
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE2, true, SAMPLE2);
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE3, true, SAMPLE3);
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE4, true, SAMPLE4);
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE5, false, SAMPLE5);
+SIMPLE_TEST(isCompleteBinaryTree_Array, TestSAMPLE6, false, SAMPLE6);
 
 
 THE_BENCHMARK(CountCompleteTreeNodes, SAMPLE3);

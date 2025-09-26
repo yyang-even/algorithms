@@ -5,9 +5,9 @@ namespace {
 
 using namespace std::string_literals;
 
-/** Time Based Key-Value Store
- *
- * @reference   https://leetcode.com/problems/time-based-key-value-store/
+/**
+ * @reference   Time Based Key-Value Store
+ *              https://leetcode.com/problems/time-based-key-value-store/
  *
  * Design a time-based key-value data structure that can store multiple values for the same key at
  * different time stamps and retrieve the key's value at a certain timestamp.
@@ -87,7 +87,7 @@ public:
  *  void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the
  *      user with ID followeeId.
  *
- * @tags    #hash-table #queue
+ * @tags    #hash-table #queue #priority-queue
  */
 
 
@@ -107,6 +107,28 @@ public:
  * Return the total score at the end of the process.
  *
  * @tags    #hash-table #stack
+ */
+
+
+/**
+ * @reference   Design Spreadsheet
+ *              https://leetcode.com/problems/design-spreadsheet/
+ *
+ * A spreadsheet is a grid with 26 columns (labeled from 'A' to 'Z') and a given number of rows. Each
+ * cell in the spreadsheet can hold an integer value between 0 and 105.
+ * Implement the Spreadsheet class:
+ *  Spreadsheet(int rows) Initializes a spreadsheet with 26 columns (labeled 'A' to 'Z') and the
+ *      specified number of rows. All cells are initially set to 0.
+ *  void setCell(String cell, int value) Sets the value of the specified cell. The cell reference is
+ *      provided in the format "AX" (e.g., "A1", "B10"), where the letter represents the column (from
+ *      'A' to 'Z') and the number represents a 1-indexed row.
+ *  void resetCell(String cell) Resets the specified cell to 0.
+ *  int getValue(String formula) Evaluates a formula of the form "=X+Y", where X and Y are either cell
+ *      references or non-negative integers, and returns the computed sum.
+ * Note: If getValue references a cell that has not been explicitly set using setCell, its value is
+ * considered 0.
+ *
+ * @tags    #hash-table #numeric-string
  */
 
 } //namespace

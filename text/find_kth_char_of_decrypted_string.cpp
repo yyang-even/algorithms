@@ -54,7 +54,7 @@ auto FindKthCharOfDecryptedString(const std::string_view encoded, const std::siz
  * Note: Please remember to RESET your class variables declared in StringIterator, as static/class
  * variables are persisted across multiple test cases. Please see here for more details.
  *
- * @tags    #string-stream
+ * @tags    #tokenizing
  */
 class CompressedStringIterator {
     std::string_view m_compressed;

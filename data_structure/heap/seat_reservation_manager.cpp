@@ -3,9 +3,9 @@
 
 namespace {
 
-/** Seat Reservation Manager
- *
- * @reference   https://leetcode.com/problems/seat-reservation-manager/
+/**
+ * @reference   Seat Reservation Manager
+ *              https://leetcode.com/problems/seat-reservation-manager/
  *
  * Design a system that manages the reservation state of n seats that are numbered from 1 to n.
  * Implement the SeatManager class:
@@ -13,6 +13,8 @@ namespace {
  *  All seats are initially available.
  *  int reserve() Fetches the smallest-numbered unreserved seat, reserves it, and returns its number.
  *  void unreserve(int seatNumber) Unreserves the seat with the given seatNumber.
+ *
+ * @tags    #ordered-set
  */
 class SeatManager {
     int m_marker;
@@ -60,6 +62,34 @@ public:
  * order, that is, either x is a prefix of y, or if i is the first position such that x[i] != y[i], then
  * x[i] comes before y[i] in alphabetic order.
  * All the strings in foods are distinct.
+ *
+ * @tags    #hash-table #ordered-set
+ */
+
+
+/**
+ * @reference   Design Task Manager
+ *              https://leetcode.com/problems/design-task-manager/
+ *
+ * There is a task management system that allows users to manage their tasks, each associated with a
+ * priority. The system should efficiently handle adding, modifying, executing, and removing tasks.
+ * Implement the TaskManager class:
+ *  TaskManager(vector<vector<int>>& tasks) initializes the task manager with a list of
+ *      user-task-priority triples. Each element in the input list is of the form [userId, taskId,
+ *      priority], which adds a task to the specified user with the given priority.
+ *  void add(int userId, int taskId, int priority) adds a task with the specified taskId and priority to
+ *      the user with userId. It is guaranteed that taskId does not exist in the system.
+ *  void edit(int taskId, int newPriority) updates the priority of the existing taskId to newPriority.
+ *      It is guaranteed that taskId exists in the system.
+ *  void rmv(int taskId) removes the task identified by taskId from the system. It is guaranteed that
+ *      taskId exists in the system.
+ *  int execTop() executes the task with the highest priority across all users. If there are multiple
+ *      tasks with the same highest priority, execute the one with the highest taskId. After executing,
+ *      the taskId is removed from the system. Return the userId associated with the executed task. If
+ *      no tasks are available, return -1.
+ * Note that a user may be assigned multiple tasks.
+ *
+ * @tags    #hash-table #ordered-set
  */
 
 } //namespace
