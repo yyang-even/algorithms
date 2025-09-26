@@ -5,12 +5,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Valid Triangle Number
- *
- * @reference   https://leetcode.com/problems/valid-triangle-number/
+/**
+ * @reference   Valid Triangle Number
+ *              https://leetcode.com/problems/valid-triangle-number/
  *
  * Given an integer array nums, return the number of triplets chosen from the array that can make
  * triangles if we take them as side lengths of a triangle.
+ *
+ * @tags    #greedy #sorting #binary-search #two-pointers
  */
 auto ValidTriangleNumber(ArrayType nums) {
     std::sort(nums.begin(), nums.end());
@@ -73,6 +75,8 @@ auto ValidTriangleNumber_TwoPointers(ArrayType nums) {
  *
  * Given an integer array nums, return the largest perimeter of a triangle with a non-zero area, formed
  * from three of these lengths. If it is impossible to form any triangle of a non-zero area, return 0.
+ *
+ * @tags    #greedy #sorting
  */
 
 
@@ -87,6 +91,8 @@ auto ValidTriangleNumber_TwoPointers(ArrayType nums) {
  * subsequence of an array can be obtained by erasing some (possibly zero) elements from the array.
  * Note that the solution with the given constraints is guaranteed to be unique. Also return the answer
  * sorted in non-increasing order.
+ *
+ * @tags    #greedy #sorting
  */
 
 
@@ -103,6 +109,8 @@ auto ValidTriangleNumber_TwoPointers(ArrayType nums) {
  * The perimeter of a polygon is the sum of lengths of its sides.
  * Return the largest possible perimeter of a polygon whose sides can be formed from nums, or -1 if it
  * is not possible to create a polygon.
+ *
+ * @tags    #greedy #sorting
  */
 
 } //namespace

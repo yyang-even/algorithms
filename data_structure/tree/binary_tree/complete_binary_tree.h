@@ -3,9 +3,9 @@
 #include "binary_tree_traversals.h"
 
 
-/** Check whether a given Binary Tree is Complete or not | Set 1 (Iterative Solution)
- *
- * @reference   https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
+/**
+ * @reference   Check whether a given Binary Tree is Complete or not | Set 1 (Iterative Solution)
+ *              https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
  *
  * A complete binary tree is a binary tree in which every level, except possibly the last, is completely
  * filled, and all nodes are as far left as possible. See the following examples. A node is 'Full Node'
@@ -20,6 +20,8 @@
  * In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes
  * in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the
  * last level h.
+ *
+ * @tags    #binary-tree #BFS
  */
 static inline auto isCompleteBinaryTree(const BinaryTree::Node::PointerType root_node) {
     bool has_nonfull_node_found = false;

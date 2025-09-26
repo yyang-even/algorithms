@@ -11,9 +11,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Count frequencies of all elements in array in O(1) extra space and O(n) time
- *
- * @reference   https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
+/**
+ * @reference   Count frequencies of all elements in array in O(1) extra space and O(n) time
+ *              https://www.geeksforgeeks.org/count-frequencies-elements-array-o1-extra-space-time/
  *
  * Given an unsorted array of n integers which can contain integers from 1 to n. Some elements can be
  * repeated multiple times and some other elements can be absent from the array. Count frequency of all
@@ -21,6 +21,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Counting frequencies of array elements
  *              https://www.geeksforgeeks.org/counting-frequencies-of-array-elements/
+ *
+ * @tags    #hash-table #in-place-hash
  */
 auto CountFrequenciesOfAllElements_InPlace_Sign(ArrayType elements) {
     for (auto iter = elements.begin(); iter != elements.end();) {
@@ -79,13 +81,15 @@ auto CountFrequenciesOfAllElements_InPlace_Mod(ArrayType elements) {
 }
 
 
-/** Print numbers in descending order along with their frequencies
- *
- * @reference   https://www.geeksforgeeks.org/print-numbers-in-descending-order-along-with-their-frequencies/
+/**
+ * @reference   Print numbers in descending order along with their frequencies
+ *              https://www.geeksforgeeks.org/print-numbers-in-descending-order-along-with-their-frequencies/
  * @reference   Print 2-D co-ordinate points in ascending order followed by their frequencies
  *              https://www.geeksforgeeks.org/print-2-d-co-ordinate-points-in-ascending-order-followed-by-their-frequencies/
  * @reference   Descending order in Map and Multimap of C++ STL
  *              https://www.geeksforgeeks.org/descending-order-map-multimap-c-stl/
+ *
+ * @tags    #hash-table #sorting #ordered-set
  */
 using ValueCountPair = std::pair<ArrayType::value_type, ArrayType::size_type>;
 
@@ -117,6 +121,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *
  * Given a string str, the task is to print the characters in decreasing order of their frequency.  If
  * the frequency of two characters is same then sort them in descending order alphabetically.
+ *
+ * @tags    #hash-table #sorting
  */
 
 
@@ -127,6 +133,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Given a string str containing only lowercase characters. The problem is to print the characters along
  * with their frequency in the order of their occurrence and in the given format explained in the
  * examples below.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -138,6 +146,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * integers in the range [1, n] that do not appear in nums.
  * Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list
  * does not count as extra space.
+ *
+ * @tags    #hash-table #in-place-hash
  */
 
 
@@ -148,6 +158,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Given an integer array nums of length n where all the integers of nums are in the range [1, n] and
  * each integer appears once or twice, return an array of all the integers that appears twice.
  * You must write an algorithm that runs in O(n) time and uses only constant extra space.
+ *
+ * @tags    #hash-table #in-place-hash
  */
 
 
@@ -159,6 +171,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * to its value.
  * Return the largest lucky integer in the array. If there is no lucky integer return -1.
  * 1 <= arr[i] <= 500
+ *
+ * @tags    #hash-table #min-max-element
  */
 
 
@@ -169,6 +183,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Given an integer array arr, count how many elements x there are, such that x + 1 is also in arr.
  * If there're duplicates in arr, count them seperately.
  * 0 <= arr[i] <= 1000
+ *
+ * @tags    #hash-table
  */
 
 
@@ -179,6 +195,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Given an array of integers nums, return the number of good pairs.
  * A pair (i, j) is called good if nums[i] == nums[j] and i < j.
  * 1 <= nums[i] <= 100
+ *
+ * @tags    #hash-table
  */
 
 
@@ -189,6 +207,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * A pangram is a sentence where every letter of the English alphabet appears at least once.
  * Given a string sentence containing only lowercase English letters, return true if sentence is a
  * pangram, or false otherwise.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -202,6 +222,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Return true if you can make every string in words equal using any number of operations, and false
  * otherwise.
  * words[i] consists of lowercase English letters.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -212,6 +234,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * Given a string s, return true if s is a good string, or false otherwise.
  * A string s is good if all the characters that appear in s have the same number of occurrences (i.e.,
  * the same frequency).
+ *
+ * @tags    #hash-table
  */
 
 
@@ -228,6 +252,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * For example, "R3G2B1" describes n == 3 rings: a red ring placed onto the rod labeled 3, a green ring
  * placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.
  * Return the number of rods that have all three colors of rings on them.
+ *
+ * @tags    #hash-table #bit-hash
  */
 
 
@@ -243,6 +269,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *  Repeat this process with the new number as long as you keep finding the number.
  * Return the final value of original.
  * 1 <= nums[i], original <= 1000
+ *
+ * @tags    #hash-table
  */
 
 
@@ -255,6 +283,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  *  Each element belongs to exactly one pair.
  *  The elements present in a pair are equal.
  * Return true if nums can be divided into n pairs, otherwise return false.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -281,6 +311,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * What is the time complexity of your modified solution? What is the most time-consuming part and
  * memory-consuming part of it? How to optimize?
  * How to make sure the duplicated files you find are not false positive?
+ *
+ * @tags    #hash-table
  */
 
 
@@ -292,6 +324,8 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * task. In each round, you can complete either 2 or 3 tasks of the same difficulty level.
  * Return the minimum rounds required to complete all the tasks, or -1 if it is not possible to complete
  * all the tasks.
+ *
+ * @tags    #hash-table
  */
 auto MinRounds(const ArrayType &tasks) {
     const auto counts = ToFrequencyHashTable(tasks);
@@ -316,6 +350,8 @@ auto MinRounds(const ArrayType &tasks) {
  * column cj are equal.
  * A row and column pair is considered equal if they contain the same elements in the same order (i.e.,
  * an equal array).
+ *
+ * @tags    #hash-table
  */
 auto NumEqualPairs(const MatrixType &grid) {
     const auto N = grid.size();
@@ -353,6 +389,8 @@ auto NumEqualPairs(const MatrixType &grid) {
  * Each person should appear in exactly one group, and every person must be in a group. If there are
  * multiple answers, return any of them. It is guaranteed that there will be at least one valid solution
  * for the given input.
+ *
+ * @tags    #hash-table
  */
 
 
@@ -466,6 +504,8 @@ auto DetermineIfTwoStrsAreClose(const std::string_view word1, const std::string_
  * Return the total frequencies of elements in nums such that those elements all have the maximum
  * frequency.
  * The frequency of an element is the number of occurrences of that element in the array.
+ *
+ * @tags    #hash-table #min-max-element
  */
 
 } //namespace
