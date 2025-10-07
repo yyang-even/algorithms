@@ -27,6 +27,8 @@ void update(ArrayType &elements,
  *
  * Given an array of size N which is initialized with all zeros. We are given many range add queries,
  * which should be applied to this array. We need to print final updated array as our result.
+ *
+ * @tags    #prefix-sum
  */
 auto RangesOfAdditions(const ArrayType::size_type size,
                        const ArrayType::value_type d,
@@ -49,6 +51,8 @@ auto RangesOfAdditions(const ArrayType::size_type size,
  * Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element
  * of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
  * Return the modified array after all k operations were executed.
+ *
+ * @tags    #prefix-sum
  */
 auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
     ArrayType elements(N, 0);
@@ -69,6 +73,8 @@ auto RangeAddition(const std::size_t N, const UpdateArray &updates) {
  * start and end. For each query, the problem is to increment the values from the start to end index in
  * the given array by the given value d. A linear time efficient solution is required for handling such
  * multiple queries.
+ *
+ * @tags    #prefix-sum
  */
 inline auto RangesOfAdditions(const ArrayType &elements,
                               const ArrayType::value_type d,
@@ -109,6 +115,8 @@ inline auto RangesOfAdditions(const ArrayType &elements,
  * increment operations.
  *  increment(a, b, k) : Increment values from 'a' to 'b' by 'k'.
  * After m operations, we need to calculate the maximum of the values in the array.
+ *
+ * @tags    #prefix-sum #min-max-element
  */
 inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const RangeArray &ranges) {
     const auto prefix_sums = RangesOfAdditions(size, 100, ranges);
@@ -123,6 +131,8 @@ inline auto MaxAfterRangesOfAdditions(const ArrayType::size_type size, const Ran
  * You are given an m x n matrix M initialized with all 0's and an array of operations ops, where ops[i]
  * = [ai, bi] means M[x][y] should be incremented by one for all 0 <= x < ai and 0 <= y < bi.
  * Count and return the number of maximum integers in the matrix after performing all the operations.
+ *
+ * @tags    #matrix #min-max-element
  */
 auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &operations) {
     for (const auto &[i, j] : operations) {
@@ -323,6 +333,36 @@ auto MinTimeToCollectGarbage(const std::vector<std::string> &garbage, ArrayType 
     return result;
 }
 
+
+/**
+ * @reference   Find the Student that Will Replace the Chalk
+ *              https://leetcode.com/problems/find-the-student-that-will-replace-the-chalk/
+ *
+ * There are n students in a class numbered from 0 to n - 1. The teacher will give each student a
+ * problem starting with the student number 0, then the student number 1, and so on until the teacher
+ * reaches the student number n - 1. After that, the teacher will restart the process, starting with the
+ * student number 0 again.
+ * You are given a 0-indexed integer array chalk and an integer k. There are initially k pieces of
+ * chalk. When the student number i is given a problem to solve, they will use chalk[i] pieces of chalk
+ * to solve that problem. However, if the current number of chalk pieces is strictly less than chalk[i],
+ * then the student number i will be asked to replace the chalk.
+ * Return the index of the student that will replace the chalk pieces.
+ *
+ * @tags    #prefix-sum #binary-search
+ */
+int ChalkReplacer(const ArrayType &chalk, int k) {
+    std::vector<long> prefix_sum_array = {chalk.front()};
+
+    for (std::size_t i = 1; i < chalk.size(); ++i) {
+        prefix_sum_array.push_back(prefix_sum_array.back() + chalk[i]);
+    }
+
+    k %= prefix_sum_array.back();
+
+    return std::upper_bound(prefix_sum_array.cbegin(), prefix_sum_array.cend(), k) -
+           prefix_sum_array.cbegin();
+}
+
 } //namespace
 
 
@@ -411,3 +451,13 @@ THE_BENCHMARK(MinTimeToCollectGarbage, SAMPLE1G, SAMPLE1T);
 
 SIMPLE_TEST(MinTimeToCollectGarbage, TestSAMPLE1, 21, SAMPLE1G, SAMPLE1T);
 SIMPLE_TEST(MinTimeToCollectGarbage, TestSAMPLE2, 37, SAMPLE2G, SAMPLE2T);
+
+
+const ArrayType SAMPLE1CR = {5, 1, 5};
+const ArrayType SAMPLE2CR = {3, 4, 1, 2};
+
+
+THE_BENCHMARK(ChalkReplacer, SAMPLE2CR, 25);
+
+SIMPLE_TEST(ChalkReplacer, TestSAMPLE1, 0, SAMPLE1CR, 22);
+SIMPLE_TEST(ChalkReplacer, TestSAMPLE2, 1, SAMPLE2CR, 25);

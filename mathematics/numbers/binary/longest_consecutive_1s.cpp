@@ -37,6 +37,8 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
  * Two 1's are adjacent if there are only 0's separating them (possibly no 0's). The distance between
  * two 1's is the absolute difference between their bit positions. For example, the two 1's in "1001"
  * have a distance of 3.
+ *
+ * @tags    #sliding-window #min-max-element
  */
 constexpr auto BinaryGap(const unsigned n) {
     int prev = -1;
@@ -62,6 +64,8 @@ constexpr auto BinaryGap(const unsigned n) {
  *
  * @reference   Max Consecutive Ones
  *              https://leetcode.com/problems/max-consecutive-ones/
+ *
+ * @tags    #sliding-window #min-max-element
  */
 auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
     int count = 0;
@@ -95,7 +99,7 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
  * @hint    The bitwise AND of two different numbers will always be strictly less than the maximum of
  *          those two numbers.
  *
- * @tags    #bit-tricks
+ * @tags    #sliding-window #bit-tricks #min-max-element
  */
 auto LongestSubarrayWithMaxAnd(const ArrayType &nums) {
     int current = 0;
@@ -123,6 +127,8 @@ auto LongestSubarrayWithMaxAnd(const ArrayType &nums) {
  *
  * Given an integer array arr, return true if there are three consecutive odd numbers in the array.
  * Otherwise, return false.
+ *
+ * @tags    #sliding-window
  */
 auto ThreeConsecutiveOdds(const ArrayType &nums) {
     int odds = 0;
@@ -149,6 +155,8 @@ auto ThreeConsecutiveOdds(const ArrayType &nums) {
  * Return true if there exists a pattern of length m that is repeated k or more times, otherwise return
  * false.
  * 2 <= k <= 100
+ *
+ * @tags    #sliding-window
  */
 auto ContainPattern(const ArrayType &nums, const int m, const int k) {
     int length = 0;
@@ -180,7 +188,7 @@ auto ContainPattern(const ArrayType &nums, const int m, const int k) {
  * Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return
  * 0 if there is no such subarray.
  *
- * @tags    #sliding-window
+ * @tags    #sliding-window #min-max-element
  */
 auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
     unsigned current_count = 0;
@@ -212,7 +220,7 @@ auto LengthOfLongestConsecutive1s_1Flip_Array(const ArrayType &number) {
  * Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array
  * if you can flip at most k 0's.
  *
- * @tags    #sliding-window
+ * @tags    #sliding-window #min-max-element
  */
 auto LengthOfLongestConsecutive1s_KFlip_Array(const ArrayType &number, const int K) {
     ArrayType::size_type left = 0;
@@ -281,6 +289,8 @@ auto MaxFrequency_NonShrinkableSlidingWindow(ArrayType nums, long k) {
  *  Change the answer key for any question to 'T' or 'F' (i.e., set answerKey[i] to 'T' or 'F').
  * Return the maximum number of consecutive 'T's or 'F's in the answer key after performing the
  * operation at most k times.
+ *
+ * @tags    #sliding-window #min-max-element
  */
 auto MaxConsecutiveAnswers_KFlip(const std::string_view answer_key, const int k) {
     std::size_t result = k;
@@ -329,6 +339,8 @@ auto MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow(const std::string_vi
  * water.
  * The area of an island is the number of cells with a value 1 in the island.
  * Return the maximum area of an island in grid. If there is no island, return 0.
+ *
+ * @tags    #matrix #BFS #DFS #disjoint-set
  */
 
 
@@ -339,6 +351,8 @@ auto MaxConsecutiveAnswers_KFlip_NonshrinkableSlidingWindow(const std::string_vi
  * You are given an n x n binary matrix grid. You are allowed to change at most one 0 to be 1.
  * Return the size of the largest island in grid after applying this operation.
  * An island is a 4-directionally connected group of 1s.
+ *
+ * @tags    #matrix #BFS #DFS #disjoint-set
  */
 int checkIslandSize_Iterative(const MatrixType &grid, const std::pair<int, int> start_point) {
     const int N = grid.size();
@@ -460,7 +474,7 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * Return the maximum number you can get by changing at most one digit (6 becomes 9, and 9 becomes 6).
  * 1 <= num <= 10^4
  *
- * @tags    #bit-tricks
+ * @tags    #greedy #digit-traverse
  */
 
 
@@ -471,6 +485,8 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * Given a binary string s without leading zeros, return true if s contains at most one contiguous
  * segment of ones. Otherwise, return false.
  * s[0] is '1'.
+ *
+ * @tags    #sliding-window
  */
 inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
     return s.find("01") == std::string_view::npos;
@@ -487,6 +503,8 @@ inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
  * continuous segment of 0s has length 3.
  * Note that if there are no 0's, then the longest continuous segment of 0's is considered to have a
  * length 0. The same applies if there is no 1's.
+ *
+ * @tags    #sliding-window #min-max-element
  */
 constexpr auto Longer1sThan0s(const std::string_view s) {
     auto curr = s.front();
@@ -504,6 +522,49 @@ constexpr auto Longer1sThan0s(const std::string_view s) {
     }
 
     return maximum[1] > maximum[0];
+}
+
+
+/**
+ * @reference   Maximize Active Section with Trade I
+ *              https://leetcode.com/problems/maximize-active-section-with-trade-i/
+ *
+ * You are given a binary string s of length n, where:
+ *  '1' represents an active section.
+ *  '0' represents an inactive section.
+ * You can perform at most one trade to maximize the number of active sections in s. In a trade, you:
+ *  Convert a contiguous block of '1's that is surrounded by '0's to all '0's.
+ *  Afterward, convert a contiguous block of '0's that is surrounded by '1's to all '1's.
+ * Return the maximum number of active sections in s after making the optimal trade.
+ * Note: Treat s as if it is augmented with a '1' at both ends, forming t = '1' + s + '1'. The augmented
+ * '1's do not contribute to the final count.
+ *
+ * @tags    #sliding-window #min-max-element
+ */
+constexpr auto MaxActiveSectionsAfterTrade(const std::string_view s) {
+    int current_zeros = 0;
+    int prev_zeros = 0;
+    int total_ones = 0;
+    int result = 0;
+
+    for (std::size_t i = 0; i < s.size(); ++i) {
+        if (s[i] == '0') {
+            ++current_zeros;
+        } else {
+            if (current_zeros) {
+                result = std::max(result, current_zeros + prev_zeros);
+                prev_zeros = current_zeros;
+                current_zeros = 0;
+            }
+            ++total_ones;
+        }
+    }
+
+    result = std::max(result, current_zeros + prev_zeros);
+    if (current_zeros == result or prev_zeros == result) {
+        return total_ones;
+    }
+    return total_ones + result;
 }
 
 } //namespace
@@ -679,3 +740,13 @@ THE_BENCHMARK(MaxFrequency_NonShrinkableSlidingWindow, SAMPLE1F, 5);
 SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE1, 3, SAMPLE1F, 5);
 SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE2, 2, SAMPLE2F, 5);
 SIMPLE_TEST(MaxFrequency_NonShrinkableSlidingWindow, TestSAMPLE3, 1, SAMPLE3F, 2);
+
+
+THE_BENCHMARK(MaxActiveSectionsAfterTrade, "1000100");
+
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE1, 1, "01");
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE2, 0, "00");
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE3, 4, "0100");
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE4, 7, "1000100");
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE5, 4, "01010");
+SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE6, 2, "101");
