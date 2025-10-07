@@ -6,14 +6,16 @@ namespace {
 using PairArray = std::vector<std::pair<int, int>>;
 using ArrayType = std::vector<int>;
 
-/** Two City Scheduling
- *
- * @reference   https://leetcode.com/problems/two-city-scheduling/
+/**
+ * @reference   Two City Scheduling
+ *              https://leetcode.com/problems/two-city-scheduling/
  *
  * A company is planning to interview 2n people. Given the array costs where costs[i] = [aCosti,
  * bCosti], the cost of flying the ith person to city a is aCosti, and the cost of flying the ith person
  * to city b is bCosti.
  * Return the minimum cost to fly every person to a city such that exactly n people arrive in each city.
+ *
+ * @tags    #greedy #sorting
  */
 auto TwoCityScheduling(const PairArray &costs) {
     std::vector<int> diffs;
@@ -59,6 +61,8 @@ auto TwoCityScheduling_SpaceO1(PairArray costs) {
  * bags.
  * Return the maximum number of bags that could have full capacity after placing the additional rocks in
  * some bags.
+ *
+ * @tags    #greedy #sorting
  */
 auto MaximumBags(const ArrayType &capacity, const ArrayType &rocks, int additionalRocks) {
     ArrayType diffs;

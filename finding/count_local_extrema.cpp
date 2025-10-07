@@ -5,14 +5,16 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Number of local extrema in an array
+/**
+ * @reference   Number of local extrema in an array
+ *              https://www.geeksforgeeks.org/maximum-number-local-extrema/
  *
- * @reference   https://www.geeksforgeeks.org/maximum-number-local-extrema/
- *
- * You are given an array on n-elements. An extrema is an elements which is either greater than
- * its both of neighbors or less than its both neighbors. You have to calculate the number of
- * local extrema in given array.
+ * You are given an array on n-elements. An extrema is an elements which is either greater than its both
+ * of neighbors or less than its both neighbors. You have to calculate the number of local extrema in
+ * given array.
  * Note: 1st and last elements are not extrema.
+ *
+ * @tags    #sliding-window
  */
 auto CountLocalExtrema(const ArrayType &elements) {
     assert(elements.size() > 2);
@@ -21,7 +23,7 @@ auto CountLocalExtrema(const ArrayType &elements) {
     auto prev = elements.cbegin();
     auto iter = std::next(prev);
     for (auto next = std::next(iter); next != elements.cend(); ++prev, ++iter, ++next)
-        count += (*prev<*iter and * iter> * next) or (*prev > *iter and *iter < *next);
+        count += (*prev < *iter and *iter > *next) or (*prev > *iter and *iter < *next);
 
     return count;
 }
@@ -31,13 +33,15 @@ auto CountLocalExtrema(const ArrayType &elements) {
  * @reference   Count Hills and Valleys in an Array
  *              https://leetcode.com/problems/count-hills-and-valleys-in-an-array/
  *
- * You are given a 0-indexed integer array nums. An index i is part of a hill in nums if the
- * closest non-equal neighbors of i are smaller than nums[i]. Similarly, an index i is part of a
- * valley in nums if the closest non-equal neighbors of i are larger than nums[i]. Adjacent
- * indices i and j are part of the same hill or valley if nums[i] == nums[j].
- * Note that for an index to be part of a hill or valley, it must have a non-equal neighbor on
- * both the left and right of the index.
+ * You are given a 0-indexed integer array nums. An index i is part of a hill in nums if the closest
+ * non-equal neighbors of i are smaller than nums[i]. Similarly, an index i is part of a valley in nums
+ * if the closest non-equal neighbors of i are larger than nums[i]. Adjacent indices i and j are part of
+ * the same hill or valley if nums[i] == nums[j].
+ * Note that for an index to be part of a hill or valley, it must have a non-equal neighbor on both the
+ * left and right of the index.
  * Return the number of hills and valleys in nums.
+ *
+ * @tags    #sliding-window
  */
 auto CountLocalExtremaWithDuplicates(const ArrayType &nums) {
     int result = 0;
@@ -58,17 +62,19 @@ auto CountLocalExtremaWithDuplicates(const ArrayType &nums) {
  *
  * A wiggle sequence is a sequence where the differences between successive numbers strictly alternate
  * between positive and negative. The first difference (if one exists) may be either positive or
- * negative. A sequence with one element and a sequence with two non-equal elements are trivially
- * wiggle sequences.
+ * negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle
+ * sequences.
  *  For example, [1, 7, 4, 9, 2, 5] is a wiggle sequence because the differences (6, -3, 5, -7, 3)
  *      alternate between positive and negative.
- *  In contrast, [1, 4, 7, 2, 5] and [1, 7, 4, 5, 5] are not wiggle sequences. The first is not
- *      because its first two differences are positive, and the second is not because its last
- *      difference is zero.
+ *  In contrast, [1, 4, 7, 2, 5] and [1, 7, 4, 5, 5] are not wiggle sequences. The first is not because
+ *      its first two differences are positive, and the second is not because its last difference is
+ *      zero.
  * A subsequence is obtained by deleting some elements (possibly zero) from the original sequence,
  * leaving the remaining elements in their original order.
  * Given an integer array nums, return the length of the longest wiggle subsequence of nums.
  * Follow up: Could you solve this in O(n) time?
+ *
+ * @tags    #greedy
  */
 int WiggleSubsequence(const ArrayType &nums) {
     if (nums.size() < 2) {
