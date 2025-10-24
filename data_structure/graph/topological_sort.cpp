@@ -56,6 +56,8 @@ inline auto TopologicalSort_Kahn(const std::size_t number_vertices,
  * Return the ordering of courses you should take to finish all courses. If there are many valid
  * answers, return any of them. If it is impossible to finish all courses, return an empty array.
  * All the pairs [ai, bi] are distinct.
+ *
+ * @tags    #graph #topological-sort #BFS
  */
 
 

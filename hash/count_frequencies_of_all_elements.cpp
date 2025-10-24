@@ -390,7 +390,7 @@ auto NumEqualPairs(const MatrixType &grid) {
  * multiple answers, return any of them. It is guaranteed that there will be at least one valid solution
  * for the given input.
  *
- * @tags    #hash-table
+ * @tags    #greedy #hash-table
  */
 
 
