@@ -363,6 +363,73 @@ int ChalkReplacer(const ArrayType &chalk, int k) {
            prefix_sum_array.cbegin();
 }
 
+
+/**
+ * @reference   Maximum Frequency of an Element After Performing Operations I
+ *              https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/
+ *
+ * You are given an integer array nums and two integers k and numOperations.
+ * You must perform an operation numOperations times on nums, where in each operation you:
+ *  Select an index i that was not selected in any previous operations.
+ *  Add an integer in the range [-k, k] to nums[i].
+ * Return the maximum possible frequency of any element in nums after performing the operations.
+ * 1 <= nums[i] <= 10^5
+ *
+ * @tags    #hash-table #prefix-sum #min-max-element
+ */
+auto MaxFrequencyAfterOperations_Ranges(const ArrayType &nums,
+                                        const int k,
+                                        const int numOperations) {
+    const auto maximum = *std::max_element(nums.cbegin(), nums.cend());
+
+    const int SIZE = maximum + k + 2;
+    std::vector frequencies(SIZE, 0);
+    std::vector counts(SIZE, 0);
+
+    for (const auto n : nums) {
+        ++frequencies[std::max(0, n - k)];
+        --frequencies[n + k + 1];
+        ++counts[n];
+    }
+
+    int result = 1;
+    for (std::size_t i = 1; i < frequencies.size(); ++i) {
+        frequencies[i] += frequencies[i - 1];
+        const auto actual = std::min(frequencies[i], counts[i] + numOperations);
+        result = std::max(result, actual);
+    }
+
+    return result;
+}
+
+
+auto MaxFrequencyAfterOperations(const ArrayType &nums, const int k, const int numOperations) {
+    const auto maximum = *std::max_element(nums.cbegin(), nums.cend());
+
+    const int SIZE = maximum + k + 2;
+    std::vector count(SIZE, 0);
+
+    for (const auto v : nums) {
+        ++count[v];
+    }
+
+    for (int i = 1; i < SIZE; ++i) {
+        count[i] += count[i - 1];
+    }
+
+    int result = 1;
+    for (int i = 1; i <= maximum; ++i) {
+        const auto left = std::max(1, i - k) - 1;
+        const auto right = i + k;
+        const auto total = count[right] - count[left];
+        const auto frequency = count[i] - count[i - 1];
+        const auto actual = std::min(numOperations + frequency, total);
+        result = std::max(result, actual);
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -461,3 +528,28 @@ THE_BENCHMARK(ChalkReplacer, SAMPLE2CR, 25);
 
 SIMPLE_TEST(ChalkReplacer, TestSAMPLE1, 0, SAMPLE1CR, 22);
 SIMPLE_TEST(ChalkReplacer, TestSAMPLE2, 1, SAMPLE2CR, 25);
+
+
+const ArrayType SAMPLE1MF = {1, 4, 5};
+const ArrayType SAMPLE2MF = {5, 11, 20, 20};
+const ArrayType SAMPLE3MF = {2, 49};
+const ArrayType SAMPLE4MF = {88, 53};
+const ArrayType SAMPLE5MF = {100000, 100000};
+
+
+THE_BENCHMARK(MaxFrequencyAfterOperations, SAMPLE1MF, 1, 2);
+
+SIMPLE_TEST(MaxFrequencyAfterOperations, TestSAMPLE1, 2, SAMPLE1MF, 1, 2);
+SIMPLE_TEST(MaxFrequencyAfterOperations, TestSAMPLE2, 2, SAMPLE2MF, 5, 1);
+SIMPLE_TEST(MaxFrequencyAfterOperations, TestSAMPLE3, 1, SAMPLE3MF, 97, 0);
+SIMPLE_TEST(MaxFrequencyAfterOperations, TestSAMPLE4, 2, SAMPLE4MF, 27, 2);
+SIMPLE_TEST(MaxFrequencyAfterOperations, TestSAMPLE5, 2, SAMPLE5MF, 1, 1);
+
+
+THE_BENCHMARK(MaxFrequencyAfterOperations_Ranges, SAMPLE1MF, 1, 2);
+
+SIMPLE_TEST(MaxFrequencyAfterOperations_Ranges, TestSAMPLE1, 2, SAMPLE1MF, 1, 2);
+SIMPLE_TEST(MaxFrequencyAfterOperations_Ranges, TestSAMPLE2, 2, SAMPLE2MF, 5, 1);
+SIMPLE_TEST(MaxFrequencyAfterOperations_Ranges, TestSAMPLE3, 1, SAMPLE3MF, 97, 0);
+SIMPLE_TEST(MaxFrequencyAfterOperations_Ranges, TestSAMPLE4, 2, SAMPLE4MF, 27, 2);
+SIMPLE_TEST(MaxFrequencyAfterOperations_Ranges, TestSAMPLE5, 2, SAMPLE5MF, 1, 1);
