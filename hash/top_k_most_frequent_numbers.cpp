@@ -7,14 +7,16 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find top k (or most frequent) numbers in a stream
- *
- * @reference   https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/
+/**
+ * @reference   Find top k (or most frequent) numbers in a stream
+ *              https://www.geeksforgeeks.org/find-top-k-or-most-frequent-numbers-in-a-stream/
  *
  * Given an array of n numbers. Your task is to read numbers from the array and keep at-most K numbers
  * at the top (According to their decreasing frequency) every time a new number is read. We basically
  * need to print top k numbers sorted by frequency when input stream has included k distinct elements,
  * else need to print all distinct elements sorted by frequency.
+ *
+ * @tags    #hash-table #sorting
  */
 auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType::size_type K) {
     assert(K);
@@ -48,9 +50,9 @@ auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType
 }
 
 
-/** Find k numbers with most occurrences in the given array
- *
- * @reference   https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+/**
+ * @reference   Find k numbers with most occurrences in the given array
+ *              https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
  *
  * Given an array of n numbers and a positive integer k. The problem is to find k numbers with most
  * occurrences, i.e., the top k numbers having the maximum frequency. If two numbers have same frequency
@@ -65,6 +67,8 @@ auto FindTopKMostFrequentNumbers_Stream(const ArrayType &stream, const ArrayType
  * It is guaranteed that the answer is unique.
  * Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's
  * size.
+ *
+ * @tags    #hash-table #sorting
  */
 auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size_type K) {
     assert(K);
@@ -100,15 +104,19 @@ auto FindTopKMostFrequentNumbers(const ArrayType &numbers, const ArrayType::size
  * Return the answer sorted by the frequency from highest to lowest. Sort the words with the same
  * frequency by their lexicographical order.
  * Follow-up: Could you solve it in O(n log(k)) time and O(n) extra space?
+ *
+ * @tags    #hash-table #sorting
  */
 
 
-/** Program to find second most frequent character
- *
- * @reference   https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
+/**
+ * @reference   Program to find second most frequent character
+ *              https://www.geeksforgeeks.org/c-program-find-second-frequent-character/
  *
  * Given a string, find the second most frequent character in it. Expected time complexity is O(n) where
  * n is the length of the input string.
+ *
+ * @tags    #hash-table #sorting
  */
 auto FindSecondFrequentChar(const std::string_view input) {
     assert(input.size() > 1);
@@ -139,12 +147,14 @@ auto FindSecondFrequentChar(const std::string_view input) {
  *
  * Given an array of integers arr, return true if the number of occurrences of each value in the array
  * is unique, or false otherwise.
+ *
+ * @tags    #hash-table
  */
 
 
-/** Sort elements by frequency | Set 1
- *
- * @reference   https://www.geeksforgeeks.org/sort-elements-by-frequency/
+/**
+ * @reference   Sort elements by frequency | Set 1
+ *              https://www.geeksforgeeks.org/sort-elements-by-frequency/
  * @reference   Sort elements by frequency | Set 2
  *              https://www.geeksforgeeks.org/sort-elements-by-frequency-set-2/
  * @reference   Sorting Array Elements By Frequency | Set 3 (Using STL)
@@ -166,6 +176,8 @@ auto FindSecondFrequentChar(const std::string_view input) {
  * Given an array of integers nums, sort the array in increasing order based on the frequency of the
  * values. If multiple values have the same frequency, sort them in decreasing order.
  * Return the sorted array.
+ *
+ * @tags    #hash-table #sorting
  */
 auto SortByFrequency(ArrayType elements) {
     using MinIndex_Count_Pair = std::pair<ArrayType::size_type, ArrayType::size_type>;
@@ -198,6 +210,8 @@ auto SortByFrequency(ArrayType elements) {
 /**
  * Print the elements of an array in the decreasing frequency if 2 numbers have same frequency then
  * keeps their relative order.
+ *
+ * @tags    #hash-table #sorting
  */
 inline auto SortByFrequency_Stable(ArrayType elements) {
     const auto counter = ToFrequencyHashTable(elements);
@@ -217,6 +231,8 @@ inline auto SortByFrequency_Stable(ArrayType elements) {
  * Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency
  * of a character is the number of times it appears in the string.
  * Return the sorted string. If there are multiple answers, return any of them.
+ *
+ * @tags    #hash-table #sorting
  */
 auto SortByFrequency_Unstable(const std::string_view s) {
     const auto counts = ToFrequencyHashTable(s);
@@ -258,6 +274,24 @@ auto SortByFrequency_Unstable_BucketSort(const std::string_view s) {
 
 
 /**
+ * @reference   Find X-Sum of All K-Long Subarrays I
+ *              https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/
+ *
+ * You are given an array nums of n integers and two integers k and x.
+ * The x-sum of an array is calculated by the following procedure:
+ *  Count the occurrences of all elements in the array.
+ *  Keep only the occurrences of the top x most frequent elements. If two elements have the same number
+ *      of occurrences, the element with the bigger value is considered more frequent.
+ *  Calculate the sum of the resulting array.
+ * Note that if an array has less than x distinct elements, its x-sum is the sum of the array.
+ * Return an integer array answer of length n - k + 1 where answer[i] is the x-sum of the subarray
+ * nums[i..i + k - 1].
+ *
+ * @tags    #hash-table #sliding-window #sorting
+ */
+
+
+/**
  * @reference   Reorder Data in Log Files
  *              https://leetcode.com/problems/reorder-data-in-log-files/
  *
@@ -271,6 +305,8 @@ auto SortByFrequency_Unstable_BucketSort(const std::string_view s) {
  *      sort them lexicographically by their identifiers.
  *  The digit-logs maintain their relative ordering.
  * Return the final order of the logs.
+ *
+ * @tags    #sorting
  */
 auto SortLogs(std::vector<std::string_view> logs) {
     std::stable_sort(logs.begin(), logs.end(), [](const auto &one, const auto &another) {
@@ -306,6 +342,8 @@ auto SortLogs(std::vector<std::string_view> logs) {
  *
  * Given an array of integers arr and an integer k. Find the least number of unique integers after
  * removing exactly k elements.
+ *
+ * @tags    #hash-table #sorting
  */
 
 } //namespace

@@ -69,7 +69,7 @@ auto isCompleteBinaryTree_Array(const BinaryTree::Node::PointerType root) {
  * Design an algorithm that runs in less than O(n) time complexity.
  * The tree is guaranteed to be complete.
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 auto CountCompleteTreeNodes(const BinaryTree::Node::PointerType node) {
     if (not node) {

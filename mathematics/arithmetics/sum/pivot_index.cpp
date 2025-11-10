@@ -43,6 +43,46 @@ int PivotIndex(const ArrayType &nums) {
     return -1;
 }
 
+
+/**
+ * @reference   Make Array Elements Equal to Zero
+ *              https://leetcode.com/problems/make-array-elements-equal-to-zero/
+ *
+ * You are given an integer array nums.
+ * Start by selecting a starting position curr such that nums[curr] == 0, and choose a movement
+ * direction of either left or right.
+ * After that, you repeat the following process:
+ *  If curr is out of the range [0, n - 1], this process ends.
+ *  If nums[curr] == 0, move in the current direction by incrementing curr if you are moving right, or
+ *      decrementing curr if you are moving left.
+ *  Else if nums[curr] > 0:
+ *      Decrement nums[curr] by 1.
+ *      Reverse your movement direction (left becomes right and vice versa).
+ *      Take a step in your new direction.
+ * A selection of the initial position curr and movement direction is considered valid if every element
+ * in nums becomes 0 by the end of the process.
+ * Return the number of possible valid selections.
+ *
+ * @tags    #prefix-sum
+ */
+auto CountValidSelections(const ArrayType &nums) {
+    const auto total = std::accumulate(nums.cbegin(), nums.cend(), 0);
+
+    int left_sum = 0;
+    int result = 0;
+    for (const auto n : nums) {
+        if (n == 0) {
+            const auto right_sum = total - left_sum;
+            result += (std::abs(left_sum - right_sum) <= 1);
+            result += (left_sum == right_sum);
+        } else {
+            left_sum += n;
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -56,3 +96,15 @@ THE_BENCHMARK(PivotIndex, SAMPLE1);
 SIMPLE_TEST(PivotIndex, TestSAMPLE1, 3, SAMPLE1);
 SIMPLE_TEST(PivotIndex, TestSAMPLE2, -1, SAMPLE2);
 SIMPLE_TEST(PivotIndex, TestSAMPLE3, 0, SAMPLE3);
+
+
+const ArrayType SAMPLE1CVS = {1, 0, 2, 0, 3};
+const ArrayType SAMPLE2CVS = {2, 3, 4, 0, 4, 1, 0};
+const ArrayType SAMPLE3CVS = {16, 13, 10, 0, 0, 0, 10, 6, 7, 8, 7};
+
+
+THE_BENCHMARK(CountValidSelections, SAMPLE2CVS);
+
+SIMPLE_TEST(CountValidSelections, TestSAMPLE1, 2, SAMPLE1CVS);
+SIMPLE_TEST(CountValidSelections, TestSAMPLE2, 0, SAMPLE2CVS);
+SIMPLE_TEST(CountValidSelections, TestSAMPLE3, 3, SAMPLE3CVS);

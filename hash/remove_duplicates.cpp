@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "hash.h"
 #include "count_frequencies_of_all_elements.h"
+#include "hash.h"
 #include "text/remove_characters.h"
 
 
@@ -10,9 +10,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using ListType = std::forward_list<int>;
 
-/** Remove duplicates from a given string
- *
- * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-a-given-string/
+/**
+ * @reference   Remove duplicates from a given string
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-a-given-string/
  * @reference   Remove duplicate elements in an Array using STL in C++
  *              https://www.geeksforgeeks.org/remove-duplicate-elements-in-an-array-using-stl-in-c/
  * @reference   Remove duplicates from unsorted array
@@ -25,11 +25,17 @@ using ListType = std::forward_list<int>;
  * @reference   Print All Distinct Elements of a given integer array
  *              https://www.geeksforgeeks.org/print-distinct-elements-given-integer-array/
  *
- * Given an integer array, print all distinct elements in array. The given array may
- * contain duplicates and the output should print every element only once. The given
- * array is not sorted.
+ * Given an integer array, print all distinct elements in array. The given array may contain duplicates
+ * and the output should print every element only once. The given array is not sorted.
+ *
+ * @reference   Duplicates Removal in Array using BST
+ *              https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
+ * @reference   Remove duplicates from unsorted array using Set data structure
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
  *
  * @complexity  O(n)
+ *
+ * @tags    #hash-table #2-way-partition
  */
 inline auto RemoveDuplicates(std::string input) {
     std::unordered_set<std::string::value_type> hash_table;
@@ -40,15 +46,17 @@ inline auto RemoveDuplicates(std::string input) {
 }
 
 
-/** Remove duplicates from a string in O(1) extra space
+/**
+ * @reference   Remove duplicates from a string in O(1) extra space
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
  *
- * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-a-string-in-o1-extra-space/
+ * Given a string str of lowercase characters, the task is to remove duplicates and return a resultant
+ * string without modifying the order of characters in the original string.
  *
- * Given a string str of lowercase characters, the task is to remove duplicates and return
- * a resultant string without modifying the order of characters in the original string.
+ * @tags    #hash-table #bit-hash #2-way-partition
  */
 inline auto RemoveDuplicates_Bits(std::string input) {
-    std::bitset < 'z' - 'a' > hash_table;
+    std::bitset<'z' - 'a'> hash_table;
 
     return RemoveCharacters_TwoPointers(std::move(input), [&hash_table](const auto c) {
         const auto index = c - 'a';
@@ -74,6 +82,8 @@ inline auto RemoveDuplicates_Bits(std::string input) {
  *              https://www.geeksforgeeks.org/remove-duplicates-from-a-string-using-stl-in-c/
  * @reference   Remove all consecutive duplicates from a string using STL in C++
  *              https://www.geeksforgeeks.org/remove-all-consecutive-duplicates-from-the-string-using-stl-in-c/
+ *
+ * @tags    #2-way-partition
  */
 inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
     if (sorted_input.empty()) {
@@ -82,11 +92,11 @@ inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
 
     std::string::value_type previous_element = sorted_input.front() + 1;
     return RemoveCharacters_TwoPointers(std::move(sorted_input),
-    [&previous_element](const auto c) {
-        const auto result = (previous_element != c);
-        previous_element = c;
-        return result;
-    });
+                                        [&previous_element](const auto c) {
+                                            const auto result = (previous_element != c);
+                                            previous_element = c;
+                                            return result;
+                                        });
 }
 
 
@@ -95,10 +105,10 @@ inline auto RemoveDuplicates_Sorted(std::string sorted_input) {
  *              https://leetcode.com/problems/delete-characters-to-make-fancy-string/
  *
  * A fancy string is a string where no three consecutive characters are equal.
- * Given a string s, delete the minimum possible number of characters from s to make it
- * fancy.
- * Return the final string after the deletion. It can be shown that the answer will always
- * be unique.
+ * Given a string s, delete the minimum possible number of characters from s to make it fancy.
+ * Return the final string after the deletion. It can be shown that the answer will always be unique.
+ *
+ * @tags    #sliding-window #2-way-partition
  */
 auto MakeFancyString(std::string s) {
     std::size_t i = 1;
@@ -116,20 +126,55 @@ auto MakeFancyString(std::string s) {
 
 
 /**
+ * @reference   Minimum Time to Make Rope Colorful
+ *              https://leetcode.com/problems/minimum-time-to-make-rope-colorful/
+ *
+ * Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is
+ * the color of the ith balloon.
+ * Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same
+ * color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. You
+ * are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob
+ * needs to remove the ith balloon from the rope.
+ * Return the minimum time Bob needs to make the rope colorful.
+ *
+ * @tags    #greedy #sliding-window #min-max-element
+ */
+auto MinTimeToMakeRopeColorful(const std::string_view colors, const ArrayType &neededTime) {
+    char prev = 0;
+    int result = 0;
+    int sum = 0;
+    int maxi = 0;
+    for (std::size_t i = 0; i < colors.size(); ++i) {
+        const auto c = colors[i];
+        const auto t = neededTime[i];
+
+        if (prev == c) {
+            sum += t;
+            maxi = std::max(maxi, t);
+        } else {
+            result += sum - maxi;
+            maxi = t;
+            sum = t;
+            prev = c;
+        }
+    }
+
+    return result + sum - maxi;
+}
+
+
+/**
  * @reference   Remove Duplicates from Sorted Array
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  *
- * Given an integer array nums sorted in non-decreasing order, remove the duplicates
- * in-place such that each unique element appears only once. The relative order of the
- * elements should be kept the same.
- * Since it is impossible to change the length of the array in some languages, you must
- * instead have the result be placed in the first part of the array nums. More formally,
- * if there are k elements after removing the duplicates, then the first k elements of
- * nums should hold the final result. It does not matter what you leave beyond the first
- * k elements.
- * Return k after placing the final result in the first k slots of nums.
- * Do not allocate extra space for another array. You must do this by modifying the input
- * array in-place with O(1) extra memory.
+ * Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that
+ * each unique element appears only once. The relative order of the elements should be kept the same.
+ * Consider the number of unique elements in nums to be k. After removing duplicates, return the number
+ * of unique elements k.
+ * The first k elements of nums should contain the unique numbers in sorted order. The remaining
+ * elements beyond index k - 1 can be ignored.
+ *
+ * @tags    #2-way-partition
  */
 auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
     assert(std::is_sorted(sorted_input.cbegin(), sorted_input.cend()));
@@ -155,17 +200,18 @@ auto RemoveDuplicates_Sorted_Better(std::string sorted_input) {
  * @reference   Remove Duplicates from Sorted Array II
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
  *
- * Given an integer array nums sorted in non-decreasing order, remove some duplicates
- * in-place such that each unique element appears at most twice. The relative order of
- * the elements should be kept the same.
- * Since it is impossible to change the length of the array in some languages, you must
- * instead have the result be placed in the first part of the array nums. More formally,
- * if there are k elements after removing the duplicates, then the first k elements of
- * nums should hold the final result. It does not matter what you leave beyond the first
- * k elements.
+ * Given an integer array nums sorted in non-decreasing order, remove some duplicates in-place such that
+ * each unique element appears at most twice. The relative order of the elements should be kept the
+ * same.
+ * Since it is impossible to change the length of the array in some languages, you must instead have the
+ * result be placed in the first part of the array nums. More formally, if there are k elements after
+ * removing the duplicates, then the first k elements of nums should hold the final result. It does not
+ * matter what you leave beyond the first k elements.
  * Return k after placing the final result in the first k slots of nums.
- * Do not allocate extra space for another array. You must do this by modifying the input
- * array in-place with O(1) extra memory.
+ * Do not allocate extra space for another array. You must do this by modifying the input array in-place
+ * with O(1) extra memory.
+ *
+ * @tags    #2-way-partition
  */
 auto RemoveDuplicates2_Sorted(ArrayType nums) {
     assert(std::is_sorted(nums.cbegin(), nums.cend()));
@@ -188,25 +234,19 @@ auto RemoveDuplicates2_Sorted(ArrayType nums) {
 
 
 /**
- * @reference   Duplicates Removal in Array using BST
- *              https://www.geeksforgeeks.org/duplicates-removal-in-array-using-bst/
- * @reference   Remove duplicates from unsorted array using Set data structure
- *              https://www.geeksforgeeks.org/remove-duplicates-from-unsorted-array-using-set-data-structure/
- */
-
-
-/**
  * @reference   Distribute Candies
  *              https://leetcode.com/problems/distribute-candies/
  *
- * Alice has n candies, where the ith candy is of type candyType[i]. Alice noticed that
- * she started to gain weight, so she visited a doctor. The doctor advised Alice to only
- * eat n / 2 of the candies she has (n is always even). Alice likes her candies very
- * much, and she wants to eat the maximum number of different types of candies while
- * still following the doctor's advice. Given the integer array candyType of length n,
- * return the maximum number of different types of candies she can eat if she only eats
- * n / 2 of them.
+ * Alice has n candies, where the ith candy is of type candyType[i]. Alice noticed that she started to
+ * gain weight, so she visited a doctor.
+ * The doctor advised Alice to only eat n / 2 of the candies she has (n is always even). Alice likes her
+ * candies very much, and she wants to eat the maximum number of different types of candies while still
+ * following the doctor's advice.
+ * Given the integer array candyType of length n, return the maximum number of different types of
+ * candies she can eat if she only eats n / 2 of them.
  * -10^5 <= candyType[i] <= 10^5
+ *
+ * @tags    #hash-table
  */
 auto DistributeCandies(const ArrayType &candies) {
     int buckets[200001] = {};
@@ -223,18 +263,21 @@ auto DistributeCandies(const ArrayType &candies) {
 }
 
 
-/** Remove duplicates from an unsorted linked list
+/**
  *
- * @reference   https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
+ * @reference   Remove duplicates from an unsorted linked list
+ *              https://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
  *
- * Write a removeDuplicates() function which takes a list and deletes any duplicate nodes
- * from the list. The list is not sorted.
+ * Write a removeDuplicates() function which takes a list and deletes any duplicate nodes from the list.
+ * The list is not sorted.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.1.
  *
  * @reference   Remove duplicates from an unsorted doubly linked list
  *              https://www.geeksforgeeks.org/remove-duplicates-unsorted-doubly-linked-list/
+ *
+ * @tags    #hash-table #singly-linked-list
  */
 auto RemoveDuplicates_UnsortedLinkedList(ListType a_list) {
     std::unordered_set<ListType::value_type> seen_values;
@@ -260,12 +303,16 @@ auto RemoveDuplicates_UnsortedLinkedList(ListType a_list) {
  *
  * @reference   Remove Duplicates from Sorted List
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ *
+ * Given the head of a sorted linked list, delete all duplicates such that each element appears only
+ * once. Return the linked list sorted as well.
+ *
+ * @tags    #singly-linked-list
  */
 auto RemoveDuplicates_SortedLinkedList(ListType a_list) {
     assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
 
-    for (auto current = a_list.cbegin();
-         isThereMoreThanOneElements(current, a_list.cend());) {
+    for (auto current = a_list.cbegin(); isThereMoreThanOneElements(current, a_list.cend());) {
         if (*current == *std::next(current)) {
             a_list.erase_after(current);
         } else {
@@ -303,10 +350,8 @@ inline auto RemoveDuplicates_SortedLinkedList_Recursive(ListType a_list) {
  */
 
 
-inline auto
-RemoveDuplicates_UnsortedLinkedList_Sort(
-    ListType a_list,
-    const std::function<ListType(ListType)> remove_consecutive_duplicates) {
+inline auto RemoveDuplicates_UnsortedLinkedList_Sort(
+    ListType a_list, const std::function<ListType(ListType)> remove_consecutive_duplicates) {
     a_list.sort();
     return remove_consecutive_duplicates(std::move(a_list));
 }
@@ -316,9 +361,9 @@ RemoveDuplicates_UnsortedLinkedList_Sort(
  * @reference   Find unique elements in linked list
  *              https://www.geeksforgeeks.org/find-unique-elements-linked-list/
  *
- * Given a linked list. We need to find unique elements in the linked list i.e, those
- * elements which are not repeated in the linked list or those elements whose frequency
- * is 1. If No such elements are present in list so Print "No Unique Elements".
+ * Given a linked list. We need to find unique elements in the linked list i.e, those elements which are
+ * not repeated in the linked list or those elements whose frequency is 1. If No such elements are
+ * present in list so Print "No Unique Elements".
  */
 
 
@@ -326,15 +371,17 @@ RemoveDuplicates_UnsortedLinkedList_Sort(
  * @reference   Remove all occurrences of duplicates from a sorted Linked List
  *              https://www.geeksforgeeks.org/remove-occurrences-duplicates-sorted-linked-list/
  *
- * Given a sorted linked list, delete all nodes that have duplicate numbers (all
- * occurrences), leaving only numbers that appear once in the original list.
+ * Given a sorted linked list, delete all nodes that have duplicate numbers (all occurrences), leaving
+ * only numbers that appear once in the original list.
  *
  * @reference   Remove Duplicates from Sorted List II
  *              https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  *
- * Given the head of a sorted linked list, delete all nodes that have duplicate numbers,
- * leaving only distinct numbers from the original list. Return the linked list sorted
- * as well.
+ * Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only
+ * distinct numbers from the original list.
+ * Return the linked list sorted as well.
+ *
+ * @tags    #singly-linked-list #sliding-window
  */
 auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
     assert(std::is_sorted(a_list.cbegin(), a_list.cend()));
@@ -346,7 +393,7 @@ auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
     auto before_current = a_list.cbefore_begin();
     for (auto current = std::next(before_current); current != a_list.cend();) {
         int count = 0;
-        for (; std::next(current) != a_list.cend() and * current == *std::next(current);
+        for (; std::next(current) != a_list.cend() and *current == *std::next(current);
              ++current) {
             ++count;
         }
@@ -367,9 +414,9 @@ auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
  * @reference   Count minimum frequency elements in a linked list
  *              https://www.geeksforgeeks.org/count-minimum-frequency-elements-in-a-linked-list/
  *
- * Given a linked list containing duplicate elements. The task is to find the count of
- * all minimum occurring elements in the given linked list. That is the count of all
- * such elements whose frequency is minimum in the matrix.
+ * Given a linked list containing duplicate elements. The task is to find the count of all minimum
+ * occurring elements in the given linked list. That is the count of all such elements whose frequency
+ * is minimum in the matrix.
  */
 
 
@@ -380,8 +427,8 @@ auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
  * @reference   Sum of distinct elements when elements are in range 1 to n
  *              https://www.geeksforgeeks.org/sum-distinct-elements-elements-range-1-n/
  *
- * Given an array of n elements such that every element of array is an integer in the
- * range 1 to n, find the sum of all the distinct elements of the array.
+ * Given an array of n elements such that every element of array is an integer in the range 1 to n, find
+ * the sum of all the distinct elements of the array.
  */
 
 
@@ -399,14 +446,14 @@ auto RemoveAllDuplicates_SortedLinkedList(ListType a_list) {
  */
 
 
-/** Array elements that appear more than once
- *
- * @reference   https://www.geeksforgeeks.org/array-elements-that-appear-more-than-once/
+/**
+ * @reference   Array elements that appear more than once
+ *              https://www.geeksforgeeks.org/array-elements-that-appear-more-than-once/
  * @reference   Find duplicates in a given array when elements are not limited to a range
  *              https://www.geeksforgeeks.org/find-duplicates-given-array-elements-not-limited-range/
  *
- * Given an integer array, print all repeating elements (Elements that appear more than
- * once) in array. The output should contain elements according to their first occurrences.
+ * Given an integer array, print all repeating elements (Elements that appear more than once) in array.
+ * The output should contain elements according to their first occurrences.
  *
  * @complexity  O(n)
  */
@@ -432,9 +479,9 @@ auto FindRepeatedElements(const ArrayType &values) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 10.4.
  *
- * You have an array of N numbers, where N is at most 32,000. The array may have
- * duplicates entries and you do not know what N is. With only 4 Kilobytes of memory
- * available, how would print all duplicates elements in the array?
+ * You have an array of N numbers, where N is at most 32,000. The array may have duplicates entries and
+ * you do not know what N is. With only 4 Kilobytes of memory available, how would print all duplicates
+ * elements in the array?
  *
  * @complexity  O(n)
  */
@@ -458,8 +505,7 @@ auto FindAllDuplicates_BitArray(const ArrayType &elements) {
  * @reference   Print all the duplicates in the input string
  *              https://www.geeksforgeeks.org/print-all-the-duplicates-in-the-input-string/
  *
- * Write an efficient C program to print all the duplicates and their counts in the input
- * string.
+ * Write an efficient C program to print all the duplicates and their counts in the input string.
  */
 
 
@@ -467,10 +513,9 @@ auto FindAllDuplicates_BitArray(const ArrayType &elements) {
  *
  * @reference   https://www.geeksforgeeks.org/find-duplicates-in-on-time-and-constant-extra-space/
  *
- * Given an array of n elements which contains elements from 1 to n-1, with any of these
- * numbers appearing at most twice. Find these repeating numbers in O(n) and using only
- * constant memory space. For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6},
- * the answer should be 1, 3 and 6.
+ * Given an array of n elements which contains elements from 1 to n-1, with any of these numbers
+ * appearing at most twice. Find these repeating numbers in O(n) and using only constant memory space.
+ * For example, let n be 7 and array be {1, 2, 3, 1, 3, 6, 6}, the answer should be 1, 3 and 6.
  */
 auto FindDuplicates_Inplace_Sign(ArrayType values) {
     ArrayType output;
@@ -512,10 +557,10 @@ auto FindDuplicates_Inplace_Mod(ArrayType values) {
  * @reference   Duplicates in an array in O(n) time and by using O(1) extra space | Set-3
  *              https://www.geeksforgeeks.org/duplicates-in-an-array-in-on-time-and-by-using-o1-extra-space-set-3/
  *
- * Given an array of n elements which contains elements from 0 to n-1, with any of these
- * numbers appearing any number of times. Find these repeating numbers in O(n) and using
- * only constant memory space. It is required that the order in which elements repeat
- * should be maintained. If there is no repeating element present then print -1.
+ * Given an array of n elements which contains elements from 0 to n-1, with any of these numbers
+ * appearing any number of times. Find these repeating numbers in O(n) and using only constant memory
+ * space. It is required that the order in which elements repeat should be maintained. If there is no
+ * repeating element present then print -1.
  */
 auto FindDuplicates_Inplace_Mod_SecondOccurrence(ArrayType values) {
     assert(not values.empty());
@@ -538,7 +583,7 @@ auto FindDuplicates_Inplace_Mod_SecondOccurrence(ArrayType values) {
     return output;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(RemoveDuplicates, "geeksforgeeks");
@@ -597,22 +642,38 @@ SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList, TestSAMPLE1, EXPECTED_L1, SAMPL
 SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList, TestSAMPLE2, EXPECTED_L2, SAMPLE_L2);
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort, BM_SAMPLE1, SAMPLE_L1,
+SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort,
+                 BM_SAMPLE1,
+                 SAMPLE_L1,
                  RemoveDuplicates_SortedLinkedList);
 
-SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE1, EXPECTED_SL1,
-            SAMPLE_L1, RemoveDuplicates_SortedLinkedList);
-SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE2, EXPECTED_SL2,
-            SAMPLE_L2, RemoveDuplicates_SortedLinkedList);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort,
+            TestSAMPLE1,
+            EXPECTED_SL1,
+            SAMPLE_L1,
+            RemoveDuplicates_SortedLinkedList);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort,
+            TestSAMPLE2,
+            EXPECTED_SL2,
+            SAMPLE_L2,
+            RemoveDuplicates_SortedLinkedList);
 
 
-SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort, BM_SAMPLE2, SAMPLE_L1,
+SIMPLE_BENCHMARK(RemoveDuplicates_UnsortedLinkedList_Sort,
+                 BM_SAMPLE2,
+                 SAMPLE_L1,
                  RemoveDuplicates_SortedLinkedList_Recursive);
 
-SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE3, EXPECTED_SL1,
-            SAMPLE_L1, RemoveDuplicates_SortedLinkedList_Recursive);
-SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort, TestSAMPLE4, EXPECTED_SL2,
-            SAMPLE_L2, RemoveDuplicates_SortedLinkedList_Recursive);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort,
+            TestSAMPLE3,
+            EXPECTED_SL1,
+            SAMPLE_L1,
+            RemoveDuplicates_SortedLinkedList_Recursive);
+SIMPLE_TEST(RemoveDuplicates_UnsortedLinkedList_Sort,
+            TestSAMPLE4,
+            EXPECTED_SL2,
+            SAMPLE_L2,
+            RemoveDuplicates_SortedLinkedList_Recursive);
 
 
 const ArrayType SAMPLE1 = {12, 10, 9, 45, 2, 10, 10, 45};
@@ -649,12 +710,9 @@ const ArrayType EXPECTED4 = {3, 0};
 
 THE_BENCHMARK(FindDuplicates_Inplace_Mod_SecondOccurrence, SAMPLE3);
 
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1,
-            EXPECTED4, SAMPLE4);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2,
-            EXPECTED2, SAMPLE2);
-SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3,
-            EXPECTED3, SAMPLE3);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE1, EXPECTED4, SAMPLE4);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(FindDuplicates_Inplace_Mod_SecondOccurrence, TestSAMPLE3, EXPECTED3, SAMPLE3);
 
 
 const ArrayType SAMPLE5 = {1, 5, 1, 10, 12, 10};
@@ -685,10 +743,8 @@ const ListType EXPECTED_L6 = {2, 3};
 
 THE_BENCHMARK(RemoveAllDuplicates_SortedLinkedList, SAMPLE_L1);
 
-SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE1, EXPECTED_SL1,
-            EXPECTED_SL1);
-SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE2, EXPECTED_SL2,
-            EXPECTED_SL2);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE1, EXPECTED_SL1, EXPECTED_SL1);
+SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE2, EXPECTED_SL2, EXPECTED_SL2);
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE3, EXPECTED_L3, SAMPLE_L3);
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE4, EXPECTED_L4, SAMPLE_L4);
 SIMPLE_TEST(RemoveAllDuplicates_SortedLinkedList, TestSAMPLE5, EXPECTED_L5, SAMPLE_L5);
@@ -713,3 +769,15 @@ SIMPLE_TEST(MakeFancyString, TestSAMPLE1, "leetcode", "leeetcode");
 SIMPLE_TEST(MakeFancyString, TestSAMPLE2, "aabaa", "aaabaaaa");
 SIMPLE_TEST(MakeFancyString, TestSAMPLE3, "aab", "aab");
 SIMPLE_TEST(MakeFancyString, TestSAMPLE4, "b", "b");
+
+
+const ArrayType SAMPLE1NT = {1, 2, 3, 4, 5};
+const ArrayType SAMPLE2NT = {1, 2, 3};
+const ArrayType SAMPLE3NT = {1, 2, 3, 4, 1};
+
+
+THE_BENCHMARK(MinTimeToMakeRopeColorful, "abaac", SAMPLE1NT);
+
+SIMPLE_TEST(MinTimeToMakeRopeColorful, TestSAMPLE1, 3, "abaac", SAMPLE1NT);
+SIMPLE_TEST(MinTimeToMakeRopeColorful, TestSAMPLE2, 0, "abc", SAMPLE2NT);
+SIMPLE_TEST(MinTimeToMakeRopeColorful, TestSAMPLE3, 2, "aabaa", SAMPLE3NT);
