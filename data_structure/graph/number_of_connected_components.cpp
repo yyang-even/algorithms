@@ -12,9 +12,9 @@ using PairArray = std::vector<IndexPair>;
 
 namespace {
 
-/** Program to count Number of connected components in an undirected graph
- *
- * @reference   https://www.geeksforgeeks.org/program-to-count-number-of-connected-components-in-an-undirected-graph/
+/**
+ * @reference   Program to count Number of connected components in an undirected graph
+ *              https://www.geeksforgeeks.org/program-to-count-number-of-connected-components-in-an-undirected-graph/
  *
  * @reference   Connected Components in an undirected graph
  *              https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
@@ -37,6 +37,8 @@ namespace {
  * You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith city and the jth
  * city are directly connected, and isConnected[i][j] = 0 otherwise.
  * Return the total number of provinces.
+ *
+ * @tags    #graph #connected-components #DFS
  */
 auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
                                       const UndirectedEdgeArrayType &edges) {
@@ -63,6 +65,8 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  * components. More precisely, show how to modify depth-first search so that it assigns to each vertex v
  * an integer label v.cc between 1 and k, where k is the number of connected components of G, such that
  * u.cc = v.cc if and only if u and v are in the same connected component.
+ *
+ * @tags    #graph #connected-components #DFS
  */
 
 
@@ -76,12 +80,14 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  * denoting which room it unlocks, and you can take all of them with you to unlock the other rooms.
  * Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i,
  * return true if you can visit all the rooms, or false otherwise.
+ *
+ * @tags    #graph #DFS
  */
 
 
-/** Largest Component Size by Common Factor
- *
- * @reference   https://leetcode.com/problems/largest-component-size-by-common-factor/
+/**
+ * @reference   Largest Component Size by Common Factor
+ *              https://leetcode.com/problems/largest-component-size-by-common-factor/
  *
  * You are given an integer array of unique positive integers nums. Consider the following graph:
  *  There are nums.length nodes, labeled nums[0] to nums[nums.length - 1],
@@ -89,6 +95,8 @@ auto CountNumberOfConnectedComponents(const std::size_t number_vertices,
  *  greater than 1.
  * Return the size of the largest connected component in the graph.
  * 1 <= nums[i] <= 10^5
+ *
+ * @tags    #graph #connected-components #disjoint-set #hash-table
  */
 auto LargestComponentSizeByCommonFactor(const ArrayType &nums) {
     DisjointSet_Array disjoint_set(100001);
@@ -121,6 +129,8 @@ auto LargestComponentSizeByCommonFactor(const ArrayType &nums) {
  * [a, b] indicates 2 indices(0-indexed) of the string.
  * You can swap the characters at any pair of indices in the given pairs any number of times.
  * Return the lexicographically smallest string that s can be changed to after using the swaps.
+ *
+ * @tags    #graph #connected-components #disjoint-set #hash-table #sorting
  */
 auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
     DisjointSet_Array disjoint_set(s.size());
@@ -148,6 +158,31 @@ auto SmallestStrWithSwaps(const std::string_view s, const PairArray &pairs) {
 
     return result;
 }
+
+
+/**
+ * @reference   Power Grid Maintenance
+ *              https://leetcode.com/problems/power-grid-maintenance/
+ *
+ * You are given an integer c representing c power stations, each with a unique identifier id from 1 to
+ * c (1‑based indexing).
+ * These stations are interconnected via n bidirectional cables, represented by a 2D array connections,
+ * where each element connections[i] = [ui, vi] indicates a connection between station ui and station
+ * vi. Stations that are directly or indirectly connected form a power grid.
+ * Initially, all stations are online (operational).
+ * You are also given a 2D array queries, where each query is one of the following two types:
+ *  [1, x]: A maintenance check is requested for station x. If station x is online, it resolves the
+ *      check by itself. If station x is offline, the check is resolved by the operational station with
+ *      the smallest id in the same power grid as x. If no operational station exists in that grid,
+ *      return -1.
+ *  [2, x]: Station x goes offline (i.e., it becomes non-operational).
+ * Return an array of integers representing the results of each query of type [1, x] in the order they
+ * appear.
+ * Note: The power grid preserves its structure; an offline (non‑operational) node remains part of its
+ * grid and taking it offline does not alter connectivity.
+ *
+ * @tags    #graph #connected-components #DFS #disjoint-set #hash-table #ordered-set
+ */
 
 
 /**

@@ -15,10 +15,12 @@ namespace {
  *              https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/
  *
  * So num=3 -> r=4; num=8 -> r=8
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
     if (num) {
-        FloatUnsignedUnion float_unsigned_union{};
+        FloatUnsignedUnion float_unsigned_union {};
         float_unsigned_union.f = static_cast<float>(num);
         const auto temp = 1U << ((float_unsigned_union.u >> 23) - 0x7f);
         return temp << (temp < num);
@@ -33,6 +35,8 @@ inline constexpr unsigned RoundUpToPowerOf2_Float(const uint32_t num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Round up to the next highest power of 2
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned RoundUpToPowerOf2(const uint32_t num) {
     if (num) {
@@ -42,7 +46,19 @@ inline constexpr unsigned RoundUpToPowerOf2(const uint32_t num) {
     }
 }
 
-}//namespace
+
+/**
+ * @reference   Smallest Number With All Set Bits
+ *              https://leetcode.com/problems/smallest-number-with-all-set-bits/
+ *
+ * You are given a positive number n.
+ * Return the smallest number x greater than or equal to n, such that the binary representation of x
+ * contains only set bits.
+ *
+ * @tags    #bit-tricks
+ */
+
+} //namespace
 
 
 constexpr auto LOWER = std::numeric_limits<uint32_t>::min();

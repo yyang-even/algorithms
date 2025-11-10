@@ -19,7 +19,7 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  * path such that adding up all the values along the path equals targetSum.
  * A leaf is a node with no children.
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 inline bool hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int sum) {
     if (not node) {
@@ -39,7 +39,7 @@ inline bool hasKSumFullPaths(const BinaryTree::Node::PointerType node, const int
  * @reference   Shortest root to leaf path sum equal to a given number
  *              https://www.geeksforgeeks.org/shortest-root-to-leaf-path-sum-equal-to-a-given-number/
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 inline void ShortestKSumFullPathsHelper(const BinaryTree::Node::PointerType node,
                                         const int sum,
@@ -81,7 +81,7 @@ inline int ShortestKSumFullPaths(const BinaryTree::Node::PointerType root, const
  * A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node
  * with no children.
  *
- * @tags    #binary-tree #DFS #stack
+ * @tags    #binary-tree #DFS #preorder-traversal #stack
  */
 void AllKSumRootPathsHelper(const BinaryTree::Node::PointerType node,
                             const int sum,
@@ -116,7 +116,7 @@ inline auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int
  * @reference   Given a binary tree, print out all of its root-to-leaf paths one per line.
  *              https://www.geeksforgeeks.org/given-a-binary-tree-print-out-all-of-its-root-to-leaf-paths-one-per-line/
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 
 
@@ -127,13 +127,13 @@ inline auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int
  * Given the root of a binary tree, return all root-to-leaf paths in any order.
  * A leaf is a node with no children.
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 
 
-/** Print all k-sum paths in a binary tree
- *
- * @reference   https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/
+/**
+ * @reference   Print all k-sum paths in a binary tree
+ *              https://www.geeksforgeeks.org/print-k-sum-paths-binary-tree/
  *
  * A binary tree and a number k are given. Print every path in the tree with sum of the nodes in the
  * path as k. A path can start from any node and end at any node and must be downward only, i.e. They
@@ -149,7 +149,7 @@ inline auto AllKSumRootPaths(const BinaryTree::Node::PointerType root, const int
  * The path does not need to start or end at the root or a leaf, but it must go downwards (i.e.,
  * traveling only from parent nodes to child nodes).
  *
- * @tags    #binary-tree #DFS #stack #prefix-sum
+ * @tags    #binary-tree #DFS #preorder-traversal #stack #prefix-sum
  */
 void AllKSumPathsHelper(const BinaryTree::Node::PointerType node,
                         const int sum,
@@ -203,7 +203,7 @@ inline auto AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum
  * fit in a 32-bit integer.
  * A leaf node is a node with no children.
  *
- * @tags    #binary-tree #DFS
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 
 
@@ -215,7 +215,7 @@ inline auto AllKSumPaths(const BinaryTree::Node::PointerType root, const int sum
  * pseudo-palindromic if at least one permutation of the node values in the path is a palindrome.
  * Return the number of pseudo-palindromic paths going from the root node to leaf nodes.
  *
- * @tags    #binary-tree #DFS #bit-tricks
+ * @tags    #binary-tree #DFS #preorder-traversal #bit-tricks
  */
 void PseudoPalindromicPaths(const BinaryTree::Node::PointerType node,
                             unsigned path,
@@ -331,7 +331,7 @@ auto NumOfMinutes_BottomUp(const int n,
  *  For example, "ab" is lexicographically smaller than "aba".
  * A leaf of a node is a node that has no children.
  *
- * @tags    #binary-tree #DFS #stack
+ * @tags    #binary-tree #DFS #preorder-traversal #stack
  */
 
 } //namespace

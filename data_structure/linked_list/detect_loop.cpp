@@ -266,7 +266,7 @@ inline auto testDetectLoop_Reverse_SinglyMakeLoop(const std::size_t index) {
  * We are given an array arr[] of size n. Numbers are from 1 to (n-1) in random order.
  * The array has only one repetitive element. We need to find the repetitive element.
  *
- * @tags    #hash-table #bit-tricks #index-marking
+ * @tags    #hash-table #bit-tricks #in-place-hash
  */
 inline auto FindTheOnlyRepeatingElement_Sum(const ArrayType &elements) {
     const auto sum = std::accumulate(elements.cbegin(), elements.cend(), 0u);

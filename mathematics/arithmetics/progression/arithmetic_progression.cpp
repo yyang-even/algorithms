@@ -233,6 +233,8 @@ auto DistributeCandies(int candies, const int num_people) {
  * Monday.
  * Given n, return the total amount of money he will have in the Leetcode bank at the end of the nth
  * day.
+ *
+ * @tags    #arithmetic-progression
  */
 inline constexpr auto TotalMoney(const long n) {
     constexpr auto DAYS_PER_WEEK = 7;
