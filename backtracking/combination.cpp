@@ -7,9 +7,9 @@ using ArrayType = std::vector<int>;
 using ResultType = std::multiset<ArrayType>;
 using OutputType = std::unordered_multiset<std::string>;
 
-/** Print all possible combinations of r elements in a given array of size n
- *
- * @reference   https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+/**
+ * @reference   Print all possible combinations of r elements in a given array of size n
+ *              https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
  * @reference   Print all subsets of given size of a set
  *              https://www.geeksforgeeks.org/print-subsets-given-size-set/
  *
@@ -17,6 +17,8 @@ using OutputType = std::unordered_multiset<std::string>;
  *              https://www.geeksforgeeks.org/make-combinations-size-k/
  *
  * Given two numbers n and k and you have to find all possible combination of k numbers from 1...n.
+ *
+ * @tags    #backtracking
  */
 void CombinationsOfLength_Start(const std::string_view elements,
                                 const std::size_t length,
@@ -85,6 +87,8 @@ inline auto CombinationsOfLength_Include(const std::string_view elements,
  *  next() Returns the next combination of length combinationLength in lexicographical order.
  *  hasNext() Returns true if and only if there exists a next combination.
  * 1 <= combinationLength <= characters.length <= 15
+ *
+ * @tags    #bit-hash
  */
 class CombinationIterator {
     std::string_view chars;
@@ -129,14 +133,16 @@ auto testCombinationIterator(const std::string_view chars, const std::size_t len
 }
 
 
-/** Combinations of a String
- *
- * @reference   John Mongan, Eric Giguere, Noah Kindler.
+/**
+ * @reference   Combinations of a String
+ *              John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
  * @reference   Backtracking to find all subsets
  *              https://www.geeksforgeeks.org/backtracking-to-find-all-subsets/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.4.
+ *
+ * @tags    #backtracking
  */
 void AllCombinations_Recursive(const std::string_view elements,
                                const std::size_t start,
@@ -166,6 +172,8 @@ inline auto AllCombinations_Recursive(const std::string_view elements) {
  *              https://www.geeksforgeeks.org/find-distinct-subsets-given-set/
  * @reference   Printing all subsets of {1,2,3,...n} without using array or loop
  *              https://www.geeksforgeeks.org/printing-all-subsets-of-123-n-without-using-array-or-loop/
+ *
+ * @tags    #bit-hash
  */
 auto AllCombinations_BitMask(const std::string_view elements) {
     assert(elements.size() < BitsNumber<unsigned long long>);
@@ -196,6 +204,8 @@ auto AllCombinations_BitMask(const std::string_view elements) {
  *
  * Given an integer array nums of unique elements, return all possible subsets (the power set).
  * The solution set must not contain duplicate subsets. Return the solution in any order.
+ *
+ * @tags    #backtracking
  */
 void AllCombinations_Recursive_Copy(const std::string_view elements,
                                     OutputType &results,
@@ -243,6 +253,8 @@ auto AllCombinations_Iterative(const std::string_view elements) {
  *
  * Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
  * The solution set must not contain duplicate subsets. Return the solution in any order.
+ *
+ * @tags    #backtracking
  */
 void AllCombinationsWithDuplicates_For(const std::string &elements,
                                        const std::size_t start,
@@ -302,11 +314,25 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
 
 
 /**
+ * @reference   Letter Case Permutation
+ *              https://leetcode.com/problems/letter-case-permutation/
+ *
+ * Given a string s, you can transform every letter individually to be lowercase or uppercase to create
+ * another string.
+ * Return a list of all possible strings we could create. Return the output in any order.
+ *
+ * @tags    #backtracking
+ */
+
+
+/**
  * @reference   Combinations
  *              https://leetcode.com/problems/combinations/
  *
  * Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
  * You may return the answer in any order.
+ *
+ * @tags    #backtracking
  */
 auto AllCombinationsOfLength_Iterative(const int n, const int k) {
     ResultType result;
@@ -324,6 +350,73 @@ auto AllCombinationsOfLength_Iterative(const int n, const int k) {
     }
 
     return result;
+}
+
+
+/**
+ * @reference   Balanced K-Factor Decomposition
+ *              https://leetcode.com/problems/balanced-k-factor-decomposition/
+ *
+ * Given two integers n and k, split the number n into exactly k positive integers such that the product
+ * of these integers is equal to n.
+ * Return any one split in which the maximum difference between any two numbers is minimized. You may
+ * return the result in any order.
+ *
+ * @tags    #backtracking #factorization
+ */
+void MinDifferenceDecomposition(const std::size_t i,
+                                const std::vector<int> &factors,
+                                const int n,
+                                const int k,
+                                std::vector<int> &current,
+                                int &min_diff,
+                                std::vector<int> &result) {
+    if (i >= factors.size()) {
+        return;
+    }
+
+    if (k == 1) {
+        current.push_back(n);
+        const auto [min_iter, max_iter] = std::minmax_element(current.cbegin(), current.cend());
+        const auto d = *max_iter - *min_iter;
+        if (d < min_diff) {
+            min_diff = d;
+            result = current;
+        }
+        current.pop_back();
+
+        return;
+    }
+
+    MinDifferenceDecomposition(i + 1, factors, n, k, current, min_diff, result);
+
+    if (n % factors[i] == 0) {
+        current.push_back(factors[i]);
+        MinDifferenceDecomposition(i, factors, n / factors[i], k - 1, current, min_diff, result);
+        current.pop_back();
+    }
+}
+
+auto MinDifferenceDecomposition(const int n, const int k) {
+    const int square_root = std::sqrt(n);
+    std::vector factors = {1};
+    for (int i = 2; i <= square_root; ++i) {
+        if (n % i == 0) {
+            factors.push_back(i);
+        }
+    }
+
+    std::vector<int> current, result;
+    int min_diff = n;
+    MinDifferenceDecomposition(0, factors, n, k, current, min_diff, result);
+
+    return result;
+}
+
+auto testMinDifferenceDecomposition(const int n, const int k) {
+    const auto result = MinDifferenceDecomposition(n, k);
+
+    return std::multiset<int>(result.cbegin(), result.cend());
 }
 
 } //namespace
@@ -411,3 +504,15 @@ THE_BENCHMARK(AllCombinationsOfLength_Iterative, 4, 2);
 
 SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE1, EXPECTED1S, 4, 2);
 SIMPLE_TEST(AllCombinationsOfLength_Iterative, TestSAMPLE2, EXPECTED2S, 1, 1);
+
+
+const std::multiset EXPECTED1F = {10, 10};
+const std::multiset EXPECTED2F = {2, 2, 11};
+const std::multiset EXPECTED3F = {3, 4, 5, 6};
+
+
+THE_BENCHMARK(testMinDifferenceDecomposition, 100, 2);
+
+SIMPLE_TEST(testMinDifferenceDecomposition, TestSAMPLE1, EXPECTED1F, 100, 2);
+SIMPLE_TEST(testMinDifferenceDecomposition, TestSAMPLE2, EXPECTED2F, 44, 3);
+SIMPLE_TEST(testMinDifferenceDecomposition, TestSAMPLE3, EXPECTED3F, 360, 4);
