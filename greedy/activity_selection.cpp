@@ -23,6 +23,8 @@ using JobArray = std::vector<JobType>;
  * You are given n activities with their start and finish times. Select the maximum number of activities
  * that can be performed by a single person, assuming that a person can only work on a single activity
  * at a time.
+ *
+ * @tags    #greedy #sorting #sort-by-end
  */
 constexpr auto finish_comparator = [](const auto &lhs, const auto &rhs) {
     return lhs.second < rhs.second;
@@ -81,6 +83,8 @@ auto ActivitySelection_Iterative(const ArrayType &activities) {
  * the second number. A pair (c, d) can follow another pair (a, b) if b < c. The chain of pairs can be
  * formed in this fashion. The task is to find the length of the longest chain which can be formed from
  * a given set of pairs.
+ *
+ * @tags    #greedy #sorting #sort-by-end
  */
 inline auto MaxLengthChainPairs(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), finish_comparator);
@@ -95,6 +99,8 @@ inline auto MaxLengthChainPairs(ArrayType activities) {
  *
  * Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number
  * of intervals you need to remove to make the rest of the intervals non-overlapping.
+ *
+ * @tags    #greedy #sorting #sort-by-end
  */
 inline auto NonOverlappingIntervals(ArrayType intervals) {
     const auto size = intervals.size();
@@ -108,6 +114,8 @@ inline auto NonOverlappingIntervals(ArrayType intervals) {
  *
  * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...](si<
  * ei), determine if a person could attend all meetings.
+ *
+ * @tags    #greedy #sorting #sort-by-end
  */
 auto MeetingRooms(ArrayType activities) {
     std::sort(activities.begin(), activities.end(), finish_comparator);
@@ -359,6 +367,8 @@ auto MaxProfitJobScheduling_DP(const std::vector<int> &start_time,
  * infinitely, bursting any balloons in its path.
  * Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
  * -2^31 <= xstart < xend <= 2^31 - 1
+ *
+ * @tags    #greedy #sorting #sort-by-end
  */
 auto MinArrows(ArrayType points) {
     std::sort(points.begin(), points.end(), finish_comparator);
