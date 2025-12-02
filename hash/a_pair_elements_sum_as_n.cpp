@@ -660,6 +660,19 @@ auto CountSpecialQuestions(const ArrayType &nums) {
  * @tags    #hash-table #sorting #two-pointers
  */
 
+
+/**
+ * @reference   Count Pairs That Form a Complete Day II
+ *              https://leetcode.com/problems/count-pairs-that-form-a-complete-day-ii/
+ *
+ * Given an integer array hours representing times in hours, return an integer denoting the number of
+ * pairs i, j where i < j and hours[i] + hours[j] forms a complete day.
+ * A complete day is defined as a time duration that is an exact multiple of 24 hours.
+ * For example, 1 day is 24 hours, 2 days is 48 hours, 3 days is 72 hours, and so on.
+ *
+ * @tags    #hash-table #modulo #modulo-tricks
+ */
+
 } //namespace
 
 

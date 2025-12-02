@@ -7,13 +7,15 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Multiply the given number by 2 such that it is divisible by 10
- *
- * @reference   https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
+/**
+ * @reference   Multiply the given number by 2 such that it is divisible by 10
+ *              https://www.geeksforgeeks.org/multiply-the-given-number-by-2-such-that-it-is-divisible-by-10/
  *
  * Given a number, the only operation allowed is to multiply the number by 2. Calculate the minimum
  * number of operations to make the number divisible by 10.
  * NOTE: If it is not possible to convert then print -1.
+ *
+ * @tags    #division #modulo
  */
 
 inline constexpr auto isDivisibleBy5_Mod(const int n) {
@@ -34,6 +36,8 @@ inline constexpr auto isDivisibleBy5_LastDigit(const int n) {
  *
  * Given a positive number n, write a function isMultipleof5(int n) that returns true if n is multiple
  * of 5, otherwise false. You are not allowed to use % and / operators.
+ *
+ * @tags    #division #modulo #numeric-string
 */
 inline constexpr auto isDivisibleBy5_Subtraction(int n) {
     if (n < 0) {
@@ -63,6 +67,8 @@ inline auto isDivisibleBy5_ToString(const int n) {
  * using n<<=1 to make sure that if the number is multiple of 5 then we have the last digit as 0. Once
  * we do that, our work is to just check if the last digit is 0 or not, which we can do using float and
  * integer comparison trick.
+ *
+ * @tags    #division #modulo #floating-point-tricks
  */
 inline constexpr auto isDivisibleBy5_Float(const int n) {
     //Make it unsigned to prevent integer overflow error
@@ -96,6 +102,8 @@ inline constexpr auto isDivisibleBy5_LastDigitStrict(const int n) {
  * most-significant-bit to least-significant-bit).
  *  For example, if nums = [1,0,1], then x0 = 1, x1 = 2, and x2 = 5.
  * Return an array of booleans answer where answer[i] is true if xi is divisible by 5.
+ *
+ * @tags    #division #modulo #modulo-tricks #numeric-string
  */
 std::vector<bool> BinaryPrefixesDivisibleBy5(const ArrayType &nums) {
     std::vector<bool> result;
@@ -118,6 +126,8 @@ std::vector<bool> BinaryPrefixesDivisibleBy5(const ArrayType &nums) {
  * of num, num becomes 0.
  * Return the minimum number of operations required to make num special.
  * An integer x is considered special if it is divisible by 25.
+ *
+ * @tags    #division #modulo #numeric-string
  */
 int MinOperationsToMakeSpecialNumber(const std::string_view num) {
     bool has_five = false;
