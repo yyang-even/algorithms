@@ -302,6 +302,8 @@ auto MinAverageDiff(const ArrayType &nums) {
  * A subsequence of a string is a new string generated from the original string with some characters
  * (can be none) deleted without changing the relative order of the remaining characters.
  *  For example, "ace" is a subsequence of "abcde".
+ *
+ * @tags    #hash-table #prefix-sum #bit-hash
  */
 auto CountPalindromicSubsequence(const std::string_view s) {
     std::vector prefix_sums(26, std::vector(s.size() + 1, 0));
@@ -332,6 +334,40 @@ auto CountPalindromicSubsequence(const std::string_view s) {
             }
         }
         lasts[c_index] = 0;
+    }
+
+    return result;
+}
+
+struct Info {
+    unsigned mask = 0;
+    int valid = -1;
+};
+
+auto CountPalindromicSubsequence_BitHash(const std::string_view s) {
+    std::vector<Info> hash(26);
+
+    for (const auto c : s) {
+        const auto index = c - 'a';
+        if (hash[index].valid == -1) {
+            hash[index].valid = 0;
+        } else {
+            hash[index].valid = std::popcount(hash[index].mask);
+            hash[index].mask |= (1 << index);
+        }
+
+        for (int i = 0; i < 26; ++i) {
+            if (i != index and hash[i].valid != -1) {
+                hash[i].mask |= (1 << index);
+            }
+        }
+    }
+
+    int result = 0;
+    for (const auto &info : hash) {
+        if (info.valid > 0) {
+            result += info.valid;
+        }
     }
 
     return result;
@@ -550,6 +586,13 @@ THE_BENCHMARK(CountPalindromicSubsequence, "aabca");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE1, 3, "aabca");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE2, 0, "adc");
 SIMPLE_TEST(CountPalindromicSubsequence, TestSAMPLE3, 4, "bbcbaba");
+
+
+THE_BENCHMARK(CountPalindromicSubsequence_BitHash, "aabca");
+
+SIMPLE_TEST(CountPalindromicSubsequence_BitHash, TestSAMPLE1, 3, "aabca");
+SIMPLE_TEST(CountPalindromicSubsequence_BitHash, TestSAMPLE2, 0, "adc");
+SIMPLE_TEST(CountPalindromicSubsequence_BitHash, TestSAMPLE3, 4, "bbcbaba");
 
 
 const std::vector<std::string> SAMPLE1G = {"G", "P", "GP", "GG"};

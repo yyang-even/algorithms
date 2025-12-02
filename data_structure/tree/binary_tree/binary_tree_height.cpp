@@ -14,6 +14,8 @@ using ArrayType = std::vector<int>;
 /**
  * @reference   Iterative Method to find Height of Binary Tree
  *              https://www.geeksforgeeks.org/iterative-method-to-find-height-of-binary-tree/
+ *
+ * @tags    #binary-tree #BFS
  */
 inline auto Height_Iterative(const BinaryTree::Node::PointerType node) {
     unsigned height = 0;
@@ -44,6 +46,8 @@ inline constexpr std::size_t HeightOfCompleteTree(const std::size_t number_of_no
  * non-null nodes), where the null nodes between the end-nodes are also counted into the length
  * calculation.
  * It is guaranteed that the answer will in the range of 32-bit signed integer.
+ *
+ * @tags    #binary-tree #BFS #DFS
  */
 unsigned WidthOfBinaryTree_DFS(const BinaryTree::Node::PointerType node,
                                const unsigned level,
@@ -114,6 +118,8 @@ auto WidthOfBinaryTree_BFS(const BinaryTree::Node::PointerType root) {
  *  cur's original right subtree should be the right subtree of the new right subtree root.
  *  If depth == 1 that means there is no depth depth - 1 at all, then create a tree node with value val
  *      as the new root of the whole original tree, and the original tree is the new root's left subtree.
+ *
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 auto AddOneRow(const BinaryTree::Node::PointerType node, const int value, const int depth) {
     if (not node)
