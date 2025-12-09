@@ -6,6 +6,8 @@
 
 namespace {
 
+using ArrayType = std::vector<int>;
+
 /** Stein’s Algorithm for finding GCD
  *
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
@@ -113,6 +115,36 @@ constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
 
 
 /**
+ * @reference   Minimum Deletions to Make Array Divisible
+ *              https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/
+ *
+ * You are given two positive integer arrays nums and numsDivide. You can delete any number of elements
+ * from nums.
+ * Return the minimum number of deletions such that the smallest element in nums divides all the
+ * elements of numsDivide. If this is not possible, return -1.
+ * Note that an integer x divides y if y % x == 0.
+ *
+ * @tags    #gcd #sorting
+ */
+auto MinOperationsToMakeArrayDivisible(ArrayType nums, const ArrayType &numsDivide) {
+    int divider = numsDivide.front();
+    for (const auto n : numsDivide) {
+        divider = std::gcd(divider, n);
+    }
+
+    std::sort(nums.begin(), nums.end());
+    const int SIZE = nums.size();
+    for (int i = 0; i < SIZE and nums[i] <= divider; ++i) {
+        if (divider % nums[i] == 0) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
+/**
  * @reference   Count Operations to Obtain Zero
  *              https://leetcode.com/problems/count-operations-to-obtain-zero/
  *
@@ -198,3 +230,16 @@ THE_BENCHMARK(CountOperations, 2, 3);
 SIMPLE_TEST(CountOperations, TestSample1, 3, 2, 3);
 SIMPLE_TEST(CountOperations, TestSample2, 3, 3, 2);
 SIMPLE_TEST(CountOperations, TestSample3, 1, 10, 10);
+
+
+const ArrayType Sample1N = {2, 3, 2, 4, 3};
+const ArrayType Sample1D = {9, 6, 9, 3, 15};
+
+const ArrayType Sample2N = {4, 3, 6};
+const ArrayType Sample2D = {8, 2, 6, 10};
+
+
+THE_BENCHMARK(MinOperationsToMakeArrayDivisible, Sample1N, Sample1D);
+
+SIMPLE_TEST(MinOperationsToMakeArrayDivisible, TestSample1, 2, Sample1N, Sample1D);
+SIMPLE_TEST(MinOperationsToMakeArrayDivisible, TestSample2, -1, Sample2N, Sample2D);

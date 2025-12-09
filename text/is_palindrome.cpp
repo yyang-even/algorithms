@@ -8,9 +8,9 @@ namespace {
 
 using ListType = std::list<unsigned>;
 
-/** C Program to Check if a Given String is Palindrome
- *
- * @reference   https://www.geeksforgeeks.org/c-program-check-given-string-palindrome/
+/**
+ * @reference   C Program to Check if a Given String is Palindrome
+ *              https://www.geeksforgeeks.org/c-program-check-given-string-palindrome/
  * @reference   Check if a string is palindrome in C using pointers
  *              https://www.geeksforgeeks.org/check-if-a-string-is-palindrome-in-c-using-pointers/
  * @reference   Program to check if an Array is Palindrome or not
@@ -22,6 +22,8 @@ using ListType = std::list<unsigned>;
  *
  * @reference   Check whether the given floating point number is a palindrome
  *              https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
+ *
+ * @tags    #palindrome #two-pointers
  */
 constexpr auto isPalindrome_Iterative(const std::string_view a_string) {
     assert(not a_string.empty());
@@ -43,6 +45,8 @@ constexpr auto isPalindrome_Iterative(const std::string_view a_string) {
  *              https://www.geeksforgeeks.org/recursive-function-check-string-palindrome/
  * @reference   Program to check if an array is palindrome or not using Recursion
  *              https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-recursion/
+ *
+ * @tags    #palindrome
  */
 inline auto isPalindrome_Recursive(const std::string_view::const_iterator left,
                                    const std::string_view::const_iterator right) {
@@ -67,12 +71,16 @@ inline auto isPalindrome_Recursive(const std::string_view a_string) {
  *              https://www.geeksforgeeks.org/program-to-check-if-an-array-is-palindrome-or-not-using-stl-in-c/
  *
  * @note    Copy and reverse, are too expensive.
+ *
+ * @tags    #palindrome
  */
 
 
 /**
  * @reference   Check whether the given string is Palindrome using Stack
  *              https://www.geeksforgeeks.org/check-whether-the-given-string-is-palindrome-using-stack/
+ *
+ * @tags    #palindrome #stack
  */
 auto isPalindrome_Stack(const std::string_view a_string) {
     std::stack<std::string_view::value_type> the_stack;
@@ -97,9 +105,9 @@ auto isPalindrome_Stack(const std::string_view a_string) {
 }
 
 
-/** Function to check if a singly linked list is palindrome
- *
- * @reference   https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+/**
+ * @reference   Function to check if a singly linked list is palindrome
+ *              https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.7.
  *
@@ -111,6 +119,8 @@ auto isPalindrome_Stack(const std::string_view a_string) {
  *
  * Given the head of a singly linked list, return true if it is a palindrome.
  * Follow up: Could you do it in O(n) time and O(1) space?
+ *
+ * @tags    #singly-linked-list #palindrome #fast-slow-pointers #stack
  */
 auto isSinglyListPalindrome_Stack(const ListType &a_list) {
     std::stack<ListType::value_type> the_stack;
@@ -149,18 +159,22 @@ auto isSinglyListPalindrome_Stack(const ListType &a_list) {
  *  are the only nodes with twins for n = 4.
  * The twin sum is defined as the sum of a node and its twin.
  * Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+ *
+ * @tags    #singly-linked-list #fast-slow-pointers #stack
  */
 
 
-/** Check if a number is Palindrome
- *
- * @reference   https://www.geeksforgeeks.org/check-if-a-number-is-palindrome/
+/**
+ * @reference   Check if a number is Palindrome
+ *              https://www.geeksforgeeks.org/check-if-a-number-is-palindrome/
  * @reference   Recursive program to check if number is palindrome or not
  *              https://www.geeksforgeeks.org/recursive-program-to-check-if-number-is-palindrome-or-not/
  * @reference   Program to check the number is Palindrome or not
  *              https://www.geeksforgeeks.org/program-to-check-the-number-is-palindrome-or-not/
  * @reference   To check a number is palindrome or not without using any extra space
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-without-using-extra-space/
+ *
+ * @tags    #palindrome #digit-traverse
  */
 inline constexpr auto isNumberPalindrome_Reverse(const unsigned number, const unsigned base) {
     const unsigned reversed_number = ReverseDigits(number, base);
@@ -195,6 +209,8 @@ inline constexpr auto isIntPalindrome_Recursive(const unsigned number) {
 /**
  * @reference   Palindrome Number
  *              https://leetcode.com/problems/palindrome-number/
+ *
+ * @tags    #palindrome #digit-traverse
  */
 constexpr auto isIntPalindrome_Half(int x) {
     if (x < 0 or (x % 10 == 0 and x)) {
@@ -224,6 +240,8 @@ inline constexpr auto isEvenDigitsIntPalindrome(const unsigned number) {
 /**
  * @reference   Check if number is palindrome or not in Octal
  *              https://www.geeksforgeeks.org/check-number-palindrome-not-octal/
+ *
+ * @tags    #palindrome #digit-traverse
  */
 inline constexpr auto isOctalPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 8);
@@ -243,15 +261,19 @@ inline constexpr auto isOctalPalindrome_Recursive(const unsigned number) {
  * Given a non-negative integer n. The problem is to check if binary representation of n is palindrome
  * or not. Note that the actual binary representation of the number is being considered for palindrome
  * checking, no leading 0’s are being considered.
+ *
+ * @tags    #palindrome #digit-traverse
  */
 inline constexpr auto isActualBinaryPalindrome_Reverse(const unsigned number) {
     return isNumberPalindrome_Reverse(number, 2);
 }
 
 
-/** Check if binary representation of a number is palindrome
+/**
+ * @reference   Check if binary representation of a number is palindrome
+ *              https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
  *
- * @reference   https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
+ * @tags    #palindrome #digit-traverse #two-pointers
  */
 constexpr auto isBinaryPalindrome(const unsigned number) {
     unsigned least_significant = 1;
@@ -276,6 +298,8 @@ constexpr auto isBinaryPalindrome(const unsigned number) {
  *
  * @reference   Sentence Palindrome (Palindrome after removing spaces, dots, .. etc)
  *              https://www.geeksforgeeks.org/sentence-palindrome-palindrome-removing-spaces-dots-etc/
+ *
+ * @tags    #palindrome #two-pointers
  */
 constexpr auto ValidPalindrome(const std::string_view text) {
     int left = 0;
@@ -300,6 +324,8 @@ constexpr auto ValidPalindrome(const std::string_view text) {
  *              https://leetcode.com/problems/valid-palindrome-ii/
  *
  * Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+ *
+ * @tags    #palindrome #two-pointers
  */
 constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
     int left = 0;
