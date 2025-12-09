@@ -5,20 +5,21 @@ namespace {
 
 using ArrayType = std::vector<std::pair<int, int>>;
 
-/** Cells with Odd Values in a Matrix
+/**
+ * @reference   Cells with Odd Values in a Matrix
+ *              https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
  *
- * @reference   https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
- *
- * There is an m x n matrix that is initialized to all 0's. There is also a 2D array
- * indices where each indices[i] = [ri, ci] represents a 0-indexed location to perform
- * some increment operations on the matrix. For each location indices[i], do both of the
- * following:
+ * There is an m x n matrix that is initialized to all 0's. There is also a 2D array indices where each
+ * indices[i] = [ri, ci] represents a 0-indexed location to perform some increment operations on the
+ * matrix.
+ * For each location indices[i], do both of the following:
  *  Increment all the cells on row ri.
  *  Increment all the cells on column ci.
- * Given m, n, and indices, return the number of odd-valued cells in the matrix after
- * applying the increment to all locations in indices.
- * Follow up: Could you solve this in O(n + m + indices.length) time with only O(n + m)
- * extra space?
+ * Given m, n, and indices, return the number of odd-valued cells in the matrix after applying the
+ * increment to all locations in indices.
+ * Follow up: Could you solve this in O(n + m + indices.length) time with only O(n + m) extra space?
+ *
+ * @tags    #matrix #hash-table
  */
 auto CellsWithOddValues(const int m, const int n, const ArrayType &indices) {
     std::vector rows(m, false);
