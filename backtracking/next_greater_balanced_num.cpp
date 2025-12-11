@@ -12,7 +12,7 @@ namespace {
  * Given an integer n, return the smallest numerically balanced number strictly greater than n.
  * 0 <= n <= 10^6
  *
- * @tags    #backtracking #hash-table #sorting #binary-search
+ * @tags    #backtracking #hash-table #sorting #binary-search #combinatorics
  */
 auto isBalanced(const std::vector<int> &counts) {
     const int SIZE = counts.size();
