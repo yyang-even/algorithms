@@ -22,6 +22,8 @@
  *  boolean startsWith(String prefix) Returns true if there is a previously inserted string word
  *      that has the prefix prefix, and false otherwise.
  * word and prefix consist only of lowercase English letters.
+ *
+ * @tags    #trie
  */
 template<typename T>
 struct TrieNode {
@@ -239,12 +241,16 @@ static inline constexpr auto BuildTrie(const Strings &keys) {
  *              https://www.geeksforgeeks.org/implement-a-dictionary-using-trie/
  * @reference   Data Structure for Dictionary and Spell Checker?
  *              https://www.geeksforgeeks.org/data-structure-dictionary-spell-checker/
+ *
+ * @tags    #trie
  */
 
 
 /**
  * @reference   Trie memory optimization using hash map
  *              https://www.geeksforgeeks.org/trie-memory-optimization-using-hash-map/
+ *
+ * @tags    #trie
  */
 
 
@@ -262,4 +268,6 @@ static inline constexpr auto BuildTrie(const Strings &keys) {
  *              Questions 17.9.
  *
  * Design a method to find the frequency of occurrences of any given word in a book.
+ *
+ * @tags    #trie
  */

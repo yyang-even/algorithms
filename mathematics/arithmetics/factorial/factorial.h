@@ -4,6 +4,8 @@
 /**
  * @reference   TCS Coding Practice Question | Factorial of a Number
  *              https://www.geeksforgeeks.org/tcs-coding-practice-question-factorial-of-a-number/
+ *
+ * @tags    #factorial
  */
 static inline constexpr auto Factorial_Iterative(unsigned num) {
     unsigned long result = 1;

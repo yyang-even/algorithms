@@ -15,8 +15,10 @@ namespace {
  * @reference   One line function for factorial of a number
  *              https://www.geeksforgeeks.org/one-line-function-for-factorial-of-a-number/
  *
- * Factorial of a non-negative integer, is multiplication of all integers smaller than or
- * equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
+ * Factorial of a non-negative integer, is multiplication of all integers smaller than or equal to n.
+ * For example factorial of 6 is 6*5*4*3*2*1 which is 720.
+ *
+ * @tags    #factorial
  */
 inline constexpr unsigned long Factorial_Recursive(const int num) {
     if (num > 1) {
@@ -34,9 +36,10 @@ inline constexpr unsigned long Factorial_OneLine(const unsigned n) {
 /**
  * @reference   Tail Recursion
  *              https://www.geeksforgeeks.org/tail-recursion/
+ *
+ * @tags    #factorial #tail-recursion
  */
-inline constexpr unsigned long
-Factorial_TailRecursive(const int num, unsigned long factorial) {
+inline constexpr unsigned long Factorial_TailRecursive(const int num, unsigned long factorial) {
     if (num < 2) {
         return factorial;
     }
@@ -51,9 +54,12 @@ inline constexpr unsigned long Factorial_TailRecursive(const int num) {
 
 /**
  * @reference   Agner Fog. Optimizing software in C++. Section 14.1.
+ *
+ * @tags    #factorial
  */
 inline constexpr auto Factorial_LookupTable(const unsigned n) {
-    constexpr unsigned FACTORIAL_TABLE[] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
+    constexpr unsigned FACTORIAL_TABLE[] = {
+        1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600};
     assert(n < (sizeof(FACTORIAL_TABLE) / sizeof(*FACTORIAL_TABLE)));
     return FACTORIAL_TABLE[n];
 }
@@ -65,9 +71,11 @@ inline constexpr auto Factorial_LookupTable(const unsigned n) {
  *
  * How to compute factorial of 100 using a C/C++ program?
  *
- * Factorial of 100 has 158 digits. It is not possible to store these many digits even if
- * we use long long int. Following is a simple solution where we use an array to store
- * individual digits of the result. The idea is to use basic mathematics for multiplication.
+ * Factorial of 100 has 158 digits. It is not possible to store these many digits even if we use long
+ * long int. Following is a simple solution where we use an array to store individual digits of the
+ * result. The idea is to use basic mathematics for multiplication.
+ *
+ * @tags    #factorial
  */
 std::string FactorialOfLargeNumber(const int num) {
     LargeInteger result("1");
@@ -77,7 +85,31 @@ std::string FactorialOfLargeNumber(const int num) {
     return result.ToString();
 }
 
-}//namespace
+
+/**
+ * @reference   Count the Number of Computer Unlocking Permutations
+ *              https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/
+ *
+ * You are given an array complexity of length n.
+ * There are n locked computers in a room with labels from 0 to n - 1, each with its own unique
+ * password. The password of the computer i has a complexity complexity[i].
+ * The password for the computer labeled 0 is already decrypted and serves as the root. All other
+ * computers must be unlocked using it or another previously unlocked computer, following this
+ * information:
+ *  You can decrypt the password for the computer i using the password for computer j, where j is any
+ *      integer less than i with a lower complexity. (i.e. j < i and complexity[j] < complexity[i])
+ *  To decrypt the password for computer i, you must have already unlocked a computer j such that j < i
+ *      and complexity[j] < complexity[i].
+ * Find the number of permutations of [0, 1, 2, ..., (n - 1)] that represent a valid order in which the
+ * computers can be unlocked, starting from computer 0 as the only initially unlocked one.
+ * Since the answer may be large, return it modulo 109 + 7.
+ * Note that the password for the computer with label 0 is decrypted, and not the computer with the
+ * first position in the permutation.
+ *
+ * @tags    #min-max-element #combinatorics #factorial
+ */
+
+} //namespace
 
 
 constexpr int LOWER = 0;
@@ -138,6 +170,8 @@ SIMPLE_TEST(FactorialOfLargeNumber, TestLOWER, "1", LOWER);
 SIMPLE_TEST(FactorialOfLargeNumber, TestUPPER, "479001600", UPPER);
 SIMPLE_TEST(FactorialOfLargeNumber, TestSAMPLE1, "1", SAMPLE1);
 SIMPLE_TEST(FactorialOfLargeNumber, TestSAMPLE2, "720", SAMPLE2);
-SIMPLE_TEST(FactorialOfLargeNumber, TestSAMPLE3,
-            "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000",
-            100);
+SIMPLE_TEST(
+    FactorialOfLargeNumber,
+    TestSAMPLE3,
+    "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000",
+    100);

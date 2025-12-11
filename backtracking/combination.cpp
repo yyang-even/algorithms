@@ -18,7 +18,7 @@ using OutputType = std::unordered_multiset<std::string>;
  *
  * Given two numbers n and k and you have to find all possible combination of k numbers from 1...n.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void CombinationsOfLength_Start(const std::string_view elements,
                                 const std::size_t length,
@@ -88,7 +88,7 @@ inline auto CombinationsOfLength_Include(const std::string_view elements,
  *  hasNext() Returns true if and only if there exists a next combination.
  * 1 <= combinationLength <= characters.length <= 15
  *
- * @tags    #bit-hash
+ * @tags    #bit-hash #combinatorics
  */
 class CombinationIterator {
     std::string_view chars;
@@ -142,7 +142,7 @@ auto testCombinationIterator(const std::string_view chars, const std::size_t len
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 9.4.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void AllCombinations_Recursive(const std::string_view elements,
                                const std::size_t start,
@@ -173,7 +173,7 @@ inline auto AllCombinations_Recursive(const std::string_view elements) {
  * @reference   Printing all subsets of {1,2,3,...n} without using array or loop
  *              https://www.geeksforgeeks.org/printing-all-subsets-of-123-n-without-using-array-or-loop/
  *
- * @tags    #bit-hash
+ * @tags    #bit-hash #combinatorics
  */
 auto AllCombinations_BitMask(const std::string_view elements) {
     assert(elements.size() < BitsNumber<unsigned long long>);
@@ -205,7 +205,7 @@ auto AllCombinations_BitMask(const std::string_view elements) {
  * Given an integer array nums of unique elements, return all possible subsets (the power set).
  * The solution set must not contain duplicate subsets. Return the solution in any order.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void AllCombinations_Recursive_Copy(const std::string_view elements,
                                     OutputType &results,
@@ -254,7 +254,7 @@ auto AllCombinations_Iterative(const std::string_view elements) {
  * Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
  * The solution set must not contain duplicate subsets. Return the solution in any order.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void AllCombinationsWithDuplicates_For(const std::string &elements,
                                        const std::size_t start,
@@ -321,7 +321,7 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
  * another string.
  * Return a list of all possible strings we could create. Return the output in any order.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 
 
@@ -332,7 +332,7 @@ inline auto AllCombinationsWithDuplicates(std::string elements) {
  * Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
  * You may return the answer in any order.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 auto AllCombinationsOfLength_Iterative(const int n, const int k) {
     ResultType result;
@@ -362,7 +362,7 @@ auto AllCombinationsOfLength_Iterative(const int n, const int k) {
  * Return any one split in which the maximum difference between any two numbers is minimized. You may
  * return the result in any order.
  *
- * @tags    #backtracking #factorization
+ * @tags    #backtracking #factorization #combinatorics
  */
 void MinDifferenceDecomposition(const std::size_t i,
                                 const std::vector<int> &factors,
