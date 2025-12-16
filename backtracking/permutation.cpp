@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::unordered_multiset<std::string>;
 
-/** Write a program to print all permutations of a given string
- *
- * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+/**
+ * @reference   Write a program to print all permutations of a given string
+ *              https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
  * @reference   Permutations of a given string using STL
  *              https://www.geeksforgeeks.org/permutations-of-a-given-string-using-stl/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
@@ -29,6 +29,8 @@ using ArrayType = std::unordered_multiset<std::string>;
  * answer in any order.
  *
  * @complexity  O(n * n!)
+ *
+ * @tags    #backtracking #combinatorics
  */
 void PermutationHelper(const std::string &input,
                        std::string::iterator start,
@@ -72,6 +74,8 @@ auto PermutationSTL(std::string input) {
  *
  * Given a collection of numbers, nums, that might contain duplicates, return all possible unique
  * permutations in any order.
+ *
+ * @tags    #backtracking #combinatorics #hash-table #sorting
  */
 void PermutationWithDuplicates_Hash(std::string &nums, const std::size_t i, ArrayType &results) {
     if (i >= nums.size()) {
@@ -130,6 +134,8 @@ inline auto PermutationWithDuplicates_Sort(std::string nums) {
  *  For all indexes 0 <= i < n - 1, either nums[i] % nums[i+1] == 0 or nums[i+1] % nums[i] == 0.
  * Return the total number of special permutations. As the answer could be large, return it modulo
  * 10^9 + 7.
+ *
+ * @tags    #DP #backtracking #combinatorics #bit-hash
  */
 long SpecialPermutations(const std::vector<int> &nums,
                          const int prev,
