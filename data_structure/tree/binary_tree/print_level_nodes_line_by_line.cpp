@@ -10,9 +10,9 @@ namespace {
 
 using ArrayType = std::vector<BinaryTree::ArrayType>;
 
-/** Print level order traversal line by line | Set 1
- *
- * @reference   https://www.geeksforgeeks.org/print-level-order-traversal-line-line/
+/**
+ * @reference   Print level order traversal line by line | Set 1
+ *              https://www.geeksforgeeks.org/print-level-order-traversal-line-line/
  * @reference   Level order traversal line by line | Set 2 (Using Two Queues)
  *              https://www.geeksforgeeks.org/level-order-traversal-line-line-set-2-using-two-queues/
  * @reference   Level order traversal line by line | Set 3 (Using One Queue)
@@ -25,6 +25,8 @@ using ArrayType = std::vector<BinaryTree::ArrayType>;
  *
  * Given the root of a binary tree, return the level order traversal of its nodes' values.  (i.e., from
  * left to right, level by level).
+ *
+ * @tags    #binary-tree #BFS
  */
 inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_node) {
     ArrayType results;
@@ -49,6 +51,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  *
  * Given the root of a binary tree, return the bottom-up level order traversal of its nodes' values.
  * (i.e., from left to right, level by level from leaf to root).
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -58,6 +62,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  *
  * Given the root of a binary tree, return the average value of the nodes on each level in the form of
  * an array. Answers within 10^-5 of the actual answer will be accepted.
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -68,6 +74,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  * Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so
  * on.
  * Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -76,6 +84,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  *              https://leetcode.com/problems/deepest-leaves-sum/
  *
  * Given the root of a binary tree, return the sum of values of its deepest leaves.
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -85,6 +95,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  *
  * Given the root of a binary tree, return an array of the largest value in each row of the tree
  * (0-indexed).
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -93,6 +105,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  *              https://leetcode.com/problems/find-bottom-left-tree-value/
  *
  * Given the root of a binary tree, return the leftmost value in the last row of the tree.
+ *
+ * @tags    #binary-tree #BFS
  */
 
 
@@ -113,6 +127,8 @@ inline auto PrintLevelOrderLineByLine(const BinaryTree::Node::PointerType root_n
  * You may only use constant extra space.
  * The recursive approach is fine. You may assume implicit stack space does not count as extra space for
  * this problem.
+ *
+ * @tags    #binary-tree #BFS
  */
 inline auto ConnectLevelNext_BFS(const BinaryTreeNodeWithNext::PointerType root) {
     if (not root) {
@@ -188,6 +204,8 @@ constexpr auto testConnectLevelNext(const BinaryTree::Node::PointerType root,
  * You may only use constant extra space.
  * The recursive approach is fine. You may assume implicit stack space does not count as extra space for
  * this problem.
+ *
+ * @tags    #binary-tree #BFS
  */
 inline auto ConnectLevelNext_Any_BFS(BinaryTreeNodeWithNext::PointerType root) {
     const auto dummy = std::make_shared<BinaryTreeNodeWithNext>(0);
@@ -218,6 +236,8 @@ inline auto ConnectLevelNext_Any_BFS(BinaryTreeNodeWithNext::PointerType root) {
  *
  * Given the root of a binary tree, imagine yourself standing on the right side of it, return the values
  * of the nodes you can see ordered from top to bottom.
+ *
+ * @tags    #binary-tree #DFS #reverse-preorder-traversal
  */
 auto RightSideView(const BinaryTree::Node::PointerType node,
                    const std::size_t level,
@@ -254,6 +274,8 @@ inline auto RightSideView(const BinaryTree::Node::PointerType root) {
  *  For every odd-indexed level, all nodes at the level have even integer values in strictly decreasing
  *  order (from left to right).
  * Given the root of a binary tree, return true if the binary tree is Even-Odd, otherwise return false.
+ *
+ * @tags    #binary-tree #BFS
  */
 
 } //namespace

@@ -12,6 +12,8 @@ using ThreeDimensionalArrayType = std::unordered_map<
     std::size_t,
     std::unordered_map<std::size_t, std::unordered_map<std::size_t, unsigned>>>;
 
+using ArrayType = std::vector<int>;
+
 
 inline auto LongestCommonSubsequence_DP(const std::string &X, const std::string &Y) {
     return LongestCommonSubsequence(X, Y);
@@ -23,6 +25,8 @@ inline auto LongestCommonSubsequence_DP(const std::string &X, const std::string 
  *              Introduction to Algorithms, Third Edition. Exercises 15.4-4.
  * @reference   A Space Optimized Solution of LCS
  *              https://www.geeksforgeeks.org/space-optimized-solution-lcs/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 constexpr auto LongestCommonSubsequence_SpaceOptimized(const std::string_view X,
                                                        const std::string_view Y) {
@@ -50,6 +54,8 @@ constexpr auto LongestCommonSubsequence_SpaceOptimized(const std::string_view X,
  *              Introduction to Algorithms, Third Edition. Exercises 15.4-3.
  * @reference   Longest Common Subsequence | DP using Memoization
  *              https://www.geeksforgeeks.org/longest-common-subsequence-dp-using-memoization/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 unsigned LongestCommonSubsequence_Memoization(const std::string_view X,
                                               const std::size_t x_i,
@@ -85,6 +91,8 @@ inline auto LongestCommonSubsequence_Memoization(const std::string_view X,
  *              Introduction to Algorithms, Third Edition. Exercises 15.4-2.
  * @reference   Printing Longest Common Subsequence
  *              https://www.geeksforgeeks.org/printing-longest-common-subsequence/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 inline auto LongestCommonSubsequenceString(const std::string &X, const std::string &Y) {
     std::string the_lcs;
@@ -100,6 +108,8 @@ inline auto LongestCommonSubsequenceString(const std::string &X, const std::stri
  * Given two strings word1 and word2, return the minimum number of steps required to make word1 and
  * word2 the same.
  * In one step, you can delete exactly one character in either string.
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 
 
@@ -109,6 +119,8 @@ inline auto LongestCommonSubsequenceString(const std::string &X, const std::stri
  *
  * Given two strings s1 and s2, return the lowest ASCII sum of deleted characters to make two strings
  * equal.
+ *
+ * @tags    #DP
  */
 int MinDeleteSum(const std::string_view s1,
                  const std::size_t i,
@@ -169,6 +181,8 @@ auto MinDeleteSum_DP(const std::string_view s1, const std::string_view s2) {
 /**
  * @reference   Printing Longest Common Subsequence | Set 2 (Printing All)
  *              https://www.geeksforgeeks.org/printing-longest-common-subsequence-set-2-printing/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 auto AllLongestCommonSubsequenceStrings(const std::string_view X,
                                         const std::size_t x_i,
@@ -216,6 +230,8 @@ auto AllLongestCommonSubsequenceStrings(const std::string_view X, const std::str
 /**
  * @reference   LCS (Longest Common Subsequence) of three strings
  *              https://www.geeksforgeeks.org/lcs-longest-common-subsequence-three-strings/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 constexpr auto LongestCommonSubsequenceOfThree(const std::string_view X,
                                                const std::string_view Y,
@@ -241,6 +257,8 @@ constexpr auto LongestCommonSubsequenceOfThree(const std::string_view X,
 /**
  * @reference   Memoization (1D, 2D and 3D)
  *              https://www.geeksforgeeks.org/memoization-1d-2d-and-3d/
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 unsigned LongestCommonSubsequenceOfThree_Memoization(const std::string_view X,
                                                      const std::size_t x_i,
@@ -277,6 +295,39 @@ inline auto LongestCommonSubsequenceOfThree_Memoization(const std::string_view X
     ThreeDimensionalArrayType LCS_table;
     return LongestCommonSubsequenceOfThree_Memoization(
         X, X.size(), Y, Y.size(), Z, Z.size(), LCS_table);
+}
+
+
+/**
+ * @reference   Max Dot Product of Two Subsequences
+ *              https://leetcode.com/problems/max-dot-product-of-two-subsequences/
+ *
+ * Given two arrays nums1 and nums2.
+ * Return the maximum dot product between non-empty subsequences of nums1 and nums2 with the same
+ * length.
+ * A subsequence of a array is a new array which is formed from the original array by deleting some (can
+ * be none) of the characters without disturbing the relative positions of the remaining characters.
+ * (ie, [2,3,5] is a subsequence of [1,2,3,4,5] while [1,5,3] is not).
+ *
+ * @tags    #DP
+ */
+auto MaxDotProduct(const ArrayType &nums1, const ArrayType &nums2) {
+    const int M = nums1.size();
+    const int N = nums2.size();
+
+    std::vector dp(M + 1, std::vector<int>(N + 1, -1e9));
+
+    dp[1][1] = nums1[0] * nums2[0];
+
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            const auto product = nums1[i] * nums2[j];
+            dp[i + 1][j + 1] =
+                std::max({dp[i][j + 1], dp[i + 1][j], product, product + dp[i][j]});
+        }
+    }
+
+    return dp.back().back();
 }
 
 } //namespace
@@ -409,3 +460,24 @@ THE_BENCHMARK(MinDeleteSum_DP, "sea", "eat");
 
 SIMPLE_TEST(MinDeleteSum_DP, TestSAMPLE1, 231, "sea", "eat");
 SIMPLE_TEST(MinDeleteSum_DP, TestSAMPLE2, 403, "delete", "leet");
+
+
+const ArrayType SAMPLE1MDP_X = {2, 1, -2, 5};
+const ArrayType SAMPLE1MDP_Y = {3, 0, -6};
+
+const ArrayType SAMPLE2MDP_X = {3, -2};
+const ArrayType SAMPLE2MDP_Y = {2, -6, 7};
+
+const ArrayType SAMPLE3MDP_X = {-1, -1};
+const ArrayType SAMPLE3MDP_Y = {1, 1};
+
+const ArrayType SAMPLE4MDP_X = {-5, -1, -2};
+const ArrayType SAMPLE4MDP_Y = {3, 3, 5, 5};
+
+
+THE_BENCHMARK(MaxDotProduct, SAMPLE4MDP_X, SAMPLE4MDP_Y);
+
+SIMPLE_TEST(MaxDotProduct, TestSAMPLE1, 18, SAMPLE1MDP_X, SAMPLE1MDP_Y);
+SIMPLE_TEST(MaxDotProduct, TestSAMPLE2, 21, SAMPLE2MDP_X, SAMPLE2MDP_Y);
+SIMPLE_TEST(MaxDotProduct, TestSAMPLE3, -1, SAMPLE3MDP_X, SAMPLE3MDP_Y);
+SIMPLE_TEST(MaxDotProduct, TestSAMPLE4, -3, SAMPLE4MDP_X, SAMPLE4MDP_Y);

@@ -3,9 +3,9 @@
 
 namespace {
 
-/** Minimum Penalty for a Shop
- *
- * @reference   https://leetcode.com/problems/minimum-penalty-for-a-shop/
+/**
+ * @reference   Minimum Penalty for a Shop
+ *              https://leetcode.com/problems/minimum-penalty-for-a-shop/
  *
  * You are given the customer visit log of a shop represented by a 0-indexed string customers consisting
  * only of characters 'N' and 'Y':
@@ -16,6 +16,8 @@ namespace {
  *  For every hour when the shop is closed and customers come, the penalty increases by 1.
  * Return the earliest hour at which the shop must be closed to incur a minimum penalty.
  * Note that if a shop closes at the jth hour, it means the shop is closed at the hour j.
+ *
+ * @tags    #prefix-sum #min-max-element
  */
 auto MinPenaltyForAShop(const std::string_view customers) {
     int penalty = 0;

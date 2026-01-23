@@ -6,9 +6,9 @@
 
 namespace {
 
-/** Maximum Product of Splitted Binary Tree
- *
- * @reference   https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
+/**
+ * @reference   Maximum Product of Splitted Binary Tree
+ *              https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
  *
  * Given the root of a binary tree, split the binary tree into two subtrees by removing one edge such
  * that the product of the sums of the subtrees is maximized.
@@ -17,6 +17,8 @@ namespace {
  * Note that you need to maximize the answer before taking the mod and not after taking it.
  * The number of nodes in the tree is in the range [2, 5 * 10^4].
  * 1 <= Node.val <= 10^4
+ *
+ * @tags    #binary-tree #DFS #preorder-traversal
  */
 int sum(const BinaryTree::Node::PointerType node) {
     if (not node) {

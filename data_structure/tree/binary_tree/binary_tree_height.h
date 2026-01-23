@@ -3,13 +3,15 @@
 #include "binary_tree.h"
 
 
-/** Write a Program to Find the Maximum Depth or Height of a Tree
- *
- * @reference   https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
+/**
+ * @reference   Write a Program to Find the Maximum Depth or Height of a Tree
+ *              https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
  * @reference   John Mongan, Eric Giguere, Noah Kindler.
  *              Programming Interviews Exposed, Third Edition. Chapter 5.
  * @reference   Maximum Depth of Binary Tree
  *              https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ *
+ * @tags    #binary-tree #DFS #postorder-traversal
  */
 static inline unsigned Height_Recursive(const BinaryTree::Node::PointerType node) {
     if (not node) {
