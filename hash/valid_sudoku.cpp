@@ -7,27 +7,26 @@ namespace {
 
 using BoardType = MatrixTypeTemplate<char>;
 
-/** Valid Sudoku
+/**
+ * @reference   Valid Sudoku
+ *              https://leetcode.com/problems/valid-sudoku/
  *
- * @reference   https://leetcode.com/problems/valid-sudoku/
- *
- * Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated
- * according to the following rules:
+ * Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to
+ * the following rules:
  *  Each row must contain the digits 1-9 without repetition.
  *  Each column must contain the digits 1-9 without repetition.
- *  Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without
- *      repetition.
+ *  Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
  * Note:
  *  A Sudoku board (partially filled) could be valid but is not necessarily solvable.
  *  Only the filled cells need to be validated according to the mentioned rules.
  *
- * @note    Alternatively, one may also use arrays, or binary numbers to record
- * previously seen numbers.
+ * @note    Alternatively, one may also use arrays, or binary numbers to record previously seen numbers.
+ *
+ * @tags    #matrix #hash-table
  */
 constexpr std::size_t N = 9;
 
-inline constexpr auto
-boxIndex(const std::size_t i, const std::size_t j) {
+inline constexpr auto boxIndex(const std::size_t i, const std::size_t j) {
     return (i / 3) * 3 + j / 3;
 }
 
@@ -66,10 +65,11 @@ auto ValidSudoku(const BoardType &board) {
  * @reference   Check if Every Row and Column Contains All Numbers
  *              https://leetcode.com/problems/check-if-every-row-and-column-contains-all-numbers/
  *
- * An n x n matrix is valid if every row and every column contains all the integers from
- * 1 to n (inclusive).
- * Given an n x n integer matrix matrix, return true if the matrix is valid. Otherwise,
- * return false.
+ * An n x n matrix is valid if every row and every column contains all the integers from 1 to n
+ * (inclusive).
+ * Given an n x n integer matrix matrix, return true if the matrix is valid. Otherwise, return false.
+ *
+ * @tags    #matrix #hash-table
  */
 
 
@@ -77,30 +77,34 @@ auto ValidSudoku(const BoardType &board) {
  * @reference   Sudoku Solver
  *              https://leetcode.com/problems/sudoku-solver/
  *
- * Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution
- * must satisfy all of the following rules:
- *
- * Each of the digits 1-9 must occur exactly once in each row.
- * Each of the digits 1-9 must occur exactly once in each column.
- * Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+ * Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy
+ * all of the following rules:
+ *  Each of the digits 1-9 must occur exactly once in each row.
+ *  Each of the digits 1-9 must occur exactly once in each column.
+ *  Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
  * The '.' character indicates empty cells.
  */
-inline constexpr void
-unset(const std::size_t i, const std::size_t j,  bool rows[N][N],
-      bool columns[N][N], bool boxes[N][N], const char c) {
+inline constexpr void unset(const std::size_t i,
+                            const std::size_t j,
+                            bool rows[N][N],
+                            bool columns[N][N],
+                            bool boxes[N][N],
+                            const char c) {
     const auto c_index = c - '1';
     rows[i][c_index] = columns[j][c_index] = boxes[boxIndex(i, j)][c_index] = false;
 }
 
-inline constexpr void
-set(const std::size_t i, const std::size_t j,  bool rows[N][N],
-    bool columns[N][N], bool boxes[N][N], const char c) {
+inline constexpr void set(const std::size_t i,
+                          const std::size_t j,
+                          bool rows[N][N],
+                          bool columns[N][N],
+                          bool boxes[N][N],
+                          const char c) {
     const auto c_index = c - '1';
     rows[i][c_index] = columns[j][c_index] = boxes[boxIndex(i, j)][c_index] = true;
 }
 
-void buildBoards(const BoardType &board, bool rows[N][N],
-                 bool columns[N][N], bool boxes[N][N]) {
+void buildBoards(const BoardType &board, bool rows[N][N], bool columns[N][N], bool boxes[N][N]) {
     for (std::size_t i = 0; i < N; ++i) {
         for (std::size_t j = 0; j < N; ++j) {
             const auto c = board[i][j];
@@ -111,15 +115,22 @@ void buildBoards(const BoardType &board, bool rows[N][N],
     }
 }
 
-inline constexpr auto
-valid(const std::size_t i, const std::size_t j,  bool rows[N][N],
-      bool columns[N][N], bool boxes[N][N], const char c) {
+inline constexpr auto valid(const std::size_t i,
+                            const std::size_t j,
+                            bool rows[N][N],
+                            bool columns[N][N],
+                            bool boxes[N][N],
+                            const char c) {
     const auto c_index = c - '1';
     return not(rows[i][c_index] or columns[j][c_index] or boxes[boxIndex(i, j)][c_index]);
 }
 
-auto SudokuSolver(BoardType &board, const std::size_t i, const std::size_t j,
-                  bool rows[N][N], bool columns[N][N], bool boxes[N][N]) {
+auto SudokuSolver(BoardType &board,
+                  const std::size_t i,
+                  const std::size_t j,
+                  bool rows[N][N],
+                  bool columns[N][N],
+                  bool boxes[N][N]) {
     if (i == N) {
         return true;
     }
@@ -164,9 +175,52 @@ auto SudokuSolver(BoardType board) {
     return board;
 }
 
-}//namespace
+
+/**
+ * @reference   Magic Squares In Grid
+ *              https://leetcode.com/problems/magic-squares-in-grid/
+ *
+ * A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 such that each row,
+ * column, and both diagonals all have the same sum.
+ * Given a row x col grid of integers, how many 3 x 3 magic square subgrids are there?
+ * Note: while a magic square can only contain numbers from 1 to 9, grid may contain numbers up to 15.
+ *
+ * @tags    #matrix #hash-table
+ */
+bool isMagicSquare(const MatrixType &grid, const int row, const int column) {
+    const std::string_view sequence = "2943816729438167";
+    const std::string_view reversed_sequence = "7618349276183492";
+
+    std::string border;
+    const std::vector border_indices {0, 1, 2, 5, 8, 7, 6, 3};
+    for (const auto i : border_indices) {
+        const int n = grid[row + i / 3][column + (i % 3)];
+        border.append(std::to_string(n));
+    }
+
+    return (grid[row][column] % 2 == 0 and grid[row + 1][column + 1] == 5 and
+            (sequence.find(border) != std::string_view::npos or
+             reversed_sequence.find(border) != std::string_view::npos));
+}
+
+int NumMagicSquaresInside(const MatrixType &grid) {
+    const int M = grid.size();
+    const int N = grid.front().size();
+
+    int result = 0;
+    for (int r = 0; r < M - 2; ++r) {
+        for (int c = 0; c < N - 2; ++c) {
+            result += isMagicSquare(grid, r, c);
+        }
+    }
+
+    return result;
+}
+
+} //namespace
 
 
+// clang-format off
 const BoardType SAMPLE1 = {
     {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
     {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -202,6 +256,7 @@ const BoardType EXPECTED1 = {
     {'2', '8', '7', '4', '1', '9', '6', '3', '5'},
     {'3', '4', '5', '2', '8', '6', '1', '7', '9'}
 };
+// clang-format on
 
 
 THE_BENCHMARK(ValidSudoku, SAMPLE1);
@@ -213,3 +268,27 @@ SIMPLE_TEST(ValidSudoku, TestSAMPLE2, false, SAMPLE2);
 THE_BENCHMARK(SudokuSolver, SAMPLE1);
 
 SIMPLE_TEST(SudokuSolver, TestSAMPLE1, EXPECTED1, SAMPLE1);
+
+
+// clang-format off
+const MatrixType SAMPLE1MS = {
+    {4, 3, 8, 4},
+    {9, 5, 1, 9},
+    {2, 7, 6, 2}
+};
+
+const MatrixType SAMPLE2MS = {{8}};
+
+const MatrixType SAMPLE3MS = {
+    {7, 0, 5},
+    {2, 4, 6},
+    {3, 8, 1}
+};
+// clang-format on
+
+
+THE_BENCHMARK(NumMagicSquaresInside, SAMPLE1MS);
+
+SIMPLE_TEST(NumMagicSquaresInside, TestSAMPLE1, 1, SAMPLE1MS);
+SIMPLE_TEST(NumMagicSquaresInside, TestSAMPLE2, 0, SAMPLE2MS);
+SIMPLE_TEST(NumMagicSquaresInside, TestSAMPLE3, 0, SAMPLE3MS);

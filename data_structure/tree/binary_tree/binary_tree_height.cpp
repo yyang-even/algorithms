@@ -47,7 +47,7 @@ inline constexpr std::size_t HeightOfCompleteTree(const std::size_t number_of_no
  * calculation.
  * It is guaranteed that the answer will in the range of 32-bit signed integer.
  *
- * @tags    #binary-tree #BFS #DFS
+ * @tags    #binary-tree #BFS #DFS #postorder-traversal
  */
 unsigned WidthOfBinaryTree_DFS(const BinaryTree::Node::PointerType node,
                                const unsigned level,
@@ -146,6 +146,52 @@ auto AddOneRow(const BinaryTree::Node::PointerType node, const int value, const 
     return node;
 }
 
+
+/**
+ * @reference   Smallest Subtree with all the Deepest Nodes
+ *              https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/
+ *
+ * Given the root of a binary tree, the depth of each node is the shortest distance to the root.
+ * Return the smallest subtree such that it contains all the deepest nodes in the original tree.
+ * A node is called the deepest if it has the largest depth possible among any node in the entire tree.
+ * The subtree of a node is a tree consisting of that node, plus the set of all descendants of that
+ * node.
+ *
+ * @reference   Lowest Common Ancestor of Deepest Leaves
+ *              https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/
+ *
+ * Given the root of a binary tree, return the lowest common ancestor of its deepest leaves.
+ * Recall that:
+ *  The node of a binary tree is a leaf if and only if it has no children
+ *  The depth of the root of the tree is 0. if the depth of a node is d, the depth of each of its
+ *  children is d + 1.
+ *  The lowest common ancestor of a set S of nodes, is the node A with the largest depth such that every
+ *  node in S is in the subtree with root A.
+ *
+ * @tags    #binary-tree #DFS #postorder-traversal
+ */
+std::pair<BinaryTree::Node::PointerType, int>
+LowestCommonAncestorOfDeepestLeavesHelper(const BinaryTree::Node::PointerType node) {
+    if (not node) {
+        return std::pair(node, 0);
+    }
+
+    const auto [left_node, left_depth] = LowestCommonAncestorOfDeepestLeavesHelper(node->left);
+    const auto [right_node, right_depth] = LowestCommonAncestorOfDeepestLeavesHelper(node->right);
+
+    if (left_depth > right_depth) {
+        return std::pair(left_node, left_depth + 1);
+    } else if (left_depth < right_depth) {
+        return std::pair(right_node, right_depth + 1);
+    } else {
+        return std::pair(node, left_depth + 1);
+    }
+}
+
+auto LowestCommonAncestorOfDeepestLeaves(const BinaryTree::Node::PointerType root) {
+    return LowestCommonAncestorOfDeepestLeavesHelper(root).first->value;
+}
+
 } //namespace
 
 
@@ -217,3 +263,8 @@ SIMPLE_TEST(areIdenticalTrees,
             EXPECTED1,
             AddOneRow(MakeTheSampleCompleteTree().GetRoot(), 0, 1));
 SIMPLE_TEST(areIdenticalTrees, TestSAMPLE2, true, EXPECTED2, AddOneRow(SAMPLE2, 0, 2));
+
+
+THE_BENCHMARK(LowestCommonAncestorOfDeepestLeaves, SAMPLE2);
+
+SIMPLE_TEST(LowestCommonAncestorOfDeepestLeaves, TestSAMPLE1, 1, SAMPLE2);

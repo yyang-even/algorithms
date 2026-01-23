@@ -37,6 +37,8 @@
  * Note that a connecting line cannot intersect even at the endpoints (i.e., each number can only belong
  * to one connecting line).
  * Return the maximum number of connecting lines we can draw in this way.
+ *
+ * @tags    #DP #longest-common-subsequence
  */
 template<typename ArrayType>
 static inline constexpr auto LongestCommonSubsequence(const ArrayType &X,

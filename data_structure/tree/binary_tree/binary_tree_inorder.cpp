@@ -90,7 +90,7 @@ inline auto testInorderTraversal_Recursive(const BinaryTree::Node::PointerType r
  * @reference   Inorder Successor of a node in Binary Tree
  *              https://www.geeksforgeeks.org/inorder-succesor-node-binary-tree/
  *
- * @tags    #binary-tree #DFS #inorder-traversal
+ * @tags    #binary-tree #DFS #reverse-inorder-traversal
  */
 BinaryTree::Node::PointerType
 InorderSuccessor_Recursive(const BinaryTree::Node::PointerType node,

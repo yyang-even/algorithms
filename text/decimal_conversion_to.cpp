@@ -8,9 +8,10 @@ namespace {
 /**
  * @reference   Implement your own itoa()
  *              https://www.geeksforgeeks.org/implement-itoa/
+ *
+ * @tags    #to-string
  */
-auto DecimalTo(unsigned number, const int base,
-               const std::function<char(const int)> to_digit) {
+auto DecimalTo(unsigned number, const int base, const std::function<char(const int)> to_digit) {
     std::string result;
     for (; number; number /= base) {
         result.push_back(to_digit(number % base));
@@ -21,11 +22,13 @@ auto DecimalTo(unsigned number, const int base,
 }
 
 
-/** Program for Decimal to Octal Conversion
- *
- * @reference   https://www.geeksforgeeks.org/program-decimal-octal-conversion/
+/**
+ * @reference   Program for Decimal to Octal Conversion
+ *              https://www.geeksforgeeks.org/program-decimal-octal-conversion/
  * @reference   Decimal to octal conversion with minimum use of arithmetic operators
  *              https://www.geeksforgeeks.org/decimal-octal-conversion-minimum-use-arithmetic-operators/
+ *
+ * @tags    #to-string
  */
 inline auto ToOctal(const int number) {
     return DecimalTo(number, 8, [](const auto digit) {
@@ -34,20 +37,22 @@ inline auto ToOctal(const int number) {
 }
 
 
-/** Program for decimal to hexadecimal conversion
- *
- * @reference   https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
+/**
+ * @reference   Program for decimal to hexadecimal conversion
+ *              https://www.geeksforgeeks.org/program-decimal-hexadecimal-conversion/
  * @reference   Convert Decimal To Hexa-Decimal including negative numbers
  *              https://www.geeksforgeeks.org/convert-decimal-to-hexa-decimal-including-negative-numbers/
  *
  * @reference   Convert a Number to Hexadecimal
  *              https://leetcode.com/problems/convert-a-number-to-hexadecimal/
  *
- * Given an integer num, return a string representing its hexadecimal representation.
- * For negative integers, two's complement method is used. All the letters in the answer
- * string should be lowercase characters, and there should not be any leading zeros in
- * the answer except for the zero itself. Note: You are not allowed to use any built-in
- * library method to directly solve this problem.
+ * Given a 32-bit integer num, return a string representing its hexadecimal representation. For negative
+ * integers, two’s complement method is used.
+ * All the letters in the answer string should be lowercase characters, and there should not be any
+ * leading zeros in the answer except for the zero itself.
+ * Note: You are not allowed to use any built-in library method to directly solve this problem.
+ *
+ * @tags    #to-string
  */
 inline auto ToHex(const int number) {
     return DecimalTo(number, 16, ToHexDigit);
@@ -58,14 +63,15 @@ inline auto ToHex(const int number) {
  * @reference   Hexspeak
  *              https://www.cnblogs.com/seyjs/p/11967411.html
  *
- * A decimal number can be converted to its Hexspeak representation by first converting
- * it to an uppercase hexadecimal string, then replacing all occurrences of the digit 0
- * with the letter O, and the digit 1 with the letter I.  Such a representation is valid
- * if and only if it consists only of the letters in the set
- * {"A", "B", "C", "D", "E", "F", "I", "O"}. Given a string num representing a decimal
- * integer N, return the Hexspeak representation of N if it is valid, otherwise return
- * "ERROR".
+ * A decimal number can be converted to its Hexspeak representation by first converting it to an
+ * uppercase hexadecimal string, then replacing all occurrences of the digit 0 with the letter O, and
+ * the digit 1 with the letter I.  Such a representation is valid if and only if it consists only of the
+ * letters in the set {"A", "B", "C", "D", "E", "F", "I", "O"}.
+ * Given a string num representing a decimal integer N, return the Hexspeak representation of N if it is
+ * valid, otherwise return "ERROR".
  * All answers must be in uppercase letters.
+ *
+ * @tags    #to-string
  */
 
 
@@ -74,6 +80,8 @@ inline auto ToHex(const int number) {
  *              https://leetcode.com/problems/base-7/
  *
  * Given an integer num, return a string of its base 7 representation.
+ *
+ * @tags    #to-string
  */
 
 
@@ -81,8 +89,18 @@ inline auto ToHex(const int number) {
  * @reference   Excel Sheet Column Title
  *              https://leetcode.com/problems/excel-sheet-column-title/
  *
- * Given an integer columnNumber, return its corresponding column title as it appears
- * in an Excel sheet.
+ * Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.
+ * For example:
+ *  A -> 1
+ *  B -> 2
+ *  C -> 3
+ *  ...
+ *  Z -> 26
+ *  AA -> 27
+ *  AB -> 28
+ *  ...
+ *
+ * @tags    #to-string
  */
 auto ToColumnTitle(int number) {
     std::string result;
@@ -100,8 +118,10 @@ auto ToColumnTitle(int number) {
  * @reference   Excel Sheet Column Number
  *              https://leetcode.com/problems/excel-sheet-column-number/
  *
- * Given a string columnTitle that represents the column title as appear in an Excel
- * sheet, return its corresponding column number.
+ * Given a string columnTitle that represents the column title as appear in an Excel sheet, return its
+ * corresponding column number.
+ *
+ * @tags    #numeric-string
  */
 constexpr auto ToColumnNumber(const std::string_view column_title) {
     int result = 0;
@@ -120,15 +140,16 @@ constexpr auto ToColumnNumber(const std::string_view column_title) {
  *
  * A cell (r, c) of an excel sheet is represented as a string "<col><row>" where:
  *  <col> denotes the column number c of the cell. It is represented by alphabetical letters.
- *      For example, the 1st column is denoted by 'A', the 2nd by 'B', the 3rd by 'C',
- *      and so on.
+ *      For example, the 1st column is denoted by 'A', the 2nd by 'B', the 3rd by 'C', and so on.
  *  <row> is the row number r of the cell. The rth row is represented by the integer r.
- * You are given a string s in the format "<col1><row1>:<col2><row2>", where <col1>
- * represents the column c1, <row1> represents the row r1, <col2> represents the column
- * c2, and <row2> represents the row r2, such that r1 <= r2 and c1 <= c2.
- * Return the list of cells (x, y) such that r1 <= x <= r2 and c1 <= y <= c2. The cells
- * should be represented as strings in the format mentioned above and be sorted in
- * non-decreasing order first by columns and then by rows.
+ * You are given a string s in the format "<col1><row1>:<col2><row2>", where <col1> represents the
+ * column c1, <row1> represents the row r1, <col2> represents the column c2, and <row2> represents the
+ * row r2, such that r1 <= r2 and c1 <= c2.
+ * Return the list of cells (x, y) such that r1 <= x <= r2 and c1 <= y <= c2. The cells should be
+ * represented as strings in the format mentioned above and be sorted in non-decreasing order first by
+ * columns and then by rows.
+ *
+ * @tags    #tokenizing #numeric-string
  */
 
 
@@ -136,11 +157,12 @@ constexpr auto ToColumnNumber(const std::string_view column_title) {
  * @reference   Thousand Separator
  *              https://leetcode.com/problems/thousand-separator/
  *
- * Given an integer n, add a dot (".") as the thousands separator and return it in string
- * format.
+ * Given an integer n, add a dot (".") as the thousands separator and return it in string format.
+ *
+ * @tags    #to-string
  */
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(ToOctal, 16);

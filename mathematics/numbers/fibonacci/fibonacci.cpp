@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Mathematics of Rabbit Breeding
- *
- * @reference   Jan Gullberg. Mathematics: From the Birth of Numbers. Section 8.5.
+/**
+ * @reference   Mathematics of Rabbit Breeding
+ *              Jan Gullberg. Mathematics: From the Birth of Numbers. Section 8.5.
  *
  * A pair of newly born rabbits, male and female, were placed in a hutch. In two months these rabbits
  * began their breeding cycle and produced one pair of rabbits, one male and one female. The original
@@ -78,7 +78,8 @@ using ArrayType = std::vector<int>;
  *
  * 1, 1, 2, 3, 5,...
  */
-/**Spans-of-fans
+/** Spans-of-fans
+ *
  * @reference   Ronald Graham, Oren Patashnik, Donald Knuth.
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 7.3.
  *              https://en.wikipedia.org/wiki/Spanning_tree
@@ -109,6 +110,8 @@ using ArrayType = std::vector<int>;
  *              Concrete Mathematics: A Foundation for Computer Science (2nd Edition). Section 6.6.
  * @reference   Print first n Fibonacci Numbers using direct formula
  *              https://www.geeksforgeeks.org/print-first-n-fibonacci-numbers-using-direct-formula/
+ *
+ * @tags    #fibonacci
  */
 inline constexpr unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
     constexpr double square_root_of_5 = std::sqrt(5.0);
@@ -128,6 +131,8 @@ inline constexpr unsigned long NthFibonacci_GoldenRatio(const unsigned n) {
  *              https://www.geeksforgeeks.org/solve-dynamic-programming-problem/
  * @reference   Tabulation vs Memoization
  *              https://www.geeksforgeeks.org/tabulation-vs-memoization/
+ *
+ * @tags    #DP #fibonacci
  */
 inline auto NthFibonacci_DP(const unsigned n) {
     std::vector<unsigned> fibonaccis = {0, 1};
