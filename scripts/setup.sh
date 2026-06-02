@@ -1,10 +1,10 @@
 #!/bin/bash
 
+set -exuo pipefail
+
 #
 # This script sets up a project to be used for the first time
 #
-
-set -ex
 
 source ~/.bash_util.sh
 
