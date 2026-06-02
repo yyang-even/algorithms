@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 #
 # This script opens all the reference URLs
 #
