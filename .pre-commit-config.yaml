@@ -1,13 +1,13 @@
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/yyang-pplus/config-sh.git
-    rev: 5883cd54c082dcae3f34125b9cfcc250b31f79ee
+    rev: 69c3fb83700e06e4167be8cb540666b5bbc7cfb2
     hooks:
       - id: astyle-c-in
       - id: shfmt
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v21.1.1
+    rev: v22.1.5
     hooks:
       - id: clang-format
 
