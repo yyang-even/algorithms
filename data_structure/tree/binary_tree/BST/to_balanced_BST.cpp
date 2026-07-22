@@ -9,9 +9,9 @@ namespace {
 using ListType = std::list<BinaryTree::Node::ValueType>;
 using InitializerType = std::initializer_list<ListType::value_type>;
 
-/** Sorted Linked List to Balanced BST
- *
- * @reference   https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+/**
+ * @reference   Sorted Linked List to Balanced BST
+ *              https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
  * @reference   Convert Sorted List to Binary Search Tree
  *              https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
  *
@@ -19,6 +19,8 @@ using InitializerType = std::initializer_list<ListType::value_type>;
  * height balanced BST.
  * For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the
  * two subtrees of every node never differ by more than 1.
+ *
+ * @tags    #divide-and-conquer #binary-tree #BST #DFS #singly-linked-list
  */
 auto SortedListToBalancedBSTHelper(ListType::const_iterator &cbegin, const int size) {
     if (size <= 0) {
@@ -51,6 +53,8 @@ inline auto SortedListToBalancedBST(const ListType &sorted_list) {
  * Given a Doubly Linked List which has data members sorted in ascending order. Construct a Balanced
  * Binary Search Tree which has same data members as the given Doubly Linked List. The tree must be
  * constructed in-place (No new node should be allocated for tree conversion)
+ *
+ * @tags    #divide-and-conquer #binary-tree #BST #DFS #doubly-linked-list
  */
 
 
@@ -61,6 +65,8 @@ inline auto SortedListToBalancedBST(const ListType &sorted_list) {
  *              Questions 4.3.
  * @reference   Convert Sorted Array to Binary Search Tree
  *              https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ *
+ * @tags    #divide-and-conquer #binary-tree #BST #DFS
  */
 auto SortedArrayToBalancedBSTHelper(const BinaryTree::ArrayType &sorted_array,
                                     const int first,
@@ -91,6 +97,16 @@ inline auto SortedArrayToBalancedBST(const BinaryTree::ArrayType &sorted_array) 
  *
  * Given a BST (Binary Search Tree) that may be unbalanced, convert it into a balanced BST that has
  * minimum possible height.
+ *
+ * @reference   Balance a Binary Search Tree
+ *              https://leetcode.com/problems/balance-a-binary-search-tree/
+ *
+ * Given the root of a binary search tree, return a balanced binary search tree with the same node
+ * values. If there is more than one answer, return any of them.
+ * A binary search tree is balanced if the depth of the two subtrees of every node never differs by more
+ * than 1.
+ *
+ * @tags    #divide-and-conquer #binary-tree #BST #DFS #inorder-traversal
  */
 
 

@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Assign Cookies
- *
- * @reference   https://leetcode.com/problems/assign-cookies/
+/**
+ * @reference   Assign Cookies
+ *              https://leetcode.com/problems/assign-cookies/
  *
  * Assume you are an awesome parent and want to give your children some cookies. But, you should give
  * each child at most one cookie.
@@ -26,6 +26,8 @@ using ArrayType = std::vector<int>;
  * trainer's training capacity. Additionally, the ith player can be matched with at most one trainer,
  * and the jth trainer can be matched with at most one player.
  * Return the maximum number of matchings between players and trainers that satisfy these conditions.
+ *
+ * @tags    #greedy #sorting #two-pointers
  */
 auto AssignCookies(ArrayType greed, ArrayType cookies) {
     std::sort(greed.begin(), greed.end());

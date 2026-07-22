@@ -8,20 +8,15 @@ namespace {
 /**
  * @reference   Number Complement
  *              https://leetcode.com/problems/number-complement/
- *
- * Given a positive integer num, output its complement number. The complement strategy
- * is to flip the bits of its binary representation.
- *
  * @reference   Complement of Base 10 Integer
  *              https://leetcode.com/problems/complement-of-base-10-integer/
  *
- * Every non-negative integer n has a binary representation.  For example, 5 can be
- * represented as "101" in binary, 11 as "1011" in binary, and so on.  Note that except
- * for n = 0, there are no leading zeroes in any binary representation. The complement
- * of a binary representation is the number in binary you get when changing every 1 to a
- * 0 and 0 to a 1.  For example, the complement of "101" in binary is "010" in binary.
- * For a given number n in base-10, return the complement of it's binary representation
- * as a base-10 integer.
+ * The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's
+ * to 0's in its binary representation.
+ *  For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
+ * Given an integer n, return its complement.
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned Complement(const uint32_t n) {
     if (n == 0) {
@@ -30,7 +25,7 @@ inline constexpr unsigned Complement(const uint32_t n) {
     return ToggleAllBitsAfterMSB(n);
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(ToggleAllBitsAfterMSB, 0);

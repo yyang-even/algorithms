@@ -389,6 +389,64 @@ auto MinArrows(ArrayType points) {
 
 
 /**
+ * @reference   Minimum Number of Taps to Open to Water a Garden
+ *              https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/
+ *
+ * There is a one-dimensional garden on the x-axis. The garden starts at the point 0 and ends at the
+ * point n. (i.e., the length of the garden is n).
+ * There are n + 1 taps located at points [0, 1, ..., n] in the garden.
+ * Given an integer n and an integer array ranges of length n + 1 where ranges[i] (0-indexed) means the
+ * i-th tap can water the area [i - ranges[i], i + ranges[i]] if it was open.
+ * Return the minimum number of taps that should be open to water the whole garden, If the garden cannot
+ * be watered return -1.
+ *
+ * @reference   Video Stitching
+ *              https://leetcode.com/problems/video-stitching/
+ *
+ * You are given a series of video clips from a sporting event that lasted time seconds. These video
+ * clips can be overlapping with each other and have varying lengths.
+ * Each video clip is described by an array clips where clips[i] = [starti, endi] indicates that the ith
+ * clip started at starti and ended at endi.
+ * We can cut these clips into segments freely.
+ *  For example, a clip [0, 7] can be cut into segments [0, 1] + [1, 3] + [3, 7].
+ * Return the minimum number of clips needed so that we can cut the clips into segments that cover the
+ * entire sporting event [0, time]. If the task is impossible, return -1.
+ *
+ * @tags    #greedy #sorting #sort-by-start
+ */
+auto MinTaps(const int n, const std::vector<int> &ranges) {
+    std::vector<std::pair<int, int>> taps;
+    for (int i = 0; i <= n; ++i) {
+        taps.emplace_back(i - ranges[i], i + ranges[i]);
+    }
+
+    std::sort(taps.begin(), taps.end());
+
+    int curr = 0;
+    int result = 0;
+    int i = 0;
+    while (curr < n) {
+        int next = 0;
+        while (i <= n and taps[i].first <= curr) {
+            next = std::max(next, taps[i++].second);
+        }
+
+        if (next <= curr) {
+            return -1;
+        }
+        curr = next;
+        ++result;
+    }
+
+    return result;
+}
+
+inline auto MinTapsHelper(const std::vector<int> &ranges) {
+    return MinTaps(ranges.size() - 1, ranges);
+}
+
+
+/**
  * @reference   Maximum Length of Pair Chain
  *              https://leetcode.com/problems/maximum-length-of-pair-chain/
  *
@@ -611,3 +669,17 @@ THE_BENCHMARK(MaxBeauty, SAMPLE1N, 2);
 SIMPLE_TEST(MaxBeauty, TestSAMPLE1, 3, SAMPLE1N, 2);
 SIMPLE_TEST(MaxBeauty, TestSAMPLE2, 4, SAMPLE2N, 10);
 SIMPLE_TEST(MaxBeauty, TestSAMPLE3, 3, SAMPLE3N, 29);
+
+
+const std::vector SAMPLE1_MT = {3, 4, 1, 1, 0, 0};
+const std::vector SAMPLE2_MT = {0, 0, 0, 0};
+const std::vector SAMPLE3_MT = {4, 0, 0, 0, 4, 0, 0, 0, 4};
+const std::vector SAMPLE4_MT = {0, 5, 0, 3, 3, 3, 1, 4, 0, 4};
+
+
+THE_BENCHMARK(MinTapsHelper, SAMPLE1_MT);
+
+SIMPLE_TEST(MinTapsHelper, TestSAMPLE1, 1, SAMPLE1_MT);
+SIMPLE_TEST(MinTapsHelper, TestSAMPLE2, -1, SAMPLE2_MT);
+SIMPLE_TEST(MinTapsHelper, TestSAMPLE3, 1, SAMPLE3_MT);
+SIMPLE_TEST(MinTapsHelper, TestSAMPLE4, 2, SAMPLE4_MT);

@@ -10,9 +10,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using ShiftArrayType = std::vector<std::pair<int, int>>;
 
-/** Program for array rotation
- *
- * @reference   https://www.geeksforgeeks.org/array-rotation/
+/**
+ * @reference   Program for array rotation
+ *              https://www.geeksforgeeks.org/array-rotation/
  *
  * Write a function rotate(ar[], d, n) that rotates arr[] of size n by d elements.
  *
@@ -21,8 +21,8 @@ using ShiftArrayType = std::vector<std::pair<int, int>>;
  * @reference   Split the array and add the first part to the end | Set 2
  *              https://www.geeksforgeeks.org/split-the-array-and-add-the-first-part-to-the-end-set-2/
  *
- * Given an array and split it from a specified position, and move the first part of
- * array add to the end.
+ * Given an array and split it from a specified position, and move the first part of array add to the
+ * end.
  *
  * @reference   Program to cyclically rotate an array by one
  *              https://www.geeksforgeeks.org/c-program-cyclically-rotate-array-one/
@@ -34,6 +34,8 @@ using ShiftArrayType = std::vector<std::pair<int, int>>;
  *
  * @reference   Left rotation of an array using vectors in C++
  *              https://www.geeksforgeeks.org/left-rotation-of-an-array-using-vectors-in-c/
+ *
+ * @tags    #array-rotation #gcd #in-place-rotation #left-right-pointers
  */
 inline auto LeftRotate_Simple(const ArrayType &arr, const ArrayType::size_type d) {
     assert(d < arr.size());
@@ -75,6 +77,8 @@ auto LeftRotate_GCD(ArrayType arr, const ArrayType::size_type d) {
 /**
  * @reference   Block swap algorithm for array rotation
  *              https://www.geeksforgeeks.org/block-swap-algorithm-for-array-rotation/
+ *
+ * @tags    #array-rotation #in-place-rotation
  */
 inline constexpr void
 BlockSwap(ArrayType::iterator begin1, ArrayType::iterator begin2, ArrayType::size_type n) {
@@ -141,6 +145,8 @@ auto LeftRotate_BlockSwap_Iterative(ArrayType arr, const ArrayType::size_type d)
  *              https://www.geeksforgeeks.org/left-rotation-right-rotation-string-2/
  * @reference   C Program for Reversal algorithm for array rotation
  *              https://www.geeksforgeeks.org/c-program-for-reversal-algorithm-for-array-rotation/
+ *
+ * @tags    #array-rotation #in-place-rotation #left-right-pointers
  */
 inline auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d) {
     assert(d < elements.size());
@@ -164,6 +170,12 @@ inline auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d
  *              https://leetcode.com/problems/rotate-array/
  *
  * Given an array, rotate the array to the right by k steps, where k is non-negative.
+ * Follow up:
+ *  Try to come up with as many solutions as you can. There are at least three different ways to solve
+ *  this problem.
+ *  Could you do it in-place with O(1) extra space?
+ *
+ * @tags    #array-rotation #in-place-rotation #left-right-pointers
  */
 inline auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
     assert(k < elements.size());
@@ -177,15 +189,15 @@ inline auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type 
 }
 
 
-/** Rotate a Linked List
+/**
+ * @reference   Rotate a Linked List
+ *              https://www.geeksforgeeks.org/rotate-a-linked-list/
  *
- * @reference   https://www.geeksforgeeks.org/rotate-a-linked-list/
- *
- * Given a singly linked list, rotate the linked list counter-clockwise by k nodes. Where
- * k is a given positive integer. For example, if the given linked list is
- * 10->20->30->40->50->60 and k is 4, the list should be modified to
- * 50->60->10->20->30->40. Assume that k is smaller than the count of nodes
- * in linked list.
+ * Given a singly linked list, rotate the linked list counter-clockwise by k nodes. Where k is a given
+ * positive integer.
+ * For example, if the given linked list is 10->20->30->40->50->60 and k is 4, the list should be
+ * modified to 50->60->10->20->30->40.
+ * Assume that k is smaller than the count of nodes in linked list.
  *
  * @reference   Move first element to end of a given Linked List
  *              https://www.geeksforgeeks.org/move-first-element-to-end-of-a-given-linked-list/
@@ -196,9 +208,9 @@ inline auto LeftRotate_SinglyList(std::forward_list<int> elements,
 }
 
 
-/** Move last element to front of a given Linked List
- *
- * @reference   https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
+/**
+ * @reference   Move last element to front of a given Linked List
+ *              https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
  */
 
 
@@ -236,12 +248,12 @@ inline auto RotateRight(const SinglyLinkedList::Node::PointerType head, int k) {
 }
 
 
-/** Rotate Doubly linked list by N nodes
+/**
+ * @reference   Rotate Doubly linked list by N nodes
+ *              https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/
  *
- * @reference   https://www.geeksforgeeks.org/rotate-doubly-linked-list-n-nodes/
- *
- * Given a doubly linked list, rotate the linked list counter-clockwise by N nodes. Here
- * N is a given positive integer and is smaller than the count of nodes in linked list.
+ * Given a doubly linked list, rotate the linked list counter-clockwise by N nodes. Here N is a given
+ * positive integer and is smaller than the count of nodes in linked list.
  */
 inline auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>::size_type k) {
     assert(k < elements.size());
@@ -252,14 +264,14 @@ inline auto LeftRotate_DoublyList(std::list<int> elements, const std::list<int>:
 }
 
 
-/** Quickly find multiple left rotations of an array | Set 1
- *
- * @reference   https://www.geeksforgeeks.org/quickly-find-multiple-left-rotations-of-an-array/
+/**
+ * @reference   Quickly find multiple left rotations of an array | Set 1
+ *              https://www.geeksforgeeks.org/quickly-find-multiple-left-rotations-of-an-array/
  * @reference   Print left rotation of array in O(n) time and O(1) space
  *              https://www.geeksforgeeks.org/print-left-rotation-array/
  *
- * Given an array of size n and multiple values around which we need to left rotate the
- * array. How to quickly find multiple left rotations?
+ * Given an array of size n and multiple values around which we need to left rotate the array. How to
+ * quickly find multiple left rotations?
  */
 auto MultipleLeftRotate_2n(const ArrayType &elements, const ArrayType &queries) {
     auto elements_after_elements = elements;
@@ -297,13 +309,12 @@ auto MultipleLeftRotate_n(const ArrayType &elements, const ArrayType &queries) {
  * @reference   Perform String Shifts
  *              https://code.dennyzhang.com/perform-string-shifts
  *
- * You are given a string s containing lowercase English letters, and a matrix shift,
- * where shift[i] = [direction, amount]:
+ * You are given a string s containing lowercase English letters, and a matrix shift, where shift[i] =
+ * [direction, amount]:
  *  direction can be 0 (for left shift) or 1 (for right shift).
  *  amount is the amount by which string s is to be shifted.
  *  A left shift by 1 means remove the first character of s and append it to the end.
- *  Similarly, a right shift by 1 means remove the last character of s and add it to the
- *  beginning.
+ *  Similarly, a right shift by 1 means remove the last character of s and add it to the beginning.
  * Return the final string after all operations.
  */
 auto StrShifts(std::string s, const ShiftArrayType &shifts) {

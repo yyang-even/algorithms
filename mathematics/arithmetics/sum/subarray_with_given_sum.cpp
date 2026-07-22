@@ -8,9 +8,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find subarray with given sum | Set 1 (Nonnegative Numbers)
- *
- * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum/
+/**
+ * @reference   Find subarray with given sum | Set 1 (Nonnegative Numbers)
+ *              https://www.geeksforgeeks.org/find-subarray-with-given-sum/
  *
  * Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a given
  * number.
@@ -39,9 +39,9 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
 }
 
 
-/** Find subarray with given sum | Set 2 (Handles Negative Numbers)
- *
- * @reference   https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
+/**
+ * @reference   Find subarray with given sum | Set 2 (Handles Negative Numbers)
+ *              https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
  */
 auto AllSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
     std::unordered_multimap<ArrayType::value_type, ArrayType::size_type> sum_index_map;
@@ -81,9 +81,9 @@ inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
 }
 
 
-/** Find if there is a subarray with 0 sum
- *
- * @reference   https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
+/**
+ * @reference   Find if there is a subarray with 0 sum
+ *              https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
  *
  * Given an array of positive and negative numbers, find if there is a subarray (of size at-least one)
  * with 0 sum.
@@ -107,6 +107,8 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * equals to k.
  * A subarray is a contiguous non-empty sequence of elements within an array.
  * -1000 <= nums[i] <= 1000
+ *
+ * @tags    #hash-table #prefix-sum
  */
 auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value_type k) {
     std::unordered_map<int, int> counts = {{0, 1}};
@@ -155,6 +157,8 @@ auto SubarraysDivisibleByK(const ArrayType &nums, const int k) {
  * there isn't one, return 0 instead.
  * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
  * Follow Up: Can you do it in O(n) time?
+ *
+ * @tags    #hash-table #prefix-sum
  */
 auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
     std::unordered_map<int, int> hash = {{0, -1}};
@@ -172,6 +176,36 @@ auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
         }
 
         hash.emplace(sum, i);
+    }
+
+    return result;
+}
+
+
+/**
+ * @reference   Maximum Number of Non-Overlapping Subarrays With Sum Equals Target
+ *              https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/
+ *
+ * Given an array nums and an integer target, return the maximum number of non-empty non-overlapping
+ * subarrays such that the sum of values in each subarray is equal to target.
+ *
+ * @tags    #greedy #hash-table #prefix-sum
+ */
+auto MaxNonOverlapping(const ArrayType &nums, const int target) {
+    std::unordered_map<int, int> hash = {{0, -1}};
+
+    int sum = 0;
+    int last = -1;
+    int result = 0;
+    for (std::size_t i = 0; i < nums.size(); ++i) {
+        sum += nums[i];
+        const auto remain = sum - target;
+        const auto iter = hash.find(remain);
+        if (iter != hash.cend() and last <= iter->second) {
+            ++result;
+            last = i;
+        }
+        hash[sum] = i;
     }
 
     return result;
@@ -199,9 +233,9 @@ int MinOperationsReduceXto0(const ArrayType &nums, const int x) {
 }
 
 
-/** Find the length of largest subarray with 0 sum
- *
- * @reference   https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
+/**
+ * @reference   Find the length of largest subarray with 0 sum
+ *              https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
  *
  * Given an array of integers, find length of the largest subarray with sum equals to 0.
  */
@@ -483,6 +517,16 @@ THE_BENCHMARK(MaxLengthSubarraySumAs, SAMPLE1K, 3);
 
 SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample1, 4, SAMPLE1K, 3);
 SIMPLE_TEST(MaxLengthSubarraySumAs, TestSample2, 2, SAMPLE2K, 1);
+
+
+const ArrayType SAMPLE1_MNO = {1, 1, 1, 1, 1};
+const ArrayType SAMPLE2_MNO = {-1, 3, 5, 1, 4, 2, -9};
+
+
+THE_BENCHMARK(MaxNonOverlapping, SAMPLE1_MNO, 2);
+
+SIMPLE_TEST(MaxNonOverlapping, TestSample1, 2, SAMPLE1_MNO, 2);
+SIMPLE_TEST(MaxNonOverlapping, TestSample2, 2, SAMPLE2_MNO, 6);
 
 
 const ArrayType SAMPLE1O = {1, 1, 4, 2, 3};

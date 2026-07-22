@@ -329,6 +329,19 @@ auto MinimumPossibleSumOfBeautifulArray(const int n, const int target) {
  * at most one pivot index for the given input.
  */
 
+
+/**
+ * @reference   GCD of Odd and Even Sums
+ *              https://leetcode.com/problems/gcd-of-odd-and-even-sums/
+ *
+ * You are given an integer n. Your task is to compute the GCD (greatest common divisor) of two values:
+ *  sumOdd: the sum of the smallest n positive odd numbers.
+ *  sumEven: the sum of the smallest n positive even numbers.
+ * Return the GCD of sumOdd and sumEven.
+ *
+ * @tags    #arithmetic-progression #gcd
+ */
+
 } //namespace
 
 

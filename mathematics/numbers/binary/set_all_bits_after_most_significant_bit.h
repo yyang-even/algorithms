@@ -1,9 +1,11 @@
 #pragma once
 
 
-/** Set all bits after the most significant bit
+/**
+ * @reference   Set all bits after the most significant bit
+ *              https://www.geeksforgeeks.org/toggle-bits-significant-bit/
  *
- * @reference   https://www.geeksforgeeks.org/toggle-bits-significant-bit/
+ * @tags    #bit-tricks
  */
 static inline constexpr auto SetAllBitsAfterMSB(uint32_t num) {
     num |= num >> 1;
