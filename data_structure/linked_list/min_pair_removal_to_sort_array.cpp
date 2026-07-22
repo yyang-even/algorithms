@@ -8,6 +8,8 @@ using ArrayType = std::vector<int>;
 /**
  * @reference   Minimum Pair Removal to Sort Array I
  *              https://leetcode.com/problems/minimum-pair-removal-to-sort-array-i/
+ * @reference   Minimum Pair Removal to Sort Array II
+ *              https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/
  *
  * Given an array nums, you can perform the following operation any number of times:
  *  Select the adjacent pair with the minimum sum in nums. If multiple such pairs exist, choose the
@@ -17,7 +19,7 @@ using ArrayType = std::vector<int>;
  * An array is said to be non-decreasing if each element is greater than or equal to its previous
  * element (if it exists).
  *
- * @tags    #singly-linked-list #doubly-linked-list #linked-list-array
+ * @tags    #singly-linked-list #doubly-linked-list #linked-list-array #ordered-set #priority-queue
  */
 auto MinPairRemovalToSortArray(const ArrayType &nums) {
     int result = 0;

@@ -62,7 +62,7 @@ inline constexpr auto HasPairOfElementsSumAsN_Hashmap(const ArrayType &values, c
  * twice.
  * Your solution must use only constant extra space.
  *
- * @tags    #sorting #two-pointers
+ * @tags    #sorting #left-right-pointers
  */
 template<typename Container>
 constexpr auto HasPairOfElementsSumAsN_TwoPointers(const Container &values, const int target) {
@@ -106,7 +106,7 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 17.12.
  *
- * @tags    #hash-table #sorting #two-pointers
+ * @tags    #hash-table #sorting #left-right-pointers
  */
 
 
@@ -124,7 +124,7 @@ inline auto HasPairOfElementsSumAsN_Sort(ArrayType values, const int target) {
  * Return the number of distinct averages calculated using the above process.
  * Note that when there is a tie for a minimum or maximum number, any can be removed.
  *
- * @tags    #hash-table #sorting #two-pointers
+ * @tags    #hash-table #sorting #left-right-pointers
  */
 
 
@@ -366,7 +366,7 @@ auto NumberSubsequences(ArrayType nums, const int target) {
  * @reference   All unique triplets that sum up to a given value
  *              https://www.geeksforgeeks.org/unique-triplets-sum-given-value/
  *
- * @tags    #sorting #two-pointers
+ * @tags    #sorting #left-right-pointers
  */
 auto ThreeSum(ArrayType nums, const int target) {
     std::sort(nums.begin(), nums.end());
@@ -657,7 +657,7 @@ auto CountSpecialQuestions(const ArrayType &nums) {
  * that -k also exists in the array.
  * Return the positive integer k. If there is no such integer, return -1.
  *
- * @tags    #hash-table #sorting #two-pointers
+ * @tags    #hash-table #sorting #left-right-pointers
  */
 
 

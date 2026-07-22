@@ -14,7 +14,7 @@ using ArrayType = std::vector<int>;
  * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute
  * how much water it can trap after raining.
  *
- * @tags    #forward-and-backward #two-pointers
+ * @tags    #forward-and-backward #left-right-pointers
  */
 auto TrapRain_DP(const ArrayType &heights) {
     if (heights.empty()) {
@@ -156,7 +156,7 @@ auto TrapRain2D(const MatrixType &a_matrix) {
  * Return the maximum amount of water a container can store.
  * Notice that you may not slant the container.
  *
- * @tags    #greedy #two-pointers
+ * @tags    #greedy #left-right-pointers
  */
 auto ContainerWithMostWater(const ArrayType &heights) {
     int result = 0;

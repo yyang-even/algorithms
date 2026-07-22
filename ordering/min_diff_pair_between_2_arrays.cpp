@@ -8,12 +8,14 @@ namespace {
 using ArrayType = std::vector<int>;
 using OutputType = std::vector<std::pair<int, int>>;
 
-/** Smallest Difference pair of values between two unsorted Arrays
+/**
+ * @reference   Smallest Difference pair of values between two unsorted Arrays
+ *              https://www.geeksforgeeks.org/smallest-difference-pair-values-two-unsorted-arrays/
  *
- * @reference   https://www.geeksforgeeks.org/smallest-difference-pair-values-two-unsorted-arrays/
+ * Given two arrays of integers, compute the pair of values (one value in each array) with the smallest
+ * (non-negative) difference. Return the difference.
  *
- * Given two arrays of integers, compute the pair of values (one value in each array)
- * with the smallest (non-negative) difference. Return the difference.
+ * @tags    #sorting #min-max-element #two-pointers
  */
 inline auto MinDiffPairOf2UnsortedArrays(ArrayType one, ArrayType another) {
     std::sort(one.begin(), one.end());
@@ -27,12 +29,14 @@ inline auto MinDiffPairOf2UnsortedArrays(ArrayType one, ArrayType another) {
  * @reference   Minimum Absolute Difference
  *              https://leetcode.com/problems/minimum-absolute-difference/
  *
- * Given an array of distinct integers arr, find all pairs of elements with the minimum
- * absolute difference of any two elements. Return a list of pairs in ascending order
- * (with respect to pairs), each pair [a, b] follows:
+ * Given an array of distinct integers arr, find all pairs of elements with the minimum absolute
+ * difference of any two elements.
+ * Return a list of pairs in ascending order (with respect to pairs), each pair [a, b] follows:
  *  a, b are from arr
  *  a < b
  *  b - a equals to the minimum absolute difference of any two elements in arr
+ *
+ * @tags    #sorting #min-max-element
  */
 auto MinDiffPairsOfAnUnsortedArray(ArrayType elements) {
     std::sort(elements.begin(), elements.end());
@@ -53,7 +57,7 @@ auto MinDiffPairsOfAnUnsortedArray(ArrayType elements) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1_L = {1, 3, 15, 11, 2};

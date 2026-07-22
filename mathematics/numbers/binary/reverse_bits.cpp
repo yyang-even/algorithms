@@ -18,6 +18,8 @@ namespace {
  *              https://www.geeksforgeeks.org/write-an-efficient-c-program-to-reverse-bits-of-a-number/
  * @reference   Reverse Bits
  *              https://leetcode.com/problems/reverse-bits/
+ *
+ * @tags    #bit-tricks #digit-traverse
  */
 constexpr auto ReverseBits(unsigned num) {
     auto size = BitsNumber<decltype(num)> - 1;
@@ -38,6 +40,8 @@ constexpr auto ReverseBits(unsigned num) {
  *              https://graphics.stanford.edu/~seander/bithacks.html
  * @reference   Reverse bits using lookup table in O(1) time
  *              https://www.geeksforgeeks.org/reverse-bits-using-lookup-table-in-o1-time/
+ *
+ * @tags    #bit-tricks
  */
 inline auto ReverseBits_32_LookupTable(const uint32_t num) {
     constexpr unsigned char BitReverseTable256[256] = {
@@ -64,6 +68,8 @@ inline auto ReverseBits_32_LookupTable(const uint32_t num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse the bits in a byte with 3 operations (64-bit multiply and modulus division)
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned char ReverseBitsInByte_3(const unsigned char byte) {
     return (byte * 0x0202020202 & 0x010884422010) % 1023;
@@ -75,6 +81,8 @@ inline constexpr unsigned char ReverseBitsInByte_3(const unsigned char byte) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse the bits in a byte with 4 operations (64-bit multiply, no division)
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned char ReverseBitsInByte_4(const unsigned char byte) {
     return ((byte * 0x80200802ULL) & 0x0884422110ULL) * 0x0101010101ULL >> 32;
@@ -86,6 +94,8 @@ inline constexpr unsigned char ReverseBitsInByte_4(const unsigned char byte) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse the bits in a byte with 7 operations (no 64-bit)
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr unsigned char ReverseBitsInByte_7(const unsigned char byte) {
     return ((byte * 0x0802 & 0x22110) | (byte * 0x8020 & 0x88440)) * 0x10101 >> 16;
@@ -97,6 +107,8 @@ inline constexpr unsigned char ReverseBitsInByte_7(const unsigned char byte) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse an N-bit quantity in parallel in 5 * lg(N) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 inline constexpr auto ReverseBits_32_Parallel(uint32_t num) {
     // swap odd and even bits
@@ -119,6 +131,8 @@ inline constexpr auto ReverseBits_32_Parallel(uint32_t num) {
  * @reference   Sean Eron Anderson. Bit Twiddling Hacks.
  *              Reverse an N-bit quantity in parallel in 5 * lg(N) operations
  *              https://graphics.stanford.edu/~seander/bithacks.html
+ *
+ * @tags    #bit-tricks
  */
 template<typename T>
 constexpr T ReverseNBits_Parallel(T num) {
@@ -137,9 +151,11 @@ inline constexpr unsigned ReverseNBits_Parallel_Uint32(uint32_t num) {
 }
 
 
-/** Bit manipulation | Swap Endianness of a number
+/**
+ * @reference   Bit manipulation | Swap Endianness of a number
+ *              https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
  *
- * @reference   https://www.geeksforgeeks.org/bit-manipulation-swap-endianness-of-a-number/
+ * @tags    #bit-tricks
  */
 inline auto ReverseBytes_String(unsigned num) {
     auto *const begin = reinterpret_cast<unsigned char *>(&num);
@@ -155,20 +171,23 @@ inline auto ReverseBytes_String(unsigned num) {
 /**
  * @reference   Reverse bytes of a Hexadecimal Number
  *              https://www.geeksforgeeks.org/reverse-bytes-of-a-hexadecimal-number/
+ *
+ * @tags    #digit-traverse
  */
 inline constexpr auto ReverseBytes_Shift(const unsigned num) {
     return (num << 24) | (((num >> 16) << 24) >> 16) | (((num << 16) >> 24) << 16) | (num >> 24);
 }
 
 
-/** Reverse actual bits of the given number
+/**
+ * @reference   Reverse actual bits of the given number
+ *              https://www.geeksforgeeks.org/reverse-actual-bits-given-number/
  *
- * @reference   https://www.geeksforgeeks.org/reverse-actual-bits-given-number/
+ * Given a non-negative integer n. The problem is to reverse the bits of n and print the number obtained
+ * after reversing the bits. Note that the actual binary representation of the number is being
+ * considered for reversing the bits, no leading 0’s are being considered.
  *
- * Given a non-negative integer n. The problem is to reverse the bits of n and print the
- * number obtained after reversing the bits. Note that the actual binary representation
- * of the number is being considered for reversing the bits, no leading 0’s are being
- * considered.
+ * @tags    #bit-tricks #digit-traverse
  */
 inline constexpr auto ReverseActualBits(const unsigned number) {
     return ReverseDigits(number, 2);

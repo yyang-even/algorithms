@@ -18,7 +18,7 @@ using ArrayType = std::vector<int>;
  * Given an array of integers, find the first repeating element in it. We need to find the element that
  * occurs more than once and whose index of first occurrence is smallest.
  *
- * @tags    #hash-table
+ * @tags    #hash-table #backward-traverse
  */
 auto FindFirstRepeatingElement_FirstAppearance(const ArrayType &elements) {
     std::unordered_set<ArrayType::value_type> counters;
@@ -111,6 +111,30 @@ auto FindFirstDuplicateElement_LinkedList_FirstAppearance(
     return first_duplicate_element;
 }
 
+
+/**
+ * @reference   Minimum Number of Operations to Have Distinct Elements
+ *              https://leetcode.com/problems/minimum-number-of-operations-to-have-distinct-elements/
+ *
+ * You are given an integer array nums.
+ * In one operation, you remove the first three elements of the current array. If there are fewer than
+ * three elements remaining, all remaining elements are removed.
+ * Repeat this operation until the array is empty or contains no duplicate values.
+ * Return an integer denoting the number of operations required.
+ *
+ * @tags    #hash-table #backward-traverse
+ */
+auto MinOperations(const ArrayType &nums) {
+    std::unordered_set<int> hash;
+    for (int i = nums.size() - 1; i >= 0; --i) {
+        if (not hash.insert(nums[i]).second) {
+            return (i + 3) / 3;
+        }
+    }
+
+    return 0;
+}
+
 } //namespace
 
 
@@ -144,3 +168,15 @@ THE_BENCHMARK(FindFirstDuplicateElement_LinkedList_FirstAppearance, SAMPLE1);
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE0, -1, EMPTY);
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE1, 5, SAMPLE1);
 SIMPLE_TEST(FindFirstDuplicateElement_LinkedList_FirstAppearance, TestSAMPLE2, 6, SAMPLE2);
+
+
+const ArrayType SAMPLE1_MO = {3, 8, 3, 6, 5, 8};
+const ArrayType SAMPLE2_MO = {2, 2};
+const ArrayType SAMPLE3_MO = {4, 3, 5, 1, 2};
+
+
+THE_BENCHMARK(MinOperations, SAMPLE1_MO);
+
+SIMPLE_TEST(MinOperations, TestSAMPLE1, 1, SAMPLE1_MO);
+SIMPLE_TEST(MinOperations, TestSAMPLE2, 1, SAMPLE2_MO);
+SIMPLE_TEST(MinOperations, TestSAMPLE3, 0, SAMPLE3_MO);

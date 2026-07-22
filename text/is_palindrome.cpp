@@ -23,7 +23,7 @@ using ListType = std::list<unsigned>;
  * @reference   Check whether the given floating point number is a palindrome
  *              https://www.geeksforgeeks.org/check-whether-the-given-floating-point-number-is-a-palindrome/
  *
- * @tags    #palindrome #two-pointers
+ * @tags    #palindrome #left-right-pointers
  */
 constexpr auto isPalindrome_Iterative(const std::string_view a_string) {
     assert(not a_string.empty());
@@ -273,7 +273,7 @@ inline constexpr auto isActualBinaryPalindrome_Reverse(const unsigned number) {
  * @reference   Check if binary representation of a number is palindrome
  *              https://www.geeksforgeeks.org/check-binary-representation-number-palindrome/
  *
- * @tags    #palindrome #digit-traverse #two-pointers
+ * @tags    #palindrome #digit-traverse #left-right-pointers
  */
 constexpr auto isBinaryPalindrome(const unsigned number) {
     unsigned least_significant = 1;
@@ -299,7 +299,7 @@ constexpr auto isBinaryPalindrome(const unsigned number) {
  * @reference   Sentence Palindrome (Palindrome after removing spaces, dots, .. etc)
  *              https://www.geeksforgeeks.org/sentence-palindrome-palindrome-removing-spaces-dots-etc/
  *
- * @tags    #palindrome #two-pointers
+ * @tags    #palindrome #left-right-pointers
  */
 constexpr auto ValidPalindrome(const std::string_view text) {
     int left = 0;
@@ -325,7 +325,7 @@ constexpr auto ValidPalindrome(const std::string_view text) {
  *
  * Given a string s, return true if the s can be palindrome after deleting at most one character from it.
  *
- * @tags    #palindrome #two-pointers
+ * @tags    #palindrome #left-right-pointers
  */
 constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
     int left = 0;

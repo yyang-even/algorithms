@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Next Greater Element
- *
- * @reference   https://www.geeksforgeeks.org/next-greater-element/
+/**
+ * @reference   Next Greater Element
+ *              https://www.geeksforgeeks.org/next-greater-element/
  * @reference   Next greater element in same order as input
  *              https://www.geeksforgeeks.org/next-greater-element-in-same-order-as-input/
  *
@@ -17,6 +17,8 @@ using ArrayType = std::vector<int>;
  *
  * @reference   Special Data Structure: Monotonic Stack
  *              https://labuladong.gitbook.io/algo-en/ii.-data-structure/monotonicstack
+ *
+ * @tags    #backward-traverse #monotonic-stack
  */
 auto NextGreaterElement(const ArrayType &elements) {
     ArrayType result(elements.size(), -1);
@@ -98,6 +100,8 @@ auto DailyTemperatures(const ArrayType &temperatures) {
  *  All integers in nums1 and nums2 are unique.
  *  All the integers of nums1 also appear in nums2.
  * Follow up: Could you find an O(nums1.length + nums2.length) solution?
+ *
+ * @tags    #hash-table #backward-traverse #monotonic-stack
  */
 auto TwoArrayNextGreaterElement(const ArrayType &sub, const ArrayType &an_array) {
     std::unordered_map<int, int> index_map;
@@ -135,6 +139,8 @@ auto TwoArrayNextGreaterElement(const ArrayType &sub, const ArrayType &an_array)
  * The next greater number of a number x is the first greater number to its traversing-order next in the
  * array, which means you could search circularly to find its next greater number. If it doesn't exist,
  * return -1 for this number.
+ *
+ * @tags    #backward-traverse #monotonic-stack
  */
 auto CircularNextGreaterElement(const ArrayType &nums) {
     const int N = nums.size();
