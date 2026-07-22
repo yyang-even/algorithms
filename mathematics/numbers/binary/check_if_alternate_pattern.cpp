@@ -5,20 +5,23 @@
 
 namespace {
 
-/** Check if a number has bits in alternate pattern
- *
+/**
  * @reference   Check if a number has bits in alternate pattern | Set 1
  *              https://www.geeksforgeeks.org/check-if-a-number-has-bits-in-alternate-pattern/
  * @reference   Check if a number has bits in alternate pattern | Set-2 O(1) Approach
  *              https://www.geeksforgeeks.org/check-number-bits-alternate-pattern-set-2-o1-approach/
  *
- * Given an integer n > 0, the task is to find whether this integer has an alternate
- * pattern in its bits representation. For example- 5 has an alternate pattern i.e. 101.
- * Print “Yes” if it has an alternate pattern otherwise "No". Here alternate pattern
- * can be like 0101 or 1010.
+ * Given an integer n > 0, the task is to find whether this integer has an alternate pattern in its bits
+ * representation. For example- 5 has an alternate pattern i.e. 101.  Print “Yes” if it has an alternate
+ * pattern otherwise "No". Here alternate pattern can be like 0101 or 1010.
  *
  * @reference   Binary Number with Alternating Bits
  *              https://leetcode.com/problems/binary-number-with-alternating-bits/
+ *
+ * Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will
+ * always have different values.
+ *
+ * @tags    #bit-tricks #digit-traverse
  */
 constexpr auto CheckForBitsAlternatePattern_Simple(unsigned num) {
     assert(num);
@@ -41,7 +44,7 @@ inline constexpr auto CheckForBitsAlternatePattern(const unsigned num) {
     return AreAllBitsSet(num ^ (num >> 1));
 }
 
-}//namespace
+} //namespace
 
 
 constexpr auto LOWER = 1u;
@@ -68,5 +71,7 @@ SIMPLE_TEST(CheckForBitsAlternatePattern, TestLOWER, true, LOWER);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestUPPER, false, UPPER);
 SIMPLE_TEST(CheckForBitsAlternatePattern, TestSample5, false, 4);
 
-MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple, CheckForBitsAlternatePattern,
-                   LOWER, UPPER);
+MUTUAL_RANDOM_TEST(CheckForBitsAlternatePattern_Simple,
+                   CheckForBitsAlternatePattern,
+                   LOWER,
+                   UPPER);

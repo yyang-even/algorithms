@@ -3,13 +3,15 @@
 
 namespace {
 
-/** Check If a String Contains All Binary Codes of Size K
+/**
+ * @reference   Check If a String Contains All Binary Codes of Size K
+ *              https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/
  *
- * @reference   https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/
- *
- * Given a binary string s and an integer k, return true if every binary code of length k is a
- * substring of s. Otherwise, return false.
+ * Given a binary string s and an integer k, return true if every binary code of length k is a substring
+ * of s. Otherwise, return false.
  * 1 <= k <= 20
+ *
+ * @tags    #hash-table #rolling-hash #numeric-string
  */
 auto BinarySubstrsOfSizeK(const std::string_view s, const std::size_t K) {
     if (K >= s.size())

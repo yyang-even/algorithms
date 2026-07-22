@@ -117,6 +117,39 @@ auto LongestConsecutiveSequence_UnionFind(const ArrayType &nums) {
  * @tags    #sorting #hash-table
  */
 
+
+/**
+ * @reference   Minimum Removals to Balance Array
+ *              https://leetcode.com/problems/minimum-removals-to-balance-array/
+ *
+ * You are given an integer array nums and an integer k.
+ * An array is considered balanced if the value of its maximum element is at most k times the minimum
+ * element.
+ * You may remove any number of elements from nums without making it empty.
+ * Return the minimum number of elements to remove so that the remaining array is balanced.
+ * Note: An array of size 1 is considered balanced as its maximum and minimum are equal, and the
+ * condition always holds true.
+ *
+ * @tags    #sorting #sliding-window
+ */
+auto MinRemovalToBalanceArray(ArrayType nums, const long k) {
+    std::sort(nums.begin(), nums.end());
+
+    const int N = nums.size();
+    auto result = N;
+    int right = 1;
+    for (int left = 0; left < N; ++left) {
+        while (right < N and nums[left] * k >= nums[right]) {
+            ++right;
+        }
+
+        const auto to_remove = N - (right - left);
+        result = std::min(result, to_remove);
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -144,3 +177,15 @@ THE_BENCHMARK(LongestConsecutiveSequence_Set, SAMPLE1);
 SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE1, 0, SAMPLE1);
 SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE2, 4, SAMPLE2);
 SIMPLE_TEST(LongestConsecutiveSequence_Set, TestSAMPLE3, 9, SAMPLE3);
+
+
+const ArrayType SAMPLE1BA = {2, 1, 5};
+const ArrayType SAMPLE2BA = {1, 6, 2, 9};
+const ArrayType SAMPLE3BA = {4, 6};
+
+
+THE_BENCHMARK(MinRemovalToBalanceArray, SAMPLE1BA, 2);
+
+SIMPLE_TEST(MinRemovalToBalanceArray, TestSAMPLE1, 1, SAMPLE1BA, 2);
+SIMPLE_TEST(MinRemovalToBalanceArray, TestSAMPLE2, 2, SAMPLE2BA, 3);
+SIMPLE_TEST(MinRemovalToBalanceArray, TestSAMPLE3, 0, SAMPLE3BA, 2);

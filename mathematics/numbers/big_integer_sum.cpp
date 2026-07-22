@@ -6,9 +6,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using ListType = std::forward_list<int>;
 
-/** Add two numbers represented by linked lists | Set 1
- *
- * @reference   https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists/
+/**
+ * @reference   Add two numbers represented by linked lists | Set 1
+ *              https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists/
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 2.5.
  *
@@ -24,6 +24,8 @@ using ListType = std::forward_list<int>;
  * stored in reverse order, and each of their nodes contains a single digit.  Add the two numbers and
  * return the sum as a linked list.
  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+ *
+ * @tags    #numeric-string #singly-linked-list
  */
 auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
     auto left_current = lhs.cbegin();
@@ -48,9 +50,9 @@ auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
 }
 
 
-/** Add two numbers represented by linked lists | Set 2
- *
- * @reference   https://www.geeksforgeeks.org/sum-of-two-linked-lists/
+/**
+ * @reference   Add two numbers represented by linked lists | Set 2
+ *              https://www.geeksforgeeks.org/sum-of-two-linked-lists/
  *
  * Given two numbers represented by two linked lists, write a function that returns the sum list. The
  * sum list is linked list representation of the addition of two input numbers. It is not allowed to
@@ -69,6 +71,8 @@ auto Sum_LeastFirst(const ListType &lhs, const ListType &rhs) {
  *
  * @reference   Add 1 to a number represented as linked list
  *              https://www.geeksforgeeks.org/add-1-number-represented-linked-list/
+ *
+ * @tags    #numeric-string #singly-linked-list #stack
  */
 auto sum_SameSize(const ListType &longer_list,
                   const ListType::const_iterator longer_current,
@@ -174,6 +178,8 @@ auto Sum_MostFirst_Stack(const ListType &lhs, const ListType &rhs) {
 /**
  * @reference   Add Two Numbers Represented by Linked Lists | Set 3
  *              https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists-set-3/
+ *
+ * @tags    #numeric-string #singly-linked-list
  */
 inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
     lhs.reverse();
@@ -201,6 +207,8 @@ inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
  * as a string.
  * You must solve the problem without using any built-in library for handling large integers (such as
  * BigInteger). You must also not convert the inputs to integers directly.
+ *
+ * @tags    #numeric-string
  */
 auto AddStrings(const std::string_view one, const std::string_view another) {
     std::string results;
@@ -234,6 +242,8 @@ auto AddStrings(const std::string_view one, const std::string_view another) {
  * Given num, the array-form of an integer, and an integer k, return the array-form of the integer num +
  * k.
  * 1 <= k <= 10^4
+ *
+ * @tags    #numeric-string
  */
 auto Add(const ArrayType &number, int k) {
     ArrayType result;
@@ -263,6 +273,8 @@ auto Add(const ArrayType &number, int k) {
  *              https://www.geeksforgeeks.org/add-one-to-a-number-represented-as-linked-list-set-2/
  *
  * Hint: Count trailing 9s.
+ *
+ * @tags    #numeric-string
  */
 
 
@@ -274,6 +286,8 @@ auto Add(const ArrayType &number, int k) {
  * list is either 0 or 1. The linked list holds the binary representation of a number.
  * Return the decimal value of the number in the linked list.
  * The most significant bit is at the head of the linked list.
+ *
+ * @tags    #numeric-string #singly-linked-list
  */
 
 
@@ -286,6 +300,23 @@ auto Add(const ArrayType &number, int k) {
  * Return the head of the linked list after doubling it.
  * The input is generated such that the list represents a number that does not have leading zeros,
  * except the number 0 itself.
+ *
+ * @tags    #numeric-string #singly-linked-list
+ */
+
+
+/**
+ * @reference   Number of Steps to Reduce a Number in Binary Representation to One
+ *              https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/
+ *
+ * Given the binary representation of an integer as a string s, return the number of steps to reduce it
+ * to 1 under the following rules:
+ *  If the current number is even, you have to divide it by 2.
+ *  If the current number is odd, you have to add 1 to it.
+ * It is guaranteed that you can always reach one for all test cases.
+ * s[0] == '1'
+ *
+ * @tags    #numeric-string
  */
 
 } //namespace

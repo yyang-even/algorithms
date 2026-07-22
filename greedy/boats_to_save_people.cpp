@@ -5,14 +5,16 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Boats to Save People
- *
- * @reference   https://leetcode.com/problems/boats-to-save-people/
+/**
+ * @reference   Boats to Save People
+ *              https://leetcode.com/problems/boats-to-save-people/
  *
  * You are given an array people where people[i] is the weight of the ith person, and an infinite number
  * of boats where each boat can carry a maximum weight of limit. Each boat carries at most two people at
  * the same time, provided the sum of the weight of those people is at most limit.
  * Return the minimum number of boats to carry every given person.
+ *
+ * @tags    #greedy #sorting #left-right-pointers
  */
 auto BoatsToSavePeople(ArrayType people, const int limit) {
     std::sort(people.begin(), people.end());
@@ -44,6 +46,8 @@ auto BoatsToSavePeople(ArrayType people, const int limit) {
  *  Each element of nums is in exactly one pair, and
  *  The maximum pair sum is minimized.
  * Return the minimized maximum pair sum after optimally pairing up the elements.
+ *
+ * @tags    #greedy #sorting #left-right-pointers
  */
 
 
@@ -60,6 +64,8 @@ auto BoatsToSavePeople(ArrayType people, const int limit) {
  *  Repeat until there are no more piles of coins.
  * Given an array of integers piles where piles[i] is the number of coins in the ith pile.
  * Return the maximum number of coins that you can have.
+ *
+ * @tags    #greedy #sorting #accumulate
  */
 
 
@@ -73,6 +79,8 @@ auto BoatsToSavePeople(ArrayType people, const int limit) {
  *  The difference between any two elements in one array is less than or equal to k.
  * Return a 2D array containing all the arrays. If it is impossible to satisfy the conditions, return an
  * empty array. And if there are multiple answers, return any of them.
+ *
+ * @tags    #greedy #sorting
  */
 
 } //namespace

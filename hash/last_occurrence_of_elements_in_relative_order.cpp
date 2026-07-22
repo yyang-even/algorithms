@@ -5,12 +5,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Print the last occurrence of elements in array in relative order
+/**
+ * @reference   Print the last occurrence of elements in array in relative order
+ *              https://www.geeksforgeeks.org/print-the-last-occurrence-of-elements-in-array-in-relative-order/
  *
- * @reference   https://www.geeksforgeeks.org/print-the-last-occurrence-of-elements-in-array-in-relative-order/
+ * Given an array of N elements, print the elements in the same relative order as given by removing all
+ * the occurrences of elements except the last occurrence.
  *
- * Given an array of N elements, print the elements in the same relative order as given
- * by removing all the occurrences of elements except the last occurrence.
+ * @tags    #hash-table
  */
 auto LastOccurrenceOfElementsInRelativeOrder(const ArrayType &elements) {
     std::unordered_map<ArrayType::value_type, ArrayType::size_type> counters;
@@ -34,11 +36,12 @@ auto LastOccurrenceOfElementsInRelativeOrder(const ArrayType &elements) {
  * @reference   Degree of an Array
  *              https://leetcode.com/problems/degree-of-an-array/
  *
- * Given a non-empty array of non-negative integers nums, the degree of this array is
- * defined as the maximum frequency of any one of its elements. Your task is to find the
- * smallest possible length of a (contiguous) subarray of nums, that has the same degree
- * as nums.
- * nums[i] will be an integer between 0 and 49,999.
+ * Given a non-empty array of non-negative integers nums, the degree of this array is defined as the
+ * maximum frequency of any one of its elements.
+ * Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the
+ * same degree as nums.
+ *
+ * @tags    #hash-table #min-max-element
  */
 auto DegreeOfArray(const ArrayType &nums) {
     std::pair<int, std::size_t> count_first_map[50000] = {};
@@ -63,7 +66,7 @@ auto DegreeOfArray(const ArrayType &nums) {
     return min_length;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 5, 5, 1, 6, 1};

@@ -8,11 +8,11 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Stein’s Algorithm for finding GCD
- *
+/**
+ * @reference   Stein’s Algorithm for finding GCD
+ *              https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Problems 31-1.
- * @reference   https://www.geeksforgeeks.org/steins-algorithm-for-finding-gcd/
  *
  * Stein's algorithm or binary GCD algorithm is an algorithm that computes the greatest common divisor
  * of two non-negative integers. Stein's algorithm replaces division with arithmetic shifts,
@@ -110,7 +110,7 @@ constexpr unsigned gcd_Euclid_Iterative(unsigned m, unsigned n) {
  * numbers.
  * 2 <= nums.length <= 1000
  *
- * @tags    #gcd
+ * @tags    #gcd #min-max-element
  */
 
 

@@ -5,9 +5,9 @@
 
 namespace {
 
-/** Shift 2D Grid
- *
- * @reference   https://leetcode.com/problems/shift-2d-grid/
+/**
+ * @reference   Shift 2D Grid
+ *              https://leetcode.com/problems/shift-2d-grid/
  *
  * Given a 2D grid of size m x n and an integer k. You need to shift the grid k times.
  * In one shift operation:
@@ -15,6 +15,8 @@ namespace {
  *  Element at grid[i][n - 1] moves to grid[i + 1][0].
  *  Element at grid[m - 1][n - 1] moves to grid[0][0].
  * Return the 2D grid after applying shift operation k times.
+ *
+ * @tags    #matrix #array-rotation
  */
 auto Shift2dGrid(const MatrixType &grid, const int k) {
     const auto M = grid.size();
@@ -33,9 +35,10 @@ auto Shift2dGrid(const MatrixType &grid, const int k) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {1, 2, 3},
     {4, 5, 6},
@@ -59,6 +62,7 @@ const MatrixType EXPECTED2 = {
     {19, 7, 2, 5},
     {4, 6, 11, 10}
 };
+// clang-format on
 
 
 THE_BENCHMARK(Shift2dGrid, SAMPLE1, 1);

@@ -486,7 +486,7 @@ int MakeLargeIsland_UnionFind(MatrixType grid) {
  * segment of ones. Otherwise, return false.
  * s[0] is '1'.
  *
- * @tags    #sliding-window
+ * @tags    #sliding-window #numeric-string
  */
 inline constexpr auto HasMostOneSegmentOf1s(const std::string_view s) {
     return s.find("01") == std::string_view::npos;

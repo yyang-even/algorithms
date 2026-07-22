@@ -159,7 +159,7 @@ auto CountMaxAfterRangeAddition(std::size_t m, std::size_t n, const RangeArray &
  *  col2i.
  * Return the matrix mat after performing every query.
  *
- * @tags    #matrix #prefix-sum #2D-difference-array
+ * @tags    #matrix #2D-prefix-sum #2D-difference-array
  */
 auto MatrixRangeAddition(const int n, const QueryArray &queries) {
     std::vector differences(n + 1, std::vector<int>(n + 1, 0));
@@ -186,6 +186,89 @@ auto MatrixRangeAddition(const int n, const QueryArray &queries) {
     }
 
     return result;
+}
+
+
+/**
+ * @reference   Equal Sum Grid Partition I
+ *              https://leetcode.com/problems/equal-sum-grid-partition-i/
+ *
+ * You are given an m x n matrix grid of positive integers. Your task is to determine if it is possible
+ * to make either one horizontal or one vertical cut on the grid such that:
+ *  Each of the two resulting sections formed by the cut is non-empty.
+ *  The sum of the elements in both sections is equal.
+ * Return true if such a partition exists; otherwise return false.
+ *
+ * @tags    #matrix #2D-prefix-sum #accumulate
+ */
+auto CanPartitionGrid(const MatrixType &grid) {
+    long long total = 0;
+    for (const auto &a_row : grid) {
+        for (const auto n : a_row) {
+            total += n;
+        }
+    }
+
+    if (total % 2) {
+        return false;
+    }
+    total /= 2;
+
+    long long sum = 0;
+    for (const auto &a_row : grid) {
+        for (const auto n : a_row) {
+            sum += n;
+        }
+        if (sum == total) {
+            return true;
+        }
+    }
+
+    sum = 0;
+    for (std::size_t j = 0; j < grid.front().size(); ++j) {
+        for (std::size_t i = 0; i < grid.size(); ++i) {
+            sum += grid[i][j];
+        }
+        if (sum == total) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool CanPartitionGrid_PrefixSum(const MatrixType &grid) {
+    const int M = grid.size();
+    const int N = grid.front().size();
+
+    std::vector prefix_sum(M + 1, std::vector(N + 1, 0LL));
+    long long total = 0;
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            prefix_sum[i + 1][j + 1] =
+                prefix_sum[i + 1][j] + prefix_sum[i][j + 1] - prefix_sum[i][j] + grid[i][j];
+            total += grid[i][j];
+        }
+    }
+
+    if (total % 2) {
+        return false;
+    }
+
+    total /= 2;
+    for (int i = 0; i < M - 1; ++i) {
+        if (total == prefix_sum[i + 1][N]) {
+            return true;
+        }
+    }
+
+    for (int i = 0; i < N - 1; ++i) {
+        if (total == prefix_sum[M][i + 1]) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 
@@ -663,3 +746,32 @@ THE_BENCHMARK(MatrixRangeAddition, 3, SAMPLE1Q);
 
 SIMPLE_TEST(MatrixRangeAddition, TestSAMPLE1, EXPECTED1M, 3, SAMPLE1Q);
 SIMPLE_TEST(MatrixRangeAddition, TestSAMPLE2, EXPECTED2M, 2, SAMPLE2Q);
+
+
+// clang-format off
+const MatrixType SAMPLE1_CP = {
+    {1, 4},
+    {2, 3}
+};
+
+const MatrixType SAMPLE2_CP = {
+    {1, 3},
+    {2, 4}
+};
+
+const MatrixType SAMPLE3_CP = {{1, 1, 1}};
+// clang-format on
+
+
+THE_BENCHMARK(CanPartitionGrid, SAMPLE1_CP);
+
+SIMPLE_TEST(CanPartitionGrid, TestSAMPLE1, true, SAMPLE1_CP);
+SIMPLE_TEST(CanPartitionGrid, TestSAMPLE2, false, SAMPLE2_CP);
+SIMPLE_TEST(CanPartitionGrid, TestSAMPLE3, false, SAMPLE3_CP);
+
+
+THE_BENCHMARK(CanPartitionGrid_PrefixSum, SAMPLE1_CP);
+
+SIMPLE_TEST(CanPartitionGrid_PrefixSum, TestSAMPLE1, true, SAMPLE1_CP);
+SIMPLE_TEST(CanPartitionGrid_PrefixSum, TestSAMPLE2, false, SAMPLE2_CP);
+SIMPLE_TEST(CanPartitionGrid_PrefixSum, TestSAMPLE3, false, SAMPLE3_CP);

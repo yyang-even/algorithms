@@ -52,6 +52,8 @@ Relax(std::vector<int> &distances, std::vector<int> &parents, const DirectedEdge
  * Dijkstra doesn't work for Graphs with negative weight edges, Bellman-Ford works for such graphs.
  * Bellman-Ford is also simpler than Dijkstra and suites well for distributed systems.  But time
  * complexity of Bellman-Ford is O(VE), which is more than Dijkstra.
+ *
+ * @tags    #graph #shortest-path #hash-table
  */
 auto SingleSourceShortestPaths_BellmanFord(
     const std::size_t number_vertices,
@@ -91,12 +93,16 @@ auto SingleSourceShortestPaths_BellmanFord(
  *              https://www.geeksforgeeks.org/minimum-cost-of-simple-path-between-two-nodes-in-a-directed-and-weighted-graph/
  *
  * @note    This is a brute force solution.
+ *
+ * @tags    #graph #shortest-path #hash-table
  */
 
 
 /**
  * @reference   Detect a negative cycle in a Graph | (Bellman Ford)
  *              https://www.geeksforgeeks.org/detect-negative-cycle-graph-bellman-ford/
+ *
+ * @tags    #graph #shortest-path #hash-table
  */
 auto hasNegativeCycle(const std::size_t number_vertices, const DirectedEdgeArrayType &edges) {
     std::vector<bool> visited_vertices(number_vertices, false);
@@ -126,6 +132,8 @@ auto hasNegativeCycle(const std::size_t number_vertices, const DirectedEdgeArray
  *              Introduction to Algorithms, Third Edition. Exercises 24.1-6.
  * @reference   Print negative weight cycle in a Directed Graph
  *              https://www.geeksforgeeks.org/print-negative-weight-cycle-in-a-directed-graph/
+ *
+ * @tags    #graph #shortest-path #hash-table
  */
 auto PrintNegativeWeightCycle(const std::size_t number_vertices,
                               const DirectedEdgeArrayType &edges,
@@ -159,6 +167,8 @@ auto PrintNegativeWeightCycle(const std::size_t number_vertices,
  *              Introduction to Algorithms, Third Edition. Section 24.2.
  * @reference   Shortest Path in Directed Acyclic Graph
  *              https://www.geeksforgeeks.org/shortest-path-for-directed-acyclic-graphs/
+ *
+ * @tags    #graph #shortest-path #hash-table #topological-sort
  */
 auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
                                    const DirectedEdgeArrayType &edges,
@@ -194,6 +204,8 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
 /**
  * @reference   Shortest path in an unweighted graph
  *              https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #queue
  */
 auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
     const AdjacencyListGraph::RepresentationType &graph,
@@ -274,6 +286,8 @@ auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(const std::size_t numbe
  *              https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-using-priority_queue-stl/
  * @reference   What are the differences between Bellman Ford’s and Dijkstra’s algorithms?
  *              https://www.geeksforgeeks.org/what-are-the-differences-between-bellman-fords-and-dijkstras-algorithms/
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
  */
 using CostVertexPair = std::pair<int, std::size_t>;
 
@@ -319,6 +333,8 @@ auto SingleSourceShortestPaths_Dijkstra(
 /**
  * @reference   Shortest path in a directed graph by Dijkstra’s algorithm
  *              https://www.geeksforgeeks.org/shortest-path-in-a-directed-graph-by-dijkstras-algorithm/
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
  */
 template<typename EdgeArrayType>
 inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t number_vertices,
@@ -341,6 +357,8 @@ inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t numbe
  * to end and return its success probability.
  * If there is no path from start to end, return 0. Your answer will be accepted if it differs from the
  * correct answer by at most 1e-5.
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
  */
 
 
@@ -353,6 +371,24 @@ inline constexpr auto SingleSourceShortestPaths_Dijkstra(const std::size_t numbe
  * and wi is the time it takes for a signal to travel from source to target.
  * We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to
  * receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
+ */
+
+
+/**
+ * @reference   Minimum Cost Path with Edge Reversals
+ *              https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
+ *
+ * You are given a directed, weighted graph with n nodes labeled from 0 to n - 1, and an array edges
+ * where edges[i] = [ui, vi, wi] represents a directed edge from node ui to node vi with cost wi.
+ * Each node ui has a switch that can be used at most once: when you arrive at ui and have not yet used
+ * its switch, you may activate it on one of its incoming edges vi → ui reverse that edge to ui → vi and
+ * immediately traverse it.
+ * The reversal is only valid for that single move, and using a reversed edge costs 2 * wi.
+ * Return the minimum total cost to travel from node 0 to node n - 1. If it is not possible, return -1.
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
  */
 
 
@@ -394,6 +430,8 @@ auto MinCostPath(TableType costs, const std::size_t m, const std::size_t n) {
 /**
  * @reference   Printing Paths in Dijkstra’s Shortest Path Algorithm
  *              https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
+ *
+ * @tags    #graph #shortest-path #hash-table #BFS #priority-queue
  */
 inline void PrintOneSingleSourceShortestPath_Dijkstra(const std::vector<int> &parents,
                                                       const int i,
@@ -565,9 +603,9 @@ inline constexpr auto operator>(const Node &lhs, const Node &rhs) {
     return lhs.cost > rhs.cost;
 }
 
-/** Swim in Rising Water
- *
- * @reference   https://leetcode.com/problems/swim-in-rising-water/
+/**
+ * @reference   Swim in Rising Water
+ *              https://leetcode.com/problems/swim-in-rising-water/
  *
  * You are given an n x n integer matrix grid where each value grid[i][j] represents the elevation at
  * that point (i, j).

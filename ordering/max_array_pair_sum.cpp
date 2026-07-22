@@ -5,13 +5,15 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Array Partition
- *
- * @reference   https://leetcode.com/problems/array-partition/
+/**
+ * @reference   Array Partition
+ *              https://leetcode.com/problems/array-partition/
  *
  * Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2),
  * ..., (an, bn) such that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.
  * -10^4 <= nums[i] <= 10^4
+ *
+ * @tags    #sorting #accumulate #counting-sort
  */
 auto MaxArrayPairSum(ArrayType nums) {
     std::sort(nums.begin(), nums.end());
@@ -60,6 +62,8 @@ auto MaxArrayPairSum_CountingSort(const ArrayType &nums) {
  * Pick the scores of any k students from the array so that the difference between the highest and the
  * lowest of the k scores is minimized.
  * Return the minimum possible difference.
+ *
+ * @tags    #greedy #sorting #sliding-window
  */
 
 
@@ -72,6 +76,8 @@ auto MaxArrayPairSum_CountingSort(const ArrayType &nums) {
  * A vertical area is an area of fixed-width extending infinitely along the y-axis (i.e., infinite
  * height). The widest vertical area is the one with the maximum width.
  * Note that points on the edge of a vertical area are not considered included in the area.
+ *
+ * @tags    #sorting #sliding-window
  */
 
 
@@ -87,6 +93,8 @@ auto MaxArrayPairSum_CountingSort(const ArrayType &nums) {
  *  costs 2 and 3, they can take the candy with cost 1 for free, but not the candy with cost 4.
  * Given a 0-indexed integer array cost, where cost[i] denotes the cost of the ith candy, return the
  * minimum cost of buying all the candies.
+ *
+ * @tags    #greedy #sorting #accumulate
  */
 auto MinimumCost(ArrayType cost) {
     std::sort(cost.begin(), cost.end(), std::greater<int> {});
@@ -113,6 +121,8 @@ auto MinimumCost(ArrayType cost) {
  *  possible pairs [new1, new2] are [22, 93], [23, 92], [223, 9] and [2, 329].
  * Return the minimum possible sum of new1 and new2.
  * 1000 <= num <= 9999
+ *
+ * @tags    #greedy #sorting
  */
 auto MinSum(int num) {
     ArrayType digits;
