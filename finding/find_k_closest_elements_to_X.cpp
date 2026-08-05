@@ -5,17 +5,18 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find k closest elements to a given value
- *
- * @reference   https://www.geeksforgeeks.org/find-k-closest-elements-given-value/
+/**
+ * @reference   Find k closest elements to a given value
+ *              https://www.geeksforgeeks.org/find-k-closest-elements-given-value/
  *
  * Given a sorted array arr[] and a value X, find the k closest elements to X in arr[].
  * Note: Not including X itself.
+ *
+ * @tags    #sorting #binary-search #sliding-window
  */
-auto
-FindKClosestElementsToX_Sorted_NoX(const ArrayType &elements,
-                                   const ArrayType::value_type X,
-                                   ArrayType::size_type K) {
+auto FindKClosestElementsToX_Sorted_NoX(const ArrayType &elements,
+                                        const ArrayType::value_type X,
+                                        ArrayType::size_type K) {
     assert(elements.size() >= K);
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
@@ -25,7 +26,7 @@ FindKClosestElementsToX_Sorted_NoX(const ArrayType &elements,
     auto right = upper;
     auto output_iter = outputs.begin();
 
-    if (upper != elements.cbegin() and * left == X) {
+    if (upper != elements.cbegin() and *left == X) {
         --left;
     }
 
@@ -52,16 +53,17 @@ FindKClosestElementsToX_Sorted_NoX(const ArrayType &elements,
  * @reference   Find K Closest Elements
  *              https://leetcode.com/problems/find-k-closest-elements/
  *
- * Given a sorted integer array arr, two integers k and x, return the k closest integers
- * to x in the array. The result should also be sorted in ascending order. An integer a
- * is closer to x than an integer b if:
+ * Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the
+ * array. The result should also be sorted in ascending order.
+ * An integer a is closer to x than an integer b if:
  *  |a - x| < |b - x|, or
  *  |a - x| == |b - x| and a < b
+ *
+ * @tags    #sorting #binary-search #sliding-window
  */
-auto
-FindKClosestElementsToX_Sorted_SlidingWindow(const ArrayType &elements,
-                                             const ArrayType::value_type X,
-                                             const ArrayType::size_type K) {
+auto FindKClosestElementsToX_Sorted_SlidingWindow(const ArrayType &elements,
+                                                  const ArrayType::value_type X,
+                                                  const ArrayType::size_type K) {
     assert(elements.size() >= K);
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
@@ -88,15 +90,12 @@ FindKClosestElementsToX_Sorted_SlidingWindow(const ArrayType &elements,
 
     while (right - left - 1 < static_cast<int>(K)) {
         if (left == -1) {
-            right += 1;
-            continue;
-        }
-
-        if (right == static_cast<int>(elements.size()) or
-            std::abs(elements[left] - X) <= std::abs(elements[right] - X)) {
-            left -= 1;
+            ++right;
+        } else if (right == static_cast<int>(elements.size()) or
+                   (X - elements[left]) <= (elements[right] - X)) {
+            --left;
         } else {
-            right += 1;
+            ++right;
         }
     }
 
@@ -104,10 +103,9 @@ FindKClosestElementsToX_Sorted_SlidingWindow(const ArrayType &elements,
 }
 
 
-auto
-FindKClosestElementsToX_Sorted_BinarySearch(const ArrayType &elements,
-                                            const ArrayType::value_type X,
-                                            const ArrayType::size_type K) {
+auto FindKClosestElementsToX_Sorted_BinarySearch(const ArrayType &elements,
+                                                 const ArrayType::value_type X,
+                                                 const ArrayType::size_type K) {
     assert(elements.size() >= K);
     assert(std::is_sorted(elements.cbegin(), elements.cend()));
 
@@ -131,8 +129,8 @@ FindKClosestElementsToX_Sorted_BinarySearch(const ArrayType &elements,
  * @reference   Find closest number in array
  *              https://www.geeksforgeeks.org/find-closest-number-array/
  *
- * Given an array of sorted integers. We need to find the closest value to the given
- * number. Array may contain duplicate values and negative numbers.
+ * Given an array of sorted integers. We need to find the closest value to the given number. Array may
+ * contain duplicate values and negative numbers.
  */
 
 
@@ -140,9 +138,10 @@ FindKClosestElementsToX_Sorted_BinarySearch(const ArrayType &elements,
  * @reference   Find the Distance Value Between Two Arrays
  *              https://leetcode.com/problems/find-the-distance-value-between-two-arrays/
  *
- * Given two integer arrays arr1 and arr2, and the integer d, return the distance value
- * between the two arrays. The distance value is defined as the number of elements arr1[i]
- * such that there is not any element arr2[j] where |arr1[i]-arr2[j]| <= d.
+ * Given two integer arrays arr1 and arr2, and the integer d, return the distance value between the two
+ * arrays.
+ * The distance value is defined as the number of elements arr1[i] such that there is not any element
+ * arr2[j] where |arr1[i]-arr2[j]| <= d.
  */
 auto FindTheDistanceValue(const ArrayType &one, ArrayType another, const int d) {
     std::sort(another.begin(), another.end());
@@ -159,9 +158,9 @@ auto FindTheDistanceValue(const ArrayType &one, ArrayType another, const int d) 
 }
 
 
-/** Find k closest numbers in an unsorted array
- *
- * @reference   https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
+/**
+ * @reference   Find k closest numbers in an unsorted array
+ *              https://www.geeksforgeeks.org/find-k-closest-numbers-in-an-unsorted-array/
  */
 auto FindKClosestElementsToX_Unsorted(const ArrayType &elements,
                                       const ArrayType::value_type X,
@@ -197,19 +196,18 @@ auto FindKClosestElementsToX_Unsorted(const ArrayType &elements,
  * @reference   Find Closest Number to Zero
  *              https://leetcode.com/problems/find-closest-number-to-zero/
  *
- * Given an integer array nums of size n, return the number with the value closest to 0
- * in nums. If there are multiple answers, return the number with the largest value.
+ * Given an integer array nums of size n, return the number with the value closest to 0 in nums. If
+ * there are multiple answers, return the number with the largest value.
  */
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56};
 const ArrayType EXPECTED1 = {39, 30, 42, 45};
 const auto EXPECTED_FRONT =
     ArrayType(SAMPLE1.cbegin(), std::next(SAMPLE1.cbegin(), EXPECTED1.size()));
-const auto EXPECTED_BACK =
-    ArrayType(std::prev(SAMPLE1.cend(), EXPECTED1.size()), SAMPLE1.cend());
+const auto EXPECTED_BACK = ArrayType(std::prev(SAMPLE1.cend(), EXPECTED1.size()), SAMPLE1.cend());
 const ArrayType EXPECTED2 = {42, 45, 39, 48};
 const ArrayType SAMPLE5 = {1, 2, 4, 5, 6, 6, 8, 9};
 const ArrayType EXPECTED5 = {9};
@@ -220,14 +218,22 @@ const ArrayType EXPECTED7 = {2};
 
 THE_BENCHMARK(FindKClosestElementsToX_Sorted_NoX, SAMPLE1, 35, EXPECTED1.size());
 
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE1, EXPECTED1,
-            SAMPLE1, 35, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE_FRONT, EXPECTED_FRONT,
-            SAMPLE1, SAMPLE1.front() - 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE_BACK, EXPECTED_BACK,
-            SAMPLE1, SAMPLE1.back() + 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE2, EXPECTED2,
-            SAMPLE1, 43, EXPECTED2.size());
+SIMPLE_TEST(
+    FindKClosestElementsToX_Sorted_NoX, TestSAMPLE1, EXPECTED1, SAMPLE1, 35, EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX,
+            TestSAMPLE_FRONT,
+            EXPECTED_FRONT,
+            SAMPLE1,
+            SAMPLE1.front() - 1,
+            EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX,
+            TestSAMPLE_BACK,
+            EXPECTED_BACK,
+            SAMPLE1,
+            SAMPLE1.back() + 1,
+            EXPECTED1.size());
+SIMPLE_TEST(
+    FindKClosestElementsToX_Sorted_NoX, TestSAMPLE2, EXPECTED2, SAMPLE1, 43, EXPECTED2.size());
 SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE5, EXPECTED5, SAMPLE5, 11, 1);
 SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE6, EXPECTED6, SAMPLE6, 4, 1);
 SIMPLE_TEST(FindKClosestElementsToX_Sorted_NoX, TestSAMPLE7, EXPECTED7, SAMPLE6, 3, 1);
@@ -237,42 +243,46 @@ const ArrayType SAMPLE8 = {1, 2, 3, 4, 5};
 const ArrayType EXPECTED8 = {1, 2, 3, 4};
 
 
-THE_BENCHMARK(FindKClosestElementsToX_Sorted_SlidingWindow,
-              SAMPLE1, 35, EXPECTED1.size());
+THE_BENCHMARK(FindKClosestElementsToX_Sorted_SlidingWindow, SAMPLE1, 35, EXPECTED1.size());
 
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE_FRONT,
-            EXPECTED_FRONT, SAMPLE1, SAMPLE1.front() - 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE_BACK,
-            EXPECTED_BACK, SAMPLE1, SAMPLE1.back() + 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE5, EXPECTED5,
-            SAMPLE5, 11, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE6, EXPECTED6,
-            SAMPLE6, 4, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE7, EXPECTED6,
-            SAMPLE6, 5, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE8, EXPECTED7,
-            SAMPLE6, 3, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE9, EXPECTED8,
-            SAMPLE8, 3, 4);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow,
+            TestSAMPLE_FRONT,
+            EXPECTED_FRONT,
+            SAMPLE1,
+            SAMPLE1.front() - 1,
+            EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow,
+            TestSAMPLE_BACK,
+            EXPECTED_BACK,
+            SAMPLE1,
+            SAMPLE1.back() + 1,
+            EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE5, EXPECTED5, SAMPLE5, 11, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE6, EXPECTED6, SAMPLE6, 4, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE7, EXPECTED6, SAMPLE6, 5, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE8, EXPECTED7, SAMPLE6, 3, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_SlidingWindow, TestSAMPLE9, EXPECTED8, SAMPLE8, 3, 4);
 
 
-THE_BENCHMARK(FindKClosestElementsToX_Sorted_BinarySearch,
-              SAMPLE1, 35, EXPECTED1.size());
+THE_BENCHMARK(FindKClosestElementsToX_Sorted_BinarySearch, SAMPLE1, 35, EXPECTED1.size());
 
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE_FRONT,
-            EXPECTED_FRONT, SAMPLE1, SAMPLE1.front() - 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE_BACK,
-            EXPECTED_BACK, SAMPLE1, SAMPLE1.back() + 1, EXPECTED1.size());
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE5, EXPECTED5,
-            SAMPLE5, 11, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE6, EXPECTED6,
-            SAMPLE6, 4, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE7, EXPECTED6,
-            SAMPLE6, 5, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE8, EXPECTED7,
-            SAMPLE6, 3, 1);
-SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE9, EXPECTED8,
-            SAMPLE8, 3, 4);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch,
+            TestSAMPLE_FRONT,
+            EXPECTED_FRONT,
+            SAMPLE1,
+            SAMPLE1.front() - 1,
+            EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch,
+            TestSAMPLE_BACK,
+            EXPECTED_BACK,
+            SAMPLE1,
+            SAMPLE1.back() + 1,
+            EXPECTED1.size());
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE5, EXPECTED5, SAMPLE5, 11, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE6, EXPECTED6, SAMPLE6, 4, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE7, EXPECTED6, SAMPLE6, 5, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE8, EXPECTED7, SAMPLE6, 3, 1);
+SIMPLE_TEST(FindKClosestElementsToX_Sorted_BinarySearch, TestSAMPLE9, EXPECTED8, SAMPLE8, 3, 4);
 
 
 const ArrayType SAMPLE3 = {10, 2, 14, 4, 7, 6};
@@ -283,10 +293,10 @@ const ArrayType EXPECTED4 = {17, 20};
 
 THE_BENCHMARK(FindKClosestElementsToX_Unsorted, SAMPLE3, 5, EXPECTED3.size());
 
-SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5,
-            EXPECTED3.size());
-SIMPLE_TEST(FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20,
-            EXPECTED4.size());
+SIMPLE_TEST(
+    FindKClosestElementsToX_Unsorted, TestSAMPLE3, EXPECTED3, SAMPLE3, 5, EXPECTED3.size());
+SIMPLE_TEST(
+    FindKClosestElementsToX_Unsorted, TestSAMPLE4, EXPECTED4, SAMPLE4, 20, EXPECTED4.size());
 
 
 const ArrayType SAMPLE1A = {4, 5, 8};

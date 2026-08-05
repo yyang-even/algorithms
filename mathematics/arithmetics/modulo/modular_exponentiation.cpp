@@ -3,11 +3,11 @@
 
 namespace {
 
-/** Modular Exponentiation (Power in Modular Arithmetic)
- *
+/**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 31.6.
- * @reference   https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
+ * @reference   Modular Exponentiation (Power in Modular Arithmetic)
+ *              https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
  *
  * Given three numbers x, y and p, compute (x^y) % p.
  * (ab) mod p = ( (a mod p) (b mod p) ) mod p
@@ -15,16 +15,15 @@ namespace {
  * @reference   Modular exponentiation (Recursive)
  *              https://www.geeksforgeeks.org/modular-exponentiation-recursive/
  *
- * Now why do "% c" after exponentiation, because ab will be really large even for
- * relatively small values of a, b and that is a problem because the data type of the
- * language that we try to code the problem, will most probably not let us store such
- * a large number.
+ * Now why do "% c" after exponentiation, because ab will be really large even for relatively small
+ * values of a, b and that is a problem because the data type of the language that we try to code the
+ * problem, will most probably not let us store such a large number.
+ * If we have to return the mod of a negative number x whose absolute value is less than y: then (x + y)
+ * % y will do the trick.
  *
- * If we have to return the mod of a negative number x whose absolute value is less
- * than y: then (x + y) % y will do the trick
+ * @tags    #modulo #modulo-tricks #exponentiation
  */
-inline constexpr auto
-ModularExponentiation(const int x, const unsigned y, const int p) {
+inline constexpr auto ModularExponentiation(const int x, const unsigned y, const int p) {
     return static_cast<long>(pow(x, y)) % p;
 }
 
@@ -32,9 +31,10 @@ ModularExponentiation(const int x, const unsigned y, const int p) {
 /**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 31.6-2.
+ *
+ * @tags    #modulo #modulo-tricks #exponentiation
  */
-constexpr auto
-ModularExponentiation_Iterative(int x, unsigned y, const int p) {
+constexpr auto ModularExponentiation_Iterative(int x, unsigned y, const int p) {
 
     long results = 1;
     for (x %= p; y; y >>= 1) {
@@ -75,7 +75,22 @@ ModularExponentiation_Recursive(const int x, const unsigned y, const int p) {
     return ModularExponentiation_Recursive_Helper(x % p, y, p);
 }
 
-}//namespace
+
+/**
+ * @reference   Double Modular Exponentiation
+ *              https://leetcode.com/problems/double-modular-exponentiation/
+ *
+ * You are given a 0-indexed 2D array variables where variables[i] = [ai, bi, ci, mi], and an integer
+ * target.
+ * An index i is good if the following formula holds:
+ *  0 <= i < variables.length
+ *  ((ai^bi % 10)^ci) % mi == target
+ * Return an array consisting of good indices in any order.
+ *
+ * @tags    #modulo #modulo-tricks #exponentiation
+ */
+
+} //namespace
 
 
 THE_BENCHMARK(ModularExponentiation, 2, 3, 5);

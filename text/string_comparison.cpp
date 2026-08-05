@@ -11,9 +11,9 @@ using ArrayType = std::vector<std::string_view>;
  */
 
 
-/** Check if two strings are same ignoring their cases
- *
- * @reference   https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
+/**
+ * @reference   Check if two strings are same ignoring their cases
+ *              https://www.geeksforgeeks.org/check-if-two-strings-are-same-ignoring-their-cases/
  */
 inline auto CaseInsensitiveCompare(const std::string_view lhs, const std::string_view rhs) {
     return std::equal(
@@ -106,6 +106,8 @@ constexpr auto EqualAfterOneSwapNoSameIndices(const std::string_view one,
  * false otherwise.
  * A string is represented by an array if the array elements concatenated in order forms the string.
  * word1[i] and word2[i] consist of lowercase letters.
+ *
+ * @tags    #matrix
  */
 auto ArrayStringsAreEqual(const ArrayType &word1, const ArrayType &word2) {
     std::size_t w_i = 0, w_j = 0;

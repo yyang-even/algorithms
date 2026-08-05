@@ -10,9 +10,9 @@ namespace {
 using ArrayType = std::vector<int>;
 using MemoType = MatrixType;
 
-/** Stone Game
- *
- * @reference   https://leetcode.com/problems/stone-game/
+/**
+ * @reference   Stone Game
+ *              https://leetcode.com/problems/stone-game/
  *
  * Alice and Bob play a game with piles of stones. There are an even number of piles arranged in a row,
  * and each pile has a positive integer number of stones piles[i].
@@ -22,6 +22,8 @@ using MemoType = MatrixType;
  * stones either from the beginning or from the end of the row. This continues until there are no more
  * piles left, at which point the person with the most stones wins.
  * Assuming Alice and Bob play optimally, return true if Alice wins the game, or false if Bob wins.
+ *
+ * @tags    #DP
  */
 inline auto StoneGameEvenPiles(const ArrayType &) {
     return true;
@@ -36,9 +38,9 @@ auto StoneGameEvenPiles_DP(const ArrayType &piles) {
     int dp[N + 2][N + 2] = {};
     for (std::size_t size = 1; size <= N; ++size) {
         for (int i = 0; i + size <= N; ++i) {
-            int j = i + size - 1;
-            const bool alex_turn = (j + i) % 2;
-            if (alex_turn == 1) {
+            const int j = i + size - 1;
+            const bool alice_turn = (j + i) % 2;
+            if (alice_turn) {
                 dp[i + 1][j + 1] = std::max(dp[i + 2][j + 1] + piles[i], dp[i + 1][j] + piles[j]);
             } else {
                 dp[i + 1][j + 1] = std::min(dp[i + 2][j + 1] - piles[i], dp[i + 1][j] - piles[j]);
@@ -63,6 +65,8 @@ auto StoneGameEvenPiles_DP(const ArrayType &piles) {
  * Return true if Player 1 can win the game. If the scores of both players are equal, then player 1 is
  * still the winner, and you should also return true. You may assume that both players are playing
  * optimally.
+ *
+ * @tags    #DP
  */
 auto PredictTheWinner(const ArrayType &nums) {
     if (nums.size() % 2 == 0) {

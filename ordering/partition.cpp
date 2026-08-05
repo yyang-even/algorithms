@@ -10,9 +10,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Move all negative elements to end in order with extra space allowed
- *
- * @reference   https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
+/**
+ * @reference   Move all negative elements to end in order with extra space allowed
+ *              https://www.geeksforgeeks.org/move-ve-elements-end-order-extra-space-allowed/
  *
  * Given an unsorted array of both negative and positive integer. The task is place all negative element
  * at the end of array without changing the order of positive element and negative element.
@@ -60,9 +60,9 @@ inline auto RearrangePositiveAndNegativeNumbers_Merge_Stable(ArrayType input) {
 }
 
 
-/** Rearrange positive and negative numbers with constant extra space
- *
- * @reference   https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
+/**
+ * @reference   Rearrange positive and negative numbers with constant extra space
+ *              https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
  * @reference   Rearrange positive and negative numbers using inbuilt sort function
  *              https://www.geeksforgeeks.org/rearrange-positive-negative-numbers-using-inbuilt-sort-function/
  * @reference   Segregating negative and positive maintaining order and O(1) space
@@ -125,9 +125,9 @@ inline auto RearrangePositiveAndNegativeNumbers_MergeReverse(ArrayType input) {
 }
 
 
-/** Move all zeroes to end of array
- *
- * @reference   https://www.geeksforgeeks.org/move-zeroes-end-array/
+/**
+ * @reference   Move all zeroes to end of array
+ *              https://www.geeksforgeeks.org/move-zeroes-end-array/
  * @reference   Move all zeroes to end of array using Two-Pointers
  *              https://www.geeksforgeeks.org/move-all-zeroes-to-end-of-array-using-two-pointers/
  * @reference   Move all zeroes to end of array | Set-2 (Using single traversal)
@@ -159,9 +159,9 @@ inline auto RearrangeZeros(ArrayType input) {
 }
 
 
-/** Rearrange positive and negative numbers in O(n) time and O(1) extra space
- *
- * @reference   https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
+/**
+ * @reference   Rearrange positive and negative numbers in O(n) time and O(1) extra space
+ *              https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
  * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 1
  *              https://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/
  * @reference   Rearrange array in alternating positive & negative items with O(1) extra space | Set 2
@@ -300,9 +300,9 @@ auto RearrangePositiveAndNegativeNumbersAlternative_SinglePartition_Stable(Array
  */
 
 
-/** Partitioning a linked list around a given value and keeping the original order
- *
- * @reference   https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
+/**
+ * @reference   Partitioning a linked list around a given value and keeping the original order
+ *              https://www.geeksforgeeks.org/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
  *
  * Given a linked list and a value x, partition it such that all nodes less than x come first, then all
  * nodes with value equal to x and finally nodes with value greater than or equal to x.  The original
@@ -353,9 +353,9 @@ auto Partition_3Way_SinglyList_Stable(std::forward_list<int> elements,
  */
 
 
-/** Partitioning a linked list around a given value and If we don’t care about making the elements of the list "stable"
- *
- * @reference   https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
+/**
+ * @reference   Partitioning a linked list around a given value and If we don’t care about making the elements of the list "stable"
+ *              https://www.geeksforgeeks.org/partitioning-linked-list-around-given-value-dont-care-making-elements-list-stable/
  *
  * Given a linked list and a value x, partition a linked list around a value x, such that all nodes less
  * than x come before all nodes greater than or equal to x. If x is contained within the list the values
@@ -380,6 +380,73 @@ auto Partition_SinglyList_Unstable(std::forward_list<int> elements,
     }
 
     return outputs;
+}
+
+
+/**
+ * @reference   Reorder Data in Log Files
+ *              https://leetcode.com/problems/reorder-data-in-log-files/
+ *
+ * You are given an array of logs. Each log is a space-delimited string of words, where the first word
+ * is the identifier. There are two types of logs:
+ *  Letter-logs: All words (except the identifier) consist of lowercase English letters.
+ *  Digit-logs: All words (except the identifier) consist of digits.
+ * Reorder these logs so that:
+ *  The letter-logs come before all digit-logs.
+ *  The letter-logs are sorted lexicographically by their contents. If their contents are the same, then
+ *      sort them lexicographically by their identifiers.
+ *  The digit-logs maintain their relative ordering.
+ * Return the final order of the logs.
+ *
+ * @tags    #sorting #stable-sort #2-way-partition
+ */
+auto SortLogs(std::vector<std::string_view> logs) {
+    std::stable_sort(logs.begin(), logs.end(), [](const auto &one, const auto &another) {
+        const auto isOneDigit = std::isdigit(one.back());
+        const auto isAnotherDigit = std::isdigit(another.back());
+
+        if (not isOneDigit and isAnotherDigit) {
+            return true;
+        } else if (not isOneDigit and not isAnotherDigit) {
+            const auto one_space_position = one.find(' ');
+            const auto one_identifier = one.substr(0, one_space_position);
+            const auto one_content = one.substr(one_space_position + 1);
+            const auto another_space_pos = another.find(' ');
+            const auto another_identifier = another.substr(0, another_space_pos);
+            const auto another_content = another.substr(another_space_pos + 1);
+
+            if (one_content == another_content) {
+                return one_identifier < another_identifier;
+            }
+            return one_content < another_content;
+        }
+
+        return false;
+    });
+
+    return logs;
+}
+
+auto SortLogs_Partition(std::vector<std::string_view> logs) {
+    const auto mid = std::stable_partition(logs.begin(), logs.end(), [](const auto &s) {
+        return not std::isdigit(s.back());
+    });
+
+    std::sort(logs.begin(), mid, [](const auto &left, const auto &right) {
+        const auto left_p = left.find(' ');
+        const std::string_view left_contents(left.cbegin() + left_p + 1, left.cend());
+        const auto right_p = right.find(' ');
+        const std::string_view right_contents(right.cbegin() + right_p + 1, right.cend());
+
+        if (left_contents == right_contents) {
+            const std::string_view left_id(left.cbegin(), left.cbegin() + left_p);
+            const std::string_view right_id(right.cbegin(), right.cbegin() + right_p);
+            return left_id < right_id;
+        }
+        return left_contents < right_contents;
+    });
+
+    return logs;
 }
 
 } //namespace
@@ -518,3 +585,26 @@ const std::forward_list<int> EXPECTED_LIST5 = {1, 2, 2, 3, 5, 10, 8};
 THE_BENCHMARK(Partition_SinglyList_Unstable, LIST5, 5);
 
 SIMPLE_TEST(Partition_SinglyList_Unstable, TestList5, EXPECTED_LIST5, LIST5, 5);
+
+
+const std::vector<std::string_view> SAMPLE1L = {
+    "dig1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero"};
+const std::vector<std::string_view> EXPECTED1L = {
+    "let1 art can", "let3 art zero", "let2 own kit dig", "dig1 8 1 5 1", "dig2 3 6"};
+
+const std::vector<std::string_view> SAMPLE2L = {
+    "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo"};
+const std::vector<std::string_view> EXPECTED2L = {
+    "g1 act car", "a8 act zoo", "ab1 off key dog", "a1 9 2 3 1", "zo4 4 7"};
+
+
+THE_BENCHMARK(SortLogs, SAMPLE1L);
+
+SIMPLE_TEST(SortLogs, TestSAMPLE1, EXPECTED1L, SAMPLE1L);
+SIMPLE_TEST(SortLogs, TestSAMPLE2, EXPECTED2L, SAMPLE2L);
+
+
+THE_BENCHMARK(SortLogs_Partition, SAMPLE1L);
+
+SIMPLE_TEST(SortLogs_Partition, TestSAMPLE1, EXPECTED1L, SAMPLE1L);
+SIMPLE_TEST(SortLogs_Partition, TestSAMPLE2, EXPECTED2L, SAMPLE2L);

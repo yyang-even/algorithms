@@ -5,26 +5,27 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Maximum Product of Three Numbers
+/**
+ * @reference   Maximum Product of Three Numbers
+ *              https://leetcode.com/problems/maximum-product-of-three-numbers/
  *
- * @reference   https://leetcode.com/problems/maximum-product-of-three-numbers/
+ * Given an integer array nums, find three numbers whose product is maximum and return the maximum
+ * product.
  *
- * Given an integer array nums, find three numbers whose product is maximum and return
- * the maximum product.
+ * @note    We need not necessarily sort the given nums array to find the maximum product. Instead, we
+ * can only find the required 2 smallest values and the three largest values in the nums array, by
+ * iterating over the nums array only once.
  *
- * @note    We need not necessarily sort the given nums array to find the maximum
- * product. Instead, we can only find the required 2 smallest values and the three
- * largest values in the nums array, by iterating over the nums array only once.
+ * @tags    #sorting #product
  */
 auto MaxProductOf3_Sort(ArrayType nums) {
     std::sort(nums.begin(), nums.end());
 
     const auto N = nums.size();
-    return std::max(nums[0] * nums[1] * nums[N - 1],
-                    nums[N - 1] * nums[N - 2] * nums[N - 3]);
+    return std::max(nums[0] * nums[1] * nums[N - 1], nums[N - 1] * nums[N - 2] * nums[N - 3]);
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 3};

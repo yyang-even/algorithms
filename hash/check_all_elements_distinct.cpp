@@ -221,6 +221,64 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
 
 
 /**
+ * @reference   Take K of Each Character From Left and Right
+ *              https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
+ *
+ * You are given a string s consisting of the characters 'a', 'b', and 'c' and a non-negative integer k.
+ * Each minute, you may take either the leftmost character of s, or the rightmost character of s.
+ * Return the minimum number of minutes needed for you to take at least k of each character, or return
+ * -1 if it is not possible to take k of each character.
+ *
+ * @tags    #hash-table #sliding-window
+ */
+auto valid(const std::vector<int> &max_removes, const std::vector<int> &hash) {
+    for (std::size_t i = 0; i < hash.size(); ++i) {
+        if (max_removes[i] < hash[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+auto TakeCharactersFromEnds(const std::string_view s, const int k) {
+    if (k == 0) {
+        return 0;
+    }
+
+    std::vector max_removes(3, -k);
+    for (const auto c : s) {
+        const auto i = c - 'a';
+        ++max_removes[i];
+    }
+
+    for (const auto r : max_removes) {
+        if (r < 0) {
+            return -1;
+        }
+    }
+
+    std::vector hash(3, 0);
+    int left = 0;
+    int result = s.size();
+    for (std::size_t right = 0; right < s.size(); ++right) {
+        const auto i = s[right] - 'a';
+        ++(hash[i]);
+
+        while (not valid(max_removes, hash)) {
+            const auto i = s[left++] - 'a';
+            --(hash[i]);
+        }
+
+        const int length = left + s.size() - right - 1;
+        result = std::min(result, length);
+    }
+
+    return result;
+}
+
+
+/**
  * @reference   Maximum Unique Subarray Sum After Deletion
  *              https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/
  *
@@ -231,7 +289,7 @@ constexpr auto LongestSubstrWithoutRepeatingChars_Count(const std::string_view s
  *  2. The sum of the elements in the subarray is maximized.
  * Return the maximum sum of such a subarray.
  *
- * @tags    #hash-table
+ * @tags    #greedy #hash-table #min-max-element #accumulate
  */
 
 
@@ -406,6 +464,12 @@ THE_BENCHMARK(LongestSubstrWithoutRepeatingChars_Count, "abcabcbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE1, 3, "abcabcbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE2, 1, "bbbbbb");
 SIMPLE_TEST(LongestSubstrWithoutRepeatingChars_Count, TestSAMPLE3, 3, "pwwkew");
+
+
+THE_BENCHMARK(TakeCharactersFromEnds, "aabaaaacaabc", 2);
+
+SIMPLE_TEST(TakeCharactersFromEnds, TestSAMPLE1, 8, "aabaaaacaabc", 2);
+SIMPLE_TEST(TakeCharactersFromEnds, TestSAMPLE2, -1, "a", 1);
 
 
 const ArrayType SAMPLE1M = {1, 3, 2, 3, 3, 3, 2, 1};

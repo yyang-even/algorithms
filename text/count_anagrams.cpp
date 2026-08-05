@@ -7,20 +7,20 @@ namespace {
 
 using HashTable = std::unordered_map<char, int>;
 
-/** Count Occurences of Anagrams
+/**
+ * @reference   Count Occurences of Anagrams
+ *              https://www.geeksforgeeks.org/count-occurences-of-anagrams/
  *
- * @reference   https://www.geeksforgeeks.org/count-occurences-of-anagrams/
- *
- * Given a word and a text, return the count of the occurences of anagrams of the word in
- * the text(For eg: anagrams of word for are for, ofr, rof etc.)
+ * Given a word and a text, return the count of the occurences of anagrams of the word in the text(For
+ * eg: anagrams of word for are for, ofr, rof etc.)
  *
  * @reference   Find All Anagrams in a String
  *              https://leetcode.com/problems/find-all-anagrams-in-a-string/
  *
- * Given two strings s and p, return an array of all the start indices of p's anagrams in
- * s. You may return the answer in any order.
- * An Anagram is a word or phrase formed by rearranging the letters of a different word
- * or phrase, typically using all the original letters exactly once.
+ * Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may
+ * return the answer in any order.
+ * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+ * typically using all the original letters exactly once.
  * s and p consist of lowercase English letters.
  */
 inline auto AreAllCharZero(const HashTable &char_counts) {
@@ -57,9 +57,9 @@ auto CountAnagrams(const std::string_view text, const std::string_view word) {
 }
 
 
-/** Check whether two strings are anagram of each other
- *
- * @reference   https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
+/**
+ * @reference   Check whether two strings are anagram of each other
+ *              https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
  * @reference   Check whether two strings are anagrams of each other using unordered_map in C++
  *              https://www.geeksforgeeks.org/check-whether-two-strings-are-anagrams-of-each-other-using-unordered_map-in-c/
  * @reference   Check if two strings are permutation of each other
@@ -71,17 +71,17 @@ auto CountAnagrams(const std::string_view text, const std::string_view word) {
  *              https://leetcode.com/problems/valid-anagram/
  *
  * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
- * Follow up: What if the inputs contain Unicode characters? How would you adapt your
- * solution to such a case?
+ * Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a
+ * case?
  *
  * @reference   Check if two arrays are equal or not
  *              https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
  *
- * Given two given arrays of equal length, the task is to find if given arrays are equal
- * or not. Two arrays are said to be equal if both of them contain same set of elements,
- * arrangements (or permutation) of elements may be different though.
- * Note: If there are repetitions, then counts of repeated elements must also be same for
- * two array to be equal.
+ * Given two given arrays of equal length, the task is to find if given arrays are equal or not. Two
+ * arrays are said to be equal if both of them contain same set of elements, arrangements (or
+ * permutation) of elements may be different though.
+ * Note: If there are repetitions, then counts of repeated elements must also be same for two array to
+ * be equal.
  */
 auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
     if (s1.size() != s2.size()) {
@@ -102,10 +102,10 @@ auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
  * @reference   Check Whether Two Strings are Almost Equivalent
  *              https://leetcode.com/problems/check-whether-two-strings-are-almost-equivalent/
  *
- * Two strings word1 and word2 are considered almost equivalent if the differences between
- * the frequencies of each letter from 'a' to 'z' between word1 and word2 is at most 3.
- * Given two strings word1 and word2, each of length n, return true if word1 and word2 are
- * almost equivalent, or false otherwise.
+ * Two strings word1 and word2 are considered almost equivalent if the differences between the
+ * frequencies of each letter from 'a' to 'z' between word1 and word2 is at most 3.
+ * Given two strings word1 and word2, each of length n, return true if word1 and word2 are almost
+ * equivalent, or false otherwise.
  * The frequency of a letter x is the number of times it occurs in the string.
  */
 
@@ -114,11 +114,11 @@ auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
  * @reference   Find Anagram Mappings
  *              https://ttzztt.gitbooks.io/lc/content/find-anagram-mappings.html
  *
- * Given two lists A and B, and B is an anagram of A. B is an anagram of A means B is
- * made by randomizing the order of the elements in A. We want to find an index mapping
- * P, from A to B. A mapping P[i] = j means the ith element in A appears in B at index
- * j. These lists A and B may contain duplicates. If there are multiple answers, output
- * any of them.
+ * Given two listsAandB, andBis an anagram ofA.Bis an anagram ofAmeansBis made by randomizing the order
+ * of the elements inA.
+ * We want to find anindex mappingP, fromAtoB. A mappingP[i] = jmeans theith element inAappears inBat
+ * indexj.
+ * These listsAandBmay contain duplicates. If there are multiple answers, output any of them.
  */
 
 
@@ -126,8 +126,7 @@ auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
  * @reference   Permutation in String
  *              https://leetcode.com/problems/permutation-in-string/
  *
- * Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false
- * otherwise.
+ * Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
  * In other words, return true if one of s1's permutations is the substring of s2.
  * s1 and s2 consist of lowercase English letters.
  */
@@ -180,9 +179,11 @@ constexpr auto CheckAnagram(const std::string_view s1, const std::string_view s2
  *
  * A string is good if there are no repeated characters.
  * Given a string s, return the number of good substrings of length three in s.
- * Note that if there are multiple occurrences of the same substring, every occurrence
- * should be counted.
+ * Note that if there are multiple occurrences of the same substring, every occurrence should be
+ * counted.
  * A substring is a contiguous sequence of characters in a string.
+ *
+ * @tags    #sliding-window
  */
 
 
@@ -191,8 +192,8 @@ constexpr auto CheckAnagram(const std::string_view s1, const std::string_view s2
  *              https://leetcode.com/problems/count-vowel-substrings-of-a-string/
  *
  * A substring is a contiguous (non-empty) sequence of characters within a string.
- * A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o', and
- * 'u') and has all five vowels present in it.
+ * A vowel substring is a substring that only consists of vowels ('a', 'e', 'i', 'o', and 'u') and has
+ * all five vowels present in it.
  * Given a string word, return the number of vowel substrings in word.
  */
 auto CountVowelSubstrs(const std::string_view s) {
@@ -219,7 +220,7 @@ auto CountVowelSubstrs(const std::string_view s) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(CountAnagrams, "forxxorfxdofr", "for");

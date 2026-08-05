@@ -5,12 +5,14 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Check If All 1's Are at Least Length K Places Away
+/**
+ * @reference   Check If All 1's Are at Least Length K Places Away
+ *              https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/
  *
- * @reference   https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/
+ * Given an binary array nums and an integer k, return true if all 1's are at least k places away from
+ * each other, otherwise return false.
  *
- * Given an binary array nums and an integer k, return true if all 1's are at least k
- * places away from each other, otherwise return false.
+ * @tags    #sliding-window
  */
 auto KLengthApart(const ArrayType &nums, const int K) {
     auto length = K;
@@ -55,7 +57,7 @@ constexpr auto KLengthApart_Bit(unsigned x, const int K) {
     return true;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 0, 0, 0, 1, 0, 0, 1};

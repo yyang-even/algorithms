@@ -8,8 +8,7 @@ using OutputType = std::unordered_set<ArrayType::value_type>;
 
 #include "kth_smallest_or_largest_element.h"
 
-/** k largest(or smallest) elements in an array
- *
+/**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Problems 9-1.
  * @reference   k largest(or smallest) elements in an array | added Min Heap method
@@ -125,9 +124,9 @@ auto KSmallestElements_MaxHeap(const ArrayType &values, ArrayType::size_type K) 
 }
 
 
-/** Print n smallest elements from given array in their original order
- *
- * @reference   https://www.geeksforgeeks.org/find-n-smallest-element-given-array-order-array/
+/**
+ * @reference   Print n smallest elements from given array in their original order
+ *              https://www.geeksforgeeks.org/find-n-smallest-element-given-array-order-array/
  * @reference   Find k maximum elements of array in original order
  *              https://www.geeksforgeeks.org/find-k-maximum-elements-array-original-order/
  * @reference   k smallest elements in same order using O(1) extra space
@@ -218,6 +217,8 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
  * Given the array of integers nums, you will choose two different indices i and j of that array. Return
  * the maximum value of (nums[i]-1)*(nums[j]-1).
  * 1 <= nums[i] <= 10^3
+ *
+ * @tags    #min-max-element
  */
 
 
