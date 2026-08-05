@@ -29,6 +29,8 @@ inline auto DepthFirstSearch_Recursive(const std::size_t number_vertices,
  *              Introduction to Algorithms, Third Edition. Exercises 22.3-7.
  * @reference   Iterative Depth First Traversal of Graph
  *              https://www.geeksforgeeks.org/iterative-depth-first-traversal/
+ *
+ * @tags    #graph #DFS #stack
  */
 void DepthFirstSearch_Iterative(const AdjacencyListGraph::RepresentationType &graph,
                                 const std::size_t source,
@@ -69,6 +71,8 @@ inline auto DepthFirstSearch_Iterative(const std::size_t number_vertices,
 /**
  * @reference   Implementation of DFS using adjacency matrix
  *              https://www.geeksforgeeks.org/implementation-of-dfs-using-adjacency-matrix/
+ *
+ * @tags    #graph #DFS
  */
 void DepthFirstSearch_Recursive(const AdjacencyMatrixGraph::RepresentationType &graph,
                                 const std::size_t source,
@@ -95,12 +99,6 @@ inline auto DepthFirstSearch_Recursive_AdjMatrix(const std::size_t number_vertic
 
     return results;
 }
-
-
-/**
- * @reference   Print the DFS traversal step-wise (Backtracking also)
- *              https://www.geeksforgeeks.org/print-the-dfs-traversal-step-wise-backtracking-also/
- */
 
 
 /**
@@ -249,6 +247,24 @@ bool ValidateBinaryTreeNodes(const int n,
 
     return countNodes(left_child, right_child, root) == n;
 }
+
+
+/**
+ * @reference   Remove Methods From Project
+ *              https://leetcode.com/problems/remove-methods-from-project/
+ *
+ * You are maintaining a project that has n methods numbered from 0 to n - 1.
+ * You are given two integers n and k, and a 2D integer array invocations, where invocations[i] = [ai,
+ * bi] indicates that method ai invokes method bi.
+ * There is a known bug in method k. Method k, along with any method invoked by it, either directly or
+ * indirectly, are considered suspicious and we aim to remove them.
+ * A group of methods can only be removed if no method outside the group invokes any methods within it.
+ * Return an array containing all the remaining methods after removing all the suspicious methods. You
+ * may return the answer in any order. If it is not possible to remove all the suspicious methods, none
+ * should be removed.
+ *
+ * @tags    #graph #DFS #hash-table
+ */
 
 } //namespace
 

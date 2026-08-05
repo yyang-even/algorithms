@@ -58,6 +58,33 @@ inline constexpr unsigned RoundUpToPowerOf2(const uint32_t num) {
  * @tags    #bit-tricks
  */
 
+
+/**
+ * @reference   Number of Unique XOR Triplets I
+ *              https://leetcode.com/problems/number-of-unique-xor-triplets-i/
+ *
+ * You are given an integer array nums of length n, where nums is a permutation of the numbers in the
+ * range [1, n].
+ * A XOR triplet is defined as the XOR of three elements nums[i] XOR nums[j] XOR nums[k] where i <= j <=
+ * k.
+ * Return the number of unique XOR triplet values from all possible triplets (i, j, k).
+ *
+ * @tags    #bit-tricks #min-max-element
+ */
+
+
+/**
+ * @reference   Number of Unique XOR Triplets II
+ *              https://leetcode.com/problems/number-of-unique-xor-triplets-ii/
+ *
+ * You are given an integer array nums.
+ * A XOR triplet is defined as the XOR of three elements nums[i] XOR nums[j] XOR nums[k] where i <= j <=
+ * k.
+ * Return the number of unique XOR triplet values from all possible triplets (i, j, k).
+ *
+ * @tags    #hash-table
+ */
+
 } //namespace
 
 

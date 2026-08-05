@@ -1,7 +1,7 @@
 #include "common_header.h"
 
-#include "primes_below_n.h"
 #include "mathematics/arithmetics/factorial/factorial.h"
+#include "primes_below_n.h"
 
 
 namespace {
@@ -9,16 +9,10 @@ namespace {
 using InputType = unsigned long;
 
 /**
- * @reference   An interesting solution to get all prime numbers smaller than n
- *              https://www.geeksforgeeks.org/solution-get-prime-numbers-smaller-n/
+ * @reference   Program to find sum of prime numbers between 1 to n
+ *              https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
  *
- * @note    This method doesn't get all the primes.
- */
-
-
-/** Program to find sum of prime numbers between 1 to n
- *
- * @reference   https://www.geeksforgeeks.org/program-find-sum-prime-numbers-1-n/
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes #accumulate
  */
 inline auto SumOfPrimesBelowN(const InputType N) {
     const auto primes = PrimesBelowN(N + 1);
@@ -26,11 +20,13 @@ inline auto SumOfPrimesBelowN(const InputType N) {
 }
 
 
-/** Find product of prime numbers between 1 to n
- *
- * @reference   https://www.geeksforgeeks.org/find-product-prime-numbers-1-n/
+/**
+ * @reference   Find product of prime numbers between 1 to n
+ *              https://www.geeksforgeeks.org/find-product-prime-numbers-1-n/
  *
  * Given a number n, we need to find the product of all prime numbers between 1 to n.
+ *
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes #accumulate
  */
 inline auto ProductOfPrimesBetween1ToN(const InputType N) {
     const auto primes = PrimesBelowN(N + 1);
@@ -38,35 +34,39 @@ inline auto ProductOfPrimesBetween1ToN(const InputType N) {
 }
 
 
-/** Program to find the Nth Prime Number
- *
- * @reference   https://www.geeksforgeeks.org/program-to-find-the-nth-prime-number/
+/**
+ * @reference   Program to find the Nth Prime Number
+ *              https://www.geeksforgeeks.org/program-to-find-the-nth-prime-number/
  */
 
 
-/** Find the Product of first N Prime Numbers
- *
- * @reference   https://www.geeksforgeeks.org/find-the-product-of-first-n-prime-numbers/
+/**
+ * @reference   Find the Product of first N Prime Numbers
+ *              https://www.geeksforgeeks.org/find-the-product-of-first-n-prime-numbers/
  *
  * Given an positive integer N, calculate the product of the first N prime numbers.
+ *
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes #accumulate
  */
 inline auto ProductOfFirstNPrimes(const InputType N) {
     const auto primes = PrimesBelowN(std::numeric_limits<short>::max());
     assert(N < primes.size());
-    return std::accumulate(primes.cbegin(), primes.cbegin() + N, 1ULL,
-                           std::multiplies<InputType> {});
+    return std::accumulate(
+        primes.cbegin(), primes.cbegin() + N, 1ULL, std::multiplies<InputType> {});
 }
 
 
-/** Sum of the first N Prime numbers
+/**
+ * @reference   Sum of the first N Prime numbers
+ *              https://www.geeksforgeeks.org/sum-of-the-first-n-prime-numbers/
  *
- * @reference   https://www.geeksforgeeks.org/sum-of-the-first-n-prime-numbers/
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes #accumulate
  */
 
 
-/** Segmented Sieve (Print Primes in a Range)
- *
- * @reference   https://www.geeksforgeeks.org/segmented-sieve-print-primes-in-a-range/
+/**
+ * @reference   Segmented Sieve (Print Primes in a Range)
+ *              https://www.geeksforgeeks.org/segmented-sieve-print-primes-in-a-range/
  * @reference   Print prime numbers in a given range using C++ STL
  *              https://www.geeksforgeeks.org/print-prime-numbers-given-range-using-c-stl/
  * @reference   Prime numbers in a given range using STL | Set 2
@@ -74,8 +74,8 @@ inline auto ProductOfFirstNPrimes(const InputType N) {
  * @reference   Program to find Prime Numbers Between given Interval
  *              https://www.geeksforgeeks.org/program-to-find-prime-numbers-between-given-interval/
  *
- * Given a range [low, high], print all primes in this range? For example, if the given
- * range is [10, 20], then output is 11, 13, 17, 19.
+ * Given a range [low, high], print all primes in this range? For example, if the given range is [10,
+ * 20], then output is 11, 13, 17, 19.
  */
 inline auto primesInRange_LowerBound(const InputType low, const InputType high) {
     auto base_primes = PrimesBelowN(high + 1);
@@ -84,14 +84,14 @@ inline auto primesInRange_LowerBound(const InputType low, const InputType high) 
     return base_primes;
 }
 
-auto primesInRange(const InputType low, const InputType high,
+auto primesInRange(const InputType low,
+                   const InputType high,
                    const std::vector<InputType> &base_primes) {
     assert(low > 2);
 
     std::vector<bool> prime_marks(high - low + 1, true);
     for (const auto prime : base_primes) {
-        for (InputType i =
-                 static_cast<InputType>(ceil(static_cast<double>(low) / prime)) * prime;
+        for (InputType i = static_cast<InputType>(ceil(static_cast<double>(low) / prime)) * prime;
              i <= high;
              i += prime) {
             prime_marks[i - low] = false;
@@ -122,12 +122,11 @@ inline auto PrimesInRange(const InputType low, const InputType high) {
 }
 
 
-/** Sum of all the prime numbers in a given range
+/**
+ * @reference   Sum of all the prime numbers in a given range
+ *              https://www.geeksforgeeks.org/sum-of-all-the-prime-numbers-in-a-given-range/
  *
- * @reference   https://www.geeksforgeeks.org/sum-of-all-the-prime-numbers-in-a-given-range/
- *
- * Given a range [l, r], the task is to find the sum of all the prime numbers within
- * that range.
+ * Given a range [l, r], the task is to find the sum of all the prime numbers within that range.
  */
 inline auto SumOfPrimesInRange(const InputType low, const InputType high) {
     const auto primes = PrimesInRange(low, high);
@@ -143,7 +142,8 @@ auto SegmentedPrimesBelowN(const InputType N) {
     for (auto low = limit; low < N; low += limit) {
         const auto high = std::min(N - 1, low + limit);
         auto primes_in_range = primesInRange(low, high, base_primes);
-        output.insert(output.end(), std::make_move_iterator(primes_in_range.begin()),
+        output.insert(output.end(),
+                      std::make_move_iterator(primes_in_range.begin()),
                       std::make_move_iterator(primes_in_range.end()));
     }
     return output;
@@ -181,19 +181,37 @@ std::vector<InputType> PrimesBelowN_SieveOfSundaram(InputType N) {
  * @reference   Prime Arrangements
  *              https://leetcode.com/problems/prime-arrangements/
  *
- * Return the number of permutations of 1 to n so that prime numbers are at prime indices
- * (1-indexed.) (Recall that an integer is prime if and only if it is greater than 1, and
- * cannot be written as a product of two positive integers both smaller than it.) Since
- * the answer may be large, return the answer modulo 10^9 + 7.
+ * Return the number of permutations of 1 to n so that prime numbers are at prime indices (1-indexed.)
+ * (Recall that an integer is prime if and only if it is greater than 1, and cannot be written as a
+ * product of two positive integers both smaller than it.)
+ * Since the answer may be large, return the answer modulo 10^9 + 7.
  * 1 <= n <= 100
+ *
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes #combinatorics #factorial
  */
 inline auto PrimeArrangements(const int N) {
     const auto number_primes = PrimesBelowN(N + 1).size();
-    return Factorial_Iterative(number_primes) *
-           Factorial_Iterative(N - number_primes) % LARGE_PRIME;
+    return Factorial_Iterative(number_primes) * Factorial_Iterative(N - number_primes) %
+           LARGE_PRIME;
 }
 
-}//namespace
+
+/**
+ * @reference   Prime Pairs With Target Sum
+ *              https://leetcode.com/problems/prime-pairs-with-target-sum/
+ *
+ * You are given an integer n. We say that two integers x and y form a prime number pair if:
+ *  1 <= x <= y <= n
+ *  x + y == n
+ *  x and y are prime numbers
+ * Return the 2D sorted list of prime number pairs [xi, yi]. The list should be sorted in increasing
+ * order of xi. If there are no prime number pairs at all, return an empty array.
+ * Note: A prime number is a natural number greater than 1 with only two factors, itself and 1.
+ *
+ * @tags    #hash-table #prime #sieve-of-Eratosthenes
+ */
+
+} //namespace
 
 
 const InputType LOWER = 2;
@@ -247,8 +265,7 @@ SIMPLE_TEST(ProductOfFirstNPrimes, TestSAMPLE2, 30, 3);
 
 const std::vector<InputType> RESULT3 = {11, 13, 17, 19};
 const std::vector<InputType> RESULT4 = {11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
-                                        53, 59, 61, 67, 71, 73, 79, 83, 89, 97
-                                       };
+                                        53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
 const std::vector<InputType> RESULT5 = {2, 3, 5, 7};
 
 

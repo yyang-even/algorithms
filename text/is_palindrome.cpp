@@ -399,6 +399,17 @@ constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
  * zero times).
  */
 
+
+/**
+ * @reference   Smallest Palindromic Rearrangement I
+ *              https://leetcode.com/problems/smallest-palindromic-rearrangement-i/
+ *
+ * You are given a palindromic string s.
+ * Return the lexicographically smallest palindromic permutation of s.
+ *
+ * @tags    #hash-table #counting-sort #palindrome
+ */
+
 } //namespace
 
 

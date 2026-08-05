@@ -97,6 +97,41 @@ auto CountGoodSubarrays(const ArrayType &nums, const int k) {
     return result;
 }
 
+
+/**
+ * @reference   Number of Substrings Containing All Three Characters
+ *              https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/
+ *
+ * Given a string s consisting only of characters a, b and c.
+ * Return the number of substrings containing at least one occurrence of all these characters a, b and
+ * c.
+ *
+ * @tags    #hash-table #sliding-window #arithmetic-progression
+ */
+auto NumberOfSubstringsOfAllThree(const std::string_view s) {
+    const int N = s.size();
+    int counts[3] {};
+    int unique = 0;
+
+    int left = 0;
+    int result = 0;
+    for (int right = 0; right < N; ++right) {
+        if (const auto i = s[right] - 'a'; counts[i]++ == 0) {
+            ++unique;
+        }
+
+        while (unique == 3) {
+            result += N - right;
+            const auto i = s[left++] - 'a';
+            if (counts[i]-- == 1) {
+                --unique;
+            }
+        }
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -126,3 +161,10 @@ THE_BENCHMARK(CountGoodSubarrays, SAMPLE1G, 10);
 
 SIMPLE_TEST(CountGoodSubarrays, TestSAMPLE1, 1, SAMPLE1G, 10);
 SIMPLE_TEST(CountGoodSubarrays, TestSAMPLE2, 4, SAMPLE2G, 2);
+
+
+THE_BENCHMARK(NumberOfSubstringsOfAllThree, "abcabc");
+
+SIMPLE_TEST(NumberOfSubstringsOfAllThree, TestSAMPLE1, 10, "abcabc");
+SIMPLE_TEST(NumberOfSubstringsOfAllThree, TestSAMPLE2, 3, "aaacb");
+SIMPLE_TEST(NumberOfSubstringsOfAllThree, TestSAMPLE3, 1, "acb");

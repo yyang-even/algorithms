@@ -256,6 +256,8 @@ inline auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
  *
  * Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of
  * 0 and 1.
+ *
+ * @tags    #hash-table #prefix-sum
  */
 auto MaxLengthSubarrayWithEqual0sAnd1s(const ArrayType &nums) {
     std::unordered_map<int, int> hash = {{0, -1}};

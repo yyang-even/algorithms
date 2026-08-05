@@ -3,8 +3,7 @@
 #include "graph.h"
 
 
-/** Depth First Search or DFS for a Graph
- *
+/**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 22.3.
  * @reference   Depth First Search or DFS for a Graph
@@ -16,12 +15,13 @@
  *
  * @reference   DFS for a n-ary tree (acyclic graph) represented as adjacency list
  *              https://www.geeksforgeeks.org/dfs-n-ary-tree-acyclic-graph-represented-adjacency-list/
+ *
+ * @tags    #graph #DFS
  */
-static inline void DepthFirstSearch_Recursive(
-    const AdjacencyListGraph::RepresentationType &graph,
-    const std::size_t vertex,
-    std::vector<bool> &visited_vertices,
-    graph::ArrayType &results) {
+static inline void DepthFirstSearch_Recursive(const AdjacencyListGraph::RepresentationType &graph,
+                                              const std::size_t vertex,
+                                              std::vector<bool> &visited_vertices,
+                                              graph::ArrayType &results) {
     visited_vertices[vertex] = true;
     results.push_back(vertex);
 
