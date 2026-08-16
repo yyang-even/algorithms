@@ -205,7 +205,7 @@ auto SingleSourceShortestPaths_DAG(const std::size_t number_vertices,
  * @reference   Shortest path in an unweighted graph
  *              https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
  *
- * @tags    #graph #shortest-path #hash-table #BFS #queue
+ * @tags    #graph #shortest-path #hash-table #BFS #queue #reverse-array
  */
 auto SingleSourceShortestPaths_Unweighted_Undirected_BFS(
     const AdjacencyListGraph::RepresentationType &graph,

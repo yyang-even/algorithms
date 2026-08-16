@@ -122,7 +122,7 @@ auto OneLongestIncreasingSubsequence_DP(const ArrayType &elements) {
  * @reference   Construction of Longest Increasing Subsequence (N log N)
  *              https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
  *
- * @tags    #DP #longest-increasing-subsequence #binary-search
+ * @tags    #DP #longest-increasing-subsequence #binary-search #reverse-array
  */
 auto OneLongestIncreasingSubsequence_NLogN(const ArrayType &elements) {
     assert(not elements.empty());
@@ -308,7 +308,7 @@ auto NumLongestIncreasingSubsequence(const ArrayType &nums) {
  *  answer[j] % answer[i] == 0
  * If there are multiple solutions, return any of them.
  *
- * @tags    #sorting #DP #longest-increasing-subsequence
+ * @tags    #sorting #DP #longest-increasing-subsequence #reverse-array
  */
 auto LargestDivisibleSubset(ArrayType nums) {
     std::sort(nums.begin(), nums.end());

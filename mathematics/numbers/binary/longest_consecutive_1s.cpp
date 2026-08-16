@@ -7,6 +7,7 @@
 namespace {
 
 using ArrayType = std::vector<int>;
+using QueryArray = std::vector<ArrayType>;
 
 /**
  * @reference   Length of the Longest Consecutive 1s in Binary Representation
@@ -81,6 +82,40 @@ auto LengthOfLongestConsecutive1s_Array(const ArrayType &number) {
     }
 
     return max_count;
+}
+
+
+/**
+ * @reference   Special Array II
+ *              https://leetcode.com/problems/special-array-ii/
+ *
+ * An array is considered special if every pair of its adjacent elements contains two numbers with
+ * different parity.
+ * You are given an array of integer nums and a 2D integer matrix queries, where for queries[i] =
+ * [fromi, toi] your task is to check that subarray nums[fromi..toi] is special or not.
+ * Return an array of booleans answer such that answer[i] is true if nums[fromi..toi] is special.
+ *
+ * @tags    #sliding-window #prefix-sum
+ */
+auto IsArraySpecial(const ArrayType &nums, const QueryArray &queries) {
+    std::vector<int> prefix_sum {0};
+    int length = 0;
+    for (std::size_t i = 1; i < nums.size(); ++i) {
+        if ((nums[i - 1] % 2) != (nums[i] % 2)) {
+            ++length;
+        } else {
+            length = 0;
+        }
+
+        prefix_sum.push_back(length);
+    }
+
+    std::vector<bool> result;
+    for (const auto &q : queries) {
+        result.push_back(q[1] - prefix_sum[q[1]] <= q[0]);
+    }
+
+    return result;
 }
 
 
@@ -750,3 +785,18 @@ SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE3, 4, "0100");
 SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE4, 7, "1000100");
 SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE5, 4, "01010");
 SIMPLE_TEST(MaxActiveSectionsAfterTrade, TestSAMPLE6, 2, "101");
+
+
+const ArrayType SAMPLE1SA = {3, 4, 1, 2, 6};
+const QueryArray SAMPLE1SA_Q = {{0, 4}};
+const std::vector EXPECTED1SA = {false};
+
+const ArrayType SAMPLE2SA = {4, 3, 1, 6};
+const QueryArray SAMPLE2SA_Q = {{0, 2}, {2, 3}};
+const std::vector EXPECTED2SA = {false, true};
+
+
+THE_BENCHMARK(IsArraySpecial, SAMPLE1SA, SAMPLE1SA_Q);
+
+SIMPLE_TEST(IsArraySpecial, TestSAMPLE1, EXPECTED1SA, SAMPLE1SA, SAMPLE1SA_Q);
+SIMPLE_TEST(IsArraySpecial, TestSAMPLE2, EXPECTED2SA, SAMPLE2SA, SAMPLE2SA_Q);

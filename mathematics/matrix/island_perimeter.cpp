@@ -5,17 +5,19 @@
 
 namespace {
 
-/** Island Perimeter
+/**
+ * @reference   Island Perimeter
+ *              https://leetcode.com/problems/island-perimeter/
  *
- * @reference   https://leetcode.com/problems/island-perimeter/
+ * You are given row x col grid representing a map where grid[i][j] = 1 represents land and grid[i][j] =
+ * 0 represents water.
+ * Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded
+ * by water, and there is exactly one island (i.e., one or more connected land cells).
+ * The island doesn't have "lakes", meaning the water inside isn't connected to the water around the
+ * island. One cell is a square with side length 1. The grid is rectangular, width and height don't
+ * exceed 100. Determine the perimeter of the island.
  *
- * You are given row x col grid representing a map where grid[i][j] = 1 represents land
- * and grid[i][j] = 0 represents water. Grid cells are connected horizontally/vertically
- * (not diagonally). The grid is completely surrounded by water, and there is exactly
- * one island (i.e., one or more connected land cells). The island doesn't have "lakes",
- * meaning the water inside isn't connected to the water around the island. One cell is
- * a square with side length 1. The grid is rectangular, width and height don't exceed
- * 100. Determine the perimeter of the island.
+ * @tags    #matrix
  */
 auto IslandPerimeter_2Directions(const MatrixType &grid) {
     int island_count = 0;
@@ -66,9 +68,10 @@ auto IslandPerimeter_4Directions(const MatrixType &grid) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
+// clang-format off
 const MatrixType SAMPLE1 = {
     {0, 1, 0, 0},
     {1, 1, 1, 0},
@@ -83,6 +86,7 @@ const MatrixType SAMPLE2 = {
 const MatrixType SAMPLE3 = {
     {1, 0}
 };
+// clang-format on
 
 
 THE_BENCHMARK(IslandPerimeter_2Directions, SAMPLE1);

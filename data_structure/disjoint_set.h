@@ -16,15 +16,16 @@
  * @reference   DISJOINT-SET DATA STRUCTURES
  *              https://www.topcoder.com/thrive/articles/Disjoint-set%20Data%20Structures
  *
- * In a room are N persons, and we will define two persons are friends if they are
- * directly or indirectly friends. If A is a friend with B, and B is a friend with C,
- * then A is a friend of C too. A group of friends is a group of persons where any two
- * persons in the group are friends. Given the list of persons that are directly friends
- * find the number of groups of friends and the number of persons in each group. For
- * example N = 5 and the list of friends is: 1-2, 5-4, and 5-1. Here is the figure of
- * the graph that represents the groups of friends. 1 and 2 are friends, then 5 and 4
- * are friends, and then 5 and 1 are friends, but 1 is friend with 2; therefore 5 and 2
- * are friends, etc.
+ * In a room are N persons, and we will define two persons are friends if they are directly or
+ * indirectly friends. If A is a friend with B, and B is a friend with C, then A is a friend of C too. A
+ * group of friends is a group of persons where any two persons in the group are friends. Given the list
+ * of persons that are directly friends find the number of groups of friends and the number of persons
+ * in each group.
+ * For example N = 5 and the list of friends is: 1-2, 5-4, and 5-1. Here is the figure of the graph that
+ * represents the groups of friends. 1 and 2 are friends, then 5 and 4 are friends, and then 5 and 1 are
+ * friends, but 1 is friend with 2; therefore 5 and 2 are friends, etc.
+ *
+ * @tags    #disjoint-set
  */
 class DisjointSet_Array {
     struct SubSet {
@@ -34,7 +35,7 @@ class DisjointSet_Array {
     std::vector<SubSet> m_subsets;
 
 public:
-    explicit DisjointSet_Array(const std::size_t size): m_subsets(size) {
+    explicit DisjointSet_Array(const std::size_t size) : m_subsets(size) {
         for (std::size_t i = 0; i < size; ++i) {
             m_subsets[i].parent = i;
         }
@@ -87,4 +88,6 @@ public:
 /**
  * @reference   Dynamic Disjoint Set Data Structure for large range values
  *              https://www.geeksforgeeks.org/dynamic-disjoint-set-data-structure-for-large-range-values/
+ *
+ * @tags    #disjoint-set
  */

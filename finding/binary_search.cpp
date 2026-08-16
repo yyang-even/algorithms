@@ -8,9 +8,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Binary Search
- *
- * @reference   https://www.geeksforgeeks.org/binary-search/
+/**
+ * @reference   Binary Search
+ *              https://www.geeksforgeeks.org/binary-search/
  * @reference   C Program for Binary Search (Recursive and Iterative)
  *              https://www.geeksforgeeks.org/c-program-for-binary-search-recursive-and-iterative/
  * @reference   Linear Search vs Binary Search
@@ -35,6 +35,8 @@ using ArrayType = std::vector<int>;
  *              Programming Interviews Exposed, Third Edition. Chapter 7.
  * @reference   Binary Search
  *              https://leetcode.com/problems/binary-search/
+ *
+ * @tags    #binary-search
  */
 auto BinarySearch_Recursive(const ArrayType::const_iterator cbegin,
                             const ArrayType::size_type length,
@@ -187,6 +189,8 @@ const auto BinarySearch_Uniform1 = BinarySearch_Uniform<1>;
 /**
  * @reference   Find the index of first 1 in a sorted array of 0's and 1's
  *              https://www.geeksforgeeks.org/find-index-first-1-sorted-array-0s-1s/
+ *
+ * @tags    #binary-search
  */
 auto BinarySearch_First_Recursive(const ArrayType &elements,
                                   const ArrayType::const_iterator cbegin,
@@ -215,9 +219,9 @@ inline auto BinarySearch_First_Recursive(const ArrayType &elements,
 }
 
 
-/** Find first and last positions of an element in a sorted array
- *
- * @reference   https://www.geeksforgeeks.org/find-first-and-last-positions-of-an-element-in-a-sorted-array/
+/**
+ * @reference   Find first and last positions of an element in a sorted array
+ *              https://www.geeksforgeeks.org/find-first-and-last-positions-of-an-element-in-a-sorted-array/
  *
  * Given a sorted array with possibly duplicate elements, the task is to find indexes of first and last
  * occurrences of an element x in the given array.
@@ -573,9 +577,9 @@ auto BinarySearch_Randomized_Iterative(const ArrayType &elements, const ArrayTyp
 }
 
 
-/** Binary Search on Singly Linked List
- *
- * @reference   https://www.geeksforgeeks.org/binary-search-on-singly-linked-list/
+/**
+ * @reference   Binary Search on Singly Linked List
+ *              https://www.geeksforgeeks.org/binary-search-on-singly-linked-list/
  */
 auto BinarySearch_SinglyList(const std::forward_list<ArrayType::value_type> &singly_list,
                              const ArrayType::value_type x) {
@@ -749,6 +753,28 @@ constexpr auto MaxValueAt(const int n, const int index, const long maxSum) {
     }
 
     return left;
+}
+
+
+/**
+ * @reference   Count Elements With at Least K Greater Values
+ *              https://leetcode.com/problems/count-elements-with-at-least-k-greater-values/
+ *
+ * You are given an integer array nums of length n and an integer k.
+ * An element in nums is said to be qualified if there exist at least k elements in the array that are
+ * strictly greater than it.
+ * Return an integer denoting the total number of qualified elements in nums.
+ *
+ * @tags    #sorting #binary-search
+ */
+int CountElements(ArrayType nums, const int k) {
+    if (k == 0) {
+        return nums.size();
+    }
+
+    std::sort(nums.begin(), nums.end());
+
+    return std::lower_bound(nums.cbegin(), nums.cend(), nums[nums.size() - k]) - nums.cbegin();
 }
 
 } //namespace
@@ -1041,3 +1067,15 @@ THE_BENCHMARK(MaxValueAt, 4, 2, 6);
 SIMPLE_TEST(MaxValueAt, TestSample1, 2, 4, 2, 6);
 SIMPLE_TEST(MaxValueAt, TestSample2, 3, 6, 1, 10);
 SIMPLE_TEST(MaxValueAt, TestSample3, 155230825, 6, 2, 931384943);
+
+
+const ArrayType SAMPLE1C = {3, 1, 2};
+const ArrayType SAMPLE2C = {5, 5, 5};
+const ArrayType SAMPLE3C = {3, 3, 1, 2};
+
+
+THE_BENCHMARK(CountElements, SAMPLE1C, 1);
+
+SIMPLE_TEST(CountElements, TestSample1, 2, SAMPLE1C, 1);
+SIMPLE_TEST(CountElements, TestSample2, 0, SAMPLE2C, 2);
+SIMPLE_TEST(CountElements, TestSample3, 2, SAMPLE3C, 2);

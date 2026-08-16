@@ -318,6 +318,12 @@ auto TakeCharactersFromEnds(const std::string_view s, const int k) {
  * Return the length of the longest good subarray of nums.
  * A subarray is a contiguous non-empty sequence of elements within an array.
  *
+ * @reference   Maximum Length Substring With Two Occurrences
+ *              https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/
+ *
+ * Given a string s, return the maximum length of a substring such that it contains at most two
+ * occurrences of each character.
+ *
  * @tags    #hash-table #sliding-window
  */
 

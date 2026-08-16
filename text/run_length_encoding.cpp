@@ -6,9 +6,9 @@
 
 namespace {
 
-/** Printing frequency of each character just after its consecutive occurrences
- *
- * @reference   https://www.geeksforgeeks.org/printing-frequency-of-each-character-just-after-its-consecutive-occurrences/
+/**
+ * @reference   Printing frequency of each character just after its consecutive occurrences
+ *              https://www.geeksforgeeks.org/printing-frequency-of-each-character-just-after-its-consecutive-occurrences/
  *
  * Given a string in such a way that every character occurs in a repeated manner. Your task is to print
  * the string by inserting the frequency of each unique character after it and also eliminating all
@@ -23,6 +23,8 @@ namespace {
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 1.5.
+ *
+ * @tags    #sliding-window
  */
 auto RunLengthEncoding(const std::string &text) {
     std::string result;
@@ -197,6 +199,8 @@ auto StringCompression(const std::string_view s, const int k) {
  *  Alice and Bob cannot remove pieces from the edge of the line.
  *  If a player cannot make a move on their turn, that player loses and the other player wins.
  * Assuming Alice and Bob play optimally, return true if Alice wins, or return false if Bob wins.
+ *
+ * @tags    #sliding-window
  */
 
 } //namespace

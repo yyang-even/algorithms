@@ -179,7 +179,7 @@ auto Sum_MostFirst_Stack(const ListType &lhs, const ListType &rhs) {
  * @reference   Add Two Numbers Represented by Linked Lists | Set 3
  *              https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists-set-3/
  *
- * @tags    #numeric-string #singly-linked-list
+ * @tags    #numeric-string #singly-linked-list #reverse-linked-list
  */
 inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
     lhs.reverse();
@@ -208,7 +208,7 @@ inline auto Sum_MostFirst_Reverse(ListType lhs, ListType rhs) {
  * You must solve the problem without using any built-in library for handling large integers (such as
  * BigInteger). You must also not convert the inputs to integers directly.
  *
- * @tags    #numeric-string
+ * @tags    #numeric-string #reverse-array
  */
 auto AddStrings(const std::string_view one, const std::string_view another) {
     std::string results;
@@ -243,7 +243,7 @@ auto AddStrings(const std::string_view one, const std::string_view another) {
  * k.
  * 1 <= k <= 10^4
  *
- * @tags    #numeric-string
+ * @tags    #numeric-string #reverse-array
  */
 auto Add(const ArrayType &number, int k) {
     ArrayType result;

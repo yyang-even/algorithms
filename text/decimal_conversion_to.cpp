@@ -9,7 +9,7 @@ namespace {
  * @reference   Implement your own itoa()
  *              https://www.geeksforgeeks.org/implement-itoa/
  *
- * @tags    #to-string
+ * @tags    #to-string #reverse-array
  */
 auto DecimalTo(unsigned number, const int base, const std::function<char(const int)> to_digit) {
     std::string result;
@@ -100,7 +100,7 @@ inline auto ToHex(const int number) {
  *  AB -> 28
  *  ...
  *
- * @tags    #to-string
+ * @tags    #to-string #reverse-array
  */
 auto ToColumnTitle(int number) {
     std::string result;

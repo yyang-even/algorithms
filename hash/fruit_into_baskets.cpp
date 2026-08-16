@@ -132,6 +132,20 @@ auto NumberOfSubstringsOfAllThree(const std::string_view s) {
     return result;
 }
 
+
+/**
+ * @reference   Count Substrings That Satisfy K-Constraint I
+ *              https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
+ *
+ * You are given a binary string s and an integer k.
+ * A binary string satisfies the k-constraint if either of the following conditions holds:
+ *  The number of 0's in the string is at most k.
+ *  The number of 1's in the string is at most k.
+ * Return an integer denoting the number of substrings of s that satisfy the k-constraint.
+ *
+ * @tags    #hash-table #sliding-window #arithmetic-progression
+ */
+
 } //namespace
 
 

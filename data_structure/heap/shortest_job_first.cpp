@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<std::pair<int, int>>;
 
-/** Single-Threaded CPU
- *
- * @reference   https://leetcode.com/problems/single-threaded-cpu/
+/**
+ * @reference   Single-Threaded CPU
+ *              https://leetcode.com/problems/single-threaded-cpu/
  *
  * You are given n tasks labeled from 0 to n - 1 represented by a 2D integer array tasks, where tasks[i]
  * = [enqueueTimei, processingTimei] means that the ith task will be available to process at
@@ -21,6 +21,8 @@ using ArrayType = std::vector<std::pair<int, int>>;
  *  Once a task is started, the CPU will process the entire task without stopping.
  *  The CPU can finish a task then start a new one instantly.
  * Return the order in which the CPU will process the tasks.
+ *
+ * @tags    #sorting #priority-queue
  */
 auto ShortestJobFirst(const ArrayType &tasks) {
     std::vector indices(tasks.size(), 0);
@@ -66,8 +68,12 @@ const std::vector EXPECTED1 = {0, 2, 3, 1};
 const ArrayType SAMPLE2 = {{7, 10}, {7, 12}, {7, 5}, {7, 4}, {7, 2}};
 const std::vector EXPECTED2 = {4, 3, 2, 0, 1};
 
+const ArrayType SAMPLE3 = {{58, 33}, {58, 33}, {51, 42}, {51, 56}};
+const std::vector EXPECTED3 = {2, 0, 1, 3};
+
 
 THE_BENCHMARK(ShortestJobFirst, SAMPLE1);
 
 SIMPLE_TEST(ShortestJobFirst, TestSAMPLE1, EXPECTED1, SAMPLE1);
 SIMPLE_TEST(ShortestJobFirst, TestSAMPLE2, EXPECTED2, SAMPLE2);
+SIMPLE_TEST(ShortestJobFirst, TestSAMPLE3, EXPECTED3, SAMPLE3);

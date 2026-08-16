@@ -6,12 +6,14 @@ namespace {
 using ArrayType = std::vector<std::pair<int, int>>;
 using OutputType = std::vector<int>;
 
-/** Merge Intervals
- *
- * @reference   https://leetcode.com/problems/merge-intervals/
+/**
+ * @reference   Merge Intervals
+ *              https://leetcode.com/problems/merge-intervals/
  *
  * Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and
  * return an array of the non-overlapping intervals that cover all the intervals in the input.
+ *
+ * @tags    #sorting
  */
 auto MergeIntervals(ArrayType intervals) {
     std::sort(intervals.begin(), intervals.end());
@@ -44,6 +46,8 @@ auto MergeIntervals(ArrayType intervals) {
  * and intervals still does not have any overlapping intervals (merge overlapping intervals if
  * necessary).
  * Return intervals after the insertion.
+ *
+ * @tags    #sorting #linear-search
  */
 auto InsertInterval(const ArrayType &intervals, std::pair<int, int> new_interval) {
     ArrayType result;
@@ -66,9 +70,9 @@ auto InsertInterval(const ArrayType &intervals, std::pair<int, int> new_interval
 }
 
 
-/** Teemo Attacking
- *
- * @reference   https://leetcode.com/problems/teemo-attacking/
+/**
+ * @reference   Teemo Attacking
+ *              https://leetcode.com/problems/teemo-attacking/
  *
  * Our hero Teemo is attacking an enemy Ashe with poison attacks! When Teemo attacks Ashe, Ashe gets
  * poisoned for a exactly duration seconds. More formally, an attack at second t will mean Ashe is
