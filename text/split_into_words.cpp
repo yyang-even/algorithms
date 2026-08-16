@@ -334,6 +334,8 @@ auto NumDiffInts(const std::string_view s) {
  *  If the length of the word is 1 or 2 letters, change all letters to lowercase.
  *  Otherwise, change the first letter to uppercase and the remaining letters to lowercase.
  * Return the capitalized title.
+ *
+ * @tags    #tokenizing #sliding-window
  */
 
 

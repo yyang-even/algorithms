@@ -5,16 +5,18 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** DI String Match
+/**
+ * @reference   DI String Match
+ *              https://leetcode.com/problems/di-string-match/
  *
- * @reference   https://leetcode.com/problems/di-string-match/
- *
- * A permutation perm of n + 1 integers of all the integers in the range [0, n] can be
- * represented as a string s of length n where:
+ * A permutation perm of n + 1 integers of all the integers in the range [0, n] can be represented as a
+ * string s of length n where:
  *  s[i] == 'I' if perm[i] < perm[i + 1], and
  *  s[i] == 'D' if perm[i] > perm[i + 1].
- * Given a string s, reconstruct the permutation perm and return it. If there are
- * multiple valid permutations perm, return any of them.
+ * Given a string s, reconstruct the permutation perm and return it. If there are multiple valid
+ * permutations perm, return any of them.
+ *
+ * @tags    #greedy #left-right-pointers
  */
 auto DIStrMatch(const std::string_view s) {
     int high = s.size();
@@ -33,7 +35,7 @@ auto DIStrMatch(const std::string_view s) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType EXPECTED1 = {0, 4, 1, 3, 2};

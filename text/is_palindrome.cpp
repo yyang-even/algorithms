@@ -325,7 +325,7 @@ constexpr auto ValidPalindrome(const std::string_view text) {
  *
  * Given a string s, return true if the s can be palindrome after deleting at most one character from it.
  *
- * @tags    #palindrome #left-right-pointers
+ * @tags    #greedy #palindrome #left-right-pointers
  */
 constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
     int left = 0;

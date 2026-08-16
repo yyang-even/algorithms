@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Program to check if an array is sorted or not (Iterative and Recursive)
- *
- * @reference   https://www.geeksforgeeks.org/program-check-array-sorted-not-iterative-recursive/
+/**
+ * @reference   Program to check if an array is sorted or not (Iterative and Recursive)
+ *              https://www.geeksforgeeks.org/program-check-array-sorted-not-iterative-recursive/
  */
 inline auto isSortedRecursive(const ArrayType::const_iterator cbegin,
                               const ArrayType::const_iterator cend) {
@@ -177,6 +177,8 @@ auto LongestTurbulentSubarray_SlidingWindow(const ArrayType &nums) {
  *
  * Given a string s consisting of only the characters 'a' and 'b', return true if every 'a' appears
  * before every 'b' in the string. Otherwise, return false.
+ *
+ * @tags    #string-searching
  */
 inline constexpr auto isABSorted(const std::string_view s) {
     return s.find("ba") == std::string_view::npos;

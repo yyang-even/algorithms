@@ -508,6 +508,41 @@ auto DetermineIfTwoStrsAreClose(const std::string_view word1, const std::string_
  * @tags    #hash-table #min-max-element
  */
 
+
+/**
+ * @reference   Partition Array Into K-Distinct Groups
+ *              https://leetcode.com/problems/partition-array-into-k-distinct-groups/
+ *
+ * You are given an integer array nums and an integer k.
+ * Your task is to determine whether it is possible to partition all elements of nums into one or more
+ * groups such that:
+ *  Each group contains exactly k elements.
+ *  All elements in each group are distinct.
+ *  Each element in nums must be assigned to exactly one group.
+ * Return true if such a partition is possible, otherwise return false.
+ *
+ * @tags    #hash-table
+ */
+auto PartitionArray(const ArrayType &nums, const int k) {
+    if (nums.size() % k) {
+        return false;
+    }
+
+    std::unordered_map<int, int> counts;
+    for (const auto n : nums) {
+        ++(counts[n]);
+    }
+
+    const int num_group = nums.size() / k;
+    for (const auto &[n, c] : counts) {
+        if (c > num_group) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 } //namespace
 
 
@@ -646,3 +681,16 @@ THE_BENCHMARK(DetermineIfTwoStrsAreClose, "abc", "bca");
 SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE1, true, "abc", "bca");
 SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE2, true, "cabbba", "abbccc");
 SIMPLE_TEST(DetermineIfTwoStrsAreClose, TestSAMPLE3, false, "a", "aa");
+
+
+const ArrayType SAMPLE1P = {1, 2, 3, 4};
+const ArrayType SAMPLE2P = {3, 5, 2, 2};
+const ArrayType SAMPLE4P = {74, 103, 74};
+
+
+THE_BENCHMARK(PartitionArray, SAMPLE1P, 2);
+
+SIMPLE_TEST(PartitionArray, TestSAMPLE1, true, SAMPLE1P, 2);
+SIMPLE_TEST(PartitionArray, TestSAMPLE2, true, SAMPLE2P, 2);
+SIMPLE_TEST(PartitionArray, TestSAMPLE3, false, SAMPLE2P, 3);
+SIMPLE_TEST(PartitionArray, TestSAMPLE4, false, SAMPLE4P, 3);

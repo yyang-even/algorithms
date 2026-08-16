@@ -14,7 +14,7 @@ using ArrayType = std::vector<int>;
  * Given n non-negative integers representing an elevation map where the width of each bar is 1, compute
  * how much water it can trap after raining.
  *
- * @tags    #forward-and-backward #left-right-pointers
+ * @tags    #DP #forward-and-backward #left-right-pointers #monotonic-stack
  */
 auto TrapRain_DP(const ArrayType &heights) {
     if (heights.empty()) {

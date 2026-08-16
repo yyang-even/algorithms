@@ -6,12 +6,14 @@ namespace {
 using ArrayType = std::vector<int>;
 using OutputType = std::multiset<ArrayType>;
 
-/** Non-decreasing Subsequences
- *
- * @reference   https://leetcode.com/problems/non-decreasing-subsequences/
+/**
+ * @reference   Non-decreasing Subsequences
+ *              https://leetcode.com/problems/non-decreasing-subsequences/
  *
  * Given an integer array nums, return all the different possible non-decreasing subsequences of the
  * given array with at least two elements. You may return the answer in any order.
+ *
+ * @tags    #backtracking #combinatorics #hash-table
  */
 void NondecreasingSubsequences(const ArrayType &nums,
                                const std::size_t start,

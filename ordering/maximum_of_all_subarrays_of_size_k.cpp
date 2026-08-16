@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Sliding Window Maximum (Maximum of all subarrays of size k)
- *
- * @reference   https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
+/**
+ * @reference   Sliding Window Maximum (Maximum of all subarrays of size k)
+ *              https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
  * @reference   Maximum of all Subarrays of size k using set in C++ STL
  *              https://www.geeksforgeeks.org/maximum-of-all-subarrays-of-size-k-using-set-in-cpp-stl/
  *
@@ -94,6 +94,8 @@ auto MaxOfAllSubarraysOfSizeK_MonotonicQueue(const ArrayType &nums,
  * Given a string s and an integer k, return the maximum number of vowel letters in any substring of s
  * with length k.
  * Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
+ *
+ * @tags    #sliding-window #min-max-element
  */
 
 

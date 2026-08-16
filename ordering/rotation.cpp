@@ -146,7 +146,7 @@ auto LeftRotate_BlockSwap_Iterative(ArrayType arr, const ArrayType::size_type d)
  * @reference   C Program for Reversal algorithm for array rotation
  *              https://www.geeksforgeeks.org/c-program-for-reversal-algorithm-for-array-rotation/
  *
- * @tags    #array-rotation #in-place-rotation #left-right-pointers
+ * @tags    #array-rotation #in-place-rotation #left-right-pointers #reverse-array
  */
 inline auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d) {
     assert(d < elements.size());
@@ -175,7 +175,7 @@ inline auto LeftRotate_Reversal(ArrayType elements, const ArrayType::size_type d
  *  this problem.
  *  Could you do it in-place with O(1) extra space?
  *
- * @tags    #array-rotation #in-place-rotation #left-right-pointers
+ * @tags    #array-rotation #in-place-rotation #left-right-pointers #reverse-array
  */
 inline auto RightRotate_Reversal(ArrayType elements, const ArrayType::size_type k) {
     assert(k < elements.size());
