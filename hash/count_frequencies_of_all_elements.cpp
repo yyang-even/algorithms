@@ -196,7 +196,22 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
  * A pair (i, j) is called good if nums[i] == nums[j] and i < j.
  * 1 <= nums[i] <= 100
  *
- * @tags    #hash-table
+ * @tags    #hash-table #arithmetic-progression
+ */
+
+
+/**
+ * @reference   Number of Pairs of Interchangeable Rectangles
+ *              https://leetcode.com/problems/number-of-pairs-of-interchangeable-rectangles/
+ *
+ * You are given n rectangles represented by a 0-indexed 2D integer array rectangles, where
+ * rectangles[i] = [widthi, heighti] denotes the width and height of the ith rectangle.
+ * Two rectangles i and j (i < j) are considered interchangeable if they have the same width-to-height
+ * ratio. More formally, two rectangles are interchangeable if widthi/heighti == widthj/heightj (using
+ * decimal division, not integer division).
+ * Return the number of pairs of interchangeable rectangles in rectangles.
+ *
+ * @tags    #hash-table #arithmetic-progression #gcd
  */
 
 

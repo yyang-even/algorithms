@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<std::string_view>;
 
-/** Given two strings, find if first string is a subsequence of second
- *
- * @reference   https://www.geeksforgeeks.org/given-two-strings-find-first-string-subsequence-second/
+/**
+ * @reference   Given two strings, find if first string is a subsequence of second
+ *              https://www.geeksforgeeks.org/given-two-strings-find-first-string-subsequence-second/
  *
  * Given two strings str1 and str2, find if str1 is a subsequence of str2. A subsequence is a sequence
  * that can be derived from another sequence by deleting some elements without changing the order of the
@@ -22,27 +22,28 @@ using ArrayType = std::vector<std::string_view>;
  * characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
  * Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 10^9, and you want to
  * check one by one to see if t has its subsequence. In this scenario, how would you change your code?
+ *
+ * @tags    #two-pointers
  */
 constexpr auto isSubsequence(const std::string_view sub, const std::string_view text) {
-    assert(not sub.empty());
-
-    if (sub.size() > text.size()) {
-        return false;
+    if (sub.empty()) {
+        return true;
     }
 
     std::size_t i = 0;
     for (const auto c : text) {
         if (sub[i] == c) {
-            ++i;
+            if (++i == sub.size()) {
+                return true;
+            }
         }
     }
 
-    return i == sub.size();
+    return false;
 }
 
 
-/** Longest Uncommon Subsequence
- *
+/**
  * @reference   Longest Uncommon Subsequence I
  *              https://leetcode.com/problems/longest-uncommon-subsequence-i/
  *
@@ -67,7 +68,8 @@ inline constexpr int LongestUncommonSubsequence(const std::string_view one,
 /**
  * @reference   Longest Uncommon Subsequence II
  *              https://leetcode.com/problems/longest-uncommon-subsequence-ii/
- * @reference   https://xiaoguan.gitbooks.io/leetcode/content/LeetCode/522-longest-uncommon-subsequence-ii-medium.html
+ * @reference   Longest Uncommon Subsequence II
+ *              https://xiaoguan.gitbooks.io/leetcode/content/LeetCode/522-longest-uncommon-subsequence-ii-medium.html
  *
  * Given an array of strings strs, return the length of the longest uncommon subsequence between them.
  * If the longest uncommon subsequence does not exist, return -1.

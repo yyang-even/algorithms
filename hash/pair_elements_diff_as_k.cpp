@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Count Number of Pairs With Absolute Difference K
- *
- * @reference   https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
+/**
+ * @reference   Count Number of Pairs With Absolute Difference K
+ *              https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
  *
  * Given an integer array nums and an integer k, return the number of pairs (i, j) where i < j such that
  * |nums[i] - nums[j]| == k.

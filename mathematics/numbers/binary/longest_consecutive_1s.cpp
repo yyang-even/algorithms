@@ -41,15 +41,13 @@ constexpr auto LengthOfLongestConsecutive1s(unsigned number) {
  *
  * @tags    #sliding-window #min-max-element
  */
-constexpr auto BinaryGap(const unsigned n) {
-    int prev = -1;
+constexpr auto BinaryGap(unsigned n) {
     int result = 0;
-    for (int i = 0; (1u << i) <= n; ++i) {
-        if (n & (1u << i)) {
-            if (prev != -1) {
-                result = std::max(result, i - prev);
-            }
-            prev = i;
+    for (int l = INT_MIN; n; n >>= 1) {
+        ++l;
+        if (n & 1) {
+            result = std::max(result, l);
+            l = 0;
         }
     }
 
