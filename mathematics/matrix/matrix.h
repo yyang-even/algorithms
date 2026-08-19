@@ -46,5 +46,5 @@ static inline auto ForEachDirection(const int M,
  * Laser beams are independent, i.e., one beam does not interfere nor join with another.
  * Return the total number of laser beams in the bank.
  *
- * @tags    #matrix
+ * @tags    #matrix #sliding-window
  */

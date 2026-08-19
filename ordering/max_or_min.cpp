@@ -109,6 +109,8 @@ inline constexpr int Max_QuickDirty(const int x, const int y) {
  * presses of the same key may not have had the same duration.
  * Return the key of the keypress that had the longest duration. If there are multiple such keypresses,
  * return the lexicographically largest key of the keypresses.
+ *
+ * @tags    #min-max-element #sliding-window
  */
 
 
