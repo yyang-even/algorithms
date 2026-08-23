@@ -149,6 +149,19 @@ auto NumberIslandsStream(const int m, const int n, const ArrayType &positions) {
 
 
 /**
+ * @reference   Count Islands With Total Value Divisible by K
+ *              https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/
+ *
+ * You are given an m x n matrix grid and a positive integer k. An island is a group of positive
+ * integers (representing land) that are 4-directionally connected (horizontally or vertically).
+ * The total value of an island is the sum of the values of all cells in the island.
+ * Return the number of islands with a total value divisible by k.
+ *
+ * @tags    #matrix #BFS #DFS #disjoint-set
+ */
+
+
+/**
  * @reference   Regions Cut By Slashes
  *              https://leetcode.com/problems/regions-cut-by-slashes/
  *

@@ -62,7 +62,7 @@ bool WordBreak(const std::string_view s, const ArrayType &wordDict) {
  * Given a valid sentence without any spaces between the words and a dictionary of valid English words,
  * find all possible ways to break the sentence in individual dictionary words.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void AllWayToWordBreak(const std::string &a_string,
                        const DictType &words,
@@ -145,7 +145,7 @@ bool MinimumWordBreak(const std::string_view a_string, const DictType &words) {
  * inserting dots into s. You are not allowed to reorder or remove any digits in s. You may return the
  * valid IP addresses in any order.
  *
- * @tags    #backtracking
+ * @tags    #backtracking #combinatorics
  */
 void RestoreIPAddresses(const std::string_view ip,
                         const std::size_t start,
@@ -181,6 +181,20 @@ inline auto RestoreIPAddresses(const std::string_view ip) {
 
     return results;
 }
+
+
+/**
+ * @reference   Find the Punishment Number of an Integer
+ *              https://leetcode.com/problems/find-the-punishment-number-of-an-integer/
+ *
+ * Given a positive integer n, return the punishment number of n.
+ * The punishment number of n is defined as the sum of the squares of all integers i such that:
+ *  1 <= i <= n
+ *  The decimal representation of i * i can be partitioned into contiguous substrings such that the sum
+ *  of the integer values of these substrings equals i.
+ *
+ * @tags    #backtracking #combinatorics #digit-traverse
+ */
 
 } //namespace
 
