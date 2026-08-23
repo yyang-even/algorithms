@@ -1,24 +1,26 @@
 #include "common_header.h"
 
-#include "hash/hash.h"
 #include "data_structure/tree/binary_tree/binary_tree.h"
 #include "data_structure/tree/binary_tree/single_order_to_binary_tree.h"
+#include "hash/hash.h"
 
 
 namespace {
 
 using ArrayType = std::vector<int>;
 
-/** House Robber
+/**
+ * @reference   House Robber
+ *              https://leetcode.com/problems/house-robber/
  *
- * @reference   https://leetcode.com/problems/house-robber/
+ * You are a professional robber planning to rob houses along a street. Each house has a certain amount
+ * of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses
+ * have security systems connected and it will automatically contact the police if two adjacent houses
+ * were broken into on the same night.
+ * Given an integer array nums representing the amount of money of each house, return the maximum amount
+ * of money you can rob tonight without alerting the police.
  *
- * You are a professional robber planning to rob houses along a street. Each house has a
- * certain amount of money stashed, the only constraint stopping you from robbing each of
- * them is that adjacent houses have security systems connected and it will automatically
- * contact the police if two adjacent houses were broken into on the same night. Given an
- * integer array nums representing the amount of money of each house, return the maximum
- * amount of money you can rob tonight without alerting the police.
+ * @tags    #DP
  */
 auto HouseRobber_Memo(const ArrayType &nums, const int i, ArrayType &memo) {
     if (i < 0) {
@@ -67,10 +69,10 @@ auto HouseRobber_DP_O1(const ArrayType &nums) {
  * @reference   Min Cost Climbing Stairs
  *              https://leetcode.com/problems/min-cost-climbing-stairs/
  *
- * You are given an integer array cost where cost[i] is the cost of ith step on a
- * staircase. Once you pay the cost, you can either climb one or two steps. You can
- * either start from the step with index 0, or the step with index 1. Return the
- * minimum cost to reach the top of the floor.
+ * You are given an integer array cost where cost[i] is the cost of ith step on a staircase. Once you
+ * pay the cost, you can either climb one or two steps.
+ * You can either start from the step with index 0, or the step with index 1.
+ * Return the minimum cost to reach the top of the floor.
  * 2 <= cost.length <= 1000
  */
 auto MinCostClimbingStairs(const ArrayType &cost) {
@@ -93,16 +95,14 @@ auto MinCostClimbingStairs(const ArrayType &cost) {
  * @reference   House Robber II
  *              https://leetcode.com/problems/house-robber-ii/
  *
- * You are a professional robber planning to rob houses along a street. Each house has a
- * certain amount of money stashed. All houses at this place are arranged in a circle.
- * That means the first house is the neighbor of the last one. Meanwhile, adjacent houses
- * have a security system connected, and it will automatically contact the police if two
- * adjacent houses were broken into on the same night. Given an integer array nums
- * representing the amount of money of each house, return the maximum amount of money you
- * can rob tonight without alerting the police.
+ * You are a professional robber planning to rob houses along a street. Each house has a certain amount
+ * of money stashed. All houses at this place are arranged in a circle. That means the first house is
+ * the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and it
+ * will automatically contact the police if two adjacent houses were broken into on the same night.
+ * Given an integer array nums representing the amount of money of each house, return the maximum amount
+ * of money you can rob tonight without alerting the police.
  */
-auto HouseRobber_Circle(const ArrayType &nums,
-                        const int left, const int right) {
+auto HouseRobber_Circle(const ArrayType &nums, const int left, const int right) {
     int prev1 = 0;
     int prev2 = 0;
     for (int i = left; i <= right; ++i) {
@@ -128,16 +128,17 @@ inline auto HouseRobber_Circle(const ArrayType &nums) {
  * @reference   House Robber III
  *              https://leetcode.com/problems/house-robber-iii/
  *
- * The thief has found himself a new place for his thievery again. There is only one
- * entrance to this area, called root. Besides the root, each house has one and only one
- * parent house. After a tour, the smart thief realized that all houses in this place
- * form a binary tree. It will automatically contact the police if two directly-linked
- * houses were broken into on the same night. Given the root of the binary tree, return
- * the maximum amount of money the thief can rob without alerting the police.
+ * The thief has found himself a new place for his thievery again. There is only one entrance to this
+ * area, called root.
+ * Besides the root, each house has one and only one parent house. After a tour, the smart thief
+ * realized that all houses in this place form a binary tree. It will automatically contact the police
+ * if two directly-linked houses were broken into on the same night.
+ * Given the root of the binary tree, return the maximum amount of money the thief can rob without
+ * alerting the police.
  */
 auto HouseRobber_Tree_Pair_Helper(const BinaryTree::Node::PointerType node) {
     if (not node) {
-        return std::pair{0, 0};
+        return std::pair {0, 0};
     }
 
     const auto [left_with, left_without] = HouseRobber_Tree_Pair_Helper(node->left);
@@ -153,8 +154,7 @@ inline auto HouseRobber_Tree_Pair(const BinaryTree::Node::PointerType root) {
 }
 
 
-auto HouseRobber_BT_Helper(const BinaryTree::Node::PointerType node,
-                           int &left, int &right) {
+auto HouseRobber_BT_Helper(const BinaryTree::Node::PointerType node, int &left, int &right) {
     if (not node) {
         return 0;
     }
@@ -182,12 +182,12 @@ inline auto HouseRobber_BT(const BinaryTree::Node::PointerType root) {
  * @reference   Delete and Earn
  *              https://leetcode.com/problems/delete-and-earn/
  *
- * You are given an integer array nums. You want to maximize the number of points you get
- * by performing the following operation any number of times:
- *  Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete
- *      every element equal to nums[i] - 1 and every element equal to nums[i] + 1.
- * Return the maximum number of points you can earn by applying the above operation some
- * number of times.
+ * You are given an integer array nums. You want to maximize the number of points you get by performing
+ * the following operation any number of times:
+ *  Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete every element
+ *  equal to nums[i] - 1 and every element equal to nums[i] + 1.
+ * Return the maximum number of points you can earn by applying the above operation some number of
+ * times.
  * 1 <= nums[i] <= 10^4
  */
 constexpr int N = 10001;
@@ -263,7 +263,7 @@ auto DeleteAndEarn_Sort(const ArrayType &nums) {
     return one_back;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {1, 2, 3, 1};
@@ -316,9 +316,7 @@ SIMPLE_TEST(MinCostClimbingStairs, TestSAMPLE2, 6, SAMPLE2C);
  *     \   \
  *      3   1
  */
-const auto SAMPLE1T = LevelOrderToBinaryTree( {
-    3, 2, 3, SENTINEL, 3, SENTINEL, 1
-});
+const auto SAMPLE1T = LevelOrderToBinaryTree({3, 2, 3, SENTINEL, 3, SENTINEL, 1});
 
 
 THE_BENCHMARK(HouseRobber_Tree_Pair, SAMPLE1T);
