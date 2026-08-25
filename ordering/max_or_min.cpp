@@ -241,6 +241,36 @@ int MaxTopAfterKMoves(const ArrayType &nums, const int k) {
  * @tags    #matrix #greedy #min-max-element
  */
 
+
+/**
+ * @reference   Construct Uniform Parity Array I
+ *              https://leetcode.com/problems/construct-uniform-parity-array-i/
+ *
+ * You are given an array nums1 of n distinct integers.
+ * You want to construct another array nums2 of length n such that the elements in nums2 are either all
+ * odd or all even.
+ * For each index i, you must choose exactly one of the following (in any order):
+ *  nums2[i] = nums1[i]
+ *  nums2[i] = nums1[i] - nums1[j], for an index j != i
+ * Return true if it is possible to construct such an array, otherwise, return false.
+ */
+
+
+/**
+ * @reference   Construct Uniform Parity Array II
+ *              https://leetcode.com/problems/construct-uniform-parity-array-ii/
+ *
+ * You are given an array nums1 of n distinct integers.
+ * You want to construct another array nums2 of length n such that the elements in nums2 are either all
+ * odd or all even.
+ * For each index i, you must choose exactly one of the following (in any order):
+ *  nums2[i] = nums1[i]
+ *  nums2[i] = nums1[i] - nums1[j], for an index j != i, such that nums1[i] - nums1[j] >= 1
+ * Return true if it is possible to construct such an array, otherwise return false.
+ *
+ * @tags    #min-max-element
+ */
+
 } //namespace
 
 
