@@ -8,21 +8,18 @@ namespace {
 using ListType = std::forward_list<int>;
 using ArrayType = std::vector<int>;
 
-/** Merge two sorted linked lists
- *
- * @reference   https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
+/**
+ * @reference   Merge two sorted linked lists
+ *              https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
  * @reference   Merge two sorted lists (in-place)
  *              https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
  * @reference   Merge Two Sorted Lists
  *              https://leetcode.com/problems/merge-two-sorted-lists/
  *
- * Write a SortedMerge() function that takes two lists, each of which is sorted in
- * increasing order, and merges the two together into one list which is in increasing
- * order. SortedMerge() should return the new list. The new list should be made by
- * splicing together the nodes of the first two lists. There are many cases to deal
- * with: either 'a' or 'b' may be empty, during processing either 'a' or 'b' may run out
- * first, and finally there's the problem of starting the result list empty, and building
- * it up while going through 'a' and 'b'.
+ * You are given the heads of two sorted linked lists list1 and list2.
+ * Merge the two lists into one sorted list. The list should be made by splicing together the nodes of
+ * the first two lists.
+ * Return the head of the merged linked list.
  */
 auto SortedMergeList_Single_STL(ListType L, ListType R) {
     assert(std::is_sorted(L.cbegin(), L.cend()));
@@ -62,9 +59,9 @@ auto SortedMergeList_Doubly_STL(std::list<ListType::value_type> L,
 }
 
 
-/** Sorted merge of two sorted doubly circular linked lists
- *
- * @reference   https://www.geeksforgeeks.org/sorted-merge-of-two-sorted-doubly-circular-linked-lists/
+/**
+ * @reference   Sorted merge of two sorted doubly circular linked lists
+ *              https://www.geeksforgeeks.org/sorted-merge-of-two-sorted-doubly-circular-linked-lists/
  */
 
 
@@ -72,11 +69,12 @@ auto SortedMergeList_Doubly_STL(std::list<ListType::value_type> L,
  * @reference   All Elements in Two Binary Search Trees
  *              https://leetcode.com/problems/all-elements-in-two-binary-search-trees/
  *
- * Given two binary search trees root1 and root2, return a list containing all the
- * integers from both trees sorted in ascending order.
+ * Given two binary search trees root1 and root2, return a list containing all the integers from both
+ * trees sorted in ascending order.
+ *
+ * @tags    #binary-tree #BST #DFS #inorder-traversal #stack #two-pointers
  */
-void pushLeft(std::stack<BinaryTree::Node::PointerType> &s,
-              BinaryTree::Node::PointerType node) {
+void pushLeft(std::stack<BinaryTree::Node::PointerType> &s, BinaryTree::Node::PointerType node) {
     while (node) {
         s.push(std::exchange(node, node->left));
     }
@@ -100,7 +98,7 @@ auto MergeTwoBST(const BinaryTree::Node::PointerType root1,
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 using InitializerType = std::initializer_list<ListType::value_type>;

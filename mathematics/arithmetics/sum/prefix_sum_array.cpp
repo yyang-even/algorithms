@@ -273,6 +273,22 @@ bool CanPartitionGrid_PrefixSum(const MatrixType &grid) {
 
 
 /**
+ * @reference   Maximum Sum of an Hourglass
+ *              https://leetcode.com/problems/maximum-sum-of-an-hourglass/
+ *
+ * You are given an m x n integer matrix grid.
+ * We define an hourglass as a part of the matrix with the following form:
+ *  A B C
+ *    D
+ *  E F G
+ * Return the maximum sum of the elements of an hourglass.
+ * Note that an hourglass cannot be rotated and must be entirely contained within the matrix.
+ *
+ * @tags    #matrix #prefix-sum #min-max-element
+ */
+
+
+/**
  * @reference   Minimum Value to Get Positive Step by Step Sum
  *              https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
  *

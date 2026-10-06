@@ -410,6 +410,39 @@ constexpr auto ValidPalindromeOneRemove(const std::string_view text) {
  * @tags    #hash-table #counting-sort #palindrome
  */
 
+
+/**
+ * @reference   Minimum Operations to Make a Rotated Palindrome I
+ *              https://leetcode.com/problems/minimum-operations-to-make-a-rotated-palindrome-i/
+ *
+ * You are given a string s consisting of lowercase English letters.
+ * You can perform the following operations any number of times (including zero) and in any order:
+ *  Increment: Choose any index i and replace s[i] with the next lowercase English letter. The letter
+ *  after 'z' is 'a'.
+ *  Left rotate: Move the first character of the string to the end.
+ * Return the minimum number of operations required to make s a palindrome.
+ *
+ * @tags    #enumeration #array-rotation #palindrome #left-right-pointers
+ */
+auto MinOperations(const std::string_view s) {
+    const int N = s.size();
+
+    int result = INT_MAX;
+    for (int r = 0; r < N; ++r) {
+        int n = r;
+        for (int i = 0; i < N / 2; ++i) {
+            const auto left = (r + i) % N;
+            const auto right = (r + N - 1 - i) % N;
+            const int diff = std::abs(s[left] - s[right]);
+            n += std::min(diff, 26 - diff);
+        }
+
+        result = std::min(result, n);
+    }
+
+    return result;
+}
+
 } //namespace
 
 
@@ -527,3 +560,10 @@ SIMPLE_TEST(isBinaryPalindrome,
             true,
             (1 << ((BitsNumber<unsigned> / 2) - 1)) + (1 << (BitsNumber<unsigned> / 2)));
 SIMPLE_TEST(isBinaryPalindrome, TestSAMPLE5, false, 0b1011);
+
+
+THE_BENCHMARK(MinOperations, "abc");
+
+SIMPLE_TEST(MinOperations, TestSAMPLE1, 2, "abc");
+SIMPLE_TEST(MinOperations, TestSAMPLE2, 3, "yb");
+SIMPLE_TEST(MinOperations, TestSAMPLE3, 4, "uhj");

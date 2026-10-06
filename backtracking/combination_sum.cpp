@@ -17,6 +17,8 @@ using ResultType = std::multiset<ArrayType>;
  * unique if the frequency of at least one of the chosen numbers is different.
  * It is guaranteed that the number of unique combinations that sum up to target is less than 150
  * combinations for the given input.
+ *
+ * @tags    #backtracking #combinatorics
  */
 void CombinationSum(const ArrayType &candidates,
                     const int target,
@@ -55,6 +57,8 @@ inline auto CombinationSum(const ArrayType &candidates, const int target) {
  * combinations in candidates where the candidate numbers sum to target.
  * Each number in candidates may only be used once in the combination.
  * Note: The solution set must not contain duplicate combinations.
+ *
+ * @tags    #backtracking #combinatorics #sorting
  */
 void CombinationSumWithDuplicates(const ArrayType &candidates,
                                   const int target,

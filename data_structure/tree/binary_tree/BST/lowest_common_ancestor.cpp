@@ -14,8 +14,13 @@ namespace {
  * @reference   Lowest Common Ancestor of a Binary Search Tree
  *              https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  *
- * Given values of two values n1 and n2 in a Binary Search Tree, find the Lowest Common
- * Ancestor (LCA). You may assume that both the values exist in the tree.
+ * Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in
+ * the BST.
+ * According to the definition of LCA on Wikipedia: "The lowest common ancestor is defined between two
+ * nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to
+ * be a descendant of itself)."
+ *
+ * @tags    #binary-tree #BST
  */
 auto LowestCommonAncestor_BST_Recursive(const BinaryTree::Node::PointerType node,
                                         const BinaryTree::Node::ValueType x,
@@ -58,9 +63,8 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  * @reference   Lowest Common Ancestor in a Binary Tree | Set 1
  *              https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
  *
- * Given a binary tree (not a binary search tree) and two values say n1 and n2, write a
- * program to find the least common ancestor. You may assume that both the values exist
- * in the tree.
+ * Given a binary tree (not a binary search tree) and two values say n1 and n2, write a program to find
+ * the least common ancestor. You may assume that both the values exist in the tree.
  *
  * @reference   Gayle Laakmann McDowell. Cracking the Coding Interview, Fifth Edition.
  *              Questions 4.7.
@@ -75,9 +79,12 @@ auto LowestCommonAncestor_BST_Iterative(const BinaryTree::Node::PointerType root
  * @reference   Lowest Common Ancestor of a Binary Tree II
  *              http://leetcode.libaoj.in/lowest-common-ancestor-of-a-binary-tree-ii.html
  *
- * Given the root of a binary tree, return the lowest common ancestor (LCA) of two given
- * nodes, p and q. If either node p or q does not exist in the tree, return null. All
- * values of the nodes in the tree are unique.
+ * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+ * According to the definition of LCA on Wikipedia: "The lowest common ancestor is defined between two
+ * nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to
+ * be a descendant of itself)."
+ *
+ * @tags    #binary-tree #DFS #postorder-traversal
  */
 auto LowestCommonAncestor_CommonPath(const BinaryTree::Node::PointerType root,
                                      const BinaryTree::Node::ValueType x,
@@ -117,15 +124,13 @@ auto LowestCommonAncestor_SingleTraversal(const BinaryTree::Node::PointerType no
 }
 
 
-auto
-LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType root,
-                                            const BinaryTree::Node::ValueType x,
-                                            const BinaryTree::Node::ValueType y) {
+auto LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType root,
+                                                 const BinaryTree::Node::ValueType x,
+                                                 const BinaryTree::Node::ValueType y) {
     assert(root);
 
     std::queue<BinaryTree::Node::PointerType> q;
-    std::unordered_map<BinaryTree::Node::ValueType, BinaryTree::Node::PointerType>
-    parents_map;
+    std::unordered_map<BinaryTree::Node::ValueType, BinaryTree::Node::PointerType> parents_map;
     parents_map.emplace(root->value, nullptr);
     q.push(root);
 
@@ -158,7 +163,8 @@ LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType 
         ancestors.insert(x_node);
     }
 
-    for (; ancestors.find(y_node) == ancestors.cend(); y_node = parents_map[y_node->value]);
+    for (; ancestors.find(y_node) == ancestors.cend(); y_node = parents_map[y_node->value])
+        ;
 
     return y_node;
 }
@@ -183,11 +189,10 @@ LowestCommonAncestor_Iterative_Backtracking(const BinaryTree::Node::PointerType 
  */
 
 
-template <typename LCA, typename... Args>
-inline constexpr auto
-TestLowestCommonAncestor(const LCA lowest_common_ancestor,
-                         const BinaryTree::Node::PointerType root,
-                         Args &&...args) {
+template<typename LCA, typename... Args>
+inline constexpr auto TestLowestCommonAncestor(const LCA lowest_common_ancestor,
+                                               const BinaryTree::Node::PointerType root,
+                                               Args &&...args) {
     const auto LCA_node = lowest_common_ancestor(root, std::forward<Args>(args)...);
     if (LCA_node) {
         return LCA_node->value;
@@ -200,7 +205,8 @@ TestLowestCommonAncestor(const LCA lowest_common_ancestor,
 auto LowestCommonAncestor_MayNotExist_Helper(const BinaryTree::Node::PointerType node,
                                              const BinaryTree::Node::ValueType x,
                                              const BinaryTree::Node::ValueType y,
-                                             bool &x_exist, bool &y_exist) {
+                                             bool &x_exist,
+                                             bool &y_exist) {
     if (not node) {
         return node;
     }
@@ -225,21 +231,18 @@ auto LowestCommonAncestor_MayNotExist_Helper(const BinaryTree::Node::PointerType
     return left_LCA ? left_LCA : right_LCA;
 }
 
-inline auto
-LowestCommonAncestor_MayNotExist(const BinaryTree::Node::PointerType root,
-                                 const BinaryTree::Node::ValueType x,
-                                 const BinaryTree::Node::ValueType y) {
+inline auto LowestCommonAncestor_MayNotExist(const BinaryTree::Node::PointerType root,
+                                             const BinaryTree::Node::ValueType x,
+                                             const BinaryTree::Node::ValueType y) {
     bool x_exist = false;
     bool y_exist = false;
-    const auto candidate =
-        LowestCommonAncestor_MayNotExist_Helper(root, x, y, x_exist, y_exist);
+    const auto candidate = LowestCommonAncestor_MayNotExist_Helper(root, x, y, x_exist, y_exist);
 
-    if ((x_exist and y_exist) or
-        (x_exist and BinaryTreeSearch_Preorder(candidate, y)) or
+    if ((x_exist and y_exist) or (x_exist and BinaryTreeSearch_Preorder(candidate, y)) or
         (y_exist and BinaryTreeSearch_Preorder(candidate, x))) {
         return candidate;
     }
-    return BinaryTree::Node::PointerType{};
+    return BinaryTree::Node::PointerType {};
 }
 
 
@@ -249,14 +252,13 @@ LowestCommonAncestor_MayNotExist(const BinaryTree::Node::PointerType root,
  * @reference   1676 - Lowest Common Ancestor of a Binary Tree IV
  *              https://leetcode.ca/2020-07-02-1676-Lowest-Common-Ancestor-of-a-Binary-Tree-IV/
  *
- * Given the root of a binary tree and an array of TreeNode objects nodes, return the
- * lowest common ancestor (LCA) of all the nodes in nodes. All the nodes will exist in
- * the tree, and all values of the tree’s nodes are unique.
+ * Given the root of a binary tree and an array of TreeNode objects nodes, return the lowest common
+ * ancestor (LCA) of all the nodes in nodes. All the nodes will exist in the tree, and all values of the
+ * tree’s nodes are unique.
  */
-std::size_t
-LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType node,
-                            const BinaryTree::ArrayType &keys,
-                            BinaryTree::ArrayType &ancestors) {
+std::size_t LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType node,
+                                        const BinaryTree::ArrayType &keys,
+                                        BinaryTree::ArrayType &ancestors) {
     if (not node) {
         return 0;
     }
@@ -273,9 +275,8 @@ LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType node,
     return matching_nodes;
 }
 
-inline auto
-LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType root,
-                            const BinaryTree::ArrayType &keys) {
+inline auto LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType root,
+                                        const BinaryTree::ArrayType &keys) {
     BinaryTree::ArrayType ancestors;
     LowestCommonAncestorOfNodes(root, keys, ancestors);
 
@@ -285,8 +286,7 @@ LowestCommonAncestorOfNodes(const BinaryTree::Node::PointerType root,
 
 auto LowestCommonAncestorOfNodes_AllExist(const BinaryTree::Node::PointerType node,
                                           const BinaryTree::ArrayType &keys) {
-    if (not node or
-        (std::find(keys.cbegin(), keys.cend(), node->value) != keys.cend())) {
+    if (not node or (std::find(keys.cbegin(), keys.cend(), node->value) != keys.cend())) {
         return node;
     }
 
@@ -300,7 +300,7 @@ auto LowestCommonAncestorOfNodes_AllExist(const BinaryTree::Node::PointerType no
     return left_LCA ? left_LCA : right_LCA;
 }
 
-}//namespace
+} //namespace
 
 
 const auto SAMPLE1 = MakeTheSampleBST();
@@ -308,22 +308,22 @@ const auto SAMPLE1 = MakeTheSampleBST();
 
 THE_BENCHMARK(LowestCommonAncestor_BST_Recursive, SAMPLE1, 1, 3);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLER1, 2,
-            LowestCommonAncestor_BST_Recursive, SAMPLE1, 1, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLER2, 2,
-            LowestCommonAncestor_BST_Recursive, SAMPLE1, 2, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLER3, 4,
-            LowestCommonAncestor_BST_Recursive, SAMPLE1, 3, 5);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLER1, 2, LowestCommonAncestor_BST_Recursive, SAMPLE1, 1, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLER2, 2, LowestCommonAncestor_BST_Recursive, SAMPLE1, 2, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLER3, 4, LowestCommonAncestor_BST_Recursive, SAMPLE1, 3, 5);
 
 
 THE_BENCHMARK(LowestCommonAncestor_BST_Iterative, SAMPLE1, 1, 3);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLEI1, 2,
-            LowestCommonAncestor_BST_Iterative, SAMPLE1, 1, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLEI2, 2,
-            LowestCommonAncestor_BST_Iterative, SAMPLE1, 2, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLEI3, 4,
-            LowestCommonAncestor_BST_Iterative, SAMPLE1, 3, 5);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLEI1, 2, LowestCommonAncestor_BST_Iterative, SAMPLE1, 1, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLEI2, 2, LowestCommonAncestor_BST_Iterative, SAMPLE1, 2, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLEI3, 4, LowestCommonAncestor_BST_Iterative, SAMPLE1, 3, 5);
 
 
 THE_BENCHMARK(LowestCommonAncestor_CommonPath, SAMPLE1, 1, 3);
@@ -336,34 +336,64 @@ SIMPLE_TEST(LowestCommonAncestor_CommonPath, TestSAMPLE4, -1, SAMPLE1, 3, 9);
 
 THE_BENCHMARK(LowestCommonAncestor_SingleTraversal, SAMPLE1, 1, 3);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLES1, 2,
-            LowestCommonAncestor_SingleTraversal, SAMPLE1, 1, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLES2, 2,
-            LowestCommonAncestor_SingleTraversal, SAMPLE1, 2, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLES3, 4,
-            LowestCommonAncestor_SingleTraversal, SAMPLE1, 3, 5);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLES1,
+            2,
+            LowestCommonAncestor_SingleTraversal,
+            SAMPLE1,
+            1,
+            3);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLES2,
+            2,
+            LowestCommonAncestor_SingleTraversal,
+            SAMPLE1,
+            2,
+            3);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLES3,
+            4,
+            LowestCommonAncestor_SingleTraversal,
+            SAMPLE1,
+            3,
+            5);
 
 
 THE_BENCHMARK(LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 1, 3);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi1, 2,
-            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 1, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi2, 2,
-            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 2, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLESi3, 4,
-            LowestCommonAncestor_Iterative_Backtracking, SAMPLE1, 3, 5);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLESi1,
+            2,
+            LowestCommonAncestor_Iterative_Backtracking,
+            SAMPLE1,
+            1,
+            3);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLESi2,
+            2,
+            LowestCommonAncestor_Iterative_Backtracking,
+            SAMPLE1,
+            2,
+            3);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLESi3,
+            4,
+            LowestCommonAncestor_Iterative_Backtracking,
+            SAMPLE1,
+            3,
+            5);
 
 
 THE_BENCHMARK(LowestCommonAncestor_MayNotExist, SAMPLE1, 1, 3);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE1M, 2,
-            LowestCommonAncestor_MayNotExist, SAMPLE1, 1, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE2M, 2,
-            LowestCommonAncestor_MayNotExist, SAMPLE1, 2, 3);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE3M, 4,
-            LowestCommonAncestor_MayNotExist, SAMPLE1, 3, 5);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE4M, -1,
-            LowestCommonAncestor_MayNotExist, SAMPLE1, 3, 9);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLE1M, 2, LowestCommonAncestor_MayNotExist, SAMPLE1, 1, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLE2M, 2, LowestCommonAncestor_MayNotExist, SAMPLE1, 2, 3);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLE3M, 4, LowestCommonAncestor_MayNotExist, SAMPLE1, 3, 5);
+SIMPLE_TEST(
+    TestLowestCommonAncestor, TestSAMPLE4M, -1, LowestCommonAncestor_MayNotExist, SAMPLE1, 3, 9);
 
 
 const BinaryTree::ArrayType SAMPLE1K = {1, 2, 3};
@@ -388,15 +418,39 @@ SIMPLE_TEST(LowestCommonAncestorOfNodes, TestSAMPLE7, -1, SAMPLE1, SAMPLE7K);
 
 THE_BENCHMARK(LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE1K);
 
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE1A, 2,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE1K);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE2A, 2,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE2K);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE3A, 4,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE3K);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE4A, 2,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE4K);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE5A, 4,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE5K);
-SIMPLE_TEST(TestLowestCommonAncestor, TestSAMPLE6A, 4,
-            LowestCommonAncestorOfNodes_AllExist, SAMPLE1, SAMPLE6K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE1A,
+            2,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE1K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE2A,
+            2,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE2K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE3A,
+            4,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE3K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE4A,
+            2,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE4K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE5A,
+            4,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE5K);
+SIMPLE_TEST(TestLowestCommonAncestor,
+            TestSAMPLE6A,
+            4,
+            LowestCommonAncestorOfNodes_AllExist,
+            SAMPLE1,
+            SAMPLE6K);

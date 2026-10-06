@@ -152,6 +152,21 @@ auto SortAndCount_BucketSort(const ArrayType &values) {
 
 
 /**
+ * @reference   Find All Numbers Disappeared in an Array II
+ *              https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array-ii/
+ *
+ * You are given an integer array nums and two integers lower and upper.
+ * A missing integer is an integer in the inclusive range [lower, upper] that does not appear in nums.
+ * Return a 2D integer array where each element is of the form [start, end], representing a contiguous
+ * range of missing integers. Return the ranges in increasing order. If there are no missing integers,
+ * return an empty array.
+ * Note: Consecutive missing integers should be grouped into a single range.
+ *
+ * @tags    #hash-table
+ */
+
+
+/**
  * @reference   Find All Duplicates in an Array
  *              https://leetcode.com/problems/find-all-duplicates-in-an-array/
  *
@@ -382,7 +397,7 @@ auto MinRounds(const ArrayType &tasks) {
  * A row and column pair is considered equal if they contain the same elements in the same order (i.e.,
  * an equal array).
  *
- * @tags    #hash-table
+ * @tags    #matrix #hash-table
  */
 auto NumEqualPairs(const MatrixType &grid) {
     const auto N = grid.size();

@@ -5,16 +5,16 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Reduce Array Size to The Half
+/**
+ * @reference   Reduce Array Size to The Half
+ *              https://leetcode.com/problems/reduce-array-size-to-the-half/
  *
- * @reference   https://leetcode.com/problems/reduce-array-size-to-the-half/
+ * You are given an integer array arr. You can choose a set of integers and remove all the occurrences
+ * of these integers in the array.
+ * Return the minimum size of the set so that at least half of the integers of the array are removed.
+ * arr.length is even.
  *
- * Given an array arr.  You can choose a set of integers and remove all the occurrences
- * of these integers in the array. Return the minimum size of the set so that at least
- * half of the integers of the array are removed.
- *  1 <= arr.length <= 10^5
- *  arr.length is even.
- *  1 <= arr[i] <= 10^5
+ * @tags    #greedy #hash-table #sorting #accumulate
  */
 auto ReduceArraySizeToHalf_Sort(const ArrayType &elements) {
     std::unordered_map<ArrayType::value_type, int> counter;
@@ -69,7 +69,7 @@ auto ReduceArraySizeToHalf_Bucket(const ArrayType &elements) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1 = {3, 3, 3, 3, 5, 5, 5, 2, 2, 7};

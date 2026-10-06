@@ -122,7 +122,7 @@ auto MinimumCost(ArrayType cost) {
  * Return the minimum possible sum of new1 and new2.
  * 1000 <= num <= 9999
  *
- * @tags    #greedy #sorting
+ * @tags    #greedy #quick-select
  */
 auto MinSum(int num) {
     ArrayType digits;

@@ -14,6 +14,7 @@ namespace {
  * An input string is valid if:
  *  Open brackets must be closed by the same type of brackets.
  *  Open brackets must be closed in the correct order.
+ *  Every close bracket has a corresponding open bracket of the same type.
  *
  * @tags    #stack
  */
@@ -60,6 +61,24 @@ constexpr auto AreParenthesesBalanced(const std::string_view expression) {
 
     return count == 0;
 }
+
+
+/**
+ * @reference   Minimum Add to Make Parentheses Valid
+ *              https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+ *
+ * A parentheses string is valid if and only if:
+ *  It is the empty string,
+ *  It can be written as AB (A concatenated with B), where A and B are valid strings, or
+ *  It can be written as (A), where A is a valid string.
+ * You are given a parentheses string s. In one move, you can insert a parenthesis at any position of
+ * the string.
+ *  For example, if s = "()))", you can insert an opening parenthesis to be "(()))" or a closing
+ *  parenthesis to be "())))".
+ * Return the minimum number of moves required to make s valid.
+ *
+ * @tags    #greedy #stack
+ */
 
 
 /**
@@ -300,6 +319,8 @@ constexpr auto LongestValidParentheses_O1(const std::string_view s) {
  *  Left parenthesis '(' must go before the corresponding right parenthesis ')'.
  *  '*' could be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty
  *  string "".
+ *
+ * @tags    #greedy #stack
  */
 auto ValidParenthesisStr(const std::string_view s) {
     std::stack<std::size_t> left;
@@ -333,6 +354,39 @@ auto ValidParenthesisStr(const std::string_view s) {
 
     return true;
 }
+
+
+/**
+ * @reference   Reverse Substrings Between Each Pair of Parentheses
+ *              https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/
+ *
+ * You are given a string s that consists of lower case English letters and brackets.
+ * Reverse the strings in each pair of matching parentheses, starting from the innermost one.
+ * Your result should not contain any brackets.
+ *
+ * @tags    #stack
+ */
+
+
+/**
+ * @reference   Evaluate the Bracket Pairs of a String
+ *              https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
+ *
+ * You are given a string s that contains some bracket pairs, with each pair containing a non-empty key.
+ *  For example, in the string "(name)is(age)yearsold", there are two bracket pairs that contain the
+ *  keys "name" and "age".
+ * You know the values of a wide range of keys. This is represented by a 2D string array knowledge where
+ * each knowledge[i] = [keyi, valuei] indicates that key keyi has a value of valuei.
+ * You are tasked to evaluate all of the bracket pairs. When you evaluate a bracket pair that contains
+ * some key keyi, you will:
+ *  Replace keyi and the bracket pair with the key's corresponding valuei.
+ *  If you do not know the value of the key, you will replace keyi and the bracket pair with a question
+ *  mark "?" (without the quotation marks).
+ * Each key will appear at most once in your knowledge. There will not be any nested brackets in s.
+ * Return the resulting string after evaluating all of the bracket pairs.
+ *
+ * @tags    #hash-table #stack
+ */
 
 } //namespace
 

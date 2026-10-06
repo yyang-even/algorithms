@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Arithmetic Slices
- *
- * @reference   https://leetcode.com/problems/arithmetic-slices/
+/**
+ * @reference   Arithmetic Slices
+ *              https://leetcode.com/problems/arithmetic-slices/
  *
  * An integer array is called arithmetic if it consists of at least three elements and if the difference
  * between any two consecutive elements is the same.

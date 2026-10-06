@@ -3,12 +3,14 @@
 
 namespace {
 
-/** Count Square Sum Triples
- *
- * @reference   https://leetcode.com/problems/count-square-sum-triples/
+/**
+ * @reference   Count Square Sum Triples
+ *              https://leetcode.com/problems/count-square-sum-triples/
  *
  * A square triple (a,b,c) is a triple where a, b, and c are integers and a^2 + b^2 = c^2.
  * Given an integer n, return the number of square triples such that 1 <= a, b, c <= n.
+ *
+ * @tags    #enumeration
  */
 constexpr auto CountSquareSumTriples(const int n) {
     bool squares[n * n + 1] = {};
@@ -26,7 +28,7 @@ constexpr auto CountSquareSumTriples(const int n) {
     return result;
 }
 
-}//namespace
+} //namespace
 
 
 THE_BENCHMARK(CountSquareSumTriples, 5);

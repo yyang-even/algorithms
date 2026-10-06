@@ -269,6 +269,8 @@ auto StableKSmallestElements_Insertion(ArrayType values, const ArrayType::size_t
  * Return any such subsequence as an integer array of length k.
  * A subsequence is an array that can be derived from another array by deleting some or no elements
  * without changing the order of the remaining elements.
+ *
+ * @tags    #quick-select
  */
 auto LargestSumSubsequence(const ArrayType &nums, const std::size_t k) {
     if (k == nums.size()) {
@@ -313,6 +315,8 @@ auto LargestSumSubsequence(const ArrayType &nums, const std::size_t k) {
  * to buy as many ice cream bars as possible. 
  * Return the maximum number of ice cream bars the boy can buy with coins coins.
  * Note: The boy can buy the ice cream bars in any order.
+ *
+ * @tags    #greedy #sorting #accumulate
  */
 
 } //namespace

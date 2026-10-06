@@ -20,6 +20,8 @@ using ArrayType = std::vector<int>;
  *  max(nums2[0], nums2[1], ..., nums2[n - 1]).
  * Return an integer denoting the minimum number of operations needed to meet both conditions, or -1 if
  * it is impossible to satisfy both conditions.
+ *
+ * @tags    #enumeration
  */
 auto countOperations(const ArrayType &nums1,
                      const int last1,

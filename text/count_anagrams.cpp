@@ -82,6 +82,8 @@ auto CountAnagrams(const std::string_view text, const std::string_view word) {
  * permutation) of elements may be different though.
  * Note: If there are repetitions, then counts of repeated elements must also be same for two array to
  * be equal.
+ *
+ * @tags    #anagram #sorting #hash-table
  */
 auto AreAnagrams(const std::string_view s1, const std::string_view s2) {
     if (s1.size() != s2.size()) {

@@ -11,12 +11,11 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Insertion Sort
- *
+/**
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Section 2.1.
- *
- * @reference   https://www.geeksforgeeks.org/insertion-sort/
+ * @reference   Insertion Sort
+ *              https://www.geeksforgeeks.org/insertion-sort/
  * @reference   An Insertion Sort time complexity question
  *              https://www.geeksforgeeks.org/insertion-sort-time-complexity-question/
  * @reference   Time complexity of insertion sort when there are O(n) inversions?
@@ -39,13 +38,12 @@ inline auto InsertionSort_STL(ArrayType values) {
 }
 
 
-/** Sort 3 numbers
- *
- * @reference   https://www.geeksforgeeks.org/sort-3-numbers/
+/**
+ * @reference   Sort 3 numbers
+ *              https://www.geeksforgeeks.org/sort-3-numbers/
  *
  * Given three numbers, how to sort them?
- * How to write our own sort function that does minimum comparison and does not use extra
- * variables?
+ * How to write our own sort function that does minimum comparison and does not use extra variables?
  * The idea is to use insertion sort as insertion sort works best for small arrays.
  */
 inline auto InsertionSort(ArrayType values) {
@@ -53,9 +51,9 @@ inline auto InsertionSort(ArrayType values) {
 }
 
 
-/** Recursive Insertion Sort
- *
- * @reference   https://www.geeksforgeeks.org/recursive-insertion-sort/
+/**
+ * @reference   Recursive Insertion Sort
+ *              https://www.geeksforgeeks.org/recursive-insertion-sort/
  * @reference   C Program for Recursive Insertion Sort
  *              https://www.geeksforgeeks.org/c-program-for-recursive-insertion-sort/
  *
@@ -80,15 +78,16 @@ inline auto InsertionSort_Recursive(ArrayType values) {
 }
 
 
-/** Binary Insertion Sort
- *
- * @reference   https://www.geeksforgeeks.org/binary-insertion-sort/
+/**
+ * @reference   Binary Insertion Sort
+ *              https://www.geeksforgeeks.org/binary-insertion-sort/
  * @reference   C Program for Binary Insertion Sort
  *              https://www.geeksforgeeks.org/c-program-for-binary-insertion-sort/
  *
  * @complexity: O(n^2)
  */
-auto UpperBound(const int target, const ArrayType::const_iterator begin,
+auto UpperBound(const int target,
+                const ArrayType::const_iterator begin,
                 const ArrayType::size_type n) {
     if (n > 1) {
         const auto middle = n >> 1;
@@ -124,26 +123,28 @@ auto BinaryInsertionSort(ArrayType values) {
 }
 
 
-/** Insertion Sort by Swapping Elements
- *
- * @reference   https://www.geeksforgeeks.org/insertion-sort-swapping-elements/
+/**
+ * @reference   Insertion Sort by Swapping Elements
+ *              https://www.geeksforgeeks.org/insertion-sort-swapping-elements/
  */
 
 
-/** Insertion Sort for Singly Linked List
- *
- * @reference   https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
- *
+/**
+ * @reference   Insertion Sort for Singly Linked List
+ *              https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/
  * @reference   Insertion Sort List
  *              https://leetcode.com/problems/insertion-sort-list/
  *
- * Given the head of a singly linked list, sort the list using insertion sort, and return
- * the sorted list's head. The steps of the insertion sort algorithm:
- *  1. Insertion sort iterates, consuming one input element each repetition and growing a
- *  sorted output list.
- *  2. At each iteration, insertion sort removes one element from the input data, finds
- *  the location it belongs within the sorted list and inserts it there.
+ * Given the head of a singly linked list, sort the list using insertion sort, and return the sorted
+ * list's head.
+ * The steps of the insertion sort algorithm:
+ *  1. Insertion sort iterates, consuming one input element each repetition and growing a sorted output
+ *     list.
+ *  2. At each iteration, insertion sort removes one element from the input data, finds the location it
+ *     belongs within the sorted list and inserts it there.
  *  3. It repeats until no input elements remain.
+ *
+ * @tags    #sorting #insertion-sort #singly-linked-list
  */
 inline auto InsertionSort_SinglyList(std::forward_list<ArrayType::value_type> values) {
     std::forward_list<ArrayType::value_type> sorted_list;
@@ -154,7 +155,7 @@ inline auto InsertionSort_SinglyList(std::forward_list<ArrayType::value_type> va
     return sorted_list;
 }
 
-}//namespace
+} //namespace
 
 
 using InitializerType = std::initializer_list<ArrayType::value_type>;

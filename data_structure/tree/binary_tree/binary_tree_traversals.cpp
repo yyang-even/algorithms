@@ -6,9 +6,9 @@
 
 namespace {
 
-/** Tree Traversals (Inorder, Preorder and Postorder)
- *
- * @reference   https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+/**
+ * @reference   Tree Traversals (Inorder, Preorder and Postorder)
+ *              https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
  * @reference   Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein.
  *              Introduction to Algorithms, Third Edition. Exercises 10.4-2. Exercises 12.1-4.
  * @reference   DFS traversal of a tree using recursion
@@ -55,9 +55,9 @@ inline auto PostorderTraversal_Recursive(const BinaryTree::Node::PointerType nod
 }
 
 
-/** Iterative Postorder Traversal | Set 1 (Using Two Stacks)
- *
- * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal/
+/**
+ * @reference   Iterative Postorder Traversal | Set 1 (Using Two Stacks)
+ *              https://www.geeksforgeeks.org/iterative-postorder-traversal/
  */
 inline auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType current_node,
                                                    BinaryTree::ArrayType &outputs) {
@@ -82,9 +82,9 @@ inline auto PostorderTraversal_Iterative_TwoStacks(BinaryTree::Node::PointerType
 }
 
 
-/** Iterative Postorder Traversal | Set 2 (Using One Stack)
- *
- * @reference   https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+/**
+ * @reference   Iterative Postorder Traversal | Set 2 (Using One Stack)
+ *              https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
  */
 inline auto PostorderTraversal_Iterative_OneStack(BinaryTree::Node::PointerType current_node,
                                                   BinaryTree::ArrayType &outputs) {
@@ -195,9 +195,9 @@ inline auto PostorderTraversal_Iterative_Map(BinaryTree::Node::PointerType curre
 }
 
 
-/** Iterative Preorder Traversal
- *
- * @reference   https://www.geeksforgeeks.org/iterative-preorder-traversal/
+/**
+ * @reference   Iterative Preorder Traversal
+ *              https://www.geeksforgeeks.org/iterative-preorder-traversal/
  */
 inline auto PreorderTraversal_Iterative(BinaryTree::Node::PointerType current_node,
                                         BinaryTree::ArrayType &outputs) {
@@ -235,9 +235,9 @@ inline auto PreorderTraversal_Iterative_Better(BinaryTree::Node::PointerType cur
 }
 
 
-/** Level Order Tree Traversal
- *
- * @reference   https://www.geeksforgeeks.org/level-order-tree-traversal/
+/**
+ * @reference   Level Order Tree Traversal
+ *              https://www.geeksforgeeks.org/level-order-tree-traversal/
  */
 inline auto LevelOrderTraversal(const BinaryTree::Node::PointerType root_node,
                                 BinaryTree::ArrayType &outputs) {
@@ -264,9 +264,9 @@ inline auto LevelOrderTraversal_LevelAware(const BinaryTree::Node::PointerType r
 }
 
 
-/** Reverse Level Order Traversal
- *
- * @reference   https://www.geeksforgeeks.org/reverse-level-order-traversal/
+/**
+ * @reference   Reverse Level Order Traversal
+ *              https://www.geeksforgeeks.org/reverse-level-order-traversal/
  *
  * The idea is to print last level first, then second last level, and so on. Like Level order traversal,
  * every level is printed from left to right.
@@ -315,9 +315,9 @@ inline auto ReverseLevelOrderTraversal_Iterative(const BinaryTree::Node::Pointer
 }
 
 
-/** ZigZag Tree Traversal
- *
- * @reference   https://www.geeksforgeeks.org/zigzag-tree-traversal/
+/**
+ * @reference   ZigZag Tree Traversal
+ *              https://www.geeksforgeeks.org/zigzag-tree-traversal/
  * @reference   Binary Tree Zigzag Level Order Traversal
  *              https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
  *
@@ -409,6 +409,29 @@ inline constexpr auto TreeTraversal(const BinaryTree &binary_tree,
     traversal(binary_tree.GetRoot(), outputs);
     return outputs;
 }
+
+
+/**
+ * @reference   Binary Tree Coloring Game
+ *              https://leetcode.com/problems/binary-tree-coloring-game/
+ *
+ * Two players play a turn based game on a binary tree. We are given the root of this binary tree, and
+ * the number of nodes n in the tree. n is odd, and each node has a distinct value from 1 to n.
+ * Initially, the first player names a value x with 1 <= x <= n, and the second player names a value y
+ * with 1 <= y <= n and y != x. The first player colors the node with value x red, and the second player
+ * colors the node with value y blue.
+ * Then, the players take turns starting with the first player. In each turn, that player chooses a node
+ * of their color (red if player 1, blue if player 2) and colors an uncolored neighbor of the chosen
+ * node (either the left child, right child, or parent of the chosen node.)
+ * If (and only if) a player cannot choose such a node in this way, they must pass their turn. If both
+ * players pass their turn, the game ends, and the winner is the player that colored more nodes.
+ * You are the second player. If it is possible to choose such a y to ensure you win the game, return
+ * true. If it is not possible, return false.
+ *
+ * @hint    The best move y must be immediately adjacent to x, since it locks out that subtree.
+ *
+ * @tags    #binary-tree #DFS #preorder-traversal
+ */
 
 } //namespace
 

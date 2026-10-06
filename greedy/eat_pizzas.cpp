@@ -17,7 +17,7 @@ using ArrayType = std::vector<int>;
  * Find the maximum total weight you can gain by eating all pizzas optimally.
  * Note: It is guaranteed that n is a multiple of 4, and each pizza can be eaten only once.
  *
- * @tags    #greedy #sorting #accumulate
+ * @tags    #greedy #quick-select #sorting #accumulate
  */
 auto MaxWeightGain(ArrayType pizzas) {
     const int total_days = pizzas.size() / 4;
