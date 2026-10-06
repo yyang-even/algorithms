@@ -5,16 +5,18 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Validate Stack Sequences
+/**
+ * @reference   Validate Stack Sequences
+ *              https://leetcode.com/problems/validate-stack-sequences/
  *
- * @reference   https://leetcode.com/problems/validate-stack-sequences/
- *
- * Given two integer arrays pushed and popped each with distinct values, return true if
- * this could have been the result of a sequence of push and pop operations on an initially
- * empty stack, or false otherwise.
+ * Given two integer arrays pushed and popped each with distinct values, return true if this could have
+ * been the result of a sequence of push and pop operations on an initially empty stack, or false
+ * otherwise.
  * All the elements of pushed are unique.
  * popped.length == pushed.length
  * popped is a permutation of pushed.
+ *
+ * @tags    #stack
  */
 auto ValidateStackSequences(const ArrayType &pushed, const ArrayType &popped) {
     std::stack<int> s;
@@ -32,7 +34,7 @@ auto ValidateStackSequences(const ArrayType &pushed, const ArrayType &popped) {
     return j == popped.size();
 }
 
-}//namespace
+} //namespace
 
 
 const ArrayType SAMPLE1I = {1, 2, 3, 4, 5};

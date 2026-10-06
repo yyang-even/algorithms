@@ -5,9 +5,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Eliminate Maximum Number of Monsters
- *
- * @reference   https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
+/**
+ * @reference   Eliminate Maximum Number of Monsters
+ *              https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
  *
  * You are playing a video game where you are defending your city from a group of n monsters. You are
  * given a 0-indexed integer array dist of size n, where dist[i] is the initial distance in kilometers
@@ -21,6 +21,8 @@ using ArrayType = std::vector<int>;
  * weapon is fully charged, it counts as a loss, and the game ends before you can use your weapon.
  * Return the maximum number of monsters that you can eliminate before you lose, or n if you can
  * eliminate all the monsters before they reach the city.
+ *
+ * @tags    #greedy #sorting
  */
 auto EliminateMaxNumberOfMonsters(const ArrayType &dist, const ArrayType &speed) {
     std::vector<unsigned> arrival_time;

@@ -120,7 +120,7 @@ auto MaxAndMin_Pair(const ArrayType &values) {
  * Return the average salary of employees excluding the minimum and maximum salary.
  * Answers within 10^-5 of the actual answer will be accepted.
  *
- * @tags    #min-max-element
+ * @tags    #min-max-element #accumulate
  */
 
 

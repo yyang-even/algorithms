@@ -6,9 +6,9 @@
 
 namespace {
 
-/** Diameter of Binary Tree
- *
- * @reference   https://leetcode.com/problems/diameter-of-binary-tree/
+/**
+ * @reference   Diameter of Binary Tree
+ *              https://leetcode.com/problems/diameter-of-binary-tree/
  * @reference   Diameter of a Binary Tree
  *              https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
  *
@@ -102,6 +102,8 @@ inline auto Tilt(const BinaryTree::Node::PointerType root) {
  *  The average of n elements is the sum of the n elements divided by n and rounded down to the nearest
  *  integer.
  *  A subtree of root is a tree consisting of root and all of its descendants.
+ *
+ * @tags    #binary-tree #DFS #postorder-traversal
  */
 
 

@@ -10,9 +10,9 @@ using namespace graph;
 
 namespace {
 
-/** Sum of Distances in Tree
- *
- * @reference   https://leetcode.com/problems/sum-of-distances-in-tree/
+/**
+ * @reference   Sum of Distances in Tree
+ *              https://leetcode.com/problems/sum-of-distances-in-tree/
  *
  * There is an undirected connected tree with n nodes labeled from 0 to n - 1 and n - 1 edges.
  * You are given the integer n and the array edges where edges[i] = [ai, bi] indicates that there is an
@@ -70,6 +70,8 @@ inline auto SumOfDistances(const std::size_t number_vertices,
  * of the values of all nodes that have a distance k from the target node.
  * You can return the answer in any order.
  * All the values Node.val are unique.
+ *
+ * @tags    #binary-tree #DFS #postorder-traversal
  */
 void searchKNode(const BinaryTree::Node::PointerType node, const int k, ArrayType &result) {
     if (not node) {

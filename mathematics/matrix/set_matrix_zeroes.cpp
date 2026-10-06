@@ -147,6 +147,8 @@ auto NumberSpecials(const MatrixType &mat) {
  *  Let the number of zeros in the jth column be zerosColj.
  *  diff[i][j] = onesRowi + onesColj - zerosRowi - zerosColj
  * Return the difference matrix diff.
+ *
+ * @tags    #matrix #hash-table
  */
 
 

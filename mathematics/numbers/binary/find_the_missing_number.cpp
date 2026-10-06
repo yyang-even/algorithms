@@ -7,9 +7,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Find the Missing Number
- *
- * @reference   https://www.geeksforgeeks.org/find-the-missing-number/
+/**
+ * @reference   Find the Missing Number
+ *              https://www.geeksforgeeks.org/find-the-missing-number/
  *
  * You are given a list of n-1 integers and these integers are in the range of 1 to n.  There are no
  * duplicates in list. One of the integers is missing in the list. Write an efficient code to find the
@@ -24,6 +24,8 @@ using ArrayType = std::vector<int>;
  * complexity?
  *
  * @complexity  O(n)
+ *
+ * @tags    #accumulate #arithmetic-progression #bit-tricks
  */
 inline auto FindTheMissingNumber_Sum(const ArrayType &integers) {
     assert(not integers.empty());
@@ -48,9 +50,9 @@ auto FindTheMissingNumber_Xor(const ArrayType &integers, ArrayType::value_type m
 }
 
 
-/** Find the one missing number in range
- *
- * @reference   https://www.geeksforgeeks.org/find-one-missing-number-range/
+/**
+ * @reference   Find the one missing number in range
+ *              https://www.geeksforgeeks.org/find-one-missing-number-range/
  *
  * Given an array of size n. It is also given that range of numbers is from smallestNumber to
  * smallestNumber + n where smallestNumber is the smallest number in array. The array contains number in
@@ -100,9 +102,9 @@ inline auto FindTheMissingNumber_Partition(ArrayType integers) {
 }
 
 
-/** Find missing element in a sorted array of consecutive numbers
- *
- * @reference   https://www.geeksforgeeks.org/find-missing-element-in-a-sorted-array-of-consecutive-numbers/
+/**
+ * @reference   Find missing element in a sorted array of consecutive numbers
+ *              https://www.geeksforgeeks.org/find-missing-element-in-a-sorted-array-of-consecutive-numbers/
  *
  * Given an array arr[] of n distinct integers. Elements are placed sequentially in ascending order with
  * one element missing. The task is to find the missing element.
@@ -134,9 +136,9 @@ int FindTheMissingNumber_SortedRange_BinarySearch(const ArrayType &values) {
 }
 
 
-/** Find the Missing Number in a sorted array
- *
- * @reference   https://www.geeksforgeeks.org/find-the-missing-number-in-a-sorted-array/
+/**
+ * @reference   Find the Missing Number in a sorted array
+ *              https://www.geeksforgeeks.org/find-the-missing-number-in-a-sorted-array/
  *
  * Given a list of n-1 integers and these integers are in the range of 1 to n. There are no duplicates
  * in list. One of the integers is missing in the list. Write an efficient code to find the missing
@@ -250,6 +252,8 @@ auto FindTheSmallestPositiveMissingNumber_Hash(const ArrayType &elements) {
  *  void upload(int video) Uploads video to the server.
  *  int longest() Returns the length of the longest uploaded prefix defined above.
  * 1 <= n <= 10^5
+ *
+ * @tags    #hash-table
  */
 
 

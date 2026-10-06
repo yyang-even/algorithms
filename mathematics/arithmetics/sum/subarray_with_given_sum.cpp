@@ -14,6 +14,8 @@ using ArrayType = std::vector<int>;
  *
  * Given an unsorted array of nonnegative integers, find a continuous subarray which adds to a given
  * number.
+ *
+ * @tags    #sliding-window
  */
 constexpr auto NOT_FOUND = std::pair(-1, -1);
 
@@ -42,6 +44,8 @@ std::pair<int, int> FindSubarrayWithGivenSum(const ArrayType &integers,
 /**
  * @reference   Find subarray with given sum | Set 2 (Handles Negative Numbers)
  *              https://www.geeksforgeeks.org/find-subarray-with-given-sum-in-array-of-integers/
+ *
+ * @tags    #hash-table #prefix-sum
  */
 auto AllSubarraysWithGivenSum(const ArrayType &integers, const ArrayType::value_type SUM) {
     std::unordered_multimap<ArrayType::value_type, ArrayType::size_type> sum_index_map;
@@ -87,6 +91,8 @@ inline auto FindSubarrayWithGivenSum_Map(const ArrayType &integers,
  *
  * Given an array of positive and negative numbers, find if there is a subarray (of size at-least one)
  * with 0 sum.
+ *
+ * @tags    #hash-table #prefix-sum
  */
 inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
     return not AllSubarraysWithGivenSum(integers, 0).empty();
@@ -108,7 +114,7 @@ inline bool FindSubarrayWith0Sum(const ArrayType &integers) {
  * A subarray is a contiguous non-empty sequence of elements within an array.
  * -1000 <= nums[i] <= 1000
  *
- * @tags    #hash-table #prefix-sum
+ * @tags    #hash-table #prefix-sum #arithmetic-progression
  */
 auto NumberOfSubarraysWithGivenSum(const ArrayType &nums, const ArrayType::value_type k) {
     std::unordered_map<int, int> counts = {{0, 1}};
@@ -158,7 +164,7 @@ auto SubarraysDivisibleByK(const ArrayType &nums, const int k) {
  * Note: The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
  * Follow Up: Can you do it in O(n) time?
  *
- * @tags    #hash-table #prefix-sum
+ * @tags    #hash-table #prefix-sum #sliding-window
  */
 auto MaxLengthSubarraySumAs(const ArrayType &nums, const int k) {
     std::unordered_map<int, int> hash = {{0, -1}};
@@ -221,6 +227,8 @@ auto MaxNonOverlapping(const ArrayType &nums, const int target) {
  * modifies the array for future operations.
  * Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise, return
  * -1.
+ *
+ * @tags    #accumulate #hash-table #prefix-sum #sliding-window
  */
 int MinOperationsReduceXto0(const ArrayType &nums, const int x) {
     const auto sum = std::accumulate(nums.cbegin(), nums.cend(), 0);
@@ -238,6 +246,8 @@ int MinOperationsReduceXto0(const ArrayType &nums, const int x) {
  *              https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
  *
  * Given an array of integers, find length of the largest subarray with sum equals to 0.
+ *
+ * @tags    #hash-table #prefix-sum #sliding-window
  */
 inline auto LengthOfLargestSubarrayWith0Sum(const ArrayType &integers) {
     return MaxLengthSubarraySumAs(integers, 0);

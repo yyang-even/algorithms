@@ -34,6 +34,23 @@ inline constexpr auto SumOfGeometricSeries(const unsigned N) {
  * @tags    #geometric-progression #mersenne-number
  */
 
+
+/**
+ * @reference   Count Commas in Range
+ *              https://leetcode.com/problems/count-commas-in-range/
+ * @reference   Count Commas in Range II
+ *              https://leetcode.com/problems/count-commas-in-range-ii/
+ *
+ * You are given an integer n.
+ * Return the total number of commas used when writing all integers from [1, n] (inclusive) in standard
+ * number formatting.
+ * In standard formatting:
+ *  A comma is inserted after every three digits from the right.
+ *  Numbers with fewer than 4 digits contain no commas.
+ *
+ * @tags    #geometric-progression
+ */
+
 } //namespace
 
 

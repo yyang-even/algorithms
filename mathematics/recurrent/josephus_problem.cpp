@@ -101,9 +101,9 @@ constexpr unsigned JosephusProblem3(const unsigned n) {
 }
 
 
-/** Kth Josephus problem
- *
- * @reference https://www.geeksforgeeks.org/josephus-problem-set-1-a-on-solution/
+/**
+ * @reference   Kth Josephus problem
+ *              https://www.geeksforgeeks.org/josephus-problem-set-1-a-on-solution/
  *
  * There are n people standing in a circle waiting to be executed. The counting out begins at some point
  * in the circle and proceeds around the circle in a fixed direction. In each step, a certain number of
@@ -206,6 +206,8 @@ auto JosephusPermutation(const unsigned n, const unsigned k) {
  *  If there are still unrevealed cards, go back to step 1. Otherwise, stop.
  * Return an ordering of the deck that would reveal the cards in increasing order.
  * Note that the first entry in the answer is considered to be the top of the deck.
+ *
+ * @tags    #sorting #josephus-problem
  */
 auto RevealCardsInIncreasingOrder(ArrayType deck) {
     std::sort(deck.begin(), deck.end());

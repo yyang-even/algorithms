@@ -5,19 +5,19 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Next Permutation
- *
- * @reference   https://leetcode.com/problems/next-permutation/
+/**
+ * @reference   Next Permutation
+ *              https://leetcode.com/problems/next-permutation/
  *
  * A permutation of an array of integers is an arrangement of its members into a sequence or linear
  * order.
- *  For example, for arr = [1,2,3], the following are considered permutations of arr: [1,2,3],
- *  [1,3,2], [3,1,2], [2,3,1].
- * The next permutation of an array of integers is the next lexicographically greater permutation
- * of its integer. More formally, if all the permutations of the array are sorted in one container
- * according to their lexicographical order, then the next permutation of that array is the
- * permutation that follows it in the sorted container. If such arrangement is not possible, the
- * array must be rearranged as the lowest possible order (i.e., sorted in ascending order).
+ *  For example, for arr = [1,2,3], the following are considered permutations of arr: [1,2,3], [1,3,2],
+ *  [3,1,2], [2,3,1].
+ * The next permutation of an array of integers is the next lexicographically greater permutation of its
+ * integer. More formally, if all the permutations of the array are sorted in one container according to
+ * their lexicographical order, then the next permutation of that array is the permutation that follows
+ * it in the sorted container. If such arrangement is not possible, the array must be rearranged as the
+ * lowest possible order (i.e., sorted in ascending order).
  *  For example, the next permutation of arr = [1,2,3] is [1,3,2].
  *  Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
  *  While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a
@@ -66,6 +66,22 @@ auto NextPermutation_Stack(ArrayType nums) {
     std::reverse(nums.begin() + tmp + 1, nums.end());
     return nums;
 }
+
+
+/**
+ * @reference   Lexicographically Smallest Permutation Greater Than Target
+ *              https://leetcode.com/problems/lexicographically-smallest-permutation-greater-than-target/
+ *
+ * You are given two strings s and target, both having length n, consisting of lowercase English
+ * letters.
+ * Return the lexicographically smallest permutation of s that is strictly greater than target. If no
+ * permutation of s is lexicographically strictly greater than target, return an empty string.
+ * A string a is lexicographically strictly greater than a string b (of the same length) if in the first
+ * position where a and b differ, string a has a letter that appears later in the alphabet than the
+ * corresponding letter in b.
+ *
+ * @tags    #backtracking #combinatorics #greedy #hash-table
+ */
 
 } //namespace
 

@@ -78,6 +78,8 @@ auto KthSmallest_MaxHeap(const ArrayType &elements, const ArrayType::size_type K
  *              Introduction to Algorithms, Third Edition. Section 9.2.
  * @reference   Quickselect Algorithm
  *              https://www.geeksforgeeks.org/quickselect-algorithm/
+ *
+ * @tags    #divide-and-conquer #quick-select
  */
 inline auto KthSmallest_QuickSelect(ArrayType elements, const ArrayType::size_type K) {
     assert(K < elements.size());

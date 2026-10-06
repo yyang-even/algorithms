@@ -7,9 +7,9 @@ namespace {
 
 using ArrayType = std::vector<int>;
 
-/** Candy
- *
- * @reference   https://leetcode.com/problems/candy/
+/**
+ * @reference   Candy
+ *              https://leetcode.com/problems/candy/
  *
  * There are n children standing in a line. Each child is assigned a rating value given in the integer
  * array ratings.
@@ -100,6 +100,38 @@ int Candy_Slope(const ArrayType &ratings) {
 
     return candies;
 }
+
+
+/**
+ * @reference   Maximum Valid Pair Sum
+ *              https://leetcode.com/problems/maximum-valid-pair-sum/
+ *
+ * You are given an integer array nums of length n and an integer k.
+ * A pair of indices (i, j) is called valid if:
+ *  0 <= i < j < n
+ *  j - i >= k
+ * Return the maximum value of nums[i] + nums[j] among all valid pairs.
+ *
+ * @tags    #forward-and-backward #min-max-element #sliding-window
+ */
+
+
+/**
+ * @reference   Smallest Stable Index I
+ *              https://leetcode.com/problems/smallest-stable-index-i/
+ * @reference   Smallest Stable Index II
+ *              https://leetcode.com/problems/smallest-stable-index-ii/
+ *
+ * You are given an integer array nums of length n and an integer k.
+ * For each index i, define its instability score as max(nums[0..i]) - min(nums[i..n - 1]).
+ * In other words:
+ *  max(nums[0..i]) is the largest value among the elements from index 0 to index i.
+ *  min(nums[i..n - 1]) is the smallest value among the elements from index i to index n - 1.
+ * An index i is called stable if its instability score is less than or equal to k.
+ * Return the smallest stable index. If no such index exists, return -1.
+ *
+ * @tags    #forward-and-backward #min-max-element #sliding-window
+ */
 
 } //namespace
 

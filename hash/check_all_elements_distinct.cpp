@@ -329,6 +329,24 @@ auto TakeCharactersFromEnds(const std::string_view s, const int k) {
 
 
 /**
+ * @reference   Shortest and Lexicographically Smallest Beautiful String
+ *              https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/
+ *
+ * You are given a binary string s and a positive integer k.
+ * A substring of s is beautiful if the number of 1's in it is exactly k.
+ * Let len be the length of the shortest beautiful substring.
+ * Return the lexicographically smallest beautiful substring of string s with length equal to len. If s
+ * doesn't contain a beautiful substring, return an empty string.
+ * A string a is lexicographically larger than a string b (of the same length) if in the first position
+ * where a and b differ, a has a character strictly larger than the corresponding character in b.
+ *  For example, "abcd" is lexicographically larger than "abcc" because the first position they differ is
+ *  at the fourth character, and d is greater than c.
+ *
+ * @tags    #sliding-window #min-max-element
+ */
+
+
+/**
  * @reference   Count Subarrays Where Max Element Appears at Least K Times
  *              https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
  *

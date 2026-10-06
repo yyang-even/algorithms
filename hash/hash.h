@@ -40,6 +40,8 @@ struct PairHash {
  *  void remove(key) Removes the value key in the HashSet. If key does not exist in the HashSet, do
  *      nothing.
  * 0 <= key <= 10^6
+ *
+ * @tags    #hash-table
  */
 
 
@@ -56,6 +58,8 @@ struct PairHash {
  *  void remove(key) removes the key and its corresponding value if the map contains the mapping for the
  *      key.
  * 0 <= key, value <= 10^6
+ *
+ * @tags    #hash-table
  */
 
 
